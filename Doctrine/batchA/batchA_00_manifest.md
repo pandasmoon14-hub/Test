@@ -412,3 +412,43 @@ With `batchA_02_player_chassis_doctrine.md` established and this manifest now in
 
 That file should formalize the controlled vocabulary needed to stop later Batch A files from using terms such as path, domain, skill, technique, kit, permission, proficiency, and Ascendant as soft interchangeable mush.
 
+
+---
+
+## 15. Conversion Gate Protocol
+
+### 15.1 Rule
+
+**No conversion of a donor construct class may begin until the governing Batch A doctrine file for that construct class is marked "Draft — Core Now" or later in this manifest.**
+
+This is a non-negotiable hard gate. Interim conversions that proceed before a governing file is finalized produce unconstrained output and create precedent that must be retroactively identified and repaired.
+
+### 15.2 Gate map
+
+| Construct class | Governing file | Gate condition |
+|---|---|---|
+| Capability / skill constructs | `batchA_05_competency_and_skill_translation_architecture.md` | Must be Draft — Core Now |
+| Access / permission constructs | `batchA_06_access_tags_permissions_and_proficiency_gates.md` | Must be Draft — Core Now |
+| Resource economy constructs | `batchA_07b_resource_cost_recharge_and_backlash_architecture.md` | Must be Draft — Core Now |
+| Status / condition constructs | `batchA_08_status_condition_and_effect_architecture.md` | Must be Draft — Core Now |
+| Damage family constructs | `batchA_09_damage_family_and_resistance_taxonomy.md` | Must be Draft — Core Now |
+| Progression / advancement constructs | `batchA_10_progression_axes.md` | Must be Draft — Core Now |
+| Origin / identity constructs | `batchA_11_origin_kinform_culture_and_background_framework.md` | Must be Draft — Soon After |
+| Path / class constructs | `batchA_12_path_archetype_and_profession_framework.md` | Must be Draft — Soon After |
+
+### 15.3 Exception handling
+
+If a conversion must proceed before a governing file is finalized, the operator must:
+
+1. File an exception in `data/exceptions/` using the schema at `data/exceptions/exception_log_schema.yaml`.
+2. Specify the `exception_type: conversion_gate_bypass`.
+3. Document the `interim_constraint_applied` explicitly — not as "best judgment" but as a named, describable rule.
+4. Mark the converted output as `[gate-bypass-pending]` until the governing file is finalized and the conversion is reviewed against it.
+
+### 15.4 Gate bypass accumulation rule
+
+If five or more gate bypass exceptions accumulate against the same governing file, that file must be prioritized for immediate drafting. Five bypasses on the same file indicates the conversion queue is outrunning doctrine — a scale failure mode that must be corrected before further conversions of that construct class.
+
+### 15.5 Prompt gate
+
+No conversion prompt may reference a doctrine file that has not reached "Draft — Core Now" status. Prompts referencing planned-but-unwritten files must be blocked until the file is drafted. See `configs/prompts/prompt_doctrine_manifest.yaml` for prompt-to-doctrine tracking.

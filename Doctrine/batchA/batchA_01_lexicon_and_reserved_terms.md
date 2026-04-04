@@ -606,3 +606,49 @@ This lexicon is intentionally stricter and smaller than a full glossary.
 
 Its purpose is not to finalize every future Astra equivalent in advance.
 Its purpose is to stabilize the terms Astra needs now, reserve the terms Astra cannot safely finalize yet, and keep metadata language from pretending to be rules language.
+
+---
+
+## 18. Cosmology-Local Quarantine Tag
+
+### 18.1 Tag definition
+
+**Tag:** `[cosmology-local]`
+
+**Register:** metadata/tooling (never a rules object)
+
+**Owner file:** `batchA_01_lexicon_and_reserved_terms.md`
+
+**Purpose:** Marks any conversion output text that contains donor-specific metaphysical explanation of advancement, power source, cosmic agency, or origin narrative. Tagged content is retained for reference but must not be promoted to Astra doctrine without explicit adjudication.
+
+### 18.2 When to apply
+
+Apply `[cosmology-local]` to any passage or block that:
+- explains **how** a donor system's cosmological framework works (not merely that something is powerful or advanced),
+- attributes a character's power, growth, or nature to a specific donor-cosmological source (e.g., "bounded to the dying star's will," "ascendant through planetary resonance," "chosen by the Eternal Court"),
+- names donor-proprietary cosmological regimes, agencies, forces, or laws as if they were Astra-universal structural law,
+- or explains the metaphysical origin of game mechanics in donor-specific terms.
+
+### 18.3 When not to apply
+
+Do **not** apply `[cosmology-local]` to:
+- plain mechanical descriptions that happen to mention setting flavor,
+- Astra-native terminology already approved in Section 6 of this file,
+- world-building notes that do not purport to be structural doctrine,
+- or content already tagged `[source-local]` (no double-tagging needed if source-local already applies).
+
+### 18.4 Enforcement
+
+The lexicon validator (`astra_cloud.validators.LexiconValidator`) scans conversion output for known cosmological signal phrases. If signals are found without a `[cosmology-local]` tag present in the text, the validator returns a `FAIL` outcome on the `cosmology_untagged` check.
+
+Conversion operators may apply the tag manually during review, or prompts may be instructed to auto-tag passages that match cosmological explanation patterns.
+
+### 18.5 Promotion rule
+
+A passage tagged `[cosmology-local]` may only be promoted to Astra structural doctrine through explicit adjudication logged in `data/canon/adjudicated/`. Repetition alone does not promote a cosmology-local passage — no matter how many donor conversions contain similar content.
+
+### 18.6 Relationship to batchA_15
+
+Section 18 supplements batchA_15's prohibition on donor cosmology becoming Astra default law. `batchA_15` states the rule; this section provides the tagging instrument by which conversion outputs declare compliance.
+
+If a conversion produces cosmologically explanatory text without tagging it `[cosmology-local]`, it is in potential violation of batchA_15's source-local containment requirement and must be reviewed before canon promotion.

@@ -1,0 +1,170 @@
+version: "0.1"
+purpose: >
+  Schema and governance rules for logging doctrine exceptions during
+  Astra Ascension conversion operations.
+
+  An exception is any conversion that:
+  - Proceeded before its governing doctrine file was finalized (gate bypass)
+  - Passed with a known batchA_15 violation that was manually approved
+  - Used an interim assumption to fill a doctrine gap
+  - Generated a validator FAIL that was manually overridden
+
+  Exception logging is MANDATORY. Every exception must be filed here.
+  Citation tracking detects when exceptions become de facto doctrine.
+  Three citations of the same exception type trigger a formal adjudication.
+
+# ---------------------------------------------------------------------------
+# Field schema
+# ---------------------------------------------------------------------------
+schema:
+  required_fields:
+
+    exception_id:
+      type: string
+      format: "EX-{sourcebook_id}-{chunk_id}-{YYYYMMDD}"
+      example: "EX-RHBF-chunk042-20240401"
+
+    timestamp_utc:
+      type: string
+      format: ISO 8601
+
+    run_id:
+      type: string
+
+    chunk_id:
+      type: string
+
+    sourcebook_id:
+      type: string
+
+    exception_type:
+      type: enum
+      values:
+        - conversion_gate_bypass         # Conversion ran before governing doctrine was finalized
+        - batchA15_invariant_override    # A batchA_15 rule was manually waived
+        - interim_doctrine_assumption    # Gap in doctrine filled with interim rule
+        - validator_fail_manual_override # Validator FAIL manually approved
+        - cosmology_leakage_approved     # Cosmological content approved without [cosmology-local] tag
+        - split_waived                   # Multi-job construct allowed without split
+        - lexicon_violation_approved     # Banned or unconverted term approved
+        - escalation_manually_resolved   # Escalated chunk resolved manually without doctrine update
+
+    exception_description:
+      type: string
+      description: >
+        What doctrine rule was bypassed, which file was not finalized,
+        or what assumption was made in place of missing doctrine.
+
+    governing_doctrine_file:
+      type: string
+      description: >
+        Which doctrine file's absence or incompleteness caused this exception.
+        Use the canonical file path, e.g. Doctrine/batchA/batchA_10_progression_axes.md
+
+    interim_constraint_applied:
+      type: string
+      description: >
+        The specific rule applied instead of the missing doctrine.
+        "best judgment" is NOT an acceptable value — be explicit.
+
+    approved_by:
+      type: string
+      description: >
+        Human reviewer identifier or automated override code that approved
+        this exception. Format: "{operator-id}-{YYYYMMDD}"
+
+    precedent_setting:
+      type: boolean
+      description: >
+        True if this exception may be cited by later conversions.
+        False if it is strictly local to this donor/chunk.
+
+    citation_count:
+      type: integer
+      default: 0
+      description: >
+        Number of times this exception has been cited by subsequent conversions.
+        Reaches 3 → triggers formal adjudication request.
+
+    adjudication_status:
+      type: enum
+      values:
+        - open
+        - under_review
+        - resolved_as_doctrine      # Exception pattern promoted to doctrine
+        - resolved_as_donor_local   # Exception confined as source-local
+        - closed_no_action
+
+  optional_fields:
+
+    converted_text_excerpt:
+      type: string
+      description: Relevant excerpt (first 500 chars) from the converted output.
+
+    resolution_notes:
+      type: string
+
+    related_exception_ids:
+      type: list[string]
+
+# ---------------------------------------------------------------------------
+# Adjudication trigger rules
+# ---------------------------------------------------------------------------
+adjudication_trigger_rules:
+
+  - rule: citation_threshold
+    condition: "exception.citation_count >= 3"
+    action: >
+      Open a formal adjudication entry in data/canon/conflicts/.
+      The exception_type and interim_constraint_applied become the adjudication
+      subject. If resolved as doctrine, update the governing_doctrine_file.
+      If resolved as donor_local, mark all citing conversions as source-local.
+
+  - rule: gate_bypass_accumulation
+    condition: >
+      COUNT(exception_type == 'conversion_gate_bypass'
+      AND governing_doctrine_file == X) >= 5
+    action: >
+      Issue a priority alert to finalize the governing doctrine file.
+      Five gate bypasses on the same file indicates the conversion queue is
+      outrunning doctrine — a scale risk that must be resolved.
+
+  - rule: cosmology_approval_accumulation
+    condition: "COUNT(exception_type == 'cosmology_leakage_approved') >= 3"
+    action: >
+      Review all approved cosmology exceptions together. If three or more
+      share a structural pattern, that pattern may be becoming de facto
+      Astra doctrine. Adjudicate before further approvals.
+
+  - rule: split_waiver_accumulation
+    condition: "COUNT(exception_type == 'split_waived' AND sourcebook_id == X) >= 3"
+    action: >
+      Review all split waivers for this sourcebook. Repeated waivers on the
+      same donor suggest the donor's architecture is genuinely multi-job and
+      may require a new routing rule rather than individual waivers.
+
+# ---------------------------------------------------------------------------
+# Example entry
+# ---------------------------------------------------------------------------
+example_entry:
+  exception_id: "EX-RHBF-chunk042-20240401"
+  timestamp_utc: "2024-04-01T10:30:00Z"
+  run_id: "run-rhbf-prod-001"
+  chunk_id: "chunk042"
+  sourcebook_id: "RHBF_primary_donor"
+  exception_type: conversion_gate_bypass
+  exception_description: >
+    batchA_10 (Progression Axes) was not yet finalized when this chunk was
+    converted. RHBF cultivation rank structure was processed using an interim
+    constraint (see below).
+  governing_doctrine_file: "Doctrine/batchA/batchA_10_progression_axes.md"
+  interim_constraint_applied: >
+    RHBF cultivation ranks mapped to primary ascension axis Stages (one-to-one).
+    No sub-axis decomposition applied. Flagged for re-review when batchA_10 finalized.
+  approved_by: "operator-mcdon-20240401"
+  precedent_setting: false
+  citation_count: 0
+  adjudication_status: open
+  converted_text_excerpt: "Stage 1 (Mortal Realm), Stage 2 (Spirit Realm)..."
+  resolution_notes: ""
+  related_exception_ids: []

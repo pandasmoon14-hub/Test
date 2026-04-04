@@ -47,3 +47,74 @@ validator_targets:
     - contradictory_progression_mapping
     - body_slot_power_structure_lost
     - living_weapon_or_bound_relic_logic_collapsed
+
+  # -------------------------------------------------------------------------
+  # Lexicon validator targets (enforced by lexicon_validator.py)
+  # -------------------------------------------------------------------------
+  lexicon_validator:
+    enabled: true
+    validator_class: "astra_cloud.validators.LexiconValidator"
+    fail_on:
+      - donor_signature_leak         # Donor system terms found unconverted
+      - unconverted_source_term      # Terms in unconverted_or_flagged list still present
+      - cosmology_untagged           # Cosmological passages without [cosmology-local] tag
+    warn_on:
+      - mechanics_unmapped           # Donor key present but Astra equivalent absent
+      - flagged_for_review           # Terms in banned_terms.yaml flag_for_review list
+    sources:
+      - data/lexicon/canonical/astra_terms.yaml
+      - data/lexicon/canonical/banned_terms.yaml
+      - data/lexicon/canonical/mechanics_map.yaml
+      - derived_lexicon_seed.yaml
+
+  # -------------------------------------------------------------------------
+  # Doctrine validator targets (enforced by doctrine_validator.py)
+  # Implements batchA_15 conversion invariants.
+  # -------------------------------------------------------------------------
+  doctrine_validator:
+    enabled: true
+    validator_class: "astra_cloud.validators.DoctrineValidator"
+    fail_on:
+      - classification_missing       # No Astra doctrine job family detected
+      - donor_assumption_imported    # Donor framing phrases imported as Astra doctrine
+    warn_on:
+      - layer_collapse_risk          # 3+ job families without split declaration
+      - multi_job_unsplit            # Multi-purpose language without split signal
+      - output_state_undeclared      # High-complexity chunk lacks output state marker
+      - ability_record_incomplete    # batchA_07 minimum fields missing
+    applies_to_chunk_types:
+      fail_checks:
+        - class_feature
+        - spell_or_power
+        - rules_text
+        - npc_or_bestiary
+        - mixed_dense
+      warn_checks:
+        - statblock
+        - item_block
+
+  # -------------------------------------------------------------------------
+  # Conversion gate: which doctrine files must be finalized before conversion
+  # of each chunk type may proceed.
+  # -------------------------------------------------------------------------
+  conversion_gate:
+    capability_constructs:
+      governing_file: Doctrine/batchA/batchA_05_competency_and_skill_translation_architecture.md
+      required_status: "Draft — Core Now"
+    access_constructs:
+      governing_file: Doctrine/batchA/batchA_06_access_tags_permissions_and_proficiency_gates.md
+      required_status: "Draft — Core Now"
+    resource_constructs:
+      governing_file: Doctrine/batchA/batchA_07b_resource_cost_recharge_and_backlash_architecture.md
+      required_status: "Draft — Core Now"
+    condition_constructs:
+      governing_file: Doctrine/batchA/batchA_08_status_condition_and_effect_architecture.md
+      required_status: "Draft — Core Now"
+    damage_constructs:
+      governing_file: Doctrine/batchA/batchA_09_damage_family_and_resistance_taxonomy.md
+      required_status: "Draft — Core Now"
+    progression_constructs:
+      governing_file: Doctrine/batchA/batchA_10_progression_axes.md
+      required_status: "Draft — Core Now"
+    gate_bypass_exception_type: conversion_gate_bypass
+    gate_bypass_log_dir: data/exceptions/

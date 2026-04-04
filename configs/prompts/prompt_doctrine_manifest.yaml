@@ -1,0 +1,135 @@
+version: "0.1"
+purpose: >
+  Tracks which doctrine files each conversion prompt references and the version
+  those files were last validated against. When a governing doctrine file is
+  revised, prompts referencing it are marked stale and must be regenerated
+  before further conversions run.
+
+governance_rule: >
+  No conversion prompt may reference a doctrine file marked
+  "Planned — Core Now" or "Planned — Soon After".
+  Only files at "Draft — Core Now" or later may be referenced.
+  If a prompt is stale (governing file revised after last_validated_against),
+  conversions using that prompt must be escalated until the prompt is updated.
+  Staleness events must be logged in data/exceptions/.
+
+prompts:
+
+  batch_a_chassis_prompt_v0_1:
+    file: configs/prompts/batch_a_chassis_prompt_v0_1.md
+    governing_doctrine_files:
+      - file: Doctrine/batchA/batchA_02_player_chassis_doctrine.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_03_resolution_framework.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_04_attribute_and_derived_stat_architecture.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_15_conversion_invariants.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+    stale: false
+    stale_reason: ""
+    conversion_gate_satisfied: true
+    notes: >
+      Governs player chassis and stat conversion.
+      Re-validate when batchA_02, batchA_03, batchA_04, or batchA_15 are revised.
+
+  batch_a_chassis_prompt_strict_v0_1:
+    file: configs/prompts/batch_a_chassis_prompt_strict_v0_1.md
+    governing_doctrine_files:
+      - file: Doctrine/batchA/batchA_02_player_chassis_doctrine.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_15_conversion_invariants.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+    stale: false
+    stale_reason: ""
+    conversion_gate_satisfied: true
+    notes: >
+      Strict chassis prompt. Applies tighter batchA_15 enforcement.
+      Re-validate when batchA_02 or batchA_15 are revised.
+
+  batch_b_activity_prompt_v0_1:
+    file: configs/prompts/batch_b_activity_prompt_v0_1.md
+    governing_doctrine_files:
+      - file: Doctrine/batchB/batchB_01_scene_conflict_action_and_encounter_procedure.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchB/batchB_02_health_injury_healing_death_and_recovery_framework.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_15_conversion_invariants.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+    stale: false
+    stale_reason: ""
+    conversion_gate_satisfied: true
+    notes: >
+      Governs world-activity and encounter-layer conversion.
+      Re-validate when any referenced batchB file is revised.
+
+  batch_b_activity_prompt_strict_v0_1:
+    file: configs/prompts/batch_b_activity_prompt_strict_v0_1.md
+    governing_doctrine_files:
+      - file: Doctrine/batchB/batchB_01_scene_conflict_action_and_encounter_procedure.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_15_conversion_invariants.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+    stale: false
+    stale_reason: ""
+    conversion_gate_satisfied: true
+    notes: >
+      Strict Batch B prompt variant.
+
+  batch_c_creatures_prompt_v0_1:
+    file: configs/prompts/batch_c_creatures_prompt_v0_1.md
+    governing_doctrine_files:
+      - file: Doctrine/batchC/batch_c_02_actor_creature_npc_and_adversary_schema.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_07_ability_object_model.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_09_damage_family_and_resistance_taxonomy.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_15_conversion_invariants.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+    stale: false
+    stale_reason: ""
+    conversion_gate_satisfied: true
+    notes: >
+      Governs creature, NPC, and adversary conversion under Batch C schema.
+      Re-validate when batchC_02, batchA_07, batchA_09, or batchA_15 are revised.
+
+  batch_c_creatures_prompt_strict_v0_1:
+    file: configs/prompts/batch_c_creatures_prompt_strict_v0_1.md
+    governing_doctrine_files:
+      - file: Doctrine/batchC/batch_c_02_actor_creature_npc_and_adversary_schema.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+      - file: Doctrine/batchA/batchA_15_conversion_invariants.md
+        status: "Draft — Core Now"
+        last_validated_against: "2024-01"
+    stale: false
+    stale_reason: ""
+    conversion_gate_satisfied: true
+    notes: >
+      Strict Batch C creatures prompt variant.
+
+staleness_check_procedure: >
+  When any doctrine file is revised:
+  1. Find all prompts in this manifest referencing that file.
+  2. Set stale: true on each affected prompt.
+  3. Set stale_reason describing what changed.
+  4. Block any conversion using a stale prompt until the prompt is reviewed
+     against the new doctrine and stale is reset to false.
+  5. Log the staleness event in data/exceptions/ with: doctrine file name,
+     revision date, and list of affected prompt names.
