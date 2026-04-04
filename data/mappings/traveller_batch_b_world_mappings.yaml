@@ -1,0 +1,80 @@
+version: 0.2
+run_id: traveller_prod_run_001
+batch: B
+donor: Traveller
+target: Astra Ascension
+
+summary:
+  strongest_pressures:
+    - trade_and_logistics_pressure
+    - travel_infrastructure_as_real_procedure
+    - starports_as_operational_nodes
+    - local_world_condition_visibility
+    - patron_mission_opportunity_ecology
+    - customs_and_legality_friction
+    - route_linked_node_chain_campaigns
+    - support_and_upkeep_burden
+  donor_local_risks:
+    - exact_jump_cosmology
+    - exact_starport_class_tables
+    - exact_law_tables
+    - exact_freight_and_passage_pricing
+    - exact_speculative_trade_math
+    - exact_mortgage_accounting
+    - exact_third_imperium_assumptions
+
+mappings:
+  trade_logistics:
+    donor_construct: "freight, speculative trade, cargo movement, upkeep-linked route work"
+    astra_mapping: "trade / logistics pressure"
+    status: baseline_grammar
+    notes: "Strong reinforcement that logistics can be campaign-grade operational doctrine. Exact accounting remains donor-local."
+
+  starports:
+    donor_construct: "starports as service, repair, customs, and route hubs"
+    astra_mapping: "operational node / travel infrastructure node"
+    status: baseline_grammar
+    notes: "Strong support for starports as real support and constraint structures. Exact grade tables remain donor-local."
+
+  travel_infrastructure:
+    donor_construct: "routes, jumps, port support, refuel, passage, onward movement"
+    astra_mapping: "travel infrastructure / transit doctrine"
+    status: baseline_grammar
+    notes: "Preserve infrastructure-shaped travel as real procedure. Exact jump cosmology remains donor-local."
+
+  passengers:
+    donor_construct: "passenger traffic and passage work"
+    astra_mapping: "transport / passage operation family"
+    status: lawful_support_family
+    notes: "Strong recurring profile; exact passage classes and prices remain donor-local."
+
+  debt_upkeep:
+    donor_construct: "mortgages, running costs, maintenance, debt-covering jobs"
+    astra_mapping: "support / upkeep burden"
+    status: lawful_support_family
+    notes: "Very strong recurring pressure family; exact accounting remains donor-local."
+
+  law_customs:
+    donor_construct: "law level, banned goods, customs friction, entry burden"
+    astra_mapping: "local restriction posture / customs friction"
+    status: baseline_grammar
+    notes: "Strong support for operations shaped by legality and local restriction without importing exact tables."
+
+  world_conditions:
+    donor_construct: "world profiles, trade posture, route position, support quality"
+    astra_mapping: "world-condition procedure"
+    status: baseline_grammar
+    notes: "Local node conditions can materially alter operations before scenes begin."
+
+  patrons:
+    donor_construct: "patrons and contract work"
+    astra_mapping: "sponsor / opportunity ecology"
+    status: baseline_grammar
+    notes: "Strong reinforcement for sponsor-driven mission structures without importing exact donor tables."
+
+watchlist:
+  - question: "How much of trade / logistics doctrine should be promoted after Traveller and Starfinder together?"
+  - question: "Should starports later receive dedicated site/schema ownership in Batch C?"
+  - question: "How much world-condition generation belongs in live doctrine versus donor-local support?"
+  - question: "What parts of upkeep burden remain support doctrine without importing exact economics?"
+  - question: "How should customs and legality friction connect later to credential/access assets and scrutiny doctrine?"

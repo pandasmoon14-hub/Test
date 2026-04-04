@@ -1,0 +1,16 @@
+version: 0.1
+bundle: stage12_adjudication_validator_overlay
+
+must_flag:
+  - Aura used as default Astra-facing term
+  - Luck used as default Astra-facing term
+  - Aether used as default reserve term
+  - Essence used as default reserve term
+  - donor proper nouns promoted without review
+  - technology-hostility framed as default Astra doctrine
+
+must_prefer:
+  aura_equivalent: Presence Pressure
+  luck_equivalent: Fate
+  reserve_term_default: Meridian Reserve
+  body_slot_metaphysics_default: Meridian Channels

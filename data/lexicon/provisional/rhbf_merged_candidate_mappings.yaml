@@ -1,0 +1,22 @@
+version: 0.1
+bundle: rhbf_merged_candidate_mappings
+
+candidate_mappings:
+  class: Path
+  skill: Technique
+  living_weapon: Bound Relic
+  living_weapon_trait: Relic Trait
+  evolved_beast: Ascendant Beast
+  teleport_token: Transit Seal
+  hunting_ground: Hunting Realm
+  trial: Ascension Trial
+  aura: Presence Pressure
+  luck: Fate
+
+needs_review:
+  - aether_to_meridian_reserve
+  - essence_to_meridian_reserve
+  - body_slot_to_meridian_channel
+  - body_slot_to_seal_slot
+  - engineer_to_heretek
+  - anti_technology_doctrine_strength

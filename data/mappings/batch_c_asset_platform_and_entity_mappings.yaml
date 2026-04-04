@@ -1,0 +1,176 @@
+run_id: shadowrun_prod_run_001
+donor: Shadowrun Sixth World
+batch: C
+purpose: revised schema mapping ledger for augmentations, rated assets, credentials, platforms, and multi-ontology actors
+
+mappings:
+  - donor_construct: "cyberware / bioware / installable ware"
+    astra_construct: "installable augmentation record"
+    status: "baseline_grammar"
+    notes: "Strong donor proof that Batch C must support installed body-linked components as a primary item mode."
+
+  - donor_construct: "Essence cost of augmentations"
+    astra_construct: "host-cost profile"
+    status: "baseline_grammar"
+    notes: "Promote the family of host-facing burden channels. Keep exact donor label and exact scalar math unresolved."
+
+  - donor_construct: "single running Essence loss number"
+    astra_construct: "single-scalar host-cost expression"
+    status: "optional_profile"
+    notes: "One lawful expression family among several. Must not monopolize Astra-wide augmentation law."
+
+  - donor_construct: "headware / eyeware / earware / bodyware / cyberlimbs"
+    astra_construct: "host-target and install-class subfamilies"
+    status: "baseline_grammar"
+    notes: "Astra should preserve install-class and host-target variation without canonizing donor family labels."
+
+  - donor_construct: "implant grades"
+    astra_construct: "quality-band or implant-grade ladder"
+    status: "optional_profile"
+    notes: "Useful recurring profile; exact donor grade names and formulas remain local."
+
+  - donor_construct: "device rating / program slots / wireless functionality"
+    astra_construct: "rated technical asset grammar"
+    status: "baseline_grammar"
+    notes: "Devices are schema-bearing assets, not shopping-list flavor."
+
+  - donor_construct: "Matrix / host / icon / Overwatch architecture"
+    astra_construct: "declared substrate profile plus donor-local network architecture"
+    status: "source_local_retained"
+    notes: "Astra should own substrate-aware asset grammar without universalizing one digital cosmology."
+
+  - donor_construct: "SIN / fake SIN / licenses / ID and credit"
+    astra_construct: "credential and authority-bearing asset grammar"
+    status: "baseline_grammar"
+    notes: "Strong cross-donor schema pressure. Exact Shadowrun legal stack remains provisional."
+
+  - donor_construct: "exact SIN stack semantics"
+    astra_construct: "specific identity-regime implementation"
+    status: "provisional"
+    notes: "Keep the asset family; do not canonize one donor's full legal-identity regime yet."
+
+  - donor_construct: "security devices / scanners / sensors / countermeasures"
+    astra_construct: "security-interface asset records"
+    status: "baseline_grammar"
+    notes: "Validates assets whose dominant role is to shape site access, detection, challenge, and response."
+
+  - donor_construct: "vehicles and drones"
+    astra_construct: "platform entry records"
+    status: "baseline_grammar"
+    notes: "Strong pressure for platforms as a distinct content family."
+
+  - donor_construct: "rigger interface / jump in / remote command"
+    astra_construct: "control-mode compatibility fields"
+    status: "baseline_grammar"
+    notes: "Keep entry-shape compatibility separate from Batch B operation procedure."
+
+  - donor_construct: "vehicle and drone stat blocks"
+    astra_construct: "platform durability / mobility / sensor / crew / payload profiles"
+    status: "baseline_grammar"
+    notes: "Promote the schema family, not exact field names or formulas."
+
+  - donor_construct: "spirits"
+    astra_construct: "summoned actor records"
+    status: "baseline_grammar"
+    notes: "Summoned presences remain actor records with controller-linked logic."
+
+  - donor_construct: "sprites"
+    astra_construct: "compiled actor records"
+    status: "baseline_grammar"
+    notes: "Digital non-biological entities require lawful actor records without importing universal Matrix metaphysics."
+
+  - donor_construct: "critters and awakened wildlife"
+    astra_construct: "biological / awakened actor entries"
+    status: "baseline_grammar"
+    notes: "Reinforces multi-ontology actor support."
+
+  - donor_construct: "grunt groups and named security opposition"
+    astra_construct: "group_actor and exceptional_named_actor grammar"
+    status: "baseline_grammar"
+    notes: "Supports significance-tier and abstraction differences inside C02."
+
+  - donor_construct: "foci"
+    astra_construct: "attuned magical-implement records"
+    status: "optional_profile"
+    notes: "Promote attunement grammar; keep exact Force and bonding equations donor-local."
+
+  - donor_construct: "availability / legality / concealability"
+    astra_construct: "procurement and legality hooks"
+    status: "baseline_grammar"
+    notes: "Strong proof that Batch C must support manufactured and regulated asset ecologies, not only recovered resources."
+
+  - donor_construct: "buy / fence / install / license / conceal loops"
+    astra_construct: "manufactured-asset ecology profile"
+    status: "baseline_grammar"
+    notes: "Shadowrun strongly validates regulated and installation-heavy content ecologies."
+
+  - donor_construct: "harvest / extract / natural treasure loops"
+    astra_construct: "harvest-resource ecology profile"
+    status: "baseline_grammar"
+    notes: "Retained as equally lawful Batch C pressure from other donors."
+
+cross_batch_ownership:
+  batch_a:
+    - "player-route legality"
+    - "interface-native access states"
+    - "Interface rating for interface-native actors only"
+  batch_b:
+    - "Network Access Procedure"
+    - "Remote Platform Operations"
+    - "intrusion, trace, contest, interruption, and control procedure"
+  batch_c:
+    - "augmentation object schema"
+    - "rated asset schema"
+    - "credential asset schema"
+    - "security-interface asset schema"
+    - "platform object schema"
+    - "actor records and ontology distinctions"
+  handoff_rules:
+    - "A platform is not its operator."
+    - "A credential is not the procedure that validates it."
+    - "A rated device is not proof of universal Matrix law."
+    - "A host-cost profile is not identical to one donor's exact Essence law."
+
+watchlist:
+  - "Do not universalize exact Essence terminology or exact scalar math."
+  - "Do not let rated assets imply one universal digital substrate."
+  - "Do not collapse platforms into operators or procedures."
+  - "Do not collapse autonomous platforms and compiled actors into one owner layer."
+  - "Do not let credential assets hard-code one legal regime as canon."
+  - "Do not let manufactured ecologies outrank harvest ecologies."
+  - "Do not let harvest ecologies outrank licensed or manufactured ecologies."
+
+recommended_promotions:
+  baseline_grammar:
+    - "installable augmentation record"
+    - "host-cost profile"
+    - "host-target and install-class subfamilies"
+    - "rated technical asset grammar"
+    - "substrate profile for technical assets"
+    - "credential and authority-bearing asset grammar"
+    - "security-interface asset records"
+    - "platform entry records"
+    - "control-mode compatibility fields"
+    - "multi-ontology actor support"
+    - "procurement and legality hooks"
+    - "multiple asset-ecology profiles"
+
+  optional_profile:
+    - "single-scalar host-cost expression"
+    - "quality-band or implant-grade ladder"
+    - "attuned magical-implement records"
+    - "persistent connectivity profiles"
+    - "mount-capable platform variants"
+
+  source_local_retained:
+    - "exact Essence label and decimal equations"
+    - "exact Matrix / host / icon / Overwatch architecture"
+    - "exact ware family names and catalogs"
+    - "exact vehicle and drone product lines"
+    - "exact spirit / sprite / critter power packets"
+    - "exact focus subtype list and cost equations"
+
+  provisional:
+    - "exact credential stack semantics for one donor legal regime"
+    - "final Astra-facing noun for universal host-cost law"
+    - "future actor-platform hybrid handling in edge-case donors"

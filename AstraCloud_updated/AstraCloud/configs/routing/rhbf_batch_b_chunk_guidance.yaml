@@ -1,0 +1,38 @@
+version: 0.1
+chunk_guidance:
+  hub_overview:
+    preferred_route: one_pass_convert
+    goals:
+      - preserve neutral-hub function
+      - rename source proper nouns into Astra-native hub terminology
+      - retain service and mission-distribution logic
+  travel_access_rules:
+    preferred_route: deterministic_transform
+    goals:
+      - preserve access-gate logic
+      - map token/key language into Transit Seal terminology
+      - avoid decorative expansion
+  trial_generation:
+    preferred_route: two_pass_convert
+    goals:
+      - preserve modular generation structure
+      - standardize trial fields
+      - convert source cosmology into Astra-neutral framing
+  hunting_realm_rules:
+    preferred_route: two_pass_convert
+    goals:
+      - preserve repeatable zone logic
+      - preserve rank-banding and encounter cadence
+      - map rewards into Astra resource language
+  faction_entries:
+    preferred_route: one_pass_convert
+    goals:
+      - preserve doctrine and incentives
+      - strip source-specific ideology where not required
+      - surface canon conflicts instead of flattening them
+  stronghold_phase:
+    preferred_route: two_pass_convert
+    goals:
+      - preserve building and upgrade loops
+      - convert city/base logic into Stronghold Phase doctrine
+      - preserve economy and defense implications

@@ -1,0 +1,56 @@
+version: 0.1
+sequence_name: rhbf_first_production_batch_sequence
+
+batches:
+  batch_a_chassis:
+    source_family:
+      - character_creation
+      - attributes
+      - resistances
+      - progression
+      - paths
+      - techniques
+      - damage_and_crit_rules
+    expected_outputs:
+      - astra_player_core_packet
+      - astra_paths_and_techniques_packet
+      - lexicon_delta_packet
+      - canon_candidate_packet
+      - validator_report
+
+  batch_b_activity_engine:
+    source_family:
+      - hub_logic
+      - transit_gating
+      - ascension_trials
+      - hunting_realms
+      - faction_pressure
+      - stronghold_phase
+    expected_outputs:
+      - astra_activity_engine_packet
+      - world_mapping_delta
+      - canon_candidate_packet
+      - validator_report
+
+  batch_c_creatures_and_relics:
+    source_family:
+      - creature_taxonomy
+      - statblocks
+      - harvests
+      - natural_treasures
+      - bound_relics
+    expected_outputs:
+      - astra_creatures_and_bound_relics_packet
+      - taxonomy_mapping_delta
+      - canon_candidate_packet
+      - validator_report
+
+checkpoints:
+  - name: post_batch_a_review
+    action: review lexicon and core packet stability
+  - name: post_batch_b_review
+    action: review world-term carryover and proper noun leakage
+  - name: post_batch_c_review
+    action: review taxonomy and Bound Relic term consistency
+  - name: post_run_adjudication
+    action: review promotion and blocking candidates

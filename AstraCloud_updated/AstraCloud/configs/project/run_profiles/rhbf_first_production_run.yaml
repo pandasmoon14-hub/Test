@@ -1,0 +1,36 @@
+version: 0.1
+run_profile_name: rhbf_first_production_run
+description: >
+  Starter production run profile for the first serious RHBF-to-Astra conversion pass.
+
+baseline_dependencies:
+  - rhbf_merged_primary_donor.yaml
+  - rhbf_merged_chunk_guidance.yaml
+  - rhbf_merged_validator_targets.yaml
+  - stage12_promoted_astra_terms.yaml
+  - stage12_blocked_terms.yaml
+  - stage12_mechanics_promotions.yaml
+
+run_objectives:
+  - emit first stable player-facing Astra packets
+  - preserve donor mechanical skeleton
+  - rewrite source-facing names aggressively
+  - produce reviewable lexicon and canon deltas
+  - avoid silent cosmology carryover
+
+review_gates:
+  after_batch_a: required
+  after_batch_b: required
+  after_batch_c: required
+  before_canonical_promotion: required
+
+batch_order:
+  - batch_a_chassis
+  - batch_b_activity_engine
+  - batch_c_creatures_and_relics
+
+output_policy:
+  packet_outputs_required: true
+  validator_reports_required: true
+  lexicon_deltas_required: true
+  canon_conflict_packets_required: true

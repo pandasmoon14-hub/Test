@@ -1,0 +1,64 @@
+version: 0.1
+manifest_name: rhbf_first_production_manifest_example
+
+run_metadata:
+  run_id: "rhbf_prod_run_001"
+  donor_family: "RHBF"
+  target_framework: "Astra Ascension"
+  run_profile: "rhbf_first_production_run"
+  operator: "Cam"
+  date_started: "YYYY-MM-DD"
+
+inputs:
+  batch_a:
+    source_parts:
+      - ruthless_part01.pdf
+      - ruthless_part02.pdf
+      - ruthless_part03.pdf
+    source_focus:
+      - character_creation
+      - attributes
+      - resistances
+      - progression
+      - paths
+      - techniques
+      - damage_and_crit_rules
+
+  batch_b:
+    source_parts:
+      - ruthless_part04.pdf
+      - ruthless_part05.pdf
+      - ruthless_part06.pdf
+      - ruthless_part07.pdf
+    source_focus:
+      - hub_logic
+      - travel_gating
+      - trials
+      - hunting_realms
+      - factions
+      - stronghold_phase
+
+  batch_c:
+    source_parts:
+      - ruthless_part08.pdf
+      - ruthless_part09.pdf
+    source_focus:
+      - creature_taxonomy
+      - statblocks
+      - harvests
+      - natural_treasures
+      - living_weapons_bound_relics
+
+output_targets:
+  player_core_packet: true
+  paths_and_techniques_packet: true
+  activity_engine_packet: true
+  creatures_and_bound_relics_packet: true
+  lexicon_deltas: true
+  canon_candidates: true
+  validator_reports: true
+
+operator_notes:
+  - "Use Stage 12 promoted doctrine as default language."
+  - "Block Aura, Luck, Aether, and Essence as default Astra-facing terms."
+  - "Review after every batch."

@@ -1,0 +1,126 @@
+version: 0.1
+mapping_set: canonical_batch_b_promoted_mappings
+status: promoted_cross_donor
+source_donors:
+  - RHBF
+  - Shadowrun
+scope: >
+  Canonical promoted Batch B mappings derived from cross-donor review.
+  This file records shared world-operation grammar, optional operation profiles,
+  and unresolved watchlist items. Donor-local payload remains in donor-specific mappings.
+
+promoted_now:
+  world_operation_loop:
+    meaning: "Play can be structured around repeatable opportunity loops rather than one static scene chain."
+    promoted_mapping:
+      - donor_pattern: "hub -> access -> opportunity -> return"
+        astra_mapping: "World-operation loop"
+      - donor_pattern: "contract -> legwork -> operation -> fallout"
+        astra_mapping: "World-operation loop"
+    notes:
+      - "Astra owns the grammar of repeatable operation cycles, not one donor's exact cadence."
+
+  access_models:
+    meaning: "Access to opportunities, regions, sites, or systems is a real procedure layer."
+    promoted_mapping:
+      - donor_pattern: "tokenized access instrument"
+        astra_mapping: "Access procedure"
+      - donor_pattern: "network / system access procedure"
+        astra_mapping: "Access procedure"
+    notes:
+      - "Do not universalize one access medium."
+
+  contract_opportunity_structure:
+    meaning: "Operations may be mediated through formalized opportunity offers, gatekeepers, and acceptance structures."
+    promoted_mapping:
+      - donor_pattern: "faction offer / denial pressure"
+        astra_mapping: "Opportunity pressure structure"
+      - donor_pattern: "brokered run / contract"
+        astra_mapping: "Opportunity pressure structure"
+    notes:
+      - "Astra owns the grammar of opportunity brokerage, not donor idiom."
+
+  faction_leverage_logic:
+    meaning: "Factions do mechanical work through leverage, denial, relationship pressure, and operational offers."
+    promoted_mapping:
+      - donor_pattern: "faction jobs / offers"
+        astra_mapping: "Faction contract pressure"
+      - donor_pattern: "standing-sensitive brokers and institutions"
+        astra_mapping: "Faction leverage structure"
+    notes:
+      - "Promote structural behavior, not exact faction identities."
+
+  investigation_and_legwork_support:
+    meaning: "Pre-operation information gathering is a lawful operational procedure."
+    promoted_mapping:
+      - donor_pattern: "trial selection / pre-entry pressure"
+        astra_mapping: "Operational preparation / information procedure"
+      - donor_pattern: "legwork / target research / approach selection"
+        astra_mapping: "Operational preparation / information procedure"
+
+  remote_platform_operations:
+    meaning: "Platforms, remote systems, or indirect operation channels must be supported as real procedure."
+    promoted_mapping:
+      - donor_pattern: "remote access / remote platform use"
+        astra_mapping: "Remote platform operations"
+    notes:
+      - "Keep operator distinct from platform."
+
+  consequence_layers:
+    meaning: "Public reputation, institutional standing, and heat/exposure pressure can remain distinct consequence tracks."
+    promoted_mapping:
+      - donor_pattern: "standing-like social permission layer"
+        astra_mapping: "Standing consequence layer"
+      - donor_pattern: "heat / notoriety / exposure layer"
+        astra_mapping: "Exposure consequence layer"
+    notes:
+      - "Do not collapse standing and heat into one field."
+
+optional_profiles:
+  transit_seal_profile:
+    meaning: "Explicit travel/access instruments are lawful as one access profile."
+    promoted_mapping:
+      donor_pattern: "teleport token / transit seal"
+      astra_mapping: "Optional access-instrument profile"
+
+  brokered_contract_profile:
+    meaning: "Broker-mediated operations are lawful as one recurring operation profile."
+    promoted_mapping:
+      donor_pattern: "johnson/fixer style brokered contract"
+      astra_mapping: "Optional brokered-contract profile"
+
+  base_operations_overlay:
+    meaning: "Return-to-base or stronghold support loops are lawful but not mandatory."
+    promoted_mapping:
+      donor_pattern: "management phase / stronghold phase"
+      astra_mapping: "Optional base-operations overlay"
+
+  mandate_profile:
+    meaning: "Mandate-like higher-order mission authority remains lawful but not yet universal."
+    promoted_mapping:
+      donor_pattern: "mandate / decree / overriding mission sanction"
+      astra_mapping: "Optional mission-authority profile"
+
+  network_access_profile:
+    meaning: "Dedicated network/system access procedure is lawful without universal Matrix cosmology."
+    promoted_mapping:
+      donor_pattern: "matrix-like access and intrusion procedure"
+      astra_mapping: "Optional network access profile"
+
+not_promoted_yet:
+  - donor_pattern: "exact anti-tech hostility"
+    reason: "Retained local to RHBF-like contexts."
+  - donor_pattern: "exact Matrix cosmology"
+    reason: "Retained local to Shadowrun-like contexts."
+  - donor_pattern: "exact fixer/Johnson idiom"
+    reason: "Broker grammar promoted; donor idiom retained local."
+  - donor_pattern: "exact faction identities and politics"
+    reason: "Structural faction logic promoted instead."
+  - donor_pattern: "mandatory Stronghold Phase cadence"
+    reason: "Base operations remain optional overlay only."
+
+watchlist:
+  - "How many access models Astra should treat as first-class recurring profiles."
+  - "Whether mission-authority / mandate layers recur in later donors."
+  - "How far remote-platform operations should extend into vehicle/mech/ship donors."
+  - "Where to place contact structures cleanly across Batch A and Batch B over more donors."

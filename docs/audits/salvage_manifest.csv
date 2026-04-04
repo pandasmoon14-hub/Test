@@ -1,0 +1,37 @@
+legacy_asset,category,action,priority,notes
+AstraSourceCleaner.ps1,ingestion_normalization,rewrite_python,high,"Useful markdown-aware normalization logic, but legacy OCR/Windows assumptions must be removed."
+AstraPDFExtractor.ps1,ingestion_normalization,discard_for_core,low,Cloud pipeline should treat normalized markdown as upstream input; PDF extraction can live in a separate prep tool if needed.
+AstraBookClassifier.ps1,classification_routing,rewrite_python,high,Fast deterministic book classification logic is worth porting.
+AstraInlineFictionClassifier.ps1,classification_routing,concept_only,medium,"Interesting signals for lore-vs-fiction segmentation, but not a day-one dependency."
+AstraChunkRouter.ps1,classification_routing,rewrite_python,high,"Direct ancestor of the new routing layer; keep route ideas, not PowerShell form."
+AstraStatBlockBoundaryDetector.ps1,structure_table_statblock,rewrite_python,high,Stat block guarding is central to fidelity.
+AstraTablePreprocessor.ps1,structure_table_statblock,rewrite_python,high,Strong concept set for deterministic table handling; current script has PowerShell compatibility risk.
+AstraTableRefiner.ps1,structure_table_statblock,concept_only,medium,"Useful later as a rescue path for malformed table outputs, but not for the first spine."
+AstraConverter-v5.ps1,prompting_conversion,concept_only,high,"Mine for heuristics and sequencing, but do not port the monolith verbatim."
+AstraPassOneReformer.ps1,prompting_conversion,concept_only,medium,Keep extraction-pass ideas; re-express as route-specific prompt assets.
+AstraParallelChunkDispatcher.ps1,prompting_conversion,discard_and_redesign,medium,Cloud worker model should replace this instead of inheriting local/Ollama assumptions.
+astra_hf_server.py,runtime_backend,rewrite_python,medium,"Backend compatibility shim is useful as reference, but needs cleanup and production hardening."
+astra_postcheck.py,validation,rewrite_python,high,Postcheck concept is directly relevant to validator design.
+AstraQualityScorerV2.ps1,validation,rewrite_python,high,Quality scoring dimensions are valuable for validator metrics and reports.
+AstraQualityPass.ps1,validation,concept_only,low,Phase-2 local uplift flow is not part of day-one cloud conversion spine.
+AstraLexicon.ps1,lexicon_identity,rewrite_python,high,Core lexicon-growth and mapping ideas should survive.
+AstraPreFlightSwap.ps1,lexicon_identity,rewrite_python,medium,Good deterministic pre-swap concept for recurring source terms.
+AstraProfileExtensionLoader.ps1,lexicon_identity,concept_only,medium,"Merge-profile idea is useful, but the implementation should change."
+AstraPromptSignatureHasher.ps1,logging_cache,rewrite_python,medium,Prompt signatures belong in reproducibility and cache metadata.
+AstraTypeDistributionAuditor.ps1,auditing,concept_only,low,Keep as later analytics/reporting inspiration.
+AstraKeyCollisionAuditor.ps1,auditing,concept_only,low,Useful after converted corpora accumulate.
+AstraEntryRelinker.ps1,distillation_lorebook,concept_only,low,"Relevant to later lorebook/index synthesis, not the first build spine."
+AstraCrossReferenceIndexer.ps1,distillation_lorebook,concept_only,low,"Same as above: useful later, not initial infrastructure."
+AstraMaster.ps1,launcher_orchestration,discard,high,Windows-centric orchestration should not survive the reboot.
+run_phase1.ps1,launcher_orchestration,discard,high,Local launcher only.
+run_phase2.ps1,launcher_orchestration,discard,high,Local launcher only.
+ASTRA_HF_BACKEND_README.md,reference_docs,preserve_reference,medium,"Keep as operational history, not active architecture."
+FASTLOCAL_UPGRADE_PLAN.md,reference_docs,preserve_reference,medium,Contains performance lessons and routing rationale worth mining.
+Astra_V6_Markdown_First_Architecture_Analysis.md,reference_docs,preserve_reference,high,Valuable diagnosis of markdown-awareness gaps and dead code paths.
+astra-ascension.json,profiles_and_configs,concept_only,high,Seed source for lexicon/prohibited/preserved term assets.
+astra-ascension.fastlocal.json,profiles_and_configs,concept_only,medium,May inform lean prompt/profile variants.
+config-phase1.json,profiles_and_configs,concept_only,medium,"Useful for initial threshold ideas, not as a live config schema."
+config-phase1.fastlocal.json,profiles_and_configs,concept_only,medium,Useful only as performance/routing reference.
+config-phase2.json,profiles_and_configs,concept_only,low,Mostly tied to a local second-pass workflow.
+Logs/*,logs_and_fixtures,preserve_reference,medium,Use as evidence of failure modes and benchmark baselines.
+Processing/*,logs_and_fixtures,preserve_reference,medium,Useful as test fixtures and examples of chunked intermediate outputs.

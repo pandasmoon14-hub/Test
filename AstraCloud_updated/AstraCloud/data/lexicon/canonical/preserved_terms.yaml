@@ -1,0 +1,18 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+preserved_terms:
+  - source_system_name
+  - source_book_title
+  - specific_region_name_pending_conversion
+  - specific_faction_name_pending_conversion
+  - specific_proper_noun_pending_adjudication
+  - specific_class_name_pending_path_rewrite
+  - named_trial_title_pending_adjudication
+  - named_creature_title_pending_taxonomy_mapping
+
+rules:
+  preserve_when_no_stable_astra_equivalent_exists: true
+  preserve_when_traceability_is_needed: true
+  preserve_when_review_queue_is_active: true
+  preserve_when_term_is_load_bearing_but_unresolved: true

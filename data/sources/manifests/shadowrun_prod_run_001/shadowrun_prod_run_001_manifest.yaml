@@ -1,0 +1,64 @@
+version: 0.1
+manifest_name: shadowrun_prod_run_001_manifest
+
+run_metadata:
+  run_id: "shadowrun_prod_run_001"
+  donor_family: "Shadowrun Sixth World"
+  target_framework: "Astra Ascension"
+  run_profile: "contrasting_donor_pressure_test"
+  operator: "Cam"
+  date_started: "2026-03-24"
+
+inputs:
+  batch_a:
+    source_parts:
+      - "Shadowrun, Sixth World Core Rulebook (Catalyst Game Labs) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+    source_focus:
+      - character_creation
+      - priority_build_structure
+      - attributes_and_special_attributes
+      - skills_and_skill_groups
+      - edge_economy
+      - archetypal_roles
+      - magic_resonance_technology_split
+      - resources_and_contacts_as_chargen_pressure
+
+  batch_b:
+    source_parts:
+      - "Shadowrun, Sixth World Core Rulebook (Catalyst Game Labs) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+    source_focus:
+      - job_structure_and_run_loop
+      - contacts_and_social_access
+      - matrix_access_and_security
+      - rigging_and_remote_presence
+      - stealth_infiltration_and_social_procedure
+      - lifestyle_and_upkeep
+      - faction_and_corporate_pressure
+      - status_and_edge_generation
+
+  batch_c:
+    source_parts:
+      - "Shadowrun, Sixth World Core Rulebook (Catalyst Game Labs) (z-library.sk, 1lib.sk, z-lib.sk).pdf"
+    source_focus:
+      - archetype_templates
+      - gear_taxonomy
+      - cyberware_bioware_schema
+      - drones_vehicles_and_remote_assets
+      - spirits_critters_and_summoned_actor_schema
+      - matrix_entities_and_device_schema
+      - weapons_armor_and_programs
+
+output_targets:
+  player_core_packet: true
+  paths_and_techniques_packet: true
+  activity_engine_packet: true
+  creatures_assets_and_augments_packet: true
+  lexicon_deltas: true
+  canon_candidates: true
+  validator_reports: true
+
+operator_notes:
+  - "This donor is chosen primarily to pressure-test RHBF-shaped assumptions, especially anti-technology drift and tokenized access logic."
+  - "Do not allow cyberware, Matrix, rigging, or megacorp logic to become Astra baseline without explicit doctrine acceptance."
+  - "Run Batch A only first. Do not proceed to Batch B or Batch C until Batch A adjudication is complete."
+  - "Treat Edge as a pressure source for risk-economy design, not as automatic Astra vocabulary."

@@ -1,0 +1,97 @@
+version: 0.1
+profile_id: rhbf_primary_donor
+source_title: Ruthless Heavens, Boundless Fate
+profile_role: primary_donor
+conversion_priority: very_high
+
+intent:
+  use_for:
+    - core_chassis
+    - progression_scaffold
+    - path_and_domain_structure
+    - technique_architecture
+    - trial_generation
+    - hunting_realm_activity_loop
+    - faction_pressure
+    - bound_relic_progression
+    - harvest_economy
+  do_not_auto_canonize:
+    - ruthless_heavens_cosmology
+    - source_faction_names
+    - yeross_as_final_astra_name
+    - teleport_tokens_as_final_astra_name
+    - anti_technology_absolutism
+
+donor_strengths:
+  - six_attribute_combat_chassis
+  - multi_axis_progression
+  - domain_gated_capabilities
+  - body_slotted_techniques
+  - usage_cadence_bands
+  - modular_trial_generation
+  - repeatable_hunting_realms
+  - living_weapon_growth
+  - natural_treasure_harvest_loop
+
+recommended_routes:
+  prose_lore: one_pass_convert
+  rules_text: one_pass_convert
+  class_feature: two_pass_convert
+  spell_or_power: two_pass_convert
+  item_block: one_pass_convert
+  npc_or_bestiary: two_pass_convert
+  statblock: guarded_statblock_convert
+  table_light: deterministic_transform
+  table_heavy: guarded_table_convert
+  mixed_dense: two_pass_convert
+
+conversion_bias:
+  preserve_mechanical_function: true
+  preserve_numeric_structure: true
+  preserve_section_order_when_helpful: true
+  aggressively_replace_source_cosmology: true
+  aggressively_replace_source_proper_nouns: true
+  allow_provisional_term_preservation: true
+
+lexicon_focus:
+  canonical_now:
+    - Path
+    - Domain
+    - Technique
+    - Core Resistance
+    - Flow Resistance
+    - Resonance Resistance
+    - Transit Seal
+    - Nexus Hub
+    - Ascension Trial
+    - Hunting Realm
+    - Bound Relic
+    - Relic Trait
+  provisional:
+    - Presence Pressure
+    - Fate
+    - Technique Fragment
+    - Technique Seal
+    - Mandate
+    - Merit Mark
+  preserve_until_review:
+    - Yeross
+    - Erakos
+    - Aether
+    - Essence
+    - Valor Marks
+
+validator_priorities:
+  - no_source_setting_leakage
+  - maintain_domain_gating
+  - maintain_technique_slot_integrity
+  - maintain_usage_band_integrity
+  - maintain_trial_generator_structure
+  - maintain_statblock_integrity
+  - flag_anti_tech_overinheritance
+
+chunk_family_order:
+  - parts_1_3_core_chassis
+  - parts_5_7_world_activity
+  - parts_8_9_creatures_gear
+  - part_4_support_tools

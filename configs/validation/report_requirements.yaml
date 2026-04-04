@@ -1,0 +1,18 @@
+version: 0.1
+required_outputs_per_run:
+  - conversion_run_report
+  - lexicon_delta_packet
+  - canon_conflict_packet_or_empty_marker
+  - validator_failure_packet_for_each_failed_chunk
+
+empty_markers_allowed:
+  - no_new_candidate_terms
+  - no_canon_conflicts
+  - no_failed_chunks
+
+minimum_review_triggers:
+  - repeated_false_equivalence
+  - repeated_source_setting_leakage
+  - any_statblock_integrity_fail
+  - any_table_integrity_fail
+  - any_progression_conflict

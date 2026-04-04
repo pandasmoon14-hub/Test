@@ -1,0 +1,5 @@
+[project]
+name = "astra-ascension-cloud"
+version = "0.1.0"
+description = "Cloud-first Astra conversion and canon-building pipeline"
+requires-python = ">=3.11"

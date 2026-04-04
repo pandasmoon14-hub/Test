@@ -1,0 +1,175 @@
+version: 0.1
+run_id: rhbf_prod_run_002
+donor: Ruthless Heavens, Boundless Fate
+batch: B
+
+mappings:
+  - donor_term: Yeross
+    astra_term: Nexus Hub
+    state: canonical
+    notes: Preserve hub function, not donor proper noun or ghoke cosmology.
+
+  - donor_term: ghoke city-state
+    astra_term: mobile neutral capital
+    state: source_local_retained
+    notes: Valid donor presentation, too singular to universalize.
+
+  - donor_term: Teleport Token
+    astra_term: Transit Seal
+    state: canonical
+    notes: Preserve explicit access-gate logic without universalizing all access into token form.
+
+  - donor_term: Teleport Tokens
+    astra_term: Transit Seals
+    state: canonical
+    notes: Access instruments may be purchased, granted, traded, claimed, persistent, or conditional.
+
+  - donor_term: Trial
+    astra_term: Ascension Trial
+    state: canonical
+    notes: Preserve modular challenge-node structure and procedural category.
+
+  - donor_term: Trials
+    astra_term: Ascension Trials
+    state: canonical
+    notes: Keep required operational fields; reserve full record grammar for Batch C.
+
+  - donor_term: Hunting Ground
+    astra_term: Hunting Realm
+    state: canonical
+    notes: Repeatable progression environment with harvest and encounter cadence.
+
+  - donor_term: Hunting Grounds
+    astra_term: Hunting Realms
+    state: canonical
+    notes: Keep access, rank-banding, and repeat-entry logic.
+
+  - donor_term: Divine Decree
+    astra_term: Mandate
+    state: normalized
+    notes: Preserve higher-order call-to-action function without donor cosmology.
+
+  - donor_term: Divine Decrees
+    astra_term: Mandates
+    state: normalized
+    notes: Large-scale urgency layer, not ordinary faction contract.
+
+  - donor_term: mission
+    astra_term: Faction Contract
+    state: normalized
+    notes: Use when employer, standing, or access channel matters.
+
+  - donor_term: faction mission
+    astra_term: Faction Contract
+    state: canonical
+    notes: Direct functional fit.
+
+  - donor_term: city return loop
+    astra_term: base-operations overlay
+    state: normalized
+    notes: Preserve optional return-state support grammar, not universal cadence.
+
+  - donor_term: Management Phase
+    astra_term: base-operations overlay
+    state: normalized
+    notes: Distinct support-loop mode when a meaningful return-state holding exists.
+
+  - donor_term: Sector Event
+    astra_term: Pressure Event
+    state: canonical
+    notes: World-motion tool, not fixed one-off table requirement.
+
+  - donor_term: Capital Event
+    astra_term: support-state Pressure Event
+    state: normalized
+    notes: Return-state event category when a support holding or settlement layer exists.
+
+  - donor_term: The Guide
+    astra_term: onboarding node
+    state: normalized
+    notes: Preserve function; donor title may remain in donor-local text.
+
+  - donor_term: teleporter
+    astra_term: Transit Gate Anchor
+    state: normalized
+    notes: Settlement-scale transit infrastructure.
+
+  - donor_term: city-estate
+    astra_term: capital polity
+    state: normalized
+    notes: Do not universalize one donor's urban form.
+
+  - donor_term: Valor Marks
+    astra_term: source-local reward currency
+    state: source_local_retained
+    notes: Reward-channel logic matters more than exact currency.
+
+  - donor_term: Valor Mark Exchange
+    astra_term: marks exchange
+    state: provisional
+    notes: Functional term okay, exact economics remain donor-local.
+
+  - donor_term: your capital
+    astra_term: stronghold / support holding
+    state: normalized
+    notes: Home-base settlement or other return-state holding under player influence or protection.
+
+  - donor_term: Building Structures
+    astra_term: support upgrades
+    state: normalized
+    notes: Structure categories portable, exact list and prices are not.
+
+  - donor_term: The Core / The Expanse / The Rim
+    astra_term: regional strata
+    state: source_local_retained
+    notes: Preserve only in donor-local geography, not Astra baseline.
+
+  - donor_term: Clan Jokarion
+    astra_term: trade-expansion house
+    state: source_local_retained
+    notes: Functional archetype portable, name is donor-local.
+
+  - donor_term: House Eklaia
+    astra_term: hegemonic conqueror
+    state: source_local_retained
+    notes: Preserve as donor-local faction exemplar only.
+
+  - donor_term: The Stellar Collective
+    astra_term: coalition defense bloc
+    state: source_local_retained
+    notes: Functional archetype portable, name local.
+
+  - donor_term: The Archivists
+    astra_term: knowledge order
+    state: source_local_retained
+    notes: Good donor exemplar for information custody pressure.
+
+  - donor_term: The Engineers
+    astra_term: forbidden technicist bloc
+    state: source_local_retained
+    notes: Preserve role pressure, reject donor anti-tech law as Astra baseline.
+
+  - donor_term: The Guild
+    astra_term: neutral contract guild
+    state: source_local_retained
+    notes: Strong archetype, donor name local.
+
+  - donor_term: The Primal Pact
+    astra_term: primal coalition
+    state: source_local_retained
+    notes: Functional archetype portable, name local.
+
+watchlist:
+  - anti-technology ideology imported as universal Astra law
+  - source proper nouns leaking without reason
+  - treating all Transit Seals as one-use by default
+  - treating Transit Seals as compulsory for all access structures
+  - collapsing Hunting Realms into one-off Trials
+  - hardening base-operations overlay into mandatory recurring cadence
+  - moving full trial schema ownership out of Batch C reserve
+
+notes:
+  - Preserve the hub-access-opportunity-return loop.
+  - Preserve explicit access-gating logic where present, but keep access pluralism.
+  - Keep faction names provisional until cross-donor review.
+  - Keep support-loop procedure optional unless donor or campaign context invokes it.

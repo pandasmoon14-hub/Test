@@ -1,0 +1,32 @@
+version: 0.1
+profile_name: hybrid_scifi_fantasy
+intended_for:
+  - sourcebooks mixing technology, factions, space travel, cybernetics, and metaphysics
+priority_order:
+  - subsystem_function
+  - terminology_clarity
+  - tech_to_astra_reinterpretation
+  - economy_and_itemization
+  - lore_cleanup
+conversion_bias:
+  preserve_mechanical_roles: true
+  reinterpret_technology_as_astra_compatible: true
+  avoid_retrofitting_everything_into_pure_mysticism: true
+  preserve_traceability_for_gear_and_species_terms: true
+recommended_defaults:
+  prose_lore: one_pass_convert
+  rules_text: one_pass_convert
+  item_block: one_pass_convert
+  npc_or_bestiary: two_pass_convert
+  statblock: guarded_statblock_convert
+  table_heavy: guarded_table_convert
+lexicon_behavior:
+  extract_candidate_terms: true
+  promote_new_terms_automatically: false
+  preserve_terms_pending_review:
+    - species_names
+    - device_names
+    - faction_names
+    - currencies
+notes: >
+  Use when converting systems closer to Starfinder, Shadowrun, or mixed-tech fantasy donors.

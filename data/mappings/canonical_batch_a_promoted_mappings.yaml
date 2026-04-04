@@ -1,0 +1,107 @@
+version: 0.1
+mapping_set: canonical_batch_a_promoted_mappings
+status: promoted_cross_donor
+source_donors:
+  - RHBF
+  - Shadowrun
+scope: >
+  Canonical promoted Batch A mappings derived from cross-donor review.
+  This file records only Astra-facing promoted grammar and optional profiles.
+  Donor-local payload remains in donor-specific mapping files.
+
+promoted_now:
+  build_architecture:
+    meaning: "Character construction is layered rather than forced into one universal package model."
+    promoted_mapping:
+      - donor_pattern: "single strong starting package"
+        astra_mapping: "Path or equivalent layered build entry"
+      - donor_pattern: "stacked package allocation"
+        astra_mapping: "Layered build grammar"
+    notes:
+      - "Astra must support both RHBF-style strong starting packages and Shadowrun-style stacked build layers."
+
+  access_law:
+    meaning: "Permissions, gates, and eligibility are real doctrine and not flavor-only metadata."
+    promoted_mapping:
+      - donor_pattern: "domain gate"
+        astra_mapping: "Access law / permission gate"
+      - donor_pattern: "special access rating or special eligibility"
+        astra_mapping: "Access law / permission gate"
+    notes:
+      - "Do not collapse capability, access, and effect into one field."
+
+  path_and_capability_separation:
+    meaning: "Identity package, broad capability band, and specific executable options remain separable."
+    promoted_mapping:
+      - donor_pattern: "class as starting package"
+        astra_mapping: "Path"
+      - donor_pattern: "broad skill or capability lattice"
+        astra_mapping: "Competency / capability architecture"
+      - donor_pattern: "active option or codified execution object"
+        astra_mapping: "Technique or executable ability object"
+    notes:
+      - "Not every donor skill-like construct maps to Technique."
+      - "Do not force Shadowrun-style capabilities into RHBF-style Technique monoculture."
+
+  build_pressure_inputs:
+    meaning: "Build-state inputs may include social and economic pressures at creation time."
+    promoted_mapping:
+      - donor_pattern: "contacts at chargen"
+        astra_mapping: "Lawful Batch A build pressure input"
+      - donor_pattern: "resources at chargen"
+        astra_mapping: "Lawful Batch A build pressure input"
+    notes:
+      - "Contacts/resources may still hand off downstream consequences to Batch B or B04."
+
+  special_access_tracks:
+    meaning: "Some donors require special parallel access tracks that are not reducible to ordinary skill or path choice."
+    promoted_mapping:
+      - donor_pattern: "magic or resonance style special channel"
+        astra_mapping: "Special access track"
+      - donor_pattern: "augmentation compatibility or host-cost pressure"
+        astra_mapping: "Special access / compatibility track"
+    notes:
+      - "Preserve separation between general progression and exceptional access states."
+
+optional_profiles:
+  tri_axis_advancement:
+    meaning: "Tri-axis advancement with breakthrough gating is lawful but not universal."
+    promoted_mapping:
+      donor_pattern: "mind/body/soul or equivalent tri-locked growth"
+      astra_mapping: "Optional multi-axis advancement profile"
+
+  fate_like_risk_economy:
+    meaning: "Fate-like high-level risk economy remains lawful as an optional profile."
+    promoted_mapping:
+      donor_pattern: "fate style reserve"
+      astra_mapping: "Optional risk-economy profile"
+
+  interface_like_special_rating:
+    meaning: "Interface-style special access rating is lawful as an optional profile."
+    promoted_mapping:
+      donor_pattern: "resonance-adjacent special rating"
+      astra_mapping: "Optional special access rating profile"
+
+  augmentation_host_cost_grammar:
+    meaning: "Body-hosted installation cost or compatibility pressure is lawful but not universal."
+    promoted_mapping:
+      donor_pattern: "essence-like host cost"
+      astra_mapping: "Optional augmentation host-cost profile"
+
+not_promoted_yet:
+  - donor_pattern: "RHBF exact 1/4/1/3 technique profile"
+    reason: "Too donor-shaped for baseline canon."
+  - donor_pattern: "Shadowrun exact priority table"
+    reason: "Strong donor-local chargen grammar; not yet Astra baseline."
+  - donor_pattern: "Shadowrun exact Edge menu"
+    reason: "Retained donor-local tactical reserve profile."
+  - donor_pattern: "exact reserve triplet semantics"
+    reason: "Still unresolved after two donors."
+  - donor_pattern: "exact essence law"
+    reason: "Useful pressure, but too donor-specific for automatic promotion."
+
+watchlist:
+  - "Whether tri-axis advancement should become broader Astra canon."
+  - "Whether Fate-like and Edge-like economies ever converge at Astra level."
+  - "Final boundary between Batch A build pressure and Batch B downstream support for contacts/resources."
+  - "Long-term naming stability for Interface versus Resonance-adjacent terminology."

@@ -1,0 +1,201 @@
+version: 0.1-derived-from-legacy-files
+source_files:
+- astra-ascension.json
+- AstraQualityScorerV2.ps1
+- FASTLOCAL_UPGRADE_PLAN.md
+- Logs/master_pipeline.log
+high_confidence_mappings:
+  str: Vessel
+  dex: Flow
+  con: Core
+  int: Insight
+  wis: Resonance
+  cha: Intent
+  hp: Stamina Points
+  ac: Defense Threshold
+  eac: Energy Defense Threshold
+  kac: Kinetic Defense Threshold
+  xp: Accretion
+  cr: Threat Tier
+  initiative: Pulse Initiative
+  reaction: Reflex Pulse
+  bonus action: Swift Pulse
+  attack roll: Strike Roll
+  damage roll: Impact Roll
+  saving throw: Resistance Roll
+  saving throws: Resistance Rolls
+  skill check: Attribute Check
+  ability check: Attribute Check
+  str save: Vessel Resistance Roll
+  dex save: Flow Resistance Roll
+  con save: Core Resistance Roll
+  int save: Insight Resistance Roll
+  wis save: Resonance Resistance Roll
+  cha save: Intent Resistance Roll
+  short rest: Pulse Rest
+  long rest: Full Attunement
+  proficiency bonus: Attunement Bonus
+  spell level: Technique Tier
+  cantrip: Tier-0 Technique
+  multiattack: Multi-Strike
+  resolve point: Determination Point
+  resolve points: Determination Points
+  stamina point: Stamina Point
+  stamina points: Stamina Points
+  drift: Void-Expanse
+  solarian: Sol-Templar
+  operative: Flow-Shade
+  technomancer: Void-Savant
+  cyberware: Meridian Graft
+  bioware: Organic Graft
+  augmentation: Meridian Enhancement
+  essence: Meridian Reserve
+  nuyen: Credits
+  shins: Shards
+  stress: Astra Drain
+  trauma: Echo-Fracture
+  heat: Faction Heat
+  wanted level: Pursuit Level
+  playbook: Path Frame
+high_confidence_core_vocabulary:
+- Dao
+- Astra
+- Vessel
+- Flow
+- Core
+- Insight
+- Resonance
+- Intent
+- Seeker
+medium_confidence_distinctive_vocabulary:
+- Heartbeat
+- Pulse
+- Meridian
+- Essence-Tech
+- Void
+- Epiphany
+- Friction
+- Momentum
+- Omni-Forge
+- Dao-Vein
+- Astra-Well
+- Echo-Fracture
+- Stamina Points
+- Defense Threshold
+- Dao Technique
+- Resonance Roll
+- Flux Reserve
+- Accretion
+- Gelidity
+- Fulmen
+- Kinesis
+system_signature_terms:
+  STARFINDER:
+  - resolve point
+  - stamina point
+  - drift
+  - pact worlds
+  - solarian
+  - operative
+  - technomancer
+  DND5E:
+  - spell slot
+  - proficiency bonus
+  - short rest
+  - long rest
+  - cantrip
+  - warlock patron
+  PF2E:
+  - three-action
+  - hero point
+  - focus spell
+  - trained
+  - master
+  - legendary
+  GURPS:
+  - fright check
+  - basic speed
+  - basic move
+  - tech level
+  - point cost
+  - reaction roll
+  SHADOWRUN:
+  - nuyen
+  - cyberware
+  - bioware
+  - essence
+  - matrix
+  - decker
+  NUMENERA:
+  - gm intrusion
+  - shins
+  - cypher
+  - might pool
+  - speed pool
+  - intellect pool
+  BLADES:
+  - stress
+  - trauma
+  - heat
+  - wanted level
+  - vice
+  - playbook
+  TRAVELLER:
+  - jump drive
+  - upp
+  - subsector
+  - vacc suit
+  WH40K:
+  - astartes
+  - throne gelt
+  - psyker
+  - inquisitor
+  GENERIC: []
+unconverted_or_flagged_source_terms:
+- spell slot
+- hit points
+- armor class
+- saving throw
+- proficiency bonus
+- short rest
+- long rest
+- cantrip
+- resolve point
+- stamina point
+- bulk
+- drift
+- pact worlds
+- solarian
+- operative
+- technomancer
+- basic speed
+- basic move
+- fright check
+- tech level
+- point cost
+- nuyen
+- cyberware
+- bioware
+- gm intrusion
+- shins
+- might pool
+- speed pool
+- intellect pool
+- stress
+- trauma
+- heat
+- wanted level
+- vice
+- playbook
+notes:
+  high_confidence_mappings: Direct source-to-Astra mappings explicitly present in
+    the legacy profile shorthandGlossary.
+  high_confidence_core_vocabulary: Common Astra vocabulary rewarded by the quality
+    scorer.
+  medium_confidence_distinctive_vocabulary: Distinctive vocabulary rewarded by the
+    quality scorer; usable, but some items may be too ornamental for strict conversion
+    unless context supports them.
+  system_signature_terms: Terms used to detect source systems and route conversion
+    behavior.
+  unconverted_or_flagged_source_terms: Terms the profile marks as raw source-language
+    that should usually be converted or flagged.

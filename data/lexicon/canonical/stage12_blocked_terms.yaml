@@ -1,0 +1,36 @@
+version: 0.1
+bundle: stage12_blocked_terms
+
+blocked_from_canonical_promotion:
+  - Aura
+  - Luck
+  - Aether
+  - Essence
+  - donor proper nouns
+  - donor faction ideology as default Astra law
+  - cultivation versus technology absolutism
+
+notes:
+  Aura:
+    status: blocked_as_default_term
+    rationale: Presence Pressure is the promoted canonical equivalent.
+    allowed_usage: quoted source traces or preserved donor excerpts only
+
+  Luck:
+    status: blocked_as_default_term
+    rationale: Fate is the promoted canonical equivalent.
+    allowed_usage: quoted source traces or preserved donor excerpts only
+
+  Aether:
+    status: preserve_for_traceability_only
+    rationale: too source-bound and too unstable as final reserve doctrine
+    allowed_usage: source-side donor mapping and review notes
+
+  Essence:
+    status: preserve_for_traceability_only
+    rationale: too generic and too ambiguous for final reserve doctrine
+    allowed_usage: source-side donor mapping and review notes
+
+  donor proper nouns:
+    status: preserve_for_traceability_only
+    rationale: useful for donor traceability, not Astra doctrine

@@ -1,0 +1,114 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+mechanics_equivalents:
+  class:
+    preferred_astra_term: Path
+    status: canonical
+    notes: Confirmed from Stage 1 conversion.
+
+  subclass:
+    preferred_astra_term: specialization
+    status: provisional
+    notes: Keep provisional until multiple donors confirm structure.
+
+  skill:
+    preferred_astra_term: Technique
+    status: canonical
+    notes: RHBF power architecture strongly supports this conversion.
+
+  skill_shard:
+    preferred_astra_term: Technique Fragment
+    status: provisional
+    notes: Also consider Technique Seal; unresolved naming conflict remains open.
+
+  ultimate_skill:
+    preferred_astra_term: Ultimate Technique
+    status: canonical
+
+  combat_skill:
+    preferred_astra_term: Combat Technique
+    status: canonical
+
+  movement_skill:
+    preferred_astra_term: Movement Technique
+    status: canonical
+
+  utility_skill:
+    preferred_astra_term: Utility Technique
+    status: canonical
+
+  rank:
+    preferred_astra_term: Stage
+    status: canonical
+
+  level:
+    preferred_astra_term: Degree
+    status: canonical
+
+  ancestry:
+    preferred_astra_term: Kinform
+    status: provisional
+    notes: Use only when the donor concept is primarily expressive rather than deeply mechanical.
+
+  hp:
+    preferred_astra_term: Vitality
+    status: canonical
+
+  ac:
+    preferred_astra_term: Defense Threshold
+    status: canonical
+
+  aura:
+    preferred_astra_term: Presence Pressure
+    status: provisional
+    notes: Mechanically useful, but final naming and formula still open.
+
+  luck:
+    preferred_astra_term: Fate
+    status: provisional
+    notes: Strong thematic fit, but subsystem scope remains unresolved.
+
+  fortitude_save:
+    preferred_astra_term: Core Resistance
+    status: canonical
+
+  reflex_save:
+    preferred_astra_term: Flow Resistance
+    status: canonical
+
+  willpower_save:
+    preferred_astra_term: Resonance Resistance
+    status: canonical
+
+  quest_hub:
+    preferred_astra_term: Nexus Hub
+    status: canonical
+
+  teleport_token:
+    preferred_astra_term: Transit Seal
+    status: canonical
+
+  trial:
+    preferred_astra_term: Ascension Trial
+    status: canonical
+
+  hunting_ground:
+    preferred_astra_term: Hunting Realm
+    status: canonical
+
+  base_phase:
+    preferred_astra_term: Stronghold Phase
+    status: canonical
+
+  living_weapon:
+    preferred_astra_term: Bound Relic
+    status: canonical
+
+  weapon_trait:
+    preferred_astra_term: Relic Trait
+    status: canonical
+
+  monster_component_upgrade_loop:
+    preferred_astra_term: Resonant Feeding
+    status: canonical

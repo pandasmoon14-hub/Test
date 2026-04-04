@@ -1,0 +1,48 @@
+version: 0.1
+bundle: rhbf_merged_seed_terms
+
+canonical_ready:
+  - Astra Ascendant
+  - Path
+  - Technique
+  - Vessel
+  - Core
+  - Flow
+  - Insight
+  - Resonance
+  - Intent
+  - Core Resistance
+  - Flow Resistance
+  - Resonance Resistance
+  - Presence Pressure
+  - Fate
+  - Nexus Hub
+  - Transit Seal
+  - Ascension Trial
+  - Hunting Realm
+  - Stronghold Phase
+  - Bound Relic
+  - Relic Trait
+  - Ascendant Beast
+  - Technique Repository
+  - Gate Array
+  - Merit Mark
+
+provisional:
+  - Soul Orientation
+  - Path Frame
+  - Opportunity Node
+  - Trial Aesthetic
+  - Resonant Feeding
+  - Anthromorphic Breakthrough
+  - Meridian Reserve
+
+preserve_until_review:
+  - Aether
+  - Essence
+  - Yeross
+  - Erakos
+  - Valor Marks
+  - source faction names
+  - source class names
+  - source trial names

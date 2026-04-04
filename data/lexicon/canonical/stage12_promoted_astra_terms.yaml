@@ -1,0 +1,53 @@
+version: 0.1
+bundle: stage12_promoted_astra_terms
+
+promoted_canonical_terms:
+  Presence Pressure:
+    previous_status: provisional
+    promoted_reason: Distinct from generic aura language while preserving the functional power-pressure metric.
+    usage: Use as the default visible/intangible pressure term in Astra-facing text.
+
+  Fate:
+    previous_status: provisional
+    promoted_reason: Supports the donor function of luck-like destiny pressure while fitting Astra's tone and future subsystem growth.
+    usage: Use for rare destiny-sensitive modifiers, warnings, omens, or chance-pressure mechanics.
+
+  Stronghold Phase:
+    previous_status: provisional
+    promoted_reason: Structurally useful campaign-cycle term for between-expedition growth and maintenance.
+    usage: Use for home-base, recovery, build, and processing phases.
+
+  Technique Repository:
+    previous_status: provisional
+    promoted_reason: Clear and reusable for places, archives, or systems that store or transmit Technique knowledge.
+    usage: Use as a persistent infrastructure term.
+
+  Gate Array:
+    previous_status: provisional
+    promoted_reason: Strong travel-infrastructure term that supports multi-node transit without importing source jargon.
+    usage: Use for linked travel architecture.
+
+  Meridian Reserve:
+    previous_status: provisional
+    promoted_reason: Best available generalized reserve term for energy/expenditure systems across mystical and hybrid frames.
+    usage: Use as the default reserve term unless a subsystem explicitly overrides it.
+
+  Meridian Channels:
+    previous_status: provisional
+    promoted_reason: Best first-pass metaphysical explanation of the donor slot architecture.
+    usage: Use to explain Crown, Arm, Stride, and Core Technique placements.
+
+already_stable_terms_reaffirmed:
+  - Astra Ascendant
+  - Path
+  - Technique
+  - Core Resistance
+  - Flow Resistance
+  - Resonance Resistance
+  - Nexus Hub
+  - Transit Seal
+  - Ascension Trial
+  - Hunting Realm
+  - Bound Relic
+  - Relic Trait
+  - Ascendant Beast

@@ -1,0 +1,21 @@
+version: 0.1
+bundle_name: rhbf_stage11_live_validator_targets
+
+must_preserve:
+  - d20_core_resolution
+  - six_attribute_structure
+  - three_resistance_structure
+  - point_buy_bounds
+  - technique_slot_count
+  - technique_usage_bands
+  - natural_20_critical_rule
+  - trial_and_realm_loop_structure
+  - bound_relic_trait_requirements
+
+must_flag:
+  - source proper nouns left unrevised without purpose
+  - source cosmology copied into Astra doctrine
+  - source ideology copied into Astra doctrine
+  - unstable reserve terminology
+  - unstable aura terminology
+  - unstable fate terminology

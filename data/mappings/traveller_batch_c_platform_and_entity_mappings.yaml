@@ -1,0 +1,84 @@
+version: 0.1
+run_id: traveller_prod_run_001
+batch: C
+donor: Traveller
+target: Astra Ascension
+
+summary:
+  strongest_pressures:
+    - persistent_starship_platform_identity
+    - starship_as_support_and_cargo_asset
+    - utility_support_vehicle_family
+    - augment_as_installed_body_asset
+    - rated_system_computer_object_families
+    - practical_frontier_support_equipment
+    - cargo_support_role_as_schema_field
+    - crew_support_profile
+  donor_local_risks:
+    - exact_spacecraft_hull_tonnage_share_cost_math
+    - exact_equipment_and_software_catalogs
+    - exact_weapon_and_armour_stats
+    - exact_vehicle_construction_formulas
+    - exact_third_imperium_technology_assumptions
+    - exact_space_combat_subsystem_payload
+
+mappings:
+  starship:
+    donor_construct: "spacecraft"
+    astra_mapping: "persistent starship-family platform record"
+    status: baseline_grammar
+    notes: "Strong reinforcement of persistent transport/support/cargo platform identity."
+
+  starship_support_cargo:
+    donor_construct: "shipboard cargo, support burden, and lived-in vessel identity"
+    astra_mapping: "support/cargo starship asset"
+    status: baseline_grammar
+    notes: "Keeps major platforms visible as shelter, transport, sustainment, and cargo owners rather than combat-only pieces."
+
+  vehicle:
+    donor_construct: "vehicles"
+    astra_mapping: "utility/support vehicle-family platform"
+    status: baseline_grammar
+    notes: "Broadens vehicle doctrine toward practical support, not only tactical heroics."
+
+  augments:
+    donor_construct: "augments"
+    astra_mapping: "installed body-facing asset"
+    status: baseline_grammar
+    notes: "Reinforces installed doctrine outside cyberpunk-only framing."
+
+  computers_software:
+    donor_construct: "computers & software"
+    astra_mapping: "rated system / information-bearing object family"
+    status: baseline_grammar
+    notes: "Supports rated-system doctrine and access-adjacent object logic while remaining object-side."
+
+  sensors_comms:
+    donor_construct: "sensors / communications"
+    astra_mapping: "detection / coordination support object families"
+    status: baseline_grammar
+    notes: "Useful information-bearing support-object classes that remain distinct from weapons."
+
+  survival_medical_tools:
+    donor_construct: "survival gear / medical supplies / toolkits"
+    astra_mapping: "practical support-equipment ecology"
+    status: baseline_grammar
+    notes: "Strong support for frontier-utility object significance."
+
+  cargo_support:
+    donor_construct: "cargo, fittings, shipboard support, maintenance gear"
+    astra_mapping: "cargo/support role as object-side field"
+    status: baseline_grammar
+    notes: "Useful pressure on platform identity beyond combat."
+
+  crew_duty_profile:
+    donor_construct: "crew duties and ship actions"
+    astra_mapping: "crew-support profile"
+    status: optional_profile
+    notes: "Schema-visible, but exact duty menus remain donor-local."
+
+watchlist:
+  - question: "How hard should Astra promote practical support-equipment ecology after Traveller?"
+  - question: "Should cargo/support role become more explicit in generic platform grammar?"
+  - question: "How much maintenance/upkeep relationship belongs in object-side doctrine?"
+  - question: "How much of sensors/security/computers should be access-adjacent versus purely equipment-facing?"

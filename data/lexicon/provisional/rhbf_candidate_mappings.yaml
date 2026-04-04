@@ -1,0 +1,31 @@
+version: 0.1
+status: open
+candidates:
+  - source_term: Skill
+    proposed_astra_term: Technique
+    confidence: high
+    rationale: donor power system maps cleanly to codified Astra workings
+  - source_term: Skill Shard
+    proposed_astra_term: Technique Fragment
+    confidence: medium
+    rationale: emphasizes loot/acquisition object
+  - source_term: Skill brand / tattoo
+    proposed_astra_term: Technique Seal
+    confidence: medium
+    rationale: emphasizes body-slot metaphysics
+  - source_term: Teleport Token
+    proposed_astra_term: Transit Seal
+    confidence: high
+    rationale: access key to travel/site node
+  - source_term: Yeross
+    proposed_astra_term: Nexus Hub
+    confidence: medium
+    rationale: functional replacement for neutral launch city
+  - source_term: Hunting Grounds
+    proposed_astra_term: Hunting Realm
+    confidence: high
+    rationale: repeatable site better fits Astra diction
+  - source_term: living weapon
+    proposed_astra_term: Bound Relic
+    confidence: high
+    rationale: preserves owner-bond and progression loop

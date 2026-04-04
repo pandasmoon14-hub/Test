@@ -1,0 +1,95 @@
+version: 0.1
+purpose: Route-aware chunk conversion rules for AstraCloud
+
+chunk_rules:
+  frontmatter:
+    primary_goal: preserve traceability
+    do:
+      - keep titles and metadata readable
+      - preserve legal and credits text when needed for reference
+    avoid:
+      - decorative rewriting
+      - false canonization
+
+  prose_lore:
+    primary_goal: Astra-native reinterpretation
+    do:
+      - preserve world logic and stakes
+      - rewrite source cosmology into Astra-compatible terms where stable
+      - emit preserved-term flags for unstable proper nouns
+    avoid:
+      - copying source phrasing
+      - injecting unsupported Astra lore
+
+  rules_text:
+    primary_goal: mechanical fidelity with clean Astra terminology
+    do:
+      - preserve procedures, limits, triggers, and math
+      - prefer explicit Astra terms from canonical mechanics_map
+    avoid:
+      - changing subsystem function
+      - hiding rules behind fancy phrasing
+
+  class_feature:
+    primary_goal: map class structure into Paths, domains, and techniques
+    do:
+      - preserve save/resistance logic
+      - preserve progression gates and unlock cadence
+      - emit canon candidates when repeated patterns recur
+    avoid:
+      - one-to-one naming without review
+
+  spell_or_power:
+    primary_goal: convert powers into Astra technique format
+    template:
+      - Name
+      - Type
+      - Domain
+      - Usage
+      - Action
+      - Range
+      - Target_or_Area
+      - Effect
+      - Upgrades
+    avoid:
+      - dropping usage cadence
+      - losing action cost
+      - flattening upgrade tracks
+
+  item_block:
+    primary_goal: preserve item role and equipment economy
+    do:
+      - keep rarity, slot, cost, and activation logic visible
+      - reinterpret tech items in Astra-compatible terms when justified
+    avoid:
+      - rewriting every object into mystical mush
+
+  npc_or_bestiary:
+    primary_goal: preserve role, ecology, and combat posture
+    do:
+      - preserve creature taxonomy if mechanically meaningful
+      - emit harvest/component opportunities when present
+    avoid:
+      - deleting traits that anchor the creature's role
+
+  statblock:
+    primary_goal: protect structured combat data
+    do:
+      - preserve numbers, labels, order, and action economy
+      - use explicit term mapping only where stable
+    avoid:
+      - freeform paraphrase
+      - collapsing multiple fields into prose
+
+  table_light:
+    primary_goal: deterministic cleanup and preservation
+    avoid:
+      - full freeform rewriting
+
+  table_heavy:
+    primary_goal: controlled preservation with targeted reinterpretation
+    do:
+      - preserve row and column meaning
+      - escalate when headers are ambiguous
+    avoid:
+      - cell-level creative rewriting without validation

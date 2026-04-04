@@ -1,0 +1,71 @@
+version: 0.1
+source: RHBF-derived
+status: seed_from_uploaded_corpus
+
+canonical_candidates:
+  - term: Path
+    source_equivalents: [class, path_of_ascendancy]
+    notes: Use for class-equivalent structure, not for final cosmology.
+  - term: Domain
+    source_equivalents: [domain]
+    notes: Directly donor-supported capability gate.
+  - term: Technique
+    source_equivalents: [skill]
+    notes: Use as the default Astra replacement for codified powers.
+  - term: Core Resistance
+    source_equivalents: [Fortitude]
+    notes: Save conversion tied to bodily resilience.
+  - term: Flow Resistance
+    source_equivalents: [Reflex]
+    notes: Save conversion tied to evasion and movement.
+  - term: Resonance Resistance
+    source_equivalents: [Willpower]
+    notes: Save conversion tied to spirit and mental force.
+  - term: Transit Seal
+    source_equivalents: [Teleport Token]
+    notes: Preferred Astra replacement for token-gated travel.
+  - term: Nexus Hub
+    source_equivalents: [Yeross]
+    notes: Preferred functional replacement for neutral central city.
+  - term: Ascension Trial
+    source_equivalents: [Trial]
+    notes: Keep as core activity-loop term.
+  - term: Hunting Realm
+    source_equivalents: [Hunting Grounds]
+    notes: Repeatable exploration and encounter site.
+  - term: Bound Relic
+    source_equivalents: [living weapon]
+    notes: Preferred Astra replacement for owner-bound evolving weapon.
+  - term: Relic Trait
+    source_equivalents: [trait]
+    notes: Trait gained through feeding and progression.
+
+provisional_candidates:
+  - term: Presence Pressure
+    source_equivalents: [Aura]
+    notes: Keep provisional pending final stat philosophy.
+  - term: Fate
+    source_equivalents: [Luck]
+    notes: Promising Astra conversion, but needs broader doctrine review.
+  - term: Technique Fragment
+    source_equivalents: [Skill Shard]
+    notes: Competes with Technique Seal.
+  - term: Technique Seal
+    source_equivalents: [Skill brand, Skill tattoo]
+    notes: Competes with Technique Fragment; metaphysics not final.
+  - term: Merit Mark
+    source_equivalents: [Valor Mark]
+    notes: Good Astra fit, but reward-economy doctrine still open.
+  - term: Mandate
+    source_equivalents: [Divine Decree]
+    notes: Works functionally, but tone may need tuning.
+
+preserve_until_review:
+  - Aether
+  - Essence
+  - Yeross
+  - Erakos
+  - Valor Marks
+  - The Guide
+  - Engineers
+  - The Guild

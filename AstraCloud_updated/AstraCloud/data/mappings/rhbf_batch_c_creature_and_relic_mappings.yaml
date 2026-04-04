@@ -1,0 +1,87 @@
+version: 0.2
+run_id: rhbf_prod_run_002
+canonical_mappings:
+  Living Weapon: Bound Relic
+  Living Weapon Trait: Relic Trait
+  Evolved Beast: Ascendant Beast
+  aura: Presence Pressure
+  HP: Vitality
+  DR: Defense Threshold
+  Fortitude: Core Resistance
+  Reflex: Flow Resistance
+  Willpower: Resonance Resistance
+  Humanoid: Humanoid
+  Beast: Beast
+  Aberration: Aberrant Entity
+  Construct: Forged Entity
+  Plant: Living Flora Entity
+  Elemental: Elemental Entity
+  Undead: Revenant Entity
+  Astral: Astral Entity
+normalized_mappings:
+  creature difficulty category: threat band
+  Number: expected encounter count
+  Recharge X-Y: recharge window
+  Living Weapon attunement: bound attunement rite
+  Living Weapon evolution: Resonant Feeding progression
+  component family: typed harvest family
+  trophy output: trophy hook
+  natural treasure quality: resource-yield tier
+  wondrous item: wondrous asset
+  alchemical ingredient: alchemical ingredient
+provisional_mappings:
+  Beast Core: essence core
+  Essence: essence reserve
+  Arako: arako reserve
+  Radiance: radiance reserve
+  Natural Treasure: natural treasure
+  Skill Shard: technique fragment
+  Domain Shard: domain fragment
+  Trophy Hall: trophy installation node
+retain_source_local:
+  - exact Living Weapon personality table
+  - exact Relic Trait material names
+  - exact wondrous item names
+  - exact currency denominations and symbols
+  - exact trophy bonuses
+  - exact Threat Level formulas
+  - exact vendor-pylon language
+blocked_from_canon_import:
+  - anti-technology ideology
+  - any claim that all progression-significant treasure must use the RHBF reserve triplet
+  - any claim that every bound item must be a weapon rather than a broader relic class
+validator_targets:
+  actor_statblock_required_fields:
+    - name
+    - family
+    - attributes
+    - encounter_count
+    - presence_pressure
+    - resistances
+    - vitality
+    - defense_threshold
+    - speed
+    - stealth
+    - size
+    - actions
+    - traits
+    - attacks_or_abilities
+  harvest_packet_required_fields:
+    - source_identity
+    - source_family
+    - source_state
+    - output_class
+    - outputs
+    - downstream_hooks
+  bound_relic_required_fields:
+    - identity
+    - base_form
+    - bond_state
+    - owner_restriction
+    - growth_state
+    - known_relic_traits
+    - feeding_requirements
+    - permitted_input_families
+notes:
+  - RHBF strongly validates typed harvest ecology and owner-bound relic growth.
+  - Resource-triplet semantics remain under review until wider donor pressure is tested.

@@ -1,0 +1,25 @@
+version: 0.1
+bundle_name: stage13_production_output_expectations
+
+required_outputs:
+  - player_facing_packet
+  - mechanics_bible_packet
+  - setting_or_activity_packet_when_applicable
+  - validator_report
+  - lexicon_delta_packet
+  - canon_candidate_packet
+
+quality_expectations:
+  - Astra-facing terminology should follow promoted Stage 12 doctrine.
+  - Blocked terms should not appear as default Astra-facing language.
+  - Proper nouns from donor text should be preserved only when traceability demands it.
+  - Converted packets should remain readable as standalone Astra text.
+  - Each packet should preserve the donor mechanical skeleton relevant to its batch.
+
+failure_conditions:
+  - raw Aura used as default instead of Presence Pressure
+  - raw Luck used as default instead of Fate
+  - Aether or Essence used as default reserve doctrine
+  - donor ideology imported as default Astra law
+  - slot counts, point-buy bounds, or critical rules silently changed
+  - harvest requirements collapsed into generic loot language

@@ -1,0 +1,26 @@
+version: 0.1
+packet_type: lexicon_delta
+run_id: ""
+sourcebook_id: ""
+chunk_id: ""
+profile_name: ""
+final_route: ""
+new_candidate_terms:
+  - source_term: ""
+    proposed_astra_term: ""
+    category: "attribute|save|path|technique|item|faction|creature|setting|other"
+    confidence: "low|medium|high"
+    rationale: ""
+    evidence_excerpt: ""
+preserved_terms:
+  - source_term: ""
+    rationale: ""
+    review_needed: true
+flagged_terms:
+  - source_term: ""
+    issue: "source_leakage|false_equivalence|ornamental_drift|canon_conflict_risk"
+    note: ""
+canonical_terms_used:
+  - source_term: ""
+    canonical_astra_term: ""
+notes: ""

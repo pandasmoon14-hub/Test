@@ -1,0 +1,37 @@
+version: 0.1
+guidance_name: rhbf_stage11_live_chunk_guidance
+
+packet_targets:
+  player_core_rules_packet:
+    source_family: chassis_chunks
+    route: two_pass_convert
+    emphasis:
+      - clarity
+      - system coherence
+      - Astra terminology discipline
+      - preserve numbers and thresholds
+
+  paths_and_techniques_packet:
+    source_family: chassis_chunks
+    route: two_pass_convert
+    emphasis:
+      - Path identity
+      - Domain gating
+      - Technique slots and cadence
+      - convert source class flavor into Astra doctrine
+
+  activity_engine_packet:
+    source_family: world_activity_chunks
+    route: two_pass_convert
+    emphasis:
+      - procedural loop clarity
+      - rename hubs/trials/realms into Astra terms
+      - preserve actionability over lore sprawl
+
+  creatures_and_bound_relics_packet:
+    source_family: creature_and_relic_chunks
+    route: guarded_statblock_convert
+    emphasis:
+      - preserve taxonomy logic
+      - preserve harvest specificity
+      - preserve Bound Relic growth loop

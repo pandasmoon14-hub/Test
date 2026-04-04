@@ -1,0 +1,329 @@
+version: 1
+description: >
+  Initial routing policy for Astra Ascension cloud conversion pipeline.
+  Determines how normalized markdown chunks are processed.
+
+global_defaults:
+  fallback_route: escalate_review
+  max_chunk_chars_one_pass: 7000
+  max_chunk_chars_two_pass: 12000
+  allow_llm_on_tables: false
+  allow_llm_on_statblocks: limited
+  require_validator_pass: true
+  retry_on_validator_fail: true
+  max_retries: 2
+
+route_definitions:
+  skip:
+    description: >
+      Do not convert. Preserve or discard based on chunk policy.
+    llm_required: false
+    deterministic_only: false
+
+  preserve_raw:
+    description: >
+      Preserve chunk content with minimal or no transformation.
+    llm_required: false
+    deterministic_only: true
+
+  deterministic_transform:
+    description: >
+      Apply non-LLM structural cleanup or fixed mappings only.
+    llm_required: false
+    deterministic_only: true
+
+  one_pass_convert:
+    description: >
+      Single LLM pass for straightforward Astra reinterpretation with
+      mechanical fidelity constraints.
+    llm_required: true
+    deterministic_only: false
+
+  two_pass_convert:
+    description: >
+      Multi-step conversion for dense, mixed, or higher-risk chunks.
+      Pass 1 extracts structure/mechanics. Pass 2 rewrites into Astra-native form.
+    llm_required: true
+    deterministic_only: false
+
+  guarded_statblock_convert:
+    description: >
+      Restricted conversion path for stat blocks and highly structured mechanical blocks.
+    llm_required: true
+    deterministic_only: false
+
+  guarded_table_convert:
+    description: >
+      Restricted route for table-heavy chunks. Prefer deterministic preservation
+      and targeted LLM involvement only when needed.
+    llm_required: true
+    deterministic_only: false
+
+  escalate_review:
+    description: >
+      Send to failure queue or human review when chunk is ambiguous, oversized,
+      or repeatedly fails validation.
+    llm_required: false
+    deterministic_only: false
+
+chunk_type_routes:
+  frontmatter:
+    default_route: preserve_raw
+    notes: Usually title pages, credits, legal text, publisher info.
+
+  toc:
+    default_route: preserve_raw
+    notes: Preserve structure; convert only if later needed for release formatting.
+
+  prose_lore:
+    default_route: one_pass_convert
+    notes: Narrative lore and descriptive setting text.
+
+  rules_text:
+    default_route: one_pass_convert
+    notes: Core mechanics prose with moderate structural sensitivity.
+
+  class_feature:
+    default_route: two_pass_convert
+    notes: May require fidelity extraction plus Astra reinterpretation.
+
+  spell_or_power:
+    default_route: two_pass_convert
+    notes: High terminology sensitivity and risk of drift.
+
+  item_block:
+    default_route: one_pass_convert
+    notes: May escalate if item formatting is dense.
+
+  npc_or_bestiary:
+    default_route: two_pass_convert
+    notes: Mixed lore plus mechanics; often better as structured two-pass.
+
+  statblock:
+    default_route: guarded_statblock_convert
+    notes: Protect numbers, labels, slots, action economy, and formatting.
+
+  table_light:
+    default_route: deterministic_transform
+    notes: Small simple tables first attempt without freeform rewrite.
+
+  table_heavy:
+    default_route: guarded_table_convert
+    notes: Complex tables require strict handling.
+
+  mixed_dense:
+    default_route: two_pass_convert
+    notes: Dense mixed mechanics plus prose plus formatting.
+
+  appendix_reference:
+    default_route: preserve_raw
+    notes: Reference chunks may later be selectively converted.
+
+  index_or_glossary:
+    default_route: deterministic_transform
+    notes: Prefer controlled mapping and preservation of lookup structure.
+
+  junk_or_artifact:
+    default_route: skip
+    notes: OCR junk, broken artifacts, image remnants, unusable fragments.
+
+size_policies:
+  small:
+    max_chars: 2500
+    preferred_route_override: null
+
+  medium:
+    max_chars: 7000
+    preferred_route_override: null
+
+  large:
+    max_chars: 12000
+    preferred_route_override: two_pass_convert
+
+  oversize:
+    max_chars: 999999
+    preferred_route_override: escalate_review
+    notes: Should usually be rechunked before processing.
+
+route_overrides:
+  - name: skip_empty_or_whitespace
+    priority: 100
+    when:
+      chunk_is_empty: true
+    set_route: skip
+
+  - name: skip_pure_artifact
+    priority: 95
+    when:
+      artifact_score_gte: 0.9
+    set_route: skip
+
+  - name: preserve_legal_text
+    priority: 90
+    when:
+      chunk_type_in: [frontmatter]
+      contains_any_patterns: ["Open Game License", "copyright", "credits"]
+    set_route: preserve_raw
+
+  - name: protect_simple_tables
+    priority: 85
+    when:
+      chunk_type_in: [table_light]
+    set_route: deterministic_transform
+
+  - name: guard_complex_tables
+    priority: 84
+    when:
+      chunk_type_in: [table_heavy]
+    set_route: guarded_table_convert
+
+  - name: protect_statblocks
+    priority: 83
+    when:
+      chunk_type_in: [statblock]
+    set_route: guarded_statblock_convert
+
+  - name: escalate_oversize_chunks
+    priority: 80
+    when:
+      chunk_size_class_in: [oversize]
+    set_route: escalate_review
+
+  - name: escalate_high_validator_risk
+    priority: 70
+    when:
+      predicted_validator_risk_gte: 0.8
+    set_route: two_pass_convert
+
+  - name: escalate_ambiguous_mixed_dense
+    priority: 65
+    when:
+      chunk_type_in: [mixed_dense]
+      ambiguity_score_gte: 0.7
+    set_route: two_pass_convert
+
+  - name: preserve_reference_appendix
+    priority: 60
+    when:
+      chunk_type_in: [appendix_reference]
+      mechanics_density_lte: 0.2
+    set_route: preserve_raw
+
+validation_policies:
+  skip:
+    validators: []
+
+  preserve_raw:
+    validators:
+      - structure_integrity
+      - no_unexpected_mutation
+
+  deterministic_transform:
+    validators:
+      - structure_integrity
+      - terminology_safety
+      - table_integrity_if_present
+
+  one_pass_convert:
+    validators:
+      - structure_integrity
+      - terminology_consistency
+      - no_source_setting_leakage
+      - drift_limit
+      - completeness
+
+  two_pass_convert:
+    validators:
+      - structure_integrity
+      - terminology_consistency
+      - no_source_setting_leakage
+      - drift_limit
+      - completeness
+      - mechanical_fidelity_proxy
+
+  guarded_statblock_convert:
+    validators:
+      - statblock_integrity
+      - terminology_consistency
+      - no_source_setting_leakage
+      - drift_limit
+
+  guarded_table_convert:
+    validators:
+      - table_integrity
+      - terminology_consistency
+      - no_source_setting_leakage
+      - drift_limit
+
+  escalate_review:
+    validators:
+      - failure_packet_generation
+
+retry_policies:
+  one_pass_convert:
+    retry_on_fail: true
+    max_retries: 2
+    on_fail_after_retries: two_pass_convert
+
+  two_pass_convert:
+    retry_on_fail: true
+    max_retries: 2
+    on_fail_after_retries: escalate_review
+
+  guarded_statblock_convert:
+    retry_on_fail: true
+    max_retries: 1
+    on_fail_after_retries: escalate_review
+
+  guarded_table_convert:
+    retry_on_fail: true
+    max_retries: 1
+    on_fail_after_retries: escalate_review
+
+  deterministic_transform:
+    retry_on_fail: false
+    on_fail_after_retries: escalate_review
+
+lexicon_policies:
+  preserve_source_terms_when:
+    - term_has_no_stable_astra_equivalent
+    - term_is_needed_for_traceability
+    - term_is_marked_preserved_in_lexicon
+
+  prohibit_terms_when:
+    - term_is_banned
+    - term_is_source_setting_contamination
+    - term_causes_false_astra_equivalence
+
+  candidate_mapping_extraction:
+    enabled: true
+    extract_from_routes:
+      - one_pass_convert
+      - two_pass_convert
+      - guarded_statblock_convert
+      - guarded_table_convert
+
+canon_conflict_policies:
+  enabled: true
+  generate_conflict_packet_when:
+    - same_source_concept_maps_to_multiple_astra_concepts
+    - multiple_books_imply_incompatible_astra_subsystem_names
+    - mechanical_equivalence_patterns_diverge_beyond_threshold
+    - faction_or_species_ontology_differs_across_conversions
+
+logging_policies:
+  log_fields:
+    - run_id
+    - sourcebook_id
+    - chunk_id
+    - chunk_type
+    - chunk_size_class
+    - assigned_route
+    - final_route
+    - model_mode
+    - prompt_signature
+    - lexicon_version
+    - validator_results
+    - retry_count
+    - elapsed_ms
+    - final_status

@@ -1,0 +1,127 @@
+version: 0.2
+status: seeded_from_stage_1_3
+source_basis:
+  - stage1_core_chassis_v0_2
+  - stage2_world_activity_engine_v0_1
+  - stage3_creature_and_gear_framework_v0_1
+
+top_level_terms:
+  Astra:
+    type: setting_core
+    status: canonical
+    definition: Primary setting identity term for Astra Ascension.
+
+  Ascendant:
+    type: player_identity
+    status: canonical
+    definition: A player-facing identity term for a character on an Astra path of advancement.
+
+  Path:
+    type: class_equivalent
+    status: canonical
+    definition: The primary class-equivalent framework in Astra.
+
+  Domain:
+    type: capability_gate
+    status: canonical
+    definition: Eligibility key used to qualify techniques and specialist interactions.
+
+  Technique:
+    type: power_unit
+    status: canonical
+    definition: Standard Astra term for a structured character power or learned working.
+
+  Stage:
+    type: progression_axis
+    status: canonical
+    definition: Broad tier of ascension and advancement.
+
+  Degree:
+    type: progression_axis
+    status: canonical
+    definition: Internal advancement step within a Stage.
+
+  Lineage:
+    type: progression_axis
+    status: canonical
+    definition: Inherited, bonded, or legacy-linked advancement axis.
+
+  Soul:
+    type: progression_axis
+    status: canonical
+    definition: Internal spiritual capacity and refinement axis.
+
+  Vitality:
+    type: derived_stat
+    status: canonical
+    definition: Primary bodily durability and damage endurance stat.
+
+  Defense Threshold:
+    type: derived_stat
+    status: canonical
+    definition: Primary evasive or protective defense target.
+
+  Presence Pressure:
+    type: derived_stat
+    status: provisional
+    definition: Current working term for the visible oppressive expression of total power.
+
+  Fate:
+    type: derived_stat
+    status: provisional
+    definition: Rare destiny-sensitive stat or score currently derived from the RHBF luck concept.
+
+  Nexus Hub:
+    type: world_activity
+    status: canonical
+    definition: Neutral mission, exchange, and travel anchor for Ascendants.
+
+  Transit Seal:
+    type: world_activity
+    status: canonical
+    definition: Access key to regions, trials, and expedition sites.
+
+  Ascension Trial:
+    type: world_activity
+    status: canonical
+    definition: Modular challenge node used for advancement, resources, or claims.
+
+  Hunting Realm:
+    type: world_activity
+    status: canonical
+    definition: Rank-banded repeatable exploration and combat site.
+
+  Stronghold Phase:
+    type: world_activity
+    status: canonical
+    definition: Home-base management and consequence phase between active expeditions.
+
+  Bound Relic:
+    type: gear_core
+    status: canonical
+    definition: Owner-bound evolving weapon or item that grows through resonant feeding.
+
+  Relic Trait:
+    type: gear_core
+    status: canonical
+    definition: Upgrade trait attached to a Bound Relic.
+
+  Resonant Feeding:
+    type: gear_core
+    status: canonical
+    definition: The process of advancing a Bound Relic by feeding aligned components or treasures.
+
+  Ascendant Beast:
+    type: creature_core
+    status: canonical
+    definition: Beast entity that has reached higher-order advancement and may gain semi-humanoid features.
+
+  Anthromorphic Breakthrough:
+    type: creature_core
+    status: provisional
+    definition: Working term for the beast-to-humanoid evolutionary transition concept.
+
+  Merit Mark:
+    type: reward_logic
+    status: provisional
+    definition: Working reward marker for earned standing, reputation, or claimable accomplishment.

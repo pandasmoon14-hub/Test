@@ -1,0 +1,168 @@
+version: 0.2
+run_id: lancer_prod_run_001
+donor_family: Lancer
+purpose: revised Batch C donor-specific mapping ledger for frames, mounts, subordinate assets, hostile templates, and platform intelligence
+
+baseline_grammar:
+  - donor_construct: frame
+    astra_mapping: platform_chassis_record
+    status: promote
+    notes: Promote chassis identity and record ownership without importing exact frame math.
+
+  - donor_construct: frame_traits_and_core_profile
+    astra_mapping: intrinsic_trait_bundle_plus_signature_platform_system
+    status: promote
+    notes: Preserve frame-defining traits and signature systems as real owners distinct from generic install slots.
+
+  - donor_construct: mount
+    astra_mapping: weapon_attachment_capacity
+    status: promote
+    notes: Mounts remain distinct from inventory and from install-capacity profile.
+
+  - donor_construct: system_points
+    astra_mapping: install_capacity_profile
+    status: promote
+    notes: Preserve install-pressure grammar, not exact SP math.
+
+  - donor_construct: deployables
+    astra_mapping: deployable_asset_schema
+    status: promote
+    notes: Distinct from ordinary gear and from full actor law by default.
+
+  - donor_construct: drones
+    astra_mapping: subordinate_support_entity_schema
+    status: promote
+    notes: Supports a middle-zone support entity between gear, summon, and fully independent actor.
+
+  - donor_construct: npc_classes
+    astra_mapping: hostile_platform_class_schema
+    status: promote
+    notes: Stable hostile chassis with role identity.
+
+  - donor_construct: npc_templates
+    astra_mapping: hostile_template_overlay_schema
+    status: promote
+    notes: Overlay grammar must stay distinct from the base hostile class owner.
+
+  - donor_construct: vehicles_and_ships
+    astra_mapping: shared_platform_family_with_subfamily_variance
+    status: promote
+    notes: Related platform families should share high-level grammar without forced one-sheet identity.
+
+optional_profiles:
+  - donor_construct: superheavy_mount_requirements
+    astra_mapping: oversized_attachment_profile
+    status: optional_profile
+    notes: Strong and useful, but not yet Astra baseline.
+
+  - donor_construct: license_locked_frames
+    astra_mapping: authorization_backed_platform_access_profile
+    status: optional_profile
+    notes: One strong acquisition and progression family; exact LL ladder remains donor-local.
+
+  - donor_construct: ai_or_nhp_control_handoff
+    astra_mapping: platform_intelligence_profile
+    status: optional_profile
+    notes: Lawful platform-intelligence family; exact NHP and cascade law remain local.
+
+  - donor_construct: structure_stress_repair_cap_package
+    astra_mapping: platform_durability_profile
+    status: optional_profile
+    notes: Strong durability profile, but exact timing and arithmetic are not promoted.
+
+donor_local_retention:
+  - donor_construct: HULL_AGILITY_SYSTEMS_ENGINEERING
+    astra_mapping: donor_local_platform_tuning_matrix
+    status: donor_local
+    notes: Must not replace Astra core attributes.
+
+  - donor_construct: exact_frame_math
+    astra_mapping: donor_local_chassis_numbers
+    status: donor_local
+    notes: Exact frame numbers and exact stat bands remain local payload.
+
+  - donor_construct: exact_SP_values
+    astra_mapping: donor_local_budget_math
+    status: donor_local
+    notes: Exact point totals retained locally.
+
+  - donor_construct: exact_structure_stress_repair_values
+    astra_mapping: donor_local_platform_durability_math
+    status: donor_local
+    notes: Do not promote exact Lancer durability numbers yet.
+
+  - donor_construct: exact_manufacturer_frame_and_npc_names
+    astra_mapping: donor_local_catalog_identity
+    status: donor_local
+    notes: Names and roster payload remain donor-local.
+
+  - donor_construct: exact_NHP_cascade_law
+    astra_mapping: donor_local_platform_intelligence_metaphysics
+    status: donor_local
+    notes: Optional profile at most, not baseline.
+
+cross_batch_ownership:
+  batch_a:
+    - pilot-side progression and access law
+    - triggers and talents
+    - donor-local operator matrices
+  batch_b:
+    - mission cadence and tactical-shell procedure
+    - downtime and recovery-window timing
+    - operation-time platform use, entry, extraction, and reconfiguration procedure
+  batch_c:
+    - platform chassis records
+    - weapon attachment capacity
+    - install-capacity profile
+    - signature platform systems
+    - deployables and subordinate support entities
+    - hostile class and template-overlay grammar
+    - platform-intelligence optional profiles
+  handoff_rules:
+    - A frame is not its pilot.
+    - A mount is not an install-capacity budget.
+    - A drone is not automatically gear, summon, or full actor law.
+    - A template is not the base hostile class.
+    - Platform intelligence is optional-profile, not baseline platform law.
+
+watchlist:
+  - issue: mech-heavy donors could cause platform ecology to monopolize Batch C
+    prevention: keep platform ecology as one major family alongside organic, anomalous, and other ecologies
+
+  - issue: later conversions could flatten mounts and install capacity into one slot budget
+    prevention: preserve separate owners with separate fields and separate lexicon
+
+  - issue: subordinate support entities could be misfiled as either gear or summons
+    prevention: keep explicit middle-zone schema and hybrid posture fields
+
+  - issue: hostile class-plus-template grammar could overexpand into every hostile family
+    prevention: preserve it as a strong modular family, not universal hostile law
+
+  - issue: optional platform intelligence could creep into baseline assumptions
+    prevention: retain exact metaphysics donor-local and mark intelligence as optional-profile only
+
+recommended_promotions:
+  baseline_grammar:
+    - platform_chassis_record
+    - intrinsic_trait_bundle_plus_signature_platform_system
+    - weapon_attachment_capacity
+    - install_capacity_profile
+    - deployable_asset_schema
+    - subordinate_support_entity_schema
+    - hostile_platform_class_schema
+    - hostile_template_overlay_schema
+    - shared_platform_family_with_subfamily_variance
+
+  optional_profile:
+    - oversized_attachment_profile
+    - authorization_backed_platform_access_profile
+    - platform_intelligence_profile
+    - platform_durability_profile
+
+  donor_local:
+    - donor_local_platform_tuning_matrix
+    - donor_local_chassis_numbers
+    - donor_local_budget_math
+    - donor_local_platform_durability_math
+    - donor_local_catalog_identity
+    - donor_local_platform_intelligence_metaphysics

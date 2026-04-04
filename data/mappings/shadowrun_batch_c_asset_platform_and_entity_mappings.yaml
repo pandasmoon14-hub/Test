@@ -1,0 +1,116 @@
+run_id: shadowrun_prod_run_001
+donor: Shadowrun Sixth World
+batch: C
+purpose: schema mapping ledger for augmentations, rated assets, platforms, credentials, and nonhuman entities
+
+mappings:
+  - donor_construct: "cyberware / bioware / installable ware"
+    astra_construct: "installable augmentation record"
+    status: "baseline_grammar"
+    notes: "Strong donor proof that Batch C must support installed body-linked components as a primary item mode."
+
+  - donor_construct: "Essence cost of augmentations"
+    astra_construct: "host-burden / augment-integrity pressure"
+    status: "provisional"
+    notes: "Promote the grammar of host cost; keep exact donor term and math unresolved."
+
+  - donor_construct: "headware / eyeware / earware / bodyware / cyberlimbs"
+    astra_construct: "host-zone and install-class subfamilies"
+    status: "baseline_grammar"
+    notes: "Astra should preserve install-class variation without necessarily canonizing donor labels."
+
+  - donor_construct: "device rating / program slots / wireless functionality"
+    astra_construct: "rated-device asset grammar"
+    status: "baseline_grammar"
+    notes: "Devices are schema-bearing assets, not just shopping-list entries."
+
+  - donor_construct: "SIN / fake SIN / licenses / ID and credit"
+    astra_construct: "identity credential / forged credential / permit / credit instrument"
+    status: "provisional"
+    notes: "Strong operational and schema pressure; exact legal stack remains donor-shaped."
+
+  - donor_construct: "security devices / scanners / sensors / countermeasures"
+    astra_construct: "security-device item/site interface records"
+    status: "baseline_grammar"
+    notes: "Validates assets whose dominant role is to shape site access and detection."
+
+  - donor_construct: "vehicles and drones"
+    astra_construct: "platform entry records"
+    status: "baseline_grammar"
+    notes: "Strong pressure for C05 as a distinct schema family."
+
+  - donor_construct: "rigger interface / jump in / remote command"
+    astra_construct: "control-mode compatibility fields"
+    status: "baseline_grammar"
+    notes: "Keep entry-shape compatibility separate from Batch B operator procedure."
+
+  - donor_construct: "weapon mounts"
+    astra_construct: "mount-capable platform profile"
+    status: "optional_profile"
+    notes: "Useful recurring pattern; exact mount formulas remain donor-local."
+
+  - donor_construct: "spirits"
+    astra_construct: "summoned support/proxy actor records"
+    status: "baseline_grammar"
+    notes: "Confirms summoned entities are actor records with controller-linked behavior."
+
+  - donor_construct: "sprites"
+    astra_construct: "compiled digital support/proxy actor records"
+    status: "baseline_grammar"
+    notes: "Confirms digital non-biological entities require lawful actor records."
+
+  - donor_construct: "critters and awakened wildlife"
+    astra_construct: "biological / awakened actor entries"
+    status: "baseline_grammar"
+    notes: "Reinforces multi-ontology actor support."
+
+  - donor_construct: "grunt groups and named security opposition"
+    astra_construct: "group_actor and exceptional_named_actor grammar"
+    status: "baseline_grammar"
+    notes: "Supports significance-tier and abstraction differences inside C02."
+
+  - donor_construct: "foci"
+    astra_construct: "attuned magical-implement records"
+    status: "optional_profile"
+    notes: "Promote attunement grammar; keep exact Force and bonding equations donor-local."
+
+  - donor_construct: "availability / legality / concealability"
+    astra_construct: "market-gate and legality hooks"
+    status: "baseline_grammar"
+    notes: "Strong proof that Batch C must support procurement-sensitive assets, not only recovered resources."
+
+watchlist:
+  - "Do not universalize one Matrix-like device ecosystem."
+  - "Do not universalize exact Essence terminology or decimal cost math."
+  - "Do not collapse platforms into generic gear or operator procedure."
+  - "Do not let exact SIN-stack law become baseline without more donors."
+  - "Do not let catalog names outrank schema grammar."
+  - "Do not assume all attuned objects follow Shadowrun-style Force and bonding costs."
+
+recommended_promotions:
+  baseline_grammar:
+    - "installable augmentation record"
+    - "host-burden / host-compatibility grammar"
+    - "rated-device asset grammar"
+    - "security-device item/site interface records"
+    - "platform entry records"
+    - "control-mode compatibility fields"
+    - "summoned and compiled actor records"
+    - "group_actor and exceptional_named_actor grammar"
+    - "market-gate and legality hooks"
+
+  optional_profile:
+    - "mount-capable platform profile"
+    - "attuned magical-implement records"
+
+  source_local_retained:
+    - "exact ware family names and catalogs"
+    - "exact vehicle and drone product lines"
+    - "exact device and program tables"
+    - "exact spirit/sprite/critter power packets"
+    - "exact focus subtype list and cost equations"
+
+  provisional:
+    - "identity credential / forged credential / permit stack"
+    - "exact host-burden label and math"
+    - "future split between different technical substrate architectures"

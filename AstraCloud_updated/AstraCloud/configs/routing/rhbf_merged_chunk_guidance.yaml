@@ -1,0 +1,52 @@
+version: 0.1
+guidance_name: rhbf_merged_chunk_guidance
+
+chunk_families:
+  chassis_chunks:
+    includes:
+      - character_creation
+      - attributes
+      - saves
+      - paths
+      - techniques
+      - damage_rules
+    route: two_pass_convert
+    priorities:
+      - preserve numbers and progression structure
+      - preserve slot counts and technique cadence
+      - rewrite source-facing names into Astra terms
+      - emit lexicon deltas for unstable metaphysical labels
+
+  world_activity_chunks:
+    includes:
+      - hub_logic
+      - travel_gates
+      - trials
+      - hunting_realms
+      - faction_doctrine
+      - stronghold_phase
+    route: two_pass_convert
+    priorities:
+      - preserve procedural loops
+      - preserve gating and access rules
+      - rewrite proper nouns
+      - separate canon candidates from world flavor carryover
+
+  creature_and_relic_chunks:
+    includes:
+      - creature_taxonomy
+      - statblocks
+      - harvest_tables
+      - natural_treasures
+      - bound_relic_progression
+    route: guarded_statblock_convert
+    priorities:
+      - preserve field order
+      - preserve immunities, resistances, vulnerabilities, and trait requirements
+      - rewrite family names only where Astra equivalents are stable
+      - emit canon packets for taxonomy conflicts
+
+fallbacks:
+  repeated_validator_failure: escalate_review
+  unresolved_name_conflict: emit_lexicon_delta
+  unresolved_system_conflict: emit_canon_conflict_packet

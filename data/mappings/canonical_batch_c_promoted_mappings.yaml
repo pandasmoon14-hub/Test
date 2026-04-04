@@ -1,0 +1,122 @@
+version: 0.1
+mapping_set: canonical_batch_c_promoted_mappings
+status: promoted_cross_donor
+source_donors:
+  - RHBF
+  - Shadowrun
+scope: >
+  Canonical promoted Batch C mappings derived from cross-donor review.
+  This file records schema-bearing content mappings that survived both an organic/resource
+  donor and a manufactured/platform donor. Donor-local payload remains in donor-specific mappings.
+
+promoted_now:
+  classification_as_mechanic:
+    meaning: "Family, category, class, or equivalent grouping must do mechanical work."
+    promoted_mapping:
+      - donor_pattern: "creature family"
+        astra_mapping: "Mechanical classification field"
+      - donor_pattern: "device / platform / entity category"
+        astra_mapping: "Mechanical classification field"
+    notes:
+      - "Classification is not flavor-only metadata."
+
+  broad_content_ecology:
+    meaning: "Batch C must support both organic and manufactured schema ecologies."
+    promoted_mapping:
+      - donor_pattern: "creature / relic / harvest ecosystem"
+        astra_mapping: "Organic schema ecology"
+      - donor_pattern: "augmentation / credential asset / device / platform ecosystem"
+        astra_mapping: "Manufactured schema ecology"
+
+  resource_source_ontology:
+    meaning: "Resources and recoverables come from more than slain actors."
+    promoted_mapping:
+      - donor_pattern: "beast harvest"
+        astra_mapping: "Actor-based source"
+      - donor_pattern: "ruin / site / fungus / fossil / shrine extraction"
+        astra_mapping: "Site or environment source"
+      - donor_pattern: "credential, rated device, or installable asset"
+        astra_mapping: "Object / manufactured source"
+    notes:
+      - "Astra canon rejects a monsters-drop-loot-only model."
+
+  typed_output_grammar:
+    meaning: "Recovered outputs should be typed and schema-significant."
+    promoted_mapping:
+      - donor_pattern: "typed harvest families"
+        astra_mapping: "Typed output grammar"
+      - donor_pattern: "rated assets / credentials / installation classes"
+        astra_mapping: "Typed output grammar"
+
+  bonded_growth_object_grammar:
+    meaning: "Owner-linked objects can grow through typed inputs or development tracks."
+    promoted_mapping:
+      - donor_pattern: "bound relic with trait growth"
+        astra_mapping: "Bonded-growth object"
+      - donor_pattern: "owner-linked asset or install track with compatibility logic"
+        astra_mapping: "Bonded-growth / host-linked object grammar"
+    notes:
+      - "Astra owns the grammar, not donor-specific math."
+
+  platform_operator_separation:
+    meaning: "Platforms, hosted entities, and operators remain distinct schema objects."
+    promoted_mapping:
+      - donor_pattern: "remote platform and operator"
+        astra_mapping: "Distinct platform and operator records"
+      - donor_pattern: "summoned / compiled or autonomous support actor"
+        astra_mapping: "Distinct support-entity record"
+    notes:
+      - "Do not collapse user, host, and platform into one object."
+
+  progression_significant_resource_objects:
+    meaning: "Some resources matter for advancement, transformation, or object growth rather than sale value alone."
+    promoted_mapping:
+      - donor_pattern: "natural treasure"
+        astra_mapping: "Progression-significant resource object"
+      - donor_pattern: "specialized install / credential / growth input"
+        astra_mapping: "Progression-significant resource object"
+
+optional_profiles:
+  bound_relic_profile:
+    meaning: "Weapon-shaped or owner-bonded relic growth is lawful as one object-growth profile."
+    promoted_mapping:
+      donor_pattern: "living weapon / bound relic"
+      astra_mapping: "Optional bonded-growth object profile"
+
+  ascendant_beast_profile:
+    meaning: "Breakthrough-capable beast entities are lawful as one special entity profile."
+    promoted_mapping:
+      donor_pattern: "ascendant beast"
+      astra_mapping: "Optional breakthrough-capable entity profile"
+
+  augmentation_host_cost_profile:
+    meaning: "Installation cost or host burden is lawful as one manufactured-asset profile."
+    promoted_mapping:
+      donor_pattern: "essence-like augmentation cost"
+      astra_mapping: "Optional host-cost profile"
+
+  credential_asset_profile:
+    meaning: "Credentials, licenses, and rated authorizations are lawful as one asset profile."
+    promoted_mapping:
+      donor_pattern: "credential / permit / rated authorization"
+      astra_mapping: "Optional credential asset profile"
+
+not_promoted_yet:
+  - donor_pattern: "exact family posture bundles"
+    reason: "Classification promoted; exact donor defaults retained local."
+  - donor_pattern: "exact reserve-triplet semantics"
+    reason: "Natural treasure concept promoted; exact reserve taxonomy still provisional."
+  - donor_pattern: "exact bound relic math and caps"
+    reason: "Bonded-growth grammar promoted instead."
+  - donor_pattern: "exact wondrous-item or asset catalogs"
+    reason: "Schema grammar outranks catalog payload."
+  - donor_pattern: "exact trophy hall or threat formulas"
+    reason: "Too donor-local for cross-donor promotion."
+  - donor_pattern: "exact credential/accounting tables"
+    reason: "Manufactured asset grammar promoted instead."
+
+watchlist:
+  - "Whether Astra wants any unified reserve taxonomy after a third donor."
+  - "How broad bonded-growth object grammar should become across more donors."
+  - "Where rated devices stop and platforms begin in larger-scale science-fantasy donors."
+  - "Whether any classification defaults deserve semi-standard posture packages after more donors."

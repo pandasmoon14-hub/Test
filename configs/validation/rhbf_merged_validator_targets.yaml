@@ -1,0 +1,31 @@
+version: 0.1
+target_bundle: rhbf_merged_validator_targets
+
+must_preserve:
+  - six_attribute_point_buy_structure
+  - three_resistance_structure
+  - stage_degree_lineage_soul_progression
+  - nine_slot_technique_architecture
+  - technique_usage_bands
+  - natural_20_double_damage_crit_logic
+  - trial_access_gating
+  - hunting_realm_repeatability
+  - stronghold_phase_building_logic
+  - statblock_field_order
+  - harvest_requirement_specificity
+  - bound_relic_trait_requirements
+
+must_flag:
+  - source_proper_noun_leakage
+  - unresolved_aether_vs_essence language
+  - unresolved_aura_vs_presence_pressure language
+  - unresolved_luck_vs_fate language
+  - unresolved_body_slot_metaphysics
+  - anti_technology ideology carryover
+  - silent replacement of component requirements with generic loot
+
+report_outputs:
+  - lexicon_delta_packet
+  - canon_conflict_packet
+  - validator_failure_packet
+  - conversion_run_report

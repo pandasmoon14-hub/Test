@@ -1,0 +1,23 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+uncertain_terms:
+  - term: Presence Pressure
+    uncertainty: name_quality
+    notes: Function is good; final terminology may improve.
+
+  - term: Fate
+    uncertainty: subsystem_scope
+    notes: Need decision on whether Fate is rare, universal, or bond-driven.
+
+  - term: Kinform
+    uncertainty: concept_boundary
+    notes: Need decision on when it replaces ancestry and when it should not.
+
+  - term: Technique Fragment
+    uncertainty: naming_competition
+    notes: Competes with Technique Seal.
+
+  - term: Anthromorphic Breakthrough
+    uncertainty: naming_quality
+    notes: Useful placeholder, but awkward.

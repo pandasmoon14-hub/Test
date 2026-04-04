@@ -1,0 +1,82 @@
+version: 0.1
+run_id: starfinder_prod_run_001
+batch: B
+donor: Starfinder
+target: Astra Ascension
+
+summary:
+  strongest_pressures:
+    - broadened_operational_anchor
+    - expeditionary_world_loop
+    - crew_role_platform_procedure
+    - multi_scale_conflict_procedure
+    - station_port_world_outpost_nodes
+    - exploration_as_structured_campaign_engine
+    - larger_scale_faction_pressure
+  donor_local_risks:
+    - exact_drift_cosmology
+    - exact_starship_combat_phase_order
+    - exact_pact_worlds_factions
+    - exact_starship_bp_tier_math
+    - exact_setting_geography
+
+mappings:
+  world_loop:
+    donor_construct: "expedition / travel / site / extraction / resupply loop"
+    astra_mapping: "world-operation loop grammar"
+    status: baseline_grammar
+    notes: "Strong reinforcement for multi-node expeditionary operations without universalizing exact interstellar cadence."
+
+  shared_starship_anchor:
+    donor_construct: "party starship as base of operations"
+    astra_mapping: "Operational Anchor (mobile-anchor profile)"
+    status: optional_profile
+    notes: "Strong recurring profile; not universal campaign assumption."
+
+  travel_infrastructure:
+    donor_construct: "space travel and world-to-world movement"
+    astra_mapping: "transit vector doctrine / access-linked travel infrastructure"
+    status: baseline_grammar
+    notes: "Reinforces broader travel doctrine; exact Drift assumptions remain donor-local."
+
+  crew_roles:
+    donor_construct: "captain / engineer / gunner / pilot / science officer"
+    astra_mapping: "crewed platform procedure"
+    status: optional_profile
+    notes: "Lawful differentiated role family; exact role menus remain donor-local."
+
+  starship_combat:
+    donor_construct: "phased starship combat"
+    astra_mapping: "multi-scale conflict procedure"
+    status: optional_profile
+    notes: "Valid scene family; exact phase order and action economy not promoted."
+
+  stations_ports_worlds:
+    donor_construct: "stations, ports, colony worlds, frontier nodes"
+    astra_mapping: "operational nodes"
+    status: baseline_grammar
+    notes: "Useful support points for exploration, contracts, transit, and resupply."
+
+  exploration_campaign:
+    donor_construct: "world exploration / site discovery / alien ruins"
+    astra_mapping: "exploration as structured campaign engine"
+    status: baseline_grammar
+    notes: "Strong reinforcement of lead ecology and site-chain pressure."
+
+  faction_organizations:
+    donor_construct: "factions and organizations at civic/interstellar scale"
+    astra_mapping: "faction pressure and sponsor/claimant logic"
+    status: baseline_grammar
+    notes: "Exact organizations remain donor-local."
+
+  hazardous_travel:
+    donor_construct: "dangerous travel environments and hostile transit"
+    astra_mapping: "travel hazard and transit pressure"
+    status: baseline_grammar
+    notes: "Reinforces that transit itself can be meaningful procedure."
+
+watchlist:
+  - question: "How much of starship crew-role procedure belongs in Batch B versus platform schema?"
+  - question: "How strongly should world-to-world travel become baseline before Traveller?"
+  - question: "How much of station/port/node logic should move into later site/schema owners?"
+  - question: "Should mobile anchors and base-operations overlay be formally linked in later consolidation?"

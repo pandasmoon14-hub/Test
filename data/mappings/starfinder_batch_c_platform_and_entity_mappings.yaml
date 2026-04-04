@@ -1,0 +1,84 @@
+version: 0.2
+run_id: starfinder_prod_run_001
+batch: C
+donor: Starfinder
+target: Astra Ascension
+
+summary:
+  strongest_pressures:
+    - starship_as_major_platform_family
+    - vehicle_family_schema_distinct_from_gear_and_starships
+    - augmentation_as_installed_body_facing_asset
+    - powered_armor_bridge_family
+    - mixed_object_ecology_as_strong_reinforcement
+    - rated_system_and_computer_objects_as_object_side_access_adjacent_families
+    - broad_science_fantasy_entity_schema
+  donor_local_risks:
+    - exact_starship_bp_tier_math
+    - exact_starship_combat_payload
+    - exact_item_catalogs
+    - exact_computer_subsystem_numbers
+    - exact_pact_worlds_technology_assumptions
+
+mappings:
+  starship:
+    donor_construct: "starship"
+    astra_mapping: "major platform family"
+    status: baseline_grammar
+    notes: "Treat starships as formal platform owners. Keep exact construction, subsystem, and combat math donor-local. Do not collapse them back into scenery or travel flavor."
+
+  vehicle:
+    donor_construct: "vehicle"
+    astra_mapping: "vehicle-family platform schema"
+    status: baseline_grammar
+    notes: "Distinct from both ordinary gear and major ship families. Supports multi-scale platform doctrine beyond mechs only."
+
+  augmentation:
+    donor_construct: "augmentation"
+    astra_mapping: "installed body-facing asset"
+    status: baseline_grammar
+    notes: "Reinforces host-cost and compatibility doctrine without universalizing donor slot law."
+
+  powered_armor:
+    donor_construct: "powered armor"
+    astra_mapping: "bridge family between defensive gear, installed support, and platform-facing doctrine"
+    status: optional_profile
+    notes: "Keep visible as a bridge family. Do not prematurely force permanent placement into armor-only or platform-only law."
+
+  technology_magic_hybrid_items:
+    donor_construct: "tech items / magic items / hybrid items"
+    astra_mapping: "mixed object ecology"
+    status: baseline_grammar
+    notes: "Strongly reinforces mixed-source item doctrine. Should remain visible in Astra-facing doctrine rather than treated as optional flavor."
+
+  computers:
+    donor_construct: "computers and rated systems"
+    astra_mapping: "rated system / object-side access-adjacent system family"
+    status: baseline_grammar
+    notes: "Supports credential/access and installable object grammar while leaving access procedure ownership elsewhere. Exact subsystem math remains donor-local."
+
+  starship_components:
+    donor_construct: "ship systems and components"
+    astra_mapping: "platform-side installables and component families"
+    status: optional_profile
+    notes: "Useful family pressure. Exact payload, build budgets, and subsystem lists remain donor-local."
+
+  mixed_threat_statblocks:
+    donor_construct: "NPCs, aliens, technological and mixed threats"
+    astra_mapping: "broad entity schema"
+    status: baseline_grammar
+    notes: "Reinforces entity doctrine beyond creature-only assumptions and supports platform-adjacent hostile structures."
+
+watchlist:
+  - question: "How should later donors refine ship-scale hostile entities without collapsing them into either platform objects or ordinary creatures?"
+  - question: "Where should powered armor ultimately live once more sci-fi and hybrid donors are compared?"
+  - question: "How much civic or credential-bearing system logic should remain object-side versus procedural?"
+  - question: "How should mixed object ecology stay broad enough for harvested, relic, biotech, civic, and platform-side ecologies beyond Starfinder?"
+
+anti_drift:
+  risks:
+    - starships_collapsing_into_campaign_furniture
+    - vehicles_collapsing_into_ordinary_gear
+    - powered_armor_being_forced_into_one_owner_too_early
+    - rated_systems_swallowing_access_procedure
+    - mixed_object_ecology_being_flattened_into_tech_versus_magic

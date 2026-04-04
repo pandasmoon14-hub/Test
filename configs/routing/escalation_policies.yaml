@@ -1,0 +1,40 @@
+version: 1
+description: Escalation policies for route failures and high-risk chunks.
+
+policies:
+  validator_failures:
+    one_pass_convert:
+      first_failure: retry_same_route_with_stricter_prompt
+      second_failure: escalate_to_two_pass_convert
+      terminal_failure: escalate_review
+    two_pass_convert:
+      first_failure: retry_same_route_with_stricter_prompt
+      second_failure: escalate_review
+    guarded_statblock_convert:
+      first_failure: retry_same_route
+      terminal_failure: escalate_review
+    guarded_table_convert:
+      first_failure: retry_same_route
+      terminal_failure: escalate_review
+
+  hard_escalation_conditions:
+    - condition: chunk_size_class == oversize
+      action: escalate_review
+    - condition: structural_integrity == fail
+      action: escalate_review
+    - condition: repeated_source_setting_leakage == true
+      action: escalate_review
+    - condition: route_ambiguity_score >= 0.85
+      action: escalate_review
+
+  failure_packet_fields:
+    - run_id
+    - sourcebook_id
+    - chunk_id
+    - chunk_type
+    - assigned_route
+    - validator_failures
+    - retry_history
+    - excerpt_before
+    - excerpt_after
+    - lexicon_version

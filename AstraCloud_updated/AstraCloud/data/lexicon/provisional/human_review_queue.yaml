@@ -1,0 +1,47 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+review_queue:
+  - queue_id: LEX-001
+    topic: skill_shard_replacement
+    options:
+      - Technique Fragment
+      - Technique Seal
+    recommendation: Technique Fragment
+    reason: More legible in generic conversion contexts.
+
+  - queue_id: LEX-002
+    topic: aura_replacement
+    options:
+      - Presence Pressure
+      - Power Pressure
+      - Ascendant Pressure
+    recommendation: Presence Pressure
+    reason: Best current balance of social and metaphysical meaning.
+
+  - queue_id: LEX-003
+    topic: luck_replacement
+    options:
+      - Fate
+      - Fortune
+      - Destiny Score
+    recommendation: Fate
+    reason: Strongest thematic fit with Astra's tone.
+
+  - queue_id: LEX-004
+    topic: ancestry_replacement
+    options:
+      - Kinform
+      - Ancestral Form
+      - Birthline
+    recommendation: Kinform
+    reason: Concise, distinct, and less biologically rigid.
+
+  - queue_id: LEX-005
+    topic: evolving_beast_transition_name
+    options:
+      - Anthromorphic Breakthrough
+      - Ascendant Manifestation
+      - Beast Sovereignty Shift
+    recommendation: none
+    reason: Current candidate is functional but inelegant.

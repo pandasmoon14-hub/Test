@@ -1,0 +1,22 @@
+version: 0.1
+profile_name: rhbf_stage11_live_conversion
+description: >
+  Use for first live Astra-facing conversion packets derived from RHBF donor doctrine.
+
+source_priority:
+  - rhbf_merged_primary_donor
+  - rhbf_batch_a_parts1_3
+  - rhbf_batch_b_parts5_7
+  - rhbf_batch_c_parts8_9
+
+conversion_mode:
+  preserve_mechanical_skeleton: true
+  aggressive_name_rewrite: true
+  elevate_astra_voice: true
+  preserve_traceability_terms_when_needed: true
+
+target_outputs:
+  - player_core_rules_packet
+  - paths_and_techniques_packet
+  - activity_engine_packet
+  - creatures_and_bound_relics_packet

@@ -1,0 +1,69 @@
+version: 0.1
+manifest_name: lancer_first_production_manifest
+
+run_metadata:
+  run_id: "lancer_prod_run_001"
+  donor_family: "Lancer"
+  target_framework: "Astra Ascension"
+  run_profile: "lancer_first_production_run"
+  operator: "Cam"
+  date_started: "2026-03-25"
+
+inputs:
+  batch_a:
+    source_parts:
+      - "Lancer Core Rulebook.pdf"
+    source_focus:
+      - pilot_identity_and_chassis
+      - layered_build_structure
+      - pilot_vs_platform_split
+      - licenses
+      - talents
+      - triggers_or_competency_equivalents
+      - mech_access_and_mount_pressure
+      - pilot_equipment_vs_platform_equipment
+      - repair_and_loadout_pressure_as_build_context
+      - optional_augments_or_special_channels_if_present
+
+  batch_b:
+    source_parts:
+      - "Lancer Core Rulebook.pdf"
+    source_focus:
+      - mission_structure
+      - downtime_and_uptime
+      - operation_loops
+      - deployment_and_redeployment
+      - operator_platform_state_changes
+      - remote_or_delegated_operation_pressure
+      - faction_and_contract_pressure_if_relevant
+      - travel_and_anchor_pressure_if_relevant
+
+  batch_c:
+    source_parts:
+      - "Lancer Core Rulebook.pdf"
+    source_focus:
+      - frame_schema
+      - mounts_and_system_points
+      - weapons_and_systems_as_platform_components
+      - deployables
+      - npc_classes
+      - vehicle_and_ship_templates
+      - manufactured_platform_ecology
+      - repair_and_resource_objects
+      - pilot_assets_vs_platform_assets
+
+output_targets:
+  player_core_packet: true
+  paths_and_techniques_packet: true
+  activity_engine_packet: true
+  platform_asset_and_entity_packet: true
+  lexicon_deltas: true
+  canon_candidates: true
+  validator_reports: true
+
+operator_notes:
+  - "Lancer is the primary platform/pilot separation donor."
+  - "Do not force Lancer into RHBF-style Path-and-Technique monoculture."
+  - "Do not collapse pilot build and mech build into one layer."
+  - "Review after Batch A before proceeding."
+  - "Treat platform records, operator records, and operation procedure as distinct owners."

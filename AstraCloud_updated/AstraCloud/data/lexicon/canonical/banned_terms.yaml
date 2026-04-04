@@ -1,0 +1,21 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+banned_or_flagged_patterns:
+  - blind_one_to_one_renaming
+  - ornamental_astra_flavor_text
+  - source_lore_leakage
+  - unreviewed_false_equivalence
+  - decorative_term_inflation
+  - silent_conflict_resolution
+  - donor_cosmology_import_without_adjudication
+
+flag_for_review_when_seen:
+  - Aura
+  - Luck
+  - Skill Shard
+  - Teleport Token
+  - Hunting Ground
+  - Living Weapon
+  - exact_source_faction_titles
+  - exact_source_cosmology_titles

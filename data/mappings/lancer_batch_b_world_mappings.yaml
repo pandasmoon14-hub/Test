@@ -1,0 +1,126 @@
+version: 0.2
+run_id: lancer_prod_run_001
+donor: Lancer Core Rulebook
+batch: B
+
+mappings:
+  - donor_construct: "mission briefing with explicit goal and stakes"
+    astra_construct: "Mission Brief + Goal/Stakes Split"
+    status: "baseline_grammar"
+    notes: "Strong formal-operation grammar. Use as one lawful cadence family, not a universal session opener."
+
+  - donor_construct: "briefing -> preparation -> reserves -> entry -> execution -> debrief -> downtime"
+    astra_construct: "Mission Loop"
+    status: "baseline_grammar"
+    notes: "Strong but non-sovereign operation grammar family. Must coexist with other cadence families."
+
+  - donor_construct: "reserves declared before mission"
+    astra_construct: "Operational Reserves"
+    status: "baseline_grammar"
+    notes: "Broad support layer covering objects, services, permissions, entities, transport, intel, and timing windows."
+
+  - donor_construct: "boots on the ground"
+    astra_construct: "Boots-on-Ground Entry"
+    status: "baseline_grammar"
+    notes: "Strong entry grammar that cuts to meaningful contact without erasing preparation."
+
+  - donor_construct: "sitrep shell structure"
+    astra_construct: "Tactical Shell doctrine"
+    status: "baseline_grammar"
+    notes: "Promote shell grammar, not exact template list, exact geometry, or mech-only assumptions."
+
+  - donor_construct: "downtime between missions"
+    astra_construct: "Downtime / Intermission"
+    status: "baseline_grammar"
+    notes: "Structured bridge that must remain operationally meaningful rather than filler or shopping only."
+
+  - donor_construct: "debrief after mission"
+    astra_construct: "Debrief / Aftermath Update"
+    status: "baseline_grammar"
+    notes: "Post-operation state-update grammar."
+
+  - donor_construct: "full repair timing / rest opportunities"
+    astra_construct: "Recovery Window"
+    status: "baseline_grammar"
+    notes: "Timing doctrine for restoration and refit. Exact platform reset math remains outside Batch B."
+
+  - donor_construct: "ships, command posts, carriers, settlements as mission bases"
+    astra_construct: "Operational Anchor"
+    status: "baseline_grammar"
+    notes: "Flexible staging and support infrastructure owner. Avoid one military default."
+
+  - donor_construct: "drop operations, boarding, hostile-environment entry"
+    astra_construct: "Deployment / Insertion pressure"
+    status: "baseline_grammar"
+    notes: "Real operational structure around entry route, timing, and extraction."
+
+  - donor_construct: "Get Organized"
+    astra_construct: "organization venture support"
+    status: "baseline_grammar"
+    notes: "Lawful support-body growth grammar. Exact scalar ladders remain optional or donor-local."
+
+optional_profiles:
+  - donor_construct: "formal mission cadence"
+    astra_construct: "mission_loop_profile_lancer"
+    status: "optional_profile"
+    notes: "Strong but non-universal operation cycle."
+
+  - donor_construct: "Control / Escort / Extraction / Gauntlet / Holdout / Recon"
+    astra_construct: "tactical_shell_profile_lancer"
+    status: "optional_profile"
+    notes: "Retain as one donor-local template family or optional profile."
+
+  - donor_construct: "organization venture scalar tracks"
+    astra_construct: "organization_venture_profile"
+    status: "optional_profile"
+    notes: "Exact scalar pair remains optional."
+
+  - donor_construct: "reserve tables and sample lists"
+    astra_construct: "reserve_catalog_profile"
+    status: "optional_profile"
+    notes: "Examples, not universal balance law."
+
+  - donor_construct: "full repair cadence"
+    astra_construct: "recovery_profile_lancer"
+    status: "optional_profile"
+    notes: "One donor reset profile, not baseline Astra recovery law."
+
+donor_local_retained:
+  - donor_construct: "exact Union / military mission framing"
+    astra_construct: "donor_local"
+    notes: "Do not promote polity or command vocabulary."
+
+  - donor_construct: "exact blink gate and omninet infrastructure"
+    astra_construct: "donor_local"
+    notes: "Travel / communication cosmology remains local."
+
+  - donor_construct: "exact downtime action names and tables"
+    astra_construct: "donor_local"
+    notes: "Retain family logic only."
+
+  - donor_construct: "exact full repair timing, reset rules, and math"
+    astra_construct: "donor_local"
+    notes: "Cadence and arithmetic not baseline yet."
+
+  - donor_construct: "exact sitrep map geometry"
+    astra_construct: "donor_local"
+    notes: "Template instantiation remains local."
+
+watchlist:
+  - pressure: "whether Tactical Shell doctrine should split by scale or remain unified grammar"
+    needs: "later platform, vehicle, naval, and starship donors"
+
+  - pressure: "whether Operational Reserves need explicit subfamilies"
+    needs: "later donors with stronger logistics variance and permission-based support"
+
+  - pressure: "whether organization ventures deserve a permanent dedicated support-body file"
+    needs: "later repeat pressure from guild, house, company, settlement, or cell donors"
+
+  - pressure: "how Recovery Window interacts with later detailed platform-schema donors"
+    needs: "Batch C and later integration work"
+
+batch_boundary_notes:
+  - "Batch A owns operator/platform branch existence and current platform selection as a build fact."
+  - "Batch B owns formal operation cadence, reserve declaration, shell selection, downtime, aftermath, and recovery timing."
+  - "Batch C owns exact platform records, exact restoration arithmetic, exact reserve-bearing asset schema, and exact site/object/entity instantiation."
+  - "Mission Loop remains a lawful cadence family, not a mandatory Astra baseline."

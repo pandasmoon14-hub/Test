@@ -1,0 +1,29 @@
+version: 0.1
+profile_name: rhbf_batch_b_parts5_7
+donor_scope: RHBF Parts 5-7
+priority: high
+focus:
+  - world_activity_engine
+  - nexus_hub_logic
+  - travel_gating
+  - ascension_trials
+  - hunting_realms
+  - faction_pressure
+  - expedition_sites
+  - stronghold_phase
+preserve_until_review:
+  - Yeross
+  - Teleport Tokens
+  - Erakos
+  - Guild
+  - Archivists
+  - Engineers
+promote_to_astra_when_stable:
+  - Nexus Hub
+  - Transit Seal
+  - Ascension Trial
+  - Hunting Realm
+  - Stronghold Phase
+  - Faction Contract
+  - Pressure Event
+  - Expedition Site

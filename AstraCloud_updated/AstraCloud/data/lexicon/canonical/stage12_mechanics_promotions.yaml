@@ -1,0 +1,18 @@
+version: 0.1
+bundle: stage12_mechanics_promotions
+
+promoted_mappings:
+  aura: Presence Pressure
+  luck: Fate
+  reserve_term_default: Meridian Reserve
+  body_slot_metaphysics_default: Meridian Channels
+
+campaign_cycle_terms:
+  between_expeditions_phase: Stronghold Phase
+  technique_storage_infrastructure: Technique Repository
+  linked_transit_infrastructure: Gate Array
+
+doctrine_notes:
+  - Meridian Reserve is the default generalized expenditure term, not a mandatory term for every subsystem.
+  - Subsystems may still define specialized reserves if they remain mechanically clear.
+  - Meridian Channels explains slot architecture; it does not require literal tattoos or visible marks in every case.

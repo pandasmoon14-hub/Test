@@ -1,0 +1,39 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+candidates:
+  - source_term: skill_shard
+    candidate_astra_term: Technique Seal
+    confidence: medium
+    stage_origin: stage1
+    notes: Competes directly with Technique Fragment.
+
+  - source_term: ancestry
+    candidate_astra_term: Kinform
+    confidence: medium
+    stage_origin: stage1
+    notes: Works well when ancestry is expressive rather than biologically load-bearing.
+
+  - source_term: aura
+    candidate_astra_term: Presence Pressure
+    confidence: medium
+    stage_origin: stage1
+    notes: Mechanically useful but may need a more elegant long-term name.
+
+  - source_term: luck
+    candidate_astra_term: Fate
+    confidence: medium
+    stage_origin: stage1
+    notes: Strong thematic fit but subsystem size remains unresolved.
+
+  - source_term: living_weapon
+    candidate_astra_term: Resonant Armament
+    confidence: low
+    stage_origin: stage3
+    notes: Alternative to Bound Relic; presently weaker.
+
+  - source_term: evolving_beast_humanoid_transition
+    candidate_astra_term: Anthromorphic Breakthrough
+    confidence: low
+    stage_origin: stage3
+    notes: Functional term, not yet elegant.

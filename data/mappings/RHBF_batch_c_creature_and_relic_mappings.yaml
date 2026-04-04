@@ -1,0 +1,162 @@
+version: 0.3
+run_id: rhbf_prod_run_002
+
+integration_rule:
+  description: "Promote grammar before defaults. Preserve RHBF payload where Astra does not yet want a universal profile."
+  classes:
+    - Astra baseline grammar
+    - Astra optional profile
+    - donor-local retained structure
+    - provisional mapping awaiting later donor pressure
+
+canonical_mappings:
+  Living Weapon:
+    astra_term: Bound Relic
+    class: Astra baseline grammar
+  Living Weapon Trait:
+    astra_term: Relic Trait
+    class: Astra baseline grammar
+  Living Weapon evolution:
+    astra_term: Resonant Feeding
+    class: Astra baseline grammar
+  Evolved Beast:
+    astra_term: Ascendant Beast
+    class: Astra baseline grammar
+  aura:
+    astra_term: Presence Pressure
+    class: Astra baseline grammar
+  HP:
+    astra_term: Vitality
+    class: Astra baseline grammar
+  DR:
+    astra_term: Defense Threshold
+    class: Astra baseline grammar
+  Fortitude:
+    astra_term: Core Resistance
+    class: Astra baseline grammar
+  Reflex:
+    astra_term: Flow Resistance
+    class: Astra baseline grammar
+  Willpower:
+    astra_term: Resonance Resistance
+    class: Astra baseline grammar
+  wondrous item:
+    astra_term: wondrous asset
+    class: Astra baseline grammar
+  creature family:
+    astra_term: active family classifier
+    class: Astra baseline grammar
+  family posture:
+    astra_term: family posture grammar
+    class: Astra baseline grammar
+  resource source type:
+    astra_term: resource-source ontology
+    class: Astra baseline grammar
+
+normalized_mappings:
+  creature difficulty category:
+    astra_term: threat band
+    class: Astra baseline grammar
+  Number:
+    astra_term: expected encounter count
+    class: Astra baseline grammar
+  Recharge X-Y:
+    astra_term: recharge window
+    class: Astra baseline grammar
+  component family:
+    astra_term: typed harvest family
+    class: Astra baseline grammar
+  trophy output:
+    astra_term: trophy hook
+    class: Astra optional profile
+  natural treasure quality:
+    astra_term: yield tier
+    class: provisional mapping awaiting later donor pressure
+  weapon-shaped living weapon:
+    astra_term: weapon-form Bound Relic
+    class: Astra optional profile
+
+provisional_mappings:
+  Beast Core:
+    astra_term: essence core
+    class: provisional mapping awaiting later donor pressure
+  Essence:
+    astra_term: essence reserve
+    class: provisional mapping awaiting later donor pressure
+  Arako:
+    astra_term: arako reserve
+    class: provisional mapping awaiting later donor pressure
+  Radiance:
+    astra_term: radiance reserve
+    class: provisional mapping awaiting later donor pressure
+  Skill Shard:
+    astra_term: technique fragment
+    class: provisional mapping awaiting later donor pressure
+  Domain Shard:
+    astra_term: domain fragment
+    class: provisional mapping awaiting later donor pressure
+
+retain_source_local:
+  - exact family immunity/vulnerability packages
+  - exact Living Weapon personality table
+  - exact Relic Trait material names
+  - exact wondrous item names
+  - exact currency denominations and symbols
+  - exact trophy bonuses
+  - exact Threat Level formulas
+  - exact trait-cap and bearer-bonus math
+
+blocked_from_canon_import:
+  - any claim that all progression-significant treasure must use the RHBF reserve triplet
+  - any claim that every bound item must be a weapon rather than a broader relic class
+  - any claim that exact RHBF family vulnerability/immunity packages are universal family law
+  - any move to treat named wondrous-item catalogs as the doctrinal center of Batch C
+  - anti-technology ideology
+
+validator_targets:
+  actor_statblock_required_fields:
+    - identity
+    - family
+    - attributes
+    - encounter_count
+    - presence_pressure
+    - resistances
+    - vitality
+    - defense_threshold
+    - speed
+    - stealth
+    - size
+    - actions
+    - passive_traits
+    - attacks_or_abilities
+  harvest_packet_required_fields:
+    - source_identity
+    - source_type
+    - source_family
+    - source_state
+    - output_class
+    - outputs
+    - downstream_hooks
+  natural_treasure_required_fields:
+    - origin
+    - rarity
+    - extraction_conditions
+    - stability
+    - yield_tier
+    - yield_channels
+  bound_relic_required_fields:
+    - identity
+    - base_form
+    - bond_state
+    - owner_restriction
+    - growth_state
+    - growth_track
+    - known_relic_traits
+    - feeding_requirements
+    - permitted_input_families
+    - evolution_triggers
+
+notes:
+  - RHBF strongly validates typed harvest ecology, natural treasure significance, and owner-bound relic growth.
+  - Family is promoted as active mechanical grammar, but default packages remain under review.
+  - Reserve-triplet semantics remain provisional until wider donor pressure is tested.

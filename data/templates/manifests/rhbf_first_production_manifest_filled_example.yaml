@@ -1,0 +1,67 @@
+version: 0.1
+manifest_name: rhbf_first_production_manifest_example
+
+run_metadata:
+  run_id: "rhbf_prod_run_002"
+  donor_family: "RHBF"
+  target_framework: "Astra Ascension"
+  run_profile: "rhbf_first_production_run"
+  operator: "Cam"
+  date_started: "2026-03-23"
+
+inputs:
+  batch_a:
+    source_parts:
+        - "Ruthless Heavens, Boundless Fate - Copy.pdf"
+    source_focus:
+      - character_creation
+      - attributes
+      - resistances
+      - derived_stats
+      - progression
+      - paths
+      - techniques
+      - damage_and_crit_rules
+
+  batch_b:
+    source_parts:
+          - "Ruthless Heavens, Boundless Fate - Copy.pdf"
+    source_focus:
+      - hub_logic
+      - travel_gating
+      - trials
+      - exploration
+      - realm_structure
+      - hunting_realms
+      - factions
+      - stronghold_phase
+      - loot_and_post_encounter_flows
+
+  batch_c:
+    source_parts:
+          - "Ruthless Heavens, Boundless Fate - Copy.pdf"
+    source_focus:
+      - creature_taxonomy
+      - statblocks
+      - bosses
+      - encounter_packets
+      - relics
+      - harvests
+      - natural_treasures
+      - living_weapons_bound_relics
+
+output_targets:
+  player_core_packet: true
+  paths_and_techniques_packet: true
+  activity_engine_packet: true
+  creatures_and_bound_relics_packet: true
+  lexicon_deltas: true
+  canon_candidates: true
+  validator_reports: true
+
+operator_notes:
+  - "Single-source donor run using one full raw PDF."
+  - "Physical donor file location: C:\\Users\\mcdon\\OneDrive\\Desktop\\AstraDonors\\Ruthless Heavens, Boundless Fate - Copy.pdf"
+  - "Each batch must ignore irrelevant donor sections and extract only its declared source_focus."
+  - "Do not allow RHBF chapter order to override Astra doctrine boundaries."
+  - "Review after each batch before continuing."

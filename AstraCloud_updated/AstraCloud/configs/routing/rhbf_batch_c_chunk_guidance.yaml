@@ -1,0 +1,50 @@
+version: 0.1
+chunk_guidance:
+  creature_statblock:
+    preferred_route: guarded_statblock_convert
+    priorities:
+      - preserve field order
+      - preserve number, aura, saves, hp, dr, speed, stealth, size, actions
+      - preserve attack math and recharge notation
+      - rename source terms only when equivalent is stable
+    prohibit:
+      - prose expansion
+      - lore inflation
+      - collapsing multiple actions into summary text
+
+  creature_taxonomy_text:
+    preferred_route: one_pass_convert
+    priorities:
+      - preserve family-level vulnerabilities, immunities, resistances, restorations
+      - convert family names into Astra taxonomy only when stable
+      - surface provisional mappings instead of forcing them
+
+  harvest_components_table:
+    preferred_route: guarded_table_convert
+    priorities:
+      - preserve component names, edible tags, effect tags, and sale value structure
+      - keep family-typed harvest tables distinct
+      - convert consumption effects into Astra wording without altering function
+
+  living_weapon_trait_entry:
+    preferred_route: two_pass_convert
+    priorities:
+      - convert living weapon to bound relic
+      - preserve material requirements structure
+      - preserve effect timing and frequency
+      - preserve family-typed component inputs
+    prohibit:
+      - arbitrary rarity changes
+      - collapsing requirements into flavor prose
+
+  treasure_generation_table:
+    preferred_route: guarded_table_convert
+    priorities:
+      - preserve treasure bands and result granularity
+      - keep natural treasures distinct from generic gear
+
+  gear_reference_text:
+    preferred_route: deterministic_transform
+    priorities:
+      - preserve categories
+      - allow Astra naming only for stable framework-wide terms

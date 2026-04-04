@@ -1,0 +1,31 @@
+version: 0.1
+profile_name: rhbf_merged_primary_donor
+description: >
+  Unified donor profile for RHBF Batches A, B, and C.
+  Use when converting RHBF-derived or RHBF-adjacent material into Astra Ascension.
+
+donor_strengths:
+  - core cultivation-compatible chassis
+  - domain-gated techniques
+  - body-slotted power architecture
+  - neutral hub and gated travel loops
+  - trials and hunting realm activity structure
+  - faction pressure and stronghold cycle
+  - creature harvest and bound relic progression
+
+preferred_conversion_stance:
+  preserve_mechanical_skeleton: true
+  rewrite_source_names_aggressively: true
+  preserve_trace_terms_when_needed: true
+  auto_promote_new_terms: false
+
+priority_order:
+  - chassis_and_paths
+  - activity_engine
+  - creatures_and_bound_relics
+
+known_risks:
+  - overfitting Astra cosmology to RHBF ideology
+  - over-preserving source proper nouns
+  - treating aura and fate language as fully resolved canon
+  - importing anti-technology hostility without review

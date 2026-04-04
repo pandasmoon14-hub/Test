@@ -1,0 +1,28 @@
+version: 0.1
+profile_name: tactical_d20_conversion
+intended_for:
+  - structured class-based d20 systems with feats, gear, spells, and combat procedures
+priority_order:
+  - math_fidelity
+  - class_to_path_mapping
+  - action_economy_integrity
+  - item_and_spell_structure
+  - lore_reinterpretation
+conversion_bias:
+  preserve_numerical_roles: true
+  preserve_action_economy: true
+  prefer_explicit_terms_over_flavor_terms: true
+  limit_decorative_rewrites: true
+recommended_defaults:
+  rules_text: one_pass_convert
+  class_feature: two_pass_convert
+  spell_or_power: two_pass_convert
+  item_block: one_pass_convert
+  statblock: guarded_statblock_convert
+  table_light: deterministic_transform
+  table_heavy: guarded_table_convert
+lexicon_behavior:
+  extract_candidate_terms: true
+  promote_new_terms_automatically: false
+notes: >
+  Use when the donor book is mathematically structured and tactical clarity matters more than setting prose.

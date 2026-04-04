@@ -1,0 +1,21 @@
+version: 0.1
+validator_targets:
+  must_preserve:
+    - neutral_hub_function
+    - access_gating_logic
+    - trial_generation_fields
+    - repeatable_realm_loop
+    - faction_pressure_structure
+    - stronghold_upgrade_loop
+  must_flag:
+    - source_proper_nouns_leaking_without_reason
+    - anti-tech ideology imported as universal Astra law
+    - missing access costs or access keys
+    - collapsed trial structure
+    - collapsed faction distinctions
+  world_terms_to_check:
+    - Nexus Hub
+    - Transit Seal
+    - Ascension Trial
+    - Hunting Realm
+    - Stronghold Phase

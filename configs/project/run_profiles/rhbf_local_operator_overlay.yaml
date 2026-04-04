@@ -1,0 +1,26 @@
+version: 0.1
+overlay_name: rhbf_local_operator_overlay
+
+operator_mode:
+  environment: windows_local
+  repo_role: doctrine_and_control_layer
+  automation_level: staged_manual
+  risk_posture: conservative
+
+required_prechecks:
+  - repo_install_verified
+  - stage12_terms_present
+  - stage13_run_profile_present
+  - donor_inputs_staged
+  - workspace_created
+
+recommended_batch_order:
+  - batch_a_chassis
+  - batch_b_activity_engine
+  - batch_c_creatures_and_relics
+  - adjudication_review
+
+notes:
+  - Do not merge all donor chunks into one giant pass.
+  - Review after each batch.
+  - Emit or record lexicon and canon issues immediately.

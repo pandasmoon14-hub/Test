@@ -1,0 +1,32 @@
+profile_name: rhbf_batch_c_parts8_9
+version: 0.1
+purpose: >
+  Execution profile for RHBF Parts 8-9 creature, harvest, treasure,
+  and living-weapon conversion into AstraCloud.
+priority:
+  - preserve_statblock_structure
+  - preserve_family_mechanics
+  - preserve_harvest_loop
+  - convert_living_weapons_to_bound_relics
+  - suppress_source_proper_nouns_when_nonessential
+chunk_families:
+  - creature_statblock
+  - creature_taxonomy_text
+  - harvest_components_table
+  - living_weapon_trait_entry
+  - treasure_generation_table
+  - gear_reference_text
+required_outputs:
+  - astra_creature_frame
+  - astra_family_mapping
+  - harvest_mapping
+  - relic_trait_mapping
+  - validator_targets
+preserve_until_review:
+  - Yeross
+  - Erakos
+  - Valor Marks
+  - Aether
+  - Arako
+  - Radiance
+  - exact donor faction labels

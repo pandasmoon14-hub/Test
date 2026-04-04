@@ -1,0 +1,55 @@
+version: 0.1
+status: seeded_from_stage_1_3
+
+conversion_guidance:
+  preferred_identity_terms:
+    - Astra
+    - Ascendant
+    - Path
+    - Domain
+    - Technique
+    - Stage
+    - Degree
+    - Lineage
+    - Soul
+    - Vitality
+    - Defense Threshold
+    - Core Resistance
+    - Flow Resistance
+    - Resonance Resistance
+    - Nexus Hub
+    - Transit Seal
+    - Ascension Trial
+    - Hunting Realm
+    - Stronghold Phase
+    - Bound Relic
+
+  route_specific_notes:
+    one_pass_convert:
+      - Prefer canonical term substitutions only when confidence is high.
+      - Preserve traceability when a donor concept has no stable Astra equivalent.
+      - Do not import donor cosmology names automatically.
+
+    two_pass_convert:
+      - Pass 1 should isolate structure, eligibility rules, and functional mechanics.
+      - Pass 2 should rewrite into Astra-native ontology using canonical terms first and provisional terms only when necessary.
+      - Emit unresolved mappings into provisional queues.
+
+    guarded_statblock_convert:
+      - Preserve numeric structure and field order.
+      - Allow taxonomy remapping only if the mechanical role remains transparent.
+      - Do not rename defense or save fields into ambiguous flavor language.
+
+    guarded_table_convert:
+      - Preserve row and column utility.
+      - Prefer deterministic replacement for high-confidence canonical terms.
+      - Escalate if a table contains many unresolved proper nouns.
+
+  protect_from_overwrite:
+    - canonical lexicon files
+    - active canon conflict packets
+
+  emit_to_review_when:
+    - multiple plausible Astra mappings exist
+    - donor term is strongly cosmological and setting-defining
+    - replacement would hide traceability

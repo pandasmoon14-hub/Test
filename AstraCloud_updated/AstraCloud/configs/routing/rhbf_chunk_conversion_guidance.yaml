@@ -1,0 +1,98 @@
+version: 0.1
+guidance_id: rhbf_chunk_conversion_guidance
+
+chunk_families:
+  core_chassis:
+    source_parts: [1, 2, 3]
+    target_outputs:
+      - core_chassis
+      - paths
+      - domains
+      - techniques
+      - damage_model
+    protect:
+      - progression_structure
+      - body_slot_architecture
+      - usage_bands
+      - save_triads
+    replace:
+      - source_cosmology
+      - source_lineage_flavor_only_terms
+      - source_faction_history
+
+  world_activity:
+    source_parts: [5, 6, 7]
+    target_outputs:
+      - nexus_hub_model
+      - faction_pressure_engine
+      - ascension_trials
+      - hunting_realms
+      - stronghold_phase
+    protect:
+      - trial_generator_fields
+      - token_gated_access_logic
+      - rank_band_restrictions
+      - modular_site_structure
+    replace:
+      - yeross_as_final_name
+      - teleport_tokens_as_final_name
+      - divine_decrees_as_final_name
+
+  creature_and_gear:
+    source_parts: [8, 9]
+    target_outputs:
+      - creature_taxonomy
+      - bound_relics
+      - harvest_tables
+      - treasure_loop
+    protect:
+      - statblock_field_order
+      - creature_taxonomy_mechanics
+      - trait_upgrade_requirements
+    replace:
+      - source_item_names_when_pure_flavor
+      - source_proper_nouns_in_loot_names
+
+route_specific_notes:
+  one_pass_convert:
+    use_when:
+      - prose_is_conceptually_clear
+      - structure_is_low_risk
+    avoid:
+      - heavily_slotted_techniques
+      - statblocks
+      - multiline_tables
+
+  two_pass_convert:
+    pass_1_extract:
+      - mechanical_function
+      - numeric_dependencies
+      - slot_or_domain_constraints
+      - proper_nouns_to_replace
+    pass_2_rewrite:
+      - astra_native_terminology
+      - astra_consistent_phrasing
+      - canon_candidate_annotations
+
+  guarded_statblock_convert:
+    preserve_fields:
+      - attributes
+      - saves
+      - hp
+      - defense
+      - speed
+      - actions
+      - traits
+      - attacks
+    prohibit:
+      - lore_expansion
+      - field_reordering_without_reason
+
+  guarded_table_convert:
+    preserve:
+      - row_count
+      - column_meaning
+      - generator_dice_logic
+    prohibit:
+      - summarizing_instead_of_converting
+      - silently_dropping_entries

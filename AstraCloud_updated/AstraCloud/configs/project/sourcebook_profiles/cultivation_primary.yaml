@@ -1,0 +1,36 @@
+version: 0.1
+profile_name: cultivation_primary
+intended_for:
+  - progression-heavy cultivation systems
+  - donor texts with soul, lineage, realm, sect, or body-refinement logic
+priority_order:
+  - progression_integrity
+  - terminology_discipline
+  - technique_structure
+  - faction_world_activity
+  - style_cleanup
+conversion_bias:
+  preserve_multi_axis_progression: true
+  preserve_domain_or_affinity_logic: true
+  preserve_breakthrough_requirements: true
+  prefer_astra_terms_for_power_systems: true
+  permit_source_term_preservation_when_unstable: true
+  aggressive_reskinning_of_setting_proper_nouns: true
+recommended_defaults:
+  prose_lore: one_pass_convert
+  rules_text: one_pass_convert
+  class_feature: two_pass_convert
+  spell_or_power: two_pass_convert
+  statblock: guarded_statblock_convert
+  table_heavy: guarded_table_convert
+lexicon_behavior:
+  extract_candidate_terms: true
+  promote_new_terms_automatically: false
+  preserve_terms_pending_review:
+    - lineage_names
+    - realm_names
+    - unique_treasures
+    - sect_names
+notes: >
+  Best fit for RHBF-like donors and similar systems where metaphysical progression,
+  technique structure, and world activity loops matter more than strict setting fidelity.

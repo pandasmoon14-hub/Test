@@ -1,0 +1,171 @@
+version: 1
+description: >
+  Chunk classification vocabulary for normalized markdown sourcebooks.
+  Classification answers what a chunk is. Routing answers what to do with it.
+
+chunk_classes:
+  frontmatter:
+    description: Title pages, credits, copyright, legal boilerplate, publisher metadata.
+    structural_cues:
+      - lines contain copyright or ISBN language
+      - early-document credits blocks
+      - publisher/contact metadata
+    examples:
+      - Open Game License
+      - Credits
+      - ISBN
+    ambiguity_notes: Avoid classifying setting introductions as frontmatter.
+
+  toc:
+    description: Table of contents or navigational index near the front of the book.
+    structural_cues:
+      - heading contains table of contents or contents
+      - repeated chapter or section listings
+      - dotted leaders or page-number style lists
+    examples:
+      - Table of Contents
+      - Contents
+    ambiguity_notes: Distinguish from back-of-book indexes.
+
+  prose_lore:
+    description: Narrative or descriptive setting/worldbuilding prose.
+    structural_cues:
+      - paragraph-dominant chunk
+      - low explicit rules density
+      - section headers for history, culture, factions, places
+    examples:
+      - setting history
+      - faction overview
+    ambiguity_notes: Can blend into rules text in lore-heavy core books.
+
+  rules_text:
+    description: Rules prose, subsystem explanations, procedures, and adjudication text.
+    structural_cues:
+      - imperative or instructional language
+      - repeated rules nouns and numeric references
+      - moderate formatting, low table density
+    examples:
+      - combat rules
+      - downtime procedures
+    ambiguity_notes: Split from class_feature when a feature block is clearly delimited.
+
+  class_feature:
+    description: Progression features, class tables, archetype abilities, feat ladders.
+    structural_cues:
+      - level-based or rank-based advancement language
+      - repeated feature labels
+      - proximity to class/archetype headers
+    examples:
+      - class features
+      - subclass abilities
+    ambiguity_notes: May include tables that need separate table chunking.
+
+  spell_or_power:
+    description: Spells, techniques, powers, abilities with structured parameters.
+    structural_cues:
+      - repeated field labels like duration, range, save, cost
+      - ability names as mini-headers
+      - dense mechanical semantics
+    examples:
+      - spell lists
+      - powers
+    ambiguity_notes: Some item abilities mimic this format.
+
+  item_block:
+    description: Equipment, weapons, armor, cyberware, consumables, gear entries.
+    structural_cues:
+      - price/cost/weight/damage style fields
+      - inventory or gear naming patterns
+      - bulleted or entry-list formatting
+    examples:
+      - weapons
+      - armor
+      - equipment entries
+    ambiguity_notes: Tables may need separate extraction.
+
+  npc_or_bestiary:
+    description: Creature, NPC, adversary, or bestiary descriptive entries.
+    structural_cues:
+      - named entity entries with lore plus mechanics
+      - repeated creature or NPC headings
+      - mixed prose and stat references
+    examples:
+      - monster descriptions
+      - NPC profiles
+    ambiguity_notes: Split out statblock when a hard stat section begins.
+
+  statblock:
+    description: Highly structured combat or mechanical block with numbers and fields.
+    structural_cues:
+      - bold or header-style entity names followed by dense numeric lines
+      - ability score or attribute grids
+      - AC/HP/speed/attack/action economy fields
+    examples:
+      - creature stat block
+      - vehicle stat block
+    ambiguity_notes: Some tables are statblocks in disguise.
+
+  table_light:
+    description: Small, simple markdown or tabular structures with low semantic risk.
+    structural_cues:
+      - 2 to 6 rows
+      - clean header row
+      - low cell complexity
+    examples:
+      - price table
+      - quick lookup table
+    ambiguity_notes: Escalate if cells contain nested clauses or multiline data.
+
+  table_heavy:
+    description: Complex, multiline, or mechanically dense tables.
+    structural_cues:
+      - many rows or many columns
+      - multiline cells
+      - high semantics per cell
+    examples:
+      - class progression table
+      - encounter generator table
+    ambiguity_notes: Prefer special handling rather than naive LLM rewriting.
+
+  mixed_dense:
+    description: Dense blend of prose, rules, tables, bullets, and cross-references.
+    structural_cues:
+      - more than one dominant structure in the same chunk
+      - several formatting modes mixed together
+      - high ambiguity for direct route selection
+    examples:
+      - subsystem chapter chunk with sidebars and lists
+    ambiguity_notes: Usually safer as two-pass.
+
+  appendix_reference:
+    description: Appendices, side reference material, conversion notes, quick summaries.
+    structural_cues:
+      - appendix headers
+      - reference-style condensed lists
+      - low narrative load
+    examples:
+      - appendix
+      - quick reference
+    ambiguity_notes: Some appendices are mechanically important.
+
+  index_or_glossary:
+    description: Alphabetical indexes, term glossaries, lookup structures.
+    structural_cues:
+      - alphabetized entries
+      - term-definition pairs
+      - page or anchor references
+    examples:
+      - glossary
+      - index
+    ambiguity_notes: Preserve lookup utility and traceability.
+
+  junk_or_artifact:
+    description: Broken OCR remnants, extraction artifacts, or structurally unusable text.
+    structural_cues:
+      - gibberish density
+      - repeated broken symbols
+      - malformed fragments lacking recoverable semantics
+    examples:
+      - OCR garbage
+      - image residue
+    ambiguity_notes: Use sparingly; bad chunking can masquerade as junk.

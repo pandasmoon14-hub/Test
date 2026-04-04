@@ -1,0 +1,49 @@
+version: 0.1
+status: seeded_from_stage_1_3
+
+validator_targets:
+  terminology_consistency:
+    required_preferred_terms:
+      - Path
+      - Domain
+      - Technique
+      - Stage
+      - Degree
+      - Vitality
+      - Defense Threshold
+    notes: Use when applicable; not every chunk needs every term.
+
+  forbidden_or_flagged_terms:
+    - decorative_Astra_inflation
+    - blind_one_to_one_renaming
+    - raw_donor_cosmology_names_without_review
+
+  mechanical_fidelity_proxy:
+    check_for:
+      - attribute_count_integrity
+      - save_structure_integrity
+      - technique_slot_structure_integrity
+      - action_cost_integrity
+      - rarity_upgrade_integrity
+      - statblock_numeric_integrity
+
+  world_activity_integrity:
+    check_for:
+      - hub_role_preserved
+      - access_key_logic_preserved
+      - trial_structure_preserved
+      - repeatable_zone_logic_preserved
+      - home_base_phase_presence_when_relevant
+
+  creature_and_gear_integrity:
+    check_for:
+      - taxonomy_mechanical_meaning_preserved
+      - harvest_loop_preserved
+      - evolving_weapon_logic_preserved
+      - trait_growth_logic_preserved
+
+  escalation_triggers:
+    - unresolved_core_term_conflict
+    - contradictory_progression_mapping
+    - body_slot_power_structure_lost
+    - living_weapon_or_bound_relic_logic_collapsed

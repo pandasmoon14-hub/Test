@@ -1,0 +1,56 @@
+version: 0.2
+status: seeded_from_stage_1_3
+
+ontology:
+  progression:
+    preferred_frames:
+      - Ascendant
+      - Stage
+      - Degree
+      - Lineage
+      - Soul
+
+  powers:
+    preferred_frames:
+      - Technique
+      - Domain
+      - Ultimate Technique
+      - Combat Technique
+      - Utility Technique
+      - Movement Technique
+
+  defenses:
+    preferred_frames:
+      - Vitality
+      - Defense Threshold
+      - Core Resistance
+      - Flow Resistance
+      - Resonance Resistance
+
+  world_activity:
+    preferred_frames:
+      - Nexus Hub
+      - Transit Seal
+      - Ascension Trial
+      - Hunting Realm
+      - Stronghold Phase
+
+  creature_ecology:
+    preferred_frames:
+      - Ascendant Beast
+      - taxonomy
+      - harvest
+      - natural treasure
+
+  gear_progression:
+    preferred_frames:
+      - Bound Relic
+      - Relic Trait
+      - Resonant Feeding
+
+  governance_and_review:
+    preferred_frames:
+      - canon_candidate
+      - canon_conflict
+      - provisional_mapping
+      - lexicon_review

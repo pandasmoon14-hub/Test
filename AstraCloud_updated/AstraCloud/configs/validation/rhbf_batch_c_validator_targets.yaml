@@ -1,0 +1,50 @@
+version: 0.1
+validator_targets:
+  creature_statblocks:
+    required_fields:
+      - attributes
+      - number
+      - presence_pressure_or_aura_equivalent
+      - saves_or_resistances
+      - vitality_or_hp
+      - defense_threshold_or_dr
+      - speed
+      - stealth
+      - size
+      - actions
+    failure_conditions:
+      - missing_field
+      - reordered_combat_math_without_reason
+      - dropped_recharge
+      - lost_trophy_or_special_reward_hooks
+
+  harvest_tables:
+    required_properties:
+      - component_name
+      - edible_or_nonedible_tag_when_present
+      - mechanical_effect
+      - value_or_trade_signal
+    failure_conditions:
+      - family_mixup
+      - missing_effect
+      - flattened_table_rows
+
+  bound_relic_traits:
+    required_properties:
+      - material_requirements
+      - effect
+      - usage_frequency_if_present
+    failure_conditions:
+      - requirement_loss
+      - damage_bonus_loss
+      - target_family_loss
+
+  taxonomy_rules:
+    preserve:
+      - vulnerable
+      - resistant
+      - immune
+      - restored
+    failure_conditions:
+      - family_rule_erasure
+      - damage_interaction_loss

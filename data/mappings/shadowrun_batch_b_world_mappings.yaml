@@ -1,0 +1,131 @@
+version: 0.2
+run_id: shadowrun_prod_run_001
+donor: Shadowrun Sixth World
+batch: B
+
+mappings:
+  - donor_construct: "run / shadowrun"
+    astra_construct: "Brokered Contract"
+    status: "baseline_grammar"
+    notes: "Negotiated operation loop under partial information and consequence-bearing settlement. Lawful but non-exclusive."
+
+  - donor_construct: "Mr. Johnson / fixer economy"
+    astra_construct: "masked sponsor / contract intermediary"
+    status: "source_local_retained"
+    notes: "Operational role is reusable; exact idiom and street framing remain donor-local."
+
+  - donor_construct: "legwork"
+    astra_construct: "Legwork"
+    status: "baseline_grammar"
+    notes: "Pre-operation information phase with time, cost, contradiction, and exposure pressure."
+
+  - donor_construct: "contacts at chargen and in play"
+    astra_construct: "starting network layer / active access node"
+    status: "baseline_grammar"
+    notes: "Batch A owns starting network pressure; Batch B owns operational routing, favor cost, and fallout."
+
+  - donor_construct: "Connection / Loyalty"
+    astra_construct: "reach_leverage / trust_commitment"
+    status: "baseline_grammar"
+    notes: "Promote relation grammar, not exact donor ratings."
+
+  - donor_construct: "Matrix intrusion and security"
+    astra_construct: "Network Access Procedure"
+    status: "baseline_grammar"
+    notes: "Conditional technical-access family; do not universalize exact Matrix implementation."
+
+  - donor_construct: "host / IC / spider stack"
+    astra_construct: "protected access domain / hostile security programs / resident defender"
+    status: "source_local_retained"
+    notes: "Strong pressure, but exact terminology and architecture remain donor-local pending later donors."
+
+  - donor_construct: "Overwatch Score / convergence"
+    astra_construct: "trace pressure / hostile convergence"
+    status: "optional_profile"
+    notes: "Strong reusable idea; exact implementation remains donor-shaped."
+
+  - donor_construct: "rigging vehicles and drones"
+    astra_construct: "Remote Platform Operations"
+    status: "baseline_grammar"
+    notes: "Operational family defined by separated loci of operator, platform, sensing, and exposure."
+
+  - donor_construct: "social entry + stealth + technical intrusion"
+    astra_construct: "layered infiltration"
+    status: "baseline_grammar"
+    notes: "Operations can combine multiple access modes in one flow."
+
+  - donor_construct: "security zones, sensors, scanners, locks"
+    astra_construct: "security ecology"
+    status: "baseline_grammar"
+    notes: "Reusable site-pressure model; exact scale names stay local."
+
+  - donor_construct: "lifestyle"
+    astra_construct: "support tier / upkeep state"
+    status: "baseline_grammar"
+    notes: "Promote upkeep grammar; exact bands, prices, and accounting rhythms remain donor-local or optional."
+
+  - donor_construct: "reputation"
+    astra_construct: "standing"
+    status: "baseline_grammar"
+    notes: "Long-horizon access and trust pressure. Distinct from heat."
+
+  - donor_construct: "heat"
+    astra_construct: "heat / scrutiny"
+    status: "baseline_grammar"
+    notes: "Short- to mid-horizon exposure, tracing, and retaliation pressure. Distinct from standing."
+
+  - donor_construct: "SIN / fake SIN / licenses"
+    astra_construct: "identity credential / forged credential / permit"
+    status: "provisional"
+    notes: "Strong operational pressure, but exact legal-identity stack may be too donor-specific for immediate promotion."
+
+  - donor_construct: "Edge generation from circumstances"
+    astra_construct: "situational advantage triggers"
+    status: "baseline_grammar"
+    notes: "Promote leverage grammar, not exact donor economy."
+
+batch_boundary_notes:
+  - "Batch A owns starting network pressure and starting contact presence."
+  - "Batch B owns active contact routing, favor cost, refusal, referral, and fallout."
+  - "Batch B owns operation procedure for technical access and remote platforms, not their object schema."
+  - "Batch C will own specific platform, host, device, and named-contact records if later files require them."
+
+watchlist:
+  - "Do not universalize megacorporate social order."
+  - "Do not universalize one Matrix-like technical substrate."
+  - "Do not let Brokered Contract become mandatory campaign law."
+  - "Do not let contacts swallow background, standing, faction pressure, or economy procedure."
+  - "Do not let Remote Platform Operations collapse into gear-only handling."
+  - "Do not collapse standing and heat into one reputation track."
+  - "Do not let exact Edge menu become baseline by analogy."
+  - "Do not let lifestyle bookkeeping become mandatory across donor families."
+
+recommended_promotions:
+  baseline_grammar:
+    - "Brokered Contract"
+    - "Legwork"
+    - "starting network layer / active access node split"
+    - "reach_leverage / trust_commitment relation grammar"
+    - "Network Access Procedure"
+    - "Remote Platform Operations"
+    - "layered infiltration"
+    - "security ecology"
+    - "support tier / upkeep state"
+    - "standing"
+    - "heat / scrutiny"
+    - "situational advantage triggers"
+
+  optional_profile:
+    - "trace pressure / hostile convergence"
+    - "security zone packaging"
+
+  source_local_retained:
+    - "exact Mr. Johnson / fixer economy"
+    - "exact Matrix / host / IC vocabulary"
+    - "exact megacorporate geopolitics"
+    - "exact lifestyle ladder names and costs"
+    - "exact Edge gain / spend menu"
+
+  provisional:
+    - "identity credential / forged credential / permit stack"
+    - "future subdivision of technical access beyond one umbrella procedure"
