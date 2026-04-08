@@ -38,7 +38,7 @@ MAX_PAGE_TOKENS = int(os.getenv("MAX_PAGE_TOKENS",  "2048"))
 REPAIR_BATCH    = int(os.getenv("REPAIR_BATCH",     "8"))   # pages per vLLM batch call
 RENDER_DPI      = int(os.getenv("RENDER_DPI",       "220"))
 
-_PROMPT = (
+PROMPT = (
     "Transcribe this page to Markdown exactly as it appears. "
     "Preserve all headings, paragraphs, and list structure verbatim. "
     "Reconstruct every table as a valid GitHub-Flavored Markdown table. "
@@ -85,7 +85,7 @@ def make_conversation(img: PIL.Image.Image) -> list[dict]:
         {
             "role": "user",
             "content": [
-                {"type": "text", "text": _PROMPT},
+                {"type": "text", "text": PROMPT},
                 {
                     "type": "image_url",
                     "image_url": {"url": f"data:image/png;base64,{pil_to_b64(img)}"},
@@ -133,9 +133,9 @@ def repair_book(llm: LLM, record: dict) -> bool:
         batch = page_images[batch_start : batch_start + REPAIR_BATCH]
         first, last = batch[0][0] + 1, batch[-1][0] + 1
         print(f"  [REPAIR] Pages {first}–{last} ({len(batch)} in batch)...")
-        batch_convs = [make_conversation(img) for _, img in batch]
+        conversations = [make_conversation(img) for _, img in batch]
         try:
-            outputs = llm.chat(batch_convs, sampling_params=sampling, use_tqdm=False)
+            outputs = llm.chat(conversations, sampling_params=sampling, use_tqdm=False)
             for (pg_num, _), out in zip(batch, outputs):
                 results[pg_num] = out.outputs[0].text.strip()
         except Exception as exc:  # pylint: disable=broad-exception-caught
@@ -154,7 +154,7 @@ def repair_book(llm: LLM, record: dict) -> bool:
         for pg_num in sorted(results):
             f.write(f"\n### Page {pg_num + 1}\n\n{results[pg_num]}\n")
 
-    print(f"  [DONE] {len(results)}/{len(page_images)} pages written → {md_path.name}")
+    print(f"  [DONE] {len(results)}/{len(page_images)} pages written -> {md_path.name}")
     return True
 
 

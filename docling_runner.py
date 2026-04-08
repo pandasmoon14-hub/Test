@@ -1,19 +1,6 @@
 #!/usr/bin/env python3
 """
 Docling bridge — runs inside /workspace/venvs/docling/bin/python3
-
-Uses the Python API directly (not the CLI) so we can:
-  1. Disable page and picture image generation — no image files written
-  2. Surface exact exceptions when conversion fails
-  3. Return a structured JSON status on stdout for the orchestrator
-
-Called by orchestrator.py via subprocess as a Lane B2 fallback when
-Marker fails or produces thin output.
-
-Usage:
-    /workspace/venvs/docling/bin/python3 docling_runner.py \\
-        /path/to/file.pdf \\
-        --output_dir /path/to/out
 """
 import argparse
 import json

@@ -1,21 +1,6 @@
 #!/usr/bin/env python3
 """
 Marker bridge — runs inside /workspace/venvs/marker/bin/python3
-
-Uses the Python API directly so we can:
-  1. Set EXTRACT_IMAGES=false before any marker import (env-level flag)
-  2. Pass batch_multiplier for A6000 throughput tuning
-  3. Never write image files to disk
-
-Called by orchestrator.py via subprocess.  Writes one .md file to
---output_dir and emits a JSON status line on stdout so the orchestrator
-can parse the result path without path-guessing.
-
-Usage:
-    /workspace/venvs/marker/bin/python3 marker_runner.py \\
-        /path/to/file.pdf \\
-        --output_dir /path/to/out \\
-        [--batch_multiplier 4]
 """
 import argparse
 import json
