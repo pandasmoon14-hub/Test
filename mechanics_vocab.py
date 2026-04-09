@@ -35,6 +35,23 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     "hero_system": ("stun", "body", "endurance", "speed", "ocv", "dcv", "ego combat value"),
     "symbaroum": ("corruption", "shadow", "toughness", "resolute", "vigilant", "discreet", "persuasive"),
     "mothership": ("stress", "panic check", "wounds", "sanity", "body save", "fear save", "armor save"),
+    "anima": (
+        "zeon", "ki", "ma multiple", "magic accumulation", "psychic points",
+        "attack ability", "defense ability", "life points", "life point multiple",
+        "development points", "psychic projection", "magic projection", "accumulation multiple",
+        "supernatural ability",
+    ),
+    "tri_stat": (
+        "body", "mind", "soul", "attack combat value", "defense combat value",
+        "health points", "energy points", "shock value",
+    ),
+    "cortex": ("distinction", "stress die", "complications", "plot points", "asset"),
+    "fantasy_age": ("health", "defense", "speed", "stunt points", "ability focus"),
+    "scion": ("legend", "epic attributes", "boons", "birthrights", "fatebinding", "purviews"),
+    "warhammer": (
+        "wounds", "ballistic skill", "weapon skill", "toughness", "fellowship",
+        "fate points", "corruption points", "influence",
+    ),
     "osr": ("thac0", "morale", "treasure type", "reaction roll", "saving throw", "armor class", "experience points"),
     "generic": ("difficulty", "target number", "critical", "success", "failure", "cooldown", "resource"),
 }
