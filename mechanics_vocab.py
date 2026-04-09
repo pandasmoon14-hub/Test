@@ -28,7 +28,7 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     "savage_worlds": ("pace", "parry", "toughness", "wild die", "raise", "edges", "hindrances"),
     "pbta": ("moves", "on a 10+", "on a 7-9", "on a miss", "hold", "forward"),
     "astra": ("dao", "tier", "astra-well", "heartbeat", "friction", "epiphany", "dao-vein"),
-    "cypher": ("effort", "might pool", "speed pool", "intellect pool", "cypher limit", "artifact", "recovery roll"),
+    "cypher": ("effort", "might pool", "speed pool", "intellect pool", "cypher limit", "artifact", "recovery roll", "motive", "environment", "damage inflicted", "gm intrusion"),
     "l5r": ("strife", "opportunity", "void points", "honor", "glory", "composure", "endurance", "focus"),
     "genesys": ("triumph", "despair", "advantage", "threat", "setback die", "boost die", "proficiency die"),
     "rolemaster": ("offensive bonus", "defensive bonus", "maneuver points", "critical strike", "fumble", "moving maneuver"),
@@ -54,6 +54,10 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     ),
     "osr": ("thac0", "morale", "treasure type", "reaction roll", "saving throw", "armor class", "experience points"),
     "generic": ("difficulty", "target number", "critical", "success", "failure", "cooldown", "resource"),
+}
+
+STATBLOCK_LABELS: dict[str, tuple[str, ...]] = {
+    "cypher": ("motive:", "environment:", "health:", "damage inflicted:", "combat:", "interaction:", "use:", "gm intrusion:"),
 }
 
 
@@ -83,7 +87,14 @@ def mechanics_hits(text: str) -> dict[str, int]:
     low = text.lower()
     out: dict[str, int] = {}
     for family, keys in VOCAB_FAMILIES.items():
-        out[family] = sum(1 for key in keys if key in low)
+        hits = 0
+        for key in keys:
+            if len(key) <= 3:
+                if re.search(r"\b" + re.escape(key) + r"\b", low):
+                    hits += 1
+            elif key in low:
+                hits += 1
+        out[family] = hits
     return out
 
 
@@ -95,8 +106,13 @@ def best_family(text: str) -> VocabMatch:
 
 def statblock_density(text: str) -> float:
     low = text.lower()
+    fam = best_family(text).family
+    labels = STATBLOCK_LABELS.get(fam, ())
+    label_hits = sum(1 for label in labels if label in low)
     kv = len(re.findall(r"\b[a-z][a-z\s]{2,30}:\s*[^\n]+", low))
     vocab = sum(mechanics_hits(text).values())
     bullet = len(re.findall(r"^\s*[-*]\s+", text, flags=re.MULTILINE))
-    raw = (vocab * 1.2) + (kv * 0.8) + (bullet * 0.15)
-    return min(1.0, raw / 10.0)
+    raw = (label_hits * 1.6) + (vocab * 1.1) + (kv * 0.5) + (bullet * 0.1)
+    line_count = max(1, len(text.splitlines()))
+    normalized = raw / max(10.0, line_count * 0.5)
+    return min(1.0, normalized)

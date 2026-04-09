@@ -23,13 +23,16 @@ import shutil
 import statistics
 import subprocess
 import time
+import traceback
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import fitz
-from mechanics_vocab import statblock_density as vocab_statblock_density
+from mechanics_vocab import best_family, statblock_density as vocab_statblock_density
+from layout_utils import detect_multicolumn as detect_multicolumn_layout
+from page_truth import PageTruthRecord, write_page_truth_jsonl
 from table_fixer import apply_fixes as apply_table_fixes
 
 try:
@@ -145,6 +148,8 @@ class PageFeatures:
     table_density: float
     sidebar_density: float
     statblock_density: float
+    form_density: float
+    is_landscape: bool
 
 
 @dataclass
@@ -256,7 +261,7 @@ def verify_pdf_magic(pdf: Path) -> bool:
         return False
 
 
-def choose_donor_family(pdf: Path, doc: fitz.Document) -> str:
+def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") -> str:
     meta = doc.metadata or {}
     text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
     return choose_donor_family_from_text(text)
@@ -268,8 +273,10 @@ def choose_donor_family_from_text(text: str) -> str:
         return "image_only"
     if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
         return "dnd5e"
-    if any(k in low for k in ["ogl", "pathfinder", "paizo"]):
+    if fam in {"d20", "osr"} and any(k in low for k in ["ogl", "pathfinder", "paizo"]):
         return "ogl"
+    if fam in {"d20", "osr"} and fam_match.hits >= 2:
+        return "dnd5e"
     return "mixed"
 
 
@@ -281,27 +288,8 @@ def normalize_text(text: str) -> str:
     return text
 
 
-def detect_multicolumn(blocks: list[tuple]) -> bool:
-    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
-    if len(text_blocks) < 8:
-        return False
-    xs = []
-    for b in text_blocks:
-        txt = str(b[4]).strip()
-        width = max(1.0, float(b[2]) - float(b[0]))
-        # downweight margin tabs / decorative callouts
-        if len(txt) < 10 and width < 120:
-            continue
-        xs.append(float(b[0]))
-    if len(xs) < 8:
-        return False
-    xs = sorted(xs)
-    mid = statistics.median(xs)
-    left = [x for x in xs if x < mid]
-    right = [x for x in xs if x >= mid]
-    if len(left) < 3 or len(right) < 3:
-        return False
-    return (statistics.mean(right) - statistics.mean(left)) > 90
+def detect_multicolumn(blocks: list[tuple], page_width: float | None = None) -> bool:
+    return detect_multicolumn_layout(blocks, page_width=page_width)
 
 
 def column_sorted_blocks(blocks: list[tuple], page_width: float) -> list[tuple]:
@@ -353,9 +341,23 @@ def detect_sidebar_density(page: fitz.Page) -> float:
     narrow = 0
     for d in rects:
         rect = d["rect"]
+        margin = page.rect.width * 0.05
+        if rect.x0 < margin or rect.x1 > page.rect.width - margin:
+            continue
         if rect.width < page.rect.width * 0.4 and rect.height > page.rect.height * 0.08:
             narrow += 1
     return min(1.0, narrow / max(1, len(rects)))
+
+
+def detect_form_density(page: fitz.Page) -> float:
+    blocks = page.get_text("blocks")
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 5:
+        return 0.0
+    short_blocks = sum(1 for b in text_blocks if len(str(b[4]).strip()) < 30)
+    underscore_lines = sum(1 for b in text_blocks if "___" in str(b[4]))
+    form_signals = short_blocks + underscore_lines * 2
+    return min(1.0, form_signals / max(1, len(text_blocks)))
 
 
 def detect_statblock_density(text: str) -> float:
@@ -379,9 +381,10 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     total = len(doc)
     if total <= 0:
         return []
-    candidates = {0, total - 1}
-    for i in range(0, total, max(1, cfg.sample_interval_pages)):
-        candidates.add(i)
+    front = set(range(0, min(total, 24)))
+    stride = set(range(24, total, max(1, cfg.sample_interval_pages)))
+    tail = set(range(max(0, total - 8), total))
+    candidates = front | stride | tail | {0, total - 1}
     hotspot_words = ["table of contents", "appendix", "index", "spell", "monster", "stat block", "armor class", "hit points", "difficulty class"]
     for i in sorted(candidates):
         text = normalize_text(doc[i].get_text("text")[:2200]).lower()
@@ -405,12 +408,13 @@ def is_image_only_signature(scanned_ratio: float, average_chars_per_page: float)
 def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     with fitz.open(pdf) as doc:
         total_pages = len(doc)
-        donor = choose_donor_family(pdf, doc)
         samples = adaptive_sample_pages(doc, cfg)
         rows: list[PageFeatures] = []
+        sampled_texts: list[str] = []
         for idx in samples:
             page = doc[idx]
             text = normalize_text(page.get_text("text"))
+            sampled_texts.append(text[:3000])
             blocks = page.get_text("blocks")
             weird = len(re.findall(r"[^\w\s\.,;:?!'\-()\[\]{}<>/|+=*&%$#@`~“”‘’…–—§°•†‡]", text))
             rows.append(PageFeatures(
@@ -420,11 +424,14 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
                 block_count=len(blocks),
                 image_coverage=image_coverage(page),
                 vector_text_ratio=vector_text_ratio(page, text),
-                is_multicolumn=detect_multicolumn(blocks),
+                is_multicolumn=detect_multicolumn(blocks, page.rect.width),
                 table_density=max(detect_table_density(text), vector_table_density(page)),
                 sidebar_density=detect_sidebar_density(page),
                 statblock_density=detect_statblock_density(text),
+                form_density=detect_form_density(page),
+                is_landscape=page.rect.width > page.rect.height * 1.2,
             ))
+        donor = choose_donor_family(pdf, doc, sample_text="\n".join(sampled_texts))
 
     avg_chars = statistics.mean([r.char_count for r in rows]) if rows else 0.0
     weird_ratio = statistics.mean([r.weird_ratio for r in rows]) if rows else 0.0
@@ -849,17 +856,8 @@ def expand_chunk_markers(content: str) -> str:
             absolute_pages.setdefault(abs_page, []).extend(page_lines)
 
         if not local_pages:
-            paragraphs = [blk.strip() for blk in re.split(r"\n\s*\n", "\n".join(body)) if blk.strip()]
-            if paragraphs:
-                per_page: dict[int, list[str]] = {p: [] for p in range(start_page, end_page + 1)}
-                for idx, para in enumerate(paragraphs):
-                    target_page = start_page + min(chunk_size - 1, int((idx / max(1, len(paragraphs))) * chunk_size))
-                    per_page[target_page].append(para)
-                for p, p_blocks in per_page.items():
-                    if p_blocks:
-                        absolute_pages[p] = ("\n\n".join(p_blocks)).splitlines()
-            else:
-                absolute_pages[start_page] = body
+            # Do not fabricate page boundaries by paragraph spreading.
+            absolute_pages[start_page] = body
 
         for page_num in range(start_page, end_page + 1):
             out_lines.append(f"<!-- PAGE:{page_num} -->")
@@ -867,6 +865,9 @@ def expand_chunk_markers(content: str) -> str:
             if page_lines:
                 out_lines.extend(page_lines)
 
+    if saw_chunk and not any("<!-- PAGE:" in line for line in out_lines):
+        out_lines.insert(0, "<!-- PAGE:1 -->")
+        out_lines.insert(1, "<!-- WARNING: page boundaries are estimated, not ground truth -->")
     return "\n".join(out_lines) if saw_chunk else content
 
 
@@ -890,9 +891,11 @@ def reading_order_score(text: str) -> float:
     return max(0.0, 1.0 - jumps / max(1, len(lines) / 10))
 
 
-def table_structure_score(text: str) -> float:
+def table_structure_score(text: str, page_feature: PageFeatures | None = None) -> float:
     lines = [x for x in text.splitlines() if "|" in x]
     if not lines:
+        if page_feature is not None and page_feature.table_density > 0.15:
+            return 0.3
         return 1.0
     valid = sum(1 for x in lines if x.count("|") >= 2)
     divs = sum(1 for x in lines if re.search(r"\|\s*[-:]{3,}\s*\|", x))
@@ -901,13 +904,22 @@ def table_structure_score(text: str) -> float:
     return min(1.0, (valid / max(1, len(lines))) * 0.6 + (divs / max(1, len(lines))) * 0.4)
 
 
-def stat_block_score(text: str) -> float:
-    density = vocab_statblock_density(text)
-    if density < 0.08:
+STATBLOCK_FIELDS: dict[str, list[str]] = {
+    "cypher": ["motive:", "environment:", "health:", "damage inflicted:", "armor:", "movement:", "modifications:", "combat:", "interaction:", "use:", "loot:", "gm intrusion:"],
+    "dnd5e": ["armor class", "hit points", "speed", "saving throws", "skills", "damage resistances", "senses", "languages", "challenge"],
+}
+
+
+def stat_block_score(text: str, family: str) -> float:
+    low = text.lower()
+    fields = STATBLOCK_FIELDS.get(family, [])
+    if not fields:
         return 1.0
-    hits = max(1, int(density * 5))
-    sep = len(re.findall(r"\n\s*[-*]\s+", text)) + text.count("|")
-    return min(1.0, sep / (hits * 2 + 1))
+    hits = sum(1 for field in fields if field in low)
+    if hits == 0:
+        return 1.0
+    ordered = sum(1 for a, b in zip(fields, fields[1:]) if low.find(a) != -1 and low.find(b) != -1 and low.find(a) < low.find(b))
+    return min(1.0, (hits * 0.7 + ordered * 0.3) / max(1, len(fields) * 0.6))
 
 
 def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> AuditResult:
@@ -935,12 +947,13 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
             r.append("glyph_corruption")
         if re.search(r"archdev[^\w]?ils|conse[^\w]?quences", t, flags=re.IGNORECASE):
             r.append("soft_hyphen_split")
-        ts = table_structure_score(t)
+        page_feature = next((p for p in profile.page_features if p.page_index + 1 == idx), None)
+        ts = table_structure_score(t, page_feature=page_feature)
         if ts < 0.45:
             r.append("table_structure")
         if reading_order_score(t) < 0.6:
             r.append("reading_order")
-        if stat_block_score(t) < 0.4:
+        if stat_block_score(t, profile.donor_family) < 0.4:
             r.append("stat_block_integrity")
         lines = [l.strip() for l in t.splitlines() if l.strip()]
         if lines:
@@ -1007,6 +1020,30 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         return BookManifest(book_id=pdf.stem, source_pdf=str(pdf), lane="SKIP", lane_scores={}, donor_family="unknown", page_count=0, pages_audited=0, pages_passed=0, pages_remaining=0, page_marker_mode="existing", chunk_count=0, total_pages=0, pages_detected=0, ocr_mode="skip", started_at=started_iso, finished_at=now_iso(), elapsed_sec=round(time.perf_counter() - t0, 3), output_md=str(md_out), page_metadata_path=str(page_meta), audit_signatures=[], failed_pages=[], marker_api_variant=None)
 
     profile = analyze_pdf(pdf, cfg)
+    try:
+        with fitz.open(pdf) as doc:
+            meta = doc.metadata or {}
+            rows = []
+            fsize = pdf.stat().st_size if pdf.exists() else 0
+            for i, page in enumerate(doc, start=1):
+                txt = normalize_text(page.get_text("text"))
+                rows.append(PageTruthRecord(
+                    book_id=pdf.stem,
+                    page=i,
+                    width=float(page.rect.width),
+                    height=float(page.rect.height),
+                    rotation=int(getattr(page, "rotation", 0) or 0),
+                    text_chars=len(txt),
+                    image_count=len(page.get_images(full=True)),
+                    drawing_count=len(page.get_drawings()),
+                    producer=str(meta.get("producer", "") or ""),
+                    creator=str(meta.get("creator", "") or ""),
+                    encrypted=bool(doc.is_encrypted),
+                    file_size=fsize,
+                ))
+        write_page_truth_jsonl(out_dir / f"{pdf.stem}.page_truth.jsonl", rows)
+    except Exception:
+        pass
     lane, scores = choose_lane(profile, cfg)
     if profile.is_image_only:
         lane = "C"
@@ -1044,7 +1081,23 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     pages = parse_page_markers(md_out.read_text(encoding="utf-8", errors="replace"))
     if cfg.strict_page_truth and profile.total_pages > 0 and len(pages) < profile.total_pages:
         raise RuntimeError(f"strict_page_truth: page markers incomplete {len(pages)}/{profile.total_pages}")
-    sidecar = [{"page": p, "markdown": blk} for p, body in pages.items() for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
+    sidecar = []
+    for p, body in pages.items():
+        table_chunks = [blk for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
+        page_feature = next((pf for pf in profile.page_features if pf.page_index + 1 == p), None)
+        sidecar.append({
+            "page": p,
+            "markdown": "\n\n".join(table_chunks).strip(),
+            "table_chunks": table_chunks,
+            "vector_table_detected": bool(page_feature and page_feature.table_density > 0.15),
+            "source_has_drawings": bool(page_feature and page_feature.table_density > 0.0),
+            "source_geometry": {
+                "page_index": page_feature.page_index if page_feature else None,
+                "is_landscape": page_feature.is_landscape if page_feature else None,
+                "table_density": page_feature.table_density if page_feature else None,
+                "sidebar_density": page_feature.sidebar_density if page_feature else None,
+            },
+        })
     save_json(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json", sidecar)
 
     failed_pages = list(range(len(pages))) if cfg.enforce_full_book_repair and not audit.passed else audit.failed_pages
@@ -1153,8 +1206,14 @@ def main() -> None:
                 summary["books_ok"] += 1
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
+            error_record = {
+                "file": str(pdf),
+                "error": str(exc),
+                "traceback": traceback.format_exc(),
+                "timestamp": now_iso(),
+            }
             with open(cfg.log_dir / "orchestrator_fatal.log", "a", encoding="utf-8") as f:
-                f.write(f"[{pdf.name}] {exc}\n")
+                f.write(json.dumps(error_record, ensure_ascii=False) + "\n")
             if not cfg.continue_on_error:
                 raise
             print(f"  ! error: {exc}")

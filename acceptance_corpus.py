@@ -37,6 +37,7 @@ BASE_RULES: tuple[RuleDef, ...] = (
     RuleDef("table_signal", "table retention signal", 1.0),
     RuleDef("table_structure", "table structural integrity", 1.1),
     RuleDef("statblock_signal", "stat-block signal", 1.2),
+    RuleDef("cypher_entry_structure", "cypher entry structure", 0.8),
     RuleDef("content_density", "content density", 0.8),
     RuleDef("list_continuity", "list continuity", 0.7),
     RuleDef("duplicate_para", "duplicate paragraph leakage", 0.7),
@@ -149,6 +150,16 @@ def score_duplicate_para(text: str) -> tuple[float, float, str]:
     return score, 0.85, f"duplicates={dup}/{len(blocks)}"
 
 
+def score_cypher_entry_structure(text: str) -> tuple[float, float, str]:
+    if best_family(text).family != "cypher":
+        return 1.0, 0.45, "not_cypher"
+    labels = ["motive:", "environment:", "health:", "damage inflicted:", "combat:", "interaction:", "use:", "gm intrusion:"]
+    low = text.lower()
+    hits = sum(1 for label in labels if label in low)
+    score = min(1.0, hits / 6.0)
+    return score, 0.45, f"cypher_labels={hits}"
+
+
 SCORERS = {
     "page_markers": score_page_markers,
     "glyph_clean": score_glyph_clean,
@@ -160,6 +171,7 @@ SCORERS = {
     "content_density": score_content_density,
     "list_continuity": score_list_continuity,
     "duplicate_para": score_duplicate_para,
+    "cypher_entry_structure": score_cypher_entry_structure,
 }
 
 
