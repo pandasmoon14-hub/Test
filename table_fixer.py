@@ -69,7 +69,7 @@ def detect_pseudo_table_line(line: str) -> bool:
     if line.strip().startswith("```"):
         return False
     # multiple wide gaps likely columnar content
-    return bool(re.search(r"\S\s{2,}\S", line)) and len(re.split(r"\s{2,}", line.strip())) >= 2
+    return bool(re.search(r"\S\s{3,}\S", line)) and len(re.split(r"\s{3,}", line.strip())) >= 2
 
 
 def pseudo_to_pipe(line: str) -> str:
@@ -203,29 +203,6 @@ def stitch_cross_page_table_prefixes(markdown: str) -> str:
 
         if not moved:
             continue
-
-        if prev_body:
-            prev_last_idx = next((k for k in range(len(prev_body) - 1, -1, -1) if prev_body[k].strip()), -1)
-            if prev_last_idx >= 0 and moved and is_tableish_line(prev_body[prev_last_idx]) and is_tableish_line(moved[0]):
-                prev_cells = split_pipe_row(prev_body[prev_last_idx])
-                next_cells = split_pipe_row(moved[0])
-                expected_width = max((len(split_pipe_row(prev_body[k])) for k in range(max(0, prev_last_idx - 3), prev_last_idx + 1) if is_tableish_line(prev_body[k])), default=len(prev_cells))
-                if len(prev_cells) < expected_width and 0 < len(next_cells) <= (expected_width - len(prev_cells)):
-                    merged_cells = prev_cells + next_cells
-                    if len(merged_cells) < expected_width:
-                        merged_cells += [""] * (expected_width - len(merged_cells))
-                    prev_body[prev_last_idx] = render_pipe_row(merged_cells)
-                    moved = moved[1:]
-
-        if prev_body:
-            last_non_empty = next((ln for ln in reversed(prev_body) if ln.strip()), "")
-            if is_tableish_line(last_non_empty):
-                last_cells = split_pipe_row(last_non_empty)
-                for j, row in enumerate(moved):
-                    if is_tableish_line(row):
-                        cur_cells = split_pipe_row(row)
-                        if 0 < len(cur_cells) < len(last_cells):
-                            moved[j] = render_pipe_row(cur_cells + [""] * (len(last_cells) - len(cur_cells)))
 
         if prev_body and prev_body[-1].strip():
             prev_body.append("")

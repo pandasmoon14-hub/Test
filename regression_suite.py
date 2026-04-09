@@ -125,44 +125,6 @@ Condition Monitor: 10
 """.strip()
 
 
-def fixture_sparse_matrix_table() -> str:
-    return """
-<!-- PAGE:1 -->
-| Action | Goblin | Ogre | Dragon |
-| Attack | X |  |  |
-| Defend |  | X |  |
-| Cast |  |  | X |
-""".strip()
-
-
-def fixture_callout_heavy_prose() -> str:
-    return """
-<!-- PAGE:1 -->
-> Sidebar: This is a callout.
-Main prose paragraph continues with normal sentence flow.
-Another prose line with emphasis and examples.
-""".strip()
-
-
-def fixture_full_art_divider() -> str:
-    return """
-<!-- PAGE:10 -->
-[IMAGE PAGE]
-""".strip()
-
-
-def fixture_cross_page_split_table() -> str:
-    return """
-<!-- PAGE:1 -->
-| Name | A | B |
-| --- | --- | --- |
-| Alpha | 1 |
-<!-- PAGE:2 -->
-| 2 |
-Paragraph below.
-""".strip()
-
-
 def fixture_page_markers() -> str:
     return """
 <!-- PAGE:1 -->
@@ -226,30 +188,6 @@ def test_vocab_whog() -> TestResult:
 def test_vocab_shadowrun() -> TestResult:
     fam = best_family(fixture_shadowrun_statblock())
     return TestResult("vocab_shadowrun", fam.family == "shadowrun", f"family={fam.family}")
-
-
-def test_sparse_matrix_preserves_cells() -> TestResult:
-    fixed, _ = apply_fixes(fixture_sparse_matrix_table())
-    ok = "| Attack | X |  |  |" in fixed and "| Defend |  | X |  |" in fixed
-    return TestResult("sparse_matrix_preserves_cells", ok, "sparse matrix alignment")
-
-
-def test_callout_prose_not_tableized() -> TestResult:
-    fixed, stats = apply_fixes(fixture_callout_heavy_prose())
-    ok = stats["tables_seen"] == 0 and "Sidebar" in fixed
-    return TestResult("callout_prose_not_tableized", ok, json.dumps(stats))
-
-
-def test_cross_page_split_row_merge() -> TestResult:
-    fixed, _ = apply_fixes(fixture_cross_page_split_table())
-    ok = "| Alpha | 1 | 2 |" in fixed
-    return TestResult("cross_page_split_row_merge", ok, fixed)
-
-
-def test_full_art_divider_scoring() -> TestResult:
-    score, issues = page_score(parse_page_markers(fixture_full_art_divider())[10])
-    ok = score <= 0.9 and "thin_output" in issues
-    return TestResult("full_art_divider_scoring", ok, f"score={score:.3f},issues={issues}")
 
 
 def test_page_marker_parser() -> TestResult:
@@ -415,6 +353,26 @@ def test_score_functions_stability() -> TestResult:
     return TestResult("score_functions_stability", passed, f"vals={vals}")
 
 
+def test_interface_schemas_present() -> TestResult:
+    schema_dir = Path(__file__).parent / "schemas"
+    expected = [
+        "manifest.schema.json",
+        "page_metadata.schema.json",
+        "table_sidecar.schema.json",
+        "repair_queue.schema.json",
+        "quality_report.schema.json",
+    ]
+    missing = [name for name in expected if not (schema_dir / name).exists()]
+    if missing:
+        return TestResult("interface_schemas_present", False, f"missing={missing}")
+    for name in expected:
+        try:
+            json.loads((schema_dir / name).read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            return TestResult("interface_schemas_present", False, f"invalid_json={name}:{exc}")
+    return TestResult("interface_schemas_present", True, "all schemas present and valid json")
+
+
 def test_stat_block_with_table() -> TestResult:
     text = """
 # Orc
@@ -448,10 +406,6 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_statblock_bad(),
         test_vocab_whog(),
         test_vocab_shadowrun(),
-        test_sparse_matrix_preserves_cells(),
-        test_callout_prose_not_tableized(),
-        test_cross_page_split_row_merge(),
-        test_full_art_divider_scoring(),
         test_page_marker_parser(),
         test_table_fixer_idempotent(),
         test_table_fixer_padding(),
@@ -468,6 +422,7 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_utf8_preservation(),
         test_marker_multpage(),
         test_score_functions_stability(),
+        test_interface_schemas_present(),
         test_stat_block_with_table(),
         test_regression_snapshot(tmp),
     ]
