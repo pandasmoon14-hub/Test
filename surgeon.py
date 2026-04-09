@@ -33,11 +33,11 @@ class SurgeonConfig:
     queue_file: Path
     model_name: str = "mistralai/Pixtral-12B-2409"
     min_crop_size: int = 96
-    max_page_tokens: int = 3072
-    repair_batch: int = 6
+    max_page_tokens: int = 4096
+    repair_batch: int = 12
     render_dpi: int = 180
-    gpu_memory_utilization: float = 0.85
-    max_model_len: int = 16384
+    gpu_memory_utilization: float = 0.92
+    max_model_len: int = 28672
     tokenizer_mode: str = "mistral"
     gpu_profile: str = "default"
 
@@ -45,7 +45,7 @@ class SurgeonConfig:
     def from_env(cls, gpu_profile: str = "default") -> "SurgeonConfig":
         output_dir = Path(os.getenv("OUTPUT_DIR", "/workspace/ttrpg_output"))
         defaults = {
-            "default": {"max_page_tokens": "3072", "repair_batch": "6", "gpu_memory_utilization": "0.85", "max_model_len": "16384"},
+            "default": {"max_page_tokens": "4096", "repair_batch": "12", "gpu_memory_utilization": "0.92", "max_model_len": "28672"},
             "a6000": {"max_page_tokens": "4096", "repair_batch": "12", "gpu_memory_utilization": "0.92", "max_model_len": "24576"},
         }
         prof = defaults.get(gpu_profile, defaults["default"])

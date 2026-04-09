@@ -187,6 +187,12 @@ class BookManifest:
     lane: str
     lane_scores: dict[str, float]
     donor_family: str
+    page_count: int
+    total_pages: int
+    pages_audited: int
+    pages_passed: int
+    pages_remaining: int
+    page_marker_mode: str
     chunk_count: int
     total_pages: int
     pages_detected: int
@@ -270,9 +276,17 @@ def normalize_text(text: str) -> str:
 
 
 def detect_multicolumn(blocks: list[tuple]) -> bool:
-    if len(blocks) < 8:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 8:
         return False
-    xs = [b[0] for b in blocks if len(b) >= 4]
+    xs = []
+    for b in text_blocks:
+        txt = str(b[4]).strip()
+        width = max(1.0, float(b[2]) - float(b[0]))
+        # downweight margin tabs / decorative callouts
+        if len(txt) < 10 and width < 120:
+            continue
+        xs.append(float(b[0]))
     if len(xs) < 8:
         return False
     xs = sorted(xs)
@@ -282,6 +296,22 @@ def detect_multicolumn(blocks: list[tuple]) -> bool:
     if len(left) < 3 or len(right) < 3:
         return False
     return (statistics.mean(right) - statistics.mean(left)) > 90
+
+
+def column_sorted_blocks(blocks: list[tuple], page_width: float) -> list[tuple]:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 4:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    xs = sorted(set(round(float(b[0]), 0) for b in text_blocks))
+    if len(xs) < 2:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    gaps = [(xs[i + 1] - xs[i], (xs[i] + xs[i + 1]) / 2) for i in range(len(xs) - 1)]
+    max_gap, split_x = max(gaps, key=lambda g: g[0])
+    if max_gap < page_width * 0.08:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    left = sorted([b for b in text_blocks if float(b[0]) < split_x], key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    right = sorted([b for b in text_blocks if float(b[0]) >= split_x], key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    return left + right
 
 
 def detect_table_density(text: str) -> float:
@@ -421,23 +451,17 @@ def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
     return "skip"
 
 
-def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path) -> None:
+def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path, debug_log: Path | None = None) -> None:
     meta_rows = []
     with fitz.open(pdf) as doc, open(out_md, "w", encoding="utf-8") as out:
         header_footer_memory: dict[str, int] = {}
         for i, page in enumerate(doc):
             blocks = page.get_text("blocks")
-            x_coords = [b[0] for b in blocks if len(b) >= 5]
-            split_x = statistics.median(x_coords) if x_coords else 0.0
-            col_gap = page.rect.width * 0.22
-            left_blocks = [b for b in blocks if len(b) >= 5 and b[0] <= split_x - col_gap / 2]
-            right_blocks = [b for b in blocks if len(b) >= 5 and b[0] > split_x + col_gap / 2]
-            center_blocks = [b for b in blocks if len(b) >= 5 and b not in left_blocks and b not in right_blocks]
-            if left_blocks and right_blocks:
-                blocks_sorted = sorted(left_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1))) + sorted(right_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1))) + sorted(center_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
-            else:
-                blocks_sorted = sorted(blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+            blocks_sorted = column_sorted_blocks(blocks, page.rect.width)
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
+            image_blocks = [b for b in raw_blocks if len(b) > 6 and int(b[6]) == 1]
+            if image_blocks and not lines:
+                lines = ["[IMAGE PAGE]"]
             first = lines[0].strip() if lines else ""
             last = lines[-1].strip() if lines else ""
             for token in [first, last]:
@@ -446,7 +470,10 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
             out.write(f"\n<!-- PAGE:{i + 1} -->\n")
             cleaned = [line for line in lines if not (header_footer_memory.get(line.strip(), 0) > 3 and len(line.strip()) < 80)]
             out.write("\n".join(cleaned).strip() + "\n")
-            meta_rows.append({"page": i + 1, "chars": sum(len(x) for x in cleaned), "blocks": len(blocks_sorted), "tables_detected": sum(1 for x in cleaned if x.count("|") >= 2), "lane": "A"})
+            meta_rows.append({"page": i + 1, "chars": sum(len(x) for x in cleaned), "blocks": len(blocks_sorted), "tables_detected": sum(1 for x in cleaned if x.count("|") >= 2), "lane": "A", "image_blocks": len(image_blocks), "raw_blocks": len(raw_blocks)})
+            if debug_log is not None:
+                with open(debug_log, "a", encoding="utf-8") as lg:
+                    lg.write(f"[heuristic] page={i+1} raw_blocks={len(raw_blocks)} kept={len(blocks)} images={len(image_blocks)} multicol={detect_multicolumn(blocks)}\n")
     save_json(page_meta_path, meta_rows)
 
 
@@ -500,68 +527,187 @@ def split_pdf(pdf: Path, out_dir: Path, n_chunks: int, total_pages: int) -> list
     return chunks
 
 
-def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile, log_file: Path) -> tuple[Path, str | None, list[dict[str, Any]]]:
+def load_page_map(path: Path, start: int, end: int, strict: bool) -> dict[int, str]:
+    if not path.exists():
+        if strict:
+            raise RuntimeError(f"missing page_map_json: {path}")
+        return {}
+    rows = load_json(path, [])
+    page_map: dict[int, str] = {}
+    if not isinstance(rows, list):
+        if strict:
+            raise RuntimeError(f"invalid page_map_json format: {path}")
+        return {}
+    for row in rows:
+        if not isinstance(row, dict):
+            continue
+        source_page = row.get("source_page")
+        markdown = normalize_text(str(row.get("markdown", ""))).strip()
+        if not isinstance(source_page, int):
+            continue
+        abs_page = start + source_page - 1
+        if start <= abs_page <= end:
+            page_map[abs_page] = markdown
+    return page_map
+
+
+def write_page_map_markdown(out_md: Path, total_pages: int, page_map: dict[int, str]) -> None:
+    with open(out_md, "w", encoding="utf-8") as file:
+        for page_no in range(1, total_pages + 1):
+            file.write(f"<!-- PAGE:{page_no} -->\n")
+            file.write(page_map.get(page_no, "").strip() + "\n\n")
+
+
+def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile, log_file: Path) -> tuple[Path, str | None, list[dict[str, Any]], str]:
     total_pages = profile.total_pages
     complexity = min(1.0, profile.table_page_ratio + profile.multicolumn_ratio + profile.sidebar_page_ratio)
     n_chunks = chunk_plan(total_pages, cfg, complexity)
     meta: list[dict[str, Any]] = []
 
     if n_chunks == 1:
-        payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(pdf), "--output_dir", str(out_dir), "--batch_multiplier", str(cfg.batch_multiplier), "--strict"], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:{pdf.name}")
-        return Path(payload["md_path"]), payload.get("api_variant"), meta
+        page_map_path = out_dir / f"{pdf.stem}.page_map.json"
+        payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(pdf), "--output_dir", str(out_dir), "--batch_multiplier", str(cfg.batch_multiplier), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:{pdf.name}")
+        page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, total_pages, cfg.strict_page_truth)
+        if page_map:
+            out = out_dir / f"{pdf.stem}.md"
+            write_page_map_markdown(out, total_pages, page_map)
+            meta.append({"chunk": 0, "page_start": 1, "page_end": total_pages, "lane": "B", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
+            return out, payload.get("api_variant"), meta, "source_page_map"
+        return Path(payload["md_path"]), payload.get("api_variant"), meta, "native_or_fallback"
 
     chunks = split_pdf(pdf, out_dir, n_chunks, total_pages)
     collected, api_variant = {}, None
     for cp, (start, end), idx in chunks:
         cout = out_dir / f"_chunk_{idx:02d}_out"
         cout.mkdir(parents=True, exist_ok=True)
-        payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(cp), "--output_dir", str(cout), "--batch_multiplier", str(max(1, cfg.batch_multiplier - 1 if complexity > 0.8 else cfg.batch_multiplier)), "--strict"], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:chunk_{idx}")
+        page_map_path = cout / f"{cp.stem}.page_map.json"
+        payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(cp), "--output_dir", str(cout), "--batch_multiplier", str(max(1, cfg.batch_multiplier - 1 if complexity > 0.8 else cfg.batch_multiplier)), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:chunk_{idx}")
         api_variant = payload.get("api_variant") or api_variant
         md = Path(payload["md_path"])
         text = md.read_text(encoding="utf-8", errors="replace")
         if len(text.strip()) < 50:
             raise RuntimeError(f"empty chunk output {idx}")
-        collected[idx] = text
-        meta.append({"chunk": idx, "page_start": start + 1, "page_end": end + 1, "lane": "B"})
+        page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), start + 1, end + 1, cfg.strict_page_truth)
+        collected[idx] = {"text": text, "pages": page_map}
+        meta.append({"chunk": idx, "page_start": start + 1, "page_end": end + 1, "lane": "B", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
     if len(collected) != len(chunks):
         raise RuntimeError("incomplete marker chunks")
 
+    page_map: dict[int, str] = {}
+    for _, (_, _), idx in chunks:
+        page_map.update(collected[idx]["pages"])
     out = out_dir / f"{pdf.stem}.md"
-    with open(out, "w", encoding="utf-8") as f:
-        for _, (start, end), idx in chunks:
-            f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx].strip()}\n")
+    if page_map:
+        write_page_map_markdown(out, total_pages, page_map)
+        marker_mode = "source_page_map"
+    else:
+        if cfg.strict_page_truth:
+            raise RuntimeError("strict_page_truth: missing marker page maps for chunked output")
+        with open(out, "w", encoding="utf-8") as f:
+            for _, (start, end), idx in chunks:
+                f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx]['text'].strip()}\n")
+        marker_mode = "chunk_fallback"
     for cp, _, idx in chunks:
         cp.unlink(missing_ok=True)
         shutil.rmtree(out_dir / f"_chunk_{idx:02d}_out", ignore_errors=True)
-    return out, api_variant, meta
+    return out, api_variant, meta, marker_mode
 
 
-def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile, log_file: Path) -> tuple[Path, list[dict[str, Any]]]:
+def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile, log_file: Path) -> tuple[Path, list[dict[str, Any]], str]:
     complexity = min(1.0, profile.table_page_ratio + profile.multicolumn_ratio)
     n_chunks = chunk_plan(profile.total_pages, cfg, complexity)
     meta: list[dict[str, Any]] = []
     if n_chunks == 1:
-        payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(pdf), "--output_dir", str(out_dir), "--strict"], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:{pdf.name}")
-        return Path(payload["md_path"]), meta
+        page_map_path = out_dir / f"{pdf.stem}.page_map.json"
+        payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(pdf), "--output_dir", str(out_dir), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:{pdf.name}")
+        page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, profile.total_pages, cfg.strict_page_truth)
+        if page_map:
+            out = out_dir / f"{pdf.stem}.md"
+            write_page_map_markdown(out, profile.total_pages, page_map)
+            meta.append({"chunk": 0, "page_start": 1, "page_end": profile.total_pages, "lane": "B2", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
+            return out, meta, "source_page_map"
+        return Path(payload["md_path"]), meta, "native_or_fallback"
 
     chunks = split_pdf(pdf, out_dir, n_chunks, profile.total_pages)
     collected = {}
     for cp, (start, end), idx in chunks:
         cout = out_dir / f"_dchunk_{idx:02d}_out"
         cout.mkdir(parents=True, exist_ok=True)
-        payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(cp), "--output_dir", str(cout), "--strict"], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:chunk_{idx}")
-        collected[idx] = Path(payload["md_path"]).read_text(encoding="utf-8", errors="replace")
-        meta.append({"chunk": idx, "page_start": start + 1, "page_end": end + 1, "lane": "B2"})
+        page_map_path = cout / f"{cp.stem}.page_map.json"
+        payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(cp), "--output_dir", str(cout), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:chunk_{idx}")
+        text = Path(payload["md_path"]).read_text(encoding="utf-8", errors="replace")
+        page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), start + 1, end + 1, cfg.strict_page_truth)
+        collected[idx] = {"text": text, "pages": page_map}
+        meta.append({"chunk": idx, "page_start": start + 1, "page_end": end + 1, "lane": "B2", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
     if len(collected) != len(chunks):
         raise RuntimeError("incomplete docling chunks")
     out = out_dir / f"{pdf.stem}.md"
-    with open(out, "w", encoding="utf-8") as f:
-        for _, (start, end), idx in chunks:
-            f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx].strip()}\n")
+    page_map: dict[int, str] = {}
+    for _, (_, _), idx in chunks:
+        page_map.update(collected[idx]["pages"])
+    if page_map:
+        write_page_map_markdown(out, profile.total_pages, page_map)
+        marker_mode = "source_page_map"
+    else:
+        if cfg.strict_page_truth:
+            raise RuntimeError("strict_page_truth: missing docling page maps for chunked output")
+        with open(out, "w", encoding="utf-8") as f:
+            for _, (start, end), idx in chunks:
+                f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx]['text'].strip()}\n")
+        marker_mode = "chunk_fallback"
     for cp, _, idx in chunks:
         cp.unlink(missing_ok=True)
         shutil.rmtree(out_dir / f"_dchunk_{idx:02d}_out", ignore_errors=True)
-    return out, meta
+    return out, meta, marker_mode
+
+
+def ensure_page_markers(content: str, total_pages: int) -> str:
+    if "<!-- PAGE:" in content:
+        return content
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", content) if p.strip()]
+
+    def render_marker_pages(page_numbers: list[int], source_paragraphs: list[str]) -> str:
+        if not page_numbers:
+            page_numbers = [1]
+        buckets = {p: [] for p in page_numbers}
+        if source_paragraphs:
+            for idx, paragraph in enumerate(source_paragraphs):
+                target_page = page_numbers[min(len(page_numbers) - 1, int(idx * len(page_numbers) / len(source_paragraphs)))]
+                buckets[target_page].append(paragraph)
+        lines: list[str] = []
+        for page_no in page_numbers:
+            lines.append(f"<!-- PAGE:{page_no} -->")
+            body = "\n\n".join(buckets.get(page_no, []))
+            if body:
+                lines.append(body)
+        return "\n".join(lines).strip() + "\n"
+
+    if "<!-- CHUNK:" in content and total_pages > 1:
+        chunk_re = re.compile(
+            r"<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->\s*(.*?)(?=(?:\n<!--\s*CHUNK:\d+\s+PAGES:\d+-\d+\s*-->)|\Z)",
+            flags=re.DOTALL,
+        )
+        pieces: list[str] = []
+        seen_pages: set[int] = set()
+        for m in chunk_re.finditer(content):
+            start, end = int(m.group(2)), int(m.group(3))
+            if end < start:
+                continue
+            page_numbers = [p for p in range(start, min(end, total_pages) + 1) if p >= 1]
+            if not page_numbers:
+                continue
+            seen_pages.update(page_numbers)
+            chunk_paragraphs = [p.strip() for p in re.split(r"\n\s*\n", m.group(4)) if p.strip()]
+            pieces.append(render_marker_pages(page_numbers, chunk_paragraphs))
+        if pieces:
+            missing = [p for p in range(1, total_pages + 1) if p not in seen_pages]
+            if missing:
+                pieces.append(render_marker_pages(missing, []))
+            return "\n".join(pieces).strip() + "\n"
+
+    if total_pages <= 1:
+        return "<!-- PAGE:1 -->\n" + content
+    return render_marker_pages(list(range(1, total_pages + 1)), paragraphs)
 
 
 def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, log_file: Path) -> Path:
@@ -700,7 +846,7 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
-        content = "<!-- PAGE:1 -->\n" + content
+        content = ensure_page_markers(content, profile.total_pages)
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():
@@ -753,18 +899,18 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
         dst.save(micro)
     scores = {}
     try:
-        md, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", profile, log_file)
+        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", profile, log_file)
         scores["B"] = len(audit_markdown(md, profile, cfg).failed_pages)
     except Exception:
         scores["B"] = 999
     try:
-        md, _ = run_docling(cfg, micro, out_dir / "_race_docling", profile, log_file)
+        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", profile, log_file)
         scores["B2"] = len(audit_markdown(md, profile, cfg).failed_pages)
     except Exception:
         scores["B2"] = 999
     try:
         amd, apm = out_dir / "_race_a.md", out_dir / "_race_a_pages.json"
-        write_page_markers_from_blocks(micro, amd, apm)
+        write_page_markers_from_blocks(micro, amd, apm, log_file)
         scores["A"] = len(audit_markdown(amd, profile, cfg).failed_pages)
     except Exception:
         scores["A"] = 999
@@ -815,12 +961,14 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     active_pdf = run_ocr(cfg, pdf, out_dir / f"{pdf.stem}_ocr.pdf", ocr_mode, log_file)
 
     marker_api_variant, lane_meta = None, []
+    page_marker_mode = "native"
     if lane == "A":
         write_page_markers_from_blocks(active_pdf, md_out, page_meta)
+        page_marker_mode = "source_blocks"
     elif lane == "B":
-        md_out, marker_api_variant, lane_meta = run_marker(cfg, active_pdf, out_dir, profile, log_file)
+        md_out, marker_api_variant, lane_meta, page_marker_mode = run_marker(cfg, active_pdf, out_dir, profile, log_file)
     else:
-        md_out, lane_meta = run_docling(cfg, active_pdf, out_dir, profile, log_file)
+        md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
     txt = expand_chunk_markers(txt)
@@ -854,7 +1002,22 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "page_profiles": {str(p.page_index + 1): asdict(p) for p in profile.page_features},
         }
 
-    page_rows = [{"page": p.page_index + 1, "chars": p.char_count, "blocks": p.block_count, "detected_tables": p.table_density, "detected_columns": p.is_multicolumn, "lane": lane, "audit": next((a.reasons for a in audit.page_audits if a.page_index == p.page_index + 1), [])} for p in profile.page_features]
+    ocr_applied_pages = list(range(1, profile.total_pages + 1)) if ocr_mode in {"force", "redo"} else []
+    page_rows = [{
+        "page": p.page_index + 1,
+        "chars": p.char_count,
+        "blocks": p.block_count,
+        "detected_tables": p.table_density,
+        "detected_columns": p.is_multicolumn,
+        "table_regions_detected": 1 if p.table_density > 0.15 else 0,
+        "statblock_regions_detected": 1 if p.statblock_density > 0.3 else 0,
+        "ocr_applied": (p.page_index + 1) in ocr_applied_pages,
+        "source_page_hash": f"{pdf.stem}:{p.page_index+1}:{p.char_count}:{p.block_count}",
+        "repair": {"repaired": False, "unrepaired": True, "retry_count": 0, "final_dpi": None, "prompt_class": None, "repair_confidence": None},
+        "lane": lane,
+        "page_marker_mode": page_marker_mode,
+        "audit": next((a.reasons for a in audit.page_audits if a.page_index == p.page_index + 1), []),
+    } for p in profile.page_features]
     save_json(page_meta, page_rows)
 
     chunk_count = max(1, len(lane_meta))
@@ -868,12 +1031,15 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--glob", default="*.pdf")
     p.add_argument("--limit", type=int, default=0)
     p.add_argument("--resume", action="store_true")
+    p.add_argument("--strict_page_truth", action="store_true")
     return p.parse_args()
 
 
 def main() -> None:
     cfg = apply_layout_calibration(RuntimeConfig.from_env(Path(__file__).parent))
     args = parse_args()
+    if args.strict_page_truth:
+        cfg.strict_page_truth = True
     ensure_dirs(cfg)
 
     pdfs = sorted(cfg.input_dir.glob(args.glob))

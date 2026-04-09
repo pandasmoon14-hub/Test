@@ -122,21 +122,14 @@ def detect_table_blocks(text: str) -> list[str]:
 
 
 def detect_rule_like_blocks(text: str, ttrpg_mode: bool) -> list[str]:
-    base = [
-        r"\bDC\s*\d+\b", r"\bArmor\s+Class\b", r"\bHit\s+Points?\b", r"\bSaving\s+Throw\b", r"\bSpell\s+Slots?\b",
-        r"\bAction\s+Economy\b", r"\bChallenge\s+Rating\b", r"\bInitiative\b", r"\bCooldown\b", r"\bDrawback\b",
-        r"\bBase\s+Effect\b", r"\bBonus\s+\d+\b", r"\bPC\s+Level\b",
-    ]
-    if ttrpg_mode:
-        base += [r"\bWyrd\b", r"\bUrge\b", r"\bVitality\b", r"\bRevivals?\b", r"\bHard\s+Success\b", r"\bBotch\b", r"\bSuccesses\b", r"\bSoak\b", r"\bShielding\b"]
-    regex = re.compile("|".join(base), flags=re.IGNORECASE)
+    generic_regex = re.compile(r"\b(dc\s*\d+|target number|difficulty|cooldown|resource|actions?|reaction|roll table|initiative)\b", flags=re.IGNORECASE)
     out = []
     for para in text.split("\n\n"):
         p = para.strip()
         if not p:
             continue
         vocab_hits = sum(mechanics_hits(p).values())
-        if regex.search(p) or vocab_hits >= 2 or statblock_density(p) >= 0.22:
+        if generic_regex.search(p) or vocab_hits >= (1 if ttrpg_mode else 2) or statblock_density(p) >= 0.22:
             out.append(p)
     return out
 
