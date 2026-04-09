@@ -134,9 +134,73 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
     return blocks, promoted
 
 
-def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
+def stitch_cross_page_table_prefixes(markdown: str) -> str:
+    page_pat = re.compile(r"^\s*<!--\s*PAGE:(\d+)\s*-->\s*$")
     lines = markdown.splitlines()
-    blocks, promoted = collect_table_blocks(markdown)
+    if not any(page_pat.match(line) for line in lines):
+        return markdown
+
+    pages: list[tuple[int, list[str]]] = []
+    prefix: list[str] = []
+    current_page: int | None = None
+    current_body: list[str] = []
+    for line in lines:
+        marker = page_pat.match(line)
+        if marker:
+            if current_page is not None:
+                pages.append((current_page, current_body))
+            else:
+                prefix = current_body
+            current_page = int(marker.group(1))
+            current_body = []
+            continue
+        current_body.append(line)
+    if current_page is None:
+        return markdown
+    pages.append((current_page, current_body))
+
+    for idx in range(1, len(pages)):
+        prev_page, prev_body = pages[idx - 1]
+        _, next_body = pages[idx]
+        prev_non_empty = [line for line in prev_body if line.strip()]
+        if not prev_non_empty or not (is_tableish_line(prev_non_empty[-1]) or detect_pseudo_table_line(prev_non_empty[-1])):
+            continue
+
+        scan = 0
+        while scan < len(next_body) and not next_body[scan].strip():
+            scan += 1
+
+        consume = 0
+        moved: list[str] = []
+        while scan + consume < len(next_body):
+            candidate = next_body[scan + consume]
+            if not candidate.strip():
+                break
+            if not (is_tableish_line(candidate) or detect_pseudo_table_line(candidate)):
+                break
+            moved.append(pseudo_to_pipe(candidate) if detect_pseudo_table_line(candidate) else candidate)
+            consume += 1
+
+        if not moved:
+            continue
+
+        if prev_body and prev_body[-1].strip():
+            prev_body.append("")
+        prev_body.extend(moved)
+        del next_body[scan : scan + consume]
+
+    rebuilt: list[str] = []
+    rebuilt.extend(prefix)
+    for page_num, body in pages:
+        rebuilt.append(f"<!-- PAGE:{page_num} -->")
+        rebuilt.extend(body)
+    return "\n".join(rebuilt)
+
+
+def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
+    stitched = stitch_cross_page_table_prefixes(markdown)
+    lines = stitched.splitlines()
+    blocks, promoted = collect_table_blocks(stitched)
 
     total_tables = len(blocks)
     tables_fixed = 0

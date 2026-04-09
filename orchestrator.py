@@ -535,6 +535,65 @@ def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, lo
     return input_pdf
 
 
+def expand_chunk_markers(content: str) -> str:
+    chunk_pat = re.compile(r"^\s*<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->\s*$")
+    page_pat = re.compile(r"^\s*<!--\s*PAGE:(\d+)\s*-->\s*$")
+
+    lines = content.splitlines()
+    out_lines: list[str] = []
+    i = 0
+    saw_chunk = False
+
+    while i < len(lines):
+        match = chunk_pat.match(lines[i])
+        if not match:
+            out_lines.append(lines[i])
+            i += 1
+            continue
+
+        saw_chunk = True
+        start_page = int(match.group(2))
+        end_page = int(match.group(3))
+        chunk_size = max(1, end_page - start_page + 1)
+        i += 1
+
+        body: list[str] = []
+        while i < len(lines) and not chunk_pat.match(lines[i]):
+            body.append(lines[i])
+            i += 1
+
+        local_pages: dict[int, list[str]] = {}
+        cur_page = 1
+        for body_line in body:
+            pm = page_pat.match(body_line)
+            if pm:
+                cur_page = int(pm.group(1))
+                local_pages.setdefault(cur_page, [])
+                continue
+            local_pages.setdefault(cur_page, []).append(body_line)
+
+        absolute_pages: dict[int, list[str]] = {}
+        for page_num, page_lines in local_pages.items():
+            if start_page <= page_num <= end_page:
+                abs_page = page_num
+            elif 1 <= page_num <= chunk_size:
+                abs_page = start_page + page_num - 1
+            else:
+                abs_page = start_page + page_num - 1
+            absolute_pages.setdefault(abs_page, []).extend(page_lines)
+
+        if not local_pages:
+            absolute_pages[start_page] = body
+
+        for page_num in range(start_page, end_page + 1):
+            out_lines.append(f"<!-- PAGE:{page_num} -->")
+            page_lines = absolute_pages.get(page_num, [])
+            if page_lines:
+                out_lines.extend(page_lines)
+
+    return "\n".join(out_lines) if saw_chunk else content
+
+
 def parse_page_markers(content: str) -> dict[int, str]:
     pages, cur = {}, 1
     for line in content.splitlines():
@@ -686,8 +745,11 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         md_out, lane_meta = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
+    txt = expand_chunk_markers(txt)
     if "<!-- PAGE:" not in txt:
         md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")
+    else:
+        md_out.write_text(txt, encoding="utf-8")
 
     audit = audit_markdown(md_out, profile, cfg)
 
@@ -705,7 +767,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "failed_pages": outstanding,
             "md_path": str(md_out),
             "full_book_repair": cfg.enforce_full_book_repair,
-            "queued_at": now_iso(),
+            "queued_at": time.time(),
             "audit_signatures": audit.signatures,
             "page_reasons": {str(a.page_index): a.reasons for a in audit.page_audits if a.reasons},
             "page_profiles": {str(p.page_index + 1): asdict(p) for p in profile.page_features},
