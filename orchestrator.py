@@ -594,9 +594,50 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
 def ensure_page_markers(content: str, total_pages: int) -> str:
     if "<!-- PAGE:" in content:
         return content
+    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", content) if p.strip()]
+
+    def render_marker_pages(page_numbers: list[int], source_paragraphs: list[str]) -> str:
+        if not page_numbers:
+            page_numbers = [1]
+        buckets = {p: [] for p in page_numbers}
+        if source_paragraphs:
+            for idx, paragraph in enumerate(source_paragraphs):
+                target_page = page_numbers[min(len(page_numbers) - 1, int(idx * len(page_numbers) / len(source_paragraphs)))]
+                buckets[target_page].append(paragraph)
+        lines: list[str] = []
+        for page_no in page_numbers:
+            lines.append(f"<!-- PAGE:{page_no} -->")
+            body = "\n\n".join(buckets.get(page_no, []))
+            if body:
+                lines.append(body)
+        return "\n".join(lines).strip() + "\n"
+
     if "<!-- CHUNK:" in content and total_pages > 1:
-        return content
-    return "<!-- PAGE:1 -->\n" + content
+        chunk_re = re.compile(
+            r"<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->\s*(.*?)(?=(?:\n<!--\s*CHUNK:\d+\s+PAGES:\d+-\d+\s*-->)|\Z)",
+            flags=re.DOTALL,
+        )
+        pieces: list[str] = []
+        seen_pages: set[int] = set()
+        for m in chunk_re.finditer(content):
+            start, end = int(m.group(2)), int(m.group(3))
+            if end < start:
+                continue
+            page_numbers = [p for p in range(start, min(end, total_pages) + 1) if p >= 1]
+            if not page_numbers:
+                continue
+            seen_pages.update(page_numbers)
+            chunk_paragraphs = [p.strip() for p in re.split(r"\n\s*\n", m.group(4)) if p.strip()]
+            pieces.append(render_marker_pages(page_numbers, chunk_paragraphs))
+        if pieces:
+            missing = [p for p in range(1, total_pages + 1) if p not in seen_pages]
+            if missing:
+                pieces.append(render_marker_pages(missing, []))
+            return "\n".join(pieces).strip() + "\n"
+
+    if total_pages <= 1:
+        return "<!-- PAGE:1 -->\n" + content
+    return render_marker_pages(list(range(1, total_pages + 1)), paragraphs)
 
 
 def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, log_file: Path) -> Path:
@@ -667,7 +708,7 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
-        content = "<!-- PAGE:1 -->\n" + content
+        content = ensure_page_markers(content, profile.total_pages)
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():

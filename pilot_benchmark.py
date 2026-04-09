@@ -38,15 +38,10 @@ def read_manifest(path: Path) -> dict[str, Any]:
 
 
 def count_manifest_pages(manifest: dict[str, Any], output_dir: Path, pdf_stem: str) -> int:
-    if manifest:
-        page_count = manifest.get("page_count")
-        if isinstance(page_count, int) and page_count > 0:
-            return page_count
-        raise ValueError("manifest missing valid page_count")
-
-    page_count = manifest.get("page_count")
-    if isinstance(page_count, int) and page_count > 0:
-        return page_count
+    for key in ("page_count", "total_pages", "pages_audited"):
+        value = manifest.get(key)
+        if isinstance(value, int) and value > 0:
+            return value
 
     page_meta_path = manifest.get("page_metadata_path")
     candidate_paths = []
@@ -62,6 +57,7 @@ def count_manifest_pages(manifest: dict[str, Any], output_dir: Path, pdf_stem: s
             except (json.JSONDecodeError, OSError):
                 continue
 
+    # Keep an explicit hard floor only after exhausting all real-count sources.
     return 1
 
 
