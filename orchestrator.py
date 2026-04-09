@@ -29,6 +29,8 @@ from pathlib import Path
 from typing import Any
 
 import fitz
+from mechanics_vocab import statblock_density as vocab_statblock_density
+from table_fixer import apply_fixes as apply_table_fixes
 
 try:
     from sqlite_queue import QueueDB, queue_item_from_record
@@ -79,6 +81,12 @@ class RuntimeConfig:
     sample_race_pages: int = 8
     use_sqlite_queue: bool = False
     sqlite_queue_path: Path | None = None
+    layout_profile_path: Path | None = None
+    lane_a_multicol_penalty: float = 2.0
+    lane_a_hard_exclusion_multicol: float = 0.6
+    table_ratio_threshold: float = 0.15
+    stat_ratio_threshold: float = 0.3
+    strict_page_truth: bool = False
 
     @classmethod
     def from_env(cls, repo_root: Path) -> "RuntimeConfig":
@@ -116,6 +124,12 @@ class RuntimeConfig:
             sample_race_pages=int(os.getenv("SAMPLE_RACE_PAGES", "8")),
             use_sqlite_queue=(os.getenv("USE_SQLITE_QUEUE", "0") == "1"),
             sqlite_queue_path=Path(os.getenv("SQLITE_QUEUE_PATH", str(output_dir / "repair_queue" / "queue.db"))),
+            layout_profile_path=Path(os.getenv("LAYOUT_PROFILE_PATH")) if os.getenv("LAYOUT_PROFILE_PATH") else None,
+            lane_a_multicol_penalty=float(os.getenv("LANE_A_MULTICOL_PENALTY", "2.0")),
+            lane_a_hard_exclusion_multicol=float(os.getenv("LANE_A_HARD_EXCLUSION_MULTICOL", "0.6")),
+            table_ratio_threshold=float(os.getenv("TABLE_RATIO_THRESHOLD", "0.15")),
+            stat_ratio_threshold=float(os.getenv("STAT_RATIO_THRESHOLD", "0.3")),
+            strict_page_truth=(os.getenv("STRICT_PAGE_TRUTH", "0") == "1"),
         )
 
 
@@ -174,6 +188,8 @@ class BookManifest:
     lane_scores: dict[str, float]
     donor_family: str
     chunk_count: int
+    total_pages: int
+    pages_detected: int
     ocr_mode: str
     started_at: str
     finished_at: str
@@ -205,6 +221,18 @@ def load_json(path: Path, default: Any) -> Any:
         return default
     with open(path, "r", encoding="utf-8") as file:
         return json.load(file)
+
+
+def apply_layout_calibration(cfg: RuntimeConfig) -> RuntimeConfig:
+    if cfg.layout_profile_path is None or not cfg.layout_profile_path.exists():
+        return cfg
+    payload = load_json(cfg.layout_profile_path, {})
+    rec = payload.get("recommended", {})
+    cfg.lane_a_multicol_penalty = float(rec.get("lane_a_multicol_penalty", cfg.lane_a_multicol_penalty))
+    cfg.lane_a_hard_exclusion_multicol = float(rec.get("lane_a_hard_exclusion_multicol", cfg.lane_a_hard_exclusion_multicol))
+    cfg.table_ratio_threshold = float(rec.get("table_ratio_threshold", cfg.table_ratio_threshold))
+    cfg.stat_ratio_threshold = float(rec.get("stat_ratio_threshold", cfg.stat_ratio_threshold))
+    return cfg
 
 
 def check_disk_space(cfg: RuntimeConfig) -> None:
@@ -242,9 +270,17 @@ def normalize_text(text: str) -> str:
 
 
 def detect_multicolumn(blocks: list[tuple]) -> bool:
-    if len(blocks) < 8:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 8:
         return False
-    xs = [b[0] for b in blocks if len(b) >= 4]
+    xs = []
+    for b in text_blocks:
+        txt = str(b[4]).strip()
+        width = max(1.0, float(b[2]) - float(b[0]))
+        # downweight margin tabs / decorative callouts
+        if len(txt) < 10 and width < 120:
+            continue
+        xs.append(float(b[0]))
     if len(xs) < 8:
         return False
     xs = sorted(xs)
@@ -256,12 +292,68 @@ def detect_multicolumn(blocks: list[tuple]) -> bool:
     return (statistics.mean(right) - statistics.mean(left)) > 90
 
 
+def column_sorted_blocks(blocks: list[tuple], page_width: float) -> list[tuple]:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 4:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    xs = sorted(set(round(float(b[0]), 0) for b in text_blocks))
+    if len(xs) < 2:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    gaps = [(xs[i + 1] - xs[i], (xs[i] + xs[i + 1]) / 2) for i in range(len(xs) - 1)]
+    max_gap, split_x = max(gaps, key=lambda g: g[0])
+    if max_gap < page_width * 0.08:
+        # uncertain column split; keep stable vertical ordering
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    left = sorted([b for b in text_blocks if float(b[0]) < split_x], key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    right = sorted([b for b in text_blocks if float(b[0]) >= split_x], key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    return left + right
+
+
+def filter_decorative_blocks(blocks: list[tuple], page: fitz.Page) -> list[tuple]:
+    page_rect = page.rect
+    drawings = page.get_drawings()
+    frame_rects = [d.get("rect") for d in drawings if d.get("rect") and d["rect"].width < page_rect.width * 0.2 and d["rect"].height > page_rect.height * 0.4]
+    kept = []
+    for b in blocks:
+        if len(b) < 5:
+            continue
+        x0, y0, x1, y1, txt = float(b[0]), float(b[1]), float(b[2]), float(b[3]), str(b[4]).strip()
+        if not txt:
+            continue
+        w, h = max(1.0, x1 - x0), max(1.0, y1 - y0)
+        edgeish = x0 < page_rect.width * 0.06 or x1 > page_rect.width * 0.94
+        if edgeish and len(txt) <= 16 and w < page_rect.width * 0.12:
+            continue
+        rect = fitz.Rect(x0, y0, x1, y1)
+        if any(fr and fr.intersects(rect) and len(txt) < 40 for fr in frame_rects):
+            continue
+        kept.append(b)
+    return kept
+
+
 def detect_table_density(text: str) -> float:
     lines = text.splitlines()
     if not lines:
         return 0.0
     tableish = sum(1 for line in lines if line.count("|") >= 2 or re.search(r"\b\d+\s{2,}\d+\b", line))
     return tableish / len(lines)
+
+
+def vector_table_density(page: fitz.Page) -> float:
+    drawings = page.get_drawings()
+    if not drawings:
+        return 0.0
+    horizontals = 0
+    verticals = 0
+    for draw in drawings:
+        rect = draw.get("rect")
+        if rect is None:
+            continue
+        if rect.width > page.rect.width * 0.2 and rect.height <= 2.0:
+            horizontals += 1
+        if rect.height > page.rect.height * 0.08 and rect.width <= 2.0:
+            verticals += 1
+    return min(1.0, (horizontals + verticals) / 20.0)
 
 
 def detect_sidebar_density(page: fitz.Page) -> float:
@@ -278,10 +370,7 @@ def detect_sidebar_density(page: fitz.Page) -> float:
 
 
 def detect_statblock_density(text: str) -> float:
-    keys = ["armor class", "hit points", "speed", "saving throw", "spell slots", "challenge rating", "dc ", "initiative", "actions", "bonus action"]
-    low = text.lower()
-    hits = sum(1 for k in keys if k in low)
-    return min(1.0, hits / 6.0)
+    return vocab_statblock_density(text)
 
 
 def image_coverage(page: fitz.Page) -> float:
@@ -304,9 +393,10 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     candidates = {0, total - 1}
     for i in range(0, total, max(1, cfg.sample_interval_pages)):
         candidates.add(i)
-    for i in range(total):
-        text = normalize_text(doc[i].get_text("text")[:2000]).lower()
-        if any(k in text for k in ["table of contents", "appendix", "index", "spell", "monster", "stat block"]):
+    hotspot_words = ["table of contents", "appendix", "index", "spell", "monster", "stat block", "armor class", "hit points", "difficulty class"]
+    for i in sorted(candidates):
+        text = normalize_text(doc[i].get_text("text")[:2200]).lower()
+        if any(k in text for k in hotspot_words):
             candidates.add(i)
     samples = sorted(candidates)
     if len(samples) > cfg.sample_budget:
@@ -321,6 +411,7 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
 
 def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     with fitz.open(pdf) as doc:
+        total_pages = len(doc)
         donor = choose_donor_family(pdf, doc)
         samples = adaptive_sample_pages(doc, cfg)
         rows: list[PageFeatures] = []
@@ -337,7 +428,7 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
                 image_coverage=image_coverage(page),
                 vector_text_ratio=vector_text_ratio(page, text),
                 is_multicolumn=detect_multicolumn(blocks),
-                table_density=detect_table_density(text),
+                table_density=max(detect_table_density(text), vector_table_density(page)),
                 sidebar_density=detect_sidebar_density(page),
                 statblock_density=detect_statblock_density(text),
             ))
@@ -346,19 +437,17 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     weird_ratio = statistics.mean([r.weird_ratio for r in rows]) if rows else 0.0
     scanned_ratio = sum(1 for r in rows if r.char_count < cfg.scan_threshold) / max(1, len(rows))
     multicol_ratio = sum(1 for r in rows if r.is_multicolumn) / max(1, len(rows))
-    table_ratio = sum(1 for r in rows if r.table_density > 0.15) / max(1, len(rows))
+    table_ratio = sum(1 for r in rows if r.table_density > cfg.table_ratio_threshold) / max(1, len(rows))
     sidebar_ratio = sum(1 for r in rows if r.sidebar_density > 0.2) / max(1, len(rows))
-    stat_ratio = sum(1 for r in rows if r.statblock_density > 0.3) / max(1, len(rows))
+    stat_ratio = sum(1 for r in rows if r.statblock_density > cfg.stat_ratio_threshold) / max(1, len(rows))
     image_ratio = sum(1 for r in rows if r.image_coverage > 0.4) / max(1, len(rows))
-
-    with fitz.open(pdf) as doc:
-        total_pages = len(doc)
-
     return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
-    a = (1.4 if profile.average_chars_per_page > cfg.min_chars_for_native else -1.0) + (1.2 if profile.weird_ratio < cfg.weird_char_limit else -1.0) - 1.3 * profile.multicolumn_ratio - 1.1 * profile.table_page_ratio - 0.8 * profile.sidebar_page_ratio - 0.8 * profile.statblock_page_ratio
+    a = (1.4 if profile.average_chars_per_page > cfg.min_chars_for_native else -1.0) + (1.2 if profile.weird_ratio < cfg.weird_char_limit else -1.0) - cfg.lane_a_multicol_penalty * profile.multicolumn_ratio - 1.2 * profile.table_page_ratio - 0.8 * profile.sidebar_page_ratio - 0.9 * profile.statblock_page_ratio
+    if profile.multicolumn_ratio > cfg.lane_a_hard_exclusion_multicol and (profile.table_page_ratio > 0.05 or profile.statblock_page_ratio > 0.05):
+        a -= 2.5
     b = 1.5 * profile.table_page_ratio + 0.9 * profile.statblock_page_ratio + 0.7 * profile.multicolumn_ratio + (0.4 if profile.donor_family in {"dnd5e", "ogl"} else 0.2) - 0.7 * profile.scanned_ratio
     b2 = 1.2 * profile.table_page_ratio + 1.0 * profile.multicolumn_ratio + 0.6 * profile.sidebar_page_ratio + 0.8 * profile.scanned_ratio + (0.5 if profile.donor_family == "mixed" else 0.2)
     return {"A": round(a, 4), "B": round(b, 4), "B2": round(b2, 4)}
@@ -379,14 +468,18 @@ def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
     return "skip"
 
 
-def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path) -> None:
+def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path, debug_log: Path | None = None) -> None:
     meta_rows = []
     with fitz.open(pdf) as doc, open(out_md, "w", encoding="utf-8") as out:
         header_footer_memory: dict[str, int] = {}
         for i, page in enumerate(doc):
-            blocks = page.get_text("blocks")
-            blocks_sorted = sorted(blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+            raw_blocks = page.get_text("blocks")
+            blocks = filter_decorative_blocks(raw_blocks, page)
+            blocks_sorted = column_sorted_blocks(blocks, page.rect.width)
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
+            image_blocks = [b for b in raw_blocks if len(b) > 6 and int(b[6]) == 1]
+            if image_blocks and not lines:
+                lines = ["[IMAGE PAGE]"]
             first = lines[0].strip() if lines else ""
             last = lines[-1].strip() if lines else ""
             for token in [first, last]:
@@ -395,7 +488,10 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
             out.write(f"\n<!-- PAGE:{i + 1} -->\n")
             cleaned = [line for line in lines if not (header_footer_memory.get(line.strip(), 0) > 3 and len(line.strip()) < 80)]
             out.write("\n".join(cleaned).strip() + "\n")
-            meta_rows.append({"page": i + 1, "chars": sum(len(x) for x in cleaned), "blocks": len(blocks_sorted), "tables_detected": sum(1 for x in cleaned if x.count("|") >= 2), "lane": "A"})
+            meta_rows.append({"page": i + 1, "chars": sum(len(x) for x in cleaned), "blocks": len(blocks_sorted), "tables_detected": sum(1 for x in cleaned if x.count("|") >= 2), "lane": "A", "image_blocks": len(image_blocks), "raw_blocks": len(raw_blocks)})
+            if debug_log is not None:
+                with open(debug_log, "a", encoding="utf-8") as lg:
+                    lg.write(f"[heuristic] page={i+1} raw_blocks={len(raw_blocks)} kept={len(blocks)} images={len(image_blocks)} multicol={detect_multicolumn(blocks)}\n")
     save_json(page_meta_path, meta_rows)
 
 
@@ -535,6 +631,75 @@ def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, lo
     return input_pdf
 
 
+def expand_chunk_markers(content: str) -> str:
+    chunk_pat = re.compile(r"^\s*<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->\s*$")
+    page_pat = re.compile(r"^\s*<!--\s*PAGE:(\d+)\s*-->\s*$")
+
+    lines = content.splitlines()
+    out_lines: list[str] = []
+    i = 0
+    saw_chunk = False
+
+    while i < len(lines):
+        match = chunk_pat.match(lines[i])
+        if not match:
+            out_lines.append(lines[i])
+            i += 1
+            continue
+
+        saw_chunk = True
+        start_page = int(match.group(2))
+        end_page = int(match.group(3))
+        chunk_size = max(1, end_page - start_page + 1)
+        i += 1
+
+        body: list[str] = []
+        while i < len(lines) and not chunk_pat.match(lines[i]):
+            body.append(lines[i])
+            i += 1
+
+        local_pages: dict[int, list[str]] = {}
+        cur_page = 1
+        for body_line in body:
+            pm = page_pat.match(body_line)
+            if pm:
+                cur_page = int(pm.group(1))
+                local_pages.setdefault(cur_page, [])
+                continue
+            local_pages.setdefault(cur_page, []).append(body_line)
+
+        absolute_pages: dict[int, list[str]] = {}
+        for page_num, page_lines in local_pages.items():
+            if start_page <= page_num <= end_page:
+                abs_page = page_num
+            elif 1 <= page_num <= chunk_size:
+                abs_page = start_page + page_num - 1
+            else:
+                abs_page = start_page + page_num - 1
+            absolute_pages.setdefault(abs_page, []).extend(page_lines)
+
+        if not local_pages:
+            paragraphs = [blk.strip() for blk in re.split(r"\n\s*\n", "\n".join(body)) if blk.strip()]
+            if paragraphs:
+                per_page: dict[int, list[str]] = {p: [] for p in range(start_page, end_page + 1)}
+                for idx, para in enumerate(paragraphs):
+                    target_page = start_page + min(chunk_size - 1, int((idx / max(1, len(paragraphs))) * chunk_size))
+                    per_page[target_page].append(para)
+                for p, p_blocks in per_page.items():
+                    if p_blocks:
+                        absolute_pages[p] = ("\n\n".join(p_blocks)).splitlines()
+            else:
+                absolute_pages[start_page] = body
+
+        for page_num in range(start_page, end_page + 1):
+            out_lines.append(f"<!-- PAGE:{page_num} -->")
+            page_lines = absolute_pages.get(page_num, [])
+            if page_lines:
+                out_lines.extend(page_lines)
+
+    return "\n".join(out_lines) if saw_chunk else content
+
+
 def parse_page_markers(content: str) -> dict[int, str]:
     pages, cur = {}, 1
     for line in content.splitlines():
@@ -567,11 +732,10 @@ def table_structure_score(text: str) -> float:
 
 
 def stat_block_score(text: str) -> float:
-    pats = ["armor class", "hit points", "speed", "skills", "saving throws", "actions"]
-    low = text.lower()
-    hits = sum(1 for p in pats if p in low)
-    if hits == 0:
+    density = vocab_statblock_density(text)
+    if density < 0.08:
         return 1.0
+    hits = max(1, int(density * 5))
     sep = len(re.findall(r"\n\s*[-*]\s+", text)) + text.count("|")
     return min(1.0, sep / (hits * 2 + 1))
 
@@ -645,7 +809,7 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
         scores["B2"] = 999
     try:
         amd, apm = out_dir / "_race_a.md", out_dir / "_race_a_pages.json"
-        write_page_markers_from_blocks(micro, amd, apm)
+        write_page_markers_from_blocks(micro, amd, apm, log_file)
         scores["A"] = len(audit_markdown(amd, profile, cfg).failed_pages)
     except Exception:
         scores["A"] = 999
@@ -667,7 +831,25 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     log_file, md_out, page_meta = cfg.log_dir / f"{pdf.stem}.log", out_dir / f"{pdf.stem}.md", out_dir / f"{pdf.stem}.pages.json"
 
     if md_out.exists() and not cfg.overwrite_existing:
-        return BookManifest(pdf.stem, str(pdf), "SKIP", {}, "unknown", 0, "skip", started_iso, now_iso(), round(time.perf_counter()-t0,3), str(md_out), str(page_meta), [], [])
+        return BookManifest(
+            book_id=pdf.stem,
+            source_pdf=str(pdf),
+            lane="SKIP",
+            lane_scores={},
+            donor_family="unknown",
+            chunk_count=0,
+            total_pages=0,
+            pages_detected=0,
+            ocr_mode="skip",
+            started_at=started_iso,
+            finished_at=now_iso(),
+            elapsed_sec=round(time.perf_counter() - t0, 3),
+            output_md=str(md_out),
+            page_metadata_path=str(page_meta),
+            audit_signatures=[],
+            failed_pages=[],
+            marker_api_variant=None,
+        )
 
     profile = analyze_pdf(pdf, cfg)
     lane, scores = choose_lane(profile, cfg)
@@ -679,19 +861,25 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
 
     marker_api_variant, lane_meta = None, []
     if lane == "A":
-        write_page_markers_from_blocks(active_pdf, md_out, page_meta)
+        write_page_markers_from_blocks(active_pdf, md_out, page_meta, log_file)
     elif lane == "B":
         md_out, marker_api_variant, lane_meta = run_marker(cfg, active_pdf, out_dir, profile, log_file)
     else:
         md_out, lane_meta = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
+    txt = expand_chunk_markers(txt)
+    txt, _ = apply_table_fixes(txt)
     if "<!-- PAGE:" not in txt:
         md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")
+    else:
+        md_out.write_text(txt, encoding="utf-8")
 
     audit = audit_markdown(md_out, profile, cfg)
 
     pages = parse_page_markers(md_out.read_text(encoding="utf-8", errors="replace"))
+    if cfg.strict_page_truth and profile.total_pages > 0 and len(pages) < profile.total_pages:
+        raise RuntimeError(f"strict_page_truth: page markers incomplete {len(pages)}/{profile.total_pages}")
     sidecar = [{"page": p, "markdown": blk} for p, body in pages.items() for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
     save_json(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json", sidecar)
 
@@ -705,7 +893,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "failed_pages": outstanding,
             "md_path": str(md_out),
             "full_book_repair": cfg.enforce_full_book_repair,
-            "queued_at": now_iso(),
+            "queued_at": time.time(),
             "audit_signatures": audit.signatures,
             "page_reasons": {str(a.page_index): a.reasons for a in audit.page_audits if a.reasons},
             "page_profiles": {str(p.page_index + 1): asdict(p) for p in profile.page_features},
@@ -714,7 +902,8 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     page_rows = [{"page": p.page_index + 1, "chars": p.char_count, "blocks": p.block_count, "detected_tables": p.table_density, "detected_columns": p.is_multicolumn, "lane": lane, "audit": next((a.reasons for a in audit.page_audits if a.page_index == p.page_index + 1), [])} for p in profile.page_features]
     save_json(page_meta, page_rows)
 
-    manifest = BookManifest(pdf.stem, str(pdf), lane, scores, profile.donor_family, len(lane_meta), ocr_mode, started_iso, now_iso(), round(time.perf_counter()-t0,3), str(md_out), str(page_meta), audit.signatures, failed_pages, marker_api_variant)
+    chunk_count = max(1, len(lane_meta))
+    manifest = BookManifest(pdf.stem, str(pdf), lane, scores, profile.donor_family, chunk_count, profile.total_pages, len(pages), ocr_mode, started_iso, now_iso(), round(time.perf_counter()-t0,3), str(md_out), str(page_meta), audit.signatures, failed_pages, marker_api_variant)
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     return manifest
 
@@ -728,7 +917,7 @@ def parse_args() -> argparse.Namespace:
 
 
 def main() -> None:
-    cfg = RuntimeConfig.from_env(Path(__file__).parent)
+    cfg = apply_layout_calibration(RuntimeConfig.from_env(Path(__file__).parent))
     args = parse_args()
     ensure_dirs(cfg)
 

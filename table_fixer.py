@@ -66,13 +66,26 @@ def is_tableish_line(line: str) -> bool:
 def detect_pseudo_table_line(line: str) -> bool:
     if "|" in line:
         return False
+    if line.strip().startswith("```"):
+        return False
     # multiple wide gaps likely columnar content
-    return bool(re.search(r"\S\s{3,}\S", line))
+    return bool(re.search(r"\S\s{2,}\S", line)) and len(re.split(r"\s{2,}", line.strip())) >= 2
 
 
 def pseudo_to_pipe(line: str) -> str:
-    parts = re.split(r"\s{3,}", line.strip())
+    parts = re.split(r"\s{2,}", line.strip())
     return render_pipe_row([normalize_cell(p) for p in parts if p.strip()])
+
+
+def infer_divider_from_data(cells: list[str]) -> str:
+    inferred = []
+    for cell in cells:
+        token = cell.strip().replace(",", "")
+        if re.fullmatch(r"[-+]?\d+(\.\d+)?|[xX✓✗]", token):
+            inferred.append("---:")
+        else:
+            inferred.append("---")
+    return "| " + " | ".join(inferred) + " |"
 
 
 def normalize_table_block(lines: list[str]) -> tuple[list[str], dict[str, int]]:
@@ -99,7 +112,8 @@ def normalize_table_block(lines: list[str]) -> tuple[list[str], dict[str, int]]:
 
     has_divider = any(is_divider(r) for r in normalized_rows)
     if not has_divider:
-        normalized_rows.insert(1, divider_row(width))
+        candidate_cells = split_pipe_row(normalized_rows[1]) if len(normalized_rows) > 1 else [""] * width
+        normalized_rows.insert(1, infer_divider_from_data(candidate_cells))
         stats["separator_added"] += 1
 
     if stats["rows_padded"] > 0 or stats["separator_added"] > 0:
@@ -115,6 +129,12 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
     promoted = 0
 
     while i < len(lines):
+        if lines[i].strip().startswith("```"):
+            i += 1
+            while i < len(lines) and not lines[i].strip().startswith("```"):
+                i += 1
+            i += 1
+            continue
         line = lines[i]
         if is_tableish_line(line) or detect_pseudo_table_line(line):
             start = i
@@ -134,9 +154,96 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
     return blocks, promoted
 
 
-def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
+def stitch_cross_page_table_prefixes(markdown: str) -> str:
+    page_pat = re.compile(r"^\s*<!--\s*PAGE:(\d+)\s*-->\s*$")
     lines = markdown.splitlines()
-    blocks, promoted = collect_table_blocks(markdown)
+    if not any(page_pat.match(line) for line in lines):
+        return markdown
+
+    pages: list[tuple[int, list[str]]] = []
+    prefix: list[str] = []
+    current_page: int | None = None
+    current_body: list[str] = []
+    for line in lines:
+        marker = page_pat.match(line)
+        if marker:
+            if current_page is not None:
+                pages.append((current_page, current_body))
+            else:
+                prefix = current_body
+            current_page = int(marker.group(1))
+            current_body = []
+            continue
+        current_body.append(line)
+    if current_page is None:
+        return markdown
+    pages.append((current_page, current_body))
+
+    for idx in range(1, len(pages)):
+        prev_page, prev_body = pages[idx - 1]
+        _, next_body = pages[idx]
+        prev_non_empty = [line for line in prev_body if line.strip()]
+        if not prev_non_empty or not (is_tableish_line(prev_non_empty[-1]) or detect_pseudo_table_line(prev_non_empty[-1])):
+            continue
+
+        scan = 0
+        while scan < len(next_body) and not next_body[scan].strip():
+            scan += 1
+
+        consume = 0
+        moved: list[str] = []
+        while scan + consume < len(next_body):
+            candidate = next_body[scan + consume]
+            if not candidate.strip():
+                break
+            if not (is_tableish_line(candidate) or detect_pseudo_table_line(candidate)):
+                break
+            moved.append(pseudo_to_pipe(candidate) if detect_pseudo_table_line(candidate) else candidate)
+            consume += 1
+
+        if not moved:
+            continue
+
+        if prev_body:
+            prev_last_idx = next((k for k in range(len(prev_body) - 1, -1, -1) if prev_body[k].strip()), -1)
+            if prev_last_idx >= 0 and moved and is_tableish_line(prev_body[prev_last_idx]) and is_tableish_line(moved[0]):
+                prev_cells = split_pipe_row(prev_body[prev_last_idx])
+                next_cells = split_pipe_row(moved[0])
+                expected_width = max((len(split_pipe_row(prev_body[k])) for k in range(max(0, prev_last_idx - 3), prev_last_idx + 1) if is_tableish_line(prev_body[k])), default=len(prev_cells))
+                if len(prev_cells) < expected_width and 0 < len(next_cells) <= (expected_width - len(prev_cells)):
+                    merged_cells = prev_cells + next_cells
+                    if len(merged_cells) < expected_width:
+                        merged_cells += [""] * (expected_width - len(merged_cells))
+                    prev_body[prev_last_idx] = render_pipe_row(merged_cells)
+                    moved = moved[1:]
+
+        if prev_body:
+            last_non_empty = next((ln for ln in reversed(prev_body) if ln.strip()), "")
+            if is_tableish_line(last_non_empty):
+                last_cells = split_pipe_row(last_non_empty)
+                for j, row in enumerate(moved):
+                    if is_tableish_line(row):
+                        cur_cells = split_pipe_row(row)
+                        if 0 < len(cur_cells) < len(last_cells):
+                            moved[j] = render_pipe_row(cur_cells + [""] * (len(last_cells) - len(cur_cells)))
+
+        if prev_body and prev_body[-1].strip():
+            prev_body.append("")
+        prev_body.extend(moved)
+        del next_body[scan : scan + consume]
+
+    rebuilt: list[str] = []
+    rebuilt.extend(prefix)
+    for page_num, body in pages:
+        rebuilt.append(f"<!-- PAGE:{page_num} -->")
+        rebuilt.extend(body)
+    return "\n".join(rebuilt)
+
+
+def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
+    stitched = stitch_cross_page_table_prefixes(markdown)
+    lines = stitched.splitlines()
+    blocks, promoted = collect_table_blocks(stitched)
 
     total_tables = len(blocks)
     tables_fixed = 0
