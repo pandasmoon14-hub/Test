@@ -9,8 +9,11 @@ core quality tooling behaviors without requiring heavyweight model inference.
 from __future__ import annotations
 
 import argparse
+import importlib
 import json
+import sys
 import tempfile
+import types
 from dataclasses import dataclass, asdict
 from pathlib import Path
 
@@ -23,7 +26,7 @@ from quality_harness import (
     parse_page_markers,
     page_score,
 )
-from mechanics_vocab import best_family, statblock_density
+from mechanics_vocab import best_family, statblock_density, mechanics_hits
 
 
 @dataclass
@@ -190,6 +193,12 @@ def test_vocab_shadowrun() -> TestResult:
     return TestResult("vocab_shadowrun", fam.family == "shadowrun", f"family={fam.family}")
 
 
+def test_vocab_anima_hits() -> TestResult:
+    text = "Zeon Ki MA Multiple Life Points Attack Ability"
+    hits = mechanics_hits(text)
+    return TestResult("vocab_anima_hits", hits.get("anima", 0) > 0, f"anima_hits={hits.get('anima', 0)}")
+
+
 def test_page_marker_parser() -> TestResult:
     pages = parse_page_markers(fixture_page_markers())
     passed = sorted(pages.keys()) == [1, 2, 3] and pages[2].strip() == "Beta"
@@ -354,7 +363,7 @@ def test_score_functions_stability() -> TestResult:
 
 
 def test_interface_schemas_present() -> TestResult:
-    schema_dir = Path(__file__).parent / "schemas"
+    candidates = [Path(__file__).parent / "schemas", Path(__file__).parent]
     expected = [
         "manifest.schema.json",
         "page_metadata.schema.json",
@@ -362,6 +371,7 @@ def test_interface_schemas_present() -> TestResult:
         "repair_queue.schema.json",
         "quality_report.schema.json",
     ]
+    schema_dir = next((cand for cand in candidates if all((cand / name).exists() for name in expected)), candidates[0])
     missing = [name for name in expected if not (schema_dir / name).exists()]
     if missing:
         return TestResult("interface_schemas_present", False, f"missing={missing}")
@@ -385,6 +395,49 @@ def test_stat_block_with_table() -> TestResult:
     return TestResult("stat_block_with_table", val > 0.7, f"score={val:.3f}")
 
 
+def test_image_only_signature_detection() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        is_image_only_signature = importlib.import_module("orchestrator").is_image_only_signature
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("image_only_signature_detection", False, f"import_error={exc}")
+    passed = is_image_only_signature(1.0, 0.0) and not is_image_only_signature(0.8, 0.0)
+    return TestResult("image_only_signature_detection", passed, "threshold check")
+
+
+def test_donor_family_image_only() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        choose_donor_family_from_text = importlib.import_module("orchestrator").choose_donor_family_from_text
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("donor_family_image_only", False, f"import_error={exc}")
+    passed = (
+        choose_donor_family_from_text("Adobe Photoshop 25.0") == "image_only"
+        and choose_donor_family_from_text("Image Conversion Pipeline") == "image_only"
+    )
+    return TestResult("donor_family_image_only", passed, "photoshop marker")
+
+
+def test_surgeon_prompt_fallback() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        if "PIL" not in sys.modules:
+            pil_mod = types.ModuleType("PIL")
+            pil_image_mod = types.ModuleType("PIL.Image")
+            pil_mod.Image = pil_image_mod
+            sys.modules["PIL"] = pil_mod
+            sys.modules["PIL.Image"] = pil_image_mod
+        prompt_for_layout = importlib.import_module("surgeon").prompt_for_layout
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("surgeon_prompt_fallback", False, f"import_error={exc}")
+    prompt = prompt_for_layout({"table_density": 0.0, "statblock_density": 0.0, "sidebar_density": 0.0, "image_coverage": 0.8})
+    passed = "If you see ANY tables" in prompt and "stat blocks" in prompt
+    return TestResult("surgeon_prompt_fallback", passed, "fallback prompt check")
+
+
 def test_regression_snapshot(tmp: Path) -> TestResult:
     text = fixture_broken_table_no_divider()
     fixed, _ = apply_fixes(text)
@@ -406,6 +459,7 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_statblock_bad(),
         test_vocab_whog(),
         test_vocab_shadowrun(),
+        test_vocab_anima_hits(),
         test_page_marker_parser(),
         test_table_fixer_idempotent(),
         test_table_fixer_padding(),
@@ -424,6 +478,9 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_score_functions_stability(),
         test_interface_schemas_present(),
         test_stat_block_with_table(),
+        test_image_only_signature_detection(),
+        test_donor_family_image_only(),
+        test_surgeon_prompt_fallback(),
         test_regression_snapshot(tmp),
     ]
     return results

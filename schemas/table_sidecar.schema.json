@@ -4,11 +4,10 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["page","chunks","table_like_chunks"],
+    "required": ["page","markdown"],
     "properties": {
       "page": {"type":"integer","minimum":1},
-      "chunks": {"type":"array","items":{"type":"string"}},
-      "table_like_chunks": {"type":"array","items":{"type":"string"}}
+      "markdown": {"type":"string"}
     }
   }
 }
