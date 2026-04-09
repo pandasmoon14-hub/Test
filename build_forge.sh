@@ -121,9 +121,9 @@ install_docling_deps() {
 install_pixtral_deps() {
   say "Installing pixtral dependencies"
   "${PIXTRAL_VENV}/bin/pip" install \
-    "vllm==0.6.1.post2" \
-    "mistral-common==1.4.4" \
-    "transformers==4.45.2" \
+    "vllm>=0.7.0" \
+    "mistral-common>=1.4.4" \
+    "transformers>=4.45.0" \
     "numpy<2.0" \
     "pymupdf" \
     "pillow" \

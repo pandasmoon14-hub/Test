@@ -629,6 +629,8 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
         page_map_path = out_dir / f"{pdf.stem}.page_map.json"
         payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(pdf), "--output_dir", str(out_dir), "--batch_multiplier", str(cfg.batch_multiplier), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:{pdf.name}")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, total_pages, cfg.strict_page_truth)
+        if cfg.strict_page_truth and page_map and len(page_map) < total_pages:
+            raise RuntimeError(f"strict_page_truth: marker page map incomplete {len(page_map)}/{total_pages}")
         if page_map:
             out = out_dir / f"{pdf.stem}.md"
             write_page_map_markdown(out, total_pages, page_map)
@@ -657,6 +659,8 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
     page_map: dict[int, str] = {}
     for _, (_, _), idx in chunks:
         page_map.update(collected[idx]["pages"])
+    if cfg.strict_page_truth and page_map and len(page_map) < total_pages:
+        raise RuntimeError(f"strict_page_truth: marker chunk page map incomplete {len(page_map)}/{total_pages}")
     out = out_dir / f"{pdf.stem}.md"
     if page_map:
         write_page_map_markdown(out, total_pages, page_map)
@@ -682,6 +686,8 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
         page_map_path = out_dir / f"{pdf.stem}.page_map.json"
         payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(pdf), "--output_dir", str(out_dir), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:{pdf.name}")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, profile.total_pages, cfg.strict_page_truth)
+        if cfg.strict_page_truth and page_map and len(page_map) < profile.total_pages:
+            raise RuntimeError(f"strict_page_truth: docling page map incomplete {len(page_map)}/{profile.total_pages}")
         if page_map:
             out = out_dir / f"{pdf.stem}.md"
             write_page_map_markdown(out, profile.total_pages, page_map)
@@ -706,6 +712,8 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
     page_map: dict[int, str] = {}
     for _, (_, _), idx in chunks:
         page_map.update(collected[idx]["pages"])
+    if cfg.strict_page_truth and page_map and len(page_map) < profile.total_pages:
+        raise RuntimeError(f"strict_page_truth: docling chunk page map incomplete {len(page_map)}/{profile.total_pages}")
     if page_map:
         write_page_map_markdown(out, profile.total_pages, page_map)
         marker_mode = "source_page_map"
@@ -1023,7 +1031,8 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
-    txt = expand_chunk_markers(txt)
+    if "<!-- CHUNK:" in txt and ("<!-- PAGE:" not in txt or page_marker_mode == "chunk_fallback"):
+        txt = expand_chunk_markers(txt)
     txt, _ = apply_table_fixes(txt)
     if "<!-- PAGE:" not in txt:
         md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")

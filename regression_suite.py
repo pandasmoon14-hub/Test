@@ -363,7 +363,7 @@ def test_score_functions_stability() -> TestResult:
 
 
 def test_interface_schemas_present() -> TestResult:
-    schema_dir = Path(__file__).parent / "schemas"
+    candidates = [Path(__file__).parent / "schemas", Path(__file__).parent]
     expected = [
         "manifest.schema.json",
         "page_metadata.schema.json",
@@ -371,6 +371,7 @@ def test_interface_schemas_present() -> TestResult:
         "repair_queue.schema.json",
         "quality_report.schema.json",
     ]
+    schema_dir = next((cand for cand in candidates if all((cand / name).exists() for name in expected)), candidates[0])
     missing = [name for name in expected if not (schema_dir / name).exists()]
     if missing:
         return TestResult("interface_schemas_present", False, f"missing={missing}")
