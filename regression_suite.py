@@ -316,6 +316,26 @@ def test_score_functions_stability() -> TestResult:
     return TestResult("score_functions_stability", passed, f"vals={vals}")
 
 
+def test_interface_schemas_present() -> TestResult:
+    schema_dir = Path(__file__).parent / "schemas"
+    expected = [
+        "manifest.schema.json",
+        "page_metadata.schema.json",
+        "table_sidecar.schema.json",
+        "repair_queue.schema.json",
+        "quality_report.schema.json",
+    ]
+    missing = [name for name in expected if not (schema_dir / name).exists()]
+    if missing:
+        return TestResult("interface_schemas_present", False, f"missing={missing}")
+    for name in expected:
+        try:
+            json.loads((schema_dir / name).read_text(encoding="utf-8"))
+        except json.JSONDecodeError as exc:
+            return TestResult("interface_schemas_present", False, f"invalid_json={name}:{exc}")
+    return TestResult("interface_schemas_present", True, "all schemas present and valid json")
+
+
 def test_stat_block_with_table() -> TestResult:
     text = """
 # Orc
@@ -363,6 +383,7 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_utf8_preservation(),
         test_marker_multpage(),
         test_score_functions_stability(),
+        test_interface_schemas_present(),
         test_stat_block_with_table(),
         test_regression_snapshot(tmp),
     ]

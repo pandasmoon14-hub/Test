@@ -25,6 +25,9 @@ class PilotRun:
     elapsed_sec: float
     queued_pages: int
     status: str
+    manual_review_count: int = 0
+    unresolved_table_count: int = 0
+    pages_remaining: int = 0
 
 
 def read_manifest(path: Path) -> dict[str, Any]:
@@ -32,6 +35,48 @@ def read_manifest(path: Path) -> dict[str, Any]:
         return {}
     with open(path, "r", encoding="utf-8") as file:
         return json.load(file)
+
+
+def count_manifest_pages(manifest: dict[str, Any], output_dir: Path, pdf_stem: str) -> int:
+    if manifest:
+        page_count = manifest.get("page_count")
+        if isinstance(page_count, int) and page_count > 0:
+            return page_count
+        raise ValueError("manifest missing valid page_count")
+
+    page_count = manifest.get("page_count")
+    if isinstance(page_count, int) and page_count > 0:
+        return page_count
+
+    page_meta_path = manifest.get("page_metadata_path")
+    candidate_paths = []
+    if isinstance(page_meta_path, str) and page_meta_path.strip():
+        candidate_paths.append(Path(page_meta_path))
+    candidate_paths.append(output_dir / pdf_stem / f"{pdf_stem}.pages.json")
+    for path in candidate_paths:
+        if path.exists():
+            try:
+                rows = json.loads(path.read_text(encoding="utf-8"))
+                if isinstance(rows, list) and rows:
+                    return len(rows)
+            except (json.JSONDecodeError, OSError):
+                continue
+
+    return 1
+
+
+def parse_manifest_metrics(manifest: dict[str, Any]) -> dict[str, int]:
+    if not manifest:
+        return {"manual_review_count": 0, "unresolved_table_count": 0, "pages_remaining": 0}
+    required = ["page_count", "pages_remaining", "pages_passed", "pages_audited"]
+    missing = [k for k in required if k not in manifest]
+    if missing:
+        raise ValueError(f"manifest missing required schema fields: {missing}")
+    return {
+        "manual_review_count": int(manifest.get("manual_review_count", 0) or 0),
+        "unresolved_table_count": int(manifest.get("unresolved_table_count", 0) or 0),
+        "pages_remaining": int(manifest.get("pages_remaining", 0) or 0),
+    }
 
 
 def parse_args() -> argparse.Namespace:
@@ -72,11 +117,21 @@ def run_single(
     manifest = output_dir / "manifests" / f"{pdf.stem}.manifest.json"
     m = read_manifest(manifest)
 
-    lane = m.get("lane", "unknown")
-    pages = int(m.get("chunk_count", 0))
-    queued = len(m.get("failed_pages", [])) if isinstance(m.get("failed_pages"), list) else 0
-
     status = "ok" if result.returncode == 0 else "error"
+    lane = m.get("lane", "unknown")
+    pages = 1
+    queued = 0
+    metrics = {"manual_review_count": 0, "unresolved_table_count": 0, "pages_remaining": 0}
+    if m:
+        try:
+            pages = count_manifest_pages(m, output_dir, pdf.stem)
+        except ValueError:
+            status = "error"
+        queued = len(m.get("failed_pages", [])) if isinstance(m.get("failed_pages"), list) else 0
+        try:
+            metrics = parse_manifest_metrics(m)
+        except ValueError:
+            status = "error"
 
     return PilotRun(
         book=pdf.name,
@@ -85,6 +140,9 @@ def run_single(
         elapsed_sec=round(elapsed, 3),
         queued_pages=queued,
         status=status,
+        manual_review_count=metrics["manual_review_count"],
+        unresolved_table_count=metrics["unresolved_table_count"],
+        pages_remaining=metrics["pages_remaining"],
     )
 
 
@@ -107,11 +165,14 @@ def summarize(runs: list[PilotRun]) -> dict[str, Any]:
         "lane_distribution": lanes,
         "lane_elapsed_sec": {k: round(v, 3) for k, v in lane_time.items()},
         "queued_pages_total": sum(r.queued_pages for r in ok_runs),
+        "manual_review_total": sum(r.manual_review_count for r in ok_runs),
+        "unresolved_table_total": sum(r.unresolved_table_count for r in ok_runs),
+        "pages_remaining_total": sum(r.pages_remaining for r in ok_runs),
     }
 
 
 def estimate_lane_ppm(runs: list[PilotRun]) -> dict[str, float]:
-    # rough estimate using chunk_count proxy if page counts unavailable in manifest
+    # uses manifest page counts (with page-metadata fallback) to calibrate lane throughput
     lane_pages: dict[str, float] = {}
     lane_seconds: dict[str, float] = {}
     for run in runs:

@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AetherForgeManifest",
+  "type": "object",
+  "required": [
+    "book_id","source_pdf","lane","lane_scores","donor_family","page_count","total_pages",
+    "pages_audited","pages_passed","pages_remaining","page_marker_mode","chunk_count","ocr_mode",
+    "started_at","finished_at","elapsed_sec","output_md","page_metadata_path","audit_signatures","failed_pages"
+  ],
+  "properties": {
+    "book_id": {"type":"string"},
+    "source_pdf": {"type":"string"},
+    "lane": {"type":"string"},
+    "lane_scores": {"type":"object"},
+    "donor_family": {"type":"string"},
+    "page_count": {"type":"integer","minimum":0},
+    "total_pages": {"type":"integer","minimum":0},
+    "pages_audited": {"type":"integer","minimum":0},
+    "pages_passed": {"type":"integer","minimum":0},
+    "pages_remaining": {"type":"integer","minimum":0},
+    "page_marker_mode": {"type":"string"},
+    "chunk_count": {"type":"integer","minimum":0},
+    "ocr_mode": {"type":"string"},
+    "started_at": {"type":"string"},
+    "finished_at": {"type":"string"},
+    "elapsed_sec": {"type":"number"},
+    "output_md": {"type":"string"},
+    "page_metadata_path": {"type":"string"},
+    "audit_signatures": {"type":"array","items":{"type":"string"}},
+    "failed_pages": {"type":"array","items":{"type":"integer"}},
+    "marker_api_variant": {"type":["string","null"]}
+  }
+}
