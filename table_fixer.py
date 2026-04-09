@@ -66,8 +66,10 @@ def is_tableish_line(line: str) -> bool:
 def detect_pseudo_table_line(line: str) -> bool:
     if "|" in line:
         return False
+    if line.strip().startswith("```"):
+        return False
     # multiple wide gaps likely columnar content
-    return bool(re.search(r"\S\s{3,}\S", line))
+    return bool(re.search(r"\S\s{3,}\S", line)) and len(re.split(r"\s{3,}", line.strip())) >= 2
 
 
 def pseudo_to_pipe(line: str) -> str:
@@ -115,6 +117,12 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
     promoted = 0
 
     while i < len(lines):
+        if lines[i].strip().startswith("```"):
+            i += 1
+            while i < len(lines) and not lines[i].strip().startswith("```"):
+                i += 1
+            i += 1
+            continue
         line = lines[i]
         if is_tableish_line(line) or detect_pseudo_table_line(line):
             start = i
