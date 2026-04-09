@@ -24,7 +24,13 @@ from typing import Any
 
 import fitz
 import PIL.Image
-from vllm import LLM, SamplingParams
+VLLM_AVAILABLE = True
+try:
+    from vllm import LLM, SamplingParams
+except ImportError:  # pragma: no cover - enables unit tests without vLLM installed
+    VLLM_AVAILABLE = False
+    LLM = Any  # type: ignore
+    SamplingParams = Any  # type: ignore
 
 
 @dataclass
@@ -93,6 +99,12 @@ def prompt_for_layout(profile: dict[str, Any]) -> str:
         return base + "Preserve sidebars/callout boxes as blockquotes (`>`), maintaining order."
     if profile.get("statblock_density", 0) > 0.3:
         return base + "Preserve stat-block key/value fields and indentation exactly."
+    if profile.get("image_coverage", 0) > 0.4 or all(profile.get(k, 0.0) < 0.01 for k in ("table_density", "statblock_density", "sidebar_density")):
+        return base + (
+            "If you see ANY tables, format them as strict GitHub Markdown with header separator rows. "
+            "If you see stat blocks or key/value game data, preserve field names and values exactly. "
+            "If you see sidebars or callout boxes, format them as blockquotes in reading order."
+        )
     return base + "Render equations as LaTeX where obvious."
 
 
@@ -142,6 +154,8 @@ def make_conversation(img: PIL.Image.Image, prompt: str) -> list[dict[str, Any]]
 
 
 def init_llm(cfg: SurgeonConfig) -> LLM:
+    if not VLLM_AVAILABLE:
+        raise RuntimeError("vLLM is not installed in this environment")
     return LLM(
         model=cfg.model_name,
         tokenizer_mode=cfg.tokenizer_mode,
