@@ -86,6 +86,7 @@ class RuntimeConfig:
     lane_a_hard_exclusion_multicol: float = 0.6
     table_ratio_threshold: float = 0.15
     stat_ratio_threshold: float = 0.3
+    strict_page_truth: bool = False
 
     @classmethod
     def from_env(cls, repo_root: Path) -> "RuntimeConfig":
@@ -128,6 +129,7 @@ class RuntimeConfig:
             lane_a_hard_exclusion_multicol=float(os.getenv("LANE_A_HARD_EXCLUSION_MULTICOL", "0.6")),
             table_ratio_threshold=float(os.getenv("TABLE_RATIO_THRESHOLD", "0.15")),
             stat_ratio_threshold=float(os.getenv("STAT_RATIO_THRESHOLD", "0.3")),
+            strict_page_truth=(os.getenv("STRICT_PAGE_TRUTH", "0") == "1"),
         )
 
 
@@ -288,6 +290,22 @@ def detect_multicolumn(blocks: list[tuple]) -> bool:
     return (statistics.mean(right) - statistics.mean(left)) > 90
 
 
+def column_sorted_blocks(blocks: list[tuple], page_width: float) -> list[tuple]:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 4:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    xs = sorted(set(round(float(b[0]), 0) for b in text_blocks))
+    if len(xs) < 2:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    gaps = [(xs[i + 1] - xs[i], (xs[i] + xs[i + 1]) / 2) for i in range(len(xs) - 1)]
+    max_gap, split_x = max(gaps, key=lambda g: g[0])
+    if max_gap < page_width * 0.08:
+        return sorted(text_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    left = sorted([b for b in text_blocks if float(b[0]) < split_x], key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    right = sorted([b for b in text_blocks if float(b[0]) >= split_x], key=lambda b: (round(b[1], 1), round(b[0], 1)))
+    return left + right
+
+
 def detect_table_density(text: str) -> float:
     lines = text.splitlines()
     if not lines:
@@ -351,7 +369,7 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     for i in range(0, total, max(1, cfg.sample_interval_pages)):
         candidates.add(i)
     hotspot_words = ["table of contents", "appendix", "index", "spell", "monster", "stat block", "armor class", "hit points", "difficulty class"]
-    for i in range(total):
+    for i in sorted(candidates):
         text = normalize_text(doc[i].get_text("text")[:2200]).lower()
         if any(k in text for k in hotspot_words):
             candidates.add(i)
@@ -431,16 +449,7 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
         header_footer_memory: dict[str, int] = {}
         for i, page in enumerate(doc):
             blocks = page.get_text("blocks")
-            x_coords = [b[0] for b in blocks if len(b) >= 5]
-            split_x = statistics.median(x_coords) if x_coords else 0.0
-            col_gap = page.rect.width * 0.22
-            left_blocks = [b for b in blocks if len(b) >= 5 and b[0] <= split_x - col_gap / 2]
-            right_blocks = [b for b in blocks if len(b) >= 5 and b[0] > split_x + col_gap / 2]
-            center_blocks = [b for b in blocks if len(b) >= 5 and b not in left_blocks and b not in right_blocks]
-            if left_blocks and right_blocks:
-                blocks_sorted = sorted(left_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1))) + sorted(right_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1))) + sorted(center_blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
-            else:
-                blocks_sorted = sorted(blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
+            blocks_sorted = column_sorted_blocks(blocks, page.rect.width)
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
             first = lines[0].strip() if lines else ""
             last = lines[-1].strip() if lines else ""
@@ -757,7 +766,17 @@ def expand_chunk_markers(content: str) -> str:
             absolute_pages.setdefault(abs_page, []).extend(page_lines)
 
         if not local_pages:
-            absolute_pages[start_page] = body
+            paragraphs = [blk.strip() for blk in re.split(r"\n\s*\n", "\n".join(body)) if blk.strip()]
+            if paragraphs:
+                per_page: dict[int, list[str]] = {p: [] for p in range(start_page, end_page + 1)}
+                for idx, para in enumerate(paragraphs):
+                    target_page = start_page + min(chunk_size - 1, int((idx / max(1, len(paragraphs))) * chunk_size))
+                    per_page[target_page].append(para)
+                for p, p_blocks in per_page.items():
+                    if p_blocks:
+                        absolute_pages[p] = ("\n\n".join(p_blocks)).splitlines()
+            else:
+                absolute_pages[start_page] = body
 
         for page_num in range(start_page, end_page + 1):
             out_lines.append(f"<!-- PAGE:{page_num} -->")
@@ -800,11 +819,10 @@ def table_structure_score(text: str) -> float:
 
 
 def stat_block_score(text: str) -> float:
-    pats = ["armor class", "hit points", "speed", "skills", "saving throws", "actions"]
-    low = text.lower()
-    hits = sum(1 for p in pats if p in low)
-    if hits == 0:
+    density = vocab_statblock_density(text)
+    if density < 0.08:
         return 1.0
+    hits = max(1, int(density * 5))
     sep = len(re.findall(r"\n\s*[-*]\s+", text)) + text.count("|")
     return min(1.0, sep / (hits * 2 + 1))
 
@@ -940,6 +958,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
     txt = expand_chunk_markers(txt)
+    txt, _ = apply_table_fixes(txt)
     if "<!-- PAGE:" not in txt:
         md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")
     else:
@@ -948,11 +967,9 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     audit = audit_markdown(md_out, profile, cfg)
 
     pages = parse_page_markers(md_out.read_text(encoding="utf-8", errors="replace"))
-    sidecar = [{
-        "page": p,
-        "chunks": [blk for blk in re.split(r"\n\n+", body) if blk.strip()],
-        "table_like_chunks": [blk for blk in re.split(r"\n\n+", body) if blk.count("|") >= 2],
-    } for p, body in pages.items()]
+    if cfg.strict_page_truth and profile.total_pages > 0 and len(pages) < profile.total_pages:
+        raise RuntimeError(f"strict_page_truth: page markers incomplete {len(pages)}/{profile.total_pages}")
+    sidecar = [{"page": p, "markdown": blk} for p, body in pages.items() for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
     save_json(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json", sidecar)
 
     failed_pages = list(range(len(pages))) if cfg.enforce_full_book_repair and not audit.passed else audit.failed_pages

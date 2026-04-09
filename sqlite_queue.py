@@ -74,6 +74,12 @@ class QueueDB:
         self.conn.row_factory = sqlite3.Row
         self.conn.executescript(SCHEMA)
         self.conn.commit()
+        self._write_counter = 0
+
+    def _maintenance_checkpoint(self) -> None:
+        self._write_counter += 1
+        if self._write_counter % 10 == 0:
+            self.conn.execute("PRAGMA wal_checkpoint(PASSIVE)")
 
     def close(self) -> None:
         self.conn.execute("PRAGMA wal_checkpoint(FULL)")
@@ -86,6 +92,7 @@ class QueueDB:
             "INSERT INTO run_events(event_type, book_id, payload, created_at) VALUES(?,?,?,?)",
             (event_type, book_id, json.dumps(payload, ensure_ascii=False), time.time()),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def upsert_queue_item(self, item: QueueItem) -> None:
@@ -169,6 +176,7 @@ class QueueDB:
             "UPDATE repair_queue SET failed_pages=?, updated_at=? WHERE book_id=?",
             (json.dumps(sorted(set(failed_pages))), time.time(), book_id),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def save_manifest(self, book_id: str, payload: dict[str, Any]) -> None:
