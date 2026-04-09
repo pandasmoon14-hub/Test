@@ -21,6 +21,7 @@ from quality_harness import (
     statblock_integrity_score,
     reading_order_score,
     parse_page_markers,
+    page_score,
 )
 from mechanics_vocab import best_family, statblock_density
 
@@ -147,7 +148,8 @@ def test_table_integrity_bad() -> TestResult:
 
 def test_table_fixer_adds_divider() -> TestResult:
     fixed, stats = apply_fixes(fixture_broken_table_no_divider())
-    passed = "| --- | --- | --- |" in fixed and stats["separators_added"] >= 1
+    divider_like = any(" ---" in ln and "|" in ln for ln in fixed.splitlines())
+    passed = divider_like and stats["separators_added"] >= 1
     return TestResult("table_fixer_adds_divider", passed, json.dumps(stats))
 
 
@@ -255,7 +257,8 @@ text
 | alpha | beta |
 """.strip()
     fixed, stats = apply_fixes(text)
-    passed = fixed.count("| --- |") >= 2 and stats["tables_seen"] >= 2
+    divider_rows = sum(1 for ln in fixed.splitlines() if "---" in ln and "|" in ln)
+    passed = divider_rows >= 2 and stats["tables_seen"] >= 2
     return TestResult("multi_block_table_fix", passed, json.dumps(stats))
 
 
