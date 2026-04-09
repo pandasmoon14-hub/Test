@@ -28,15 +28,36 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     "savage_worlds": ("pace", "parry", "toughness", "wild die", "raise", "edges", "hindrances"),
     "pbta": ("moves", "on a 10+", "on a 7-9", "on a miss", "hold", "forward"),
     "astra": ("dao", "tier", "astra-well", "heartbeat", "friction", "epiphany", "dao-vein"),
-    "cypher": ("effort", "might pool", "speed pool", "intellect pool", "cypher limit", "artifact", "recovery roll"),
+    "cypher": ("effort", "might pool", "speed pool", "intellect pool", "cypher limit", "artifact", "recovery roll", "motive", "environment", "damage inflicted", "gm intrusion"),
     "l5r": ("strife", "opportunity", "void points", "honor", "glory", "composure", "endurance", "focus"),
     "genesys": ("triumph", "despair", "advantage", "threat", "setback die", "boost die", "proficiency die"),
     "rolemaster": ("offensive bonus", "defensive bonus", "maneuver points", "critical strike", "fumble", "moving maneuver"),
     "hero_system": ("stun", "body", "endurance", "speed", "ocv", "dcv", "ego combat value"),
     "symbaroum": ("corruption", "shadow", "toughness", "resolute", "vigilant", "discreet", "persuasive"),
     "mothership": ("stress", "panic check", "wounds", "sanity", "body save", "fear save", "armor save"),
+    "anima": (
+        "zeon", "ki", "ma multiple", "magic accumulation", "psychic points",
+        "attack ability", "defense ability", "life points", "life point multiple",
+        "development points", "psychic projection", "magic projection", "accumulation multiple",
+        "supernatural ability",
+    ),
+    "tri_stat": (
+        "body", "mind", "soul", "attack combat value", "defense combat value",
+        "health points", "energy points", "shock value",
+    ),
+    "cortex": ("distinction", "stress die", "complications", "plot points", "asset"),
+    "fantasy_age": ("health", "defense", "speed", "stunt points", "ability focus"),
+    "scion": ("legend", "epic attributes", "boons", "birthrights", "fatebinding", "purviews"),
+    "warhammer": (
+        "wounds", "ballistic skill", "weapon skill", "toughness", "fellowship",
+        "fate points", "corruption points", "influence",
+    ),
     "osr": ("thac0", "morale", "treasure type", "reaction roll", "saving throw", "armor class", "experience points"),
     "generic": ("difficulty", "target number", "critical", "success", "failure", "cooldown", "resource"),
+}
+
+STATBLOCK_LABELS: dict[str, tuple[str, ...]] = {
+    "cypher": ("motive:", "environment:", "health:", "damage inflicted:", "combat:", "interaction:", "use:", "gm intrusion:"),
 }
 
 
@@ -78,8 +99,11 @@ def best_family(text: str) -> VocabMatch:
 
 def statblock_density(text: str) -> float:
     low = text.lower()
+    fam = best_family(text).family
+    labels = STATBLOCK_LABELS.get(fam, ())
+    label_hits = sum(1 for label in labels if label in low)
     kv = len(re.findall(r"\b[a-z][a-z\s]{2,30}:\s*[^\n]+", low))
     vocab = sum(mechanics_hits(text).values())
     bullet = len(re.findall(r"^\s*[-*]\s+", text, flags=re.MULTILINE))
-    raw = (vocab * 1.2) + (kv * 0.8) + (bullet * 0.15)
-    return min(1.0, raw / 10.0)
+    raw = (label_hits * 1.6) + (vocab * 1.1) + (kv * 0.5) + (bullet * 0.1)
+    return min(1.0, raw / 8.0)

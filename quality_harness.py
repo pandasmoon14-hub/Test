@@ -24,7 +24,7 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
 
-from mechanics_vocab import statblock_density as vocab_statblock_density
+from mechanics_vocab import best_family, statblock_density as vocab_statblock_density
 
 
 @dataclass
@@ -86,13 +86,26 @@ def table_integrity_score(text: str) -> float:
     return min(1.0, 0.65 * row_quality + 0.35 * divider_quality)
 
 
-def statblock_integrity_score(text: str) -> float:
+STATBLOCK_FIELDS: dict[str, list[str]] = {
+    "cypher": ["motive:", "environment:", "health:", "damage inflicted:", "combat:", "interaction:", "use:", "gm intrusion:"],
+    "d20": ["armor class", "hit points", "speed", "saving throws", "skills", "challenge"],
+}
+
+
+def statblock_integrity_score(text: str, donor_family: str = "") -> float:
     density = vocab_statblock_density(text)
     if density < 0.08:
         return 0.5
-    hits = max(1, int(density * 4))
-    separators = text.count("|") + len(re.findall(r"\n\s*[-*]\s+", text))
-    return min(1.0, separators / max(1, hits * 2))
+    family = donor_family or best_family(text).family
+    fields = STATBLOCK_FIELDS.get(family, [])
+    if not fields:
+        fields = STATBLOCK_FIELDS.get(best_family(text).family, [])
+    if not fields:
+        return min(1.0, density + 0.3)
+    low = text.lower()
+    hits = sum(1 for field in fields if field in low)
+    ordered = sum(1 for a, b in zip(fields, fields[1:]) if low.find(a) != -1 and low.find(b) != -1 and low.find(a) < low.find(b))
+    return min(1.0, (hits * 0.7 + ordered * 0.3) / max(1, len(fields) * 0.6))
 
 
 def reading_order_score(text: str) -> float:
@@ -137,7 +150,7 @@ def glyph_penalty(text: str) -> float:
     return min(0.4, penalties)
 
 
-def page_score(text: str) -> tuple[float, list[str]]:
+def page_score(text: str, donor_family: str = "") -> tuple[float, list[str]]:
     issues = []
 
     chars = len(text)
@@ -152,7 +165,7 @@ def page_score(text: str) -> tuple[float, list[str]]:
     if ts < 0.5:
         issues.append("table_integrity")
 
-    ss = statblock_integrity_score(text)
+    ss = statblock_integrity_score(text, donor_family=donor_family)
     if ss < 0.45:
         issues.append("statblock_integrity")
 
@@ -197,7 +210,7 @@ def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
 
     page_checks: list[PageCheck] = []
     for page_num in sorted(pages):
-        score, issues = page_score(pages[page_num])
+        score, issues = page_score(pages[page_num], donor_family=manifest.get("donor_family", ""))
         page_checks.append(PageCheck(page=page_num, chars=len(pages[page_num]), issues=issues, score=score))
 
     issues: list[str] = []
@@ -230,6 +243,10 @@ def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
             table_miss_pages.append(page_num)
     if table_miss_pages:
         issues.append("vector_table_miss")
+    page_marker_mode = str(manifest.get("page_marker_mode", ""))
+    if page_marker_mode in {"chunk_fallback", "native_or_fallback"}:
+        score = max(0.0, score - 0.08)
+        issues.append("page_map_trust_low")
 
     return BookCheck(
         book_id=markdown_path.stem,

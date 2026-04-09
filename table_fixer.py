@@ -42,8 +42,25 @@ def split_pipe_row(row: str) -> list[str]:
         row = "| " + row
     if not row.endswith("|"):
         row = row + " |"
-    parts = [p for p in row.split("|")]
-    core = parts[1:-1]
+    cells: list[str] = []
+    current: list[str] = []
+    escaped = False
+    for ch in row:
+        if escaped:
+            current.append(ch)
+            escaped = False
+            continue
+        if ch == "\\":
+            escaped = True
+            current.append(ch)
+            continue
+        if ch == "|":
+            cells.append("".join(current))
+            current = []
+            continue
+        current.append(ch)
+    cells.append("".join(current))
+    core = cells[1:-1]
     return [normalize_cell(c) for c in core]
 
 

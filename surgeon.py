@@ -24,7 +24,13 @@ from typing import Any
 
 import fitz
 import PIL.Image
-from vllm import LLM, SamplingParams
+VLLM_AVAILABLE = True
+try:
+    from vllm import LLM, SamplingParams
+except ImportError:  # pragma: no cover - enables unit tests without vLLM installed
+    VLLM_AVAILABLE = False
+    LLM = Any  # type: ignore
+    SamplingParams = Any  # type: ignore
 
 
 @dataclass
@@ -93,6 +99,12 @@ def prompt_for_layout(profile: dict[str, Any]) -> str:
         return base + "Preserve sidebars/callout boxes as blockquotes (`>`), maintaining order."
     if profile.get("statblock_density", 0) > 0.3:
         return base + "Preserve stat-block key/value fields and indentation exactly."
+    if profile.get("image_coverage", 0) > 0.4 or all(profile.get(k, 0.0) < 0.01 for k in ("table_density", "statblock_density", "sidebar_density")):
+        return base + (
+            "If you see ANY tables, format them as strict GitHub Markdown with header separator rows. "
+            "If you see stat blocks or key/value game data, preserve field names and values exactly. "
+            "If you see sidebars or callout boxes, format them as blockquotes in reading order."
+        )
     return base + "Render equations as LaTeX where obvious."
 
 
@@ -118,9 +130,12 @@ def save_queue(path: Path, payload: dict[str, Any]) -> None:
         json.dump(payload, file, indent=2, ensure_ascii=False)
 
 
-def render_page(page: fitz.Page, dpi: int, min_crop_size: int) -> PIL.Image.Image | None:
+def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str = "default") -> PIL.Image.Image | None:
     pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    max_dim = 2048 if gpu_profile == "a6000" else 1280
+    if max(image.width, image.height) > max_dim:
+        image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
         return None
     # skip nearly blank renderings
@@ -141,7 +156,17 @@ def make_conversation(img: PIL.Image.Image, prompt: str) -> list[dict[str, Any]]
     return [{"role": "user", "content": [{"type": "text", "text": prompt}, {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{pil_to_b64(img)}"}}]}]
 
 
+def iter_tiles(img: PIL.Image.Image, tile_w: int, tile_h: int, overlap: int = 64):
+    step_x = max(1, tile_w - overlap)
+    step_y = max(1, tile_h - overlap)
+    for y in range(0, img.height, step_y):
+        for x in range(0, img.width, step_x):
+            yield (x, y), img.crop((x, y, min(img.width, x + tile_w), min(img.height, y + tile_h)))
+
+
 def init_llm(cfg: SurgeonConfig) -> LLM:
+    if not VLLM_AVAILABLE:
+        raise RuntimeError("vLLM is not installed in this environment")
     return LLM(
         model=cfg.model_name,
         tokenizer_mode=cfg.tokenizer_mode,
@@ -191,6 +216,7 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
         parts.setdefault(page, []).append(line)
 
     for p, text in repaired_pages.items():
+        # Replacement is intentional: page failed audit and repair output becomes canonical page text.
         parts[p + 1] = [text.strip()]
 
     with open(temp_path, "w", encoding="utf-8") as file:
@@ -241,10 +267,27 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     continue
                 profile = page_profiles.get(str(pg + 1), {})
                 dpi = adaptive_dpi(cfg, profile)
-                img = render_page(doc[pg], dpi=dpi, min_crop_size=cfg.min_crop_size)
+                img = render_page(doc[pg], dpi=dpi, min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
                 if img is None:
                     unresolved.append(pg)
                     continue
+                if profile.get("table_density", 0.0) > 0.25 and max(img.size) > 1400:
+                    tile_prompt = batch_prompts[-1] if batch_prompts else prompt_for_layout(profile)
+                    tiles = []
+                    for (_, _), tile in iter_tiles(img, tile_w=1200, tile_h=1200, overlap=96):
+                        if tile.width >= cfg.min_crop_size and tile.height >= cfg.min_crop_size:
+                            tiles.append(tile)
+                    if not tiles:
+                        unresolved.append(pg)
+                        continue
+                    try:
+                        tile_out = llm.chat([make_conversation(tile, tile_prompt) for tile in tiles], sampling_params=sampling, use_tqdm=False)
+                        stitched = "\n\n".join((out.outputs[0].text.strip() if out.outputs else "") for out in tile_out).strip()
+                        if validate_output(stitched, profile):
+                            repaired[pg] = stitched
+                            continue
+                    except Exception:
+                        pass
                 batch_imgs.append(img)
                 batch_prompts.append(prompt_for_layout(profile))
                 page_ids.append(pg)
@@ -266,7 +309,7 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     # one retry with stricter table prompt and higher dpi
                     try:
                         prompt = prompt_for_layout({"table_density": 0.5, **page_profiles.get(str(pg + 1), {})})
-                        img2 = render_page(doc[pg], dpi=max(cfg.render_dpi, 300), min_crop_size=cfg.min_crop_size)
+                        img2 = render_page(doc[pg], dpi=max(cfg.render_dpi, 300), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
                         if img2 is not None:
                             retry = llm.chat([make_conversation(img2, prompt)], sampling_params=sampling, use_tqdm=False)
                             txt = retry[0].outputs[0].text.strip() if retry and retry[0].outputs else ""
