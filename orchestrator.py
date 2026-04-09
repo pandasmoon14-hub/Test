@@ -276,9 +276,17 @@ def normalize_text(text: str) -> str:
 
 
 def detect_multicolumn(blocks: list[tuple]) -> bool:
-    if len(blocks) < 8:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 8:
         return False
-    xs = [b[0] for b in blocks if len(b) >= 4]
+    xs = []
+    for b in text_blocks:
+        txt = str(b[4]).strip()
+        width = max(1.0, float(b[2]) - float(b[0]))
+        # downweight margin tabs / decorative callouts
+        if len(txt) < 10 and width < 120:
+            continue
+        xs.append(float(b[0]))
     if len(xs) < 8:
         return False
     xs = sorted(xs)
@@ -443,7 +451,7 @@ def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
     return "skip"
 
 
-def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path) -> None:
+def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path, debug_log: Path | None = None) -> None:
     meta_rows = []
     with fitz.open(pdf) as doc, open(out_md, "w", encoding="utf-8") as out:
         header_footer_memory: dict[str, int] = {}
@@ -451,6 +459,9 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
             blocks = page.get_text("blocks")
             blocks_sorted = column_sorted_blocks(blocks, page.rect.width)
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
+            image_blocks = [b for b in raw_blocks if len(b) > 6 and int(b[6]) == 1]
+            if image_blocks and not lines:
+                lines = ["[IMAGE PAGE]"]
             first = lines[0].strip() if lines else ""
             last = lines[-1].strip() if lines else ""
             for token in [first, last]:
@@ -459,7 +470,10 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
             out.write(f"\n<!-- PAGE:{i + 1} -->\n")
             cleaned = [line for line in lines if not (header_footer_memory.get(line.strip(), 0) > 3 and len(line.strip()) < 80)]
             out.write("\n".join(cleaned).strip() + "\n")
-            meta_rows.append({"page": i + 1, "chars": sum(len(x) for x in cleaned), "blocks": len(blocks_sorted), "tables_detected": sum(1 for x in cleaned if x.count("|") >= 2), "lane": "A"})
+            meta_rows.append({"page": i + 1, "chars": sum(len(x) for x in cleaned), "blocks": len(blocks_sorted), "tables_detected": sum(1 for x in cleaned if x.count("|") >= 2), "lane": "A", "image_blocks": len(image_blocks), "raw_blocks": len(raw_blocks)})
+            if debug_log is not None:
+                with open(debug_log, "a", encoding="utf-8") as lg:
+                    lg.write(f"[heuristic] page={i+1} raw_blocks={len(raw_blocks)} kept={len(blocks)} images={len(image_blocks)} multicol={detect_multicolumn(blocks)}\n")
     save_json(page_meta_path, meta_rows)
 
 
@@ -896,7 +910,7 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
         scores["B2"] = 999
     try:
         amd, apm = out_dir / "_race_a.md", out_dir / "_race_a_pages.json"
-        write_page_markers_from_blocks(micro, amd, apm)
+        write_page_markers_from_blocks(micro, amd, apm, log_file)
         scores["A"] = len(audit_markdown(amd, profile, cfg).failed_pages)
     except Exception:
         scores["A"] = 999

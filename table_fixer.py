@@ -73,8 +73,19 @@ def detect_pseudo_table_line(line: str) -> bool:
 
 
 def pseudo_to_pipe(line: str) -> str:
-    parts = re.split(r"\s{3,}", line.strip())
+    parts = re.split(r"\s{2,}", line.strip())
     return render_pipe_row([normalize_cell(p) for p in parts if p.strip()])
+
+
+def infer_divider_from_data(cells: list[str]) -> str:
+    inferred = []
+    for cell in cells:
+        token = cell.strip().replace(",", "")
+        if re.fullmatch(r"[-+]?\d+(\.\d+)?|[xX✓✗]", token):
+            inferred.append("---:")
+        else:
+            inferred.append("---")
+    return "| " + " | ".join(inferred) + " |"
 
 
 def normalize_table_block(lines: list[str]) -> tuple[list[str], dict[str, int]]:
@@ -101,7 +112,8 @@ def normalize_table_block(lines: list[str]) -> tuple[list[str], dict[str, int]]:
 
     has_divider = any(is_divider(r) for r in normalized_rows)
     if not has_divider:
-        normalized_rows.insert(1, divider_row(width))
+        candidate_cells = split_pipe_row(normalized_rows[1]) if len(normalized_rows) > 1 else [""] * width
+        normalized_rows.insert(1, infer_divider_from_data(candidate_cells))
         stats["separator_added"] += 1
 
     if stats["rows_padded"] > 0 or stats["separator_added"] > 0:
