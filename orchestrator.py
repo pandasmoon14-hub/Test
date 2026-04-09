@@ -540,11 +540,22 @@ def bridge_call(cmd: list[str], timeout_sec: int, retries: int, log_file: Path, 
             if result.returncode != 0:
                 last_err = result.stderr[:500]
                 continue
-            payload = json.loads((result.stdout or "{}").strip().splitlines()[-1])
-            if payload.get("status") != "ok" or not payload.get("md_path"):
-                last_err = f"invalid payload: {payload}"
+            parsed = None
+            for line in reversed((result.stdout or "").splitlines()):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    candidate = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(candidate, dict) and candidate.get("status") == "ok" and candidate.get("md_path"):
+                    parsed = candidate
+                    break
+            if parsed is None:
+                last_err = "no valid JSON payload found in stdout"
                 continue
-            return payload
+            return parsed
         except subprocess.TimeoutExpired:
             last_err = f"timeout {timeout_sec}s"
         except json.JSONDecodeError as exc:
@@ -896,7 +907,9 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
-        content = ensure_page_markers(content, profile.total_pages)
+        if cfg.strict_page_truth:
+            return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
+        content = "<!-- PAGE:1 -->\n" + content
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():
@@ -948,20 +961,21 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
                 dst.insert_pdf(src, from_page=p, to_page=p)
         dst.save(micro)
     scores = {}
+    micro_profile = analyze_pdf(micro, cfg)
     try:
-        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", profile, log_file)
-        scores["B"] = len(audit_markdown(md, profile, cfg).failed_pages)
+        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", micro_profile, log_file)
+        scores["B"] = len(audit_markdown(md, micro_profile, cfg).failed_pages)
     except Exception:
         scores["B"] = 999
     try:
-        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", profile, log_file)
-        scores["B2"] = len(audit_markdown(md, profile, cfg).failed_pages)
+        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", micro_profile, log_file)
+        scores["B2"] = len(audit_markdown(md, micro_profile, cfg).failed_pages)
     except Exception:
         scores["B2"] = 999
     try:
         amd, apm = out_dir / "_race_a.md", out_dir / "_race_a_pages.json"
         write_page_markers_from_blocks(micro, amd, apm, log_file)
-        scores["A"] = len(audit_markdown(amd, profile, cfg).failed_pages)
+        scores["A"] = len(audit_markdown(amd, micro_profile, cfg).failed_pages)
     except Exception:
         scores["A"] = 999
     micro.unlink(missing_ok=True)

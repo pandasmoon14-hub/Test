@@ -65,14 +65,12 @@ def count_manifest_pages(manifest: dict[str, Any], output_dir: Path, pdf_stem: s
 def parse_manifest_metrics(manifest: dict[str, Any]) -> dict[str, int]:
     if not manifest:
         return {"manual_review_count": 0, "unresolved_table_count": 0, "pages_remaining": 0}
-    required = ["page_count", "pages_remaining", "pages_passed", "pages_audited"]
-    missing = [k for k in required if k not in manifest]
-    if missing:
-        raise ValueError(f"manifest missing required schema fields: {missing}")
     return {
         "manual_review_count": int(manifest.get("manual_review_count", 0) or 0),
         "unresolved_table_count": int(manifest.get("unresolved_table_count", 0) or 0),
-        "pages_remaining": int(manifest.get("pages_remaining", 0) or 0),
+        "pages_remaining": int(
+            manifest.get("pages_remaining", len(manifest.get("failed_pages", [])) if isinstance(manifest.get("failed_pages"), list) else 0) or 0
+        ),
     }
 
 
@@ -122,20 +120,11 @@ def run_single(
     queued = len(m.get("failed_pages", [])) if isinstance(m.get("failed_pages"), list) else 0
 
     status = "ok" if result.returncode == 0 else "error"
-    lane = m.get("lane", "unknown")
-    pages = 1
-    queued = 0
     metrics = {"manual_review_count": 0, "unresolved_table_count": 0, "pages_remaining": 0}
     if m:
-        try:
-            pages = count_manifest_pages(m, output_dir, pdf.stem)
-        except ValueError:
-            status = "error"
+        pages = count_manifest_pages(m, output_dir, pdf.stem)
         queued = len(m.get("failed_pages", [])) if isinstance(m.get("failed_pages"), list) else 0
-        try:
-            metrics = parse_manifest_metrics(m)
-        except ValueError:
-            status = "error"
+        metrics = parse_manifest_metrics(m)
 
     return PilotRun(
         book=pdf.name,

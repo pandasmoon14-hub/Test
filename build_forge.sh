@@ -114,7 +114,8 @@ install_marker_deps() {
 install_docling_deps() {
   say "Installing docling dependencies"
   "${DOCLING_VENV}/bin/pip" install \
-    docling
+    docling \
+    pymupdf
 }
 
 install_pixtral_deps() {

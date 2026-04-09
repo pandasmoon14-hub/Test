@@ -133,6 +133,9 @@ def save_queue(path: Path, payload: dict[str, Any]) -> None:
 def render_page(page: fitz.Page, dpi: int, min_crop_size: int) -> PIL.Image.Image | None:
     pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    max_dim = 1280
+    if max(image.width, image.height) > max_dim:
+        image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
         return None
     # skip nearly blank renderings
@@ -205,6 +208,7 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
         parts.setdefault(page, []).append(line)
 
     for p, text in repaired_pages.items():
+        # Replacement is intentional: page failed audit and repair output becomes canonical page text.
         parts[p + 1] = [text.strip()]
 
     with open(temp_path, "w", encoding="utf-8") as file:
