@@ -125,6 +125,15 @@ install_docling_deps() {
 
 install_pixtral_deps() {
   say "Installing pixtral dependencies"
+  if command -v nvcc >/dev/null 2>&1; then
+    CUDA_VER="$(nvcc --version | grep -oP 'release \K[0-9]+\.[0-9]+' | head -n1 || true)"
+    if [[ -n "${CUDA_VER}" ]]; then
+      say "CUDA version: ${CUDA_VER}"
+      if [[ "${CUDA_VER}" > "12.3" ]]; then
+        warn "CUDA ${CUDA_VER} detected; pinned vLLM may be incompatible on some images."
+      fi
+    fi
+  fi
   "${PIXTRAL_VENV}/bin/pip" install \
     "vllm==${VLLM_VERSION}" \
     "mistral-common==${MISTRAL_COMMON_VERSION}" \

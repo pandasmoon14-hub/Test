@@ -16,6 +16,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import time
 from dataclasses import asdict, dataclass, field
 from io import BytesIO
@@ -49,6 +50,15 @@ class SurgeonConfig:
 
     @classmethod
     def from_env(cls, gpu_profile: str = "default") -> "SurgeonConfig":
+        if gpu_profile == "default":
+            try:
+                import torch  # type: ignore
+                if torch.cuda.is_available():
+                    vram = torch.cuda.get_device_properties(0).total_memory / (1024**3)
+                    if vram > 40:
+                        gpu_profile = "a6000"
+            except Exception:
+                pass
         output_dir = Path(os.getenv("OUTPUT_DIR", "/workspace/ttrpg_output"))
         defaults = {
             "default": {"max_page_tokens": "4096", "repair_batch": "12", "gpu_memory_utilization": "0.92", "max_model_len": "28672"},
@@ -133,7 +143,7 @@ def save_queue(path: Path, payload: dict[str, Any]) -> None:
 def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str = "default") -> PIL.Image.Image | None:
     pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-    max_dim = 2048 if gpu_profile == "a6000" else 1280
+    max_dim = 1536 if gpu_profile == "a6000" else 1280
     if max(image.width, image.height) > max_dim:
         image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
@@ -183,6 +193,10 @@ def validate_output(text: str, profile: dict[str, Any]) -> bool:
         return False
     if profile.get("table_density", 0) > 0.15 and "|" not in text:
         return False
+    if profile.get("statblock_density", 0) > 0.3:
+        kv_count = len(re.findall(r"\w+:\s*\S+", text))
+        if kv_count < 3:
+            return False
     if "\ufffd" in text:
         return False
     return True
@@ -193,7 +207,22 @@ def adaptive_dpi(cfg: SurgeonConfig, profile: dict[str, Any]) -> int:
         return max(cfg.render_dpi, 260)
     if profile.get("image_coverage", 0) > 0.5:
         return max(cfg.render_dpi, 220)
+    if all(profile.get(k, 0) < 0.01 for k in ("table_density", "statblock_density", "sidebar_density")):
+        return max(cfg.render_dpi, 220)
     return cfg.render_dpi
+
+
+def repair_confidence(text: str, profile: dict[str, Any]) -> float:
+    score = 0.5
+    if len(text.strip()) > 200:
+        score += 0.2
+    if profile.get("table_density", 0) > 0.15 and "|" in text:
+        score += 0.15
+    if re.search(r"^#+\s+", text, re.MULTILINE):
+        score += 0.1
+    if "\ufffd" in text:
+        score -= 0.3
+    return max(0.0, min(1.0, score))
 
 
 def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_path: Path) -> bool:
@@ -260,6 +289,9 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
     with fitz.open(str(source_pdf)) as doc:
         for batch_start in range(0, len(failed_pages), cfg.repair_batch):
             batch_pages = failed_pages[batch_start: batch_start + cfg.repair_batch]
+            total_batches = (len(failed_pages) + cfg.repair_batch - 1) // cfg.repair_batch
+            pct = round(100 * batch_start / max(1, len(failed_pages)))
+            print(f"  [{book_id}] batch {batch_start // cfg.repair_batch + 1}/{total_batches} ({pct}%)")
             batch_imgs, batch_prompts, page_ids = [], [], []
             for pg in batch_pages:
                 if pg >= len(doc):
@@ -319,6 +351,25 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     repaired[pg] = txt
                 else:
                     unresolved.append(pg)
+
+        # Targeted second pass for pages that look table-like but missed markdown divider.
+        for pg, txt in list(repaired.items()):
+            lines = txt.splitlines()
+            pipe_count = sum(1 for ln in lines if ln.count("|") >= 2)
+            has_divider = any(re.search(r"\|\s*[-:]{3,}\s*\|", ln) for ln in lines)
+            if pipe_count >= 3 and not has_divider and pg < len(doc):
+                profile = page_profiles.get(str(pg + 1), {})
+                retry_prompt = prompt_for_layout({"table_density": 0.6, **profile})
+                img = render_page(doc[pg], dpi=max(cfg.render_dpi, 260), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
+                if img is None:
+                    continue
+                try:
+                    retry = llm.chat([make_conversation(img, retry_prompt)], sampling_params=sampling, use_tqdm=False)
+                    retry_txt = retry[0].outputs[0].text.strip() if retry and retry[0].outputs else ""
+                    if validate_output(retry_txt, profile):
+                        repaired[pg] = retry_txt
+                except Exception:
+                    continue
 
     temp_md = md_path.with_suffix(".repair.tmp.md")
     promoted = write_merged_markdown(md_path, repaired, temp_md)

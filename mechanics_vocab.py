@@ -48,6 +48,8 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     "cortex": ("distinction", "stress die", "complications", "plot points", "asset"),
     "fantasy_age": ("health", "defense", "speed", "stunt points", "ability focus"),
     "scion": ("legend", "epic attributes", "boons", "birthrights", "fatebinding", "purviews"),
+    "fate": ("aspects", "fate points", "stunts", "stress boxes", "consequences", "approaches", "refresh"),
+    "forged_in_dark": ("position", "effect", "resistance", "trauma", "stress", "harm", "load"),
     "warhammer": (
         "wounds", "ballistic skill", "weapon skill", "toughness", "fellowship",
         "fate points", "corruption points", "influence",
@@ -87,7 +89,14 @@ def mechanics_hits(text: str) -> dict[str, int]:
     low = text.lower()
     out: dict[str, int] = {}
     for family, keys in VOCAB_FAMILIES.items():
-        out[family] = sum(1 for key in keys if key in low)
+        hits = 0
+        for key in keys:
+            if len(key) <= 3:
+                if re.search(r"\b" + re.escape(key) + r"\b", low):
+                    hits += 1
+            elif key in low:
+                hits += 1
+        out[family] = hits
     return out
 
 
@@ -106,4 +115,6 @@ def statblock_density(text: str) -> float:
     vocab = sum(mechanics_hits(text).values())
     bullet = len(re.findall(r"^\s*[-*]\s+", text, flags=re.MULTILINE))
     raw = (label_hits * 1.6) + (vocab * 1.1) + (kv * 0.5) + (bullet * 0.1)
-    return min(1.0, raw / 8.0)
+    line_count = max(1, len(text.splitlines()))
+    normalized = raw / max(10.0, line_count * 0.5)
+    return min(1.0, normalized)

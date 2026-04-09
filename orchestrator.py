@@ -23,6 +23,7 @@ import shutil
 import statistics
 import subprocess
 import time
+import traceback
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -31,6 +32,7 @@ from typing import Any
 import fitz
 from mechanics_vocab import best_family, statblock_density as vocab_statblock_density
 from layout_utils import detect_multicolumn as detect_multicolumn_layout
+from page_truth import PageTruthRecord, write_page_truth_jsonl
 from table_fixer import apply_fixes as apply_table_fixes
 
 try:
@@ -146,6 +148,8 @@ class PageFeatures:
     table_density: float
     sidebar_density: float
     statblock_density: float
+    form_density: float
+    is_landscape: bool
 
 
 @dataclass
@@ -159,6 +163,7 @@ class PdfProfile:
     sidebar_page_ratio: float
     statblock_page_ratio: float
     image_dominant_ratio: float
+    landscape_ratio: float
     is_image_only: bool
     donor_family: str
     samples: list[int]
@@ -267,16 +272,19 @@ def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
     for noise in ("adobe indesign", "adobe acrobat", "quarkxpress", "pdf producer"):
         low = low.replace(noise, " ")
-    if any(k in low for k in ["photoshop", "image conversion"]):
+    if any(k in low for k in ["photoshop", "image conversion", "scan", "fujitsu", "canon", "epson"]):
         return "image_only"
-    fam = best_family(low).family
+    fam_match = best_family(low)
+    fam = fam_match.family
+    if fam_match.hits >= 3:
+        return fam
     if fam == "cypher":
         return "cypher"
     if any(k in low for k in ["wizards", "d&d", "forgotten realms"]):
         return "dnd5e"
     if fam in {"d20", "osr"} and any(k in low for k in ["ogl", "pathfinder", "paizo"]):
         return "ogl"
-    if fam in {"d20", "osr"}:
+    if fam in {"d20", "osr"} and fam_match.hits >= 2:
         return "dnd5e"
     return "mixed"
 
@@ -342,9 +350,23 @@ def detect_sidebar_density(page: fitz.Page) -> float:
     narrow = 0
     for d in rects:
         rect = d["rect"]
+        margin = page.rect.width * 0.05
+        if rect.x0 < margin or rect.x1 > page.rect.width - margin:
+            continue
         if rect.width < page.rect.width * 0.4 and rect.height > page.rect.height * 0.08:
             narrow += 1
     return min(1.0, narrow / max(1, len(rects)))
+
+
+def detect_form_density(page: fitz.Page) -> float:
+    blocks = page.get_text("blocks")
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 5:
+        return 0.0
+    short_blocks = sum(1 for b in text_blocks if len(str(b[4]).strip()) < 30)
+    underscore_lines = sum(1 for b in text_blocks if "___" in str(b[4]))
+    form_signals = short_blocks + underscore_lines * 2
+    return min(1.0, form_signals / max(1, len(text_blocks)))
 
 
 def detect_statblock_density(text: str) -> float:
@@ -415,6 +437,8 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
                 table_density=max(detect_table_density(text), vector_table_density(page)),
                 sidebar_density=detect_sidebar_density(page),
                 statblock_density=detect_statblock_density(text),
+                form_density=detect_form_density(page),
+                is_landscape=page.rect.width > page.rect.height * 1.2,
             ))
         donor = choose_donor_family(pdf, doc, sample_text="\n".join(sampled_texts))
 
@@ -426,8 +450,9 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     sidebar_ratio = sum(1 for r in rows if r.sidebar_density > 0.2) / max(1, len(rows))
     stat_ratio = sum(1 for r in rows if r.statblock_density > cfg.stat_ratio_threshold) / max(1, len(rows))
     image_ratio = sum(1 for r in rows if r.image_coverage > 0.4) / max(1, len(rows))
+    landscape_ratio = sum(1 for r in rows if r.is_landscape) / max(1, len(rows))
     is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
-    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, is_image_only, donor, samples, rows)
+    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, landscape_ratio, is_image_only, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
@@ -444,6 +469,10 @@ def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
         a -= 1.5
     if profile.table_page_ratio > 0.12 and profile.statblock_page_ratio > 0.25:
         a -= 1.0
+    if profile.landscape_ratio > 0.1:
+        a -= 1.0
+    if profile.scanned_ratio > 0.8:
+        a = -10.0
     return {"A": round(a, 4), "B": round(b, 4), "B2": round(b2, 4)}
 
 
@@ -845,17 +874,8 @@ def expand_chunk_markers(content: str) -> str:
             absolute_pages.setdefault(abs_page, []).extend(page_lines)
 
         if not local_pages:
-            paragraphs = [blk.strip() for blk in re.split(r"\n\s*\n", "\n".join(body)) if blk.strip()]
-            if paragraphs:
-                per_page: dict[int, list[str]] = {p: [] for p in range(start_page, end_page + 1)}
-                for idx, para in enumerate(paragraphs):
-                    target_page = start_page + min(chunk_size - 1, int((idx / max(1, len(paragraphs))) * chunk_size))
-                    per_page[target_page].append(para)
-                for p, p_blocks in per_page.items():
-                    if p_blocks:
-                        absolute_pages[p] = ("\n\n".join(p_blocks)).splitlines()
-            else:
-                absolute_pages[start_page] = body
+            # Do not fabricate page boundaries by paragraph spreading.
+            absolute_pages[start_page] = body
 
         for page_num in range(start_page, end_page + 1):
             out_lines.append(f"<!-- PAGE:{page_num} -->")
@@ -863,6 +883,9 @@ def expand_chunk_markers(content: str) -> str:
             if page_lines:
                 out_lines.extend(page_lines)
 
+    if saw_chunk and not any("<!-- PAGE:" in line for line in out_lines):
+        out_lines.insert(0, "<!-- PAGE:1 -->")
+        out_lines.insert(1, "<!-- WARNING: page boundaries are estimated, not ground truth -->")
     return "\n".join(out_lines) if saw_chunk else content
 
 
@@ -886,9 +909,11 @@ def reading_order_score(text: str) -> float:
     return max(0.0, 1.0 - jumps / max(1, len(lines) / 10))
 
 
-def table_structure_score(text: str) -> float:
+def table_structure_score(text: str, page_feature: PageFeatures | None = None) -> float:
     lines = [x for x in text.splitlines() if "|" in x]
     if not lines:
+        if page_feature is not None and page_feature.table_density > 0.15:
+            return 0.3
         return 1.0
     valid = sum(1 for x in lines if x.count("|") >= 2)
     divs = sum(1 for x in lines if re.search(r"\|\s*[-:]{3,}\s*\|", x))
@@ -940,7 +965,8 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
             r.append("glyph_corruption")
         if re.search(r"archdev[^\w]?ils|conse[^\w]?quences", t, flags=re.IGNORECASE):
             r.append("soft_hyphen_split")
-        ts = table_structure_score(t)
+        page_feature = next((p for p in profile.page_features if p.page_index + 1 == idx), None)
+        ts = table_structure_score(t, page_feature=page_feature)
         if ts < 0.45:
             r.append("table_structure")
         if reading_order_score(t) < 0.6:
@@ -1012,6 +1038,30 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         return BookManifest(book_id=pdf.stem, source_pdf=str(pdf), lane="SKIP", lane_scores={}, donor_family="unknown", page_count=0, pages_audited=0, pages_passed=0, pages_remaining=0, page_marker_mode="existing", chunk_count=0, total_pages=0, pages_detected=0, ocr_mode="skip", started_at=started_iso, finished_at=now_iso(), elapsed_sec=round(time.perf_counter() - t0, 3), output_md=str(md_out), page_metadata_path=str(page_meta), audit_signatures=[], failed_pages=[], marker_api_variant=None)
 
     profile = analyze_pdf(pdf, cfg)
+    try:
+        with fitz.open(pdf) as doc:
+            meta = doc.metadata or {}
+            rows = []
+            fsize = pdf.stat().st_size if pdf.exists() else 0
+            for i, page in enumerate(doc, start=1):
+                txt = normalize_text(page.get_text("text"))
+                rows.append(PageTruthRecord(
+                    book_id=pdf.stem,
+                    page=i,
+                    width=float(page.rect.width),
+                    height=float(page.rect.height),
+                    rotation=int(getattr(page, "rotation", 0) or 0),
+                    text_chars=len(txt),
+                    image_count=len(page.get_images(full=True)),
+                    drawing_count=len(page.get_drawings()),
+                    producer=str(meta.get("producer", "") or ""),
+                    creator=str(meta.get("creator", "") or ""),
+                    encrypted=bool(doc.is_encrypted),
+                    file_size=fsize,
+                ))
+        write_page_truth_jsonl(out_dir / f"{pdf.stem}.page_truth.jsonl", rows)
+    except Exception:
+        pass
     lane, scores = choose_lane(profile, cfg)
     if profile.is_image_only:
         lane = "C"
@@ -1049,7 +1099,23 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     pages = parse_page_markers(md_out.read_text(encoding="utf-8", errors="replace"))
     if cfg.strict_page_truth and profile.total_pages > 0 and len(pages) < profile.total_pages:
         raise RuntimeError(f"strict_page_truth: page markers incomplete {len(pages)}/{profile.total_pages}")
-    sidecar = [{"page": p, "markdown": blk} for p, body in pages.items() for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
+    sidecar = []
+    for p, body in pages.items():
+        table_chunks = [blk for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
+        page_feature = next((pf for pf in profile.page_features if pf.page_index + 1 == p), None)
+        sidecar.append({
+            "page": p,
+            "markdown": "\n\n".join(table_chunks).strip(),
+            "table_chunks": table_chunks,
+            "vector_table_detected": bool(page_feature and page_feature.table_density > 0.15),
+            "source_has_drawings": bool(page_feature and page_feature.table_density > 0.0),
+            "source_geometry": {
+                "page_index": page_feature.page_index if page_feature else None,
+                "is_landscape": page_feature.is_landscape if page_feature else None,
+                "table_density": page_feature.table_density if page_feature else None,
+                "sidebar_density": page_feature.sidebar_density if page_feature else None,
+            },
+        })
     save_json(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json", sidecar)
 
     failed_pages = list(range(len(pages))) if cfg.enforce_full_book_repair and not audit.passed else audit.failed_pages
@@ -1158,8 +1224,14 @@ def main() -> None:
                 summary["books_ok"] += 1
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
+            error_record = {
+                "file": str(pdf),
+                "error": str(exc),
+                "traceback": traceback.format_exc(),
+                "timestamp": now_iso(),
+            }
             with open(cfg.log_dir / "orchestrator_fatal.log", "a", encoding="utf-8") as f:
-                f.write(f"[{pdf.name}] {exc}\n")
+                f.write(json.dumps(error_record, ensure_ascii=False) + "\n")
             if not cfg.continue_on_error:
                 raise
             print(f"  ! error: {exc}")

@@ -196,10 +196,19 @@ def load_manifest(manifest_path: Path) -> dict[str, Any]:
         return json.load(file)
 
 
-def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
+def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None = None) -> BookCheck:
     text = markdown_path.read_text(encoding="utf-8", errors="replace")
     pages = parse_page_markers(text)
     manifest = load_manifest(manifest_path)
+    if manifest:
+        try:
+            import jsonschema  # type: ignore
+            schema_dir = Path(__file__).parent / "schemas"
+            manifest_schema = json.loads((schema_dir / "manifest.schema.json").read_text(encoding="utf-8"))
+            jsonschema.validate(manifest, manifest_schema)
+        except Exception as exc:  # pylint: disable=broad-exception-caught
+            manifest.setdefault("audit_signatures", [])
+            manifest["audit_signatures"].append(f"schema_violation:{str(exc)[:80]}")
     page_metadata = []
     page_meta_path = Path(manifest.get("page_metadata_path", "")) if manifest else Path("")
     if page_meta_path and page_meta_path.exists():
@@ -243,6 +252,22 @@ def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
             table_miss_pages.append(page_num)
     if table_miss_pages:
         issues.append("vector_table_miss")
+    if pdf_path and pdf_path.exists():
+        try:
+            import fitz
+            from orchestrator import vector_table_density
+            by_page = {pc.page: pc for pc in page_checks}
+            with fitz.open(pdf_path) as doc:
+                for page_num in sorted(pages):
+                    if 0 <= page_num - 1 < len(doc):
+                        vt = vector_table_density(doc[page_num - 1])
+                        pipe_rows = sum(1 for ln in pages[page_num].splitlines() if ln.count("|") >= 2)
+                        if vt > 0.3 and pipe_rows < 2:
+                            issues.append("vector_table_miss")
+                            if page_num in by_page:
+                                by_page[page_num].issues.append("vector_table_miss")
+        except Exception:
+            pass
     page_marker_mode = str(manifest.get("page_marker_mode", ""))
     if page_marker_mode in {"chunk_fallback", "native_or_fallback"}:
         score = max(0.0, score - 0.08)

@@ -61,8 +61,9 @@ def fixture_pseudo_table() -> str:
     return """
 <!-- PAGE:1 -->
 Name    AC    HP
-Goblin  15    7
+Goblin    15    7
 Ogre    11    59
+Dragon    19    256
 """.strip()
 
 
@@ -284,7 +285,7 @@ def test_single_line_non_table() -> TestResult:
 
 
 def test_whitespace_columns_detection() -> TestResult:
-    text = "A   B   C\n1   2   3"
+    text = "A   B   C\n1   2   3\n4   5   6"
     fixed, stats = apply_fixes(text)
     passed = stats["pseudo_tables_promoted"] >= 2
     return TestResult("whitespace_columns_detection", passed, json.dumps(stats))
@@ -304,8 +305,9 @@ def test_mixed_content() -> TestResult:
     text = """
 # Chapter
 Some prose.
-A   B   C
-1   2   3
+A    B    C
+1    2    3
+4    5    6
 More prose.
 """.strip()
     fixed, stats = apply_fixes(text)
@@ -490,6 +492,7 @@ def test_cypher_profile_not_lane_a() -> TestResult:
             sidebar_page_ratio=0.2,
             statblock_page_ratio=0.6,
             image_dominant_ratio=0.1,
+            landscape_ratio=0.0,
             is_image_only=False,
             donor_family="cypher",
             samples=[0, 1, 2],
@@ -509,6 +512,21 @@ def test_regression_snapshot(tmp: Path) -> TestResult:
     snap.write_text(fixed, encoding="utf-8")
     loaded = snap.read_text(encoding="utf-8")
     return TestResult("regression_snapshot", loaded == fixed, "roundtrip")
+
+
+def test_pipe_escape_in_table() -> TestResult:
+    from table_fixer import split_pipe_row
+    row = "| Weapon | 1d6\\|1d8 | Slashing |"
+    cells = split_pipe_row(row)
+    ok = len(cells) == 3 and "1d6" in cells[1] and "1d8" in cells[1]
+    return TestResult("pipe_escape_in_table", ok, f"cells={cells}")
+
+
+def test_vocab_anima() -> TestResult:
+    text = "Zeon: 50, Ki Accumulation: 2, Attack Ability: 120, Life Points: 95"
+    fam = best_family(text)
+    ok = fam.family == "anima" and fam.hits >= 3
+    return TestResult("vocab_anima", ok, f"family={fam.family}, hits={fam.hits}")
 
 
 def run_all(tmp: Path) -> list[TestResult]:
@@ -549,6 +567,8 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_layout_detect_multicolumn_fixture(),
         test_runner_page_map_requires_markers(),
         test_cypher_profile_not_lane_a(),
+        test_pipe_escape_in_table(),
+        test_vocab_anima(),
         test_regression_snapshot(tmp),
     ]
     return results

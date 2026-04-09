@@ -126,6 +126,7 @@ class QueueDB:
                 json.dumps(item.page_profiles, ensure_ascii=False),
             ),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def get_queue_item(self, book_id: str) -> QueueItem | None:
@@ -191,6 +192,7 @@ class QueueDB:
             """,
             (book_id, json.dumps(payload, ensure_ascii=False), time.time()),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def get_manifest(self, book_id: str) -> dict[str, Any] | None:
