@@ -42,9 +42,6 @@ BASE_RULES: tuple[RuleDef, ...] = (
     RuleDef("duplicate_para", "duplicate paragraph leakage", 0.7),
 )
 
-ASTRA_TERMS = ("dao", "tier", "astra-well", "heartbeat", "friction", "epiphany", "dao-vein")
-
-
 def parse_pages(markdown: str) -> dict[int, str]:
     pages: dict[int, list[str]] = {}
     current = 1
@@ -100,7 +97,7 @@ def score_table_signal(text: str) -> tuple[float, float, str]:
 def score_table_structure(text: str) -> tuple[float, float, str]:
     rows = [ln for ln in text.splitlines() if "|" in ln]
     if not rows:
-        return 0.5, 0.25, "no explicit table rows"
+        return 0.0, 0.25, "no explicit table rows"
     valid = sum(1 for ln in rows if ln.count("|") >= 2)
     dividers = sum(1 for ln in rows if re.search(r"\|\s*[-:]{3,}\s*\|", ln))
     score = min(1.0, (valid / len(rows)) * 0.7 + min(1.0, dividers / max(1, len(rows) * 0.25)) * 0.3)
@@ -110,14 +107,13 @@ def score_table_structure(text: str) -> tuple[float, float, str]:
 def score_statblock_signal(text: str) -> tuple[float, float, str]:
     density = statblock_density(text)
     family = best_family(text)
-    astra_hits = sum(1 for t in ASTRA_TERMS if t in text.lower())
-    score = min(1.0, density + min(0.3, astra_hits * 0.05))
-    return score, 0.25, f"density={density:.3f}, family={family.family}:{family.hits}, astra_hits={astra_hits}"
+    score = min(1.0, density)
+    return score, 0.25, f"density={density:.3f}, family={family.family}:{family.hits}"
 
 
 def score_content_density(text: str) -> tuple[float, float, str]:
     blocks = [b for b in re.split(r"\n\n+", text) if b.strip()]
-    long_blocks = sum(1 for b in blocks if len(b) > 140)
+    long_blocks = sum(1 for b in blocks if len(b.strip()) > 140)
     score = long_blocks / max(1, len(blocks))
     return score, 0.2, f"long_blocks={long_blocks}/{len(blocks)}"
 
@@ -127,9 +123,18 @@ def score_list_continuity(text: str) -> tuple[float, float, str]:
     bullets = [ln for ln in lines if re.match(r"^[-*]\s+", ln)]
     if not bullets:
         return 0.6, 0.3, "no bullet lists"
-    broken = sum(1 for ln in bullets if len(ln.split()) < 2)
-    score = max(0.0, 1.0 - broken / max(1, len(bullets)))
-    return score, 0.75, f"broken_bullets={broken}/{len(bullets)}"
+    marker_counts: dict[str, int] = {}
+    indents: list[int] = []
+    for line in bullets:
+        marker = line[0]
+        marker_counts[marker] = marker_counts.get(marker, 0) + 1
+        indents.append(len(line) - len(line.lstrip()))
+    dominant_marker = max(marker_counts.values()) if marker_counts else 0
+    marker_consistency = dominant_marker / max(1, len(bullets))
+    indent_span = (max(indents) - min(indents)) if indents else 0
+    indent_score = 1.0 if indent_span <= 4 else max(0.0, 1.0 - (indent_span / 16.0))
+    score = max(0.0, min(1.0, marker_consistency * 0.7 + indent_score * 0.3))
+    return score, 0.75, f"marker_consistency={marker_consistency:.3f}, indent_span={indent_span}"
 
 
 def score_duplicate_para(text: str) -> tuple[float, float, str]:

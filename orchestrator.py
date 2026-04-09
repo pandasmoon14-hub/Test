@@ -158,6 +158,7 @@ class PdfProfile:
     sidebar_page_ratio: float
     statblock_page_ratio: float
     image_dominant_ratio: float
+    is_image_only: bool
     donor_family: str
     samples: list[int]
     page_features: list[PageFeatures]
@@ -188,7 +189,6 @@ class BookManifest:
     lane_scores: dict[str, float]
     donor_family: str
     page_count: int
-    total_pages: int
     pages_audited: int
     pages_passed: int
     pages_remaining: int
@@ -259,7 +259,13 @@ def verify_pdf_magic(pdf: Path) -> bool:
 def choose_donor_family(pdf: Path, doc: fitz.Document) -> str:
     meta = doc.metadata or {}
     text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
+    return choose_donor_family_from_text(text)
+
+
+def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
+    if any(k in low for k in ["photoshop", "image conversion"]):
+        return "image_only"
     if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
         return "dnd5e"
     if any(k in low for k in ["ogl", "pathfinder", "paizo"]):
@@ -392,6 +398,10 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     return samples
 
 
+def is_image_only_signature(scanned_ratio: float, average_chars_per_page: float) -> bool:
+    return scanned_ratio >= 0.95 and average_chars_per_page < 10
+
+
 def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     with fitz.open(pdf) as doc:
         total_pages = len(doc)
@@ -424,7 +434,8 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     sidebar_ratio = sum(1 for r in rows if r.sidebar_density > 0.2) / max(1, len(rows))
     stat_ratio = sum(1 for r in rows if r.statblock_density > cfg.stat_ratio_threshold) / max(1, len(rows))
     image_ratio = sum(1 for r in rows if r.image_coverage > 0.4) / max(1, len(rows))
-    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, donor, samples, rows)
+    is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
+    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, is_image_only, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
@@ -433,6 +444,10 @@ def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
         a -= 2.5
     b = 1.5 * profile.table_page_ratio + 0.9 * profile.statblock_page_ratio + 0.7 * profile.multicolumn_ratio + (0.4 if profile.donor_family in {"dnd5e", "ogl"} else 0.2) - 0.7 * profile.scanned_ratio
     b2 = 1.2 * profile.table_page_ratio + 1.0 * profile.multicolumn_ratio + 0.6 * profile.sidebar_page_ratio + 0.8 * profile.scanned_ratio + (0.5 if profile.donor_family == "mixed" else 0.2)
+    if profile.is_image_only or profile.donor_family == "image_only":
+        a -= 5.0
+        b -= 2.0
+        b2 -= 1.5
     return {"A": round(a, 4), "B": round(b, 4), "B2": round(b2, 4)}
 
 
@@ -442,6 +457,8 @@ def choose_lane(profile: PdfProfile, cfg: RuntimeConfig) -> tuple[str, dict[str,
 
 
 def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
+    if profile.is_image_only:
+        return "skip"
     if cfg.ocr_mode in {"force", "skip", "redo"}:
         return cfg.ocr_mode
     if profile.scanned_ratio > 0.45:
@@ -459,6 +476,7 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
             blocks = page.get_text("blocks")
             blocks_sorted = column_sorted_blocks(blocks, page.rect.width)
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
+            raw_blocks = blocks
             image_blocks = [b for b in raw_blocks if len(b) > 6 and int(b[6]) == 1]
             if image_blocks and not lines:
                 lines = ["[IMAGE PAGE]"]
@@ -477,6 +495,38 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
     save_json(page_meta_path, meta_rows)
 
 
+def write_empty_page_markers(out_md: Path, total_pages: int) -> None:
+    with open(out_md, "w", encoding="utf-8") as file:
+        for page_no in range(1, max(1, total_pages) + 1):
+            file.write(f"<!-- PAGE:{page_no} -->\n\n")
+
+
+def enrich_page_profiles_from_markdown(
+    pages: dict[int, str],
+    profile: PdfProfile,
+) -> dict[str, dict[str, Any]]:
+    sampled = {p.page_index + 1: p for p in profile.page_features}
+    enriched: dict[str, dict[str, Any]] = {}
+    for page_no, text in pages.items():
+        sample = sampled.get(page_no)
+        table_density = detect_table_density(text)
+        stat_density = detect_statblock_density(text)
+        sidebar_density = min(1.0, text.count(">") / max(1, len(text.splitlines())))
+        enriched[str(page_no)] = {
+            "page_index": page_no - 1,
+            "char_count": len(text),
+            "weird_ratio": (sample.weird_ratio if sample else 0.0),
+            "block_count": (sample.block_count if sample else 0),
+            "image_coverage": (sample.image_coverage if sample else (1.0 if profile.is_image_only else 0.0)),
+            "vector_text_ratio": (sample.vector_text_ratio if sample else 0.0),
+            "is_multicolumn": bool(sample.is_multicolumn) if sample else False,
+            "table_density": table_density,
+            "sidebar_density": sidebar_density,
+            "statblock_density": stat_density,
+        }
+    return enriched
+
+
 def bridge_call(cmd: list[str], timeout_sec: int, retries: int, log_file: Path, label: str) -> dict[str, Any]:
     last_err = ""
     for attempt in range(1, retries + 1):
@@ -490,11 +540,22 @@ def bridge_call(cmd: list[str], timeout_sec: int, retries: int, log_file: Path, 
             if result.returncode != 0:
                 last_err = result.stderr[:500]
                 continue
-            payload = json.loads((result.stdout or "{}").strip().splitlines()[-1])
-            if payload.get("status") != "ok" or not payload.get("md_path"):
-                last_err = f"invalid payload: {payload}"
+            parsed = None
+            for line in reversed((result.stdout or "").splitlines()):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    candidate = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(candidate, dict) and candidate.get("status") == "ok" and candidate.get("md_path"):
+                    parsed = candidate
+                    break
+            if parsed is None:
+                last_err = "no valid JSON payload found in stdout"
                 continue
-            return payload
+            return parsed
         except subprocess.TimeoutExpired:
             last_err = f"timeout {timeout_sec}s"
         except json.JSONDecodeError as exc:
@@ -846,7 +907,9 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
-        content = ensure_page_markers(content, profile.total_pages)
+        if cfg.strict_page_truth:
+            return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
+        content = "<!-- PAGE:1 -->\n" + content
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():
@@ -898,20 +961,21 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
                 dst.insert_pdf(src, from_page=p, to_page=p)
         dst.save(micro)
     scores = {}
+    micro_profile = analyze_pdf(micro, cfg)
     try:
-        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", profile, log_file)
-        scores["B"] = len(audit_markdown(md, profile, cfg).failed_pages)
+        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", micro_profile, log_file)
+        scores["B"] = len(audit_markdown(md, micro_profile, cfg).failed_pages)
     except Exception:
         scores["B"] = 999
     try:
-        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", profile, log_file)
-        scores["B2"] = len(audit_markdown(md, profile, cfg).failed_pages)
+        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", micro_profile, log_file)
+        scores["B2"] = len(audit_markdown(md, micro_profile, cfg).failed_pages)
     except Exception:
         scores["B2"] = 999
     try:
         amd, apm = out_dir / "_race_a.md", out_dir / "_race_a_pages.json"
         write_page_markers_from_blocks(micro, amd, apm, log_file)
-        scores["A"] = len(audit_markdown(amd, profile, cfg).failed_pages)
+        scores["A"] = len(audit_markdown(amd, micro_profile, cfg).failed_pages)
     except Exception:
         scores["A"] = 999
     micro.unlink(missing_ok=True)
@@ -932,37 +996,25 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     log_file, md_out, page_meta = cfg.log_dir / f"{pdf.stem}.log", out_dir / f"{pdf.stem}.md", out_dir / f"{pdf.stem}.pages.json"
 
     if md_out.exists() and not cfg.overwrite_existing:
-        return BookManifest(
-            book_id=pdf.stem,
-            source_pdf=str(pdf),
-            lane="SKIP",
-            lane_scores={},
-            donor_family="unknown",
-            chunk_count=0,
-            total_pages=0,
-            pages_detected=0,
-            ocr_mode="skip",
-            started_at=started_iso,
-            finished_at=now_iso(),
-            elapsed_sec=round(time.perf_counter() - t0, 3),
-            output_md=str(md_out),
-            page_metadata_path=str(page_meta),
-            audit_signatures=[],
-            failed_pages=[],
-            marker_api_variant=None,
-        )
+        return BookManifest(book_id=pdf.stem, source_pdf=str(pdf), lane="SKIP", lane_scores={}, donor_family="unknown", page_count=0, pages_audited=0, pages_passed=0, pages_remaining=0, page_marker_mode="existing", chunk_count=0, total_pages=0, pages_detected=0, ocr_mode="skip", started_at=started_iso, finished_at=now_iso(), elapsed_sec=round(time.perf_counter() - t0, 3), output_md=str(md_out), page_metadata_path=str(page_meta), audit_signatures=[], failed_pages=[], marker_api_variant=None)
 
     profile = analyze_pdf(pdf, cfg)
     lane, scores = choose_lane(profile, cfg)
-    if cfg.sample_and_race:
+    if profile.is_image_only:
+        lane = "C"
+    elif cfg.sample_and_race:
         lane = sample_and_race(cfg, pdf, out_dir, profile, log_file)
 
     ocr_mode = route_ocr_mode(profile, cfg)
-    active_pdf = run_ocr(cfg, pdf, out_dir / f"{pdf.stem}_ocr.pdf", ocr_mode, log_file)
+    active_pdf = pdf if profile.is_image_only else run_ocr(cfg, pdf, out_dir / f"{pdf.stem}_ocr.pdf", ocr_mode, log_file)
 
     marker_api_variant, lane_meta = None, []
     page_marker_mode = "native"
-    if lane == "A":
+    if profile.is_image_only:
+        write_empty_page_markers(md_out, profile.total_pages)
+        page_marker_mode = "image_only_stub"
+        lane_meta.append({"chunk": 0, "page_start": 1, "page_end": profile.total_pages, "lane": "C", "pages_emitted": profile.total_pages})
+    elif lane == "A":
         write_page_markers_from_blocks(active_pdf, md_out, page_meta)
         page_marker_mode = "source_blocks"
     elif lane == "B":
@@ -991,6 +1043,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         key = str(pdf.resolve())
         existing = repair_queue.get(key, {})
         outstanding = sorted(set(existing.get("failed_pages", [])) | set(failed_pages))
+        enriched_profiles = enrich_page_profiles_from_markdown(pages, profile)
         repair_queue[key] = {
             "file": str(pdf.resolve()),
             "failed_pages": outstanding,
@@ -999,7 +1052,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "queued_at": time.time(),
             "audit_signatures": audit.signatures,
             "page_reasons": {str(a.page_index): a.reasons for a in audit.page_audits if a.reasons},
-            "page_profiles": {str(p.page_index + 1): asdict(p) for p in profile.page_features},
+            "page_profiles": enriched_profiles,
         }
 
     ocr_applied_pages = list(range(1, profile.total_pages + 1)) if ocr_mode in {"force", "redo"} else []
@@ -1021,7 +1074,30 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     save_json(page_meta, page_rows)
 
     chunk_count = max(1, len(lane_meta))
-    manifest = BookManifest(pdf.stem, str(pdf), lane, scores, profile.donor_family, chunk_count, profile.total_pages, len(pages), ocr_mode, started_iso, now_iso(), round(time.perf_counter()-t0,3), str(md_out), str(page_meta), audit.signatures, failed_pages, marker_api_variant)
+    manifest = BookManifest(
+        book_id=pdf.stem,
+        source_pdf=str(pdf),
+        lane=lane,
+        lane_scores=scores,
+        donor_family=profile.donor_family,
+        page_count=profile.total_pages,
+        pages_audited=len(pages),
+        pages_passed=max(0, len(pages) - len(failed_pages)),
+        pages_remaining=len(failed_pages),
+        page_marker_mode=page_marker_mode,
+        chunk_count=chunk_count,
+        total_pages=profile.total_pages,
+        pages_detected=len(pages),
+        ocr_mode=ocr_mode,
+        started_at=started_iso,
+        finished_at=now_iso(),
+        elapsed_sec=round(time.perf_counter() - t0, 3),
+        output_md=str(md_out),
+        page_metadata_path=str(page_meta),
+        audit_signatures=audit.signatures,
+        failed_pages=failed_pages,
+        marker_api_variant=marker_api_variant,
+    )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     return manifest
 
