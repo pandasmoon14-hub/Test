@@ -813,7 +813,6 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
     txt = expand_chunk_markers(txt)
-    txt, _ = apply_table_fixes(txt)
     if "<!-- PAGE:" not in txt:
         md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")
     else:
