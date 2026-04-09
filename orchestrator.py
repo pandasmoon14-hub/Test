@@ -345,7 +345,7 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     for i in range(0, total, max(1, cfg.sample_interval_pages)):
         candidates.add(i)
     hotspot_words = ["table of contents", "appendix", "index", "spell", "monster", "stat block", "armor class", "hit points", "difficulty class"]
-    for i in sorted(candidates):
+    for i in range(total):
         text = normalize_text(doc[i].get_text("text")[:2200]).lower()
         if any(k in text for k in hotspot_words):
             candidates.add(i)
