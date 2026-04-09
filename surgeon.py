@@ -190,8 +190,20 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
             file.write(f"\n<!-- PAGE:{p} -->\n")
             file.write("\n".join(parts[p]).strip() + "\n")
 
-    # basic completeness guard
-    return len(parts) >= max(1, len(parts) - 2)
+    if repaired_pages:
+        max_repaired = max(repaired_pages) + 1
+        if len(parts) < max_repaired:
+            return False
+        for repaired_idx in repaired_pages:
+            target_page = repaired_idx + 1
+            merged = "\n".join(parts.get(target_page, [])).strip()
+            if not merged:
+                return False
+
+    ordered = sorted(parts)
+    if ordered and ordered != list(range(ordered[0], ordered[-1] + 1)):
+        return False
+    return True
 
 
 def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, Any]) -> tuple[RepairStats, list[int]]:
