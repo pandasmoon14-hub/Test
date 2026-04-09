@@ -30,8 +30,6 @@ from typing import Any
 
 import fitz
 
-from mechanics_vocab import best_family, statblock_density
-
 try:
     from sqlite_queue import QueueDB, queue_item_from_record
 except Exception:  # pylint: disable=broad-exception-caught
@@ -232,8 +230,7 @@ def choose_donor_family(pdf: Path, doc: fitz.Document) -> str:
         return "dnd5e"
     if any(k in low for k in ["ogl", "pathfinder", "paizo"]):
         return "ogl"
-    fam = best_family(text)
-    return fam.family if fam.hits > 0 else "mixed"
+    return "mixed"
 
 
 def normalize_text(text: str) -> str:
@@ -259,15 +256,12 @@ def detect_multicolumn(blocks: list[tuple]) -> bool:
     return (statistics.mean(right) - statistics.mean(left)) > 90
 
 
-def detect_table_density(text: str, drawing_count: int = 0) -> float:
+def detect_table_density(text: str) -> float:
     lines = text.splitlines()
     if not lines:
         return 0.0
     tableish = sum(1 for line in lines if line.count("|") >= 2 or re.search(r"\b\d+\s{2,}\d+\b", line))
-    density = tableish / len(lines)
-    if drawing_count >= 30 and density < 0.1:
-        density = min(1.0, density + 0.3)
-    return density
+    return tableish / len(lines)
 
 
 def detect_sidebar_density(page: fitz.Page) -> float:
@@ -284,7 +278,10 @@ def detect_sidebar_density(page: fitz.Page) -> float:
 
 
 def detect_statblock_density(text: str) -> float:
-    return statblock_density(text)
+    keys = ["armor class", "hit points", "speed", "saving throw", "spell slots", "challenge rating", "dc ", "initiative", "actions", "bonus action"]
+    low = text.lower()
+    hits = sum(1 for k in keys if k in low)
+    return min(1.0, hits / 6.0)
 
 
 def image_coverage(page: fitz.Page) -> float:
@@ -332,7 +329,6 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
             text = normalize_text(page.get_text("text"))
             blocks = page.get_text("blocks")
             weird = len(re.findall(r"[^\w\s\.,;:?!'\-()\[\]{}<>/|+=*&%$#@`~“”‘’…–—§°•†‡]", text))
-            drawing_count = len(page.get_drawings())
             rows.append(PageFeatures(
                 page_index=idx,
                 char_count=len(text),
@@ -341,7 +337,7 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
                 image_coverage=image_coverage(page),
                 vector_text_ratio=vector_text_ratio(page, text),
                 is_multicolumn=detect_multicolumn(blocks),
-                table_density=detect_table_density(text, drawing_count=drawing_count),
+                table_density=detect_table_density(text),
                 sidebar_density=detect_sidebar_density(page),
                 statblock_density=detect_statblock_density(text),
             ))
@@ -362,7 +358,7 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
-    a = (1.4 if profile.average_chars_per_page > cfg.min_chars_for_native else -1.0) + (1.2 if profile.weird_ratio < cfg.weird_char_limit else -1.0) - 3.0 * profile.multicolumn_ratio - 3.0 * profile.table_page_ratio - 0.8 * profile.sidebar_page_ratio - 2.5 * profile.statblock_page_ratio
+    a = (1.4 if profile.average_chars_per_page > cfg.min_chars_for_native else -1.0) + (1.2 if profile.weird_ratio < cfg.weird_char_limit else -1.0) - 1.3 * profile.multicolumn_ratio - 1.1 * profile.table_page_ratio - 0.8 * profile.sidebar_page_ratio - 0.8 * profile.statblock_page_ratio
     b = 1.5 * profile.table_page_ratio + 0.9 * profile.statblock_page_ratio + 0.7 * profile.multicolumn_ratio + (0.4 if profile.donor_family in {"dnd5e", "ogl"} else 0.2) - 0.7 * profile.scanned_ratio
     b2 = 1.2 * profile.table_page_ratio + 1.0 * profile.multicolumn_ratio + 0.6 * profile.sidebar_page_ratio + 0.8 * profile.scanned_ratio + (0.5 if profile.donor_family == "mixed" else 0.2)
     return {"A": round(a, 4), "B": round(b, 4), "B2": round(b2, 4)}
@@ -383,34 +379,13 @@ def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
     return "skip"
 
 
-
-def _cluster_columns(blocks: list[tuple], page_width: float) -> list[tuple]:
-    candidates = [b for b in blocks if len(b) > 4 and str(b[4]).strip()]
-    if len(candidates) < 6:
-        return sorted(candidates, key=lambda b: (round(b[1], 1), round(b[0], 1)))
-    centers = sorted(((b[0] + b[2]) / 2.0, idx) for idx, b in enumerate(candidates))
-    groups: list[list[int]] = [[centers[0][1]]]
-    threshold = max(36.0, page_width * 0.09)
-    for i in range(1, len(centers)):
-        prev_x = centers[i - 1][0]
-        x, idx = centers[i]
-        if x - prev_x > threshold and len(groups) < 3:
-            groups.append([idx])
-        else:
-            groups[-1].append(idx)
-    ordered: list[tuple] = []
-    for group in groups:
-        col = [candidates[i] for i in group]
-        ordered.extend(sorted(col, key=lambda b: (round(b[1], 1), round(b[0], 1))))
-    return ordered
-
 def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path) -> None:
     meta_rows = []
     with fitz.open(pdf) as doc, open(out_md, "w", encoding="utf-8") as out:
         header_footer_memory: dict[str, int] = {}
         for i, page in enumerate(doc):
             blocks = page.get_text("blocks")
-            blocks_sorted = _cluster_columns(blocks, page.rect.width)
+            blocks_sorted = sorted(blocks, key=lambda b: (round(b[1], 1), round(b[0], 1)))
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
             first = lines[0].strip() if lines else ""
             last = lines[-1].strip() if lines else ""
@@ -601,16 +576,6 @@ def stat_block_score(text: str) -> float:
     return min(1.0, sep / (hits * 2 + 1))
 
 
-
-def page_quality_thresholds(page_profile: PageFeatures | None, cfg: RuntimeConfig) -> dict[str, float]:
-    if page_profile is None:
-        return {"min_chars": cfg.min_md_chars_per_page, "table_min": 0.45, "stat_min": 0.4}
-    return {
-        "min_chars": 80 if page_profile.image_coverage > 0.4 else cfg.min_md_chars_per_page,
-        "table_min": 0.3 if page_profile.table_density < 0.1 else 0.45,
-        "stat_min": 0.5 if page_profile.statblock_density > 0.2 else 0.4,
-    }
-
 def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> AuditResult:
     if not md_path.exists():
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
@@ -628,20 +593,18 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
     for idx in sorted(pages):
         t = pages[idx]
         r = []
-        m = next((p for p in profile.page_features if p.page_index + 1 == idx), None)
-        thresholds = page_quality_thresholds(m, cfg)
-        if len(t) < thresholds["min_chars"]:
+        if len(t) < cfg.min_md_chars_per_page:
             r.append("thin_output")
         if "\ufffd" in t:
             r.append("glyph_corruption")
         if re.search(r"archdev[^\w]?ils|conse[^\w]?quences", t, flags=re.IGNORECASE):
             r.append("soft_hyphen_split")
         ts = table_structure_score(t)
-        if ts < thresholds["table_min"]:
+        if ts < 0.45:
             r.append("table_structure")
         if reading_order_score(t) < 0.6:
             r.append("reading_order")
-        if stat_block_score(t) < thresholds["stat_min"]:
+        if stat_block_score(t) < 0.4:
             r.append("stat_block_integrity")
         lines = [l.strip() for l in t.splitlines() if l.strip()]
         if lines:
@@ -649,7 +612,8 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
                 r.append("header_repetition")
             if last_lines.get(lines[-1], 0) > max(4, len(pages) * 0.5):
                 r.append("footer_repetition")
-        if m and m.image_coverage < 0.5 and len(t) < thresholds["min_chars"]:
+        m = next((p for p in profile.page_features if p.page_index + 1 == idx), None)
+        if m and m.image_coverage < 0.5 and len(t) < cfg.min_md_chars_per_page:
             r.append("coverage_drop")
         if r:
             sigs.update(r)
@@ -689,26 +653,6 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
     return min(scores, key=scores.get) if scores else "B"
 
 
-
-def expand_chunk_markers_to_pages(md_path: Path) -> None:
-    text = md_path.read_text(encoding="utf-8", errors="replace")
-    if "<!-- PAGE:" in text or "<!-- CHUNK:" not in text:
-        return
-    page = 1
-    out: list[str] = []
-    for line in text.splitlines():
-        m = re.match(r"\s*<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->", line)
-        if m:
-            start = int(m.group(2))
-            page = start
-            out.append(f"<!-- PAGE:{page} -->")
-            continue
-        if line.strip() == "":
-            out.append(line)
-            continue
-        out.append(line)
-    md_path.write_text("\n".join(out), encoding="utf-8")
-
 def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) -> BookManifest:
     t0, started_iso = time.perf_counter(), now_iso()
     if not verify_pdf_magic(pdf):
@@ -741,7 +685,6 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     else:
         md_out, lane_meta = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
-    expand_chunk_markers_to_pages(md_out)
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in txt:
         md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")

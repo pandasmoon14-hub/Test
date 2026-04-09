@@ -74,11 +74,9 @@ def heading_sequence_score(text: str) -> float:
     return max(0.0, 1.0 - (jumps / len(headings)))
 
 
-def table_integrity_score(text: str, profile: dict[str, Any] | None = None) -> float:
+def table_integrity_score(text: str) -> float:
     lines = [line for line in text.splitlines() if "|" in line]
     if not lines:
-        if profile and profile.get("table_density", 0) > 0.15:
-            return 0.4
         return 1.0
     divider = sum(1 for line in lines if re.search(r"\|\s*[-:]{3,}\s*\|", line))
     row_quality = sum(1 for line in lines if line.count("|") >= 2) / max(1, len(lines))
@@ -86,7 +84,7 @@ def table_integrity_score(text: str, profile: dict[str, Any] | None = None) -> f
     return min(1.0, 0.65 * row_quality + 0.35 * divider_quality)
 
 
-def statblock_integrity_score(text: str, profile: dict[str, Any] | None = None) -> float:
+def statblock_integrity_score(text: str) -> float:
     keys = [
         "armor class",
         "hit points",
@@ -101,8 +99,6 @@ def statblock_integrity_score(text: str, profile: dict[str, Any] | None = None) 
     low = text.lower()
     hits = sum(1 for k in keys if k in low)
     if hits == 0:
-        if profile and profile.get("detected_columns"):
-            return 0.9
         return 1.0
     separators = text.count("|") + len(re.findall(r"\n\s*[-*]\s+", text))
     return min(1.0, separators / max(1, hits * 2))
@@ -150,23 +146,22 @@ def glyph_penalty(text: str) -> float:
     return min(0.4, penalties)
 
 
-def page_score(text: str, profile: dict[str, Any] | None = None) -> tuple[float, list[str]]:
+def page_score(text: str) -> tuple[float, list[str]]:
     issues = []
 
     chars = len(text)
-    min_chars = 80 if profile and profile.get("image_coverage", 0) > 0.4 else 120
-    if chars < min_chars:
+    if chars < 120:
         issues.append("thin_output")
 
     hs = heading_sequence_score(text)
     if hs < 0.65:
         issues.append("heading_jump")
 
-    ts = table_integrity_score(text, profile=profile)
+    ts = table_integrity_score(text)
     if ts < 0.5:
         issues.append("table_integrity")
 
-    ss = statblock_integrity_score(text, profile=profile)
+    ss = statblock_integrity_score(text)
     if ss < 0.45:
         issues.append("statblock_integrity")
 
@@ -184,8 +179,7 @@ def page_score(text: str, profile: dict[str, Any] | None = None) -> tuple[float,
     score -= (1.0 - ss) * 0.20
     score -= (1.0 - ro) * 0.25
     score -= gp
-    min_chars = 80 if profile and profile.get("image_coverage", 0) > 0.4 else 120
-    if chars < min_chars:
+    if chars < 120:
         score -= 0.15
 
     return max(0.0, score), issues
@@ -203,18 +197,9 @@ def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
     pages = parse_page_markers(text)
     manifest = load_manifest(manifest_path)
 
-    page_meta = {}
-    meta_path = manifest.get("page_metadata_path") if manifest else ""
-    if meta_path and Path(meta_path).exists():
-        try:
-            for row in json.loads(Path(meta_path).read_text(encoding="utf-8")):
-                page_meta[int(row.get("page", 0))] = row
-        except Exception:
-            page_meta = {}
-
     page_checks: list[PageCheck] = []
     for page_num in sorted(pages):
-        score, issues = page_score(pages[page_num], profile=page_meta.get(page_num))
+        score, issues = page_score(pages[page_num])
         page_checks.append(PageCheck(page=page_num, chars=len(pages[page_num]), issues=issues, score=score))
 
     issues: list[str] = []

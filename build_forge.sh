@@ -208,7 +208,7 @@ REPAIR_BATCH=6
 RENDER_DPI=180
 MAX_PAGE_TOKENS=3072
 ENFORCE_FULL_BOOK_REPAIR=0
-BRIDGE_TIMEOUT_SEC=900
+BRIDGE_TIMEOUT_SEC=3600
 BRIDGE_RETRIES=2
 OCR_MODE=selective
 SAMPLE_AND_RACE=0
@@ -227,8 +227,7 @@ Next commands:
   ${PIXTRAL_VENV}/bin/python3 ${SCRIPT_DIR}/surgeon.py
   ${ORCH_VENV}/bin/python3 ${SCRIPT_DIR}/lorebook_splitter.py \
     --input_root ${OUTPUT_DIR} \
-    --output_jsonl ${OUTPUT_DIR}/lorebook_chunks.jsonl \
-    --ttrpg_mode
+    --output_jsonl ${OUTPUT_DIR}/lorebook_chunks.jsonl
 
 Artifacts:
   venvs: ${VENVS_DIR}

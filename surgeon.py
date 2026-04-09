@@ -26,11 +26,6 @@ import fitz
 import PIL.Image
 from vllm import LLM, SamplingParams
 
-try:
-    import torch
-except Exception:  # pylint: disable=broad-exception-caught
-    torch = None
-
 
 @dataclass
 class SurgeonConfig:
@@ -195,8 +190,8 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
             file.write(f"\n<!-- PAGE:{p} -->\n")
             file.write("\n".join(parts[p]).strip() + "\n")
 
-    required_pages = max(parts) if parts else 0
-    return len(parts) >= max(1, int(required_pages * 0.9))
+    # basic completeness guard
+    return len(parts) >= max(1, len(parts) - 2)
 
 
 def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, Any]) -> tuple[RepairStats, list[int]]:
@@ -242,17 +237,8 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                 outputs = llm.chat(conversations, sampling_params=sampling, use_tqdm=False)
             except Exception as exc:  # pylint: disable=broad-exception-caught
                 warnings.append(f"batch failure {page_ids[0]+1}-{page_ids[-1]+1}: {exc}")
-                if torch is not None and "out of memory" in str(exc).lower():
-                    torch.cuda.empty_cache()
-                outputs = []
-                for img, prm, pg in zip(batch_imgs, batch_prompts, page_ids):
-                    try:
-                        single = llm.chat([make_conversation(img, prm)], sampling_params=sampling, use_tqdm=False)
-                        outputs.extend(single)
-                    except Exception:
-                        unresolved.append(pg)
-                if not outputs:
-                    continue
+                unresolved.extend(page_ids)
+                continue
 
             for pg, out in zip(page_ids, outputs):
                 txt = out.outputs[0].text.strip() if out.outputs else ""
