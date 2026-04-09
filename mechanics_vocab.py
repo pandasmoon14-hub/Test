@@ -19,6 +19,12 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     ),
     "year_zero": ("agility", "wits", "empathy", "strength", "stress", "trauma", "critical injury"),
     "whog": ("hardiness", "parry", "evade", "qi", "max wounds", "resolve", "quickness", "movement speed"),
+    "wod": ("willpower", "humanity", "hunger", "auspex", "discipline", "paradox", "quintessence"),
+    "shadowrun": ("dice pool", "edge", "initiative score", "matrix", "condition monitor", "essence", "drain"),
+    "gurps": ("advantages", "disadvantages", "point cost", "skill level", "basic speed", "hit location"),
+    "savage_worlds": ("pace", "parry", "toughness", "wild die", "raise", "edges", "hindrances"),
+    "pbta": ("moves", "on a 10+", "on a 7-9", "on a miss", "hold", "forward"),
+    "astra": ("dao", "tier", "astra-well", "heartbeat", "friction", "epiphany", "dao-vein"),
     "generic": ("difficulty", "target number", "critical", "success", "failure", "cooldown", "resource"),
 }
 

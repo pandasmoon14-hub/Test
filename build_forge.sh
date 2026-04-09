@@ -144,7 +144,9 @@ smoke_python_imports() {
   "${ORCH_VENV}/bin/python" - <<'PY'
 import fitz
 import ocrmypdf
+from mechanics_vocab import statblock_density
 print("orchestrator imports ok", fitz.__doc__ is not None, ocrmypdf.__name__)
+print("mechanics_vocab ok", statblock_density("Armor Class: 15") > 0.0)
 PY
 
   "${MARKER_VENV}/bin/python" - <<'PY'
@@ -182,6 +184,7 @@ smoke_pipeline_scripts() {
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/regression_suite.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/sqlite_queue.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/acceptance_corpus.py" --help >/dev/null
+  "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/layout_analyzer.py" --help >/dev/null
 
   ok "Script help smoke checks complete"
 }

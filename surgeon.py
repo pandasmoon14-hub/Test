@@ -39,21 +39,28 @@ class SurgeonConfig:
     gpu_memory_utilization: float = 0.85
     max_model_len: int = 16384
     tokenizer_mode: str = "mistral"
+    gpu_profile: str = "default"
 
     @classmethod
-    def from_env(cls) -> "SurgeonConfig":
+    def from_env(cls, gpu_profile: str = "default") -> "SurgeonConfig":
         output_dir = Path(os.getenv("OUTPUT_DIR", "/workspace/ttrpg_output"))
+        defaults = {
+            "default": {"max_page_tokens": "3072", "repair_batch": "6", "gpu_memory_utilization": "0.85", "max_model_len": "16384"},
+            "a6000": {"max_page_tokens": "4096", "repair_batch": "12", "gpu_memory_utilization": "0.92", "max_model_len": "24576"},
+        }
+        prof = defaults.get(gpu_profile, defaults["default"])
         return cls(
             output_dir=output_dir,
             queue_file=output_dir / "repair_queue" / "queue.json",
             model_name=os.getenv("PIXTRAL_MODEL", "mistralai/Pixtral-12B-2409"),
             min_crop_size=int(os.getenv("MIN_CROP_SIZE", "96")),
-            max_page_tokens=int(os.getenv("MAX_PAGE_TOKENS", "3072")),
-            repair_batch=int(os.getenv("REPAIR_BATCH", "6")),
+            max_page_tokens=int(os.getenv("MAX_PAGE_TOKENS", prof["max_page_tokens"])),
+            repair_batch=int(os.getenv("REPAIR_BATCH", prof["repair_batch"])),
             render_dpi=int(os.getenv("RENDER_DPI", "180")),
-            gpu_memory_utilization=float(os.getenv("GPU_MEMORY_UTILIZATION", "0.85")),
-            max_model_len=int(os.getenv("MAX_MODEL_LEN", "16384")),
+            gpu_memory_utilization=float(os.getenv("GPU_MEMORY_UTILIZATION", prof["gpu_memory_utilization"])),
+            max_model_len=int(os.getenv("MAX_MODEL_LEN", prof["max_model_len"])),
             tokenizer_mode=os.getenv("TOKENIZER_MODE", "mistral"),
+            gpu_profile=gpu_profile,
         )
 
 
@@ -94,6 +101,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--max_books", type=int, default=0)
     parser.add_argument("--dry_run", action="store_true")
     parser.add_argument("--summary_json", default="")
+    parser.add_argument("--gpu_profile", choices=["default", "a6000"], default="default")
     return parser.parse_args()
 
 
@@ -190,8 +198,20 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
             file.write(f"\n<!-- PAGE:{p} -->\n")
             file.write("\n".join(parts[p]).strip() + "\n")
 
-    # basic completeness guard
-    return len(parts) >= max(1, len(parts) - 2)
+    if repaired_pages:
+        max_repaired = max(repaired_pages) + 1
+        if len(parts) < max_repaired:
+            return False
+        for repaired_idx in repaired_pages:
+            target_page = repaired_idx + 1
+            merged = "\n".join(parts.get(target_page, [])).strip()
+            if not merged:
+                return False
+
+    ordered = sorted(parts)
+    if ordered and ordered != list(range(ordered[0], ordered[-1] + 1)):
+        return False
+    return True
 
 
 def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, Any]) -> tuple[RepairStats, list[int]]:
@@ -294,8 +314,8 @@ def summarize(stats: list[RepairStats]) -> dict[str, Any]:
 
 
 def main() -> None:
-    cfg = SurgeonConfig.from_env()
     args = parse_args()
+    cfg = SurgeonConfig.from_env(gpu_profile=args.gpu_profile)
 
     queue = load_queue(cfg.queue_file)
     if not queue:
