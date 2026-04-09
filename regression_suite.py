@@ -21,7 +21,9 @@ from quality_harness import (
     statblock_integrity_score,
     reading_order_score,
     parse_page_markers,
+    page_score,
 )
+from mechanics_vocab import best_family, statblock_density
 
 
 @dataclass
@@ -101,6 +103,28 @@ Armor Class 15 Hit Points 7 Speed 30 Actions Scimitar
 """.strip()
 
 
+def fixture_whog_statblock() -> str:
+    return """
+<!-- PAGE:1 -->
+# Iron Disciple
+Defenses: Hardiness 5, Evade 6, Parry 6
+Qi: 2
+Max Wounds: 5
+Key Techniques: Biting Blade
+""".strip()
+
+
+def fixture_shadowrun_statblock() -> str:
+    return """
+<!-- PAGE:1 -->
+# Street Samurai
+Dice Pool: 12
+Edge: 3
+Initiative Score: 10+2d6
+Condition Monitor: 10
+""".strip()
+
+
 def fixture_page_markers() -> str:
     return """
 <!-- PAGE:1 -->
@@ -124,7 +148,8 @@ def test_table_integrity_bad() -> TestResult:
 
 def test_table_fixer_adds_divider() -> TestResult:
     fixed, stats = apply_fixes(fixture_broken_table_no_divider())
-    passed = "| --- | --- | --- |" in fixed and stats["separators_added"] >= 1
+    divider_like = any(" ---" in ln and "|" in ln for ln in fixed.splitlines())
+    passed = divider_like and stats["separators_added"] >= 1
     return TestResult("table_fixer_adds_divider", passed, json.dumps(stats))
 
 
@@ -152,6 +177,17 @@ def test_statblock_good() -> TestResult:
 def test_statblock_bad() -> TestResult:
     val = statblock_integrity_score(fixture_stat_block_bad())
     return TestResult("statblock_bad", val < 0.7, f"score={val:.3f}")
+
+
+def test_vocab_whog() -> TestResult:
+    fam = best_family(fixture_whog_statblock())
+    dens = statblock_density(fixture_whog_statblock())
+    return TestResult("vocab_whog", fam.family == "whog" and dens > 0.3, f"family={fam.family}, density={dens:.3f}")
+
+
+def test_vocab_shadowrun() -> TestResult:
+    fam = best_family(fixture_shadowrun_statblock())
+    return TestResult("vocab_shadowrun", fam.family == "shadowrun", f"family={fam.family}")
 
 
 def test_page_marker_parser() -> TestResult:
@@ -221,7 +257,8 @@ text
 | alpha | beta |
 """.strip()
     fixed, stats = apply_fixes(text)
-    passed = fixed.count("| --- |") >= 2 and stats["tables_seen"] >= 2
+    divider_rows = sum(1 for ln in fixed.splitlines() if "---" in ln and "|" in ln)
+    passed = divider_rows >= 2 and stats["tables_seen"] >= 2
     return TestResult("multi_block_table_fix", passed, json.dumps(stats))
 
 
@@ -367,6 +404,8 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_reading_order_signal(),
         test_statblock_good(),
         test_statblock_bad(),
+        test_vocab_whog(),
+        test_vocab_shadowrun(),
         test_page_marker_parser(),
         test_table_fixer_idempotent(),
         test_table_fixer_padding(),

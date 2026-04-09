@@ -4,7 +4,10 @@
 from __future__ import annotations
 
 import re
+import os
+import json
 from dataclasses import dataclass
+from pathlib import Path
 
 
 @dataclass(frozen=True)
@@ -25,8 +28,38 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     "savage_worlds": ("pace", "parry", "toughness", "wild die", "raise", "edges", "hindrances"),
     "pbta": ("moves", "on a 10+", "on a 7-9", "on a miss", "hold", "forward"),
     "astra": ("dao", "tier", "astra-well", "heartbeat", "friction", "epiphany", "dao-vein"),
+    "cypher": ("effort", "might pool", "speed pool", "intellect pool", "cypher limit", "artifact", "recovery roll"),
+    "l5r": ("strife", "opportunity", "void points", "honor", "glory", "composure", "endurance", "focus"),
+    "genesys": ("triumph", "despair", "advantage", "threat", "setback die", "boost die", "proficiency die"),
+    "rolemaster": ("offensive bonus", "defensive bonus", "maneuver points", "critical strike", "fumble", "moving maneuver"),
+    "hero_system": ("stun", "body", "endurance", "speed", "ocv", "dcv", "ego combat value"),
+    "symbaroum": ("corruption", "shadow", "toughness", "resolute", "vigilant", "discreet", "persuasive"),
+    "mothership": ("stress", "panic check", "wounds", "sanity", "body save", "fear save", "armor save"),
+    "osr": ("thac0", "morale", "treasure type", "reaction roll", "saving throw", "armor class", "experience points"),
     "generic": ("difficulty", "target number", "critical", "success", "failure", "cooldown", "resource"),
 }
+
+
+def load_custom_vocab(path: str | None = None) -> None:
+    if not path:
+        return
+    candidate = Path(path)
+    if not candidate.exists():
+        return
+    try:
+        payload = json.loads(candidate.read_text(encoding="utf-8"))
+    except Exception:
+        return
+    if not isinstance(payload, dict):
+        return
+    for family, keywords in payload.items():
+        if isinstance(family, str) and isinstance(keywords, list):
+            cleaned = tuple(str(k).strip().lower() for k in keywords if str(k).strip())
+            if cleaned:
+                VOCAB_FAMILIES[family] = cleaned
+
+
+load_custom_vocab(os.getenv("MECHANICS_VOCAB_EXTRA"))
 
 
 def mechanics_hits(text: str) -> dict[str, int]:

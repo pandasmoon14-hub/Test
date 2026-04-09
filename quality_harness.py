@@ -187,6 +187,13 @@ def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
     text = markdown_path.read_text(encoding="utf-8", errors="replace")
     pages = parse_page_markers(text)
     manifest = load_manifest(manifest_path)
+    page_metadata = []
+    page_meta_path = Path(manifest.get("page_metadata_path", "")) if manifest else Path("")
+    if page_meta_path and page_meta_path.exists():
+        try:
+            page_metadata = json.loads(page_meta_path.read_text(encoding="utf-8", errors="replace"))
+        except Exception:
+            page_metadata = []
 
     page_checks: list[PageCheck] = []
     for page_num in sorted(pages):
@@ -210,6 +217,19 @@ def check_book(markdown_path: Path, manifest_path: Path) -> BookCheck:
     manifest_issues = manifest.get("audit_signatures", []) if manifest else []
     if manifest_issues:
         issues.extend([f"manifest:{x}" for x in manifest_issues])
+
+    table_miss_pages = []
+    for pm in page_metadata:
+        page_num = int(pm.get("page", 0) or 0)
+        if page_num <= 0:
+            continue
+        src_table_signal = float(pm.get("detected_tables", 0.0) or 0.0)
+        md_page = pages.get(page_num, "")
+        pipe_rows = sum(1 for ln in md_page.splitlines() if ln.count("|") >= 2)
+        if src_table_signal > 0.15 and pipe_rows < 2:
+            table_miss_pages.append(page_num)
+    if table_miss_pages:
+        issues.append("vector_table_miss")
 
     return BookCheck(
         book_id=markdown_path.stem,
