@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import time
 from dataclasses import dataclass, asdict
@@ -60,20 +61,23 @@ def run_single(
     pdf: Path,
     extra_env: dict[str, str],
 ) -> PilotRun:
-    env = {**extra_env}
-    env["INPUT_DIR"] = str(input_dir)
-    env["OUTPUT_DIR"] = str(output_dir)
+    env = {**os.environ, **extra_env, "INPUT_DIR": str(input_dir), "OUTPUT_DIR": str(output_dir)}
 
     start = time.perf_counter()
     cmd = [orchestrator_python, orchestrator_script, "--glob", pdf.name, "--limit", "1", "--resume"]
-    result = subprocess.run(cmd, capture_output=True, text=True, env={**extra_env, **env})
+    result = subprocess.run(cmd, capture_output=True, text=True, env=env)
     elapsed = time.perf_counter() - start
 
     manifest = output_dir / "manifests" / f"{pdf.stem}.manifest.json"
     m = read_manifest(manifest)
 
     lane = m.get("lane", "unknown")
-    pages = int(m.get("chunk_count", 0))
+    pages = int(m.get("total_pages", 0) or m.get("pages_detected", 0) or 0)
+    if pages <= 0:
+        md_path = Path(m.get("output_md", ""))
+        if md_path.exists():
+            pages = max(1, sum(1 for line in md_path.read_text(encoding="utf-8", errors="replace").splitlines() if line.strip().startswith("<!-- PAGE:")))
+    pages = max(1, pages)
     queued = len(m.get("failed_pages", [])) if isinstance(m.get("failed_pages"), list) else 0
 
     status = "ok" if result.returncode == 0 else "error"
@@ -111,7 +115,7 @@ def summarize(runs: list[PilotRun]) -> dict[str, Any]:
 
 
 def estimate_lane_ppm(runs: list[PilotRun]) -> dict[str, float]:
-    # rough estimate using chunk_count proxy if page counts unavailable in manifest
+    # throughput estimate from real page counts (manifest total_pages or page marker count)
     lane_pages: dict[str, float] = {}
     lane_seconds: dict[str, float] = {}
     for run in runs:

@@ -76,6 +76,8 @@ class QueueDB:
         self.conn.commit()
 
     def close(self) -> None:
+        self.conn.execute("PRAGMA wal_checkpoint(FULL)")
+        self.conn.execute("PRAGMA optimize")
         self.conn.commit()
         self.conn.close()
 

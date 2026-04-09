@@ -24,6 +24,8 @@ from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
 
+from mechanics_vocab import statblock_density as vocab_statblock_density
+
 
 @dataclass
 class PageCheck:
@@ -77,7 +79,7 @@ def heading_sequence_score(text: str) -> float:
 def table_integrity_score(text: str) -> float:
     lines = [line for line in text.splitlines() if "|" in line]
     if not lines:
-        return 1.0
+        return 0.5
     divider = sum(1 for line in lines if re.search(r"\|\s*[-:]{3,}\s*\|", line))
     row_quality = sum(1 for line in lines if line.count("|") >= 2) / max(1, len(lines))
     divider_quality = min(1.0, divider / max(1, len(lines) * 0.25))
@@ -85,21 +87,10 @@ def table_integrity_score(text: str) -> float:
 
 
 def statblock_integrity_score(text: str) -> float:
-    keys = [
-        "armor class",
-        "hit points",
-        "speed",
-        "saving throws",
-        "skills",
-        "actions",
-        "bonus actions",
-        "spell slots",
-        "dc",
-    ]
-    low = text.lower()
-    hits = sum(1 for k in keys if k in low)
-    if hits == 0:
-        return 1.0
+    density = vocab_statblock_density(text)
+    if density < 0.08:
+        return 0.5
+    hits = max(1, int(density * 4))
     separators = text.count("|") + len(re.findall(r"\n\s*[-*]\s+", text))
     return min(1.0, separators / max(1, hits * 2))
 
@@ -291,7 +282,10 @@ def main() -> None:
     md_root = Path(args.markdown_root)
     manifest_root = Path(args.manifest_root)
 
-    markdown_files = [p for p in sorted(md_root.glob(args.glob)) if p.is_file()]
+    markdown_files = [
+        p for p in sorted(md_root.glob(args.glob))
+        if p.is_file() and "_chunk_" not in p.name and "_dchunk_" not in p.name and not p.name.endswith(".repair.tmp.md")
+    ]
     if args.max_books > 0:
         markdown_files = markdown_files[: args.max_books]
 
