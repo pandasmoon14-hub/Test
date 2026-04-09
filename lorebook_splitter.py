@@ -15,9 +15,12 @@ from __future__ import annotations
 import argparse
 import json
 import re
+import uuid
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Iterable
+
+from mechanics_vocab import mechanics_hits, statblock_density
 
 
 @dataclass
@@ -52,8 +55,9 @@ def normalize_whitespace(text: str) -> str:
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
     pages, cur = {}, 1
+    marker_re = re.compile(r"\s*<!--\s*page\s*[:\s]?\s*(\d+)\s*-->", flags=re.IGNORECASE)
     for line in markdown.splitlines():
-        m = re.match(r"\s*<!--\s*PAGE:(\d+)\s*-->", line)
+        m = marker_re.match(line)
         if m:
             cur = int(m.group(1))
             pages.setdefault(cur, [])
@@ -118,15 +122,16 @@ def detect_table_blocks(text: str) -> list[str]:
 
 
 def detect_rule_like_blocks(text: str, ttrpg_mode: bool) -> list[str]:
-    base = [
-        r"\bDC\s*\d+\b", r"\bArmor\s+Class\b", r"\bHit\s+Points?\b", r"\bSaving\s+Throw\b", r"\bSpell\s+Slots?\b",
-        r"\bAction\s+Economy\b", r"\bChallenge\s+Rating\b", r"\bInitiative\b", r"\bCooldown\b", r"\bDrawback\b",
-        r"\bBase\s+Effect\b", r"\bBonus\s+\d+\b", r"\bPC\s+Level\b",
-    ]
-    if ttrpg_mode:
-        base += [r"\bWyrd\b", r"\bUrge\b", r"\bVitality\b", r"\bRevivals?\b", r"\bHard\s+Success\b", r"\bBotch\b", r"\bSuccesses\b", r"\bSoak\b", r"\bShielding\b"]
-    regex = re.compile("|".join(base), flags=re.IGNORECASE)
-    return [p.strip() for p in text.split("\n\n") if p.strip() and regex.search(p)]
+    generic_regex = re.compile(r"\b(dc\s*\d+|target number|difficulty|cooldown|resource|actions?|reaction|roll table|initiative)\b", flags=re.IGNORECASE)
+    out = []
+    for para in text.split("\n\n"):
+        p = para.strip()
+        if not p:
+            continue
+        vocab_hits = sum(mechanics_hits(p).values())
+        if generic_regex.search(p) or vocab_hits >= (1 if ttrpg_mode else 2) or statblock_density(p) >= 0.22:
+            out.append(p)
+    return out
 
 
 def detect_lore_like_blocks(text: str) -> list[str]:
@@ -166,11 +171,14 @@ def chunk_large_text(text: str, max_chars: int) -> list[str]:
 
 
 def make_embedding_text(book_id: str, chapter_path: str, tags: list[str], body: str, pages: list[int]) -> str:
-    return f"book_id={book_id}\nchapter_path={chapter_path}\ntags={','.join(tags)}\npages={','.join(map(str,pages))}\n\n{body}"
+    compact = re.sub(r"\s+", " ", body).strip()
+    summary = compact[:1200]
+    return f"book_id={book_id}\nchapter_path={chapter_path}\ntags={','.join(tags)}\npages={','.join(map(str,pages))}\nsummary={summary}"
 
 
 def make_entry_id(book_id: str, kind: str, idx: int) -> str:
-    return f"{book_id}:{kind}:{idx:05d}"
+    seed = f"{book_id}:{kind}:{idx:05d}"
+    return str(uuid.uuid5(uuid.NAMESPACE_URL, seed))
 
 
 def safe_chunk(record: ChunkRecord) -> ChunkRecord | None:
