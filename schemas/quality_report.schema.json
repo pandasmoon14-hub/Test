@@ -1,0 +1,9 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AetherForgeQualityReport",
+  "type": "object",
+  "required": ["books"],
+  "properties": {
+    "books": {"type":"array","items":{"type":"object"}}
+  }
+}
