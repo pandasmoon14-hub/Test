@@ -48,8 +48,6 @@ VOCAB_FAMILIES: dict[str, tuple[str, ...]] = {
     "cortex": ("distinction", "stress die", "complications", "plot points", "asset"),
     "fantasy_age": ("health", "defense", "speed", "stunt points", "ability focus"),
     "scion": ("legend", "epic attributes", "boons", "birthrights", "fatebinding", "purviews"),
-    "fate": ("aspects", "fate points", "stunts", "stress boxes", "consequences", "approaches", "refresh"),
-    "forged_in_dark": ("position", "effect", "resistance", "trauma", "stress", "harm", "load"),
     "warhammer": (
         "wounds", "ballistic skill", "weapon skill", "toughness", "fellowship",
         "fate points", "corruption points", "influence",
