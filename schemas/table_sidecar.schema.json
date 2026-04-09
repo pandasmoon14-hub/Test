@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AetherForgeTableSidecar",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "required": ["page","chunks","table_like_chunks"],
+    "properties": {
+      "page": {"type":"integer","minimum":1},
+      "chunks": {"type":"array","items":{"type":"string"}},
+      "table_like_chunks": {"type":"array","items":{"type":"string"}}
+    }
+  }
+}
