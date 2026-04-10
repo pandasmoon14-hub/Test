@@ -11,10 +11,13 @@ Handles:
   - Output to a plain-text or Markdown file
 """
 
+import base64
+from io import BytesIO
+from pathlib import Path
+
 import PIL.Image
 import fitz  # PyMuPDF  (pip install pymupdf)
 from vllm import LLM, SamplingParams
-from pathlib import Path
 
 
 # ---------------------------------------------------------------------------
@@ -166,9 +169,15 @@ def classify_region(crop: PIL.Image.Image) -> str:
         return "table"
     if 0.6 < aspect < 1.8 and max(w, h) < 500:
         return "stat_block"
-    if aspect < 0.35:
+    if aspect < 0.35 and max(w, h) < 600:
         return "sidebar"
     return "general"
+
+
+def pil_to_data_uri(img: PIL.Image.Image) -> str:
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    return f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
 
 
 # ---------------------------------------------------------------------------
@@ -193,7 +202,7 @@ def pixtral_transcribe(
             "role": "user",
             "content": [
                 {"type": "text",      "text": prompt_text},
-                {"type": "image_pil", "image_pil": crop},
+                {"type": "image_url", "image_url": {"url": pil_to_data_uri(crop)}},
             ],
         }]
         result = llm.chat(messages=messages, sampling_params=sampling_params)
@@ -280,7 +289,7 @@ def process_pdf(
     for i, page_image in enumerate(images, start=1):
         print(f"[process_pdf] Page {i}/{total} …")
         text = process_page(llm, sampling_params, page_image, cols=cols)
-        all_pages.append(f"<!-- Page {i} -->\n{text}")
+        all_pages.append(f"<!-- PAGE:{i} -->\n{text}")
         page_image.close()
 
     full_text = "\n\n".join(all_pages)

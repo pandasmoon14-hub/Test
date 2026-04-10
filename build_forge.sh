@@ -209,6 +209,8 @@ smoke_pipeline_scripts() {
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/pilot_benchmark.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/regression_suite.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/sqlite_queue.py" --help >/dev/null
+  "${ORCH_VENV}/bin/python" -c "from layout_utils import detect_multicolumn, vector_table_density; print('layout_utils ok')"
+  "${ORCH_VENV}/bin/python" -c "from page_truth import PageTruthRecord; print('page_truth ok')"
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/acceptance_corpus.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/layout_analyzer.py" --help >/dev/null
 

@@ -105,6 +105,10 @@ def run_v2_api(pdf_path: Path, batch_multiplier: int) -> tuple[str, str]:
 
 
 def _parse_page_markers(markdown: str) -> dict[int, str]:
+    if "<!-- PAGE:" not in markdown:
+        return {}
+    pages: dict[int, list[str]] = {}
+    current: int | None = None
     pages: dict[int, list[str]] = {}
     current = 1
     for line in markdown.splitlines():
