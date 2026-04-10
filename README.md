@@ -17,6 +17,14 @@ Local-first, routed PDF-to-Markdown extraction for single-GPU corpora.
 - Selective OCR policy (`skip`/`redo`/`force`) and subprocess timeouts/retries.
 - Repair merge via temporary artifact and atomic promotion.
 
+## Production guarantees
+- Page maps are trusted only when emitted from source-grounded page markers or page metadata.
+- Markerless/chunk-only outputs are treated as **untrusted page truth** and should be rerouted or quarantined.
+- Donor family is inferred from sampled content first, metadata second.
+- OCR is page-selective; native-text pages are never force-OCR'd unless explicitly requested.
+- Lane C supports high-detail repair with profile-aware rendering and tiled fallback for dense pages.
+- Complex tables/forms may emit sidecars (and HTML render paths) when markdown would lose structure.
+
 ## New v12 toolchain
 - `sqlite_queue.py`: durable SQLite queue/state backend for large runs.
 - `table_fixer.py`: post-extraction table normalization and recovery.
@@ -27,12 +35,13 @@ Local-first, routed PDF-to-Markdown extraction for single-GPU corpora.
 
 ## Build and run
 ```bash
-bash /workspace/Test/build_forge.sh
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/orchestrator.py
-/workspace/venvs/pixtral/bin/python3 /workspace/Test/surgeon.py
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/table_fixer.py --help
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/quality_harness.py --help
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/regression_suite.py --report /workspace/ttrpg_output/logs/regression.json
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+bash "$REPO_ROOT/build_forge.sh"
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/orchestrator.py"
+/workspace/venvs/pixtral/bin/python3 "$REPO_ROOT/surgeon.py"
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/table_fixer.py" --help
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/quality_harness.py" --help
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/regression_suite.py" --report /workspace/ttrpg_output/logs/regression.json
 ```
 
 ## Runtime planning

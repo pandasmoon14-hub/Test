@@ -11,14 +11,13 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 import sys
 import time
 import traceback
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
-
-import fitz
 
 
 @dataclass
@@ -84,8 +83,8 @@ def _build_converter(disable_images: bool):
         return DocumentConverter(
             format_options={InputFormat.PDF: PdfFormatOption(pipeline_options=opts)}
         )
-    except (ImportError, AttributeError):
-        return DocumentConverter()
+    except (ImportError, AttributeError) as exc:
+        raise RuntimeError(f"Cannot configure docling image disabling: {exc}") from exc
 
 
 def _safe_readable_path(path: Path) -> str:
@@ -95,16 +94,33 @@ def _safe_readable_path(path: Path) -> str:
         return str(path)
 
 
-def write_page_map(input_pdf: Path, page_map_path: Path) -> dict[str, Any]:
+def _parse_page_markers(markdown: str) -> dict[int, str]:
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    if not marker_re.search(markdown):
+        return {}
+    pages: dict[int, list[str]] = {}
+    current: int | None = None
+    for line in markdown.splitlines():
+        m = marker_re.match(line)
+        if m:
+            current = int(m.group(1))
+            pages.setdefault(current, [])
+            continue
+        if current is not None:
+            pages.setdefault(current, []).append(line)
+    return {p: "\n".join(lines).strip() for p, lines in pages.items()}
+
+
+def write_page_map(markdown: str, page_map_path: Path) -> dict[str, Any]:
+    pages = _parse_page_markers(markdown)
     rows: list[dict[str, Any]] = []
-    with fitz.open(input_pdf) as doc:
-        for idx, page in enumerate(doc, start=1):
-            text = page.get_text("text").strip()
-            rows.append({
-                "source_page": idx,
-                "markdown": text,
-                "tables_detected": sum(1 for line in text.splitlines() if line.count("|") >= 2),
-            })
+    for idx in sorted(pages):
+        text = pages[idx]
+        rows.append({
+            "source_page": idx,
+            "markdown": text,
+            "tables_detected": sum(1 for line in text.splitlines() if line.count("|") >= 2),
+        })
     page_map_path.parent.mkdir(parents=True, exist_ok=True)
     page_map_path.write_text(json.dumps(rows, indent=2, ensure_ascii=False), encoding="utf-8")
     return {
@@ -146,7 +162,9 @@ def convert_pdf(input_pdf: Path, output_dir: Path, disable_images: bool, page_ma
     out_md.write_text(markdown, encoding="utf-8")
     page_map_stats: dict[str, Any] = {}
     if page_map_json:
-        page_map_stats = write_page_map(input_pdf, Path(page_map_json))
+        page_map_stats = write_page_map(markdown, Path(page_map_json))
+        if page_map_stats.get("total_pages_seen", 0) == 0:
+            warnings.append("no_source_page_markers")
         if page_map_stats["pages_emitted"] == 0:
             warnings.append("page_map_empty")
 

@@ -28,6 +28,11 @@ class QueueItem:
     audit_signatures: list[str]
     page_reasons: dict[str, list[str]]
     page_profiles: dict[str, dict[str, Any]]
+    status: str = "queued"
+    retry_count: int = 0
+    last_error: str = ""
+    next_attempt_at: float | None = None
+    failure_class: str | None = None
 
 
 SCHEMA = """
@@ -44,7 +49,12 @@ CREATE TABLE IF NOT EXISTS repair_queue (
     updated_at REAL NOT NULL,
     audit_signatures TEXT NOT NULL,
     page_reasons TEXT NOT NULL,
-    page_profiles TEXT NOT NULL
+    page_profiles TEXT NOT NULL,
+    status TEXT NOT NULL DEFAULT 'queued',
+    retry_count INTEGER NOT NULL DEFAULT 0,
+    last_error TEXT NOT NULL DEFAULT '',
+    next_attempt_at REAL,
+    failure_class TEXT
 );
 
 CREATE TABLE IF NOT EXISTS manifests (
@@ -62,6 +72,7 @@ CREATE TABLE IF NOT EXISTS run_events (
 );
 
 CREATE INDEX IF NOT EXISTS idx_repair_updated ON repair_queue(updated_at);
+CREATE INDEX IF NOT EXISTS idx_repair_due ON repair_queue(status, next_attempt_at);
 CREATE INDEX IF NOT EXISTS idx_events_time ON run_events(created_at);
 """
 
@@ -72,6 +83,7 @@ class QueueDB:
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self.conn = sqlite3.connect(str(self.db_path))
         self.conn.row_factory = sqlite3.Row
+        self.conn.execute("PRAGMA busy_timeout=5000")
         self.conn.executescript(SCHEMA)
         self.conn.commit()
         self._write_counter = 0
@@ -100,8 +112,9 @@ class QueueDB:
             """
             INSERT INTO repair_queue(
                 book_id, file, failed_pages, md_path, full_book_repair,
-                queued_at, updated_at, audit_signatures, page_reasons, page_profiles
-            ) VALUES(?,?,?,?,?,?,?,?,?,?)
+                queued_at, updated_at, audit_signatures, page_reasons, page_profiles,
+                status, retry_count, last_error, next_attempt_at, failure_class
+            ) VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
             ON CONFLICT(book_id) DO UPDATE SET
                 file=excluded.file,
                 failed_pages=excluded.failed_pages,
@@ -110,7 +123,12 @@ class QueueDB:
                 updated_at=excluded.updated_at,
                 audit_signatures=excluded.audit_signatures,
                 page_reasons=excluded.page_reasons,
-                page_profiles=excluded.page_profiles
+                page_profiles=excluded.page_profiles,
+                status=excluded.status,
+                retry_count=excluded.retry_count,
+                last_error=excluded.last_error,
+                next_attempt_at=excluded.next_attempt_at,
+                failure_class=excluded.failure_class
             """,
             (
                 item.book_id,
@@ -123,8 +141,14 @@ class QueueDB:
                 json.dumps(item.audit_signatures, ensure_ascii=False),
                 json.dumps(item.page_reasons, ensure_ascii=False),
                 json.dumps(item.page_profiles, ensure_ascii=False),
+                item.status,
+                int(item.retry_count),
+                item.last_error,
+                item.next_attempt_at,
+                item.failure_class,
             ),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def get_queue_item(self, book_id: str) -> QueueItem | None:
@@ -142,6 +166,11 @@ class QueueDB:
             audit_signatures=json.loads(row["audit_signatures"]),
             page_reasons=json.loads(row["page_reasons"]),
             page_profiles=json.loads(row["page_profiles"]),
+            status=row["status"],
+            retry_count=int(row["retry_count"]),
+            last_error=row["last_error"],
+            next_attempt_at=float(row["next_attempt_at"]) if row["next_attempt_at"] is not None else None,
+            failure_class=row["failure_class"],
         )
 
     def list_queue(self, limit: int = 0) -> list[QueueItem]:
@@ -163,9 +192,58 @@ class QueueDB:
                 audit_signatures=json.loads(r["audit_signatures"]),
                 page_reasons=json.loads(r["page_reasons"]),
                 page_profiles=json.loads(r["page_profiles"]),
+                status=r["status"],
+                retry_count=int(r["retry_count"]),
+                last_error=r["last_error"],
+                next_attempt_at=float(r["next_attempt_at"]) if r["next_attempt_at"] is not None else None,
+                failure_class=r["failure_class"],
             )
             for r in rows
         ]
+
+    def claim_due_items(self, limit: int = 10) -> list[QueueItem]:
+        now = time.time()
+        rows = self.conn.execute(
+            """
+            SELECT * FROM repair_queue
+            WHERE status IN ('queued', 'retryable')
+              AND (next_attempt_at IS NULL OR next_attempt_at <= ?)
+            ORDER BY COALESCE(next_attempt_at, queued_at) ASC
+            LIMIT ?
+            """,
+            (now, limit),
+        ).fetchall()
+        claimed: list[QueueItem] = []
+        for row in rows:
+            self.mark_in_progress(row["book_id"])
+            claimed.append(self.get_queue_item(row["book_id"]))  # type: ignore[arg-type]
+        return [c for c in claimed if c is not None]
+
+    def mark_in_progress(self, book_id: str) -> None:
+        self.conn.execute("UPDATE repair_queue SET status='in_progress', updated_at=? WHERE book_id=?", (time.time(), book_id))
+        self.conn.commit()
+
+    def mark_retryable(self, book_id: str, error: str, next_attempt_at: float, failure_class: str | None = None) -> None:
+        self.conn.execute(
+            """
+            UPDATE repair_queue
+            SET status='retryable', retry_count=retry_count+1, last_error=?, next_attempt_at=?, failure_class=?, updated_at=?
+            WHERE book_id=?
+            """,
+            (error[:2000], next_attempt_at, failure_class, time.time(), book_id),
+        )
+        self.conn.commit()
+
+    def mark_terminal(self, book_id: str, error: str, failure_class: str | None = None) -> None:
+        self.conn.execute(
+            "UPDATE repair_queue SET status='terminal', last_error=?, failure_class=?, updated_at=? WHERE book_id=?",
+            (error[:2000], failure_class, time.time(), book_id),
+        )
+        self.conn.commit()
+
+    def mark_done(self, book_id: str) -> None:
+        self.conn.execute("UPDATE repair_queue SET status='done', updated_at=? WHERE book_id=?", (time.time(), book_id))
+        self.conn.commit()
 
     def delete_queue_item(self, book_id: str) -> None:
         self.conn.execute("DELETE FROM repair_queue WHERE book_id=?", (book_id,))
@@ -190,6 +268,7 @@ class QueueDB:
             """,
             (book_id, json.dumps(payload, ensure_ascii=False), time.time()),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def get_manifest(self, book_id: str) -> dict[str, Any] | None:
@@ -250,6 +329,11 @@ def queue_item_from_record(book_id: str, record: dict[str, Any]) -> QueueItem:
         audit_signatures=list(record.get("audit_signatures", [])),
         page_reasons=dict(record.get("page_reasons", {})),
         page_profiles=dict(record.get("page_profiles", {})),
+        status=str(record.get("status", "queued")),
+        retry_count=int(record.get("retry_count", 0)),
+        last_error=str(record.get("last_error", "")),
+        next_attempt_at=float(record["next_attempt_at"]) if record.get("next_attempt_at") is not None else None,
+        failure_class=(str(record["failure_class"]) if record.get("failure_class") is not None else None),
     )
 
 
