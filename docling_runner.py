@@ -95,23 +95,19 @@ def _safe_readable_path(path: Path) -> str:
 
 
 def _parse_page_markers(markdown: str) -> dict[int, str]:
-    if "<!-- PAGE:" not in markdown:
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    if not marker_re.search(markdown):
         return {}
     pages: dict[int, list[str]] = {}
     current: int | None = None
-    pages: dict[int, list[str]] = {}
-    current = 1
     for line in markdown.splitlines():
-        marker = line.strip()
-        if marker.startswith("<!-- PAGE:") and marker.endswith("-->"):
-            num = marker.replace("<!-- PAGE:", "").replace("-->", "").strip()
-            if num.isdigit():
-                current = int(num)
-                pages.setdefault(current, [])
-                continue
+        marker = marker_re.match(line.strip())
+        if marker:
+            current = int(marker.group(1))
+            pages.setdefault(current, [])
+            continue
         if current is not None:
             pages.setdefault(current, []).append(line)
-        pages.setdefault(current, []).append(line)
     return {p: "\n".join(lines).strip() for p, lines in pages.items()}
 
 

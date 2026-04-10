@@ -16,7 +16,7 @@ class TableRow:
 
 @dataclass
 class TableSidecar:
-    page: int
+    page: int | None
     bbox: list[float] | None
     rows: list[TableRow]
     render_mode: str = "markdown"

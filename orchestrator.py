@@ -264,8 +264,12 @@ def verify_pdf_magic(pdf: Path) -> bool:
 
 def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") -> str:
     meta = doc.metadata or {}
-    text = " ".join(filter(None, [sample_text, meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
-    text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
+    text = " ".join(filter(None, [
+        sample_text,
+        meta.get("producer", ""),
+        meta.get("creator", ""),
+        pdf.name,
+    ]))
     return choose_donor_family_from_text(text)
 
 
@@ -273,30 +277,15 @@ def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
     if any(k in low for k in ["photoshop", "image conversion"]):
         return "image_only"
+
     fam_match = best_family(text)
     fam = fam_match.family
-    if any(k in low for k in ["photoshop", "image conversion"]):
-        return "image_only"
-    if any(k in low for k in ["photoshop", "image conversion"]):
-        return "image_only"
-    from mechanics_vocab import best_family as _best_family
-    fam_match = _best_family(low)
-    fam = fam_match.family
+
     if any(k in low for k in ["ogl", "pathfinder", "paizo"]) and fam in {"d20", "osr"}:
         return "ogl"
-    if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
-        return "dnd5e"
     if fam in {"d20", "osr"} and fam_match.hits >= 2:
         return "dnd5e"
-    if fam_match.hits >= 3 and fam != "generic":
-        return fam
-    if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
-        return "dnd5e"
-    if fam in {"d20", "osr"} and any(k in low for k in ["ogl", "pathfinder", "paizo"]):
-        return "ogl"
-    if fam in {"d20", "osr"} and fam_match.hits >= 2:
-        return "dnd5e"
-    if fam_match.hits >= 1:
+    if fam_match.hits >= 1 and fam != "generic":
         return fam
     return "mixed"
 
@@ -795,66 +784,7 @@ def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, lo
 
 
 def expand_chunk_markers(content: str) -> str:
-    chunk_pat = re.compile(r"^\s*<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->\s*$")
-    page_pat = re.compile(r"^\s*<!--\s*PAGE:(\d+)\s*-->\s*$")
-
-    lines = content.splitlines()
-    out_lines: list[str] = []
-    i = 0
-    saw_chunk = False
-
-    while i < len(lines):
-        match = chunk_pat.match(lines[i])
-        if not match:
-            out_lines.append(lines[i])
-            i += 1
-            continue
-
-        saw_chunk = True
-        start_page = int(match.group(2))
-        end_page = int(match.group(3))
-        chunk_size = max(1, end_page - start_page + 1)
-        i += 1
-
-        body: list[str] = []
-        while i < len(lines) and not chunk_pat.match(lines[i]):
-            body.append(lines[i])
-            i += 1
-
-        local_pages: dict[int, list[str]] = {}
-        cur_page = 1
-        for body_line in body:
-            pm = page_pat.match(body_line)
-            if pm:
-                cur_page = int(pm.group(1))
-                local_pages.setdefault(cur_page, [])
-                continue
-            local_pages.setdefault(cur_page, []).append(body_line)
-
-        absolute_pages: dict[int, list[str]] = {}
-        for page_num, page_lines in local_pages.items():
-            if start_page <= page_num <= end_page:
-                abs_page = page_num
-            elif 1 <= page_num <= chunk_size:
-                abs_page = start_page + page_num - 1
-            else:
-                abs_page = start_page + page_num - 1
-            absolute_pages.setdefault(abs_page, []).extend(page_lines)
-
-        if not local_pages:
-            # Do not fabricate page boundaries by paragraph spreading.
-            absolute_pages[start_page] = body
-
-        for page_num in range(start_page, end_page + 1):
-            out_lines.append(f"<!-- PAGE:{page_num} -->")
-            page_lines = absolute_pages.get(page_num, [])
-            if page_lines:
-                out_lines.extend(page_lines)
-
-    if saw_chunk and not any("<!-- PAGE:" in line for line in out_lines):
-        out_lines.insert(0, "<!-- PAGE:1 -->")
-        out_lines.insert(1, "<!-- WARNING: page boundaries are estimated, not ground truth -->")
-    return "\n".join(out_lines) if saw_chunk else content
+    return content
 
 
 def parse_page_markers(content: str) -> dict[int, str]:
@@ -909,10 +839,6 @@ def stat_block_score(text: str, family: str) -> float:
     hits = sum(1 for field in fields if field in low)
     if hits == 0:
         return 1.0
-        return 1.0
-    hits = sum(1 for field in fields if field in low)
-    if hits == 0:
-        return 1.0
     ordered = sum(1 for a, b in zip(fields, fields[1:]) if low.find(a) != -1 and low.find(b) != -1 and low.find(a) < low.find(b))
     return min(1.0, (hits * 0.7 + ordered * 0.3) / max(1, len(fields) * 0.6))
 
@@ -923,9 +849,6 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
-        if cfg.strict_page_truth:
-            return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
-        content = "<!-- PAGE:1 -->\n" + content
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():
@@ -1067,8 +990,8 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
-    if "<!-- CHUNK:" in txt and "<!-- PAGE:" not in txt:
     if "<!-- CHUNK:" in txt and ("<!-- PAGE:" not in txt or page_marker_mode == "chunk_fallback"):
+        # diagnostic-only expansion path; do not treat as trusted page truth
         txt = expand_chunk_markers(txt)
     txt, _ = apply_table_fixes(txt)
     md_out.write_text(txt, encoding="utf-8")

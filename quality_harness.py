@@ -230,6 +230,7 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
     if not pages:
         issues.append("missing_pages")
         issues.append("missing_page_truth")
+        score = 0.0
 
     hfp = header_footer_penalty(pages)
     if hfp > 0.15:
@@ -275,8 +276,11 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
             pass
     page_marker_mode = str(manifest.get("page_marker_mode", ""))
     if page_marker_mode in {"chunk_fallback", "native_or_fallback"}:
-        score = max(0.0, score - 0.08)
-        issues.append("page_map_trust_low")
+        score = 0.0
+        issues.append("untrusted_page_truth")
+    elif page_marker_mode and any(x in page_marker_mode.lower() for x in ("fallback", "synthetic", "untrusted")):
+        score = 0.0
+        issues.append("untrusted_page_truth")
 
     return BookCheck(
         book_id=markdown_path.stem,
