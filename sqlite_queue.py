@@ -72,6 +72,7 @@ class QueueDB:
         self.db_path.parent.mkdir(parents=True, exist_ok=True)
         self.conn = sqlite3.connect(str(self.db_path))
         self.conn.row_factory = sqlite3.Row
+        self.conn.execute("PRAGMA busy_timeout=5000")
         self.conn.executescript(SCHEMA)
         self.conn.commit()
         self._write_counter = 0
@@ -125,6 +126,7 @@ class QueueDB:
                 json.dumps(item.page_profiles, ensure_ascii=False),
             ),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def get_queue_item(self, book_id: str) -> QueueItem | None:
@@ -190,6 +192,7 @@ class QueueDB:
             """,
             (book_id, json.dumps(payload, ensure_ascii=False), time.time()),
         )
+        self._maintenance_checkpoint()
         self.conn.commit()
 
     def get_manifest(self, book_id: str) -> dict[str, Any] | None:

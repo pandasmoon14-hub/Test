@@ -16,6 +16,7 @@ import argparse
 import base64
 import json
 import os
+import re
 import time
 from dataclasses import asdict, dataclass, field
 from io import BytesIO
@@ -24,7 +25,13 @@ from typing import Any
 
 import fitz
 import PIL.Image
-from vllm import LLM, SamplingParams
+VLLM_AVAILABLE = True
+try:
+    from vllm import LLM, SamplingParams
+except ImportError:  # pragma: no cover - enables unit tests without vLLM installed
+    VLLM_AVAILABLE = False
+    LLM = Any  # type: ignore
+    SamplingParams = Any  # type: ignore
 
 
 @dataclass
@@ -43,6 +50,15 @@ class SurgeonConfig:
 
     @classmethod
     def from_env(cls, gpu_profile: str = "default") -> "SurgeonConfig":
+        if gpu_profile == "default":
+            try:
+                import torch  # type: ignore
+                if torch.cuda.is_available():
+                    vram = torch.cuda.get_device_properties(0).total_memory / (1024**3)
+                    if vram > 40:
+                        gpu_profile = "a6000"
+            except Exception:
+                pass
         output_dir = Path(os.getenv("OUTPUT_DIR", "/workspace/ttrpg_output"))
         defaults = {
             "default": {"max_page_tokens": "4096", "repair_batch": "12", "gpu_memory_utilization": "0.92", "max_model_len": "28672"},
@@ -93,6 +109,12 @@ def prompt_for_layout(profile: dict[str, Any]) -> str:
         return base + "Preserve sidebars/callout boxes as blockquotes (`>`), maintaining order."
     if profile.get("statblock_density", 0) > 0.3:
         return base + "Preserve stat-block key/value fields and indentation exactly."
+    if profile.get("image_coverage", 0) > 0.4 or all(profile.get(k, 0.0) < 0.01 for k in ("table_density", "statblock_density", "sidebar_density")):
+        return base + (
+            "If you see ANY tables, format them as strict GitHub Markdown with header separator rows. "
+            "If you see stat blocks or key/value game data, preserve field names and values exactly. "
+            "If you see sidebars or callout boxes, format them as blockquotes in reading order."
+        )
     return base + "Render equations as LaTeX where obvious."
 
 
@@ -118,9 +140,12 @@ def save_queue(path: Path, payload: dict[str, Any]) -> None:
         json.dump(payload, file, indent=2, ensure_ascii=False)
 
 
-def render_page(page: fitz.Page, dpi: int, min_crop_size: int) -> PIL.Image.Image | None:
+def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str = "default") -> PIL.Image.Image | None:
     pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    max_dim = 1536 if gpu_profile == "a6000" else 1280
+    if max(image.width, image.height) > max_dim:
+        image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
         return None
     # skip nearly blank renderings
@@ -141,7 +166,17 @@ def make_conversation(img: PIL.Image.Image, prompt: str) -> list[dict[str, Any]]
     return [{"role": "user", "content": [{"type": "text", "text": prompt}, {"type": "image_url", "image_url": {"url": f"data:image/png;base64,{pil_to_b64(img)}"}}]}]
 
 
+def iter_tiles(img: PIL.Image.Image, tile_w: int, tile_h: int, overlap: int = 64):
+    step_x = max(1, tile_w - overlap)
+    step_y = max(1, tile_h - overlap)
+    for y in range(0, img.height, step_y):
+        for x in range(0, img.width, step_x):
+            yield (x, y), img.crop((x, y, min(img.width, x + tile_w), min(img.height, y + tile_h)))
+
+
 def init_llm(cfg: SurgeonConfig) -> LLM:
+    if not VLLM_AVAILABLE:
+        raise RuntimeError("vLLM is not installed in this environment")
     return LLM(
         model=cfg.model_name,
         tokenizer_mode=cfg.tokenizer_mode,
@@ -158,6 +193,10 @@ def validate_output(text: str, profile: dict[str, Any]) -> bool:
         return False
     if profile.get("table_density", 0) > 0.15 and "|" not in text:
         return False
+    if profile.get("statblock_density", 0) > 0.3:
+        kv_count = len(re.findall(r"\w+:\s*\S+", text))
+        if kv_count < 3:
+            return False
     if "\ufffd" in text:
         return False
     return True
@@ -168,7 +207,22 @@ def adaptive_dpi(cfg: SurgeonConfig, profile: dict[str, Any]) -> int:
         return max(cfg.render_dpi, 260)
     if profile.get("image_coverage", 0) > 0.5:
         return max(cfg.render_dpi, 220)
+    if all(profile.get(k, 0) < 0.01 for k in ("table_density", "statblock_density", "sidebar_density")):
+        return max(cfg.render_dpi, 220)
     return cfg.render_dpi
+
+
+def repair_confidence(text: str, profile: dict[str, Any]) -> float:
+    score = 0.5
+    if len(text.strip()) > 200:
+        score += 0.2
+    if profile.get("table_density", 0) > 0.15 and "|" in text:
+        score += 0.15
+    if re.search(r"^#+\s+", text, re.MULTILINE):
+        score += 0.1
+    if "\ufffd" in text:
+        score -= 0.3
+    return max(0.0, min(1.0, score))
 
 
 def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_path: Path) -> bool:
@@ -191,6 +245,7 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
         parts.setdefault(page, []).append(line)
 
     for p, text in repaired_pages.items():
+        # Replacement is intentional: page failed audit and repair output becomes canonical page text.
         parts[p + 1] = [text.strip()]
 
     with open(temp_path, "w", encoding="utf-8") as file:
@@ -234,6 +289,9 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
     with fitz.open(str(source_pdf)) as doc:
         for batch_start in range(0, len(failed_pages), cfg.repair_batch):
             batch_pages = failed_pages[batch_start: batch_start + cfg.repair_batch]
+            total_batches = (len(failed_pages) + cfg.repair_batch - 1) // cfg.repair_batch
+            pct = round(100 * batch_start / max(1, len(failed_pages)))
+            print(f"  [{book_id}] batch {batch_start // cfg.repair_batch + 1}/{total_batches} ({pct}%)")
             batch_imgs, batch_prompts, page_ids = [], [], []
             for pg in batch_pages:
                 if pg >= len(doc):
@@ -241,10 +299,27 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     continue
                 profile = page_profiles.get(str(pg + 1), {})
                 dpi = adaptive_dpi(cfg, profile)
-                img = render_page(doc[pg], dpi=dpi, min_crop_size=cfg.min_crop_size)
+                img = render_page(doc[pg], dpi=dpi, min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
                 if img is None:
                     unresolved.append(pg)
                     continue
+                if profile.get("table_density", 0.0) > 0.25 and max(img.size) > 1400:
+                    tile_prompt = batch_prompts[-1] if batch_prompts else prompt_for_layout(profile)
+                    tiles = []
+                    for (_, _), tile in iter_tiles(img, tile_w=1200, tile_h=1200, overlap=96):
+                        if tile.width >= cfg.min_crop_size and tile.height >= cfg.min_crop_size:
+                            tiles.append(tile)
+                    if not tiles:
+                        unresolved.append(pg)
+                        continue
+                    try:
+                        tile_out = llm.chat([make_conversation(tile, tile_prompt) for tile in tiles], sampling_params=sampling, use_tqdm=False)
+                        stitched = "\n\n".join((out.outputs[0].text.strip() if out.outputs else "") for out in tile_out).strip()
+                        if validate_output(stitched, profile):
+                            repaired[pg] = stitched
+                            continue
+                    except Exception:
+                        pass
                 batch_imgs.append(img)
                 batch_prompts.append(prompt_for_layout(profile))
                 page_ids.append(pg)
@@ -266,7 +341,7 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     # one retry with stricter table prompt and higher dpi
                     try:
                         prompt = prompt_for_layout({"table_density": 0.5, **page_profiles.get(str(pg + 1), {})})
-                        img2 = render_page(doc[pg], dpi=max(cfg.render_dpi, 300), min_crop_size=cfg.min_crop_size)
+                        img2 = render_page(doc[pg], dpi=max(cfg.render_dpi, 300), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
                         if img2 is not None:
                             retry = llm.chat([make_conversation(img2, prompt)], sampling_params=sampling, use_tqdm=False)
                             txt = retry[0].outputs[0].text.strip() if retry and retry[0].outputs else ""
@@ -276,6 +351,25 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     repaired[pg] = txt
                 else:
                     unresolved.append(pg)
+
+        # Targeted second pass for pages that look table-like but missed markdown divider.
+        for pg, txt in list(repaired.items()):
+            lines = txt.splitlines()
+            pipe_count = sum(1 for ln in lines if ln.count("|") >= 2)
+            has_divider = any(re.search(r"\|\s*[-:]{3,}\s*\|", ln) for ln in lines)
+            if pipe_count >= 3 and not has_divider and pg < len(doc):
+                profile = page_profiles.get(str(pg + 1), {})
+                retry_prompt = prompt_for_layout({"table_density": 0.6, **profile})
+                img = render_page(doc[pg], dpi=max(cfg.render_dpi, 260), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
+                if img is None:
+                    continue
+                try:
+                    retry = llm.chat([make_conversation(img, retry_prompt)], sampling_params=sampling, use_tqdm=False)
+                    retry_txt = retry[0].outputs[0].text.strip() if retry and retry[0].outputs else ""
+                    if validate_output(retry_txt, profile):
+                        repaired[pg] = retry_txt
+                except Exception:
+                    continue
 
     temp_md = md_path.with_suffix(".repair.tmp.md")
     promoted = write_merged_markdown(md_path, repaired, temp_md)
