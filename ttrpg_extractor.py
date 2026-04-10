@@ -11,10 +11,13 @@ Handles:
   - Output to a plain-text or Markdown file
 """
 
+import base64
+from io import BytesIO
+from pathlib import Path
+
 import PIL.Image
 import fitz  # PyMuPDF  (pip install pymupdf)
 from vllm import LLM, SamplingParams
-from pathlib import Path
 
 
 # ---------------------------------------------------------------------------
@@ -53,24 +56,18 @@ PROMPTS = {
 # PDF → images
 # ---------------------------------------------------------------------------
 
-def pdf_to_images(pdf_path: str, dpi: int = DPI) -> list[PIL.Image.Image]:
-    """
-    Converts every page of a PDF to an RGB PIL Image.
-
-    PyMuPDF renders vector art, embedded fonts, and even scanned pages cleanly,
-    making it reliable for the wide variety of TTRPG PDF styles.
-    """
+def pdf_to_images(pdf_path: str, dpi: int = DPI):
+    """Per-page generator — never loads entire book into RAM."""
     doc = fitz.open(pdf_path)
-    scale = dpi / 72  # PyMuPDF's native resolution is 72 DPI
+    scale = dpi / 72
     mat = fitz.Matrix(scale, scale)
-    images = []
-    for page in doc:
+    for i, page in enumerate(doc, 1):
         pix = page.get_pixmap(matrix=mat, alpha=False)
         img = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-        images.append(img)
+        yield i, img
+        img.close()
+        del img
     doc.close()
-    print(f"[pdf_to_images] {len(images)} page(s) loaded from '{pdf_path}'")
-    return images
 
 
 # ---------------------------------------------------------------------------
@@ -166,9 +163,15 @@ def classify_region(crop: PIL.Image.Image) -> str:
         return "table"
     if 0.6 < aspect < 1.8 and max(w, h) < 500:
         return "stat_block"
-    if aspect < 0.35:
+    if aspect < 0.35 and max(w, h) < 600:
         return "sidebar"
     return "general"
+
+
+def pil_to_data_uri(img: PIL.Image.Image) -> str:
+    buf = BytesIO()
+    img.save(buf, format="PNG")
+    return f"data:image/png;base64,{base64.b64encode(buf.getvalue()).decode()}"
 
 
 # ---------------------------------------------------------------------------
@@ -193,7 +196,7 @@ def pixtral_transcribe(
             "role": "user",
             "content": [
                 {"type": "text",      "text": prompt_text},
-                {"type": "image_pil", "image_pil": crop},
+                {"type": "image_url", "image_url": {"url": pil_to_data_uri(crop)}},
             ],
         }]
         result = llm.chat(messages=messages, sampling_params=sampling_params)
@@ -273,14 +276,11 @@ def process_pdf(
     -------
     The full transcribed text as a single string.
     """
-    images = pdf_to_images(pdf_path, dpi=dpi)
-    total = len(images)
     all_pages = []
-
-    for i, page_image in enumerate(images, start=1):
-        print(f"[process_pdf] Page {i}/{total} …")
+    for i, page_image in pdf_to_images(pdf_path, dpi=dpi):
+        print(f"[process_pdf] Page {i} …")
         text = process_page(llm, sampling_params, page_image, cols=cols)
-        all_pages.append(f"<!-- Page {i} -->\n{text}")
+        all_pages.append(f"<!-- PAGE:{i} -->\n{text}")
         page_image.close()
 
     full_text = "\n\n".join(all_pages)

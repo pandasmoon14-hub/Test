@@ -17,6 +17,8 @@ import json
 import re
 from dataclasses import dataclass, asdict
 from pathlib import Path
+from table_model import TableCell, TableRow, TableSidecar
+from table_renderer import render_table
 
 
 @dataclass
@@ -31,8 +33,16 @@ class FixStats:
 
 def normalize_cell(cell: str) -> str:
     cell = cell.strip()
+    dice_pattern = re.compile(r"(\d+d\d+)\|(\d+d\d+)")
+    preserved: dict[str, str] = {}
+    for i, match in enumerate(dice_pattern.finditer(cell)):
+        key = f"__DICE{i}__"
+        preserved[key] = match.group(0)
+        cell = cell.replace(match.group(0), key)
     cell = cell.replace("\\|", "|")
     cell = cell.replace("|", "\\|")
+    for key, original in preserved.items():
+        cell = cell.replace(key, original)
     return cell
 
 
@@ -42,8 +52,25 @@ def split_pipe_row(row: str) -> list[str]:
         row = "| " + row
     if not row.endswith("|"):
         row = row + " |"
-    parts = [p for p in row.split("|")]
-    core = parts[1:-1]
+    cells: list[str] = []
+    current: list[str] = []
+    escaped = False
+    for ch in row:
+        if escaped:
+            current.append(ch)
+            escaped = False
+            continue
+        if ch == "\\":
+            escaped = True
+            current.append(ch)
+            continue
+        if ch == "|":
+            cells.append("".join(current))
+            current = []
+            continue
+        current.append(ch)
+    cells.append("".join(current))
+    core = cells[1:-1]
     return [normalize_cell(c) for c in core]
 
 
@@ -70,6 +97,21 @@ def detect_pseudo_table_line(line: str) -> bool:
         return False
     # multiple wide gaps likely columnar content
     return bool(re.search(r"\S\s{3,}\S", line)) and len(re.split(r"\s{3,}", line.strip())) >= 2
+
+
+def detect_pseudo_table_block(lines: list[str], start: int) -> int:
+    count = 0
+    gap_positions: list[int] | None = None
+    for i in range(start, len(lines)):
+        gaps = [m.start() for m in re.finditer(r"\s{3,}", lines[i])]
+        if len(gaps) < 2:
+            break
+        if gap_positions is None:
+            gap_positions = gaps
+        elif not any(abs(g1 - g2) < 4 for g1 in gaps for g2 in gap_positions):
+            break
+        count += 1
+    return count if count >= 3 else 0
 
 
 def pseudo_to_pipe(line: str) -> str:
@@ -136,10 +178,11 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
             i += 1
             continue
         line = lines[i]
-        if is_tableish_line(line) or detect_pseudo_table_line(line):
+        pseudo_span = detect_pseudo_table_block(lines, i)
+        if is_tableish_line(line) or pseudo_span > 0:
             start = i
             chunk = []
-            while i < len(lines) and (is_tableish_line(lines[i]) or detect_pseudo_table_line(lines[i])):
+            while i < len(lines) and (is_tableish_line(lines[i]) or (pseudo_span > 0 and i < start + pseudo_span)):
                 if detect_pseudo_table_line(lines[i]):
                     chunk.append(pseudo_to_pipe(lines[i]))
                     promoted += 1
@@ -204,6 +247,11 @@ def stitch_cross_page_table_prefixes(markdown: str) -> str:
         if not moved:
             continue
 
+        if moved and not any(is_divider(m) for m in moved):
+            prev_table_lines = [line for line in prev_body if is_tableish_line(line)]
+            if len(prev_table_lines) >= 2 and is_divider(prev_table_lines[1]):
+                moved = [prev_table_lines[0], prev_table_lines[1]] + moved
+
         if prev_body and prev_body[-1].strip():
             prev_body.append("")
         prev_body.extend(moved)
@@ -249,9 +297,32 @@ def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
     }
 
 
+def build_table_sidecars(markdown: str) -> list[dict]:
+    blocks, _ = collect_table_blocks(markdown)
+    sidecars: list[dict] = []
+    for _, _, block in blocks:
+        fixed, _ = normalize_table_block(block)
+        rows = []
+        for ln in fixed:
+            if ln.count("|") < 2 or is_divider(ln):
+                continue
+            rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
+        if not rows:
+            continue
+        is_complex = any(len(r.cells) != len(rows[0].cells) for r in rows) or len(rows[0].cells) > 8
+        mode = "html" if is_complex else "markdown"
+        side = TableSidecar(page=1, bbox=None, rows=rows, render_mode=mode, confidence=0.7)
+        sidecars.append({
+            "model": side.to_dict(),
+            "rendered": render_table(side),
+        })
+    return sidecars
+
+
 def process_file(path: Path, in_place: bool, output_dir: Path | None) -> FixStats:
     source = path.read_text(encoding="utf-8", errors="replace")
     fixed, stats = apply_fixes(source)
+    sidecars = build_table_sidecars(fixed)
 
     if in_place:
         path.write_text(fixed, encoding="utf-8")
@@ -260,6 +331,9 @@ def process_file(path: Path, in_place: bool, output_dir: Path | None) -> FixStat
         output_dir.mkdir(parents=True, exist_ok=True)
         out = output_dir / path.name
         out.write_text(fixed, encoding="utf-8")
+    if sidecars:
+        sidecar_out = (path.parent if in_place else (output_dir or path.parent)) / f"{path.stem}.tables.sidecar.json"
+        sidecar_out.write_text(json.dumps(sidecars, indent=2, ensure_ascii=False), encoding="utf-8")
 
     return FixStats(
         file=str(path),
