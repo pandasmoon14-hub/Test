@@ -32,8 +32,11 @@ from typing import Any
 import fitz
 from mechanics_vocab import best_family, statblock_density as vocab_statblock_density
 from layout_utils import detect_multicolumn as detect_multicolumn_layout
+from page_classifier import classify_page
+from region_segmenter import segment_regions
+from form_renderer import render_form_like
 from page_truth import PageTruthRecord, write_page_truth_jsonl
-from table_fixer import apply_fixes as apply_table_fixes
+from table_fixer import apply_fixes as apply_table_fixes, build_table_sidecars_with_context
 
 try:
     from sqlite_queue import QueueDB, queue_item_from_record
@@ -211,6 +214,10 @@ class BookManifest:
     audit_signatures: list[str]
     failed_pages: list[int]
     marker_api_variant: str | None = None
+    modality_counts: dict[str, int] = field(default_factory=dict)
+    form_rendered_pages: int = 0
+    table_sidecar_count: int = 0
+    region_repaired_pages: int = 0
 
 
 def now_iso() -> str:
@@ -454,8 +461,6 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     landscape_ratio = sum(1 for r in rows if r.is_landscape) / max(1, len(rows))
     is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
     return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, landscape_ratio, is_image_only, donor, samples, rows)
-    is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
-    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, is_image_only, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
@@ -551,8 +556,31 @@ def enrich_page_profiles_from_markdown(
             "table_density": table_density,
             "sidebar_density": sidebar_density,
             "statblock_density": stat_density,
+            "modality": classify_page(
+                char_count=len(text),
+                table_density=max(table_density, sample.table_density if sample else 0.0),
+                statblock_density=max(stat_density, sample.statblock_density if sample else 0.0),
+                form_density=sample.form_density if sample else 0.0,
+                image_coverage=sample.image_coverage if sample else (1.0 if len(text.strip()) < 40 else 0.0),
+            ),
+            "regions": [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None} for r in segment_regions(text)],
         }
     return enriched
+
+
+def classify_page_from_signals(text: str, page_feature: PageFeatures | None, scan_threshold: int) -> str:
+    char_count = len(text.strip())
+    table_density = detect_table_density(text)
+    stat_density = detect_statblock_density(text)
+    form_density = min(1.0, text.count("___") / 4.0)
+    image_coverage = page_feature.image_coverage if page_feature else (1.0 if char_count < scan_threshold else 0.0)
+    return classify_page(
+        char_count=char_count,
+        table_density=max(table_density, page_feature.table_density if page_feature else 0.0),
+        statblock_density=max(stat_density, page_feature.statblock_density if page_feature else 0.0),
+        form_density=max(form_density, page_feature.form_density if page_feature else 0.0),
+        image_coverage=image_coverage,
+    )
 
 
 def bridge_call(cmd: list[str], timeout_sec: int, retries: int, log_file: Path, label: str) -> dict[str, Any]:
@@ -993,6 +1021,17 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     if "<!-- CHUNK:" in txt and ("<!-- PAGE:" not in txt or page_marker_mode == "chunk_fallback"):
         # diagnostic-only expansion path; do not treat as trusted page truth
         txt = expand_chunk_markers(txt)
+    pages_pre = parse_page_markers(txt)
+    if pages_pre:
+        rebuilt_pages: dict[int, str] = {}
+        for pnum, body in pages_pre.items():
+            page_feature = next((pf for pf in profile.page_features if pf.page_index + 1 == pnum), None)
+            modality = classify_page_from_signals(body, page_feature, cfg.scan_threshold)
+            page_body = body
+            if modality == "form":
+                page_body = render_form_like(page_body)
+            rebuilt_pages[pnum] = page_body
+        txt = "\n".join([f"<!-- PAGE:{p} -->\n{rebuilt_pages[p].strip()}" for p in sorted(rebuilt_pages)]).strip() + "\n"
     txt, _ = apply_table_fixes(txt)
     md_out.write_text(txt, encoding="utf-8")
 
@@ -1001,23 +1040,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     pages = parse_page_markers(md_out.read_text(encoding="utf-8", errors="replace"))
     if cfg.strict_page_truth and profile.total_pages > 0 and len(pages) < profile.total_pages:
         raise RuntimeError(f"strict_page_truth: page markers incomplete {len(pages)}/{profile.total_pages}")
-    sidecar = []
-    for p, body in pages.items():
-        table_chunks = [blk for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
-        page_feature = next((pf for pf in profile.page_features if pf.page_index + 1 == p), None)
-        sidecar.append({
-            "page": p,
-            "markdown": "\n\n".join(table_chunks).strip(),
-            "table_chunks": table_chunks,
-            "vector_table_detected": bool(page_feature and page_feature.table_density > 0.15),
-            "source_has_drawings": bool(page_feature and page_feature.table_density > 0.0),
-            "source_geometry": {
-                "page_index": page_feature.page_index if page_feature else None,
-                "is_landscape": page_feature.is_landscape if page_feature else None,
-                "table_density": page_feature.table_density if page_feature else None,
-                "sidebar_density": page_feature.sidebar_density if page_feature else None,
-            },
-        })
+    sidecar = build_table_sidecars_with_context(md_out.read_text(encoding="utf-8", errors="replace"), active_pdf)
     save_json(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json", sidecar)
 
     failed_pages = list(range(len(pages))) if cfg.enforce_full_book_repair and not audit.passed else audit.failed_pages
@@ -1043,25 +1066,49 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         }
 
     ocr_applied_pages = list(range(1, profile.total_pages + 1)) if ocr_mode in {"force", "redo"} else []
-    page_rows = [{
-        "page": p.page_index + 1,
-        "chars": p.char_count,
-        "blocks": p.block_count,
-        "detected_tables": p.table_density,
-        "detected_columns": p.is_multicolumn,
-        "table_regions_detected": 1 if p.table_density > 0.15 else 0,
-        "statblock_regions_detected": 1 if p.statblock_density > 0.3 else 0,
-        "ocr_applied": (p.page_index + 1) in ocr_applied_pages,
-        "source_page_hash": f"{pdf.stem}:{p.page_index+1}:{p.char_count}:{p.block_count}",
-        "repair": {"repaired": False, "unrepaired": True, "retry_count": 0, "final_dpi": None, "prompt_class": None, "repair_confidence": None},
-        "lane": lane,
-        "page_marker_mode": page_marker_mode,
-        "trusted_page_truth": page_marker_mode == "source_page_map" or lane == "A",
-        "orientation": ("landscape" if p.is_landscape else "portrait"),
-        "modality": ("scan" if p.char_count < cfg.scan_threshold else "mixed"),
-        "table_sidecar_path": str(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json"),
-        "audit": next((a.reasons for a in audit.page_audits if a.page_index == p.page_index + 1), []),
-    } for p in profile.page_features]
+    modality_counts: dict[str, int] = {k: 0 for k in ["prose", "mixed", "table", "form", "divider", "scan", "statblock"]}
+    sidecar_by_page = {int(s.get("page")): s for s in sidecar if isinstance(s.get("page"), int)}
+    page_rows = []
+    for p in profile.page_features:
+        page_num = p.page_index + 1
+        body = pages.get(page_num, "")
+        modality = classify_page_from_signals(body, p, cfg.scan_threshold)
+        modality_counts[modality] = modality_counts.get(modality, 0) + 1
+        regions = segment_regions(body) if modality in {"mixed", "table", "form", "statblock"} else []
+        repair_path = {
+            "prose": "standard",
+            "table": "table_aware_region_repair",
+            "form": "form_renderer_path",
+            "divider": "light_placeholder_safe",
+            "scan": "ocr_or_hybrid",
+            "statblock": "statblock_region_repair",
+            "mixed": "region_aware_repair",
+        }.get(modality, "standard")
+        page_rows.append({
+            "page": page_num,
+            "chars": p.char_count,
+            "blocks": p.block_count,
+            "detected_tables": p.table_density,
+            "detected_columns": p.is_multicolumn,
+            "table_regions_detected": sum(1 for r in regions if r.kind == "table"),
+            "statblock_regions_detected": sum(1 for r in regions if r.kind == "statblock"),
+            "ocr_applied": page_num in ocr_applied_pages,
+            "source_page_hash": f"{pdf.stem}:{page_num}:{p.char_count}:{p.block_count}",
+            "repair": {"repaired": False, "unrepaired": True, "retry_count": 0, "final_dpi": None, "prompt_class": repair_path, "repair_confidence": None},
+            "lane": lane,
+            "page_marker_mode": page_marker_mode,
+            "trusted_page_truth": page_marker_mode == "source_page_map" or lane == "A",
+            "orientation": ("landscape" if p.is_landscape else "portrait"),
+            "normalization_applied": "none",
+            "modality": modality,
+            "regions": [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None} for r in regions],
+            "form_renderer_used": modality == "form",
+            "repair_path": repair_path,
+            "table_sidecar_path": str(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json"),
+            "table_sidecar_refs": ([str(sidecar_by_page[page_num].get("page"))] if page_num in sidecar_by_page else []),
+            "table_complex_detected": bool(page_num in sidecar_by_page and sidecar_by_page[page_num].get("render_mode") == "html"),
+            "audit": next((a.reasons for a in audit.page_audits if a.page_index == page_num), []),
+        })
     save_json(page_meta, page_rows)
 
     chunk_count = max(1, len(lane_meta))
@@ -1088,6 +1135,10 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         audit_signatures=audit.signatures,
         failed_pages=failed_pages,
         marker_api_variant=marker_api_variant,
+        modality_counts=modality_counts,
+        form_rendered_pages=sum(1 for row in page_rows if row.get("form_renderer_used")),
+        table_sidecar_count=len(sidecar),
+        region_repaired_pages=sum(1 for row in page_rows if row.get("regions")),
     )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     return manifest

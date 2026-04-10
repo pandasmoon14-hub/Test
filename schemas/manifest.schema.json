@@ -32,6 +32,9 @@
     "page_truth_trust_mode": {"type":"string"},
     "quarantine_counts": {"type":"object"},
     "sidecar_refs": {"type":"array","items":{"type":"string"}},
-    "modality_counts": {"type":"object"}
+    "modality_counts": {"type":"object"},
+    "form_rendered_pages": {"type":"integer","minimum":0},
+    "table_sidecar_count": {"type":"integer","minimum":0},
+    "region_repaired_pages": {"type":"integer","minimum":0}
   }
 }
