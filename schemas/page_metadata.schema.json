@@ -20,8 +20,14 @@
       "page_marker_mode": {"type":"string"},
       "trusted_page_truth": {"type":"boolean"},
       "orientation": {"type":"string"},
+      "normalization_applied": {"type":"string"},
       "modality": {"type":"string"},
+      "regions": {"type":"array","items":{"type":"object"}},
+      "form_renderer_used": {"type":"boolean"},
+      "repair_path": {"type":"string"},
       "table_sidecar_path": {"type":["string","null"]},
+      "table_sidecar_refs": {"type":"array","items":{"type":"string"}},
+      "table_complex_detected": {"type":"boolean"},
       "audit": {"type":"array","items":{"type":"string"}}
     }
   }

@@ -1,7 +1,12 @@
 #!/usr/bin/env python3
 """Minimal vector table extraction scaffold."""
 from __future__ import annotations
-import fitz
+from typing import Any
+
+try:
+    import fitz
+except Exception:  # pragma: no cover
+    fitz = Any  # type: ignore
 
 def extract_vector_tables(page: fitz.Page) -> list[fitz.Rect]:
     tables = []

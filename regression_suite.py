@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import importlib
+import inspect
 import json
 import sys
 import tempfile
@@ -310,6 +311,57 @@ def test_complex_table_sidecar_generation() -> TestResult:
     has_html = any(s.get("render_mode") == "html" for s in sidecars)
     has_model = all("model" in s and "rendered" in s for s in sidecars)
     return TestResult("complex_table_sidecar_generation", bool(sidecars) and has_html and has_model, f"count={len(sidecars)}")
+
+
+def test_orchestrator_uses_page_classifier() -> TestResult:
+    try:
+        orch = importlib.import_module("orchestrator")
+        src = inspect.getsource(orch.classify_page_from_signals)
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("orchestrator_uses_page_classifier", False, f"error={exc}")
+    used = "classify_page(" in src
+    modality = orch.classify_page_from_signals("___ Name ___\nScore: ", None, 50)
+    return TestResult("orchestrator_uses_page_classifier", used and modality in {"form", "mixed", "scan"}, f"modality={modality}")
+
+
+def test_orientation_affects_render_page() -> TestResult:
+    try:
+        orientation = importlib.import_module("orientation")
+        surgeon = importlib.import_module("surgeon")
+        src = inspect.getsource(surgeon.render_page)
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("orientation_affects_render_page", False, f"import_error={exc}")
+
+    class FakePage:
+        rotation = 90
+        class Rect:
+            width = 300
+            height = 200
+        rect = Rect()
+
+    action = orientation.normalization_action(FakePage())
+    passed = action == "rotate_to_upright" and "normalization_action(" in src
+    return TestResult("orientation_affects_render_page", passed, f"action={action}")
+
+
+def test_form_renderer_used_in_orchestrator() -> TestResult:
+    try:
+        orch = importlib.import_module("orchestrator")
+        src = inspect.getsource(orch.process_book)
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("form_renderer_used_in_orchestrator", False, f"error={exc}")
+    return TestResult("form_renderer_used_in_orchestrator", "render_form_like" in src, "render_form_like hook present")
+
+
+def test_gridless_or_vector_strategy_participates() -> TestResult:
+    try:
+        table_fixer = importlib.import_module("table_fixer")
+        text = "<!-- PAGE:1 -->\nA    B    C\n1    2    3\n4    5    6"
+        sidecars = table_fixer.build_table_sidecars_with_context(text, source_pdf=None)
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("gridless_or_vector_strategy_participates", False, f"error={exc}")
+    used = any(s.get("strategy") in {"gridless", "markdown", "vector"} for s in sidecars)
+    return TestResult("gridless_or_vector_strategy_participates", used and bool(sidecars), f"strategies={[s.get('strategy') for s in sidecars]}")
 
 
 def test_table_fixer_idempotent() -> TestResult:
@@ -691,6 +743,10 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_cypher_profile_not_lane_a(),
         test_donor_family_no_nameerror(),
         test_complex_table_sidecar_generation(),
+        test_orchestrator_uses_page_classifier(),
+        test_orientation_affects_render_page(),
+        test_form_renderer_used_in_orchestrator(),
+        test_gridless_or_vector_strategy_participates(),
         test_pipe_escape_in_table(),
         test_vocab_anima(),
         test_regression_snapshot(tmp),

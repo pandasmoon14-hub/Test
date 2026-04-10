@@ -25,6 +25,8 @@ from typing import Any
 
 import fitz
 import PIL.Image
+from orientation import orientation_from_page, normalization_action
+from region_segmenter import segment_regions
 VLLM_AVAILABLE = True
 try:
     from vllm import LLM, SamplingParams
@@ -99,16 +101,22 @@ def prompt_for_layout(profile: dict[str, Any]) -> str:
         "Preserve headings, paragraphs, and list structure verbatim. "
         "Do NOT summarise, interpret, or add commentary. Output only content. "
     )
-    if profile.get("table_density", 0) > 0.15:
+    modality = profile.get("modality", "")
+    region_type = profile.get("region_type", "")
+    if modality == "form" or region_type == "form":
+        return base + (
+            "Render as structured form output. Preserve section headers, field labels, and blank placeholders."
+        )
+    if modality == "table" or region_type == "table" or profile.get("table_density", 0) > 0.15:
         return base + (
             "You must format all tables as strict GitHub Markdown with a header separator row. "
             "Preserve every row and column, including continuation rows. "
             "If table is malformed, output best-faith table with consistent columns."
         )
-    if profile.get("sidebar_density", 0) > 0.2:
-        return base + "Preserve sidebars/callout boxes as blockquotes (`>`), maintaining order."
-    if profile.get("statblock_density", 0) > 0.3:
+    if modality == "statblock" or region_type == "statblock" or profile.get("statblock_density", 0) > 0.3:
         return base + "Preserve stat-block key/value fields and indentation exactly."
+    if region_type in {"sidebar/callout", "sidebar"} or profile.get("sidebar_density", 0) > 0.2:
+        return base + "Preserve sidebars/callout boxes as blockquotes (`>`), maintaining order."
     if profile.get("image_coverage", 0) > 0.4 or all(profile.get(k, 0.0) < 0.01 for k in ("table_density", "statblock_density", "sidebar_density")):
         return base + (
             "If you see ANY tables, format them as strict GitHub Markdown with header separator rows. "
@@ -140,21 +148,31 @@ def save_queue(path: Path, payload: dict[str, Any]) -> None:
         json.dump(payload, file, indent=2, ensure_ascii=False)
 
 
-def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str = "default") -> PIL.Image.Image | None:
-    pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
+def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str = "default") -> tuple[PIL.Image.Image | None, dict[str, Any]]:
+    colorspace = getattr(fitz, "csRGB", None)
+    pix = page.get_pixmap(dpi=dpi, colorspace=colorspace)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    action = normalization_action(page)
+    if action == "rotate_to_upright":
+        rot = int(getattr(page, "rotation", 0) or 0) % 360
+        if rot == 90:
+            image = image.rotate(-90, expand=True)
+        elif rot == 270:
+            image = image.rotate(90, expand=True)
+    elif action == "rotate_landscape_to_portrait":
+        image = image.rotate(90, expand=True)
     max_dim = 1536 if gpu_profile == "a6000" else 1280
     max_dim = 1280
     if max(image.width, image.height) > max_dim:
         image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
-        return None
+        return None, {"orientation_before": orientation_from_page(page), "normalization_applied": action}
     # skip nearly blank renderings
     hist = image.convert("L").histogram()
     bright_ratio = hist[255] / max(1, sum(hist))
     if bright_ratio > 0.985:
-        return None
-    return image
+        return None, {"orientation_before": orientation_from_page(page), "normalization_applied": action}
+    return image, {"orientation_before": orientation_from_page(page), "normalization_applied": action}
 
 
 def pil_to_b64(img: PIL.Image.Image) -> str:
@@ -286,6 +304,7 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
 
     repaired: dict[int, str] = {}
     unresolved = []
+    page_meta_updates: dict[str, dict[str, Any]] = {}
 
     with fitz.open(str(source_pdf)) as doc:
         for batch_start in range(0, len(failed_pages), cfg.repair_batch):
@@ -300,7 +319,21 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     continue
                 profile = page_profiles.get(str(pg + 1), {})
                 dpi = adaptive_dpi(cfg, profile)
-                img = render_page(doc[pg], dpi=dpi, min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
+                img, orient_meta = render_page(doc[pg], dpi=dpi, min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
+                profile["orientation"] = orient_meta.get("orientation_before")
+                profile["normalization_applied"] = orient_meta.get("normalization_applied")
+                regions = profile.get("regions") or [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None} for r in segment_regions(profile.get("source_text", ""))]
+                profile["regions"] = regions
+                if profile.get("modality") == "mixed" and regions:
+                    hard = [r for r in regions if r.get("type") in {"table", "form", "statblock", "sidebar/callout"}]
+                    if hard:
+                        profile["region_type"] = hard[0]["type"]
+                page_meta_updates[str(pg + 1)] = {
+                    "orientation": profile.get("orientation"),
+                    "normalization_applied": profile.get("normalization_applied"),
+                    "repair_path": profile.get("modality", "prose"),
+                    "regions_used": profile.get("regions", []),
+                }
                 if img is None:
                     unresolved.append(pg)
                     continue
@@ -342,7 +375,7 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
                     # one retry with stricter table prompt and higher dpi
                     try:
                         prompt = prompt_for_layout({"table_density": 0.5, **page_profiles.get(str(pg + 1), {})})
-                        img2 = render_page(doc[pg], dpi=max(cfg.render_dpi, 300), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
+                        img2, _ = render_page(doc[pg], dpi=max(cfg.render_dpi, 300), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
                         if img2 is not None:
                             retry = llm.chat([make_conversation(img2, prompt)], sampling_params=sampling, use_tqdm=False)
                             txt = retry[0].outputs[0].text.strip() if retry and retry[0].outputs else ""
@@ -361,7 +394,7 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
             if pipe_count >= 3 and not has_divider and pg < len(doc):
                 profile = page_profiles.get(str(pg + 1), {})
                 retry_prompt = prompt_for_layout({"table_density": 0.6, **profile})
-                img = render_page(doc[pg], dpi=max(cfg.render_dpi, 260), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
+                img, _ = render_page(doc[pg], dpi=max(cfg.render_dpi, 260), min_crop_size=cfg.min_crop_size, gpu_profile=cfg.gpu_profile)
                 if img is None:
                     continue
                 try:
@@ -392,6 +425,8 @@ def repair_book(llm: LLM, cfg: SurgeonConfig, book_id: str, record: dict[str, An
         elapsed_sec=elapsed,
         warnings=warnings,
     )
+    record["page_profiles"] = page_profiles
+    record["repair_metadata"] = page_meta_updates
     return stats, sorted(set(unresolved))
 
 

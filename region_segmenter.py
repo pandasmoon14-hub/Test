@@ -7,10 +7,13 @@ from dataclasses import dataclass
 class Region:
     kind: str
     text: str
+    bbox: tuple[float, float, float, float] | None = None
 
 def segment_regions(text: str) -> list[Region]:
     regions: list[Region] = []
-    for block in [b.strip() for b in text.split("\n\n") if b.strip()]:
+    blocks = [b.strip() for b in text.split("\n\n") if b.strip()]
+    total = max(1, len(blocks))
+    for idx, block in enumerate(blocks):
         kind = "body"
         if "|" in block:
             kind = "table"
@@ -19,6 +22,7 @@ def segment_regions(text: str) -> list[Region]:
         elif "___" in block:
             kind = "form"
         elif block.startswith(">"):
-            kind = "sidebar"
-        regions.append(Region(kind=kind, text=block))
+            kind = "sidebar/callout"
+        bbox = (0.0, idx / total, 1.0, (idx + 1) / total)
+        regions.append(Region(kind=kind, text=block, bbox=bbox))
     return regions

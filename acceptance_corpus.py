@@ -204,11 +204,29 @@ def scan_file(path: Path) -> dict[str, object]:
     failed = [r.rule for r in rules if not r.passed]
     family = best_family(text).family
     family_hits = mechanics_hits(text)
+    warnings: list[str] = []
+    manifest_path = path.with_suffix(".manifest.json")
+    if manifest_path.exists():
+        try:
+            manifest = json.loads(manifest_path.read_text(encoding="utf-8", errors="replace"))
+            page_meta_path = Path(manifest.get("page_metadata_path", "")) if manifest.get("page_metadata_path") else None
+            if page_meta_path and page_meta_path.exists():
+                rows = json.loads(page_meta_path.read_text(encoding="utf-8", errors="replace"))
+                for row in rows:
+                    if row.get("modality") == "form" and not row.get("form_renderer_used"):
+                        warnings.append("form_page_routed_to_prose")
+                    if row.get("modality") == "table" and row.get("table_complex_detected") and not row.get("table_sidecar_refs"):
+                        warnings.append("complex_table_without_sidecar")
+                    if row.get("orientation") in {"rotated", "landscape"} and row.get("normalization_applied", "none") == "none":
+                        warnings.append("rotation_not_normalized")
+        except Exception:
+            pass
     return {
         "file": str(path),
         "pages": len(pages),
         "weighted_score": weighted_score,
         "failed_rule_ids": failed,
+        "warnings": sorted(set(warnings)),
         "top_family": family,
         "family_hits": family_hits,
         "rules": [asdict(r) for r in rules],

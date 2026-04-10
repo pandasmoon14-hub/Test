@@ -17,8 +17,16 @@ import json
 import re
 from dataclasses import dataclass, asdict
 from pathlib import Path
+from typing import Any
 from table_model import TableCell, TableRow, TableSidecar
 from table_renderer import render_table
+from gridless_tables import detect_gridless_rows
+from vector_table_extractor import extract_vector_tables
+
+try:
+    import fitz
+except Exception:  # pragma: no cover
+    fitz = None  # type: ignore
 
 
 @dataclass
@@ -298,6 +306,20 @@ def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
 
 
 def build_table_sidecars(markdown: str) -> list[dict]:
+    return build_table_sidecars_with_context(markdown, source_pdf=None)
+
+
+def _is_complex_table(rows: list[TableRow], raw_widths: list[int]) -> bool:
+    if not rows:
+        return False
+    head_width = len(rows[0].cells)
+    sparse = any(any(cell.text.strip() == "" for cell in row.cells) for row in rows)
+    merged_like = any(cell.colspan > 1 or cell.rowspan > 1 for row in rows for cell in row.cells)
+    ragged = len(set(raw_widths)) > 1 or any(len(r.cells) != head_width for r in rows)
+    return ragged or sparse or merged_like or head_width > 8
+
+
+def build_table_sidecars_with_context(markdown: str, source_pdf: Path | None) -> list[dict]:
     marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
     pages: list[tuple[int | None, str]] = []
     if marker_re.search(markdown):
@@ -316,8 +338,21 @@ def build_table_sidecars(markdown: str) -> list[dict]:
         pages = [(None, markdown)]
 
     sidecars: list[dict] = []
+    vector_pages: dict[int, list[Any]] = {}
+    if source_pdf is not None and fitz is not None and source_pdf.exists():
+        try:
+            with fitz.open(source_pdf) as doc:  # type: ignore[arg-type]
+                for pidx in range(len(doc)):
+                    vector_pages[pidx + 1] = extract_vector_tables(doc[pidx])
+        except Exception:
+            vector_pages = {}
     for page_num, page_md in pages:
+        vector_boxes = vector_pages.get(page_num or -1, []) if page_num is not None else []
+        gridless_rows = detect_gridless_rows(page_md)
         blocks, _ = collect_table_blocks(page_md)
+        strategy = "vector" if vector_boxes else ("gridless" if gridless_rows and not blocks else "markdown")
+        if strategy == "gridless" and gridless_rows:
+            blocks = [(0, len(gridless_rows), [pseudo_to_pipe(row) for row in gridless_rows])]
         for _, _, block in blocks:
             raw_rows = [ln for ln in block if ln.count("|") >= 2 and not is_divider(ln)]
             raw_widths = [len(split_pipe_row(ln)) for ln in raw_rows]
@@ -329,15 +364,17 @@ def build_table_sidecars(markdown: str) -> list[dict]:
                 rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
             if not rows:
                 continue
-            is_complex = (len(set(raw_widths)) > 1) or any(len(r.cells) != len(rows[0].cells) for r in rows) or len(rows[0].cells) > 8
+            is_complex = _is_complex_table(rows, raw_widths)
             mode = "html" if is_complex else "markdown"
             side = TableSidecar(page=page_num, bbox=None, rows=rows, render_mode=mode, confidence=0.7)
             rendered = render_table(side)
             sidecars.append({
                 "page": page_num,
+                "strategy": strategy,
                 "render_mode": mode,
                 "rendered": rendered,
                 "markdown": rendered if mode == "markdown" else "",
+                "sidecar_written": bool(is_complex),
                 "model": side.to_dict(),
             })
     return sidecars
