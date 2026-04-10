@@ -230,6 +230,7 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
     if not pages:
         issues.append("missing_pages")
         issues.append("missing_page_truth")
+        score = 0.0
 
     hfp = header_footer_penalty(pages)
     if hfp > 0.15:
@@ -257,6 +258,25 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
             table_miss_pages.append(page_num)
     if table_miss_pages:
         issues.append("vector_table_miss")
+    form_routed_as_prose = []
+    rotated_without_normalization = []
+    complex_missing_sidecar = []
+    for pm in page_metadata:
+        page_num = int(pm.get("page", 0) or 0)
+        modality = str(pm.get("modality", ""))
+        repair_path = str(pm.get("repair_path", ""))
+        if modality == "form" and "form" not in repair_path:
+            form_routed_as_prose.append(page_num)
+        if str(pm.get("orientation", "")) in {"rotated", "landscape"} and str(pm.get("normalization_applied", "none")) == "none":
+            rotated_without_normalization.append(page_num)
+        if modality == "table" and pm.get("table_complex_detected") and not pm.get("table_sidecar_refs"):
+            complex_missing_sidecar.append(page_num)
+    if form_routed_as_prose:
+        issues.append("form_routed_through_prose")
+    if rotated_without_normalization:
+        issues.append("rotation_not_normalized")
+    if complex_missing_sidecar:
+        issues.append("complex_table_missing_sidecar")
     if pdf_path and pdf_path.exists():
         try:
             import fitz
@@ -275,8 +295,11 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
             pass
     page_marker_mode = str(manifest.get("page_marker_mode", ""))
     if page_marker_mode in {"chunk_fallback", "native_or_fallback"}:
-        score = max(0.0, score - 0.08)
-        issues.append("page_map_trust_low")
+        score = 0.0
+        issues.append("untrusted_page_truth")
+    elif page_marker_mode and any(x in page_marker_mode.lower() for x in ("fallback", "synthetic", "untrusted")):
+        score = 0.0
+        issues.append("untrusted_page_truth")
 
     return BookCheck(
         book_id=markdown_path.stem,

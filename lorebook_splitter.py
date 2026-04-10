@@ -32,7 +32,7 @@ class ChunkRecord:
     aliases: list[str]
     raw_markdown: str
     embedding_text: str
-    source_pages: list[int]
+    source_pages: list[int] | None
 
 
 def parse_args() -> argparse.Namespace:
@@ -55,7 +55,6 @@ def normalize_whitespace(text: str) -> str:
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
     marker_re = re.compile(r"\s*<!--\s*PAGE:\s*(\d+)\s*-->", flags=re.IGNORECASE)
-    marker_re = re.compile(r"\s*<!--\s*page\s*[:\s]?\s*(\d+)\s*-->", flags=re.IGNORECASE)
     if not marker_re.search(markdown):
         return {}
     pages: dict[int, list[str]] = {}
@@ -87,10 +86,10 @@ def extract_headings(lines: list[str]) -> list[tuple[int, str]]:
     return out
 
 
-def split_sections(markdown: str) -> list[tuple[str, str, list[int]]]:
+def split_sections(markdown: str) -> list[tuple[str, str, list[int] | None]]:
     pages = parse_page_markers(markdown)
     if not pages:
-        return [("# Document", normalize_whitespace(markdown), [])]
+        return [("# Document", normalize_whitespace(markdown), None)]
     flat_lines = []
     line_pages = []
     for p in sorted(pages):
@@ -186,10 +185,11 @@ def chunk_large_text(text: str, max_chars: int) -> list[str]:
     return out
 
 
-def make_embedding_text(book_id: str, chapter_path: str, tags: list[str], body: str, pages: list[int]) -> str:
+def make_embedding_text(book_id: str, chapter_path: str, tags: list[str], body: str, pages: list[int] | None) -> str:
     compact = re.sub(r"\s+", " ", body).strip()
     summary = compact[:1200]
-    return f"book_id={book_id}\nchapter_path={chapter_path}\ntags={','.join(tags)}\npages={','.join(map(str,pages))}\nsummary={summary}"
+    page_text = ",".join(map(str, pages)) if pages else ""
+    return f"book_id={book_id}\nchapter_path={chapter_path}\ntags={','.join(tags)}\npages={page_text}\nsummary={summary}"
 
 
 def make_entry_id(book_id: str, kind: str, idx: int) -> str:

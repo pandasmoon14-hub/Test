@@ -40,26 +40,6 @@ def detect_multicolumn(blocks: list[tuple], page_width: float | None = None) -> 
     right_band = (min(y0 for _, y0, _ in right), max(y1 for _, _, y1 in right))
     overlap = min(left_band[1], right_band[1]) - max(left_band[0], right_band[0])
     return overlap > 120
-def detect_multicolumn(blocks: list[tuple]) -> bool:
-    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
-    if len(text_blocks) < 8:
-        return False
-    xs = []
-    for b in text_blocks:
-        txt = str(b[4]).strip()
-        width = max(1.0, float(b[2]) - float(b[0]))
-        if len(txt) < 10 and width < 120:
-            continue
-        xs.append(float(b[0]))
-    if len(xs) < 8:
-        return False
-    xs = sorted(xs)
-    mid = statistics.median(xs)
-    left = [x for x in xs if x < mid]
-    right = [x for x in xs if x >= mid]
-    if len(left) < 3 or len(right) < 3:
-        return False
-    return (statistics.mean(right) - statistics.mean(left)) > 90
 
 
 def detect_table_density(text: str) -> float:
