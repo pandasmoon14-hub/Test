@@ -18,6 +18,10 @@
       "repair": {"type":"object"},
       "lane": {"type":"string"},
       "page_marker_mode": {"type":"string"},
+      "trusted_page_truth": {"type":"boolean"},
+      "orientation": {"type":"string"},
+      "modality": {"type":"string"},
+      "table_sidecar_path": {"type":["string","null"]},
       "audit": {"type":"array","items":{"type":"string"}}
     }
   }

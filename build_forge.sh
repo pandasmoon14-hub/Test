@@ -29,6 +29,11 @@ FORCE_REBUILD="${FORCE_REBUILD:-0}"
 RUN_SMOKE="${RUN_SMOKE:-0}"
 PYTHON_BIN="${PYTHON_BIN:-python3}"
 APT_PACKAGES="${APT_PACKAGES:-tesseract-ocr ghostscript}"
+VLLM_VERSION="${VLLM_VERSION:-0.7.2}"
+TRANSFORMERS_VERSION="${TRANSFORMERS_VERSION:-4.46.3}"
+MISTRAL_COMMON_VERSION="${MISTRAL_COMMON_VERSION:-1.5.1}"
+MARKER_PDF_VERSION="${MARKER_PDF_VERSION:-1.10.1}"
+DOCLING_VERSION="${DOCLING_VERSION:-2.62.0}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 SMOKE_DIR="${WORKSPACE_ROOT}/quarantine_smoke"
@@ -108,25 +113,50 @@ install_orchestrator_deps() {
 install_marker_deps() {
   say "Installing marker dependencies"
   "${MARKER_VENV}/bin/pip" install \
-    marker-pdf
+    "marker-pdf==${MARKER_PDF_VERSION}"
 }
 
 install_docling_deps() {
   say "Installing docling dependencies"
   "${DOCLING_VENV}/bin/pip" install \
-    docling
+    "docling==${DOCLING_VERSION}" \
+    docling \
+    pymupdf
 }
 
 install_pixtral_deps() {
   say "Installing pixtral dependencies"
+  if command -v nvcc >/dev/null 2>&1; then
+    CUDA_VER="$(nvcc --version | grep -oP 'release \K[0-9]+\.[0-9]+' | head -n1 || true)"
+    if [[ -n "${CUDA_VER}" ]]; then
+      say "CUDA version: ${CUDA_VER}"
+      if [[ "${CUDA_VER}" > "12.3" ]]; then
+        warn "CUDA ${CUDA_VER} detected; pinned vLLM may be incompatible on some images."
+      fi
+    fi
+  fi
   "${PIXTRAL_VENV}/bin/pip" install \
-    "vllm==0.6.1.post2" \
-    "mistral-common==1.4.4" \
-    "transformers==4.45.2" \
+    "vllm==${VLLM_VERSION}" \
+    "mistral-common==${MISTRAL_COMMON_VERSION}" \
+    "transformers==${TRANSFORMERS_VERSION}" \
+    "vllm>=0.7.0" \
+    "mistral-common>=1.4.4" \
+    "transformers>=4.45.0" \
     "numpy<2.0" \
     "pymupdf" \
     "pillow" \
     "opencv-python-headless"
+}
+
+detect_gpu_profile() {
+  local gpu_name
+  gpu_name="$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -n1 || true)"
+  if echo "${gpu_name}" | grep -qi "A6000"; then
+    export GPU_PROFILE="a6000"
+    export REPAIR_BATCH="${REPAIR_BATCH:-6}"
+    export RENDER_DPI="${RENDER_DPI:-260}"
+    ok "Detected A6000 -> GPU_PROFILE=${GPU_PROFILE} REPAIR_BATCH=${REPAIR_BATCH} RENDER_DPI=${RENDER_DPI}"
+  fi
 }
 
 freeze_lockfiles() {
@@ -183,8 +213,18 @@ smoke_pipeline_scripts() {
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/pilot_benchmark.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/regression_suite.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/sqlite_queue.py" --help >/dev/null
+  "${ORCH_VENV}/bin/python" -c "from layout_utils import detect_multicolumn, vector_table_density; print('layout_utils ok')"
+  "${ORCH_VENV}/bin/python" -c "from page_truth import PageTruthRecord; print('page_truth ok')"
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/acceptance_corpus.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/layout_analyzer.py" --help >/dev/null
+  "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/regression_suite.py" --report "${SMOKE_DIR}/regression.json" >/dev/null
+  "${ORCH_VENV}/bin/python" - <<PY
+import json, pathlib
+schema_dir = pathlib.Path("${SCRIPT_DIR}") / "schemas"
+for p in schema_dir.glob("*.json"):
+    json.loads(p.read_text(encoding="utf-8"))
+print("schema validation ok")
+PY
 
   ok "Script help smoke checks complete"
 }
@@ -242,6 +282,7 @@ MSG
 main() {
   say "Building The Aether Forge (local-first architecture)..."
   check_prereqs
+  detect_gpu_profile
   reset_if_requested
   prepare_dirs
   apt_install
