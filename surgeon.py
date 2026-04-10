@@ -232,7 +232,7 @@ def write_merged_markdown(base_md: Path, repaired_pages: dict[int, str], temp_pa
     else:
         base = base_md.read_text(encoding="utf-8", errors="replace")
     if "<!-- PAGE:" not in base:
-        base = "<!-- PAGE:1 -->\n" + base
+        raise ValueError("Cannot merge repaired pages into markdown without trusted page markers")
 
     parts = {}
     page = 1

@@ -17,6 +17,8 @@ import json
 import re
 from dataclasses import dataclass, asdict
 from pathlib import Path
+from table_model import TableCell, TableRow, TableSidecar
+from table_renderer import render_table
 
 
 @dataclass
@@ -295,9 +297,32 @@ def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
     }
 
 
+def build_table_sidecars(markdown: str) -> list[dict]:
+    blocks, _ = collect_table_blocks(markdown)
+    sidecars: list[dict] = []
+    for _, _, block in blocks:
+        fixed, _ = normalize_table_block(block)
+        rows = []
+        for ln in fixed:
+            if ln.count("|") < 2 or is_divider(ln):
+                continue
+            rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
+        if not rows:
+            continue
+        is_complex = any(len(r.cells) != len(rows[0].cells) for r in rows) or len(rows[0].cells) > 8
+        mode = "html" if is_complex else "markdown"
+        side = TableSidecar(page=1, bbox=None, rows=rows, render_mode=mode, confidence=0.7)
+        sidecars.append({
+            "model": side.to_dict(),
+            "rendered": render_table(side),
+        })
+    return sidecars
+
+
 def process_file(path: Path, in_place: bool, output_dir: Path | None) -> FixStats:
     source = path.read_text(encoding="utf-8", errors="replace")
     fixed, stats = apply_fixes(source)
+    sidecars = build_table_sidecars(fixed)
 
     if in_place:
         path.write_text(fixed, encoding="utf-8")
@@ -306,6 +331,9 @@ def process_file(path: Path, in_place: bool, output_dir: Path | None) -> FixStat
         output_dir.mkdir(parents=True, exist_ok=True)
         out = output_dir / path.name
         out.write_text(fixed, encoding="utf-8")
+    if sidecars:
+        sidecar_out = (path.parent if in_place else (output_dir or path.parent)) / f"{path.stem}.tables.sidecar.json"
+        sidecar_out.write_text(json.dumps(sidecars, indent=2, ensure_ascii=False), encoding="utf-8")
 
     return FixStats(
         file=str(path),

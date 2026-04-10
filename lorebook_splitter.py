@@ -54,6 +54,7 @@ def normalize_whitespace(text: str) -> str:
 
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
+    marker_re = re.compile(r"\s*<!--\s*PAGE:\s*(\d+)\s*-->", flags=re.IGNORECASE)
     marker_re = re.compile(r"\s*<!--\s*page\s*[:\s]?\s*(\d+)\s*-->", flags=re.IGNORECASE)
     if not marker_re.search(markdown):
         return {}
@@ -88,6 +89,8 @@ def extract_headings(lines: list[str]) -> list[tuple[int, str]]:
 
 def split_sections(markdown: str) -> list[tuple[str, str, list[int]]]:
     pages = parse_page_markers(markdown)
+    if not pages:
+        return [("# Document", normalize_whitespace(markdown), [])]
     flat_lines = []
     line_pages = []
     for p in sorted(pages):

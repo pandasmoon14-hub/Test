@@ -768,52 +768,8 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
 
 
 def ensure_page_markers(content: str, total_pages: int) -> str:
-    if "<!-- PAGE:" in content:
-        return content
-    paragraphs = [p.strip() for p in re.split(r"\n\s*\n", content) if p.strip()]
-
-    def render_marker_pages(page_numbers: list[int], source_paragraphs: list[str]) -> str:
-        if not page_numbers:
-            page_numbers = [1]
-        buckets = {p: [] for p in page_numbers}
-        if source_paragraphs:
-            for idx, paragraph in enumerate(source_paragraphs):
-                target_page = page_numbers[min(len(page_numbers) - 1, int(idx * len(page_numbers) / len(source_paragraphs)))]
-                buckets[target_page].append(paragraph)
-        lines: list[str] = []
-        for page_no in page_numbers:
-            lines.append(f"<!-- PAGE:{page_no} -->")
-            body = "\n\n".join(buckets.get(page_no, []))
-            if body:
-                lines.append(body)
-        return "\n".join(lines).strip() + "\n"
-
-    if "<!-- CHUNK:" in content and total_pages > 1:
-        chunk_re = re.compile(
-            r"<!--\s*CHUNK:(\d+)\s+PAGES:(\d+)-(\d+)\s*-->\s*(.*?)(?=(?:\n<!--\s*CHUNK:\d+\s+PAGES:\d+-\d+\s*-->)|\Z)",
-            flags=re.DOTALL,
-        )
-        pieces: list[str] = []
-        seen_pages: set[int] = set()
-        for m in chunk_re.finditer(content):
-            start, end = int(m.group(2)), int(m.group(3))
-            if end < start:
-                continue
-            page_numbers = [p for p in range(start, min(end, total_pages) + 1) if p >= 1]
-            if not page_numbers:
-                continue
-            seen_pages.update(page_numbers)
-            chunk_paragraphs = [p.strip() for p in re.split(r"\n\s*\n", m.group(4)) if p.strip()]
-            pieces.append(render_marker_pages(page_numbers, chunk_paragraphs))
-        if pieces:
-            missing = [p for p in range(1, total_pages + 1) if p not in seen_pages]
-            if missing:
-                pieces.append(render_marker_pages(missing, []))
-            return "\n".join(pieces).strip() + "\n"
-
-    if total_pages <= 1:
-        return "<!-- PAGE:1 -->\n" + content
-    return render_marker_pages(list(range(1, total_pages + 1)), paragraphs)
+    # Non-production helper retained for compatibility only; no synthetic page markers.
+    return content
 
 
 def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, log_file: Path) -> Path:
@@ -1153,6 +1109,11 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "md_path": str(md_out),
             "full_book_repair": cfg.enforce_full_book_repair,
             "queued_at": time.time(),
+            "status": "queued",
+            "retry_count": int(existing.get("retry_count", 0)),
+            "last_error": str(existing.get("last_error", "")),
+            "next_attempt_at": existing.get("next_attempt_at"),
+            "failure_class": existing.get("failure_class"),
             "audit_signatures": audit.signatures,
             "page_reasons": {str(a.page_index): a.reasons for a in audit.page_audits if a.reasons},
             "page_profiles": enriched_profiles,
@@ -1242,13 +1203,20 @@ def main() -> None:
 
     for i, pdf in enumerate(pdfs, start=1):
         print(f"\n=== [{i}/{len(pdfs)}] {pdf.name} ===")
+        book_key = str(pdf.resolve())
         try:
+            if db is not None:
+                db.mark_in_progress(book_key)
             m = process_book(cfg, pdf, queue)
             summary["lane_counts"][m.lane] = summary["lane_counts"].get(m.lane, 0) + 1
             if m.failed_pages:
                 summary["books_queued"] += 1
+                if db is not None:
+                    db.upsert_queue_item(queue_item_from_record(book_key, queue.get(str(pdf.resolve()), {})))
             else:
                 summary["books_ok"] += 1
+                if db is not None:
+                    db.mark_done(book_key)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
             error_record = {
@@ -1262,6 +1230,12 @@ def main() -> None:
             if not cfg.continue_on_error:
                 raise
             print(f"  ! error: {exc}")
+            if db is not None:
+                rec = queue.get(str(pdf.resolve()), {})
+                retry_count = int(rec.get("retry_count", 0)) + 1
+                backoff = min(3600.0, 30.0 * (2 ** min(retry_count, 8)))
+                next_attempt = time.time() + backoff
+                db.mark_retryable(book_key, str(exc), next_attempt, failure_class="orchestrator_error")
         finally:
             save_json(cfg.repair_queue_file, queue)
             if db is not None:

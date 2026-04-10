@@ -217,6 +217,14 @@ smoke_pipeline_scripts() {
   "${ORCH_VENV}/bin/python" -c "from page_truth import PageTruthRecord; print('page_truth ok')"
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/acceptance_corpus.py" --help >/dev/null
   "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/layout_analyzer.py" --help >/dev/null
+  "${ORCH_VENV}/bin/python" "${SCRIPT_DIR}/regression_suite.py" --report "${SMOKE_DIR}/regression.json" >/dev/null
+  "${ORCH_VENV}/bin/python" - <<PY
+import json, pathlib
+schema_dir = pathlib.Path("${SCRIPT_DIR}") / "schemas"
+for p in schema_dir.glob("*.json"):
+    json.loads(p.read_text(encoding="utf-8"))
+print("schema validation ok")
+PY
 
   ok "Script help smoke checks complete"
 }

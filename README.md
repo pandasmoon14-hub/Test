@@ -33,12 +33,13 @@ Local-first, routed PDF-to-Markdown extraction for single-GPU corpora.
 
 ## Build and run
 ```bash
-bash /workspace/Test/build_forge.sh
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/orchestrator.py
-/workspace/venvs/pixtral/bin/python3 /workspace/Test/surgeon.py
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/table_fixer.py --help
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/quality_harness.py --help
-/workspace/venvs/orchestrator/bin/python3 /workspace/Test/regression_suite.py --report /workspace/ttrpg_output/logs/regression.json
+REPO_ROOT="$(cd "$(dirname "$0")" && pwd)"
+bash "$REPO_ROOT/build_forge.sh"
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/orchestrator.py"
+/workspace/venvs/pixtral/bin/python3 "$REPO_ROOT/surgeon.py"
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/table_fixer.py" --help
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/quality_harness.py" --help
+/workspace/venvs/orchestrator/bin/python3 "$REPO_ROOT/regression_suite.py" --report /workspace/ttrpg_output/logs/regression.json
 ```
 
 ## Runtime planning

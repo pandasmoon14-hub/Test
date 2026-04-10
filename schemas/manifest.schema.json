@@ -28,6 +28,10 @@
     "page_metadata_path": {"type":"string"},
     "audit_signatures": {"type":"array","items":{"type":"string"}},
     "failed_pages": {"type":"array","items":{"type":"integer"}},
-    "marker_api_variant": {"type":["string","null"]}
+    "marker_api_variant": {"type":["string","null"]},
+    "page_truth_trust_mode": {"type":"string"},
+    "quarantine_counts": {"type":"object"},
+    "sidecar_refs": {"type":"array","items":{"type":"string"}},
+    "modality_counts": {"type":"object"}
   }
 }
