@@ -265,6 +265,7 @@ def verify_pdf_magic(pdf: Path) -> bool:
 def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") -> str:
     meta = doc.metadata or {}
     text = " ".join(filter(None, [sample_text, meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
+    text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
     return choose_donor_family_from_text(text)
 
 
@@ -283,6 +284,12 @@ def choose_donor_family_from_text(text: str) -> str:
         return "dnd5e"
     if fam_match.hits >= 3 and fam != "generic":
         return fam
+    if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
+        return "dnd5e"
+    if fam in {"d20", "osr"} and any(k in low for k in ["ogl", "pathfinder", "paizo"]):
+        return "ogl"
+    if fam in {"d20", "osr"} and fam_match.hits >= 2:
+        return "dnd5e"
     return "mixed"
 
 
@@ -450,6 +457,8 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     landscape_ratio = sum(1 for r in rows if r.is_landscape) / max(1, len(rows))
     is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
     return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, landscape_ratio, is_image_only, donor, samples, rows)
+    is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
+    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, is_image_only, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
@@ -929,6 +938,10 @@ def stat_block_score(text: str, family: str) -> float:
     low = text.lower()
     fields = STATBLOCK_FIELDS.get(family, [])
     if not fields:
+        return 1.0
+    hits = sum(1 for field in fields if field in low)
+    if hits == 0:
+        return 1.0
         return 1.0
     hits = sum(1 for field in fields if field in low)
     if hits == 0:
