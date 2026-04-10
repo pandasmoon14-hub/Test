@@ -4,41 +4,33 @@
 from __future__ import annotations
 
 import re
+import statistics
 
 import fitz
 
 from mechanics_vocab import statblock_density as vocab_statblock_density
 
 
-def detect_multicolumn(blocks: list[tuple], page_width: float | None = None) -> bool:
-    text_blocks: list[tuple[float, float, float, float]] = []
-    for b in blocks:
-        if len(b) < 5:
-            continue
-        txt = str(b[4]).strip()
-        if not txt:
-            continue
-        x0, y0, x1, y1 = map(float, b[:4])
-        width = x1 - x0
-        if len(txt) < 12 and width < 120:
-            continue
-        text_blocks.append((x0, y0, x1, y1))
-    if len(text_blocks) < 6:
+def detect_multicolumn(blocks: list[tuple]) -> bool:
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 8:
         return False
-
-    if page_width is None:
-        page_width = max(x1 for _, _, x1, _ in text_blocks)
-
-    centers = [((x0 + x1) / 2.0, y0, y1) for x0, y0, x1, y1 in text_blocks]
-    left = [(c, y0, y1) for c, y0, y1 in centers if c < page_width * 0.45]
-    right = [(c, y0, y1) for c, y0, y1 in centers if c > page_width * 0.55]
+    xs = []
+    for b in text_blocks:
+        txt = str(b[4]).strip()
+        width = max(1.0, float(b[2]) - float(b[0]))
+        if len(txt) < 10 and width < 120:
+            continue
+        xs.append(float(b[0]))
+    if len(xs) < 8:
+        return False
+    xs = sorted(xs)
+    mid = statistics.median(xs)
+    left = [x for x in xs if x < mid]
+    right = [x for x in xs if x >= mid]
     if len(left) < 3 or len(right) < 3:
         return False
-
-    left_band = (min(y0 for _, y0, _ in left), max(y1 for _, _, y1 in left))
-    right_band = (min(y0 for _, y0, _ in right), max(y1 for _, _, y1 in right))
-    overlap = min(left_band[1], right_band[1]) - max(left_band[0], right_band[0])
-    return overlap > 120
+    return (statistics.mean(right) - statistics.mean(left)) > 90
 
 
 def detect_table_density(text: str) -> float:
