@@ -621,6 +621,7 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_vocab_anima_hits(),
         test_page_marker_parser(),
         test_markerless_parsers_return_empty(),
+        test_orchestrator_compiles(),
         test_table_fixer_idempotent(),
         test_table_fixer_padding(),
         test_table_fixer_leading_trailing_pipe(),
