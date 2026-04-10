@@ -23,13 +23,16 @@ import shutil
 import statistics
 import subprocess
 import time
+import traceback
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
 import fitz
-from mechanics_vocab import statblock_density as vocab_statblock_density
+from mechanics_vocab import best_family, statblock_density as vocab_statblock_density
+from layout_utils import detect_multicolumn as detect_multicolumn_layout
+from page_truth import PageTruthRecord, write_page_truth_jsonl
 from table_fixer import apply_fixes as apply_table_fixes
 
 try:
@@ -145,6 +148,8 @@ class PageFeatures:
     table_density: float
     sidebar_density: float
     statblock_density: float
+    form_density: float
+    is_landscape: bool
 
 
 @dataclass
@@ -158,6 +163,8 @@ class PdfProfile:
     sidebar_page_ratio: float
     statblock_page_ratio: float
     image_dominant_ratio: float
+    landscape_ratio: float
+    is_image_only: bool
     donor_family: str
     samples: list[int]
     page_features: list[PageFeatures]
@@ -188,7 +195,6 @@ class BookManifest:
     lane_scores: dict[str, float]
     donor_family: str
     page_count: int
-    total_pages: int
     pages_audited: int
     pages_passed: int
     pages_remaining: int
@@ -256,10 +262,16 @@ def verify_pdf_magic(pdf: Path) -> bool:
         return False
 
 
-def choose_donor_family(pdf: Path, doc: fitz.Document) -> str:
+def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") -> str:
     meta = doc.metadata or {}
-    text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
+    text = " ".join(filter(None, [sample_text, meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
+    return choose_donor_family_from_text(text)
+
+
+def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
+    if any(k in low for k in ["photoshop", "image conversion"]):
+        return "image_only"
     if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
         return "dnd5e"
     if any(k in low for k in ["ogl", "pathfinder", "paizo"]):
@@ -275,27 +287,8 @@ def normalize_text(text: str) -> str:
     return text
 
 
-def detect_multicolumn(blocks: list[tuple]) -> bool:
-    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
-    if len(text_blocks) < 8:
-        return False
-    xs = []
-    for b in text_blocks:
-        txt = str(b[4]).strip()
-        width = max(1.0, float(b[2]) - float(b[0]))
-        # downweight margin tabs / decorative callouts
-        if len(txt) < 10 and width < 120:
-            continue
-        xs.append(float(b[0]))
-    if len(xs) < 8:
-        return False
-    xs = sorted(xs)
-    mid = statistics.median(xs)
-    left = [x for x in xs if x < mid]
-    right = [x for x in xs if x >= mid]
-    if len(left) < 3 or len(right) < 3:
-        return False
-    return (statistics.mean(right) - statistics.mean(left)) > 90
+def detect_multicolumn(blocks: list[tuple], page_width: float | None = None) -> bool:
+    return detect_multicolumn_layout(blocks, page_width=page_width)
 
 
 def column_sorted_blocks(blocks: list[tuple], page_width: float) -> list[tuple]:
@@ -347,9 +340,23 @@ def detect_sidebar_density(page: fitz.Page) -> float:
     narrow = 0
     for d in rects:
         rect = d["rect"]
+        margin = page.rect.width * 0.05
+        if rect.x0 < margin or rect.x1 > page.rect.width - margin:
+            continue
         if rect.width < page.rect.width * 0.4 and rect.height > page.rect.height * 0.08:
             narrow += 1
     return min(1.0, narrow / max(1, len(rects)))
+
+
+def detect_form_density(page: fitz.Page) -> float:
+    blocks = page.get_text("blocks")
+    text_blocks = [b for b in blocks if len(b) >= 5 and str(b[4]).strip()]
+    if len(text_blocks) < 5:
+        return 0.0
+    short_blocks = sum(1 for b in text_blocks if len(str(b[4]).strip()) < 30)
+    underscore_lines = sum(1 for b in text_blocks if "___" in str(b[4]))
+    form_signals = short_blocks + underscore_lines * 2
+    return min(1.0, form_signals / max(1, len(text_blocks)))
 
 
 def detect_statblock_density(text: str) -> float:
@@ -373,9 +380,10 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     total = len(doc)
     if total <= 0:
         return []
-    candidates = {0, total - 1}
-    for i in range(0, total, max(1, cfg.sample_interval_pages)):
-        candidates.add(i)
+    front = set(range(0, min(total, 24)))
+    stride = set(range(24, total, max(1, cfg.sample_interval_pages)))
+    tail = set(range(max(0, total - 8), total))
+    candidates = front | stride | tail | {0, total - 1}
     hotspot_words = ["table of contents", "appendix", "index", "spell", "monster", "stat block", "armor class", "hit points", "difficulty class"]
     for i in sorted(candidates):
         text = normalize_text(doc[i].get_text("text")[:2200]).lower()
@@ -392,15 +400,20 @@ def adaptive_sample_pages(doc: fitz.Document, cfg: RuntimeConfig) -> list[int]:
     return samples
 
 
+def is_image_only_signature(scanned_ratio: float, average_chars_per_page: float) -> bool:
+    return scanned_ratio >= 0.95 and average_chars_per_page < 10
+
+
 def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     with fitz.open(pdf) as doc:
         total_pages = len(doc)
-        donor = choose_donor_family(pdf, doc)
         samples = adaptive_sample_pages(doc, cfg)
         rows: list[PageFeatures] = []
+        sampled_texts: list[str] = []
         for idx in samples:
             page = doc[idx]
             text = normalize_text(page.get_text("text"))
+            sampled_texts.append(text[:3000])
             blocks = page.get_text("blocks")
             weird = len(re.findall(r"[^\w\s\.,;:?!'\-()\[\]{}<>/|+=*&%$#@`~“”‘’…–—§°•†‡]", text))
             rows.append(PageFeatures(
@@ -410,11 +423,14 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
                 block_count=len(blocks),
                 image_coverage=image_coverage(page),
                 vector_text_ratio=vector_text_ratio(page, text),
-                is_multicolumn=detect_multicolumn(blocks),
+                is_multicolumn=detect_multicolumn(blocks, page.rect.width),
                 table_density=max(detect_table_density(text), vector_table_density(page)),
                 sidebar_density=detect_sidebar_density(page),
                 statblock_density=detect_statblock_density(text),
+                form_density=detect_form_density(page),
+                is_landscape=page.rect.width > page.rect.height * 1.2,
             ))
+        donor = choose_donor_family(pdf, doc, sample_text="\n".join(sampled_texts))
 
     avg_chars = statistics.mean([r.char_count for r in rows]) if rows else 0.0
     weird_ratio = statistics.mean([r.weird_ratio for r in rows]) if rows else 0.0
@@ -424,7 +440,9 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     sidebar_ratio = sum(1 for r in rows if r.sidebar_density > 0.2) / max(1, len(rows))
     stat_ratio = sum(1 for r in rows if r.statblock_density > cfg.stat_ratio_threshold) / max(1, len(rows))
     image_ratio = sum(1 for r in rows if r.image_coverage > 0.4) / max(1, len(rows))
-    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, donor, samples, rows)
+    landscape_ratio = sum(1 for r in rows if r.is_landscape) / max(1, len(rows))
+    is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
+    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, landscape_ratio, is_image_only, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
@@ -433,6 +451,18 @@ def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
         a -= 2.5
     b = 1.5 * profile.table_page_ratio + 0.9 * profile.statblock_page_ratio + 0.7 * profile.multicolumn_ratio + (0.4 if profile.donor_family in {"dnd5e", "ogl"} else 0.2) - 0.7 * profile.scanned_ratio
     b2 = 1.2 * profile.table_page_ratio + 1.0 * profile.multicolumn_ratio + 0.6 * profile.sidebar_page_ratio + 0.8 * profile.scanned_ratio + (0.5 if profile.donor_family == "mixed" else 0.2)
+    if profile.is_image_only or profile.donor_family == "image_only":
+        a -= 5.0
+        b -= 2.0
+        b2 -= 1.5
+    if profile.donor_family in {"cypher", "mixed"} and profile.statblock_page_ratio > 0.45:
+        a -= 1.5
+    if profile.table_page_ratio > 0.12 and profile.statblock_page_ratio > 0.25:
+        a -= 1.0
+    if profile.landscape_ratio > 0.1:
+        a -= 1.0
+    if profile.scanned_ratio > 0.8:
+        a = -10.0
     return {"A": round(a, 4), "B": round(b, 4), "B2": round(b2, 4)}
 
 
@@ -442,6 +472,8 @@ def choose_lane(profile: PdfProfile, cfg: RuntimeConfig) -> tuple[str, dict[str,
 
 
 def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
+    if profile.is_image_only:
+        return "skip"
     if cfg.ocr_mode in {"force", "skip", "redo"}:
         return cfg.ocr_mode
     if profile.scanned_ratio > 0.45:
@@ -459,6 +491,7 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
             blocks = page.get_text("blocks")
             blocks_sorted = column_sorted_blocks(blocks, page.rect.width)
             lines = [normalize_text(b[4]) for b in blocks_sorted if len(b) > 4 and b[4].strip()]
+            raw_blocks = blocks
             image_blocks = [b for b in raw_blocks if len(b) > 6 and int(b[6]) == 1]
             if image_blocks and not lines:
                 lines = ["[IMAGE PAGE]"]
@@ -477,6 +510,38 @@ def write_page_markers_from_blocks(pdf: Path, out_md: Path, page_meta_path: Path
     save_json(page_meta_path, meta_rows)
 
 
+def write_empty_page_markers(out_md: Path, total_pages: int) -> None:
+    with open(out_md, "w", encoding="utf-8") as file:
+        for page_no in range(1, max(1, total_pages) + 1):
+            file.write(f"<!-- PAGE:{page_no} -->\n\n")
+
+
+def enrich_page_profiles_from_markdown(
+    pages: dict[int, str],
+    profile: PdfProfile,
+) -> dict[str, dict[str, Any]]:
+    sampled = {p.page_index + 1: p for p in profile.page_features}
+    enriched: dict[str, dict[str, Any]] = {}
+    for page_no, text in pages.items():
+        sample = sampled.get(page_no)
+        table_density = detect_table_density(text)
+        stat_density = detect_statblock_density(text)
+        sidebar_density = min(1.0, text.count(">") / max(1, len(text.splitlines())))
+        enriched[str(page_no)] = {
+            "page_index": page_no - 1,
+            "char_count": len(text),
+            "weird_ratio": (sample.weird_ratio if sample else 0.0),
+            "block_count": (sample.block_count if sample else 0),
+            "image_coverage": (sample.image_coverage if sample else (1.0 if profile.is_image_only else 0.0)),
+            "vector_text_ratio": (sample.vector_text_ratio if sample else 0.0),
+            "is_multicolumn": bool(sample.is_multicolumn) if sample else False,
+            "table_density": table_density,
+            "sidebar_density": sidebar_density,
+            "statblock_density": stat_density,
+        }
+    return enriched
+
+
 def bridge_call(cmd: list[str], timeout_sec: int, retries: int, log_file: Path, label: str) -> dict[str, Any]:
     last_err = ""
     for attempt in range(1, retries + 1):
@@ -490,11 +555,22 @@ def bridge_call(cmd: list[str], timeout_sec: int, retries: int, log_file: Path, 
             if result.returncode != 0:
                 last_err = result.stderr[:500]
                 continue
-            payload = json.loads((result.stdout or "{}").strip().splitlines()[-1])
-            if payload.get("status") != "ok" or not payload.get("md_path"):
-                last_err = f"invalid payload: {payload}"
+            parsed = None
+            for line in reversed((result.stdout or "").splitlines()):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    candidate = json.loads(line)
+                except json.JSONDecodeError:
+                    continue
+                if isinstance(candidate, dict) and candidate.get("status") == "ok" and candidate.get("md_path"):
+                    parsed = candidate
+                    break
+            if parsed is None:
+                last_err = "no valid JSON payload found in stdout"
                 continue
-            return payload
+            return parsed
         except subprocess.TimeoutExpired:
             last_err = f"timeout {timeout_sec}s"
         except json.JSONDecodeError as exc:
@@ -568,12 +644,14 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
         page_map_path = out_dir / f"{pdf.stem}.page_map.json"
         payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(pdf), "--output_dir", str(out_dir), "--batch_multiplier", str(cfg.batch_multiplier), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:{pdf.name}")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, total_pages, cfg.strict_page_truth)
+        if cfg.strict_page_truth and page_map and len(page_map) < total_pages:
+            raise RuntimeError(f"strict_page_truth: marker page map incomplete {len(page_map)}/{total_pages}")
         if page_map:
             out = out_dir / f"{pdf.stem}.md"
             write_page_map_markdown(out, total_pages, page_map)
             meta.append({"chunk": 0, "page_start": 1, "page_end": total_pages, "lane": "B", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
             return out, payload.get("api_variant"), meta, "source_page_map"
-        return Path(payload["md_path"]), payload.get("api_variant"), meta, "native_or_fallback"
+        raise RuntimeError("marker returned no source page map; untrusted_page_truth")
 
     chunks = split_pdf(pdf, out_dir, n_chunks, total_pages)
     collected, api_variant = {}, None
@@ -596,17 +674,13 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
     page_map: dict[int, str] = {}
     for _, (_, _), idx in chunks:
         page_map.update(collected[idx]["pages"])
+    if cfg.strict_page_truth and page_map and len(page_map) < total_pages:
+        raise RuntimeError(f"strict_page_truth: marker chunk page map incomplete {len(page_map)}/{total_pages}")
     out = out_dir / f"{pdf.stem}.md"
-    if page_map:
-        write_page_map_markdown(out, total_pages, page_map)
-        marker_mode = "source_page_map"
-    else:
-        if cfg.strict_page_truth:
-            raise RuntimeError("strict_page_truth: missing marker page maps for chunked output")
-        with open(out, "w", encoding="utf-8") as f:
-            for _, (start, end), idx in chunks:
-                f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx]['text'].strip()}\n")
-        marker_mode = "chunk_fallback"
+    if not page_map:
+        raise RuntimeError("marker chunk processing returned no source page map; untrusted_page_truth")
+    write_page_map_markdown(out, total_pages, page_map)
+    marker_mode = "source_page_map"
     for cp, _, idx in chunks:
         cp.unlink(missing_ok=True)
         shutil.rmtree(out_dir / f"_chunk_{idx:02d}_out", ignore_errors=True)
@@ -621,12 +695,14 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
         page_map_path = out_dir / f"{pdf.stem}.page_map.json"
         payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(pdf), "--output_dir", str(out_dir), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:{pdf.name}")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, profile.total_pages, cfg.strict_page_truth)
+        if cfg.strict_page_truth and page_map and len(page_map) < profile.total_pages:
+            raise RuntimeError(f"strict_page_truth: docling page map incomplete {len(page_map)}/{profile.total_pages}")
         if page_map:
             out = out_dir / f"{pdf.stem}.md"
             write_page_map_markdown(out, profile.total_pages, page_map)
             meta.append({"chunk": 0, "page_start": 1, "page_end": profile.total_pages, "lane": "B2", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
             return out, meta, "source_page_map"
-        return Path(payload["md_path"]), meta, "native_or_fallback"
+        raise RuntimeError("docling returned no source page map; untrusted_page_truth")
 
     chunks = split_pdf(pdf, out_dir, n_chunks, profile.total_pages)
     collected = {}
@@ -645,16 +721,12 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
     page_map: dict[int, str] = {}
     for _, (_, _), idx in chunks:
         page_map.update(collected[idx]["pages"])
-    if page_map:
-        write_page_map_markdown(out, profile.total_pages, page_map)
-        marker_mode = "source_page_map"
-    else:
-        if cfg.strict_page_truth:
-            raise RuntimeError("strict_page_truth: missing docling page maps for chunked output")
-        with open(out, "w", encoding="utf-8") as f:
-            for _, (start, end), idx in chunks:
-                f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx]['text'].strip()}\n")
-        marker_mode = "chunk_fallback"
+    if cfg.strict_page_truth and page_map and len(page_map) < profile.total_pages:
+        raise RuntimeError(f"strict_page_truth: docling chunk page map incomplete {len(page_map)}/{profile.total_pages}")
+    if not page_map:
+        raise RuntimeError("docling chunk processing returned no source page map; untrusted_page_truth")
+    write_page_map_markdown(out, profile.total_pages, page_map)
+    marker_mode = "source_page_map"
     for cp, _, idx in chunks:
         cp.unlink(missing_ok=True)
         shutil.rmtree(out_dir / f"_dchunk_{idx:02d}_out", ignore_errors=True)
@@ -780,17 +852,8 @@ def expand_chunk_markers(content: str) -> str:
             absolute_pages.setdefault(abs_page, []).extend(page_lines)
 
         if not local_pages:
-            paragraphs = [blk.strip() for blk in re.split(r"\n\s*\n", "\n".join(body)) if blk.strip()]
-            if paragraphs:
-                per_page: dict[int, list[str]] = {p: [] for p in range(start_page, end_page + 1)}
-                for idx, para in enumerate(paragraphs):
-                    target_page = start_page + min(chunk_size - 1, int((idx / max(1, len(paragraphs))) * chunk_size))
-                    per_page[target_page].append(para)
-                for p, p_blocks in per_page.items():
-                    if p_blocks:
-                        absolute_pages[p] = ("\n\n".join(p_blocks)).splitlines()
-            else:
-                absolute_pages[start_page] = body
+            # Do not fabricate page boundaries by paragraph spreading.
+            absolute_pages[start_page] = body
 
         for page_num in range(start_page, end_page + 1):
             out_lines.append(f"<!-- PAGE:{page_num} -->")
@@ -798,18 +861,26 @@ def expand_chunk_markers(content: str) -> str:
             if page_lines:
                 out_lines.extend(page_lines)
 
+    if saw_chunk and not any("<!-- PAGE:" in line for line in out_lines):
+        out_lines.insert(0, "<!-- PAGE:1 -->")
+        out_lines.insert(1, "<!-- WARNING: page boundaries are estimated, not ground truth -->")
     return "\n".join(out_lines) if saw_chunk else content
 
 
 def parse_page_markers(content: str) -> dict[int, str]:
-    pages, cur = {}, 1
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    if not marker_re.search(content):
+        return {}
+    pages: dict[int, list[str]] = {}
+    cur: int | None = None
     for line in content.splitlines():
-        m = re.match(r"\s*<!--\s*PAGE:(\d+)\s*-->", line)
+        m = marker_re.match(line)
         if m:
             cur = int(m.group(1))
             pages.setdefault(cur, [])
             continue
-        pages.setdefault(cur, []).append(line)
+        if cur is not None:
+            pages.setdefault(cur, []).append(line)
     return {k: "\n".join(v).strip() for k, v in pages.items()}
 
 
@@ -821,9 +892,11 @@ def reading_order_score(text: str) -> float:
     return max(0.0, 1.0 - jumps / max(1, len(lines) / 10))
 
 
-def table_structure_score(text: str) -> float:
+def table_structure_score(text: str, page_feature: PageFeatures | None = None) -> float:
     lines = [x for x in text.splitlines() if "|" in x]
     if not lines:
+        if page_feature is not None and page_feature.table_density > 0.15:
+            return 0.3
         return 1.0
     valid = sum(1 for x in lines if x.count("|") >= 2)
     divs = sum(1 for x in lines if re.search(r"\|\s*[-:]{3,}\s*\|", x))
@@ -832,13 +905,22 @@ def table_structure_score(text: str) -> float:
     return min(1.0, (valid / max(1, len(lines))) * 0.6 + (divs / max(1, len(lines))) * 0.4)
 
 
-def stat_block_score(text: str) -> float:
-    density = vocab_statblock_density(text)
-    if density < 0.08:
+STATBLOCK_FIELDS: dict[str, list[str]] = {
+    "cypher": ["motive:", "environment:", "health:", "damage inflicted:", "armor:", "movement:", "modifications:", "combat:", "interaction:", "use:", "loot:", "gm intrusion:"],
+    "dnd5e": ["armor class", "hit points", "speed", "saving throws", "skills", "damage resistances", "senses", "languages", "challenge"],
+}
+
+
+def stat_block_score(text: str, family: str) -> float:
+    low = text.lower()
+    fields = STATBLOCK_FIELDS.get(family, [])
+    if not fields:
         return 1.0
-    hits = max(1, int(density * 5))
-    sep = len(re.findall(r"\n\s*[-*]\s+", text)) + text.count("|")
-    return min(1.0, sep / (hits * 2 + 1))
+    hits = sum(1 for field in fields if field in low)
+    if hits == 0:
+        return 1.0
+    ordered = sum(1 for a, b in zip(fields, fields[1:]) if low.find(a) != -1 and low.find(b) != -1 and low.find(a) < low.find(b))
+    return min(1.0, (hits * 0.7 + ordered * 0.3) / max(1, len(fields) * 0.6))
 
 
 def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> AuditResult:
@@ -846,7 +928,7 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
-        content = ensure_page_markers(content, profile.total_pages)
+        return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():
@@ -864,12 +946,13 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
             r.append("glyph_corruption")
         if re.search(r"archdev[^\w]?ils|conse[^\w]?quences", t, flags=re.IGNORECASE):
             r.append("soft_hyphen_split")
-        ts = table_structure_score(t)
+        page_feature = next((p for p in profile.page_features if p.page_index + 1 == idx), None)
+        ts = table_structure_score(t, page_feature=page_feature)
         if ts < 0.45:
             r.append("table_structure")
         if reading_order_score(t) < 0.6:
             r.append("reading_order")
-        if stat_block_score(t) < 0.4:
+        if stat_block_score(t, profile.donor_family) < 0.4:
             r.append("stat_block_integrity")
         lines = [l.strip() for l in t.splitlines() if l.strip()]
         if lines:
@@ -898,20 +981,21 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
                 dst.insert_pdf(src, from_page=p, to_page=p)
         dst.save(micro)
     scores = {}
+    micro_profile = analyze_pdf(micro, cfg)
     try:
-        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", profile, log_file)
-        scores["B"] = len(audit_markdown(md, profile, cfg).failed_pages)
+        md, _, _, _ = run_marker(cfg, micro, out_dir / "_race_marker", micro_profile, log_file)
+        scores["B"] = len(audit_markdown(md, micro_profile, cfg).failed_pages)
     except Exception:
         scores["B"] = 999
     try:
-        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", profile, log_file)
-        scores["B2"] = len(audit_markdown(md, profile, cfg).failed_pages)
+        md, _, _ = run_docling(cfg, micro, out_dir / "_race_docling", micro_profile, log_file)
+        scores["B2"] = len(audit_markdown(md, micro_profile, cfg).failed_pages)
     except Exception:
         scores["B2"] = 999
     try:
         amd, apm = out_dir / "_race_a.md", out_dir / "_race_a_pages.json"
         write_page_markers_from_blocks(micro, amd, apm, log_file)
-        scores["A"] = len(audit_markdown(amd, profile, cfg).failed_pages)
+        scores["A"] = len(audit_markdown(amd, micro_profile, cfg).failed_pages)
     except Exception:
         scores["A"] = 999
     micro.unlink(missing_ok=True)
@@ -932,37 +1016,42 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     log_file, md_out, page_meta = cfg.log_dir / f"{pdf.stem}.log", out_dir / f"{pdf.stem}.md", out_dir / f"{pdf.stem}.pages.json"
 
     if md_out.exists() and not cfg.overwrite_existing:
-        return BookManifest(
-            book_id=pdf.stem,
-            source_pdf=str(pdf),
-            lane="SKIP",
-            lane_scores={},
-            donor_family="unknown",
-            chunk_count=0,
-            total_pages=0,
-            pages_detected=0,
-            ocr_mode="skip",
-            started_at=started_iso,
-            finished_at=now_iso(),
-            elapsed_sec=round(time.perf_counter() - t0, 3),
-            output_md=str(md_out),
-            page_metadata_path=str(page_meta),
-            audit_signatures=[],
-            failed_pages=[],
-            marker_api_variant=None,
-        )
+        return BookManifest(book_id=pdf.stem, source_pdf=str(pdf), lane="SKIP", lane_scores={}, donor_family="unknown", page_count=0, pages_audited=0, pages_passed=0, pages_remaining=0, page_marker_mode="existing", chunk_count=0, total_pages=0, pages_detected=0, ocr_mode="skip", started_at=started_iso, finished_at=now_iso(), elapsed_sec=round(time.perf_counter() - t0, 3), output_md=str(md_out), page_metadata_path=str(page_meta), audit_signatures=[], failed_pages=[], marker_api_variant=None)
 
     profile = analyze_pdf(pdf, cfg)
+    try:
+        with fitz.open(pdf) as doc:
+            rows = []
+            for i, page in enumerate(doc, start=1):
+                txt = normalize_text(page.get_text("text"))
+                rows.append(PageTruthRecord(
+                    page=i,
+                    chars=len(txt),
+                    blocks=len(page.get_text("blocks")),
+                    detected_tables=max(detect_table_density(txt), vector_table_density(page)),
+                    lane="A",
+                    page_marker_mode="source_geometry",
+                    trusted_page_truth=True,
+                ))
+        write_page_truth_jsonl(out_dir / f"{pdf.stem}.page_truth.jsonl", rows)  # compatibility call
+    except Exception:
+        pass
     lane, scores = choose_lane(profile, cfg)
-    if cfg.sample_and_race:
+    if profile.is_image_only:
+        lane = "C"
+    elif cfg.sample_and_race:
         lane = sample_and_race(cfg, pdf, out_dir, profile, log_file)
 
     ocr_mode = route_ocr_mode(profile, cfg)
-    active_pdf = run_ocr(cfg, pdf, out_dir / f"{pdf.stem}_ocr.pdf", ocr_mode, log_file)
+    active_pdf = pdf if profile.is_image_only else run_ocr(cfg, pdf, out_dir / f"{pdf.stem}_ocr.pdf", ocr_mode, log_file)
 
     marker_api_variant, lane_meta = None, []
     page_marker_mode = "native"
-    if lane == "A":
+    if profile.is_image_only:
+        write_empty_page_markers(md_out, profile.total_pages)
+        page_marker_mode = "image_only_stub"
+        lane_meta.append({"chunk": 0, "page_start": 1, "page_end": profile.total_pages, "lane": "C", "pages_emitted": profile.total_pages})
+    elif lane == "A":
         write_page_markers_from_blocks(active_pdf, md_out, page_meta)
         page_marker_mode = "source_blocks"
     elif lane == "B":
@@ -971,19 +1060,33 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
-    txt = expand_chunk_markers(txt)
+    if "<!-- CHUNK:" in txt and "<!-- PAGE:" not in txt:
+        txt = expand_chunk_markers(txt)
     txt, _ = apply_table_fixes(txt)
-    if "<!-- PAGE:" not in txt:
-        md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")
-    else:
-        md_out.write_text(txt, encoding="utf-8")
+    md_out.write_text(txt, encoding="utf-8")
 
     audit = audit_markdown(md_out, profile, cfg)
 
     pages = parse_page_markers(md_out.read_text(encoding="utf-8", errors="replace"))
     if cfg.strict_page_truth and profile.total_pages > 0 and len(pages) < profile.total_pages:
         raise RuntimeError(f"strict_page_truth: page markers incomplete {len(pages)}/{profile.total_pages}")
-    sidecar = [{"page": p, "markdown": blk} for p, body in pages.items() for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
+    sidecar = []
+    for p, body in pages.items():
+        table_chunks = [blk for blk in re.split(r"\n\n+", body) if blk.count("|") >= 4]
+        page_feature = next((pf for pf in profile.page_features if pf.page_index + 1 == p), None)
+        sidecar.append({
+            "page": p,
+            "markdown": "\n\n".join(table_chunks).strip(),
+            "table_chunks": table_chunks,
+            "vector_table_detected": bool(page_feature and page_feature.table_density > 0.15),
+            "source_has_drawings": bool(page_feature and page_feature.table_density > 0.0),
+            "source_geometry": {
+                "page_index": page_feature.page_index if page_feature else None,
+                "is_landscape": page_feature.is_landscape if page_feature else None,
+                "table_density": page_feature.table_density if page_feature else None,
+                "sidebar_density": page_feature.sidebar_density if page_feature else None,
+            },
+        })
     save_json(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json", sidecar)
 
     failed_pages = list(range(len(pages))) if cfg.enforce_full_book_repair and not audit.passed else audit.failed_pages
@@ -991,6 +1094,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         key = str(pdf.resolve())
         existing = repair_queue.get(key, {})
         outstanding = sorted(set(existing.get("failed_pages", [])) | set(failed_pages))
+        enriched_profiles = enrich_page_profiles_from_markdown(pages, profile)
         repair_queue[key] = {
             "file": str(pdf.resolve()),
             "failed_pages": outstanding,
@@ -999,7 +1103,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "queued_at": time.time(),
             "audit_signatures": audit.signatures,
             "page_reasons": {str(a.page_index): a.reasons for a in audit.page_audits if a.reasons},
-            "page_profiles": {str(p.page_index + 1): asdict(p) for p in profile.page_features},
+            "page_profiles": enriched_profiles,
         }
 
     ocr_applied_pages = list(range(1, profile.total_pages + 1)) if ocr_mode in {"force", "redo"} else []
@@ -1016,12 +1120,39 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         "repair": {"repaired": False, "unrepaired": True, "retry_count": 0, "final_dpi": None, "prompt_class": None, "repair_confidence": None},
         "lane": lane,
         "page_marker_mode": page_marker_mode,
+        "trusted_page_truth": page_marker_mode == "source_page_map" or lane == "A",
+        "orientation": ("landscape" if p.is_landscape else "portrait"),
+        "modality": ("scan" if p.char_count < cfg.scan_threshold else "mixed"),
+        "table_sidecar_path": str(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json"),
         "audit": next((a.reasons for a in audit.page_audits if a.page_index == p.page_index + 1), []),
     } for p in profile.page_features]
     save_json(page_meta, page_rows)
 
     chunk_count = max(1, len(lane_meta))
-    manifest = BookManifest(pdf.stem, str(pdf), lane, scores, profile.donor_family, chunk_count, profile.total_pages, len(pages), ocr_mode, started_iso, now_iso(), round(time.perf_counter()-t0,3), str(md_out), str(page_meta), audit.signatures, failed_pages, marker_api_variant)
+    manifest = BookManifest(
+        book_id=pdf.stem,
+        source_pdf=str(pdf),
+        lane=lane,
+        lane_scores=scores,
+        donor_family=profile.donor_family,
+        page_count=profile.total_pages,
+        pages_audited=len(pages),
+        pages_passed=max(0, len(pages) - len(failed_pages)),
+        pages_remaining=len(failed_pages),
+        page_marker_mode=page_marker_mode,
+        chunk_count=chunk_count,
+        total_pages=profile.total_pages,
+        pages_detected=len(pages),
+        ocr_mode=ocr_mode,
+        started_at=started_iso,
+        finished_at=now_iso(),
+        elapsed_sec=round(time.perf_counter() - t0, 3),
+        output_md=str(md_out),
+        page_metadata_path=str(page_meta),
+        audit_signatures=audit.signatures,
+        failed_pages=failed_pages,
+        marker_api_variant=marker_api_variant,
+    )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     return manifest
 
@@ -1068,8 +1199,14 @@ def main() -> None:
                 summary["books_ok"] += 1
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
+            error_record = {
+                "file": str(pdf),
+                "error": str(exc),
+                "traceback": traceback.format_exc(),
+                "timestamp": now_iso(),
+            }
             with open(cfg.log_dir / "orchestrator_fatal.log", "a", encoding="utf-8") as f:
-                f.write(f"[{pdf.name}] {exc}\n")
+                f.write(json.dumps(error_record, ensure_ascii=False) + "\n")
             if not cfg.continue_on_error:
                 raise
             print(f"  ! error: {exc}")

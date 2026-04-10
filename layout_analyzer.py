@@ -9,13 +9,14 @@ from __future__ import annotations
 
 import argparse
 import json
+import sys
 import statistics
 from dataclasses import asdict, dataclass
 from pathlib import Path
 
 import fitz
 
-from orchestrator import detect_multicolumn, detect_statblock_density, detect_table_density, vector_table_density
+from layout_utils import detect_multicolumn, detect_statblock_density, detect_table_density, vector_table_density
 
 
 @dataclass
@@ -38,27 +39,33 @@ def percentile(values: list[float], q: float) -> float:
 
 
 def analyze_pdf(pdf: Path, sample_interval: int) -> BookLayout:
-    with fitz.open(pdf) as doc:
-        total = len(doc)
-        sample_idxs = list(range(0, total, max(1, sample_interval))) or [0]
+    try:
+        with fitz.open(pdf) as doc:
+            total = len(doc)
+            front_idxs = list(range(0, min(total, 24)))
+            stride_idxs = list(range(24, total, max(1, sample_interval)))
+            sample_idxs = sorted(set(front_idxs + stride_idxs)) or [0]
 
-        multicol = 0
-        tableish = 0
-        statish = 0
-        scanned = 0
+            multicol = 0
+            tableish = 0
+            statish = 0
+            scanned = 0
 
-        for idx in sample_idxs:
-            page = doc[idx]
-            text = page.get_text("text")
-            blocks = page.get_text("blocks")
-            if detect_multicolumn(blocks):
-                multicol += 1
-            if max(detect_table_density(text), vector_table_density(page)) >= 0.15:
-                tableish += 1
-            if detect_statblock_density(text) >= 0.30:
-                statish += 1
-            if len(text.strip()) < 50:
-                scanned += 1
+            for idx in sample_idxs:
+                page = doc[idx]
+                text = page.get_text("text")
+                blocks = page.get_text("blocks")
+                if detect_multicolumn(blocks):
+                    multicol += 1
+                if max(detect_table_density(text), vector_table_density(page)) >= 0.15:
+                    tableish += 1
+                if detect_statblock_density(text) >= 0.30:
+                    statish += 1
+                if len(text.strip()) < 50:
+                    scanned += 1
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        print(f"Error analyzing {pdf}: {exc}", file=sys.stderr)
+        return BookLayout(str(pdf), 0, 0, 0.0, 0.0, 0.0, 0.0)
 
     n = max(1, len(sample_idxs))
     return BookLayout(
@@ -97,7 +104,7 @@ def main() -> None:
 
     recommended = {
         "lane_a_multicol_penalty": round(2.2 if percentile(multicol, 0.75) > 0.45 else 1.8, 3),
-        "lane_a_hard_exclusion_multicol": round(max(0.45, percentile(multicol, 0.8)), 3),
+        "lane_a_hard_exclusion_multicol": round(max(0.45, percentile(multicol, 0.8) if multicol else 0.5), 3),
         "table_ratio_threshold": round(max(0.10, percentile(tables, 0.25)), 3),
         "stat_ratio_threshold": round(max(0.20, percentile(stats, 0.25)), 3),
     }

@@ -55,7 +55,8 @@ def normalize_whitespace(text: str) -> str:
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
     pages, cur = {}, 1
-    marker_re = re.compile(r"\s*<!--\s*page\s*[:\s]?\s*(\d+)\s*-->", flags=re.IGNORECASE)
+    # Codex-patched: exact match to system standard
+    marker_re = re.compile(r"\s*<!--\s*PAGE:\s*(\d+)\s*-->", flags=re.IGNORECASE)
     for line in markdown.splitlines():
         m = marker_re.match(line)
         if m:
@@ -142,7 +143,7 @@ def detect_lore_like_blocks(text: str) -> list[str]:
 def extract_entities(markdown: str) -> dict[str, set[str]]:
     entities = {"npc": set(), "location": set(), "item": set(), "spell": set(), "faction": set()}
     patterns = {
-        "npc": r"\b(?:Sir|Lady|Lord|Captain|Master|Archmage|Doctor|Commander)\s+([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)*)",
+        "npc": r"\b(?:Sir|Lady|Lord|Captain|Master|Archmage|Doctor|Commander|Sensei|Sifu|Abbess|Elder|Grandmaster|Sheikh|Emir|Daimyo|Shogun)\s+([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)*)",
         "location": r"\b(?:City of|Kingdom of|Ruins of|Mount|Lake|Forest of|Planet|Sector)\s+([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)*)",
         "item": r"\b([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)*)\s+(?:Sword|Shield|Amulet|Ring|Staff|Blade|Relic|Artifact)\b",
         "spell": r"\b(?:Spell:|Ritual:|Cantrip:|Invocation:)\s*([A-Z][a-zA-Z'\-]+(?:\s+[A-Z][a-zA-Z'\-]+)*)",
@@ -159,7 +160,16 @@ def chunk_large_text(text: str, max_chars: int) -> list[str]:
         return [text]
     out, cur, n = [], [], 0
     for p in [x for x in text.split("\n\n") if x.strip()]:
-        if cur and n + len(p) + 2 > max_chars:
+        if len(p) > max_chars:
+            sentences = [s.strip() for s in re.split(r"(?<=[.!?])\s+", p) if s.strip()]
+            for s in sentences:
+                if cur and n + len(s) + 2 > max_chars:
+                    out.append("\n\n".join(cur))
+                    cur, n = [s], len(s)
+                else:
+                    cur.append(s)
+                    n += len(s) + 2
+        elif cur and n + len(p) + 2 > max_chars:
             out.append("\n\n".join(cur))
             cur, n = [p], len(p)
         else:

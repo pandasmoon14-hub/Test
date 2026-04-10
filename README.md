@@ -17,6 +17,12 @@ Local-first, routed PDF-to-Markdown extraction for single-GPU corpora.
 - Selective OCR policy (`skip`/`redo`/`force`) and subprocess timeouts/retries.
 - Repair merge via temporary artifact and atomic promotion.
 
+## Production guarantees
+- Page maps are trusted only when emitted from source-grounded page markers or page metadata.
+- Donor family is inferred from sampled content first, metadata second.
+- OCR is page-selective; native-text pages are never force-OCR'd unless explicitly requested.
+- Lane C supports high-detail repair with profile-aware rendering and tiled fallback for dense pages.
+
 ## New v12 toolchain
 - `sqlite_queue.py`: durable SQLite queue/state backend for large runs.
 - `table_fixer.py`: post-extraction table normalization and recovery.
