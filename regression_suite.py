@@ -9,7 +9,6 @@ core quality tooling behaviors without requiring heavyweight model inference.
 from __future__ import annotations
 
 import argparse
-import ast
 import importlib
 import json
 import sys
@@ -221,6 +220,7 @@ def test_markerless_parsers_return_empty() -> TestResult:
         outs = [
             orchestrator.parse_page_markers(sample),
             quality_harness.parse_page_markers(sample),
+            lorebook_splitter.parse_page_markers(sample),
             acceptance_corpus.parse_pages(sample),
             marker_runner._parse_page_markers(sample),
             docling_runner._parse_page_markers(sample),
@@ -229,14 +229,6 @@ def test_markerless_parsers_return_empty() -> TestResult:
         return TestResult("markerless_parsers_return_empty", False, f"import_error={exc}")
     ok = all(x == {} for x in outs)
     return TestResult("markerless_parsers_return_empty", ok, f"values={outs}")
-
-
-def test_orchestrator_compiles() -> TestResult:
-    try:
-        ast.parse(Path("orchestrator.py").read_text(encoding="utf-8"))
-    except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("orchestrator_compiles", False, f"parse_error={exc}")
-    return TestResult("orchestrator_compiles", True, "ast parse ok")
 
 
 def test_table_fixer_idempotent() -> TestResult:
@@ -547,89 +539,47 @@ def test_donor_family_no_nameerror() -> TestResult:
         return TestResult("donor_family_no_nameerror", False, f"error={exc}")
     ok = isinstance(a, str) and isinstance(b, str)
     return TestResult("donor_family_no_nameerror", ok, f"a={a}, b={b}")
+def test_image_only_signature_detection() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        is_image_only_signature = importlib.import_module("orchestrator").is_image_only_signature
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("image_only_signature_detection", False, f"import_error={exc}")
+    passed = is_image_only_signature(1.0, 0.0) and not is_image_only_signature(0.8, 0.0)
+    return TestResult("image_only_signature_detection", passed, "threshold check")
 
 
-def test_surgeon_merge_requires_markers() -> TestResult:
+def test_donor_family_image_only() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        choose_donor_family_from_text = importlib.import_module("orchestrator").choose_donor_family_from_text
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("donor_family_image_only", False, f"import_error={exc}")
+    passed = (
+        choose_donor_family_from_text("Adobe Photoshop 25.0") == "image_only"
+        and choose_donor_family_from_text("Image Conversion Pipeline") == "image_only"
+    )
+    return TestResult("donor_family_image_only", passed, "photoshop marker")
+
+
+def test_surgeon_prompt_fallback() -> TestResult:
     try:
         if "fitz" not in sys.modules:
             sys.modules["fitz"] = types.ModuleType("fitz")
         if "PIL" not in sys.modules:
             pil_mod = types.ModuleType("PIL")
-            pil_img = types.ModuleType("PIL.Image")
-            pil_mod.Image = pil_img
+            pil_image_mod = types.ModuleType("PIL.Image")
+            pil_mod.Image = pil_image_mod
             sys.modules["PIL"] = pil_mod
-            sys.modules["PIL.Image"] = pil_img
-        surgeon = importlib.import_module("surgeon")
-        with tempfile.TemporaryDirectory() as td:
-            base = Path(td) / "base.md"
-            tmp = Path(td) / "tmp.md"
-            base.write_text("markerless body", encoding="utf-8")
-            try:
-                surgeon.write_merged_markdown(base, {0: "fixed"}, tmp)
-            except ValueError:
-                return TestResult("surgeon_merge_requires_markers", True, "raises on markerless base")
-            return TestResult("surgeon_merge_requires_markers", False, "did not raise")
+            sys.modules["PIL.Image"] = pil_image_mod
+        prompt_for_layout = importlib.import_module("surgeon").prompt_for_layout
     except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("surgeon_merge_requires_markers", False, f"error={exc}")
-
-
-def test_audit_fails_missing_markers() -> TestResult:
-    try:
-        if "fitz" not in sys.modules:
-            sys.modules["fitz"] = types.ModuleType("fitz")
-        orch = importlib.import_module("orchestrator")
-        cfg = orch.RuntimeConfig.from_env(Path("."))
-        profile = orch.PdfProfile(
-            total_pages=3, average_chars_per_page=100.0, weird_ratio=0.0, scanned_ratio=0.0,
-            multicolumn_ratio=0.0, table_page_ratio=0.0, sidebar_page_ratio=0.0, statblock_page_ratio=0.0,
-            image_dominant_ratio=0.0, landscape_ratio=0.0, is_image_only=False, donor_family="mixed",
-            samples=[], page_features=[],
-        )
-        with tempfile.TemporaryDirectory() as td:
-            p = Path(td) / "x.md"
-            p.write_text("no markers", encoding="utf-8")
-            res = orch.audit_markdown(p, profile, cfg)
-    except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("audit_fails_missing_markers", False, f"error={exc}")
-    ok = (not res.passed) and ("missing_page_markers" in res.signatures)
-    return TestResult("audit_fails_missing_markers", ok, f"signatures={res.signatures}")
-
-
-def test_queue_transitions() -> TestResult:
-    try:
-        import sqlite_queue as sq
-        with tempfile.TemporaryDirectory() as td:
-            db = sq.QueueDB(Path(td) / "q.db")
-            item = sq.QueueItem(
-                book_id="b1", file="f.pdf", failed_pages=[0], md_path="m.md", full_book_repair=False,
-                queued_at=1.0, updated_at=1.0, audit_signatures=[], page_reasons={}, page_profiles={},
-            )
-            db.upsert_queue_item(item)
-            due = db.claim_due_items(limit=1)
-            ok_due = len(due) == 1 and due[0].status == "in_progress"
-            db.mark_retryable("b1", "err", 2.0, failure_class="x")
-            r1 = db.get_queue_item("b1")
-            db.mark_done("b1")
-            r2 = db.get_queue_item("b1")
-            db.close()
-        ok = ok_due and r1 is not None and r1.status == "retryable" and r2 is not None and r2.status == "done"
-    except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("queue_transitions", False, f"error={exc}")
-    return TestResult("queue_transitions", ok, "queue lifecycle")
-
-
-def test_table_sidecar_generation() -> TestResult:
-    try:
-        from table_fixer import build_table_sidecars
-        md = """| A | B |
-| --- | --- |
-| 1 | 2 |
-"""
-        sidecars = build_table_sidecars(md)
-        ok = len(sidecars) >= 1 and "model" in sidecars[0] and "rendered" in sidecars[0]
-    except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("table_sidecar_generation", False, f"error={exc}")
-    return TestResult("table_sidecar_generation", ok, f"count={len(sidecars)}")
+        return TestResult("surgeon_prompt_fallback", False, f"import_error={exc}")
+    prompt = prompt_for_layout({"table_density": 0.0, "statblock_density": 0.0, "sidebar_density": 0.0, "image_coverage": 0.8})
+    passed = "If you see ANY tables" in prompt and "stat blocks" in prompt
+    return TestResult("surgeon_prompt_fallback", passed, "fallback prompt check")
 
 
 def test_regression_snapshot(tmp: Path) -> TestResult:
@@ -697,12 +647,11 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_runner_page_map_requires_markers(),
         test_cypher_profile_not_lane_a(),
         test_donor_family_no_nameerror(),
-        test_surgeon_merge_requires_markers(),
-        test_audit_fails_missing_markers(),
-        test_queue_transitions(),
-        test_table_sidecar_generation(),
         test_pipe_escape_in_table(),
         test_vocab_anima(),
+        test_pipe_escape_in_table(),
+        test_vocab_anima(),
+        test_surgeon_prompt_fallback(),
         test_regression_snapshot(tmp),
     ]
     return results

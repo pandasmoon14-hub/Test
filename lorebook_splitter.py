@@ -55,6 +55,7 @@ def normalize_whitespace(text: str) -> str:
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
     marker_re = re.compile(r"\s*<!--\s*PAGE:\s*(\d+)\s*-->", flags=re.IGNORECASE)
+    marker_re = re.compile(r"\s*<!--\s*page\s*[:\s]?\s*(\d+)\s*-->", flags=re.IGNORECASE)
     if not marker_re.search(markdown):
         return {}
     pages: dict[int, list[str]] = {}

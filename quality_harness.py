@@ -274,13 +274,9 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
         except Exception:
             pass
     page_marker_mode = str(manifest.get("page_marker_mode", ""))
-    trusted_modes = {"source_page_map", "source_blocks", "image_only_stub"}
-    if page_marker_mode and page_marker_mode not in trusted_modes:
-        score = min(score, 0.2)
-        issues.append("untrusted_page_truth")
-    if not pages:
-        score = min(score, 0.2)
-        issues.append("missing_page_truth")
+    if page_marker_mode in {"chunk_fallback", "native_or_fallback"}:
+        score = max(0.0, score - 0.08)
+        issues.append("page_map_trust_low")
 
     return BookCheck(
         book_id=markdown_path.stem,

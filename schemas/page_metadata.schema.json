@@ -21,7 +21,6 @@
       "trusted_page_truth": {"type":"boolean"},
       "orientation": {"type":"string"},
       "modality": {"type":"string"},
-      "region_metadata_path": {"type":["string","null"]},
       "table_sidecar_path": {"type":["string","null"]},
       "audit": {"type":"array","items":{"type":"string"}}
     }
