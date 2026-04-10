@@ -163,6 +163,7 @@ class PdfProfile:
     sidebar_page_ratio: float
     statblock_page_ratio: float
     image_dominant_ratio: float
+    landscape_ratio: float
     is_image_only: bool
     donor_family: str
     samples: list[int]
@@ -263,6 +264,7 @@ def verify_pdf_magic(pdf: Path) -> bool:
 
 def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") -> str:
     meta = doc.metadata or {}
+    text = " ".join(filter(None, [sample_text, meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
     text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
     return choose_donor_family_from_text(text)
 
@@ -271,6 +273,17 @@ def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
     if any(k in low for k in ["photoshop", "image conversion"]):
         return "image_only"
+    from mechanics_vocab import best_family as _best_family
+    fam_match = _best_family(low)
+    fam = fam_match.family
+    if any(k in low for k in ["ogl", "pathfinder", "paizo"]) and fam in {"d20", "osr"}:
+        return "ogl"
+    if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
+        return "dnd5e"
+    if fam in {"d20", "osr"} and fam_match.hits >= 2:
+        return "dnd5e"
+    if fam_match.hits >= 3 and fam != "generic":
+        return fam
     if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
         return "dnd5e"
     if fam in {"d20", "osr"} and any(k in low for k in ["ogl", "pathfinder", "paizo"]):
@@ -441,6 +454,9 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     sidebar_ratio = sum(1 for r in rows if r.sidebar_density > 0.2) / max(1, len(rows))
     stat_ratio = sum(1 for r in rows if r.statblock_density > cfg.stat_ratio_threshold) / max(1, len(rows))
     image_ratio = sum(1 for r in rows if r.image_coverage > 0.4) / max(1, len(rows))
+    landscape_ratio = sum(1 for r in rows if r.is_landscape) / max(1, len(rows))
+    is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
+    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, landscape_ratio, is_image_only, donor, samples, rows)
     is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
     return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, is_image_only, donor, samples, rows)
 
@@ -455,6 +471,14 @@ def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
         a -= 5.0
         b -= 2.0
         b2 -= 1.5
+    if profile.donor_family in {"cypher", "mixed"} and profile.statblock_page_ratio > 0.45:
+        a -= 1.5
+    if profile.table_page_ratio > 0.12 and profile.statblock_page_ratio > 0.25:
+        a -= 1.0
+    if profile.landscape_ratio > 0.1:
+        a -= 1.0
+    if profile.scanned_ratio > 0.8:
+        a = -10.0
     return {"A": round(a, 4), "B": round(b, 4), "B2": round(b2, 4)}
 
 
@@ -914,6 +938,10 @@ def stat_block_score(text: str, family: str) -> float:
     low = text.lower()
     fields = STATBLOCK_FIELDS.get(family, [])
     if not fields:
+        return 1.0
+    hits = sum(1 for field in fields if field in low)
+    if hits == 0:
+        return 1.0
         return 1.0
     hits = sum(1 for field in fields if field in low)
     if hits == 0:

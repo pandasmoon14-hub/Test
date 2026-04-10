@@ -143,6 +143,7 @@ def save_queue(path: Path, payload: dict[str, Any]) -> None:
 def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str = "default") -> PIL.Image.Image | None:
     pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
+    max_dim = 1536 if gpu_profile == "a6000" else 1280
     max_dim = 1280
     if max(image.width, image.height) > max_dim:
         image.thumbnail((max_dim, max_dim))

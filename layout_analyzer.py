@@ -42,6 +42,9 @@ def analyze_pdf(pdf: Path, sample_interval: int) -> BookLayout:
     try:
         with fitz.open(pdf) as doc:
             total = len(doc)
+            front_idxs = list(range(0, min(total, 24)))
+            stride_idxs = list(range(24, total, max(1, sample_interval)))
+            sample_idxs = sorted(set(front_idxs + stride_idxs)) or [0]
             sample_idxs = list(range(0, total, max(1, sample_interval))) or [0]
 
             multicol = 0

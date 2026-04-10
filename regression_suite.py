@@ -605,6 +605,13 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_stat_block_with_table(),
         test_image_only_signature_detection(),
         test_donor_family_image_only(),
+        test_donor_family_ignores_indesign_noise(),
+        test_surgeon_prompt_fallback(),
+        test_layout_detect_multicolumn_fixture(),
+        test_runner_page_map_requires_markers(),
+        test_cypher_profile_not_lane_a(),
+        test_pipe_escape_in_table(),
+        test_vocab_anima(),
         test_surgeon_prompt_fallback(),
         test_regression_snapshot(tmp),
     ]
