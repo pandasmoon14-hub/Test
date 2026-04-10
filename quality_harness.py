@@ -49,15 +49,19 @@ class BookCheck:
 
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    if not marker_re.search(markdown):
+        return {}
     pages: dict[int, list[str]] = {}
-    current = 1
+    current: int | None = None
     for line in markdown.splitlines():
-        m = re.match(r"\s*<!--\s*PAGE:(\d+)\s*-->", line)
+        m = marker_re.match(line)
         if m:
             current = int(m.group(1))
             pages.setdefault(current, [])
             continue
-        pages.setdefault(current, []).append(line)
+        if current is not None:
+            pages.setdefault(current, []).append(line)
     return {p: "\n".join(lines).strip() for p, lines in pages.items()}
 
 
@@ -225,6 +229,7 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
     issues: list[str] = []
     if not pages:
         issues.append("missing_pages")
+        issues.append("missing_page_truth")
 
     hfp = header_footer_penalty(pages)
     if hfp > 0.15:

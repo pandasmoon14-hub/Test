@@ -271,6 +271,10 @@ def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") ->
 
 def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
+    fam_match = best_family(text)
+    fam = fam_match.family
+    if any(k in low for k in ["photoshop", "image conversion"]):
+        return "image_only"
     if any(k in low for k in ["photoshop", "image conversion"]):
         return "image_only"
     from mechanics_vocab import best_family as _best_family
@@ -290,6 +294,8 @@ def choose_donor_family_from_text(text: str) -> str:
         return "ogl"
     if fam in {"d20", "osr"} and fam_match.hits >= 2:
         return "dnd5e"
+    if fam_match.hits >= 1:
+        return fam
     return "mixed"
 
 
@@ -667,7 +673,7 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
             write_page_map_markdown(out, total_pages, page_map)
             meta.append({"chunk": 0, "page_start": 1, "page_end": total_pages, "lane": "B", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
             return out, payload.get("api_variant"), meta, "source_page_map"
-        return Path(payload["md_path"]), payload.get("api_variant"), meta, "native_or_fallback"
+        raise RuntimeError("marker returned no source page map; untrusted_page_truth")
 
     chunks = split_pdf(pdf, out_dir, n_chunks, total_pages)
     collected, api_variant = {}, None
@@ -693,16 +699,10 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
     if cfg.strict_page_truth and page_map and len(page_map) < total_pages:
         raise RuntimeError(f"strict_page_truth: marker chunk page map incomplete {len(page_map)}/{total_pages}")
     out = out_dir / f"{pdf.stem}.md"
-    if page_map:
-        write_page_map_markdown(out, total_pages, page_map)
-        marker_mode = "source_page_map"
-    else:
-        if cfg.strict_page_truth:
-            raise RuntimeError("strict_page_truth: missing marker page maps for chunked output")
-        with open(out, "w", encoding="utf-8") as f:
-            for _, (start, end), idx in chunks:
-                f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx]['text'].strip()}\n")
-        marker_mode = "chunk_fallback"
+    if not page_map:
+        raise RuntimeError("marker chunk processing returned no source page map; untrusted_page_truth")
+    write_page_map_markdown(out, total_pages, page_map)
+    marker_mode = "source_page_map"
     for cp, _, idx in chunks:
         cp.unlink(missing_ok=True)
         shutil.rmtree(out_dir / f"_chunk_{idx:02d}_out", ignore_errors=True)
@@ -724,7 +724,7 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
             write_page_map_markdown(out, profile.total_pages, page_map)
             meta.append({"chunk": 0, "page_start": 1, "page_end": profile.total_pages, "lane": "B2", "page_map_path": str(page_map_path), "pages_emitted": len(page_map)})
             return out, meta, "source_page_map"
-        return Path(payload["md_path"]), meta, "native_or_fallback"
+        raise RuntimeError("docling returned no source page map; untrusted_page_truth")
 
     chunks = split_pdf(pdf, out_dir, n_chunks, profile.total_pages)
     collected = {}
@@ -745,6 +745,10 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
         page_map.update(collected[idx]["pages"])
     if cfg.strict_page_truth and page_map and len(page_map) < profile.total_pages:
         raise RuntimeError(f"strict_page_truth: docling chunk page map incomplete {len(page_map)}/{profile.total_pages}")
+    if not page_map:
+        raise RuntimeError("docling chunk processing returned no source page map; untrusted_page_truth")
+    write_page_map_markdown(out, profile.total_pages, page_map)
+    marker_mode = "source_page_map"
     if page_map:
         write_page_map_markdown(out, profile.total_pages, page_map)
         marker_mode = "source_page_map"
@@ -896,14 +900,19 @@ def expand_chunk_markers(content: str) -> str:
 
 
 def parse_page_markers(content: str) -> dict[int, str]:
-    pages, cur = {}, 1
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    if not marker_re.search(content):
+        return {}
+    pages: dict[int, list[str]] = {}
+    cur: int | None = None
     for line in content.splitlines():
-        m = re.match(r"\s*<!--\s*PAGE:(\d+)\s*-->", line)
+        m = marker_re.match(line)
         if m:
             cur = int(m.group(1))
             pages.setdefault(cur, [])
             continue
-        pages.setdefault(cur, []).append(line)
+        if cur is not None:
+            pages.setdefault(cur, []).append(line)
     return {k: "\n".join(v).strip() for k, v in pages.items()}
 
 
@@ -955,6 +964,7 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_markdown"])
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
+        return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
         if cfg.strict_page_truth:
             return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
         content = "<!-- PAGE:1 -->\n" + content
@@ -1064,6 +1074,9 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
                     text_chars=len(txt),
                     image_count=len(page.get_images(full=True)),
                     drawing_count=len(page.get_drawings()),
+                    trusted_page_truth=True,
+                    orientation=("landscape" if page.rect.width > page.rect.height else "portrait"),
+                    modality=("scan" if len(txt.strip()) < cfg.scan_threshold else "mixed"),
                     producer=str(meta.get("producer", "") or ""),
                     creator=str(meta.get("creator", "") or ""),
                     encrypted=bool(doc.is_encrypted),
@@ -1096,13 +1109,11 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
+    if "<!-- CHUNK:" in txt and "<!-- PAGE:" not in txt:
     if "<!-- CHUNK:" in txt and ("<!-- PAGE:" not in txt or page_marker_mode == "chunk_fallback"):
         txt = expand_chunk_markers(txt)
     txt, _ = apply_table_fixes(txt)
-    if "<!-- PAGE:" not in txt:
-        md_out.write_text("<!-- PAGE:1 -->\n" + txt, encoding="utf-8")
-    else:
-        md_out.write_text(txt, encoding="utf-8")
+    md_out.write_text(txt, encoding="utf-8")
 
     audit = audit_markdown(md_out, profile, cfg)
 
@@ -1159,6 +1170,10 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         "repair": {"repaired": False, "unrepaired": True, "retry_count": 0, "final_dpi": None, "prompt_class": None, "repair_confidence": None},
         "lane": lane,
         "page_marker_mode": page_marker_mode,
+        "trusted_page_truth": page_marker_mode == "source_page_map" or lane == "A",
+        "orientation": ("landscape" if p.is_landscape else "portrait"),
+        "modality": ("scan" if p.char_count < cfg.scan_threshold else "mixed"),
+        "table_sidecar_path": str(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json"),
         "audit": next((a.reasons for a in audit.page_audits if a.page_index == p.page_index + 1), []),
     } for p in profile.page_features]
     save_json(page_meta, page_rows)

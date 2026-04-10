@@ -22,6 +22,10 @@ class PageTruthRecord:
     text_chars: int
     image_count: int
     drawing_count: int
+    trusted_page_truth: bool = True
+    orientation: str = "portrait"
+    modality: str = "mixed"
+    region_metadata_path: str | None = None
     producer: str = ""
     creator: str = ""
     encrypted: bool = False

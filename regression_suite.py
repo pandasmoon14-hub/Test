@@ -206,6 +206,31 @@ def test_page_marker_parser() -> TestResult:
     return TestResult("page_marker_parser", passed, f"keys={sorted(pages.keys())}")
 
 
+def test_markerless_parsers_return_empty() -> TestResult:
+    sample = "No explicit page markers here."
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        import orchestrator
+        import quality_harness
+        import lorebook_splitter
+        import acceptance_corpus
+        import marker_runner
+        import docling_runner
+        outs = [
+            orchestrator.parse_page_markers(sample),
+            quality_harness.parse_page_markers(sample),
+            lorebook_splitter.parse_page_markers(sample),
+            acceptance_corpus.parse_pages(sample),
+            marker_runner._parse_page_markers(sample),
+            docling_runner._parse_page_markers(sample),
+        ]
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("markerless_parsers_return_empty", False, f"import_error={exc}")
+    ok = all(x == {} for x in outs)
+    return TestResult("markerless_parsers_return_empty", ok, f"values={outs}")
+
+
 def test_table_fixer_idempotent() -> TestResult:
     text = fixture_good_table()
     fixed, _ = apply_fixes(text)
@@ -505,6 +530,15 @@ def test_cypher_profile_not_lane_a() -> TestResult:
     return TestResult("cypher_profile_not_lane_a", passed, f"lane={lane}, scores={scores}")
 
 
+def test_donor_family_no_nameerror() -> TestResult:
+    try:
+        import orchestrator
+        a = orchestrator.choose_donor_family_from_text("Paizo OGL Pathfinder")
+        b = orchestrator.choose_donor_family_from_text("plain text")
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("donor_family_no_nameerror", False, f"error={exc}")
+    ok = isinstance(a, str) and isinstance(b, str)
+    return TestResult("donor_family_no_nameerror", ok, f"a={a}, b={b}")
 def test_image_only_signature_detection() -> TestResult:
     try:
         if "fitz" not in sys.modules:
@@ -586,6 +620,7 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_vocab_shadowrun(),
         test_vocab_anima_hits(),
         test_page_marker_parser(),
+        test_markerless_parsers_return_empty(),
         test_table_fixer_idempotent(),
         test_table_fixer_padding(),
         test_table_fixer_leading_trailing_pipe(),
@@ -610,6 +645,9 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_layout_detect_multicolumn_fixture(),
         test_runner_page_map_requires_markers(),
         test_cypher_profile_not_lane_a(),
+        test_donor_family_no_nameerror(),
+        test_pipe_escape_in_table(),
+        test_vocab_anima(),
         test_pipe_escape_in_table(),
         test_vocab_anima(),
         test_surgeon_prompt_fallback(),

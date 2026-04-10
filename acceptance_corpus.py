@@ -44,15 +44,19 @@ BASE_RULES: tuple[RuleDef, ...] = (
 )
 
 def parse_pages(markdown: str) -> dict[int, str]:
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    if not marker_re.search(markdown):
+        return {}
     pages: dict[int, list[str]] = {}
-    current = 1
+    current: int | None = None
     for line in markdown.splitlines():
-        marker = re.match(r"\s*<!--\s*PAGE:(\d+)\s*-->", line)
+        marker = marker_re.match(line)
         if marker:
             current = int(marker.group(1))
             pages.setdefault(current, [])
             continue
-        pages.setdefault(current, []).append(line)
+        if current is not None:
+            pages.setdefault(current, []).append(line)
     return {k: "\n".join(v).strip() for k, v in pages.items()}
 
 

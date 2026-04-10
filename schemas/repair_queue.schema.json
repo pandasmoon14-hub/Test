@@ -11,6 +11,11 @@
       "md_path": {"type":"string"},
       "full_book_repair": {"type":"boolean"},
       "queued_at": {"type":["number","string"]},
+      "status": {"type":"string","enum":["queued","in_progress","retryable","terminal","done"]},
+      "retry_count": {"type":"integer","minimum":0},
+      "last_error": {"type":"string"},
+      "next_attempt_at": {"type":["number","null"]},
+      "failure_class": {"type":["string","null"]},
       "audit_signatures": {"type":"array","items":{"type":"string"}},
       "page_reasons": {"type":"object"},
       "page_profiles": {"type":"object"}
