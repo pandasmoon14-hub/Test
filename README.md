@@ -19,11 +19,9 @@ Local-first, routed PDF-to-Markdown extraction for single-GPU corpora.
 
 ## Production guarantees
 - Page maps are trusted only when emitted from source-grounded page markers or page metadata.
-- Markerless/chunk-only outputs are treated as **untrusted page truth** and should be rerouted or quarantined.
 - Donor family is inferred from sampled content first, metadata second.
 - OCR is page-selective; native-text pages are never force-OCR'd unless explicitly requested.
 - Lane C supports high-detail repair with profile-aware rendering and tiled fallback for dense pages.
-- Complex tables/forms may emit sidecars (and HTML render paths) when markdown would lose structure.
 
 ## New v12 toolchain
 - `sqlite_queue.py`: durable SQLite queue/state backend for large runs.

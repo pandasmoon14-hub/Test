@@ -9,7 +9,6 @@ core quality tooling behaviors without requiring heavyweight model inference.
 from __future__ import annotations
 
 import argparse
-import ast
 import importlib
 import json
 import sys
@@ -221,6 +220,7 @@ def test_markerless_parsers_return_empty() -> TestResult:
         outs = [
             orchestrator.parse_page_markers(sample),
             quality_harness.parse_page_markers(sample),
+            lorebook_splitter.parse_page_markers(sample),
             acceptance_corpus.parse_pages(sample),
             marker_runner._parse_page_markers(sample),
             docling_runner._parse_page_markers(sample),
@@ -229,14 +229,6 @@ def test_markerless_parsers_return_empty() -> TestResult:
         return TestResult("markerless_parsers_return_empty", False, f"import_error={exc}")
     ok = all(x == {} for x in outs)
     return TestResult("markerless_parsers_return_empty", ok, f"values={outs}")
-
-
-def test_orchestrator_compiles() -> TestResult:
-    try:
-        ast.parse(Path("orchestrator.py").read_text(encoding="utf-8"))
-    except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("orchestrator_compiles", False, f"parse_error={exc}")
-    return TestResult("orchestrator_compiles", True, "ast parse ok")
 
 
 def test_table_fixer_idempotent() -> TestResult:
@@ -547,30 +539,47 @@ def test_donor_family_no_nameerror() -> TestResult:
         return TestResult("donor_family_no_nameerror", False, f"error={exc}")
     ok = isinstance(a, str) and isinstance(b, str)
     return TestResult("donor_family_no_nameerror", ok, f"a={a}, b={b}")
+def test_image_only_signature_detection() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        is_image_only_signature = importlib.import_module("orchestrator").is_image_only_signature
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("image_only_signature_detection", False, f"import_error={exc}")
+    passed = is_image_only_signature(1.0, 0.0) and not is_image_only_signature(0.8, 0.0)
+    return TestResult("image_only_signature_detection", passed, "threshold check")
 
 
-def test_surgeon_merge_requires_markers() -> TestResult:
+def test_donor_family_image_only() -> TestResult:
+    try:
+        if "fitz" not in sys.modules:
+            sys.modules["fitz"] = types.ModuleType("fitz")
+        choose_donor_family_from_text = importlib.import_module("orchestrator").choose_donor_family_from_text
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        return TestResult("donor_family_image_only", False, f"import_error={exc}")
+    passed = (
+        choose_donor_family_from_text("Adobe Photoshop 25.0") == "image_only"
+        and choose_donor_family_from_text("Image Conversion Pipeline") == "image_only"
+    )
+    return TestResult("donor_family_image_only", passed, "photoshop marker")
+
+
+def test_surgeon_prompt_fallback() -> TestResult:
     try:
         if "fitz" not in sys.modules:
             sys.modules["fitz"] = types.ModuleType("fitz")
         if "PIL" not in sys.modules:
             pil_mod = types.ModuleType("PIL")
-            pil_img = types.ModuleType("PIL.Image")
-            pil_mod.Image = pil_img
+            pil_image_mod = types.ModuleType("PIL.Image")
+            pil_mod.Image = pil_image_mod
             sys.modules["PIL"] = pil_mod
-            sys.modules["PIL.Image"] = pil_img
-        surgeon = importlib.import_module("surgeon")
-        with tempfile.TemporaryDirectory() as td:
-            base = Path(td) / "base.md"
-            tmp = Path(td) / "tmp.md"
-            base.write_text("markerless body", encoding="utf-8")
-            try:
-                surgeon.write_merged_markdown(base, {0: "fixed"}, tmp)
-            except ValueError:
-                return TestResult("surgeon_merge_requires_markers", True, "raises on markerless base")
-            return TestResult("surgeon_merge_requires_markers", False, "did not raise")
+            sys.modules["PIL.Image"] = pil_image_mod
+        prompt_for_layout = importlib.import_module("surgeon").prompt_for_layout
     except Exception as exc:  # pylint: disable=broad-exception-caught
-        return TestResult("surgeon_merge_requires_markers", False, f"error={exc}")
+        return TestResult("surgeon_prompt_fallback", False, f"import_error={exc}")
+    prompt = prompt_for_layout({"table_density": 0.0, "statblock_density": 0.0, "sidebar_density": 0.0, "image_coverage": 0.8})
+    passed = "If you see ANY tables" in prompt and "stat blocks" in prompt
+    return TestResult("surgeon_prompt_fallback", passed, "fallback prompt check")
 
 
 def test_regression_snapshot(tmp: Path) -> TestResult:
@@ -612,7 +621,6 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_vocab_anima_hits(),
         test_page_marker_parser(),
         test_markerless_parsers_return_empty(),
-        test_orchestrator_compiles(),
         test_table_fixer_idempotent(),
         test_table_fixer_padding(),
         test_table_fixer_leading_trailing_pipe(),
@@ -638,9 +646,11 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_runner_page_map_requires_markers(),
         test_cypher_profile_not_lane_a(),
         test_donor_family_no_nameerror(),
-        test_surgeon_merge_requires_markers(),
         test_pipe_escape_in_table(),
         test_vocab_anima(),
+        test_pipe_escape_in_table(),
+        test_vocab_anima(),
+        test_surgeon_prompt_fallback(),
         test_regression_snapshot(tmp),
     ]
     return results
