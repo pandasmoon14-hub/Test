@@ -61,6 +61,8 @@ def parse_pages(markdown: str) -> dict[int, str]:
 
 
 def score_page_markers(text: str) -> tuple[float, float, str]:
+    if any(mode in text for mode in ("chunk_fallback", "native_or_fallback")):
+        return 0.0, 1.0, "untrusted_page_truth_mode"
     count = len(re.findall(r"<!--\s*PAGE:\d+\s*-->", text))
     if count > 0:
         return 1.0, 1.0, f"markers={count}"

@@ -298,24 +298,48 @@ def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
 
 
 def build_table_sidecars(markdown: str) -> list[dict]:
-    blocks, _ = collect_table_blocks(markdown)
-    sidecars: list[dict] = []
-    for _, _, block in blocks:
-        fixed, _ = normalize_table_block(block)
-        rows = []
-        for ln in fixed:
-            if ln.count("|") < 2 or is_divider(ln):
+    marker_re = re.compile(r"\s*<!--\s*PAGE:(\d+)\s*-->")
+    pages: list[tuple[int | None, str]] = []
+    if marker_re.search(markdown):
+        current: int | None = None
+        buckets: dict[int, list[str]] = {}
+        for line in markdown.splitlines():
+            m = marker_re.match(line.strip())
+            if m:
+                current = int(m.group(1))
+                buckets.setdefault(current, [])
                 continue
-            rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
-        if not rows:
-            continue
-        is_complex = any(len(r.cells) != len(rows[0].cells) for r in rows) or len(rows[0].cells) > 8
-        mode = "html" if is_complex else "markdown"
-        side = TableSidecar(page=1, bbox=None, rows=rows, render_mode=mode, confidence=0.7)
-        sidecars.append({
-            "model": side.to_dict(),
-            "rendered": render_table(side),
-        })
+            if current is not None:
+                buckets.setdefault(current, []).append(line)
+        pages = [(p, "\n".join(lines)) for p, lines in sorted(buckets.items())]
+    else:
+        pages = [(None, markdown)]
+
+    sidecars: list[dict] = []
+    for page_num, page_md in pages:
+        blocks, _ = collect_table_blocks(page_md)
+        for _, _, block in blocks:
+            raw_rows = [ln for ln in block if ln.count("|") >= 2 and not is_divider(ln)]
+            raw_widths = [len(split_pipe_row(ln)) for ln in raw_rows]
+            fixed, _ = normalize_table_block(block)
+            rows = []
+            for ln in fixed:
+                if ln.count("|") < 2 or is_divider(ln):
+                    continue
+                rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
+            if not rows:
+                continue
+            is_complex = (len(set(raw_widths)) > 1) or any(len(r.cells) != len(rows[0].cells) for r in rows) or len(rows[0].cells) > 8
+            mode = "html" if is_complex else "markdown"
+            side = TableSidecar(page=page_num, bbox=None, rows=rows, render_mode=mode, confidence=0.7)
+            rendered = render_table(side)
+            sidecars.append({
+                "page": page_num,
+                "render_mode": mode,
+                "rendered": rendered,
+                "markdown": rendered if mode == "markdown" else "",
+                "model": side.to_dict(),
+            })
     return sidecars
 
 
