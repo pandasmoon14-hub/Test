@@ -98,6 +98,8 @@ def _parse_page_markers(markdown: str) -> dict[int, str]:
         return {}
     pages: dict[int, list[str]] = {}
     current: int | None = None
+    pages: dict[int, list[str]] = {}
+    current = 1
     for line in markdown.splitlines():
         marker = line.strip()
         if marker.startswith("<!-- PAGE:") and marker.endswith("-->"):
@@ -108,6 +110,7 @@ def _parse_page_markers(markdown: str) -> dict[int, str]:
                 continue
         if current is not None:
             pages.setdefault(current, []).append(line)
+        pages.setdefault(current, []).append(line)
     return {p: "\n".join(lines).strip() for p, lines in pages.items()}
 
 

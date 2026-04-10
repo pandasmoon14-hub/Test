@@ -265,6 +265,7 @@ def verify_pdf_magic(pdf: Path) -> bool:
 def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") -> str:
     meta = doc.metadata or {}
     text = " ".join(filter(None, [sample_text, meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
+    text = " ".join(filter(None, [meta.get("producer", ""), meta.get("creator", ""), pdf.name]))
     return choose_donor_family_from_text(text)
 
 
@@ -274,6 +275,21 @@ def choose_donor_family_from_text(text: str) -> str:
     fam = fam_match.family
     if any(k in low for k in ["photoshop", "image conversion"]):
         return "image_only"
+    if any(k in low for k in ["photoshop", "image conversion"]):
+        return "image_only"
+    from mechanics_vocab import best_family as _best_family
+    fam_match = _best_family(low)
+    fam = fam_match.family
+    if any(k in low for k in ["ogl", "pathfinder", "paizo"]) and fam in {"d20", "osr"}:
+        return "ogl"
+    if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
+        return "dnd5e"
+    if fam in {"d20", "osr"} and fam_match.hits >= 2:
+        return "dnd5e"
+    if fam_match.hits >= 3 and fam != "generic":
+        return fam
+    if any(k in low for k in ["adobe indesign", "wizards", "d&d", "forgotten realms"]):
+        return "dnd5e"
     if fam in {"d20", "osr"} and any(k in low for k in ["ogl", "pathfinder", "paizo"]):
         return "ogl"
     if fam in {"d20", "osr"} and fam_match.hits >= 2:
@@ -447,6 +463,8 @@ def analyze_pdf(pdf: Path, cfg: RuntimeConfig) -> PdfProfile:
     landscape_ratio = sum(1 for r in rows if r.is_landscape) / max(1, len(rows))
     is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
     return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, landscape_ratio, is_image_only, donor, samples, rows)
+    is_image_only = is_image_only_signature(scanned_ratio, avg_chars)
+    return PdfProfile(total_pages, avg_chars, weird_ratio, scanned_ratio, multicol_ratio, table_ratio, sidebar_ratio, stat_ratio, image_ratio, is_image_only, donor, samples, rows)
 
 
 def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
@@ -731,6 +749,16 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
         raise RuntimeError("docling chunk processing returned no source page map; untrusted_page_truth")
     write_page_map_markdown(out, profile.total_pages, page_map)
     marker_mode = "source_page_map"
+    if page_map:
+        write_page_map_markdown(out, profile.total_pages, page_map)
+        marker_mode = "source_page_map"
+    else:
+        if cfg.strict_page_truth:
+            raise RuntimeError("strict_page_truth: missing docling page maps for chunked output")
+        with open(out, "w", encoding="utf-8") as f:
+            for _, (start, end), idx in chunks:
+                f.write(f"\n<!-- CHUNK:{idx} PAGES:{start+1}-{end+1} -->\n{collected[idx]['text'].strip()}\n")
+        marker_mode = "chunk_fallback"
     for cp, _, idx in chunks:
         cp.unlink(missing_ok=True)
         shutil.rmtree(out_dir / f"_dchunk_{idx:02d}_out", ignore_errors=True)
@@ -923,6 +951,10 @@ def stat_block_score(text: str, family: str) -> float:
     hits = sum(1 for field in fields if field in low)
     if hits == 0:
         return 1.0
+        return 1.0
+    hits = sum(1 for field in fields if field in low)
+    if hits == 0:
+        return 1.0
     ordered = sum(1 for a, b in zip(fields, fields[1:]) if low.find(a) != -1 and low.find(b) != -1 and low.find(a) < low.find(b))
     return min(1.0, (hits * 0.7 + ordered * 0.3) / max(1, len(fields) * 0.6))
 
@@ -933,6 +965,9 @@ def audit_markdown(md_path: Path, profile: PdfProfile, cfg: RuntimeConfig) -> Au
     content = normalize_text(md_path.read_text(encoding="utf-8", errors="replace"))
     if "<!-- PAGE:" not in content:
         return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
+        if cfg.strict_page_truth:
+            return AuditResult(False, list(range(profile.total_pages)), [], ["missing_page_markers"])
+        content = "<!-- PAGE:1 -->\n" + content
     pages = parse_page_markers(content)
     first_lines, last_lines = {}, {}
     for _, t in pages.items():
@@ -1075,6 +1110,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
     if "<!-- CHUNK:" in txt and "<!-- PAGE:" not in txt:
+    if "<!-- CHUNK:" in txt and ("<!-- PAGE:" not in txt or page_marker_mode == "chunk_fallback"):
         txt = expand_chunk_markers(txt)
     txt, _ = apply_table_fixes(txt)
     md_out.write_text(txt, encoding="utf-8")
