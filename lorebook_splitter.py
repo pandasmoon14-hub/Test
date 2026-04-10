@@ -54,16 +54,19 @@ def normalize_whitespace(text: str) -> str:
 
 
 def parse_page_markers(markdown: str) -> dict[int, str]:
-    pages, cur = {}, 1
-    # Codex-patched: exact match to system standard
-    marker_re = re.compile(r"\s*<!--\s*PAGE:\s*(\d+)\s*-->", flags=re.IGNORECASE)
+    marker_re = re.compile(r"\s*<!--\s*page\s*[:\s]?\s*(\d+)\s*-->", flags=re.IGNORECASE)
+    if not marker_re.search(markdown):
+        return {}
+    pages: dict[int, list[str]] = {}
+    cur: int | None = None
     for line in markdown.splitlines():
         m = marker_re.match(line)
         if m:
             cur = int(m.group(1))
             pages.setdefault(cur, [])
             continue
-        pages.setdefault(cur, []).append(line)
+        if cur is not None:
+            pages.setdefault(cur, []).append(line)
     return {k: "\n".join(v).strip() for k, v in pages.items()}
 
 

@@ -120,6 +120,7 @@ install_docling_deps() {
   say "Installing docling dependencies"
   "${DOCLING_VENV}/bin/pip" install \
     "docling==${DOCLING_VERSION}" \
+    docling \
     pymupdf
 }
 
@@ -138,6 +139,9 @@ install_pixtral_deps() {
     "vllm==${VLLM_VERSION}" \
     "mistral-common==${MISTRAL_COMMON_VERSION}" \
     "transformers==${TRANSFORMERS_VERSION}" \
+    "vllm>=0.7.0" \
+    "mistral-common>=1.4.4" \
+    "transformers>=4.45.0" \
     "numpy<2.0" \
     "pymupdf" \
     "pillow" \

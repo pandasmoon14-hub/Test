@@ -144,6 +144,7 @@ def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str 
     pix = page.get_pixmap(dpi=dpi, colorspace=fitz.csRGB)
     image = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
     max_dim = 1536 if gpu_profile == "a6000" else 1280
+    max_dim = 1280
     if max(image.width, image.height) > max_dim:
         image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
