@@ -56,24 +56,18 @@ PROMPTS = {
 # PDF → images
 # ---------------------------------------------------------------------------
 
-def pdf_to_images(pdf_path: str, dpi: int = DPI) -> list[PIL.Image.Image]:
-    """
-    Converts every page of a PDF to an RGB PIL Image.
-
-    PyMuPDF renders vector art, embedded fonts, and even scanned pages cleanly,
-    making it reliable for the wide variety of TTRPG PDF styles.
-    """
+def pdf_to_images(pdf_path: str, dpi: int = DPI):
+    """Per-page generator — never loads entire book into RAM."""
     doc = fitz.open(pdf_path)
-    scale = dpi / 72  # PyMuPDF's native resolution is 72 DPI
+    scale = dpi / 72
     mat = fitz.Matrix(scale, scale)
-    images = []
-    for page in doc:
+    for i, page in enumerate(doc, 1):
         pix = page.get_pixmap(matrix=mat, alpha=False)
         img = PIL.Image.frombytes("RGB", [pix.width, pix.height], pix.samples)
-        images.append(img)
+        yield i, img
+        img.close()
+        del img
     doc.close()
-    print(f"[pdf_to_images] {len(images)} page(s) loaded from '{pdf_path}'")
-    return images
 
 
 # ---------------------------------------------------------------------------
@@ -282,12 +276,9 @@ def process_pdf(
     -------
     The full transcribed text as a single string.
     """
-    images = pdf_to_images(pdf_path, dpi=dpi)
-    total = len(images)
     all_pages = []
-
-    for i, page_image in enumerate(images, start=1):
-        print(f"[process_pdf] Page {i}/{total} …")
+    for i, page_image in pdf_to_images(pdf_path, dpi=dpi):
+        print(f"[process_pdf] Page {i} …")
         text = process_page(llm, sampling_params, page_image, cols=cols)
         all_pages.append(f"<!-- PAGE:{i} -->\n{text}")
         page_image.close()

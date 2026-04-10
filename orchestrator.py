@@ -271,6 +271,8 @@ def choose_donor_family(pdf: Path, doc: fitz.Document, sample_text: str = "") ->
 
 def choose_donor_family_from_text(text: str) -> str:
     low = text.lower()
+    if any(k in low for k in ["photoshop", "image conversion"]):
+        return "image_only"
     fam_match = best_family(text)
     fam = fam_match.family
     if any(k in low for k in ["photoshop", "image conversion"]):
