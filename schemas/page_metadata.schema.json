@@ -4,31 +4,111 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["page","chars","blocks","table_regions_detected","statblock_regions_detected","ocr_applied","source_page_hash","lane","page_marker_mode","audit"],
+    "required": [
+      "page",
+      "chars",
+      "blocks",
+      "table_regions_detected",
+      "statblock_regions_detected",
+      "ocr_applied",
+      "source_page_hash",
+      "lane",
+      "page_marker_mode",
+      "audit"
+    ],
     "properties": {
-      "page": {"type":"integer","minimum":1},
-      "chars": {"type":"integer","minimum":0},
-      "blocks": {"type":"integer","minimum":0},
-      "detected_tables": {"type":"number"},
-      "detected_columns": {"type":"boolean"},
-      "table_regions_detected": {"type":"integer","minimum":0},
-      "statblock_regions_detected": {"type":"integer","minimum":0},
-      "ocr_applied": {"type":"boolean"},
-      "source_page_hash": {"type":"string"},
-      "repair": {"type":"object"},
-      "lane": {"type":"string"},
-      "page_marker_mode": {"type":"string"},
-      "trusted_page_truth": {"type":"boolean"},
-      "orientation": {"type":"string"},
-      "normalization_applied": {"type":"string"},
-      "modality": {"type":"string"},
-      "regions": {"type":"array","items":{"type":"object"}},
-      "form_renderer_used": {"type":"boolean"},
-      "repair_path": {"type":"string"},
-      "table_sidecar_path": {"type":["string","null"]},
-      "table_sidecar_refs": {"type":"array","items":{"type":"string"}},
-      "table_complex_detected": {"type":"boolean"},
-      "audit": {"type":"array","items":{"type":"string"}}
+      "page": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "chars": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "blocks": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "detected_tables": {
+        "type": "number"
+      },
+      "detected_columns": {
+        "type": "boolean"
+      },
+      "table_regions_detected": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "statblock_regions_detected": {
+        "type": "integer",
+        "minimum": 0
+      },
+      "ocr_applied": {
+        "type": "boolean"
+      },
+      "source_page_hash": {
+        "type": "string"
+      },
+      "repair": {
+        "type": "object"
+      },
+      "lane": {
+        "type": "string"
+      },
+      "page_marker_mode": {
+        "type": "string"
+      },
+      "trusted_page_truth": {
+        "type": "boolean"
+      },
+      "orientation": {
+        "type": "string"
+      },
+      "normalization_applied": {
+        "type": "string"
+      },
+      "modality": {
+        "type": "string"
+      },
+      "regions": {
+        "type": "array",
+        "items": {
+          "type": "object"
+        }
+      },
+      "form_renderer_used": {
+        "type": "boolean"
+      },
+      "repair_path": {
+        "type": "string"
+      },
+      "table_sidecar_path": {
+        "type": [
+          "string",
+          "null"
+        ]
+      },
+      "table_sidecar_refs": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "table_complex_detected": {
+        "type": "boolean"
+      },
+      "audit": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      },
+      "degraded_table_handling": {
+        "type": "boolean"
+      },
+      "degraded_form_handling": {
+        "type": "boolean"
+      }
     }
   }
 }

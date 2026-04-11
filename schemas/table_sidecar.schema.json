@@ -4,20 +4,59 @@
   "type": "array",
   "items": {
     "type": "object",
-    "required": ["page", "render_mode", "rendered", "model"],
+    "required": [
+      "page",
+      "render_mode",
+      "rendered",
+      "model"
+    ],
     "properties": {
-      "page": {"type": ["integer", "null"], "minimum": 1},
-      "render_mode": {"type": "string", "enum": ["markdown", "html"]},
-      "rendered": {"type": "string"},
-      "markdown": {"type": "string"},
+      "page": {
+        "type": [
+          "integer",
+          "null"
+        ],
+        "minimum": 1
+      },
+      "render_mode": {
+        "type": "string",
+        "enum": [
+          "markdown",
+          "html"
+        ]
+      },
+      "rendered": {
+        "type": "string"
+      },
+      "markdown": {
+        "type": "string"
+      },
       "model": {
         "type": "object",
-        "required": ["page", "bbox", "rows", "render_mode", "confidence", "continuation"],
+        "required": [
+          "page",
+          "bbox",
+          "rows",
+          "render_mode",
+          "confidence",
+          "continuation"
+        ],
         "properties": {
-          "page": {"type": ["integer", "null"], "minimum": 1},
+          "page": {
+            "type": [
+              "integer",
+              "null"
+            ],
+            "minimum": 1
+          },
           "bbox": {
-            "type": ["array", "null"],
-            "items": {"type": "number"},
+            "type": [
+              "array",
+              "null"
+            ],
+            "items": {
+              "type": "number"
+            },
             "minItems": 4,
             "maxItems": 4
           },
@@ -25,27 +64,77 @@
             "type": "array",
             "items": {
               "type": "object",
-              "required": ["cells"],
+              "required": [
+                "cells"
+              ],
               "properties": {
                 "cells": {
                   "type": "array",
                   "items": {
                     "type": "object",
-                    "required": ["text", "colspan", "rowspan"],
+                    "required": [
+                      "text",
+                      "colspan",
+                      "rowspan"
+                    ],
                     "properties": {
-                      "text": {"type": "string"},
-                      "colspan": {"type": "integer", "minimum": 1},
-                      "rowspan": {"type": "integer", "minimum": 1}
+                      "text": {
+                        "type": "string"
+                      },
+                      "colspan": {
+                        "type": "integer",
+                        "minimum": 1
+                      },
+                      "rowspan": {
+                        "type": "integer",
+                        "minimum": 1
+                      }
                     }
                   }
                 }
               }
             }
           },
-          "render_mode": {"type": "string", "enum": ["markdown", "html"]},
-          "confidence": {"type": "number", "minimum": 0.0, "maximum": 1.0},
-          "continuation": {"type": ["object", "null"]}
+          "render_mode": {
+            "type": "string",
+            "enum": [
+              "markdown",
+              "html"
+            ]
+          },
+          "confidence": {
+            "type": "number",
+            "minimum": 0.0,
+            "maximum": 1.0
+          },
+          "continuation": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "degraded": {
+            "type": "boolean"
+          },
+          "degraded_reason": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "sidecar_required": {
+            "type": "boolean"
+          }
         }
+      },
+      "degraded": {
+        "type": "boolean"
+      },
+      "degraded_reason": {
+        "type": [
+          "string",
+          "null"
+        ]
       }
     },
     "additionalProperties": false

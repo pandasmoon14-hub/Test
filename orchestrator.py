@@ -563,7 +563,7 @@ def enrich_page_profiles_from_markdown(
                 form_density=sample.form_density if sample else 0.0,
                 image_coverage=sample.image_coverage if sample else (1.0 if len(text.strip()) < 40 else 0.0),
             ),
-            "regions": [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None} for r in segment_regions(text)],
+            "regions": [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None, "region_id": r.region_id, "page": r.page} for r in segment_regions(text, page=page_no)],
         }
     return enriched
 
@@ -1028,7 +1028,16 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             page_feature = next((pf for pf in profile.page_features if pf.page_index + 1 == pnum), None)
             modality = classify_page_from_signals(body, page_feature, cfg.scan_threshold)
             page_body = body
-            if modality == "form":
+            if modality in {"mixed", "form", "table", "statblock"}:
+                regions = segment_regions(page_body, page=pnum)
+                region_chunks: list[str] = []
+                for region in regions:
+                    chunk = region.text
+                    if region.kind == "form":
+                        chunk = render_form_like(region.text)
+                    region_chunks.append(chunk)
+                page_body = "\n\n".join(region_chunks)
+            elif modality == "form":
                 page_body = render_form_like(page_body)
             rebuilt_pages[pnum] = page_body
         txt = "\n".join([f"<!-- PAGE:{p} -->\n{rebuilt_pages[p].strip()}" for p in sorted(rebuilt_pages)]).strip() + "\n"
@@ -1074,7 +1083,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         body = pages.get(page_num, "")
         modality = classify_page_from_signals(body, p, cfg.scan_threshold)
         modality_counts[modality] = modality_counts.get(modality, 0) + 1
-        regions = segment_regions(body) if modality in {"mixed", "table", "form", "statblock"} else []
+        regions = segment_regions(body, page=page_num) if modality in {"mixed", "table", "form", "statblock"} else []
         repair_path = {
             "prose": "standard",
             "table": "table_aware_region_repair",
@@ -1101,12 +1110,14 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "orientation": ("landscape" if p.is_landscape else "portrait"),
             "normalization_applied": "none",
             "modality": modality,
-            "regions": [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None} for r in regions],
-            "form_renderer_used": modality == "form",
+            "regions": [{"type": r.kind, "bbox": list(r.bbox) if r.bbox else None, "region_id": r.region_id, "page": r.page} for r in regions],
+            "form_renderer_used": modality == "form" or any(r.kind == "form" for r in regions),
             "repair_path": repair_path,
             "table_sidecar_path": str(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json"),
             "table_sidecar_refs": ([str(sidecar_by_page[page_num].get("page"))] if page_num in sidecar_by_page else []),
             "table_complex_detected": bool(page_num in sidecar_by_page and sidecar_by_page[page_num].get("render_mode") == "html"),
+            "degraded_table_handling": bool(page_num in sidecar_by_page and sidecar_by_page[page_num].get("degraded")),
+            "degraded_form_handling": bool(modality == "form" and "data-preservation=\"structured\"" not in body),
             "audit": next((a.reasons for a in audit.page_audits if a.page_index == page_num), []),
         })
     save_json(page_meta, page_rows)
