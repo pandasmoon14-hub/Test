@@ -217,15 +217,24 @@ def scan_file(path: Path) -> dict[str, object]:
                         warnings.append("form_page_routed_to_prose")
                     if row.get("modality") == "table" and row.get("table_complex_detected") and not row.get("table_sidecar_refs"):
                         warnings.append("complex_table_without_sidecar")
+                    if row.get("modality") == "form" and not row.get("form_renderer_used"):
+                        warnings.append("form_without_structured_render")
+                    if row.get("modality") == "mixed" and len(row.get("regions", [])) <= 1:
+                        warnings.append("mixed_collapsed_to_single_region")
+                    if row.get("degraded_table_handling") or row.get("degraded_form_handling"):
+                        warnings.append("degraded_but_honest_preservation")
                     if row.get("orientation") in {"rotated", "landscape"} and row.get("normalization_applied", "none") == "none":
                         warnings.append("rotation_not_normalized")
         except Exception:
             pass
+    if any(w in warnings for w in ["form_without_structured_render", "complex_table_without_sidecar"]):
+        failed.append("structure_expectation")
+        weighted_score = round(max(0.0, weighted_score - 0.18), 4)
     return {
         "file": str(path),
         "pages": len(pages),
         "weighted_score": weighted_score,
-        "failed_rule_ids": failed,
+        "failed_rule_ids": sorted(set(failed)),
         "warnings": sorted(set(warnings)),
         "top_family": family,
         "family_hits": family_hits,

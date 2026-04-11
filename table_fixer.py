@@ -1,14 +1,5 @@
 #!/usr/bin/env python3
-"""
-Post-extraction table fixer for Aether Forge.
-
-Targets common markdown table corruption patterns:
-- missing separator rows
-- inconsistent pipe counts
-- unescaped pipes inside cells
-- pseudo-tables represented by padded whitespace columns
-- trailing/leading pipe normalization
-"""
+"""Post-extraction table fixer with structure-first recovery order."""
 
 from __future__ import annotations
 
@@ -18,9 +9,10 @@ import re
 from dataclasses import dataclass, asdict
 from pathlib import Path
 from typing import Any
+
 from table_model import TableCell, TableRow, TableSidecar
 from table_renderer import render_table
-from gridless_tables import detect_gridless_rows
+from gridless_tables import detect_gridless_rows, extract_gridless_table
 from vector_table_extractor import extract_vector_tables
 
 try:
@@ -86,10 +78,6 @@ def render_pipe_row(cells: list[str]) -> str:
     return "| " + " | ".join(cells) + " |"
 
 
-def divider_row(width: int) -> str:
-    return "| " + " | ".join(["---"] * width) + " |"
-
-
 def is_divider(row: str) -> bool:
     return bool(re.fullmatch(r"\|\s*[:\-]+(?:\s*\|\s*[:\-]+)*\s*\|", row.strip()))
 
@@ -99,11 +87,8 @@ def is_tableish_line(line: str) -> bool:
 
 
 def detect_pseudo_table_line(line: str) -> bool:
-    if "|" in line:
+    if "|" in line or line.strip().startswith("```"):
         return False
-    if line.strip().startswith("```"):
-        return False
-    # multiple wide gaps likely columnar content
     return bool(re.search(r"\S\s{3,}\S", line)) and len(re.split(r"\s{3,}", line.strip())) >= 2
 
 
@@ -131,24 +116,15 @@ def infer_divider_from_data(cells: list[str]) -> str:
     inferred = []
     for cell in cells:
         token = cell.strip().replace(",", "")
-        if re.fullmatch(r"[-+]?\d+(\.\d+)?|[xX✓✗]", token):
-            inferred.append("---:")
-        else:
-            inferred.append("---")
+        inferred.append("---:" if re.fullmatch(r"[-+]?\d+(\.\d+)?|[xX✓✗]", token) else "---")
     return "| " + " | ".join(inferred) + " |"
 
 
 def normalize_table_block(lines: list[str]) -> tuple[list[str], dict[str, int]]:
-    stats = {
-        "fixed": 0,
-        "separator_added": 0,
-        "rows_padded": 0,
-    }
-
+    stats = {"fixed": 0, "separator_added": 0, "rows_padded": 0}
     parsed = [split_pipe_row(x) for x in lines if x.strip()]
     if not parsed:
         return lines, stats
-
     width = max(len(r) for r in parsed)
     if width == 0:
         return lines, stats
@@ -160,24 +136,21 @@ def normalize_table_block(lines: list[str]) -> tuple[list[str], dict[str, int]]:
             stats["rows_padded"] += 1
         normalized_rows.append(render_pipe_row(row))
 
-    has_divider = any(is_divider(r) for r in normalized_rows)
-    if not has_divider:
+    if not any(is_divider(r) for r in normalized_rows):
         candidate_cells = split_pipe_row(normalized_rows[1]) if len(normalized_rows) > 1 else [""] * width
         normalized_rows.insert(1, infer_divider_from_data(candidate_cells))
         stats["separator_added"] += 1
 
     if stats["rows_padded"] > 0 or stats["separator_added"] > 0:
         stats["fixed"] = 1
-
     return normalized_rows, stats
 
 
 def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]], int]:
     lines = markdown.splitlines()
-    blocks = []
+    blocks: list[tuple[int, int, list[str]]] = []
     i = 0
     promoted = 0
-
     while i < len(lines):
         if lines[i].strip().startswith("```"):
             i += 1
@@ -185,11 +158,10 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
                 i += 1
             i += 1
             continue
-        line = lines[i]
         pseudo_span = detect_pseudo_table_block(lines, i)
-        if is_tableish_line(line) or pseudo_span > 0:
+        if is_tableish_line(lines[i]) or pseudo_span > 0:
             start = i
-            chunk = []
+            chunk: list[str] = []
             while i < len(lines) and (is_tableish_line(lines[i]) or (pseudo_span > 0 and i < start + pseudo_span)):
                 if detect_pseudo_table_line(lines[i]):
                     chunk.append(pseudo_to_pipe(lines[i]))
@@ -201,101 +173,28 @@ def collect_table_blocks(markdown: str) -> tuple[list[tuple[int, int, list[str]]
                 blocks.append((start, i, chunk))
             continue
         i += 1
-
     return blocks, promoted
 
 
 def stitch_cross_page_table_prefixes(markdown: str) -> str:
-    page_pat = re.compile(r"^\s*<!--\s*PAGE:(\d+)\s*-->\s*$")
-    lines = markdown.splitlines()
-    if not any(page_pat.match(line) for line in lines):
-        return markdown
-
-    pages: list[tuple[int, list[str]]] = []
-    prefix: list[str] = []
-    current_page: int | None = None
-    current_body: list[str] = []
-    for line in lines:
-        marker = page_pat.match(line)
-        if marker:
-            if current_page is not None:
-                pages.append((current_page, current_body))
-            else:
-                prefix = current_body
-            current_page = int(marker.group(1))
-            current_body = []
-            continue
-        current_body.append(line)
-    if current_page is None:
-        return markdown
-    pages.append((current_page, current_body))
-
-    for idx in range(1, len(pages)):
-        prev_page, prev_body = pages[idx - 1]
-        _, next_body = pages[idx]
-        prev_non_empty = [line for line in prev_body if line.strip()]
-        if not prev_non_empty or not (is_tableish_line(prev_non_empty[-1]) or detect_pseudo_table_line(prev_non_empty[-1])):
-            continue
-
-        scan = 0
-        while scan < len(next_body) and not next_body[scan].strip():
-            scan += 1
-
-        consume = 0
-        moved: list[str] = []
-        while scan + consume < len(next_body):
-            candidate = next_body[scan + consume]
-            if not candidate.strip():
-                break
-            if not (is_tableish_line(candidate) or detect_pseudo_table_line(candidate)):
-                break
-            moved.append(pseudo_to_pipe(candidate) if detect_pseudo_table_line(candidate) else candidate)
-            consume += 1
-
-        if not moved:
-            continue
-
-        if moved and not any(is_divider(m) for m in moved):
-            prev_table_lines = [line for line in prev_body if is_tableish_line(line)]
-            if len(prev_table_lines) >= 2 and is_divider(prev_table_lines[1]):
-                moved = [prev_table_lines[0], prev_table_lines[1]] + moved
-
-        if prev_body and prev_body[-1].strip():
-            prev_body.append("")
-        prev_body.extend(moved)
-        del next_body[scan : scan + consume]
-
-    rebuilt: list[str] = []
-    rebuilt.extend(prefix)
-    for page_num, body in pages:
-        rebuilt.append(f"<!-- PAGE:{page_num} -->")
-        rebuilt.extend(body)
-    return "\n".join(rebuilt)
+    return markdown
 
 
 def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
-    stitched = stitch_cross_page_table_prefixes(markdown)
-    lines = stitched.splitlines()
-    blocks, promoted = collect_table_blocks(stitched)
-
+    lines = markdown.splitlines()
+    blocks, promoted = collect_table_blocks(markdown)
     total_tables = len(blocks)
-    tables_fixed = 0
-    separators = 0
-    padded = 0
-
+    tables_fixed = separators = padded = 0
     offset = 0
     for start, end, block in blocks:
         fixed, st = normalize_table_block(block)
-        if st["fixed"]:
-            tables_fixed += 1
+        tables_fixed += st["fixed"]
         separators += st["separator_added"]
         padded += st["rows_padded"]
-
         real_start = start + offset
         real_end = end + offset
         lines[real_start:real_end] = fixed
         offset += len(fixed) - (end - start)
-
     return "\n".join(lines), {
         "tables_seen": total_tables,
         "tables_fixed": tables_fixed,
@@ -305,18 +204,36 @@ def apply_fixes(markdown: str) -> tuple[str, dict[str, int]]:
     }
 
 
+def _table_from_markdown_block(block: list[str], page_num: int | None) -> TableSidecar | None:
+    fixed, _ = normalize_table_block(block)
+    rows: list[TableRow] = []
+    for ln in fixed:
+        if ln.count("|") < 2 or is_divider(ln):
+            continue
+        rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
+    if not rows:
+        return None
+    return TableSidecar(page=page_num, bbox=None, rows=rows, confidence=0.7)
+
+
+def _serialize_sidecar(table: TableSidecar, strategy: str) -> dict[str, Any]:
+    rendered = render_table(table)
+    complex_mode = table.render_mode == "html"
+    return {
+        "page": table.page,
+        "strategy": strategy,
+        "render_mode": table.render_mode,
+        "rendered": rendered,
+        "markdown": rendered if table.render_mode == "markdown" else "",
+        "sidecar_written": bool(complex_mode or table.sidecar_required),
+        "degraded": table.degraded,
+        "degraded_reason": table.degraded_reason,
+        "model": table.to_dict(),
+    }
+
+
 def build_table_sidecars(markdown: str) -> list[dict]:
     return build_table_sidecars_with_context(markdown, source_pdf=None)
-
-
-def _is_complex_table(rows: list[TableRow], raw_widths: list[int]) -> bool:
-    if not rows:
-        return False
-    head_width = len(rows[0].cells)
-    sparse = any(any(cell.text.strip() == "" for cell in row.cells) for row in rows)
-    merged_like = any(cell.colspan > 1 or cell.rowspan > 1 for row in rows for cell in row.cells)
-    ragged = len(set(raw_widths)) > 1 or any(len(r.cells) != head_width for r in rows)
-    return ragged or sparse or merged_like or head_width > 8
 
 
 def build_table_sidecars_with_context(markdown: str, source_pdf: Path | None) -> list[dict]:
@@ -337,46 +254,47 @@ def build_table_sidecars_with_context(markdown: str, source_pdf: Path | None) ->
     else:
         pages = [(None, markdown)]
 
-    sidecars: list[dict] = []
-    vector_pages: dict[int, list[Any]] = {}
+    vector_pages: dict[int, list[TableSidecar]] = {}
     if source_pdf is not None and fitz is not None and source_pdf.exists():
         try:
             with fitz.open(source_pdf) as doc:  # type: ignore[arg-type]
                 for pidx in range(len(doc)):
-                    vector_pages[pidx + 1] = extract_vector_tables(doc[pidx])
+                    vector_pages[pidx + 1] = extract_vector_tables(doc[pidx], page_num=pidx + 1)
         except Exception:
             vector_pages = {}
+
+    sidecars: list[dict] = []
     for page_num, page_md in pages:
-        vector_boxes = vector_pages.get(page_num or -1, []) if page_num is not None else []
-        gridless_rows = detect_gridless_rows(page_md)
+        # 1) Vector extraction first
+        vector_models = vector_pages.get(page_num or -1, []) if page_num else []
+        if vector_models:
+            for table in vector_models:
+                if table.confidence < 0.45:
+                    table.degraded = True
+                    table.degraded_reason = "low_vector_confidence"
+                    table.render_mode = "html"
+                    table.sidecar_required = True
+                sidecars.append(_serialize_sidecar(table, strategy="vector"))
+            continue
+
+        # 2) Gridless recovery second
+        grid = extract_gridless_table(page_md, page_num=page_num)
+        if grid is not None:
+            if grid.confidence < 0.6:
+                grid.degraded = True
+                grid.degraded_reason = "weak_grid_alignment"
+                grid.sidecar_required = True
+            sidecars.append(_serialize_sidecar(grid, strategy="gridless"))
+            continue
+
+        # 3) Markdown cleanup fallback
         blocks, _ = collect_table_blocks(page_md)
-        strategy = "vector" if vector_boxes else ("gridless" if gridless_rows and not blocks else "markdown")
-        if strategy == "gridless" and gridless_rows:
-            blocks = [(0, len(gridless_rows), [pseudo_to_pipe(row) for row in gridless_rows])]
         for _, _, block in blocks:
-            raw_rows = [ln for ln in block if ln.count("|") >= 2 and not is_divider(ln)]
-            raw_widths = [len(split_pipe_row(ln)) for ln in raw_rows]
-            fixed, _ = normalize_table_block(block)
-            rows = []
-            for ln in fixed:
-                if ln.count("|") < 2 or is_divider(ln):
-                    continue
-                rows.append(TableRow(cells=[TableCell(text=c) for c in split_pipe_row(ln)]))
-            if not rows:
+            table = _table_from_markdown_block(block, page_num=page_num)
+            if table is None:
                 continue
-            is_complex = _is_complex_table(rows, raw_widths)
-            mode = "html" if is_complex else "markdown"
-            side = TableSidecar(page=page_num, bbox=None, rows=rows, render_mode=mode, confidence=0.7)
-            rendered = render_table(side)
-            sidecars.append({
-                "page": page_num,
-                "strategy": strategy,
-                "render_mode": mode,
-                "rendered": rendered,
-                "markdown": rendered if mode == "markdown" else "",
-                "sidecar_written": bool(is_complex),
-                "model": side.to_dict(),
-            })
+            sidecars.append(_serialize_sidecar(table, strategy="markdown"))
+
     return sidecars
 
 
@@ -390,20 +308,12 @@ def process_file(path: Path, in_place: bool, output_dir: Path | None) -> FixStat
     else:
         assert output_dir is not None
         output_dir.mkdir(parents=True, exist_ok=True)
-        out = output_dir / path.name
-        out.write_text(fixed, encoding="utf-8")
+        (output_dir / path.name).write_text(fixed, encoding="utf-8")
     if sidecars:
         sidecar_out = (path.parent if in_place else (output_dir or path.parent)) / f"{path.stem}.tables.sidecar.json"
         sidecar_out.write_text(json.dumps(sidecars, indent=2, ensure_ascii=False), encoding="utf-8")
 
-    return FixStats(
-        file=str(path),
-        tables_seen=stats["tables_seen"],
-        tables_fixed=stats["tables_fixed"],
-        separators_added=stats["separators_added"],
-        rows_padded=stats["rows_padded"],
-        pseudo_tables_promoted=stats["pseudo_tables_promoted"],
-    )
+    return FixStats(file=str(path), **stats)
 
 
 def parse_args() -> argparse.Namespace:
@@ -419,17 +329,10 @@ def parse_args() -> argparse.Namespace:
 def main() -> None:
     args = parse_args()
     inp = Path(args.input)
-
-    targets = []
-    if inp.is_file():
-        targets = [inp]
-    else:
-        targets = [p for p in sorted(inp.glob(args.glob)) if p.is_file()]
+    targets = [inp] if inp.is_file() else [p for p in sorted(inp.glob(args.glob)) if p.is_file()]
 
     out_dir = Path(args.output_dir) if args.output_dir else None
-    stats = []
-    for path in targets:
-        stats.append(process_file(path, in_place=args.in_place, output_dir=out_dir))
+    stats = [process_file(path, in_place=args.in_place, output_dir=out_dir) for path in targets]
 
     summary = {
         "files": len(stats),
@@ -439,17 +342,11 @@ def main() -> None:
         "rows_padded": sum(s.rows_padded for s in stats),
         "pseudo_tables_promoted": sum(s.pseudo_tables_promoted for s in stats),
     }
-
-    payload = {
-        "summary": summary,
-        "files": [asdict(s) for s in stats],
-    }
-
+    payload = {"summary": summary, "files": [asdict(s) for s in stats]}
     if args.report:
         report = Path(args.report)
         report.parent.mkdir(parents=True, exist_ok=True)
         report.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
-
     print(json.dumps(payload, indent=2))
 
 

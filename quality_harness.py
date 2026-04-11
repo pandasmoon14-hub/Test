@@ -261,6 +261,8 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
     form_routed_as_prose = []
     rotated_without_normalization = []
     complex_missing_sidecar = []
+    mixed_collapsed_regions = []
+    degraded_structure_pages = []
     for pm in page_metadata:
         page_num = int(pm.get("page", 0) or 0)
         modality = str(pm.get("modality", ""))
@@ -271,12 +273,20 @@ def check_book(markdown_path: Path, manifest_path: Path, pdf_path: Path | None =
             rotated_without_normalization.append(page_num)
         if modality == "table" and pm.get("table_complex_detected") and not pm.get("table_sidecar_refs"):
             complex_missing_sidecar.append(page_num)
+        if modality == "mixed" and len(pm.get("regions", [])) <= 1:
+            mixed_collapsed_regions.append(page_num)
+        if pm.get("degraded_table_handling") or pm.get("degraded_form_handling"):
+            degraded_structure_pages.append(page_num)
     if form_routed_as_prose:
         issues.append("form_routed_through_prose")
     if rotated_without_normalization:
         issues.append("rotation_not_normalized")
     if complex_missing_sidecar:
         issues.append("complex_table_missing_sidecar")
+    if mixed_collapsed_regions:
+        issues.append("mixed_page_collapsed_regions")
+    if degraded_structure_pages:
+        issues.append("degraded_structure_handling")
     if pdf_path and pdf_path.exists():
         try:
             import fitz

@@ -698,6 +698,83 @@ def test_vocab_anima() -> TestResult:
     return TestResult("vocab_anima", ok, f"family={fam.family}, hits={fam.hits}")
 
 
+
+
+def test_form_renderer_preserves_labels_and_blanks() -> TestResult:
+    from form_renderer import render_form_like
+    src = """Character Sheet
+Name: ____    Class: Fighter
+HP: ____    AC: 16"""
+    out = render_form_like(src)
+    passed = all(token in out for token in ["<form", "Character Sheet", "Name", 'data-blank="1"'])
+    return TestResult("form_renderer_preserves_labels_and_blanks", passed, out[:120])
+
+
+def test_region_segmenter_mixed_page_splits_types() -> TestResult:
+    from region_segmenter import segment_regions
+    text = """Body paragraph text.
+
+| A | B |
+| 1 | 2 |
+
+Name: ____
+HP: ____
+
+> Sidebar note"""
+    regions = segment_regions(text, page=3)
+    kinds = {r.kind for r in regions}
+    passed = "body" in kinds and "table" in kinds and "form" in kinds and "sidebar/callout" in kinds
+    return TestResult("region_segmenter_mixed_page_splits_types", passed, f"kinds={sorted(kinds)}")
+
+
+def test_vector_table_produces_table_model() -> TestResult:
+    from vector_table_extractor import extract_vector_tables
+    class MockPage:
+        def find_tables(self):
+            return [{"bbox": [0,0,100,100], "cells": [["Name", "HP"], ["Goblin", "7"]]}]
+    tables = extract_vector_tables(MockPage(), page_num=2)
+    passed = bool(tables) and tables[0].rows[1].cells[1].text == "7"
+    return TestResult("vector_table_produces_table_model", passed, f"count={len(tables)}")
+
+
+def test_gridless_table_produces_table_model() -> TestResult:
+    from gridless_tables import extract_gridless_table
+    text = """Name    AC    HP
+Goblin    15    7
+Ogre    11    59"""
+    table = extract_gridless_table(text, page_num=1)
+    passed = table is not None and len(table.rows) == 3 and len(table.rows[1].cells) == 3
+    return TestResult("gridless_table_produces_table_model", passed, f"rows={len(table.rows) if table else 0}")
+
+
+def test_complex_table_prefers_html() -> TestResult:
+    from table_model import TableSidecar, TableRow, TableCell
+    from table_renderer import render_table
+    t = TableSidecar(page=1, bbox=None, rows=[TableRow([TableCell("A"), TableCell("B")]), TableRow([TableCell("1"), TableCell("")]), TableRow([TableCell("x"), TableCell("y"), TableCell("z")])])
+    out = render_table(t)
+    passed = t.render_mode == "html" and out.startswith("<table>")
+    return TestResult("complex_table_prefers_html", passed, f"mode={t.render_mode}")
+
+
+def test_simple_table_prefers_markdown() -> TestResult:
+    from table_model import TableSidecar, TableRow, TableCell
+    from table_renderer import render_table
+    t = TableSidecar(page=1, bbox=None, rows=[TableRow([TableCell("A"), TableCell("B")]), TableRow([TableCell("1"), TableCell("2")])])
+    out = render_table(t)
+    passed = t.render_mode == "markdown" and out.startswith("| A | B |")
+    return TestResult("simple_table_prefers_markdown", passed, f"mode={t.render_mode}")
+
+
+def test_degraded_vector_table_flag_surfaces() -> TestResult:
+    import table_fixer
+    # emulate degraded object through serializer path
+    from table_model import TableSidecar, TableRow, TableCell
+    side = TableSidecar(page=1, bbox=[0,0,10,10], rows=[TableRow([TableCell("[vector-table-unparsed]")])], confidence=0.2, degraded=True, degraded_reason="low_vector_confidence", sidecar_required=True)
+    payload = table_fixer._serialize_sidecar(side, strategy="vector")
+    passed = payload.get("degraded") is True and payload.get("sidecar_written") is True
+    return TestResult("degraded_vector_table_flag_surfaces", passed, str(payload.get("degraded_reason")))
+
+
 def run_all(tmp: Path) -> list[TestResult]:
     results = [
         test_table_integrity_good(),
@@ -747,6 +824,13 @@ def run_all(tmp: Path) -> list[TestResult]:
         test_orientation_affects_render_page(),
         test_form_renderer_used_in_orchestrator(),
         test_gridless_or_vector_strategy_participates(),
+        test_form_renderer_preserves_labels_and_blanks(),
+        test_region_segmenter_mixed_page_splits_types(),
+        test_vector_table_produces_table_model(),
+        test_gridless_table_produces_table_model(),
+        test_complex_table_prefers_html(),
+        test_simple_table_prefers_markdown(),
+        test_degraded_vector_table_flag_surfaces(),
         test_pipe_escape_in_table(),
         test_vocab_anima(),
         test_regression_snapshot(tmp),

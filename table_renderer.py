@@ -4,8 +4,22 @@ from __future__ import annotations
 from html import escape
 from table_model import TableSidecar
 
+
 def _esc_pipe(v: str) -> str:
     return v.replace("\\|", "|").replace("|", "\\|")
+
+
+def choose_render_mode(table: TableSidecar) -> str:
+    if not table.rows:
+        return "markdown"
+    widths = [len(r.cells) for r in table.rows]
+    ragged = len(set(widths)) > 1
+    sparse = any(any(c.text == "" for c in r.cells) for r in table.rows)
+    merged = any(c.colspan > 1 or c.rowspan > 1 for r in table.rows for c in r.cells)
+    if ragged or merged or (sparse and len(table.rows) > 2):
+        return "html"
+    return "markdown"
+
 
 def render_markdown(table: TableSidecar) -> str:
     rows = table.rows
@@ -20,6 +34,7 @@ def render_markdown(table: TableSidecar) -> str:
     for r in grid[1:]:
         out.append("| " + " | ".join(r) + " |")
     return "\n".join(out)
+
 
 def render_html(table: TableSidecar) -> str:
     lines = ["<table>"]
@@ -36,5 +51,7 @@ def render_html(table: TableSidecar) -> str:
     lines.append("</table>")
     return "\n".join(lines)
 
+
 def render_table(table: TableSidecar) -> str:
+    table.render_mode = choose_render_mode(table)
     return render_html(table) if table.render_mode == "html" else render_markdown(table)
