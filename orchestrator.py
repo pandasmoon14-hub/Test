@@ -1239,6 +1239,8 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
 
     chunk_count = max(1, len(lane_meta))
     disposition_summary = summarize_dispositions(page_rows)
+    status_counts = Counter(str(r.get("page_status", "")) for r in final_page_truth_rows)
+    final_reason_counts = Counter(str(r.get("reason_code", "")) for r in final_page_truth_rows if r.get("reason_code"))
     manifest = BookManifest(
         book_id=pdf.stem,
         source_pdf=str(pdf),
@@ -1266,19 +1268,17 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         form_rendered_pages=sum(1 for row in page_rows if row.get("form_renderer_used")),
         table_sidecar_count=len(sidecar),
         region_repaired_pages=sum(1 for row in page_rows if row.get("regions")),
-        pages_ok=disposition_summary["pages_ok"],
-        pages_empty=disposition_summary["pages_empty"],
-        pages_image_only=disposition_summary["pages_image_only"],
-        pages_ocr_needed=disposition_summary["pages_ocr_needed"],
-        pages_ocr_done=disposition_summary["pages_ocr_done"],
-        pages_queued=disposition_summary["pages_queued"],
-        pages_failed=disposition_summary["pages_failed"],
-        reason_code_counts=disposition_summary["reason_code_counts"],
+        pages_ok=int(status_counts.get("ok", 0)),
+        pages_empty=int(status_counts.get("empty", 0)),
+        pages_image_only=int(status_counts.get("image_only", 0)),
+        pages_ocr_needed=int(status_counts.get("ocr_needed", 0)),
+        pages_ocr_done=int(status_counts.get("ocr_done", 0)),
+        pages_queued=int(status_counts.get("queued", 0)),
+        pages_failed=int(status_counts.get("failed", 0)),
+        reason_code_counts=dict(final_reason_counts),
     )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     known_statuses = {"ok", "empty", "image_only", "ocr_needed", "ocr_done", "repaired", "queued", "failed", "skipped"}
-    status_counts = Counter(str(r.get("page_status", "")) for r in final_page_truth_rows)
-    final_reason_counts = Counter(str(r.get("reason_code", "")) for r in final_page_truth_rows if r.get("reason_code"))
     unknown_status_counts = {k: v for k, v in status_counts.items() if k not in known_statuses}
     final_pages = {int(r.get("page", 0)) for r in final_page_truth_rows}
     marker_pages = set(pages.keys())

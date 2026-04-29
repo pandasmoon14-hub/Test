@@ -80,7 +80,7 @@ def test_validate_outputs_strict_detects_659_vs_60_regression(tmp_path: Path):
     (book / "strict_audit.json").write_text(json.dumps({"strict_audit_status": "fail", "unaccounted_page_count": 599}), encoding="utf-8")
     (book / "astra_handoff_manifest.json").write_text(json.dumps({"book_id": "exalted"}), encoding="utf-8")
     rows = [{"book_id": "exalted", "page": i + 1, "page_status": "ok", "reason_code": "native_text_extracted"} for i in range(60)]
-    (book / "exalted.page_truth.jsonl").write_text("\\n".join(json.dumps(r) for r in rows) + "\\n", encoding="utf-8")
+    (book / "exalted.page_truth.jsonl").write_text("\n".join(json.dumps(r) for r in rows) + "\n", encoding="utf-8")
     import sys
     old = sys.argv
     sys.argv = ["validate_outputs.py", "--output-dir", str(out), "--strict"]
