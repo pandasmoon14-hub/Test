@@ -1381,10 +1381,27 @@ def main() -> None:
     summary = {
         "started_at": now_iso(),
         "books_total": len(pdfs),
+        "books_processed": 0,
         "books_ok": 0,
         "books_failed": 0,
         "books_queued": 0,
+        "books_artifact_written": 0,
+        "books_conversion_ready": 0,
+        "books_ready_with_warnings": 0,
+        "books_needing_repair": 0,
+        "books_queued_for_repair": 0,
+        "books_failed_extraction": 0,
         "lane_counts": {},
+        "page_status_counts": {
+            "pages_ok": 0,
+            "pages_empty": 0,
+            "pages_image_only": 0,
+            "pages_ocr_needed": 0,
+            "pages_ocr_done": 0,
+            "pages_queued": 0,
+            "pages_failed": 0,
+        },
+        "reason_code_counts": {},
         "failure_reason_counts": {},
         "failed_book_ids": [],
         "failed_book_errors": {},
@@ -1397,17 +1414,44 @@ def main() -> None:
             if db is not None:
                 db.mark_in_progress(book_key)
             m = process_book(cfg, pdf, queue)
+            summary["books_processed"] += 1
             summary["lane_counts"][m.lane] = summary["lane_counts"].get(m.lane, 0) + 1
-            if m.failed_pages:
-                summary["books_queued"] += 1
-                if db is not None:
+            summary["books_artifact_written"] += 1
+            summary["page_status_counts"]["pages_ok"] += int(m.pages_ok)
+            summary["page_status_counts"]["pages_empty"] += int(m.pages_empty)
+            summary["page_status_counts"]["pages_image_only"] += int(m.pages_image_only)
+            summary["page_status_counts"]["pages_ocr_needed"] += int(m.pages_ocr_needed)
+            summary["page_status_counts"]["pages_ocr_done"] += int(m.pages_ocr_done)
+            summary["page_status_counts"]["pages_queued"] += int(m.pages_queued)
+            summary["page_status_counts"]["pages_failed"] += int(m.pages_failed)
+            for reason, count in m.reason_code_counts.items():
+                summary["reason_code_counts"][reason] = int(summary["reason_code_counts"].get(reason, 0)) + int(count)
+
+            needs_repair = bool(m.pages_ocr_needed or m.pages_queued or m.pages_failed or m.pages_image_only or m.failed_pages)
+            ready_with_warnings = bool(m.pages_empty) and not needs_repair
+            is_conversion_ready = not needs_repair and not ready_with_warnings
+
+            if is_conversion_ready:
+                summary["books_conversion_ready"] += 1
+            if ready_with_warnings:
+                summary["books_ready_with_warnings"] += 1
+            if needs_repair:
+                summary["books_needing_repair"] += 1
+
+            # Backward-compatible fields:
+            # books_ok = processed and required artifacts written.
+            summary["books_ok"] += 1
+            # books_queued = book not processed (only extraction exceptions).
+            if db is not None:
+                if needs_repair:
+                    summary["books_queued_for_repair"] += 1
                     db.upsert_queue_item(queue_item_from_record(book_key, queue.get(str(pdf.resolve()), {})))
-            else:
-                summary["books_ok"] += 1
-                if db is not None:
+                else:
                     db.mark_done(book_key)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
+            summary["books_failed_extraction"] += 1
+            summary["books_queued"] += 1
             reason = str(exc).split(":", 1)[0].strip() or "unknown_error"
             summary["failure_reason_counts"][reason] = int(summary["failure_reason_counts"].get(reason, 0)) + 1
             summary["failed_book_ids"].append(pdf.stem)
