@@ -97,6 +97,7 @@ class RuntimeConfig:
     stat_ratio_threshold: float = 0.3
     strict_page_truth: bool = False
     force_lane: str = "AUTO"
+    auto_fallback_to_lane_a_on_missing_external: bool = True
 
     @classmethod
     def from_env(cls, repo_root: Path) -> "RuntimeConfig":
@@ -141,6 +142,7 @@ class RuntimeConfig:
             stat_ratio_threshold=float(os.getenv("STAT_RATIO_THRESHOLD", "0.3")),
             strict_page_truth=(os.getenv("STRICT_PAGE_TRUTH", "0") == "1"),
             force_lane=(os.getenv("FORCE_LANE", "AUTO") or "AUTO").strip().upper(),
+            auto_fallback_to_lane_a_on_missing_external=(os.getenv("AUTO_FALLBACK_TO_LANE_A_ON_MISSING_EXTERNAL", "1") == "1"),
         )
 
 
@@ -231,6 +233,11 @@ class BookManifest:
     pages_queued: int = 0
     pages_failed: int = 0
     reason_code_counts: dict[str, int] = field(default_factory=dict)
+    intended_lane: str | None = None
+    actual_lane: str | None = None
+    fallback_used: bool = False
+    fallback_reason: str | None = None
+    warnings: list[str] = field(default_factory=list)
 
 
 def now_iso() -> str:
@@ -1045,13 +1052,24 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     except Exception:
         pass
     lane, scores = choose_lane(profile, cfg)
+    intended_lane = lane
+    actual_lane = lane
+    fallback_used = False
+    fallback_reason: str | None = None
+    book_warnings: list[str] = []
     forced_lane = effective_forced_lane(cfg)
     if forced_lane is not None:
         lane = "C" if (profile.is_image_only and forced_lane == "A") else forced_lane
+        intended_lane = lane
+        actual_lane = lane
     elif profile.is_image_only:
         lane = "C"
+        intended_lane = lane
+        actual_lane = lane
     elif cfg.sample_and_race:
         lane = sample_and_race(cfg, pdf, out_dir, profile, log_file)
+        intended_lane = lane
+        actual_lane = lane
 
     ocr_mode = route_ocr_mode(profile, cfg)
     active_pdf = pdf if profile.is_image_only else run_ocr(cfg, pdf, out_dir / f"{pdf.stem}_ocr.pdf", ocr_mode, log_file)
@@ -1066,9 +1084,35 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         write_page_markers_from_blocks(active_pdf, md_out, page_meta)
         page_marker_mode = "source_blocks"
     elif lane == "B":
-        md_out, marker_api_variant, lane_meta, page_marker_mode = run_marker(cfg, active_pdf, out_dir, profile, log_file)
+        try:
+            md_out, marker_api_variant, lane_meta, page_marker_mode = run_marker(cfg, active_pdf, out_dir, profile, log_file)
+        except RuntimeError as exc:
+            is_missing_dep = str(exc).startswith("missing_external_dependency:")
+            if forced_lane is None and cfg.auto_fallback_to_lane_a_on_missing_external and is_missing_dep:
+                fallback_used = True
+                fallback_reason = "missing_external_dependency"
+                actual_lane = "A"
+                lane = "A"
+                book_warnings.append("missing_external_dependency_fallback_to_lane_a")
+                write_page_markers_from_blocks(active_pdf, md_out, page_meta)
+                page_marker_mode = "source_blocks"
+            else:
+                raise
     else:
-        md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
+        try:
+            md_out, lane_meta, page_marker_mode = run_docling(cfg, active_pdf, out_dir, profile, log_file)
+        except RuntimeError as exc:
+            is_missing_dep = str(exc).startswith("missing_external_dependency:")
+            if forced_lane is None and cfg.auto_fallback_to_lane_a_on_missing_external and is_missing_dep:
+                fallback_used = True
+                fallback_reason = "missing_external_dependency"
+                actual_lane = "A"
+                lane = "A"
+                book_warnings.append("missing_external_dependency_fallback_to_lane_a")
+                write_page_markers_from_blocks(active_pdf, md_out, page_meta)
+                page_marker_mode = "source_blocks"
+            else:
+                raise
 
     txt = normalize_text(md_out.read_text(encoding="utf-8", errors="replace"))
     if "<!-- CHUNK:" in txt and ("<!-- PAGE:" not in txt or page_marker_mode == "chunk_fallback"):
@@ -1231,7 +1275,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "reason_code": reason,
             "warnings": warnings,
             "errors": errors,
-            "metadata": {"trusted_page_truth": bool(src.get("trusted_page_truth", matched.get("trusted_page_truth", False))), "page_marker_mode": page_marker_mode},
+            "metadata": {"trusted_page_truth": bool(src.get("trusted_page_truth", matched.get("trusted_page_truth", False))), "page_marker_mode": page_marker_mode, "intended_lane": intended_lane, "fallback_reason": fallback_reason},
         })
     with open(out_dir / f"{pdf.stem}.page_truth.jsonl", "w", encoding="utf-8") as f:
         for row in final_page_truth_rows:
@@ -1276,6 +1320,11 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         pages_queued=int(status_counts.get("queued", 0)),
         pages_failed=int(status_counts.get("failed", 0)),
         reason_code_counts=dict(final_reason_counts),
+        intended_lane=intended_lane,
+        actual_lane=actual_lane,
+        fallback_used=fallback_used,
+        fallback_reason=fallback_reason,
+        warnings=book_warnings,
     )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     known_statuses = {"ok", "empty", "image_only", "ocr_needed", "ocr_done", "repaired", "queued", "failed", "skipped"}
@@ -1321,6 +1370,10 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         "source_path": str(pdf),
         "source_sha256": source_hash,
         "run_id": started_iso,
+        "intended_extraction_lane": intended_lane,
+        "actual_extraction_lane": actual_lane,
+        "fallback_used": fallback_used,
+        "fallback_reason": fallback_reason,
         "extraction_version": "v13",
         "final_page_truth_count": len(final_page_truth_rows),
         "markdown_page_marker_count": len(marker_pages),
@@ -1341,7 +1394,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         "unaccounted_page_count": len(unaccounted),
         "unaccounted_pages": unaccounted,
         "strict_audit_status": strict_audit["strict_audit_status"],
-        "warnings": strict_audit["warnings"],
+        "warnings": strict_audit["warnings"] + book_warnings,
         "errors": strict_audit["errors"],
         "artifact_paths": {"page_truth_jsonl": str(out_dir / f"{pdf.stem}.page_truth.jsonl"), "strict_audit_json": str(out_dir / "strict_audit.json"), "astra_handoff_manifest_json": str(out_dir / "astra_handoff_manifest.json")},
     }
@@ -1381,10 +1434,30 @@ def main() -> None:
     summary = {
         "started_at": now_iso(),
         "books_total": len(pdfs),
+        "books_processed": 0,
         "books_ok": 0,
         "books_failed": 0,
         "books_queued": 0,
+        "books_artifact_written": 0,
+        "books_conversion_ready": 0,
+        "books_ready_with_warnings": 0,
+        "books_needing_repair": 0,
+        "books_queued_for_repair": 0,
+        "books_failed_extraction": 0,
+        "fallback_counts": {},
+        "books_fallback_to_lane_a": 0,
+        "fallback_reason_counts": {},
         "lane_counts": {},
+        "page_status_counts": {
+            "pages_ok": 0,
+            "pages_empty": 0,
+            "pages_image_only": 0,
+            "pages_ocr_needed": 0,
+            "pages_ocr_done": 0,
+            "pages_queued": 0,
+            "pages_failed": 0,
+        },
+        "reason_code_counts": {},
         "failure_reason_counts": {},
         "failed_book_ids": [],
         "failed_book_errors": {},
@@ -1397,17 +1470,50 @@ def main() -> None:
             if db is not None:
                 db.mark_in_progress(book_key)
             m = process_book(cfg, pdf, queue)
+            summary["books_processed"] += 1
             summary["lane_counts"][m.lane] = summary["lane_counts"].get(m.lane, 0) + 1
-            if m.failed_pages:
-                summary["books_queued"] += 1
-                if db is not None:
+            if m.fallback_used:
+                key = f"{m.intended_lane or 'unknown'}->{m.actual_lane or m.lane}"
+                summary["fallback_counts"][key] = int(summary["fallback_counts"].get(key, 0)) + 1
+                summary["books_fallback_to_lane_a"] += 1
+                reason_key = m.fallback_reason or "unknown"
+                summary["fallback_reason_counts"][reason_key] = int(summary["fallback_reason_counts"].get(reason_key, 0)) + 1
+            summary["books_artifact_written"] += 1
+            summary["page_status_counts"]["pages_ok"] += int(m.pages_ok)
+            summary["page_status_counts"]["pages_empty"] += int(m.pages_empty)
+            summary["page_status_counts"]["pages_image_only"] += int(m.pages_image_only)
+            summary["page_status_counts"]["pages_ocr_needed"] += int(m.pages_ocr_needed)
+            summary["page_status_counts"]["pages_ocr_done"] += int(m.pages_ocr_done)
+            summary["page_status_counts"]["pages_queued"] += int(m.pages_queued)
+            summary["page_status_counts"]["pages_failed"] += int(m.pages_failed)
+            for reason, count in m.reason_code_counts.items():
+                summary["reason_code_counts"][reason] = int(summary["reason_code_counts"].get(reason, 0)) + int(count)
+
+            needs_repair = bool(m.pages_ocr_needed or m.pages_queued or m.pages_failed or m.pages_image_only or m.failed_pages)
+            ready_with_warnings = bool(m.pages_empty) and not needs_repair
+            is_conversion_ready = not needs_repair and not ready_with_warnings
+
+            if is_conversion_ready:
+                summary["books_conversion_ready"] += 1
+            if ready_with_warnings:
+                summary["books_ready_with_warnings"] += 1
+            if needs_repair:
+                summary["books_needing_repair"] += 1
+
+            # Backward-compatible fields:
+            # books_ok = processed and required artifacts written.
+            summary["books_ok"] += 1
+            # books_queued = book not processed (only extraction exceptions).
+            if db is not None:
+                if needs_repair:
+                    summary["books_queued_for_repair"] += 1
                     db.upsert_queue_item(queue_item_from_record(book_key, queue.get(str(pdf.resolve()), {})))
-            else:
-                summary["books_ok"] += 1
-                if db is not None:
+                else:
                     db.mark_done(book_key)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
+            summary["books_failed_extraction"] += 1
+            summary["books_queued"] += 1
             reason = str(exc).split(":", 1)[0].strip() or "unknown_error"
             summary["failure_reason_counts"][reason] = int(summary["failure_reason_counts"].get(reason, 0)) + 1
             summary["failed_book_ids"].append(pdf.stem)
