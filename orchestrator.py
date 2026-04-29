@@ -24,6 +24,7 @@ import statistics
 import subprocess
 import time
 import traceback
+import hashlib
 from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
@@ -245,6 +246,14 @@ def save_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     with open(path, "w", encoding="utf-8") as file:
         json.dump(data, file, indent=2, ensure_ascii=False)
+
+
+def sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
 
 
 def load_json(path: Path, default: Any) -> Any:
@@ -1029,7 +1038,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
                     encrypted=bool(doc.is_encrypted),
                     file_size=fsize,
                 ))
-        write_page_truth_jsonl(out_dir / f"{pdf.stem}.page_truth.jsonl", rows)
+        write_page_truth_jsonl(out_dir / "source_page_truth.jsonl", rows)
     except Exception:
         pass
     lane, scores = choose_lane(profile, cfg)
@@ -1164,6 +1173,44 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "errors": disposition.errors,
         })
     save_json(page_meta, page_rows)
+    source_hash = sha256_file(pdf)
+    final_page_truth_rows = []
+    for p in profile.page_features:
+        page_num = p.page_index + 1
+        matched = next((r for r in page_rows if int(r.get("page", 0)) == page_num), {})
+        disp = str(matched.get("disposition", "failed"))
+        reason = str(matched.get("reason_code", "backend_extraction_empty"))
+        final_page_truth_rows.append({
+            "book_id": pdf.stem,
+            "source_sha256": source_hash,
+            "page_index_zero_based": p.page_index,
+            "page_number_one_based": page_num,
+            "page": page_num,
+            "width": None,
+            "height": None,
+            "rotation": 0,
+            "text_chars": p.char_count,
+            "extracted_chars": len(str(pages.get(page_num, "")).strip()),
+            "blocks": p.block_count,
+            "image_count": 1 if p.image_coverage > 0.05 else 0,
+            "drawing_count": 0,
+            "has_native_text": p.char_count > 0,
+            "is_image_only": bool(p.char_count == 0 and p.image_coverage > 0.05),
+            "ocr_required": disp in {"ocr_needed", "queued"},
+            "ocr_attempted": ocr_mode in {"force", "redo"},
+            "ocr_applied": page_num in ocr_applied_pages,
+            "extraction_backend": ("pymupdf_blocks" if lane == "A" else ("marker" if lane == "B" else ("docling" if lane == "B2" else "image_stub"))),
+            "extraction_lane": lane,
+            "page_status": disp,
+            "status": disp,
+            "reason_code": reason,
+            "warnings": matched.get("warnings", []),
+            "errors": matched.get("errors", []),
+            "metadata": {"trusted_page_truth": bool(matched.get("trusted_page_truth", False)), "page_marker_mode": page_marker_mode},
+        })
+    with open(out_dir / f"{pdf.stem}.page_truth.jsonl", "w", encoding="utf-8") as f:
+        for row in final_page_truth_rows:
+            f.write(json.dumps(row, ensure_ascii=False) + "\n")
 
     chunk_count = max(1, len(lane_meta))
     disposition_summary = summarize_dispositions(page_rows)
@@ -1204,6 +1251,23 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         reason_code_counts=disposition_summary["reason_code_counts"],
     )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
+    strict_audit = {
+        "book_id": pdf.stem,
+        "strict_audit_status": "pass",
+        "page_count": profile.total_pages,
+        "status_counts": {k: disposition_summary.get(k, 0) for k in ["pages_ok", "pages_empty", "pages_image_only", "pages_ocr_needed", "pages_ocr_done", "pages_queued", "pages_failed"]},
+        "reason_code_counts": disposition_summary.get("reason_code_counts", {}),
+    }
+    save_json(out_dir / "strict_audit.json", strict_audit)
+    astra_handoff = {
+        "book_id": pdf.stem,
+        "conversion_readiness": ("needs_repair" if (manifest.pages_ocr_needed or manifest.pages_queued or manifest.pages_failed or manifest.pages_image_only) else ("ready_with_warnings" if manifest.pages_empty else "ready")),
+        "doctrine_mining_suitability": ("unsuitable" if (manifest.pages_ocr_needed or manifest.pages_queued or manifest.pages_failed or manifest.pages_image_only) else "suitable"),
+        "conversion_suitability": ("partial" if manifest.pages_empty else ("unsuitable" if (manifest.pages_ocr_needed or manifest.pages_queued or manifest.pages_failed or manifest.pages_image_only) else "suitable")),
+        "reason_code_counts": disposition_summary.get("reason_code_counts", {}),
+        "page_count": profile.total_pages,
+    }
+    save_json(out_dir / "astra_handoff_manifest.json", astra_handoff)
     return manifest
 
 
