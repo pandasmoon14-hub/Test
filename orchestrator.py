@@ -19,6 +19,7 @@ import argparse
 import json
 import os
 import re
+import hashlib
 import shutil
 import statistics
 import subprocess
@@ -37,6 +38,7 @@ from region_segmenter import segment_regions
 from form_renderer import render_form_like
 from page_truth import PageTruthRecord, write_page_truth_jsonl
 from table_fixer import apply_fixes as apply_table_fixes, build_table_sidecars_with_context
+from audit_runtime import strict_audit_book, write_json
 
 try:
     from sqlite_queue import QueueDB, queue_item_from_record
@@ -485,6 +487,9 @@ def lane_scores(profile: PdfProfile, cfg: RuntimeConfig) -> dict[str, float]:
 
 
 def choose_lane(profile: PdfProfile, cfg: RuntimeConfig) -> tuple[str, dict[str, float]]:
+    forced = os.getenv("FORCE_LANE")
+    if forced in {"A", "B", "B2", "C"}:
+        return forced, {forced: 1.0}
     scores = lane_scores(profile, cfg)
     return max(scores, key=scores.get), scores
 
@@ -950,6 +955,14 @@ def sample_and_race(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfPr
     return min(scores, key=scores.get) if scores else "B"
 
 
+def _sha256_file(path: Path) -> str:
+    h = hashlib.sha256()
+    with open(path, "rb") as f:
+        for chunk in iter(lambda: f.read(1024 * 1024), b""):
+            h.update(chunk)
+    return h.hexdigest()
+
+
 def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) -> BookManifest:
     t0, started_iso = time.perf_counter(), now_iso()
     if not verify_pdf_magic(pdf):
@@ -967,33 +980,49 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         return BookManifest(book_id=pdf.stem, source_pdf=str(pdf), lane="SKIP", lane_scores={}, donor_family="unknown", page_count=0, pages_audited=0, pages_passed=0, pages_remaining=0, page_marker_mode="existing", chunk_count=0, total_pages=0, pages_detected=0, ocr_mode="skip", started_at=started_iso, finished_at=now_iso(), elapsed_sec=round(time.perf_counter() - t0, 3), output_md=str(md_out), page_metadata_path=str(page_meta), audit_signatures=[], failed_pages=[], marker_api_variant=None)
 
     profile = analyze_pdf(pdf, cfg)
-    try:
-        with fitz.open(pdf) as doc:
-            meta = doc.metadata or {}
-            rows = []
-            fsize = pdf.stat().st_size if pdf.exists() else 0
-            for i, page in enumerate(doc, start=1):
-                txt = normalize_text(page.get_text("text"))
-                rows.append(PageTruthRecord(
-                    book_id=pdf.stem,
-                    page=i,
-                    width=float(page.rect.width),
-                    height=float(page.rect.height),
-                    rotation=int(getattr(page, "rotation", 0) or 0),
-                    text_chars=len(txt),
-                    image_count=len(page.get_images(full=True)),
-                    drawing_count=len(page.get_drawings()),
-                    trusted_page_truth=True,
-                    orientation=("landscape" if page.rect.width > page.rect.height else "portrait"),
-                    modality=("scan" if len(txt.strip()) < cfg.scan_threshold else "mixed"),
-                    producer=str(meta.get("producer", "") or ""),
-                    creator=str(meta.get("creator", "") or ""),
-                    encrypted=bool(doc.is_encrypted),
-                    file_size=fsize,
-                ))
-        write_page_truth_jsonl(out_dir / f"{pdf.stem}.page_truth.jsonl", rows)
-    except Exception:
-        pass
+    source_sha = _sha256_file(pdf)
+    with fitz.open(pdf) as doc:
+        meta = doc.metadata or {}
+        rows = []
+        fsize = pdf.stat().st_size if pdf.exists() else 0
+        for i, page in enumerate(doc, start=1):
+            txt = normalize_text(page.get_text("text"))
+            blocks = page.get_text("blocks")
+            block_count = len(blocks)
+            image_count = len(page.get_images(full=True))
+            drawing_count = len(page.get_drawings())
+            has_native_text = len(txt.strip()) >= cfg.scan_threshold
+            rows.append(PageTruthRecord(
+                book_id=pdf.stem,
+                source_path=str(pdf),
+                source_sha256=source_sha,
+                page_index_zero_based=i - 1,
+                page_number_one_based=i,
+                width=float(page.rect.width),
+                height=float(page.rect.height),
+                rotation=int(getattr(page, "rotation", 0) or 0),
+                text_chars=len(txt),
+                extracted_chars=0,
+                blocks=block_count,
+                image_count=image_count,
+                drawing_count=drawing_count,
+                has_native_text=has_native_text,
+                is_image_only=(not has_native_text and image_count > 0),
+                ocr_required=not has_native_text,
+                extraction_backend="pymupdf",
+                extraction_lane="preflight",
+                page_status="ok" if has_native_text else "image_only",
+                trust_level=1.0,
+                metadata={
+                    "orientation": ("landscape" if page.rect.width > page.rect.height else "portrait"),
+                    "producer": str(meta.get("producer", "") or ""),
+                    "creator": str(meta.get("creator", "") or ""),
+                    "encrypted": bool(doc.is_encrypted),
+                    "file_size": fsize,
+                },
+                run_id=started_iso,
+            ))
+    write_page_truth_jsonl(out_dir / f"{pdf.stem}.page_truth.jsonl", rows)
     lane, scores = choose_lane(profile, cfg)
     if profile.is_image_only:
         lane = "C"
@@ -1122,6 +1151,77 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         })
     save_json(page_meta, page_rows)
 
+
+    # finalize page truth with extraction outcomes and explicit dispositions
+    page_truth_path = out_dir / f"{pdf.stem}.page_truth.jsonl"
+    pt_lines = [ln for ln in page_truth_path.read_text(encoding="utf-8").splitlines() if ln.strip()]
+    pt_rows = [json.loads(ln) for ln in pt_lines]
+    for row in pt_rows:
+        pnum = int(row["page_number_one_based"])
+        body = pages.get(pnum, "")
+        has_text = bool(body.strip())
+        row["extracted_chars"] = len(body)
+        row["extraction_lane"] = lane
+        row["extraction_backend"] = {"A":"pymupdf","B":"marker","B2":"docling","C":"pixtral"}.get(lane, "unknown")
+        if row.get("is_image_only") and not has_text:
+            row["page_status"] = "image_only"
+            row["warnings"] = sorted(set(row.get("warnings", []) + ["image_only_no_ocr"]))
+        elif not has_text and row.get("text_chars", 0) == 0:
+            row["page_status"] = "empty"
+            row["warnings"] = sorted(set(row.get("warnings", []) + ["blank_source_page"]))
+        elif pnum-1 in failed_pages:
+            row["page_status"] = "queued"
+            row["errors"] = sorted(set(row.get("errors", []) + ["backend_extraction_empty"]))
+        else:
+            row["page_status"] = "ok"
+        if row.get("ocr_required"):
+            row["ocr_attempted"] = ocr_mode in {"force", "redo"}
+            row["ocr_applied"] = ocr_mode in {"force", "redo"}
+    write_page_truth_jsonl(page_truth_path, [PageTruthRecord(**r) for r in pt_rows])
+
+    strict = strict_audit_book(
+        book_id=pdf.stem,
+        source_sha=source_sha,
+        source_page_count=profile.total_pages,
+        md_path=md_out,
+        page_truth_path=page_truth_path,
+        page_meta_path=page_meta,
+        table_sidecar_path=cfg.table_sidecar_dir / f"{pdf.stem}.tables.json",
+    )
+    strict_path = out_dir / "strict_audit.json"
+    write_json(strict_path, asdict(strict))
+
+    handoff = {
+        "book_id": pdf.stem,
+        "source_filename": pdf.name,
+        "source_path": str(pdf),
+        "source_sha256": source_sha,
+        "run_id": started_iso,
+        "extraction_version": "v13",
+        "extraction_started_at": started_iso,
+        "extraction_completed_at": now_iso(),
+        "page_count": profile.total_pages,
+        "pages_ok": strict.disposition_counts.get("ok", 0),
+        "pages_empty": strict.disposition_counts.get("empty", 0),
+        "pages_image_only": strict.disposition_counts.get("image_only", 0),
+        "pages_ocr_needed": sum(1 for r in pt_rows if r.get("ocr_required")),
+        "pages_ocr_done": sum(1 for r in pt_rows if r.get("ocr_applied")),
+        "pages_repaired": strict.disposition_counts.get("repaired", 0),
+        "pages_queued": strict.disposition_counts.get("queued", 0),
+        "pages_failed": strict.disposition_counts.get("failed", 0),
+        "extraction_lane_summary": {lane: profile.total_pages},
+        "ocr_summary": {"mode": ocr_mode, "whole_book_ocr_used": ocr_mode in {"force", "redo"}},
+        "table_sidecar_count": len(sidecar),
+        "image_artifact_count": 0,
+        "strict_audit_status": strict.strict_audit_status,
+        "conversion_readiness": strict.conversion_readiness,
+        "doctrine_mining_suitability": "partial" if strict.conversion_readiness != "ready" else "suitable",
+        "conversion_suitability": "partial" if strict.conversion_readiness != "ready" else "suitable",
+        "warnings": strict.warnings,
+        "errors": strict.errors,
+        "artifact_paths": {"markdown": str(md_out), "page_truth": str(page_truth_path), "strict_audit": str(strict_path), "table_sidecar": str(cfg.table_sidecar_dir / f"{pdf.stem}.tables.json")},
+    }
+    write_json(out_dir / "astra_handoff_manifest.json", handoff)
     chunk_count = max(1, len(lane_meta))
     manifest = BookManifest(
         book_id=pdf.stem,

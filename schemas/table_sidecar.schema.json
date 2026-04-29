@@ -135,6 +135,12 @@
           "string",
           "null"
         ]
+      },
+      "strategy": {
+        "type": "string"
+      },
+      "sidecar_written": {
+        "type": "boolean"
       }
     },
     "additionalProperties": false
