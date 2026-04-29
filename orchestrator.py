@@ -1278,6 +1278,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     known_statuses = {"ok", "empty", "image_only", "ocr_needed", "ocr_done", "repaired", "queued", "failed", "skipped"}
     status_counts = Counter(str(r.get("page_status", "")) for r in final_page_truth_rows)
+    final_reason_counts = Counter(str(r.get("reason_code", "")) for r in final_page_truth_rows if r.get("reason_code"))
     unknown_status_counts = {k: v for k, v in status_counts.items() if k not in known_statuses}
     final_pages = {int(r.get("page", 0)) for r in final_page_truth_rows}
     marker_pages = set(pages.keys())
@@ -1303,7 +1304,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         "final_page_truth_count": len(final_page_truth_rows),
         "markdown_page_marker_count": len(marker_pages),
         "status_counts": dict(status_counts),
-        "reason_code_counts": disposition_summary.get("reason_code_counts", {}),
+        "reason_code_counts": dict(final_reason_counts),
         "unaccounted_page_count": len(unaccounted),
         "unaccounted_pages": unaccounted,
         "missing_final_page_truth_pages": missing_final,
@@ -1335,7 +1336,7 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         "conversion_readiness": ("needs_repair" if (manifest.pages_ocr_needed or manifest.pages_queued or manifest.pages_failed or manifest.pages_image_only) else ("ready_with_warnings" if manifest.pages_empty else "ready")),
         "doctrine_mining_suitability": ("unsuitable" if (manifest.pages_ocr_needed or manifest.pages_queued or manifest.pages_failed or manifest.pages_image_only) else "suitable"),
         "conversion_suitability": ("partial" if manifest.pages_empty else ("unsuitable" if (manifest.pages_ocr_needed or manifest.pages_queued or manifest.pages_failed or manifest.pages_image_only) else "suitable")),
-        "reason_code_counts": disposition_summary.get("reason_code_counts", {}),
+        "reason_code_counts": dict(final_reason_counts),
         "page_count": profile.total_pages,
         "unaccounted_page_count": len(unaccounted),
         "unaccounted_pages": unaccounted,

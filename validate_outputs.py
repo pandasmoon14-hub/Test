@@ -61,7 +61,10 @@ def main():
             summary["missing_artifact_count"] += len(missing)
 
         strict_audit = _load_json(strict_audit_path) if strict_audit_path.exists() else None
+        handoff = _load_json(handoff_path) if handoff_path.exists() else None
         rows = _load_jsonl(pt_path) if pt_path.exists() else None
+        row_status_counts = Counter()
+        row_reason_counts = Counter()
         if args.strict:
             if rows is None:
                 strict_errors.append("invalid_page_truth_jsonl")
@@ -79,12 +82,35 @@ def main():
                         strict_errors.append("unknown_page_status")
                         break
                     status_counts[st] += 1
+                    row_status_counts[st] += 1
+                    row_reason_counts[str(r.get("reason_code"))] += 1
                 if rows is not None and sum(status_counts.values()) != len(rows):
                     strict_errors.append("status_count_mismatch")
+                expected_pages = int(m.get("page_count", m.get("total_pages", len(rows))))
+                if rows is not None and len(rows) != expected_pages:
+                    strict_errors.append("final_page_truth_count_mismatch")
+                if rows is not None and sum(status_counts.values()) != expected_pages:
+                    strict_errors.append("unaccounted_pages_present")
                 if strict_audit and int(strict_audit.get("unaccounted_page_count", 0)) > 0:
                     strict_errors.append("unaccounted_pages_present")
                 if strict_audit and strict_audit.get("strict_audit_status") != "pass":
                     strict_errors.append("strict_audit_failed")
+                if strict_audit and dict(strict_audit.get("status_counts", {})) != dict(row_status_counts):
+                    strict_errors.append("strict_audit_disposition_mismatch")
+                if handoff:
+                    handoff_counts = {
+                        "ok": int(handoff.get("pages_ok", 0)),
+                        "empty": int(handoff.get("pages_empty", 0)),
+                        "image_only": int(handoff.get("pages_image_only", 0)),
+                        "ocr_needed": int(handoff.get("pages_ocr_needed", 0)),
+                        "ocr_done": int(handoff.get("pages_ocr_done", 0)),
+                        "repaired": int(handoff.get("pages_repaired", 0)),
+                        "queued": int(handoff.get("pages_queued", 0)),
+                        "failed": int(handoff.get("pages_failed", 0)),
+                        "skipped": int(handoff.get("pages_skipped", 0)),
+                    }
+                    if any(int(row_status_counts.get(k, 0)) != v for k, v in handoff_counts.items()):
+                        strict_errors.append("manifest_disposition_mismatch")
 
         if strict_errors:
             summary["books_artifact_invalid"] += 1
@@ -93,16 +119,28 @@ def main():
             continue
 
         summary["books_artifact_valid"] += 1
-        for k in ["pages_ok", "pages_empty", "pages_image_only", "pages_ocr_needed", "pages_ocr_done", "pages_repaired", "pages_skipped", "pages_queued", "pages_failed", "total_pages"]:
-            summary[k] += int(m.get(k, 0))
-        summary["unaccounted_page_count"] += int((strict_audit or {}).get("unaccounted_page_count", 0))
+        if rows is not None:
+            row_status_counts = Counter(str(r.get("page_status")) for r in rows if r.get("page_status"))
+            row_reason_counts = Counter(str(r.get("reason_code")) for r in rows if r.get("reason_code"))
+        page_count = int(m.get("page_count", m.get("total_pages", len(rows or []))))
+        summary["total_pages"] += page_count
+        summary["pages_ok"] += int(row_status_counts.get("ok", 0))
+        summary["pages_empty"] += int(row_status_counts.get("empty", 0))
+        summary["pages_image_only"] += int(row_status_counts.get("image_only", 0))
+        summary["pages_ocr_needed"] += int(row_status_counts.get("ocr_needed", 0))
+        summary["pages_ocr_done"] += int(row_status_counts.get("ocr_done", 0))
+        summary["pages_repaired"] += int(row_status_counts.get("repaired", 0))
+        summary["pages_skipped"] += int(row_status_counts.get("skipped", 0))
+        summary["pages_queued"] += int(row_status_counts.get("queued", 0))
+        summary["pages_failed"] += int(row_status_counts.get("failed", 0))
+        unaccounted = max(0, page_count - sum(row_status_counts.values()))
+        summary["unaccounted_page_count"] += unaccounted
 
-        rc = m.get("reason_code_counts", {}) or {}
-        summary["reason_code_counts"] = dict(Counter(summary["reason_code_counts"]) + Counter(rc))
-        error_codes.update([k for k, v in rc.items() if k != "native_text_extracted" for _ in range(int(v))])
-        if m.get("pages_ocr_needed", 0) or m.get("pages_queued", 0) or m.get("pages_failed", 0) or m.get("pages_image_only", 0):
+        summary["reason_code_counts"] = dict(Counter(summary["reason_code_counts"]) + row_reason_counts)
+        error_codes.update([k for k, v in row_reason_counts.items() if k != "native_text_extracted" for _ in range(int(v))])
+        if row_status_counts.get("ocr_needed", 0) or row_status_counts.get("queued", 0) or row_status_counts.get("failed", 0) or row_status_counts.get("image_only", 0):
             summary["books_needing_repair"] += 1
-        elif m.get("pages_empty", 0):
+        elif row_status_counts.get("empty", 0):
             summary["books_ready_with_warnings"] += 1
         else:
             summary["books_conversion_ready"] += 1
