@@ -58,7 +58,10 @@ def main():
         else:
             summary['books_conversion_ready'] += 1
     summary['top_error_codes'] = [k for k,_ in errors.most_common(10)]
-    print(json.dumps(summary, indent=2))
+    rendered = json.dumps(summary, indent=2)
+    summary_path = out / "corpus_validation_summary.json"
+    summary_path.write_text(rendered + "\n", encoding="utf-8")
+    print(rendered)
 
 
 if __name__ == '__main__':
