@@ -24,6 +24,7 @@ import statistics
 import subprocess
 import time
 import traceback
+from collections import Counter
 from dataclasses import asdict, dataclass, field
 from datetime import datetime, timezone
 from pathlib import Path
@@ -36,6 +37,7 @@ from page_classifier import classify_page
 from region_segmenter import segment_regions
 from form_renderer import render_form_like
 from page_truth import PageTruthRecord, write_page_truth_jsonl
+from extraction_readiness import classify_page_disposition, summarize_dispositions
 from table_fixer import apply_fixes as apply_table_fixes, build_table_sidecars_with_context
 
 try:
@@ -93,6 +95,7 @@ class RuntimeConfig:
     table_ratio_threshold: float = 0.15
     stat_ratio_threshold: float = 0.3
     strict_page_truth: bool = False
+    force_lane: str = "AUTO"
 
     @classmethod
     def from_env(cls, repo_root: Path) -> "RuntimeConfig":
@@ -136,6 +139,7 @@ class RuntimeConfig:
             table_ratio_threshold=float(os.getenv("TABLE_RATIO_THRESHOLD", "0.15")),
             stat_ratio_threshold=float(os.getenv("STAT_RATIO_THRESHOLD", "0.3")),
             strict_page_truth=(os.getenv("STRICT_PAGE_TRUTH", "0") == "1"),
+            force_lane=(os.getenv("FORCE_LANE", "AUTO") or "AUTO").strip().upper(),
         )
 
 
@@ -218,6 +222,14 @@ class BookManifest:
     form_rendered_pages: int = 0
     table_sidecar_count: int = 0
     region_repaired_pages: int = 0
+    pages_ok: int = 0
+    pages_empty: int = 0
+    pages_image_only: int = 0
+    pages_ocr_needed: int = 0
+    pages_ocr_done: int = 0
+    pages_queued: int = 0
+    pages_failed: int = 0
+    reason_code_counts: dict[str, int] = field(default_factory=dict)
 
 
 def now_iso() -> str:
@@ -489,6 +501,29 @@ def choose_lane(profile: PdfProfile, cfg: RuntimeConfig) -> tuple[str, dict[str,
     return max(scores, key=scores.get), scores
 
 
+def resolve_executable(path_or_cmd: str) -> str | None:
+    p = Path(path_or_cmd)
+    if p.exists():
+        return str(p)
+    return shutil.which(path_or_cmd)
+
+
+def require_external_dependency(label: str, path_or_cmd: str) -> str:
+    resolved = resolve_executable(path_or_cmd)
+    if not resolved:
+        raise RuntimeError(f"missing_external_dependency: {label} path not found: {path_or_cmd}")
+    return resolved
+
+
+def effective_forced_lane(cfg: RuntimeConfig) -> str | None:
+    lane = (cfg.force_lane or "AUTO").upper()
+    if lane in {"", "AUTO"}:
+        return None
+    if lane not in {"A", "B", "B2", "C"}:
+        raise RuntimeError(f"invalid_FORCE_LANE: {lane}; expected A, B, B2, C, AUTO or empty")
+    return lane
+
+
 def route_ocr_mode(profile: PdfProfile, cfg: RuntimeConfig) -> str:
     if profile.is_image_only:
         return "skip"
@@ -676,6 +711,7 @@ def write_page_map_markdown(out_md: Path, total_pages: int, page_map: dict[int, 
 
 
 def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile, log_file: Path) -> tuple[Path, str | None, list[dict[str, Any]], str]:
+    marker_python = require_external_dependency("marker_python", cfg.marker_python)
     total_pages = profile.total_pages
     complexity = min(1.0, profile.table_page_ratio + profile.multicolumn_ratio + profile.sidebar_page_ratio)
     n_chunks = chunk_plan(total_pages, cfg, complexity)
@@ -683,7 +719,7 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
 
     if n_chunks == 1:
         page_map_path = out_dir / f"{pdf.stem}.page_map.json"
-        payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(pdf), "--output_dir", str(out_dir), "--batch_multiplier", str(cfg.batch_multiplier), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:{pdf.name}")
+        payload = bridge_call([marker_python, str(cfg.marker_runner), str(pdf), "--output_dir", str(out_dir), "--batch_multiplier", str(cfg.batch_multiplier), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:{pdf.name}")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, total_pages, cfg.strict_page_truth)
         if cfg.strict_page_truth and page_map and len(page_map) < total_pages:
             raise RuntimeError(f"strict_page_truth: marker page map incomplete {len(page_map)}/{total_pages}")
@@ -700,7 +736,7 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
         cout = out_dir / f"_chunk_{idx:02d}_out"
         cout.mkdir(parents=True, exist_ok=True)
         page_map_path = cout / f"{cp.stem}.page_map.json"
-        payload = bridge_call([cfg.marker_python, str(cfg.marker_runner), str(cp), "--output_dir", str(cout), "--batch_multiplier", str(max(1, cfg.batch_multiplier - 1 if complexity > 0.8 else cfg.batch_multiplier)), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:chunk_{idx}")
+        payload = bridge_call([marker_python, str(cfg.marker_runner), str(cp), "--output_dir", str(cout), "--batch_multiplier", str(max(1, cfg.batch_multiplier - 1 if complexity > 0.8 else cfg.batch_multiplier)), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"marker:chunk_{idx}")
         api_variant = payload.get("api_variant") or api_variant
         md = Path(payload["md_path"])
         text = md.read_text(encoding="utf-8", errors="replace")
@@ -729,12 +765,13 @@ def run_marker(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile
 
 
 def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfile, log_file: Path) -> tuple[Path, list[dict[str, Any]], str]:
+    docling_python = require_external_dependency("docling_python", cfg.docling_python)
     complexity = min(1.0, profile.table_page_ratio + profile.multicolumn_ratio)
     n_chunks = chunk_plan(profile.total_pages, cfg, complexity)
     meta: list[dict[str, Any]] = []
     if n_chunks == 1:
         page_map_path = out_dir / f"{pdf.stem}.page_map.json"
-        payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(pdf), "--output_dir", str(out_dir), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:{pdf.name}")
+        payload = bridge_call([docling_python, str(cfg.docling_runner), str(pdf), "--output_dir", str(out_dir), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:{pdf.name}")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), 1, profile.total_pages, cfg.strict_page_truth)
         if cfg.strict_page_truth and page_map and len(page_map) < profile.total_pages:
             raise RuntimeError(f"strict_page_truth: docling page map incomplete {len(page_map)}/{profile.total_pages}")
@@ -751,7 +788,7 @@ def run_docling(cfg: RuntimeConfig, pdf: Path, out_dir: Path, profile: PdfProfil
         cout = out_dir / f"_dchunk_{idx:02d}_out"
         cout.mkdir(parents=True, exist_ok=True)
         page_map_path = cout / f"{cp.stem}.page_map.json"
-        payload = bridge_call([cfg.docling_python, str(cfg.docling_runner), str(cp), "--output_dir", str(cout), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:chunk_{idx}")
+        payload = bridge_call([docling_python, str(cfg.docling_runner), str(cp), "--output_dir", str(cout), "--strict", "--page_map_json", str(page_map_path)], cfg.bridge_timeout_sec, cfg.bridge_retries, log_file, f"docling:chunk_{idx}")
         text = Path(payload["md_path"]).read_text(encoding="utf-8", errors="replace")
         page_map = load_page_map(Path(payload.get("page_map_path", page_map_path)), start + 1, end + 1, cfg.strict_page_truth)
         collected[idx] = {"text": text, "pages": page_map}
@@ -792,7 +829,8 @@ def ensure_page_markers(content: str, total_pages: int) -> str:
 def run_ocr(cfg: RuntimeConfig, input_pdf: Path, output_pdf: Path, mode: str, log_file: Path) -> Path:
     if mode == "skip":
         return input_pdf
-    cmd = [cfg.ocrmypdf_bin]
+    ocr_bin = require_external_dependency("ocrmypdf_bin", cfg.ocrmypdf_bin)
+    cmd = [ocr_bin]
     if mode == "redo":
         cmd.append("--redo-ocr")
     elif mode == "force":
@@ -995,7 +1033,10 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
     except Exception:
         pass
     lane, scores = choose_lane(profile, cfg)
-    if profile.is_image_only:
+    forced_lane = effective_forced_lane(cfg)
+    if forced_lane is not None:
+        lane = "C" if (profile.is_image_only and forced_lane == "A") else forced_lane
+    elif profile.is_image_only:
         lane = "C"
     elif cfg.sample_and_race:
         lane = sample_and_race(cfg, pdf, out_dir, profile, log_file)
@@ -1084,6 +1125,15 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "statblock": "statblock_region_repair",
             "mixed": "region_aware_repair",
         }.get(modality, "standard")
+        disposition = classify_page_disposition(
+            text_chars=p.char_count,
+            image_count=1 if p.image_coverage > 0.05 else 0,
+            drawing_count=0,
+            extracted_text=body,
+            ocr_mode=ocr_mode,
+            lane=lane,
+            text_threshold=cfg.scan_threshold,
+        )
         page_rows.append({
             "page": page_num,
             "chars": p.char_count,
@@ -1108,10 +1158,15 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "table_sidecar_refs": ([str(sidecar_by_page[page_num].get("page"))] if page_num in sidecar_by_page else []),
             "table_complex_detected": bool(page_num in sidecar_by_page and sidecar_by_page[page_num].get("render_mode") == "html"),
             "audit": next((a.reasons for a in audit.page_audits if a.page_index == page_num), []),
+            "disposition": disposition.status,
+            "reason_code": disposition.reason_code,
+            "warnings": disposition.warnings,
+            "errors": disposition.errors,
         })
     save_json(page_meta, page_rows)
 
     chunk_count = max(1, len(lane_meta))
+    disposition_summary = summarize_dispositions(page_rows)
     manifest = BookManifest(
         book_id=pdf.stem,
         source_pdf=str(pdf),
@@ -1139,6 +1194,14 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
         form_rendered_pages=sum(1 for row in page_rows if row.get("form_renderer_used")),
         table_sidecar_count=len(sidecar),
         region_repaired_pages=sum(1 for row in page_rows if row.get("regions")),
+        pages_ok=disposition_summary["pages_ok"],
+        pages_empty=disposition_summary["pages_empty"],
+        pages_image_only=disposition_summary["pages_image_only"],
+        pages_ocr_needed=disposition_summary["pages_ocr_needed"],
+        pages_ocr_done=disposition_summary["pages_ocr_done"],
+        pages_queued=disposition_summary["pages_queued"],
+        pages_failed=disposition_summary["pages_failed"],
+        reason_code_counts=disposition_summary["reason_code_counts"],
     )
     save_json(cfg.manifests_dir / f"{pdf.stem}.manifest.json", asdict(manifest))
     return manifest
@@ -1173,7 +1236,17 @@ def main() -> None:
         for bid, record in queue.items():
             db.upsert_queue_item(queue_item_from_record(bid, record))
 
-    summary = {"started_at": now_iso(), "books_total": len(pdfs), "books_ok": 0, "books_failed": 0, "books_queued": 0, "lane_counts": {}}
+    summary = {
+        "started_at": now_iso(),
+        "books_total": len(pdfs),
+        "books_ok": 0,
+        "books_failed": 0,
+        "books_queued": 0,
+        "lane_counts": {},
+        "failure_reason_counts": {},
+        "failed_book_ids": [],
+        "failed_book_errors": {},
+    }
 
     for i, pdf in enumerate(pdfs, start=1):
         print(f"\n=== [{i}/{len(pdfs)}] {pdf.name} ===")
@@ -1193,6 +1266,10 @@ def main() -> None:
                     db.mark_done(book_key)
         except Exception as exc:  # pylint: disable=broad-exception-caught
             summary["books_failed"] += 1
+            reason = str(exc).split(":", 1)[0].strip() or "unknown_error"
+            summary["failure_reason_counts"][reason] = int(summary["failure_reason_counts"].get(reason, 0)) + 1
+            summary["failed_book_ids"].append(pdf.stem)
+            summary["failed_book_errors"][pdf.stem] = str(exc)
             error_record = {
                 "file": str(pdf),
                 "error": str(exc),
