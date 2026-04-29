@@ -41,6 +41,16 @@ def test_lane_a_finalizes_page_truth_and_artifacts(monkeypatch, tmp_path: Path):
     assert all(r.get("reason_code") == "native_text_extracted" for r in rows)
     assert (book_dir / "strict_audit.json").exists()
     assert (book_dir / "astra_handoff_manifest.json").exists()
+    audit = json.loads((book_dir / "strict_audit.json").read_text(encoding="utf-8"))
+    assert audit["page_count"] == 50
+    assert audit["final_page_truth_count"] == 50
+    assert audit["markdown_page_marker_count"] == 50
+    assert sum(audit["status_counts"].values()) == 50
+    assert audit["unaccounted_page_count"] == 0
+    assert audit["strict_audit_status"] == "pass"
+    handoff = json.loads((book_dir / "astra_handoff_manifest.json").read_text(encoding="utf-8"))
+    for key in ["source_sha256", "final_page_truth_count", "markdown_page_marker_count", "pages_ok", "unaccounted_page_count", "artifact_paths"]:
+        assert key in handoff
 
 
 def test_validate_outputs_strict_rejects_missing_artifacts(tmp_path: Path, monkeypatch):
@@ -60,3 +70,24 @@ def test_validate_outputs_strict_rejects_missing_artifacts(tmp_path: Path, monke
 
     s = json.loads((out / "corpus_validation_summary.json").read_text(encoding="utf-8"))
     assert s["books_artifact_invalid"] == 1
+
+
+def test_validate_outputs_strict_detects_659_vs_60_regression(tmp_path: Path):
+    out = tmp_path / "r"
+    (out / "manifests").mkdir(parents=True)
+    book = out / "exalted"; book.mkdir(parents=True)
+    (out / "manifests" / "exalted.manifest.json").write_text(json.dumps({"total_pages": 659}), encoding="utf-8")
+    (book / "strict_audit.json").write_text(json.dumps({"strict_audit_status": "fail", "unaccounted_page_count": 599}), encoding="utf-8")
+    (book / "astra_handoff_manifest.json").write_text(json.dumps({"book_id": "exalted"}), encoding="utf-8")
+    rows = [{"book_id": "exalted", "page": i + 1, "page_status": "ok", "reason_code": "native_text_extracted"} for i in range(60)]
+    (book / "exalted.page_truth.jsonl").write_text("\\n".join(json.dumps(r) for r in rows) + "\\n", encoding="utf-8")
+    import sys
+    old = sys.argv
+    sys.argv = ["validate_outputs.py", "--output-dir", str(out), "--strict"]
+    try:
+        validate_outputs.main()
+    finally:
+        sys.argv = old
+    s = json.loads((out / "corpus_validation_summary.json").read_text(encoding="utf-8"))
+    assert s["books_artifact_invalid"] == 1
+    assert "strict_audit_failed" in s["top_error_codes"] or "unaccounted_pages_present" in s["top_error_codes"]

@@ -35,8 +35,8 @@ def main():
     summary = {
         "total_books": len(manifests), "books_artifact_valid": 0, "books_artifact_invalid": 0,
         "books_conversion_ready": 0, "books_ready_with_warnings": 0, "books_needing_repair": 0, "books_failed_extraction": 0,
-        "total_pages": 0, "pages_ok": 0, "pages_empty": 0, "pages_image_only": 0, "pages_ocr_needed": 0, "pages_ocr_done": 0, "pages_queued": 0, "pages_failed": 0,
-        "invalid_artifact_count": 0, "missing_artifact_count": 0, "top_error_codes": []
+        "total_pages": 0, "pages_ok": 0, "pages_empty": 0, "pages_image_only": 0, "pages_ocr_needed": 0, "pages_ocr_done": 0, "pages_repaired": 0, "pages_skipped": 0, "pages_queued": 0, "pages_failed": 0,
+        "unaccounted_page_count": 0, "invalid_artifact_count": 0, "missing_artifact_count": 0, "reason_code_counts": {}, "top_error_codes": []
     }
     error_codes = Counter()
 
@@ -49,7 +49,10 @@ def main():
 
         book_id = mf.stem.replace(".manifest", "")
         book_dir = out / book_id
-        required = [book_dir / "strict_audit.json", book_dir / "astra_handoff_manifest.json", book_dir / f"{book_id}.page_truth.jsonl"]
+        strict_audit_path = book_dir / "strict_audit.json"
+        handoff_path = book_dir / "astra_handoff_manifest.json"
+        pt_path = book_dir / f"{book_id}.page_truth.jsonl"
+        required = [strict_audit_path, handoff_path, pt_path]
         missing = [p for p in required if not p.exists()]
 
         strict_errors = []
@@ -57,7 +60,8 @@ def main():
             strict_errors.append("missing_required_artifact")
             summary["missing_artifact_count"] += len(missing)
 
-        rows = _load_jsonl(book_dir / f"{book_id}.page_truth.jsonl") if (book_dir / f"{book_id}.page_truth.jsonl").exists() else None
+        strict_audit = _load_json(strict_audit_path) if strict_audit_path.exists() else None
+        rows = _load_jsonl(pt_path) if pt_path.exists() else None
         if args.strict:
             if rows is None:
                 strict_errors.append("invalid_page_truth_jsonl")
@@ -77,6 +81,10 @@ def main():
                     status_counts[st] += 1
                 if rows is not None and sum(status_counts.values()) != len(rows):
                     strict_errors.append("status_count_mismatch")
+                if strict_audit and int(strict_audit.get("unaccounted_page_count", 0)) > 0:
+                    strict_errors.append("unaccounted_pages_present")
+                if strict_audit and strict_audit.get("strict_audit_status") != "pass":
+                    strict_errors.append("strict_audit_failed")
 
         if strict_errors:
             summary["books_artifact_invalid"] += 1
@@ -85,10 +93,12 @@ def main():
             continue
 
         summary["books_artifact_valid"] += 1
-        for k in ["pages_ok", "pages_empty", "pages_image_only", "pages_ocr_needed", "pages_ocr_done", "pages_queued", "pages_failed", "total_pages"]:
+        for k in ["pages_ok", "pages_empty", "pages_image_only", "pages_ocr_needed", "pages_ocr_done", "pages_repaired", "pages_skipped", "pages_queued", "pages_failed", "total_pages"]:
             summary[k] += int(m.get(k, 0))
+        summary["unaccounted_page_count"] += int((strict_audit or {}).get("unaccounted_page_count", 0))
 
         rc = m.get("reason_code_counts", {}) or {}
+        summary["reason_code_counts"] = dict(Counter(summary["reason_code_counts"]) + Counter(rc))
         error_codes.update([k for k, v in rc.items() if k != "native_text_extracted" for _ in range(int(v))])
         if m.get("pages_ocr_needed", 0) or m.get("pages_queued", 0) or m.get("pages_failed", 0) or m.get("pages_image_only", 0):
             summary["books_needing_repair"] += 1
