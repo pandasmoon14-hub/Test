@@ -61,3 +61,49 @@ def test_image_only_ocr_skip_needs_repair_signal():
     )
     assert disp.status == "ocr_needed"
     assert disp.reason_code in {"image_only_no_ocr", "ocr_required_but_skipped"}
+
+
+def test_force_mode_ocr_applied_reason():
+    disp = classify_page_disposition(
+        text_chars=0,
+        image_count=1,
+        drawing_count=0,
+        extracted_text="ocr text",
+        ocr_mode="force",
+        lane="A",
+        ocr_attempted=True,
+        ocr_applied=True,
+    )
+    assert disp.status == "ocr_done"
+    assert disp.reason_code == "ocr_applied"
+
+
+def test_force_mode_unattempted_ocr_uses_specific_reason():
+    disp = classify_page_disposition(
+        text_chars=0,
+        image_count=1,
+        drawing_count=0,
+        extracted_text="",
+        ocr_mode="force",
+        lane="A",
+        ocr_attempted=False,
+        ocr_applied=False,
+        ocr_skip_reason="dependency_missing",
+    )
+    assert disp.reason_code == "ocr_dependency_missing"
+    assert disp.reason_code != "ocr_required_but_skipped"
+
+
+def test_force_mode_applied_but_empty_uses_post_ocr_empty_reason():
+    disp = classify_page_disposition(
+        text_chars=0,
+        image_count=1,
+        drawing_count=0,
+        extracted_text="",
+        ocr_mode="force",
+        lane="A",
+        ocr_attempted=True,
+        ocr_applied=True,
+    )
+    assert disp.status == "queued"
+    assert disp.reason_code == "post_ocr_text_extraction_empty"
