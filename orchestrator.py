@@ -102,6 +102,7 @@ class RuntimeConfig:
     @classmethod
     def from_env(cls, repo_root: Path) -> "RuntimeConfig":
         output_dir = Path(os.getenv("OUTPUT_DIR", "/workspace/ttrpg_output"))
+        default_ocrmypdf = ("ocrmypdf" if os.name == "nt" else "/workspace/venvs/orchestrator/bin/ocrmypdf")
         return cls(
             input_dir=Path(os.getenv("INPUT_DIR", "/workspace/ttrpg_input")),
             output_dir=output_dir,
@@ -111,7 +112,7 @@ class RuntimeConfig:
             table_sidecar_dir=output_dir / "table_sidecars",
             marker_python=os.getenv("MARKER_PYTHON", "/workspace/venvs/marker/bin/python3"),
             docling_python=os.getenv("DOCLING_PYTHON", "/workspace/venvs/docling/bin/python3"),
-            ocrmypdf_bin=os.getenv("OCRMYPDF_BIN", "/workspace/venvs/orchestrator/bin/ocrmypdf"),
+            ocrmypdf_bin=os.getenv("OCRMYPDF_BIN", default_ocrmypdf),
             marker_runner=repo_root / "marker_runner.py",
             docling_runner=repo_root / "docling_runner.py",
             min_chars_for_native=int(os.getenv("MIN_CHARS_FOR_NATIVE", "1000")),
@@ -245,7 +246,7 @@ def now_iso() -> str:
 
 
 def ensure_dirs(cfg: RuntimeConfig) -> None:
-    for path in [cfg.output_dir, cfg.output_dir / "repair_queue", cfg.output_dir / "failed_queue", cfg.log_dir, cfg.manifests_dir, cfg.table_sidecar_dir]:
+    for path in [cfg.output_dir, cfg.output_dir / "repair_queue", cfg.output_dir / "failed_queue", cfg.output_dir / "failed_books", cfg.log_dir, cfg.manifests_dir, cfg.table_sidecar_dir]:
         path.mkdir(parents=True, exist_ok=True)
 
 
@@ -529,6 +530,34 @@ def require_external_dependency(label: str, path_or_cmd: str) -> str:
     if not resolved:
         raise RuntimeError(f"missing_external_dependency: {label} path not found: {path_or_cmd}")
     return resolved
+
+
+def preflight_ocr_dependency(cfg: RuntimeConfig) -> None:
+    if cfg.ocr_mode not in {"force", "redo"}:
+        return
+    require_external_dependency("ocrmypdf_bin", cfg.ocrmypdf_bin)
+
+
+def write_failed_book_record(cfg: RuntimeConfig, pdf: Path, exc: Exception, failure_stage: str = "extraction") -> None:
+    source_hash = None
+    try:
+        source_hash = sha256_file(pdf)
+    except Exception:
+        source_hash = None
+    reason = str(exc).split(":", 1)[0].strip() or "unknown_error"
+    payload = {
+        "book_id": pdf.stem,
+        "source_path": str(pdf),
+        "source_sha256": source_hash,
+        "failure_stage": failure_stage,
+        "failure_reason": reason,
+        "error_message": str(exc),
+        "intended_ocr_mode": cfg.ocr_mode,
+        "intended_lane": effective_forced_lane(cfg) or "AUTO",
+        "timestamp": now_iso(),
+        "setup_hint": ("Install/configure OCRmyPDF and/or set OCRMYPDF_BIN to a valid command/path." if reason == "missing_external_dependency" else None),
+    }
+    save_json(cfg.output_dir / "failed_books" / f"{pdf.stem}.failure.json", payload)
 
 
 def effective_forced_lane(cfg: RuntimeConfig) -> str | None:
@@ -1462,11 +1491,18 @@ def main() -> None:
         "failed_book_ids": [],
         "failed_book_errors": {},
     }
+    preflight_error: Exception | None = None
+    try:
+        preflight_ocr_dependency(cfg)
+    except Exception as exc:  # pylint: disable=broad-exception-caught
+        preflight_error = exc
 
     for i, pdf in enumerate(pdfs, start=1):
         print(f"\n=== [{i}/{len(pdfs)}] {pdf.name} ===")
         book_key = str(pdf.resolve())
         try:
+            if preflight_error is not None:
+                raise preflight_error
             if db is not None:
                 db.mark_in_progress(book_key)
             m = process_book(cfg, pdf, queue)
@@ -1518,6 +1554,7 @@ def main() -> None:
             summary["failure_reason_counts"][reason] = int(summary["failure_reason_counts"].get(reason, 0)) + 1
             summary["failed_book_ids"].append(pdf.stem)
             summary["failed_book_errors"][pdf.stem] = str(exc)
+            write_failed_book_record(cfg, pdf, exc, failure_stage=("preflight" if preflight_error is not None else "extraction"))
             error_record = {
                 "file": str(pdf),
                 "error": str(exc),
@@ -1543,6 +1580,7 @@ def main() -> None:
 
     summary["finished_at"] = now_iso()
     save_json(cfg.log_dir / "run_summary.json", summary)
+    save_json(cfg.output_dir / "run_summary.json", summary)
     if db is not None:
         db.close()
     print(json.dumps(summary, indent=2))

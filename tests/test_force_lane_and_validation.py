@@ -141,3 +141,48 @@ def test_force_lane_b_missing_dependency_fails_without_fallback(monkeypatch, tmp
     orchestrator.ensure_dirs(cfg)
     with pytest.raises(RuntimeError, match="missing_external_dependency"):
         orchestrator.process_book(cfg, pdf, {})
+
+
+def test_ocr_force_missing_dependency_writes_run_summary_and_failed_records(monkeypatch, tmp_path: Path):
+    in_dir = tmp_path / "in"
+    out_dir = tmp_path / "out"
+    in_dir.mkdir(); out_dir.mkdir()
+    _pdf(in_dir / "one.pdf", "a")
+    _pdf(in_dir / "two.pdf", "b")
+    monkeypatch.setenv("INPUT_DIR", str(in_dir))
+    monkeypatch.setenv("OUTPUT_DIR", str(out_dir))
+    monkeypatch.setenv("OCR_MODE", "force")
+    monkeypatch.setenv("OCRMYPDF_BIN", "/definitely/missing/ocrmypdf")
+    monkeypatch.setenv("CONTINUE_ON_ERROR", "1")
+    import sys
+    argv = sys.argv
+    sys.argv = ["orchestrator.py"]
+    try:
+        orchestrator.main()
+    finally:
+        sys.argv = argv
+    rs = json.loads((out_dir / "run_summary.json").read_text(encoding="utf-8"))
+    assert rs["books_total"] == 2
+    assert rs["books_failed_extraction"] == 2
+    assert len(list((out_dir / "failed_books").glob("*.failure.json"))) == 2
+
+
+def test_validate_outputs_uses_run_summary_when_no_artifacts(tmp_path: Path):
+    out = tmp_path / "out"
+    (out / "manifests").mkdir(parents=True)
+    (out / "run_summary.json").write_text(json.dumps({
+        "books_total": 2,
+        "books_failed_extraction": 2,
+        "failure_reason_counts": {"missing_external_dependency": 2},
+    }), encoding="utf-8")
+    import sys
+    argv = sys.argv
+    sys.argv = ["validate_outputs.py", "--output-dir", str(out), "--strict"]
+    try:
+        validate_outputs.main()
+    finally:
+        sys.argv = argv
+    s = json.loads((out / "corpus_validation_summary.json").read_text(encoding="utf-8"))
+    assert s["total_books"] == 2
+    assert s["books_failed_extraction"] == 2
+    assert "missing_external_dependency" in s["top_error_codes"]
