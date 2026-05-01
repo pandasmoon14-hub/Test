@@ -4,6 +4,7 @@ from collections import Counter
 from pathlib import Path
 
 ALLOWED_STATUSES = {"ok", "empty", "image_only", "ocr_needed", "ocr_done", "queued", "failed", "repaired", "skipped"}
+NON_ERROR_REASON_CODES = {"native_text_extracted", "ocr_applied", "image_only_ocr_required"}
 
 
 def _load_json(path: Path):
@@ -32,11 +33,13 @@ def main():
 
     out = Path(args.output_dir)
     manifests = list((out / "manifests").glob("*.manifest.json"))
+    run_summary = _load_json(out / "run_summary.json")
     summary = {
-        "total_books": len(manifests), "books_artifact_valid": 0, "books_artifact_invalid": 0,
+        "total_books": int((run_summary or {}).get("books_total", len(manifests))), "books_artifact_valid": 0, "books_artifact_invalid": 0,
         "books_conversion_ready": 0, "books_ready_with_warnings": 0, "books_needing_repair": 0, "books_failed_extraction": 0,
+        "books_with_lane_fallback": 0, "fallback_reason_counts": {}, "lane_fallback_counts": {},
         "total_pages": 0, "pages_ok": 0, "pages_empty": 0, "pages_image_only": 0, "pages_ocr_needed": 0, "pages_ocr_done": 0, "pages_repaired": 0, "pages_skipped": 0, "pages_queued": 0, "pages_failed": 0,
-        "unaccounted_page_count": 0, "invalid_artifact_count": 0, "missing_artifact_count": 0, "reason_code_counts": {}, "top_error_codes": []
+        "unaccounted_page_count": 0, "invalid_artifact_count": 0, "missing_artifact_count": 0, "reason_code_counts": {}, "failure_reason_counts": {}, "top_error_codes": []
     }
     error_codes = Counter()
 
@@ -119,6 +122,12 @@ def main():
             continue
 
         summary["books_artifact_valid"] += 1
+        if handoff and bool(handoff.get("fallback_used", False)):
+            summary["books_with_lane_fallback"] += 1
+            fb_reason = str(handoff.get("fallback_reason") or "unknown")
+            summary["fallback_reason_counts"] = dict(Counter(summary["fallback_reason_counts"]) + Counter({fb_reason: 1}))
+            route = f"{handoff.get('intended_extraction_lane', 'unknown')}->{handoff.get('actual_extraction_lane', 'unknown')}"
+            summary["lane_fallback_counts"] = dict(Counter(summary["lane_fallback_counts"]) + Counter({route: 1}))
         if rows is not None:
             row_status_counts = Counter(str(r.get("page_status")) for r in rows if r.get("page_status"))
             row_reason_counts = Counter(str(r.get("reason_code")) for r in rows if r.get("reason_code"))
@@ -137,7 +146,7 @@ def main():
         summary["unaccounted_page_count"] += unaccounted
 
         summary["reason_code_counts"] = dict(Counter(summary["reason_code_counts"]) + row_reason_counts)
-        error_codes.update([k for k, v in row_reason_counts.items() if k != "native_text_extracted" for _ in range(int(v))])
+        error_codes.update([k for k, v in row_reason_counts.items() if k not in NON_ERROR_REASON_CODES for _ in range(int(v))])
         if row_status_counts.get("ocr_needed", 0) or row_status_counts.get("queued", 0) or row_status_counts.get("failed", 0) or row_status_counts.get("image_only", 0):
             summary["books_needing_repair"] += 1
         elif row_status_counts.get("empty", 0):
@@ -146,6 +155,11 @@ def main():
             summary["books_conversion_ready"] += 1
 
     summary["top_error_codes"] = [k for k, _ in error_codes.most_common(10)]
+    if run_summary:
+        summary["books_failed_extraction"] = max(int(summary.get("books_failed_extraction", 0)), int(run_summary.get("books_failed_extraction", 0)))
+        summary["failure_reason_counts"] = dict(run_summary.get("failure_reason_counts", {}))
+        error_codes.update(summary["failure_reason_counts"])
+        summary["top_error_codes"] = [k for k, _ in error_codes.most_common(10)]
     rendered = json.dumps(summary, indent=2)
     (out / "corpus_validation_summary.json").write_text(rendered + "\n", encoding="utf-8")
     print(rendered)
