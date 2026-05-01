@@ -4,6 +4,7 @@ from collections import Counter
 from pathlib import Path
 
 ALLOWED_STATUSES = {"ok", "empty", "image_only", "ocr_needed", "ocr_done", "queued", "failed", "repaired", "skipped"}
+NON_ERROR_REASON_CODES = {"native_text_extracted", "ocr_applied", "image_only_ocr_required"}
 
 
 def _load_json(path: Path):
@@ -145,7 +146,7 @@ def main():
         summary["unaccounted_page_count"] += unaccounted
 
         summary["reason_code_counts"] = dict(Counter(summary["reason_code_counts"]) + row_reason_counts)
-        error_codes.update([k for k, v in row_reason_counts.items() if k != "native_text_extracted" for _ in range(int(v))])
+        error_codes.update([k for k, v in row_reason_counts.items() if k not in NON_ERROR_REASON_CODES for _ in range(int(v))])
         if row_status_counts.get("ocr_needed", 0) or row_status_counts.get("queued", 0) or row_status_counts.get("failed", 0) or row_status_counts.get("image_only", 0):
             summary["books_needing_repair"] += 1
         elif row_status_counts.get("empty", 0):

@@ -186,3 +186,27 @@ def test_validate_outputs_uses_run_summary_when_no_artifacts(tmp_path: Path):
     assert s["total_books"] == 2
     assert s["books_failed_extraction"] == 2
     assert "missing_external_dependency" in s["top_error_codes"]
+
+
+def test_top_error_codes_excludes_ocr_applied(tmp_path: Path, capsys):
+    out = tmp_path / "out"
+    (out / "manifests").mkdir(parents=True)
+    (out / "book").mkdir(parents=True)
+    (out / "manifests" / "book.manifest.json").write_text(json.dumps({"page_count": 2}), encoding="utf-8")
+    (out / "book" / "strict_audit.json").write_text(json.dumps({"strict_audit_status": "pass", "unaccounted_page_count": 0, "status_counts": {"ocr_done": 2}}), encoding="utf-8")
+    (out / "book" / "astra_handoff_manifest.json").write_text(json.dumps({"pages_ocr_done": 2}), encoding="utf-8")
+    (out / "book" / "book.page_truth.jsonl").write_text(
+        json.dumps({"book_id": "book", "page": 1, "page_status": "ocr_done", "reason_code": "ocr_applied"}) + "\n" +
+        json.dumps({"book_id": "book", "page": 2, "page_status": "ocr_done", "reason_code": "image_only_ocr_required"}) + "\n",
+        encoding="utf-8",
+    )
+    import sys
+    argv = sys.argv
+    sys.argv = ["validate_outputs.py", "--output-dir", str(out), "--strict"]
+    try:
+        validate_outputs.main()
+    finally:
+        sys.argv = argv
+    s = json.loads((out / "corpus_validation_summary.json").read_text(encoding="utf-8"))
+    assert "ocr_applied" not in s["top_error_codes"]
+    assert "image_only_ocr_required" not in s["top_error_codes"]

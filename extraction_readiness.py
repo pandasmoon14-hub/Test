@@ -21,6 +21,10 @@ def classify_page_disposition(
     ocr_mode: str,
     lane: str,
     text_threshold: int = 40,
+    ocr_attempted: bool = False,
+    ocr_applied: bool = False,
+    ocr_error: str | None = None,
+    ocr_skip_reason: str | None = None,
 ) -> PageDisposition:
     extracted_chars = len((extracted_text or "").strip())
 
@@ -35,11 +39,29 @@ def classify_page_disposition(
 
     if text_chars == 0 and image_count > 0:
         if ocr_mode in {"force", "redo"}:
-            return PageDisposition(status="ocr_done", reason_code="image_only_ocr_required")
+            if ocr_applied or extracted_chars > 0:
+                return PageDisposition(status="ocr_done", reason_code="ocr_applied")
+            if ocr_error:
+                return PageDisposition(status="queued", reason_code="ocr_failed", errors=[ocr_error])
+            if ocr_skip_reason == "dependency_missing":
+                return PageDisposition(status="ocr_needed", reason_code="ocr_dependency_missing")
+            if ocr_skip_reason == "page_cap_reached":
+                return PageDisposition(status="queued", reason_code="ocr_page_cap_reached")
+            if ocr_skip_reason:
+                return PageDisposition(status="queued", reason_code="ocr_skipped_by_policy", warnings=[ocr_skip_reason])
+            return PageDisposition(status="ocr_needed", reason_code="ocr_dependency_missing")
         return PageDisposition(status="ocr_needed", reason_code="image_only_no_ocr")
 
     if extracted_chars == 0:
-        return PageDisposition(status="queued" if ocr_mode == "skip" else "ocr_needed", reason_code="ocr_required_but_skipped")
+        if ocr_mode == "skip":
+            return PageDisposition(status="queued", reason_code="ocr_required_but_skipped")
+        if ocr_error:
+            return PageDisposition(status="queued", reason_code="ocr_failed", errors=[ocr_error])
+        if ocr_skip_reason == "dependency_missing":
+            return PageDisposition(status="ocr_needed", reason_code="ocr_dependency_missing")
+        if ocr_skip_reason == "page_cap_reached":
+            return PageDisposition(status="queued", reason_code="ocr_page_cap_reached")
+        return PageDisposition(status="queued", reason_code="ocr_skipped_by_policy")
 
     return PageDisposition(status="ok", reason_code="native_text_extracted")
 

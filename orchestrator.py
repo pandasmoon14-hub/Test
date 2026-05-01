@@ -1218,6 +1218,9 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             ocr_mode=ocr_mode,
             lane=lane,
             text_threshold=cfg.scan_threshold,
+            ocr_attempted=ocr_mode in {"force", "redo"},
+            ocr_applied=page_num in ocr_applied_pages,
+            ocr_skip_reason=("policy_skip_mode" if ocr_mode == "skip" else None),
         )
         page_rows.append({
             "page": page_num,
@@ -1268,6 +1271,9 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
                 ocr_mode=ocr_mode,
                 lane=lane,
                 text_threshold=cfg.scan_threshold,
+                ocr_attempted=ocr_mode in {"force", "redo"},
+                ocr_applied=page_num in ocr_applied_pages,
+                ocr_skip_reason=("policy_skip_mode" if ocr_mode == "skip" else "dependency_missing"),
             )
             disp = fallback.status
             reason = fallback.reason_code or "page_missing_from_extraction_output"
@@ -1297,6 +1303,9 @@ def process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) ->
             "ocr_required": disp in {"ocr_needed", "queued"},
             "ocr_attempted": ocr_mode in {"force", "redo"},
             "ocr_applied": page_num in ocr_applied_pages,
+            "ocr_error": None,
+            "ocr_engine": ("ocrmypdf" if ocr_mode in {"force", "redo"} else None),
+            "ocr_artifact_path": (str(out_dir / f"{pdf.stem}_ocr.pdf") if ocr_mode in {"force", "redo"} else None),
             "extraction_backend": ("pymupdf_blocks" if lane == "A" else ("marker" if lane == "B" else ("docling" if lane == "B2" else "image_stub"))),
             "extraction_lane": lane,
             "page_status": disp,
