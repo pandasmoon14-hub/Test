@@ -210,3 +210,26 @@ def test_top_error_codes_excludes_ocr_applied(tmp_path: Path, capsys):
     s = json.loads((out / "corpus_validation_summary.json").read_text(encoding="utf-8"))
     assert "ocr_applied" not in s["top_error_codes"]
     assert "image_only_ocr_required" not in s["top_error_codes"]
+
+
+def test_strict_validation_rejects_contradictory_ocr_dependency_missing(tmp_path: Path):
+    out = tmp_path / "out"
+    (out / "manifests").mkdir(parents=True)
+    (out / "book").mkdir(parents=True)
+    (out / "manifests" / "book.manifest.json").write_text(json.dumps({"page_count": 1}), encoding="utf-8")
+    (out / "book" / "strict_audit.json").write_text(json.dumps({"strict_audit_status": "pass", "unaccounted_page_count": 0, "status_counts": {"ocr_needed": 1}}), encoding="utf-8")
+    (out / "book" / "astra_handoff_manifest.json").write_text(json.dumps({"pages_ocr_needed": 1}), encoding="utf-8")
+    (out / "book" / "book.page_truth.jsonl").write_text(json.dumps({
+        "book_id": "book", "page": 1, "page_status": "ocr_needed", "reason_code": "ocr_dependency_missing",
+        "ocr_attempted": True, "ocr_applied": True, "ocr_artifact_path": "/tmp/fake.pdf", "extracted_chars": 0,
+    }) + "\n", encoding="utf-8")
+    import sys
+    argv = sys.argv
+    sys.argv = ["validate_outputs.py", "--output-dir", str(out), "--strict"]
+    try:
+        validate_outputs.main()
+    finally:
+        sys.argv = argv
+    s = json.loads((out / "corpus_validation_summary.json").read_text(encoding="utf-8"))
+    assert s["books_artifact_invalid"] == 1
+    assert "invalid_ocr_dependency_missing_state" in s["top_error_codes"]

@@ -39,6 +39,13 @@ def classify_page_disposition(
 
     if text_chars == 0 and image_count > 0:
         if ocr_mode in {"force", "redo"}:
+            if (ocr_applied or ocr_attempted) and extracted_chars == 0:
+                return PageDisposition(
+                    status="queued",
+                    reason_code="post_ocr_text_extraction_empty",
+                    errors=["OCR artifact was produced, but post-OCR extraction did not recover usable text for this page."],
+                    warnings=["page_missing_from_extraction_output"],
+                )
             if ocr_applied or extracted_chars > 0:
                 return PageDisposition(status="ocr_done", reason_code="ocr_applied")
             if ocr_error:
@@ -55,6 +62,13 @@ def classify_page_disposition(
     if extracted_chars == 0:
         if ocr_mode == "skip":
             return PageDisposition(status="queued", reason_code="ocr_required_but_skipped")
+        if ocr_applied or ocr_attempted:
+            return PageDisposition(
+                status="queued",
+                reason_code="post_ocr_text_extraction_empty",
+                errors=["OCR artifact was produced, but post-OCR extraction did not recover usable text for this page."],
+                warnings=["page_missing_from_extraction_output"],
+            )
         if ocr_error:
             return PageDisposition(status="queued", reason_code="ocr_failed", errors=[ocr_error])
         if ocr_skip_reason == "dependency_missing":

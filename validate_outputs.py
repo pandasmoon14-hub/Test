@@ -87,6 +87,19 @@ def main():
                     status_counts[st] += 1
                     row_status_counts[st] += 1
                     row_reason_counts[str(r.get("reason_code"))] += 1
+                    reason = str(r.get("reason_code"))
+                    ocr_attempted = bool(r.get("ocr_attempted", False))
+                    ocr_applied = bool(r.get("ocr_applied", False))
+                    ocr_artifact_path = r.get("ocr_artifact_path")
+                    extracted_chars = int(r.get("extracted_chars", 0) or 0)
+                    warnings = r.get("warnings", []) or []
+                    page_status = str(r.get("page_status"))
+                    if reason == "ocr_dependency_missing" and (ocr_attempted or ocr_applied or bool(ocr_artifact_path)):
+                        strict_errors.append("invalid_ocr_dependency_missing_state")
+                        break
+                    if page_status == "ocr_done" and reason == "ocr_applied" and extracted_chars == 0 and "page_missing_from_extraction_output" not in warnings:
+                        strict_errors.append("invalid_ocr_done_without_text")
+                        break
                 if rows is not None and sum(status_counts.values()) != len(rows):
                     strict_errors.append("status_count_mismatch")
                 expected_pages = int(m.get("page_count", m.get("total_pages", len(rows))))
