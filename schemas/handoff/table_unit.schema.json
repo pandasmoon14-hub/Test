@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/table_unit.schema.json",
+  "allOf": [
+    {"$ref": "content_unit.schema.json"},
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["table_normalization_status"],
+      "properties": {
+        "unit_type": {"const": "table"},
+        "table_normalization_status": {"type": "string", "enum": ["normalized", "partial", "failed", "queued"]}
+      }
+    }
+  ]
+}
