@@ -1,0 +1,53 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/map_unit.schema.json",
+  "allOf": [
+    {
+      "$ref": "content_unit.schema.json"
+    },
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "map_title",
+        "map_validation_status",
+        "scale_detected",
+        "keyed_locations_detected",
+        "diagram_defects"
+      ],
+      "properties": {
+        "unit_type": {
+          "const": "map"
+        },
+        "map_title": {
+          "type": "string"
+        },
+        "map_validation_status": {
+          "type": "string",
+          "enum": [
+            "validated",
+            "partial",
+            "failed",
+            "queued"
+          ]
+        },
+        "scale_detected": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "keyed_locations_detected": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "diagram_defects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  ]
+}
