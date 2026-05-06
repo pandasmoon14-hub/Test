@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/queue_record.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["queue_id", "queue_name", "unit_id", "book_id", "source_pages", "reason_code", "blocking_effect", "allowed_use", "recommended_action", "priority", "owner", "status"],
+  "properties": {
+    "queue_id": {"type": "string"}, "queue_name": {"type": "string", "enum": ["repair_queue", "table_normalization_queue", "map_diagram_queue", "statblock_queue", "ocr_empty_queue", "mojibake_cleanup_queue", "layout_reconstruction_queue", "lexicon_review_queue", "doctrine_escalation_queue", "source_local_retention_queue", "canon_candidate_queue"]},
+    "unit_id": {"type": "string"}, "book_id": {"type": "string"},
+    "source_pages": {"type": "array", "items": {"type": "integer", "minimum": 1}, "minItems": 1},
+    "reason_code": {"type": "string"}, "blocking_effect": {"type": "string"}, "allowed_use": {"type": "string"},
+    "recommended_action": {"type": "string"}, "priority": {"type": "string", "enum": ["low", "medium", "high", "urgent"]},
+    "owner": {"type": "string"}, "status": {"type": "string", "enum": ["open", "in_progress", "blocked", "resolved", "closed"]}
+  }
+}

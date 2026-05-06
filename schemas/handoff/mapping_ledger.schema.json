@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/mapping_ledger.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["ledger_entry_id", "unit_id", "construct_id", "lawful_outcome", "doctrine_owner", "notes"],
+  "properties": {
+    "ledger_entry_id": {"type": "string"}, "unit_id": {"type": "string"}, "construct_id": {"type": "string"},
+    "lawful_outcome": {"type": "string", "enum": ["direct_astra_mapping", "normalized_astra_mapping", "source_local_retained_construct", "quarantined_construct_pending_later_doctrine", "escalated_doctrine_problem"]},
+    "doctrine_owner": {"type": ["string", "null"]}, "notes": {"type": "string"}
+  }
+}

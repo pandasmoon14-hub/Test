@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/packet_manifest.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["packet_id", "contract_version", "book_ids", "required_files", "page_truth_path", "content_units_path", "queue_records_path", "conversion_result_path", "mapping_ledger_path"],
+  "properties": {
+    "packet_id": {"type": "string"}, "contract_version": {"type": "string", "const": "0.1"},
+    "book_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "required_files": {"type": "array", "items": {"type": "string"}, "minItems": 1},
+    "page_truth_path": {"type": "string"}, "content_units_path": {"type": "string"}, "queue_records_path": {"type": "string"},
+    "conversion_result_path": {"type": "string"}, "mapping_ledger_path": {"type": "string"}
+  }
+}

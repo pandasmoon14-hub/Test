@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/map_unit.schema.json",
+  "allOf": [
+    {"$ref": "content_unit.schema.json"},
+    {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["map_validation_status"],
+      "properties": {
+        "unit_type": {"const": "map"},
+        "map_validation_status": {"type": "string", "enum": ["validated", "partial", "failed", "queued"]}
+      }
+    }
+  ]
+}
