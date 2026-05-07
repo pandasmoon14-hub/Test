@@ -20,12 +20,9 @@ def load_jsonl(path):
 
 def markers(md): return [int(x) for x in re.findall(r"<!--\s*PAGE:(\d+)\s*-->", md)]
 
-def main():
-    ap=argparse.ArgumentParser()
-    ap.add_argument('--packet-dir', required=True)
-    ap.add_argument('--strict', action='store_true')
-    a=ap.parse_args()
-    d=Path(a.packet_dir)
+def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict, int]:
+    d=Path(packet_dir)
+    a_strict = strict
     errors=[]; warnings=[]
 
     for f in REQ_FILES:
@@ -55,15 +52,15 @@ def main():
         pt_pages={int(r.get('page',0)) for r in pt}
         if any((p<s or p>e) for p in pt_pages): errors.append('page_truth_out_of_range')
         mset=set(markers(md))
-        if a.strict and not pages.issubset(pt_pages): errors.append('missing_page_truth_for_selected_range')
-        if a.strict:
+        if a_strict and not pages.issubset(pt_pages): errors.append('missing_page_truth_for_selected_range')
+        if a_strict:
             for p in pages:
                 if p not in mset:
                     row=next((r for r in pt if int(r.get('page',0))==p),{})
                     if row.get('page_status') not in {'queued','failed'}: errors.append(f'missing_marker:{p}')
 
         if jsonschema is None:
-            (errors if a.strict else warnings).append('jsonschema_unavailable')
+            (errors if a_strict else warnings).append('jsonschema_unavailable')
         else:
             root=Path(__file__).resolve().parents[2]/'schemas'/'handoff'
             jsonschema.validate(manifest, load_json(root/'packet_manifest.schema.json'))
@@ -104,9 +101,19 @@ def main():
 
     report={"packet_id":packet_id,"packet_dir":str(d),"valid":len(errors)==0,"errors":errors,"warnings":warnings,"counts":counts}
     (d/'packet_validation_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
+    exit_code = 1 if (a_strict and errors) else 0
+    return report, exit_code
+
+
+def main():
+    ap=argparse.ArgumentParser()
+    ap.add_argument('--packet-dir', required=True)
+    ap.add_argument('--strict', action='store_true')
+    a=ap.parse_args()
+    report, exit_code = validate_packet(a.packet_dir, strict=a.strict)
     print(json.dumps(report,indent=2))
-    if a.strict and errors:
-        sys.exit(1)
+    if exit_code:
+        sys.exit(exit_code)
 
 if __name__=='__main__':
     main()
