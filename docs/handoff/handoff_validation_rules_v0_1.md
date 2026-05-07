@@ -12,3 +12,8 @@
 9. no donor stat/math/economy term can be promoted without doctrine owner
 10. every map-dependent unit has map validation status
 11. every table-dependent unit has table normalization status
+
+## Interpretation
+- strict extraction audit pass does not imply canon readiness
+- conversion results are contract artifacts, not final canon
+- live-play approval is out of contract scope

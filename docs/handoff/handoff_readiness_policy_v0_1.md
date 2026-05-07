@@ -1,22 +1,20 @@
 # Handoff Readiness Policy v0.1
 
-Readiness is assigned independently at four scopes: book, packet, page, and content-unit.
+Readiness may be assigned at book, packet, page, and content-unit levels. Content-unit level is authoritative for conversion intake.
 
-## Classes and usage
-- ready: clean for conversion at current scope.
-- ready_with_warnings: usable now, with declared caveats.
-- intake_only: retain for indexing/traceability; not final conversion-grade.
-- partial_conversion_allowed: only subset of fields/constructs may convert.
-- needs_repair: blocked pending repair (OCR/layout/normalization/etc.).
-- quarantined: blocked for doctrine/semantic/legal ambiguity.
-- failed_extraction: extraction failed; unit/page not reliable.
+## Classes
+- `ready`: conversion-safe, no unresolved blockers.
+- `ready_with_warnings`: conversion-safe with explicit caveats.
+- `intake_only`: retain/index only; not conversion-final.
+- `partial_conversion_allowed`: subset is convertible; residual defects remain.
+- `needs_repair`: blocked pending OCR/layout/normalization repair.
+- `quarantined`: blocked for doctrine/legal/semantic reasons.
+- `failed_extraction`: extraction could not produce a reliable unit.
 
-## Scope guidance
-- Book-level: summarize overall donor usability.
-- Packet-level: summarize handoff packet conversion posture.
-- Page-level: represent technical extraction condition per source page.
-- Content-unit level: authoritative conversion decision unit.
+## Policy coupling
+- `needs_repair`, `quarantined`, `failed_extraction` cannot be canon candidates.
+- `canon_permission=allowed` requires doctrine ownership and review trace.
+- `conversion_permission` may be broader than `canon_permission`.
 
-## Permission coupling
-- non-ready classes require queue, quarantine note, or explicit failure reason.
-- needs_repair and failed_extraction cannot be canon candidates.
+## Required behavior
+Every non-ready assignment must include queue/quarantine/failure reason and recommended disposition path.

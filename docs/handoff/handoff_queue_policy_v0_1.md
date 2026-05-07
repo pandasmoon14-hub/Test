@@ -1,8 +1,5 @@
 # Handoff Queue Policy v0.1
 
-## Queue ownership
-Each queue record must include owner and status. Owners are accountable for disposition movement.
-
 ## Queue set
 - repair_queue
 - table_normalization_queue
@@ -16,14 +13,16 @@ Each queue record must include owner and status. Owners are accountable for disp
 - source_local_retention_queue
 - canon_candidate_queue
 
-## Queue record requirements
-Each record must include queue_id, queue_name, unit_id, book_id, source_pages, reason_code, blocking_effect, allowed_use, recommended_action, priority, owner, status.
+## Ownership and record requirements
+Each queue record must define queue owner, priority, status, blocking effect, allowed interim use, and recommended action.
 
-## Routing guidance
-- OCR empty pages -> ocr_empty_queue (or repair_queue when generalized repair workflow applies).
-- Table defects -> table_normalization_queue.
-- Map-dependent defects -> map_diagram_queue.
-- Statblock/mechanical parsing issues -> statblock_queue.
-- Doctrine conflicts -> doctrine_escalation_queue.
-- Source-local retained constructs -> source_local_retention_queue.
-- Canon review candidates -> canon_candidate_queue.
+## Routing rules
+- OCR-empty or OCR-unresolved pages -> `ocr_empty_queue` or `repair_queue`.
+- Table/list defects -> `table_normalization_queue` before row-faithful conversion.
+- Map-dependent unresolved spatial references -> `map_diagram_queue`.
+- Statblock parsing/mechanical ambiguity -> `statblock_queue` and/or `doctrine_escalation_queue`.
+- Donor-local valid constructs not promotable to canon -> `source_local_retention_queue`.
+- Canon promotion candidates after checks only -> `canon_candidate_queue`.
+
+## Canon safety
+Queued and repair-required units cannot be promoted as canon candidates.

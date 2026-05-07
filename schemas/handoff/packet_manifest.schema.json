@@ -117,6 +117,9 @@
           "review_required"
         ]
       }
+    },
+    "contract_version": {
+      "type": "string"
     }
   }
 }

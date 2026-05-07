@@ -1,53 +1,168 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aetherforge.local/schemas/handoff/map_unit.schema.json",
-  "allOf": [
-    {
-      "$ref": "content_unit.schema.json"
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "unit_id",
+    "book_id",
+    "source_page_start",
+    "source_page_end",
+    "unit_type",
+    "text",
+    "extraction_status",
+    "content_readiness",
+    "conversion_permission",
+    "canon_permission",
+    "defects",
+    "confidence",
+    "recommended_queue",
+    "lawful_outcome",
+    "notes",
+    "map_title",
+    "map_validation_status",
+    "scale_detected",
+    "keyed_locations_detected",
+    "diagram_defects"
+  ],
+  "properties": {
+    "unit_id": {
+      "type": "string"
     },
-    {
-      "type": "object",
-      "additionalProperties": false,
-      "required": [
-        "map_title",
-        "map_validation_status",
-        "scale_detected",
-        "keyed_locations_detected",
-        "diagram_defects"
+    "book_id": {
+      "type": "string"
+    },
+    "source_page_start": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "source_page_end": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "unit_type": {
+      "type": "string",
+      "enum": [
+        "map"
+      ]
+    },
+    "text": {
+      "type": "string"
+    },
+    "extraction_status": {
+      "type": "string",
+      "enum": [
+        "ok",
+        "empty",
+        "image_only",
+        "ocr_needed",
+        "ocr_done",
+        "queued",
+        "failed",
+        "repaired",
+        "skipped"
+      ]
+    },
+    "content_readiness": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "ready_with_warnings",
+        "intake_only",
+        "partial_conversion_allowed",
+        "needs_repair",
+        "quarantined",
+        "failed_extraction"
+      ]
+    },
+    "conversion_permission": {
+      "type": "string",
+      "enum": [
+        "allowed",
+        "allowed_with_warnings",
+        "disallowed",
+        "review_required"
+      ]
+    },
+    "canon_permission": {
+      "type": "string",
+      "enum": [
+        "allowed",
+        "disallowed",
+        "review_required"
+      ]
+    },
+    "defects": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "recommended_queue": {
+      "type": [
+        "string",
+        "null"
       ],
-      "properties": {
-        "unit_type": {
-          "const": "map"
-        },
-        "map_title": {
-          "type": "string"
-        },
-        "map_validation_status": {
-          "type": "string",
-          "enum": [
-            "validated",
-            "partial",
-            "failed",
-            "queued"
-          ]
-        },
-        "scale_detected": {
-          "type": [
-            "string",
-            "null"
-          ]
-        },
-        "keyed_locations_detected": {
-          "type": "integer",
-          "minimum": 0
-        },
-        "diagram_defects": {
-          "type": "array",
-          "items": {
-            "type": "string"
-          }
-        }
+      "enum": [
+        "repair_queue",
+        "table_normalization_queue",
+        "map_diagram_queue",
+        "statblock_queue",
+        "ocr_empty_queue",
+        "mojibake_cleanup_queue",
+        "layout_reconstruction_queue",
+        "lexicon_review_queue",
+        "doctrine_escalation_queue",
+        "source_local_retention_queue",
+        "canon_candidate_queue",
+        null
+      ]
+    },
+    "lawful_outcome": {
+      "type": "string",
+      "enum": [
+        "direct_astra_mapping",
+        "normalized_astra_mapping",
+        "source_local_retained_construct",
+        "quarantined_construct_pending_later_doctrine",
+        "escalated_doctrine_problem"
+      ]
+    },
+    "notes": {
+      "type": "string"
+    },
+    "map_title": {
+      "type": "string"
+    },
+    "map_validation_status": {
+      "type": "string",
+      "enum": [
+        "validated",
+        "partial",
+        "failed",
+        "queued"
+      ]
+    },
+    "scale_detected": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "keyed_locations_detected": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "diagram_defects": {
+      "type": "array",
+      "items": {
+        "type": "string"
       }
     }
-  ]
+  }
 }
