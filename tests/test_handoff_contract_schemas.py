@@ -120,7 +120,7 @@ def test_family_schema_specific_fields_present() -> None:
 
 def test_sample_instances_validate() -> None:
     content_unit = {
-        "unit_id": "u1", "book_id": "b1", "source_page_start": 1, "source_page_end": 1, "unit_type": "narrative", "text": "x",
+        "unit_id": "u1", "book_id": "b1", "source_page_start": 1, "source_page_end": 1, "unit_type": "prose", "text": "x",
         "extraction_status": "ok", "content_readiness": "ready", "conversion_permission": "allowed", "canon_permission": "review_required",
         "defects": [], "confidence": 0.9, "recommended_queue": None, "lawful_outcome": "direct_astra_mapping", "notes": "",
     }
@@ -149,7 +149,7 @@ def test_sample_instances_validate() -> None:
     }
     table_unit = {**content_unit, "unit_type": "table", "table_title": "T", "table_format": "markdown", "row_count_observed": 2, "row_count_expected": 2, "table_normalization_status": "normalized", "table_defects": []}
     map_unit = {**content_unit, "unit_type": "map", "map_title": "M", "map_validation_status": "validated", "scale_detected": None, "keyed_locations_detected": 3, "diagram_defects": []}
-    statblock_unit = {**content_unit, "unit_type": "statblock", "statblock_family": "npc", "donor_engine": "d20", "statblock_parse_status": "parsed", "statblock_defects": [], "mechanical_import_allowed": False}
+    statblock_unit = {**content_unit, "unit_type": "stat_block", "statblock_family": "npc", "donor_engine": "d20", "statblock_parse_status": "parsed", "statblock_defects": [], "mechanical_import_allowed": False}
 
     for rel, sample in [
         ("schemas/handoff/content_unit.schema.json", content_unit),

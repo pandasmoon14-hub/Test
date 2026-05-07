@@ -43,7 +43,7 @@
     "unit_type": {
       "type": "string",
       "enum": [
-        "statblock"
+        "stat_block"
       ]
     },
     "text": {

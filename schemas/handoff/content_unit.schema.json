@@ -38,13 +38,14 @@
     "unit_type": {
       "type": "string",
       "enum": [
-        "narrative",
+        "prose",
         "table",
         "map",
-        "statblock",
-        "list",
-        "procedure",
-        "other"
+        "stat_block",
+        "rule_procedure",
+        "adventure_site",
+        "item_list",
+        "unknown"
       ]
     },
     "text": {
