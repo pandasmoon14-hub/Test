@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/mapping_ledger.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "mapping_id",
+    "donor_construct",
+    "source_pages",
+    "source_unit_ids",
+    "astra_target_family",
+    "lawful_outcome",
+    "rationale",
+    "must_not_import",
+    "next_queue",
+    "doctrine_owner",
+    "confidence"
+  ],
+  "properties": {
+    "mapping_id": {
+      "type": "string"
+    },
+    "donor_construct": {
+      "type": "string"
+    },
+    "source_pages": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1
+      },
+      "minItems": 1
+    },
+    "source_unit_ids": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "astra_target_family": {
+      "type": "string"
+    },
+    "lawful_outcome": {
+      "type": "string",
+      "enum": [
+        "direct_astra_mapping",
+        "normalized_astra_mapping",
+        "source_local_retained_construct",
+        "quarantined_construct_pending_later_doctrine",
+        "escalated_doctrine_problem"
+      ]
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "must_not_import": {
+      "type": "boolean"
+    },
+    "next_queue": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "enum": [
+        "repair_queue",
+        "table_normalization_queue",
+        "map_diagram_queue",
+        "statblock_queue",
+        "ocr_empty_queue",
+        "mojibake_cleanup_queue",
+        "layout_reconstruction_queue",
+        "lexicon_review_queue",
+        "doctrine_escalation_queue",
+        "source_local_retention_queue",
+        "canon_candidate_queue",
+        null
+      ]
+    },
+    "doctrine_owner": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}
