@@ -2,14 +2,63 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aetherforge.local/schemas/handoff/table_unit.schema.json",
   "allOf": [
-    {"$ref": "content_unit.schema.json"},
+    {
+      "$ref": "content_unit.schema.json"
+    },
     {
       "type": "object",
       "additionalProperties": false,
-      "required": ["table_normalization_status"],
+      "required": [
+        "table_title",
+        "table_format",
+        "row_count_observed",
+        "row_count_expected",
+        "table_normalization_status",
+        "table_defects"
+      ],
       "properties": {
-        "unit_type": {"const": "table"},
-        "table_normalization_status": {"type": "string", "enum": ["normalized", "partial", "failed", "queued"]}
+        "unit_type": {
+          "const": "table"
+        },
+        "table_title": {
+          "type": "string"
+        },
+        "table_format": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "html",
+            "csv",
+            "plaintext",
+            "unknown"
+          ]
+        },
+        "row_count_observed": {
+          "type": "integer",
+          "minimum": 0
+        },
+        "row_count_expected": {
+          "type": [
+            "integer",
+            "null"
+          ],
+          "minimum": 0
+        },
+        "table_normalization_status": {
+          "type": "string",
+          "enum": [
+            "normalized",
+            "partial",
+            "failed",
+            "queued"
+          ]
+        },
+        "table_defects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
       }
     }
   ]

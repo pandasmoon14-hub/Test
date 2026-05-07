@@ -3,12 +3,120 @@
   "$id": "https://aetherforge.local/schemas/handoff/packet_manifest.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["packet_id", "contract_version", "book_ids", "required_files", "page_truth_path", "content_units_path", "queue_records_path", "conversion_result_path", "mapping_ledger_path"],
+  "required": [
+    "packet_id",
+    "book_id",
+    "source_filename",
+    "source_sha256",
+    "packet_page_start",
+    "packet_page_end",
+    "extraction_version",
+    "strict_audit_status",
+    "readiness_class",
+    "content_family_tags",
+    "required_files",
+    "queues_present",
+    "conversion_permissions",
+    "canon_permissions"
+  ],
   "properties": {
-    "packet_id": {"type": "string"}, "contract_version": {"type": "string", "const": "0.1"},
-    "book_ids": {"type": "array", "items": {"type": "string"}, "minItems": 1},
-    "required_files": {"type": "array", "items": {"type": "string"}, "minItems": 1},
-    "page_truth_path": {"type": "string"}, "content_units_path": {"type": "string"}, "queue_records_path": {"type": "string"},
-    "conversion_result_path": {"type": "string"}, "mapping_ledger_path": {"type": "string"}
+    "packet_id": {
+      "type": "string"
+    },
+    "book_id": {
+      "type": "string"
+    },
+    "source_filename": {
+      "type": "string"
+    },
+    "source_sha256": {
+      "type": "string"
+    },
+    "packet_page_start": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "packet_page_end": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "extraction_version": {
+      "type": "string"
+    },
+    "strict_audit_status": {
+      "type": "string",
+      "enum": [
+        "pass",
+        "fail"
+      ]
+    },
+    "readiness_class": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "ready_with_warnings",
+        "intake_only",
+        "partial_conversion_allowed",
+        "needs_repair",
+        "quarantined",
+        "failed_extraction"
+      ]
+    },
+    "content_family_tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "required_files": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "queues_present": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "repair_queue",
+          "table_normalization_queue",
+          "map_diagram_queue",
+          "statblock_queue",
+          "ocr_empty_queue",
+          "mojibake_cleanup_queue",
+          "layout_reconstruction_queue",
+          "lexicon_review_queue",
+          "doctrine_escalation_queue",
+          "source_local_retention_queue",
+          "canon_candidate_queue"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "conversion_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "allowed",
+          "allowed_with_warnings",
+          "disallowed",
+          "review_required"
+        ]
+      }
+    },
+    "canon_permissions": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "allowed",
+          "disallowed",
+          "review_required"
+        ]
+      }
+    }
   }
 }

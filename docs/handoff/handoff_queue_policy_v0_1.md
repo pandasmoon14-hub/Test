@@ -1,6 +1,9 @@
 # Handoff Queue Policy v0.1
 
-## Queue catalog
+## Queue ownership
+Each queue record must include owner and status. Owners are accountable for disposition movement.
+
+## Queue set
 - repair_queue
 - table_normalization_queue
 - map_diagram_queue
@@ -13,13 +16,14 @@
 - source_local_retention_queue
 - canon_candidate_queue
 
-## Queue semantics
-Each queued unit must include: blocking reason, allowed interim use, recommended action, owner, priority, status.
+## Queue record requirements
+Each record must include queue_id, queue_name, unit_id, book_id, source_pages, reason_code, blocking_effect, allowed_use, recommended_action, priority, owner, status.
 
-## Queue routing defaults
-- OCR empty/failure -> `ocr_empty_queue` or `repair_queue`
-- Broken table structure -> `table_normalization_queue`
-- Map-dependent unresolved references -> `map_diagram_queue`
-- Stat/math/economy ambiguities -> `statblock_queue` and/or `doctrine_escalation_queue`
-- Donor-local but valid constructs -> `source_local_retention_queue`
-- Promotion candidates after doctrine checks -> `canon_candidate_queue`
+## Routing guidance
+- OCR empty pages -> ocr_empty_queue (or repair_queue when generalized repair workflow applies).
+- Table defects -> table_normalization_queue.
+- Map-dependent defects -> map_diagram_queue.
+- Statblock/mechanical parsing issues -> statblock_queue.
+- Doctrine conflicts -> doctrine_escalation_queue.
+- Source-local retained constructs -> source_local_retention_queue.
+- Canon review candidates -> canon_candidate_queue.

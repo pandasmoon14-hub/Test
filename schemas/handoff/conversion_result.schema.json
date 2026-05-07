@@ -3,13 +3,78 @@
   "$id": "https://aetherforge.local/schemas/handoff/conversion_result.schema.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["result_id", "source_packet_id", "result_type", "readiness_assessment", "construct_inventory_path", "mapping_ledger_path", "lexicon_delta_path", "canon_candidates_path", "quarantine_notes_path", "doctrine_escalations_path", "rejected_imports_path", "confidence", "reviewer_notes"],
+  "required": [
+    "result_id",
+    "source_packet_id",
+    "result_type",
+    "readiness_assessment",
+    "construct_inventory_path",
+    "mapping_ledger_path",
+    "lexicon_delta_path",
+    "canon_candidates_path",
+    "quarantine_notes_path",
+    "doctrine_escalations_path",
+    "rejected_imports_path",
+    "confidence",
+    "reviewer_notes"
+  ],
   "properties": {
-    "result_id": {"type": "string"}, "source_packet_id": {"type": "string"},
-    "result_type": {"type": "string", "enum": ["intake", "partial_conversion", "full_conversion", "quarantine", "failed"]},
-    "readiness_assessment": {"type": "string", "enum": ["ready", "ready_with_warnings", "intake_only", "partial_conversion_allowed", "needs_repair", "quarantined", "failed_extraction"]},
-    "construct_inventory_path": {"type": "string"}, "mapping_ledger_path": {"type": "string"}, "lexicon_delta_path": {"type": "string"},
-    "canon_candidates_path": {"type": "string"}, "quarantine_notes_path": {"type": "string"}, "doctrine_escalations_path": {"type": "string"}, "rejected_imports_path": {"type": "string"},
-    "confidence": {"type": "number", "minimum": 0, "maximum": 1}, "reviewer_notes": {"type": "string"}
+    "result_id": {
+      "type": "string"
+    },
+    "source_packet_id": {
+      "type": "string"
+    },
+    "result_type": {
+      "type": "string",
+      "enum": [
+        "intake",
+        "partial_conversion",
+        "full_conversion",
+        "quarantine",
+        "failed"
+      ]
+    },
+    "readiness_assessment": {
+      "type": "string",
+      "enum": [
+        "ready",
+        "ready_with_warnings",
+        "intake_only",
+        "partial_conversion_allowed",
+        "needs_repair",
+        "quarantined",
+        "failed_extraction"
+      ]
+    },
+    "construct_inventory_path": {
+      "type": "string"
+    },
+    "mapping_ledger_path": {
+      "type": "string"
+    },
+    "lexicon_delta_path": {
+      "type": "string"
+    },
+    "canon_candidates_path": {
+      "type": "string"
+    },
+    "quarantine_notes_path": {
+      "type": "string"
+    },
+    "doctrine_escalations_path": {
+      "type": "string"
+    },
+    "rejected_imports_path": {
+      "type": "string"
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    },
+    "reviewer_notes": {
+      "type": "string"
+    }
   }
 }

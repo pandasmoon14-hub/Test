@@ -1,21 +1,22 @@
 # Handoff Readiness Policy v0.1
 
-## Intent
-Define how units are classified for conversion without conflating extraction correctness and canon eligibility.
+Readiness is assigned independently at four scopes: book, packet, page, and content-unit.
 
-## Readiness classes
-- `ready`: conversion-safe with no known blockers.
-- `ready_with_warnings`: conversion-safe but flagged for review.
-- `intake_only`: indexed/retained, not suitable for direct conversion output.
-- `partial_conversion_allowed`: some fields may convert; others must be omitted or queued.
-- `needs_repair`: blocked pending OCR/layout/text repair.
-- `quarantined`: doctrinal/legal/semantic uncertainty requires hold.
-- `failed_extraction`: technical extraction failure prevents reliable use.
+## Classes and usage
+- ready: clean for conversion at current scope.
+- ready_with_warnings: usable now, with declared caveats.
+- intake_only: retain for indexing/traceability; not final conversion-grade.
+- partial_conversion_allowed: only subset of fields/constructs may convert.
+- needs_repair: blocked pending repair (OCR/layout/normalization/etc.).
+- quarantined: blocked for doctrine/semantic/legal ambiguity.
+- failed_extraction: extraction failed; unit/page not reliable.
+
+## Scope guidance
+- Book-level: summarize overall donor usability.
+- Packet-level: summarize handoff packet conversion posture.
+- Page-level: represent technical extraction condition per source page.
+- Content-unit level: authoritative conversion decision unit.
 
 ## Permission coupling
-- `ready`/`ready_with_warnings` may allow `conversion_permission=allowed`.
-- `needs_repair`, `quarantined`, `failed_extraction` cannot be canon candidates.
-- `canon_permission=allowed` requires doctrine ownership and review trail.
-
-## Scale posture
-Policies must remain deterministic and automatable for 200–400+ donors and mixed families.
+- non-ready classes require queue, quarantine note, or explicit failure reason.
+- needs_repair and failed_extraction cannot be canon candidates.

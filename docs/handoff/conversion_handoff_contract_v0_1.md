@@ -1,16 +1,11 @@
 # Conversion Handoff Contract v0.1
 
-## Scope
-This contract defines the stable envelope between Aether Forge extraction outputs and Astra Ascension conversion intake. It does **not** guarantee source cleanliness. It guarantees lawful disposition for every page/unit/defect.
+## Packet purpose
+This contract formalizes the handoff layer between Aether Forge extraction and Astra conversion intake.
+It does not promise all donor pages are clean; it guarantees lawful disposition for every page, content unit, table, map, stat block, OCR failure, extraction defect, and doctrine ambiguity.
 
-## Core principles
-- Strict audit pass is not canon readiness.
-- Extraction truth, conversion permission, and canon permission are separate axes.
-- Every source artifact receives one lawful state: usable, usable-with-warnings, queued, quarantined, or failed.
-- Supports mixed donor families at 200–400+ donor scale.
-
-## Packet folder shape
-```
+## Packet folder shape (expected)
+```text
 <packet_root>/
   packet_manifest.json
   pages/page_truth.jsonl
@@ -29,11 +24,26 @@ This contract defines the stable envelope between Aether Forge extraction output
   conversion/rejected_imports.jsonl
 ```
 
-## Required distinctions
-- `extraction_status`: technical extraction outcome.
-- `content_readiness`: practical usability for conversion.
-- `conversion_permission`: whether Astra conversion may consume the unit.
-- `canon_permission`: whether unit may enter canon-candidate review.
+## Required files
+At minimum, packets must include manifest, page truth, content units, queue records, conversion result, and mapping ledger.
+
+## Content unit concept
+A content unit is the minimal provenance-preserving conversion atom, carrying source page range and explicit readiness/permission/disposition state.
+
+## Conversion result bundle
+A conversion result bundle contains readiness assessment, mapping ledger pointer, construct inventory pointer, lexicon delta pointer, canon candidate pointer, quarantine/doctrine/rejection artifacts, confidence, and reviewer notes.
+
+## Required distinction
+- extraction_status: what happened technically
+- content_readiness: whether the content is usable
+- conversion_permission: whether conversion may use it
+- canon_permission: whether it may become a canon candidate
+
+## Stage separation
+1. Extraction truth capture.
+2. Conversion-stage intake and queueing.
+3. Canon candidate review.
+4. Live-play use.
 
 ## Required readiness classes
 - ready
@@ -63,22 +73,3 @@ This contract defines the stable envelope between Aether Forge extraction output
 - doctrine_escalation_queue
 - source_local_retention_queue
 - canon_candidate_queue
-
-## Required page provenance fields (minimum)
-- `book_id`, `page_number_one_based`
-- `source_sha256`
-- `extraction_lane`, `extraction_backend`
-- `page_status`, `reason_code`
-- `ocr_attempted`, `ocr_applied`, `ocr_error`, `ocr_artifact_path`
-
-## Required content-unit fields (minimum)
-- `unit_id`, `book_id`, `source_page_start`, `source_page_end`
-- `unit_type`, `text`
-- `extraction_status`, `content_readiness`, `conversion_permission`, `canon_permission`
-- `defects`, `confidence`, `recommended_queue`, `lawful_outcome`, `notes`
-
-## Lifecycle separation
-1. Extraction stage (technical truth)
-2. Conversion intake stage (readiness + queueing)
-3. Canon candidate review (doctrine-governed promotion)
-4. Live-play use (post-canon/approved local retention)

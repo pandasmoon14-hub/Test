@@ -2,14 +2,50 @@
   "$schema": "https://json-schema.org/draft/2020-12/schema",
   "$id": "https://aetherforge.local/schemas/handoff/statblock_unit.schema.json",
   "allOf": [
-    {"$ref": "content_unit.schema.json"},
+    {
+      "$ref": "content_unit.schema.json"
+    },
     {
       "type": "object",
       "additionalProperties": false,
-      "required": ["statblock_validation_status"],
+      "required": [
+        "statblock_family",
+        "donor_engine",
+        "statblock_parse_status",
+        "statblock_defects",
+        "mechanical_import_allowed"
+      ],
       "properties": {
-        "unit_type": {"const": "statblock"},
-        "statblock_validation_status": {"type": "string", "enum": ["validated", "partial", "failed", "queued"]}
+        "unit_type": {
+          "const": "statblock"
+        },
+        "statblock_family": {
+          "type": "string"
+        },
+        "donor_engine": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "statblock_parse_status": {
+          "type": "string",
+          "enum": [
+            "parsed",
+            "partial",
+            "failed",
+            "queued"
+          ]
+        },
+        "statblock_defects": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "mechanical_import_allowed": {
+          "type": "boolean"
+        }
       }
     }
   ]
