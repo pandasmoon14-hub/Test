@@ -1,15 +1,29 @@
 from __future__ import annotations
 import argparse, json, sys
 from pathlib import Path
-from collections import Counter, defaultdict
-
-from scripts.handoff.validate_handoff_packet import validate_packet
+from collections import Counter
+import importlib.util
 
 
 def _merge_counter(dst: dict, src: dict):
     c = Counter(dst)
     c.update(src)
     return dict(c)
+
+
+def _load_validate_packet():
+    try:
+        from scripts.handoff.validate_handoff_packet import validate_packet  # type: ignore
+        return validate_packet
+    except Exception:
+        here = Path(__file__).resolve().parent
+        target = here / "validate_handoff_packet.py"
+        spec = importlib.util.spec_from_file_location("validate_handoff_packet_local", target)
+        if spec is None or spec.loader is None:
+            raise
+        mod = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(mod)  # type: ignore[attr-defined]
+        return mod.validate_packet
 
 
 def main():
@@ -22,6 +36,7 @@ def main():
     if not root.exists() or not root.is_dir():
         raise SystemExit('packet root not found')
 
+    validate_packet = _load_validate_packet()
     candidates = [p for p in root.iterdir() if p.is_dir() and (p / 'packet_manifest.json').exists()]
     errors = []
     warnings = []
