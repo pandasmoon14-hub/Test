@@ -1,0 +1,63 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/readiness_classes.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "readiness_classes",
+    "queue_names",
+    "lawful_mapping_outcomes"
+  ],
+  "properties": {
+    "readiness_classes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ready",
+          "ready_with_warnings",
+          "intake_only",
+          "partial_conversion_allowed",
+          "needs_repair",
+          "quarantined",
+          "failed_extraction"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "queue_names": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "repair_queue",
+          "table_normalization_queue",
+          "map_diagram_queue",
+          "statblock_queue",
+          "ocr_empty_queue",
+          "mojibake_cleanup_queue",
+          "layout_reconstruction_queue",
+          "lexicon_review_queue",
+          "doctrine_escalation_queue",
+          "source_local_retention_queue",
+          "canon_candidate_queue"
+        ]
+      },
+      "uniqueItems": true
+    },
+    "lawful_mapping_outcomes": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "direct_astra_mapping",
+          "normalized_astra_mapping",
+          "source_local_retained_construct",
+          "quarantined_construct_pending_later_doctrine",
+          "escalated_doctrine_problem"
+        ]
+      },
+      "uniqueItems": true
+    }
+  }
+}
