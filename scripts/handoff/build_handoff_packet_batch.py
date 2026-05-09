@@ -47,7 +47,7 @@ def main():
     out_root.mkdir(parents=True, exist_ok=True)
 
     errors=[]; warnings=[]
-    plan = json.loads(plan_file.read_text(encoding='utf-8'))
+    plan = json.loads(plan_file.read_text(encoding='utf-8-sig'))
     for f in ['plan_id','source_output_root','packets']:
         if f not in plan:
             errors.append(f"missing_plan_field:{f}")

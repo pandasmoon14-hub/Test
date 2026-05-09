@@ -72,3 +72,15 @@ def test_multiple_matches_warn_and_pick_first(tmp_path: Path):
     assert r.returncode==0
     s=json.loads((out/'handoff_batch_build_summary.json').read_text())
     assert any('multiple_book_matches' in w for pr in s['packet_results'] for w in pr.get('warnings',[]))
+
+
+def test_plan_with_utf8_bom_succeeds(tmp_path: Path):
+    source=tmp_path/'src'; source.mkdir(); _mk_book(source,'book_alpha')
+    plan={"plan_id":"p","source_output_root":str(source),"packets":[{"packet_id":"p1","book_match":"alpha","start_page":1,"end_page":2,"packet-purpose":"a"}]}
+    pf=tmp_path/'p_bom.json'
+    pf.write_text(json.dumps(plan), encoding='utf-8-sig')
+    out=tmp_path/'out'
+    r=_run(pf,out,True)
+    assert r.returncode==0
+    s=json.loads((out/'handoff_batch_build_summary.json').read_text())
+    assert s['packets_built']==1 and s['packets_failed']==0
