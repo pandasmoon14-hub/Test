@@ -55,4 +55,5 @@ def test_include_repair_pages_option(tmp_path: Path):
     subprocess.run([sys.executable,'scripts/handoff/generate_handoff_packet_plan.py','--source-output-root',str(src),'--output-plan',str(planf),'--plan-id','pid','--include-repair-pages','--min-text-chars','5'],check=True)
     plan=json.loads(planf.read_text())
     assert plan['packets']
+    assert any(p['start_page'] <= 3 <= p['end_page'] for p in plan['packets'])
     assert any(p['readiness_hint'] in {'needs_repair_candidate','partial_conversion_allowed_candidate','ready_with_warnings_candidate'} for p in plan['packets'])

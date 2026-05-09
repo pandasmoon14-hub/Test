@@ -84,13 +84,14 @@ def main():
                 repair.append(p)
             elif st in {'ok','ocr_done'} and len(txt)>=max(80, a.min_text_chars//4):
                 good.append(p)
-        if not good and a.include_repair_pages and repair:
-            good=sorted(repair[:a.max_pages_per_packet])
-        if not good:
+        selected_pages = sorted(set(good))
+        if a.include_repair_pages and repair:
+            selected_pages = sorted(set(selected_pages) | set(repair))
+        if not selected_pages:
             skipped += 1
             warnings.append(f'skipped_book_insufficient_content:{book.name}')
             continue
-        good=sorted(set(good))
+        good=selected_pages
         # split contiguous + max size
         ranges=[]; s=good[0]; prev=good[0]
         for p in good[1:]:
@@ -106,7 +107,7 @@ def main():
             tags=_tags(all_text)
             repair_near=[p for p in repair if s<=p<=e]
             if repair_near and a.include_repair_pages:
-                rh='needs_repair_candidate'; w=['includes_repair_pages']
+                rh='needs_repair_candidate'; w=['repair_pages_included']
             elif repair_near:
                 rh='repair_avoided'; w=['nearby_repair_pages_excluded']
             elif any(len(pages.get(i,''))<a.min_text_chars for i in range(s,e+1)):
