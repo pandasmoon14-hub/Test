@@ -77,6 +77,7 @@ def main():
     warnings=[]; packets=[]; ignored=[]
     scanned=0; skipped=0; with_packets=0
     default_max_per_book = a.max_packets_per_book if a.max_packets_per_book>0 else (3 if a.selection_strategy=='pilot' else 9999)
+    effective_min_pages = min(max(1, a.min_pages_per_packet), max(1, a.max_pages_per_packet))
 
     for book in sorted([d for d in root.iterdir() if d.is_dir()]):
         if book.name in SUPPORT_DIRS:
@@ -92,7 +93,7 @@ def main():
         for r in pt:
             p=int(r.get('page',0)); st=str(r.get('page_status','')); txt=pages.get(p,'')
             if p<=3 and len(pt)>8: continue
-            if st in {'ok','ocr_done'} and len(txt)>=max(80,a.min_text_chars//4): eligible.append(p)
+            if st in {'ok','ocr_done'} and len(txt)>=max(1, a.min_text_chars//2): eligible.append(p)
             elif a.include_repair_pages and st in {'queued','failed','ocr_needed','image_only'}: eligible.append(p)
         eligible=sorted(set(eligible))
         if not eligible:
@@ -106,7 +107,7 @@ def main():
 
         candidates=[]
         for s,e in ranges:
-            if (e-s+1) < a.min_pages_per_packet and len(ranges)>1:
+            if (e-s+1) < effective_min_pages and len(ranges)>1:
                 continue
             sel_rows=[r for r in pt if s<=int(r.get('page',0))<=e]
             sel_text='\n'.join(pages.get(i,'') for i in range(s,e+1))
@@ -144,6 +145,8 @@ def main():
                     continue
                 chosen.append(c); seen.add(c['dominant_content_family'])
                 if len(chosen)>=default_max_per_book: break
+            if not chosen and candidates:
+                chosen = [max(candidates, key=lambda x: x['quality_score'])]
         else:
             chosen=sorted(candidates,key=lambda x:(x['start_page']))[:default_max_per_book]
 
