@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://aetherforge.local/schemas/handoff/conversion_intake_result.schema.json",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "result_id","packet_id","book_id","source_packet_dir","page_range","result_status",
+    "extraction_readiness_assessment","donor_construct_inventory","mapping_ledger","queue_actions",
+    "lexicon_delta","doctrine_escalations","source_local_retentions","rejected_imports",
+    "canon_candidate_notes","conversion_notes","reviewer_notes","confidence"
+  ],
+  "properties": {
+    "result_id": {"type": "string"},
+    "packet_id": {"type": "string"},
+    "book_id": {"type": "string"},
+    "source_packet_dir": {"type": "string"},
+    "page_range": {"type": "object", "additionalProperties": false, "required": ["start_page","end_page"], "properties": {"start_page": {"type":"integer","minimum":1}, "end_page": {"type":"integer","minimum":1}}},
+    "result_status": {"type":"string","enum":["placeholder","drafted","reviewed","needs_revision","rejected"]},
+    "extraction_readiness_assessment": {"type":"string"},
+    "donor_construct_inventory": {"type":"array","items":{"type":"object"}},
+    "mapping_ledger": {
+      "type":"array",
+      "items": {
+        "type":"object","additionalProperties":false,
+        "required":["donor_construct","source_pages","source_unit_ids","astra_target_family","lawful_outcome","rationale","must_not_import","doctrine_owner","canon_candidate_permission","confidence"],
+        "properties":{
+          "donor_construct":{"type":"string"},
+          "source_pages":{"type":"array","items":{"type":"integer","minimum":1}},
+          "source_unit_ids":{"type":"array","items":{"type":"string"}},
+          "astra_target_family":{"type":"string"},
+          "lawful_outcome":{"type":"string","enum":["direct Astra mapping","normalized Astra mapping","source-local retained construct","quarantined construct pending later doctrine","escalated doctrine problem"]},
+          "rationale":{"type":"string"},
+          "must_not_import":{"type":"boolean"},
+          "doctrine_owner":{"type":["string","null"]},
+          "canon_candidate_permission":{"type":"string","enum":["none","candidate_only_after_review","blocked"]},
+          "confidence":{"type":"number","minimum":0,"maximum":1}
+        }
+      }
+    },
+    "queue_actions": {"type":"array","items":{"type":"object"}},
+    "lexicon_delta": {"type":"array","items":{"type":"object"}},
+    "doctrine_escalations": {"type":"array","items":{"type":"object"}},
+    "source_local_retentions": {"type":"array","items":{"type":"object"}},
+    "rejected_imports": {"type":"array","items":{"type":"object"}},
+    "canon_candidate_notes": {"type":"string"},
+    "conversion_notes": {"type":"string"},
+    "reviewer_notes": {"type":"string"},
+    "confidence": {"type":"number","minimum":0,"maximum":1}
+  }
+}
