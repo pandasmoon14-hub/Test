@@ -1,0 +1,18 @@
+﻿# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local Claude/Codex working files
+.claude/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.bak
