@@ -1,4 +1,4 @@
-﻿from __future__ import annotations
+from __future__ import annotations
 
 import argparse
 import csv
@@ -371,7 +371,7 @@ def write_markdown_reports(output_dir: Path, aggregation: dict[str, Any]) -> Non
     lines.append(f"- Lawful outcome counts: `{json.dumps(aggregation['lawful_outcome_counts'], ensure_ascii=False)}`")
     conf = aggregation["confidence"]
     lines.append(f"- Confidence average: {conf['avg']:.4f}")
-    lines.append(f"- Confidence range: {conf['min']:.4f}â€“{conf['max']:.4f}")
+    lines.append(f"- Confidence range: {conf['min']:.4f}-{conf['max']:.4f}")
     lines.append("")
 
     lines.append("## Donor-Family Pressure")
@@ -392,7 +392,7 @@ def write_markdown_reports(output_dir: Path, aggregation: dict[str, Any]) -> Non
         if entry["examples"]:
             lines.append("- Examples:")
             for ex in entry["examples"][:5]:
-                lines.append(f"  - `{ex['packet_id']}` â€” {ex['lawful_outcome']} â€” {ex['donor_construct']}")
+                lines.append(f"  - `{ex['packet_id']}` - {ex['lawful_outcome']} - {ex['donor_construct']}")
         lines.append("")
 
     doctrine = aggregation["doctrine_pressure"]
@@ -404,7 +404,7 @@ def write_markdown_reports(output_dir: Path, aggregation: dict[str, Any]) -> Non
     lines.append(f"- Human review queue packets: {len(aggregation['human_review_queue'])}")
     lines.append("")
     for item in aggregation["human_review_queue"][:20]:
-        lines.append(f"- `{item['packet_id']}` â€” confidence {item['confidence']} â€” {', '.join(item['review_reasons'])}")
+        lines.append(f"- `{item['packet_id']}` - confidence {item['confidence']} - {', '.join(item['review_reasons'])}")
     lines.append("")
 
     retention = aggregation["source_local_retention"]
@@ -437,13 +437,13 @@ def write_markdown_reports(output_dir: Path, aggregation: dict[str, Any]) -> Non
         "",
     ]
     for item in doctrine["escalated_mapping_entries"]:
-        doctrine_lines.append(f"- `{item['packet_id']}` â€” {item['donor_construct']} â€” {item.get('rationale', '')}")
+        doctrine_lines.append(f"- `{item['packet_id']}` - {item['donor_construct']} - {item.get('rationale', '')}")
     doctrine_lines.extend(["", "## Quarantined Mapping Entries", ""])
     for item in doctrine["quarantined_mapping_entries"]:
-        doctrine_lines.append(f"- `{item['packet_id']}` â€” {item['donor_construct']} â€” {item.get('rationale', '')}")
+        doctrine_lines.append(f"- `{item['packet_id']}` - {item['donor_construct']} - {item.get('rationale', '')}")
     doctrine_lines.extend(["", "## Doctrine Escalation Notes", ""])
     for item in doctrine["doctrine_escalation_notes"]:
-        doctrine_lines.append(f"- `{item['packet_id']}` â€” {item['text']}")
+        doctrine_lines.append(f"- `{item['packet_id']}` - {item['text']}")
     (output_dir / "batch_001_doctrine_pressure_report.md").write_text("\n".join(doctrine_lines), encoding="utf-8")
 
     retention_lines = [
@@ -455,13 +455,13 @@ def write_markdown_reports(output_dir: Path, aggregation: dict[str, Any]) -> Non
         "",
     ]
     for item in retention["source_local_mapping_entries"]:
-        retention_lines.append(f"- `{item['packet_id']}` â€” {item['donor_construct']} â€” {item.get('rationale', '')}")
+        retention_lines.append(f"- `{item['packet_id']}` - {item['donor_construct']} - {item.get('rationale', '')}")
     retention_lines.extend(["", "## Source-Local Retention Notes", ""])
     for item in retention["source_local_retention_notes"]:
-        retention_lines.append(f"- `{item['packet_id']}` â€” {item['text']}")
+        retention_lines.append(f"- `{item['packet_id']}` - {item['text']}")
     retention_lines.extend(["", "## Rejected Imports", ""])
     for item in retention["rejected_imports"]:
-        retention_lines.append(f"- `{item['packet_id']}` â€” {item['text']}")
+        retention_lines.append(f"- `{item['packet_id']}` - {item['text']}")
     (output_dir / "batch_001_source_local_retention_report.md").write_text("\n".join(retention_lines), encoding="utf-8")
 
 
