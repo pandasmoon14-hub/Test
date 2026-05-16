@@ -4,22 +4,24 @@ Production Batch 001 is the first scaled conversion-intake rollout after the 12-
 
 ## Batch identity
 
-- Batch root: $batchRoot
-- Conversion-intake run: $batchRun
-- Frozen snapshot: $zipPath
-- Completion timestamp: $stamp
+- Batch root: C:\AetherForgeRuns\prod_batch_001
+- Conversion-intake run: C:\AetherForgeRuns\prod_batch_001\conversion_intake_run
+- Frozen snapshot: C:\AetherForgeRuns\prod_batch_001\conversion_intake_run_frozen_20260516_160240.zip
+- Completion timestamp: 20260516_160240
 
 ## Final status
 
 - Packets total: 36
-- Result status counts: $(@{packets_total=36; result_status_counts=; lawful_outcome_counts=; doctrine_escalation_count=358; source_local_retention_count=278; rejected_import_count=212; canon_candidate_note_count=36; confidence_avg=0.6652777777777777; confidence_min=0.5; confidence_max=0.8; packets_needing_revision=System.Object[]; packets_ready_for_review=System.Object[]}.result_status_counts | ConvertTo-Json -Compress)
+- Result status counts: {"drafted":36}
+- Strict validation valid: True
 - Quality gate valid: True
-- Packets with quality errors: $(@{run_dir=C:\AetherForgeRuns\prod_batch_001\conversion_intake_run; valid_quality_gate=True; packets_total=36; status_counts=; issue_counts=; severity_counts=; packets_with_errors=System.Object[]; packets_with_warnings=System.Object[]; packet_results=System.Object[]}.packets_with_errors | ConvertTo-Json -Compress)
-- Packets with quality warnings: $(@{run_dir=C:\AetherForgeRuns\prod_batch_001\conversion_intake_run; valid_quality_gate=True; packets_total=36; status_counts=; issue_counts=; severity_counts=; packets_with_errors=System.Object[]; packets_with_warnings=System.Object[]; packet_results=System.Object[]}.packets_with_warnings | ConvertTo-Json -Compress)
+- Packets with quality errors: 
+- Packets with quality warnings: 
+- Removed stale backup artifacts before final freeze: 0
 
 ## Aggregate conversion-intake signals
 
-- Lawful outcome counts: $(@{packets_total=36; result_status_counts=; lawful_outcome_counts=; doctrine_escalation_count=358; source_local_retention_count=278; rejected_import_count=212; canon_candidate_note_count=36; confidence_avg=0.6652777777777777; confidence_min=0.5; confidence_max=0.8; packets_needing_revision=System.Object[]; packets_ready_for_review=System.Object[]}.lawful_outcome_counts | ConvertTo-Json -Compress)
+- Lawful outcome counts: {"direct Astra mapping":335,"normalized Astra mapping":2130,"source-local retained construct":828,"quarantined construct pending later doctrine":143,"escalated doctrine problem":238}
 - Doctrine escalation count: 358
 - Source-local retention count: 278
 - Rejected import count: 212
@@ -36,12 +38,14 @@ Production Batch 001 is the first scaled conversion-intake rollout after the 12-
 - All 36 selected packet memos were scaffolded as drafted.
 - No placeholders remain in the official run.
 - Extra/non-index result artifacts were removed before final closure.
+- Clean frozen run snapshot was created.
 
 ## Interpretation
 
 Batch 001 confirms that the handoff contract can scale beyond the original 12-packet pilot to a 36-packet production-style batch.
 
 The batch tested broad donor-family pressure, including:
+
 - universal toolkits
 - point-buy systems
 - narrative/aspect systems
