@@ -94,7 +94,7 @@ def compact_example(value: Any, limit: int = 220) -> str:
     text = item_to_text(value)
     if len(text) <= limit:
         return text
-    return text[: limit - 1].rstrip() + "â€¦"
+    return text[: limit - 1].rstrip() + "..."
 
 
 def classify_by_rules(text: str, rules: tuple[tuple[str, tuple[str, ...]], ...], fallback: str) -> str:
