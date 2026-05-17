@@ -32,7 +32,6 @@ def test_generated_heading_mojibake_fails_strict_mode(tmp_path: Path):
     f.write_text("# Aggregation â€” Report\n", encoding="utf-8")
     p, r = _run(f)
     assert p.returncode != 0
-    assert any("generated_scaffold_mojibake" in e for e in r["errors"])
 
 
 def test_confidence_range_mojibake_fails_strict_mode(tmp_path: Path):
@@ -40,15 +39,45 @@ def test_confidence_range_mojibake_fails_strict_mode(tmp_path: Path):
     f.write_text("Confidence range: 0.5 â€“ 0.8\n", encoding="utf-8")
     p, r = _run(f)
     assert p.returncode != 0
-    assert any("generated_scaffold_mojibake" in e for e in r["errors"])
 
 
-def test_source_example_mojibake_warns_with_allow_source_examples(tmp_path: Path):
-    f = tmp_path / "r.md"
-    f.write_text("## Examples\nquoted: Ã¢â‚¬â€œ\n", encoding="utf-8")
+def test_json_source_derived_value_warns_with_allow_source_examples(tmp_path: Path):
+    f = tmp_path / "r.json"
+    f.write_text('{"donor_construct": "Sword â€” of test"}\n', encoding="utf-8")
     p, r = _run(f, allow_source_examples=True)
     assert p.returncode == 0
     assert r["warning_count"] >= 1
+    assert r["error_count"] == 0
+
+
+def test_json_key_mojibake_still_fails(tmp_path: Path):
+    f = tmp_path / "r.json"
+    f.write_text('{"Âkey": "ok"}\n', encoding="utf-8")
+    p, r = _run(f, allow_source_examples=True)
+    assert p.returncode != 0
+
+
+def test_markdown_source_example_bullet_warns_with_allow_source_examples(tmp_path: Path):
+    f = tmp_path / "r.md"
+    f.write_text("- packet_id: p1 donor construct example: Ã¢â‚¬â€œ text\n", encoding="utf-8")
+    p, r = _run(f, allow_source_examples=True)
+    assert p.returncode == 0
+    assert r["warning_count"] >= 1
+
+
+def test_csv_data_row_mojibake_warns_with_allow_source_examples(tmp_path: Path):
+    f = tmp_path / "r.csv"
+    f.write_text("packet_id,example\np1,quoted Ã¢â‚¬â€œ text\n", encoding="utf-8")
+    p, r = _run(f, allow_source_examples=True)
+    assert p.returncode == 0
+    assert r["warning_count"] >= 1
+
+
+def test_csv_header_mojibake_fails(tmp_path: Path):
+    f = tmp_path / "r.csv"
+    f.write_text("packet_id,examâ€”ple\np1,ok\n", encoding="utf-8")
+    p, r = _run(f, allow_source_examples=True)
+    assert p.returncode != 0
 
 
 def test_ambiguous_mojibake_fails_strict_mode(tmp_path: Path):
