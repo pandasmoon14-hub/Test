@@ -115,3 +115,71 @@ def test_max_files_limits_discovery_deterministically(tmp_path: Path):
         (c / f"{i}.pdf").write_bytes(b"x")
     _, r = _run(c, tmp_path / "out", extra=["--max-files", "2"])
     assert r["files_discovered"] == 2
+
+
+def test_report_includes_issue_donor_confidence_and_unclassified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "weirdname.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    report = Path(tmp_path / "out" / "full_corpus_dry_run_report.md").read_text(encoding="utf-8")
+    assert "Issue Counts by issue_code" in report
+    assert "Donor-Family Candidate Counts" in report
+    assert "Confidence Counts" in report
+    assert "Top Unclassified Files Sample" in report
+
+
+def test_d20_fantasy_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "player_handbook_core_rulebook.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("d20_class_level_fantasy", 0) >= 1
+
+
+def test_spell_power_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "magic_spell_compendium.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("magic_spell_power_compendium", 0) >= 1
+
+
+def test_gear_catalog_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "equipment_catalog.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("gear_item_catalog", 0) >= 1
+
+
+def test_cyber_biotech_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "cyber_augmentation_matrix.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("cyberpunk_biotech_transhuman", 0) >= 1
+
+
+def test_starship_trade_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "traveller_trade_starship_merchant.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("lifepath_trade_starship", 0) >= 1
+
+
+def test_narrative_aspect_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "fate_aspect_storypath.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("narrative_tag_aspect", 0) >= 1
+
+
+def test_random_table_filename_classified(tmp_path: Path):
+    c = tmp_path / "corpus"
+    c.mkdir()
+    (c / "random_d100_table_generator.pdf").write_bytes(b"x")
+    _, r = _run(c, tmp_path / "out")
+    assert r["donor_family_estimate_counts"].get("random_table_loot", 0) >= 1

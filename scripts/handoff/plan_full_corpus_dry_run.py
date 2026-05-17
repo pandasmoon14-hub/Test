@@ -43,30 +43,51 @@ def _sha256_file(path: Path, chunk_size: int = 1024 * 1024) -> str:
 
 def _estimate_family(rel: str, templates: set[str]) -> tuple[list[str], str]:
     l = rel.lower()
-    matches = []
-    kw = {
-        "adventure_path_scenario": ["adventure", "scenario", "campaign", "path"],
-        "bestiary_statblock_heavy": ["bestiary", "monster", "statblock"],
-        "random_table_loot": ["random", "table", "loot"],
-        "setting_world_guide": ["setting", "world", "gazetteer", "lore"],
-        "d20_class_level_fantasy": ["core", "rulebook", "player", "gm"],
-        "map_diagram_heavy": ["map", "diagram"],
-        "scanned_or_ocr_heavy": ["scan", "ocr", "image-only"],
+    family_keywords: dict[str, tuple[list[str], str]] = {
+        "d20_class_level_fantasy": (["d20", "rulebook", "core", "player", "handbook", "dnd", "pathfinder"], "medium"),
+        "d20_scifi_science_fantasy": (["starfinder", "science fantasy", "sci-fi", "scifi", "space opera"], "high"),
+        "adventure_path_scenario": (["adventure", "scenario", "campaign", "path", "module", "quest", "dungeon"], "medium"),
+        "setting_world_guide": (["world", "setting", "atlas", "gazetteer", "region", "city", "kingdom", "planet", "guide"], "medium"),
+        "bestiary_statblock_heavy": (["bestiary", "monster", "creature", "foe", "enemy", "adversary", "npc"], "high"),
+        "random_table_loot": (["random", "table", "d100", "generator", "roll"], "high"),
+        "magic_spell_power_compendium": (["spell", "magic", "powers", "psionics", "technique", "martial", "sorcery"], "medium"),
+        "gear_item_catalog": (["gear", "equipment", "item", "armory", "catalogue", "catalog", "vehicle", "starship", "ship"], "medium"),
+        "crafting_economy_salvage": (["craft", "crafting", "salvage", "economy", "merchant", "trade goods"], "medium"),
+        "horror_investigation_social": (["horror", "investigation", "mystery", "occult", "vampire", "cthulhu"], "high"),
+        "cyberpunk_biotech_transhuman": (["cyber", "biotech", "transhuman", "shadowrun", "gene", "augmentation", "rigger", "matrix"], "high"),
+        "lifepath_trade_starship": (["traveller", "starship", "trade", "merchant", "colony", "fleet", "space"], "medium"),
+        "tactical_mech_vehicle_platform": (["mech", "lancer", "tactical", "combat", "battlefield", "war"], "medium"),
+        "companion_summon_pet": (["companion", "pet", "familiar", "summon", "beastmaster"], "medium"),
+        "domain_faction_kingdom_management": (["faction", "kingdom", "domain", "stronghold", "settlement", "organization", "empire"], "medium"),
+        "mass_battle_war_campaign": (["mass battle", "war campaign", "army", "battle"], "high"),
+        "narrative_tag_aspect": (["fate", "cortex", "aspect", "narrative", "storypath"], "high"),
+        "forged_pbta_clock_playbook": (["forged", "blades", "scum", "villainy", "clock", "playbook"], "high"),
+        "osr_survival_sandbox": (["osr", "survival", "sandbox", "hexcrawl", "old-school"], "high"),
+        "universal_toolkit_or_generic_engine": (["toolkit", "system", "engine", "universal"], "medium"),
     }
-    for tid, words in kw.items():
-        if any(w in l for w in words) and (not templates or tid in templates):
-            matches.append(tid)
+    matches: list[str] = []
+    conf = "low"
+    for fid, (words, base_conf) in family_keywords.items():
+        if any(w in l for w in words) and (not templates or fid in templates):
+            matches.append(fid)
+            if base_conf == "high":
+                conf = "high"
+            elif conf != "high":
+                conf = "medium"
+
     if not matches:
         return ["unclassified_or_mixed_donor_family"], "low"
-    return sorted(set(matches)), "medium" if len(matches) == 1 else "high"
+    return sorted(set(matches)), conf
 
 
 def _estimate_queues(rel: str, size: int, ext: str, queue_ids: set[str]) -> list[str]:
     l = rel.lower()
-    out = []
+    out: list[str] = []
+
     def add(q: str):
         if (not queue_ids or q in queue_ids) and q not in out:
             out.append(q)
+
     if size == 0:
         add("unreadable_or_corrupt_pdf")
     if size < 1024:
@@ -139,9 +160,9 @@ def main() -> None:
         if args.max_files is not None:
             all_files = all_files[: args.max_files]
 
-        records = []
-        name_map = defaultdict(list)
-        hash_map = defaultdict(list)
+        records: list[dict[str, Any]] = []
+        name_map: defaultdict[str, list[str]] = defaultdict(list)
+        hash_map: defaultdict[str, list[str]] = defaultdict(list)
         supported = 0
         unsupported = 0
         total_bytes = 0
@@ -214,43 +235,58 @@ def main() -> None:
         issues_csv = outdir / "full_corpus_preflight_issues.csv"
         families_csv = outdir / "full_corpus_donor_family_estimates.csv"
 
-        manifest = {
-            "generated_at": datetime.now(timezone.utc).isoformat(),
-            "corpus_dir": str(corpus),
-            "files": records,
-        }
+        manifest = {"generated_at": datetime.now(timezone.utc).isoformat(), "corpus_dir": str(corpus), "files": records}
         manifest_json.write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
         output_files.append(str(manifest_json))
 
         with manifest_csv.open("w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=["relative_path", "file_name", "extension", "size_bytes", "modified_time", "content_hash_sha256", "supported", "donor_family_confidence"])
+            fields = ["relative_path", "file_name", "extension", "size_bytes", "modified_time", "content_hash_sha256", "supported", "donor_family_confidence"]
+            w = csv.DictWriter(f, fieldnames=fields)
             w.writeheader()
             for r in records:
-                w.writerow({k: r[k] for k in w.fieldnames})
+                w.writerow({k: r[k] for k in fields})
         output_files.append(str(manifest_csv))
 
         with issues_csv.open("w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=["issue_code", "path", "detail", "severity"])
-            w.writeheader(); w.writerows(issues)
+            w = csv.DictWriter(f, fieldnames=["issue_code", "issue", "path", "detail", "severity"])
+            w.writeheader()
+            for i in issues:
+                w.writerow({"issue_code": i["issue_code"], "issue": i["issue_code"], "path": i["path"], "detail": i["detail"], "severity": i["severity"]})
         output_files.append(str(issues_csv))
 
         with families_csv.open("w", encoding="utf-8", newline="") as f:
-            w = csv.DictWriter(f, fieldnames=["relative_path", "donor_family_candidates", "confidence", "repair_queue_candidates"])
+            w = csv.DictWriter(
+                f,
+                fieldnames=[
+                    "relative_path",
+                    "donor_family_candidates",
+                    "donor_family_candidates_alias",
+                    "confidence",
+                    "repair_queue_candidates",
+                    "repair_queue_candidates_alias",
+                ],
+            )
             w.writeheader()
             for r in records:
+                donor = "|".join(r["donor_family_candidates"])
+                queue = "|".join(r["repair_queue_candidates"])
                 w.writerow({
                     "relative_path": r["relative_path"],
-                    "donor_family_candidates": "|".join(r["donor_family_candidates"]),
+                    "donor_family_candidates": donor,
+                    "donor_family_candidates_alias": donor,
                     "confidence": r["donor_family_confidence"],
-                    "repair_queue_candidates": "|".join(r["repair_queue_candidates"]),
+                    "repair_queue_candidates": queue,
+                    "repair_queue_candidates_alias": queue,
                 })
         output_files.append(str(families_csv))
 
         fam_counts = Counter()
         queue_counts = Counter()
+        conf_counts = Counter(r["donor_family_confidence"] for r in records)
+        issue_counts = Counter(i["issue_code"] for i in issues)
         for r in records:
-            for f in r["donor_family_candidates"]:
-                fam_counts[f] += 1
+            for fam in r["donor_family_candidates"]:
+                fam_counts[fam] += 1
             for q in r["repair_queue_candidates"]:
                 queue_counts[q] += 1
 
@@ -261,25 +297,51 @@ def main() -> None:
             "full_corpus_orchestrated_run": supported,
         }
 
-        report_md.write_text(
-            "\n".join([
-                "# Full Corpus Dry-Run Report",
-                "",
-                "This is preflight planning metadata only.",
-                "Extraction truth is not conversion permission.",
-                "Conversion permission is not canon permission.",
-                "",
-                f"Files discovered: {len(all_files)}",
-                f"Supported files: {supported}",
-                f"Unsupported files: {unsupported}",
-                f"Total bytes: {total_bytes}",
-                f"Issues: {len(issues)}",
-                "",
-                "## Proposed batch summary",
-                json.dumps(batch_summary, indent=2),
-            ]),
-            encoding="utf-8",
-        )
+        unclassified = [r["relative_path"] for r in records if "unclassified_or_mixed_donor_family" in r["donor_family_candidates"]][:20]
+        large_files = sorted(records, key=lambda x: x["size_bytes"], reverse=True)[:20]
+        long_paths = sorted(records, key=lambda x: len(x["absolute_path"]), reverse=True)[:20]
+        non_ascii = [r["relative_path"] for r in records if any(ord(ch) > 127 for ch in r["relative_path"])][:20]
+
+        report_lines = [
+            "# Full Corpus Dry-Run Report",
+            "",
+            "## Run Summary",
+            f"- Files discovered: {len(all_files)}",
+            f"- Supported files: {supported}",
+            f"- Unsupported files: {unsupported}",
+            f"- Total bytes: {total_bytes}",
+            f"- Issues total: {len(issues)}",
+            "",
+            "## Issue Counts by issue_code",
+        ]
+        report_lines += [f"- {k}: {v}" for k, v in sorted(issue_counts.items())] or ["- none: 0"]
+        report_lines += ["", "## Donor-Family Candidate Counts"]
+        report_lines += [f"- {k}: {v}" for k, v in sorted(fam_counts.items())] or ["- none: 0"]
+        report_lines += ["", "## Confidence Counts"]
+        report_lines += [f"- {k}: {v}" for k, v in sorted(conf_counts.items())] or ["- none: 0"]
+        report_lines += ["", "## Repair-Queue Candidate Counts"]
+        report_lines += [f"- {k}: {v}" for k, v in sorted(queue_counts.items())] or ["- none: 0"]
+        report_lines += ["", "## Top Unclassified Files Sample"]
+        report_lines += [f"- {p}" for p in unclassified] or ["- none"]
+        report_lines += ["", "## Top Unusually Large Files Sample"]
+        report_lines += [f"- {r['relative_path']} ({r['size_bytes']} bytes)" for r in large_files] or ["- none"]
+        report_lines += ["", "## Top Very Long Path Sample"]
+        report_lines += [f"- {r['relative_path']} (len={len(r['absolute_path'])})" for r in long_paths] or ["- none"]
+        report_lines += ["", "## Top Non-ASCII Path Sample"]
+        report_lines += [f"- {p}" for p in non_ascii] or ["- none"]
+        report_lines += ["", "## Proposed Batch Summary", json.dumps(batch_summary, indent=2), ""]
+        report_lines += [
+            "## Next-Step Recommendations",
+            "- Review highest-frequency issue codes first.",
+            "- Review unclassified donor files and expand filename heuristics where needed.",
+            "- Spot-check giant files and long/non-ASCII paths for operational risk.",
+            "- Treat donor-family and repair-queue estimates as routing metadata only.",
+            "",
+            "Dry-run routing metadata is not extraction truth.",
+            "Extraction truth is not conversion permission.",
+            "Conversion permission is not canon permission.",
+        ]
+        report_md.write_text("\n".join(report_lines), encoding="utf-8")
         output_files.append(str(report_md))
 
         if strict and dup_hash_groups > 100:
@@ -307,6 +369,8 @@ def main() -> None:
             "warnings": warnings,
             "summary": {
                 "batch_plan": batch_summary,
+                "issue_counts": dict(issue_counts),
+                "confidence_counts": dict(conf_counts),
                 "routing_metadata_note": "Filename-based donor-family and repair-queue estimates are weak preflight routing metadata only.",
                 "no_extraction_note": "Dry-run planner does not extract, OCR, convert, or canonize.",
             },

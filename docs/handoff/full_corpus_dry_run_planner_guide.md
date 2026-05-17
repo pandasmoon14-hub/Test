@@ -2,67 +2,84 @@
 
 ## Why this planner exists
 
-`plan_full_corpus_dry_run.py` provides a preflight planning pass for large donor corpora before extraction/conversion.
+`plan_full_corpus_dry_run.py` provides preflight planning for large donor corpora before extraction.
 
-It builds a stable manifest, detects corpus-level risks, and produces reviewable reports without running extraction, OCR, conversion-intake, aggregation, or canon decisions.
+It generates an immediately reviewable dry-run manifest/report so teams can triage risks and routing gaps before a full orchestrated run.
 
-## What it does not do
+## Non-goals
 
-- It does **not** implement the full 1900-donor runner.
-- It does **not** extract content.
-- It does **not** run OCR.
-- It does **not** invoke LLMs.
-- It does **not** convert or canonize donor material.
+This planner does **not**:
+
+- extract content,
+- run OCR,
+- invoke LLMs,
+- run conversion-intake,
+- aggregate conversion outputs,
+- canonize donor material.
 
 Extraction truth is not conversion permission.
 
 Conversion permission is not canon permission.
 
-## How it supports future orchestration
+## How Step 10 improves usability
 
-The eventual single top-level ~1900-donor orchestrated run needs resumable, auditable input planning.
+The dry-run report now includes:
 
-This planner supports that by producing:
+- run summary,
+- issue counts by issue code,
+- donor-family candidate counts,
+- confidence counts,
+- repair-queue candidate counts,
+- top unclassified file sample,
+- top unusually large file sample,
+- top very long path sample,
+- top non-ASCII path sample,
+- next-step recommendations.
 
-- corpus manifest JSON/CSV,
-- preflight issue lists,
-- donor-family estimate summaries,
-- repair-queue estimate summaries,
-- suggested batch sizing guidance.
+## CSV usability for PowerShell grouping
 
-## Inputs and heuristic scope
+Outputs remain backward compatible while improving grouping clarity:
 
-The planner uses filesystem metadata and filename/path hints only.
+- `full_corpus_preflight_issues.csv` keeps `issue_code` and adds alias-friendly shape.
+- `full_corpus_donor_family_estimates.csv` keeps `donor_family_candidates`, `confidence`, `repair_queue_candidates` and includes aliases for easy grouping.
 
-Donor-family estimation is weak routing metadata, not doctrine truth.
+These columns are intended for quick `Group-Object` workflows.
 
-Repair-queue estimation is preflight prediction, not extraction truth.
+## Donor-family routing refinement
+
+Filename/path-only heuristics were expanded across broad families (for example d20 fantasy, sci-fi, adventure, setting, bestiary, random-table, spell/power, gear/catalog, cyberpunk, traveller/starship, narrative/aspect, forged/playbook, OSR, toolkit).
+
+These estimates are weak routing metadata only and may include multiple candidates per file.
+
+Confidence semantics:
+
+- `high`: strong explicit match patterns,
+- `medium`: normal keyword match patterns,
+- `low`: fallback/unclassified.
 
 ## Interaction with other layers
 
-- Donor-family templates: help route files into later family-focused planning/review.
-- Repair queues: flag likely risk lanes before extraction starts.
-- Extraction lanes and packet planning: informed by preflight risks and estimates.
-- Conversion-intake, aggregation, and review: explicitly downstream and not executed by dry-run.
+- Donor-family templates: preflight routing candidates for later packet planning.
+- Repair queues: preflight risk predictions before extraction.
+- Extraction lanes: informed by likely scanned/map/statblock/table pressure.
+- Packet planning/conversion-intake/aggregation/review: downstream phases; not executed by this planner.
 
-## How to interpret common issues
+## How to interpret key issues
 
-- Duplicate files (name/hash): likely corpus hygiene issues; review for dedupe policy.
-- Giant files: may require special extraction controls or timeout budgeting.
-- Tiny/zero-byte files: likely corrupt/incomplete metadata or placeholder artifacts.
-- Non-ASCII paths/very long paths: potential tooling/runtime portability risks.
-- Unclassified donors: expected in early preflight; signals need for expanded template coverage.
+- Duplicate names/hashes: dedupe and source hygiene review.
+- Giant files: likely runtime/budget pressure.
+- Tiny/zero-byte files: likely corruption/placeholders.
+- Non-ASCII/long paths: portability and tooling risk.
+- Unclassified donors: expected routing gap signal; improve heuristics/templates before extraction.
 
-## Before moving from dry-run to extraction
+## Before moving to real extraction
 
 Review:
 
-1. manifest completeness and file counts,
-2. duplicate/hash clusters,
-3. unsupported extensions,
-4. likely scanned/image-heavy candidates,
-5. donor-family estimate distribution,
-6. repair-queue estimate concentrations,
-7. batch-size proposal reasonableness.
+1. issue concentration and top risk clusters,
+2. donor-family distribution and unclassified share,
+3. repair-queue estimate concentration,
+4. large-file and path portability risk,
+5. proposed batch sizes and sequencing.
 
-Only after preflight review should actual extraction planning begin.
+Only then proceed to extraction packet planning.
