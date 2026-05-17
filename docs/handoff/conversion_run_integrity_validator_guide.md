@@ -28,6 +28,29 @@ It complements existing schema/quality validation and audit steps by adding run-
 
 Passing integrity validation only means the run artifacts are internally coherent enough for downstream review and aggregation workflows.
 
+
+## Supported run conventions
+
+The validator supports both current artifact conventions:
+
+- `packets/` + `prompts/` + `results/`
+- `model_ready_bundles/` + `prompts/` + `results/`
+
+At least one of `packets/` or `model_ready_bundles/` must exist.
+
+For indexed packet pairing, it checks:
+
+- `model_ready_bundles/{packet_id}_model_ready_packet_bundle.md` (when bundle convention is used)
+- `prompts/{packet_id}_conversion_prompt.md`
+- `results/{packet_id}_conversion_result.json`
+- `results/{packet_id}_conversion_result.md` (when present)
+
+## Current result-schema compatibility
+
+Under current schema behavior, `canon_candidate_notes` and `reviewer_notes` may be either strings, lists, or null.
+
+Other operational list fields (for example `mapping_ledger`, `queue_actions`, `donor_construct_inventory`, `lexicon_delta`, `doctrine_escalations`, `source_local_retentions`, and `rejected_imports`) are still validated with strict list expectations.
+
 ## Strict mode behavior
 
 Run with:

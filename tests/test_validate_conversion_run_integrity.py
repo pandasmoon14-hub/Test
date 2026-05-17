@@ -8,7 +8,7 @@ SCRIPT = Path("scripts/handoff/validate_conversion_run_integrity.py")
 
 def _mk_run(tmp_path: Path) -> Path:
     run = tmp_path / "run"
-    for d in ["packets", "prompts", "results", "validation", "reports/aggregation"]:
+    for d in ["model_ready_bundles", "prompts", "results", "validation", "reports/aggregation"]:
         (run / d).mkdir(parents=True, exist_ok=True)
     idx = [
         {"packet_id": "packet_001"},
@@ -16,7 +16,7 @@ def _mk_run(tmp_path: Path) -> Path:
     ]
     (run / "packet_index.json").write_text(json.dumps(idx), encoding="utf-8")
     for pid in ["packet_001", "packet_002"]:
-        (run / "packets" / pid).mkdir(exist_ok=True)
+        (run / "model_ready_bundles" / f"{pid}_model_ready_packet_bundle.md").write_text("# bundle", encoding="utf-8")
         (run / "prompts" / f"{pid}_conversion_prompt.md").write_text("# prompt", encoding="utf-8")
         obj = {
             "packet_id": pid,
@@ -26,8 +26,11 @@ def _mk_run(tmp_path: Path) -> Path:
             "doctrine_escalations": [],
             "source_local_retentions": [],
             "rejected_imports": [],
-            "canon_candidate_notes": [],
-            "reviewer_notes": ["review required"],
+            "canon_candidate_notes": "review required",
+            "reviewer_notes": "review required",
+            "queue_actions": [],
+            "donor_construct_inventory": [],
+            "lexicon_delta": [],
         }
         (run / "results" / f"{pid}_conversion_result.json").write_text(json.dumps(obj), encoding="utf-8")
         (run / "results" / f"{pid}_conversion_result.md").write_text("not canon", encoding="utf-8")
@@ -138,3 +141,20 @@ def test_aggregation_summary_consistency_test(tmp_path: Path):
     p, rep = _run(run)
     assert p.returncode != 0
     assert any("aggregation_packets_total_mismatch" in e for e in rep["errors"])
+
+
+def test_failure_when_both_packets_and_model_ready_bundles_absent(tmp_path: Path):
+    run = _mk_run(tmp_path)
+    for p in (run / "model_ready_bundles").glob("*"):
+        p.unlink()
+    (run / "model_ready_bundles").rmdir()
+    p, rep = _run(run)
+    assert p.returncode != 0
+    assert any("missing_required_directory:packets_or_model_ready_bundles" in e for e in rep["errors"])
+
+
+def test_string_notes_are_accepted(tmp_path: Path):
+    run = _mk_run(tmp_path)
+    p, rep = _run(run)
+    assert p.returncode == 0
+    assert rep["valid"] is True

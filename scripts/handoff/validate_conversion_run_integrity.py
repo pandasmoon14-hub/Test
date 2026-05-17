@@ -17,7 +17,7 @@ VALID_LAWFUL_OUTCOMES = {
     "quarantined construct pending later doctrine",
     "escalated doctrine problem",
 }
-REQUIRED_RUN_DIRS = ["packets", "prompts", "results", "validation", "reports"]
+REQUIRED_RUN_DIRS = ["prompts", "results", "validation", "reports"]
 REQUIRED_AGGREGATION_FILES = [
     "batch_001_aggregation_report.json",
     "batch_001_aggregation_report.md",
@@ -96,6 +96,16 @@ def validate(run_dir: Path, strict: bool) -> dict[str, Any]:
         if not (run_dir / d).exists():
             c.err(f"missing_required_directory:{d}")
 
+    packets_dir = run_dir / "packets"
+    bundles_dir = run_dir / "model_ready_bundles"
+    if packets_dir.exists():
+        convention = "packets"
+    elif bundles_dir.exists():
+        convention = "model_ready_bundles"
+    else:
+        convention = "none"
+        c.err("missing_required_directory:packets_or_model_ready_bundles")
+
     idx_path = run_dir / "packet_index.json"
     indexed_ids: list[str] = []
     idx: list[dict[str, Any]] = []
@@ -117,7 +127,8 @@ def validate(run_dir: Path, strict: bool) -> dict[str, Any]:
                 c.err(f"duplicate_packet_id:{pid}")
             seen.add(pid)
             indexed_ids.append(pid)
-        packet_dirs = [p.name for p in (run_dir / "packets").iterdir()] if (run_dir / "packets").exists() else []
+        artifact_root = packets_dir if convention == "packets" else bundles_dir if convention == "model_ready_bundles" else None
+        packet_dirs = [p.name for p in artifact_root.iterdir() if p.is_dir()] if artifact_root and convention=="packets" else []
         if packet_dirs and len(packet_dirs) != len(indexed_ids):
             c.warn(f"packet_count_mismatch:index={len(indexed_ids)}:discovered={len(packet_dirs)}")
     else:
@@ -142,8 +153,8 @@ def validate(run_dir: Path, strict: bool) -> dict[str, Any]:
 
     for pid in indexed_ids:
         prompt = prompts_dir / f"{pid}_conversion_prompt.md"
-        prompt_bundle = prompts_dir / pid
-        if not prompt.exists() and not prompt_bundle.exists():
+        bundle = bundles_dir / f"{pid}_model_ready_packet_bundle.md"
+        if not prompt.exists() and not bundle.exists():
             c.err(f"missing_prompt_or_bundle:{pid}")
 
         j = result_json_by_pid.get(pid, [])
@@ -199,11 +210,16 @@ def validate(run_dir: Path, strict: bool) -> dict[str, Any]:
             "doctrine_escalations",
             "source_local_retentions",
             "rejected_imports",
-            "canon_candidate_notes",
-            "reviewer_notes",
+            "queue_actions",
+            "donor_construct_inventory",
+            "lexicon_delta",
         ]:
             if arr_field in obj and not isinstance(obj.get(arr_field), list):
                 c.err(f"field_not_list:{pid}:{arr_field}")
+
+        for maybe_text_list in ["canon_candidate_notes", "reviewer_notes"]:
+            if maybe_text_list in obj and obj.get(maybe_text_list) is not None and not isinstance(obj.get(maybe_text_list), (str, list)):
+                c.err(f"field_not_string_or_list_or_null:{pid}:{maybe_text_list}")
 
         blob = json.dumps(obj, ensure_ascii=False).lower()
         if not any(p in blob for p in ALLOWLIST_CANON_PHRASES):
@@ -251,6 +267,7 @@ def validate(run_dir: Path, strict: bool) -> dict[str, Any]:
                 if out_dir and not Path(out_dir).exists():
                     c.err(f"aggregation_output_dir_missing:{out_dir}")
 
+    summary["artifact_convention"] = convention
     summary["indexed_packets"] = len(indexed_ids)
     summary["result_status_counts"] = dict(status_counts)
     summary["step8_mojibake_note"] = "Generated-report mojibake scanning is reserved for Step 8."
