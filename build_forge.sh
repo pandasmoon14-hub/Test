@@ -153,7 +153,7 @@ detect_gpu_profile() {
   gpu_name="$(nvidia-smi --query-gpu=name --format=csv,noheader 2>/dev/null | head -n1 || true)"
   if echo "${gpu_name}" | grep -qi "A6000"; then
     export GPU_PROFILE="a6000"
-    export REPAIR_BATCH="${REPAIR_BATCH:-6}"
+    export REPAIR_BATCH="${REPAIR_BATCH:-8}"
     export RENDER_DPI="${RENDER_DPI:-260}"
     ok "Detected A6000 -> GPU_PROFILE=${GPU_PROFILE} REPAIR_BATCH=${REPAIR_BATCH} RENDER_DPI=${RENDER_DPI}"
   fi
@@ -247,7 +247,7 @@ MIN_CHARS_FOR_NATIVE=1000
 WEIRD_CHAR_LIMIT=0.03
 SCAN_THRESHOLD=50
 MIN_MD_CHARS_PER_PAGE=150
-REPAIR_BATCH=6
+REPAIR_BATCH=
 RENDER_DPI=180
 MAX_PAGE_TOKENS=3072
 ENFORCE_FULL_BOOK_REPAIR=0

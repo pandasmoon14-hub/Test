@@ -36,6 +36,16 @@ except ImportError:  # pragma: no cover - enables unit tests without vLLM instal
     SamplingParams = Any  # type: ignore
 
 
+def default_repair_batch(vram_gb: float) -> int:
+    if vram_gb >= 40:
+        return 8
+    if vram_gb >= 24:
+        return 4
+    if vram_gb >= 16:
+        return 2
+    return 1
+
+
 @dataclass
 class SurgeonConfig:
     output_dir: Path
@@ -52,12 +62,13 @@ class SurgeonConfig:
 
     @classmethod
     def from_env(cls, gpu_profile: str = "default") -> "SurgeonConfig":
+        detected_vram_gb = 0.0
         if gpu_profile == "default":
             try:
                 import torch  # type: ignore
                 if torch.cuda.is_available():
-                    vram = torch.cuda.get_device_properties(0).total_memory / (1024**3)
-                    if vram > 40:
+                    detected_vram_gb = torch.cuda.get_device_properties(0).total_memory / (1024**3)
+                    if detected_vram_gb >= 40:
                         gpu_profile = "a6000"
             except Exception:
                 pass
@@ -73,7 +84,7 @@ class SurgeonConfig:
             model_name=os.getenv("PIXTRAL_MODEL", "mistralai/Pixtral-12B-2409"),
             min_crop_size=int(os.getenv("MIN_CROP_SIZE", "96")),
             max_page_tokens=int(os.getenv("MAX_PAGE_TOKENS", prof["max_page_tokens"])),
-            repair_batch=int(os.getenv("REPAIR_BATCH", prof["repair_batch"])),
+            repair_batch=int(os.getenv("REPAIR_BATCH", str(default_repair_batch(detected_vram_gb)))),
             render_dpi=int(os.getenv("RENDER_DPI", "180")),
             gpu_memory_utilization=float(os.getenv("GPU_MEMORY_UTILIZATION", prof["gpu_memory_utilization"])),
             max_model_len=int(os.getenv("MAX_MODEL_LEN", prof["max_model_len"])),
@@ -162,7 +173,6 @@ def render_page(page: fitz.Page, dpi: int, min_crop_size: int, gpu_profile: str 
     elif action == "rotate_landscape_to_portrait":
         image = image.rotate(90, expand=True)
     max_dim = 1536 if gpu_profile == "a6000" else 1280
-    max_dim = 1280
     if max(image.width, image.height) > max_dim:
         image.thumbnail((max_dim, max_dim))
     if image.width < min_crop_size or image.height < min_crop_size:
