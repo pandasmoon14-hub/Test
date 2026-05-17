@@ -1,0 +1,309 @@
+queues:
+  ocr_required:
+    queue_id: ocr_required
+    label: OCR Required
+    description: Text extraction confidence is insufficient and OCR pass is required.
+    severity: repair_required
+    stage: extraction
+    detection_signals: [low text confidence, scan-like pages, missing text layer]
+    routing_action: route_to_ocr_pipeline
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [ocr_repair_ticket, page_truth_patch, extraction_rerun_record]
+    reviewer_action: Run OCR lane, compare against page truth, and requeue for extraction validation.
+    escalation_owner_hint: extraction_quality_owner
+    notes: Use when OCR can reasonably recover semantic text.
+  scanned_or_image_only:
+    queue_id: scanned_or_image_only
+    label: Scanned or Image-Only
+    description: Donor pages are image-first and text extraction is absent or unusable.
+    severity: blocking
+    stage: extraction
+    detection_signals: [image-only page, absent text tokens, unreadable scan noise]
+    routing_action: quarantine_until_ocr_or_manual_transcription
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [scan_quality_report, manual_transcription_request]
+    reviewer_action: Attempt OCR; if unresolved, hold for manual transcription workflow.
+    escalation_owner_hint: ocr_pipeline_owner
+    notes: Preserve provenance and avoid silent drops.
+  underparsed_page:
+    queue_id: underparsed_page
+    label: Underparsed Page
+    description: Parsed output omits substantial content from source page.
+    severity: repair_required
+    stage: extraction
+    detection_signals: [abnormally short extract, missing section bodies, truncation signatures]
+    routing_action: extraction_rerun_with_lane_override
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [underparse_diff_report, lane_override_record]
+    reviewer_action: Re-run extraction with alternate lane and compare against page truth slices.
+    escalation_owner_hint: extraction_lane_owner
+    notes: Treat repeated underparse as lane policy defect.
+  empty_or_near_empty_page:
+    queue_id: empty_or_near_empty_page
+    label: Empty or Near-Empty Page
+    description: Page extracted as empty but expected to contain meaningful content.
+    severity: warning
+    stage: extraction
+    detection_signals: [empty extract, below-threshold token count, page truth mismatch]
+    routing_action: verify_intentional_blank_or_reextract
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [blank_page_verification_note, page_truth_check_record]
+    reviewer_action: Confirm intentional blank versus extraction miss before continuing.
+    escalation_owner_hint: page_truth_owner
+    notes: Intake-only allowed when verified as intentional blank/supporting page.
+  mojibake_text_cleanup:
+    queue_id: mojibake_text_cleanup
+    label: Mojibake Text Cleanup
+    description: Encoding artifacts or broken glyphs contaminate extracted text.
+    severity: repair_required
+    stage: extraction
+    detection_signals: [invalid glyph clusters, encoding replacement characters, garbled words]
+    routing_action: text_normalization_repair
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [encoding_repair_patch, normalization_audit_entry]
+    reviewer_action: Repair encoding, verify semantic fidelity, and rerun validation.
+    escalation_owner_hint: text_normalization_owner
+    notes: Do not guess meaning when corruption is ambiguous.
+  table_flattening:
+    queue_id: table_flattening
+    label: Table Flattening
+    description: Structured tables collapse into ambiguous linear text.
+    severity: repair_required
+    stage: extraction
+    detection_signals: [lost row/column boundaries, delimiter collapse, table header drift]
+    routing_action: table_reconstruction_queue
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [table_sidecar_patch, reconstruction_log]
+    reviewer_action: Reconstruct table structure with sidecar and validate row integrity.
+    escalation_owner_hint: table_extraction_owner
+    notes: Critical for random tables and economy/stat datasets.
+  malformed_random_table:
+    queue_id: malformed_random_table
+    label: Malformed Random Table
+    description: Random table ranges or roll bands are incomplete, overlapping, or invalid.
+    severity: repair_required
+    stage: validation
+    detection_signals: [range gaps, overlapping dice bands, missing trigger columns]
+    routing_action: random_table_repair_queue
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [random_table_range_audit, corrected_table_sidecar]
+    reviewer_action: Repair roll ranges and confirm complete probability coverage.
+    escalation_owner_hint: tables_quality_owner
+    notes: Preserve donor semantics without adopting donor canon.
+  statblock_underparse:
+    queue_id: statblock_underparse
+    label: Statblock Underparse
+    description: Statblocks are partially extracted or miss required fields.
+    severity: repair_required
+    stage: extraction
+    detection_signals: [missing stat fields, broken action blocks, partial numeric rows]
+    routing_action: statblock_reparse_queue
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [statblock_completeness_report, reparsed_statblock_unit]
+    reviewer_action: Re-extract statblock with structured parser and validate completeness.
+    escalation_owner_hint: statblock_schema_owner
+    notes: Avoid conversion when mandatory stat constraints are absent.
+  map_diagram_review:
+    queue_id: map_diagram_review
+    label: Map/Diagram Review
+    description: Core meaning depends on map or diagram context not captured in text.
+    severity: warning
+    stage: packet_planning
+    detection_signals: [map callouts, diagram-only references, missing legend mappings]
+    routing_action: mark_visual_dependency_and_collect_context
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [visual_dependency_note, map_key_capture]
+    reviewer_action: Annotate dependencies and route unresolved claims to quarantine.
+    escalation_owner_hint: scenario_design_owner
+    notes: Intake-only may continue with explicit uncertainty markers.
+  image_or_visual_dependency:
+    queue_id: image_or_visual_dependency
+    label: Image or Visual Dependency
+    description: Non-map visuals carry rules-critical information missing from extracted text.
+    severity: warning
+    stage: extraction
+    detection_signals: [caption-only references, visual-only mechanics, unresolved figure callouts]
+    routing_action: visual_context_capture_queue
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [figure_dependency_log, unresolved_visual_claims_list]
+    reviewer_action: Capture available visual metadata and quarantine unresolved mechanics.
+    escalation_owner_hint: extraction_quality_owner
+    notes: Continue only with explicit source-local retention or quarantine decisions.
+  column_merge_or_split_failure:
+    queue_id: column_merge_or_split_failure
+    label: Column Merge/Split Failure
+    description: Multi-column layouts were merged or split incorrectly, corrupting ordering.
+    severity: repair_required
+    stage: extraction
+    detection_signals: [sentence interleave artifacts, duplicated lines, out-of-order paragraph flow]
+    routing_action: layout_resegment_and_reextract
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [layout_resegmentation_record, ordered_text_diff]
+    reviewer_action: Re-segment layout regions and verify corrected reading order.
+    escalation_owner_hint: layout_pipeline_owner
+    notes: Frequent failure mode for dense rulebooks.
+  header_footer_noise:
+    queue_id: header_footer_noise
+    label: Header/Footer Noise
+    description: Repeated headers/footers contaminate semantic extraction output.
+    severity: info
+    stage: extraction
+    detection_signals: [repeated page chrome text, running headers in body, footer bleed]
+    routing_action: apply_noise_filter_and_revalidate
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [noise_filter_log, cleaned_extract_snapshot]
+    reviewer_action: Apply noise suppression and confirm no content loss.
+    escalation_owner_hint: extraction_lane_owner
+    notes: Usually repairable without blocking full packet progress.
+  sidebar_or_callout_ordering:
+    queue_id: sidebar_or_callout_ordering
+    label: Sidebar or Callout Ordering
+    description: Sidebars/callouts are inserted in wrong order or detached from anchors.
+    severity: warning
+    stage: packet_building
+    detection_signals: [orphan callouts, misplaced sidebar blocks, anchor mismatch]
+    routing_action: reorder_packet_units_with_anchor_tags
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [packet_order_patch, anchor_alignment_note]
+    reviewer_action: Re-anchor sidebar units and preserve primary reading flow.
+    escalation_owner_hint: packet_builder_owner
+    notes: Flag unresolved ordering for manual review.
+  packet_boundary_ambiguity:
+    queue_id: packet_boundary_ambiguity
+    label: Packet Boundary Ambiguity
+    description: Content boundaries between packets are unclear or overlapping.
+    severity: repair_required
+    stage: packet_planning
+    detection_signals: [overlapping spans, missing continuation markers, mixed chapter boundaries]
+    routing_action: boundary_replan_queue
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [boundary_decision_log, packet_manifest_patch]
+    reviewer_action: Re-scope packet spans and regenerate manifests.
+    escalation_owner_hint: packet_planning_owner
+    notes: Prevent duplicate or dropped constructs across packets.
+  missing_page_truth:
+    queue_id: missing_page_truth
+    label: Missing Page Truth
+    description: Required page-truth artifact is absent for validation-critical packet.
+    severity: blocking
+    stage: validation
+    detection_signals: [missing page_truth file, unresolved truth reference, validation precheck failure]
+    routing_action: block_until_page_truth_supplied
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [page_truth_file, page_truth_link_record]
+    reviewer_action: Produce or attach page-truth artifact before resuming workflow.
+    escalation_owner_hint: page_truth_owner
+    notes: Validation gate must fail closed.
+  artifact_validation_error:
+    queue_id: artifact_validation_error
+    label: Artifact Validation Error
+    description: Required schema/contract validation failed for extraction artifacts.
+    severity: blocking
+    stage: validation
+    detection_signals: [schema mismatch, missing required fields, invalid enum values]
+    routing_action: schema_repair_and_revalidate
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [validation_error_report, corrected_artifact_version]
+    reviewer_action: Repair artifacts to schema compliance and rerun validators.
+    escalation_owner_hint: validation_owner
+    notes: Never bypass schema failures in production-mode runs.
+  unreadable_or_corrupt_pdf:
+    queue_id: unreadable_or_corrupt_pdf
+    label: Unreadable or Corrupt PDF
+    description: Source PDF cannot be reliably opened or parsed.
+    severity: blocking
+    stage: extraction
+    detection_signals: [parser open failure, checksum mismatch, irrecoverable decode error]
+    routing_action: source_reacquisition_queue
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [corruption_report, replacement_source_request]
+    reviewer_action: Reacquire source file and rerun extraction from clean copy.
+    escalation_owner_hint: intake_operations_owner
+    notes: Preserve audit trail for failed source artifacts.
+  duplicate_or_conflicting_page:
+    queue_id: duplicate_or_conflicting_page
+    label: Duplicate or Conflicting Page
+    description: Duplicate page IDs or conflicting page content detected.
+    severity: warning
+    stage: packet_building
+    detection_signals: [duplicate page hash, conflicting page indexes, divergent content for same page id]
+    routing_action: deduplicate_and_reindex_queue
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [duplicate_resolution_log, manifest_reindex_patch]
+    reviewer_action: Resolve duplication and document chosen canonical source page instance.
+    escalation_owner_hint: packet_builder_owner
+    notes: Escalate if conflicts affect rule-critical sections.
+  low_confidence_extraction:
+    queue_id: low_confidence_extraction
+    label: Low Confidence Extraction
+    description: Extraction confidence is below operational threshold for reliable conversion.
+    severity: warning
+    stage: extraction
+    detection_signals: [confidence below threshold, high token anomaly rate, repeated uncertainty tags]
+    routing_action: targeted_reextract_or_intake_only
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [confidence_audit_note, targeted_rerun_record]
+    reviewer_action: Attempt focused re-extraction; if unresolved, route to intake-only with flags.
+    escalation_owner_hint: extraction_quality_owner
+    notes: Use conservative routing to prevent contamination.
+  source_metadata_gap:
+    queue_id: source_metadata_gap
+    label: Source Metadata Gap
+    description: Required source metadata fields are missing or inconsistent.
+    severity: info
+    stage: packet_planning
+    detection_signals: [missing source identifiers, absent edition metadata, incomplete provenance tags]
+    routing_action: metadata_enrichment_queue
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [metadata_patch_record, provenance_update_note]
+    reviewer_action: Fill metadata gaps and confirm stable source traceability.
+    escalation_owner_hint: provenance_owner
+    notes: Do not treat metadata gaps as canon decisions.
+  conversion_blocked_by_extraction:
+    queue_id: conversion_blocked_by_extraction
+    label: Conversion Blocked by Extraction
+    description: Conversion-intake cannot proceed due to unresolved extraction defects.
+    severity: blocking
+    stage: conversion_intake
+    detection_signals: [missing required extracted units, unresolved blocking queue dependencies, conversion preflight failure]
+    routing_action: hold_conversion_and_link_blockers
+    blocks_conversion: true
+    allows_intake_only: false
+    expected_artifacts: [conversion_blocker_record, linked_repair_queue_refs]
+    reviewer_action: Resolve upstream extraction blockers before conversion retry.
+    escalation_owner_hint: conversion_intake_owner
+    notes: Explicitly link blocker lineage for auditability.
+  manual_review_required:
+    queue_id: manual_review_required
+    label: Manual Review Required
+    description: Automated routing is insufficient and human adjudication is required.
+    severity: warning
+    stage: aggregation
+    detection_signals: [conflicting signals, repeated rerun failure, unresolved mixed defects]
+    routing_action: send_to_human_review_queue
+    blocks_conversion: false
+    allows_intake_only: true
+    expected_artifacts: [human_review_ticket, adjudication_note]
+    reviewer_action: Perform manual triage and choose lawful routing outcome.
+    escalation_owner_hint: review_ops_owner
+    notes: Operational routing metadata only; no canon permission is implied.

@@ -1,0 +1,340 @@
+templates:
+  d20_class_level_fantasy:
+    template_id: d20_class_level_fantasy
+    label: D20 Class-Level Fantasy
+    description: Class/level fantasy rulesets with feats, spells, and level-based progression.
+    priority: 90
+    detection_signals: [class levels, feat trees, spell slots, armor class style defenses]
+    expected_construct_families: [player_chassis_and_character_creation, progression_advancement_growth, ability_power_spell_technique, gear_item_crafting_loot_economy]
+    packet_selection_targets: [core rules chapters, class sections, spell sections, advancement tables]
+    extraction_risks: [table flattening, statblock under-parsing, glossary bleed]
+    likely_quarantine_reasons: [ambiguous subclass mechanics, mixed optional modules]
+    conversion_prompt_additions: [preserve progression gates, map spells to ability-power abstractions]
+    review_notes: [treat class feature naming as source-local unless generalized]
+    escalation_owner_hint: mechanics_doctrine_owner
+  d20_scifi_science_fantasy:
+    template_id: d20_scifi_science_fantasy
+    label: D20 Sci-Fi / Science-Fantasy
+    description: D20 lineage with tech gear, starship, or mixed fantasy-science assumptions.
+    priority: 88
+    detection_signals: [d20 checks, starship subsystems, tech item tiers, sci-fantasy classes]
+    expected_construct_families: [vehicle_platform_starship_mech, gear_item_crafting_loot_economy, ability_power_spell_technique, scene_mission_adventure_scenario]
+    packet_selection_targets: [core resolution loop, tech chapter, starship chapter, encounter procedures]
+    extraction_risks: [table flattening, diagram dependency, packet boundary ambiguity]
+    likely_quarantine_reasons: [setting-bound tech assumptions, hybrid magic-tech exclusives]
+    conversion_prompt_additions: [separate vehicle/platform logic from setting lore]
+    review_notes: [retain named setting factions as source-local]
+    escalation_owner_hint: platform_systems_owner
+  universal_toolkit_or_generic_engine:
+    template_id: universal_toolkit_or_generic_engine
+    label: Universal Toolkit / Generic Engine
+    description: Generic engines intended for broad genre adaptation.
+    priority: 95
+    detection_signals: [generic traits, modular subsystem menus, genre toolkit language]
+    expected_construct_families: [unclassified_or_mixed, competency_skill_profession, scene_mission_adventure_scenario, resource_cost_recharge_backlash]
+    packet_selection_targets: [core loop, subsystem index, optional rules matrix]
+    extraction_risks: [layout contamination, section boundary ambiguity]
+    likely_quarantine_reasons: [option overload with conflicting defaults]
+    conversion_prompt_additions: [prefer normalized abstractions over donor naming]
+    review_notes: [watch for hidden assumptions that appear optional]
+    escalation_owner_hint: taxonomy_governance_owner
+  point_buy_anime_supers:
+    template_id: point_buy_anime_supers
+    label: Point-Buy Anime/Supers
+    description: Build systems centered on point budgets and power effects.
+    priority: 84
+    detection_signals: [point buy costs, effect modifiers, power frameworks]
+    expected_construct_families: [ability_power_spell_technique, resource_cost_recharge_backlash, progression_advancement_growth, damage_condition_effect_survivability]
+    packet_selection_targets: [character build chapter, power construction chapter, conflict resolution chapter]
+    extraction_risks: [nested tables, notation loss]
+    likely_quarantine_reasons: [open-ended effect construction without stable constraints]
+    conversion_prompt_additions: [normalize power effects into bounded tags and costs]
+    review_notes: [avoid carrying donor-specific power names]
+    escalation_owner_hint: power_balance_owner
+  narrative_tag_aspect:
+    template_id: narrative_tag_aspect
+    label: Narrative Tag/Aspect
+    description: Narrative-forward systems using aspects, tags, and invokes.
+    priority: 82
+    detection_signals: [aspects or tags, invoke/spend economy, fiction-first phrasing]
+    expected_construct_families: [scene_mission_adventure_scenario, resource_cost_recharge_backlash, competency_skill_profession, unclassified_or_mixed]
+    packet_selection_targets: [core moves/actions, fate-point-like economy, scenario framing]
+    extraction_risks: [terminology drift, prose-heavy ambiguity]
+    likely_quarantine_reasons: [soft constraints that do not map cleanly to hard mechanics]
+    conversion_prompt_additions: [preserve narrative intent while normalizing spend loops]
+    review_notes: [retain flavor exemplars as source-local]
+    escalation_owner_hint: narrative_systems_owner
+  forged_pbta_clock_playbook:
+    template_id: forged_pbta_clock_playbook
+    label: Forged/PbtA Clock-Playbook
+    description: Move/playbook systems with clocks, position/effect, and crew pressure.
+    priority: 85
+    detection_signals: [moves, playbooks, clocks, position and effect terms]
+    expected_construct_families: [scene_mission_adventure_scenario, resource_cost_recharge_backlash, progression_advancement_growth, domain_faction_kingdom_management]
+    packet_selection_targets: [move lists, playbooks, progress clocks, downtime loops]
+    extraction_risks: [table flattening, cross-reference loss]
+    likely_quarantine_reasons: [genre-locked consequences and stress models]
+    conversion_prompt_additions: [map clocks to generic progress constructs]
+    review_notes: [do not lift donor move text into canon phrasing]
+    escalation_owner_hint: scenario_runtime_owner
+  osr_survival_sandbox:
+    template_id: osr_survival_sandbox
+    label: OSR Survival Sandbox
+    description: Procedure-heavy exploration with lethal risk and resource tracking.
+    priority: 80
+    detection_signals: [encumbrance pressure, hex crawl procedures, random encounters]
+    expected_construct_families: [hazard_environment_exploration_travel, resource_cost_recharge_backlash, random_table_loot, scene_mission_adventure_scenario]
+    packet_selection_targets: [travel procedures, encounter tables, survival rules]
+    extraction_risks: [random table flattening, layout noise]
+    likely_quarantine_reasons: [setting-tied survival assumptions]
+    conversion_prompt_additions: [retain procedural order; normalize numeric thresholds]
+    review_notes: [treat locale-specific hazards as source-local]
+    escalation_owner_hint: exploration_systems_owner
+  lifepath_trade_starship:
+    template_id: lifepath_trade_starship
+    label: Lifepath Trade Starship
+    description: Lifepath character generation with trade/travel and starship operations.
+    priority: 83
+    detection_signals: [lifepath tables, cargo economics, jump/travel phases]
+    expected_construct_families: [player_chassis_and_character_creation, vehicle_platform_starship_mech, gear_item_crafting_loot_economy, scene_mission_adventure_scenario]
+    packet_selection_targets: [lifepath generator, trade systems, starship operations]
+    extraction_risks: [table flattening, formula parsing loss]
+    likely_quarantine_reasons: [complex economy couplings]
+    conversion_prompt_additions: [separate lifepath generation from world lore]
+    review_notes: [retain named sectors/routes as source-local]
+    escalation_owner_hint: economy_platform_owner
+  tactical_mech_vehicle_platform:
+    template_id: tactical_mech_vehicle_platform
+    label: Tactical Mech/Vehicle Platform
+    description: Tactical systems centered on mechs, vehicles, and platform loadouts.
+    priority: 81
+    detection_signals: [hardpoint loadouts, armor facings, platform heat/energy tracks]
+    expected_construct_families: [vehicle_platform_starship_mech, damage_condition_effect_survivability, gear_item_crafting_loot_economy, mass_battle_war_campaign]
+    packet_selection_targets: [platform chassis rules, tactical combat loop, loadout tables]
+    extraction_risks: [diagram dependency, statblock under-parsing]
+    likely_quarantine_reasons: [donor-unique action economies]
+    conversion_prompt_additions: [normalize platform actions to shared tactical primitives]
+    review_notes: [avoid donor model names in normalized outputs]
+    escalation_owner_hint: tactical_platform_owner
+  cyberpunk_biotech_transhuman:
+    template_id: cyberpunk_biotech_transhuman
+    label: Cyberpunk Biotech Transhuman
+    description: Augmentation, hacking, and biotech pressure systems.
+    priority: 79
+    detection_signals: [cyberware slots, hacking actions, biotech modifications]
+    expected_construct_families: [gear_item_crafting_loot_economy, ability_power_spell_technique, damage_condition_effect_survivability, origin_kinform_culture_background]
+    packet_selection_targets: [augmentation catalog, hacking procedures, injury/trauma rules]
+    extraction_risks: [catalog table flattening, jargon ambiguity]
+    likely_quarantine_reasons: [ethics/social assumptions embedded in mechanics]
+    conversion_prompt_additions: [split augmentation mechanics from setting framing]
+    review_notes: [retain corp/faction naming as source-local]
+    escalation_owner_hint: augmentation_policy_owner
+  cultivation_wuxia_martial:
+    template_id: cultivation_wuxia_martial
+    label: Cultivation Wuxia Martial
+    description: Rank/cultivation progression with martial techniques and lineage structures.
+    priority: 78
+    detection_signals: [cultivation stages, meridian or internal energy, sect lineages]
+    expected_construct_families: [ability_power_spell_technique, progression_advancement_growth, origin_kinform_culture_background, creature_npc_bestiary_companion]
+    packet_selection_targets: [rank ladders, technique chapters, advancement breakthroughs]
+    extraction_risks: [terminology transliteration drift, rank table flattening]
+    likely_quarantine_reasons: [lore-mechanics entanglement]
+    conversion_prompt_additions: [preserve progression semantics; neutralize sect-specific terminology]
+    review_notes: [keep lineage/sect proper nouns source-local]
+    escalation_owner_hint: progression_doctrine_owner
+  horror_investigation_social:
+    template_id: horror_investigation_social
+    label: Horror Investigation Social
+    description: Investigation-first systems with stress, fear, and social leverage loops.
+    priority: 77
+    detection_signals: [sanity or stress tracks, clue structures, social pressure moves]
+    expected_construct_families: [scene_mission_adventure_scenario, damage_condition_effect_survivability, competency_skill_profession, world_region_faction_setting]
+    packet_selection_targets: [investigation procedures, stress mechanics, social conflict sections]
+    extraction_risks: [prose ambiguity, clue table flattening]
+    likely_quarantine_reasons: [tone-dependent rules not portable]
+    conversion_prompt_additions: [separate fear/stress mechanics from theme text]
+    review_notes: [retain scenario-specific entities as source-local]
+    escalation_owner_hint: narrative_risk_owner
+  bestiary_statblock_heavy:
+    template_id: bestiary_statblock_heavy
+    label: Bestiary Statblock Heavy
+    description: Creature catalogs where statblocks dominate extraction workload.
+    priority: 86
+    detection_signals: [dense statblocks, trait/action blocks, large creature indexes]
+    expected_construct_families: [creature_npc_bestiary_companion, damage_condition_effect_survivability, ability_power_spell_technique, hazard_environment_exploration_travel]
+    packet_selection_targets: [statblock pages, trait definitions, encounter use notes]
+    extraction_risks: [statblock under-parsing, OCR misreads, column bleed]
+    likely_quarantine_reasons: [partial stat extraction with missing constraints]
+    conversion_prompt_additions: [require complete statline capture before normalization]
+    review_notes: [creature names remain source-local unless separately approved]
+    escalation_owner_hint: bestiary_schema_owner
+  setting_world_guide:
+    template_id: setting_world_guide
+    label: Setting World Guide
+    description: Primarily world, region, and faction reference materials.
+    priority: 70
+    detection_signals: [gazetteer chapters, region timelines, faction profiles]
+    expected_construct_families: [world_region_faction_setting, domain_faction_kingdom_management, scene_mission_adventure_scenario, source_local_residue]
+    packet_selection_targets: [faction systems, travel structures, governance mechanics]
+    extraction_risks: [lore/mechanics blending, map dependency]
+    likely_quarantine_reasons: [high setting specificity with low portable mechanics]
+    conversion_prompt_additions: [extract only reusable structures; retain lore locally]
+    review_notes: [world names and chronology stay source-local]
+    escalation_owner_hint: setting_abstraction_owner
+  adventure_path_scenario:
+    template_id: adventure_path_scenario
+    label: Adventure Path Scenario
+    description: Scenario/adventure path content with encounter sequencing and progression.
+    priority: 76
+    detection_signals: [chaptered encounters, boxed text, milestone flow]
+    expected_construct_families: [scene_mission_adventure_scenario, hazard_environment_exploration_travel, creature_npc_bestiary_companion, random_table_loot]
+    packet_selection_targets: [scenario skeletons, encounter procedures, reward loops]
+    extraction_risks: [layout contamination, map/text dependencies]
+    likely_quarantine_reasons: [plot-locked mechanics]
+    conversion_prompt_additions: [normalize encounter scaffolds; keep narrative specifics local]
+    review_notes: [boxed narrative text is source-local by default]
+    escalation_owner_hint: scenario_design_owner
+  random_table_loot:
+    template_id: random_table_loot
+    label: Random Table Loot
+    description: Materials dominated by random generation and loot tables.
+    priority: 75
+    detection_signals: [d100 tables, loot generators, random event matrices]
+    expected_construct_families: [gear_item_crafting_loot_economy, random_table_loot, scene_mission_adventure_scenario, resource_cost_recharge_backlash]
+    packet_selection_targets: [table clusters, generation procedures, weighting notes]
+    extraction_risks: [table flattening, dice notation corruption]
+    likely_quarantine_reasons: [insufficient context for table triggers]
+    conversion_prompt_additions: [preserve roll bands and trigger conditions]
+    review_notes: [item flavor and named drops remain source-local]
+    escalation_owner_hint: tables_quality_owner
+  crafting_economy_salvage:
+    template_id: crafting_economy_salvage
+    label: Crafting Economy Salvage
+    description: Crafting loops, salvage flows, and economy balancing systems.
+    priority: 74
+    detection_signals: [recipe trees, salvage yields, market modifiers]
+    expected_construct_families: [gear_item_crafting_loot_economy, resource_cost_recharge_backlash, progression_advancement_growth, competency_skill_profession]
+    packet_selection_targets: [crafting procedures, economy tables, salvage rules]
+    extraction_risks: [formula parsing loss, nested tables]
+    likely_quarantine_reasons: [circular economy dependencies]
+    conversion_prompt_additions: [normalize resource flows and production constraints]
+    review_notes: [setting currencies remain source-local]
+    escalation_owner_hint: economy_balance_owner
+  solo_procedure_heavy:
+    template_id: solo_procedure_heavy
+    label: Solo Procedure Heavy
+    description: Solo-first procedure systems with oracle and state-tracking loops.
+    priority: 73
+    detection_signals: [oracle tables, journaling turns, solo state machines]
+    expected_construct_families: [scene_mission_adventure_scenario, random_table_loot, resource_cost_recharge_backlash, extraction_provenance_and_handoff]
+    packet_selection_targets: [turn procedures, oracle sections, state tracking structures]
+    extraction_risks: [procedure order ambiguity, table flattening]
+    likely_quarantine_reasons: [self-referential loops without clear boundaries]
+    conversion_prompt_additions: [enforce explicit step order in normalized procedures]
+    review_notes: [journaling exemplars are source-local]
+    escalation_owner_hint: procedures_owner
+  companion_summon_pet:
+    template_id: companion_summon_pet
+    label: Companion Summon Pet
+    description: Companion/summon systems with shared actions and growth tracks.
+    priority: 72
+    detection_signals: [pet statblocks, summon slots, companion progression]
+    expected_construct_families: [creature_npc_bestiary_companion, player_chassis_and_character_creation, progression_advancement_growth, ability_power_spell_technique]
+    packet_selection_targets: [companion creation, command actions, progression tables]
+    extraction_risks: [statblock under-parsing, feature table flattening]
+    likely_quarantine_reasons: [ownership/action economy conflicts]
+    conversion_prompt_additions: [separate companion chassis from flavor identities]
+    review_notes: [named companions remain source-local]
+    escalation_owner_hint: companion_systems_owner
+  domain_faction_kingdom_management:
+    template_id: domain_faction_kingdom_management
+    label: Domain Faction Kingdom Management
+    description: Domain-level governance, faction control, and kingdom management rules.
+    priority: 71
+    detection_signals: [domain turns, faction assets, kingdom stats]
+    expected_construct_families: [domain_faction_kingdom_management, world_region_faction_setting, resource_cost_recharge_backlash, mass_battle_war_campaign]
+    packet_selection_targets: [domain turn cycle, faction mechanics, governance tables]
+    extraction_risks: [cross-table dependency, terminology drift]
+    likely_quarantine_reasons: [macro-scale assumptions incompatible with base loop]
+    conversion_prompt_additions: [normalize turn cadence and resource ledgers]
+    review_notes: [named realms and political entities are source-local]
+    escalation_owner_hint: domain_systems_owner
+  mass_battle_war_campaign:
+    template_id: mass_battle_war_campaign
+    label: Mass Battle War Campaign
+    description: Army-scale combat and campaign warfare procedures.
+    priority: 69
+    detection_signals: [unit formations, battle rounds, campaign fronts]
+    expected_construct_families: [mass_battle_war_campaign, damage_condition_effect_survivability, scene_mission_adventure_scenario, domain_faction_kingdom_management]
+    packet_selection_targets: [battle sequence, unit stat frameworks, campaign operations]
+    extraction_risks: [diagram dependency, table flattening]
+    likely_quarantine_reasons: [scale transition conflicts]
+    conversion_prompt_additions: [map unit resolution to abstract conflict tiers]
+    review_notes: [named historical battles remain source-local]
+    escalation_owner_hint: warfare_systems_owner
+  magic_spell_power_compendium:
+    template_id: magic_spell_power_compendium
+    label: Magic Spell/Power Compendium
+    description: Compendium-style spell or power lists with effect taxonomies.
+    priority: 87
+    detection_signals: [spell level bands, effect schools, long power catalogs]
+    expected_construct_families: [ability_power_spell_technique, resource_cost_recharge_backlash, damage_condition_effect_survivability, progression_advancement_growth]
+    packet_selection_targets: [power lists, casting rules, effect definitions]
+    extraction_risks: [list truncation, inline symbol loss]
+    likely_quarantine_reasons: [incomplete effect constraints]
+    conversion_prompt_additions: [capture target, duration, cost, and constraints explicitly]
+    review_notes: [donor spell names remain source-local]
+    escalation_owner_hint: ability_taxonomy_owner
+  gear_item_catalog:
+    template_id: gear_item_catalog
+    label: Gear Item Catalog
+    description: Item-dense catalogs with pricing, tags, and equipment usage rules.
+    priority: 68
+    detection_signals: [large item tables, price lists, equipment tags]
+    expected_construct_families: [gear_item_crafting_loot_economy, competency_skill_profession, resource_cost_recharge_backlash, extraction_provenance_and_handoff]
+    packet_selection_targets: [item tables, usage constraints, acquisition rules]
+    extraction_risks: [table flattening, unit parsing errors]
+    likely_quarantine_reasons: [missing use constraints or slot assumptions]
+    conversion_prompt_additions: [retain item function tags and cost semantics]
+    review_notes: [brand/model names remain source-local]
+    escalation_owner_hint: item_schema_owner
+  map_diagram_heavy:
+    template_id: map_diagram_heavy
+    label: Map/Diagram Heavy
+    description: Documents where map or diagram context is required for meaning.
+    priority: 67
+    detection_signals: [map callouts, diagram references, key legends]
+    expected_construct_families: [hazard_environment_exploration_travel, scene_mission_adventure_scenario, extraction_provenance_and_handoff, world_region_faction_setting]
+    packet_selection_targets: [map keys, diagram-linked procedures, navigation rules]
+    extraction_risks: [map dependency, OCR-needed callouts, boundary ambiguity]
+    likely_quarantine_reasons: [text not interpretable without visual context]
+    conversion_prompt_additions: [mark map-dependent assertions for quarantine if unresolved]
+    review_notes: [location names remain source-local]
+    escalation_owner_hint: extraction_quality_owner
+  scanned_or_ocr_heavy:
+    template_id: scanned_or_ocr_heavy
+    label: Scanned or OCR Heavy
+    description: Scan-like inputs with OCR noise and layout fragmentation.
+    priority: 66
+    detection_signals: [low text confidence, broken glyphs, skewed page capture]
+    expected_construct_families: [extraction_provenance_and_handoff, unclassified_or_mixed, hazard_environment_exploration_travel, gear_item_crafting_loot_economy]
+    packet_selection_targets: [high-noise pages, repeated header/footer zones, OCR repair candidates]
+    extraction_risks: [mojibake, OCR substitution errors, column bleed]
+    likely_quarantine_reasons: [insufficient extraction certainty]
+    conversion_prompt_additions: [prefer quarantine when semantic confidence is low]
+    review_notes: [require repair queue linkage for noisy passages]
+    escalation_owner_hint: ocr_pipeline_owner
+  unclassified_or_mixed_donor_family:
+    template_id: unclassified_or_mixed_donor_family
+    label: Unclassified or Mixed Donor Family
+    description: Fallback routing template when no primary donor-family template meets threshold.
+    priority: 10
+    fallback_only: true
+    detection_signals: [mixed signatures, low-confidence family signals, unresolved hybrid structure]
+    expected_construct_families: [unclassified_or_mixed, extraction_provenance_and_handoff]
+    packet_selection_targets: [triage packets, representative mixed sections]
+    extraction_risks: [packet boundary ambiguity, mixed layout contamination]
+    likely_quarantine_reasons: [insufficient examples for stable family routing]
+    conversion_prompt_additions: [route conservatively, prefer source-local or quarantine over forced normalization]
+    review_notes: [use to collect evidence for new templates; not a normal target family]
+    escalation_owner_hint: routing_governance_owner
