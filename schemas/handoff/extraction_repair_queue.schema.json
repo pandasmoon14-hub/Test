@@ -1,0 +1,64 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://astracloud.local/schemas/handoff/extraction_repair_queue.schema.json",
+  "title": "Extraction Repair Queues",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["queues"],
+  "properties": {
+    "queues": {
+      "type": "object",
+      "minProperties": 1,
+      "additionalProperties": { "$ref": "#/$defs/queueRecord" }
+    }
+  },
+  "$defs": {
+    "queueRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "queue_id",
+        "label",
+        "description",
+        "severity",
+        "stage",
+        "detection_signals",
+        "routing_action",
+        "blocks_conversion",
+        "allows_intake_only",
+        "expected_artifacts",
+        "reviewer_action",
+        "escalation_owner_hint",
+        "notes"
+      ],
+      "properties": {
+        "queue_id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "severity": {
+          "type": "string",
+          "enum": ["info", "warning", "repair_required", "blocking"]
+        },
+        "stage": {
+          "type": "string",
+          "enum": [
+            "extraction",
+            "packet_planning",
+            "packet_building",
+            "conversion_intake",
+            "validation",
+            "aggregation"
+          ]
+        },
+        "detection_signals": { "type": "array", "items": { "type": "string" } },
+        "routing_action": { "type": "string", "minLength": 1 },
+        "blocks_conversion": { "type": "boolean" },
+        "allows_intake_only": { "type": "boolean" },
+        "expected_artifacts": { "type": "array", "items": { "type": "string" } },
+        "reviewer_action": { "type": "string", "minLength": 1 },
+        "escalation_owner_hint": { "type": "string", "minLength": 1 },
+        "notes": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
