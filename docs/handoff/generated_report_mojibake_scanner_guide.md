@@ -2,67 +2,57 @@
 
 ## Purpose
 
-`scan_generated_report_mojibake.py` checks generated report artifacts for mojibake/encoding corruption before batch continuation.
+`scan_generated_report_mojibake.py` detects mojibake in generated report artifacts before continuation.
 
-Report-layer mojibake matters because it can corrupt status summaries, confidence lines, table headers, and report metadata used for governance decisions.
+It distinguishes **generated scaffold corruption** from **source-derived payload text**.
 
-## Generated-report corruption vs source-text extraction corruption
+## Strict policy
 
-- **Generated-report corruption** is a tooling output defect and is a strict failure in generated scaffold zones.
-- **Source-text extraction corruption** can be legitimate extraction evidence and may appear in payload values carried into aggregation outputs.
+- `generated_scaffold_mojibake` is a strict failure.
+- `likely_source_text_mojibake` is warning-level with `--allow-source-examples`.
+- `ambiguous_mojibake` fails unless it is recognized as source-derived under `--allow-source-examples`.
 
-This scanner classifies findings as:
+## Generated scaffold zones (must fail)
 
-- `generated_scaffold_mojibake`
-- `likely_source_text_mojibake`
-- `ambiguous_mojibake`
+Examples:
 
-## Strict behavior
+- Markdown headings/report titles/section labels
+- Run Summary lines
+- Confidence range lines
+- Packets total lines
+- Result status counts lines
+- Lawful outcome counts lines
+- Generated table headers
+- CSV headers
+- JSON keys
 
-In strict mode:
+## Source-derived payload zones (warn with --allow-source-examples)
 
-- `generated_scaffold_mojibake` always fails.
-- `likely_source_text_mojibake` warns when `--allow-source-examples` is set, otherwise fails.
-- `ambiguous_mojibake` fails unless it is recognized as source-derived context with `--allow-source-examples`.
+Examples:
 
-Batch 001 currently contains source-derived mojibake in aggregation payload values, so the scanner must distinguish payload evidence from generated scaffold corruption.
+- Markdown packet/example bullets like `- `packet_id` - ...` (including indented variants)
+- Doctrine pressure/source-local/quarantine/rejected import/mapping example payload rows
+- CSV data rows with donor/source sample text
+- JSON payload values for donor/source/rationale/notes/example/reviewer/conversion fields
 
-## What counts as generated scaffold
-
-Examples include:
-
-- Markdown headings and generated section labels,
-- run summary/status/count/confidence lines,
-- generated table headers,
-- JSON keys with mojibake,
-- CSV headers with mojibake.
-
-## What can be source-derived payload
-
-With `--allow-source-examples`, source-derived payload rows/values are warning-level (not strict-fail), including donor/source-local/rejected/escalation/rationale/example-oriented values in JSON/CSV/Markdown payload sections.
+Batch 001 aggregation outputs can contain source-derived mojibake in payload text. The scanner should preserve this as extraction evidence (warnings) while still failing true scaffold corruption.
 
 ## Relationship to Step 6 and Step 7
 
-- Step 6 extraction repair queues route extraction defects.
-- Step 7 run-integrity validator enforces packet/result/report structural integrity.
-- Step 8 scanner adds report-layer encoding integrity checks for generated markdown/csv/json/txt outputs.
+- Step 6 routes extraction defects via repair queues.
+- Step 7 validates run integrity structure.
+- Step 8 validates report-layer encoding integrity.
 
 ## CLI
 
 - `--path <file-or-dir>`
 - `--strict`
-- `--output-json <path>`
-- `--include "*.md" "*.csv" "*.json"` (defaults include `.md/.csv/.json/.txt`)
 - `--allow-source-examples`
+- `--include` globs (default `*.md *.csv *.json *.txt`)
+- `--output-json PATH`
 
 ## Governance boundaries
 
 - Scanner success does not mean canon approval.
 - Extraction truth is not conversion permission.
 - Conversion permission is not canon permission.
-
-## Full-corpus readiness impact
-
-The eventual single top-level ~1900-donor orchestrated run depends on trustworthy generated reports.
-
-This scanner reduces risk of silent encoding corruption in corpus-scale reporting while preserving source-derived extraction evidence as warnings when configured.

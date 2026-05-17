@@ -4,6 +4,7 @@ import argparse
 import csv
 import fnmatch
 import json
+import re
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -13,10 +14,16 @@ DEFAULT_INCLUDES = ["*.md", "*.csv", "*.json", "*.txt"]
 MOJIBAKE_TOKENS = [
     "â€“", "â€”", "â€¦", "â€˜", "â€™", "â€œ", "â€\x9d", "Ã¢â‚¬", "Ã¢â‚¬â€œ", "Ã¢â‚¬â€”", "Ã¢â‚¬Â", "Â", "�",
 ]
-SOURCE_SECTION_HINTS = ["examples", "source-local examples", "donor examples", "extracted text", "source snippet"]
+SOURCE_SECTION_HINTS = [
+    "examples", "source-local examples", "donor examples", "extracted text", "source snippet",
+    "doctrine pressure", "source-local retention", "quarantine", "rejected import", "mapping examples", "packet examples",
+]
 SOURCE_DERIVED_HINTS = [
     "source-local", "source_local", "donor", "retained", "rejected import", "doctrine escalation", "queue",
     "example", "packet_id", "construct", "rationale", "reviewer_notes", "conversion_notes", "text", "notes",
+]
+SCAFFOLD_MARKERS = [
+    "run summary", "confidence range", "packets total", "result status counts", "lawful outcome counts", "report metadata",
 ]
 SOURCE_JSON_KEYS = {
     "donor_construct", "text", "rationale", "notes", "example", "examples", "source_local", "source-local",
@@ -43,8 +50,12 @@ def _is_generated_md_line(line: str) -> bool:
         return True
     if l.startswith("|") and ("---" in l or "status" in l or "count" in l):
         return True
-    markers = ["confidence range", "packets total", "result status counts", "lawful outcome counts", "run summary", "report metadata"]
-    return any(m in l for m in markers)
+    return any(m in l for m in SCAFFOLD_MARKERS)
+
+
+def _is_packet_bullet(line: str) -> bool:
+    # supports: - `packet_id` ...  OR   two-space indent bullet
+    return bool(re.match(r"^\s*-\s*`[^`]+`\s*-", line))
 
 
 def _is_source_derived_line(line: str) -> bool:
@@ -62,14 +73,17 @@ def _classify_md_txt(lines: list[str], allow_source_examples: bool):
     out = []
     in_source = False
     for i, line in enumerate(lines, 1):
+        if line.strip().startswith("#"):
+            in_source = _is_source_section_heading(line)
         tok = has_mojibake(line)
         if not tok:
-            if line.strip().startswith("#"):
-                in_source = _is_source_section_heading(line)
             continue
+
         if _is_generated_md_line(line):
             cls = "generated_scaffold_mojibake"
-        elif in_source or (allow_source_examples and _is_source_derived_line(line)):
+        elif allow_source_examples and (_is_packet_bullet(line) or in_source or _is_source_derived_line(line)):
+            cls = "likely_source_text_mojibake"
+        elif in_source:
             cls = "likely_source_text_mojibake"
         else:
             cls = "ambiguous_mojibake"
@@ -80,14 +94,14 @@ def _classify_md_txt(lines: list[str], allow_source_examples: bool):
 def _classify_json(path: Path, allow_source_examples: bool):
     out = []
     text = path.read_text(encoding="utf-8", errors="ignore")
-    # key-level scan from raw lines
     for i, line in enumerate(text.splitlines(), 1):
         tok = has_mojibake(line)
         if not tok:
             continue
         stripped = line.strip()
-        if stripped.startswith('"') and ':' in stripped:
-            key = stripped.split(':', 1)[0].strip().strip('"').lower()
+        if ':' in stripped:
+            key_part = stripped.split(':', 1)[0]
+            key = key_part.lstrip('{').strip().strip('"').lower()
             if has_mojibake(key):
                 cls = "generated_scaffold_mojibake"
             elif allow_source_examples and key in SOURCE_JSON_KEYS:
@@ -121,9 +135,9 @@ def _classify_csv(path: Path, allow_source_examples: bool):
 
 def scan(target: Path, strict: bool, include: list[str], allow_source_examples: bool) -> dict[str, Any]:
     files = _collect_files(target, include or DEFAULT_INCLUDES)
-    findings = []
-    errors = []
-    warnings = []
+    findings: list[dict[str, Any]] = []
+    errors: list[str] = []
+    warnings: list[str] = []
 
     for f in files:
         if f.suffix.lower() in {".md", ".txt"}:
@@ -141,10 +155,9 @@ def scan(target: Path, strict: bool, include: list[str], allow_source_examples: 
                 if cls == "generated_scaffold_mojibake":
                     errors.append(f"generated_scaffold_mojibake:{f}:{line_no}:{tok}")
                 elif cls == "likely_source_text_mojibake":
-                    if allow_source_examples:
-                        warnings.append(f"likely_source_text_mojibake:{f}:{line_no}:{tok}")
-                    else:
-                        errors.append(f"likely_source_text_mojibake:{f}:{line_no}:{tok}")
+                    (warnings if allow_source_examples else errors).append(
+                        f"likely_source_text_mojibake:{f}:{line_no}:{tok}"
+                    )
                 else:
                     errors.append(f"ambiguous_mojibake:{f}:{line_no}:{tok}")
 
@@ -180,9 +193,10 @@ def main() -> None:
     ap.add_argument("--include", nargs="*")
     ap.add_argument("--allow-source-examples", action="store_true")
     args = ap.parse_args()
+
     report = scan(Path(args.path), bool(args.strict), args.include or DEFAULT_INCLUDES, bool(args.allow_source_examples))
-    payload = json.dumps(report, indent=2, ensure_ascii=False)
-    print(payload)
+    payload = json.dumps(report, indent=2, ensure_ascii=True)
+    sys.stdout.write(payload + "\n")
     if args.output_json:
         Path(args.output_json).write_text(payload + "\n", encoding="utf-8")
     if args.strict and not report["valid"]:
