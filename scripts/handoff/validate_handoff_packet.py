@@ -111,6 +111,16 @@ def _has_matching_sidecar(sidecar_rows: list[dict], unit: dict) -> bool:
     return False
 
 
+
+
+def _unit_declares_family_queue(unit: dict, family: str) -> bool:
+    aliases={
+        'table': {'table_repair_queue','table_normalization_queue'},
+        'statblock': {'statblock_parse_queue','statblock_queue'},
+        'map': {'map_diagram_review_queue','map_diagram_queue'},
+    }[family]
+    toks=_norm_tokens([unit.get('repair_queue'), unit.get('repair_queues'), unit.get('queue_type'), unit.get('queue_types')])
+    return bool(toks & aliases)
 def _queue_record_covers_unit(records: list[dict], unit: dict, family: str) -> bool:
     family_tokens={
         'table': {'table','random_table','catalog','item_catalog','gear_catalog','loot_table','flattened_table'},
@@ -233,15 +243,15 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             risky_detection.append({'unit_id': u.get('unit_id'), 'families': sorted(families), 'reasons': reasons})
             if 'table' in families:
                 table_records=qrecs['table_normalization_queue'] + qrecs['repair_queue']
-                if not _has_matching_sidecar(table_sidecars, u) and not _queue_record_covers_unit(table_records, u, 'table'):
+                if not _has_matching_sidecar(table_sidecars, u) and not _unit_declares_family_queue(u, 'table') and not _queue_record_covers_unit(table_records, u, 'table'):
                     errors.append('missing_table_sidecar_or_repair_queue')
             if 'statblock' in families:
                 stat_records=qrecs['statblock_queue'] + qrecs['repair_queue']
-                if not _has_matching_sidecar(statblock_sidecars, u) and not _queue_record_covers_unit(stat_records, u, 'statblock'):
+                if not _has_matching_sidecar(statblock_sidecars, u) and not _unit_declares_family_queue(u, 'statblock') and not _queue_record_covers_unit(stat_records, u, 'statblock'):
                     errors.append('missing_statblock_sidecar_or_parse_queue')
             if 'map' in families:
                 map_records=qrecs['map_diagram_queue'] + qrecs['repair_queue']
-                if not _has_matching_sidecar(map_sidecars, u) and not _queue_record_covers_unit(map_records, u, 'map'):
+                if not _has_matching_sidecar(map_sidecars, u) and not _unit_declares_family_queue(u, 'map') and not _queue_record_covers_unit(map_records, u, 'map'):
                     errors.append('missing_map_sidecar_or_review_queue')
 
         queued_pages={int(r.get('page',0)) for r in pt if r.get('page_status') in {'queued','failed'}}
