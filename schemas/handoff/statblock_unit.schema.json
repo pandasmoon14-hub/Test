@@ -162,6 +162,12 @@
     },
     "mechanical_import_allowed": {
       "type": "boolean"
+    },
+    "content_families": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }
