@@ -137,6 +137,12 @@
     },
     "notes": {
       "type": "string"
+    },
+    "content_families": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   }
 }
