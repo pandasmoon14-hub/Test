@@ -20,6 +20,68 @@ def load_jsonl(path):
 
 def markers(md): return [int(x) for x in re.findall(r"<!--\s*PAGE:(\d+)\s*-->", md)]
 
+
+def _family_signal(unit: dict, manifest_tags: set[str], family: str) -> bool:
+    unit_type=str(unit.get('unit_type','')).lower()
+    low_text=str(unit.get('text','')).lower()
+    low_defects=[str(x).lower() for x in unit.get('defects',[])]
+    tags={str(x).lower() for x in manifest_tags}
+
+    if family=='table':
+        tag_hits={'table','random_table','catalog'}
+        return (
+            unit_type=='table' or
+            bool(tags & tag_hits) or
+            any(k in low_text for k in ['|','table','random table','d100','catalog']) or
+            any('table' in d for d in low_defects)
+        )
+    if family=='statblock':
+        tag_hits={'statblock','stat_block','creature_or_npc','creature','npc'}
+        return (
+            unit_type=='stat_block' or
+            bool(tags & tag_hits) or
+            any(k in low_text for k in ['stat block','statblock','ac ','hp ','str ','dex ','con ','creature','npc']) or
+            any('stat' in d for d in low_defects)
+        )
+    if family=='map':
+        tag_hits={'map','map_or_diagram','diagram'}
+        return (
+            unit_type=='map' or
+            bool(tags & tag_hits) or
+            any(k in low_text for k in ['map','diagram','room key','hex']) or
+            any('map' in d or 'diagram' in d for d in low_defects)
+        )
+    return False
+
+
+def _has_matching_sidecar(sidecar_rows: list[dict], unit: dict) -> bool:
+    uid=unit.get('unit_id')
+    usp=int(unit.get('source_page_start',0)); uep=int(unit.get('source_page_end',0))
+    for row in sidecar_rows:
+        if uid and row.get('unit_id')==uid:
+            return True
+        rsp=int(row.get('source_page_start',0)); rep=int(row.get('source_page_end',0))
+        if rsp and rep and not (rep<usp or rsp>uep):
+            return True
+    return False
+
+
+def _queue_record_covers_unit(records: list[dict], unit: dict, reason_tokens: tuple[str, ...], action_tokens: tuple[str, ...]) -> bool:
+    uid=unit.get('unit_id')
+    usp=int(unit.get('source_page_start',0)); uep=int(unit.get('source_page_end',0))
+    for rec in records:
+        if rec.get('unit_id') not in {uid, None, ''}:
+            continue
+        pages=[int(x) for x in rec.get('source_pages',[]) if isinstance(x,int)]
+        if pages and all((p<usp or p>uep) for p in pages):
+            continue
+        rc=str(rec.get('reason_code','')).lower()
+        ra=str(rec.get('recommended_action','')).lower()
+        qn=str(rec.get('queue_name','')).lower()
+        if any(t in qn or t in rc for t in reason_tokens) or any(t in ra for t in action_tokens):
+            return True
+    return False
+
 def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict, int]:
     d=Path(packet_dir)
     a_strict = strict
@@ -40,6 +102,9 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
         pt=load_jsonl(d/'page_truth.jsonl'); units=load_jsonl(d/'content_units.jsonl'); defects=load_jsonl(d/'extraction_defects.jsonl')
         md=(d/'extracted.md').read_text(encoding='utf-8')
         qrecs={q[:-6]:load_jsonl(d/'queues'/q) for q in QUEUE_FILES}
+        table_sidecars=load_jsonl(d/'sidecars'/'tables'/'table_units.jsonl')
+        map_sidecars=load_jsonl(d/'sidecars'/'maps'/'map_units.jsonl')
+        statblock_sidecars=load_jsonl(d/'sidecars'/'statblocks'/'statblock_units.jsonl')
 
         counts['page_truth_rows']=len(pt); counts['extracted_page_markers']=len(markers(md)); counts['content_units']=len(units); counts['extraction_defects']=len(defects)
         counts['queue_records_by_queue']={k:len(v) for k,v in qrecs.items()}
@@ -90,6 +155,18 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             if u.get('unit_type')=='table' and u.get('content_readiness')!='ready' and len(qrecs['table_normalization_queue'])==0: errors.append('missing_table_normalization_queue_record')
             if u.get('unit_type')=='map' and u.get('content_readiness')!='ready' and len(qrecs['map_diagram_queue'])==0: errors.append('missing_map_diagram_queue_record')
             if u.get('unit_type')=='stat_block' and u.get('content_readiness')!='ready' and len(qrecs['statblock_queue'])==0: errors.append('missing_statblock_queue_record')
+
+        manifest_tags={str(x).lower() for x in manifest.get('content_family_tags',[])}
+        for u in units:
+            if _family_signal(u, manifest_tags, 'table'):
+                if not _has_matching_sidecar(table_sidecars, u) and not _queue_record_covers_unit(qrecs['table_normalization_queue'], u, ('table','random_table','catalog'), ('repair','normalize','review')):
+                    errors.append('missing_table_sidecar_or_repair_queue')
+            if _family_signal(u, manifest_tags, 'statblock'):
+                if not _has_matching_sidecar(statblock_sidecars, u) and not _queue_record_covers_unit(qrecs['statblock_queue'], u, ('stat','creature','npc','parse'), ('parse','review','repair')):
+                    errors.append('missing_statblock_sidecar_or_parse_queue')
+            if _family_signal(u, manifest_tags, 'map'):
+                if not _has_matching_sidecar(map_sidecars, u) and not _queue_record_covers_unit(qrecs['map_diagram_queue'], u, ('map','diagram','visual'), ('review','repair','validate')):
+                    errors.append('missing_map_sidecar_or_review_queue')
 
         queued_pages={int(r.get('page',0)) for r in pt if r.get('page_status') in {'queued','failed'}}
         if queued_pages and len(qrecs['repair_queue'])==0: errors.append('queued_pages_without_repair_records')
