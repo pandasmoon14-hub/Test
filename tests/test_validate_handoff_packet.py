@@ -38,6 +38,7 @@ def test_valid_packet_passes_strict(tmp_path: Path):
     assert r.returncode==0
     rep=json.loads((p/'packet_validation_report.json').read_text())
     assert rep['valid'] is True
+    assert all(not x.get('families') for x in rep.get('risky_family_detection',[]))
 
 
 def test_missing_required_file_fails(tmp_path: Path):
@@ -102,7 +103,7 @@ def _set_single_unit(packet: Path, unit_type: str, text: str, tags: list[str] | 
     _write_jsonl(packet/'content_units.jsonl',[unit])
     m=json.loads((packet/'packet_manifest.json').read_text())
     if tags is not None:
-        m['content_family_tags']=tags
+        m['content_families']=tags
     (packet/'packet_manifest.json').write_text(json.dumps(m),encoding='utf-8')
     for q in ['table_normalization_queue','statblock_queue','map_diagram_queue']:
         (packet/'queues'/f'{q}.jsonl').write_text('',encoding='utf-8')
@@ -199,6 +200,40 @@ def test_needs_repair_alone_does_not_trigger_table_sidecar_requirement(tmp_path:
     u['recommended_queue']='repair_queue'
     _write_jsonl(p/'content_units.jsonl',[u])
     _write_jsonl(p/'queues'/'repair_queue.jsonl',[_queue_rec('repair_queue',u['unit_id'],'generic_repair','review')])
+    r=_validate(p,True)
+    assert r.returncode==0
+
+
+def test_notes_or_text_containing_table_does_not_trigger_risk(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','this prose says table of contents only', ['prose'])
+    u['notes']='contains the word table but not family metadata'
+    _write_jsonl(p/'content_units.jsonl',[u])
+    r=_validate(p,True)
+    assert r.returncode==0
+    rep=json.loads((p/'packet_validation_report.json').read_text())
+    assert all('table' not in x.get('families',[]) for x in rep.get('risky_family_detection',[]))
+
+
+def test_explicit_issue_codes_flattened_table_triggers_table_risk(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','ordinary prose', ['prose'])
+    u['issue_codes']=['flattened_table']
+    _write_jsonl(p/'content_units.jsonl',[u])
+    r=_validate(p,True)
+    assert r.returncode!=0
+    rep=json.loads((p/'packet_validation_report.json').read_text())
+    assert 'missing_table_sidecar_or_repair_queue' in rep['errors']
+    reasons=rep['risky_family_detection'][0]['reasons']
+    assert any(rr['field']=='unit.issue_codes' for rr in reasons)
+
+
+def test_explicit_repair_queues_table_repair_queue_satisfies_table_risk(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','ordinary prose', ['random_table'])
+    u['repair_queues']=['table_repair_queue']
+    _write_jsonl(p/'content_units.jsonl',[u])
+    _write_jsonl(p/'queues'/'repair_queue.jsonl',[_queue_rec('repair_queue',u['unit_id'],'random_table','table_repair_queue')])
     r=_validate(p,True)
     assert r.returncode==0
 def test_normal_prose_packet_remains_valid(tmp_path: Path):
