@@ -241,3 +241,47 @@ def test_normal_prose_packet_remains_valid(tmp_path: Path):
     _set_single_unit(p,'prose','This is plain prose with no risky structure.', ['prose'])
     r=_validate(p,True)
     assert r.returncode==0
+
+
+def test_content_unit_schema_accepts_optional_content_families(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','plain prose', ['prose'])
+    u['content_families']=['prose']
+    _write_jsonl(p/'content_units.jsonl',[u])
+    r=_validate(p,True)
+    assert (p/'packet_validation_report.json').exists()
+
+
+def test_sidecar_schemas_accept_optional_content_families(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'table','x', ['table'])
+    table={**u,"content_families":["table"],"table_title":"T","table_format":"markdown","row_count_observed":1,"row_count_expected":1,"table_normalization_status":"normalized","table_defects":[]}
+    _write_jsonl(p/'sidecars'/'tables'/'table_units.jsonl',[table])
+    r=_validate(p,True)
+    assert r.returncode==0
+
+
+def test_report_written_on_schema_validation_failure(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','plain prose', ['prose'])
+    u['contract_version']='0.1'
+    _write_jsonl(p/'content_units.jsonl',[u])
+    r=_validate(p,True)
+    assert r.returncode!=0
+    rep_path=p/'packet_validation_report.json'
+    assert rep_path.exists()
+    rep=json.loads(rep_path.read_text())
+    assert rep['valid'] is False
+    assert any(str(e).startswith('schema_validation_failed:content_unit:') for e in rep['errors'])
+
+
+def test_report_written_on_missing_sidecar_queue_failure(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    _set_single_unit(p,'prose','plain prose', ['random_table'])
+    r=_validate(p,True)
+    assert r.returncode!=0
+    rep_path=p/'packet_validation_report.json'
+    assert rep_path.exists()
+    rep=json.loads(rep_path.read_text())
+    assert rep['valid'] is False
+    assert 'missing_table_sidecar_or_repair_queue' in rep['errors']

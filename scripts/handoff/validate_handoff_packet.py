@@ -189,11 +189,22 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             (errors if a_strict else warnings).append('jsonschema_unavailable')
         else:
             root=Path(__file__).resolve().parents[2]/'schemas'/'handoff'
-            jsonschema.validate(manifest, load_json(root/'packet_manifest.schema.json'))
             cu=load_json(root/'content_unit.schema.json'); qr=load_json(root/'queue_record.schema.json')
-            for u in units: jsonschema.validate(u, cu)
-            for recs in qrecs.values():
-                for r in recs: jsonschema.validate(r, qr)
+            try:
+                jsonschema.validate(manifest, load_json(root/'packet_manifest.schema.json'))
+            except Exception as e:
+                errors.append(f'schema_validation_failed:packet_manifest:{e}')
+            for i,u in enumerate(units, start=1):
+                try:
+                    jsonschema.validate(u, cu)
+                except Exception as e:
+                    errors.append(f'schema_validation_failed:content_unit:{i}:{e}')
+            for qn,recs in qrecs.items():
+                for i,r in enumerate(recs, start=1):
+                    try:
+                        jsonschema.validate(r, qr)
+                    except Exception as e:
+                        errors.append(f'schema_validation_failed:queue_record:{qn}:{i}:{e}')
 
         non_ready={'needs_repair','failed_extraction','quarantined','intake_only'}
         for u in units:
