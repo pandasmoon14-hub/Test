@@ -102,9 +102,9 @@ def _set_single_unit(packet: Path, unit_type: str, text: str, tags: list[str] | 
     }
     _write_jsonl(packet/'content_units.jsonl',[unit])
     m=json.loads((packet/'packet_manifest.json').read_text())
-    if tags is not None:
-        m['content_families']=tags
     (packet/'packet_manifest.json').write_text(json.dumps(m),encoding='utf-8')
+    if tags is not None:
+        unit['content_families']=tags
     for q in ['table_normalization_queue','statblock_queue','map_diagram_queue']:
         (packet/'queues'/f'{q}.jsonl').write_text('',encoding='utf-8')
     return unit
@@ -285,3 +285,16 @@ def test_report_written_on_missing_sidecar_queue_failure(tmp_path: Path):
     rep=json.loads(rep_path.read_text())
     assert rep['valid'] is False
     assert 'missing_table_sidecar_or_repair_queue' in rep['errors']
+
+
+def test_risky_detection_presence_alone_does_not_invalidate(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','ordinary prose', ['prose'])
+    u['issue_codes']=['unrelated_code']
+    _write_jsonl(p/'content_units.jsonl',[u])
+    r=_validate(p,True)
+    assert r.returncode==0
+    rep=json.loads((p/'packet_validation_report.json').read_text())
+    assert rep['valid'] is True
+    assert 'risky_family_detection' in rep
+
