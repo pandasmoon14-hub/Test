@@ -173,10 +173,10 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
         counts['content_unit_type_counts']=dict(Counter(str(u.get('unit_type')) for u in units))
         counts['readiness_counts']=dict(Counter(str(u.get('content_readiness')) for u in units))
 
-        s,e=int(manifest['packet_page_start']),int(manifest['packet_page_end'])
-        pages=set(range(s,e+1))
+        start_page,end_page=int(manifest['packet_page_start']),int(manifest['packet_page_end'])
+        pages=set(range(start_page,end_page+1))
         pt_pages={int(r.get('page',0)) for r in pt}
-        if any((p<s or p>e) for p in pt_pages): errors.append('page_truth_out_of_range')
+        if any((p<start_page or p>end_page) for p in pt_pages): errors.append('page_truth_out_of_range')
         mset=set(markers(md))
         if a_strict and not pages.issubset(pt_pages): errors.append('missing_page_truth_for_selected_range')
         if a_strict:
@@ -209,7 +209,7 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
         non_ready={'needs_repair','failed_extraction','quarantined','intake_only'}
         for u in units:
             us,ue=int(u.get('source_page_start',0)),int(u.get('source_page_end',0))
-            if us<s or ue>e: errors.append('unit_out_of_range')
+            if us<start_page or ue>end_page: errors.append('unit_out_of_range')
             for k in ['content_readiness','extraction_status','conversion_permission','canon_permission']:
                 if not u.get(k): errors.append(f'missing_{k}')
             if u.get('content_readiness') in non_ready and not (u.get('recommended_queue') or u.get('lawful_outcome') or u.get('notes')):
@@ -252,7 +252,7 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             if u.get('content_readiness') in non_ready or u.get('extraction_status') in {'queued','failed','ocr_needed'}:
                 errors.append('canon_candidate_points_to_non_ready_unit')
 
-    report={"packet_id":packet_id,"packet_dir":str(d),"valid":len(errors)==0,"errors":errors,"warnings":warnings,"counts":counts,"risky_family_detection":risky_detection}
+    report={"packet_id":packet_id,"packet_dir":str(d),"strict":bool(a_strict),"valid":len(errors)==0,"errors":errors,"warnings":warnings,"counts":counts,"summary":{"error_count":len(errors),"warning_count":len(warnings)},"risky_family_detection":risky_detection}
     (d/'packet_validation_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     exit_code = 1 if (a_strict and errors) else 0
     return report, exit_code
