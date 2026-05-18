@@ -199,7 +199,13 @@ def parse_inventory(text: str) -> list[dict]:
         ln = ln.strip()
         if not ln: continue
         m = re.match(r"^[A-Za-z]\.\s+(.+)$", ln) or re.match(r"^\d+\.\s+(.+)$", ln) or re.match(r"^[-*]\s+(.+)$", ln)
-        items.append({"text": m.group(1) if m else ln})
+        visible_text = m.group(1) if m else ln
+        items.append({
+            "text": visible_text,
+            "donor_label": visible_text,
+            "neutral_summary": visible_text,
+            "content_family": None,
+        })
     return items
 
 

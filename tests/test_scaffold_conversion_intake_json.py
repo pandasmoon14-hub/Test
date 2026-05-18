@@ -258,6 +258,9 @@ def test_parse_inventory_lettered():
     items = sjs.parse_inventory(text)
     assert len(items) == 3
     assert items[0]['text'] == 'First construct'
+    assert items[0]['donor_label'] == 'First construct'
+    assert items[0]['neutral_summary'] == 'First construct'
+    assert items[0]['content_family'] is None
     assert items[1]['text'] == 'Second construct'
     assert items[2]['text'] == 'Third construct'
 
@@ -268,6 +271,9 @@ def test_parse_inventory_bullets():
     items = sjs.parse_inventory(text)
     assert len(items) == 2
     assert items[0]['text'] == 'item one'
+    assert items[0]['neutral_summary'] == 'item one'
+    assert items[1]['text'] == 'item two'
+    assert items[1]['neutral_summary'] == 'item two'
 
 
 def test_parse_inventory_mixed():
@@ -277,6 +283,33 @@ def test_parse_inventory_mixed():
     assert len(items) == 2
     assert items[0]['text'] == 'bullet item'
     assert items[1]['text'] == 'lettered item'
+    assert items[1]['donor_label'] == 'lettered item'
+
+
+def test_scaffold_inventory_and_mapping_lossless_fields_survive(tmp_path: Path):
+    run = _init_run(tmp_path)
+    md = run / 'results/pkt1_conversion_result.md'
+    md.write_text("""## Donor Construct Inventory
+- Fate Points
+## Astra Mapping Ledger
+| donor construct | lawful outcome | astra target family | rationale |
+|---|---|---|---|
+| Fate Points | normalized_astra_mapping | points | keep donor traceability |
+""", encoding='utf-8')
+    subprocess.run(
+        [sys.executable, 'scripts/handoff/scaffold_conversion_intake_json.py',
+         '--run-dir', str(run), '--packet-id', 'pkt1'],
+        check=True,
+    )
+    obj = json.loads((run / 'results/pkt1_conversion_result.json').read_text(encoding='utf-8'))
+    inv = obj["donor_construct_inventory"][0]
+    assert inv["text"] == "Fate Points"
+    assert inv["neutral_summary"] == "Fate Points"
+    assert inv["donor_label"] == "Fate Points"
+    assert inv["content_family"] is None
+    row = obj["mapping_ledger"][0]
+    assert "raw_markdown_row" in row
+    assert "parse_warnings" in row
 
 
 # ---------------------------------------------------------------------------
