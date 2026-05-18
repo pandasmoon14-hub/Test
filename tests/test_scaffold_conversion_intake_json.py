@@ -459,3 +459,53 @@ def test_scaffold_donor_inventory_lettered_list(tmp_path: Path):
     assert 'Stress Track' in texts
     assert 'Consequence Slots' in texts
     assert 'Fate Points' in texts
+
+
+def test_escaped_pipes_in_mapping_cells_preserved():
+    sjs = _get_sjs()
+    warns = []
+    text = (
+        "| donor construct | lawful outcome | astra target family | rationale |\n"
+        "|---|---|---|---|\n"
+        "| Arcane \\| Burst | normalized Astra mapping | spell | uses \\| escaped |"
+    )
+    rows = sjs.parse_mapping_table(text, 1, 'pkt1', warns)
+    assert rows[0]['donor_construct'] == 'Arcane | Burst'
+    assert 'uses | escaped' in rows[0]['rationale']
+
+
+def test_source_local_and_rejected_structured_entries():
+    sjs = _get_sjs()
+    warns = []
+    src = sjs.parse_source_local("- Local Name\n", warns)
+    rej = sjs.parse_rejected("- Forbidden Import\n")
+    assert src[0]['retained_construct'] == 'Local Name'
+    assert src[0]['review_required'] is True
+    assert rej[0]['must_not_import'] is True
+
+
+def test_inventory_items_missing_from_mapping_emit_warning(tmp_path: Path):
+    run = _init_run(tmp_path)
+    md = run / 'results/pkt1_conversion_result.md'
+    md.write_text("""## Donor Construct Inventory
+A. Thing A
+- Thing B
+## Astra Mapping Ledger
+| donor construct | lawful outcome |
+|---|---|
+| Thing A | direct Astra mapping |
+## Confidence and Reviewer Notes
+""", encoding='utf-8')
+    subprocess.run([sys.executable, 'scripts/handoff/scaffold_conversion_intake_json.py', '--run-dir', str(run), '--packet-id', 'pkt1'], check=True)
+    obj = json.loads((run / 'results/pkt1_conversion_result.json').read_text())
+    assert 'inventory_not_in_mapping:Thing B' in obj['conversion_notes']
+
+
+def test_unknown_lawful_outcome_warning_and_quarantine():
+    sjs = _get_sjs()
+    warns = []
+    rows = sjs.parse_mapping_table(
+        "| donor | outcome |\n|---|---|\n| X | nonsense |\n", 1, 'pkt1', warns
+    )
+    assert rows[0]['lawful_outcome'] == 'quarantined construct pending later doctrine'
+    assert any('unknown_outcome' in w for w in warns)
