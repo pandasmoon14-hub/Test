@@ -34,32 +34,70 @@ def _norm_tokens(value) -> set[str]:
     return set(parts)
 
 
-def _family_signal(unit: dict, manifest: dict, family: str) -> bool:
-    table_signals={"random_table","table","table_unit","catalog","item_catalog","gear_catalog","loot_table","flattened_table"}
-    stat_signals={"statblock","stat_block","creature_or_npc","npc","monster","adversary","collapsed_statblock","statblock_collapse"}
-    map_signals={"map","diagram","map_or_diagram","map_unit","unreadable_map","map_unreadable","visual_review"}
-
-    fields=[]
-    fields.extend([manifest.get('content_family_tags'), manifest.get('content_families'), manifest.get('modality'), manifest.get('queues_present')])
-    fields.extend([unit.get('unit_type'), unit.get('content_family'), unit.get('content_families'), unit.get('modality'), unit.get('recommended_queue'), unit.get('defects'), unit.get('issue_code'), unit.get('issue_codes'), unit.get('notes')])
-
-    tokens=set()
-    for f in fields:
-        tokens |= _norm_tokens(f)
-
-    if family=='table':
-        return bool(tokens & table_signals)
-    if family=='statblock':
-        return bool(tokens & stat_signals)
-    if family=='map':
-        if tokens & map_signals:
-            return True
-        # image_text_missing only counts when map/diagram indicator is present
-        if 'image_text_missing' in tokens and ('map' in tokens or 'diagram' in tokens or 'map_or_diagram' in tokens):
-            return True
-        return False
-    return False
-
+def _detect_risky_families(unit: dict, manifest: dict) -> tuple[set[str], list[dict]]:
+    family_signals={
+        'table': {"random_table","table","table_unit","catalog","item_catalog","gear_catalog","loot_table","flattened_table"},
+        'statblock': {"statblock","stat_block","creature_or_npc","npc","monster","adversary","collapsed_statblock","statblock_collapse"},
+        'map': {"map","diagram","map_or_diagram","map_unit","unreadable_map","map_unreadable","visual_review"},
+    }
+    allowed_fields=[
+        ('manifest.content_family', manifest.get('content_family')),
+        ('manifest.content_families', manifest.get('content_families')),
+        ('manifest.family', manifest.get('family')),
+        ('manifest.families', manifest.get('families')),
+        ('manifest.unit_family', manifest.get('unit_family')),
+        ('manifest.unit_families', manifest.get('unit_families')),
+        ('manifest.content_type', manifest.get('content_type')),
+        ('manifest.content_types', manifest.get('content_types')),
+        ('manifest.modality', manifest.get('modality')),
+        ('manifest.modalities', manifest.get('modalities')),
+        ('manifest.structure_type', manifest.get('structure_type')),
+        ('manifest.structure_types', manifest.get('structure_types')),
+        ('manifest.issue_code', manifest.get('issue_code')),
+        ('manifest.issue_codes', manifest.get('issue_codes')),
+        ('manifest.defect_code', manifest.get('defect_code')),
+        ('manifest.defect_codes', manifest.get('defect_codes')),
+        ('manifest.queue_type', manifest.get('queue_type')),
+        ('manifest.queue_types', manifest.get('queue_types')),
+        ('manifest.repair_queue', manifest.get('repair_queue')),
+        ('manifest.repair_queues', manifest.get('repair_queues')),
+        ('manifest.declared_content_families', manifest.get('declared_content_families')),
+        ('unit.content_family', unit.get('content_family')),
+        ('unit.content_families', unit.get('content_families')),
+        ('unit.family', unit.get('family')),
+        ('unit.families', unit.get('families')),
+        ('unit.unit_family', unit.get('unit_family')),
+        ('unit.unit_families', unit.get('unit_families')),
+        ('unit.content_type', unit.get('content_type')),
+        ('unit.content_types', unit.get('content_types')),
+        ('unit.modality', unit.get('modality')),
+        ('unit.modalities', unit.get('modalities')),
+        ('unit.structure_type', unit.get('structure_type')),
+        ('unit.structure_types', unit.get('structure_types')),
+        ('unit.issue_code', unit.get('issue_code')),
+        ('unit.issue_codes', unit.get('issue_codes')),
+        ('unit.defect_code', unit.get('defect_code')),
+        ('unit.defect_codes', unit.get('defect_codes')),
+        ('unit.queue_type', unit.get('queue_type')),
+        ('unit.queue_types', unit.get('queue_types')),
+        ('unit.repair_queue', unit.get('repair_queue')),
+        ('unit.repair_queues', unit.get('repair_queues')),
+        ('unit.declared_content_families', unit.get('declared_content_families')),
+    ]
+    detected=set(); reasons=[]
+    for path, value in allowed_fields:
+        toks=_norm_tokens(value)
+        if not toks:
+            continue
+        for fam, signals in family_signals.items():
+            hits=sorted(toks & signals)
+            if hits:
+                detected.add(fam)
+                reasons.append({'family': fam, 'field': path, 'value': value, 'signals': hits})
+        if 'image_text_missing' in toks and bool(toks & {'map','diagram','map_or_diagram'}):
+            detected.add('map')
+            reasons.append({'family': 'map', 'field': path, 'value': value, 'signals': ['image_text_missing']})
+    return detected, reasons
 
 def _has_matching_sidecar(sidecar_rows: list[dict], unit: dict) -> bool:
     uid=unit.get('unit_id')
@@ -117,6 +155,7 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
         if not (d/'queues'/q).exists(): errors.append(f"missing_queue_file:{q}")
 
     packet_id='unknown'
+    risky_detection=[]
     counts={"page_truth_rows":0,"extracted_page_markers":0,"content_units":0,"extraction_defects":0,"queue_records_by_queue":{},"page_status_counts":{},"content_unit_type_counts":{},"readiness_counts":{}}
 
     if not errors:
@@ -179,15 +218,17 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             if u.get('unit_type')=='stat_block' and u.get('content_readiness')!='ready' and len(qrecs['statblock_queue'])==0: errors.append('missing_statblock_queue_record')
 
         for u in units:
-            if _family_signal(u, manifest, 'table'):
+            families, reasons = _detect_risky_families(u, manifest)
+            risky_detection.append({'unit_id': u.get('unit_id'), 'families': sorted(families), 'reasons': reasons})
+            if 'table' in families:
                 table_records=qrecs['table_normalization_queue'] + qrecs['repair_queue']
                 if not _has_matching_sidecar(table_sidecars, u) and not _queue_record_covers_unit(table_records, u, 'table'):
                     errors.append('missing_table_sidecar_or_repair_queue')
-            if _family_signal(u, manifest, 'statblock'):
+            if 'statblock' in families:
                 stat_records=qrecs['statblock_queue'] + qrecs['repair_queue']
                 if not _has_matching_sidecar(statblock_sidecars, u) and not _queue_record_covers_unit(stat_records, u, 'statblock'):
                     errors.append('missing_statblock_sidecar_or_parse_queue')
-            if _family_signal(u, manifest, 'map'):
+            if 'map' in families:
                 map_records=qrecs['map_diagram_queue'] + qrecs['repair_queue']
                 if not _has_matching_sidecar(map_sidecars, u) and not _queue_record_covers_unit(map_records, u, 'map'):
                     errors.append('missing_map_sidecar_or_review_queue')
@@ -200,7 +241,7 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             if u.get('content_readiness') in non_ready or u.get('extraction_status') in {'queued','failed','ocr_needed'}:
                 errors.append('canon_candidate_points_to_non_ready_unit')
 
-    report={"packet_id":packet_id,"packet_dir":str(d),"valid":len(errors)==0,"errors":errors,"warnings":warnings,"counts":counts}
+    report={"packet_id":packet_id,"packet_dir":str(d),"valid":len(errors)==0,"errors":errors,"warnings":warnings,"counts":counts,"risky_family_detection":risky_detection}
     (d/'packet_validation_report.json').write_text(json.dumps(report,indent=2),encoding='utf-8')
     exit_code = 1 if (a_strict and errors) else 0
     return report, exit_code
