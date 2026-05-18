@@ -111,14 +111,20 @@ def _is_separator(ln: str) -> bool:
 
 def _parse_conf(v: str) -> float | None:
     s = v.strip().lower()
-    if not s: return None
-    m = re.search(r"([0-9]*\.?[0-9]+)\s*%", s)
-    if m: return max(0.0, min(1.0, float(m.group(1))/100.0))
-    m = re.search(r"([0-9]*\.?[0-9]+)", s)
+    if not s:
+        return None
+    m = re.search(r"confidence\s*[:=]\s*([0-9]*\.?[0-9]+)\s*%", s)
+    if m:
+        return max(0.0, min(1.0, float(m.group(1)) / 100.0))
+    m = re.search(r"confidence\s*[:=]\s*([0-9]*\.?[0-9]+)", s)
     if m:
         x = float(m.group(1))
-        return x/100.0 if x > 1.0 else x
-    if s in CONFIDENCE_LABELS: return CONFIDENCE_LABELS[s]
+        return x / 100.0 if x > 1.0 else x
+    m = re.search(r"confidence\s*[:=]\s*(medium-high|medium-low|high|medium|low)\b", s)
+    if m:
+        return CONFIDENCE_LABELS[m.group(1)]
+    if s in CONFIDENCE_LABELS:
+        return CONFIDENCE_LABELS[s]
     return None
 
 
@@ -229,6 +235,7 @@ def parse_source_local(text: str, parse_warnings: list[str]) -> list[dict]:
     for it in parse_list_section(text):
         t = it.get("text", "")
         out.append({
+            "text": t,
             "retained_construct": t,
             "boundary_scope_note": "source-local retention from memo section",
             "rationale": t,
