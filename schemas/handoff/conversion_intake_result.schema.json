@@ -17,7 +17,27 @@
     "page_range": {"type": "object", "additionalProperties": false, "required": ["start_page","end_page"], "properties": {"start_page": {"type":"integer","minimum":1}, "end_page": {"type":"integer","minimum":1}}},
     "result_status": {"type":"string","enum":["placeholder","drafted","reviewed","needs_revision","rejected"]},
     "extraction_readiness_assessment": {"type":"string"},
-    "donor_construct_inventory": {"type":"array","items":{"type":"object"}},
+    "donor_construct_inventory": {
+      "type":"array",
+      "items":{
+        "type":"object",
+        "additionalProperties": false,
+        "properties":{
+          "donor_label":{"type":"string"},
+          "text":{"type":"string"},
+          "neutral_summary":{"type":"string"},
+          "summary":{"type":"string"},
+          "content_family":{"type":["string","null"]},
+          "source_pages":{"type":"array","items":{"type":"integer","minimum":1}},
+          "source_unit_ids":{"type":"array","items":{"type":"string"}},
+          "confidence":{"type":"number","minimum":0,"maximum":1},
+          "boundary_confidence":{"type":"number","minimum":0,"maximum":1},
+          "parse_warnings":{"type":"array","items":{"type":"string"}}
+        },
+        "anyOf":[{"required":["donor_label"]},{"required":["text"]}],
+        "allOf":[{"anyOf":[{"required":["neutral_summary"]},{"required":["summary"]}]}]
+      }
+    },
     "mapping_ledger": {
       "type":"array",
       "items": {
@@ -39,12 +59,124 @@
         }
       }
     },
-    "queue_actions": {"type":"array","items":{"type":"object"}},
-    "lexicon_delta": {"type":"array","items":{"type":"object"}},
-    "doctrine_escalations": {"type":"array","items":{"type":"object"}},
-    "source_local_retentions": {"type":"array","items":{"type":"object"}},
-    "rejected_imports": {"type":"array","items":{"type":"object"}},
-    "canon_candidate_notes": {"type":"string"},
+    "queue_actions": {
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "properties":{
+          "queue_type":{"type":"string"},
+          "action_type":{"type":"string"},
+          "target_construct":{"type":"string"},
+          "target":{"type":"string"},
+          "reason":{"type":"string"},
+          "rationale":{"type":"string"},
+          "severity":{"type":"string"},
+          "review_required":{"type":"boolean"},
+          "source_reference":{"type":["string","null"]},
+          "text":{"type":"string"},
+          "raw":{"type":"string"},
+          "source":{"type":"string"}
+        },
+        "anyOf":[{"required":["queue_type"]},{"required":["action_type"]},{"required":["text"]}],
+        "allOf":[{"anyOf":[{"required":["target_construct"]},{"required":["target"]},{"required":["text"]}]},{"anyOf":[{"required":["reason"]},{"required":["rationale"]},{"required":["text"]}]}]
+      }
+    },
+    "lexicon_delta": {
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "properties":{
+          "term":{"type":"string"},
+          "donor_term":{"type":"string"},
+          "proposed_status":{"type":"string"},
+          "action":{"type":"string"},
+          "rationale":{"type":"string"},
+          "note":{"type":"string"},
+          "review_required":{"type":"boolean"},
+          "text":{"type":"string"},
+          "raw":{"type":"string"}
+        },
+        "anyOf":[{"required":["term"]},{"required":["donor_term"]},{"required":["text"]}],
+        "allOf":[{"anyOf":[{"required":["proposed_status"]},{"required":["action"]},{"required":["text"]}]},{"anyOf":[{"required":["rationale"]},{"required":["note"]},{"required":["text"]}]}]
+      }
+    },
+    "doctrine_escalations": {
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "properties":{
+          "issue":{"type":"string"},
+          "text":{"type":"string"},
+          "doctrine_area":{"type":["string","null"]},
+          "doctrine_owner":{"type":["string","null"]},
+          "reason":{"type":"string"},
+          "rationale":{"type":"string"},
+          "review_required":{"type":"boolean"},
+          "raw":{"type":"string"}
+        },
+        "anyOf":[{"required":["issue"]},{"required":["text"]}],
+        "allOf":[{"anyOf":[{"required":["reason"]},{"required":["rationale"]},{"required":["text"]}]}]
+      }
+    },
+    "source_local_retentions": {
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "properties":{
+          "text":{"type":"string"},
+          "retained_construct":{"type":"string"},
+          "boundary":{"type":"string"},
+          "scope_note":{"type":"string"},
+          "boundary_scope_note":{"type":"string"},
+          "rationale":{"type":"string"},
+          "source_reference":{"type":["string","null"]},
+          "review_required":{"type":"boolean"},
+          "raw":{"type":"string"}
+        },
+        "anyOf":[{"required":["text"]},{"required":["retained_construct"]}],
+        "allOf":[{"anyOf":[{"required":["boundary"]},{"required":["scope_note"]},{"required":["boundary_scope_note"]},{"required":["text"]}]},{"anyOf":[{"required":["rationale"]},{"required":["text"]}]}]
+      }
+    },
+    "rejected_imports": {
+      "type":"array",
+      "items":{
+        "type":"object","additionalProperties":false,
+        "properties":{
+          "text":{"type":"string"},
+          "rejected_construct":{"type":"string"},
+          "rejected_donor_construct":{"type":"string"},
+          "reason":{"type":"string"},
+          "rationale":{"type":"string"},
+          "must_not_import":{"type":"boolean"},
+          "review_required":{"type":"boolean"},
+          "raw":{"type":"string"}
+        },
+        "anyOf":[{"required":["text"]},{"required":["rejected_construct"]},{"required":["rejected_donor_construct"]}],
+        "allOf":[{"anyOf":[{"required":["reason"]},{"required":["rationale"]},{"required":["text"]}]}]
+      }
+    },
+    "canon_candidate_notes": {
+      "oneOf": [
+        {"type":"string"},
+        {
+          "type":"array",
+          "items":{
+            "type":"object","additionalProperties":false,
+            "properties":{
+              "text":{"type":"string"},
+              "candidate_note":{"type":"string"},
+              "canon_candidate_permission":{"type":"string","enum":["none","candidate_only_after_review","review_only","blocked"]},
+              "rationale":{"type":"string"},
+              "note":{"type":"string"},
+              "review_required":{"type":"boolean"}
+            },
+            "anyOf":[{"required":["text"]},{"required":["candidate_note"]}],
+            "required":["canon_candidate_permission"]
+          }
+        }
+      ]
+    },
+    "parse_warnings": {"type":"array","items":{"type":"string"}},
     "conversion_notes": {"type":"string"},
     "reviewer_notes": {"type":"string"},
     "confidence": {"type":"number","minimum":0,"maximum":1}

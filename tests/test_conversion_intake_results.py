@@ -50,7 +50,8 @@ def test_report_outputs(tmp_path: Path):
     sample={
         'result_id':'r_p1','packet_id':'p1','book_id':'b1','source_packet_dir':'x','page_range':{'start_page':1,'end_page':2},'result_status':'reviewed','extraction_readiness_assessment':'ready',
         'donor_construct_inventory':[],'mapping_ledger':[{'donor_construct':'x','source_pages':[1],'source_unit_ids':['u1'],'astra_target_family':'fam','lawful_outcome':'normalized Astra mapping','rationale':'ok','must_not_import':False,'doctrine_owner':'d','canon_candidate_permission':'candidate_only_after_review','confidence':0.8}],
-        'queue_actions':[],'lexicon_delta':[],'doctrine_escalations':[{}],'source_local_retentions':[{}],'rejected_imports':[],'canon_candidate_notes':'note','conversion_notes':'c','reviewer_notes':'r','confidence':0.8
+        'queue_actions':[],'lexicon_delta':[],'doctrine_escalations':[{'text':'esc','reason':'needs review'}],'source_local_retentions':[{'text':'retain local'}],'rejected_imports':[{'text':'reject x','must_not_import':True}],'canon_candidate_notes':'note','conversion_notes':'c','reviewer_notes':'r','confidence':0.8,
+        'parse_warnings':['placeholder warning']
     }
     (run/'results/p1_conversion_result.json').write_text(json.dumps(sample),encoding='utf-8')
     subprocess.run([sys.executable,'scripts/handoff/report_conversion_intake_results.py','--run-dir',str(run)],check=True)
