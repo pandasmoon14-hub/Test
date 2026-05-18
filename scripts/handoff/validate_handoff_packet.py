@@ -205,12 +205,13 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             except Exception as e:
                 errors.append(f'schema_validation_failed:packet_manifest:{e}')
             tolerated_extra_fields={'content_family','content_families','declared_content_families','issue_code','issue_codes','defect_code','defect_codes','queue_type','queue_types','repair_queue','repair_queues'}
+            known_cu_fields=set(cu.get('properties',{}).keys())
             for i,u in enumerate(units, start=1):
                 try:
                     jsonschema.validate(u, cu)
                 except Exception as e:
-                    msg=str(e)
-                    if 'Additional properties are not allowed' in msg and any(f"'{k}'" in msg for k in tolerated_extra_fields):
+                    unknown_fields=set(u.keys())-known_cu_fields
+                    if unknown_fields and unknown_fields.issubset(tolerated_extra_fields):
                         warnings.append(f'schema_validation_tolerated_extra_field:content_unit:{i}')
                     else:
                         errors.append(f'schema_validation_failed:content_unit:{i}:{e}')
