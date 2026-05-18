@@ -122,7 +122,9 @@ def _parse_conf(v: str) -> float | None:
     return None
 
 
-def parse_mapping_table(section_text: str, start_page: int, packet_id: str, parse_warnings: list[str]) -> list[dict]:
+def parse_mapping_table(section_text: str, start_page: int, packet_id: str, parse_warnings: list[str] | None = None) -> list[dict]:
+    if parse_warnings is None:
+        parse_warnings = []
     table_lines = [ln for ln in section_text.splitlines() if '|' in ln]
     if not table_lines: return []
     sep_idx = next((i for i, ln in enumerate(table_lines) if _is_separator(ln)), None)
@@ -209,7 +211,9 @@ def parse_list_section(text: str) -> list[dict]:
     return items
 
 
-def parse_confidence(text: str, parse_warnings: list[str]) -> float:
+def parse_confidence(text: str, parse_warnings: list[str] | None = None) -> float:
+    if parse_warnings is None:
+        parse_warnings = []
     vals = []
     for ln in text.splitlines():
         c = _parse_conf(ln)
