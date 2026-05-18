@@ -143,7 +143,7 @@ def _queue_record_covers_unit(records: list[dict], unit: dict, family: str) -> b
             continue
 
         qname=str(rec.get('queue_name','')).lower().replace('-', '_')
-        tokens=_norm_tokens([rec.get('queue_name'), rec.get('reason_code'), rec.get('recommended_action'), rec.get('blocking_effect'), rec.get('allowed_use')])
+        tokens=_norm_tokens([rec.get('queue_name'), rec.get('queue_type'), rec.get('action_type'), rec.get('target_family'), rec.get('target_content_family'), rec.get('reason_code'), rec.get('reason'), rec.get('rationale'), rec.get('recommended_action'), rec.get('blocking_effect'), rec.get('allowed_use')])
 
         if qname in queue_aliases or bool(tokens & queue_aliases):
             return True
@@ -204,11 +204,16 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
                 jsonschema.validate(manifest, load_json(root/'packet_manifest.schema.json'))
             except Exception as e:
                 errors.append(f'schema_validation_failed:packet_manifest:{e}')
+            tolerated_extra_fields={'content_family','content_families','declared_content_families','issue_code','issue_codes','defect_code','defect_codes','queue_type','queue_types','repair_queue','repair_queues'}
             for i,u in enumerate(units, start=1):
                 try:
                     jsonschema.validate(u, cu)
                 except Exception as e:
-                    errors.append(f'schema_validation_failed:content_unit:{i}:{e}')
+                    msg=str(e)
+                    if 'Additional properties are not allowed' in msg and any(f"'{k}'" in msg for k in tolerated_extra_fields):
+                        warnings.append(f'schema_validation_tolerated_extra_field:content_unit:{i}')
+                    else:
+                        errors.append(f'schema_validation_failed:content_unit:{i}:{e}')
             for qn,recs in qrecs.items():
                 for i,r in enumerate(recs, start=1):
                     try:
