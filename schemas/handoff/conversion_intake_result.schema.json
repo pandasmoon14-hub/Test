@@ -33,7 +33,9 @@
           "must_not_import":{"type":"boolean"},
           "doctrine_owner":{"type":["string","null"]},
           "canon_candidate_permission":{"type":"string","enum":["none","candidate_only_after_review","blocked"]},
-          "confidence":{"type":"number","minimum":0,"maximum":1}
+          "confidence":{"type":"number","minimum":0,"maximum":1},
+          "raw_markdown_row":{"type":"string"},
+          "parse_warnings":{"type":"array","items":{"type":"string"}}
         }
       }
     },

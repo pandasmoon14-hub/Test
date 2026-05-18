@@ -509,3 +509,40 @@ def test_unknown_lawful_outcome_warning_and_quarantine():
     )
     assert rows[0]['lawful_outcome'] == 'quarantined construct pending later doctrine'
     assert any('unknown_outcome' in w for w in warns)
+
+
+def test_mapping_row_lossless_fields_schema_valid(tmp_path: Path):
+    run = _init_run(tmp_path)
+    md = run / 'results/pkt1_conversion_result.md'
+    md.write_text("""## Donor Construct Inventory
+- X
+## Astra Mapping Ledger
+| donor construct | lawful outcome | rationale |
+|---|---|---|
+| X | normalized Astra mapping | reason |
+## Confidence and Reviewer Notes
+confidence: 0.7
+""", encoding='utf-8')
+    subprocess.run([sys.executable, 'scripts/handoff/scaffold_conversion_intake_json.py', '--run-dir', str(run), '--packet-id', 'pkt1'], check=True)
+    obj = json.loads((run / 'results/pkt1_conversion_result.json').read_text())
+    row = obj['mapping_ledger'][0]
+    assert 'raw_markdown_row' in row
+    assert isinstance(row.get('parse_warnings'), list)
+
+
+def test_parse_mapping_table_old_signature_still_works():
+    sjs = _get_sjs()
+    rows = sjs.parse_mapping_table("| A | direct Astra mapping |\n", 1, 'pkt1')
+    assert isinstance(rows, list)
+
+
+def test_parse_confidence_old_signature_still_works():
+    sjs = _get_sjs()
+    assert sjs.parse_confidence('') == 0.5
+
+
+def test_supplied_parse_warnings_receives_warning():
+    sjs = _get_sjs()
+    warns = []
+    sjs.parse_confidence('', warns)
+    assert any('missing_confidence' in w for w in warns)
