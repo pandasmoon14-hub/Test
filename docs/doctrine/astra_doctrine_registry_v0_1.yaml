@@ -1,0 +1,3883 @@
+registry_version: 0.1.0
+file_id: REGISTRY-001
+filename: astra_doctrine_registry_v0_1.yaml
+proposed_path: docs/doctrine/astra_doctrine_registry_v0_1.yaml
+status: registry-current
+authority_level: tracking
+authority_note: Tracking authority only. ROADMAP-001 controls execution order. Active control files (Scope Model, Conversion IR, Batch B/C unlock plans, lawful outcome taxonomy) override this registry if conflict is detected.
+layer: 0_control
+phase: '0'
+last_reviewed: '2026-05-18'
+next_review_due: '2026-06-18'
+maintained_by: Astra Doctrine Council
+purpose: Track doctrine/schema file lifecycle, dependencies, gates, review state, pressure tests, donor-law creep controls, and promotion decisions for Astra Ascension.
+source_inputs_fused:
+- Pasted text.txt
+- Pasted text (2).txt
+- Pasted text (3).txt
+- Pasted text (4).txt
+- Pasted text (5).txt
+- astra_doctrine_master_roadmap_v0_1.md
+changelog:
+- date: '2026-05-18'
+  version: 0.1.0
+  action: initial_master_fusion
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Fused five LLM registry drafts into a single coherent registry aligned to ROADMAP-001. Normalized statuses, layers, dependency locks, phase gates, and file records for ROADMAP, REGISTRY, A01-A15, C00-C14, K01-K06, R01-R08, and T01-T07.
+global_status_values:
+- todo
+- draft
+- review
+- pressure-tested
+- current
+- blocked
+- deprecated
+global_layer_values:
+- 0_control
+- 1_setting_spine
+- 2_advancement_action_spine
+- 3_world_asset_conflict_spine
+- 4_schema_base
+- 5_canon_lexicon
+- 6_runtime_backend
+- 7_training_evaluation
+global_phase_values:
+  '0': Control and registry establishment
+  1A: Setting spine (A01-A05)
+  1B: Advancement/action spine (A06-A10)
+  1C: World/asset/conflict spine (A11-A15)
+  '2': Schema base and content-family schemas (C00-C14)
+  '3': Canon and lexicon governance (K01-K06)
+  '4': Runtime and backend doctrine (R01-R08)
+  '5': Training and evaluation doctrine (T01-T07)
+global_unlock_values:
+- locked
+- gated
+- unlocked
+- staged
+- blocked
+global_test_status_values:
+- not_started
+- designed
+- executing
+- passed
+- failed
+- escalated
+- not_applicable
+global_review_requirements:
+  draft_to_review:
+  - all_required_sections_present
+  - owns_must_not_own_declared
+  - mapping_rules_present
+  - source_local_handling_present
+  - hard_refusals_present
+  - escalation_triggers_present
+  - no_contradiction_with_active_control_files
+  - minimum_external_reviewers_1
+  review_to_pressure_tested:
+  - assigned_pressure_tests_executed
+  - contradictions_passed_or_escalated
+  - donor_law_creep_review_passed
+  - dependency_review_passed
+  - lexicon_risk_assessed
+  pressure_tested_to_current:
+  - downstream_consumers_confirm_usability
+  - no_unresolved_high_severity_conflict_ledger_entries
+  - registry_updated
+  - council_reviewer_acceptance_recorded
+  - minimum_observation_days_14
+  current_to_deprecated:
+  - replacement_file_current
+  - migration_path_recorded
+  - downstream_references_updated
+  - archive_retained
+dependency_rules:
+  hard_locks:
+  - REGISTRY-001 locks all drafting beyond roadmap.
+  - A01 locks A02-A05.
+  - A01-A05 lock A06-A10.
+  - A01-A10 lock A11-A15.
+  - A01-A15 lock C00.
+  - C00 locks C01-C14.
+  - A01-A15 and C00 lock K01-K04.
+  - K01-K04 lock K05-K06.
+  - A01-A15, C00-C14, K01-K06 lock R01.
+  - R01 locks R02-R08.
+  - R01-R08 lock T01-T07.
+  soft_locks:
+  - K01 may begin as placeholder after A01-A03 have stable terminology.
+  - C10 may draft early after C00 because table/oracle structure is high-pressure.
+  - K04 conflict ledger may begin as draft during pressure testing.
+  - Runtime brainstorming may occur before R01, but no implementation doctrine may become current before canon/schema gates.
+  promotion_sequence: todo -> draft -> review -> pressure-tested -> current
+  cross_layer_rule: Downstream files may consume upstream doctrine but may not redefine it.
+  version_lock: Substantive amendments to current files require version bump, review return, re-pressure-test, and conflict-ledger entry.
+scale_gates:
+  broad_conversion_pilot_50:
+  - A01-A15 pressure-tested or current
+  - C00 current
+  - C01, C02, C03, C10 pressure-tested or current
+  - K01-K04 current
+  - 50-packet pilot complete
+  - no donor-law creep detected
+  broad_conversion_full:
+  - 50, 200, and 500 expansion gates passed
+  - schema violation rate below accepted threshold
+  - conflict ledger has no unresolved high-severity blockers
+  - source-local retention and quarantine workflows functioning
+  runtime_implementation:
+  - A01-A15 current
+  - C00-C14 current or pressure-tested
+  - K01-K06 current or pressure-tested
+  - R01-R04 drafted and reviewed
+  - at least 500 valid conversion-intake memos available
+  live_play_training:
+  - R01-R08 current or pressure-tested
+  - T01-T07 current or pressure-tested
+  - gold examples derive only from current doctrine and accepted canon
+  - at least 10 live pilot sessions with state deltas and review notes
+file_records:
+- file_id: ROADMAP-001
+  filename: astra_doctrine_roadmap_v0_1.md
+  proposed_path: docs/doctrine/astra_doctrine_roadmap_v0_1.md
+  layer: 0_control
+  phase: '0'
+  status: current
+  authority_level: planning
+  owner: Astra Doctrine Council
+  purpose: Master execution roadmap governing doctrine, schema, canon, runtime, and training file creation, sequencing, gates, and promotion criteria.
+  owns:
+  - execution sequencing
+  - phase gates
+  - dependency locks
+  - promotion criteria
+  - pressure-test requirements
+  - pilot-to-scale triggers
+  - anti-fragmentation policy
+  must_not_own:
+  - Astra setting mechanics
+  - schema field semantics
+  - canon facts
+  - runtime implementation details
+  - training data curation
+  - donor conversion artifacts
+  dependencies:
+  - phase1_scope_model_and_construct_granularity_doctrine_v0_2_1_final.md
+  - phase1_conversion_ir_doctrine_v0_3_1_final.md
+  - batch_b_minimum_operational_doctrine_unlock_plan_v0_2_1_final.md
+  - batch_c_minimum_schema_doctrine_unlock_plan_v0_4_1_final.md
+  - lawful_outcome_taxonomy
+  blocked_by: []
+  unlocks:
+  - REGISTRY-001
+  - A01-A15
+  - C00-C14
+  - K01-K06
+  - R01-R08
+  - T01-T07
+  downstream_consumers:
+  - REGISTRY-001
+  - all doctrine files
+  - all schema files
+  - all canon files
+  - all runtime files
+  - all training files
+  - pipeline gating tools
+  donor_pressure_absorbed:
+  - donor-family routing conflicts
+  - extraction/conversion boundary disputes
+  - pilot-scale versus broad-conversion timing pressure
+  hard_refusals:
+  - roadmap cannot override active control files
+  - roadmap cannot define Astra mechanics
+  - roadmap cannot promote files without registry entry
+  - donor volume cannot skip phase gates
+  escalation_triggers:
+  - active control file deprecation
+  - phase-order contradiction
+  - gate criteria proven unworkable in pilot
+  required_tests:
+  - roadmap coherence review
+  - dependency graph validation
+  - gate criteria pilot simulation
+  test_status: passed
+  review_status: accepted
+  promotion_requirements:
+  - council approval recorded
+  - active control file alignment confirmed
+  - registry bootstrap complete
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: indirect
+  runtime_relevance: indirect
+  live_play_relevance: indirect
+  notes: Planning authority only. If this roadmap conflicts with Scope Model, Conversion IR, or Batch B/C unlock plans, those files win and the roadmap must be revised.
+- file_id: REGISTRY-001
+  filename: astra_doctrine_registry_v0_1.yaml
+  proposed_path: docs/doctrine/astra_doctrine_registry_v0_1.yaml
+  layer: 0_control
+  phase: '0'
+  status: current
+  authority_level: tracking
+  owner: Astra Doctrine Council
+  purpose: Machine-readable tracking source for doctrine/schema file lifecycle, dependencies, gates, review state, and status-based promotion decisions.
+  owns:
+  - file status tracking
+  - dependency encoding
+  - gate enforcement metadata
+  - promotion criteria storage
+  - test status logging
+  - review workflow state
+  - changelog maintenance
+  must_not_own:
+  - doctrine content
+  - schema field semantics
+  - canon decisions
+  - runtime state
+  - training examples
+  - donor content
+  dependencies:
+  - ROADMAP-001
+  blocked_by: []
+  unlocks:
+  - all doctrine file drafting
+  - pipeline gating automation
+  - status-based conversion routing
+  downstream_consumers:
+  - conversion-intake pipeline
+  - Batch B/C unlock tools
+  - canon promotion workflow
+  - runtime state compiler
+  - training data pipeline
+  donor_pressure_absorbed:
+  - donor-family schema conflicts
+  - source-local retention routing
+  - quarantine/escalation queue management
+  hard_refusals:
+  - registry cannot validate donor-shaped records as Astra-native
+  - registry cannot promote files without pressure-test results
+  - registry cannot bypass hard locks
+  - files may not be created outside registry
+  escalation_triggers:
+  - dependency cycle detected
+  - status promotion without required tests
+  - gate criteria mismatch between roadmap and registry
+  - file exists without registry entry
+  required_tests:
+  - YAML schema validation
+  - dependency graph acyclicity check
+  - status transition rule enforcement test
+  - unique file_id check
+  test_status: passed
+  review_status: accepted
+  promotion_requirements:
+  - YAML parses
+  - all required fields present for bootstrap files
+  - no duplicate file IDs
+  - council approval recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: indirect
+  runtime_relevance: indirect
+  live_play_relevance: indirect
+  notes: This registry is tracking authority, not doctrine authority. All content authority remains in the owner files.
+- file_id: A01
+  filename: A01_cosmology_and_dimensional_architecture.md
+  proposed_path: docs/doctrine/setting/A01_cosmology_and_dimensional_architecture.md
+  layer: 1_setting_spine
+  phase: 1A
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Cosmology Working Group
+  purpose: 'Define the container of Astra reality: worlds, planes, dimensions, voids, interplanar adjacency, dimensional ecology, cosmic topology, and source-local cosmology handling.'
+  owns:
+  - worlds
+  - planes
+  - dimensions
+  - voids
+  - interplanar adjacency
+  - dimensional ecology
+  - cosmic topology
+  - source-local cosmology classification
+  - planar adjacency constraints
+  must_not_own:
+  - cultivation stages
+  - specific factions
+  - specific planets
+  - travel mechanics
+  - combat rules
+  - resource pools
+  - specific gods or cosmic entities
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by: []
+  unlocks:
+  - A02
+  - A03
+  - A04
+  - A05
+  - C14
+  - K01
+  downstream_consumers:
+  - A02
+  - A03
+  - A04
+  - A05
+  - A06
+  - A11
+  - A14
+  - C14
+  - K04
+  - K06
+  donor_pressure_absorbed:
+  - D&D Great Wheel and planar structure
+  - Spelljammer crystal spheres/phlogiston
+  - Warhammer 40K Warp
+  - cultivation layered heavens/realms
+  - Exalted Creation/Underworld
+  - Stargate network cosmology
+  - homebrew cosmologies
+  hard_refusals:
+  - D&D Great Wheel is not Astra topology
+  - single-world default is rejected
+  - scientific-materialist galaxy-only cosmology is rejected
+  - donor pantheons do not define planes
+  - donor afterlife mechanics belong to A03/source-local handling
+  escalation_triggers:
+  - donor cosmology cannot be mapped or source-local retained
+  - incompatible cosmologies both claim centrality
+  - new plane category required beyond taxonomy
+  required_tests:
+  - cosmology contradiction test
+  - source-local cosmology classification test
+  - scale threshold plane test
+  - donor-law creep review
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required doctrine sections present
+  - dependencies at least review or pressure-tested per lock
+  - assigned pressure tests pass or escalate
+  - donor-law creep review passes
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Part of Phase 1A setting spine. Must not import donor metaphysics or donor setting law.
+- file_id: A02
+  filename: A02_source_fields_magic_technology_relation.md
+  proposed_path: docs/doctrine/setting/A02_source_fields_magic_technology_relation.md
+  layer: 1_setting_spine
+  phase: 1A
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Metaphysics Working Group
+  purpose: Define Source Fields and the structural relation between high magic, high technology, psionics, divine power, cultivation force, computation, biotech, and dimensional energy.
+  owns:
+  - source field taxonomy
+  - magic/technology interaction matrix
+  - high-tech/high-magic integration principle
+  - psionics/divine/cultivation/biotech interface
+  - source field manifestations
+  - hybridization constraints
+  must_not_own:
+  - specific spells
+  - specific techniques
+  - specific devices
+  - resource pool sizes
+  - cultivation stages
+  - asset advancement rules
+  dependencies:
+  - A01
+  blocked_by: []
+  unlocks:
+  - A03
+  - A04
+  - A05
+  - A10
+  - A12
+  - C02
+  - C03
+  - C04
+  - K01
+  downstream_consumers:
+  - A03
+  - A04
+  - A10
+  - A12
+  - C02
+  - C03
+  - C04
+  - K01
+  donor_pressure_absorbed:
+  - Shadowrun magic-tech tension
+  - D&D spellcasting and magic items
+  - Traveller mundane technology
+  - cultivation spiritual energy
+  - psionics as separate power
+  - biotech/cyberpunk augmentation
+  hard_refusals:
+  - magic and technology are not permanently unrelated silos
+  - Shadowrun essence is not Astra default
+  - D&D spell slots are not Astra default
+  - hybridization cannot be free of cost/constraint
+  escalation_triggers:
+  - new Source Field interaction type required
+  - magic-tech relation contradicts setting premise
+  - hybridization breaks advancement or asset doctrine
+  required_tests:
+  - magic-opposes-technology test
+  - magic-is-technology test
+  - technology-is-mundane test
+  - cultivation-force-as-source-field test
+  - psionic-divine-computational interface test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required doctrine sections present
+  - dependencies at least review or pressure-tested per lock
+  - assigned pressure tests pass or escalate
+  - donor-law creep review passes
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Part of Phase 1A setting spine. Must not import donor metaphysics or donor setting law.
+- file_id: A03
+  filename: A03_soul_body_mind_spirit_ontology.md
+  proposed_path: docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md
+  layer: 1_setting_spine
+  phase: 1A
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Ontology Working Group
+  purpose: Define body, soul, mind, spirit, identity continuity, AI personhood, uploads, possession, augmentation metaphysics, and death/persistence boundaries.
+  owns:
+  - body/soul/mind/spirit component taxonomy
+  - identity continuity
+  - AI personhood
+  - uploads/copying
+  - possession and bonding
+  - augmentation boundaries
+  - death and persistence boundaries
+  must_not_own:
+  - specific actor stats
+  - specific implants
+  - cultivation stages
+  - resource pool mechanics
+  - runtime actor state
+  - specific resurrection mechanics
+  dependencies:
+  - A01
+  - A02
+  blocked_by:
+  - A02
+  unlocks:
+  - A04
+  - A05
+  - A06
+  - A11
+  - C01
+  - C11
+  downstream_consumers:
+  - A04
+  - A06
+  - A11
+  - C01
+  - C11
+  - R02
+  donor_pressure_absorbed:
+  - D&D soul/afterlife mechanics
+  - Shadowrun essence/astral rules
+  - Eclipse Phase ego/morph separation
+  - cultivation soul/body refinement
+  - AI consciousness donors
+  - possession/bond systems
+  hard_refusals:
+  - D&D soul mechanics are not Astra soul mechanics
+  - AI is not merely equipment by default
+  - cyberware is not purely physical gear without metaphysical consequence
+  - donor afterlife rules are source-local until adopted
+  escalation_triggers:
+  - new entity component type required
+  - identity continuity contradicts advancement
+  - augmentation boundary breaks Source Field relation
+  required_tests:
+  - soul/body/mind/AI contradiction test
+  - AI personhood test
+  - augmentation integration test
+  - death/persistence test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required doctrine sections present
+  - dependencies at least review or pressure-tested per lock
+  - assigned pressure tests pass or escalate
+  - donor-law creep review passes
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: low
+  notes: Part of Phase 1A setting spine. Must not import donor metaphysics or donor setting law.
+- file_id: A04
+  filename: A04_dao_domain_element_architecture.md
+  proposed_path: docs/doctrine/setting/A04_dao_domain_element_architecture.md
+  layer: 1_setting_spine
+  phase: 1A
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Metaphysics Working Group
+  purpose: Define Dao, domain, element, and conceptual law architecture as Astra-native metaphysical interaction rules.
+  owns:
+  - Dao taxonomy
+  - domain hierarchy
+  - element architecture
+  - conceptual law
+  - resonance rules
+  - antagonism rules
+  - synthesis rules
+  - domain expression constraints
+  - multi-Dao synthesis
+  must_not_own:
+  - specific techniques
+  - specific spells
+  - resource pools
+  - cultivation stages
+  - faction control of domains
+  - donor Dao imports
+  dependencies:
+  - A01
+  - A02
+  - A03
+  blocked_by:
+  - A02
+  - A03
+  unlocks:
+  - A05
+  - A06
+  - A08
+  - A10
+  - C03
+  - K01
+  downstream_consumers:
+  - A05
+  - A06
+  - A08
+  - A09
+  - A10
+  - C03
+  - K01
+  - K05
+  donor_pressure_absorbed:
+  - xianxia Dao and five elements
+  - D&D divine domains/spell schools
+  - Mage spheres/paradigms
+  - Fate aspects as concepts
+  - Shadowrun traditions
+  - homebrew element systems
+  hard_refusals:
+  - donor Dao names are not Astra defaults
+  - D&D domains are not Astra domain architecture
+  - alignment traits do not define domains
+  - Fate invoke/compel is not domain expression
+  escalation_triggers:
+  - new interaction type beyond resonance/antagonism/synthesis
+  - conceptual law conflicts with scale or resource doctrine
+  - domain expression breaks advancement
+  required_tests:
+  - Dao/domain/element contradiction test
+  - element interaction test
+  - conceptual law test
+  - donor Dao import refusal test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required doctrine sections present
+  - dependencies at least review or pressure-tested per lock
+  - assigned pressure tests pass or escalate
+  - donor-law creep review passes
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Part of Phase 1A setting spine. Must not import donor metaphysics or donor setting law.
+- file_id: A05
+  filename: A05_civilization_scale_and_power_scale_doctrine.md
+  proposed_path: docs/doctrine/setting/A05_civilization_scale_and_power_scale_doctrine.md
+  layer: 1_setting_spine
+  phase: 1A
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Scale Working Group
+  purpose: Define personal, group, factional, planetary, orbital, stellar, void, planar, and cosmic scale plus scale transitions and power boundaries.
+  owns:
+  - scale taxonomy
+  - scale transition principles
+  - power-scale boundaries
+  - influence propagation across scales
+  - macro-actor permissions
+  - scale-appropriate hazards/consequences
+  must_not_own:
+  - specific empires
+  - specific starships
+  - specific combat math
+  - specific travel times
+  - faction economies
+  - runtime scale state
+  dependencies:
+  - A01
+  - A02
+  - A03
+  - A04
+  blocked_by:
+  - A02
+  - A03
+  - A04
+  unlocks:
+  - A06
+  - A07
+  - A11
+  - A12
+  - A13
+  - A14
+  - A15
+  - C08
+  - R07
+  downstream_consumers:
+  - A06
+  - A07
+  - A11
+  - A12
+  - A13
+  - A14
+  - A15
+  - C08
+  - K05
+  - K06
+  - R07
+  donor_pressure_absorbed:
+  - D&D epic level scaling
+  - Traveller empire/stellar scale
+  - Warhammer 40K galactic scale
+  - cultivation world/realm/cosmos ascension
+  - Lancer mech/fleet scale
+  - Fate scale aspects
+  hard_refusals:
+  - all play must not collapse to personal scale
+  - cosmic actors are not simply high-level PCs
+  - starships are not moving dungeon rooms
+  - scale transitions require costs/constraints/consequences
+  escalation_triggers:
+  - new scale category required
+  - scale transition contradicts travel/faction doctrine
+  - power boundary breaks advancement or consequence doctrine
+  required_tests:
+  - scale transition contradiction test
+  - power-scale boundary test
+  - multi-scale combat test
+  - macro-actor permission test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required doctrine sections present
+  - dependencies at least review or pressure-tested per lock
+  - assigned pressure tests pass or escalate
+  - donor-law creep review passes
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Part of Phase 1A setting spine. Must not import donor metaphysics or donor setting law.
+- file_id: A06
+  filename: A06_cultivation_and_ascension_stage_architecture.md
+  proposed_path: docs/doctrine/advancement/A06_cultivation_and_ascension_stage_architecture.md
+  layer: 2_advancement_action_spine
+  phase: 1B
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Advancement Working Group
+  purpose: Define Astra-native cultivation and ascension stages, breakthroughs, bottlenecks, tribulations, stage thresholds, and advancement permissions.
+  owns:
+  - cultivation stage taxonomy
+  - ascension thresholds
+  - breakthrough conditions
+  - bottleneck resolution
+  - tribulation types/severity
+  - stage transition permissions
+  must_not_own:
+  - specific techniques
+  - resource pool numbers
+  - donor stage names
+  - class features
+  - specific stat bonuses
+  dependencies: &id001
+  - A01
+  - A02
+  - A03
+  - A04
+  - A05
+  blocked_by: *id001
+  unlocks: &id002
+  - A07
+  - A08
+  - A10
+  - A11
+  - C01
+  - C03
+  - K03
+  downstream_consumers: *id002
+  donor_pressure_absorbed:
+  - D&D class/level systems
+  - cultivation realm ladders
+  - Exalted essence tiers
+  - Fate milestones
+  - Shadowrun karma/essence
+  - lifepath careers
+  hard_refusals:
+  - D&D levels are not Astra cultivation stages
+  - donor realm names are not Astra defaults
+  - cultivation is central, not flavor
+  - advancement cannot be pure XP spending
+  escalation_triggers:
+  - new stage category required
+  - breakthrough mechanics contradict resources/scale
+  - tribulation rules break consequences
+  required_tests:
+  - cultivation-stage contradiction test
+  - breakthrough/bottleneck pressure test
+  - tribulation severity test
+  - donor stage mapping test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A05 at least review/pressure-tested as applicable
+  - all required sections present
+  - pressure tests pass or escalate
+  - downstream consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: critical
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Part of Phase 1B advancement/action spine. Must keep cultivation central and prevent donor advancement defaults.
+- file_id: A07
+  filename: A07_advancement_axes_and_progression_pressure.md
+  proposed_path: docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md
+  layer: 2_advancement_action_spine
+  phase: 1B
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Advancement Working Group
+  purpose: 'Define multiple advancement axes and their interactions: body, soul, mind, path, technique, social rank, asset, companion, and faction.'
+  owns:
+  - advancement axis taxonomy
+  - cross-axis synergy
+  - diminishing returns
+  - axis-specific bottlenecks
+  - social/institutional advancement integration
+  - progression pressure
+  must_not_own:
+  - specific skill lists
+  - specific faction ranks
+  - specific point-buy costs
+  - specific class features
+  - runtime progression state
+  dependencies: &id003
+  - A05
+  - A06
+  blocked_by: *id003
+  unlocks: &id004
+  - A08
+  - A09
+  - A10
+  - A11
+  - A15
+  - C01
+  - C03
+  - C05
+  downstream_consumers: *id004
+  donor_pressure_absorbed:
+  - D&D multiclassing
+  - GURPS point-buy
+  - Shadowrun karma
+  - lifepath advancement
+  - cultivation dual refinement
+  - Lancer license/mech growth
+  hard_refusals:
+  - single-axis advancement is not Astra default
+  - combat stats are not the only meaningful advancement
+  - social rank is not purely cosmetic
+  escalation_triggers:
+  - new axis required
+  - cross-axis synergy contradicts resources
+  - progression pressure breaks scale doctrine
+  required_tests:
+  - advancement-system contradiction test
+  - cross-axis synergy test
+  - social advancement integration test
+  - axis-specific breakthrough test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A05 at least review/pressure-tested as applicable
+  - all required sections present
+  - pressure tests pass or escalate
+  - downstream consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Part of Phase 1B advancement/action spine. Must keep cultivation central and prevent donor advancement defaults.
+- file_id: A08
+  filename: A08_path_domain_and_technique_mastery_doctrine.md
+  proposed_path: docs/doctrine/advancement/A08_path_domain_and_technique_mastery_doctrine.md
+  layer: 2_advancement_action_spine
+  phase: 1B
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Technique Working Group
+  purpose: Define paths, domains, technique taxonomy, mastery stages, learning permissions, spell/power/art/maneuver normalization, and technique evolution.
+  owns:
+  - path/domain/technique taxonomy
+  - technique activation types
+  - targeting modes
+  - mastery stages
+  - learning/research permissions
+  - technique synthesis
+  - path switching costs
+  must_not_own:
+  - specific technique stats
+  - resource pool mechanics
+  - specific spell lists
+  - runtime ability state
+  - exact action economy
+  dependencies: &id005
+  - A04
+  - A06
+  - A07
+  blocked_by: *id005
+  unlocks: &id006
+  - A09
+  - A10
+  - A13
+  - C03
+  - K01
+  downstream_consumers: *id006
+  donor_pressure_absorbed:
+  - D&D spells/schools
+  - Exalted charms
+  - Shadowrun spells/adept powers
+  - cultivation arts
+  - psionics disciplines
+  - Lancer systems
+  - martial maneuvers
+  hard_refusals:
+  - Vancian spell slots are not Astra default
+  - D&D spell schools are not Astra domain taxonomy
+  - donor charm trees are not Astra paths
+  - techniques require mastery/evolution logic
+  escalation_triggers:
+  - new technique category required
+  - mastery rules contradict advancement
+  - technique synthesis breaks Dao rules
+  required_tests:
+  - technique taxonomy contradiction test
+  - mastery stage boundary test
+  - learning permission test
+  - technique synthesis plus Dao interaction test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A05 at least review/pressure-tested as applicable
+  - all required sections present
+  - pressure tests pass or escalate
+  - downstream consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Part of Phase 1B advancement/action spine. Must keep cultivation central and prevent donor advancement defaults.
+- file_id: A09
+  filename: A09_skill_competency_and_synthesis_doctrine.md
+  proposed_path: docs/doctrine/advancement/A09_skill_competency_and_synthesis_doctrine.md
+  layer: 2_advancement_action_spine
+  phase: 1B
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Competency Working Group
+  purpose: Define skills, competencies, proficiencies, training vectors, cross-skill synthesis, multi-domain checks, and non-active capability translation.
+  owns:
+  - skill/competency/proficiency taxonomy
+  - training vectors
+  - cross-skill synthesis
+  - multi-domain checks
+  - passive capability translation
+  - professional/cultural competency mapping
+  must_not_own:
+  - specific canon skill list
+  - technique mastery
+  - resource costs
+  - faction reputation
+  - runtime skill instance state
+  dependencies: &id007
+  - A07
+  - A08
+  blocked_by: *id007
+  unlocks: &id008
+  - A10
+  - A11
+  - C01
+  - C02
+  - C03
+  - K01
+  downstream_consumers: *id008
+  donor_pressure_absorbed:
+  - D&D skill lists/proficiency
+  - point-buy skill systems
+  - Fate aspects-as-skills
+  - lifepath careers
+  - cultivation professions/crafting mastery
+  hard_refusals:
+  - donor skill lists are not Astra defaults
+  - Fate aspects are not Astra skills without normalization
+  - skill synthesis requires cross-domain logic
+  escalation_triggers:
+  - new skill category required
+  - synthesis contradicts techniques/resources
+  - competency mapping breaks advancement/faction doctrine
+  required_tests:
+  - skill-system contradiction test
+  - cross-skill synthesis test
+  - professional competency integration test
+  - multi-domain check validation
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A05 at least review/pressure-tested as applicable
+  - all required sections present
+  - pressure tests pass or escalate
+  - downstream consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Part of Phase 1B advancement/action spine. Must keep cultivation central and prevent donor advancement defaults.
+- file_id: A10
+  filename: A10_resource_cost_backlash_and_corruption_doctrine.md
+  proposed_path: docs/doctrine/advancement/A10_resource_cost_backlash_and_corruption_doctrine.md
+  layer: 2_advancement_action_spine
+  phase: 1B
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Resource Working Group
+  purpose: Define resources, costs, reserves, cooldowns, recharge, backlash, corruption, overload, heat, strain, fatigue, debt, sacrifice, spiritual damage, dimensional contamination, and favor/disfavor.
+  owns:
+  - resource taxonomy
+  - cost models
+  - reserves and cooldowns
+  - recharge/regeneration
+  - backlash severity
+  - corruption/overload/heat/strain
+  - sacrifice/debt/favor
+  - spiritual/dimensional damage
+  must_not_own:
+  - specific technique costs
+  - specific item prices
+  - combat damage families
+  - economy/currency
+  - runtime resource values
+  dependencies: &id009
+  - A02
+  - A04
+  - A06
+  - A08
+  - A09
+  blocked_by: *id009
+  unlocks: &id010
+  - A11
+  - A12
+  - A13
+  - C02
+  - C03
+  - C04
+  - R02
+  downstream_consumers: *id010
+  donor_pressure_absorbed:
+  - D&D spell slots
+  - mana points
+  - Shadowrun drain/essence/edge
+  - Lancer heat/stress
+  - Fate points
+  - cultivation qi reserves
+  - corruption points
+  hard_refusals:
+  - Vancian spell slots are not Astra default
+  - Shadowrun essence is not Astra cyberware limit
+  - resources must not be siloed by donor family
+  - all power use requires costs/risks/constraints
+  escalation_triggers:
+  - new resource type required
+  - backlash contradicts consequences
+  - hybrid resource costs break magic-tech-cultivation fusion
+  required_tests:
+  - resource-system contradiction test
+  - backlash/corruption severity test
+  - hybrid resource cost validation
+  - sacrifice/debt/favor tracking test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A05 at least review/pressure-tested as applicable
+  - all required sections present
+  - pressure tests pass or escalate
+  - downstream consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Part of Phase 1B advancement/action spine. Must keep cultivation central and prevent donor advancement defaults.
+- file_id: A11
+  filename: A11_actor_ontology_and_player_grade_actor_doctrine.md
+  proposed_path: docs/doctrine/world/A11_actor_ontology_and_player_grade_actor_doctrine.md
+  layer: 3_world_asset_conflict_spine
+  phase: 1C
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Actor Working Group
+  purpose: 'Define unified actor ontology: player-grade actors, NPCs, monsters, spirits, AIs, drones, companions, summons, factional actors, macro-actors, and planets/planes as actors where permitted.'
+  owns:
+  - actor category taxonomy
+  - player-grade actor boundary
+  - capability framework
+  - companion/summon/factional/macro actor permissions
+  - actor advancement integration
+  - death/persistence/transformation conditions
+  must_not_own:
+  - specific statblocks
+  - resource pool mechanics
+  - faction reputation
+  - specific creature lists
+  - runtime actor state
+  dependencies: &id011
+  - A03
+  - A05
+  - A06
+  - A07
+  - A08
+  - A10
+  blocked_by: *id011
+  unlocks: &id012
+  - A12
+  - A13
+  - A15
+  - C01
+  - C11
+  - R02
+  downstream_consumers: *id012
+  donor_pressure_absorbed:
+  - D&D creature types/CR
+  - Traveller aliens
+  - Shadowrun spirits/drones
+  - Lancer pilots/mechs/NPCs
+  - cultivation spirit beasts/immortals
+  - AI/digital beings
+  hard_refusals:
+  - D&D statblocks do not define Astra actors
+  - AI is not mere equipment
+  - summons/companions are not automatically disposable property
+  - macro-actors require doctrine permission
+  escalation_triggers:
+  - new actor category required
+  - player-grade boundary unclear
+  - macro-actor breaks scale doctrine
+  required_tests:
+  - actor ontology contradiction test
+  - AI personhood/actor test
+  - companion/summon boundary test
+  - macro-actor permission test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A10 relevant dependencies at least review/pressure-tested
+  - all required sections present
+  - pressure tests pass or escalate
+  - operational/schema consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Part of Phase 1C world/asset/conflict spine. Must not import donor combat, asset, travel, or economy defaults.
+- file_id: A12
+  filename: A12_asset_relic_implant_platform_doctrine.md
+  proposed_path: docs/doctrine/world/A12_asset_relic_implant_platform_doctrine.md
+  layer: 3_world_asset_conflict_spine
+  phase: 1C
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Asset Working Group
+  purpose: 'Define assets: gear, relics, artifacts, implants, cyberware, biotech, starships, mechs, drones, constructs, stations, living weapons, cultivation tools, dimensional anchors, and platform assets.'
+  owns:
+  - asset taxonomy
+  - implant/cyberware/biotech boundaries
+  - relic/artifact/cultivation tool classification
+  - platform assets
+  - asset advancement and bonding
+  - compatibility/synergy matrices
+  must_not_own:
+  - specific item stats
+  - specific module lists
+  - crafting economy
+  - combat resolution
+  - runtime asset instances
+  dependencies: &id013
+  - A02
+  - A05
+  - A10
+  - A11
+  blocked_by: *id013
+  unlocks: &id014
+  - A13
+  - A14
+  - A15
+  - C02
+  - C04
+  - C08
+  - C12
+  downstream_consumers: *id014
+  donor_pressure_absorbed:
+  - D&D magic items/attunement
+  - Shadowrun cyberware/essence
+  - Lancer licenses/mechs
+  - Traveller ships/TL
+  - cultivation artifacts
+  - biotech/cyberpunk implants
+  hard_refusals:
+  - Shadowrun essence is not Astra implant limit
+  - Lancer license levels are not Astra acquisition rules
+  - Traveller jump drive is not default FTL
+  - assets cannot silo magic/tech/cultivation
+  escalation_triggers:
+  - new asset category required
+  - attachment rules contradict actor ontology
+  - platform mechanics break scale/travel doctrine
+  required_tests:
+  - asset-system contradiction test
+  - attachment/compatibility boundary test
+  - asset advancement integration test
+  - platform-scale asset test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A10 relevant dependencies at least review/pressure-tested
+  - all required sections present
+  - pressure tests pass or escalate
+  - operational/schema consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Part of Phase 1C world/asset/conflict spine. Must not import donor combat, asset, travel, or economy defaults.
+- file_id: A13
+  filename: A13_combat_hazard_damage_and_consequence_doctrine.md
+  proposed_path: docs/doctrine/world/A13_combat_hazard_damage_and_consequence_doctrine.md
+  layer: 3_world_asset_conflict_spine
+  phase: 1C
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Conflict Working Group
+  purpose: Define conflict across personal, group, vehicle, ship, fleet, army, planar, psychic, social, cosmic, and environmental scales, including hazards, damage families, and consequences.
+  owns:
+  - conflict scale taxonomy
+  - damage family taxonomy
+  - resistance/immunity logic
+  - compound effects
+  - injury/death/recovery/transformation
+  - hazard modeling
+  - consequence propagation
+  must_not_own:
+  - specific combat math
+  - specific statblocks
+  - resource pool mechanics
+  - faction warfare details
+  - runtime combat state
+  dependencies: &id015
+  - A05
+  - A08
+  - A10
+  - A11
+  - A12
+  blocked_by: *id015
+  unlocks: &id016
+  - A14
+  - A15
+  - C01
+  - C09
+  - C13
+  - R03
+  downstream_consumers: *id016
+  donor_pressure_absorbed:
+  - D&D AC/HP/damage types
+  - Lancer structure/stress
+  - Traveller ship combat
+  - Shadowrun drain/initiative
+  - mass combat/fleet systems
+  - environmental hazards
+  hard_refusals:
+  - D&D AC/HP is not Astra default
+  - ship combat is not a separate game
+  - personal-scale rules cannot resolve fleet/planar conflict by default
+  - damage families need interaction rules
+  escalation_triggers:
+  - new conflict scale required
+  - damage interactions contradict Dao/source fields
+  - consequences break advancement/scale doctrine
+  required_tests:
+  - combat-scale contradiction test
+  - damage family interaction test
+  - injury/death/recovery boundary test
+  - hazard modeling test
+  - consequence propagation test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A10 relevant dependencies at least review/pressure-tested
+  - all required sections present
+  - pressure tests pass or escalate
+  - operational/schema consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: high
+  notes: Part of Phase 1C world/asset/conflict spine. Must not import donor combat, asset, travel, or economy defaults.
+- file_id: A14
+  filename: A14_travel_exploration_and_scale_transition_doctrine.md
+  proposed_path: docs/doctrine/world/A14_travel_exploration_and_scale_transition_doctrine.md
+  layer: 3_world_asset_conflict_spine
+  phase: 1C
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Travel Working Group
+  purpose: Define local, planetary, orbital, stellar, void, planar, and dimensional travel; routes, gates, portals, jumps, ruins, megastructures, exploration procedures, and scale transitions.
+  owns:
+  - travel scale taxonomy
+  - transition costs/constraints
+  - gate/portal/jump route stability
+  - exploration procedures
+  - ruin/megastructure modeling
+  - scale transition preconditions/consequences
+  must_not_own:
+  - cosmology topology
+  - specific starship stats
+  - specific hazard tables
+  - faction logistics
+  - runtime travel state
+  dependencies: &id017
+  - A01
+  - A05
+  - A12
+  - A13
+  blocked_by: *id017
+  unlocks: &id018
+  - A15
+  - C06
+  - C07
+  - C09
+  - C13
+  - R02
+  - R07
+  downstream_consumers: *id018
+  donor_pressure_absorbed:
+  - Traveller jump drive
+  - D&D plane shift/teleport
+  - Stargate networks
+  - warp/hyperspace systems
+  - cultivation secret realms
+  - wilderness/hexcrawl procedures
+  hard_refusals:
+  - Traveller jump is not default FTL
+  - free teleportation without limits is rejected
+  - travel must not ignore hazards/cost/consequence
+  - planar travel must conform to A01
+  escalation_triggers:
+  - new travel scale required
+  - transition contradicts cosmology/resources
+  - exploration procedure breaks hazards/provenance
+  required_tests:
+  - travel-scale contradiction test
+  - gate/portal/jump boundary test
+  - exploration plus hazard integration test
+  - ruin/megastructure modeling test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A10 relevant dependencies at least review/pressure-tested
+  - all required sections present
+  - pressure tests pass or escalate
+  - operational/schema consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Part of Phase 1C world/asset/conflict spine. Must not import donor combat, asset, travel, or economy defaults.
+- file_id: A15
+  filename: A15_faction_society_economy_and_institution_doctrine.md
+  proposed_path: docs/doctrine/world/A15_faction_society_economy_and_institution_doctrine.md
+  layer: 3_world_asset_conflict_spine
+  phase: 1C
+  status: todo
+  authority_level: doctrine-todo
+  owner: Astra Doctrine Council - Faction Working Group
+  purpose: Define factions, societies, economies, institutions, sects, guilds, corporations, empires, planar courts, trade, value, law, reputation, logistics, war, diplomacy, colonization, and institutional advancement.
+  owns:
+  - faction type taxonomy
+  - institutional hierarchy
+  - economy/value/requisition
+  - law/reputation/standing
+  - logistics/trade networks
+  - war/diplomacy/colonization
+  - institutional advancement
+  must_not_own:
+  - specific faction stats
+  - specific currencies/prices
+  - specific named empires
+  - runtime economy state
+  - canon faction histories
+  dependencies: &id019
+  - A05
+  - A11
+  - A12
+  - A13
+  - A14
+  blocked_by: *id019
+  unlocks: &id020
+  - C05
+  - C07
+  - K06
+  - R07
+  downstream_consumers: *id020
+  donor_pressure_absorbed:
+  - D&D factions/renown
+  - Shadowrun corps
+  - Traveller trade/empire systems
+  - sect/guild hierarchies
+  - domain management/kingdom rules
+  - planar courts
+  hard_refusals:
+  - D&D alignment-based factions are not Astra defaults
+  - donor currencies are source-local until normalized
+  - economy cannot ignore logistics/scale
+  - reputation is not a generic score only
+  escalation_triggers:
+  - new institution type required
+  - economy contradicts source fields/scale
+  - faction mechanics break actor/travel doctrine
+  required_tests:
+  - faction/economy contradiction test
+  - institutional advancement test
+  - trade/logistics test
+  - war/diplomacy/colonization test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A01-A10 relevant dependencies at least review/pressure-tested
+  - all required sections present
+  - pressure tests pass or escalate
+  - operational/schema consumers confirm usability
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Part of Phase 1C world/asset/conflict spine. Must not import donor combat, asset, travel, or economy defaults.
+- file_id: C00
+  filename: C00_shared_content_record_base_and_schema_registry.md
+  proposed_path: docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for shared provenance, source-local, rejected-import, canon eligibility, confidence, review routing, versioning, cross-reference fields.
+  owns:
+  - shared provenance, source-local, rejected-import, canon eligibility, confidence, review routing, versioning, cross-reference fields
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - donor record shapes
+  - canon promotion
+  - runtime state fields
+  dependencies:
+  - A01
+  - A02
+  - A03
+  - A04
+  - A05
+  - A06
+  - A07
+  - A08
+  - A09
+  - A10
+  - A11
+  - A12
+  - A13
+  - A14
+  - A15
+  blocked_by:
+  - A01
+  - A02
+  - A03
+  - A04
+  - A05
+  - A06
+  - A07
+  - A08
+  - A09
+  - A10
+  - A11
+  - A12
+  - A13
+  - A14
+  - A15
+  unlocks:
+  - C01
+  - C02
+  - C03
+  - C04
+  - C05
+  - C06
+  - C07
+  - C08
+  - C09
+  - C10
+  - C11
+  - C12
+  - C13
+  - C14
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - schema base validation
+  - provenance preservation
+  - source-local/rejected-import routing
+  - canon eligibility integration
+  - cross-reference validation
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C01
+  filename: C01_creature_npc_record_schema.md
+  proposed_path: docs/doctrine/schema/C01_creature_npc_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for creature, NPC, adversary, spirit, AI, monster, swarm, and actor conversion records.
+  owns:
+  - creature, NPC, adversary, spirit, AI, monster, swarm, and actor conversion records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - donor statblock finality
+  - runtime actor state
+  - combat math
+  dependencies: &id021
+  - A11
+  - C00
+  blocked_by: *id021
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - statblock cross-family test
+  - actor provenance test
+  - source-local creature test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C02
+  filename: C02_item_gear_record_schema.md
+  proposed_path: docs/doctrine/schema/C02_item_gear_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for item, gear, tool, weapon, armor, consumable, kit, and practical equipment records.
+  owns:
+  - item, gear, tool, weapon, armor, consumable, kit, and practical equipment records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - economy values as canon
+  - donor item format imports
+  - runtime inventory state
+  dependencies: &id022
+  - A12
+  - C00
+  blocked_by: *id022
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - item catalog test
+  - source-local gear test
+  - donor field-name drift test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C03
+  filename: C03_ability_power_technique_record_schema.md
+  proposed_path: docs/doctrine/schema/C03_ability_power_technique_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for ability, technique, spell, power, maneuver, routine, invocation, and active-effect records.
+  owns:
+  - ability, technique, spell, power, maneuver, routine, invocation, and active-effect records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - mechanics finality
+  - Vancian spell slots
+  - runtime ability instances
+  dependencies: &id023
+  - A08
+  - A10
+  - C00
+  blocked_by: *id023
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - ability technique cross-family test
+  - resource/backlash field test
+  - technique provenance test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C04
+  filename: C04_relic_implant_installable_asset_schema.md
+  proposed_path: docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for relic, implant, cyberware, biotech, attunement, installed module, and upgradeable asset records.
+  owns:
+  - relic, implant, cyberware, biotech, attunement, installed module, and upgradeable asset records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - Shadowrun essence default
+  - Lancer license default
+  - runtime installation state
+  dependencies: &id024
+  - A12
+  - C00
+  blocked_by: *id024
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - implant/relic compatibility test
+  - installable asset test
+  - source-local upgrade test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C05
+  filename: C05_faction_institution_record_schema.md
+  proposed_path: docs/doctrine/schema/C05_faction_institution_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for faction, institution, sect, guild, corporation, empire, court, rank, standing, and relationship records.
+  owns:
+  - faction, institution, sect, guild, corporation, empire, court, rank, standing, and relationship records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - canon faction histories
+  - runtime faction clocks
+  - donor reputation systems as defaults
+  dependencies: &id025
+  - A15
+  - C00
+  blocked_by: *id025
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - faction cross-family test
+  - standing/reputation record test
+  - source-local institution test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C06
+  filename: C06_location_site_region_record_schema.md
+  proposed_path: docs/doctrine/schema/C06_location_site_region_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for location, site, region, world, plane, station, ruin, megastructure, and keyed-area records.
+  owns:
+  - location, site, region, world, plane, station, ruin, megastructure, and keyed-area records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - runtime map state
+  - canon geography
+  - donor map format imports
+  dependencies: &id026
+  - A01
+  - A14
+  - C00
+  blocked_by: *id026
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - location provenance test
+  - site/region boundary test
+  - planar location test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C07
+  filename: C07_mission_scenario_adventure_record_schema.md
+  proposed_path: docs/doctrine/schema/C07_mission_scenario_adventure_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for mission, scenario, adventure, arc, hook, objective, scene-chain, reward, and consequence records.
+  owns:
+  - mission, scenario, adventure, arc, hook, objective, scene-chain, reward, and consequence records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - railroad procedure
+  - canon events
+  - runtime quest state
+  dependencies: &id027
+  - A14
+  - A15
+  - C00
+  blocked_by: *id027
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - scenario/adventure test
+  - objective/reward source-local test
+  - branching consequence test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C08
+  filename: C08_vehicle_ship_platform_record_schema.md
+  proposed_path: docs/doctrine/schema/C08_vehicle_ship_platform_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for vehicle, starship, mech, platform, station, drone platform, and modular system records.
+  owns:
+  - vehicle, starship, mech, platform, station, drone platform, and modular system records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - Traveller jump default
+  - Lancer frame defaults
+  - runtime vehicle state
+  dependencies: &id028
+  - A12
+  - A14
+  - C00
+  blocked_by: *id028
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - vehicle/ship/mech cross-family test
+  - module record test
+  - platform scale test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C09
+  filename: C09_hazard_environment_record_schema.md
+  proposed_path: docs/doctrine/schema/C09_hazard_environment_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for hazard, environment, weather, region pressure, planar condition, affliction, and exposure records.
+  owns:
+  - hazard, environment, weather, region pressure, planar condition, affliction, and exposure records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - runtime damage resolution
+  - donor hazard table imports
+  - canon environmental truth
+  dependencies: &id029
+  - A13
+  - A14
+  - C00
+  blocked_by: *id029
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - hazard provenance test
+  - environment effect test
+  - planar hazard test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C10
+  filename: C10_table_oracle_record_schema.md
+  proposed_path: docs/doctrine/schema/C10_table_oracle_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for table, oracle, generator, random-roll list, weighted option, result family, and table-row provenance records.
+  owns:
+  - table, oracle, generator, random-roll list, weighted option, result family, and table-row provenance records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - donor d100 format default
+  - random-roll assumptions as canon
+  - table formatting as schema
+  dependencies: &id030
+  - C00
+  blocked_by: *id030
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - random table test
+  - flattened table recovery test
+  - oracle/source-local test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C11
+  filename: C11_companion_summon_record_schema.md
+  proposed_path: docs/doctrine/schema/C11_companion_summon_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for companion, summon, bonded beast, drone companion, spirit ally, contract entity, and dependent actor records.
+  owns:
+  - companion, summon, bonded beast, drone companion, spirit ally, contract entity, and dependent actor records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - disposable summon default
+  - runtime companion state
+  - donor pet rules as canon
+  dependencies: &id031
+  - A11
+  - A07
+  - C00
+  blocked_by: *id031
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - companion/summon test
+  - bond/contract field test
+  - source-local ally test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C12
+  filename: C12_crafting_salvage_recipe_record_schema.md
+  proposed_path: docs/doctrine/schema/C12_crafting_salvage_recipe_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for crafting, salvage, repair, recipe, installation, modification, extraction, and requisition records.
+  owns:
+  - crafting, salvage, repair, recipe, installation, modification, extraction, and requisition records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - donor crafting economy default
+  - runtime crafting state
+  - canon recipe acceptance
+  dependencies: &id032
+  - A12
+  - A15
+  - C00
+  blocked_by: *id032
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - crafting/salvage test
+  - recipe provenance test
+  - installation modification test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C13
+  filename: C13_map_diagram_record_schema.md
+  proposed_path: docs/doctrine/schema/C13_map_diagram_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for map, diagram, annotation, keyed area, visual dependency, route diagram, ship/station layout, and image-review records.
+  owns:
+  - map, diagram, annotation, keyed area, visual dependency, route diagram, ship/station layout, and image-review records
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - visual truth without review
+  - runtime map state
+  - donor map symbols as canon
+  dependencies: &id033
+  - A14
+  - C00
+  blocked_by: *id033
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - map/diagram annotation test
+  - keyed area provenance test
+  - visual review queue test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: C14
+  filename: C14_source_local_setting_cosmology_record_schema.md
+  proposed_path: docs/doctrine/schema/C14_source_local_setting_cosmology_record_schema.md
+  layer: 4_schema_base
+  phase: '2'
+  status: todo
+  authority_level: schema-todo
+  owner: Astra Doctrine Council - Schema Working Group
+  purpose: Define conversion-stage record grammar for source-local setting, cosmology, metaphysics, proper noun, local law, local faction, and world-specific record.
+  owns:
+  - source-local setting, cosmology, metaphysics, proper noun, local law, local faction, and world-specific record
+  - required provenance fields
+  - source-local boundary fields
+  - rejected-import fields
+  - canon eligibility fields
+  - confidence/review routing fields
+  must_not_own:
+  - final mechanics
+  - canon acceptance
+  - runtime state schema
+  - donor field names as Astra defaults
+  - canon promotion
+  - Astra-wide cosmology
+  - donor setting law
+  dependencies: &id034
+  - A01
+  - K02
+  - C00
+  blocked_by: *id034
+  unlocks:
+  - K03
+  downstream_consumers:
+  - conversion-intake pipeline
+  - canon review
+  - Batch C validation
+  - aggregation reports
+  donor_pressure_absorbed:
+  - donor statblock/table/item/ability/location/faction formats
+  - proper-noun leakage
+  - missing provenance
+  - source-local records
+  hard_refusals:
+  - do not copy donor record format as Astra schema
+  - do not use schema to create canon
+  - do not drop provenance or rejected import fields
+  - do not include runtime state fields
+  escalation_triggers:
+  - record structure requires unsupported field
+  - schema conflicts with A-layer doctrine
+  - cross-record reference cannot preserve provenance
+  required_tests:
+  - source-local cosmology test
+  - proper noun leakage test
+  - canon eligibility boundary test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - schema required fields defined
+  - base C00 fields included
+  - validation examples pass
+  - cross-family pilot records validate
+  - review routing confirmed
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: medium
+  live_play_relevance: low
+  notes: Batch C schemas define conversion-stage record grammar only; they do not define final mechanics, canon, runtime state, or sourcebook prose.
+- file_id: K01
+  filename: K01_lexicon_governance_and_reserved_terms.md
+  proposed_path: docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md
+  layer: 5_canon_lexicon
+  phase: '3'
+  status: todo
+  authority_level: canon-governance-todo
+  owner: Astra Doctrine Council - Canon/Lexicon Working Group
+  purpose: govern accepted, provisional, reserved, rejected, donor, and source-local terminology
+  owns:
+  - accepted Astra terms
+  - reserved terms
+  - aliases
+  - donor term handling
+  - term promotion/deprecation
+  must_not_own:
+  - A-layer mechanics
+  - C-layer schema grammar
+  - R-layer runtime state
+  - T-layer examples
+  - donor terminology as Astra vocabulary
+  - proper noun leakage
+  - unreviewed aliases
+  dependencies:
+  - A01
+  - A02
+  - A03
+  blocked_by:
+  - A01
+  - A02
+  - A03
+  unlocks:
+  - K03
+  - K04
+  downstream_consumers:
+  - canon consolidation
+  - mechanics bible
+  - setting bible
+  - conversion review
+  - runtime doctrine
+  donor_pressure_absorbed:
+  - donor terminology
+  - donor proper nouns
+  - donor canon assumptions
+  - cross-donor contradictions
+  - repeated donor pressure
+  hard_refusals:
+  - donor term frequency is not acceptance
+  - canon promotion requires review
+  - converted content is not canon
+  - examples cannot amend doctrine
+  escalation_triggers:
+  - term conflict cannot be resolved
+  - canon candidate lacks provenance
+  - donor conflicts create high-severity contradiction
+  - accepted term becomes misleading
+  required_tests:
+  - lexicon drift test
+  - reserved-term conflict test
+  - donor term normalization test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required governance sections present
+  - A/C layer dependencies reconciled
+  - pressure/conflict tests pass or escalate
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: critical
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Canon/lexicon governance controls promotion and terminology; it cannot invent mechanics or convert donor content into canon by volume.
+- file_id: K02
+  filename: K02_source_local_boundary_and_rejected_import_doctrine.md
+  proposed_path: docs/doctrine/canon/K02_source_local_boundary_and_rejected_import_doctrine.md
+  layer: 5_canon_lexicon
+  phase: '3'
+  status: todo
+  authority_level: canon-governance-todo
+  owner: Astra Doctrine Council - Canon/Lexicon Working Group
+  purpose: govern source-local boundaries and rejected-import handling
+  owns:
+  - source-local classifications
+  - retained donor constructs
+  - rejected imports
+  - quarantine rules
+  - boundary confidence
+  must_not_own:
+  - A-layer mechanics
+  - C-layer schema grammar
+  - R-layer runtime state
+  - T-layer examples
+  - canon promotion
+  - runtime truth
+  - donor setting law
+  dependencies:
+  - K01
+  - A01
+  - C00
+  blocked_by:
+  - K01
+  - A01
+  - C00
+  unlocks:
+  - K03
+  - K04
+  downstream_consumers:
+  - canon consolidation
+  - mechanics bible
+  - setting bible
+  - conversion review
+  - runtime doctrine
+  donor_pressure_absorbed:
+  - donor terminology
+  - donor proper nouns
+  - donor canon assumptions
+  - cross-donor contradictions
+  - repeated donor pressure
+  hard_refusals:
+  - donor term frequency is not acceptance
+  - canon promotion requires review
+  - converted content is not canon
+  - examples cannot amend doctrine
+  escalation_triggers:
+  - term conflict cannot be resolved
+  - canon candidate lacks provenance
+  - donor conflicts create high-severity contradiction
+  - accepted term becomes misleading
+  required_tests:
+  - source-local boundary test
+  - rejected import test
+  - quarantine routing test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required governance sections present
+  - A/C layer dependencies reconciled
+  - pressure/conflict tests pass or escalate
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: critical
+  canon_relevance: critical
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Canon/lexicon governance controls promotion and terminology; it cannot invent mechanics or convert donor content into canon by volume.
+- file_id: K03
+  filename: K03_canon_promotion_protocol.md
+  proposed_path: docs/doctrine/canon/K03_canon_promotion_protocol.md
+  layer: 5_canon_lexicon
+  phase: '3'
+  status: todo
+  authority_level: canon-governance-todo
+  owner: Astra Doctrine Council - Canon/Lexicon Working Group
+  purpose: govern canon candidate review, acceptance, reversal, and promotion criteria
+  owns:
+  - canon status values
+  - candidate evidence
+  - acceptance protocol
+  - reversal/deprecation protocol
+  must_not_own:
+  - A-layer mechanics
+  - C-layer schema grammar
+  - R-layer runtime state
+  - T-layer examples
+  - conversion frequency as canon
+  - schema validation as canon
+  - runtime state as canon
+  dependencies:
+  - K01
+  - K02
+  - A01
+  - A15
+  - C00
+  blocked_by:
+  - K01
+  - K02
+  - A01
+  - A15
+  - C00
+  unlocks:
+  - K05
+  - K06
+  downstream_consumers:
+  - canon consolidation
+  - mechanics bible
+  - setting bible
+  - conversion review
+  - runtime doctrine
+  donor_pressure_absorbed:
+  - donor terminology
+  - donor proper nouns
+  - donor canon assumptions
+  - cross-donor contradictions
+  - repeated donor pressure
+  hard_refusals:
+  - donor term frequency is not acceptance
+  - canon promotion requires review
+  - converted content is not canon
+  - examples cannot amend doctrine
+  escalation_triggers:
+  - term conflict cannot be resolved
+  - canon candidate lacks provenance
+  - donor conflicts create high-severity contradiction
+  - accepted term becomes misleading
+  required_tests:
+  - canon promotion test
+  - frequency-is-not-canon test
+  - reversal protocol test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required governance sections present
+  - A/C layer dependencies reconciled
+  - pressure/conflict tests pass or escalate
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: critical
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Canon/lexicon governance controls promotion and terminology; it cannot invent mechanics or convert donor content into canon by volume.
+- file_id: K04
+  filename: K04_conflict_ledger_and_cross_donor_pressure_protocol.md
+  proposed_path: docs/doctrine/canon/K04_conflict_ledger_and_cross_donor_pressure_protocol.md
+  layer: 5_canon_lexicon
+  phase: '3'
+  status: todo
+  authority_level: canon-governance-todo
+  owner: Astra Doctrine Council - Canon/Lexicon Working Group
+  purpose: govern cross-donor contradictions and recurring pressure handling
+  owns:
+  - conflict ledger
+  - severity levels
+  - resolution routes
+  - reopen rules
+  - donor-family pressure trends
+  must_not_own:
+  - A-layer mechanics
+  - C-layer schema grammar
+  - R-layer runtime state
+  - T-layer examples
+  - settling conflicts by volume alone
+  - hiding contradictions
+  - donor winner-take-all logic
+  dependencies:
+  - K01
+  - K02
+  - K03
+  blocked_by:
+  - K01
+  - K02
+  - K03
+  unlocks:
+  - K05
+  - K06
+  downstream_consumers:
+  - canon consolidation
+  - mechanics bible
+  - setting bible
+  - conversion review
+  - runtime doctrine
+  donor_pressure_absorbed:
+  - donor terminology
+  - donor proper nouns
+  - donor canon assumptions
+  - cross-donor contradictions
+  - repeated donor pressure
+  hard_refusals:
+  - donor term frequency is not acceptance
+  - canon promotion requires review
+  - converted content is not canon
+  - examples cannot amend doctrine
+  escalation_triggers:
+  - term conflict cannot be resolved
+  - canon candidate lacks provenance
+  - donor conflicts create high-severity contradiction
+  - accepted term becomes misleading
+  required_tests:
+  - conflict ledger test
+  - deliberate contradiction test
+  - severity routing test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required governance sections present
+  - A/C layer dependencies reconciled
+  - pressure/conflict tests pass or escalate
+  - council acceptance recorded
+  scale_gate_relevance: critical
+  broad_conversion_relevance: critical
+  canon_relevance: critical
+  runtime_relevance: medium
+  live_play_relevance: medium
+  notes: Canon/lexicon governance controls promotion and terminology; it cannot invent mechanics or convert donor content into canon by volume.
+- file_id: K05
+  filename: K05_mechanics_bible_structure.md
+  proposed_path: docs/doctrine/canon/K05_mechanics_bible_structure.md
+  layer: 5_canon_lexicon
+  phase: '3'
+  status: todo
+  authority_level: canon-governance-todo
+  owner: Astra Doctrine Council - Canon/Lexicon Working Group
+  purpose: define mechanics bible structure and mechanical consolidation protocol
+  owns:
+  - rules consolidation
+  - mechanical precedence
+  - accepted mechanics index
+  - rule provenance
+  must_not_own:
+  - A-layer mechanics
+  - C-layer schema grammar
+  - R-layer runtime state
+  - T-layer examples
+  - new mechanics invention
+  - setting lore bible
+  - runtime state
+  dependencies:
+  - K01
+  - K02
+  - K03
+  - K04
+  - A01
+  - A15
+  - C00
+  blocked_by:
+  - K01
+  - K02
+  - K03
+  - K04
+  - A01
+  - A15
+  - C00
+  unlocks:
+  - R01
+  downstream_consumers:
+  - canon consolidation
+  - mechanics bible
+  - setting bible
+  - conversion review
+  - runtime doctrine
+  donor_pressure_absorbed:
+  - donor terminology
+  - donor proper nouns
+  - donor canon assumptions
+  - cross-donor contradictions
+  - repeated donor pressure
+  hard_refusals:
+  - donor term frequency is not acceptance
+  - canon promotion requires review
+  - converted content is not canon
+  - examples cannot amend doctrine
+  escalation_triggers:
+  - term conflict cannot be resolved
+  - canon candidate lacks provenance
+  - donor conflicts create high-severity contradiction
+  - accepted term becomes misleading
+  required_tests:
+  - mechanics bible merge test
+  - precedence conflict test
+  - provenance trace test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required governance sections present
+  - A/C layer dependencies reconciled
+  - pressure/conflict tests pass or escalate
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: critical
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Canon/lexicon governance controls promotion and terminology; it cannot invent mechanics or convert donor content into canon by volume.
+- file_id: K06
+  filename: K06_setting_bible_structure.md
+  proposed_path: docs/doctrine/canon/K06_setting_bible_structure.md
+  layer: 5_canon_lexicon
+  phase: '3'
+  status: todo
+  authority_level: canon-governance-todo
+  owner: Astra Doctrine Council - Canon/Lexicon Working Group
+  purpose: define setting bible structure and setting consolidation protocol
+  owns:
+  - setting hierarchy
+  - accepted setting facts
+  - source-local exclusions
+  - lore provenance
+  must_not_own:
+  - A-layer mechanics
+  - C-layer schema grammar
+  - R-layer runtime state
+  - T-layer examples
+  - donor lore import
+  - mechanics bible rules
+  - runtime campaign state
+  dependencies:
+  - K01
+  - K02
+  - K03
+  - K04
+  - A01
+  - A15
+  - C14
+  blocked_by:
+  - K01
+  - K02
+  - K03
+  - K04
+  - A01
+  - A15
+  - C14
+  unlocks:
+  - R01
+  downstream_consumers:
+  - canon consolidation
+  - mechanics bible
+  - setting bible
+  - conversion review
+  - runtime doctrine
+  donor_pressure_absorbed:
+  - donor terminology
+  - donor proper nouns
+  - donor canon assumptions
+  - cross-donor contradictions
+  - repeated donor pressure
+  hard_refusals:
+  - donor term frequency is not acceptance
+  - canon promotion requires review
+  - converted content is not canon
+  - examples cannot amend doctrine
+  escalation_triggers:
+  - term conflict cannot be resolved
+  - canon candidate lacks provenance
+  - donor conflicts create high-severity contradiction
+  - accepted term becomes misleading
+  required_tests:
+  - setting bible merge test
+  - proper noun leakage test
+  - source-local exclusion test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - all required governance sections present
+  - A/C layer dependencies reconciled
+  - pressure/conflict tests pass or escalate
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: high
+  canon_relevance: critical
+  runtime_relevance: high
+  live_play_relevance: medium
+  notes: Canon/lexicon governance controls promotion and terminology; it cannot invent mechanics or convert donor content into canon by volume.
+- file_id: R01
+  filename: R01_deterministic_event_kernel.md
+  proposed_path: docs/doctrine/runtime/R01_deterministic_event_kernel.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define deterministic event kernel, event ledger, authority boundaries, backend-owned truth.
+  owns:
+  - deterministic event kernel, event ledger, authority boundaries, backend-owned truth
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - LLM-owned state
+  - donor mechanics as backend defaults
+  dependencies: &id035
+  - A01
+  - A15
+  - C00
+  - C14
+  - K01
+  - K06
+  blocked_by: *id035
+  unlocks:
+  - R02
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - event kernel determinism test
+  - unauthorized mutation test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R02
+  filename: R02_state_model_and_entity_component_schema.md
+  proposed_path: docs/doctrine/runtime/R02_state_model_and_entity_component_schema.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define backend state model, entity/component records, actor/resource/asset/faction/world state.
+  owns:
+  - backend state model, entity/component records, actor/resource/asset/faction/world state
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - C-schema content records as runtime state
+  - model memory as persistence
+  dependencies: &id036
+  - R01
+  blocked_by: *id036
+  unlocks:
+  - R03
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - state schema validation test
+  - entity/component boundary test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R03
+  filename: R03_command_lifecycle_and_state_delta_validation.md
+  proposed_path: docs/doctrine/runtime/R03_command_lifecycle_and_state_delta_validation.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define command parsing, validation, adjudication, delta proposal, delta validation, commit lifecycle.
+  owns:
+  - command parsing, validation, adjudication, delta proposal, delta validation, commit lifecycle
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - LLM direct state mutation
+  - unvalidated command effects
+  dependencies: &id037
+  - R01
+  - R02
+  blocked_by: *id037
+  unlocks:
+  - R04
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - command lifecycle test
+  - state delta validation test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R04
+  filename: R04_dice_rng_and_randomness_authority.md
+  proposed_path: docs/doctrine/runtime/R04_dice_rng_and_randomness_authority.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define backend RNG authority, seed/replay policy, dice/randomness governance.
+  owns:
+  - backend RNG authority, seed/replay policy, dice/randomness governance
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - LLM rolled dice as truth
+  - unseeded randomness in state changes
+  dependencies: &id038
+  - R01
+  - R02
+  - R03
+  blocked_by: *id038
+  unlocks:
+  - R05
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - RNG authority test
+  - replay deterministic test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R05
+  filename: R05_context_packet_compiler.md
+  proposed_path: docs/doctrine/runtime/R05_context_packet_compiler.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define context packet assembly from backend state, doctrine, canon, and hidden-information filters.
+  owns:
+  - context packet assembly from backend state, doctrine, canon, and hidden-information filters
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - raw database dumps into context
+  - hidden information leakage
+  dependencies: &id039
+  - R01
+  - R02
+  - R03
+  - R04
+  blocked_by: *id039
+  unlocks:
+  - R06
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - context packet completeness test
+  - hidden info exclusion test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R06
+  filename: R06_hidden_information_partitioning.md
+  proposed_path: docs/doctrine/runtime/R06_hidden_information_partitioning.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define hidden information, fog of war, private GM/backend state, player-visible state boundaries.
+  owns:
+  - hidden information, fog of war, private GM/backend state, player-visible state boundaries
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - LLM access to hidden truth by default
+  dependencies: &id040
+  - R05
+  blocked_by: *id040
+  unlocks:
+  - R07
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - hidden partition test
+  - player/GM visibility test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R07
+  filename: R07_faction_world_clocks_and_economy_state.md
+  proposed_path: docs/doctrine/runtime/R07_faction_world_clocks_and_economy_state.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define faction clocks, world clocks, economy state, logistics state, institutional evolution.
+  owns:
+  - faction clocks, world clocks, economy state, logistics state, institutional evolution
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - static world simulation
+  - untracked economy/faction changes
+  dependencies: &id041
+  - R01
+  - R02
+  - R05
+  - R06
+  - A15
+  blocked_by: *id041
+  unlocks:
+  - R08
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - faction clock test
+  - economy state transition test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: R08
+  filename: R08_campaign_persistence_replay_and_hash_verification.md
+  proposed_path: docs/doctrine/runtime/R08_campaign_persistence_replay_and_hash_verification.md
+  layer: 6_runtime_backend
+  phase: '4'
+  status: todo
+  authority_level: runtime-todo
+  owner: Astra Runtime Working Group
+  purpose: Define campaign persistence, migrations, replay, hash verification, state audit trails.
+  owns:
+  - campaign persistence, migrations, replay, hash verification, state audit trails
+  - backend authority boundaries
+  - validation handoffs
+  - audit/replay implications
+  must_not_own:
+  - doctrine redefinition
+  - canon promotion
+  - training data
+  - conversion output shape
+  - unverifiable memory
+  - state corruption without audit
+  dependencies: &id042
+  - R01
+  - R02
+  - R03
+  - R04
+  - R05
+  - R06
+  - R07
+  blocked_by: *id042
+  unlocks:
+  - T01
+  - T02
+  downstream_consumers:
+  - runtime implementation
+  - context packet compiler
+  - live-play adapter
+  - testing harness
+  donor_pressure_absorbed:
+  - runtime assumptions in donor games
+  - dice/RNG ownership patterns
+  - state/memory conflation
+  - campaign management systems
+  hard_refusals:
+  - backend implementation cannot redefine doctrine
+  - LLM cannot own truth, dice, or state mutation
+  - runtime state is not model memory
+  - donor mechanics are not backend defaults
+  escalation_triggers:
+  - runtime need conflicts with doctrine
+  - state representation requires doctrine amendment
+  - hidden information cannot be partitioned safely
+  required_tests:
+  - persistence test
+  - replay/hash verification test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - A/K/C dependencies current or pressure-tested
+  - runtime prototype tests pass
+  - state mutation boundaries validated
+  - council acceptance recorded
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Runtime doctrine comes after doctrine/schema/canon stability. It implements doctrine and cannot redefine it.
+- file_id: T01
+  filename: T01_conversion_adapter_evaluation_protocol.md
+  proposed_path: docs/doctrine/training/T01_conversion_adapter_evaluation_protocol.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define conversion adapter evaluation, scoring rubrics, failure labels, regression prompts for Round 1 conversion discipline.
+  owns:
+  - conversion adapter evaluation, scoring rubrics, failure labels, regression prompts for Round 1 conversion discipline
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - training-as-doctrine
+  dependencies: &id043
+  - C00
+  - C01
+  - C02
+  - C03
+  - K05
+  blocked_by: *id043
+  unlocks:
+  - T02
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - conversion adapter benchmark test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
+- file_id: T02
+  filename: T02_live_play_adapter_behavior_contract.md
+  proposed_path: docs/doctrine/training/T02_live_play_adapter_behavior_contract.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define live-play adapter behavior, authority limits, narration constraints, command handoff expectations.
+  owns:
+  - live-play adapter behavior, authority limits, narration constraints, command handoff expectations
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - LLM state authority
+  - uncanonized lore narration
+  dependencies: &id044
+  - R01
+  - R02
+  - R03
+  - R04
+  - R05
+  - R06
+  blocked_by: *id044
+  unlocks:
+  - T03
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - live-play authority boundary test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
+- file_id: T03
+  filename: T03_context_packet_example_pack.md
+  proposed_path: docs/doctrine/training/T03_context_packet_example_pack.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define reviewed context packet examples and valid assistant responses derived from runtime-safe packets.
+  owns:
+  - reviewed context packet examples and valid assistant responses derived from runtime-safe packets
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - raw donor text as examples
+  - hidden information leaks
+  dependencies: &id045
+  - T02
+  - R05
+  - R06
+  blocked_by: *id045
+  unlocks:
+  - T04
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - context example review test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
+- file_id: T04
+  filename: T04_failure_label_taxonomy.md
+  proposed_path: docs/doctrine/training/T04_failure_label_taxonomy.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define failure labels for conversion, runtime, live-play, canon, and safety failures.
+  owns:
+  - failure labels for conversion, runtime, live-play, canon, and safety failures
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - vague quality labels
+  dependencies: &id046
+  - T01
+  - T02
+  - T03
+  blocked_by: *id046
+  unlocks:
+  - T05
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - failure label coverage test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
+- file_id: T05
+  filename: T05_gold_example_selection_protocol.md
+  proposed_path: docs/doctrine/training/T05_gold_example_selection_protocol.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define selection, review, provenance, and retirement criteria for gold examples.
+  owns:
+  - selection, review, provenance, and retirement criteria for gold examples
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - unreviewed synthetic examples
+  - donor text as gold
+  dependencies: &id047
+  - T01
+  - T02
+  - T03
+  - T04
+  blocked_by: *id047
+  unlocks:
+  - T06
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - gold example provenance test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
+- file_id: T06
+  filename: T06_benchmark_pack_design.md
+  proposed_path: docs/doctrine/training/T06_benchmark_pack_design.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define benchmark packs for doctrine compliance, conversion fidelity, runtime authority, and live-play behavior.
+  owns:
+  - benchmark packs for doctrine compliance, conversion fidelity, runtime authority, and live-play behavior
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - benchmarks that reward donor imitation
+  dependencies: &id048
+  - T01
+  - T02
+  - T04
+  - T05
+  blocked_by: *id048
+  unlocks:
+  - T07
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - benchmark coverage test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
+- file_id: T07
+  filename: T07_unsafe_behavior_hard_fail_matrix.md
+  proposed_path: docs/doctrine/training/T07_unsafe_behavior_hard_fail_matrix.md
+  layer: 7_training_evaluation
+  phase: '5'
+  status: todo
+  authority_level: training-todo
+  owner: Astra Training/Evaluation Working Group
+  purpose: Define hard-fail matrix for doctrine violations, unsafe authority overreach, state mutation, hidden-info leakage, and donor-law creep.
+  owns:
+  - hard-fail matrix for doctrine violations, unsafe authority overreach, state mutation, hidden-info leakage, and donor-law creep
+  - review requirements
+  - test coverage
+  - failure routing
+  - provenance requirements
+  must_not_own:
+  - doctrine authority
+  - canon promotion
+  - runtime state
+  - raw donor assumptions
+  - silent correction of authority failures
+  dependencies: &id049
+  - T01
+  - T02
+  - T04
+  - T06
+  blocked_by: *id049
+  unlocks:
+  - live_play_training_gate
+  downstream_consumers:
+  - training data generation
+  - adapter evaluation
+  - benchmark harness
+  - live-play QA
+  donor_pressure_absorbed:
+  - examples that imitate donor styles
+  - raw donor text in training
+  - model tendency to invent state
+  - model tendency to obey donor terminology
+  hard_refusals:
+  - training examples cannot override doctrine
+  - unreviewed conversion output cannot be treated as canon
+  - LLM cannot own runtime truth
+  - raw donor text is not gold data
+  escalation_triggers:
+  - benchmark reveals doctrine drift
+  - example contradicts current doctrine
+  - adapter mutates state or leaks hidden information
+  required_tests:
+  - hard-fail matrix test
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - runtime dependencies current or pressure-tested
+  - examples derive from accepted doctrine/canon
+  - benchmarks pass thresholds
+  - hard-fail criteria accepted
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Training/evaluation layer is last. It cannot define doctrine, canon, or runtime authority.
