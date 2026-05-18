@@ -180,6 +180,27 @@ def test_map_with_review_queue_passes(tmp_path: Path):
     r=_validate(p,True)
     assert r.returncode==0
 
+
+
+def test_ready_with_warnings_alone_does_not_trigger_sidecar_requirement(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','ordinary prose', ['prose'])
+    u['content_readiness']='ready_with_warnings'
+    u['defects']=['sparse_page']
+    _write_jsonl(p/'content_units.jsonl',[u])
+    r=_validate(p,True)
+    assert r.returncode==0
+
+
+def test_needs_repair_alone_does_not_trigger_table_sidecar_requirement(tmp_path: Path):
+    p=_make_packet(tmp_path)
+    u=_set_single_unit(p,'prose','ordinary prose', ['prose'])
+    u['content_readiness']='needs_repair'
+    u['recommended_queue']='repair_queue'
+    _write_jsonl(p/'content_units.jsonl',[u])
+    _write_jsonl(p/'queues'/'repair_queue.jsonl',[_queue_rec('repair_queue',u['unit_id'],'generic_repair','review')])
+    r=_validate(p,True)
+    assert r.returncode==0
 def test_normal_prose_packet_remains_valid(tmp_path: Path):
     p=_make_packet(tmp_path)
     _set_single_unit(p,'prose','This is plain prose with no risky structure.', ['prose'])

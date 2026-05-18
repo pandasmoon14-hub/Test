@@ -21,36 +21,43 @@ def load_jsonl(path):
 def markers(md): return [int(x) for x in re.findall(r"<!--\s*PAGE:(\d+)\s*-->", md)]
 
 
-def _family_signal(unit: dict, manifest_tags: set[str], family: str) -> bool:
-    unit_type=str(unit.get('unit_type','')).lower()
-    low_text=str(unit.get('text','')).lower()
-    low_defects=[str(x).lower() for x in unit.get('defects',[])]
-    tags={str(x).lower() for x in manifest_tags}
+def _norm_tokens(value) -> set[str]:
+    if value is None:
+        return set()
+    if isinstance(value, (list, tuple, set)):
+        out=set()
+        for item in value:
+            out |= _norm_tokens(item)
+        return out
+    text=str(value).lower().replace('-', '_').replace('/', '_').replace(' ', '_')
+    parts=[p for p in re.split(r"[^a-z0-9_]+", text) if p]
+    return set(parts)
+
+
+def _family_signal(unit: dict, manifest: dict, family: str) -> bool:
+    table_signals={"random_table","table","table_unit","catalog","item_catalog","gear_catalog","loot_table","flattened_table"}
+    stat_signals={"statblock","stat_block","creature_or_npc","npc","monster","adversary","collapsed_statblock","statblock_collapse"}
+    map_signals={"map","diagram","map_or_diagram","map_unit","unreadable_map","map_unreadable","visual_review"}
+
+    fields=[]
+    fields.extend([manifest.get('content_family_tags'), manifest.get('content_families'), manifest.get('modality'), manifest.get('queues_present')])
+    fields.extend([unit.get('unit_type'), unit.get('content_family'), unit.get('content_families'), unit.get('modality'), unit.get('recommended_queue'), unit.get('defects'), unit.get('issue_code'), unit.get('issue_codes'), unit.get('notes')])
+
+    tokens=set()
+    for f in fields:
+        tokens |= _norm_tokens(f)
 
     if family=='table':
-        tag_hits={'table','random_table','catalog'}
-        return (
-            unit_type=='table' or
-            bool(tags & tag_hits) or
-            any(k in low_text for k in ['|','table','random table','d100','catalog']) or
-            any('table' in d for d in low_defects)
-        )
+        return bool(tokens & table_signals)
     if family=='statblock':
-        tag_hits={'statblock','stat_block','creature_or_npc','creature','npc'}
-        return (
-            unit_type=='stat_block' or
-            bool(tags & tag_hits) or
-            any(k in low_text for k in ['stat block','statblock','ac ','hp ','str ','dex ','con ','creature','npc']) or
-            any('stat' in d for d in low_defects)
-        )
+        return bool(tokens & stat_signals)
     if family=='map':
-        tag_hits={'map','map_or_diagram','diagram'}
-        return (
-            unit_type=='map' or
-            bool(tags & tag_hits) or
-            any(k in low_text for k in ['map','diagram','room key','hex']) or
-            any('map' in d or 'diagram' in d for d in low_defects)
-        )
+        if tokens & map_signals:
+            return True
+        # image_text_missing only counts when map/diagram indicator is present
+        if 'image_text_missing' in tokens and ('map' in tokens or 'diagram' in tokens or 'map_or_diagram' in tokens):
+            return True
+        return False
     return False
 
 
@@ -66,7 +73,18 @@ def _has_matching_sidecar(sidecar_rows: list[dict], unit: dict) -> bool:
     return False
 
 
-def _queue_record_covers_unit(records: list[dict], unit: dict, reason_tokens: tuple[str, ...], action_tokens: tuple[str, ...]) -> bool:
+def _queue_record_covers_unit(records: list[dict], unit: dict, family: str) -> bool:
+    family_tokens={
+        'table': {'table','random_table','catalog','item_catalog','gear_catalog','loot_table','flattened_table'},
+        'statblock': {'statblock','stat_block','creature_or_npc','npc','monster','adversary','collapsed_statblock','statblock_collapse'},
+        'map': {'map','diagram','map_or_diagram','map_unit','unreadable_map','map_unreadable','visual_review'},
+    }[family]
+    queue_aliases={
+        'table': {'table_normalization_queue','table_repair_queue'},
+        'statblock': {'statblock_queue','statblock_parse_queue'},
+        'map': {'map_diagram_queue','map_diagram_review_queue'},
+    }[family]
+
     uid=unit.get('unit_id')
     usp=int(unit.get('source_page_start',0)); uep=int(unit.get('source_page_end',0))
     for rec in records:
@@ -75,12 +93,16 @@ def _queue_record_covers_unit(records: list[dict], unit: dict, reason_tokens: tu
         pages=[int(x) for x in rec.get('source_pages',[]) if isinstance(x,int)]
         if pages and all((p<usp or p>uep) for p in pages):
             continue
-        rc=str(rec.get('reason_code','')).lower()
-        ra=str(rec.get('recommended_action','')).lower()
-        qn=str(rec.get('queue_name','')).lower()
-        if any(t in qn or t in rc for t in reason_tokens) or any(t in ra for t in action_tokens):
+
+        qname=str(rec.get('queue_name','')).lower().replace('-', '_')
+        tokens=_norm_tokens([rec.get('queue_name'), rec.get('reason_code'), rec.get('recommended_action'), rec.get('blocking_effect'), rec.get('allowed_use')])
+
+        if qname in queue_aliases or bool(tokens & queue_aliases):
+            return True
+        if qname=='manual_review_queue' and bool(tokens & family_tokens):
             return True
     return False
+
 
 def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict, int]:
     d=Path(packet_dir)
@@ -156,16 +178,18 @@ def validate_packet(packet_dir: str | Path, strict: bool = False) -> tuple[dict,
             if u.get('unit_type')=='map' and u.get('content_readiness')!='ready' and len(qrecs['map_diagram_queue'])==0: errors.append('missing_map_diagram_queue_record')
             if u.get('unit_type')=='stat_block' and u.get('content_readiness')!='ready' and len(qrecs['statblock_queue'])==0: errors.append('missing_statblock_queue_record')
 
-        manifest_tags={str(x).lower() for x in manifest.get('content_family_tags',[])}
         for u in units:
-            if _family_signal(u, manifest_tags, 'table'):
-                if not _has_matching_sidecar(table_sidecars, u) and not _queue_record_covers_unit(qrecs['table_normalization_queue'], u, ('table','random_table','catalog'), ('repair','normalize','review')):
+            if _family_signal(u, manifest, 'table'):
+                table_records=qrecs['table_normalization_queue'] + qrecs['repair_queue']
+                if not _has_matching_sidecar(table_sidecars, u) and not _queue_record_covers_unit(table_records, u, 'table'):
                     errors.append('missing_table_sidecar_or_repair_queue')
-            if _family_signal(u, manifest_tags, 'statblock'):
-                if not _has_matching_sidecar(statblock_sidecars, u) and not _queue_record_covers_unit(qrecs['statblock_queue'], u, ('stat','creature','npc','parse'), ('parse','review','repair')):
+            if _family_signal(u, manifest, 'statblock'):
+                stat_records=qrecs['statblock_queue'] + qrecs['repair_queue']
+                if not _has_matching_sidecar(statblock_sidecars, u) and not _queue_record_covers_unit(stat_records, u, 'statblock'):
                     errors.append('missing_statblock_sidecar_or_parse_queue')
-            if _family_signal(u, manifest_tags, 'map'):
-                if not _has_matching_sidecar(map_sidecars, u) and not _queue_record_covers_unit(qrecs['map_diagram_queue'], u, ('map','diagram','visual'), ('review','repair','validate')):
+            if _family_signal(u, manifest, 'map'):
+                map_records=qrecs['map_diagram_queue'] + qrecs['repair_queue']
+                if not _has_matching_sidecar(map_sidecars, u) and not _queue_record_covers_unit(map_records, u, 'map'):
                     errors.append('missing_map_sidecar_or_review_queue')
 
         queued_pages={int(r.get('page',0)) for r in pt if r.get('page_status') in {'queued','failed'}}
