@@ -100,11 +100,9 @@ def _set_single_unit(packet: Path, unit_type: str, text: str, tags: list[str] | 
         "conversion_permission":"allowed","canon_permission":"review_required","defects":[],"confidence":0.9,
         "recommended_queue":None,"lawful_outcome":"normalized_astra_mapping","notes":""
     }
-    _write_jsonl(packet/'content_units.jsonl',[unit])
-    m=json.loads((packet/'packet_manifest.json').read_text())
-    (packet/'packet_manifest.json').write_text(json.dumps(m),encoding='utf-8')
     if tags is not None:
         unit['content_families']=tags
+    _write_jsonl(packet/'content_units.jsonl',[unit])
     for q in ['table_normalization_queue','statblock_queue','map_diagram_queue']:
         (packet/'queues'/f'{q}.jsonl').write_text('',encoding='utf-8')
     return unit
