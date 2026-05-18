@@ -26,6 +26,7 @@ SCHEMAS = [
     "schemas/handoff/table_unit.schema.json",
     "schemas/handoff/map_unit.schema.json",
     "schemas/handoff/statblock_unit.schema.json",
+    "schemas/handoff/conversion_intake_result.schema.json",
 ]
 
 
@@ -176,3 +177,66 @@ def test_enum_coverage() -> None:
     assert readiness.issubset(set(c["properties"]["content_readiness"]["enum"]))
     assert outcomes.issubset(set(m["properties"]["lawful_outcome"]["enum"]))
     assert queues.issubset(set(q["properties"]["queue_name"]["enum"]))
+
+
+def _valid_intake_sample() -> dict:
+    return {
+        "result_id": "r1",
+        "packet_id": "p1",
+        "book_id": "b1",
+        "source_packet_dir": "packets/p1",
+        "page_range": {"start_page": 1, "end_page": 2},
+        "result_status": "drafted",
+        "extraction_readiness_assessment": "ready",
+        "donor_construct_inventory": [{"text": "construct", "summary": "summary"}],
+        "mapping_ledger": [{
+            "donor_construct": "x", "source_pages": [1], "source_unit_ids": ["u1"], "astra_target_family": "fam",
+            "lawful_outcome": "normalized Astra mapping", "rationale": "ok", "must_not_import": False,
+            "doctrine_owner": None, "canon_candidate_permission": "candidate_only_after_review",
+            "confidence": 0.8, "raw_markdown_row": "| x |", "parse_warnings": ["parsed"]
+        }],
+        "queue_actions": [{"text": "queue item"}],
+        "lexicon_delta": [{"text": "lexicon item"}],
+        "doctrine_escalations": [{"text": "issue", "reason": "rationale"}],
+        "source_local_retentions": [{"text": "retain", "retained_construct": "retain", "boundary_scope_note": "boundary", "rationale": "reason", "review_required": True}],
+        "rejected_imports": [{"text": "reject", "reason": "bad", "must_not_import": True}],
+        "canon_candidate_notes": [{"text": "candidate", "canon_candidate_permission": "candidate_only_after_review", "review_required": True}],
+        "conversion_notes": "c",
+        "reviewer_notes": "r",
+        "confidence": 0.8,
+        "parse_warnings": ["top-level"],
+    }
+
+
+def test_conversion_intake_schema_tightening_rules() -> None:
+    schema = _load_schema("schemas/handoff/conversion_intake_result.schema.json")
+    obj = _valid_intake_sample()
+    jsonschema.validate(obj, schema)
+
+    bad_inv = _valid_intake_sample()
+    bad_inv["donor_construct_inventory"] = [{}]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(bad_inv, schema)
+
+    bad_queue = _valid_intake_sample()
+    bad_queue["queue_actions"] = [{}]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(bad_queue, schema)
+
+    valid_source_local = _valid_intake_sample()
+    valid_source_local["source_local_retentions"] = [{"text": "simple text retention"}]
+    jsonschema.validate(valid_source_local, schema)
+
+    valid_rejected = _valid_intake_sample()
+    valid_rejected["rejected_imports"] = [{"rejected_construct": "x", "reason": "unsafe", "must_not_import": True}]
+    jsonschema.validate(valid_rejected, schema)
+
+    bad_canon = _valid_intake_sample()
+    bad_canon["canon_candidate_notes"] = [{"text": "bad", "canon_candidate_permission": "approved"}]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(bad_canon, schema)
+
+    malformed = _valid_intake_sample()
+    malformed["mapping_ledger"] = [{"donor_construct": "x"}]
+    with pytest.raises(jsonschema.ValidationError):
+        jsonschema.validate(malformed, schema)
