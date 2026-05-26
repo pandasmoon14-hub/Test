@@ -103,3 +103,7 @@ Step 11 applies Step 10C findings to the repo:
 - Control layer patch is non-mechanical and non-runtime.
 - No phase-order or dependency-lock bypass is authorized.
 - Any doctrine file that treats donor rules as default Astra authority must be escalated.
+- Stage 5 lexicon-control entries route to K01/pre-A01 ledgers/work orders, not direct A01 renumbering.
+- State-change digest is a report from committed backend events and is never authority by itself.
+- Registry entries are tracking/work-order records, not canon or accepted terms.
+

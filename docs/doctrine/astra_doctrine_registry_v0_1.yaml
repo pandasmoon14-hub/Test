@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-05-26'
+  version: 0.1.1
+  action: pre_a01_control_layer_patch
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added A00 mechanical non-adoption control record and PREA01 tracking record; reaffirmed A01 and K01 ownership boundaries.
 - date: '2026-05-18'
   version: 0.1.0
   action: initial_master_fusion
@@ -3921,7 +3926,7 @@ file_records:
   - control-layer boundary conformance review
   - registry tracking validation
   test_status: designed
-  review_status: pending
+  review_status: not_reviewed
   promotion_requirements:
   - control-layer review acceptance recorded
   - no conflict with active control files
@@ -3970,7 +3975,7 @@ file_records:
   - registry record integrity check
   - decision-log entry presence check
   test_status: designed
-  review_status: pending
+  review_status: not_reviewed
   promotion_requirements:
   - decision log updated
   - registry records accepted
