@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 
 import pytest
@@ -55,7 +55,7 @@ REQUIRED_FILE_FIELDS = {
 CONTROL_FILE_IDS = {"ROADMAP-001", "REGISTRY-001"}
 
 EXPECTED_FILE_IDS = (
-    ["ROADMAP-001", "REGISTRY-001"]
+    ["ROADMAP-001", "REGISTRY-001", "A00", "PREA01-001"]
     + [f"A{i:02d}" for i in range(1, 16)]
     + ["C00"]
     + [f"C{i:02d}" for i in range(1, 15)]
@@ -64,7 +64,7 @@ EXPECTED_FILE_IDS = (
     + [f"T{i:02d}" for i in range(1, 8)]
 )
 
-FILE_ID_PATTERN = re.compile(r"^(ROADMAP-001|REGISTRY-001|A\d{2}|C\d{2}|K\d{2}|R\d{2}|T\d{2})$")
+FILE_ID_PATTERN = re.compile(r"^(ROADMAP-001|REGISTRY-001|PREA01-001|A\d{2}|C\d{2}|K\d{2}|R\d{2}|T\d{2})$")
 
 
 def load_registry():
@@ -241,4 +241,4 @@ def test_registry_expected_record_count():
     data = load_registry()
     records = registry_records(data)
 
-    assert len(records) == 53, f"Expected 53 doctrine registry records, found {len(records)}."
+    assert len(records) == 55, f"Expected 55 doctrine registry records, found {len(records)}."

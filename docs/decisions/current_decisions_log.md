@@ -82,3 +82,24 @@ Step 11 applies Step 10C findings to the repo:
 - add false-positive/backmatter classification notes
 - add tests for the known Step 10C failure cases
 - update handoff docs so future runs do not repeat these manual fixes
+
+## 2026-05-26 decision log - pre-A01 control layer patch
+
+- Decision ID: PREA01-001
+- Decision date: 2026-05-26
+- Decision type: control/governance patch
+
+### Summary
+- A00 is introduced as a pre-A01 control file: `A00_mechanical_posture_and_ruleset_non_adoption.md`.
+- A01 remains `A01_cosmology_and_dimensional_architecture.md` with no rename.
+- K01 remains `K01_lexicon_governance_and_reserved_terms.md`; lexicon governance is not moved into A01.
+
+### Governance effect
+- Establishes explicit mechanical non-adoption posture during doctrine bootstrap.
+- Confirms extraction/conversion progress does not imply donor-ruleset adoption.
+- Adds registry tracking for PREA01-001 and A00 control-layer records.
+
+### Guardrails reaffirmed
+- Control layer patch is non-mechanical and non-runtime.
+- No phase-order or dependency-lock bypass is authorized.
+- Any doctrine file that treats donor rules as default Astra authority must be escalated.
