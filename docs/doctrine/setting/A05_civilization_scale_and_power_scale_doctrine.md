@@ -5,96 +5,124 @@
 - Layer: 1_setting_spine
 - Phase: 1A
 - Status: draft
-- Purpose: Define doctrine-level civilization scale taxonomy, power-scale boundary posture, and scale-transition constraints for Astra without importing donor setting law as Astra default architecture.
+- Purpose: Define doctrine-level civilization scale taxonomy, scale transition grammar, and power-boundary grammar for Astra without importing donor scale models as Astra default law.
 
 ## 2. What this file owns
-- Doctrine-level scale taxonomy covering personal, group, institutional, territorial, planetary, orbital, stellar, void/interstellar, planar, and cosmic interpretation bands.
-- Doctrine-level power-scale boundary posture describing what kinds of effects or influence claims are in-bounds at each scale category.
-- Doctrine-level scale-transition posture defining when claims cross scale boundaries and require explicit conversion mapping, quarantine, or escalation.
-- Doctrine-level influence propagation posture across nested scales without collapsing all outcomes to a single scale model.
-- Doctrine-level macro-actor permission posture that distinguishes actor classes by scale relevance without defining named actors.
-- Doctrine-level contradiction handling for cross-scale claims that conflict with ontology, source-field posture, or Dao/domain/element architecture constraints.
+- Doctrine-level scale taxonomy grammar used to classify scope of influence across social, territorial, celestial, planar, and cosmological bands.
+- Doctrine-level scale transition grammar used to classify how claims remain same-scale or move across scale boundaries.
+- Doctrine-level power-boundary grammar used to classify whether capability and consequences are appropriate, over-scale, under-scale, or contradictory.
+- Doctrine-level macro-actor permission posture and macro-actor restriction posture without defining specific actors.
+- Doctrine-level source-local retention, quarantine posture, and escalation posture for unresolved scale claims.
 
 ## 3. What this file must not own
-- Specific empires, factions, civilizations, planets, planes, routes, or hidden truths.
-- Specific starships, fleets, stations, gods, or cosmic actors.
-- Specific travel times, transit routes, or travel mechanics.
-- Combat math, mass-combat mechanics, starship rules, damage systems, conditions, or action economy.
-- Resource pools, costs, recharge, backlash, faction economies, or logistics simulation.
-- Cultivation stages, class levels, or progression ladders.
-- Runtime scale state, runtime map state, event commits, or runtime hidden-information behavior.
-- Accepted lexicon governance ownership (K01 remains separate).
+- Specific empires.
+- Specific starships.
+- Specific combat math.
+- Specific travel times.
+- Faction economies.
+- Runtime scale state.
+- Runtime map state.
+- Hidden information state.
+- Accepted lexicon terms.
+- Donor scale models as Astra default law.
+- Combat mechanics, starship rules, travel mechanics, mass-combat mechanics, progression ladders, resource systems, or runtime hidden-information behavior.
 - Lore canon declarations or world-history truth claims.
 
 ## 4. Required definitions
-- **Personal scale**: doctrine-level scale band for individual-actor scope claims.
-- **Small-group scale**: doctrine-level scale band for limited coordinated actor groups.
-- **Large-group scale**: doctrine-level scale band for organized multi-group operations without full civilization authority assumptions.
-- **Institutional scale**: doctrine-level scale band for organizations, orders, polities, or governance structures as abstract classes.
-- **Regional scale**: doctrine-level scale band for bounded territorial influence claims below planetary totality.
-- **Planetary scale**: doctrine-level scale band for world-scope influence claims.
-- **Orbital scale**: doctrine-level scale band for near-world extra-atmospheric influence claims.
-- **Stellar-system scale**: doctrine-level scale band for intra-system multi-body influence claims.
-- **Interstellar/void scale**: doctrine-level scale band for cross-system influence claims.
-- **Planar scale**: doctrine-level scale band for cross-plane or plane-spanning influence claims.
-- **Cosmic scale**: doctrine-level scale band for cosmology-wide influence claims.
-- **Scale boundary**: doctrine-level threshold where claim interpretation changes and requires explicit boundary handling.
-- **Scale transition**: doctrine-level reclassification from one scale band to another.
-- **Cross-scale influence**: doctrine-level relation where one scale band creates effects interpreted in another.
-- **Scale collapse risk**: doctrine-level failure mode where all claims are incorrectly resolved at personal scale.
-- **Scale inflation risk**: doctrine-level failure mode where claims are over-promoted to macro scale without support.
-- **Source-local scale claim**: donor scale statement retained with provenance and local scope only.
-- **Quarantined scale claim**: unresolved scale statement held outside active Astra defaults.
-- **Escalated scale contradiction**: unresolved cross-scale conflict requiring formal downstream doctrine resolution.
+### Scale taxonomy grammar
+- **personal scale**: doctrine-level scope for single-actor influence statements.
+- **squad/group scale**: doctrine-level scope for small coordinated team influence statements.
+- **community/local scale**: doctrine-level scope for settlement/community/locality influence statements.
+- **institutional/factional scale**: doctrine-level scope for organizations and institutions as abstract classes.
+- **regional scale**: doctrine-level scope for bounded territorial influence below whole-world totality.
+- **planetary scale**: doctrine-level scope for world-scope influence claims.
+- **orbital scale**: doctrine-level scope for near-world extra-atmospheric influence claims.
+- **stellar scale**: doctrine-level scope for system-level influence claims.
+- **interstellar/sector scale**: doctrine-level scope for multi-system or sector influence claims.
+- **void scale**: doctrine-level scope for trans-system void-domain influence claims.
+- **planar scale**: doctrine-level scope for cross-plane or plane-spanning influence claims.
+- **cosmic scale**: doctrine-level scope for cosmology-wide influence claims.
+- **source-local scale construct**: donor scale construct retained with provenance and local scope only.
+- **quarantined scale construct**: unresolved scale construct held outside active Astra defaults.
+- **escalated scale problem**: unresolved scale conflict requiring formal downstream doctrine resolution.
+
+### Scale transition grammar
+- **same-scale action**: action remains interpreted within a single scale category.
+- **upward scale transition**: interpretation moves from lower scale category to higher scale category.
+- **downward scale transition**: interpretation moves from higher scale category to lower scale category.
+- **cross-scale influence**: one scale category produces effects interpreted in another scale category.
+- **indirect scale influence**: effect crosses scale through mediated or chained influence instead of direct scope ownership.
+- **scale mismatch**: claimed effect scope conflicts with declared acting scale.
+- **scale shielding**: boundary posture that limits cross-scale bleed-through.
+- **scale amplification**: boundary posture where influence expresses at larger interpreted scale.
+- **scale attenuation**: boundary posture where influence expresses at smaller interpreted scale.
+- **scale spillover**: boundary posture where influence exceeds intended scale envelope.
+- **constrained scale transition**: transition valid only under explicit bounded conditions.
+- **source-local transition only**: transition retained as donor-local handling only.
+- **quarantined scale transition**: unresolved transition held outside active defaults.
+- **escalated scale contradiction**: unresolved transition contradiction escalated for formal doctrine resolution.
+
+### Power-boundary grammar
+- **scale-appropriate capability**: capability classification coherent with declared scale and boundary posture.
+- **over-scale capability**: capability classification that exceeds permitted boundary posture for declared scale.
+- **under-scale capability**: capability classification that cannot satisfy minimum declared scale effect scope.
+- **localized overmatch**: localized superiority that does not imply universal higher-scale authority.
+- **diffuse influence**: broad influence posture without concentrated localized domination claims.
+- **macro-actor permission**: doctrine-level allowance class for macro-scale actor influence claims.
+- **macro-actor restriction**: doctrine-level restriction class limiting macro-scale influence claims.
+- **hazard-scale mismatch**: mismatch between hazard expression scale and target interpretation scale.
+- **consequence propagation**: doctrine-level consequence movement across scales under explicit boundary notes.
+- **source-local power boundary only**: power boundary retained as donor-local handling only.
+- **quarantined power boundary**: unresolved power boundary held outside active defaults.
+- **escalated power-scale contradiction**: unresolved power/scale contradiction escalated for formal doctrine resolution.
 
 ## 5. Core doctrine rules
-- A05 defines scale and power-scale doctrine boundaries only and does not define runtime mechanics.
+- A05 defines scale and power-scale doctrine boundaries only; it does not define runtime mechanics.
 - A05 remains `A05_civilization_scale_and_power_scale_doctrine.md` and is not renamed.
 - K01 remains separate and lexicon governance is not moved into A05.
 - A05 is doctrine draft guidance and is not current.
-- A05 does not define lore canon and does not define specific setting entities.
-- A05 may reference A01 for cosmology/topology context and does not redefine world/plane ownership.
-- A05 may reference A02 for source-field relation posture and does not redefine source-field ownership.
-- A05 may reference A03 for identity/continuity constraints and does not redefine ontology ownership.
-- A05 may reference A04 for Dao/domain/element interaction boundaries and does not redefine conceptual architecture ownership.
-- Cross-scale interpretation must preserve provenance and must not normalize contradiction by invention.
+- A05 does not define lore canon and does not define specific entities.
+- A05 may reference A01 for cosmology/topology context and does not redefine worlds or planes.
+- A05 may reference A02 for source-field posture and does not redefine source fields or magic/technology relations.
+- A05 may reference A03 for ontology constraints and does not redefine identity continuity.
+- A05 may reference A04 for conceptual boundaries and does not redefine Dao/domain/element rules.
+- A05 does not define resource systems, progression ladders, runtime state, runtime map state, or hidden-information behavior.
 
 ## 6. Conversion mapping rules
-- **Direct scale mapping**: donor scale claim maps into A05 taxonomy without semantic distortion.
-- **Normalized scale mapping**: donor scale claim maps after explicit normalization notes and provenance retention.
-- **Boundary-trigger mapping**: donor claim crossing a scale boundary is tagged for explicit transition handling.
-- **Cross-scale influence mapping**: donor claim interpreted as cross-scale influence relation with bounded scope notes.
+- **Direct scale mapping**: donor claim maps to A05 grammar without semantic distortion.
+- **Normalized scale mapping**: donor claim maps after explicit normalization plus provenance notes.
+- **Transition mapping**: donor transition claim is classified using scale transition grammar before downstream use.
+- **Power-boundary mapping**: donor capability claim is classified using power-boundary grammar before downstream use.
 - **Source-local retained scale claim**: donor scale claim retained for source continuity without Astra-canon authority.
 - **Quarantined scale claim pending later doctrine**: unresolved claim isolated pending later doctrine/canon review.
-- **Escalated scale contradiction**: unresolvable scale conflict escalated for formal doctrine resolution.
+- **Escalated scale contradiction**: unresolvable contradiction escalated for formal doctrine resolution.
 
 ## 7. Source-local handling
-- Donor scale ladders and power ladders may be retained as source-local records with provenance.
-- Source-local scale records do not become Astra default scale architecture by extraction success alone.
-- Repeated donor pressure may form canon candidates only through later K-layer/canon review.
-- Donor proper nouns remain source-local unless later canon promotion accepts them.
-- Unclassifiable cross-scale claims are quarantined or escalated, not normalized by invention.
+- Donor scale systems can be retained as source-local records.
+- Source-local records preserve donor provenance but do not become Astra scale canon.
+- Repeated donor pressure can produce canon candidates only through later K-layer/canon review.
+- Unclassifiable scale systems are quarantined or escalated, not normalized by invention.
+- Donor proper nouns remain source-local unless canon promotion accepts them later.
+- Source-local scale terms do not become accepted lexicon terms through A05.
 
 ## 8. Donor pressure absorbed
-- Pressure to collapse all outcomes into personal scale because personal-scale systems are common in donor material.
-- Pressure to treat macro-scale actors as simple personal-scale actor extensions.
-- Pressure to import donor empire/stellar/cosmic setting law as Astra default structure.
-- Pressure to over-generalize donor scale ladders into universal progression models.
-- Pressure to equate extraction success with canon adoption of donor scale framing.
+- Pressure to collapse all outcomes to personal scale.
+- Pressure to treat macro-scale influence as simple personal-scale extension.
+- Pressure to import donor empire/fleet/cosmic scale law as Astra defaults.
+- Pressure to universalize donor scale ladders as progression doctrine.
+- Pressure to equate extraction success with canon adoption.
 
 ## 9. Hard refusals / rejected imports
-- All play is not reduced to personal scale by A05 doctrine.
-- Cosmic or macro-scale influence is not treated as a simple personal-scale magnitude increase.
-- Donor starship/fleet/empire structures are not Astra defaults by extraction alone.
+- Personal-scale resolution is not mandatory for all scale outcomes.
+- Donor starship/fleet/empire structures are not Astra defaults.
 - Donor scale terminology is not accepted lexicon by A05.
 - Contradictory donor scale claims are not silently merged.
 
 ## 10. Escalation triggers
-- A proposed claim requires a scale category outside the A05 required taxonomy.
-- A proposed scale transition contradicts A01 topology posture or A04 conceptual boundaries.
-- A proposed power-scale boundary conflicts with advancement, consequence, or travel doctrine ownership boundaries.
-- A proposal requests runtime scale state, runtime map state, event commits, or hidden-information behavior ownership in A05.
-- A proposal requests specific entities, specific mechanics math, or lore-canon declarations inside A05.
+- A claim requires scale categories outside required A05 grammar.
+- A transition claim conflicts with A01, A02, A03, or A04 ownership boundaries.
+- A power-boundary claim conflicts with downstream advancement/travel/consequence ownership boundaries.
+- A proposal requests specific mechanics math, runtime behavior, or lore-canon declarations inside A05.
 
 ## 11. Dependencies
 - ROADMAP-001.
@@ -107,17 +135,16 @@
 - A04_dao_domain_element_architecture.md.
 
 ## 12. Handoff to downstream layers
-- A06/A07/A11/A12/A13/A14/A15 may consume A05 scale boundaries as doctrine dependencies.
-- C08 may later consume A05 scale mapping outcomes for schema drafting.
-- K05/K06 may later consume A05 boundary outcomes for canon-structure workflows.
+- A06/A07/A11/A12/A13/A14/A15 may consume A05 boundaries as doctrine dependencies.
+- C08 may later consume A05 mapping outcomes for schema drafting.
+- K05/K06 may later consume A05 boundary outcomes for canon workflows.
 - A05 does not draft K01, K05, K06, C08, A06, A07, A08, A09, A10, A11, A12, A13, A14, A15, B-layer files, or R-layer files.
-- A05 does not define combat math, mass-combat mechanics, starship rules, travel mechanics, faction economies, resource pools, costs, recharge, backlash, action economy, damage, conditions, cultivation stages, class levels, progression, runtime scale state, runtime map state, event commits, or hidden-information behavior.
 
 ## 13. Test cases / pressure examples
-- Scale-collapse contradiction case: proposal attempts to resolve all macro outcomes at personal scale and is rejected or escalated.
-- Scale-inflation contradiction case: proposal over-promotes local claims to cosmic scope without support and is quarantined/escalated.
-- Cross-scale contradiction case: donor claim conflicts with A01/A03/A04 boundaries and is classified for escalation.
-- Boundary case: proposal attempts specific fleets/travel/combat mechanics and is rejected as out-of-scope.
+- Scale-collapse case: all macro outcomes forced to personal scale and rejected/escalated.
+- Scale-mismatch case: capability claims produce hazard-scale mismatch and require boundary classification.
+- Cross-scale contradiction case: donor transitions conflict with A01/A04 constraints and escalate.
+- Boundary case: proposal attempts to define specific combat math or travel mechanics and is rejected.
 
 ## 14. Versioning and review protocol
 - A05 remains draft and not current until review and pressure tests pass.
