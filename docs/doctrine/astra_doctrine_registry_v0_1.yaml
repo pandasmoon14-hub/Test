@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.12
+  action: a11_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A11 draft doctrine file at docs/doctrine/world/A11_actor_ontology_and_player_grade_actor_doctrine.md (registry-defined world/actor ontology path); kept A11 draft/not-current, authority doctrine-draft, test_status designed, review_status not_reviewed, and set blocked_by to [] with file identity, dependencies, and unlocks preserved exactly.
+- date: '2026-05-27'
   version: 0.1.11
   action: a10_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -1110,8 +1115,8 @@ file_records:
   proposed_path: docs/doctrine/world/A11_actor_ontology_and_player_grade_actor_doctrine.md
   layer: 3_world_asset_conflict_spine
   phase: 1C
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Actor Working Group
   purpose: 'Define unified actor ontology: player-grade actors, NPCs, monsters, spirits, AIs, drones, companions, summons, factional actors, macro-actors, and planets/planes as actors where permitted.'
   owns:
@@ -1134,7 +1139,7 @@ file_records:
   - A07
   - A08
   - A10
-  blocked_by: *id011
+  blocked_by: []
   unlocks: &id012
   - A12
   - A13
@@ -1164,7 +1169,7 @@ file_records:
   - AI personhood/actor test
   - companion/summon boundary test
   - macro-actor permission test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - A01-A10 relevant dependencies at least review/pressure-tested
