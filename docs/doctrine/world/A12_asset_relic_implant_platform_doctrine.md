@@ -154,12 +154,12 @@ Escalated asset-system problem: unresolved asset-classification conflict forward
 
 ## 7. Source-local handling
 
-- Donor item, relic, implant, cyberware, biotech, mech, starship, license, attunement, and technology-level systems may be retained as source-local records.
+- Donor magic-item systems, relic systems, artifact systems, cyberware systems, biotech systems, implant systems, mech/license systems, starship systems, vehicle systems, tool systems, component systems, living-asset systems, cultivation-artifact systems, and platform-module systems may be retained as source-local records.
 - Source-local records preserve provenance and pressure but do not become Astra asset canon.
 - Repeated donor pressure can form canon candidates only through later K-layer review.
 - Unclassifiable asset claims are quarantined or escalated, not normalized by invention.
 - Donor proper nouns and branded asset systems remain source-local unless later canon promotion accepts them.
-- Source-local asset terms do not become accepted lexicon terms through A12.
+- Source-local asset, relic, artifact, implant, cyberware, biotech, starship, mech, vehicle, drone, station, tool, and module terms do not become accepted lexicon terms through A12.
 
 ## 8. Donor pressure absorbed
 
