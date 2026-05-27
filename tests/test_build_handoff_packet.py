@@ -3,6 +3,7 @@ import json, subprocess, sys
 from pathlib import Path
 
 import pytest
+from tests.helpers import ROOT
 jsonschema = pytest.importorskip('jsonschema')
 
 
@@ -31,8 +32,9 @@ def test_build_handoff_packet(tmp_path: Path):
     (book/'astra_handoff_manifest.json').write_text(json.dumps({"book_id":"book","source_filename":"sample.pdf","source_sha256":"abc","extraction_version":"v13"}), encoding='utf-8')
 
     out = tmp_path / 'handoff_packet'
-    cmd = [sys.executable, 'scripts/handoff/build_handoff_packet.py', '--book-dir', str(book), '--start-page', '2', '--end-page', '4', '--packet-id', 'pkt1', '--packet-purpose', 'test purpose', '--output-dir', str(out)]
-    subprocess.run(cmd, check=True)
+    SCRIPT = ROOT / 'scripts' / 'handoff' / 'build_handoff_packet.py'
+    cmd = [sys.executable, str(SCRIPT), '--book-dir', str(book), '--start-page', '2', '--end-page', '4', '--packet-id', 'pkt1', '--packet-purpose', 'test purpose', '--output-dir', str(out)]
+    subprocess.run(cmd, check=True, cwd=ROOT)
 
     required = [
         'packet_manifest.json','source_manifest.json','strict_audit.json','page_truth.jsonl','extracted.md','content_units.jsonl','extraction_defects.jsonl','conversion_prompt.md','packet_readme.md'
@@ -48,7 +50,7 @@ def test_build_handoff_packet(tmp_path: Path):
     kept = [json.loads(x) for x in (out/'page_truth.jsonl').read_text(encoding='utf-8').splitlines() if x.strip()]
     assert {r['page'] for r in kept} == {2,3,4}
 
-    schema_dir = Path('schemas/handoff')
+    schema_dir = ROOT / 'schemas' / 'handoff'
     pm_schema = json.loads((schema_dir/'packet_manifest.schema.json').read_text(encoding='utf-8'))
     packet_manifest = json.loads((out/'packet_manifest.json').read_text(encoding='utf-8'))
     jsonschema.validate(packet_manifest, pm_schema)

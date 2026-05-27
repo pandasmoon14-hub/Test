@@ -1,5 +1,5 @@
 from pathlib import Path
-from tests.conftest import ROOT
+from tests.helpers import ROOT
 import json
 import subprocess
 import sys
@@ -60,7 +60,7 @@ def _run(run: Path, strict: bool = True):
     cmd = [sys.executable, str(SCRIPT), "--run-dir", str(run)]
     if strict:
         cmd.append("--strict")
-    p = subprocess.run(cmd, capture_output=True, text=True)
+    p = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
     return p, json.loads(p.stdout)
 
 

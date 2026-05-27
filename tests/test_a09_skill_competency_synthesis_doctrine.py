@@ -1,4 +1,4 @@
-from tests.conftest import ROOT, read_utf8, registry_records_by_id
+from tests.helpers import ROOT, read_utf8, registry_records_by_id
 
 A09_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A09_skill_competency_and_synthesis_doctrine.md"
 

@@ -1,4 +1,4 @@
-from tests.conftest import ROOT, read_utf8, registry_records_by_id
+from tests.helpers import ROOT, read_utf8, registry_records_by_id
 
 A10_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A10_resource_cost_backlash_and_corruption_doctrine.md"
 

@@ -1,4 +1,4 @@
-from tests.conftest import ROOT, read_utf8, registry_records_by_id
+from tests.helpers import ROOT, read_utf8, registry_records_by_id
 
 A08_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A08_path_domain_and_technique_mastery_doctrine.md"
 

@@ -1,5 +1,5 @@
 from pathlib import Path
-from tests.conftest import ROOT
+from tests.helpers import ROOT
 import json
 import subprocess
 import sys
@@ -13,7 +13,7 @@ def _run(corpus: Path, out: Path, strict=True, extra=None):
         cmd.append("--strict")
     if extra:
         cmd += extra
-    p = subprocess.run(cmd, capture_output=True, text=True)
+    p = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
     return p, json.loads(p.stdout)
 
 
