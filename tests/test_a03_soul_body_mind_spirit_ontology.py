@@ -99,10 +99,12 @@ def test_a03_must_not_own_boundaries_present():
     for phrase in [
         "specific actor stats",
         "specific implants",
+        "specific cyberware assets",
         "specific resurrection mechanics",
         "cultivation stages",
         "resource pools",
         "runtime actor state",
+        "hidden information state",
         "accepted lexicon terms",
         "donor soul, afterlife, or essence mechanics as astra default law",
     ]:

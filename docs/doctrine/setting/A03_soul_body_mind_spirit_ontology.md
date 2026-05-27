@@ -16,6 +16,7 @@
 ## 3. What this file must not own
 - Specific actor stats.
 - Specific implants or cyberware definitions.
+- Specific cyberware assets.
 - Specific resurrection mechanics.
 - Afterlife planes.
 - Gods.
@@ -28,6 +29,7 @@
 - Action economy, damage, or conditions.
 - Cultivation stages or progression.
 - Runtime actor state or event commits.
+- Hidden information state.
 - Accepted lexicon terms.
 - Canon lore declarations.
 - Final Core Rulebook prose.
