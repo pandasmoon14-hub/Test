@@ -37,48 +37,58 @@ Required faction/institution grammar group (exact, complete set):
 - guild construct;
 - corporation construct;
 - empire construct;
-- planar-court construct;
-- hierarchy claim;
-- standing claim;
-- authority claim;
-- legitimacy claim;
+- court construct;
+- community construct;
+- polity construct;
+- faction-type construct;
+- institutional hierarchy claim;
+- institutional authority claim;
+- institutional membership claim;
+- institutional advancement claim;
 - source-local faction construct;
 - quarantined faction construct;
-- escalated faction contradiction.
+- escalated institution problem.
 
 Required economy/logistics grammar group (exact, complete set):
 - economy construct;
 - value construct;
-- requisition construct;
-- exchange claim;
+- currency claim;
+- price claim;
+- trade construct;
+- market construct;
+- requisition claim;
+- logistics construct;
+- supply-chain claim;
+- trade-route claim;
 - scarcity claim;
-- supply claim;
-- demand claim;
-- logistics claim;
-- trade-network claim;
-- route-dependency claim;
+- abundance claim;
 - institutional resource claim;
-- war-economy pressure claim;
-- source-local economy construct;
-- quarantined economy construct;
+- source-local economy only;
+- quarantined economy claim;
 - escalated economy contradiction.
 
 Required social/political grammar group (exact, complete set):
 - law construct;
-- reputation construct;
-- standing construct;
-- diplomacy claim;
-- war claim;
-- colonization claim;
-- treaty claim;
-- sanction claim;
 - jurisdiction claim;
+- standing construct;
+- reputation claim;
+- legitimacy claim;
+- obligation claim;
+- debt/favor claim;
+- diplomacy claim;
+- alliance claim;
+- rivalry claim;
+- colonization claim;
+- domain-management claim;
+- conflict-of-law claim;
+- source-local reputation only;
+- quarantined law claim;
+- escalated faction contradiction.
+- war claim;
+- sanction claim;
 - governance claim;
-- institutional advancement claim;
 - cross-scale faction pressure claim;
-- source-local institution only;
-- quarantined institutional claim;
-- escalated institutional contradiction.
+- source-local institution only.
 
 ## 3. What this file must not own
 
@@ -139,12 +149,12 @@ Escalated institutional contradiction: unresolved faction/society/economy/instit
 
 ## 7. Source-local handling
 
-- Donor faction systems, donor institution systems, donor reputation systems, donor law systems, donor trade systems, donor logistics systems, donor diplomacy systems, donor war systems, and donor colonization systems can be retained as source-local records.
+- donor faction, renown, corporation, empire, sect, guild, court, kingdom/domain, trade, currency, market, requisition, reputation, law, diplomacy, colonization, logistics, and institutional-advancement systems can be retained as source-local records.
 - Source-local records preserve provenance and pressure but do not become Astra faction/economy/institution doctrine canon.
 - Repeated donor pressure can form canon candidates only through later K-layer review.
 - Unclassifiable faction, economy, society, and institution claims are quarantined or escalated, not normalized by invention.
 - Donor proper nouns, named factions, and named empires remain source-local unless later canon promotion accepts them.
-- source-local faction, society, institution, sect, guild, corporation, empire, trade, value, law, reputation, diplomacy, logistics, war, and colonization terms do not become accepted lexicon terms through A15.
+- source-local faction, society, economy, currency, trade, market, requisition, law, reputation, standing, diplomacy, empire, corporation, sect, guild, court, kingdom, domain, colony, or institution terms do not become accepted lexicon terms through A15.
 - source-local wording is boundary-only evidence handling and is never lexical promotion, canon promotion, or default-law adoption.
 
 ## 8. Donor pressure absorbed

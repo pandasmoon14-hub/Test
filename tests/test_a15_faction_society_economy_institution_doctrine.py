@@ -26,12 +26,27 @@ def test_a15_required_grammar_terms_present():
     lowered = read_utf8(A15_PATH).lower()
     for phrase in [
         "faction construct", "society construct", "institution construct", "sect construct", "guild construct",
-        "corporation construct", "empire construct", "planar-court construct", "hierarchy claim",
-        "economy construct", "value construct", "requisition construct", "exchange claim", "scarcity claim",
-        "supply claim", "demand claim", "logistics claim", "trade-network claim", "law construct",
-        "reputation construct", "standing construct", "diplomacy claim", "war claim", "colonization claim",
-        "institutional advancement claim", "source-local institution only", "quarantined institutional claim",
-        "escalated institutional contradiction",
+        "corporation construct", "empire construct", "court construct", "community construct", "polity construct",
+        "faction-type construct", "institutional hierarchy claim", "institutional authority claim",
+        "institutional membership claim", "institutional advancement claim", "source-local faction construct",
+        "quarantined faction construct", "escalated institution problem",
+        "economy construct", "value construct", "currency claim", "price claim", "trade construct",
+        "market construct", "requisition claim", "logistics construct", "supply-chain claim", "trade-route claim",
+        "scarcity claim", "abundance claim", "institutional resource claim", "source-local economy only",
+        "quarantined economy claim", "escalated economy contradiction",
+        "law construct", "jurisdiction claim", "standing claim", "reputation claim", "legitimacy claim",
+        "obligation claim", "debt/favor claim", "sanction claim", "diplomacy claim", "alliance claim",
+        "rivalry claim", "colonization claim", "domain-management claim", "conflict-of-law claim",
+        "source-local reputation only", "quarantined law claim", "escalated faction contradiction",
+    ]:
+        assert phrase in lowered
+
+
+def test_a15_source_local_and_lexicon_boundary_language_present():
+    lowered = read_utf8(A15_PATH).lower()
+    for phrase in [
+        "donor faction, renown, corporation, empire, sect, guild, court, kingdom/domain, trade, currency, market, requisition, reputation, law, diplomacy, colonization, logistics, and institutional-advancement systems can be retained as source-local records",
+        "source-local faction, society, economy, currency, trade, market, requisition, law, reputation, standing, diplomacy, empire, corporation, sect, guild, court, kingdom, domain, colony, or institution terms do not become accepted lexicon terms through a15",
     ]:
         assert phrase in lowered
 
@@ -72,8 +87,9 @@ def test_a15_dependencies_and_non_redefinition_posture_present():
 def test_registry_a15_status_guardrail():
     records = registry_records_by_id()
     a15 = records["A15"]
-    assert a15["status"] == "todo"
-    assert a15["authority_level"] == "doctrine-todo"
-    assert a15["test_status"] == "not_started"
+    assert a15["status"] == "draft"
+    assert a15["status"] != "current"
+    assert a15["authority_level"] == "doctrine-draft"
+    assert a15["test_status"] == "designed"
     assert a15["review_status"] == "not_reviewed"
-    assert a15["blocked_by"] == ["A05", "A11", "A12", "A13", "A14"]
+    assert a15["blocked_by"] == []
