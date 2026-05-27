@@ -28,39 +28,84 @@ A14 owns:
 - scale transition preconditions/consequences posture language;
 - conversion-safe handling of travel and exploration contradiction pressure.
 
-Required travel and transition grammar terms:
+Required travel scale grammar group (exact, complete set):
 - travel construct;
 - travel scale construct;
 - local travel construct;
+- regional travel construct;
 - planetary travel construct;
 - orbital travel construct;
 - stellar travel construct;
 - void travel construct;
 - planar travel construct;
 - dimensional travel construct;
+- scale-transition construct;
+- source-local travel construct;
+- quarantined travel construct;
+- escalated travel-scale problem.
+
+Secondary transition wording retained for continuity:
 - scale transition construct;
-- transition precondition claim;
-- transition consequence claim;
+- escalated travel-transition problem.
+
+Required route and transition grammar group (exact, complete set):
+- route construct;
+- path construct;
+- corridor construct;
+- gate construct;
+- portal construct;
+- jump construct;
+- transit-vector construct;
+- route-stability claim;
+- route-instability claim;
+- transition-cost claim;
+- transition-constraint claim;
+- access-precondition claim;
+- arrival-consequence claim;
+- travel-risk claim;
+- travel-hazard claim;
+- source-field transit claim;
+- asset-mediated transit claim;
+- source-local route only;
+- quarantined transition claim;
+- escalated transition contradiction.
+
+Secondary route-transition examples retained for continuity:
 - route stability claim;
 - gate transition construct;
 - portal transition construct;
 - jump transition construct;
-- source-local travel construct;
-- quarantined travel construct;
-- escalated travel-transition problem.
+- transition precondition claim;
+- transition consequence claim.
 
-Required exploration grammar terms:
+Required exploration and site grammar group (exact, complete set):
 - exploration construct;
-- exploration pressure claim;
-- exploration boundary claim;
+- discovery claim;
+- survey claim;
+- navigation claim;
+- route-finding claim;
+- wilderness-exploration claim;
+- urban-exploration claim;
+- void-exploration claim;
+- planar-exploration claim;
 - ruin construct;
 - megastructure construct;
+- exploration-hazard claim;
+- exploration-consequence claim;
+- provenance-bearing site claim;
+- hidden-site claim;
+- source-local exploration only;
+- quarantined exploration claim;
+- escalated exploration contradiction.
+
+Secondary exploration examples retained for continuity:
+- exploration pressure claim;
+- exploration boundary claim;
 - site traversal claim;
 - unknown-zone claim;
 - discovered-zone claim;
 - source-local exploration construct;
-- quarantined exploration construct;
-- escalated exploration contradiction.
+- quarantined exploration construct.
 
 ## 3. What this file must not own
 
@@ -127,12 +172,13 @@ Escalated travel-transition problem: unresolved contradiction across travel/expl
 
 ## 7. Source-local handling
 
-- Donor jump-drive systems, teleportation systems, FTL systems, gate-network systems, portal systems, wilderness/hexcrawl systems, ruin-exploration systems, megastructure exploration systems, secret-realm traversal systems, and travel-procedure systems can be retained as source-local records.
+- Donor travel systems, donor route systems, donor portal/gate systems, donor dimensional transit systems, donor wilderness exploration systems, donor ruin exploration systems, donor megastructure systems, donor secret-realm systems, and donor exploration-procedure systems can be retained as source-local records.
 - Source-local records preserve provenance and pressure but do not become Astra travel doctrine canon.
 - Repeated donor pressure can form canon candidates only through later K-layer review.
 - Unclassifiable travel and exploration claims are quarantined or escalated, not normalized by invention.
 - Donor proper nouns and branded travel systems remain source-local unless later canon promotion accepts them.
-- source-local travel, exploration, gate, portal, route, and transition terms do not become accepted lexicon terms through A14.
+- source-local travel, route, gate, portal, jump, transit, exploration, ruin, megastructure, hexcrawl, teleportation, plane, and dimension terms do not become accepted lexicon terms through A14.
+- source-local wording is boundary-only evidence handling and is never lexical promotion, canon promotion, or default-law adoption.
 
 ## 8. Donor pressure absorbed
 
