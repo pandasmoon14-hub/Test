@@ -2,64 +2,59 @@
 
 Date: 2026-05-27
 Auditor: Codex closeout pass (Issue #151 execution)
-Scope: A06-A15 doctrine files, associated doctrine tests, and `docs/doctrine/astra_doctrine_registry_v0_1.yaml`.
 
-## Constraints check
-- This audit does **not** draft C00 or any C-layer file.
-- This audit does **not** draft K/B/R/T-layer files.
-- This audit does **not** mark any A-layer file current.
-- This audit does **not** promote C/K/R/T-layer records.
+## Purpose
+Produce the Issue #151 closeout audit for A06-A15 as a pre-C00 checkpoint, confirming posture, boundary discipline, contradiction handling posture, dependency/handoff posture, and guard coverage without drafting or promoting downstream layers.
+
+## Files audited
+- **A06-A15 doctrine files**: advancement spine A06-A10 and world/asset/conflict/travel/faction spine A11-A15.
+- **A06-A15 dedicated tests**: doctrine-focused tests covering A06 through A15 posture and guardrails.
+- **Registry file**: `docs/doctrine/astra_doctrine_registry_v0_1.yaml`.
 
 ## Registry posture summary
-- Registry is active and tracked as `registry-current` with authority level `tracking`.
-- Dependency model explicitly keeps `A01-A15 lock C00` and constrains downstream promotion sequencing.
-- A06-A15 records are present and remain in draft posture with no unauthorized promotion to `current`.
+- Registry remains active at `status: registry-current` with `authority_level: tracking`.
+- Dependency controls preserve pre-C00 gating, including `A01-A15 lock C00`.
+- A06-A15 entries remain draft/not-current with no unauthorized promotion posture observed.
 
-Assessment: registry posture is aligned to a pre-C00 closeout checkpoint, with draft containment preserved.
+Assessment: registry posture remains aligned to a pre-C00 closeout state.
 
-## Structure summary (A06-A15)
-- A06-A10 advancement spine files maintain doctrine-boundary structure (purpose/status, owns, must-not-own, definitions, mapping rules, source-local/quarantine/escalation discipline).
-- A11-A15 world/asset/conflict/travel/faction files follow the same boundary-forward structure and explicitly avoid runtime/state/procedural ownership.
-- Cross-file separation is intact: no evidence of C/K/R/T authoring leakage in audited A06-A15 files.
+## Structural summary
+- A06-A10 and A11-A15 maintain consistent doctrine scaffolding: purpose/status, owns/must-not-own boundaries, required definitions, mapping language, and contradiction routing posture.
+- Cross-layer separation remains explicit, with no observed C/K/R/T authoring leakage in audited A06-A15 doctrine files.
 
-Assessment: structural consistency is strong enough for handoff into C00 planning inputs, without changing A-layer authority status.
+Assessment: structure is coherent for a pre-C00 handoff checkpoint.
 
-## Scope discipline summary
-- A06-A15 repeatedly constrain themselves to doctrine classification language and non-procedural posture.
-- Must-not-own sections explicitly block canon invention, exact mechanics/procedures, runtime state, and donor-default adoption.
-- No wholesale rewrites required for this pass.
+## Scope-leak findings
+- No scope-leak findings requiring doctrine rewrites were identified.
+- Audited A06-A15 files continue to constrain themselves to doctrine-level classification posture and non-procedural language.
+- Must-not-own boundaries continue to block runtime state, accepted lexicon terms, exact procedures, and donor-default law adoption.
 
-Assessment: scope discipline is satisfactory and coherent across advancement and world doctrine slices.
+Assessment: scope discipline is preserved across A06-A15.
 
-## Source-local / quarantine / escalation posture
-- A06-A15 maintain source-local retention terms, quarantine terms, and escalation terms for unresolved contradictions.
-- Contradictions are routed to explicit escalation rather than silently resolved through new canon.
+## Source-local / quarantine / escalation findings
+- A06-A15 maintain explicit source-local retention posture for donor-origin claims.
+- A06-A15 preserve quarantine posture for unresolved contradictions.
+- A06-A15 preserve escalation posture rather than resolving unresolved contradictions through new canon invention.
 
-Assessment: contradiction hygiene and provenance posture are consistent with pre-C00 requirements.
+Assessment: contradiction visibility and provenance safety remain intact.
 
-## Dependency / handoff posture
-- Registry hard locks preserve staged dependency order and prevent premature downstream authority.
-- A06-A15 language repeatedly references upstream boundary consumption and non-redefinition posture.
-- No A-layer promotion action is taken in this audit.
+## Dependency and handoff findings
+- Registry hard locks and promotion sequencing remain compatible with pre-C00 handoff discipline.
+- A06-A15 continue to consume upstream boundaries without redefining upstream doctrine.
+- No A-layer promotion or downstream layer promotion action is introduced by this audit.
 
-Assessment: handoff posture to C00 is disciplined and dependency-safe.
+Assessment: dependency and handoff posture is pre-C00 safe.
 
-## Test / guard posture
-- Doctrine-specific tests for A06-A15 were executed.
-- Non-registry assertions in those tests passed in this environment.
-- Registry-linked test cases failed due to missing `PyYAML` dependency in the execution environment, not due to observed doctrine-authoring drift.
+## Test/guard findings
+- A06-A15 dedicated doctrine tests were executed for audit verification.
+- In this environment, registry-coupled checks that import YAML failed due to missing `PyYAML` (`ModuleNotFoundError: No module named 'yaml'`).
+- No Python source or test file changes were required for this amendment; this is a documentation-only update.
 
-Command outcomes:
-- `PYTHONPATH=. pytest -q tests/test_a06_cultivation_ascension_stage_doctrine.py ... tests/test_a15_faction_society_economy_institution_doctrine.py` -> partial pass with failures limited to `ModuleNotFoundError: No module named 'yaml'` when registry helpers import YAML.
-
-Narrow fix posture:
-- No doctrinal text fix was required by this audit pass.
-- Environment/dependency restoration (`PyYAML`) is the only immediate follow-up to fully re-enable registry-coupled guards.
+Assessment: guard intent remains valid; environment dependency restoration is required to fully re-run registry-coupled checks.
 
 ## C00 readiness conclusion
 **Ready for C00 with minor follow-ups**.
 
-Minor follow-ups before/at C00 kickoff:
-1. Restore test environment dependency for `PyYAML` and re-run A06-A15 + registry guard tests.
-2. Record this audit artifact in the next registry changelog entry if governance process requires explicit review-log linkage.
-
+## Follow-up items
+1. Restore `PyYAML` in the execution environment and re-run A06-A15 + registry-coupled guard tests.
+2. Optionally link this audit memo in the next governance tracking update if process requires explicit audit traceability.
