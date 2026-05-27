@@ -102,11 +102,12 @@ Escalated actor-ontology problem: unresolved actor-classification conflict forwa
 
 ## 7. Source-local handling
 
-- Donor actor frameworks can be retained as source-local records.
+- Donor creature type, NPC class, ancestry, lineage, heritage, race, species, spirit, AI/digital entity, drone/remote, summon, companion, and faction-scale actor systems may be retained as source-local records.
 - Source-local records preserve provenance and pressure but do not become Astra actor canon.
 - Repeated donor pressure can form canon candidates only through later K-layer review.
 - Unclassifiable actor claims are quarantined or escalated, not normalized by invention.
 - Donor proper nouns and identity packages remain source-local unless later canon promotion accepts them.
+- Source-local actor, creature, species, personhood, companion, summon, AI/digital, and macro-actor terms do not become accepted lexicon terms through A11.
 
 ## 8. Donor pressure absorbed
 

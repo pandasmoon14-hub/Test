@@ -126,7 +126,12 @@ def test_registry_a10_posture_and_guards():
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
     assert a10["filename"] != k01["filename"]
 
-    for idx in range(11, 16):
+    a11 = records["A11"]
+    assert a11["status"] == "draft"
+    assert a11["authority_level"] == "doctrine-draft"
+    assert a11["test_status"] == "designed"
+
+    for idx in range(12, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"
