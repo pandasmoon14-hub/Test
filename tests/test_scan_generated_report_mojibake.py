@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.conftest import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/scan_generated_report_mojibake.py")
+SCRIPT = ROOT / "scripts/handoff/scan_generated_report_mojibake.py"
 
 
 def _run(path: Path, strict: bool = True, allow_source_examples: bool = False, extra=None):

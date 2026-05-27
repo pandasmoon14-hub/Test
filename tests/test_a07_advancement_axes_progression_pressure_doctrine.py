@@ -1,21 +1,6 @@
-from pathlib import Path
+from tests.conftest import ROOT, read_utf8, registry_records_by_id
 
-import yaml
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-A07_PATH = REPO_ROOT / "docs" / "doctrine" / "advancement" / "A07_advancement_axes_and_progression_pressure.md"
-REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
-
-
-def _read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
-
-
-def _registry_records():
-    data = yaml.safe_load(_read(REGISTRY_PATH))
-    records = data.get("file_records", data.get("files"))
-    assert isinstance(records, list)
-    return {r["file_id"]: r for r in records}
+A07_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A07_advancement_axes_and_progression_pressure.md"
 
 
 def test_a07_file_exists():
@@ -23,7 +8,7 @@ def test_a07_file_exists():
 
 
 def test_a07_required_sections_present():
-    text = _read(A07_PATH)
+    text = read_utf8(A07_PATH)
     for heading in [
         "## 1. Purpose and status",
         "## 2. What this file owns",
@@ -44,7 +29,7 @@ def test_a07_required_sections_present():
 
 
 def test_a07_required_advancement_axis_taxonomy_grammar_terms_present():
-    text = _read(A07_PATH).lower()
+    text = read_utf8(A07_PATH).lower()
     for phrase in [
         "body axis",
         "soul axis",
@@ -67,7 +52,7 @@ def test_a07_required_advancement_axis_taxonomy_grammar_terms_present():
 
 
 def test_a07_required_cross_axis_interaction_grammar_terms_present():
-    text = _read(A07_PATH).lower()
+    text = read_utf8(A07_PATH).lower()
     for phrase in [
         "independent axis",
         "dependent axis",
@@ -91,7 +76,7 @@ def test_a07_required_cross_axis_interaction_grammar_terms_present():
 
 
 def test_a07_required_progression_pressure_grammar_terms_present():
-    text = _read(A07_PATH).lower()
+    text = read_utf8(A07_PATH).lower()
     for phrase in [
         "balanced progression pressure",
         "skewed progression pressure",
@@ -111,7 +96,7 @@ def test_a07_required_progression_pressure_grammar_terms_present():
 
 
 def test_a07_must_not_own_boundaries_and_source_local_handling_present():
-    text = _read(A07_PATH).lower()
+    text = read_utf8(A07_PATH).lower()
     for phrase in [
         "specific skill lists",
         "specific faction ranks",
@@ -140,7 +125,7 @@ def test_a07_must_not_own_boundaries_and_source_local_handling_present():
 
 
 def test_a07_dependencies_and_non_redefinition_posture_present():
-    text = _read(A07_PATH)
+    text = read_utf8(A07_PATH)
     lowered = text.lower()
 
     assert "A05_civilization_scale_and_power_scale_doctrine.md" in text
@@ -162,7 +147,7 @@ def test_a07_dependencies_and_non_redefinition_posture_present():
 
 
 def test_registry_a07_posture_and_a08_draft_only_promotion():
-    records = _registry_records()
+    records = registry_records_by_id()
 
     a05 = records["A05"]
     a06 = records["A06"]

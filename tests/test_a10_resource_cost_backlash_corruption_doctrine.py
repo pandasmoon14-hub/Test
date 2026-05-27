@@ -1,21 +1,6 @@
-from pathlib import Path
+from tests.conftest import ROOT, read_utf8, registry_records_by_id
 
-import yaml
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-A10_PATH = REPO_ROOT / "docs" / "doctrine" / "advancement" / "A10_resource_cost_backlash_and_corruption_doctrine.md"
-REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
-
-
-def _read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
-
-
-def _registry_records():
-    data = yaml.safe_load(_read(REGISTRY_PATH))
-    records = data.get("file_records", data.get("files"))
-    assert isinstance(records, list)
-    return {r["file_id"]: r for r in records}
+A10_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A10_resource_cost_backlash_and_corruption_doctrine.md"
 
 
 def test_a10_file_exists():
@@ -23,7 +8,7 @@ def test_a10_file_exists():
 
 
 def test_a10_required_sections_present():
-    text = _read(A10_PATH)
+    text = read_utf8(A10_PATH)
     for heading in [
         "## 1. Purpose and status",
         "## 2. What this file owns",
@@ -44,7 +29,7 @@ def test_a10_required_sections_present():
 
 
 def test_a10_required_grammar_terms_present():
-    lowered = _read(A10_PATH).lower()
+    lowered = read_utf8(A10_PATH).lower()
     for phrase in [
         "resource construct", "cost construct", "reserve construct", "occupancy/reserve construct",
         "cooldown construct", "recharge construct", "regeneration construct", "backlash construct",
@@ -67,7 +52,7 @@ def test_a10_required_grammar_terms_present():
 
 
 def test_a10_boundaries_and_source_local_language_present():
-    lowered = _read(A10_PATH).lower()
+    lowered = read_utf8(A10_PATH).lower()
     for phrase in [
         "specific technique costs", "specific spell costs", "specific power costs", "specific item prices",
         "specific currency/economy rules", "specific resource pool numbers", "exact resource values",
@@ -91,7 +76,7 @@ def test_a10_boundaries_and_source_local_language_present():
 
 
 def test_a10_dependencies_and_non_redefinition_posture_present():
-    text = _read(A10_PATH)
+    text = read_utf8(A10_PATH)
     lowered = text.lower()
     for dep in [
         "A02_source_fields_magic_technology_relation.md",
@@ -111,7 +96,7 @@ def test_a10_dependencies_and_non_redefinition_posture_present():
 
 
 def test_registry_a10_posture_and_guards():
-    records = _registry_records()
+    records = registry_records_by_id()
     a02 = records["A02"]
     a04 = records["A04"]
     a06 = records["A06"]

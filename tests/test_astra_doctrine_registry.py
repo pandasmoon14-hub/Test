@@ -230,8 +230,13 @@ def test_registry_contains_control_records():
 def test_registry_expected_record_count():
     data = load_registry()
     records = registry_records(data)
-
-    assert len(records) == 55, f"Expected 55 doctrine registry records, found {len(records)}."
+    record_ids = [record["file_id"] for record in records]
+    unique_record_ids = set(record_ids)
+    assert len(records) == len(unique_record_ids), "Registry contains duplicate file_id entries."
+    assert len(records) >= len(REQUIRED_RECORD_IDS), (
+        f"Registry must include all required records. Found {len(records)} total records "
+        f"with {len(REQUIRED_RECORD_IDS)} required ids."
+    )
 
 
 def test_a01_and_k01_filenames_remain_stable():

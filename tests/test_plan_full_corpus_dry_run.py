@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.conftest import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/plan_full_corpus_dry_run.py")
+SCRIPT = ROOT / "scripts/handoff/plan_full_corpus_dry_run.py"
 
 
 def _run(corpus: Path, out: Path, strict=True, extra=None):

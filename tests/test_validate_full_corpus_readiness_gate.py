@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.conftest import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/validate_full_corpus_readiness_gate.py")
+SCRIPT = ROOT / "scripts/handoff/validate_full_corpus_readiness_gate.py"
 
 
 def _mk_inputs(tmp_path: Path, with_overlay=True):

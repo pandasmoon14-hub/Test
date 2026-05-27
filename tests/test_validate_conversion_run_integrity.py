@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.conftest import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/validate_conversion_run_integrity.py")
+SCRIPT = ROOT / "scripts/handoff/validate_conversion_run_integrity.py"
 
 
 def _mk_run(tmp_path: Path) -> Path:

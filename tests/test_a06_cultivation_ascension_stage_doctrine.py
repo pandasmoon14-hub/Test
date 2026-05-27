@@ -1,25 +1,10 @@
-from pathlib import Path
+from tests.conftest import ROOT, read_utf8, registry_records_by_id
 
-import yaml
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-A06_PATH = REPO_ROOT / "docs" / "doctrine" / "advancement" / "A06_cultivation_and_ascension_stage_architecture.md"
-REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
-
-
-def _read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
-
-
-def _registry_records():
-    data = yaml.safe_load(_read(REGISTRY_PATH))
-    records = data.get("file_records", data.get("files"))
-    assert isinstance(records, list)
-    return {r["file_id"]: r for r in records}
+A06_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A06_cultivation_and_ascension_stage_architecture.md"
 
 
 def test_a06_required_sections_present():
-    text = _read(A06_PATH)
+    text = read_utf8(A06_PATH)
     for heading in [
         "## 1. Purpose and status",
         "## 2. What this file owns",
@@ -40,7 +25,7 @@ def test_a06_required_sections_present():
 
 
 def test_a06_required_stage_taxonomy_grammar_terms_present():
-    text = _read(A06_PATH).lower()
+    text = read_utf8(A06_PATH).lower()
     for phrase in [
         "stage construct",
         "rank construct",
@@ -63,7 +48,7 @@ def test_a06_required_stage_taxonomy_grammar_terms_present():
 
 
 def test_a06_required_transition_permission_grammar_terms_present():
-    text = _read(A06_PATH).lower()
+    text = read_utf8(A06_PATH).lower()
     for phrase in [
         "permitted transition",
         "blocked transition",
@@ -83,7 +68,7 @@ def test_a06_required_transition_permission_grammar_terms_present():
 
 
 def test_a06_required_breakthrough_bottleneck_tribulation_grammar_terms_present():
-    text = _read(A06_PATH).lower()
+    text = read_utf8(A06_PATH).lower()
     for phrase in [
         "readiness gate",
         "knowledge gate",
@@ -109,7 +94,7 @@ def test_a06_required_breakthrough_bottleneck_tribulation_grammar_terms_present(
 
 
 def test_a06_must_not_own_boundaries_and_source_local_handling_present():
-    text = _read(A06_PATH).lower()
+    text = read_utf8(A06_PATH).lower()
     for phrase in [
         "specific techniques",
         "class features",
@@ -135,7 +120,7 @@ def test_a06_must_not_own_boundaries_and_source_local_handling_present():
 
 
 def test_a06_dependencies_and_non_redefinition_posture_present():
-    text = _read(A06_PATH)
+    text = read_utf8(A06_PATH)
     lowered = text.lower()
 
     for dep in [
@@ -163,7 +148,7 @@ def test_a06_dependencies_and_non_redefinition_posture_present():
 
 
 def test_registry_a06_posture_and_a07_a08_draft_only_promotions():
-    records = _registry_records()
+    records = registry_records_by_id()
 
     a01 = records["A01"]
     a02 = records["A02"]

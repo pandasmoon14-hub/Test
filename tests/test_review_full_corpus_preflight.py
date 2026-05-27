@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.conftest import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/review_full_corpus_preflight.py")
+SCRIPT = ROOT / "scripts/handoff/review_full_corpus_preflight.py"
 
 
 def _mk_dry_run(tmp_path: Path):

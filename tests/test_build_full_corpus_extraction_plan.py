@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.conftest import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/build_full_corpus_extraction_plan.py")
+SCRIPT = ROOT / "scripts/handoff/build_full_corpus_extraction_plan.py"
 
 
 def _mk_inputs(tmp_path: Path, gate_valid=True, gate_status="ready_with_warnings", with_overlay=True):
