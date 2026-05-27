@@ -2,7 +2,7 @@
 
 ## 1. Purpose and status
 
-A07 defines doctrine-level advancement axis architecture for Astra and explains how multi-axis progression pressure is classified, retained, routed, quarantined, or escalated.
+A07 defines doctrine-level advancement-axis architecture for Astra and explains how multi-axis progression pressure is classified, retained, routed, quarantined, or escalated.
 
 Status posture:
 - This file is doctrine-draft material.
@@ -12,35 +12,78 @@ Status posture:
 ## 2. What this file owns
 
 A07 owns:
-- advancement axis taxonomy;
-- axis interaction posture;
-- progression pressure handling posture;
-- non-exclusive advancement interpretation across personal, social, and asset-facing dimensions;
-- conversion-safe language for cross-axis dependency and contradiction handling.
+- advancement-axis taxonomy;
+- cross-axis interaction posture;
+- progression-pressure handling posture;
+- non-exclusive advancement interpretation across personal, social, institutional, and asset-facing dimensions;
+- conversion-safe language for dependency, contradiction, quarantine, and escalation handling.
 
-Required advancement axis family terms:
+Required advancement-axis taxonomy grammar terms:
 - body axis;
 - soul axis;
 - mind axis;
+- spirit axis;
 - path axis;
+- domain axis;
 - technique axis;
+- skill/competency axis;
 - social/institutional axis;
-- asset/relic/platform axis;
-- companion axis;
-- factional axis.
+- asset/equipment/platform axis;
+- companion/familiar/summon axis;
+- faction/reputation/standing axis;
+- narrative/milestone axis;
+- source-local advancement axis;
+- quarantined advancement axis;
+- escalated advancement-axis problem.
+
+Required cross-axis interaction grammar terms:
+- independent axis;
+- dependent axis;
+- prerequisite axis;
+- reinforcing axis;
+- conflicting axis;
+- parasitic axis;
+- capped axis;
+- overloaded axis;
+- synergistic interaction;
+- interfering interaction;
+- diminishing returns pressure;
+- compounding pressure;
+- advancement load;
+- advancement strain;
+- source-local axis interaction only;
+- quarantined axis interaction;
+- escalated axis contradiction.
+
+Required progression-pressure grammar terms:
+- balanced progression pressure;
+- skewed progression pressure;
+- overconcentrated progression pressure;
+- underdeveloped-axis pressure;
+- social/institutional pressure;
+- asset-maintenance pressure;
+- companion-growth pressure;
+- faction-standing pressure;
+- scale-pressure interaction;
+- stage-pressure interaction;
+- source-local pressure only;
+- quarantined pressure;
+- escalated pressure contradiction.
 
 ## 3. What this file must not own
 
 A07 must not define:
 - specific skill lists;
-- faction ranks;
-- point-buy costs;
-- karma costs;
-- license ranks;
-- class features;
+- specific faction ranks;
+- specific point-buy costs;
+- specific karma costs;
+- specific license ranks;
+- specific class features;
 - techniques, spells, or powers;
-- stat bonuses;
-- XP tables or level tables;
+- specific stat bonuses;
+- resource pool numbers;
+- fixed XP tables;
+- fixed level tables;
 - resources, costs, recharge, or backlash;
 - actor stat blocks;
 - combat math;
@@ -49,15 +92,15 @@ A07 must not define:
 - runtime progression state;
 - runtime event commits;
 - runtime actor state;
-- hidden-information behavior.
+- hidden information state;
+- accepted lexicon terms;
+- donor advancement systems as Astra default law.
 
 A07 does not draft K01, K03, K05, K06, C01, C03, C05, A08, A09, A10, A11, A12, A13, A14, A15, B-layer files, or R-layer files.
 
 ## 4. Required definitions
 
 Advancement axis: a doctrine classification lane for meaningful progression pressure.
-
-Axis pressure: source material indicating that movement, permission, or recognition occurs along an axis.
 
 Cross-axis dependency: one axis requiring prior or parallel conditions from another axis before permission is recognized.
 
@@ -69,14 +112,14 @@ Axis gating statement: doctrine-language description that an axis has a gate con
 
 Source-local axis label: donor-provenance axis naming retained for audit and mapping without becoming Astra lexicon canon.
 
-Quarantined axis construct: advancement pressure recorded but not normalized pending later review.
+Quarantined advancement axis: advancement pressure recorded but not normalized pending later review.
 
-Escalated axis contradiction: unresolved multi-axis conflict forwarded for doctrine escalation.
+Escalated advancement-axis problem: unresolved multi-axis conflict forwarded for doctrine escalation.
 
 ## 5. Core doctrine rules
 
 1. Multi-axis posture: Astra advancement is multi-axis by doctrine default and is not reduced to a single progression lane.
-2. Non-exclusivity posture: body, soul, mind, path, technique, social/institutional, asset/relic/platform, companion, and factional advancement may all carry meaningful progression significance.
+2. Non-exclusivity posture: body, soul, mind, spirit, path, domain, technique, skill/competency, social/institutional, asset/equipment/platform, companion/familiar/summon, faction/reputation/standing, and narrative/milestone advancement may all carry meaningful progression significance.
 3. No silent collapse rule: conversion must not silently collapse multi-axis pressure into a single-axis substitute.
 4. No cosmetic-only social rule: social/institutional advancement cannot be treated as doctrine-irrelevant decoration.
 5. No combat-only value rule: combat-facing improvement is not the only meaningful advancement signal.
@@ -85,20 +128,22 @@ Escalated axis contradiction: unresolved multi-axis conflict forwarded for doctr
 
 ## 6. Conversion mapping rules
 
-- When donor systems present class, career, lifepath, cultivation, point-buy, tag-based, milestone, or institutional advancement signals, map each signal by axis intent before any normalization attempt.
+- When donor systems present class, career, lifepath, cultivation, point-buy, tag-based, milestone, institutional, or reputation advancement signals, map each signal by axis intent before any normalization attempt.
 - If one donor signal expresses multiple axis implications, preserve multiplicity rather than forcing exclusive ownership.
-- If a donor signal has no stable doctrine interpretation at A07 scope, keep it as source-local axis pressure and annotate provenance.
+- If a donor signal has no stable doctrine interpretation at A07 scope, keep it as source-local advancement axis pressure and annotate provenance.
 - If a donor advancement signal implies quantitative mechanics, retain it as source-local evidence and do not promote its numbers or formulas into A07 doctrine.
 - If cross-axis dependency is clear but mechanism detail is missing, record dependency posture without inventing mechanics.
 
 ## 7. Source-local handling
 
-- Donor axis labels may remain source-local records.
-- Source-local records preserve donor provenance but do not become Astra advancement canon through A07.
-- Donor progression ladders do not become Astra default law through A07.
-- Donor proper nouns remain source-local unless canon promotion accepts them later.
+- Donor advancement-axis systems can be retained as source-local records.
+- Source-local records preserve donor provenance but do not become Astra advancement-axis canon.
 - Repeated donor pressure can produce canon candidates only through later K-layer/canon review.
-- Unclassifiable advancement pressure is quarantined or escalated, not normalized by invention.
+- Unclassifiable advancement-axis systems are quarantined or escalated, not normalized by invention.
+- Donor proper nouns remain source-local unless canon promotion accepts them later.
+- Source-local axis terms do not become accepted lexicon terms through A07.
+- Source-local axis interaction only records remain source-bound and do not become global doctrine law.
+- Quarantined axis interaction and quarantined pressure records remain explicit until resolved or escalated.
 
 ## 8. Donor pressure absorbed
 
@@ -141,7 +186,7 @@ A07 depends on:
 - A05_civilization_scale_and_power_scale_doctrine.md
 - A06_cultivation_and_ascension_stage_architecture.md
 
-A07 does not redefine worlds, planes, source fields, identity continuity, dao/domain/element architecture, scale doctrine, or cultivation stage taxonomy.
+A07 does not redefine scale taxonomy, stage taxonomy, breakthrough/tribulation rules, resource systems, class systems, technique mastery, actor stats, runtime progression state, event commits, or hidden-information behavior.
 
 ## 12. Handoff to downstream layers
 
