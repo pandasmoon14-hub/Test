@@ -111,6 +111,16 @@ def test_registry_a14_k01_separation_and_a15_guardrail():
     assert records["K01"]["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
 
     a15 = records["A15"]
-    assert a15["status"] == "todo"
-    assert a15["authority_level"] == "doctrine-todo"
-    assert a15["test_status"] == "not_started"
+    assert a15["status"] == "draft"
+    assert a15["status"] != "current"
+    assert a15["authority_level"] == "doctrine-draft"
+    assert a15["test_status"] == "designed"
+    assert a15["review_status"] == "not_reviewed"
+
+
+def test_registry_ckrt_layers_not_promoted():
+    records = registry_records_by_id()
+    for rec in records.values():
+        if rec.get("layer") in {"4_schema_base", "5_canon_lexicon", "6_runtime_backend", "7_training_evaluation"}:
+            assert rec["status"] in {"todo", "blocked", "deprecated", "draft", "review", "pressure-tested"}
+            assert rec["status"] != "current"

@@ -133,6 +133,7 @@ def test_registry_a09_posture_and_downstream_not_promoted():
     assert a14["review_status"] == "not_reviewed"
 
     a15 = records["A15"]
-    assert a15["status"] == "todo"
-    assert a15["authority_level"] == "doctrine-todo"
-    assert a15["test_status"] == "not_started"
+    assert a15["status"] == "draft"
+    assert a15["status"] != "current"
+    assert a15["authority_level"] == "doctrine-draft"
+    assert a15["test_status"] == "designed"
