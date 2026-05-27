@@ -1,5 +1,8 @@
 ﻿# Current Decisions Log
 
+> Cross-reference: For extraction-lane and pipeline-operational decisions, see `docs/operations/current_decisions_log_v0_1.md`.
+> Scope note: this file tracks project-level decision records across governance, handoff contract, and program direction; it is not the operations lane log.
+
 This file records project decisions that are not obvious from code alone. Its purpose is to prevent re-litigating settled pilot choices across ChatGPT, Claude, Claude Code, Grok, Codex, and manual PowerShell sessions.
 
 ## Current working repo and run layout

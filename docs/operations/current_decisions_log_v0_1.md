@@ -1,4 +1,7 @@
-# AstraCloud / Aether Forge Current Decisions Log v0.1
+﻿# AstraCloud / Aether Forge Current Decisions Log v0.1
+
+> Cross-reference: For broader project and governance decision records, see `docs/decisions/current_decisions_log.md`.
+> Scope note: this file is the operations log for extraction, handoff, and conversion-intake pipeline execution decisions.
 
 Status: active working log  
 Scope: extraction, handoff contract, conversion-intake pipeline, and near-term runtime planning  
