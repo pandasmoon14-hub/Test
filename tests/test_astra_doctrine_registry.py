@@ -233,9 +233,12 @@ def test_registry_expected_record_count():
     record_ids = [record["file_id"] for record in records]
     unique_record_ids = set(record_ids)
     assert len(records) == len(unique_record_ids), "Registry contains duplicate file_id entries."
-    assert len(records) >= len(REQUIRED_RECORD_IDS), (
-        f"Registry must include all required records. Found {len(records)} total records "
-        f"with {len(REQUIRED_RECORD_IDS)} required ids."
+    expected_ids = set(EXPECTED_FILE_IDS)
+    missing_ids = expected_ids - unique_record_ids
+    assert not missing_ids, f"Registry missing expected file_id values: {sorted(missing_ids)}"
+    assert len(records) >= len(expected_ids), (
+        f"Registry must include all expected records. Found {len(records)} total records "
+        f"with {len(expected_ids)} expected ids."
     )
 
 
