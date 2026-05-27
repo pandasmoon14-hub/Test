@@ -28,7 +28,7 @@ A14 owns:
 - scale transition preconditions/consequences posture language;
 - conversion-safe handling of travel and exploration contradiction pressure.
 
-Required travel and transition grammar terms:
+Required travel and transition grammar group (exact, complete set):
 - travel construct;
 - travel scale construct;
 - local travel construct;
@@ -49,7 +49,7 @@ Required travel and transition grammar terms:
 - quarantined travel construct;
 - escalated travel-transition problem.
 
-Required exploration grammar terms:
+Required exploration grammar group (exact, complete set):
 - exploration construct;
 - exploration pressure claim;
 - exploration boundary claim;
@@ -133,6 +133,7 @@ Escalated travel-transition problem: unresolved contradiction across travel/expl
 - Unclassifiable travel and exploration claims are quarantined or escalated, not normalized by invention.
 - Donor proper nouns and branded travel systems remain source-local unless later canon promotion accepts them.
 - source-local travel, exploration, gate, portal, route, and transition terms do not become accepted lexicon terms through A14.
+- source-local wording is boundary-only evidence handling and is never lexical promotion, canon promotion, or default-law adoption.
 
 ## 8. Donor pressure absorbed
 

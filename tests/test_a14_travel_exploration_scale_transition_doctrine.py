@@ -22,7 +22,7 @@ def test_a14_required_sections_present():
         assert heading in text
 
 
-def test_a14_required_travel_and_exploration_grammar_terms_present():
+def test_a14_required_travel_and_transition_grammar_terms_present():
     lowered = read_utf8(A14_PATH).lower()
     for phrase in [
         "travel construct", "travel scale construct", "local travel construct", "planetary travel construct",
@@ -30,9 +30,18 @@ def test_a14_required_travel_and_exploration_grammar_terms_present():
         "dimensional travel construct", "scale transition construct", "transition precondition claim",
         "transition consequence claim", "route stability claim", "gate transition construct",
         "portal transition construct", "jump transition construct", "source-local travel construct",
-        "quarantined travel construct", "escalated travel-transition problem", "exploration construct",
-        "ruin construct", "megastructure construct", "source-local exploration construct",
-        "quarantined exploration construct", "escalated exploration contradiction",
+        "quarantined travel construct", "escalated travel-transition problem",
+    ]:
+        assert phrase in lowered
+
+
+def test_a14_required_exploration_grammar_terms_present():
+    lowered = read_utf8(A14_PATH).lower()
+    for phrase in [
+        "exploration construct", "exploration pressure claim", "exploration boundary claim",
+        "ruin construct", "megastructure construct", "site traversal claim", "unknown-zone claim",
+        "discovered-zone claim", "source-local exploration construct", "quarantined exploration construct",
+        "escalated exploration contradiction",
     ]:
         assert phrase in lowered
 
