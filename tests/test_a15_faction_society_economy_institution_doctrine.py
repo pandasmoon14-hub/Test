@@ -93,3 +93,11 @@ def test_registry_a15_status_guardrail():
     assert a15["test_status"] == "designed"
     assert a15["review_status"] == "not_reviewed"
     assert a15["blocked_by"] == []
+    assert records["K01"]["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
+
+
+def test_registry_ckrt_layers_not_promoted():
+    records = registry_records_by_id()
+    for rec in records.values():
+        if rec.get("layer") in {"4_schema_base", "5_canon_lexicon", "6_runtime_backend", "7_training_evaluation"}:
+            assert rec["status"] != "current"

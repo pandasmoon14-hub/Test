@@ -70,6 +70,7 @@ Required economy/logistics grammar group (exact, complete set):
 Required social/political grammar group (exact, complete set):
 - law construct;
 - jurisdiction claim;
+- standing claim;
 - standing construct;
 - reputation claim;
 - legitimacy claim;
