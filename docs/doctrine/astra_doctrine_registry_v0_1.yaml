@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.3
+  action: a02_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A02 draft doctrine file at docs/doctrine/setting/A02_source_fields_magic_technology_relation.md; set A02 status to draft with designed tests and kept review_status not_reviewed.
+- date: '2026-05-27'
   version: 0.1.2
   action: a01_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -382,7 +387,7 @@ file_records:
   proposed_path: docs/doctrine/setting/A02_source_fields_magic_technology_relation.md
   layer: 1_setting_spine
   phase: 1A
-  status: todo
+  status: draft
   authority_level: doctrine-todo
   owner: Astra Doctrine Council - Metaphysics Working Group
   purpose: Define Source Fields and the structural relation between high magic, high technology, psionics, divine power, cultivation force, computation, biotech, and dimensional energy.
@@ -444,7 +449,7 @@ file_records:
   - technology-is-mundane test
   - cultivation-force-as-source-field test
   - psionic-divine-computational interface test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - all required doctrine sections present
