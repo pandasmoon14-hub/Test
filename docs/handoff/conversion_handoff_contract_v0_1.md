@@ -21,21 +21,31 @@ A packet is a provenance-preserving exchange artifact that guarantees lawful dis
 ```text
 <packet_root>/
   packet_manifest.json
-  pages/page_truth.jsonl
-  units/content_units.jsonl
-  units/table_units.jsonl
-  units/map_units.jsonl
-  units/statblock_units.jsonl
-  queues/queue_records.jsonl
-  conversion/conversion_result.json
-  conversion/mapping_ledger.jsonl
-  conversion/construct_inventory.json
-  conversion/lexicon_delta.json
-  conversion/canon_candidates.jsonl
-  conversion/quarantine_notes.md
-  conversion/doctrine_escalations.jsonl
-  conversion/rejected_imports.jsonl
+  source_manifest.json
+  strict_audit.json
+  page_truth.jsonl
+  extracted.md
+  content_units.jsonl
+  extraction_defects.jsonl
+  conversion_prompt.md
+  packet_readme.md
+  queues/
+    repair_queue.jsonl
+    table_normalization_queue.jsonl
+    map_diagram_queue.jsonl
+    statblock_queue.jsonl
+    ocr_empty_queue.jsonl
+    mojibake_cleanup_queue.jsonl
+    layout_reconstruction_queue.jsonl
+    lexicon_review_queue.jsonl
+    doctrine_escalation_queue.jsonl
+    source_local_retention_queue.jsonl
+    canon_candidate_queue.jsonl
 ```
+
+Notes:
+- `pages/page_truth.jsonl`, `units/content_units.jsonl`, and conversion-stage output files are **not** required as nested packet-root paths in this contract version.
+- Conversion/intake outputs (for example conversion result bundles and mapping ledgers) are downstream conversion-stage artifacts unless a later contract explicitly embeds them into packet roots.
 
 ## Required lifecycle separation
 1. Extraction capture (technical truth)
