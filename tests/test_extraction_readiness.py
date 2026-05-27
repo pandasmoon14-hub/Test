@@ -107,3 +107,4 @@ def test_force_mode_applied_but_empty_uses_post_ocr_empty_reason():
     )
     assert disp.status == "queued"
     assert disp.reason_code == "post_ocr_text_extraction_empty"
+
