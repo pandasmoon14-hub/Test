@@ -15,45 +15,65 @@ A08 owns:
 - path posture language;
 - domain posture language for technique alignment;
 - technique-category doctrine grammar;
-- mastery-posture grammar for technique growth;
-- learning-permission posture language;
+- activation and targeting posture grammar;
+- mastery/learning/synthesis posture grammar;
 - conversion-safe handling of path/domain/technique contradiction pressure.
 
-Required path grammar terms:
-- path commitment posture;
-- path compatibility posture;
-- path conflict posture;
-- path transition posture;
-- source-local path label;
-- quarantined path claim;
-- escalated path contradiction.
-
-Required domain grammar terms:
-- domain alignment posture;
-- domain divergence posture;
-- domain overlap posture;
-- domain boundary posture;
-- source-local domain label;
-- quarantined domain mapping;
-- escalated domain contradiction.
-
-Required technique grammar terms:
-- technique expression;
-- technique family;
-- technique lineage pressure;
-- technique adaptation posture;
-- technique synthesis pressure;
-- source-local technique label;
+Required path/domain/technique taxonomy grammar terms:
+- path construct;
+- domain construct;
+- technique construct;
+- spell-like construct;
+- power-like construct;
+- art-like construct;
+- maneuver-like construct;
+- ritual-like construct;
+- system/module-like construct;
+- charm/tree-like construct;
+- discipline-like construct;
+- source-local technique construct;
 - quarantined technique construct;
-- escalated technique contradiction.
+- escalated technique problem.
 
-Required mastery grammar terms:
-- initiation mastery posture;
-- refinement mastery posture;
-- integration mastery posture;
-- breakthrough mastery posture;
-- unstable mastery claim;
-- source-local mastery ladder;
+Required activation and targeting grammar terms:
+- passive expression;
+- active expression;
+- triggered expression;
+- sustained expression;
+- prepared expression;
+- channeled expression;
+- reactive expression;
+- ritual expression;
+- self-targeted expression;
+- single-target expression;
+- area expression;
+- zone expression;
+- aura expression;
+- line/cone/burst-like expression;
+- environmental expression;
+- source-local expression only;
+- quarantined expression;
+- escalated expression contradiction.
+
+Required mastery/learning/synthesis grammar terms:
+- known technique;
+- practiced technique;
+- mastered technique;
+- evolving technique;
+- incomplete technique;
+- forbidden technique;
+- inherited technique;
+- researched technique;
+- improvised technique;
+- synthesized technique;
+- incompatible synthesis;
+- constrained synthesis;
+- unstable synthesis;
+- path-locked technique;
+- domain-gated technique;
+- permission-gated learning;
+- research-gated learning;
+- source-local mastery only;
 - quarantined mastery claim;
 - escalated mastery contradiction.
 
@@ -62,29 +82,26 @@ Required mastery grammar terms:
 A08 must not define:
 - specific technique stats;
 - specific spell lists;
-- specific powers;
-- specific maneuvers;
-- class features;
-- mastery bonuses;
-- path costs;
-- resource pools;
-- resource costs;
-- cooldowns;
-- backlash;
-- action economy;
-- ranges;
-- target counts;
-- damage formulas;
-- conditions;
+- specific power lists;
+- specific maneuver lists;
+- specific resource pool mechanics;
+- exact resource costs;
+- recharge/backlash mechanics;
+- exact action economy;
+- exact ranges;
+- exact target counts;
+- exact damage formulas;
+- damage family rules;
+- condition/status rules;
 - actor stat blocks;
-- XP tables;
-- level tables;
-- runtime ability/progression state;
+- fixed mastery bonuses;
+- fixed path switching costs;
+- runtime ability state;
+- runtime progression state;
 - runtime event commits;
-- runtime actor state;
-- hidden-information behavior;
+- hidden information state;
 - accepted lexicon terms;
-- donor path/domain/technique systems as Astra default law.
+- donor spell/power/technique systems as Astra default law.
 
 A08 does not define A04 domain taxonomy, A06 stage taxonomy, A07 advancement-axis taxonomy, resource systems, damage families, condition/status rules, actor stats, runtime event commits, runtime actor state, or hidden-information behavior.
 
@@ -92,21 +109,21 @@ A08 does not draft K01, K03, K05, K06, C03, A09, A10, A11, A12, A13, A14, A15, B
 
 ## 4. Required definitions
 
-Path: a doctrine-level progression posture lane describing coherent cultivation or practice orientation without prescribing numeric mechanics.
+Path construct: a doctrine-level progression posture lane describing coherent cultivation or practice orientation without prescribing numeric mechanics.
 
-Domain alignment: doctrine-level statement that a technique expression is compatible, divergent, overlapping, or contradictory with domain boundaries established upstream.
+Domain construct: doctrine-level statement of domain alignment or divergence posture for a technique construct without redefining A04 taxonomy.
 
-Technique expression: a donor-pressure unit representing spells, arts, maneuvers, powers, forms, or equivalent constructs for mapping/routing only.
+Technique construct: a donor-pressure unit representing spells, arts, maneuvers, powers, rituals, modules, charms, disciplines, or equivalent constructs for mapping/routing only.
 
-Mastery posture: qualitative doctrine-language statement of where a technique expression sits in progression maturity without numeric bonuses or runtime effects.
+Mastery posture: qualitative doctrine-language statement of where a technique construct sits in progression maturity without numeric bonuses or runtime effects.
 
-Learning permission posture: doctrine-language statement that a technique expression is permitted, restricted, source-local, quarantined, or escalated.
+Learning permission posture: doctrine-language statement that a technique construct is permitted, restricted, source-local, quarantined, or escalated.
 
-Source-local technique label: donor-provenance naming retained for audit/mapping without becoming Astra lexicon canon.
+Source-local technique construct: donor-provenance naming retained for audit/mapping without becoming Astra lexicon canon.
 
 Quarantined technique construct: technique pressure retained unresolved pending later doctrine review.
 
-Escalated technique contradiction: unresolved path/domain/technique conflict forwarded for doctrine escalation.
+Escalated technique problem: unresolved path/domain/technique conflict forwarded for doctrine escalation.
 
 ## 5. Core doctrine rules
 
@@ -120,19 +137,22 @@ Escalated technique contradiction: unresolved path/domain/technique conflict for
 
 ## 6. Conversion mapping rules
 
-- Treat donor spells, arts, maneuvers, powers, cultivation forms, psionic techniques, and platform-linked techniques as technique expressions for routing before normalization.
-- Map technique expressions against both path posture and domain alignment posture where evidence indicates dual relevance.
-- If donor technique pressure implies resource math, cooldown math, action-economy commitments, or numeric mastery effects, retain the evidence source-local and do not normalize those mechanics in A08.
+- Treat donor spells, arts, maneuvers, powers, cultivation forms, psionic techniques, rituals, and platform-linked modules as technique constructs for routing before normalization.
+- Map technique constructs against both path construct and domain construct where evidence indicates dual relevance.
+- Classify activation posture and targeting posture using the required activation and targeting grammar, without introducing runtime action economy mechanics.
+- If donor technique pressure implies specific resource pool mechanics, exact resource costs, recharge/backlash mechanics, exact action economy, exact ranges, exact target counts, exact damage formulas, or fixed mastery bonuses, retain the evidence source-local and do not normalize those mechanics in A08.
 - If donor terminology collides with upstream A04/A06/A07 authority, keep source-local labels and escalate contradiction rather than redefining upstream doctrine.
-- If mastery claims are present without stable Astra interpretation, classify as unstable mastery claim and quarantine or escalate.
+- If mastery or synthesis claims are present without stable Astra interpretation, classify as quarantined mastery claim, unstable synthesis, or escalated mastery contradiction.
 
 ## 7. Source-local handling
 
-- Donor path/domain/technique systems may be retained as source-local records.
-- Source-local records preserve provenance but do not become Astra lexicon or global doctrine law through A08.
-- Repeated donor pressure may become canon candidates only through later K-layer review.
-- Source-local mastery ladders remain source-bound until later doctrine accepts or rejects normalization.
-- Quarantined path, domain, technique, and mastery claims remain explicit and auditable.
+- Donor spell/power/art/maneuver/technique systems can be retained as source-local records.
+- Source-local records preserve donor provenance but do not become Astra technique canon.
+- Repeated donor pressure can produce canon candidates only through later K-layer/canon review.
+- Unclassifiable technique systems are quarantined or escalated, not normalized by invention.
+- Donor proper nouns remain source-local unless canon promotion accepts them later.
+- Source-local spell/power/technique terms do not become accepted lexicon terms through A08.
+- Quarantined technique constructs and escalated technique problems remain explicit and auditable.
 
 ## 8. Donor pressure absorbed
 
@@ -143,7 +163,8 @@ A08 is explicitly designed to absorb pressure from:
 - cultivation-form lineage pressure;
 - psionic-discipline pressure;
 - martial maneuver family pressure;
-- platform-linked technique pressure.
+- ritual-chain pressure;
+- platform-linked system/module pressure.
 
 Absorption means classification and routing posture, not automatic canon adoption.
 
@@ -153,13 +174,13 @@ A08 refuses the following imports as Astra defaults:
 - Vancian slot logic as mandatory Astra technique law;
 - donor school/domain charts as automatic Astra domain taxonomy;
 - donor path trees as mandatory Astra path structure;
-- numeric mastery ladders as doctrine-default mechanics at A08 scope;
-- inferred resource/action/cooldown math invented to resolve ambiguity.
+- donor spell/power/technique systems as Astra default law;
+- inferred resource/action/cooldown/damage math invented to resolve ambiguity.
 
 ## 10. Escalation triggers
 
 Escalate when:
-- a technique expression cannot be represented without creating new upstream taxonomy;
+- a technique construct cannot be represented without creating new upstream taxonomy;
 - path/domain alignment claims contradict A04 boundary doctrine;
 - mastery interpretation requires numeric mechanics outside A08 authority;
 - technique synthesis pressure conflicts with A07 axis constraints or A06 stage boundaries;
@@ -172,7 +193,7 @@ A08 depends on:
 - A06_cultivation_and_ascension_stage_architecture.md
 - A07_advancement_axes_and_progression_pressure.md
 
-A08 does not redefine A04 domain taxonomy, A06 stage taxonomy, A07 advancement-axis taxonomy, resource systems, damage families, condition/status rules, actor stats, runtime event commits, runtime actor state, or hidden-information behavior.
+A08 does not redefine A04 domain taxonomy, A06 stage taxonomy, A07 advancement-axis taxonomy, resource systems, damage families, condition/status rules, actor stats, runtime ability state, runtime progression state, runtime event commits, runtime actor state, or hidden-information behavior.
 
 ## 12. Handoff to downstream layers
 
@@ -180,7 +201,7 @@ A08 provides doctrine constraints and routing posture for A09, A10, A13, C03, an
 
 Handoff outputs include:
 - normalized path/domain/technique doctrine grammar at draft granularity;
-- mastery-posture language without quantitative mechanics;
+- activation/targeting grammar and mastery/synthesis grammar without quantitative mechanics;
 - explicit contradiction and escalation records for downstream handling;
 - source-local retention posture for unresolved donor technique pressure.
 
