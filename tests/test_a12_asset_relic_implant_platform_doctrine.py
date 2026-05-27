@@ -36,20 +36,83 @@ def test_a12_required_asset_grammar_terms_present():
     for phrase in [
         "asset construct",
         "relic construct",
+        "gear construct",
+        "equipment construct",
+        "tool construct",
+        "symbiotic asset construct",
+        "living asset construct",
+        "vehicle construct",
+        "starship construct",
+        "mech/frame construct",
+        "drone asset construct",
+        "construct/station asset construct",
         "artifact construct",
         "implant construct",
         "cyberware construct",
         "biotech construct",
-        "cultivation-tool construct",
+        "cultivation tool construct",
         "platform asset construct",
         "starship-scale asset construct",
         "mech-scale asset construct",
         "drone/construct asset construct",
-        "dimensional-anchor asset construct",
+        "dimensional anchor construct",
         "bonded asset construct",
         "source-local asset construct",
         "quarantined asset construct",
-        "escalated asset-system problem",
+        "escalated asset problem",
+    ]:
+        assert phrase in lowered
+
+
+def test_a12_required_attachment_compatibility_grammar_terms_present():
+    lowered = read_utf8(A12_PATH).lower()
+    for phrase in [
+        "carried asset claim",
+        "worn asset claim",
+        "wielded asset claim",
+        "installed asset claim",
+        "implanted asset claim",
+        "bonded asset claim",
+        "attunement-like claim",
+        "integrated platform claim",
+        "modular attachment claim",
+        "upgrade-path claim",
+        "compatibility claim",
+        "incompatibility claim",
+        "synergy claim",
+        "conflict claim",
+        "source-field compatibility claim",
+        "actor-asset boundary claim",
+        "platform-asset boundary claim",
+        "source-local attachment only",
+        "quarantined compatibility claim",
+        "escalated compatibility contradiction",
+    ]:
+        assert phrase in lowered
+
+
+def test_a12_required_advancement_bonding_grammar_terms_present():
+    lowered = read_utf8(A12_PATH).lower()
+    for phrase in [
+        "asset advancement claim",
+        "asset awakening claim",
+        "relic evolution claim",
+        "artifact maturation claim",
+        "implant adaptation claim",
+        "cyberware tolerance claim",
+        "biotech integration claim",
+        "platform advancement claim",
+        "module progression claim",
+        "bond formation claim",
+        "bond strain claim",
+        "corruption-bearing asset claim",
+        "source-field-altered asset claim",
+        "sacrificed asset claim",
+        "repaired asset claim",
+        "salvaged asset claim",
+        "source-local advancement only",
+        "quarantined advancement claim",
+        "escalated asset advancement contradiction",
     ]:
         assert phrase in lowered
 
@@ -104,10 +167,10 @@ def test_registry_a12_posture_and_downstream_guardrails():
     records = registry_records_by_id()
     a12 = records["A12"]
 
-    assert a12["status"] == "todo"
+    assert a12["status"] == "draft"
     assert a12["status"] != "current"
-    assert a12["authority_level"] == "doctrine-todo"
-    assert a12["test_status"] == "not_started"
+    assert a12["authority_level"] == "doctrine-draft"
+    assert a12["test_status"] == "designed"
     assert a12["review_status"] == "not_reviewed"
     assert a12["proposed_path"] == "docs/doctrine/world/A12_asset_relic_implant_platform_doctrine.md"
 

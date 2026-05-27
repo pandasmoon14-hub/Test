@@ -118,7 +118,12 @@ def test_registry_a11_posture_and_downstream_guardrails():
 
     assert records["K01"]["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
 
-    for idx in range(12, 16):
+    a12 = records["A12"]
+    assert a12["status"] == "draft"
+    assert a12["authority_level"] == "doctrine-draft"
+    assert a12["test_status"] == "designed"
+
+    for idx in range(13, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"

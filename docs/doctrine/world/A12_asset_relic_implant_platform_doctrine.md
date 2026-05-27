@@ -35,16 +35,71 @@ Required asset grammar terms:
 - implant construct;
 - cyberware construct;
 - biotech construct;
-- cultivation-tool construct;
+- cultivation tool construct;
 - platform asset construct;
 - starship-scale asset construct;
 - mech-scale asset construct;
 - drone/construct asset construct;
-- dimensional-anchor asset construct;
+- dimensional anchor construct;
 - bonded asset construct;
 - source-local asset construct;
 - quarantined asset construct;
-- escalated asset-system problem.
+- escalated asset problem.
+
+Additional required asset taxonomy grammar terms:
+- gear construct;
+- equipment construct;
+- tool construct;
+- symbiotic asset construct;
+- living asset construct;
+- vehicle construct;
+- starship construct;
+- mech/frame construct;
+- drone asset construct;
+- construct/station asset construct.
+
+Required attachment and compatibility grammar terms:
+- carried asset claim;
+- worn asset claim;
+- wielded asset claim;
+- installed asset claim;
+- implanted asset claim;
+- bonded asset claim;
+- attunement-like claim;
+- integrated platform claim;
+- modular attachment claim;
+- upgrade-path claim;
+- compatibility claim;
+- incompatibility claim;
+- synergy claim;
+- conflict claim;
+- source-field compatibility claim;
+- actor-asset boundary claim;
+- platform-asset boundary claim;
+- source-local attachment only;
+- quarantined compatibility claim;
+- escalated compatibility contradiction.
+
+Required asset advancement and bonding grammar terms:
+- asset advancement claim;
+- asset awakening claim;
+- relic evolution claim;
+- artifact maturation claim;
+- implant adaptation claim;
+- cyberware tolerance claim;
+- biotech integration claim;
+- platform advancement claim;
+- module progression claim;
+- bond formation claim;
+- bond strain claim;
+- corruption-bearing asset claim;
+- source-field-altered asset claim;
+- sacrificed asset claim;
+- repaired asset claim;
+- salvaged asset claim;
+- source-local advancement only;
+- quarantined advancement claim;
+- escalated asset advancement contradiction.
 
 ## 3. What this file must not own
 
