@@ -162,7 +162,7 @@ def test_a06_dependencies_and_non_redefinition_posture_present():
         assert forbidden not in lowered
 
 
-def test_registry_a06_posture_and_no_a07plus_promotions():
+def test_registry_a06_posture_and_a07_a08_draft_only_promotions():
     records = _registry_records()
 
     a01 = records["A01"]
@@ -196,7 +196,14 @@ def test_registry_a06_posture_and_no_a07plus_promotions():
     assert a07["review_status"] == "not_reviewed"
     assert a07["proposed_path"] == "docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md"
 
-    for idx in range(8, 16):
+    a08 = records["A08"]
+    assert a08["status"] == "draft"
+    assert a08["authority_level"] == "doctrine-draft"
+    assert a08["test_status"] == "designed"
+    assert a08["review_status"] == "not_reviewed"
+    assert a08["proposed_path"] == "docs/doctrine/advancement/A08_path_domain_and_technique_mastery_doctrine.md"
+
+    for idx in range(9, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"
