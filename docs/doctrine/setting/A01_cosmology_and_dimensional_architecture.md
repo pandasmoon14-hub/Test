@@ -5,84 +5,109 @@
 - Layer: 1_setting_spine
 - Phase: 1A
 - Status: draft
-- Purpose: Define Astra's cosmology container architecture (worlds, planes, dimensions, voids, adjacency, and topology) at doctrine level without importing donor law.
+- Purpose: Define Astra cosmology and dimensional architecture classification boundaries for doctrine-level use without importing donor cosmology as Astra default law.
 
 ## 2. What this file owns
-- Cosmology container categories used by downstream doctrine work.
-- Dimensional topology and adjacency framing at a classification level.
-- Source-local cosmology classification boundaries for conversion-stage handling.
-- Non-mechanical constraints that keep cosmology doctrine independent from donor defaults.
+- Cosmology container classification grammar for Astra setting doctrine.
+- Dimensional/topological category boundaries used by downstream doctrine files.
+- High-level adjacency and contradiction review constraints for cosmology mapping.
+- Doctrine-level handling posture for source-local cosmology classification outcomes.
 
 ## 3. What this file must not own
-- Travel mechanics, routes, runtime traversal procedures, or movement rules.
-- Specific gods, factions, planets, cultures, or named lore canon.
-- Source field, Dao/domain/element, soul ontology, progression, or power-scale doctrine details.
-- C14 schema drafting content.
-- K01 lexicon governance ownership.
+- Travel mechanics.
+- Starship rules.
+- Portal rules.
+- Encounter rules.
+- Combat rules.
+- Power progression.
+- Cultivation stages.
+- Dao/domain/element mechanics.
+- Source fields / magic-technology relation.
+- Soul/body/mind/spirit ontology.
+- Factions.
+- Gods.
+- Specific planets as canon.
+- Specific planes as canon.
+- Runtime map state.
+- Runtime event state.
+- Hidden information state.
+- Accepted lexicon terms.
+- Final Core Rulebook prose.
+- Donor cosmology as Astra default law.
 
 ## 4. Required definitions
-- **Cosmology container**: the structural envelope in which world and dimensional categories are organized.
-- **Dimensional architecture**: doctrine-level arrangement of world/plane/dimension/void categories and their allowed adjacency relations.
-- **Adjacency constraint**: a non-mechanical rule stating which category-to-category relationships are valid or invalid.
-- **Source-local cosmology record**: retained donor cosmology context that remains local until promoted through doctrine/canon processes.
+- **Material world / physical world**: a baseline physical-reality world container used in Astra setting classification.
+- **Orbital or stellar-scale world region**: a world-region container anchored to orbital, stellar, or equivalent astrophysical scale.
+- **Plane**: a distinct cosmological layer with persistent identity inside Astra topology.
+- **Dimension**: a bounded cosmological frame distinct from but potentially adjacent to worlds or planes.
+- **Pocket dimension**: a constrained or nested dimension with limited scope relative to broader dimensional topology.
+- **Layered realm**: a multi-strata realm model with explicit layer distinctions under a single cosmological umbrella.
+- **Void / null region / outside-space region**: a non-standard or non-world region category used for absence, nullity, or outside-space framing.
+- **Liminal boundary**: a boundary-state construct at the edge between recognized cosmology categories.
+- **Transit-adjacent cosmological structure**: a non-mechanical cosmology structure associated with potential transitions but not defining travel rules.
+- **Source-local cosmological construct**: donor cosmology construct retained with provenance and local scope without Astra-canon authority.
+- **Quarantined cosmological construct**: donor or inferred cosmology construct held outside active doctrine pending later review.
+- **Escalated cosmology problem**: unresolved cosmology contradiction or classification failure requiring formal downstream doctrine review.
 
 ## 5. Core doctrine rules
-- Astra cosmology is defined by Astra doctrine, not by any donor cosmology as a default.
+- A01 defines cosmology container architecture and classification grammar only.
 - A01 remains `A01_cosmology_and_dimensional_architecture.md` and is not renamed.
-- Lexicon governance remains in K01 and is not moved into A01.
-- A01 defines category boundaries and constraints only; implementation and runtime behavior are downstream concerns.
-- Contradictory donor cosmologies are resolved through classification, retention, rejection, or escalation rather than silent import.
+- K01 remains separate and lexicon governance is not moved into A01.
+- A01 is doctrine draft guidance and is not current.
+- A01 does not establish runtime state, travel operation behavior, or lore-canon promotion by default.
 
-## 6. Container taxonomy baseline (draft)
-- Container classes covered by A01: world, plane, dimension, and void.
-- Baseline relationships are doctrine-level only and intentionally non-procedural.
-- This taxonomy is a working draft for review and contradiction testing, not final canon.
-- No named setting instances are promoted in this draft.
+## 6. Conversion mapping rules
+- **Direct Astra mapping**: donor cosmology construct maps directly to an existing Astra cosmology category with no semantic distortion.
+- **Normalized Astra mapping**: donor construct maps to an Astra category after explicit normalization that preserves intent and provenance notes.
+- **Source-local retained construct**: donor construct remains source-local for provenance and conversion continuity without Astra-canon authority.
+- **Quarantined construct pending later doctrine**: unresolved or risky construct is isolated pending later doctrine/canon review.
+- **Escalated doctrine problem**: contradiction or unclassifiable construct is escalated for formal doctrine resolution.
 
-## 7. Adjacency and topology guardrails (draft)
-- A01 may declare whether categories can be adjacent, isolated, nested, or bridged at a high level.
-- A01 must not prescribe movement mechanics, transit costs, gate operation, or runtime transitions.
-- Topology guardrails are designed for consistency checks across later doctrine files.
-- Any pressure to encode operational travel behavior is out-of-scope and escalates to downstream doctrine planning.
+## 7. Source-local handling
+- Donor cosmologies can be retained as source-local setting/cosmology records.
+- Source-local records preserve donor provenance but do not become Astra cosmology canon.
+- Repeated donor pressure can produce canon candidates only through later K-layer review.
+- Unclassifiable cosmologies are quarantined or escalated, not normalized by invention.
+- Donor proper nouns remain source-local unless canon promotion accepts them later.
 
 ## 8. Donor pressure absorbed
-- Great-wheel and fixed pantheon plane hierarchies as universal defaults.
-- Single-universe or single-galaxy-only assumptions as universal defaults.
-- Donor-specific layered-heaven, warp, or crystal-sphere structures as mandatory imports.
-- Pressure to collapse all source cosmologies into one donor-shaped map.
+- Pressure to import donor cosmology as default Astra structure.
+- Pressure to enforce donor cosmology singularity across incompatible source corpora.
+- Pressure to treat extraction success as cosmology canon acceptance.
+- Pressure to bypass lexicon/canon governance through early doctrine shortcuts.
 
 ## 9. Hard refusals / rejected imports
-- No donor cosmology becomes Astra topology by default.
-- No donor named cosmological entity is promoted to canon from A01 draft text.
-- No conversion shortcut may treat source-local cosmology as accepted Astra doctrine.
-- No A01 content may be interpreted as runtime travel authorization.
+- Donor cosmology does not become Astra default law through extraction or conversion.
+- Donor named cosmology entities are not auto-promoted to accepted Astra canon.
+- Contradictory cosmology constructs are not silently merged by invention.
+- A01 cannot be used to declare runtime travel authorization, map state, or event-state truth.
 
 ## 10. Escalation triggers
-- Multiple incompatible cosmology models claim global Astra centrality.
-- A required container type cannot be expressed with current A01 taxonomy.
-- Downstream work requires operational mechanics that A01 is not permitted to define.
-- Any attempt to rename A01 or migrate K01 ownership into A01.
+- Incompatible cosmology models both claim Astra-wide centrality.
+- A construct cannot be placed in required classification grammar without violating boundaries.
+- Mapping pressure requests mechanics/rules ownership that A01 must not own.
+- Any proposal attempts to rename A01 or absorb K01 ownership into A01.
 
 ## 11. Dependencies
-- ROADMAP-001
-- REGISTRY-001
-- A00 (pre-A01 control posture)
-- PREA01-001 tracking constraints
+- ROADMAP-001.
+- REGISTRY-001.
+- A00_mechanical_posture_and_ruleset_non_adoption.md.
+- PREA01-001 control-layer tracking constraints.
 
 ## 12. Handoff to downstream layers
-- A02-A05 consume category/topology guardrails without inheriting donor cosmology law.
-- C14 consumes source-local classification boundaries when schema drafting is opened.
-- K01 consumes terminology pressure signals but retains lexicon governance ownership.
-- A14 may consume topology constraints later for travel/exploration doctrine without inheriting mechanics from A01.
+- A02-A05 may consume A01 cosmology classification constraints as doctrine dependencies.
+- `C14_source_local_setting_cosmology_record_schema.md` may later record source-local setting/cosmology construct type, provenance anchors, mapping outcome tags, quarantine flags, and escalation references.
+- A01 does not draft C14 and does not define C14 schema grammar.
+- K01 may receive terminology pressure signals while retaining accepted-lexicon governance ownership.
 
 ## 13. Test cases / pressure examples
-- Contradiction packet: two donor cosmologies with incompatible universal structure are both retained source-locally and escalated for doctrine resolution.
-- Classification packet: a donor cosmology fragment is classified as source-local retained rather than promoted.
-- Boundary packet: proposed travel procedure text is rejected from A01 as out-of-scope mechanics content.
-- Governance packet: lexicon dispute routes to K01 process, not A01 ownership expansion.
+- Contradiction case: two donor cosmologies conflict on central topology and are escalated doctrine problems.
+- Classification case: donor construct is retained as source-local cosmological construct with provenance.
+- Quarantine case: unclassifiable construct is quarantined pending later doctrine rather than normalized by invention.
+- Boundary case: proposed portal/travel rules are rejected as out-of-scope mechanics content.
 
 ## 14. Versioning and review protocol
-- This file is draft and not current.
-- Advancement requires required tests, contradiction review, and council acceptance logging.
-- Substantive updates require decisions-log entry and registry alignment.
-- Until promoted, this file remains doctrine-draft guidance and not executable runtime policy.
+- A01 remains draft and not current until review and pressure tests pass.
+- Required tests must be designed and tracked in registry `required_tests` and `test_status`.
+- Review decisions must be logged via governance records before status promotion.
+- Amendments must preserve A01/K01 ownership boundaries and pre-A01 control constraints.
