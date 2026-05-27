@@ -194,7 +194,17 @@ def test_registry_a07_posture_and_a08_draft_only_promotion():
     assert a08["authority_level"] == "doctrine-draft"
     assert a08["test_status"] == "designed"
 
-    for idx in range(10, 16):
+    a09 = records["A09"]
+    assert a09["status"] == "draft"
+    assert a09["authority_level"] == "doctrine-draft"
+    assert a09["test_status"] == "designed"
+
+    a10 = records["A10"]
+    assert a10["status"] == "draft"
+    assert a10["authority_level"] == "doctrine-draft"
+    assert a10["test_status"] == "designed"
+
+    for idx in range(11, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"

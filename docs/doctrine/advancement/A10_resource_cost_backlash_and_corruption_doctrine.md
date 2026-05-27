@@ -7,60 +7,79 @@ A10 defines doctrine-level resource/cost/backlash/corruption architecture for As
 Status posture:
 - This file is doctrine-draft material.
 - This file is not marked current canon.
-- This file does not define runtime resource/cooldown/corruption state.
+- This file does not define runtime resource values, runtime cooldown state, or runtime corruption state.
 
 ## 2. What this file owns
 
 A10 owns:
 - resource taxonomy posture language;
-- cost posture language;
-- reserve and cooldown posture grammar;
-- recharge and recovery posture grammar;
-- backlash/consequence posture grammar;
-- corruption/overload/heat/strain posture grammar;
-- sacrifice/debt/favor pressure posture;
+- cost/constraint posture language;
+- reserve/cooldown/recharge/regeneration doctrine grammar;
+- backlash/corruption/overload consequence posture grammar;
+- debt/sacrifice/favor burden posture grammar;
 - conversion-safe handling of resource contradiction pressure.
 
 Required resource taxonomy grammar terms:
 - resource construct;
-- energy-like resource construct;
-- reserve-like resource construct;
-- vitality-like resource construct;
-- focus-like resource construct;
-- charge-like resource construct;
-- debt-like resource construct;
-- sacrifice-like resource construct;
-- favor/disfavor-like resource construct;
-- contamination-like resource construct;
+- cost construct;
+- reserve construct;
+- occupancy/reserve construct;
+- cooldown construct;
+- recharge construct;
+- regeneration construct;
+- backlash construct;
+- corruption construct;
+- overload construct;
+- heat/stress construct;
+- strain/fatigue construct;
+- debt construct;
+- sacrifice construct;
+- favor/disfavor construct;
+- spiritual damage construct;
+- dimensional contamination construct;
 - source-local resource construct;
 - quarantined resource construct;
-- escalated resource contradiction.
+- escalated resource problem.
 
-Required cost and reserve grammar terms:
-- baseline cost posture;
-- elevated cost posture;
-- constrained use posture;
-- reserve commitment posture;
-- overcommitment posture;
-- deferred payment posture;
-- conditional payment posture;
-- source-local cost posture only;
+Required cost/constraint grammar terms:
+- activation cost;
+- maintenance cost;
+- sustained cost;
+- reserve occupancy;
+- expendable cost;
+- opportunity cost;
+- cooldown requirement;
+- recharge requirement;
+- depletion pressure;
+- overuse pressure;
+- risk-bearing cost;
+- backlash-bearing cost;
+- corruption-bearing cost;
+- sacrifice cost;
+- debt cost;
+- favor/disfavor cost;
+- source-local cost only;
 - quarantined cost claim;
 - escalated cost contradiction.
 
-Required backlash and corruption grammar terms:
-- backlash exposure;
-- instability exposure;
-- overload exposure;
-- heat/strain exposure;
-- fatigue/wear exposure;
-- debt burden exposure;
-- sacrifice burden exposure;
-- corruption pressure;
-- contamination pressure;
-- reputation/favor fallout pressure;
-- source-local consequence posture only;
-- quarantined consequence claim;
+Required backlash/corruption/consequence grammar terms:
+- minor backlash;
+- major backlash;
+- catastrophic backlash;
+- immediate backlash;
+- delayed backlash;
+- accumulating corruption;
+- unstable overload;
+- heat/stress event;
+- strain/fatigue event;
+- spiritual injury;
+- dimensional contamination;
+- sacrifice consequence;
+- debt obligation;
+- favor consequence;
+- disfavor consequence;
+- source-local backlash only;
+- quarantined backlash claim;
 - escalated consequence contradiction.
 
 ## 3. What this file must not own
@@ -70,12 +89,12 @@ A10 must not define:
 - specific spell costs;
 - specific power costs;
 - specific item prices;
-- economy/currency rules;
-- resource pool numbers;
+- specific currency/economy rules;
+- specific resource pool numbers;
 - exact resource values;
 - exact recharge rates;
 - exact cooldown durations;
-- exact corruption tracks;
+- exact corruption point tracks;
 - exact heat/stress tracks;
 - exact favor/debt ledgers;
 - exact sacrifice formulas;
@@ -84,16 +103,19 @@ A10 must not define:
 - condition/status rules;
 - actor stat blocks;
 - technique mastery;
-- skill systems;
+- skill/competency systems;
 - faction reputation systems;
 - crafting recipes;
-- runtime resource/cooldown/corruption state;
+- travel/exploration resource accounting;
+- runtime resource values;
+- runtime cooldown state;
+- runtime corruption state;
 - runtime event commits;
 - hidden information state;
 - accepted lexicon terms;
 - donor resource systems as Astra default law.
 
-A10 does not define A02 source-field relation matrices, A04 domain taxonomy, A06 stage taxonomy, A08 technique mastery, A09 skill/competency taxonomy, damage families, condition/status rules, actor stats, runtime event commits, runtime actor state, or hidden-information behavior.
+A10 does not define A02 source-field relation matrices, A04 domain taxonomy, A06 stage taxonomy, A08 technique mastery or specific technique costs, A09 skill/competency taxonomy, damage families, condition/status rules, actor stats, runtime resource state, runtime cooldown state, runtime event commits, runtime actor state, or hidden-information behavior.
 
 A10 does not draft K01, K03, K05, K06, C01, C02, C03, C04, A11, A12, A13, A14, A15, B-layer files, or R-layer files.
 
@@ -101,17 +123,17 @@ A10 does not draft K01, K03, K05, K06, C01, C02, C03, C04, A11, A12, A13, A14, A
 
 Resource construct: doctrine-level placeholder for a cost-bearing capacity or constraint channel used for routing and contradiction handling without numeric mechanics.
 
-Cost posture: doctrine-language statement describing whether a use claim expresses lightweight, intensive, conditional, deferred, or incompatible expenditure pressure.
+Cost construct: doctrine-language representation of payment/constraint posture associated with a use claim without numeric valuation.
 
-Reserve commitment posture: doctrine-language statement that a resource claim requires pre-allocation or standing commitment without defining pool sizes or runtime tracking.
+Reserve construct: doctrine-language representation of standing or committed capacity posture without pool sizing.
 
-Backlash exposure: doctrine-language statement that a use claim carries nontrivial consequence risk when limits are pressed or breached.
+Backlash construct: doctrine-language representation of negative consequence posture when use pressure exceeds tolerances.
 
-Corruption pressure: doctrine-language statement that repeated, extreme, or context-violating use introduces contamination or distortion risk without defining numeric tracks.
+Corruption construct: doctrine-language representation of contamination/distortion pressure without numeric tracks.
 
 Quarantined resource construct: unresolved resource/cost/consequence pressure retained explicitly pending later doctrine review.
 
-Escalated resource contradiction: unresolved resource/cost/backlash/corruption conflict forwarded for doctrine escalation.
+Escalated resource problem: unresolved resource/cost/backlash/corruption conflict forwarded for doctrine escalation.
 
 ## 5. Core doctrine rules
 
@@ -126,20 +148,20 @@ Escalated resource contradiction: unresolved resource/cost/backlash/corruption c
 ## 6. Conversion mapping rules
 
 - Treat donor mana, slots, essence, edge-like currencies, heat/stress, favor/debt, sacrifice burdens, contamination meters, and equivalent constructs as resource constructs for routing before normalization.
-- Classify each claim across cost posture, reserve commitment posture, recharge/recovery posture, and consequence posture without introducing numeric runtime mechanics.
-- If donor pressure implies exact resource values, exact recharge rates, exact cooldown durations, exact corruption tracks, exact heat/stress tracks, exact favor/debt ledgers, exact sacrifice formulas, or fixed damage/consequence math, retain the evidence source-local and do not normalize those mechanics in A10.
+- Classify each claim across cost construct, reserve construct, recharge/regeneration posture, and consequence posture without introducing numeric runtime mechanics.
+- If donor pressure implies exact resource values, exact recharge rates, exact cooldown durations, exact corruption point tracks, exact heat/stress tracks, exact favor/debt ledgers, exact sacrifice formulas, or fixed damage/consequence math, retain the evidence source-local and do not normalize those mechanics in A10.
 - If a resource claim collides with upstream A02/A04/A06 or adjacent A08/A09 authority boundaries, preserve source-local labels and escalate contradiction rather than redefining upstream doctrine.
-- If combined resource claims cannot be interpreted without inventing economy rules, actor stats, or hidden runtime state behavior, quarantine or escalate instead of normalizing.
+- If combined resource claims cannot be interpreted without inventing economy rules, actor stats, hidden runtime state behavior, or runtime resource/cooldown/corruption state, quarantine or escalate instead of normalizing.
 
 ## 7. Source-local handling
 
-- Donor resource/cost/backlash/corruption systems can be retained as source-local records.
+- Donor resource/cost/backlash/corruption/cooldown/heat/debt/favor systems can be retained as source-local records.
 - Source-local records preserve donor provenance but do not become Astra resource canon.
 - Repeated donor pressure can produce canon candidates only through later K-layer/canon review.
 - Unclassifiable resource/cost/consequence systems are quarantined or escalated, not normalized by invention.
 - Donor proper nouns remain source-local unless canon promotion accepts them later.
 - Source-local resource/cost/backlash terms do not become accepted lexicon terms through A10.
-- Quarantined resource constructs and escalated resource contradictions remain explicit and auditable.
+- Quarantined resource constructs, quarantined cost claims, quarantined backlash claims, and escalated resource problems remain explicit and auditable.
 
 ## 8. Donor pressure absorbed
 
@@ -183,7 +205,7 @@ A10 depends on:
 - A08_path_domain_and_technique_mastery_doctrine.md
 - A09_skill_competency_and_synthesis_doctrine.md
 
-A10 does not redefine A02 source-field relation matrices, A04 domain taxonomy, A06 stage taxonomy, A08 technique mastery, A09 skill/competency taxonomy, damage families, condition/status rules, actor stats, runtime event commits, runtime actor state, or hidden-information behavior.
+A10 does not redefine A02 source-field relation matrices, A04 domain taxonomy, A06 stage taxonomy, A08 technique mastery or specific technique costs, A09 skill/competency taxonomy, damage families, condition/status rules, actor stats, runtime resource state, runtime cooldown state, runtime event commits, runtime actor state, or hidden-information behavior.
 
 ## 12. Handoff to downstream layers
 
