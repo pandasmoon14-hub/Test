@@ -176,6 +176,10 @@ def test_registry_a07_posture_and_no_a08plus_promotions():
     assert a07["review_status"] == "not_reviewed"
     assert a07["proposed_path"] == "docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md"
     assert a07["dependencies"] == ["A05", "A06"]
+    assert a07["file_id"] == "A07"
+    assert a07["filename"] == "A07_advancement_axes_and_progression_pressure.md"
+    assert a07["layer"] == "2_advancement_action_spine"
+    assert a07["phase"] == "1B"
     assert a07["blocked_by"] == []
 
     for rec in (a05, a06):
