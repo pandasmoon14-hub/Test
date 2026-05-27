@@ -161,7 +161,7 @@ def test_a07_dependencies_and_non_redefinition_posture_present():
         assert forbidden not in lowered
 
 
-def test_registry_a07_posture_and_no_a08plus_promotions():
+def test_registry_a07_posture_and_a08_draft_only_promotion():
     records = _registry_records()
 
     a05 = records["A05"]
@@ -189,7 +189,12 @@ def test_registry_a07_posture_and_no_a08plus_promotions():
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
     assert a07["filename"] != k01["filename"]
 
-    for idx in range(8, 16):
+    a08 = records["A08"]
+    assert a08["status"] == "draft"
+    assert a08["authority_level"] == "doctrine-draft"
+    assert a08["test_status"] == "designed"
+
+    for idx in range(9, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"
