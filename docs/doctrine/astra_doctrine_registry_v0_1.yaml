@@ -468,8 +468,8 @@ file_records:
   proposed_path: docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md
   layer: 1_setting_spine
   phase: 1A
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Ontology Working Group
   purpose: Define body, soul, mind, spirit, identity continuity, AI personhood, uploads, possession, augmentation metaphysics, and death/persistence boundaries.
   owns:
@@ -490,8 +490,7 @@ file_records:
   dependencies:
   - A01
   - A02
-  blocked_by:
-  - A02
+  blocked_by: []
   unlocks:
   - A04
   - A05
