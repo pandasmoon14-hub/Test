@@ -26,23 +26,41 @@
 - Action economy, damage rules, or progression systems.
 - Cultivation stage ladders.
 - Runtime state.
+- Accepted lexicon terms.
+- Donor metaphysics as Astra default law.
 - K01 lexicon governance.
 - C02/C03/C04 schema drafting.
 - A03/A04/A05/A07b/A10/A12 doctrine drafting.
 
 ## 4. Required definitions
-- **Source Field**: a doctrine-level origin-domain category for extraordinary and advanced phenomena, independent from donor naming.
-- **Magic domain posture**: Source Field relation category describing arcane/sorcerous-style manifestations without importing donor spell systems.
-- **Technology domain posture**: Source Field relation category describing engineered/systemic manifestations without forcing mundanity-only assumptions.
-- **Psionic domain posture**: Source Field relation category for cognition/intent-mediated manifestations.
-- **Divine domain posture**: Source Field relation category for transcendent/faith-authorized manifestations without declaring deity canon.
-- **Cultivation-force domain posture**: Source Field relation category for refinement/attunement-style manifestation families without stage mechanics.
-- **Computational domain posture**: Source Field relation category for algorithmic/symbolic inference or control manifestations.
-- **Biotech domain posture**: Source Field relation category for bioengineered/living-system mediation.
-- **Dimensional-energy posture**: Source Field relation category for cross-dimensional energetic mediation.
-- **Hybrid manifestation**: a cross-field expression requiring explicit boundary review and non-free normalization.
-- **Source-local manifestation record**: donor-anchored manifestation retained with provenance and bounded authority.
-- **Escalated source-field contradiction**: unresolved relation conflict requiring formal doctrine review.
+- **Arcane/magical source field**: Source Field class for arcane-style manifestations without importing donor spell mechanics.
+- **Technological/instrumental source field**: Source Field class for engineered and instrument-mediated manifestations.
+- **Psionic/cognitive source field**: Source Field class for intent- and cognition-mediated manifestations.
+- **Divine/sacral source field**: Source Field class for sacral or transcendent-authorized manifestations without establishing deity canon.
+- **Cultivation/internal-refinement source field**: Source Field class for internal-refinement manifestations without cultivation-stage progression rules.
+- **Biological/biotech source field**: Source Field class for bioengineered or living-system-mediated manifestations.
+- **Cybernetic/implant source field**: Source Field class for augmentation-mediated manifestations without defining specific cyberware or implants.
+- **Computational/informational source field**: Source Field class for computational, symbolic, or informational mediation.
+- **Dimensional/topological source field**: Source Field class for cross-dimensional energetic mediation without redefining cosmological topology owned by A01.
+- **Relic/artifact-mediated source field**: Source Field class for artifact-mediated manifestations without defining specific relics.
+- **Environmental/local field**: Source Field class bound to local environment conditions.
+- **Hybrid source field**: cross-field manifestation requiring explicit boundary review and non-free normalization.
+- **Source-local donor field**: donor-anchored field retained with provenance and bounded authority.
+- **Quarantined source-field construct**: unresolved field construct isolated pending later doctrine review.
+- **Escalated source-field problem**: unresolved relation contradiction requiring formal doctrine resolution.
+
+### 4.1 Interaction matrix grammar
+- **Compatible**: two source-field classes can co-exist under current doctrine without contradiction.
+- **Incompatible**: two source-field classes conflict and cannot jointly resolve in one mapping outcome.
+- **Attenuating**: one class dampens another in relation posture.
+- **Amplifying**: one class increases another in relation posture.
+- **Transforming**: one class maps into another class with explicit provenance retention.
+- **Parasitic**: one class depends on another while degrading or destabilizing it.
+- **Masking/occluding**: one class obscures another and forces uncertainty tags.
+- **Mutually exclusive under current doctrine**: co-application is currently disallowed pending future review.
+- **Source-local only**: interaction can be retained only as donor-local and not Astra-general doctrine.
+- **Quarantined pending later doctrine**: interaction is isolated until later doctrine resolves it.
+- **Escalated contradiction**: interaction is escalated for formal contradiction handling.
 
 ## 5. Core doctrine rules
 - A02 defines Source Field taxonomy and relation posture only.

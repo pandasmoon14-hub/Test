@@ -4,6 +4,7 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 A02_PATH = REPO_ROOT / "docs" / "doctrine" / "setting" / "A02_source_fields_magic_technology_relation.md"
+A01_PATH = REPO_ROOT / "docs" / "doctrine" / "setting" / "A01_cosmology_and_dimensional_architecture.md"
 REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
 
 
@@ -44,35 +45,89 @@ def test_a02_has_required_14_sections():
         assert h in text
 
 
-def test_a02_boundary_phrases_present():
+def test_a02_required_source_field_classification_terms_present():
     text = _read(A02_PATH).lower()
     for phrase in [
-        "do not rename",
-        "k01 remains separate",
-        "not current",
-        "runtime state",
-        "specific spells",
-        "specific devices",
+        "arcane/magical source field",
+        "technological/instrumental source field",
+        "psionic/cognitive source field",
+        "divine/sacral source field",
+        "cultivation/internal-refinement source field",
+        "biological/biotech source field",
+        "cybernetic/implant source field",
+        "computational/informational source field",
+        "dimensional/topological source field",
+        "relic/artifact-mediated source field",
+        "environmental/local field",
+        "hybrid source field",
+        "source-local donor field",
+        "quarantined source-field construct",
+        "escalated source-field problem",
     ]:
         assert phrase in text
 
 
-def test_a02_mentions_required_pressure_tests():
-    text = _read(A02_PATH)
-    assert "Magic-opposes-technology model" in text
-    assert "Magic-is-technology model" in text
-    assert "Technology-is-mundane model" in text
-    assert "Cultivation-force-as-source-field model" in text
-    assert "Psionic-divine-computational interface model" in text
+def test_a02_interaction_matrix_grammar_terms_present():
+    text = _read(A02_PATH).lower()
+    for phrase in [
+        "compatible",
+        "incompatible",
+        "attenuating",
+        "amplifying",
+        "transforming",
+        "parasitic",
+        "masking/occluding",
+        "mutually exclusive under current doctrine",
+        "source-local only",
+        "quarantined pending later doctrine",
+        "escalated contradiction",
+    ]:
+        assert phrase in text
 
 
-def test_registry_a02_and_k01_separation_and_paths():
+def test_a02_must_not_own_boundaries_present():
+    text = _read(A02_PATH).lower()
+    for phrase in [
+        "specific spells",
+        "specific techniques",
+        "specific devices",
+        "resource pools",
+        "cultivation stage",
+        "runtime state",
+        "accepted lexicon terms",
+        "donor metaphysics as astra default law",
+    ]:
+        assert phrase in text
+
+
+def test_a02_source_local_quarantine_escalation_language_present():
+    text = _read(A02_PATH).lower()
+    assert "source-local" in text
+    assert "quarantined" in text or "quarantine" in text
+    assert "escalated" in text
+
+
+def test_a02_depends_on_a01_but_does_not_redefine_a01_cosmology_terms():
+    text = _read(A02_PATH).lower()
+    assert "a01_cosmology_and_dimensional_architecture.md" in text
+    for phrase in ["worlds", "planes", "voids", "dimensional topology"]:
+        assert phrase not in text
+
+
+def test_registry_a02_a01_and_k01_status_and_separation():
     records = _registry_records()
     a02 = records["A02"]
+    a01 = records["A01"]
     k01 = records["K01"]
 
-    assert a02["status"] == "todo"
+    assert a02["status"] == "draft"
     assert a02["status"] != "current"
+    assert a02["review_status"] == "not_reviewed"
     assert a02["proposed_path"] == "docs/doctrine/setting/A02_source_fields_magic_technology_relation.md"
+    assert "A01" in a02["dependencies"]
+
+    assert a01["status"] in {"draft", "review", "pressure-tested", "todo", "blocked", "deprecated"}
+    assert a01["status"] != "current"
+
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
     assert a02["filename"] != k01["filename"]
