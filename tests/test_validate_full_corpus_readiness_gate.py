@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.helpers import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/validate_full_corpus_readiness_gate.py")
+SCRIPT = ROOT / "scripts/handoff/validate_full_corpus_readiness_gate.py"
 
 
 def _mk_inputs(tmp_path: Path, with_overlay=True):
@@ -35,7 +36,7 @@ def _run(dry: Path, pre: Path, out: Path, strict=True, extra=None):
         cmd.append("--strict")
     if extra:
         cmd += extra
-    p = subprocess.run(cmd, capture_output=True, text=True)
+    p = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
     return p, json.loads(p.stdout)
 
 

@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.helpers import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/plan_full_corpus_dry_run.py")
+SCRIPT = ROOT / "scripts/handoff/plan_full_corpus_dry_run.py"
 
 
 def _run(corpus: Path, out: Path, strict=True, extra=None):
@@ -12,7 +13,7 @@ def _run(corpus: Path, out: Path, strict=True, extra=None):
         cmd.append("--strict")
     if extra:
         cmd += extra
-    p = subprocess.run(cmd, capture_output=True, text=True)
+    p = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
     return p, json.loads(p.stdout)
 
 

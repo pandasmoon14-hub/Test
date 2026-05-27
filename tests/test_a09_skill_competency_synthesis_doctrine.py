@@ -1,21 +1,6 @@
-from pathlib import Path
+from tests.helpers import ROOT, read_utf8, registry_records_by_id
 
-import yaml
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-A09_PATH = REPO_ROOT / "docs" / "doctrine" / "advancement" / "A09_skill_competency_and_synthesis_doctrine.md"
-REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
-
-
-def _read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
-
-
-def _registry_records():
-    data = yaml.safe_load(_read(REGISTRY_PATH))
-    records = data.get("file_records", data.get("files"))
-    assert isinstance(records, list)
-    return {r["file_id"]: r for r in records}
+A09_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A09_skill_competency_and_synthesis_doctrine.md"
 
 
 def test_a09_file_exists():
@@ -23,7 +8,7 @@ def test_a09_file_exists():
 
 
 def test_a09_required_sections_present():
-    text = _read(A09_PATH)
+    text = read_utf8(A09_PATH)
     for heading in [
         "## 1. Purpose and status",
         "## 2. What this file owns",
@@ -44,7 +29,7 @@ def test_a09_required_sections_present():
 
 
 def test_a09_required_grammar_terms_present():
-    lowered = _read(A09_PATH).lower()
+    lowered = read_utf8(A09_PATH).lower()
     for phrase in [
         "skill construct", "competency construct", "proficiency construct", "expertise construct", "specialization construct",
         "professional competency construct", "cultural competency construct", "background/lifepath competency construct",
@@ -66,7 +51,7 @@ def test_a09_required_grammar_terms_present():
 
 
 def test_a09_boundaries_and_source_local_language_present():
-    lowered = _read(A09_PATH).lower()
+    lowered = read_utf8(A09_PATH).lower()
     for phrase in [
         "specific canon skill list", "specific skill names as astra defaults", "specific proficiency bonus math",
         "specific point-buy costs", "specific training time formulas", "specific crafting recipes",
@@ -85,7 +70,7 @@ def test_a09_boundaries_and_source_local_language_present():
 
 
 def test_a09_dependencies_and_non_redefinition_posture_present():
-    text = _read(A09_PATH)
+    text = read_utf8(A09_PATH)
     lowered = text.lower()
     assert "A07_advancement_axes_and_progression_pressure.md" in text
     assert "A08_path_domain_and_technique_mastery_doctrine.md" in text
@@ -99,7 +84,7 @@ def test_a09_dependencies_and_non_redefinition_posture_present():
 
 
 def test_registry_a09_posture_and_downstream_not_promoted():
-    records = _registry_records()
+    records = registry_records_by_id()
     a07 = records["A07"]
     a08 = records["A08"]
     a09 = records["A09"]

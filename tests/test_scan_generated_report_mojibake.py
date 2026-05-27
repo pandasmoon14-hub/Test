@@ -1,9 +1,10 @@
+from pathlib import Path
+from tests.helpers import ROOT
 import json
 import subprocess
 import sys
-from pathlib import Path
 
-SCRIPT = Path("scripts/handoff/scan_generated_report_mojibake.py")
+SCRIPT = ROOT / "scripts/handoff/scan_generated_report_mojibake.py"
 
 
 def _run(path: Path, strict: bool = True, allow_source_examples: bool = False, extra=None):
@@ -14,7 +15,7 @@ def _run(path: Path, strict: bool = True, allow_source_examples: bool = False, e
         cmd.append("--allow-source-examples")
     if extra:
         cmd += extra
-    p = subprocess.run(cmd, capture_output=True, text=True)
+    p = subprocess.run(cmd, capture_output=True, text=True, cwd=ROOT)
     return p, json.loads(p.stdout)
 
 

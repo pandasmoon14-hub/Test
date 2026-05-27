@@ -1,21 +1,6 @@
-from pathlib import Path
+from tests.helpers import ROOT, read_utf8, registry_records_by_id
 
-import yaml
-
-REPO_ROOT = Path(__file__).resolve().parents[1]
-A08_PATH = REPO_ROOT / "docs" / "doctrine" / "advancement" / "A08_path_domain_and_technique_mastery_doctrine.md"
-REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
-
-
-def _read(path: Path) -> str:
-    return path.read_text(encoding="utf-8")
-
-
-def _registry_records():
-    data = yaml.safe_load(_read(REGISTRY_PATH))
-    records = data.get("file_records", data.get("files"))
-    assert isinstance(records, list)
-    return {r["file_id"]: r for r in records}
+A08_PATH = ROOT / "docs" / "doctrine" / "advancement" / "A08_path_domain_and_technique_mastery_doctrine.md"
 
 
 def test_a08_file_exists():
@@ -23,7 +8,7 @@ def test_a08_file_exists():
 
 
 def test_a08_required_sections_present():
-    text = _read(A08_PATH)
+    text = read_utf8(A08_PATH)
     for heading in [
         "## 1. Purpose and status",
         "## 2. What this file owns",
@@ -44,7 +29,7 @@ def test_a08_required_sections_present():
 
 
 def test_a08_required_grammar_terms_present():
-    text = _read(A08_PATH).lower()
+    text = read_utf8(A08_PATH).lower()
     for phrase in [
         "path construct",
         "domain construct",
@@ -103,7 +88,7 @@ def test_a08_required_grammar_terms_present():
 
 
 def test_a08_must_not_own_boundaries_and_source_local_language_present():
-    text = _read(A08_PATH).lower()
+    text = read_utf8(A08_PATH).lower()
     for phrase in [
         "specific technique stats",
         "specific spell lists",
@@ -140,7 +125,7 @@ def test_a08_must_not_own_boundaries_and_source_local_language_present():
 
 
 def test_a08_dependencies_and_non_redefinition_posture_present():
-    text = _read(A08_PATH)
+    text = read_utf8(A08_PATH)
     lowered = text.lower()
 
     assert "A04_dao_domain_element_architecture.md" in text
@@ -164,7 +149,7 @@ def test_a08_dependencies_and_non_redefinition_posture_present():
 
 
 def test_registry_a08_posture_and_downstream_not_promoted():
-    records = _registry_records()
+    records = registry_records_by_id()
 
     a04 = records["A04"]
     a06 = records["A06"]
