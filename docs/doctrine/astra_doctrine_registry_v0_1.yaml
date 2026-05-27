@@ -957,8 +957,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A09_skill_competency_and_synthesis_doctrine.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Competency Working Group
   purpose: Define skills, competencies, proficiencies, training vectors, cross-skill synthesis, multi-domain checks, and non-active capability translation.
   owns:
@@ -977,7 +977,7 @@ file_records:
   dependencies: &id007
   - A07
   - A08
-  blocked_by: *id007
+  blocked_by: []
   unlocks: &id008
   - A10
   - A11
@@ -1005,7 +1005,7 @@ file_records:
   - cross-skill synthesis test
   - professional competency integration test
   - multi-domain check validation
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
