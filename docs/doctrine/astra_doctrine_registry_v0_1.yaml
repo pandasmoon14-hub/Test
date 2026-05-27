@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-05-27'
+  version: 0.1.2
+  action: a01_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A01 draft doctrine file at docs/doctrine/setting/A01_cosmology_and_dimensional_architecture.md; kept A01 draft/not-current and preserved K01 ownership boundaries.
 - date: '2026-05-26'
   version: 0.1.1
   action: pre_a01_control_layer_patch
@@ -291,7 +296,7 @@ file_records:
   proposed_path: docs/doctrine/setting/A01_cosmology_and_dimensional_architecture.md
   layer: 1_setting_spine
   phase: 1A
-  status: todo
+  status: draft
   authority_level: doctrine-todo
   owner: Astra Doctrine Council - Cosmology Working Group
   purpose: 'Define the container of Astra reality: worlds, planes, dimensions, voids, interplanar adjacency, dimensional ecology, cosmic topology, and source-local cosmology handling.'
@@ -358,7 +363,7 @@ file_records:
   - source-local cosmology classification test
   - scale threshold plane test
   - donor-law creep review
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - all required doctrine sections present
