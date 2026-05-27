@@ -108,10 +108,26 @@ def test_a02_source_local_quarantine_escalation_language_present():
 
 
 def test_a02_depends_on_a01_but_does_not_redefine_a01_cosmology_terms():
-    text = _read(A02_PATH).lower()
-    assert "a01_cosmology_and_dimensional_architecture.md" in text
-    for phrase in ["worlds", "planes", "voids", "dimensional topology"]:
-        assert phrase not in text
+    text = _read(A02_PATH)
+    lowered = text.lower()
+
+    assert "A01_cosmology_and_dimensional_architecture.md" in text
+    assert "dimensional/topological source field" in lowered
+
+    for phrase in [
+        "a02 owns worlds",
+        "a02 owns planes",
+        "a02 owns voids",
+        "a02 defines worlds",
+        "a02 defines planes",
+        "a02 defines voids",
+        "a02 defines dimensional topology",
+        "a02 replaces a01",
+        "a02 supersedes a01",
+    ]:
+        assert phrase not in lowered
+
+    assert "Specific planets or planes as canon." in text
 
 
 def test_registry_a02_a01_and_k01_status_and_separation():
