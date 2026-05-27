@@ -1,7 +1,8 @@
-﻿from pathlib import Path
+from pathlib import Path
 import re
 
 import pytest
+import yaml
 
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
@@ -55,7 +56,7 @@ REQUIRED_FILE_FIELDS = {
 CONTROL_FILE_IDS = {"ROADMAP-001", "REGISTRY-001"}
 
 EXPECTED_FILE_IDS = (
-    ["ROADMAP-001", "REGISTRY-001"]
+    ["ROADMAP-001", "REGISTRY-001", "A00", "PREA01-001"]
     + [f"A{i:02d}" for i in range(1, 16)]
     + ["C00"]
     + [f"C{i:02d}" for i in range(1, 15)]
@@ -64,15 +65,10 @@ EXPECTED_FILE_IDS = (
     + [f"T{i:02d}" for i in range(1, 8)]
 )
 
-FILE_ID_PATTERN = re.compile(r"^(ROADMAP-001|REGISTRY-001|A\d{2}|C\d{2}|K\d{2}|R\d{2}|T\d{2})$")
+FILE_ID_PATTERN = re.compile(r"^(ROADMAP-001|REGISTRY-001|PREA01-\d+|A\d{2}|C\d{2}|K\d{2}|R\d{2}|T\d{2})$")
 
 
 def load_registry():
-    try:
-        import yaml
-    except ImportError as exc:
-        pytest.fail(f"PyYAML is required to validate the doctrine registry: {exc}")
-
     assert REGISTRY_PATH.exists(), f"Missing registry file: {REGISTRY_PATH}"
     with REGISTRY_PATH.open("r", encoding="utf-8") as handle:
         data = yaml.safe_load(handle)
@@ -82,7 +78,6 @@ def load_registry():
 
 
 def registry_records(data):
-    """Support either 'file_records' or the earlier planned 'files' key."""
     records = data.get("file_records", data.get("files"))
     assert isinstance(records, list), "Registry must contain a list under 'file_records' or 'files'."
     assert records, "Registry file record list must not be empty."
@@ -90,7 +85,6 @@ def registry_records(data):
 
 
 def as_allowed_values(value):
-    """Support global enums encoded either as a list or as a mapping."""
     if isinstance(value, dict):
         return set(value.keys())
     if isinstance(value, list):
@@ -216,10 +210,6 @@ def test_file_id_dependencies_resolve_when_they_reference_file_ids():
                 continue
 
             dep = dep.strip()
-
-            # Only enforce dependencies that are exact registry file IDs.
-            # Paths, active control filenames, ranges, and prose dependencies
-            # are intentionally allowed here.
             if FILE_ID_PATTERN.match(dep) and dep not in found:
                 unresolved.append((file_id, dep, "missing file_id dependency"))
 
@@ -241,4 +231,33 @@ def test_registry_expected_record_count():
     data = load_registry()
     records = registry_records(data)
 
-    assert len(records) == 53, f"Expected 53 doctrine registry records, found {len(records)}."
+    assert len(records) == 55, f"Expected 55 doctrine registry records, found {len(records)}."
+
+
+def test_a01_and_k01_filenames_remain_stable():
+    data = load_registry()
+    records = {record["file_id"]: record for record in registry_records(data)}
+
+    assert records["A01"]["filename"] == "A01_cosmology_and_dimensional_architecture.md"
+    assert records["K01"]["filename"] == "K01_lexicon_governance_and_reserved_terms.md"
+
+
+def test_a00_is_non_current_and_unlocks_a01_without_replacing_it():
+    data = load_registry()
+    records = {record["file_id"]: record for record in registry_records(data)}
+    a00 = records["A00"]
+
+    assert a00["status"] not in {"current", "roadmap-current", "registry-current"}
+    assert "A01" in a00["unlocks"]
+    assert a00["filename"] != records["A01"]["filename"]
+
+
+def test_prea01_is_non_current_control_tracking_not_runtime_or_canon_authority():
+    data = load_registry()
+    records = {record["file_id"]: record for record in registry_records(data)}
+    prea01 = records["PREA01-001"]
+
+    assert prea01["status"] not in {"current", "roadmap-current", "registry-current"}
+    assert prea01["layer"] == "0_control"
+    assert prea01["authority_level"] in {"tracking", "planning", "control"}
+    assert "runtime" in " ".join(prea01["must_not_own"]).lower()
