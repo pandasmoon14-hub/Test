@@ -5,67 +5,88 @@
 - Layer: 2_advancement_action_spine
 - Phase: 1B
 - Status: draft
-- Purpose: Define doctrine-level cultivation and ascension stage architecture boundaries for Astra without importing donor stage systems as Astra default law.
+- Purpose: Define doctrine-level cultivation and ascension stage architecture boundaries for Astra without importing donor progression systems as Astra default law.
 
 ## 2. What this file owns
-- Doctrine-level cultivation stage taxonomy grammar for describing progression envelopes without assigning numeric progression math.
-- Doctrine-level ascension stage taxonomy grammar for classifying transition classes across bounded advancement scopes.
-- Doctrine-level breakthrough posture grammar, bottleneck posture grammar, and tribulation posture grammar as architecture boundaries.
-- Doctrine-level stage transition permission posture and stage transition restriction posture.
-- Doctrine-level source-local retention, quarantine posture, and escalation posture for unresolved stage claims.
+- Doctrine-level neutral stage taxonomy grammar for advancement interpretation boundaries.
+- Doctrine-level transition-permission grammar for advancement stage transitions.
+- Doctrine-level breakthrough/bottleneck/tribulation boundary grammar as architecture posture.
+- Doctrine-level stage transition permission and restriction posture without runtime implementation.
+- Doctrine-level source-local retention, quarantine posture, and escalation posture for unresolved advancement claims.
 
 ## 3. What this file must not own
 - Specific cultivation realms.
-- Specific donor stage names.
 - Specific techniques.
-- Spells or powers.
-- Classes or class features.
-- Stat bonuses.
-- Resource pools, costs, recharge, or backlash.
-- XP tables or level tables.
-- Breakthrough mechanics math.
-- Trials or tribulations mechanics math.
-- Factions, planets, planes, gods, or hidden truths.
+- Class features.
+- Specific stat bonuses.
+- Resource pool numbers.
+- Donor stage names.
+- Fixed level tables.
+- XP/leveling math.
 - Runtime advancement state.
+- Hidden information state.
+- Accepted lexicon terms.
+- Donor progression ladders as Astra default law.
 - Runtime event commits.
 - Runtime actor state.
-- Hidden-information behavior.
+- Combat math, action economy, or equipment/asset advancement mechanics.
+- Faction economies, travel mechanics, or progression math.
+- Lore canon declarations or hidden truths.
 
 ## 4. Required definitions
-### Cultivation stage taxonomy grammar
-- **foundation stage construct**: doctrine-level baseline advancement stage construct used to classify stable pre-ascent posture without numeric level assignment.
-- **refinement stage construct**: doctrine-level stage construct used to classify internal coherence refinement without technique-specific mechanics.
-- **integration stage construct**: doctrine-level stage construct used to classify cross-domain integration posture for advancement interpretation.
-- **transformation stage construct**: doctrine-level stage construct used to classify substantive advancement-state transformation boundaries.
-- **ascension interface stage construct**: doctrine-level stage construct used to classify boundaries immediately preceding ascension interpretation.
+### Neutral stage taxonomy grammar
+- **stage construct**: doctrine-level advancement stage classifier without prescribing named canon stages.
+- **rank construct**: doctrine-level rank classifier for progression interpretation without donor-law adoption.
+- **tier construct**: doctrine-level tier classifier for progression interpretation without numeric mandates.
+- **grade construct**: doctrine-level grade classifier for progression interpretation without fixed tables.
+- **realm construct**: doctrine-level realm classifier for progression interpretation without donor default authority.
+- **threshold construct**: doctrine-level threshold classifier for advancement boundary interpretation.
+- **breakthrough construct**: doctrine-level breakthrough classifier for threshold-crossing interpretation.
+- **bottleneck construct**: doctrine-level bottleneck classifier for advancement-constraint interpretation.
+- **tribulation construct**: doctrine-level tribulation classifier for advancement-hazard interpretation.
+- **ascension construct**: doctrine-level ascension classifier for higher-order transition interpretation.
+- **evolution construct**: doctrine-level evolution classifier for advancement-change interpretation.
+- **initiation construct**: doctrine-level initiation classifier for entry-phase advancement interpretation.
+- **milestone construct**: doctrine-level milestone classifier for checkpoint-style progression interpretation.
 - **source-local stage construct**: donor stage construct retained with provenance and local scope only.
 - **quarantined stage construct**: unresolved stage construct held outside active Astra defaults.
 - **escalated stage problem**: unresolved stage contradiction requiring formal downstream doctrine resolution.
 
-### Ascension transition grammar
-- **intra-stage transition**: interpretation remains within a single stage construct.
-- **inter-stage transition**: interpretation moves between distinct stage constructs.
-- **upward ascension transition**: interpretation moves toward higher-scope ascension posture.
-- **constrained ascension transition**: transition valid only under explicit bounded conditions.
-- **deferred ascension transition**: transition classification held pending prerequisite boundary confirmation.
-- **stage mismatch**: claimed transition conflicts with declared stage construct.
-- **ascension gating**: boundary posture that limits transition authorization without defining runtime checks.
-- **ascension spillover**: boundary posture where claimed outcomes exceed declared transition envelope.
-- **source-local ascension transition only**: donor transition retained for source continuity without Astra-default authority.
-- **quarantined ascension transition**: unresolved transition held outside active defaults.
-- **escalated ascension contradiction**: unresolved contradiction escalated for formal doctrine resolution.
+### Transition-permission grammar
+- **permitted transition**: transition classification allowed under declared doctrine boundaries.
+- **blocked transition**: transition classification disallowed under declared doctrine boundaries.
+- **conditional transition**: transition classification allowed only when explicit doctrine conditions are satisfied.
+- **partial transition**: transition classification that advances only a bounded subset of declared transition scope.
+- **failed transition**: transition classification that does not achieve declared target scope.
+- **regressive transition**: transition classification that moves to lower interpreted progression posture.
+- **lateral transition**: transition classification that changes posture without higher/lower scope shift.
+- **staged transition**: transition classification divided across ordered bounded transition segments.
+- **delayed transition**: transition classification deferred pending prerequisite boundary confirmation.
+- **unstable transition**: transition classification with unresolved coherence or persistence posture.
+- **source-local transition only**: donor transition retained for source continuity without Astra-default authority.
+- **quarantined transition**: unresolved transition held outside active defaults.
+- **escalated transition contradiction**: unresolved transition contradiction escalated for formal doctrine resolution.
 
-### Breakthrough/bottleneck/tribulation boundary grammar
-- **breakthrough posture**: doctrine-level classification for advancement threshold crossing claims without specifying mechanics.
-- **bottleneck posture**: doctrine-level classification for advancement constraint claims without specifying numeric progression pressure.
-- **tribulation posture**: doctrine-level classification for advancement hazard claims without combat or damage mechanics.
-- **threshold coherence**: classification that stage threshold claim aligns with declared doctrine boundaries.
-- **threshold contradiction**: classification that stage threshold claim conflicts with declared doctrine boundaries.
-- **stage permission**: doctrine-level allowance class for transition eligibility interpretation.
-- **stage restriction**: doctrine-level restriction class for transition ineligibility interpretation.
-- **source-local breakthrough boundary only**: breakthrough/bottleneck/tribulation construct retained as donor-local handling only.
-- **quarantined breakthrough boundary**: unresolved breakthrough/bottleneck/tribulation construct held outside active defaults.
-- **escalated breakthrough contradiction**: unresolved breakthrough/bottleneck/tribulation contradiction escalated for formal doctrine resolution.
+### Breakthrough/bottleneck/tribulation grammar
+- **readiness gate**: doctrine-level gate classifier for readiness-bound advancement eligibility claims.
+- **knowledge gate**: doctrine-level gate classifier for knowledge-bound advancement eligibility claims.
+- **body gate**: doctrine-level gate classifier for body-bound advancement eligibility claims.
+- **soul/mind/spirit gate**: doctrine-level gate classifier for soul/mind/spirit-bound advancement eligibility claims.
+- **source-field gate**: doctrine-level gate classifier for source-field-bound advancement eligibility claims.
+- **domain/concept gate**: doctrine-level gate classifier for domain/concept-bound advancement eligibility claims.
+- **scale gate**: doctrine-level gate classifier for scale-bound advancement eligibility claims.
+- **social/institutional gate**: doctrine-level gate classifier for social/institutional-bound advancement eligibility claims.
+- **asset/tool gate**: doctrine-level gate classifier for asset/tool-bound advancement eligibility claims.
+- **environmental gate**: doctrine-level gate classifier for environmental-bound advancement eligibility claims.
+- **voluntary trial**: doctrine-level classifier for voluntarily entered advancement trial pressure.
+- **involuntary tribulation**: doctrine-level classifier for non-voluntary advancement tribulation pressure.
+- **externalized tribulation**: doctrine-level classifier for externally expressed tribulation pressure.
+- **internalized tribulation**: doctrine-level classifier for internally expressed tribulation pressure.
+- **symbolic tribulation**: doctrine-level classifier for symbolic or meaning-laden tribulation pressure.
+- **consequence-bearing failure**: doctrine-level classifier for failed advancement outcomes that carry doctrine-level consequence posture.
+- **source-local gate only**: gate/tribulation construct retained as donor-local handling only.
+- **quarantined gate/tribulation**: unresolved gate/tribulation construct held outside active defaults.
+- **escalated gate contradiction**: unresolved gate/tribulation contradiction escalated for formal doctrine resolution.
 
 ## 5. Core doctrine rules
 - A06 defines cultivation and ascension stage architecture boundaries only; it does not define runtime advancement mechanics.
@@ -73,34 +94,34 @@
 - K01 remains separate and lexicon governance is not moved into A06.
 - A06 is doctrine draft guidance and is not current.
 - A06 does not define lore canon and does not define specific realms, donor stages, techniques, or powers.
-- A06 may reference A01 for cosmology/topology context and does not redefine worlds, planes, or cosmological truth.
+- A06 may reference A01 for cosmology/topology context and does not redefine worlds or planes.
 - A06 may reference A02 for source-field posture and does not redefine source fields or magic/technology relations.
-- A06 may reference A03 for ontology constraints and does not redefine actor identity continuity.
+- A06 may reference A03 for ontology constraints and does not redefine identity continuity.
 - A06 may reference A04 for conceptual boundaries and does not redefine Dao/domain/element rules.
-- A06 may reference A05 for scale and power-boundary context and does not redefine civilization scale grammar.
-- A06 does not define combat math, progression math, resource pools, runtime state, runtime event commits, runtime actor state, or hidden-information behavior.
+- A06 may reference A05 for scale and power-boundary context and does not redefine scale taxonomy.
+- A06 does not define resource systems, actor stat blocks, runtime state, runtime event commits, runtime actor state, or hidden-information behavior.
 
 ## 6. Conversion mapping rules
-- **Direct stage mapping**: donor stage claim maps to A06 grammar without semantic distortion.
-- **Normalized stage mapping**: donor stage claim maps after explicit normalization plus provenance notes.
-- **Transition mapping**: donor transition claim is classified using ascension transition grammar before downstream use.
-- **Boundary mapping**: donor breakthrough/bottleneck/tribulation claim is classified using A06 boundary grammar before downstream use.
+- **Direct stage mapping**: donor advancement claim maps to A06 grammar without semantic distortion.
+- **Normalized stage mapping**: donor advancement claim maps after explicit normalization plus provenance notes.
+- **Transition mapping**: donor transition claim is classified using transition-permission grammar before downstream use.
+- **Gate/tribulation mapping**: donor gate/tribulation claim is classified using A06 grammar before downstream use.
 - **Source-local retained stage claim**: donor stage claim retained for source continuity without Astra-canon authority.
 - **Quarantined stage claim pending later doctrine**: unresolved claim isolated pending later doctrine/canon review.
 - **Escalated stage contradiction**: unresolvable contradiction escalated for formal doctrine resolution.
 
 ## 7. Source-local handling
-- Donor stage systems can be retained as source-local records.
-- Source-local records preserve donor provenance but do not become Astra stage canon.
+- Donor stage/realm/tier/level systems can be retained as source-local records.
+- Source-local records preserve donor provenance but do not become Astra advancement canon.
 - Repeated donor pressure can produce canon candidates only through later K-layer/canon review.
-- Unclassifiable stage systems are quarantined or escalated, not normalized by invention.
+- Unclassifiable advancement systems are quarantined or escalated, not normalized by invention.
 - Donor proper nouns remain source-local unless canon promotion accepts them later.
 - Source-local stage terms do not become accepted lexicon terms through A06.
 
 ## 8. Donor pressure absorbed
 - Pressure to import donor cultivation realm ladders as Astra defaults.
 - Pressure to collapse ascension into class-level or XP-only advancement.
-- Pressure to universalize donor breakthrough scripts as required mechanics.
+- Pressure to universalize donor progression ladders as mandatory Astra law.
 - Pressure to treat tribulation as mandatory combat-math resolution.
 - Pressure to equate extraction success with canon adoption.
 
@@ -111,10 +132,10 @@
 - Advancement cannot be pure XP spending law.
 
 ## 10. Escalation triggers
-- A claim requires stage categories outside required A06 grammar.
+- A claim requires advancement categories outside required A06 grammar.
 - A transition claim conflicts with A01, A02, A03, A04, or A05 ownership boundaries.
-- A breakthrough/bottleneck/tribulation claim requires runtime mechanics or progression math.
-- A proposal requests specific realms, donor stage names, techniques, powers, stat bonuses, or lore-canon declarations inside A06.
+- A gate/tribulation claim requires runtime mechanics, actor stats, or progression math.
+- A proposal requests donor stage names, fixed level tables, XP/leveling math, accepted lexicon terms, or lore-canon declarations inside A06.
 
 ## 11. Dependencies
 - ROADMAP-001.
@@ -136,8 +157,8 @@
 ## 13. Test cases / pressure examples
 - Stage-collapse case: all cultivation outcomes forced to donor level ladders and rejected/escalated.
 - Stage-mismatch case: transition claims contradict declared stage constructs and require boundary classification.
-- Boundary case: proposal attempts to define XP tables, level tables, or combat math and is rejected.
-- Runtime case: proposal attempts to define runtime advancement state/event commits/actor state and is rejected.
+- Boundary case: proposal attempts to define fixed level tables, XP/leveling math, or combat math and is rejected.
+- Runtime case: proposal attempts to define runtime advancement state/actor state/hidden information state and is rejected.
 
 ## 14. Versioning and review protocol
 - A06 remains draft and not current until review and pressure tests pass.

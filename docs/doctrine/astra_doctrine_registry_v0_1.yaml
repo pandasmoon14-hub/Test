@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.7
+  action: a06_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A06 draft doctrine file at docs/doctrine/advancement/A06_cultivation_and_ascension_stage_architecture.md; kept A06 draft/not-current, authority doctrine-draft, test_status designed, review_status not_reviewed, and set blocked_by to [] with dependencies preserved.
+- date: '2026-05-27'
   version: 0.1.6
   action: a05_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -801,8 +806,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Advancement Working Group
   purpose: 'Define multiple advancement axes and their interactions: body, soul, mind, path, technique, social rank, asset, companion, and faction.'
   owns:
@@ -852,7 +857,7 @@ file_records:
   - cross-axis synergy test
   - social advancement integration test
   - axis-specific breakthrough test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
@@ -871,8 +876,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A08_path_domain_and_technique_mastery_doctrine.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Technique Working Group
   purpose: Define paths, domains, technique taxonomy, mastery stages, learning permissions, spell/power/art/maneuver normalization, and technique evolution.
   owns:
@@ -923,7 +928,7 @@ file_records:
   - mastery stage boundary test
   - learning permission test
   - technique synthesis plus Dao interaction test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
@@ -942,8 +947,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A09_skill_competency_and_synthesis_doctrine.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Competency Working Group
   purpose: Define skills, competencies, proficiencies, training vectors, cross-skill synthesis, multi-domain checks, and non-active capability translation.
   owns:
@@ -990,7 +995,7 @@ file_records:
   - cross-skill synthesis test
   - professional competency integration test
   - multi-domain check validation
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
@@ -1009,8 +1014,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A10_resource_cost_backlash_and_corruption_doctrine.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Resource Working Group
   purpose: Define resources, costs, reserves, cooldowns, recharge, backlash, corruption, overload, heat, strain, fatigue, debt, sacrifice, spiritual damage, dimensional contamination, and favor/disfavor.
   owns:
@@ -1066,7 +1071,7 @@ file_records:
   - backlash/corruption severity test
   - hybrid resource cost validation
   - sacrifice/debt/favor tracking test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
@@ -1085,8 +1090,8 @@ file_records:
   proposed_path: docs/doctrine/world/A11_actor_ontology_and_player_grade_actor_doctrine.md
   layer: 3_world_asset_conflict_spine
   phase: 1C
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Actor Working Group
   purpose: 'Define unified actor ontology: player-grade actors, NPCs, monsters, spirits, AIs, drones, companions, summons, factional actors, macro-actors, and planets/planes as actors where permitted.'
   owns:
@@ -1139,7 +1144,7 @@ file_records:
   - AI personhood/actor test
   - companion/summon boundary test
   - macro-actor permission test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A10 relevant dependencies at least review/pressure-tested
@@ -1158,8 +1163,8 @@ file_records:
   proposed_path: docs/doctrine/world/A12_asset_relic_implant_platform_doctrine.md
   layer: 3_world_asset_conflict_spine
   phase: 1C
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Asset Working Group
   purpose: 'Define assets: gear, relics, artifacts, implants, cyberware, biotech, starships, mechs, drones, constructs, stations, living weapons, cultivation tools, dimensional anchors, and platform assets.'
   owns:
@@ -1211,7 +1216,7 @@ file_records:
   - attachment/compatibility boundary test
   - asset advancement integration test
   - platform-scale asset test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A10 relevant dependencies at least review/pressure-tested
@@ -1230,8 +1235,8 @@ file_records:
   proposed_path: docs/doctrine/world/A13_combat_hazard_damage_and_consequence_doctrine.md
   layer: 3_world_asset_conflict_spine
   phase: 1C
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Conflict Working Group
   purpose: Define conflict across personal, group, vehicle, ship, fleet, army, planar, psychic, social, cosmic, and environmental scales, including hazards, damage families, and consequences.
   owns:
@@ -1285,7 +1290,7 @@ file_records:
   - injury/death/recovery boundary test
   - hazard modeling test
   - consequence propagation test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A10 relevant dependencies at least review/pressure-tested
@@ -1304,8 +1309,8 @@ file_records:
   proposed_path: docs/doctrine/world/A14_travel_exploration_and_scale_transition_doctrine.md
   layer: 3_world_asset_conflict_spine
   phase: 1C
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Travel Working Group
   purpose: Define local, planetary, orbital, stellar, void, planar, and dimensional travel; routes, gates, portals, jumps, ruins, megastructures, exploration procedures, and scale transitions.
   owns:
@@ -1357,7 +1362,7 @@ file_records:
   - gate/portal/jump boundary test
   - exploration plus hazard integration test
   - ruin/megastructure modeling test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A10 relevant dependencies at least review/pressure-tested
@@ -1376,8 +1381,8 @@ file_records:
   proposed_path: docs/doctrine/world/A15_faction_society_economy_and_institution_doctrine.md
   layer: 3_world_asset_conflict_spine
   phase: 1C
-  status: draft
-  authority_level: doctrine-draft
+  status: todo
+  authority_level: doctrine-todo
   owner: Astra Doctrine Council - Faction Working Group
   purpose: Define factions, societies, economies, institutions, sects, guilds, corporations, empires, planar courts, trade, value, law, reputation, logistics, war, diplomacy, colonization, and institutional advancement.
   owns:
@@ -1428,7 +1433,7 @@ file_records:
   - institutional advancement test
   - trade/logistics test
   - war/diplomacy/colonization test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A01-A10 relevant dependencies at least review/pressure-tested
@@ -1539,7 +1544,7 @@ file_records:
   - source-local/rejected-import routing
   - canon eligibility integration
   - cross-reference validation
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -1606,7 +1611,7 @@ file_records:
   - statblock cross-family test
   - actor provenance test
   - source-local creature test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -1673,7 +1678,7 @@ file_records:
   - item catalog test
   - source-local gear test
   - donor field-name drift test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -1741,7 +1746,7 @@ file_records:
   - ability technique cross-family test
   - resource/backlash field test
   - technique provenance test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -1808,7 +1813,7 @@ file_records:
   - implant/relic compatibility test
   - installable asset test
   - source-local upgrade test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -1875,7 +1880,7 @@ file_records:
   - faction cross-family test
   - standing/reputation record test
   - source-local institution test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -1943,7 +1948,7 @@ file_records:
   - location provenance test
   - site/region boundary test
   - planar location test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2011,7 +2016,7 @@ file_records:
   - scenario/adventure test
   - objective/reward source-local test
   - branching consequence test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2079,7 +2084,7 @@ file_records:
   - vehicle/ship/mech cross-family test
   - module record test
   - platform scale test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2147,7 +2152,7 @@ file_records:
   - hazard provenance test
   - environment effect test
   - planar hazard test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2213,7 +2218,7 @@ file_records:
   - random table test
   - flattened table recovery test
   - oracle/source-local test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2281,7 +2286,7 @@ file_records:
   - companion/summon test
   - bond/contract field test
   - source-local ally test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2349,7 +2354,7 @@ file_records:
   - crafting/salvage test
   - recipe provenance test
   - installation modification test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2416,7 +2421,7 @@ file_records:
   - map/diagram annotation test
   - keyed area provenance test
   - visual review queue test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2484,7 +2489,7 @@ file_records:
   - source-local cosmology test
   - proper noun leakage test
   - canon eligibility boundary test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
@@ -2558,7 +2563,7 @@ file_records:
   - lexicon drift test
   - reserved-term conflict test
   - donor term normalization test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - all required governance sections present
@@ -2631,7 +2636,7 @@ file_records:
   - source-local boundary test
   - rejected import test
   - quarantine routing test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - all required governance sections present
@@ -2707,7 +2712,7 @@ file_records:
   - canon promotion test
   - frequency-is-not-canon test
   - reversal protocol test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - all required governance sections present
@@ -2780,7 +2785,7 @@ file_records:
   - conflict ledger test
   - deliberate contradiction test
   - severity routing test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - all required governance sections present
@@ -2859,7 +2864,7 @@ file_records:
   - mechanics bible merge test
   - precedence conflict test
   - provenance trace test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - all required governance sections present
@@ -2938,7 +2943,7 @@ file_records:
   - setting bible merge test
   - proper noun leakage test
   - source-local exclusion test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - all required governance sections present
@@ -3004,7 +3009,7 @@ file_records:
   required_tests:
   - event kernel determinism test
   - unauthorized mutation test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3065,7 +3070,7 @@ file_records:
   required_tests:
   - state schema validation test
   - entity/component boundary test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3127,7 +3132,7 @@ file_records:
   required_tests:
   - command lifecycle test
   - state delta validation test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3190,7 +3195,7 @@ file_records:
   required_tests:
   - RNG authority test
   - replay deterministic test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3254,7 +3259,7 @@ file_records:
   required_tests:
   - context packet completeness test
   - hidden info exclusion test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3314,7 +3319,7 @@ file_records:
   required_tests:
   - hidden partition test
   - player/GM visibility test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3379,7 +3384,7 @@ file_records:
   required_tests:
   - faction clock test
   - economy state transition test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3447,7 +3452,7 @@ file_records:
   required_tests:
   - persistence test
   - replay/hash verification test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - A/K/C dependencies current or pressure-tested
@@ -3511,7 +3516,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - conversion adapter benchmark test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
@@ -3577,7 +3582,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - live-play authority boundary test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
@@ -3640,7 +3645,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - context example review test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
@@ -3702,7 +3707,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - failure label coverage test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
@@ -3766,7 +3771,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - gold example provenance test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
@@ -3829,7 +3834,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - benchmark coverage test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
@@ -3892,7 +3897,7 @@ file_records:
   - adapter mutates state or leaks hidden information
   required_tests:
   - hard-fail matrix test
-  test_status: designed
+  test_status: not_started
   review_status: not_reviewed
   promotion_requirements:
   - runtime dependencies current or pressure-tested
