@@ -189,7 +189,14 @@ def test_registry_a06_posture_and_no_a07plus_promotions():
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
     assert a06["filename"] != k01["filename"]
 
-    for idx in range(7, 16):
+    a07 = records["A07"]
+    assert a07["status"] == "draft"
+    assert a07["authority_level"] == "doctrine-draft"
+    assert a07["test_status"] == "designed"
+    assert a07["review_status"] == "not_reviewed"
+    assert a07["proposed_path"] == "docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md"
+
+    for idx in range(8, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"
