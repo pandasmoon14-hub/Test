@@ -121,7 +121,12 @@ def test_registry_a09_posture_and_downstream_not_promoted():
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
     assert a09["filename"] != k01["filename"]
 
-    for idx in range(10, 16):
+    a10 = records["A10"]
+    assert a10["status"] == "draft"
+    assert a10["authority_level"] == "doctrine-draft"
+    assert a10["test_status"] == "designed"
+
+    for idx in range(11, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"
