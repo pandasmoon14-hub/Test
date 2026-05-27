@@ -29,41 +29,74 @@ A13 owns:
 - consequence propagation posture language;
 - conversion-safe handling of conflict contradiction pressure.
 
-Required conflict grammar terms:
+Required conflict scale grammar terms:
 - conflict construct;
-- engagement construct;
-- confrontation construct;
-- duel-scale conflict construct;
-- squad-scale conflict construct;
+- conflict scale construct;
+- personal-scale conflict construct;
+- group-scale conflict construct;
 - vehicle-scale conflict construct;
 - ship-scale conflict construct;
 - fleet-scale conflict construct;
 - army-scale conflict construct;
 - planar-scale conflict construct;
-- social conflict construct;
 - psychic conflict construct;
+- social conflict construct;
+- cosmic conflict construct;
 - environmental conflict construct;
+- hazard construct;
 - source-local conflict construct;
 - quarantined conflict construct;
-- escalated conflict-system problem.
+- escalated conflict-scale problem.
 
-Required damage and consequence grammar terms:
-- damage family claim;
-- damage channel claim;
-- mitigated damage claim;
-- resisted damage claim;
+Secondary conflict example grammar terms:
+- engagement construct;
+- confrontation construct;
+- duel-scale conflict construct;
+- squad-scale conflict construct.
+
+Required damage and interaction grammar terms:
+- damage family construct;
+- harm-type claim;
+- impact claim;
+- stress claim;
+- structural damage claim;
+- spiritual damage claim;
+- psychic damage claim;
+- environmental damage claim;
+- social consequence claim;
+- corruption consequence claim;
+- resistance claim;
 - immunity claim;
 - vulnerability claim;
-- compound effect claim;
+- reduction claim;
+- amplification claim;
+- compound interaction claim;
+- fused interaction claim;
+- cascading consequence claim;
+- source-field interaction claim;
+- Dao interaction claim;
+- source-local damage only;
+- quarantined damage interaction;
+- escalated damage-family contradiction.
+
+Required consequence grammar terms:
+- consequence construct;
 - injury consequence claim;
 - death consequence claim;
 - recovery consequence claim;
+- healing consequence claim;
 - transformation consequence claim;
+- trauma consequence claim;
+- degradation consequence claim;
+- overload consequence claim;
 - collateral consequence claim;
-- cascading consequence claim;
-- source-local damage claim;
+- scale spillover claim;
+- persistent consequence claim;
+- reversible consequence claim;
+- irreversible consequence claim;
+- source-local consequence only;
 - quarantined consequence claim;
-- escalated damage contradiction.
+- escalated consequence contradiction.
 
 Required hazard grammar terms:
 - hazard construct;
@@ -114,13 +147,15 @@ A13 does not draft K-layer files, C-layer files, B-layer files, R-layer files, A
 
 ## 4. Required definitions
 
-Conflict construct: doctrine-level placeholder for any contested interaction at personal, group, platform, fleet, planar, social, psychic, or environmental scale without runtime resolution rules.
+Conflict construct: doctrine-level placeholder for any contested interaction at personal, group, platform, fleet, planar, psychic, social, cosmic, or environmental scale without runtime resolution rules.
 
 Damage family construct: doctrine-language grouping marker for consequence-producing pressure channels without numeric tuning, formulas, or runtime computation.
 
+Consequence construct: doctrine-level classification placeholder for injury/death/recovery/healing/transformation and related spillover pressure without procedural enforcement.
+
 Hazard construct: doctrine-language marker for hostile or risky environmental/system pressure that can intersect conflict and consequence propagation without procedural resolution.
 
-Escalated conflict-system problem: unresolved contradiction across conflict, damage, hazard, or consequence posture that is forwarded for doctrine escalation rather than patched by canon invention.
+Escalated conflict-scale problem: unresolved contradiction across conflict scale posture forwarded for doctrine escalation rather than patched by canon invention.
 
 ## 5. Core doctrine rules
 
@@ -129,13 +164,13 @@ Escalated conflict-system problem: unresolved contradiction across conflict, dam
 3. Consequence-visibility rule: injury/death/recovery/transformation pressure must remain explicit as consequence posture, not hidden by donor shorthand.
 4. Hazard-integrity rule: hazards are modeled as doctrine pressure classes and not as imported donor procedures.
 5. Qualitative-only rule: A13 expresses conflict doctrine qualitatively at doctrine scope and does not define runtime conflict machinery.
-6. No silent import rule: donor AC/HP, stress/structure, initiative, and fleet-war subsystems cannot be silently adopted as Astra law.
+6. No silent import rule: donor armor/health/damage-type, stress/structure, drain/initiative, vehicle/ship conflict, fleet/mass-conflict, and hazard subsystems cannot be silently adopted as Astra law.
 7. Routing completeness rule: each conflict pressure claim is mapped, source-local retained, quarantined, or escalated.
 8. Contradiction visibility rule: unresolved conflict contradictions remain explicit and auditable.
 
 ## 6. Conversion mapping rules
 
-- Treat donor combat, hazard, injury, death, recovery, ship combat, fleet combat, social conflict, psychic conflict, and environmental danger claims as conflict constructs for routing before normalization.
+- Treat donor combat, hazard, injury, death, recovery, ship conflict, fleet conflict, social conflict, psychic conflict, and environmental danger claims as conflict constructs for routing before normalization.
 - Classify each claim into conflict-scale posture, damage-family posture, resistance/immunity posture, hazard posture, and consequence-propagation posture without introducing runtime state machinery.
 - If donor pressure requires specific combat math, formulas, statblocks, encounter or initiative procedures, action economy, resource pools, injury/death/recovery/healing/condition rules, exact damage numbers, resistance/immunity math, hazard procedures, or faction warfare procedures, retain evidence source-local and do not normalize those claims in A13.
 - If conflict claims collide with A05/A08/A10/A11/A12 authority boundaries, preserve source-local labels and escalate contradiction rather than redefining adjacent doctrine.
@@ -143,31 +178,31 @@ Escalated conflict-system problem: unresolved contradiction across conflict, dam
 
 ## 7. Source-local handling
 
-- Donor AC/HP systems, stress/structure systems, initiative systems, injury systems, death/recovery systems, ship/vehicle combat systems, fleet warfare systems, hazard procedures, and condition/status systems may be retained as source-local records.
+- Donor armor/health/damage-type systems, stress/structure systems, drain/initiative systems, vehicle/ship conflict systems, fleet/mass-conflict systems, hazard systems, injury systems, death systems, recovery systems, and consequence systems can be retained as source-local records.
 - Source-local records preserve provenance and pressure but do not become Astra conflict canon.
 - Repeated donor pressure can form canon candidates only through later K-layer review.
 - Unclassifiable conflict claims are quarantined or escalated, not normalized by invention.
 - Donor proper nouns and branded conflict systems remain source-local unless later canon promotion accepts them.
-- Source-local conflict, hazard, damage, injury, death, recovery, initiative, ship combat, fleet combat, and condition/status terms do not become accepted lexicon terms through A13.
+- source-local conflict, hazard, damage, resistance, consequence, injury, recovery, and scale terms do not become accepted lexicon terms through A13.
 
 ## 8. Donor pressure absorbed
 
 A13 is explicitly designed to absorb pressure from:
-- D&D AC/HP/damage and condition pressure;
+- D&D armor/health/damage-type and condition pressure;
 - Lancer structure/stress pressure;
-- Traveller ship-combat pressure;
+- Traveller ship-conflict pressure;
 - Shadowrun drain/initiative pressure;
-- mass-combat and fleet-war pressure;
+- mass-conflict and fleet-war pressure;
 - environmental hazard pressure;
-- injury/death/recovery subsystem pressure.
+- injury/death/recovery/consequence subsystem pressure.
 
 Absorption means classification and routing posture, not automatic canon adoption.
 
 ## 9. Hard refusals / rejected imports
 
 A13 refuses the following imports as Astra defaults:
-- D&D AC/HP as Astra default conflict law;
-- ship combat as a separate game detached from shared doctrine;
+- donor armor/health/damage-type as Astra default conflict law;
+- ship conflict as a separate game detached from shared doctrine;
 - personal-scale conflict rules as universal default for fleet or planar conflict;
 - imported hazard procedures as Astra default law;
 - inferred conflict procedures invented only to resolve ambiguity.
@@ -215,7 +250,7 @@ Required pressure examples for review:
 2. damage family interaction pressure conflicting with A02/A10 posture;
 3. injury/death/recovery posture pressure that attempts to inject forbidden procedures;
 4. hazard-modeling pressure spanning environmental and platform contexts;
-5. donor AC/HP, stress/structure, initiative, and ship/fleet pressure requiring routing without Astra-default adoption.
+5. donor armor/health/damage-type, stress/structure, drain/initiative, and ship/fleet pressure requiring routing without Astra-default adoption.
 
 ## 14. Versioning and review protocol
 

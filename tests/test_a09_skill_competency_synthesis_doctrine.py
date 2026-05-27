@@ -116,7 +116,17 @@ def test_registry_a09_posture_and_downstream_not_promoted():
     assert a11["authority_level"] == "doctrine-draft"
     assert a11["test_status"] == "designed"
 
-    for idx in range(13, 16):
+
+    a12 = records["A12"]
+    assert a12["status"] == "draft"
+    assert a12["authority_level"] == "doctrine-draft"
+    assert a12["test_status"] == "designed"
+
+    a13 = records["A13"]
+    assert a13["status"] == "draft"
+    assert a13["authority_level"] == "doctrine-draft"
+    assert a13["test_status"] == "designed"
+    for idx in range(14, 16):
         rec = records[f"A{idx:02d}"]
         assert rec["status"] == "todo"
         assert rec["authority_level"] == "doctrine-todo"
