@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.6
+  action: a05_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A05 draft doctrine file at docs/doctrine/setting/A05_civilization_scale_and_power_scale_doctrine.md; kept A05 draft/not-current, authority doctrine-draft, test_status designed, review_status not_reviewed, and set blocked_by to [] for drafted dependency posture.
+- date: '2026-05-27'
   version: 0.1.5
   action: a04_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -637,8 +642,8 @@ file_records:
   proposed_path: docs/doctrine/setting/A05_civilization_scale_and_power_scale_doctrine.md
   layer: 1_setting_spine
   phase: 1A
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Scale Working Group
   purpose: Define personal, group, factional, planetary, orbital, stellar, void, planar, and cosmic scale plus scale transitions and power boundaries.
   owns:
@@ -660,10 +665,7 @@ file_records:
   - A02
   - A03
   - A04
-  blocked_by:
-  - A02
-  - A03
-  - A04
+  blocked_by: []
   unlocks:
   - A06
   - A07
@@ -707,7 +709,7 @@ file_records:
   - power-scale boundary test
   - multi-scale combat test
   - macro-actor permission test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - all required doctrine sections present
