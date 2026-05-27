@@ -13,7 +13,9 @@ def _read(path: Path) -> str:
 
 def _registry_records():
     data = yaml.safe_load(_read(REGISTRY_PATH))
-    return {r["file_id"]: r for r in data["registry_records"]}
+    records = data.get("file_records", data.get("files"))
+    assert isinstance(records, list)
+    return {r["file_id"]: r for r in records}
 
 
 def test_a01_file_exists():
