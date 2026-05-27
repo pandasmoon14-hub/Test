@@ -4,7 +4,6 @@ import yaml
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 A03_PATH = REPO_ROOT / "docs" / "doctrine" / "setting" / "A03_soul_body_mind_spirit_ontology.md"
-A02_PATH = REPO_ROOT / "docs" / "doctrine" / "setting" / "A02_source_fields_magic_technology_relation.md"
 REGISTRY_PATH = REPO_ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
 
 
@@ -45,21 +44,52 @@ def test_a03_has_required_14_sections():
         assert h in text
 
 
-def test_a03_required_ontology_terms_present():
+def test_a03_required_ontology_classification_terms_present():
     text = _read(A03_PATH).lower()
     for phrase in [
         "body component",
-        "soul component",
         "mind component",
+        "soul component",
         "spirit component",
-        "identity continuity profile",
-        "ai personhood candidate",
-        "upload/copy instance",
-        "possession/bonding construct",
-        "death/persistence boundary event class",
-        "source-local ontology construct",
-        "quarantined ontology construct",
-        "escalated ontology problem",
+        "identity anchor",
+        "continuity claim",
+        "discontinuity event",
+        "embodied personhood",
+        "disembodied personhood",
+        "artificial/constructed personhood",
+        "uploaded identity",
+        "copied/forked identity",
+        "hosted identity",
+        "possessed identity",
+        "bonded identity",
+        "symbiotic identity",
+        "reincarnated/returned identity claim",
+        "restored/reconstructed identity claim",
+        "undead/persistent remnant identity claim",
+        "source-local identity construct",
+        "quarantined identity construct",
+        "escalated identity problem",
+    ]:
+        assert phrase in text
+
+
+def test_a03_continuity_outcome_grammar_terms_present():
+    text = _read(A03_PATH).lower()
+    for phrase in [
+        "continuous identity",
+        "interrupted but continuous identity",
+        "reconstructed identity",
+        "copied identity",
+        "forked identity",
+        "merged identity",
+        "hosted identity",
+        "possessed identity",
+        "bonded/symbiotic identity",
+        "remnant identity",
+        "apparent continuity only",
+        "source-local only",
+        "quarantined pending later doctrine",
+        "escalated contradiction",
     ]:
         assert phrase in text
 
@@ -70,31 +100,46 @@ def test_a03_must_not_own_boundaries_present():
         "specific actor stats",
         "specific implants",
         "specific resurrection mechanics",
-        "resource pools",
-        "action economy",
-        "damage",
-        "conditions",
         "cultivation stages",
-        "progression",
+        "resource pools",
         "runtime actor state",
-        "event commits",
         "accepted lexicon terms",
-        "canon lore declarations",
+        "donor soul, afterlife, or essence mechanics as astra default law",
     ]:
         assert phrase in text
 
 
-def test_a03_k01_separation_and_no_renaming_constraints_present():
+def test_a03_source_local_quarantine_escalation_language_present():
+    text = _read(A03_PATH).lower()
+    for phrase in [
+        "source-local",
+        "preserve donor provenance",
+        "do not become astra ontology canon",
+        "repeated donor pressure can produce canon candidates only through later k-layer/canon review",
+        "quarantined",
+        "escalated",
+        "not normalized by invention",
+        "donor proper nouns remain source-local",
+        "do not become accepted lexicon terms through a03",
+    ]:
+        assert phrase in text
+
+
+def test_a03_references_a01_and_a02_but_does_not_redefine_their_ownership():
     text = _read(A03_PATH)
     lowered = text.lower()
 
-    assert "A03_soul_body_mind_spirit_ontology.md" in text
-    assert "K01 remains separate" in text
+    assert "A01_cosmology_and_dimensional_architecture.md" in text
+    assert "A02_source_fields_magic_technology_relation.md" in text
 
     for phrase in [
-        "rename a03",
-        "move k01 into a03",
-        "a03 is current",
+        "a03 defines worlds",
+        "a03 defines planes",
+        "a03 defines voids",
+        "a03 defines dimensional topology",
+        "a03 defines source fields",
+        "a03 defines magic/technology relation",
+        "a03 defines runtime state",
     ]:
         assert phrase not in lowered
 
@@ -102,14 +147,24 @@ def test_a03_k01_separation_and_no_renaming_constraints_present():
 def test_registry_a03_status_and_dependency_posture_after_a02():
     records = _registry_records()
     a03 = records["A03"]
+    a01 = records["A01"]
     a02 = records["A02"]
+    k01 = records["K01"]
 
     assert a03["status"] == "draft"
     assert a03["status"] != "current"
+    assert a03["test_status"] == "designed"
     assert a03["review_status"] == "not_reviewed"
     assert a03["proposed_path"] == "docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md"
     assert "A01" in a03["dependencies"]
     assert "A02" in a03["dependencies"]
     assert a03["blocked_by"] == []
 
-    assert a02["status"] in {"draft", "review", "pressure-tested"}
+    assert a01["status"] in {"draft", "review", "pressure-tested", "todo", "blocked", "deprecated"}
+    assert a01["status"] != "current"
+
+    assert a02["status"] in {"draft", "review", "pressure-tested", "todo", "blocked", "deprecated"}
+    assert a02["status"] != "current"
+
+    assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
+    assert a03["filename"] != k01["filename"]

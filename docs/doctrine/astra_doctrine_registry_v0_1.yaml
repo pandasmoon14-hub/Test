@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.4
+  action: a03_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A03 draft doctrine file at docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md; kept A03 draft/not-current, set test_status designed, and kept review_status not_reviewed.
+- date: '2026-05-27'
   version: 0.1.3
   action: a02_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -526,7 +531,7 @@ file_records:
   - AI personhood test
   - augmentation integration test
   - death/persistence test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - all required doctrine sections present
