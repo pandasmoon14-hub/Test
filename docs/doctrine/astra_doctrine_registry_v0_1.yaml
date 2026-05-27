@@ -806,8 +806,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Advancement Working Group
   purpose: 'Define multiple advancement axes and their interactions: body, soul, mind, path, technique, social rank, asset, companion, and faction.'
   owns:
@@ -826,7 +826,7 @@ file_records:
   dependencies: &id003
   - A05
   - A06
-  blocked_by: *id003
+  blocked_by: []
   unlocks: &id004
   - A08
   - A09
@@ -857,7 +857,7 @@ file_records:
   - cross-axis synergy test
   - social advancement integration test
   - axis-specific breakthrough test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
