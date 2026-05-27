@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.5
+  action: a04_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created A04 draft doctrine file at docs/doctrine/setting/A04_dao_domain_element_architecture.md; kept A04 draft/not-current, authority doctrine-draft, test_status designed, review_status not_reviewed, and aligned blocked_by to [] per drafted dependency convention.
+- date: '2026-05-27'
   version: 0.1.4
   action: a03_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -550,8 +555,8 @@ file_records:
   proposed_path: docs/doctrine/setting/A04_dao_domain_element_architecture.md
   layer: 1_setting_spine
   phase: 1A
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Metaphysics Working Group
   purpose: Define Dao, domain, element, and conceptual law architecture as Astra-native metaphysical interaction rules.
   owns:
@@ -575,9 +580,7 @@ file_records:
   - A01
   - A02
   - A03
-  blocked_by:
-  - A02
-  - A03
+  blocked_by: []
   unlocks:
   - A05
   - A06
@@ -615,7 +618,7 @@ file_records:
   - element interaction test
   - conceptual law test
   - donor Dao import refusal test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - all required doctrine sections present
