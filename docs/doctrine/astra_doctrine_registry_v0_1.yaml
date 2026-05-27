@@ -1029,8 +1029,8 @@ file_records:
   proposed_path: docs/doctrine/advancement/A10_resource_cost_backlash_and_corruption_doctrine.md
   layer: 2_advancement_action_spine
   phase: 1B
-  status: todo
-  authority_level: doctrine-todo
+  status: draft
+  authority_level: doctrine-draft
   owner: Astra Doctrine Council - Resource Working Group
   purpose: Define resources, costs, reserves, cooldowns, recharge, backlash, corruption, overload, heat, strain, fatigue, debt, sacrifice, spiritual damage, dimensional contamination, and favor/disfavor.
   owns:
@@ -1054,7 +1054,7 @@ file_records:
   - A06
   - A08
   - A09
-  blocked_by: *id009
+  blocked_by: []
   unlocks: &id010
   - A11
   - A12
@@ -1086,7 +1086,7 @@ file_records:
   - backlash/corruption severity test
   - hybrid resource cost validation
   - sacrifice/debt/favor tracking test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - A01-A05 at least review/pressure-tested as applicable
