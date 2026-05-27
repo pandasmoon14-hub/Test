@@ -291,7 +291,7 @@ file_records:
   proposed_path: docs/doctrine/setting/A01_cosmology_and_dimensional_architecture.md
   layer: 1_setting_spine
   phase: 1A
-  status: todo
+  status: draft
   authority_level: doctrine-todo
   owner: Astra Doctrine Council - Cosmology Working Group
   purpose: 'Define the container of Astra reality: worlds, planes, dimensions, voids, interplanar adjacency, dimensional ecology, cosmic topology, and source-local cosmology handling.'
