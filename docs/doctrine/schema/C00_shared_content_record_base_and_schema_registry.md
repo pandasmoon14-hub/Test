@@ -2,7 +2,7 @@
 
 ## 1. Purpose and status
 
-C00 defines schema-layer doctrine for the shared conversion record base and schema-registry behavior used by downstream C01-C14 families.
+C00 defines schema-layer doctrine for shared conversion record grammar and schema-registry behavior used by downstream C01-C14 families.
 
 Status posture:
 - This file is schema-todo fulfillment drafted as schema-draft material.
@@ -19,21 +19,15 @@ Registry identity and governance anchors (source of truth):
 
 ## 2. What this file owns
 
-C00 owns schema-layer grammar for:
-- provenance;
+C00 owns schema-layer doctrine for:
+- shared conversion record grammar;
+- provenance grammar;
 - source-local records;
 - rejected imports;
-- canon eligibility;
-- confidence;
-- review routing;
-- versioning;
-- cross-reference fields;
-- schema registry behavior.
-
-C00 additionally owns:
-- required base-field constraints for shared conversion records;
-- schema-family inheritance posture that C01-C14 must follow;
-- registry alignment rules that prevent untracked schema sprawl.
+- canon eligibility routing;
+- confidence and review routing;
+- versioning and cross-reference fields;
+- schema-registry behavior and inheritance rules for C01-C14.
 
 ## 3. What this file must not own
 
@@ -43,11 +37,11 @@ C00 must not define:
 - canon promotion procedure;
 - runtime state schema;
 - runtime state fields;
-- runtime event schemas;
-- command lifecycle behavior;
+- runtime event schema;
+- command lifecycle;
 - event-sourced state model;
-- state delta validation behavior;
-- context packet compiler behavior;
+- state delta validator;
+- context packet compiler;
 - hidden-information runtime state;
 - live-play behavior;
 - donor field names as Astra defaults;
@@ -55,115 +49,158 @@ C00 must not define:
 - accepted lexicon terms;
 - final sourcebook prose.
 
-C00 does not draft C01-C14, K-layer, B-layer, R-layer, or T-layer files.
+C00 does not draft C01-C14, K-layer, B-layer, R-layer, or T-layer files and does not redefine A-layer ownership.
 
-## 4. Required base record grammar
+## 4. Required definitions
 
-### 4.1 Provenance grammar
+Shared field grammar (required exact field set):
+- `record_id`
+- `schema_id`
+- `schema_version`
+- `doctrine_version`
+- `authority_layer`
+- `lifecycle_status`
+- `review_status`
+- `source_scope`
+- `source_family`
+- `provenance_block`
+- `evidence_refs`
+- `extraction_refs`
+- `donor_refs`
+- `source_local_status`
+- `rejected_import_status`
+- `lawful_outcome`
+- `canon_eligibility`
+- `promotion_gate`
+- `confidence_score`
+- `review_queue`
+- `reviewer_notes`
+- `conflict_refs`
+- `dependency_refs`
+- `cross_refs`
+- `supersedes_refs`
+- `retrieval_metadata`
+- `doctrine_tags`
+- `retrieval_tags`
+- `donor_tags`
+- `access_tags`
 
-Every shared record must carry explicit provenance fields that preserve:
-- donor/source identifier;
-- source location granularity (document/section/page or equivalent source-local locator);
-- extraction/ingest timestamp and pipeline origin;
-- transformation lineage chain from donor material to current record state.
+Tag separation requirement:
+- `doctrine_tags` classify doctrine-domain meaning and governance context;
+- `retrieval_tags` classify indexing and retrieval optimization metadata;
+- `donor_tags` preserve donor-native descriptors without Astra-default promotion;
+- `access_tags` classify access control and visibility posture.
 
-### 4.2 Source-local record grammar
+Required lifecycle/status grammar (exact values):
+- `draft`
+- `designed`
+- `not_reviewed`
+- `reviewed`
+- `source-local`
+- `rejected-import`
+- `canon-candidate`
+- `quarantined`
+- `escalated`
+- `deprecated`
+- `superseded`
+- `current`
 
-Source-local records must:
-- preserve donor-authored semantics without Astra-canon reinterpretation;
-- be explicitly typed as source-local to prevent accidental canon uptake;
-- retain reversible linkage to original provenance.
+Status-label rule:
+- status labels do not themselves promote anything to canon.
 
-### 4.3 Rejected-import grammar
+Required record-family separation:
+- shared content record
+- source-local record
+- rejected-import record
+- canon-candidate record
+- review-queue record
+- conflict-record
+- schema-registry record
+- retrieval-index record
+- runtime-event record placeholder
 
-Rejected-import records must:
-- capture rejected candidate identity;
-- state explicit rejection reason code(s);
-- preserve evidence pointer(s) back to source-local/provenance records;
-- record reviewer and decision timestamp for auditability.
+## 5. Core schema rules
 
-### 4.4 Canon-eligibility grammar
+1. Classification-first rule: every conversion record must be typed into one required record family before downstream interpretation.
+2. Provenance-preservation rule: provenance and evidence linkage fields are mandatory and must remain auditable.
+3. Separation-of-authority rule: schema-layer fields govern conversion representation only, not canon authority or runtime authority.
+4. Registry-alignment rule: schema ownership/path identity must match the doctrine registry before promotion gates are considered.
+5. Non-collapse rule: C00 explicitly forbids runtime phase collapse from conversion/schema records into runtime behavior authority.
+6. Placeholder boundary rule: a runtime-event record placeholder may exist only as a boundary marker and may not define runtime event schemas, command lifecycle, event sourcing, context packet assembly, hidden-information state, live-play state, or state mutation behavior.
 
-Canon-eligibility fields must:
-- encode eligibility posture only (e.g., ineligible/candidate/review-required);
-- never imply canon acceptance;
-- require downstream K-layer adjudication before any canon state change.
+## 6. Conversion mapping rules
 
-### 4.5 Confidence grammar
+- Map donor evidence into the C00 shared field grammar before any family-specific shaping.
+- Preserve ambiguous or conflicting donor evidence through `source_local_status`, `rejected_import_status`, `conflict_refs`, `review_queue`, and escalation paths instead of forced normalization.
+- Keep `canon_eligibility` and `promotion_gate` as routing signals only; they do not grant canon acceptance.
+- Never normalize by inventing mechanics, runtime state behavior, lexicon acceptance, or sourcebook prose.
 
-Confidence fields must:
-- separate extraction confidence from doctrine-fit confidence;
-- carry calibrated score/band plus rationale note;
-- preserve uncertainty rather than collapse ambiguous records into invented certainty.
+## 7. Source-local handling
 
-### 4.6 Review-routing grammar
+- Source-local records preserve donor provenance but do not become Astra canon.
+- Rejected-import records preserve refusal rationale and provenance.
+- Unclassifiable records are quarantined or escalated, not normalized by invention.
+- Donor proper nouns remain source-local unless later canon promotion accepts them.
+- Source-local record terms do not become accepted lexicon terms through C00.
+- Canon candidates remain candidates until later K-layer review.
 
-Review-routing fields must:
-- route records to doctrine, schema, lexicon, or runtime review queues as applicable;
-- encode escalation targets for contradiction or boundary violations;
-- preserve review status without mutating source evidence.
+## 8. Donor pressure absorbed
 
-### 4.7 Versioning grammar
+C00 is designed to absorb donor pressure from:
+- donor statblock/table/item/ability/location/faction formats;
+- proper-noun leakage;
+- incomplete provenance;
+- conflicting donor naming and structure conventions;
+- mixed-confidence extraction artifacts.
 
-Versioning fields must:
-- support immutable record identity with monotonic revision lineage;
-- track supersedes/superseded-by relationships;
-- preserve compatibility metadata for downstream schema consumers.
+Absorption means auditable classification/routing, not donor-default adoption.
 
-### 4.8 Cross-reference grammar
+## 9. Hard refusals / rejected imports
 
-Cross-reference fields must:
-- link related records across schema families via stable IDs;
-- distinguish asserted relation type from inferred relation type;
-- preserve directional semantics for dependency and trace queries.
+C00 refuses as Astra defaults:
+- donor field names as Astra defaults;
+- donor record shapes as Astra schema defaults;
+- runtime state imports disguised as schema fields;
+- canon promotion by schema-only status changes;
+- silent drops of rejected or unclassifiable evidence.
 
-### 4.9 Schema-registry behavior grammar
+## 10. Escalation triggers
 
-Schema-registry behavior must:
-- require each schema-family record to inherit the C00 base-field contract;
-- require registry-tracked identity/path ownership before schema promotion;
-- refuse unregistered schema files as Astra-authoritative;
-- preserve hard-lock sequencing from registry dependencies/unlocks;
-- maintain audit-visible change logs for base grammar updates.
+Escalate when:
+- record structure requires unsupported fields outside C00 base grammar;
+- schema interpretation conflicts with A-layer doctrine boundaries;
+- provenance cannot be preserved across a required mapping;
+- record classification cannot be completed without inventing runtime or mechanics behavior;
+- cross-reference/dependency relations become contradictory or non-auditable.
 
-## 5. Runtime phase boundary: explicit non-collapse rule
-
-C00 explicitly forbids runtime phase collapse.
-
-Runtime phase collapse means collapsing conversion/schema records directly into runtime behavior authority without required downstream governance gates.
-
-Therefore C00 mandates:
-- schema-layer records remain conversion-governance artifacts, not runtime-state authority;
-- runtime behavior may consume C-layer outputs only through downstream approved layers;
-- no C00 field may be interpreted as direct authorization for runtime execution semantics.
-
-## 6. Conversion mapping and contradiction posture
-
-- Map donor evidence into C00 base grammar before family-specific shaping.
-- Preserve source-local evidence when normalization would invent mechanics, runtime state, or lexicon acceptance.
-- Route contradictions through review-routing and escalation fields; do not erase tension by forced normalization.
-- Rejected imports remain first-class auditable records, never silent drops.
-
-## 7. Dependencies and unlock posture
+## 11. Dependencies
 
 C00 dependency posture (registry source of truth):
-- Depends on A01-A15;
-- Is blocked by A01-A15;
-- Unlocks C01-C14 and K03.
+- depends on A01-A15;
+- is blocked by A01-A15 during pre-draft staging, then cleared for this draft record state;
+- unlocks C01-C14 and K03 per registry sequencing.
 
-C00 does not bypass registry hard locks and does not authorize promotion outside registry sequencing.
+C00 does not redefine A-layer ownership and does not bypass hard locks.
 
-## 8. Handoff contract to C01-C14
+## 12. Handoff to downstream layers
 
-C01-C14 must:
-- include all required C00 base fields;
-- extend only within family scope while preserving C00 boundary rules;
-- preserve source-local and rejected-import audit traces;
-- avoid donor-shape default adoption;
-- avoid runtime-authority claims.
+C00 hands off base grammar constraints to:
+- C01-C14 schema-family files;
+- K03 canon-review integration points;
+- conversion-intake and validation consumers listed in registry.
 
-## 9. Promotion and lifecycle posture
+Downstream consumers must include all C00 base fields and preserve source-local/rejected-import audit traces.
 
-- This file remains draft/not-current until registry promotion gates are satisfied.
-- C00 defines schema governance posture, not final doctrine canon, runtime canon, or play canon.
-- Substantive changes require registry-aware versioning and re-review.
+## 13. Test cases / pressure examples
+
+- Provenance retention example: a donor record with partial extraction still retains `provenance_block`, `evidence_refs`, and `extraction_refs`.
+- Rejected-import example: donor-shaped runtime-state payload is captured as rejected-import with refusal rationale and provenance.
+- Quarantine/escalation example: contradictory donor claims that cannot be classified without invention are quarantined or escalated.
+- Canon-candidate boundary example: a high-confidence record labeled `canon-candidate` remains non-canon pending K-layer review.
+
+## 14. Versioning and review protocol
+
+- C00 remains draft/not-current until registry promotion requirements are satisfied.
+- Substantive C00 edits require versioned registry changelog updates and re-review.
+- `review_status` tracks review workflow posture and does not itself promote canon.
+- C00 governance remains schema-layer only and does not authorize runtime behavior.
