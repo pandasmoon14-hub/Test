@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-05-27'
+  version: 0.1.17
+  action: c00_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created C00 draft doctrine file at docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md; set C00 status draft, authority schema-draft, test_status designed, review_status not_reviewed, and blocked_by [] while preserving identity, path, owner, dependencies, and unlocks.
+- date: '2026-05-27'
   version: 0.1.16
   action: a15_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -1497,8 +1502,8 @@ file_records:
   proposed_path: docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md
   layer: 4_schema_base
   phase: '2'
-  status: todo
-  authority_level: schema-todo
+  status: draft
+  authority_level: schema-draft
   owner: Astra Doctrine Council - Schema Working Group
   purpose: Define conversion-stage record grammar for shared provenance, source-local, rejected-import, canon eligibility, confidence, review routing, versioning, cross-reference fields.
   owns:
@@ -1532,22 +1537,7 @@ file_records:
   - A13
   - A14
   - A15
-  blocked_by:
-  - A01
-  - A02
-  - A03
-  - A04
-  - A05
-  - A06
-  - A07
-  - A08
-  - A09
-  - A10
-  - A11
-  - A12
-  - A13
-  - A14
-  - A15
+  blocked_by: []
   unlocks:
   - C01
   - C02
@@ -1589,7 +1579,7 @@ file_records:
   - source-local/rejected-import routing
   - canon eligibility integration
   - cross-reference validation
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
