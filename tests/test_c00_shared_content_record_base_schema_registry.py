@@ -5,50 +5,84 @@ REQUIRED_SECTIONS = [
     "## 1. Purpose and status",
     "## 2. What this file owns",
     "## 3. What this file must not own",
-    "## 4. Required definitions",
-    "## 5. Core schema rules",
-    "## 6. Conversion mapping rules",
-    "## 7. Source-local handling",
-    "## 8. Donor pressure absorbed",
-    "## 9. Hard refusals / rejected imports",
-    "## 10. Escalation triggers",
-    "## 11. Dependencies",
-    "## 12. Handoff to downstream layers",
-    "## 13. Test cases / pressure examples",
-    "## 14. Versioning and review protocol",
+    "## 4. AstraContentRecordBase",
+    "## 5. Record-status rules",
+    "## 6. Schema-family registry governance",
+    "## 7. Provenance chain and evidence lock posture",
+    "## 8. Inheritance and composition rules",
+    "## 9. Source-local boundary object rules",
+    "## 10. Rejected donor element rules",
+    "## 11. Canon eligibility rules",
+    "## 12. Legal/IP and source reliability routing",
+    "## 13. Missing-schema fallback policy",
+    "## 14. Batch B handoff boundary",
+    "## 15. Runtime boundary",
+    "## 16. Training and evaluation boundary",
+    "## 17. Coverage-gap reporting",
 ]
 
-REQUIRED_FIELDS = [
-    "record_id", "schema_id", "schema_version", "doctrine_version", "authority_layer",
-    "lifecycle_status", "review_status", "source_scope", "source_family", "provenance_block",
-    "evidence_refs", "extraction_refs", "donor_refs", "source_local_status", "rejected_import_status",
-    "lawful_outcome", "canon_eligibility", "promotion_gate", "confidence_score", "review_queue",
-    "reviewer_notes", "conflict_refs", "dependency_refs", "cross_refs", "supersedes_refs",
-    "retrieval_metadata", "doctrine_tags", "retrieval_tags", "donor_tags", "access_tags",
+REQUIRED_BASE_MARKERS = [
+    "AstraContentRecordBase",
+    "schema_family",
+    "pending_schema",
+    "record_status",
+    "conversion_stage",
+    "source_local",
+    "canon_candidate",
+    "accepted_canon",
+    "accepted_with_limits",
+    "quarantined",
+    "rejected_import",
+    "deprecated",
+    "superseded",
+    "source_evidence_refs",
+    "construct_refs",
+    "outcome_refs",
+    "provenance_refs",
+    "source_local_boundary",
+    "rejected_donor_elements",
+    "canon_eligibility",
+    "ip_legal_flags",
+    "source_reliability",
+    "record_lineage",
+    "composition_metadata",
+    "validation_status",
+    "validation_errors",
 ]
 
-REQUIRED_STATUSES = [
-    "draft", "designed", "not_reviewed", "reviewed", "source-local", "rejected-import",
-    "canon-candidate", "quarantined", "escalated", "deprecated", "superseded", "current",
+C_FAMILY_VALUES = [f"C{number:02d}" for number in range(15)]
+
+INHERITANCE_AND_COMPOSITION_MARKERS = [
+    "inheritance_allowed: false",
+    "A child record does not inherit canon status",
+    "A child record does not inherit source-local boundary",
+    "A child record does not inherit mechanical authority",
+    "A child record does not inherit runtime ownership",
+    "Schema Frankensteins are prohibited",
 ]
 
-REQUIRED_FAMILIES = [
-    "shared content record", "source-local record", "rejected-import record", "canon-candidate record",
-    "review-queue record", "conflict-record", "schema-registry record", "retrieval-index record",
-    "runtime-event record placeholder",
+GOVERNANCE_MARKERS = [
+    "CFamilyRegistryEntry",
+    "Registry drift is a validation failure",
+    "SchemaCoverageGap",
+    "missing-schema fallback",
+    "donor math",
+    "preserved as evidence",
+    "Batch B",
+    "Runtime",
+    "Training",
+    "evaluation",
 ]
 
-MUST_NOT_OWN_BOUNDARIES = [
+BOUNDARY_MARKERS = [
+    "C00 does not define C01-C14",
+    "runtime state/schema/event/command lifecycle",
     "runtime state schema",
     "runtime event schema",
     "command lifecycle",
-    "event-sourced state model",
-    "state delta validator",
-    "context packet compiler",
-    "hidden-information runtime state",
-    "canon promotion",
-    "donor field names as Astra defaults",
-    "donor record shapes",
+    "status labels do not promote canon",
+    "source-local records do not become canon",
+    "unclassifiable records are quarantined or escalated, not normalized by invention",
 ]
 
 
@@ -65,53 +99,88 @@ def test_c00_file_exists_at_registry_proposed_path() -> None:
     assert content.strip()
 
 
-def test_c00_required_sections_fields_statuses_and_families() -> None:
+def test_c00_hardened_sections_are_present() -> None:
     content = _c00_text()
     for section in REQUIRED_SECTIONS:
         assert section in content
-    for field in REQUIRED_FIELDS:
-        assert f"`{field}`" in content
-    for status in REQUIRED_STATUSES:
-        assert f"`{status}`" in content
-    for family in REQUIRED_FAMILIES:
-        assert family in content
 
 
-def test_c00_boundaries_and_language_requirements() -> None:
+def test_c00_astra_content_record_base_markers_are_present() -> None:
     content = _c00_text()
-    for boundary in MUST_NOT_OWN_BOUNDARIES:
-        assert boundary in content
+    for marker in REQUIRED_BASE_MARKERS:
+        assert marker in content
+    for family_value in C_FAMILY_VALUES:
+        assert family_value in content
 
-    required_phrases = [
-        "Source-local records preserve donor provenance but do not become Astra canon",
-        "Rejected-import records preserve refusal rationale and provenance",
-        "Unclassifiable records are quarantined or escalated, not normalized by invention",
-        "Donor proper nouns remain source-local unless later canon promotion accepts them",
-        "Source-local record terms do not become accepted lexicon terms through C00",
-        "Canon candidates remain candidates until later K-layer review",
+
+def test_c00_schema_registry_provenance_and_gap_governance_markers() -> None:
+    content = _c00_text()
+    for marker in GOVERNANCE_MARKERS:
+        assert marker in content
+
+    provenance_chain = (
+        "source file -> extraction run -> packet id -> page/range -> "
+        "SourceEvidenceIR -> ConstructIR -> OutcomeIR -> Batch C record -> canon/review status"
+    )
+    assert provenance_chain in content
+
+    hash_markers = [
+        "source_evidence_hash",
+        "hash_algorithm",
+        "extraction_run_id",
+        "packet_hash",
+        "sidecar_hashes",
+        "hash_lock_status",
+        "unavailable_early_pilot",
     ]
-    for phrase in required_phrases:
-        assert phrase in content
+    for marker in hash_markers:
+        assert marker in content
 
 
-def test_c00_dependencies_and_a_layer_boundary() -> None:
+def test_c00_inheritance_composition_source_local_and_rejection_controls() -> None:
     content = _c00_text()
-    assert "depends on A01-A15" in content
-    assert "does not redefine A-layer ownership" in content
+    for marker in INHERITANCE_AND_COMPOSITION_MARKERS:
+        assert marker in content
 
-    handoff_markers = [
-        "K01",
-        "accepted lexicon",
-        "reserved-term",
-        "R-layer",
-        "runtime event schemas",
-        "runtime state",
-        "command lifecycle",
+    source_local_markers = [
+        "boundary_id",
+        "local_context_type",
+        "prohibited_promotions",
+        "canon_review_required_for_reuse",
+        "Proper nouns must be source-local, rejected, or routed to legal/IP review",
+    ]
+    for marker in source_local_markers:
+        assert marker in content
+
+    rejection_markers = [
+        "rejected_donor_element_record",
+        "rejection_id",
+        "Donor field names are not Astra schema labels",
+        "Donor stat values are not Astra combat math",
+        "Donor currency/prices are not Astra economy",
+    ]
+    for marker in rejection_markers:
+        assert marker in content
+
+
+def test_c00_required_non_collapse_boundaries_are_preserved() -> None:
+    content = _c00_text()
+    lowered = content.lower()
+    for marker in BOUNDARY_MARKERS:
+        assert marker.lower() in lowered
+
+    runtime_boundaries = [
+        "event-sourced state model",
+        "state delta validator",
         "context packet compiler",
-        "hidden information",
-        "live-play state",
+        "hidden-information runtime state",
+        "live-play behavior",
+        "canon promotion procedure",
+        "final mechanics",
+        "accepted lexicon terms",
+        "donor record formats as Astra defaults",
     ]
-    for marker in handoff_markers:
+    for marker in runtime_boundaries:
         assert marker in content
 
 
