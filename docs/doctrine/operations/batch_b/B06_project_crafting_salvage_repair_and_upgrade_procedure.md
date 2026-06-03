@@ -95,6 +95,7 @@ B06 must not define or promote:
 - final market/economy law;
 - final advancement/progression reward pacing;
 - runtime project state;
+- final runtime project state;
 - runtime inventory state;
 - runtime object state;
 - runtime economy ledger;
@@ -121,7 +122,7 @@ B06 keeps these categories separate:
 - a B05 value, reward, requisition, scarcity, upkeep, or value sink may feed a project, but B06 does not define final economy law, price, market, requisition, or value-conversion math;
 - a D05-style training or research activity may become a handoff, but B06 does not own training advancement, research truth, or donor downtime menus.
 
-Every meaningful project/crafting/salvage/repair/upgrade event must route at least one delta to a recognized owner or explicitly produce a no-delta, quarantine, escalation, transition, source-local, `pending_schema`, `human_review`, or `defer_until_schema_exists` result. Missing requirement coverage does not authorize invention, and hidden requirement pressure may be marked without revealing hidden truth.
+Every meaningful project/crafting/salvage/repair/upgrade state-delta routing event must route at least one delta to a recognized owner or explicitly produce a no-delta, quarantine, escalation, transition, source-local, `pending_schema`, `human_review`, or `defer_until_schema_exists` result. Missing requirement coverage does not authorize invention, and hidden requirement pressure may be marked without revealing hidden truth.
 
 ## 6. Project, interval, requirement, commitment, and output definitions
 
@@ -529,7 +530,7 @@ B06 handoff rules are:
 - B05 owns acquisition, reward, loot, salvage claim, requisition, exchange, market access, availability, scarcity, value conversion routing, upkeep, consumption, economic pressure, and value-sink routing.
 - B06 owns project/long-task intake, project family/scope/requirement/commitment/interval/output routing, crafting/salvage/repair/maintenance/modification/upgrade project routing, complication routing, pause/resume, abandonment, and project-output handoffs.
 - C00 owns the shared schema handoff control surface and missing-schema fallback language.
-- Future C01-C14 schema families may receive conversion handoffs but B06 must not invent their fields.
+- Future C01-C14 schema families may receive conversion handoffs but B06 must not invent their fields. B06 does not require, define, create, or promote C01-C14 and does not make C01-C14 current doctrine.
 - D05-style competency/research owners receive training, practice, teacher, experimentation, theorycraft, and research-truth pressure.
 - D07-style harm/recovery owners receive injury, condition, contamination, corruption, instability, and recovery pressure.
 - D10-style world/faction/law owners receive license, permit, property claim, legal status, social scrutiny, faction attention, restricted facility, institutional authority, and world-state pressure.
@@ -543,7 +544,7 @@ If the correct owner is unknown, B06 must mark `pending_schema`, `source_local_r
 
 Batch B procedure may identify that a C-family handoff is needed, but it must not invent C-family fields. B06 uses C00 as the schema handoff control surface when project/crafting/salvage/repair/maintenance/modification/upgrade handling produces conversion records, record-shape pressure, source-local evidence, rejected donor elements, canon eligibility questions, provenance needs, or missing-schema gaps.
 
-The following lightweight doctrine-facing block may be used for B06-to-C00/C-family handoff notes. It is not a runtime schema, not a backend contract, not C-family schema content, not a context packet format, not a database row, not player-facing rule text, not sourcebook prose, and not final mechanics. `project_routing_note` is doctrine-facing only: it is not runtime project state, not a backend event, not a command object, not a C-family record, not an inventory ledger entry, not an economy ledger entry, not final item stats, not canon, and not player-facing rule text.
+The following lightweight doctrine-facing block may be used for B06-to-C00/C-family handoff notes. It is not a runtime schema, not a backend contract, not C-family schema content, not a context packet format, not a database row, not player-facing rule text, not sourcebook prose, and not final mechanics. `project_work_routing_note` is doctrine-facing only: it is not a runtime schema, not runtime project state, not a backend event, not a command object, not a C-family record, not a project database row, not an inventory ledger entry, not an object statblock, not an item recipe, not a crafting table, not final mechanics, not canon, and not player-facing rule text.
 
 ```yaml
 batch_b_to_c_handoff:
@@ -560,7 +561,7 @@ batch_b_to_c_handoff:
   review_routing_required: true
   unresolved_schema_gap_action: quarantine | escalation | human_review | defer_until_schema_exists
 
-project_routing_note:
+project_work_routing_note:
   project_family: crafting | salvage | repair | maintenance | modification | upgrade | installation_preparation | resource_gathering | preparation | facility_work | contributor_supported_work | recovery_handoff | training_handoff | research_handoff | faction_support_handoff | social_handoff | source_local_project | mixed_project | unknown_project
   project_scope: minor | standard | major | extended | transformational | source_local_scope | unknown_scope
   requirement_state: met | missing | unknown | protected_hidden | blocked_by_owner_file | source_local | quarantined | deferred_until_schema_exists
@@ -636,7 +637,7 @@ A source-local retained effect may remain as `source_local_retained_effect` only
 
 ## 24. Runtime boundary
 
-B06 is not runtime authority. It must not create runtime project state, runtime inventory state, runtime object state, runtime economy ledger entries, runtime entity/component/event/state schemas, persistent campaign state, command lifecycle implementation, context packet compiler output, hidden-information runtime state, or live-play narration behavior.
+B06 is not runtime authority. B06 rejects runtime state/event/command lifecycle ownership. It must not create runtime project state, runtime inventory state, runtime object state, runtime economy ledger entries, runtime entity/component/event/state schemas, persistent campaign state, command lifecycle implementation, context packet compiler output, hidden-information runtime state, or live-play narration behavior.
 
 Runtime systems may later consume owner-validated outputs, but B06 procedure itself remains doctrine-facing. Live-play behavior must not consume B06 procedure as runtime authority without later runtime validation.
 
@@ -676,7 +677,7 @@ Minimum B06 tests or assertions should verify that:
 - B06 declares ownership and non-ownership;
 - B06 references B01, B02, B03, B04, and B05 as upstream Batch B context;
 - B06 includes C00 handoff language and `batch_b_to_c_handoff`;
-- B06 includes `project_routing_note` and marks it as doctrine-facing only;
+- B06 includes `project_work_routing_note` and marks it as doctrine-facing only;
 - B06 includes project families, scope bands, requirement states, commitment types, interval outcome states, complication families, and project output states;
 - B06 includes project/long-task intake procedure;
 - B06 includes intent, goal, family, and scope classification;
@@ -709,7 +710,7 @@ B06 is acceptable if it:
 
 ## 30. Follow-up handoff to B07
 
-B06 hands off to B07 only at the boundary of later Batch B operational doctrine. B06 does not create B07-B11, does not pre-author their scope, and does not define their final contents. Any future B07 work should receive unresolved operational pressure only as owner-routed notes, such as:
+B06 hands off to B07 only at the boundary of later Batch B operational doctrine. B06 does not require, define, create, or promote B07-B11, does not pre-author their scope, and does not make B07-B11 current doctrine. B06 does not create B07-B11. Any future B07 work should receive unresolved operational pressure only as owner-routed notes, such as:
 - project outputs requiring a later operational owner;
 - interruption or active-scene transitions that exceed B06;
 - schema gaps marked through C00;
