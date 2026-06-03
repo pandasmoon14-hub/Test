@@ -198,12 +198,17 @@ def test_c00_registry_state_and_scope_controls() -> None:
     k01 = records["K01"]
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
 
-    # Ensure this PR does not promote downstream layers.
+    # Ensure this PR does not promote downstream doctrine layers.
+    # Control records such as ROADMAP-001 and REGISTRY-001 are intentionally
+    # excluded from the K/R/T doctrine status guard.
     for file_id, record in records.items():
         if file_id.startswith("C") and file_id != "C00":
             assert record["status"] != "current"
             assert record["status"] != "draft"
-        if file_id.startswith("K") or file_id.startswith("R") or file_id.startswith("T"):
+        if (
+            (file_id.startswith("K") or file_id.startswith("R") or file_id.startswith("T"))
+            and file_id[1:3].isdigit()
+        ):
             assert record["status"] != "current"
 
     assert records["K01"]["status"] == "todo"
