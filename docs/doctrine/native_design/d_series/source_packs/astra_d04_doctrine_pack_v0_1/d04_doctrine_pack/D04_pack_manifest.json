@@ -1,0 +1,19 @@
+{
+  "pack": "Astra Ascension D04 Doctrine Pack",
+  "status": "doctrine-draft / accepted design decisions pending repo integration",
+  "files": [
+    "D04-README_manifest.md",
+    "D04-00_advancement_architecture_overview.md",
+    "D04-01_proof_events_and_proof_handling_ledger.md",
+    "D04-02_awakening_and_dynamic_triadic_choice.md",
+    "D04-03_levels_tiers_and_development_picks.md",
+    "D04-04_advancement_axis_registry.md",
+    "D04-05_breakthrough_procedure_and_payloads.md",
+    "D04-06_capstone_and_ascension_access.md",
+    "D04-07_runtime_schema_handoff_notes.md",
+    "D04-08_integration_checklists_and_ddr_register.md"
+  ],
+  "generated_files_count": 10,
+  "recommended_next_stage": "D05 Skills, Competencies, Professions, Knowledge, Training, Research, and Synthesis",
+  "notes": "Markdown doctrine pack generated from accepted D04 design decisions. Not canon sourcebook prose and not runtime implementation."
+}

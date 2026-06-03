@@ -1,0 +1,59 @@
+{
+  "pack_id": "D17",
+  "title": "Economy, Acquisition, Inventory, Reward, and Requisition",
+  "status": "generated_doctrine_pack_draft",
+  "architecture": "Value–Access–Burden Architecture",
+  "research_status": "non-final research incorporated as guardrails, not canon terminology",
+  "files": [
+    "D17-README_manifest.md",
+    "D17-00_economy_acquisition_inventory_reward_and_requisition_owner_boundaries.md",
+    "D17-01_value_forms_access_channels_scarcity_ownership_custody_and_burden_states.md",
+    "D17-02_acquisition_exchange_market_access_availability_and_value_conversion.md",
+    "D17-03_reward_loot_salvage_claim_and_value_entry_procedure.md",
+    "D17-04_inventory_storage_carrying_custody_quick_access_and_burden_procedure.md",
+    "D17-05_requisition_upkeep_consumption_value_sinks_and_economic_pressure.md",
+    "D17-06_source_local_economy_donor_value_mapping_quarantine_and_escalation.md",
+    "D17-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+    "D17-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+    "D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md"
+  ],
+  "core_decisions": [
+    "D17 uses Value–Access–Burden Architecture.",
+    "Economy scope is value movement, not only money.",
+    "D17 owns acquisition/reward value procedure while triggering and state ownership remain with owner files.",
+    "Inventory is burden/access/custody, not universal slot or weight law.",
+    "Requisition and sinks are first-class economy pressure.",
+    "Scarcity and legality are procedural states, not only price.",
+    "Donor economy systems map, remain source-local, quarantine, or escalate; no donor value procedure is adopted by label."
+  ],
+  "record_shapes_not_final_schema": [
+    "value_state_record",
+    "access_channel_record",
+    "acquisition_exchange_record",
+    "value_entry_record",
+    "ownership_custody_record",
+    "inventory_burden_record",
+    "loss_confiscation_recovery_record",
+    "sink_requisition_upkeep_record",
+    "debt_obligation_value_record",
+    "donor_value_mapping_record"
+  ],
+  "research_guardrail_flags": [
+    "inflation_risk",
+    "poverty_trap_risk",
+    "hoarding_risk",
+    "reward_collapse_risk",
+    "inventory_paralysis_risk",
+    "grind_wall_risk",
+    "uncontrolled_salvage_risk",
+    "post_scarcity_erasure_risk",
+    "donor_value_law_leakage_risk"
+  ],
+  "lawful_outcomes": [
+    "direct_astra_mapping",
+    "normalized_astra_mapping",
+    "source_local_retained_construct",
+    "quarantined_construct_pending_later_doctrine",
+    "escalated_doctrine_problem"
+  ]
+}

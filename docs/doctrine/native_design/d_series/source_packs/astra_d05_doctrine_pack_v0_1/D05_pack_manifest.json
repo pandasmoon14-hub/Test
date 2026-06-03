@@ -1,0 +1,52 @@
+{
+  "pack_id": "D05",
+  "title": "Competency, Profession, Knowledge, Training, Research, and Synthesis Doctrine",
+  "version": "v0.1",
+  "generated": "2026-05-31",
+  "status": "design_doctrine_generated",
+  "depends_on": [
+    "D02",
+    "D03",
+    "D04"
+  ],
+  "feeds": [
+    "D03_amendment",
+    "D04_amendment",
+    "D02_relevance_cross_check_optional",
+    "D06"
+  ],
+  "required_post_generation_actions": [
+    "D03 amendment pass",
+    "D04 amendment pass",
+    "Optional D02 relevance cross-check",
+    "Do not proceed to D06 until D03/D04 amendment passes are complete or explicitly deferred"
+  ],
+  "non_ownership": [
+    "final D02 roll math",
+    "final Expression mechanics",
+    "Power Economy math",
+    "Path/Class/Dao mechanics",
+    "breakthrough outcomes",
+    "item evolution",
+    "companion evolution",
+    "faction and territory mechanics",
+    "final runtime schema",
+    "canon sourcebook prose",
+    "live-play GM behavior"
+  ],
+  "files": [
+    "D05-README_manifest.md",
+    "D05-00_competency_architecture_overview.md",
+    "D05-01_competency_taxonomy_and_families.md",
+    "D05-02_boundary_rules_and_owner_handoffs.md",
+    "D05-03_relevance_handling_for_checks.md",
+    "D05-04_training_practice_teachers_and_downtime.md",
+    "D05-05_research_experimentation_and_theorycraft.md",
+    "D05-06_mastery_specialization_and_methods.md",
+    "D05-07_synthesis_and_multi_competency_interaction.md",
+    "D05-08_advancement_track_routing_and_nonclass_growth_catalog.md",
+    "D05-09_records_ui_and_runtime_handoff.md",
+    "D05-10_integration_checklists_and_ddr_register.md",
+    "D05_pack_manifest.json"
+  ]
+}

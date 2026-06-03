@@ -1,0 +1,116 @@
+{
+  "pack_id": "D16",
+  "title": "Opposition, Creature, Encounter, and Hazard Construction Doctrine",
+  "version": "v0.1",
+  "generated_at_utc": "2026-06-02T23:48:48Z",
+  "status": "doctrine-pack-generated",
+  "authority_posture": "doctrine-facing and conversion-facing; not final runtime schema, statblock schema, encounter math, or balance system",
+  "core_architecture": "Threat Role\u2013Pressure\u2013Profile Architecture",
+  "files": [
+    {
+      "path": "D16_doctrine_pack/D16-README_manifest.md",
+      "role": "readme"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-00_opposition_creature_encounter_and_hazard_construction_owner_boundaries.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-01_opposition_anatomy_threat_function_scale_role_objective_and_posture.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-02_threat_profile_construction_capability_pressure_scaling_and_readiness.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-03_encounter_composition_objectives_mixed_opposition_and_noncombat_threats.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-04_opposition_profiles_by_type_creatures_hazards_social_platforms_swarms_bosses_and_proxies.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-05_scaling_morale_behavior_recurrence_and_encounter_readiness.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "role": "doctrine"
+    },
+    {
+      "path": "D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "role": "combined_export"
+    }
+  ],
+  "lawful_outcomes": [
+    "direct_astra_mapping",
+    "normalized_astra_mapping",
+    "source_local_retained_construct",
+    "quarantined_construct_pending_later_doctrine",
+    "escalated_doctrine_problem"
+  ],
+  "not_final_schema_record_shapes": [
+    "opposition_profile_record",
+    "opposition_pressure_profile_record",
+    "capability_pressure_record",
+    "constraint_vulnerability_resistance_routing_record",
+    "threat_weight_review_record",
+    "encounter_composition_record",
+    "behavior_morale_posture_record",
+    "recurrence_continuity_record",
+    "donor_opposition_mapping_record"
+  ],
+  "embedded_risk_fixes": [
+    "donor stat fields are evidence only",
+    "Threat Weight is not hidden CR",
+    "combat is not default opposition form",
+    "D07 owns harm/resistance/vulnerability mechanics",
+    "D08 owns actor/personhood/substrate doctrine",
+    "D09 owns platform/object doctrine",
+    "boss/minion/swarm/legendary/lair labels are not default mechanics",
+    "morale is persistence pressure, not universal table",
+    "recurring opposition requires continuity support",
+    "D12 owns cadence/action economy",
+    "D15 owns institutional operation",
+    "D17 owns reward/economy/salvage",
+    "D18 owns campaign-scale recurrence/pacing",
+    "donor monster ecology requires source-local or canon review",
+    "random encounter tables are evidence or source-local tools",
+    "record shapes are not final schemas"
+  ],
+  "dependencies": [
+    "D02",
+    "D03",
+    "D05",
+    "D06",
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "D11",
+    "D12",
+    "D14",
+    "D15",
+    "D17",
+    "D18"
+  ],
+  "acceptance_criteria": [
+    "construct opposition by function, pressure, scale, role, objective, posture, and owner-file handoff",
+    "support combat, noncombat, mixed, social, legal, platform, hazard, and institutional opposition",
+    "compose encounters by objective and pressure rather than encounter budget",
+    "map donor opposition systems by function, not label",
+    "preserve source-local constructs safely",
+    "quarantine unsupported constructs",
+    "escalate repeated or high-impact missing doctrine"
+  ]
+}

@@ -1,0 +1,68 @@
+{
+  "pack_id": "D06",
+  "title": "Route, Path, Principle, Technique, and Donor Class Normalization Doctrine",
+  "version": "v0_1",
+  "status": "design_doctrine_generated",
+  "generated_date": "2026-06-01",
+  "depends_on": [
+    "D03",
+    "D04",
+    "D05",
+    "D03/D04/D02 reconciliation pass"
+  ],
+  "feeds": [
+    "D07",
+    "D08",
+    "D09",
+    "D10",
+    "runtime_schema",
+    "ui_design",
+    "conversion_pipeline",
+    "canon_consolidation"
+  ],
+  "files": [
+    "D06-README_manifest.md",
+    "D06-00_route_architecture_overview.md",
+    "D06-01_route_authorization_and_path_identity.md",
+    "D06-02_route_facets_domains_and_archetypes.md",
+    "D06-03_principle_concept_authority_doctrine.md",
+    "D06-04_route_feature_ledgers_and_personalized_development_menus.md",
+    "D06-05_technique_architecture_and_method_handoff.md",
+    "D06-06_route_development_branches_drift_and_mutation.md",
+    "D06-07_route_fusion_multipath_and_confluence.md",
+    "D06-08_profession_routes_lineages_schools_and_factions.md",
+    "D06-09_source_local_route_conversion_and_donor_class_normalization.md",
+    "D06-10_runtime_schema_and_ui_handoff.md",
+    "D06-11_integration_checklists_and_ddr_register.md",
+    "D06_pack_manifest.json"
+  ],
+  "non_ownership": [
+    "D03 Power Economy and Expression mechanics",
+    "D04 proof, level, tier, Awakening, Development Picks, breakthrough, capstone",
+    "D05 competency, profession, training, research, method, synthesis substrate",
+    "D07 harm, corruption, madness, mutation harm, overload, identity erosion, recovery",
+    "D08 companion, summon, spirit, AI, bond, nonhuman actor-state mechanics",
+    "D09 relic, tool, implant, item, vehicle, ship, mech, platform mechanics",
+    "D10 faction, rank, law, reputation, territory, settlement, economy, world-state",
+    "final runtime or database schema",
+    "live-play GM behavior"
+  ],
+  "required_post_generation_actions": [
+    "D03/D04/D05 patch-note check",
+    "Begin D07 after patch-note check unless contradictions require amendments"
+  ],
+  "source_local_posture": "Source-local boundaries are durable records; donor packages are evidence, not authority; promotion requires review, owner-file resolution, lexicon approval, and corpus-scale fit.",
+  "risk_controls": [
+    "Route is not class",
+    "Path is not donor import",
+    "Archetype is not subclass",
+    "Feature Ledger is not freeform class table",
+    "Technique is not every named action",
+    "Principle is not early reality overwrite",
+    "Profession is not automatic Path",
+    "Faction rank is not Faction Route",
+    "Multipath is not multiclass stacking",
+    "Donor package is evidence not authority",
+    "Record shapes are doctrine handoff structures not final schemas"
+  ]
+}

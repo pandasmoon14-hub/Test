@@ -1,0 +1,82 @@
+{
+  "pack": "D11 Narrator Interface, Scene Framing, Consequence Surfacing, and Presentation Doctrine",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D11",
+  "manifest_filename": "D11_pack_manifest.json",
+  "doctrine_files": [
+    "D11-README_manifest.md",
+    "D11-00_narrator_interface_architecture_and_owner_boundaries.md",
+    "D11-01_scene_framing_from_registered_state.md",
+    "D11-02_outcome_narration_and_consequence_surfacing.md",
+    "D11-03_hidden_state_rumor_secrecy_misinformation_presentation.md",
+    "D11-04_assessment_result_presentation.md",
+    "D11-05_unresolved_pressure_surfacing.md",
+    "D11-06_player_facing_vs_gm_facing_summary_modes.md",
+    "D11-07_anti_hallucination_and_unsupported_state_escalation.md",
+    "D11-08_source_local_presentation_boundaries.md",
+    "D11-09_integration_checklists_and_ddr_register.md"
+  ],
+  "core_model": "State-Grounded Narrator Interface Model",
+  "interface_modes": [
+    "player_facing_narration",
+    "party_known_summary",
+    "gm_facing_summary",
+    "state_audit",
+    "escalation"
+  ],
+  "accepted_blocks": [
+    "D11-NIA",
+    "D11-SF",
+    "D11-OC",
+    "D11-HS",
+    "D11-AS",
+    "D11-UP",
+    "D11-PGM",
+    "D11-AH",
+    "D11-SLP"
+  ],
+  "hard_blocks": [
+    "unsupported canon invention",
+    "hidden truth leakage",
+    "raw register dump in player-facing mode",
+    "source-local generalization",
+    "owner-file override",
+    "player agency violation",
+    "Pneuma/cosmic backend exposure",
+    "D02 outcome collapse"
+  ],
+  "owner_boundaries": {
+    "D11_owns": [
+      "scene framing presentation",
+      "outcome narration",
+      "consequence surfacing",
+      "player-facing summaries",
+      "GM-facing summaries",
+      "state-audit output",
+      "escalation output",
+      "hidden-state presentation",
+      "assessment-result presentation",
+      "unresolved-pressure surfacing",
+      "anti-hallucination controls",
+      "source-local presentation boundaries",
+      "safe rewrite behavior"
+    ],
+    "D11_does_not_own": {
+      "D00": "core play contract",
+      "D01": "attributes/Animus/Pneuma",
+      "D02": "d20 resolution/outcome math",
+      "D03": "Power Economy",
+      "D04": "advancement/breakthroughs",
+      "D05": "skills/methods/research/investigation",
+      "D06": "routes/Techniques/Principles",
+      "D07": "harm/damage/corruption/backlash",
+      "D08": "actors/AI/forms/personhood",
+      "D09": "objects/relics/platforms/implants",
+      "D10": "world-state/faction/law/economy/reputation/information",
+      "later_play_adapter": "final live-play GM behavior and personality"
+    }
+  }
+}
