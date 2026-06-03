@@ -541,7 +541,7 @@ Hidden-state rules:
 
 ## 21. Batch B to C00/C-family handoff rules
 
-B07 may identify that a C00/C-family handoff is needed, but it must not invent C-family fields, final recovery schema, final training schema, final research schema, final preparation schema, final project schema, or runtime state. The following block is lightweight, doctrine-facing, and not a runtime schema. `batch_b_to_c_handoff` is not a backend contract, not a database row, not an event object, and not sourcebook text. `recovery_training_research_preparation_routing_note` is doctrine-facing only: it is not runtime project state, runtime actor state, runtime information state, a training/research ledger, a C-family record, a statblock, canon, or final mechanics.
+B07 may identify that a C00/C-family handoff is needed, but it must not invent C-family fields, final recovery schema, final training schema, final research schema, final preparation schema, final project schema, or runtime state. The following block is lightweight, doctrine-facing, and not a runtime schema. `batch_b_to_c_handoff` is not a backend contract, not a database row, not an event object, and not sourcebook text. `recovery_training_research_routing_note` is doctrine-facing only: it is not runtime schema, not backend event, not command object, not C-family record, not project database row, not recovery ledger, not training ledger, not research ledger, not hidden-state truth, not playable power, not advancement grant, not final mechanics, not canon, and not player-facing rule text.
 
 ```yaml
 batch_b_to_c_handoff:
@@ -558,7 +558,7 @@ batch_b_to_c_handoff:
   review_routing_required: true
   unresolved_schema_gap_action: quarantine | escalation | human_review | defer_until_schema_exists
 
-recovery_training_research_preparation_routing_note:
+recovery_training_research_routing_note:
   project_family: recovery | training | research | preparation | readiness | rehearsal | field_practice | pressure_training | corrective_training | cross_training | immersive_training | simulation_training | teacher_access | apprenticeship | study | experimentation | reverse_engineering | prototype_development | field_testing | consultation | meditation_comprehension | source_local_recovery | source_local_training | source_local_research | source_local_preparation | mixed_project | unknown_project
   project_scope: minor | standard | major | extended | transformational | source_local_scope | unknown_scope
   recovery_target: injury | condition | fatigue | exposure | corruption | instability | backlash | poison_like_affliction | disease_like_affliction | trauma_like_pressure | form_state_disruption | substrate_disruption | resource_depletion | source_local_impairment | unknown_impairment | not_applicable
@@ -591,6 +591,9 @@ recovery_training_research_preparation_routing_note:
   delta_routing_status: no_delta_required | owner_routed | transition_note | source_local_retained_effect | quarantined_unresolved_delta | owner_file_escalation
   note: string
 ```
+
+
+B07 does not require, define, create, or promote C01-C14. Batch B procedure may identify that a C-family handoff is needed, but B07 must not invent C-family fields or C01-C14 schema contents.
 
 Supporting rules:
 - `target_schema_family: pending_schema` is allowed only when no C-family owner is stable enough; it is not a license to invent family-specific fields.
@@ -687,6 +690,7 @@ A B07 doctrine review must assert:
 - Dangerous temptations are marked, quarantined, blocked, or escalated rather than authorized.
 - Every meaningful event routes at least one delta to a recognized owner or explicitly produces no-delta/quarantine/escalation/transition.
 - C00/C-family handoff language is present and does not invent C-family fields.
+- `recovery_training_research_routing_note` is present and marked as doctrine-facing only, not runtime schema, not backend event, not command object, not C-family record, not project database row, not recovery ledger, not training ledger, not research ledger, not hidden-state truth, not playable power, not advancement grant, not final mechanics, not canon, and not player-facing rule text.
 - Missing schema coverage produces `pending_schema`, quarantine, escalation, `human_review`, or `defer_until_schema_exists`.
 - B07 examples and records are doctrine-facing only and not runtime state, sourcebook prose, canon entries, backend contracts, or final mechanics.
 
@@ -700,6 +704,7 @@ B07 is acceptable when:
 - It includes protected-hidden requirement handling without hidden truth reveal.
 - It routes recovery outputs to harm/condition/actor owners, training outputs to competency/proof/advancement/route owners, research outputs to information/truth/method/prototype owners, and preparation outputs to upstream Batch B or world/faction owners.
 - It includes the required lightweight C00/C-family handoff block and explicitly states that the block is not runtime schema.
+- It uses `recovery_training_research_routing_note` consistently for the B07-specific routing block.
 - It quarantines donor recovery/training/research/preparation/rest/downtime systems instead of importing them as Astra defaults.
 - It includes good and bad usage examples, minimum assertions, and acceptance criteria.
 
@@ -707,4 +712,4 @@ B07 is acceptable when:
 
 B07 intentionally stops before any B08 topic. If later Batch B work needs to address social projects, faction operations, travel/exploration project interfaces, world-state operations, information operations, or another operational family, B07 should hand off only the unresolved recovery/training/research/preparation/readiness pressure relevant to that future owner.
 
-B07 must not create B08-B11, reserve their final subjects, or pre-authorize their mechanics. Follow-up notes should remain `transition_note`, `owner_routed`, `pending_schema`, quarantine, escalation, `human_review`, or `defer_until_schema_exists` until the appropriate owner file exists.
+B07 does not require, define, create, or promote B08-B11. B07 must not create B08-B11, reserve their final subjects, or pre-authorize their mechanics. Follow-up notes should remain `transition_note`, `owner_routed`, `pending_schema`, quarantine, escalation, `human_review`, or `defer_until_schema_exists` until the appropriate owner file exists.
