@@ -99,6 +99,21 @@ def test_c00_dependencies_and_a_layer_boundary() -> None:
     assert "depends on A01-A15" in content
     assert "does not redefine A-layer ownership" in content
 
+    handoff_markers = [
+        "K01",
+        "accepted lexicon",
+        "reserved-term",
+        "R-layer",
+        "runtime event schemas",
+        "runtime state",
+        "command lifecycle",
+        "context packet compiler",
+        "hidden information",
+        "live-play state",
+    ]
+    for marker in handoff_markers:
+        assert marker in content
+
 
 def test_c00_registry_state_and_scope_controls() -> None:
     records = registry_records_by_id()
@@ -112,7 +127,7 @@ def test_c00_registry_state_and_scope_controls() -> None:
 
     assert "K01" in records
     k01 = records["K01"]
-    assert k01["file_id"] == "K01"
+    assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
 
     # Ensure this PR does not promote downstream layers.
     for file_id, record in records.items():
@@ -121,4 +136,7 @@ def test_c00_registry_state_and_scope_controls() -> None:
             assert record["status"] != "draft"
         if file_id.startswith("K") or file_id.startswith("R") or file_id.startswith("T"):
             assert record["status"] != "current"
-            assert record["status"] != "draft"
+
+    assert records["K01"]["status"] == "todo"
+    assert records["R01"]["status"] == "todo"
+    assert records["T01"]["status"] == "todo"

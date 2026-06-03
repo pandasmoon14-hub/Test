@@ -185,9 +185,13 @@ C00 does not redefine A-layer ownership and does not bypass hard locks.
 ## 12. Handoff to downstream layers
 
 C00 hands off base grammar constraints to:
-- C01-C14 schema-family files;
-- K03 canon-review integration points;
-- conversion-intake and validation consumers listed in registry.
+- C01-C14 for content-family-specific schemas;
+- K03 (and registry-listed canon/candidate review files) for canon promotion decision routing;
+- K01 for accepted lexicon and reserved-term control;
+- R-layer files for runtime event schemas, runtime state, command lifecycle, context packet compiler, hidden information, and live-play state behavior;
+- conversion-intake and aggregation tooling for record validation and reporting.
+
+Phase boundary rule: C00 hands off constraints only. C00 does not define those downstream files and does not define runtime behavior.
 
 Downstream consumers must include all C00 base fields and preserve source-local/rejected-import audit traces.
 
