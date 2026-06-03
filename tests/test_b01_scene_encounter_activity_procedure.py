@@ -161,10 +161,15 @@ def test_b01_references_d_series_only_as_draft_source_pack_reference_material() 
     assert "not current doctrine authority" in lowered
 
 
-def test_no_c01_c14_files_are_created() -> None:
-    schema_dir = ROOT / "docs" / "doctrine" / "schema"
-    for number in range(1, 15):
-        assert not list(schema_dir.glob(f"C{number:02d}_*.md"))
+def test_b01_does_not_require_c01_c14_creation_or_define_family_schemas() -> None:
+    lowered = b01_text().lower()
+    for phrase in [
+        "b01 does not require creation of c01-c14 files",
+        "must not invent c-family fields",
+        "must not invent c-family fields, donor field names, donor record formats, or c01-c14 schema contents",
+        "b01 must never add astra-sounding fields to c01-c14",
+    ]:
+        assert phrase in lowered
 
 
 def _registry_record_block(file_id: str) -> str:
