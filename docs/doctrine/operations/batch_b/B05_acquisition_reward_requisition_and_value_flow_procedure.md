@@ -67,6 +67,7 @@ B05 must not define or promote:
 - final price lists;
 - final shop lists;
 - final market tables;
+- final economy law;
 - final reward tables;
 - final loot tables;
 - final treasure tables;
@@ -461,7 +462,7 @@ If the correct owner is unknown, B05 must mark `pending_schema`, `source_local_r
 
 Batch B procedure may identify that a C-family handoff is needed, but it must not invent C-family fields. B05 uses C00 as the schema handoff control surface when acquisition/value/economy handling produces conversion records, record-shape pressure, source-local evidence, rejected donor elements, canon eligibility questions, provenance needs, or missing-schema gaps.
 
-The following lightweight doctrine-facing block may be used for B05-to-C00/C-family handoff notes. It is not a runtime schema, not a backend contract, not C-family schema content, not a context packet format, not a database row, not player-facing rule text, and not sourcebook prose.
+The following lightweight doctrine-facing block may be used for B05-to-C00/C-family handoff notes. It is not a runtime schema, not a backend contract, not C-family schema content, not a context packet format, not a database row, not player-facing rule text, and not sourcebook prose. `value_flow_routing_note` is doctrine-facing only: it is not a runtime schema, not a backend event, not a command object, not a C-family record, not an economy database row, not an inventory ledger entry, not final mechanics, not canon, and not player-facing rule text.
 
 ```yaml
 batch_b_to_c_handoff:
@@ -563,7 +564,7 @@ Examples of source-local constructs requiring boundary controls include city pri
 
 ## 23. Runtime boundary
 
-B05 is not runtime authority. It must not define or imply runtime economy state, runtime inventory ledger, event-sourced value ledger, entity/component/event/state schemas, persistent campaign state, backend contracts, database rows, command lifecycle implementation, context packet compiler, hidden-information runtime state, or live GM adapter behavior.
+B05 is not runtime authority. B05 rejects runtime state/event/command lifecycle ownership. It must not define or imply runtime economy state, runtime inventory ledger, event-sourced value ledger, entity/component/event/state schemas, persistent campaign state, backend contracts, database rows, command lifecycle implementation, context packet compiler, hidden-information runtime state, or live GM adapter behavior.
 
 B05 may identify that a runtime review is needed, but runtime owners must validate any later runtime behavior, persistence, event format, hidden information, or context-packet behavior. Live-play behavior must not consume B05 procedure as runtime authority without later runtime validation.
 
