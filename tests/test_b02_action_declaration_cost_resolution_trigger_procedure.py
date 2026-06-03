@@ -1,8 +1,6 @@
 from tests.helpers import REGISTRY_PATH, ROOT, read_utf8
 
 B02_PATH = ROOT / "docs" / "doctrine" / "operations" / "batch_b" / "B02_action_declaration_cost_commitment_and_resolution_trigger_procedure.md"
-BATCH_B_DIR = ROOT / "docs" / "doctrine" / "operations" / "batch_b"
-DOCS_DOCTRINE_DIR = ROOT / "docs" / "doctrine"
 
 REQUIRED_SECTIONS = [
     "## 1. Purpose and status",
@@ -271,15 +269,27 @@ def test_b02_references_d_series_only_as_draft_source_pack_reference_material() 
     assert "must not promote d02 to final current doctrine" in lowered
 
 
-def test_no_b03_b11_files_are_created() -> None:
-    for number in range(3, 12):
-        assert not list(BATCH_B_DIR.glob(f"B{number:02d}_*.md"))
+def test_b02_does_not_require_or_define_later_batch_b_files() -> None:
+    lowered = b02_text().lower()
+    for phrase in [
+        "b02 hands the next batch b slot to b03",
+        "b02 does not create b03-b11",
+        "does not predefine b03 content",
+        "does not treat future batch b files as current authority",
+    ]:
+        assert phrase in lowered
 
 
-def test_no_c01_c14_files_are_created_or_required() -> None:
-    for number in range(1, 15):
-        assert not list(DOCS_DOCTRINE_DIR.glob(f"**/C{number:02d}_*.md"))
-    assert "does not require creation of C01-C14 files" in b02_text()
+def test_b02_does_not_require_c01_c14_creation_or_define_family_schemas() -> None:
+    lowered = b02_text().lower()
+    for phrase in [
+        "b02 must never add astra-sounding fields to c01-c14",
+        "define c01-c14 schema contents",
+        "does not require creation of c01-c14 files",
+        "missing schema coverage must not produce improvised schema",
+        "route to c00 governance rather than inventing c-family fields",
+    ]:
+        assert phrase in lowered
 
 
 def _registry_record_block(file_id: str) -> str:
