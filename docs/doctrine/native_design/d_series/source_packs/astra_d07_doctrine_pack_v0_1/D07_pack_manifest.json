@@ -1,0 +1,67 @@
+{
+  "project": "Astra Ascension",
+  "pack": "D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+  "version": "v0.1",
+  "generated_date": "2026-06-01",
+  "status": "doctrine draft generated from accepted D07 design decisions",
+  "phase": "Phase 1 — Doctrine and framework build",
+  "files": [
+    "D07-README_manifest.md",
+    "D07-00_layered_harm_architecture_overview.md",
+    "D07-01_damage_injury_conditions_and_severity.md",
+    "D07-02_corruption_contamination_and_instability.md",
+    "D07-03_mutation_transformation_and_body_change.md",
+    "D07-04_identity_mental_and_principle_harm.md",
+    "D07-05_conceptual_resource_exposure_and_integration_harm.md",
+    "D07-06_carrier_backlash_and_power_strain_handoff.md",
+    "D07-07_recovery_treatment_stabilization_and_adaptation.md",
+    "D07-08_lethality_crippling_and_failure_consequences.md",
+    "D07-09_runtime_records_ui_and_owner_handoffs.md",
+    "D07-10_integration_checklists_and_ddr_register.md",
+    "D07_pack_manifest.json",
+    "astra_d07_doctrine_pack_combined_v0_1.md"
+  ],
+  "depends_on": [
+    "D03 Power Economy and Expression doctrine",
+    "D04 Advancement, proof, breakthrough, and capstone doctrine",
+    "D05 Competency, profession, method, research, and advancement-track routing doctrine",
+    "D06 Route, Path, Technique, Principle, and source-local route doctrine"
+  ],
+  "feeds": [
+    "D08 Actor-state, kinform, companion, spirit, AI, bond, summon doctrine",
+    "D09 Item, relic, implant, prosthetic, platform, vehicle, tool, and anchor doctrine",
+    "D10 Faction, law, territory, environment, settlement, and world-state doctrine",
+    "Future runtime/schema phase",
+    "Conversion pipeline source-local harm handling",
+    "Core sourcebook consolidation"
+  ],
+  "accepted_decisions": [
+    "Layered Harm Architecture",
+    "Damage / Condition / Injury / Scar distinction",
+    "Corruption as distortive contamination",
+    "Governed Mutation and Transformation",
+    "Layered Cognitive, Identity, and Principle Harm",
+    "D03 Failure / D07 Consequence boundary",
+    "Recovery Outcome Model",
+    "Terminal Harm Gate Model",
+    "Tiered Harm Record Model",
+    "Dedicated conceptual-resource exposure file"
+  ],
+  "risk_controls": [
+    "D07 does not become universal consequence owner",
+    "Pools remain valid and are not replaced by harm states",
+    "Corruption Conversion is rare, gated, and owner-validated",
+    "Mutation is governed and not a random boon table",
+    "Identity harm preserves agency except under strict gates",
+    "Conceptual-resource harm is cross-owned and source-local where needed",
+    "Terminal outcomes are gated and consequence-bearing",
+    "Recovery is not always restoration",
+    "Source-local harm systems stay bounded",
+    "Record burden controlled by ephemeral/session/durable tiers"
+  ],
+  "required_followups": [
+    "Run D03/D04/D06 patch-note check after D07 generation.",
+    "Do not perform full upstream amendment unless contradictions are found.",
+    "Proceed to D08 only after patch-note check or explicit user instruction."
+  ]
+}

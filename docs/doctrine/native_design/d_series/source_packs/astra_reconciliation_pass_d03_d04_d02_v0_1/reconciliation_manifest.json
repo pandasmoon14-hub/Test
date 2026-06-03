@@ -1,0 +1,50 @@
+{
+  "pack_id": "astra_reconciliation_pass_d03_d04_d02_v0_1",
+  "title": "D03/D04/D02 Reconciliation Pass after D05",
+  "status": "proposed_amendment_pack",
+  "created_for": "Astra Ascension Native Design Phase",
+  "date": "2026-05-31",
+  "depends_on": [
+    "D02 Resolution and Consequence Model",
+    "D02-A Dice Interface Amendment",
+    "D03 Doctrine Pack v0.1",
+    "D04 Doctrine Pack v0.1",
+    "D05 Doctrine Pack v0.1"
+  ],
+  "required_before": [
+    "D06 Path/Class/Dao/Domain/Technique design"
+  ],
+  "files": [
+    "README_reconciliation_manifest.md",
+    "D03_D05_reconciliation_amendment_v0_1.md",
+    "D04_D05_reconciliation_amendment_v0_1.md",
+    "D02_D05_relevance_crosscheck_v0_1.md"
+  ],
+  "reconciliation_actions": {
+    "D03": [
+      "Add D05-to-D03 Expression Candidate Pipeline",
+      "Add D05 basis checks to Expression validation",
+      "Route D05 training/research/synthesis into Power Economy and Expression support without final authorization",
+      "Add D05 refs to D03 runtime/UI state"
+    ],
+    "D04": [
+      "Add D05 proof-source families",
+      "Add D05 Awakening inputs",
+      "Add D05 Development Pick target rules",
+      "Route D04 Advancement Axis Registry through D05-08",
+      "Add D05 basis to breakthrough and capstone proof"
+    ],
+    "D02_optional": [
+      "Add D05 relevance classification to check procedure",
+      "Preserve one-primary-roll-posture limit",
+      "Recognize Access/Harmful/Invalid relevance",
+      "Carry relevance metadata in future dice interface"
+    ]
+  },
+  "non_ownership": [
+    "final runtime schema",
+    "canon sourcebook prose",
+    "live-play GM behavior",
+    "training/evaluation examples"
+  ]
+}

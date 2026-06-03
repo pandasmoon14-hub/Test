@@ -1,0 +1,144 @@
+{
+  "pack_id": "D12_time_action_cadence_encounter_and_turn_procedure",
+  "status": "doctrine-pack draft",
+  "version": "v0_1_draft",
+  "generated": "2026-06-02",
+  "owner": "D12 timing and cadence doctrine",
+  "phase": "Phase 1 native doctrine / operational procedure layer",
+  "not_runtime_schema": true,
+  "not_live_play_adapter": true,
+  "core_architecture": "Layered Cadence Architecture",
+  "cadence_states": [
+    "free_play",
+    "focused_scene",
+    "structured_exchange",
+    "conflict_cadence",
+    "extended_task_cadence",
+    "transition_time_scale_shift"
+  ],
+  "timing_containers": [
+    "beat",
+    "action_window",
+    "exchange",
+    "interval",
+    "time_scale_shift"
+  ],
+  "cadence_profiles": [
+    "martial_conflict",
+    "social_conflict",
+    "stealth_infiltration",
+    "chase_pursuit",
+    "ritual_power_contest",
+    "technical_system_standoff",
+    "exploration_hazard",
+    "platform_crew"
+  ],
+  "procedure_checkpoints": [
+    "cadence_checkpoint",
+    "declaration_checkpoint",
+    "method_target_checkpoint",
+    "cost_risk_preview_checkpoint",
+    "commitment_checkpoint",
+    "resolution_checkpoint",
+    "consequence_routing_checkpoint",
+    "state_delta_checkpoint",
+    "reaction_interruption_checkpoint",
+    "continuation_transition_checkpoint"
+  ],
+  "record_shapes_not_final_schema": [
+    "cadence_state_record",
+    "action_window_record",
+    "exchange_record",
+    "reaction_interruption_record",
+    "transition_record",
+    "cadence_profile_record",
+    "donor_timing_mapping_record",
+    "owner_file_handoff_record",
+    "unresolved_timing_pressure_record"
+  ],
+  "files": [
+    {
+      "filename": "D12-README_manifest.md",
+      "type": "markdown",
+      "bytes": 4693
+    },
+    {
+      "filename": "D12-00_time_action_cadence_encounter_procedure_and_owner_boundaries.md",
+      "type": "markdown",
+      "bytes": 8152
+    },
+    {
+      "filename": "D12-01_cadence_states_transition_triggers_and_scene_flow.md",
+      "type": "markdown",
+      "bytes": 6372
+    },
+    {
+      "filename": "D12-02_action_windows_initiative_sequencing_and_interruptions.md",
+      "type": "markdown",
+      "bytes": 6227
+    },
+    {
+      "filename": "D12-03_round_exchange_beat_interval_and_time_scale_grammar.md",
+      "type": "markdown",
+      "bytes": 4845
+    },
+    {
+      "filename": "D12-04_checkpoints_cost_commitment_consequence_timing_and_handoffs.md",
+      "type": "markdown",
+      "bytes": 6207
+    },
+    {
+      "filename": "D12-05_structured_scene_families_and_cadence_profiles.md",
+      "type": "markdown",
+      "bytes": 8250
+    },
+    {
+      "filename": "D12-06_source_local_timing_donor_procedure_mapping_and_escalation.md",
+      "type": "markdown",
+      "bytes": 6689
+    },
+    {
+      "filename": "D12-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "type": "markdown",
+      "bytes": 7617
+    },
+    {
+      "filename": "D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "type": "markdown",
+      "bytes": 10497
+    },
+    {
+      "filename": "D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "type": "combined_markdown",
+      "bytes": 71121
+    },
+    {
+      "filename": "D12_pack_manifest.json",
+      "type": "json_manifest",
+      "bytes": 4164
+    }
+  ],
+  "risk_fixes_embedded": [
+    "combat_not_default_structured_scene",
+    "action_windows_not_donor_turns",
+    "reactions_require_trigger_and_permission",
+    "clock_like_systems_routed_by_function",
+    "D12_owns_handoff_timing_not_D13_D18_procedure",
+    "record_shapes_not_final_runtime_schemas",
+    "hidden_pressure_markers_do_not_reveal_hidden_truth",
+    "multi_scale_actions_do_not_share_one_mandatory_clock",
+    "D12_calls_D02_but_does_not_define_resolution_math",
+    "source_local_timing_requires_boundary_and_review"
+  ],
+  "acceptance_criteria_summary": [
+    "classifies cadence state",
+    "explains when structure begins",
+    "sequences without donor action economy",
+    "handles bounded reactions and interruptions",
+    "supports simultaneous and multi-scale action",
+    "maps donor timing by function",
+    "preserves source-local timing",
+    "routes consequences to owner files",
+    "records transitions and unresolved pressure"
+  ]
+}

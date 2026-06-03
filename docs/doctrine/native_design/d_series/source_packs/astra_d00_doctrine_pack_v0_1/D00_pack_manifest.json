@@ -1,0 +1,40 @@
+{
+  "pack": "D00 Core Play Experience, Cost, Context, and World-Memory Doctrine",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D00",
+  "manifest_filename": "D00_pack_manifest.json",
+  "doctrine_files": [
+    "D00-README_manifest.md",
+    "D00-00_core_play_experience_contract.md",
+    "D00-01_power_cost_context_and_world_memory.md",
+    "D00-02_power_context_register_and_assessment_baseline.md",
+    "D00-03_state_delta_commit_protocol.md",
+    "D00-04_campaign_loop_and_long_form_durability.md",
+    "D00-05_source_local_and_conversion_boundaries.md",
+    "D00-06_integration_checklists_and_ddr_register.md"
+  ],
+  "owner_boundaries": {
+    "D00_owns": [
+      "core play contract",
+      "power/cost/context/world-memory premise",
+      "state-delta commitment requirement",
+      "minimum viable session loop",
+      "assessment as core action family",
+      "source-local play-contract boundaries"
+    ],
+    "D00_does_not_own": {
+      "D03": "resource formulas and Power Economy",
+      "D04": "advancement math and breakthrough mechanics",
+      "D05": "skills, research, and assessment methods",
+      "D06": "routes, techniques, and principles",
+      "D07": "harm, injury, corruption, backlash",
+      "D08": "actor substrate, form, body, companions, AI",
+      "D09": "object-state",
+      "D10": "world-state records",
+      "D11": "narration and player-facing presentation"
+    }
+  }
+}

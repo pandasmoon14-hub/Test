@@ -1,0 +1,37 @@
+{
+  "pack_id": "D14",
+  "title": "Exploration, Travel, Navigation, and Discovery Doctrine",
+  "status": "doctrine-draft",
+  "version": "0.1.0-d14-generated",
+  "generated": "2026-06-02",
+  "architecture": "Posture–Route–Discovery Architecture",
+  "files": [
+    "D14-README_manifest.md",
+    "D14-00_exploration_travel_navigation_and_discovery_owner_boundaries.md",
+    "D14-01_travel_posture_route_selection_and_known_state_review.md",
+    "D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md",
+    "D14-03_discovery_scouting_mapping_and_information_state_boundaries.md",
+    "D14-04_exploration_context_profiles_site_entry_watches_and_ambush_exposure.md",
+    "D14-05_travel_risk_resource_pressure_hazards_encounters_and_transition_handoffs.md",
+    "D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md",
+    "D14-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+    "D14-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+    "D14_combined_exploration_travel_navigation_and_discovery_doctrine.md"
+  ],
+  "not_final_schema_warning": "All D14 records are doctrine-facing / conversion-facing control shapes, not final runtime or map schemas.",
+  "risk_fixes_embedded": [
+    "no universal hex/grid/zone/map law",
+    "no default random encounters",
+    "posture is not generic bonus",
+    "maps do not equal truth",
+    "scouting/sensing do not reveal protected hidden truth",
+    "no universal donor timing units",
+    "D16 owns encounter/hazard construction",
+    "D17 owns supply/economy",
+    "no donor cosmology or space-travel law",
+    "site entry is not keyed-room reveal",
+    "watch/ambush is not automatic surprise",
+    "source-local systems do not generalize automatically",
+    "records are not final schemas"
+  ]
+}

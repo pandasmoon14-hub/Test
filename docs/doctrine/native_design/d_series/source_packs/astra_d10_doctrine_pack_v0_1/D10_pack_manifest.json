@@ -1,0 +1,137 @@
+{
+  "pack": "D10 World-State, Faction, Law, Economy, Reputation, Information, and Source-local World-System Architecture",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D10",
+  "doctrine_files": [
+    {
+      "path": "D10-README_manifest.md",
+      "purpose": "manifest and scope"
+    },
+    {
+      "path": "D10-00_layered_world_state_register_architecture.md",
+      "purpose": "layered world-state register architecture"
+    },
+    {
+      "path": "D10-01_world_state_event_consequence_persistence.md",
+      "purpose": "world-state facts, events, consequences, persistence, timelines"
+    },
+    {
+      "path": "D10-02_territory_location_hazard_control_environment_register.md",
+      "purpose": "territories, locations, hazards, control, environmental state"
+    },
+    {
+      "path": "D10-03_faction_institution_rank_claim_goal_conflict_register.md",
+      "purpose": "factions, institutions, ranks, claims, goals, conflicts"
+    },
+    {
+      "path": "D10-04_law_ownership_custody_rights_legitimacy_authority_register.md",
+      "purpose": "law, ownership, custody, rights, legitimacy, authority"
+    },
+    {
+      "path": "D10-05_economy_scarcity_strategic_resources_market_requisition_register.md",
+      "purpose": "economy, scarcity, strategic resources, market access, requisition"
+    },
+    {
+      "path": "D10-06_reputation_relationship_social_memory_register.md",
+      "purpose": "reputation, relationships, favor, debt, grudge, kinship, social memory"
+    },
+    {
+      "path": "D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md",
+      "purpose": "public knowledge, rumor, secrecy, records, intelligence, information-state"
+    },
+    {
+      "path": "D10-08_source_local_world_system_conversion_boundary_register.md",
+      "purpose": "source-local world-system conversion and boundaries"
+    },
+    {
+      "path": "D10-09_runtime_records_ui_register_links_owner_handoffs.md",
+      "purpose": "runtime records, UI grouping, register links, owner handoffs"
+    },
+    {
+      "path": "D10-10_integration_checklists_and_ddr_register.md",
+      "purpose": "integration checklists and DDR register"
+    }
+  ],
+  "core_rule": "D10 records persistent world-facing state and consequences, not the mechanical substrates or runtime procedures that generate them.",
+  "register_families": [
+    "world_state_fact",
+    "event_consequence",
+    "territory_location",
+    "faction_institution",
+    "law_authority",
+    "economy_scarcity",
+    "reputation_relationship",
+    "information_state",
+    "source_local_conversion",
+    "runtime_register_links"
+  ],
+  "record_depth_grades": [
+    "background_note",
+    "ephemeral_state",
+    "simple_fact",
+    "tracked_fact",
+    "event_record",
+    "consequence_record",
+    "register_record",
+    "linked_register_cluster",
+    "unresolved_pressure",
+    "historical_record",
+    "source_local_record",
+    "escalated_record"
+  ],
+  "owner_boundaries": {
+    "D10_owns": [
+      "persistent world-facing state",
+      "world-state facts",
+      "event records",
+      "consequence records",
+      "timeline entries",
+      "territory and location state",
+      "faction and institution state",
+      "law and authority state",
+      "economy and scarcity state",
+      "reputation and relationship state",
+      "information-state",
+      "source-local world-system conversion boundaries",
+      "runtime record depth",
+      "register links",
+      "unresolved pressure queues",
+      "historical retention"
+    ],
+    "D10_does_not_own": {
+      "D03": "Power Economy, fuel mechanics, charges, reservoirs, overdraw, power instability",
+      "D04": "advancement gates, proof, breakthroughs, transformations, tier progression",
+      "D05": "skill methods, crafting/research/investigation procedure, social technique use",
+      "D06": "Routes, Techniques, Principles, Feature Ledgers, domain powers, oath mechanics",
+      "D07": "harm, injury, curses, corruption injury, backlash, death/disaster mechanics",
+      "D08": "actor body-state, personhood substrate, companions, AI/spirit/clone continuity",
+      "D09": "object-state, relic object-side records, platforms, cyberware, salvage objects",
+      "D11": "live-play narration, scene presentation, dialogue, clue delivery, GM behavior"
+    }
+  },
+  "risk_fixes_embedded": [
+    "D10 does not become full simulator too early",
+    "D10 does not become prose-only lore",
+    "minor details do not overload the register",
+    "hidden consequences are preserved",
+    "donor world systems are blocked from canon leakage",
+    "D10 does not absorb D03-D09 mechanics",
+    "consequence persistence fields remain explicit",
+    "reputation does not collapse into one score",
+    "economy does not collapse into price",
+    "law does not collapse into legal/illegal",
+    "territory does not become map simulation",
+    "information-state does not become clue procedure"
+  ],
+  "lawful_outcomes": [
+    "direct_d10_mapping",
+    "normalized_d10_register_mapping",
+    "source_local_retained",
+    "quarantined",
+    "escalated"
+  ],
+  "file_count_excluding_combined_export": 13
+}

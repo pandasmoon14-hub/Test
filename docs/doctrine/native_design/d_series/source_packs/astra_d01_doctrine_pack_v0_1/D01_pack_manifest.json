@@ -1,0 +1,54 @@
+{
+  "pack": "D01 Attribute Architecture, Visible Axes, Animus, Pneuma, and Breakthrough Lattices",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D01",
+  "manifest_filename": "D01_pack_manifest.json",
+  "doctrine_files": [
+    "D01-README_manifest.md",
+    "D01-00_attribute_architecture_and_design_boundary.md",
+    "D01-01_visible_attribute_set.md",
+    "D01-02_animus_and_pneuma_doctrine.md",
+    "D01-03_multi_axis_breakthrough_lattices.md",
+    "D01-04_pool_reserve_and_derived_pressure_handoffs.md",
+    "D01-05_conversion_mapping_and_source_local_boundaries.md",
+    "D01-06_integration_checklists_and_ddr_register.md"
+  ],
+  "attribute_set": {
+    "visible": [
+      "Vessel",
+      "Finesse",
+      "Reason",
+      "Insight",
+      "Integrity",
+      "Glamour",
+      "Animus"
+    ],
+    "hidden_backend": [
+      "Pneuma"
+    ]
+  },
+  "owner_boundaries": {
+    "D01_owns": [
+      "attribute meaning",
+      "visible/hidden axis distinction",
+      "Animus/Pneuma boundary",
+      "attribute conversion candidates",
+      "breakthrough lattice substrate",
+      "derived pressure handoff signals"
+    ],
+    "D01_does_not_own": {
+      "D03": "Power Economy and derived pool formulas",
+      "D04": "advancement gates and breakthrough procedure",
+      "D05": "skills and methods",
+      "D06": "routes and techniques",
+      "D07": "harm and corruption mechanics",
+      "D08": "actor body/personhood substrate",
+      "D09": "object-state",
+      "D10": "world-state consequences",
+      "D11": "narration and player-facing presentation"
+    }
+  }
+}

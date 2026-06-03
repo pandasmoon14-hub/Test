@@ -1,0 +1,83 @@
+{
+  "pack_id": "D15_faction_relationship_domain_and_institutional_operations",
+  "title": "D15 \u2014 Faction, Relationship, Domain, and Institutional Operations",
+  "status": "doctrine-draft / native doctrine foundation continuation",
+  "version": "v0.1.0-d15-doctrine-pack",
+  "generated": "2026-06-02",
+  "architecture": "Standing\u2013Pressure\u2013Operation Architecture",
+  "lawful_outcomes": [
+    "direct_astra_mapping",
+    "normalized_astra_mapping",
+    "source_local_retained_construct",
+    "quarantined_construct_pending_later_doctrine",
+    "escalated_doctrine_problem"
+  ],
+  "core_objects": [
+    "organized_actor",
+    "standing",
+    "pressure",
+    "obligation_claim",
+    "operation",
+    "operation_outcome",
+    "access_outcome",
+    "domain_posture",
+    "institutional_capacity_operation_load",
+    "donor_institutional_mapping"
+  ],
+  "record_posture": "not_final_schema; doctrine-facing and conversion-facing control shapes only",
+  "files": [
+    "D15-README_manifest.md",
+    "D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md",
+    "D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md",
+    "D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md",
+    "D15-03_operation_resolution_standing_shifts_pressure_lifecycle_and_consequence_routing.md",
+    "D15-04_operation_profiles_institutional_behavior_relationship_procedure_and_domain_operations.md",
+    "D15-05_institutional_capacity_concurrent_operations_pressure_movement_and_conflict.md",
+    "D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md",
+    "D15-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+    "D15-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+    "D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+    "D15_pack_manifest.json"
+  ],
+  "risk_fixes_embedded": true,
+  "risk_fix_summary": [
+    "arbitrary faction AI blocked by trigger/setup requirements",
+    "organized actors separated from D08 personhood",
+    "standing is multi-axis, not a single reputation score",
+    "faction clocks/tracks routed by function, not universalized",
+    "D10 remains state owner",
+    "public belief is not actual truth",
+    "donor law codes are source-local unless canon-reviewed",
+    "D15 domain control separated from D06 domain expression",
+    "rank/patronage cannot bypass advancement/access owner files",
+    "player organizations use capacity/load/burden logic",
+    "obligation/claim procedure separated from D17 economy specifics",
+    "qualitative capacity avoids faction action slots",
+    "D17 owns economy/acquisition/requisition",
+    "D18 owns long-horizon pacing and domain evolution",
+    "D16 owns opposition/encounter/war construction",
+    "source-local institutional systems require explicit boundary",
+    "records are marked not final runtime schema"
+  ],
+  "owner_boundaries": {
+    "D10": "stored world-state, relationships, law records, public belief, rumors, hidden truth, unresolved pressure",
+    "D12": "immediate scene cadence and structured exchanges",
+    "D13": "interval-scale Projects",
+    "D16": "opposition, encounter, hazard, patrol, raid, war construction later",
+    "D17": "economy, acquisition, value, payment, licenses, requisition, market, ownership",
+    "D18": "campaign arcs, seasons, long-horizon domain evolution, organization aging, state pruning"
+  },
+  "sha256": {
+    "D15-README_manifest.md": "99f352036cdb1b157ff3f23f8f324f5a1affd173ca9dd2dd178fd19bf326bd2c",
+    "D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md": "2109c61eab62ef24a986a307dbc4454896579ce8f88021ff68c7663af10b4732",
+    "D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md": "390f76bf9b2617c827c766c12dd4802f64d19efa0d2c936d7a52d7321cb37ce5",
+    "D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md": "9892a322e7815d8e801702a85c7c5d79d78b5a54a1ab81da1619a0f94c5ffe1d",
+    "D15-03_operation_resolution_standing_shifts_pressure_lifecycle_and_consequence_routing.md": "61dba6e3efe31e7ad91a433a4b416c73190630ee49335d779ea18aea1163ac89",
+    "D15-04_operation_profiles_institutional_behavior_relationship_procedure_and_domain_operations.md": "2fb497fbc7c262176a93a8ba061a01b4945c71965d9a8f65d4912906c02b7d1c",
+    "D15-05_institutional_capacity_concurrent_operations_pressure_movement_and_conflict.md": "595386c52bad63af559b30a87661fa8807ff79289a91f82c480e396b65707028",
+    "D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md": "71cd7a91ce0277298a60b53b3429f703aa569d8ca26d338b658d1c0e12c45d27",
+    "D15-07_records_not_final_schema_and_conversion_handoff_shapes.md": "bbaff5029d8d55d9e238743c86a642300b4b96669ee8e9958a047ed11a8e219e",
+    "D15-09_integration_checklists_ddr_register_and_acceptance_criteria.md": "0e8ebdb7ae7cf42e0e630be555ec335177fcf6b1efceee8c048965c96acf54af",
+    "D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md": "748faba91be4646917d9933d3ef37b4a08d78aee50bab1374b2843a5871a4294"
+  }
+}

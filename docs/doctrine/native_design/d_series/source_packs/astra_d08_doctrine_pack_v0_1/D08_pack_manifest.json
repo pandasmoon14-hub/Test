@@ -1,0 +1,83 @@
+{
+  "pack": "D08 Actor-State, Entity, Kinform, Companion, and Nonhuman Architecture",
+  "version": "v0.1",
+  "generated_date": "2026-06-01",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D08",
+  "doctrine_files": [
+    {
+      "path": "D08-README_manifest.md"
+    },
+    {
+      "path": "D08-00_layered_actor_state_architecture.md"
+    },
+    {
+      "path": "D08-01_identity_continuity_personhood_and_agency.md"
+    },
+    {
+      "path": "D08-02_body_kinform_form_state_and_nonhuman_physiology.md"
+    },
+    {
+      "path": "D08-03_companions_bonds_mounts_pets_and_familiars.md"
+    },
+    {
+      "path": "D08-04_summons_constructs_spirits_ai_and_bound_entities.md"
+    },
+    {
+      "path": "D08-05_swarms_hives_colonies_and_distributed_actors.md"
+    },
+    {
+      "path": "D08-06_actor_advancement_evolution_and_route_interface.md"
+    },
+    {
+      "path": "D08-07_source_local_actor_and_creature_conversion.md"
+    },
+    {
+      "path": "D08-08_runtime_records_ui_and_owner_handoffs.md"
+    },
+    {
+      "path": "D08-09_integration_checklists_and_ddr_register.md"
+    }
+  ],
+  "owner_boundaries": {
+    "D08_owns": [
+      "actor-state substrate",
+      "actor categories",
+      "record depth",
+      "continuity/personhood/agency",
+      "body/kinform/form-state",
+      "companion/bond substrate",
+      "bound entity actor-state",
+      "distributed actor structure",
+      "actor advancement posture",
+      "source-local actor conversion routing",
+      "actor-state UI grouping"
+    ],
+    "D08_does_not_own": {
+      "D03": "Power Economy",
+      "D04": "advancement proof and gates",
+      "D05": "training/research/handling",
+      "D06": "Routes and Techniques",
+      "D07": "harm and recovery",
+      "D09": "items/platforms/anchors",
+      "D10": "factions/social/world-state",
+      "D11": "narrator tools"
+    }
+  },
+  "risk_fixes_embedded": [
+    "actor-state-only boundary",
+    "tiered records",
+    "promotion/demotion/history",
+    "body/kinform/culture separation",
+    "layered continuity",
+    "personhood-cognition-agency separation",
+    "companion limits",
+    "bound entity thresholds",
+    "distributed actor scalability",
+    "evolution affordances and constraints",
+    "source-local boundary records",
+    "D10 relational reservation"
+  ],
+  "file_count_excluding_combined_export": 12
+}

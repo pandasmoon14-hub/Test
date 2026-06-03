@@ -1,0 +1,1648 @@
+{
+    "manifest_id":  "d_series_doctrine_pack_import_2026_06_03",
+    "imported_at":  "2026-06-03T12:21:06-07:00",
+    "repo_url":  "https://github.com/pandasmoon14-hub/Test.git",
+    "branch_name":  "docs/import-d00-d19-doctrine-packs",
+    "destination":  "docs\\doctrine\\native_design\\d_series",
+    "status":  "draft_source_pack_import",
+    "authority_note":  "D00-D19 doctrine packs imported as draft source material for reconciliation. Import does not promote them to current doctrine or canon.",
+    "pack_count":  23,
+    "packs":  [
+                  {
+                      "pack_name":  "D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  121130,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+                                        "size_bytes":  58495,
+                                        "sha256":  "459c7fdeeb51503dcdfcbc1bb77d052e6ef569d17d9d40f5b6ad6ac0c332b38f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16_pack_manifest.json",
+                                        "size_bytes":  4209,
+                                        "sha256":  "675863508e07c3605414e53a98f3287afb48ba081de6acc652e211aa32b402df"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-00_opposition_creature_encounter_and_hazard_construction_owner_boundaries.md",
+                                        "size_bytes":  6662,
+                                        "sha256":  "0226d4481770813a08048f0bf5fd8c5dba4d9d51f90369f33a83f0cfabc3e898"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-01_opposition_anatomy_threat_function_scale_role_objective_and_posture.md",
+                                        "size_bytes":  5920,
+                                        "sha256":  "861c39a51f00969d7cfa1c03bce539be5eb137f82853ebf241b30fa9d2b6cd60"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-02_threat_profile_construction_capability_pressure_scaling_and_readiness.md",
+                                        "size_bytes":  4782,
+                                        "sha256":  "78717f481d8a0dbb7085e42babcb92d071cf4e9d065d527a7aea8b3ff6d462c6"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-03_encounter_composition_objectives_mixed_opposition_and_noncombat_threats.md",
+                                        "size_bytes":  5003,
+                                        "sha256":  "95c1080b66be462786cc80f5882959c0446aab2ce7b20e335d061fde8605b6c5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-04_opposition_profiles_by_type_creatures_hazards_social_platforms_swarms_bosses_and_proxies.md",
+                                        "size_bytes":  7574,
+                                        "sha256":  "204eadd11c62637ae75f5609101471f0486345558bce274e4efd2e5a91dfaa5f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-05_scaling_morale_behavior_recurrence_and_encounter_readiness.md",
+                                        "size_bytes":  4510,
+                                        "sha256":  "9ff5a01c13fcf955722fc9e31942f8c1bb6326f73e0678b3f482fcf6202e416b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md",
+                                        "size_bytes":  5711,
+                                        "sha256":  "5d7805d5873fdc2d602266b34ac7271e2c5c6b960cbf1f03ed51cbf7448f2d6f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+                                        "size_bytes":  9430,
+                                        "sha256":  "87b1a467a44f145fd11783143c720a74d2be8bcbc9700d285f80871104a699be"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  6767,
+                                        "sha256":  "27a17717e1634d8b0f99fe110cff914ac5edabf6ae564b30cdecd0a79015163f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack\\D16_doctrine_pack\\D16-README_manifest.md",
+                                        "size_bytes":  2067,
+                                        "sha256":  "2d59af808e637f20e533bf5140c8e5045f9ef53c673f961f8f00e62c2c311e15"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  132999,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+                                        "size_bytes":  65227,
+                                        "sha256":  "086a8532a4fe50bf5419542aa62fd93911c4527c053c244f114c96bfc7b43057"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17_pack_manifest.json",
+                                        "size_bytes":  2609,
+                                        "sha256":  "f5ba8db6f3f3ba6bfd8421a0b79e090af7e92b03208ad44a9c12b8a6d62924dc"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-00_economy_acquisition_inventory_reward_and_requisition_owner_boundaries.md",
+                                        "size_bytes":  4808,
+                                        "sha256":  "c14fa7ccf5bed6504339d04e0c3db809a74558fb84cb2921713406a6cfef70c5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-01_value_forms_access_channels_scarcity_ownership_custody_and_burden_states.md",
+                                        "size_bytes":  5086,
+                                        "sha256":  "c2c12423c5636cfcf2844803ae3e80950e81da3522947fbca6ae92ee4e7e2e88"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-02_acquisition_exchange_market_access_availability_and_value_conversion.md",
+                                        "size_bytes":  5730,
+                                        "sha256":  "2f4d4207ab12e327231a00e1b153edb6895021d40c26c3523a2819f57f43b57e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-03_reward_loot_salvage_claim_and_value_entry_procedure.md",
+                                        "size_bytes":  5284,
+                                        "sha256":  "ad27e87f1bc74c3bdfa6eed78ae9e9f83a2ac54f2677c9229e897061783ee494"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-04_inventory_storage_carrying_custody_quick_access_and_burden_procedure.md",
+                                        "size_bytes":  5142,
+                                        "sha256":  "31ae6cc2081be66b4f28d5d769df06d4518e2b3f3b943fc104579c86a5d030d4"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-05_requisition_upkeep_consumption_value_sinks_and_economic_pressure.md",
+                                        "size_bytes":  5506,
+                                        "sha256":  "c1259466131344fd5ae2f60526214fd403c7fb802a559781374169b7e844324b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-06_source_local_economy_donor_value_mapping_quarantine_and_escalation.md",
+                                        "size_bytes":  6346,
+                                        "sha256":  "de84dbd75bff026bd66799b10ff94b26e2e273328c86618fad254f26a12b7e88"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+                                        "size_bytes":  14412,
+                                        "sha256":  "ac579a9cabcb98550a5e007165ac469fd05dc234e9cae5e41614b30f9e788026"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  8728,
+                                        "sha256":  "3274dfd887c0cae316dd2b20489bdba828d5f3926017cf0c8327b301afa9f76a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack\\D17_doctrine_pack\\D17-README_manifest.md",
+                                        "size_bytes":  4121,
+                                        "sha256":  "fac063bed758ef7b8e9f89dc5f03947577b885ad0d4025e3bea45d737295fe10"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  194878,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18_combined_structural_time_campaign_continuity_arc_season_and_horizon_doctrine.md",
+                                        "size_bytes":  94546,
+                                        "sha256":  "e7977a59e8864c3773fd24f22588156771c3289983f68334037cbe44dde4526a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18_pack_manifest.json",
+                                        "size_bytes":  5855,
+                                        "sha256":  "792955a544f755a7a6be45b3b550b134e642dc839960d0ce7073f2dac3f2002e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-00_structural_time_campaign_continuity_arc_season_and_horizon_owner_boundaries.md",
+                                        "size_bytes":  7942,
+                                        "sha256":  "3e418ab1fbc1e6509b6acdd190ffb8ffdd1c7d77552a0fad8b41f4ddb63dbfd3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-01_continuity_lifecycle_state_half_life_salience_retrieval_and_reconciliation.md",
+                                        "size_bytes":  9127,
+                                        "sha256":  "2054864755bb154c651223961cf99ccf82283cb2c8bd1d03581690bdb86d9fd1"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-02_arc_promises_question_answer_economy_pacing_pressure_contrast_and_payoff_scale.md",
+                                        "size_bytes":  7871,
+                                        "sha256":  "c54c18f598d748dd14dfc7fe0b4049affe9923a86e9776931d84f7cdd5e40e42"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-03_seasons_throughlines_seams_premise_shifts_and_seasonal_state_reclassification.md",
+                                        "size_bytes":  8640,
+                                        "sha256":  "e74afd3820dd9dab54d0f95e7f4ac67b7f95c5f6f0939340b410bfb71889392b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-04_long_horizon_progression_campaign_phases_dimensional_rotation_power_envelope_and_transformation_spacing.md",
+                                        "size_bytes":  9629,
+                                        "sha256":  "954120b9f9f10f6701c2acc109f4b53bcbb4a1c37098e3505e0397b3bc55e681"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-05_time_skips_state_aging_pressure_decay_retirement_archive_and_campaign_state_pruning.md",
+                                        "size_bytes":  9133,
+                                        "sha256":  "eb5228faa9ba77ff2dd672532303a1c82bc5b8347322732b2decb6643a146c2e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-06_source_local_campaign_structures_donor_structural_time_mapping_quarantine_and_escalation.md",
+                                        "size_bytes":  11136,
+                                        "sha256":  "48e1a89bd87c7022cb3d0d0ca7a34171cf8026883d31b0679de3a3e791e11286"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-07_records_not_final_schema_and_runtime_persistence_handoff_shapes.md",
+                                        "size_bytes":  15838,
+                                        "sha256":  "b596d443631ba26be90834c670d5cf176af83010eb2ac1f6575bd10389a2d60b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  9856,
+                                        "sha256":  "c988327b2b12601194ca88810b69f0a5d52e7d4ab0e43134538dd7f4cc99aae3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D18_structural_time_campaign_continuity_arc_season_and_horizon_doctrine_pack\\D18_doctrine_pack\\D18-README_manifest.md",
+                                        "size_bytes":  5305,
+                                        "sha256":  "5e4a4ec6bead109ac82394db214040d729947c9f8dca7869a69ce8a2819f8bdb"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  13,
+                      "total_size_bytes":  170414,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+                                        "size_bytes":  83829,
+                                        "sha256":  "57c82be6a6454f294159e2c026aca6f705695b0ca5c04ccd33e34d50e8765114"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19_pack_manifest.json",
+                                        "size_bytes":  2826,
+                                        "sha256":  "0c9c11e3c1f78ea75955636434fd8ff7d01be584fde296273dc659eef0b645f2"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-00_cross_pack_integration_conflict_audit_and_conversion_readiness_owner_boundaries.md",
+                                        "size_bytes":  5073,
+                                        "sha256":  "ad63993223f7a43f618ac5004c9c7bc5deec5047c512bce3576dfc256b13a03e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-01_owner_boundary_audit_conflict_taxonomy_and_cross_pack_dependency_control.md",
+                                        "size_bytes":  7108,
+                                        "sha256":  "4a6a8ab1b9214d8c5038986c97a6e7842085d26326ca3656ecf26a7d9fcb483e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-02_cross_pack_handoff_matrix_dependency_chains_and_state_movement_control.md",
+                                        "size_bytes":  7346,
+                                        "sha256":  "35663989627936eee495f33e708e9a72cc82bb2ee1f9c4425750187c8628a869"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-03_record_shape_registry_not_final_schema_governance_and_schema_handoff_control.md",
+                                        "size_bytes":  6367,
+                                        "sha256":  "e9bc2e1bb10a08e764c2bd1b3dcdc239f85fc972c5bce4c3d16c0e3fad4f56c0"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-04_deferred_doctrine_schema_math_runtime_and_canon_readiness_ledger.md",
+                                        "size_bytes":  11825,
+                                        "sha256":  "fda86db9e77b56143b9b5a17a11eb6a9519bdb0bf336e40e9473f3ea4ebe5f71"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-05_lawful_outcome_consistency_source_local_quarantine_and_escalation_audit.md",
+                                        "size_bytes":  7540,
+                                        "sha256":  "bb6a9d6b11976a5d2c1e33f929aa62ab5d537c36baf410b329045b0e431d1062"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-06_mixed_donor_routing_stress_tests_conversion_readiness_trials_and_corpus_scale_failure_detection.md",
+                                        "size_bytes":  10080,
+                                        "sha256":  "a99a998e0ca6fef30098f136204fcce5f3b28f6627f8a5d253f92bace79429d1"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-07_canon_separation_runtime_separation_repo_integration_readiness_and_final_capstone_control.md",
+                                        "size_bytes":  6965,
+                                        "sha256":  "e3d03fcdc7c7a27c7bd009604364676a3ed641c412e6a3bfaac2a56171437938"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-08_records_not_final_schema_and_capstone_control_shapes.md",
+                                        "size_bytes":  8371,
+                                        "sha256":  "69fde0b56d11df67d2b2349e59bd3c6c8b8808931d0453f9fcba3f1df2bc3199"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-09_final_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  8849,
+                                        "sha256":  "1913e38ad48c0e70dd81103bf782434f067b2032ea15a67fc264ea0644dd5747"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack\\D19_capstone_doctrine_pack\\D19-README_manifest.md",
+                                        "size_bytes":  4235,
+                                        "sha256":  "078f4dfc0b46f94affefbed7ff5db257dde31149ee03d888d4ad37be623fba79"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d00_d11_doctrine_generated_bundle_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d00_d11_doctrine_generated_bundle_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  13,
+                      "total_size_bytes":  586448,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d00_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  21998,
+                                        "sha256":  "a1b7b18e5495924b35c7d88f2eb769bc3849233d48ef649d9f97ccd079e395b5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d01_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  20768,
+                                        "sha256":  "60aed6d0d622d4d671b71469a53a6409a5ccb1ab691542902262878505e0554d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d02_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  38922,
+                                        "sha256":  "420a641cf3160baaf5f45ac409b709dbae1c85ff6ecb791a7ec80b08a5b02265"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1.zip",
+                                        "size_bytes":  13845,
+                                        "sha256":  "a9bb80d0d1e6e544f593816eade9e819a67616d306d9e34f47dd6006633deedd"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d03_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  35639,
+                                        "sha256":  "b2760c6c9cd956c04de24c3142fc79e829eec94a636e8846e5e11f6ee0a0edef"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d04_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  55134,
+                                        "sha256":  "7ca2506fd4b55614d38a94d429a1eaf309f0d70257d7b9f75c2d5abee2a6ac3a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d05_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  59000,
+                                        "sha256":  "7bd1dfb9e406c03cebb2e10042d1a7e34567d7658a4b4e927c07157ec0910c19"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d06_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  74568,
+                                        "sha256":  "6a760683fb6ea039c1ade3d81e232ef7ae3925181a4b94f97e8d7f04daba9d69"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d07_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  47502,
+                                        "sha256":  "b3e6eb4daf902c191d7f49fa8b637a45548e19baac536d45dd355d5966b30864"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d08_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  53844,
+                                        "sha256":  "b007e6f7116030dea7bb47ea08656087cd0f1a9926030a65a73831cad8de6605"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d09_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  55902,
+                                        "sha256":  "56ce29bc24e64092bfccf50552f784dc6af5e303fb69860bfc2b475ea2fec647"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d10_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  69584,
+                                        "sha256":  "906ee2aeee1eaa59242712a10352ebeb128579c4839a32661cff1157c7a709cc"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_d11_doctrine_generated_bundle_v0_1\\astra_d11_doctrine_pack_v0_1.zip",
+                                        "size_bytes":  39742,
+                                        "sha256":  "41c8b355cb902e2a42ac5b1f3b5acc14ec9520d031023fa588e4d5fe5e0846f1"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d00_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d00_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  10,
+                      "total_size_bytes":  50651,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\astra_d00_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  25706,
+                                        "sha256":  "fcaa86069cdbcc5caf0cf45bbea4a21285fd3b55a78f1073b41398ea1a2ffc39"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00_pack_manifest.json",
+                                        "size_bytes":  1508,
+                                        "sha256":  "c4cf0252a1c493f31a9c605f6172de9fef3d7df99bec6c0d09466e25d108080f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-00_core_play_experience_contract.md",
+                                        "size_bytes":  3228,
+                                        "sha256":  "6d69ed0f4431bae42086a7137c3d05b4829c0715518857e170cfc1521ae3069b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-01_power_cost_context_and_world_memory.md",
+                                        "size_bytes":  2978,
+                                        "sha256":  "0e84eac478d9c9b67874d50cbdd00b2d7ae902d4aa307943b332d5eb3504bf81"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-02_power_context_register_and_assessment_baseline.md",
+                                        "size_bytes":  3501,
+                                        "sha256":  "15b0c931ade048ac40024375d81d0435172b11c26f9f639b1e436581bebc6bf2"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-03_state_delta_commit_protocol.md",
+                                        "size_bytes":  3040,
+                                        "sha256":  "c534f9f3d46143026d6e7d8f8a30503e2b17f7b5a1922c2d8776f11e115109b2"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-04_campaign_loop_and_long_form_durability.md",
+                                        "size_bytes":  2739,
+                                        "sha256":  "207de2c4d5c38d82c4b0c67766d805f739329b612bce8a7515dcf7318fe88b37"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-05_source_local_and_conversion_boundaries.md",
+                                        "size_bytes":  2207,
+                                        "sha256":  "604f2b21300ab69bcf1232ee77578beca7dd176a5fd876bbefc739969b1d9155"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-06_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  3435,
+                                        "sha256":  "d9251d262a245f5b2fe3db49215118b33136415e9e785ebc50a1a62f0608bbd6"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d00_doctrine_pack_v0_1\\D00-README_manifest.md",
+                                        "size_bytes":  2309,
+                                        "sha256":  "1717ebb8861e6f12d890d10009b22816a20235398813ebc2f368feffe424182e"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d01_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d01_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  10,
+                      "total_size_bytes":  48808,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\astra_d01_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  24791,
+                                        "sha256":  "412eb0835a55c7eac12ebdc09eedbbcd6b46e0543f2d662ee079f39b5a2f55ed"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01_pack_manifest.json",
+                                        "size_bytes":  1667,
+                                        "sha256":  "533cbcc5295de471c5721bffb3766286dd1df890101d1e31116f187ce7589413"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-00_attribute_architecture_and_design_boundary.md",
+                                        "size_bytes":  1980,
+                                        "sha256":  "0eaa731a8419c6ab694c792ea320f8a922b57fffb6ce7dce2a2e3118417e9716"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-01_visible_attribute_set.md",
+                                        "size_bytes":  3749,
+                                        "sha256":  "80dd6f22fe60973ab3d2ac65bacb1aef2c78c74e9fd1622b7cb4539ccaea7c45"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-02_animus_and_pneuma_doctrine.md",
+                                        "size_bytes":  2924,
+                                        "sha256":  "33afefc761f5b232aa06bbc231d47dbc993f19bc8465d07154d471a99d729356"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-03_multi_axis_breakthrough_lattices.md",
+                                        "size_bytes":  2804,
+                                        "sha256":  "660af1a72382f8f2e66ba0f7929f591d48c0ffab1d85e5e867ed12d2d2be8c5e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-04_pool_reserve_and_derived_pressure_handoffs.md",
+                                        "size_bytes":  2644,
+                                        "sha256":  "b7fca9eb177893cbee8425074a09ba7c3259a726c1098cec299720cb9edc7071"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-05_conversion_mapping_and_source_local_boundaries.md",
+                                        "size_bytes":  2488,
+                                        "sha256":  "4faf3cf31d5675b915e3fdad611ccaf4181e932df22d65a58d255aecdeba2a42"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-06_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  3502,
+                                        "sha256":  "1a3b160091e5a79d809e2a814b3bc1fb0c0ca4f49042710f98e9be49d6b06d17"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d01_doctrine_pack_v0_1\\D01-README_manifest.md",
+                                        "size_bytes":  2259,
+                                        "sha256":  "2e15d9563451e6bbf77cf6bdc86b19e31d57456ff0aaa1433e6d964e5b713c15"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d02_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d02_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  13,
+                      "total_size_bytes":  96627,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\astra_d02_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  48828,
+                                        "sha256":  "756d4577fe710c1d115b66603ec467ac044db1736253bc092341b5547093bba8"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02_pack_manifest.json",
+                                        "size_bytes":  2815,
+                                        "sha256":  "f7318927296d2e14ba18c65286d9bb48539948bfe02e9b19eb667120abaa2d92"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-00_resolution_architecture_and_owner_boundaries.md",
+                                        "size_bytes":  4213,
+                                        "sha256":  "6e60715fe261f1a41d63fabb93c0fb76f5b8b96710f4bf71828ff6ea06da1060"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-01_d20_action_check_difficulty_and_modifiers.md",
+                                        "size_bytes":  4640,
+                                        "sha256":  "9540ed6d865d3f041bf4930f4a89a7fbea4f59440cda3d59f69ac1b798c575d7"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-02_margin_outcome_ladder_natural_20_natural_1.md",
+                                        "size_bytes":  4771,
+                                        "sha256":  "4e90e539bea0806c33dac97fab97941118b3de754089a2a9a93b73472de45063"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-03_cost_commitment_overinvestment_and_success_at_cost.md",
+                                        "size_bytes":  4023,
+                                        "sha256":  "5986666eb060a17d58842595579e0a03edc57b4cec2086574614f89d10115f04"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-04_power_context_register_resolution_integration.md",
+                                        "size_bytes":  3264,
+                                        "sha256":  "fee50df6bdd3d8602e32fc0f4588373fd37be28f3183fb279aa7d69d07df6d93"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-05_opposed_defense_resistance_and_contested_checks.md",
+                                        "size_bytes":  3858,
+                                        "sha256":  "be8742c3b58147af70f86e2f538da7e50276739de7f2a295fb414eef02680585"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-06_group_extended_and_dramatic_tasks.md",
+                                        "size_bytes":  3778,
+                                        "sha256":  "a96718a8dd7040b890ceffcd69023a8f0bb29e9b1231b03ee1422522b6d7eb0c"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-07_assessment_reconnaissance_and_information_quality.md",
+                                        "size_bytes":  3368,
+                                        "sha256":  "b30457ce976d56ad31ed92013a1a8618250283445abf5785fe9a0575fbedc008"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-08_state_delta_routing_and_source_local_resolution_boundaries.md",
+                                        "size_bytes":  4358,
+                                        "sha256":  "eea16edef7f36b938834ac08e817f0a68159340bd7354b6b2e23200232619c25"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-09_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  5901,
+                                        "sha256":  "ee6da6c0592e0ed4c7bfbc3f79a453eca0f284ae859c69997ce560a7a236df6d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d02_doctrine_pack_v0_1\\D02-README_manifest.md",
+                                        "size_bytes":  2810,
+                                        "sha256":  "99685ae1061f43798640d110cd718661909feea5237020adb72dec5faad852f7"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d03_d04_d20_compatibility_amendment_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  6,
+                      "total_size_bytes":  34211,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1\\astra_d03_d04_d20_compatibility_amendment_pack_combined_v0_1.md",
+                                        "size_bytes":  17411,
+                                        "sha256":  "485ad6d26bb14b5bbf5cb68b7cbbb1adc761ae995a97faef30ada3c1c198f72c"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1\\D00-D10_d20_compatibility_audit_note_v0_1.md",
+                                        "size_bytes":  2054,
+                                        "sha256":  "10f41a3c38b825aa7fd94ed81a0269fade4f18e31c4d4699f39e5e3d78260c88"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1\\D03_D04_d20_compatibility_application_guide.md",
+                                        "size_bytes":  1765,
+                                        "sha256":  "b42c1bcb7ee73e3d4f879e10ce44a52e0f7f2a4d83ab2cc2341a1a548e365a6d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1\\D03_D04_d20_compatibility_manifest_v0_1.json",
+                                        "size_bytes":  1878,
+                                        "sha256":  "1fb3b9799bea27ebf72d397f11375f5d7a85d8729218c048c1b35404150e9970"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1\\D03-A_d20_backlash_trigger_terminology_amendment.md",
+                                        "size_bytes":  4497,
+                                        "sha256":  "4584da41140591a0aabfa45a74d841f21d2484eb0aa40cf95ad22bdf913e619b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_d04_d20_compatibility_amendment_pack_v0_1\\D04-A_d20_breakthrough_outcome_mapping_amendment.md",
+                                        "size_bytes":  6606,
+                                        "sha256":  "b2c632ede73aeabe8a47a37e5382090eb33d385a12ddb1985fd5ff0f8f4052dd"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d03_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d03_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  10,
+                      "total_size_bytes":  83127,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_00_resource_cost_pack_index.md",
+                                        "size_bytes":  8720,
+                                        "sha256":  "fbd2e22a4925e75e44bd98543a999684d9b08ac43bf6bbebb9703c7892b966fc"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_01_power_economy_lattice.md",
+                                        "size_bytes":  10847,
+                                        "sha256":  "86216c71a88fcb08afc606c70a2408202b3300a605995baed1de8de1f6fb28e3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_02_baseline_endura_health_and_vessel_tolerance.md",
+                                        "size_bytes":  6894,
+                                        "sha256":  "7923ea8f0822c35936f18508d0d12318ea4153f4e78f740d67fb650a58245743"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_03_power_reservoir_partition_model.md",
+                                        "size_bytes":  6150,
+                                        "sha256":  "3f8ce272e39dc9b3e64efe743d482f1aae4fdde165546499d003924e38894bcb"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_04_expression_authoring_and_reauthoring.md",
+                                        "size_bytes":  8146,
+                                        "sha256":  "c6038d302638fbf17896b5c3ea2f7e8157860036db44c4e4429d3be96821c976"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_05_expression_validation_gate.md",
+                                        "size_bytes":  10069,
+                                        "sha256":  "1b4b11763da07959cd21d44993c446b3d9403734a4fbba75612c0317cd42f134"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_06_expression_inscription_capacity.md",
+                                        "size_bytes":  13567,
+                                        "sha256":  "0be3fe483936b258cc0e39c06630f4ab7d5d0b909b44bd138a9a2d4deadae7c3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_07_overdraw_backlash_corruption_and_recovery.md",
+                                        "size_bytes":  7767,
+                                        "sha256":  "9cfdbf8a26527b6427b200ee3006ff96e69bb70e8519e8a6a01fe6a4db154a4c"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\D03_08_runtime_and_ui_state_requirements.md",
+                                        "size_bytes":  10514,
+                                        "sha256":  "e590e2a12f4cfe49806b35cd79d405512a5c2e87aa67afcffefd9fd6d4a011ec"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d03_doctrine_pack_v0_1\\astra_d03_doctrine_pack_v0_1\\README.md",
+                                        "size_bytes":  453,
+                                        "sha256":  "0b84fc3dd974626088a52a63e45ec7593e6e35dd49315088d7becb7e0123175d"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d04_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d04_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  11,
+                      "total_size_bytes":  142719,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04_pack_manifest.json",
+                                        "size_bytes":  926,
+                                        "sha256":  "9e666de1d3ac6a55c8749d0024d03bd127d5f74ddfc7bcb4460e89783c667b56"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-00_advancement_architecture_overview.md",
+                                        "size_bytes":  12423,
+                                        "sha256":  "93db2d039cc0c3a6032d4a02ea1f1b0e0a9d80e6b66eac6bcc5e4ee2d830b0f8"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-01_proof_events_and_proof_handling_ledger.md",
+                                        "size_bytes":  21663,
+                                        "sha256":  "1772271a32fe89bfcad98341aa27dc587b9d63640f89c96be45ebda30e49cac6"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-02_awakening_and_dynamic_triadic_choice.md",
+                                        "size_bytes":  15717,
+                                        "sha256":  "b8cb88f52b67a4f8605851e1337810be71c9fe61e96018518c5cd354e17c7128"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-03_levels_tiers_and_development_picks.md",
+                                        "size_bytes":  20428,
+                                        "sha256":  "7398bf51d2a574be1f8d1ec025a05de74203d09515844af017177ecdfada0ad6"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-04_advancement_axis_registry.md",
+                                        "size_bytes":  12949,
+                                        "sha256":  "4f1b04a4350f5f3fb70bed7bf43f1fbb98a542b2fae584cbf66ef8df7eda2d57"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-05_breakthrough_procedure_and_payloads.md",
+                                        "size_bytes":  14986,
+                                        "sha256":  "dbeae5dc6e7961f8d76719f7ccca021c8fa0e6ee9cf1c40140b0c0f0b0a56b27"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-06_capstone_and_ascension_access.md",
+                                        "size_bytes":  13434,
+                                        "sha256":  "4dd65d419b2d052d3b323e52afd59b97d9289306a49b05e856fcd39bbe6a89f2"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-07_runtime_schema_handoff_notes.md",
+                                        "size_bytes":  13573,
+                                        "sha256":  "aed0a6b9897f7e6279bf5b3dc908c7302906a8f041442395425057a51e9b1dae"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-08_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  12245,
+                                        "sha256":  "1f3ac43a22ca2fabb22192356f454dfe46d9f8f6c19d36fea03a76e3659008e0"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d04_doctrine_pack_v0_1\\d04_doctrine_pack\\D04-README_manifest.md",
+                                        "size_bytes":  4375,
+                                        "sha256":  "e646166ba46664fbcf4c60befc65e08ba4396bba1d5fa0756e17643136e03ab5"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d05_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d05_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  14,
+                      "total_size_bytes":  158926,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\astra_d05_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  78689,
+                                        "sha256":  "a84e635860dd48281dfa0ee6c133cba784ecc785ba4eb2343e4db664c106b984"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05_pack_manifest.json",
+                                        "size_bytes":  1632,
+                                        "sha256":  "6c38e79eccecab1cbeab8397c3dff828c913969cf98291532e84f1a5d4dcd85a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-00_competency_architecture_overview.md",
+                                        "size_bytes":  6735,
+                                        "sha256":  "a882bbde00732e4ba81ad7e1666a5692cef737f3ab5035a30373834dc35e0bab"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-01_competency_taxonomy_and_families.md",
+                                        "size_bytes":  9004,
+                                        "sha256":  "17bad6ce339db33809320c07ccf9f96bbcde3b6a72edaf6cf91c6310b107ecbc"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-02_boundary_rules_and_owner_handoffs.md",
+                                        "size_bytes":  7275,
+                                        "sha256":  "b3e4764ef1bcb5ee62167f7198feef6cc1440f3e144e8fe47e6579cf75e7be43"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-03_relevance_handling_for_checks.md",
+                                        "size_bytes":  6071,
+                                        "sha256":  "44ff5077a7b635e446f4b2d787af671d3496dedfcef8af11764c1af4f3f7275e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-04_training_practice_teachers_and_downtime.md",
+                                        "size_bytes":  6081,
+                                        "sha256":  "fbbda721d482eab4fe2c613f45b37ebe221ee8b2d895375cfc95a0f8b377110b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-05_research_experimentation_and_theorycraft.md",
+                                        "size_bytes":  6669,
+                                        "sha256":  "6d823062a9d20ce75eb35da61cae5215abefc56a9ec51f808a057efa156ff859"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-06_mastery_specialization_and_methods.md",
+                                        "size_bytes":  5892,
+                                        "sha256":  "18c4db7688727defd59465ed44f83dff9b05f66d7297abc3e382d78501c332e9"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-07_synthesis_and_multi_competency_interaction.md",
+                                        "size_bytes":  5855,
+                                        "sha256":  "79504ccccc3a8c1c3e0e6fbbcb28f7e54b8c2103203d032d5a67ceab1600cd3e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-08_advancement_track_routing_and_nonclass_growth_catalog.md",
+                                        "size_bytes":  8052,
+                                        "sha256":  "3303a7cf1076bdd393fc33cf2bace76a0f3d6d7e8fa7276d6c822458a08925e3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-09_records_ui_and_runtime_handoff.md",
+                                        "size_bytes":  6013,
+                                        "sha256":  "b3869f428f8dc2b98de58d939d93f249ac910553f85e974b54d6190e79a3a262"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-10_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  6709,
+                                        "sha256":  "02735916c8f40e2cada379a362800106bd9e8ad9f219356183fe4a655eb50599"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d05_doctrine_pack_v0_1\\D05-README_manifest.md",
+                                        "size_bytes":  4249,
+                                        "sha256":  "2c019910fe36682ae85241aa9af722dee79741d0198fec2ed680e17f50b2d8a9"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d06_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d06_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  15,
+                      "total_size_bytes":  213565,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\astra_d06_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  106893,
+                                        "sha256":  "6cd3a16500af2cb5cd40b4ab7b20e77f00f5cd74a7778a5fdaab5569cfeff734"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06_pack_manifest.json",
+                                        "size_bytes":  2750,
+                                        "sha256":  "14edc666ab1993b2f7af30ba6cb58f78e8fc65f1aff0082860448bf31f4b0f1c"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-00_route_architecture_overview.md",
+                                        "size_bytes":  6786,
+                                        "sha256":  "79ec0ecfe7728386484d6ecf0ac10e5b07288a8146112d60b71fb41cd01272d9"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-01_route_authorization_and_path_identity.md",
+                                        "size_bytes":  8140,
+                                        "sha256":  "0212a715b85e274263786d2d5e55e9e506f86cf1fc1f1bef9fca4f412b806d06"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-02_route_facets_domains_and_archetypes.md",
+                                        "size_bytes":  9423,
+                                        "sha256":  "0e857832070dbc48a41ecd15ec75f33c7f0f740a9696162fce67b7130282e1d0"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-03_principle_concept_authority_doctrine.md",
+                                        "size_bytes":  11004,
+                                        "sha256":  "27f77fae31dd8ebfce30bfedd0ff75e5d5d50f8b3794977db70b716de400e153"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-04_route_feature_ledgers_and_personalized_development_menus.md",
+                                        "size_bytes":  7608,
+                                        "sha256":  "8b9310a6ad8b650e5e5de3330d28745c53e1b46e99bb08dcf7ef6e46a05af52d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-05_technique_architecture_and_method_handoff.md",
+                                        "size_bytes":  8243,
+                                        "sha256":  "14a01e1a43f9851667e0e0f7bbf4ad9f6fff9b032aef0e04b04dba43046de1bb"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-06_route_development_branches_drift_and_mutation.md",
+                                        "size_bytes":  7276,
+                                        "sha256":  "1e0b43cac58603ac24b54ca1ec26ccbb1f971f431717b7bb33ae83c27173f1ee"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-07_route_fusion_multipath_and_confluence.md",
+                                        "size_bytes":  7284,
+                                        "sha256":  "8e879c1ce148cc6159c4694f5207185f1588bc20c7bfc35e8ad203771f086797"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-08_profession_routes_lineages_schools_and_factions.md",
+                                        "size_bytes":  8272,
+                                        "sha256":  "763f63dbcb88150138f258ada393644a809ad0ee8fc41303cd71955a96a0021a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-09_source_local_route_conversion_and_donor_class_normalization.md",
+                                        "size_bytes":  7970,
+                                        "sha256":  "fe5d549476d6add510063fdc0cd13295c6daf6c56e47b6d2c48e39cbefb93163"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-10_runtime_schema_and_ui_handoff.md",
+                                        "size_bytes":  6486,
+                                        "sha256":  "f7e379ae38b00541bc209ff9d3bb02806814f333cb8196e246ce8acdee50538a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-11_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  9599,
+                                        "sha256":  "b4492ccd4bd9007fb1deab0d50c9a1026e8920f170db366714fa3a11bbda0453"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d06_doctrine_pack_v0_1\\D06-README_manifest.md",
+                                        "size_bytes":  5831,
+                                        "sha256":  "f668e3d50962918b6023c7c3987fb239da443e717f05ea856113c0f4bcab4d95"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d07_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d07_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  14,
+                      "total_size_bytes":  137458,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\astra_d07_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  69162,
+                                        "sha256":  "657117437b874753a090cdf6542a55f3e9a142cb61409b0e52f7eabbfdea8300"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07_pack_manifest.json",
+                                        "size_bytes":  3108,
+                                        "sha256":  "a3bf93a289e7ca3449389fc5361e7a46f1c4805b5146bc1d7e4fd1839810cec5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-00_layered_harm_architecture_overview.md",
+                                        "size_bytes":  5992,
+                                        "sha256":  "a4fa34359be7f9c9e08faa948c3d5dd1c8a325813e69c003f442fb3fea74f176"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-01_damage_injury_conditions_and_severity.md",
+                                        "size_bytes":  5753,
+                                        "sha256":  "f226e73901b95970667e6387ade63427cda0cd625fb08657cc747ae32fdd5677"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-02_corruption_contamination_and_instability.md",
+                                        "size_bytes":  5709,
+                                        "sha256":  "85b2927b55c8276ef67c88d3feb3bf0b3e77e6fa7cd8aa40bacd539903c78632"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-03_mutation_transformation_and_body_change.md",
+                                        "size_bytes":  5117,
+                                        "sha256":  "ff542bfca80137e118585a303edd37932ff951d84218f318e9fada09903fc869"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-04_identity_mental_and_principle_harm.md",
+                                        "size_bytes":  4828,
+                                        "sha256":  "e73482b88742e6991a22343c8bff35b167b227255bebfb76faaece2a854fde7b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-05_conceptual_resource_exposure_and_integration_harm.md",
+                                        "size_bytes":  5081,
+                                        "sha256":  "16832d131f1fd84bca55becf9fa6cfbc9b98ea42041be6b7e5e45a17d1b75f38"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-06_carrier_backlash_and_power_strain_handoff.md",
+                                        "size_bytes":  4517,
+                                        "sha256":  "ba0385404011ca31aebe2a9e94c0f0c4be3d1dbc2b38195d5ed2192659cbb2b7"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-07_recovery_treatment_stabilization_and_adaptation.md",
+                                        "size_bytes":  4578,
+                                        "sha256":  "4b5eaaa380ee909aaa4baa6393858bd6389f6e3cfa789b60f26e1223dbe0b003"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-08_lethality_crippling_and_failure_consequences.md",
+                                        "size_bytes":  4851,
+                                        "sha256":  "5d8b2922271b19237d275319a37e6229036ff81bbaa1793763c7bb5c43c503e2"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-09_runtime_records_ui_and_owner_handoffs.md",
+                                        "size_bytes":  6193,
+                                        "sha256":  "2cc41938988c25831f5f6b2c55dc85a3e86290ba57e28b2a42864bcc0d104c0e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-10_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  7317,
+                                        "sha256":  "ae860777253a406c476b3306ece4318f4a36e333c6ece52e3703d9bb35950858"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d07_doctrine_pack_v0_1\\D07-README_manifest.md",
+                                        "size_bytes":  5252,
+                                        "sha256":  "62ee11583f21ccfbe7fc851342c0d2312a22b1da746df84ff9b64c8ea19535f8"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d08_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d08_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  13,
+                      "total_size_bytes":  154487,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\astra_d08_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  77744,
+                                        "sha256":  "f350ecfd7dcbce7265a8e7f409414edb99514ddd54dbb5ed11cd263a83c592da"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08_pack_manifest.json",
+                                        "size_bytes":  2385,
+                                        "sha256":  "84cc4216ff7d2e32c3ea002fb902a720aa925230482b76766177beac8f0393bd"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-00_layered_actor_state_architecture.md",
+                                        "size_bytes":  5519,
+                                        "sha256":  "2b0fd45dfdd7592b47c4aa8df54cbf5c57c712e776264c044e25d68c2609a907"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-01_identity_continuity_personhood_and_agency.md",
+                                        "size_bytes":  7096,
+                                        "sha256":  "572a8523f2ea3e055257e040d1c05bb073380f690245ff68bad2bad5132aa2e7"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-02_body_kinform_form_state_and_nonhuman_physiology.md",
+                                        "size_bytes":  7595,
+                                        "sha256":  "0e78308b7b1b1b75cad29fcdf5e45829f49fff862210ffb51f8fd7271db2d1c1"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-03_companions_bonds_mounts_pets_and_familiars.md",
+                                        "size_bytes":  6055,
+                                        "sha256":  "cfb69b2e0af98981409910b7c4b22551540b0e741931188cbcf0e8cba81f7f1b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-04_summons_constructs_spirits_ai_and_bound_entities.md",
+                                        "size_bytes":  6458,
+                                        "sha256":  "49b0cbdd8233fc4cedcd68a611c1e0429ab0a01e23f86c337f3b0344f1a9cb24"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-05_swarms_hives_colonies_and_distributed_actors.md",
+                                        "size_bytes":  6231,
+                                        "sha256":  "6a2945c9a2399fc95c1fff4fd93d967444d53ba8e22bfb334730ca884bb53f56"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-06_actor_advancement_evolution_and_route_interface.md",
+                                        "size_bytes":  7474,
+                                        "sha256":  "cdc697c8ab45f95803c4d1da0137a9e32b45de3d02dd7d5eaf9d62500cf48543"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-07_source_local_actor_and_creature_conversion.md",
+                                        "size_bytes":  6946,
+                                        "sha256":  "0030ce02279f488cad95a597d2fb3fd1b4136089ac21e0463b5967e886d3a8a4"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-08_runtime_records_ui_and_owner_handoffs.md",
+                                        "size_bytes":  7323,
+                                        "sha256":  "5fe5f9c79e2bcdde179e4091124c1ab5caaa4a3b605c03981bc275875f126fbe"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-09_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  10039,
+                                        "sha256":  "63e72621acffd4f6325b199f55238358d99ba8e564f41c4157b8825ede46e404"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d08_doctrine_pack_v0_1\\D08-README_manifest.md",
+                                        "size_bytes":  3622,
+                                        "sha256":  "4ac9a17df5322fe66042801a5a881b2f45ed6121a4a787c52083fbb50cca943c"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d09_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d09_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  13,
+                      "total_size_bytes":  152913,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\astra_d09_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  77008,
+                                        "sha256":  "17b4895232a9d7a01721d29f422ed57a8eede55b1c12bd7f7ee9bd2f1eb1ccf7"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09_pack_manifest.json",
+                                        "size_bytes":  3105,
+                                        "sha256":  "700b9d1ccfdea6c8552a18ffe315f29bd6840f96073f98bd8bfd7dfcbc8a5a96"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-00_layered_object_state_architecture.md",
+                                        "size_bytes":  5427,
+                                        "sha256":  "95b2f47c76b334e3febedad469abdd9a771b0f7e86be476703e0884db914d33e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-01_identity_material_function_and_access_layers.md",
+                                        "size_bytes":  6867,
+                                        "sha256":  "dbf6c967babd73a264e705cf52648bfa06e4b4c0bf8f0c27ed56cfd5a6c42970"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-02_weapons_armor_tools_foci_consumables_and_materials.md",
+                                        "size_bytes":  5962,
+                                        "sha256":  "cc825bac27f3da1ad94311f44e4c787fd6f7f3cd34981cd98294de913e9cd7e5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-03_relics_artifacts_anchors_intelligent_objects_and_personhood_interface.md",
+                                        "size_bytes":  5040,
+                                        "sha256":  "e6c1d704d3d80091fe6e6ca6673d13ab2a9a1a5469fe6755df5a480cd3024dc4"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-04_implants_prosthetics_cyberware_biotech_living_gear_and_body_integrated_objects.md",
+                                        "size_bytes":  5323,
+                                        "sha256":  "569bb3cf89c208662f2deac3f83dbaa10db9ad722bcf2ff0fd976594dd071849"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-05_vehicles_platforms_ships_mechs_drones_and_external_bodies.md",
+                                        "size_bytes":  5871,
+                                        "sha256":  "242011ef884d59d7d076d2e86f40be687de081d529f94d96cd26209086315200"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-06_crafting_repair_salvage_modification_upgrade_and_requisition_interface.md",
+                                        "size_bytes":  6702,
+                                        "sha256":  "1a7e4da3d1c1e871bf3348c21dba4bbd86efdad489c737f3f85582778fda6d1d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-07_source_local_object_and_equipment_conversion.md",
+                                        "size_bytes":  6766,
+                                        "sha256":  "e950fdb0170194f548166708e2d35ca7bd3f30c4775ebde0aa0054a83c031bb5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-08_runtime_records_ui_and_owner_handoffs.md",
+                                        "size_bytes":  7217,
+                                        "sha256":  "340073b22c42fa0cfc9c230ed657b13a8e15c9f915df4b3e176022c2cd7117e5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-09_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  12901,
+                                        "sha256":  "838daf73ec934953acc38b1ab1573506f13e6b7ce7070e5e05651b3cabadae45"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d09_doctrine_pack_v0_1\\D09-README_manifest.md",
+                                        "size_bytes":  4724,
+                                        "sha256":  "8fbeadb9d88b777e5ee96f5e6dd6469478f676629819f9be11fe5cd2c99de46b"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d10_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d10_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  14,
+                      "total_size_bytes":  205269,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\astra_d10_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  103224,
+                                        "sha256":  "35dd5d131c5a9d7d454cc226395e32d31957972e8916acf8d92663c1ed45b18a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10_pack_manifest.json",
+                                        "size_bytes":  5227,
+                                        "sha256":  "1131c50048b50a5ea0cd3340b91a87e6f7315f81162a78fc1ba072706605d119"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-00_layered_world_state_register_architecture.md",
+                                        "size_bytes":  4174,
+                                        "sha256":  "7c6c82845ff912b68c7b2598f813f46e705dfa56862467736ad7c60038b9a242"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-01_world_state_event_consequence_persistence.md",
+                                        "size_bytes":  6715,
+                                        "sha256":  "b7566a94baf99708b02acbd712e3df516b47c274767e50edaae37b12e0aaaa44"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-02_territory_location_hazard_control_environment_register.md",
+                                        "size_bytes":  7651,
+                                        "sha256":  "02fe5c777d3e6cbae664a7be06fc4d24b76f4bf8bb95f65267929375df040c12"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-03_faction_institution_rank_claim_goal_conflict_register.md",
+                                        "size_bytes":  9237,
+                                        "sha256":  "3aecc62fefc0eaa928cd78f175d7c48ddee24b2b302abe6b895e683cdb8e36f4"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-04_law_ownership_custody_rights_legitimacy_authority_register.md",
+                                        "size_bytes":  8625,
+                                        "sha256":  "fc058da53ac0e330b445073f7637ec46d7709f9d1479d645f3d719743dfc8fae"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-05_economy_scarcity_strategic_resources_market_requisition_register.md",
+                                        "size_bytes":  7559,
+                                        "sha256":  "7c56c24ca9df63fba8b5fbcfcff36abd46b0d10274129943374992a581ff1109"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-06_reputation_relationship_social_memory_register.md",
+                                        "size_bytes":  7718,
+                                        "sha256":  "919e0448b47bc6d843b466d8269319e29bc97aa682b4d6c556c2d4914fb518ef"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md",
+                                        "size_bytes":  7271,
+                                        "sha256":  "6300950772833ea4a4f4f2236947817c10576452237e6d39b625090d1a93bc3f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-08_source_local_world_system_conversion_boundary_register.md",
+                                        "size_bytes":  9066,
+                                        "sha256":  "5ba90bf5f36c89511788807d74a7745361f389404b3e39dec2683423790578b0"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-09_runtime_records_ui_register_links_owner_handoffs.md",
+                                        "size_bytes":  9269,
+                                        "sha256":  "ee5bb243cd2930e169b6af4ccb6c72214ed2bfc8b60f799c48641064229ee285"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-10_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  13162,
+                                        "sha256":  "e6aed729e5781e8374e6dfca724826d7d776314e3065f433e6e7fdf2f91562e3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d10_doctrine_pack_v0_1\\D10-README_manifest.md",
+                                        "size_bytes":  6371,
+                                        "sha256":  "5bbd07eb822cf241e5e4733c62087766355d263b5600fad0ab8174c596ebf193"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_d11_doctrine_pack_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_d11_doctrine_pack_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  13,
+                      "total_size_bytes":  104148,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\astra_d11_doctrine_pack_combined_v0_1.md",
+                                        "size_bytes":  52571,
+                                        "sha256":  "2adff27d53d9a3ea51b973fca3058392cff9a5799f7dfeb07bb73f1ae92c14ea"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11_pack_manifest.json",
+                                        "size_bytes":  2711,
+                                        "sha256":  "4de44b0e96a426ab8c5468e35ebd541a3a397c2cbfdc82a3cfd3bc8f6f6486c1"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-00_narrator_interface_architecture_and_owner_boundaries.md",
+                                        "size_bytes":  2945,
+                                        "sha256":  "e67e17cd49730bf7d11afb4ceabda600b8dd74faa5e6fa982b7c6d3316344c82"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-01_scene_framing_from_registered_state.md",
+                                        "size_bytes":  3974,
+                                        "sha256":  "e70eda06c2c740011946df73d4fcba6597ed331443cdcf56250e10bc13930c09"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-02_outcome_narration_and_consequence_surfacing.md",
+                                        "size_bytes":  4259,
+                                        "sha256":  "3bbc5469e86991c58f3291695f295a08c82a9731bd66ddb219928491ff2b3009"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-03_hidden_state_rumor_secrecy_misinformation_presentation.md",
+                                        "size_bytes":  4699,
+                                        "sha256":  "2c90bfe9986034642228d57f907ce8d2525e5a87c50e61952e75c8627bed294f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-04_assessment_result_presentation.md",
+                                        "size_bytes":  4301,
+                                        "sha256":  "30ecac3481ee0b4f4c3ea7d487f9c6aceed7239ea84bb902fed56b64f41fcc61"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-05_unresolved_pressure_surfacing.md",
+                                        "size_bytes":  4195,
+                                        "sha256":  "8c44be87e900c77fd441f0547e2fa380c52c926a47e43cd4bd91b51922a492a3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-06_player_facing_vs_gm_facing_summary_modes.md",
+                                        "size_bytes":  4478,
+                                        "sha256":  "1472c22bce9ee6890b3b147785c5638e3df59dca754d5fe2b505a32012ec0717"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-07_anti_hallucination_and_unsupported_state_escalation.md",
+                                        "size_bytes":  5007,
+                                        "sha256":  "2dec63ec81db619005843cf5b92d57d3184ae3ebcfc680d7974b6c6a707bfec9"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-08_source_local_presentation_boundaries.md",
+                                        "size_bytes":  4093,
+                                        "sha256":  "0b86c94561373f37e1e4dbcfa22b7b04f616c9498b9d9ed8748268be1c0f85d5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-09_integration_checklists_and_ddr_register.md",
+                                        "size_bytes":  8632,
+                                        "sha256":  "bce4395401a6e579de8fd17bda811f02478fbe268573d2bad822458b39bbec3f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_d11_doctrine_pack_v0_1\\D11-README_manifest.md",
+                                        "size_bytes":  2283,
+                                        "sha256":  "1ff76f68b484272ec683f2073b0827e7ffc3bb66391db6494b1af0612a731785"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "astra_reconciliation_pass_d03_d04_d02_v0_1",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\astra_reconciliation_pass_d03_d04_d02_v0_1",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  6,
+                      "total_size_bytes":  91219,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1\\astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+                                        "size_bytes":  44910,
+                                        "sha256":  "0a9502b3d869549310a8ab7ba19795940100f7e34de0b1b1668444df4fec35cd"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1\\D02_D05_relevance_crosscheck_v0_1.md",
+                                        "size_bytes":  9736,
+                                        "sha256":  "9d61a90844088571f2ca08fa5c833274651721431f75c6a1b1023365221aaf34"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1\\D03_D05_reconciliation_amendment_v0_1.md",
+                                        "size_bytes":  16560,
+                                        "sha256":  "43b67050bb8a655d2870863c79933c3a8145a0fa5d62ea10a417c8e8212b405a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1\\D04_D05_reconciliation_amendment_v0_1.md",
+                                        "size_bytes":  15976,
+                                        "sha256":  "b4db60be94978b0a910599a85f8070f37baaee71cb241d8388b8846b11e93c26"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1\\README_reconciliation_manifest.md",
+                                        "size_bytes":  2353,
+                                        "sha256":  "6574aeb4e8aa8a127f5cfa5acf280704e664c94f56fbe4b42eae692123c8f709"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\astra_reconciliation_pass_d03_d04_d02_v0_1\\reconciliation_manifest.json",
+                                        "size_bytes":  1684,
+                                        "sha256":  "8126bfbca57181f5cfc337372082da2a43cf62160587c5ca4a1cf313b9a1c68f"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  144942,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+                                        "size_bytes":  71121,
+                                        "sha256":  "d0111b45888ab441aa9fde7a0071609b5cc982b6eb31d7e1c0858180ef961c99"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12_pack_manifest.json",
+                                        "size_bytes":  4272,
+                                        "sha256":  "e4d2c3e68a51060776e8e2ce69a725a4d40990f71ae99b16a4916e3afd0e793b"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-00_time_action_cadence_encounter_procedure_and_owner_boundaries.md",
+                                        "size_bytes":  8152,
+                                        "sha256":  "fbd665e064e7eca969848b306c2c6b47cc30aaba6b818f4253a1c1537387ed19"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-01_cadence_states_transition_triggers_and_scene_flow.md",
+                                        "size_bytes":  6372,
+                                        "sha256":  "cc45bb2c68cfd0bb60790910f1fbdeb26bf2dc50217202091cd8f3e3a5d5c44d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-02_action_windows_initiative_sequencing_and_interruptions.md",
+                                        "size_bytes":  6227,
+                                        "sha256":  "b43abb4cc4077c7420a55db582a92d008dc0e407700b4384bbfdf113ef3b5d21"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-03_round_exchange_beat_interval_and_time_scale_grammar.md",
+                                        "size_bytes":  4845,
+                                        "sha256":  "5373284d766af0421c0262de14e7e56e38821d46cf62c52520ce530e636263a7"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-04_checkpoints_cost_commitment_consequence_timing_and_handoffs.md",
+                                        "size_bytes":  6207,
+                                        "sha256":  "8eb58df674b8d5b8d812ec0266ba0c8474fdc166e7847a256d1bc81777db4d70"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-05_structured_scene_families_and_cadence_profiles.md",
+                                        "size_bytes":  8250,
+                                        "sha256":  "712c411e3835c8c42d92c39e41dc5542169f991d5de72ded654ff2090e80028d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-06_source_local_timing_donor_procedure_mapping_and_escalation.md",
+                                        "size_bytes":  6689,
+                                        "sha256":  "0dfa31b3351888dc9253ff1f7d34f0f2e82d4a084b620abe3fbe49c90a99fd6f"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+                                        "size_bytes":  7617,
+                                        "sha256":  "dc1567a5aa39925e1e2285583e423589cf8d1334d30e9759a775efcbf80f9c6c"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  10497,
+                                        "sha256":  "35bc0960611057a61e9163502ea2dfb07da32c4465fddf8622148b882e3b7446"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack\\D12_doctrine_pack\\D12-README_manifest.md",
+                                        "size_bytes":  4693,
+                                        "sha256":  "1c5c6463bf595d55aad7a3ada9f6d43c3c4b743918606da8596ef5d04de613be"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  202196,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+                                        "size_bytes":  99967,
+                                        "sha256":  "63fa096de16c62537dd4c443e0763c67306ed7cb1267f7634997242aab7eddc1"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13_pack_manifest.json",
+                                        "size_bytes":  4119,
+                                        "sha256":  "612fac442f0e090f52f74faecd4ceb0f628f7f990b0a8b8ac6d6c3172eec9533"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-00_downtime_projects_recovery_crafting_and_long_task_owner_boundaries.md",
+                                        "size_bytes":  9725,
+                                        "sha256":  "00fe0528f7dba6734254942180902648cfffd97d79fb81ca42d651b1d68a4797"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-01_project_anatomy_project_families_and_lifecycle_states.md",
+                                        "size_bytes":  9616,
+                                        "sha256":  "a39fb1f018b33e248b9d96f50c4d62fec85f5f748fb92d490e162ea267d83a43"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-02_project_creation_requirement_discovery_commitment_and_interval_setup.md",
+                                        "size_bytes":  8290,
+                                        "sha256":  "8746601f43c9f892897c3f97cd0948b0fb0b8f2af1e296fa5410d177131ec9d5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-03_progress_interval_outcomes_complications_and_partial_completion.md",
+                                        "size_bytes":  7181,
+                                        "sha256":  "a0b67ac7e19e124fb20b4aee163a975357697ebd9760c2403a27a2207f1077ca"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-04_project_family_profiles_and_owner_file_handoff_rules.md",
+                                        "size_bytes":  21679,
+                                        "sha256":  "a6457bd08d25fd986af981be2511ef76b119747112c7d5391eb61b1b9fa63b73"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-05_concurrent_projects_contributors_facilities_materials_and_support_burden.md",
+                                        "size_bytes":  6951,
+                                        "sha256":  "1c572f7f01aa822c510828c5124d82922ddeec71b9fe1d1507c77ecb44389727"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-06_source_local_downtime_donor_project_mapping_quarantine_and_escalation.md",
+                                        "size_bytes":  7563,
+                                        "sha256":  "0e79b2ef28882f463696bb407ccdbf6a3630fcde3491b307457aff87b1bb5959"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+                                        "size_bytes":  8792,
+                                        "sha256":  "bcdd64a6a4dbfaf86c8bc4c4100a683cd5743a44c8bb05aac7e02d9f06205160"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  13537,
+                                        "sha256":  "77e6063c22f3ba774822f99fb121b22bea4c5b363acade671f422fea6b572d1e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack\\D13_doctrine_pack\\D13-README_manifest.md",
+                                        "size_bytes":  4776,
+                                        "sha256":  "abbb1061a628485a5c3572ea10ad05d3e1d01a52880d8b4d2f7d90ac2f708a4d"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D14_exploration_travel_navigation_and_discovery_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  93281,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+                                        "size_bytes":  45763,
+                                        "sha256":  "ecc1f22388484ce8975937146db9828002ec537500d122e3142f1096afca89e5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14_pack_manifest.json",
+                                        "size_bytes":  1818,
+                                        "sha256":  "410702c927d4971dfaa3835355c6618d7ea424b85501833436a10b44f7aa2b9d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-00_exploration_travel_navigation_and_discovery_owner_boundaries.md",
+                                        "size_bytes":  2967,
+                                        "sha256":  "fd57836a2d6d1d43f855d595f611e65eb25d0c011c4074a18d6a28afcf701991"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-01_travel_posture_route_selection_and_known_state_review.md",
+                                        "size_bytes":  3544,
+                                        "sha256":  "bccad244dbe52a8faa8b40f3785bfebc1610a889201af3caf641aee1dd319564"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md",
+                                        "size_bytes":  3991,
+                                        "sha256":  "c02c7993dc2529370853da53ec48cf30e923b3d3eb551a2843a79027238e2829"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-03_discovery_scouting_mapping_and_information_state_boundaries.md",
+                                        "size_bytes":  3712,
+                                        "sha256":  "df061148f3182628783b17dd5ecbb6a483e89b6c869e2a7ec8feda9866967a51"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-04_exploration_context_profiles_site_entry_watches_and_ambush_exposure.md",
+                                        "size_bytes":  5255,
+                                        "sha256":  "909af389795c8156b3652c67003749c46fbd141fd6f65c61f55aadfcab566e5a"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-05_travel_risk_resource_pressure_hazards_encounters_and_transition_handoffs.md",
+                                        "size_bytes":  4360,
+                                        "sha256":  "571a74862a664e0c8d8e674bd42e32c8cdd5f14a4794f6b1ed547a35f52adbc6"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md",
+                                        "size_bytes":  4353,
+                                        "sha256":  "b371819968dfd888ffc49d4569b22c613947d8950ef84835471bb945dc6dfded"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+                                        "size_bytes":  9288,
+                                        "sha256":  "d4debd4014d64002d5d30703cd303988f1e731d176625e9dffe55d157d0ed0d0"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  5439,
+                                        "sha256":  "83f093f5ebc65d88d76b5788bd22650ac6bd45a3df1245237c8f0f21ec386c97"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D14_exploration_travel_navigation_and_discovery_doctrine_pack\\D14_doctrine_pack\\D14-README_manifest.md",
+                                        "size_bytes":  2791,
+                                        "sha256":  "3de6e7f8affccafc8ab60cb4996e047db0e2b634e1f9f266d88a6f25fd584df9"
+                                    }
+                                ]
+                  },
+                  {
+                      "pack_name":  "D15_faction_relationship_domain_and_institutional_operations_doctrine_pack",
+                      "source_path":  "C:\\Users\\mcdon\\OneDrive\\Desktop\\Doctrine packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack",
+                      "repo_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack",
+                      "imported_at":  "2026-06-03T12:21:06-07:00",
+                      "file_count":  12,
+                      "total_size_bytes":  165955,
+                      "status":  "draft_source_pack_not_current_doctrine",
+                      "authority_note":  "Imported for reconciliation. This pack is not current Astra doctrine, canon, runtime authority, or sourcebook text until explicitly promoted through the roadmap/registry process.",
+                      "files":  [
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+                                        "size_bytes":  81317,
+                                        "sha256":  "748faba91be4646917d9933d3ef37b4a08d78aee50bab1374b2843a5871a4294"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15_pack_manifest.json",
+                                        "size_bytes":  5186,
+                                        "sha256":  "b8efb350dab358ce520d1f58f171cf72f789aae531b33b7859322fa9623229b3"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md",
+                                        "size_bytes":  8691,
+                                        "sha256":  "2109c61eab62ef24a986a307dbc4454896579ce8f88021ff68c7663af10b4732"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md",
+                                        "size_bytes":  7012,
+                                        "sha256":  "390f76bf9b2617c827c766c12dd4802f64d19efa0d2c936d7a52d7321cb37ce5"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md",
+                                        "size_bytes":  7857,
+                                        "sha256":  "9892a322e7815d8e801702a85c7c5d79d78b5a54a1ab81da1619a0f94c5ffe1d"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-03_operation_resolution_standing_shifts_pressure_lifecycle_and_consequence_routing.md",
+                                        "size_bytes":  6735,
+                                        "sha256":  "61dba6e3efe31e7ad91a433a4b416c73190630ee49335d779ea18aea1163ac89"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-04_operation_profiles_institutional_behavior_relationship_procedure_and_domain_operations.md",
+                                        "size_bytes":  10753,
+                                        "sha256":  "2fb497fbc7c262176a93a8ba061a01b4945c71965d9a8f65d4912906c02b7d1c"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-05_institutional_capacity_concurrent_operations_pressure_movement_and_conflict.md",
+                                        "size_bytes":  6674,
+                                        "sha256":  "595386c52bad63af559b30a87661fa8807ff79289a91f82c480e396b65707028"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md",
+                                        "size_bytes":  8135,
+                                        "sha256":  "71cd7a91ce0277298a60b53b3429f703aa569d8ca26d338b658d1c0e12c45d27"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+                                        "size_bytes":  10890,
+                                        "sha256":  "bbaff5029d8d55d9e238743c86a642300b4b96669ee8e9958a047ed11a8e219e"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+                                        "size_bytes":  8901,
+                                        "sha256":  "0e8ebdb7ae7cf42e0e630be555ec335177fcf6b1efceee8c048965c96acf54af"
+                                    },
+                                    {
+                                        "relative_path":  "docs\\doctrine\\native_design\\d_series\\source_packs\\D15_faction_relationship_domain_and_institutional_operations_doctrine_pack\\D15_doctrine_pack\\D15-README_manifest.md",
+                                        "size_bytes":  3804,
+                                        "sha256":  "99f352036cdb1b157ff3f23f8f324f5a1affd173ca9dd2dd178fd19bf326bd2c"
+                                    }
+                                ]
+                  }
+              ]
+}

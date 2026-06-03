@@ -1,0 +1,52 @@
+{
+  "pack": "D03/D04 D20 Compatibility Amendment Pack",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated_amendment_pack",
+  "scope": "Small compatibility override only; not a full D03 or D04 regeneration.",
+  "applies_to": [
+    "D03 Power Economy doctrine pack",
+    "D04 Advancement, Breakthrough, Transformation, and Progression doctrine pack"
+  ],
+  "reason": "D02 changed to locked d20-first resolution with five-state margin outcome ladder.",
+  "locked_d02_model": {
+    "primary_check": "d20 + Resolution Modifier vs Difficulty Number",
+    "outcomes": {
+      "Ascendant": "+10 or higher",
+      "Clear": "0 to +9",
+      "Fractured": "-1 to -4",
+      "Receded": "-5 to -9",
+      "Sundered": "-10 or lower"
+    },
+    "natural_20": "critical opportunity, not automatic impossible success",
+    "natural_1": "complication flag, not automatic failure"
+  },
+  "superseded_outcome_labels": [
+    "Critical Success",
+    "Exceptional Success",
+    "Clean Success",
+    "Partial Result",
+    "Mixed Result",
+    "Failure with Consequence",
+    "Severe Failure",
+    "Critical Failure"
+  ],
+  "superseded_margin_breakpoints": [
+    "Margin +5",
+    "Margin 0 to +4",
+    "Margin -4 to -7",
+    "Margin -8 or worse"
+  ],
+  "files": [
+    "D03-A_d20_backlash_trigger_terminology_amendment.md",
+    "D04-A_d20_breakthrough_outcome_mapping_amendment.md",
+    "D00-D10_d20_compatibility_audit_note_v0_1.md",
+    "D03_D04_d20_compatibility_application_guide.md"
+  ],
+  "recommended_repo_handling": [
+    "Apply D03-A amendment directly to D03 affected backlash-trigger language.",
+    "Apply D04-A amendment directly to D04 affected breakthrough outcome mapping language.",
+    "Generate or add D03_pack_manifest.json before registry integration.",
+    "Normalize D04 nested ZIP layout during repo ingestion or make ingestion directory-agnostic."
+  ]
+}

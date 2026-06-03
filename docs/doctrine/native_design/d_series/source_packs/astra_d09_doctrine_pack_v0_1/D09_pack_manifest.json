@@ -1,0 +1,84 @@
+{
+  "pack": "D09 Object-State, Equipment, Relic, Platform, Crafting, and Source-local Object Architecture",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D09",
+  "doctrine_files": [
+    {
+      "path": "D09-README_manifest.md"
+    },
+    {
+      "path": "D09-00_layered_object_state_architecture.md"
+    },
+    {
+      "path": "D09-01_identity_material_function_and_access_layers.md"
+    },
+    {
+      "path": "D09-02_weapons_armor_tools_foci_consumables_and_materials.md"
+    },
+    {
+      "path": "D09-03_relics_artifacts_anchors_intelligent_objects_and_personhood_interface.md"
+    },
+    {
+      "path": "D09-04_implants_prosthetics_cyberware_biotech_living_gear_and_body_integrated_objects.md"
+    },
+    {
+      "path": "D09-05_vehicles_platforms_ships_mechs_drones_and_external_bodies.md"
+    },
+    {
+      "path": "D09-06_crafting_repair_salvage_modification_upgrade_and_requisition_interface.md"
+    },
+    {
+      "path": "D09-07_source_local_object_and_equipment_conversion.md"
+    },
+    {
+      "path": "D09-08_runtime_records_ui_and_owner_handoffs.md"
+    },
+    {
+      "path": "D09-09_integration_checklists_and_ddr_register.md"
+    }
+  ],
+  "owner_boundaries": {
+    "D09_owns": [
+      "object-state substrate",
+      "object identity and category",
+      "object record depth",
+      "material profile and durability",
+      "function category and access interface",
+      "functional object family records",
+      "relic/anchor/intelligent-object object-side records",
+      "body-integrated object-side records",
+      "platform/external-body object-side records",
+      "object work/acquisition state",
+      "source-local object conversion routing",
+      "stack/batch/supply/visibility/handoff records"
+    ],
+    "D09_does_not_own": {
+      "D03": "Power Economy, charges, fuel, reservoirs, recharge, overdraw",
+      "D04": "advancement proof and gates",
+      "D05": "crafting/repair/surgery/piloting/engineering/research competence",
+      "D06": "Routes, Techniques, Principles, Feature Ledgers",
+      "D07": "harm, curse, corruption, backlash, rejection, malfunction consequences",
+      "D08": "actor-state, personhood, continuity, symbiote agency, body integration",
+      "D10": "economy, ownership law, faction control, market, requisition, strategic scarcity",
+      "D11": "narration behavior"
+    }
+  },
+  "risk_fixes_embedded": [
+    "object-state-only boundary",
+    "tiered object record depth",
+    "promotion/demotion/destruction/history rules",
+    "donor combat math blocked",
+    "magic-item assumptions source-local",
+    "cyberware/graft assumptions source-local",
+    "platform systems do not import donor vehicle doctrine",
+    "crafting/salvage/treasure/requisition do not define economy",
+    "relic significance separate from power",
+    "intelligent objects require D08 handoff",
+    "salvage preserves actor-remains and taboo pressure",
+    "D10 economy/faction doctrine reserved for D10"
+  ],
+  "file_count_excluding_combined_export": 12
+}

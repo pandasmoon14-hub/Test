@@ -1,0 +1,72 @@
+{
+  "pack": "D02 D20 Resolution, Cost Commitment, PCR Difficulty, Assessment, and Delta Routing Doctrine",
+  "version": "v0.1",
+  "generated_date": "2026-06-02",
+  "status": "generated",
+  "phase": "Astra Ascension native design doctrine",
+  "primary_owner": "D02",
+  "manifest_filename": "D02_pack_manifest.json",
+  "primary_resolution_model": "d20 + Resolution Modifier vs Difficulty Number",
+  "outcome_states": {
+    "Ascendant": "+10 or higher",
+    "Clear": "0 to +9",
+    "Fractured": "-1 to -4",
+    "Receded": "-5 to -9",
+    "Sundered": "-10 or lower"
+  },
+  "critical_handling": {
+    "natural_20": "critical opportunity, not automatic impossible success",
+    "natural_1": "complication flag, not automatic failure"
+  },
+  "doctrine_files": [
+    "D02-README_manifest.md",
+    "D02-00_resolution_architecture_and_owner_boundaries.md",
+    "D02-01_d20_action_check_difficulty_and_modifiers.md",
+    "D02-02_margin_outcome_ladder_natural_20_natural_1.md",
+    "D02-03_cost_commitment_overinvestment_and_success_at_cost.md",
+    "D02-04_power_context_register_resolution_integration.md",
+    "D02-05_opposed_defense_resistance_and_contested_checks.md",
+    "D02-06_group_extended_and_dramatic_tasks.md",
+    "D02-07_assessment_reconnaissance_and_information_quality.md",
+    "D02-08_state_delta_routing_and_source_local_resolution_boundaries.md",
+    "D02-09_integration_checklists_and_ddr_register.md"
+  ],
+  "owner_boundaries": {
+    "D02_owns": [
+      "d20 check procedure",
+      "Difficulty Number ladder",
+      "margin outcome interpretation",
+      "natural 20/natural 1 handling",
+      "cost commitment grammar",
+      "opposed and contested check grammar",
+      "defense and resistance check grammar",
+      "group and extended task grammar",
+      "assessment resolution grammar",
+      "outcome-to-delta routing",
+      "source-local resolution boundaries"
+    ],
+    "D02_does_not_own": {
+      "D01": "attribute meanings",
+      "D03": "Power Economy, pools, fuels, charges, overdraw",
+      "D04": "advancement gates and breakthrough procedure",
+      "D05": "skills, methods, research, investigation procedures",
+      "D06": "routes, techniques, principles, powers",
+      "D07": "harm, injury, corruption, death, damage families",
+      "D08": "actor body/personhood/form substrate",
+      "D09": "object-state, relics, platforms, implants",
+      "D10": "world-state records",
+      "D11": "live-play narration and presentation"
+    }
+  },
+  "blocked_imports": [
+    "2d6 primary resolution",
+    "donor d20 proficiency math",
+    "donor action economy",
+    "donor saving throw categories",
+    "donor armor/hit conventions",
+    "donor spell assumptions",
+    "step dice primary resolution",
+    "metacurrency-driven core resolution",
+    "physical dice timers as requirement"
+  ]
+}
