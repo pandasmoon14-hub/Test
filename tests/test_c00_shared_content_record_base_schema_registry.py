@@ -198,18 +198,35 @@ def test_c00_registry_state_and_scope_controls() -> None:
     k01 = records["K01"]
     assert k01["proposed_path"] == "docs/doctrine/canon/K01_lexicon_governance_and_reserved_terms.md"
 
-    # Ensure this PR does not promote downstream doctrine layers.
-    # Control records such as ROADMAP-001 and REGISTRY-001 are intentionally
-    # excluded from the K/R/T doctrine status guard.
+    # Ensure downstream doctrine layers are not improperly promoted. Future
+    # Batch C family files may legitimately move from todo to draft in their
+    # own PRs, so this guard blocks only current/tested/stable promotion.
+    forbidden_promoted_statuses = {
+        "current",
+        "tested_minimum",
+        "stable_for_family",
+        "stable_cross_family",
+    }
     for file_id, record in records.items():
         if file_id.startswith("C") and file_id != "C00":
-            assert record["status"] != "current"
-            assert record["status"] != "draft"
+            assert record["status"] not in forbidden_promoted_statuses
+            assert record.get("test_status") not in forbidden_promoted_statuses
+            assert record.get("authority_level") not in {"canon-current", "runtime-ready"}
         if (
             (file_id.startswith("K") or file_id.startswith("R") or file_id.startswith("T"))
             and file_id[1:3].isdigit()
         ):
             assert record["status"] != "current"
+
+    c01 = records["C01"]
+    assert c01["status"] == "draft"
+    assert c01["authority_level"] == "schema-draft"
+    assert c01["test_status"] == "designed"
+    assert c01["review_status"] == "not_reviewed"
+
+    for file_id in [f"C{number:02d}" for number in range(2, 15)]:
+        assert records[file_id]["status"] not in forbidden_promoted_statuses
+        assert records[file_id].get("test_status") not in forbidden_promoted_statuses
 
     assert records["K01"]["status"] == "todo"
     assert records["R01"]["status"] == "todo"
