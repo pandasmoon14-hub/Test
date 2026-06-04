@@ -140,11 +140,15 @@ def test_sm08_file_exists_and_nonempty():
 
 
 def test_sm08_required_sections_present():
-    """Assert all required section headings are present."""
+    """Assert all required numbered section headings are present in order."""
     content = read_utf8(SM08_PATH)
-    for section in REQUIRED_SECTIONS:
-        assert f"## {section.split(' ')[0].strip()}" in content or f"## {section}" in content or section in content, \
-            f"Missing required section: {section}"
+    last_index = -1
+    for index, section in enumerate(REQUIRED_SECTIONS, start=1):
+        heading = f"## {index}. {section}"
+        current_index = content.find(heading)
+        assert current_index != -1, f"Missing required section heading: {heading}"
+        assert current_index > last_index, f"Section heading out of order: {heading}"
+        last_index = current_index
 
 
 def test_sm08_names_upstream_controls():
@@ -161,9 +165,9 @@ def test_sm08_names_upstream_controls():
         "SM05",
         "SM06",
         "SM07",
-        "C00",
+        "C00-C14",
+        "Batch C capstone",
         "B11",
-        "Batch C",
         "Conversion IR",
         "lawful outcome taxonomy",
         "conversion intake",
@@ -178,8 +182,11 @@ def test_sm08_names_upstream_controls():
     for name in required_names:
         assert name in content, f"SM08 must name {name}"
     
-    # Check for C01-C14 mention
-    assert "C01" in content or "C01-C14" in content, "SM08 must name C01-C14"
+    c_family_tokens = [f"C{index:02d}" for index in range(15)]
+    assert "C00-C14" in content, "SM08 must name the collective C00-C14 range"
+    assert all(token in content for token in c_family_tokens), (
+        "SM08 must name each C-family identifier from C00 through C14"
+    )
 
 
 def test_sm08_states_placeholder_validation_only():
@@ -279,13 +286,18 @@ def test_sm08_validates_scaffold_directory():
 
 
 def test_scaffold_files_exist():
-    """Assert expected scaffold fixture files exist."""
-    expected_files = [
+    """Assert expected scaffold fixture files exist and no extra scaffold files are added."""
+    expected_files = {
         SCAFFOLD_DIR / "README.md",
         SCAFFOLD_DIR / "placeholder_packet_manifest.md",
         SCAFFOLD_DIR / "placeholder_review_harness.md",
-    ]
-    
+    }
+
+    assert SCAFFOLD_DIR.exists(), f"Scaffold fixture directory not found: {SCAFFOLD_DIR}"
+    actual_md_files = set(SCAFFOLD_DIR.glob("*.md"))
+    assert actual_md_files == expected_files, (
+        "Scaffold fixture directory must contain exactly the expected markdown files"
+    )
     for filepath in expected_files:
         assert filepath.exists(), f"Scaffold fixture file not found: {filepath}"
 
@@ -508,23 +520,27 @@ def test_sm08_no_converted_donor_content():
 
 def test_registry_records_not_promoted_to_forbidden_states():
     """Assert registry records for C00-C14 are not promoted to forbidden states by this PR."""
-    # Read the registry file
-    if REGISTRY_PATH.exists():
-        registry_content = read_utf8(REGISTRY_PATH)
-        
-        # Forbidden promotion states that would indicate improper promotion
-        forbidden_states = [
-            "canon-promoted",
-            "runtime-ready",
-            "sourcebook-ready",
-            "live-play-ready",
-            "training-ready",
-            "final-mechanics-ready",
-        ]
-        
-        for state in forbidden_states:
-            assert state not in registry_content.lower(), \
-                f"Registry contains forbidden promotion state: {state}"
+    assert REGISTRY_PATH.exists(), f"Registry not found: {REGISTRY_PATH}"
+    registry_content = read_utf8(REGISTRY_PATH)
+    registry_lower = registry_content.lower()
+
+    for index in range(15):
+        token = f"C{index:02d}"
+        assert token in registry_content, f"Registry must keep tracking record for {token}"
+
+    forbidden_states = [
+        "canon-promoted",
+        "runtime-ready",
+        "sourcebook-ready",
+        "live-play-ready",
+        "training-ready",
+        "final-mechanics-ready",
+    ]
+
+    for state in forbidden_states:
+        assert state not in registry_lower, (
+            f"Registry contains forbidden C00-C14 promotion state: {state}"
+        )
 
 
 def test_sm08_future_safe_test_posture():
