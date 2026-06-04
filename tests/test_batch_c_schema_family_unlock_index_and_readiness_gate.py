@@ -246,13 +246,13 @@ def test_registry_does_not_promote_c00_or_c01_c14_to_current_stable_or_tested_st
         }
 
 
-def test_registry_keeps_c_family_planning_statuses_unpromoted() -> None:
-    assert _registry_scalar("C00", "status") == "draft"
-    assert _registry_scalar("C00", "test_status") == "designed"
-    for number in range(1, 15):
-        file_id = f"C{number:02d}"
-        assert _registry_scalar(file_id, "status") == "todo"
-        assert _registry_scalar(file_id, "test_status") == "not_started"
+def test_registry_c_family_records_remain_present_without_forbidden_promotion() -> None:
+    # Future C-family PRs may legitimately advance individual C01-C14
+    # records beyond their initial todo/not_started posture. This unlock gate
+    # only guards against improper current/tested/stable promotion.
+    for file_id in ["C00", *[f"C{number:02d}" for number in range(1, 15)]]:
+        assert _registry_record_block(file_id)
+        assert _registry_scalar(file_id, "status") not in FORBIDDEN_PROMOTED_STATUSES
 
 
 def test_no_registry_entry_was_added_for_this_control_file_without_convention() -> None:
