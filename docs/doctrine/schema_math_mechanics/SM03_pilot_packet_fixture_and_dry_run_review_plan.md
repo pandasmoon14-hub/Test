@@ -329,7 +329,7 @@ Dry-run fail conditions include:
 - Any attempt to create converted donor content during the dry-run.
 - Any attempt to draft final schema/mechanics/runtime/canon/sourcebook/live-play/training content during the dry-run.
 - D-series authority leakage (D00-D19 treated as current doctrine or pilot authority).
-- RHBF hidden law (rules-hidden-behind-fiction used as secret authority).
+- RHBF hidden law: Ruthless Heavens Boundless Fate donor assumptions treated as current Astra doctrine, pilot authority, final mechanics, runtime authority, canon, or secret baseline law.
 
 ## 20. What SM03 evidence may and may not prove
 
@@ -415,7 +415,7 @@ Lawful fallbacks must be explicit. Silent import, hidden defaults, donor-law ado
 | Runtime/canon/sourcebook/training creep | Dry-run artifacts could be treated as final product surfaces. | Explicit runtime/canon/sourcebook/live-play/training non-readiness boundary. |
 | D-series authority creep | D00-D19 draft packs could be treated as current doctrine or dry-run authority. | State D-series packs are draft source material only and cannot become pilot packet authority. |
 | Evaluation misuse | Pilot fixtures could become benchmark/evaluation or training corpora. | Require benchmark/evaluation prerequisites and refuse training/evaluation corpora. |
-| RHBF hidden law | Rules-hidden-behind-fiction used as secret authority for dry-run decisions. | Refuse RHBF as hidden law. All dry-run decisions must be traceable to declared doctrine. |
+| RHBF hidden law | Ruthless Heavens Boundless Fate donor assumptions could become secret Astra law. | Refuse RHBF as hidden law. Ruthless Heavens Boundless Fate may remain draft/donor pressure only where explicitly routed by current Astra doctrine; it must not become secret authority for dry-run decisions. |
 
 ## 25. Recommended next PR after SM03
 
