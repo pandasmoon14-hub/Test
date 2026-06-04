@@ -415,12 +415,39 @@ def _registry_record_block(file_id: str) -> str:
     return registry_text[start:next_record]
 
 
+def _registry_scalar(file_id: str, key: str) -> str:
+    prefix = f"  {key}: "
+    for line in _registry_record_block(file_id).splitlines():
+        if line.startswith(prefix):
+            return line.removeprefix(prefix).strip().strip("'\"")
+    raise AssertionError(f"Missing {key} for {file_id}")
+
+
 def test_registry_status_is_not_promoted_to_current() -> None:
     registry_text = read_utf8(REGISTRY_PATH)
     assert "- file_id: B06\n" not in registry_text
+
+    forbidden_promoted_statuses = {
+        "current",
+        "tested_minimum",
+        "stable_for_family",
+        "stable_cross_family",
+    }
     for file_id in ["C00", *[f"C{number:02d}" for number in range(1, 15)]]:
         block = _registry_record_block(file_id)
-        assert "  status: current" not in block
-    assert "  status: draft" in _registry_record_block("C00")
-    for number in range(1, 15):
-        assert "  status: todo" in _registry_record_block(f"C{number:02d}")
+        assert _registry_scalar(file_id, "status") not in forbidden_promoted_statuses
+        assert _registry_scalar(file_id, "test_status") not in forbidden_promoted_statuses
+        assert _registry_scalar(file_id, "authority_level") not in {"canon-current", "runtime-ready", "schema-current"}
+        assert "canon-current" not in block
+        assert "runtime-ready" not in block
+
+    assert _registry_scalar("C00", "status") == "draft"
+    assert _registry_scalar("C01", "status") == "draft"
+    assert _registry_scalar("C01", "authority_level") == "schema-draft"
+    assert _registry_scalar("C01", "test_status") == "designed"
+    assert _registry_scalar("C01", "review_status") == "not_reviewed"
+
+    for number in range(2, 15):
+        file_id = f"C{number:02d}"
+        assert _registry_scalar(file_id, "status") not in forbidden_promoted_statuses
+        assert _registry_scalar(file_id, "test_status") not in forbidden_promoted_statuses

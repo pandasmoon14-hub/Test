@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-04'
+  version: 0.1.18
+  action: c01_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created C01 draft doctrine file at docs/doctrine/schema/C01_creature_npc_record_schema.md; set C01 status draft, authority schema-draft, test_status designed, review_status not_reviewed, and blocked_by [] while preserving identity, path, owner, dependencies, and unlocks.
 - date: '2026-05-27'
   version: 0.1.17
   action: c00_draft_creation
@@ -1598,8 +1603,8 @@ file_records:
   proposed_path: docs/doctrine/schema/C01_creature_npc_record_schema.md
   layer: 4_schema_base
   phase: '2'
-  status: todo
-  authority_level: schema-todo
+  status: draft
+  authority_level: schema-draft
   owner: Astra Doctrine Council - Schema Working Group
   purpose: Define conversion-stage record grammar for creature, NPC, adversary, spirit, AI, monster, swarm, and actor conversion records.
   owns:
@@ -1620,7 +1625,7 @@ file_records:
   dependencies: &id021
   - A11
   - C00
-  blocked_by: *id021
+  blocked_by: []
   unlocks:
   - K03
   downstream_consumers:
@@ -1646,7 +1651,7 @@ file_records:
   - statblock cross-family test
   - actor provenance test
   - source-local creature test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
