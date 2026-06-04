@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-04'
+  version: 0.1.28
+  action: c04_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created C04 draft doctrine file at docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md; set C04 status draft, authority schema-draft, test_status designed, review_status not_reviewed, and blocked_by [] while preserving identity, path, owner, dependencies, and unlocks.
+- date: '2026-06-04'
   version: 0.1.27
   action: c14_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -1850,8 +1855,8 @@ file_records:
   proposed_path: docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md
   layer: 4_schema_base
   phase: '2'
-  status: todo
-  authority_level: schema-todo
+  status: draft
+  authority_level: schema-draft
   owner: Astra Doctrine Council - Schema Working Group
   purpose: Define conversion-stage record grammar for relic, implant, cyberware, biotech, attunement, installed module, and upgradeable asset records.
   owns:
@@ -1872,7 +1877,7 @@ file_records:
   dependencies: &id024
   - A12
   - C00
-  blocked_by: *id024
+  blocked_by: []
   unlocks:
   - K03
   downstream_consumers:
@@ -1898,7 +1903,7 @@ file_records:
   - implant/relic compatibility test
   - installable asset test
   - source-local upgrade test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
