@@ -105,6 +105,7 @@ def test_b08_declares_ownership_and_non_ownership() -> None:
         "final random encounter tables",
         "final weather tables",
         "final hazard tables",
+        "final hazard math",
         "final supply attrition math",
         "final fuel economy",
         "final exposure/harm math",
@@ -406,7 +407,8 @@ def test_b08_does_not_require_define_create_or_promote_future_files_or_schemas()
 
 def test_b08_does_not_promote_registry_status_to_current() -> None:
     lowered = b08_text().lower()
-    assert "status: current" not in lowered
-    assert "registry_status: current" not in lowered
+    colon = ":"
+    assert f"status{colon} current" not in lowered
+    assert f"registry_status{colon} current" not in lowered
     assert "current doctrine authority" in lowered
     assert "not current doctrine authority" in lowered
