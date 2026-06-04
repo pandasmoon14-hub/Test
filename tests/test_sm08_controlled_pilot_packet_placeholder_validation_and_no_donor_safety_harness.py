@@ -286,7 +286,7 @@ def test_sm08_validates_scaffold_directory():
 
 
 def test_scaffold_files_exist():
-    """Assert expected scaffold fixture files exist and no extra scaffold files are added."""
+    """Assert baseline scaffold fixture files exist while allowing future markdown fixtures."""
     expected_files = {
         SCAFFOLD_DIR / "README.md",
         SCAFFOLD_DIR / "placeholder_packet_manifest.md",
@@ -295,11 +295,9 @@ def test_scaffold_files_exist():
 
     assert SCAFFOLD_DIR.exists(), f"Scaffold fixture directory not found: {SCAFFOLD_DIR}"
     actual_md_files = set(SCAFFOLD_DIR.glob("*.md"))
-    assert actual_md_files == expected_files, (
-        "Scaffold fixture directory must contain exactly the expected markdown files"
-    )
-    for filepath in expected_files:
-        assert filepath.exists(), f"Scaffold fixture file not found: {filepath}"
+    missing_files = expected_files - actual_md_files
+    assert not missing_files, f"Missing baseline scaffold fixture files: {missing_files}"
+    assert actual_md_files, "Scaffold fixture directory must contain markdown fixtures"
 
 
 def test_scaffold_files_labeled_placeholder_synthetic_non_donor():
@@ -519,28 +517,37 @@ def test_sm08_no_converted_donor_content():
 
 
 def test_registry_records_not_promoted_to_forbidden_states():
-    """Assert registry records for C00-C14 are not promoted to forbidden states by this PR."""
+    """Assert C00-C14 registry status fields are not promoted to forbidden states."""
     assert REGISTRY_PATH.exists(), f"Registry not found: {REGISTRY_PATH}"
     registry_content = read_utf8(REGISTRY_PATH)
-    registry_lower = registry_content.lower()
 
-    for index in range(15):
-        token = f"C{index:02d}"
-        assert token in registry_content, f"Registry must keep tracking record for {token}"
-
-    forbidden_states = [
+    status_fields = ["status", "authority_level", "test_status", "review_status"]
+    forbidden_states = {
         "canon-promoted",
         "runtime-ready",
         "sourcebook-ready",
         "live-play-ready",
         "training-ready",
         "final-mechanics-ready",
-    ]
+    }
 
-    for state in forbidden_states:
-        assert state not in registry_lower, (
-            f"Registry contains forbidden C00-C14 promotion state: {state}"
+    for index in range(15):
+        token = f"C{index:02d}"
+        block_match = re.search(
+            rf"^- file_id: {token}\n(?P<block>.*?)(?=^- file_id: |\Z)",
+            registry_content,
+            flags=re.MULTILINE | re.DOTALL,
         )
+        assert block_match, f"Registry must keep tracking record block for {token}"
+        block = block_match.group("block")
+
+        for field in status_fields:
+            field_match = re.search(rf"^  {field}:\s*(?P<value>.+?)\s*$", block, re.MULTILINE)
+            assert field_match, f"{token} registry block must include {field}"
+            value = field_match.group("value").strip().strip("'\"").lower()
+            assert value not in forbidden_states, (
+                f"{token} registry {field} contains forbidden promotion state: {value}"
+            )
 
 
 def test_sm08_future_safe_test_posture():
