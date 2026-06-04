@@ -167,7 +167,7 @@ def test_gap_classification_matrix_owner_routing_and_fallbacks_are_present() -> 
     assert "## 20. Owner map and lawful fallbacks" in text
     for marker in [
         "future validation/schema implementation owner",
-        "future SM02 or later schema validation owner",
+        "future SM03 or later schema-validation owner",
         "future pilot conversion readiness owner",
         "future conversion/evidence validation owner",
         "future canon/conflict governance owner",
@@ -233,6 +233,26 @@ def test_registry_records_for_c00_c14_are_not_promoted_to_forbidden_states() -> 
         for key in ["status", "authority_level", "test_status", "review_status"]:
             value = _scalar_from_block(block, key)
             assert value not in FORBIDDEN_C_PROMOTION_VALUES, f"{file_id} {key} was promoted to {value}"
+
+
+def test_recommended_next_pr_is_pilot_conversion_readiness_not_graph_validation() -> None:
+    text = sm01_text()
+    assert "Recommended next PR: SM02 minimum pilot conversion readiness and packet validation controls" in text
+    for marker in [
+        "minimum readiness gate for a small pilot conversion packet/output loop",
+        "conversion packet validation",
+        "evidence/provenance readiness",
+        "lawful outcome completeness",
+        "C00-C14 routing readiness",
+        "rejected-import/source-local/legal/IP routing",
+        "review queues",
+        "pilot fixtures",
+        "failure/quarantine reporting",
+        "benchmark/evaluation prerequisites",
+        "Cross-record reference validation and graph-readiness should move to SM03 or a later schema-validation owner",
+    ]:
+        assert marker in text
+    assert "Recommended next PR: SM02 cross-record reference validation planning and graph-readiness controls" not in text
 
 
 def test_future_safe_posture_does_not_block_later_sm_files_or_proper_owner_promotion() -> None:

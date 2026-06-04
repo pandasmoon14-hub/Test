@@ -145,7 +145,7 @@ Existing partial coverage includes C00 composition metadata, cross-reference rec
 
 Missing coverage includes graph validation, dangling-reference detection, source-local boundary enforcement across references, cyclic-dependency policy, conflict-ledger link validation, and invalidation/revalidation triggers.
 
-Future owner: future SM02 or later schema validation owner. Blocked dependencies: reference vocabulary review, pilot evidence, record instance schema shape, and canon/conflict governance owner. Lawful fallback: `pending_schema`, quarantine, deferred gap ledger, or Astra Doctrine Council review. Readiness state: `owner_needed`.
+Future owner: future SM03 or later schema-validation owner unless pilot evidence proves cross-record graph work must be pulled forward. Blocked dependencies: reference vocabulary review, pilot evidence, record instance schema shape, and canon/conflict governance owner. Lawful fallback: `pending_schema`, quarantine, deferred gap ledger, or Astra Doctrine Council review. Readiness state: `owner_needed`.
 
 ## 11. Conversion packet validation inventory
 
@@ -235,7 +235,7 @@ SM01 readiness labels in this matrix are local planning labels only and are not 
 | --- | --- | --- | --- | --- | --- | --- |
 | validation schemas | C00-C14 doctrine, handoff schemas, conversion validators, registry tests. | Final C-family validators and integrated validation suite. | Future validation/schema implementation owner. | SM01 acceptance, pilot evidence. | `pending_schema`, quarantine, deferred gap ledger. | `inventory_only` |
 | record instance schemas | C00 base posture and C01-C14 family grammar. | Final instance shapes, requiredness, examples. | Future validation/schema implementation owner. | Pilot records, fixture owner. | `pending_schema`, human review. | `partly_covered` |
-| cross-record reference validation | C00 composition/reference posture, Batch C conflict audit. | Graph validation, dangling links, cycles, invalidation. | Future SM02 or later schema validation owner. | Reference vocabulary, pilot evidence. | Quarantine, deferred gap ledger. | `owner_needed` |
+| cross-record reference validation | C00 composition/reference posture, Batch C conflict audit. | Graph validation, dangling links, cycles, invalidation. | Future SM03 or later schema-validation owner unless pilot evidence pulls it forward. | Reference vocabulary, pilot evidence. | Quarantine, deferred gap ledger. | `owner_needed` |
 | conversion packet validation | Handoff schemas/scripts/tests and lawful outcome checks. | C-family integration, pilot packet acceptance. | Future pilot conversion readiness owner. | Pilot corpus, conversion/evidence owner. | Repair queue, quarantine. | `blocked_by_pilot_evidence` |
 | evidence/provenance validation | C00 evidence posture, packet manifests, page truth. | End-to-end provenance graph and hash maturity checks. | Future conversion/evidence validation owner. | Hash policy, pilot evidence. | Quarantine, human review. | `partly_covered` |
 | source-local boundary validation | C00/C14 source-local rules. | Executable containment and reference checks. | C00/C14 plus future review owner. | Review owner, source-local fixtures. | Source-local containment, quarantine. | `human_review_required` |
@@ -249,7 +249,7 @@ SM01 readiness labels in this matrix are local planning labels only and are not 
 | test fixture schemas | Existing doctrine, handoff, extraction, and PDF fixtures. | C-family instance, graph, legal, conflict, pilot, mechanics, runtime-prep fixtures. | Future validation test owner. | Validator owner, pilot evidence. | Deferred gap ledger, human review. | `owner_needed` |
 | registry integrity validation | Registry tests and C00 registry posture. | Future promotion gate checks across schema families. | Future validation/schema implementation owner plus registry owner. | Promotion policy. | Refuse promotion, council review. | `partly_covered` |
 | confidence/review-routing validation | C00/C-family confidence and review routing language. | Executable routing thresholds and reviewer queue checks. | Future validation/schema implementation owner plus future review owner. | Review owner and policy. | Human review, quarantine. | `human_review_required` |
-| parent/child/satellite/composite record validation | C00 composition metadata and C-family anti-inheritance tests. | Graph and composition validation suite. | Future SM02 or later schema validation owner. | Reference vocabulary and fixtures. | `pending_schema`, human review. | `owner_needed` |
+| parent/child/satellite/composite record validation | C00 composition metadata and C-family anti-inheritance tests. | Graph and composition validation suite. | Future SM03 or later schema-validation owner unless pilot evidence pulls it forward. | Reference vocabulary and fixtures. | `pending_schema`, human review. | `owner_needed` |
 | pending_schema validation | C00 fallback policy and C-family missing-schema tests. | Validator that prevents field invention while preserving unowned pressure. | Future validation/schema implementation owner. | Owner routing and pilot examples. | `pending_schema`, quarantine, deferred gap ledger. | `defer_with_pending_schema` |
 
 ## 20. Owner map and lawful fallbacks
@@ -257,7 +257,7 @@ SM01 readiness labels in this matrix are local planning labels only and are not 
 Owner routing:
 
 - C00/C01-C14 validation inheritance and record family coverage routes to the future validation/schema implementation owner.
-- Cross-record reference validation routes to future SM02 or later schema validation owner.
+- Cross-record reference validation routes to future SM03 or later schema-validation owner unless pilot evidence shows it must be pulled forward.
 - Conversion packet validation routes to the future pilot conversion readiness owner.
 - Evidence/provenance validation routes to the future conversion/evidence validation owner.
 - Source-local boundary validation, rejected donor element validation, and legal/IP validation route to C00/C14 plus the future review owner.
@@ -267,7 +267,7 @@ Owner routing:
 - Test fixture schemas route to the future validation test owner.
 - Registry integrity validation routes to the registry owner plus the future validation/schema implementation owner without promoting registry statuses.
 - Confidence/review-routing validation routes to the future validation/schema implementation owner plus future review owner.
-- Parent/child/satellite/composite record validation routes to future SM02 or later schema validation owner.
+- Parent/child/satellite/composite record validation routes to future SM03 or later schema-validation owner unless pilot evidence shows it must be pulled forward.
 - Pending_schema validation routes to the future validation/schema implementation owner.
 
 Lawful fallbacks when the owner does not yet exist:
@@ -310,17 +310,19 @@ These labels are planning labels only. They do not mean current, accepted, stabl
 | Legal/IP leakage | Proper nouns or protected text could enter records. | Route to C00/C14 plus future review owner and legal/IP fallback. |
 | Canon/sourcebook/live-play/training collapse | Validation could be mistaken for accepted content or training data. | Refuse canon, sourcebook prose, live-play behavior, and training/evaluation corpora. |
 | Runtime contract creep | Runtime schemas, command lifecycles, context packets, save-state shapes, or backend/database schemas could be drafted too early. | Route to future runtime/Gate B owner and block runtime import. |
-| Under-specified cross-record validation | Broken references could pass later conversion. | Route to future SM02 or later schema validation owner. |
+| Under-specified cross-record validation | Broken references could pass later conversion. | Route to future SM03 or later schema-validation owner unless pilot evidence shows it must be pulled forward. |
 | Pilot evidence gap | Validators may be brittle without real conversion outputs. | Mark pilot-dependent work `blocked_by_pilot_evidence`. |
 | Mechanics boundary ambiguity | Validation might accidentally define final mechanics. | Route mechanics I/O to future mechanics requirements owner only. |
 
 ## 23. Recommended next PR after SM01
 
-Recommended next PR: SM02 cross-record reference validation planning and graph-readiness controls.
+Recommended next PR: SM02 minimum pilot conversion readiness and packet validation controls.
 
-SM02 or a later owner should remain planning/control unless explicitly authorized by SM00 sequencing. It should refine cross-record reference validation, parent/child/satellite/composite relationships, source-local reference containment, lineage and invalidation checks, and conflict-ledger link posture without creating final executable schemas, runtime contracts, final mechanics, canon/sourcebook/live-play/training content, registry promotion, or C15.
+SM02 should remain planning/control only unless explicitly authorized by SM00 sequencing. It should define the minimum readiness gate for a small pilot conversion packet/output loop without creating executable schemas, JSON Schema files, Pydantic models, runtime/backend/database contracts, final mechanics, exact math, canon/sourcebook/live-play/training content, registry promotion, C00-C14 rewrites, C15, D-series authority, or RHBF hidden law.
 
-If pilot conversion readiness becomes more urgent than graph planning, an alternative next owner may be a pilot conversion readiness control PR. That PR should still treat conversion packet validation as readiness planning unless the appropriate owner and dependencies have been accepted.
+SM02 should cover conversion packet validation, evidence/provenance readiness, lawful outcome completeness, C00-C14 routing readiness, rejected-import/source-local/legal/IP routing, review queues, pilot fixtures, failure/quarantine reporting, and benchmark/evaluation prerequisites. The goal is to make the first controlled pilot packet/output loop reviewable before later graph validation, mechanics requirements, runtime-prep, canon, sourcebook, live-play, or training work relies on it.
+
+Cross-record reference validation and graph-readiness should move to SM03 or a later schema-validation owner unless SM02 pilot evidence shows that graph-readiness must be pulled forward. If pulled forward, that work still remains bounded by SM01/SM00 non-goals and must not create final executable schemas, runtime contracts, final mechanics, canon/sourcebook/live-play/training content, registry promotion, C00-C14 rewrites, or C15.
 
 ## 24. Acceptance criteria
 
