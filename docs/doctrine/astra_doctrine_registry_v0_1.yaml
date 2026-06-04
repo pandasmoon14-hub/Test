@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-04'
+  version: 0.1.20
+  action: c03_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created C03 draft doctrine file at docs/doctrine/schema/C03_ability_power_technique_record_schema.md; set C03 status draft, authority schema-draft, test_status designed, review_status not_reviewed, and blocked_by [] while preserving identity, path, owner, dependencies, and unlocks.
+- date: '2026-06-04'
   version: 0.1.19
   action: c02_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -1742,8 +1747,8 @@ file_records:
   proposed_path: docs/doctrine/schema/C03_ability_power_technique_record_schema.md
   layer: 4_schema_base
   phase: '2'
-  status: todo
-  authority_level: schema-todo
+  status: draft
+  authority_level: schema-draft
   owner: Astra Doctrine Council - Schema Working Group
   purpose: Define conversion-stage record grammar for ability, technique, spell, power, maneuver, routine, invocation, and active-effect records.
   owns:
@@ -1765,7 +1770,7 @@ file_records:
   - A08
   - A10
   - C00
-  blocked_by: *id023
+  blocked_by: []
   unlocks:
   - K03
   downstream_consumers:
@@ -1791,7 +1796,7 @@ file_records:
   - ability technique cross-family test
   - resource/backlash field test
   - technique provenance test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
