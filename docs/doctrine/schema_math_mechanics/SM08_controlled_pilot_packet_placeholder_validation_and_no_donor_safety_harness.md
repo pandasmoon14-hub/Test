@@ -34,7 +34,7 @@ SM06 owns the controlled pilot conversion execution and output capture plan. SM0
 
 SM07 owns the controlled pilot conversion execution packet scaffold and review harness posture. SM08 validates the SM07 scaffold fixture files for placeholder labeling, no-donor safety, and capture-slot presence.
 
-C00 owns shared content record base posture and the schema registry. C01-C14 own conversion-stage/canon-review family grammar and owner routing for their families. Batch C capstone readiness says the Batch C layer is ready with deferred gaps only; it does not promote canon, runtime, sourcebook, final mechanics, live-play, or training readiness.
+C00 owns shared content record base posture and the schema registry. C01-C14 own conversion-stage/canon-review family grammar and owner routing for their families. For explicit future-safe naming, the C-family range is C00, C01, C02, C03, C04, C05, C06, C07, C08, C09, C10, C11, C12, C13, and C14; SM08 does not promote any of them beyond their owner-controlled registry posture. Batch C capstone readiness says the Batch C layer is ready with deferred gaps only; it does not promote canon, runtime, sourcebook, final mechanics, live-play, or training readiness.
 
 Batch B, including B11, remains operational routing doctrine. Batch B/B11 are operational routing doctrine, not final mechanics or runtime validation authority.
 

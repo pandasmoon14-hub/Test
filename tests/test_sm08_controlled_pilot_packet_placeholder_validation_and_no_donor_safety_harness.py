@@ -140,11 +140,15 @@ def test_sm08_file_exists_and_nonempty():
 
 
 def test_sm08_required_sections_present():
-    """Assert all required section headings are present."""
+    """Assert all required numbered section headings are present in order."""
     content = read_utf8(SM08_PATH)
-    for section in REQUIRED_SECTIONS:
-        assert f"## {section.split(' ')[0].strip()}" in content or f"## {section}" in content or section in content, \
-            f"Missing required section: {section}"
+    last_index = -1
+    for index, section in enumerate(REQUIRED_SECTIONS, start=1):
+        heading = f"## {index}. {section}"
+        current_index = content.find(heading)
+        assert current_index != -1, f"Missing required section heading: {heading}"
+        assert current_index > last_index, f"Section heading out of order: {heading}"
+        last_index = current_index
 
 
 def test_sm08_names_upstream_controls():
@@ -161,9 +165,9 @@ def test_sm08_names_upstream_controls():
         "SM05",
         "SM06",
         "SM07",
-        "C00",
+        "C00-C14",
+        "Batch C capstone",
         "B11",
-        "Batch C",
         "Conversion IR",
         "lawful outcome taxonomy",
         "conversion intake",
@@ -178,8 +182,11 @@ def test_sm08_names_upstream_controls():
     for name in required_names:
         assert name in content, f"SM08 must name {name}"
     
-    # Check for C01-C14 mention
-    assert "C01" in content or "C01-C14" in content, "SM08 must name C01-C14"
+    c_family_tokens = [f"C{index:02d}" for index in range(15)]
+    assert "C00-C14" in content, "SM08 must name the collective C00-C14 range"
+    assert all(token in content for token in c_family_tokens), (
+        "SM08 must name each C-family identifier from C00 through C14"
+    )
 
 
 def test_sm08_states_placeholder_validation_only():
@@ -278,23 +285,41 @@ def test_sm08_validates_scaffold_directory():
            "SM08 must validate the tests/fixtures/pilot_conversion_scaffold directory"
 
 
+def scaffold_direct_child_files():
+    """Return direct regular files in the scaffold fixture directory."""
+    assert SCAFFOLD_DIR.exists(), f"Scaffold fixture directory not found: {SCAFFOLD_DIR}"
+    return {path for path in SCAFFOLD_DIR.iterdir() if path.is_file()}
+
+
+def scaffold_markdown_files():
+    """Return allowed direct markdown scaffold fixture files."""
+    all_files = scaffold_direct_child_files()
+    markdown_files = {path for path in all_files if path.suffix == ".md"}
+    disallowed_files = all_files - markdown_files
+    assert all_files == markdown_files, (
+        "Scaffold fixture directory may only contain Markdown files; "
+        f"disallowed non-Markdown files: {sorted(path.name for path in disallowed_files)}"
+    )
+    assert markdown_files, "Scaffold fixture directory must contain markdown fixtures"
+    return markdown_files
+
+
 def test_scaffold_files_exist():
-    """Assert expected scaffold fixture files exist."""
-    expected_files = [
+    """Assert baseline scaffold fixtures exist and any extra direct files are Markdown."""
+    expected_files = {
         SCAFFOLD_DIR / "README.md",
         SCAFFOLD_DIR / "placeholder_packet_manifest.md",
         SCAFFOLD_DIR / "placeholder_review_harness.md",
-    ]
-    
-    for filepath in expected_files:
-        assert filepath.exists(), f"Scaffold fixture file not found: {filepath}"
+    }
+
+    markdown_files = scaffold_markdown_files()
+    missing_files = expected_files - markdown_files
+    assert not missing_files, f"Missing baseline scaffold fixture files: {missing_files}"
 
 
 def test_scaffold_files_labeled_placeholder_synthetic_non_donor():
-    """Assert every scaffold fixture is clearly labeled placeholder/synthetic/non-donor."""
-    md_files = list(SCAFFOLD_DIR.glob("*.md"))
-    
-    for filepath in md_files:
+    """Assert every markdown scaffold fixture is labeled placeholder/synthetic/non-donor."""
+    for filepath in scaffold_markdown_files():
         content = read_utf8(filepath).lower()
         assert "placeholder" in content, f"{filepath} must contain 'placeholder' label"
         assert "synthetic" in content, f"{filepath} must contain 'synthetic' label"
@@ -303,10 +328,8 @@ def test_scaffold_files_labeled_placeholder_synthetic_non_donor():
 
 
 def test_scaffold_files_no_donor_artifact_markers():
-    """Assert every scaffold fixture contains no obvious donor-content artifact markers."""
-    md_files = list(SCAFFOLD_DIR.glob("*.md"))
-    
-    for filepath in md_files:
+    """Assert every markdown scaffold fixture contains no obvious donor-content artifact markers."""
+    for filepath in scaffold_markdown_files():
         content = read_utf8(filepath)
         for marker in DONOR_ARTIFACT_MARKERS:
             assert marker.lower() not in content.lower(), \
@@ -314,10 +337,8 @@ def test_scaffold_files_no_donor_artifact_markers():
 
 
 def test_scaffold_files_no_donor_proper_noun_sentinels():
-    """Assert every scaffold fixture contains no known donor-proper-noun sentinel markers."""
-    md_files = list(SCAFFOLD_DIR.glob("*.md"))
-    
-    for filepath in md_files:
+    """Assert every markdown scaffold fixture contains no known donor-proper-noun sentinels."""
+    for filepath in scaffold_markdown_files():
         content = read_utf8(filepath)
         for sentinel in DONOR_PROPER_NOUN_SENTINELS:
             assert sentinel not in content, \
@@ -507,24 +528,37 @@ def test_sm08_no_converted_donor_content():
 
 
 def test_registry_records_not_promoted_to_forbidden_states():
-    """Assert registry records for C00-C14 are not promoted to forbidden states by this PR."""
-    # Read the registry file
-    if REGISTRY_PATH.exists():
-        registry_content = read_utf8(REGISTRY_PATH)
-        
-        # Forbidden promotion states that would indicate improper promotion
-        forbidden_states = [
-            "canon-promoted",
-            "runtime-ready",
-            "sourcebook-ready",
-            "live-play-ready",
-            "training-ready",
-            "final-mechanics-ready",
-        ]
-        
-        for state in forbidden_states:
-            assert state not in registry_content.lower(), \
-                f"Registry contains forbidden promotion state: {state}"
+    """Assert C00-C14 registry status fields are not promoted to forbidden states."""
+    assert REGISTRY_PATH.exists(), f"Registry not found: {REGISTRY_PATH}"
+    registry_content = read_utf8(REGISTRY_PATH)
+
+    status_fields = ["status", "authority_level", "test_status", "review_status"]
+    forbidden_states = {
+        "canon-promoted",
+        "runtime-ready",
+        "sourcebook-ready",
+        "live-play-ready",
+        "training-ready",
+        "final-mechanics-ready",
+    }
+
+    for index in range(15):
+        token = f"C{index:02d}"
+        block_match = re.search(
+            rf"^- file_id: {token}\n(?P<block>.*?)(?=^- file_id: |\Z)",
+            registry_content,
+            flags=re.MULTILINE | re.DOTALL,
+        )
+        assert block_match, f"Registry must keep tracking record block for {token}"
+        block = block_match.group("block")
+
+        for field in status_fields:
+            field_match = re.search(rf"^  {field}:\s*(?P<value>.+?)\s*$", block, re.MULTILINE)
+            assert field_match, f"{token} registry block must include {field}"
+            value = field_match.group("value").strip().strip("'\"").lower()
+            assert value not in forbidden_states, (
+                f"{token} registry {field} contains forbidden promotion state: {value}"
+            )
 
 
 def test_sm08_future_safe_test_posture():
