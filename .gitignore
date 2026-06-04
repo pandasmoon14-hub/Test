@@ -1,18 +1,38 @@
-﻿# Python
+```
+# Dependencies
 __pycache__/
-*.py[cod]
-*$py.class
+*.pyc
+*.pyo
+*.pyd
 
-# Pytest / coverage
-.pytest_cache/
+# Test coverage
 .coverage
 htmlcov/
+.coverage.*
 
-# Local Claude/Codex working files
-.claude/
+# Environment
+.env
+.env.local
+*.env.*
 
-# OS/editor noise
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+
+# OS generated files
 .DS_Store
 Thumbs.db
-*.tmp
-*.bak
+
+# IDE
+.vscode/
+.idea/
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+```
