@@ -100,7 +100,7 @@ B08 keeps these categories separate:
 - Route progress is not universal travel pace.
 - Travel intervals are not universal travel turns, dungeon turns, watches, hex moves, jumps, phases, rounds, or travel days.
 
-Every meaningful travel/exploration/navigation/discovery event must route at least one delta to a recognized owner or explicitly produce a no-delta, quarantine, escalation, transition, source-local, `pending_schema`, `human_review`, or `defer_until_schema_exists` result.
+Every meaningful travel/exploration/navigation/discovery event must route at least one delta to a recognized owner or explicitly produce a no-delta, quarantine, escalation, transition, source-local, `pending_schema`, `human_review`, or `defer_until_schema_exists` result. This is B08 travel/exploration/navigation/discovery state-delta routing, not a final delta schema.
 
 ## 6. Travel, exploration, navigation, discovery, route, map-state, and site-entry definitions
 
@@ -510,7 +510,7 @@ B08 handoffs must identify owner responsibility rather than inventing content. U
 
 ## 23. Batch B to C00/C-family handoff rules
 
-B08 may identify that a C00/C-family handoff is needed, but it must not invent C-family fields, final travel schema, final exploration schema, final map schema, final location schema, final route schema, final discovery schema, final hazard schema, final encounter schema, final world-state schema, or runtime state. The following block is lightweight, doctrine-facing, and not a runtime schema. `batch_b_to_c_handoff` is not a backend contract, not a database row, not an event object, not a map database row, not an encounter table, and not sourcebook text. `travel_exploration_routing_note` is doctrine-facing only: it is not runtime schema, not backend event, not command object, not C-family record, not travel state, not location state, not map state, not world-state truth, not hidden-state truth, not encounter generation, not final mechanics, not canon, and not player-facing rule text.
+B08 may identify that a C00/C-family handoff is needed, but it must not invent C-family fields, final travel schema, final exploration schema, final map schema, final location schema, final route schema, final discovery schema, final hazard schema, final encounter schema, final world-state schema, or runtime state. The following block is lightweight, doctrine-facing, and not a runtime schema. `batch_b_to_c_handoff` is not a backend contract, not a database row, not an event object, not a map database row, not an encounter table, and not sourcebook text. `travel_exploration_routing_note` is doctrine-facing only: it is not runtime schema, not backend event, not command object, not C-family record, not travel database row, not map database row, not location-state record, not encounter table, not random table, not travel table, not sourcebook map key, not travel state, not location state, not map state, not world-state truth, not hidden-state truth, not encounter generation, not final mechanics, not canon, and not player-facing rule text.
 
 ```yaml
 batch_b_to_c_handoff:
@@ -529,22 +529,27 @@ batch_b_to_c_handoff:
 
 travel_exploration_routing_note:
   intake_source: B01 | B02 | B03 | B04 | B05 | B06 | B07 | D_series_source_pack | source_local_donor | human_design_note | unknown
-  intent: route_travel | area_exploration | site_approach | site_entry | pursuit | evasion | scouting | mapping | tracking | resource_search | survey_analysis | social_blending | platform_navigation | vehicle_travel | ship_travel | realm_crossing | threshold_crossing | hazardous_zone_crossing | unknown_space_exploration | source_local_exploration | mixed_exploration | unknown_intent
+  travel_exploration_intent: route_travel | area_exploration | site_approach | site_entry | pursuit | evasion | scouting | mapping | tracking | resource_search | survey_analysis | social_blending | platform_navigation | vehicle_travel | ship_travel | realm_crossing | threshold_crossing | hazardous_zone_crossing | unknown_space_exploration | source_local_exploration | mixed_exploration | unknown_intent
   posture_family: speed | safety | stealth | scouting | mapping | tracking | foraging_resource_search | concealment | diplomatic_approach | survey_analysis | ritual_sensing | sensor_sweep | platform_caution | resource_conservation | pursuit | evasion | combat_readiness | social_blending | source_local_posture | mixed | none
   route_state: known | partially_known | suspected | rumored | hidden | false | blocked | dangerous | contested | watched | restricted | unstable | unmapped | source_local | mixed | unknown
   known_state_category: confirmed_known | party_believes | rumored | suspected | mapped_but_unverified | false_or_compromised | hidden_from_party | protected_hidden | source_local | mixed | unknown
   interval_scale: momentary_approach | scene_segment | site_segment | district_leg | wilderness_leg | watch_period | platform_vector | stealth_segment | site_survey_pass | realm_crossing_stage | search_sweep | source_local_interval | unknown_interval
-  context_profile: urban_social_dense | wilderness_open_region | site_dungeon_interior | space_vehicle_platform | dimensional_realm_threshold | hazardous_anomalous_zone | pursuit_evasion | tactical_terrain | horror_hidden_site | source_local_context | mixed_context | unknown_context
+  exploration_context_profile: urban_social_dense | wilderness_open_region | site_dungeon_interior | space_vehicle_platform | dimensional_realm_threshold | hazardous_anomalous_zone | pursuit_evasion | tactical_terrain | horror_hidden_site | source_local_context | mixed_context | unknown_context
   navigation_trigger: none | no_roll_clear | route_uncertain | route_contested | route_hidden | route_distorted | route_false | route_unstable | pursuit_evasion | platform_vector | realm_threshold | source_local | owner_routed
   map_state_category: known | surveyed | partially_mapped | suspected | rumored | false | compromised | hidden | blocked | unreachable | source_local | none | unknown
   discovery_category: route_discovery | location_discovery | site_entry_discovery | hazard_discovery | resource_discovery | clue_or_lead_discovery | faction_presence_discovery | opposition_trace_discovery | environmental_condition_discovery | object_or_salvage_discovery | map_correction | false_route_exposure | hidden_boundary_hint | source_local_discovery | none | unknown
   discovery_confidence: confirmed | high_confidence | partial | ambiguous | rumored | suspected | false_or_compromised | protected_hidden | source_local | none | unknown
-  pressure_family: resource_pressure | exposure_pressure | hazard_pressure | encounter_pressure | navigation_pressure | map_state_pressure | ambush_exposure | social_or_legal_pressure | faction_or_territory_pressure | object_or_platform_pressure | hidden_state_pressure | time_pressure | source_local_pressure | mixed | none
+  pressure_families:
+    - resource_pressure | exposure_pressure | hazard_pressure | encounter_pressure | navigation_pressure | map_state_pressure | ambush_exposure | social_or_legal_pressure | faction_or_territory_pressure | object_or_platform_pressure | hidden_state_pressure | time_pressure | source_local_pressure
   progress_state: advanced | advanced_with_cost | advanced_with_discovery | advanced_with_exposure | delayed | misdirected | lost | blocked | hazard_triggered | encounter_triggered | site_entry_triggered | map_state_updated | pressure_escalated | transitioned | quarantined | escalated | no_delta_required
+  owner_handoff_required: boolean
+  owner_handoff_reason: active_scene_or_structured_encounter | action_resolution_or_cost_commitment | object_or_platform_pressure | custody_access_burden_pressure | value_supply_requisition_pressure | project_or_preparation_pressure | recovery_training_research_pressure | truth_information_or_location_state | hidden_state_or_safe_presentation | active_cadence_or_timing | faction_social_legal_or_territory_pressure | hazard_opposition_or_encounter_construction | economy_supply_or_upkeep_pressure | campaign_scale_journey_or_time_pacing | c00_c_family_conversion | runtime_boundary_review | canon_review | source_local_boundary | schema_gap | human_review | none
+  delta_routing_status: no_delta_required | owner_routed | transition_note | source_local_retained_effect | quarantined_unresolved_delta | owner_file_escalation
   protected_hidden_handling: not_applicable | protected_without_reveal | D10_truth_owner_routed | D11_presentation_owner_routed | quarantine | escalation | human_review
   owner_file_handoffs: []
   source_local_boundary: string | null
   rejected_donor_elements: []
+  note: string
 ```
 
 Record-use rules:
@@ -663,4 +668,4 @@ B08 is acceptable when:
 
 B08 intentionally stops before any B09 topic. If later Batch B work needs to address social projects, faction operations, world-state operations, information operations, hazard/encounter construction, campaign-scale journey structures, runtime travel state, or another operational family, B08 should hand off only the unresolved travel/exploration/navigation/discovery pressure relevant to that future owner.
 
-B08 does not require, define, create, or promote B09-B11. B08 must not create B09-B11, reserve their final subjects, or pre-authorize their mechanics. Follow-up notes should remain `transition_note`, `owner_routed`, `pending_schema`, quarantine, escalation, `human_review`, or `defer_until_schema_exists` until the appropriate owner file exists.
+B08 does not require, define, create, or promote B09-B11. B08 does not require, define, create, or promote C01-C14. B08 must not create B09-B11, reserve their final subjects, or pre-authorize their mechanics. Follow-up notes should remain `transition_note`, `owner_routed`, `pending_schema`, quarantine, escalation, `human_review`, or `defer_until_schema_exists` until the appropriate owner file exists.
