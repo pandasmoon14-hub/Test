@@ -285,26 +285,41 @@ def test_sm08_validates_scaffold_directory():
            "SM08 must validate the tests/fixtures/pilot_conversion_scaffold directory"
 
 
+def scaffold_direct_child_files():
+    """Return direct regular files in the scaffold fixture directory."""
+    assert SCAFFOLD_DIR.exists(), f"Scaffold fixture directory not found: {SCAFFOLD_DIR}"
+    return {path for path in SCAFFOLD_DIR.iterdir() if path.is_file()}
+
+
+def scaffold_markdown_files():
+    """Return allowed direct markdown scaffold fixture files."""
+    all_files = scaffold_direct_child_files()
+    markdown_files = {path for path in all_files if path.suffix == ".md"}
+    disallowed_files = all_files - markdown_files
+    assert all_files == markdown_files, (
+        "Scaffold fixture directory may only contain Markdown files; "
+        f"disallowed non-Markdown files: {sorted(path.name for path in disallowed_files)}"
+    )
+    assert markdown_files, "Scaffold fixture directory must contain markdown fixtures"
+    return markdown_files
+
+
 def test_scaffold_files_exist():
-    """Assert baseline scaffold fixture files exist while allowing future markdown fixtures."""
+    """Assert baseline scaffold fixtures exist and any extra direct files are Markdown."""
     expected_files = {
         SCAFFOLD_DIR / "README.md",
         SCAFFOLD_DIR / "placeholder_packet_manifest.md",
         SCAFFOLD_DIR / "placeholder_review_harness.md",
     }
 
-    assert SCAFFOLD_DIR.exists(), f"Scaffold fixture directory not found: {SCAFFOLD_DIR}"
-    actual_md_files = set(SCAFFOLD_DIR.glob("*.md"))
-    missing_files = expected_files - actual_md_files
+    markdown_files = scaffold_markdown_files()
+    missing_files = expected_files - markdown_files
     assert not missing_files, f"Missing baseline scaffold fixture files: {missing_files}"
-    assert actual_md_files, "Scaffold fixture directory must contain markdown fixtures"
 
 
 def test_scaffold_files_labeled_placeholder_synthetic_non_donor():
-    """Assert every scaffold fixture is clearly labeled placeholder/synthetic/non-donor."""
-    md_files = list(SCAFFOLD_DIR.glob("*.md"))
-    
-    for filepath in md_files:
+    """Assert every markdown scaffold fixture is labeled placeholder/synthetic/non-donor."""
+    for filepath in scaffold_markdown_files():
         content = read_utf8(filepath).lower()
         assert "placeholder" in content, f"{filepath} must contain 'placeholder' label"
         assert "synthetic" in content, f"{filepath} must contain 'synthetic' label"
@@ -313,10 +328,8 @@ def test_scaffold_files_labeled_placeholder_synthetic_non_donor():
 
 
 def test_scaffold_files_no_donor_artifact_markers():
-    """Assert every scaffold fixture contains no obvious donor-content artifact markers."""
-    md_files = list(SCAFFOLD_DIR.glob("*.md"))
-    
-    for filepath in md_files:
+    """Assert every markdown scaffold fixture contains no obvious donor-content artifact markers."""
+    for filepath in scaffold_markdown_files():
         content = read_utf8(filepath)
         for marker in DONOR_ARTIFACT_MARKERS:
             assert marker.lower() not in content.lower(), \
@@ -324,10 +337,8 @@ def test_scaffold_files_no_donor_artifact_markers():
 
 
 def test_scaffold_files_no_donor_proper_noun_sentinels():
-    """Assert every scaffold fixture contains no known donor-proper-noun sentinel markers."""
-    md_files = list(SCAFFOLD_DIR.glob("*.md"))
-    
-    for filepath in md_files:
+    """Assert every markdown scaffold fixture contains no known donor-proper-noun sentinels."""
+    for filepath in scaffold_markdown_files():
         content = read_utf8(filepath)
         for sentinel in DONOR_PROPER_NOUN_SENTINELS:
             assert sentinel not in content, \
