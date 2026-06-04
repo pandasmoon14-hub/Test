@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-04'
+  version: 0.1.26
+  action: c13_draft_creation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Created C13 draft doctrine file at docs/doctrine/schema/C13_map_diagram_record_schema.md; set C13 status draft, authority schema-draft, test_status designed, review_status not_reviewed, and blocked_by [] while preserving identity, path, owner, dependencies, and unlocks.
+- date: '2026-06-04'
   version: 0.1.25
   action: c05_draft_creation
   actor: Astra Doctrine Council / synthesis assistant
@@ -2448,8 +2453,8 @@ file_records:
   proposed_path: docs/doctrine/schema/C13_map_diagram_record_schema.md
   layer: 4_schema_base
   phase: '2'
-  status: todo
-  authority_level: schema-todo
+  status: draft
+  authority_level: schema-draft
   owner: Astra Doctrine Council - Schema Working Group
   purpose: Define conversion-stage record grammar for map, diagram, annotation, keyed area, visual dependency, route diagram, ship/station layout, and image-review records.
   owns:
@@ -2470,7 +2475,7 @@ file_records:
   dependencies: &id033
   - A14
   - C00
-  blocked_by: *id033
+  blocked_by: []
   unlocks:
   - K03
   downstream_consumers:
@@ -2496,7 +2501,7 @@ file_records:
   - map/diagram annotation test
   - keyed area provenance test
   - visual review queue test
-  test_status: not_started
+  test_status: designed
   review_status: not_reviewed
   promotion_requirements:
   - schema required fields defined
