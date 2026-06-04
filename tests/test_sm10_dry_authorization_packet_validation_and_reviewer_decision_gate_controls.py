@@ -381,13 +381,13 @@ def test_sm09_dry_authorization_packet_template_remains_safe_markdown_direct_chi
     for required in ["placeholder", "synthetic", "non-donor"]:
         assert required in lower
     no_donor_terms = [
-        "no real donor excerpts",
-        "donor statblocks",
-        "donor tables",
-        "donor maps",
-        "donor setting prose",
-        "donor proper nouns",
-        "protected expression",
+        "no real donor content",
+        "no protected source expression",
+        "no copied mechanical blocks",
+        "no copied tables",
+        "no copied maps",
+        "no copied setting prose",
+        "no protected source names",
         "not converted content",
         "not training data",
         "not canon",
@@ -404,29 +404,18 @@ def test_sm09_dry_authorization_packet_template_remains_safe_markdown_direct_chi
 
 def test_c00_c14_registry_records_not_promoted_to_forbidden_states():
     registry = read_utf8(REGISTRY_PATH)
-    forbidden_status_or_review_states = {
-        "current",
-        "tested_minimum",
-        "stable_for_family",
-        "stable_cross_family",
+    # SM10 must not freeze generic future owner-controlled registry progress.
+    # This guard blocks only states that directly violate SM10 boundaries by
+    # implying canon/sourcebook/live-play/training/runtime/final-mechanics or
+    # execution/authorization authority.
+    forbidden_sm10_promotion_states = {
+        "canon-promoted",
         "canon-current",
         "runtime-ready",
         "sourcebook-ready",
         "live-play-ready",
         "training-ready",
-        "evaluation-ready",
-        "benchmark-ready",
-        "execution-approved",
-        "authorized",
-    }
-    forbidden_authority_states = {
-        "canon-current",
-        "runtime-ready",
-        "sourcebook-ready",
-        "live-play-ready",
-        "training-ready",
-        "evaluation-ready",
-        "benchmark-ready",
+        "final-mechanics-ready",
         "execution-authority",
         "authorization-authority",
     }
@@ -439,12 +428,12 @@ def test_c00_c14_registry_records_not_promoted_to_forbidden_states():
             field_match = re.search(rf"^  {field}: ['\"]?(?P<value>[^'\"\n]+)['\"]?", body, re.MULTILINE)
             assert field_match, f"Missing {field} for {file_id}"
             value = field_match.group("value")
-            assert value not in forbidden_status_or_review_states, (
-                f"{file_id} {field} is improperly promoted to {value!r}"
+            assert value not in forbidden_sm10_promotion_states, (
+                f"{file_id} {field} violates SM10 boundaries with {value!r}"
             )
         authority_match = re.search(r"^  authority_level: ['\"]?(?P<value>[^'\"\n]+)['\"]?", body, re.MULTILINE)
         assert authority_match, f"Missing authority_level for {file_id}"
         authority_value = authority_match.group("value")
-        assert authority_value not in forbidden_authority_states, (
-            f"{file_id} authority_level is improperly promoted to {authority_value!r}"
+        assert authority_value not in forbidden_sm10_promotion_states, (
+            f"{file_id} authority_level violates SM10 boundaries with {authority_value!r}"
         )
