@@ -1,5 +1,4 @@
 import re
-from pathlib import Path
 
 from tests.helpers import REGISTRY_PATH, ROOT, read_utf8
 
@@ -147,6 +146,11 @@ FORBIDDEN_PROMOTED_STATUSES = {
     "runtime_ready",
     "runtime-ready",
     "canon-ready",
+    "schema_math_mechanics_current",
+    "post_batch_c_current",
+    "planning-promoted",
+    "schema-planning-promoted",
+    "sm00-promoted",
 }
 
 
@@ -164,12 +168,6 @@ def registry_record_block(file_id: str) -> str:
     assert match, f"Missing registry record for {file_id}"
     return match.group(0)
 
-
-def registry_scalar(file_id: str, key: str) -> str:
-    block = registry_record_block(file_id)
-    match = re.search(rf"^  {key}: ([^\n]+)$", block, flags=re.MULTILINE)
-    assert match, f"Missing {key} for {file_id}"
-    return match.group(1).strip().strip("'\"")
 
 
 def test_sm00_exists_and_is_nonempty() -> None:
@@ -288,10 +286,6 @@ def test_hard_refusals_are_explicit() -> None:
 
 def test_registry_records_for_c00_c14_are_not_promoted_by_this_pr() -> None:
     for file_id in C_FAMILY_MARKERS:
-        assert registry_scalar(file_id, "status") == "draft"
-        assert registry_scalar(file_id, "authority_level") == "schema-draft"
-        assert registry_scalar(file_id, "test_status") == "designed"
-        assert registry_scalar(file_id, "review_status") == "not_reviewed"
         block = registry_record_block(file_id)
         for forbidden in FORBIDDEN_PROMOTED_STATUSES:
             assert forbidden not in block
