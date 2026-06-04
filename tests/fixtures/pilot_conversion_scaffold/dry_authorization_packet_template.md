@@ -2,7 +2,7 @@
 
 Placeholder, synthetic, non-donor scaffold only.
 
-This dry authorization packet template contains no real donor content. It is not converted content, not training data, not canon, not sourcebook prose, and not runtime import data. It is not actual authorization, not execution approval, not a pilot output, and not evidence that conversion may run.
+This dry authorization packet template contains no real donor content, no protected source expression, no copied mechanical blocks, no copied tables, no copied maps, no copied setting prose, and no protected source names. It is not converted content, not training data, not canon, not sourcebook prose, not benchmark corpora, not evaluation corpora, and not runtime import data. It is not actual authorization, not execution approval, not a pilot output, and not evidence that conversion may run.
 
 ## Dry labels
 
