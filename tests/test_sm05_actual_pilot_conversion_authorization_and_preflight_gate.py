@@ -87,7 +87,7 @@ GO_NO_GO_WORKFLOW_STEPS = [
     "Confirm SM00-SM04 exist and are current planning controls",
     "Confirm the pilot packet set is tiny, bounded, and owner-approved",
     "Confirm no real donor content is embedded in SM05",
-    "Confirm SM02 readiness gates are satisfied or gaps are routed",
+    "Confirm SM02 readiness gates are satisfied",
     "Confirm SM03 dry-run review is complete or failures are routed",
     "Confirm SM04 evaluation rubric is available",
     "Confirm packet metadata and evidence/provenance preservation path",
@@ -366,7 +366,7 @@ def test_sm05_includes_authorize_criteria() -> None:
     text = sm05_text()
     for marker in [
         "packet scope is tiny and bounded",
-        "SM02 gates are satisfied or explicitly routed",
+        "SM02 gates are satisfied",
         "SM04 rubric is ready",
         "legal/IP path exists",
         "source-local containment path exists",
@@ -513,6 +513,24 @@ def test_sm05_recommends_next_pr_without_broad_conversion_jump() -> None:
         "training corpus creation",
     ]:
         assert marker in text, f"Missing next-PR boundary: {marker}"
+
+
+# --- SM02 waiver prohibition ---
+
+
+def test_sm05_does_not_contain_explicitly_waived() -> None:
+    text = sm05_text()
+    assert "explicitly waived" not in text
+
+
+def test_sm05_states_no_authority_to_waive_sm02_gates() -> None:
+    text = sm05_text()
+    assert "SM05 has no authority to waive SM02 minimum pilot readiness gates" in text
+
+
+def test_sm05_blocks_authorization_when_sm02_gates_unsatisfied() -> None:
+    text = sm05_text()
+    assert "unsatisfied SM02 gate must block authorization" in text
 
 
 # --- No implementation artifacts ---

@@ -150,7 +150,9 @@ No authorized pilot may exceed the declared packet count without a new authoriza
 
 SM05 requires evidence that the following upstream conditions are satisfied or explicitly routed before authorization may proceed:
 
-1. SM02 readiness gates are satisfied or explicitly waived by a named owner with rationale.
+1. SM02 readiness gates are satisfied. Any unsatisfied SM02 gate must block authorization and route to repair, quarantine, deferred gap ledger, `pending_schema`, or the appropriate future owner; unsatisfied SM02 gates may not be waived for pilot execution.
+
+SM05 has no authority to waive SM02 minimum pilot readiness gates.
 2. SM03 dry-run review has passed or failed items are routed to repair/quarantine/deferred gap ledger.
 3. SM04 evaluation rubric is available and reviewer workflow is defined.
 4. Packet metadata can be reviewed before execution.
@@ -335,7 +337,7 @@ The go/no-go decision workflow proceeds as follows:
 1. Confirm SM00-SM04 exist and are current planning controls.
 2. Confirm the pilot packet set is tiny, bounded, and owner-approved.
 3. Confirm no real donor content is embedded in SM05.
-4. Confirm SM02 readiness gates are satisfied or gaps are routed.
+4. Confirm SM02 readiness gates are satisfied; any unsatisfied SM02 gate blocks authorization and routes to repair, quarantine, deferred gap ledger, `pending_schema`, or the appropriate future owner.
 5. Confirm SM03 dry-run review is complete or failures are routed.
 6. Confirm SM04 evaluation rubric is available.
 7. Confirm packet metadata and evidence/provenance preservation path.
@@ -356,7 +358,7 @@ Each step must be completed before advancing to the next. The authorization deci
 Authorize only if:
 
 - packet scope is tiny and bounded;
-- SM02 gates are satisfied or explicitly routed;
+- SM02 gates are satisfied; any unsatisfied SM02 gate is routed to a blocking repair/quarantine/deferred outcome and prevents authorization until resolved;
 - SM03 dry-run review is complete or failures are routed;
 - SM04 rubric is ready;
 - legal/IP path exists;
