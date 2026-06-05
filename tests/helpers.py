@@ -2,6 +2,8 @@ from pathlib import Path
 import subprocess
 import sys
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 REGISTRY_PATH = ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
 
@@ -11,7 +13,14 @@ def read_utf8(path: Path) -> str:
 
 
 def registry_records_by_id() -> dict[str, dict]:
-    import yaml
+    yaml = pytest.importorskip(
+        "yaml",
+        reason=(
+            "PyYAML is required for doctrine/registry validation; "
+            "install test dependencies with "
+            "python3 -m pip install -r requirements-dev.txt"
+        ),
+    )
 
     data = yaml.safe_load(read_utf8(REGISTRY_PATH))
     records = data.get("file_records", data.get("files"))

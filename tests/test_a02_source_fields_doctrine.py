@@ -1,6 +1,15 @@
 from pathlib import Path
 
-import yaml
+import pytest
+
+yaml = pytest.importorskip(
+    "yaml",
+    reason=(
+        "PyYAML is required for doctrine/registry validation; "
+        "install test dependencies with "
+        "python3 -m pip install -r requirements-dev.txt"
+    ),
+)
 
 REPO_ROOT = Path(__file__).resolve().parents[1]
 A02_PATH = REPO_ROOT / "docs" / "doctrine" / "setting" / "A02_source_fields_magic_technology_relation.md"

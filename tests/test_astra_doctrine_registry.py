@@ -6,7 +6,7 @@ import pytest
 yaml = pytest.importorskip(
     "yaml",
     reason=(
-        "PyYAML is required for doctrine registry validation; "
+        "PyYAML is required for doctrine/registry validation; "
         "install test dependencies with "
         "python3 -m pip install -r requirements-dev.txt"
     ),
