@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.43
+  action: remediation_pr_f_mission_reward_clue_and_rng_table_oracle_owner_scaffolds
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001 and REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001 tracking for PR-F owner scaffolds. These records are owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no mission generation, no reward commitment, no clue reveal, no hidden-truth database implementation, no RNG implementation, no oracle/table roll implementation, no random table data creation, no persistence writer implementation, no replay verifier implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.42
   action: remediation_pr_e_ability_social_owner_scaffolds
   actor: Astra Doctrine Council / synthesis assistant
@@ -5744,3 +5749,226 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: critical
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated ability creation, no advancement award, no relationship mutation, no faction action commitment, no actor-knowledge database implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  filename: RT006_mission_reward_clue_routing_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT006_mission_reward_clue_routing_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future mission, reward, clue, hidden-truth, and consequence-routing boundary owner
+  purpose: Track the PR-F owner scaffold for RT-006 mission, reward, clue, hidden-truth, branch, objective, and consequence-routing boundaries without implementing remediation.
+  owns:
+  - RT-006 owner scaffold only
+  - mission/reward/clue routing planning boundary
+  - hidden-truth, objective, branch, reward, and consequence guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - mission generation
+  - reward commitment
+  - clue reveal
+  - hidden-truth database implementation
+  - RNG implementation
+  - oracle/table roll implementation
+  - random table data creation
+  - persistence writer implementation
+  - replay verifier implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-005-scene-activity-context-packets
+  - RT-007-social-faction-knowledge-state
+  - RT-008-generated-content-provenance
+  - RT-009-runtime-rng-table-oracle
+  - RT-011-validation-readiness-tooling
+  - A13
+  - B09
+  - C07
+  - C09
+  - C10
+  blocked_by:
+  - missing mission runtime owner specification
+  - missing reward/consequence commit contract
+  - missing clue and hidden-truth exposure contract
+  - missing generated-mission provenance workflow
+  - missing table/oracle outcome authority contract
+  - missing executable validators
+  unlocks:
+  - mission/reward/clue routing owner decomposition planning
+  - future no-LLM-mission-generation-as-truth tests
+  - future objective-completion-event authority tests
+  - future clue-hidden-truth-redaction tests
+  - future reward-consequence-routing tests
+  downstream_consumers:
+  - future mission state owner
+  - future reward and consequence event owner
+  - future clue visibility and hidden-truth owner
+  - future context-packet projection owner
+  - future RNG/table/oracle owner
+  donor_pressure_absorbed:
+  - premature mission generation pressure
+  - premature objective completion pressure
+  - premature branch selection pressure
+  - reward commitment pressure
+  - clue reveal and hidden-truth exposure pressure
+  - scenario canon promotion pressure
+  hard_refusals:
+  - owner scaffold cannot define final schemas, mission runtime, reward economy, clue schema, hidden-truth database, branch runtime, generators, validators, event models, persistence writers, replay verifiers, retrieval indexes, context-packet compilers, live-play prompts, training behavior, donor-content audit results, or canon promotion
+  - mission/scenario records are not runtime missions until backend-owned state, event, reward, clue, hidden-truth, provenance, and validation paths exist; reward and consequence commits remain downstream of RT-002; clue/hidden-truth exposure remains downstream of RT-005; generated missions require RT-008 provenance/recurrence controls before persistence; table/oracle dependencies must route through RT-009 before results can be committed
+  - LLM cannot generate missions as backend truth; complete objectives; reveal clues or hidden truths; select branches; commit rewards, penalties, or losses; decide mission failure consequences; mutate scenario state; select oracle/table outcomes; create persistent mission records; promote scenario canon; bypass backend validation/reviewer approval; or treat mission narration as backend event commitment
+  escalation_triggers:
+  - scaffold is cited as mission runtime, reward economy, clue schema, hidden-truth database, branch runtime, generator, validator, event model, persistence, context-packet, live-play, training, or canon authority
+  - mission narration or generated scenarios are treated as backend truth or persistent records
+  - rewards, clues, hidden truths, branches, consequences, or oracle outcomes are committed without downstream owner gates
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - source-pressure linkage test
+  - backend-first and hidden-info phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines mission state, objective events, branch review, reward/consequence routing, clue/hidden-truth exposure, provenance, oracle dependency, context-packet, and validator scope before any implementation
+  - RT-001, RT-002, RT-003, RT-005, RT-007, RT-008, RT-009, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, mission generation, reward commitment, clue reveal, hidden-truth database, persistence, replay, retrieval, context-packet compiler, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no mission generation, no reward commitment, no clue reveal, no hidden-truth database implementation, no RNG implementation, no oracle/table roll implementation, no random table data creation, no persistence writer implementation, no replay verifier implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  filename: RT009_runtime_rng_table_oracle_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future runtime RNG, table, oracle, seed, replay, and hidden-result boundary owner
+  purpose: Track the PR-F owner scaffold for RT-009 runtime RNG, table, oracle, seed/replay, hidden-result, and narration-projection boundaries without implementing remediation.
+  owns:
+  - RT-009 owner scaffold only
+  - runtime RNG/table/oracle planning boundary
+  - seed, replay, hidden-result, table-weight, result-domain, and narration-projection guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - mission generation
+  - reward commitment
+  - clue reveal
+  - hidden-truth database implementation
+  - RNG implementation
+  - oracle/table roll implementation
+  - random table data creation
+  - persistence writer implementation
+  - replay verifier implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-005-scene-activity-context-packets
+  - RT-006-mission-reward-clue-routing
+  - RT-008-generated-content-provenance
+  - RT-011-validation-readiness-tooling
+  - README
+  - B10
+  - C07
+  - C09
+  - C10
+  blocked_by:
+  - missing RNG authority specification
+  - missing seed/replay reference contract
+  - missing table weight and result-domain validator owner
+  - missing hidden random result redaction contract
+  - missing oracle outcome commitment contract
+  - missing executable validators
+  unlocks:
+  - runtime RNG/table/oracle owner decomposition planning
+  - future no-LLM-dice-roll tests
+  - future seed/replay authority tests
+  - future hidden-result redaction tests
+  - future table/oracle outcome commitment tests
+  downstream_consumers:
+  - future RNG authority owner
+  - future table/oracle invocation validator owner
+  - future replay verifier owner
+  - future hidden-result redaction owner
+  - future mission/hazard/reward table consumers
+  donor_pressure_absorbed:
+  - premature dice roller pressure
+  - premature random table data pressure
+  - premature oracle outcome commitment pressure
+  - table weight alteration pressure
+  - model randomness authority pressure
+  - narrated chance as backend randomness pressure
+  hard_refusals:
+  - owner scaffold cannot define RNG implementation, dice roller behavior, oracle registry data, random table data, table validators, event models, replay verifiers, context-packet compilers, runtime code, live-play prompts, training behavior, donor-content audit results, or canon promotion
+  - RNG/table/oracle outcomes must be backend-owned, deterministic, seedable/replayable, auditable, and redacted when hidden; table/oracle records are not executable RNG systems by themselves; narration may only describe backend-selected and context-approved results; hidden results must route through RT-005 before projection; mission/hazard/reward uses of tables must not bypass RT-006, RT-003, or RT-002 as applicable
+  - LLM cannot roll dice; choose random results; select oracle/table outcomes; alter table weights; invent rows or result domains as truth; decide hidden random results; commit oracle outcomes; create replay references; use model randomness as RNG authority; treat narrated chance as backend randomness; or bypass backend validation/reviewer approval
+  escalation_triggers:
+  - scaffold is cited as RNG implementation, dice roller, oracle registry, random table data, table validator, runtime, event model, replay verifier, context-packet compiler, live-play, training, or canon authority
+  - model sampling, narration, or oracle prose is treated as backend randomness
+  - hidden results are exposed without RT-005 or table outcomes committed without backend validation
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - source-pressure linkage test
+  - backend-first and RNG/runtime phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines RNG authority, seed/replay, table/oracle invocation, table weight/result-domain validation, hidden-result redaction, result commitment, context-packet, and validator scope before any implementation
+  - RT-001, RT-002, RT-003, RT-005, RT-006, RT-008, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, RNG implementation, dice roller, oracle registry, random table data, persistence, replay verifier, retrieval, context-packet compiler, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no mission generation, no reward commitment, no clue reveal, no hidden-truth database implementation, no RNG implementation, no oracle/table roll implementation, no random table data creation, no persistence writer implementation, no replay verifier implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
