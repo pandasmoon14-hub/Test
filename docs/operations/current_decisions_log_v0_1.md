@@ -612,3 +612,44 @@ A different assistant or workflow becomes preferable, or `CLAUDE.md` itself need
 - No canon promotion.
 - No live-play/training authorization.
 - No donor-content audit.
+
+## 2026-06-05 decision log - PR-G remediation owner scaffold for RT-010
+
+- Decision ID: REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+- Decision date: 2026-06-05
+- Decision type: owner scaffold planning
+
+### Summary
+- Added `docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_scaffold.md` as PR-G, the inventory/item/vehicle persistent asset owner scaffold recommended by `REMEDIATION-PRIORITY-LEDGER-001`.
+- This scaffold names the future owner boundary for RT-010 (inventory, item, gear, vehicle, platform, installable, and persistent asset state) after command, cost, provenance, and consequence scaffolds (PR-A through PR-F) exist.
+- The scaffold is planning/control/doctrine-boundary only. It does not implement remediation.
+
+### Governance effect
+- Tracks RT-010 owner boundary as scaffold planning evidence for later implementation.
+- Records that item/gear/vehicle records are not persistent owned instances until backend-owned state, identity, custody, provenance, validation, and event paths exist.
+- Preserves dependency on RT-001, RT-002, RT-003, RT-004, RT-005, RT-008, RT-009, and RT-011.
+
+### Guardrails reaffirmed
+- Owner scaffold only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No math implementation.
+- No validator implementation.
+- No generator implementation.
+- No inventory implementation.
+- No item instance creation.
+- No durable asset record creation.
+- No item effect implementation.
+- No vehicle/platform runtime implementation.
+- No cargo or crew system implementation.
+- No repair/salvage/crafting implementation.
+- No ownership/custody mutation.
+- No charge/ammo/fuel/durability/cooldown spend.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No canon promotion.
+- No live-play/training authorization.
+- No donor-content audit.
