@@ -583,3 +583,32 @@ Future sessions start by reading `CLAUDE.md` and pulling in deeper docs (master 
 
 Revisit when:
 A different assistant or workflow becomes preferable, or `CLAUDE.md` itself needs restructuring.
+
+## 2026-06-05 decision log - Runtime Boundary + Generator Ownership Audit Wave 2 report
+
+- Decision ID: AUDIT-WAVE2-001
+- Decision date: 2026-06-05
+- Decision type: expanded audit report
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_boundary_generator_ownership_audit_wave2.md` as the second bounded application of AUDIT-001.
+- The report audits 14 adjacent high-risk subsystem records selected from actual repo files after AUDIT-WAVE1-001.
+- The report expands coverage only and recommends Wave 3 scope without remediating Wave 1 or Wave 2 findings.
+
+### Governance effect
+- Tracks Wave 2 as audit-report evidence for later owner planning.
+- Keeps audit classifications separate from doctrine rewrites, runtime implementation, generator implementation, validator implementation, persistence writer implementation, command IR implementation, context-packet compiler implementation, canon promotion, live-play authorization, and training authorization.
+- Treats the included D-series/native-design source-pack sample as draft source material only, not current runtime authority.
+
+### Guardrails reaffirmed
+- Wave 2 audit report only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No generator implementation.
+- No validator implementation.
+- No persistence writer implementation.
+- No command IR implementation.
+- No context-packet compiler implementation.
+- No canon promotion.
+- No live-play/training authorization.
+- No donor-content audit.
