@@ -9,6 +9,7 @@ LEDGER_PATH = (
     / "reviews"
     / "runtime_boundary_generator_ownership_remediation_priority_ledger.md"
 )
+REGISTRY_PATH = ROOT / "docs" / "doctrine" / "astra_doctrine_registry_v0_1.yaml"
 
 REQUIRED_INPUTS = {
     "AUDIT-001",
@@ -63,6 +64,11 @@ def field_names(block: str) -> set[str]:
     return set(re.findall(r"^([a-z_]+):", block, flags=re.MULTILINE))
 
 
+def read_registry() -> str:
+    assert REGISTRY_PATH.exists(), f"Missing expected registry: {REGISTRY_PATH}"
+    return REGISTRY_PATH.read_text(encoding="utf-8")
+
+
 def test_remediation_priority_ledger_exists_and_is_planning_only() -> None:
     text = read_ledger()
 
@@ -107,7 +113,7 @@ def test_remediation_tracks_use_canonical_shape_and_ranked_priorities() -> None:
     text = read_ledger()
     blocks = yaml_blocks(text)
 
-    assert len(blocks) >= 10
+    assert 8 <= len(blocks) <= 12
     assert "priority: P0" in text
     assert "priority: P1" in text
     assert "priority: P2" in text
@@ -134,3 +140,27 @@ def test_remediation_sequence_preserves_non_implementation_scope() -> None:
     assert "Do not define final IR, schemas, validators, math, runtime, or generators" in text
     assert "Do not create generators, generated records, retrieval indexes, canon promotion decisions, or D-series adoption" in text
     assert "Do not implement inventory, item effects, vehicle movement, cargo, or damage" in text
+
+
+def test_remediation_priority_ledger_registry_tracking_exists() -> None:
+    registry = read_registry()
+
+    assert "REMEDIATION-PRIORITY-LEDGER-001" in registry
+    assert "runtime_boundary_generator_ownership_remediation_priority_ledger.md" in registry
+    for phrase in [
+        "remediation-priority planning ledger only",
+        "consolidates AUDIT-001, AUDIT-WAVE1-001, and AUDIT-WAVE2-001 findings",
+        "no doctrine rewrite",
+        "no runtime implementation",
+        "no schema implementation",
+        "no command IR implementation",
+        "no generator implementation",
+        "no validator implementation",
+        "no persistence writer implementation",
+        "no context-packet compiler implementation",
+        "no canon promotion",
+        "no live-play/training authorization",
+        "no donor-content audit",
+        "Future remediation requires separate PRs",
+    ]:
+        assert phrase in registry

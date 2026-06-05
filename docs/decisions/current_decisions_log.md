@@ -177,3 +177,34 @@ Step 11 applies Step 10C findings to the repo:
 - No validator implementation.
 - No canon promotion.
 - No live-play/training authorization.
+
+## 2026-06-05 decision log - Runtime Boundary + Generator Ownership Remediation Priority Ledger
+
+- Decision ID: REMEDIATION-PRIORITY-LEDGER-001
+- Decision date: 2026-06-05
+- Decision type: remediation-priority planning ledger
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_boundary_generator_ownership_remediation_priority_ledger.md` as a planning-only consolidation of AUDIT-001, AUDIT-WAVE1-001, and AUDIT-WAVE2-001 findings.
+- The ledger pauses audit expansion after Waves 1-2 and ranks recurring critical/high-risk seams into ordered remediation tracks and a recommended separate-PR sequence.
+- The ledger does not change the accepted audit findings or add remediation implementation.
+
+### Governance effect
+- Converts accepted audit findings into owner-track planning without performing Wave 3.
+- Keeps remediation planning separate from doctrine rewrite, runtime implementation, schema implementation, command IR implementation, generator implementation, validator implementation, persistence writer implementation, context-packet compiler implementation, canon promotion, live-play/training authorization, and donor-content audit.
+- Requires future remediation to occur through separate scoped PRs.
+
+### Guardrails reaffirmed
+- Remediation-priority planning ledger only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No generator implementation.
+- No validator implementation.
+- No persistence writer implementation.
+- No context-packet compiler implementation.
+- No canon promotion.
+- No live-play/training authorization.
+- No donor-content audit.
+- Future remediation requires separate PRs.
