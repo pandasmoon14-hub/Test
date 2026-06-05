@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.35
+  action: runtime_boundary_generator_ownership_audit_wave1_report
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added AUDIT-WAVE1-001 tracking for docs/doctrine/reviews/runtime_boundary_generator_ownership_audit_wave1.md. This is Wave 1 audit report only; no doctrine rewrite, runtime implementation, generator implementation, validator implementation, canon promotion, live-play authorization, or training authorization was performed.
+- date: '2026-06-05'
   version: 0.1.34
   action: runtime_boundary_generator_ownership_audit_protocol_scaffold
   actor: Astra Doctrine Council / synthesis assistant
@@ -4254,6 +4259,73 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: critical
   notes: Roadmap/control amendment only. It does not implement model routing or runtime code.
+
+- file_id: AUDIT-WAVE1-001
+  filename: runtime_boundary_generator_ownership_audit_wave1.md
+  proposed_path: docs/doctrine/reviews/runtime_boundary_generator_ownership_audit_wave1.md
+  layer: 0_control
+  phase: '4'
+  status: draft
+  authority_level: review
+  owner: Astra Doctrine Council / Runtime Boundary Reviewers
+  purpose: Track the limited Wave 1 Runtime Boundary + Generator Ownership Audit report applying AUDIT-001 to 10 representative high-risk subsystem records.
+  owns:
+  - Wave 1 audit report tracking
+  - representative subsystem audit records
+  - LLM-overreach risk summary
+  - recommended next wave scope
+  must_not_own:
+  - doctrine rewrites
+  - runtime implementation
+  - generator implementation
+  - validator implementation
+  - database schemas
+  - command IR implementation
+  - persistence writers
+  - context-packet compilers
+  - canon promotion
+  - live-play authorization
+  - training authorization
+  dependencies:
+  - AUDIT-001
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - none
+  unlocks:
+  - Wave 2 audit planning
+  - runtime boundary remediation planning after separate approval
+  downstream_consumers:
+  - Astra Doctrine Council
+  - Astra Runtime Working Group
+  - generator/template planning
+  - validation test planning
+  donor_pressure_absorbed:
+  - LLM overreach pressure
+  - generated-content ownership ambiguity
+  - runtime/schema/math boundary confusion
+  hard_refusals:
+  - Wave 1 audit report cannot rewrite doctrine
+  - Wave 1 audit report cannot implement runtime, generators, validators, writers, context packets, or command IR
+  - Wave 1 audit report cannot promote content to canon or authorize live play/training
+  escalation_triggers:
+  - Wave 1 findings are treated as remediation
+  - subsystem classification is used to authorize runtime or generator implementation
+  - future audit waves expand to donor PDFs or direct donor-content audits
+  required_tests:
+  - Wave 1 report existence and schema validation test
+  - registry tracking assertion
+  test_status: passing
+  review_status: drafted
+  promotion_requirements:
+  - review by doctrine and runtime owners
+  - separate remediation PR for any implementation or doctrine changes
+  scale_gate_relevance: medium
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Wave 1 audit report only; no doctrine rewrite, runtime implementation, generator implementation, validator implementation, canon promotion, live-play authorization, or training authorization was performed.
 - file_id: AUDIT-RUNTIME-GENERATOR-OWNERSHIP-001
   filename: runtime_boundary_generator_ownership_audit_control_item.md
   proposed_path: docs/doctrine/control/runtime_boundary_generator_ownership_audit_control_item.md

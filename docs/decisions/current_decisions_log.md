@@ -153,3 +153,27 @@ Step 11 applies Step 10C findings to the repo:
 - This scaffold is not a runtime implementation.
 - It does not classify subsystems, rewrite Batch A/B/C/D-series/SM doctrine, create generators, create validators, create persistence writers, promote canon, authorize live play, or create training material.
 - Runtime/training layers remain planned future layers unless actual repo files exist when the later audit is performed.
+
+## 2026-06-05 decision log - Runtime Boundary + Generator Ownership Audit Wave 1 report
+
+- Decision ID: AUDIT-WAVE1-001
+- Decision date: 2026-06-05
+- Decision type: limited audit report
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_boundary_generator_ownership_audit_wave1.md` as the first limited application of AUDIT-001.
+- The report audits 10 representative subsystem records only and proves the output schema, classifications, LLM-overreach analysis, and next-wave scoping approach before any full-corpus audit.
+- The report cites actual repo paths and records substitutions only where needed; no requested Wave 1 target required substitution.
+
+### Governance effect
+- Establishes a repeatable Wave 1 report pattern for later Runtime Boundary + Generator Ownership Audit waves.
+- Keeps audit findings separate from remediation, runtime implementation, generator implementation, validator implementation, canon promotion, live-play authorization, and training authorization.
+
+### Guardrails reaffirmed
+- Wave 1 audit report only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No generator implementation.
+- No validator implementation.
+- No canon promotion.
+- No live-play/training authorization.
