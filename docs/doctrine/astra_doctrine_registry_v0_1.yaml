@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.38
+  action: remediation_pr_a_owner_scaffolds
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001 and REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001 tracking for PR-A owner scaffolds. These records are owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.37
   action: runtime_boundary_generator_ownership_remediation_priority_ledger
   actor: Astra Doctrine Council / synthesis assistant
@@ -4858,3 +4863,155 @@ file_records:
   runtime_relevance: indirect
   live_play_relevance: indirect
   notes: Documentation/control reconciliation only. This record prevents stale roadmap instructions from being followed; it does not implement runtime, rewrite doctrine, perform the planned audit, or create generator, writer, live-play, training, donor, or canon artifacts.
+
+
+- file_id: REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  filename: RT001_command_lifecycle_action_legality_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT001_command_lifecycle_action_legality_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future command lifecycle control owner
+  purpose: Track the PR-A owner scaffold for RT-001 command lifecycle, action legality, and cost commitment boundaries without implementing remediation.
+  owns:
+  - RT-001 owner scaffold only
+  - command lifecycle planning boundary
+  - LLM non-authority guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  blocked_by:
+  - future command IR owner
+  - future runtime state/event owner
+  - future cost/resource math owner
+  - future command-context handoff owner
+  unlocks:
+  - command lifecycle owner decomposition planning
+  - future no-LLM-legality tests
+  - future command context handoff planning
+  downstream_consumers:
+  - future command IR owner
+  - future runtime state/event owner
+  - future cost/resource math owner
+  - future context-packet handoff owner
+  donor_pressure_absorbed:
+  - premature command runtime implementation pressure
+  - premature resource cost math pressure
+  - D02 draft-source promotion pressure
+  hard_refusals:
+  - owner scaffold cannot define final command IR
+  - owner scaffold cannot implement runtime or validators
+  - LLM cannot validate legality, spend costs, commit state deltas, write files, or alter canon
+  escalation_triggers:
+  - scaffold is cited as executable command lifecycle authority
+  - narration is treated as event commit
+  - D-series source material is promoted without explicit adoption decision
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - no-implementation guardrail test
+  - LLM non-authority phrase test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines scope before any implementation
+  - RT-011 readiness boundary remains active
+  - reviewer approval before any runtime or schema claim
+  scale_gate_relevance: indirect
+  broad_conversion_relevance: medium
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  filename: RT011_validation_readiness_tooling_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT011_validation_readiness_tooling_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future validation readiness tooling owner
+  purpose: Track the PR-A owner scaffold for RT-011 validation/readiness tooling boundaries and the distinction between prose readiness and executable validation.
+  owns:
+  - RT-011 owner scaffold only
+  - prose readiness versus executable validation boundary
+  - reviewer decision and auditability planning boundary
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  blocked_by:
+  - missing executable validators
+  - missing schema coverage matrix
+  - missing reviewer decision event model
+  unlocks:
+  - future validator family planning
+  - future readiness registry planning
+  - future reviewer decision record planning
+  downstream_consumers:
+  - RT-001 command lifecycle owner scaffold
+  - later remediation tracks
+  - future executable validator workstream
+  - future schema coverage matrix owner
+  donor_pressure_absorbed:
+  - prose readiness treated as executable validation
+  - model assertions replacing reviewer decisions
+  - premature pilot conversion or live-play authorization pressure
+  hard_refusals:
+  - owner scaffold cannot implement validators or schemas
+  - prose files cannot be claimed as executable validation
+  - readiness prose cannot authorize live play, training data, pilot conversion outputs, or canon promotion
+  escalation_triggers:
+  - readiness prose is treated as a runtime gate
+  - model assertion replaces reviewer decision record
+  - pilot conversion output is approved without future authorized tooling and reviewer decision
+  required_tests:
+  - owner scaffold file presence test
+  - prose readiness versus executable validation test
+  - no live-play training or canon authorization test
+  - registry tracking test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future validation owner PR defines executable tooling scope before implementation
+  - reviewer decision records are specified before approval claims
+  - no runtime gate claim until separately authorized
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: high
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.

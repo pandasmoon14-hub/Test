@@ -208,3 +208,32 @@ Step 11 applies Step 10C findings to the repo:
 - No live-play/training authorization.
 - No donor-content audit.
 - Future remediation requires separate PRs.
+
+## 2026-06-05 decision log - PR-A RT-001 and RT-011 remediation owner scaffolds
+
+- Decision ID: REMEDIATION-PR-A-OWNER-SCAFFOLDS-001
+- Decision date: 2026-06-05
+- Decision type: remediation owner-scaffold planning
+
+### Summary
+- Added `docs/doctrine/control/RT001_command_lifecycle_action_legality_owner_scaffold.md` for RT-001 command lifecycle, action legality, and cost commitment owner-boundary planning.
+- Added `docs/doctrine/control/RT011_validation_readiness_tooling_owner_scaffold.md` for RT-011 validation/readiness tooling owner-boundary planning.
+- PR-A follows `REMEDIATION-PRIORITY-LEDGER-001` by creating owner scaffolds only and not implementing remediation.
+
+### Governance effect
+- Establishes planning/control owner boundaries for RT-001 and RT-011 so later remediation can proceed through separate scoped PRs.
+- Reaffirms that prose readiness, owner scaffolds, and model assertions are not executable validation, runtime gates, command IR, approval automation, live-play authorization, training authorization, or canon promotion.
+
+### Guardrails reaffirmed
+- Owner scaffold only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No persistence writer implementation.
+- No context-packet compiler implementation.
+- No canon promotion.
+- No live-play/training authorization.
+- No donor-content audit.
