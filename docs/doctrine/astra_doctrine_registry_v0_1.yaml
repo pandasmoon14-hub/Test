@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.44
+  action: remediation_pr_g_inventory_item_vehicle_asset_owner_scaffold
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001 tracking for the PR-G owner scaffold. This record is owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no inventory implementation, no item instance creation, no durable asset record creation, no item effect implementation, no vehicle/platform runtime implementation, no cargo or crew system implementation, no repair/salvage/crafting implementation, no ownership/custody mutation, no charge/ammo/fuel/durability/cooldown spend, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.43
   action: remediation_pr_f_mission_reward_clue_and_rng_table_oracle_owner_scaffolds
   actor: Astra Doctrine Council / synthesis assistant
@@ -5972,3 +5977,120 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: critical
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no mission generation, no reward commitment, no clue reveal, no hidden-truth database implementation, no RNG implementation, no oracle/table roll implementation, no random table data creation, no persistence writer implementation, no replay verifier implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+- file_id: REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  filename: RT010_inventory_item_vehicle_asset_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future inventory, item instance, gear, vehicle, platform, installable, custody, and persistent asset state owner
+  purpose: Track the PR-G owner scaffold for RT-010 inventory, item, gear, vehicle, platform, installable, and persistent asset-state boundaries without implementing remediation.
+  owns:
+  - RT-010 owner scaffold only
+  - inventory/item/vehicle persistent asset planning boundary
+  - base-record versus persistent-instance, custody, loadout, cargo, crew, charge, durability, vehicle-state, provenance, validation, and narration-projection guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - inventory implementation
+  - item instance creation
+  - durable asset record creation
+  - item effect implementation
+  - vehicle/platform runtime implementation
+  - cargo or crew system implementation
+  - repair/salvage/crafting implementation
+  - ownership/custody mutation
+  - charge/ammo/fuel/durability/cooldown spend
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-004-ability-effect-skill-binding
+  - RT-005-scene-activity-context-packets
+  - RT-008-generated-content-provenance
+  - RT-009-runtime-rng-table-oracle
+  - RT-011-validation-readiness-tooling
+  - B03
+  - C02
+  - C03
+  - C04
+  - C08
+  - C12
+  - SM00
+  blocked_by:
+  - missing item instance persistence model
+  - missing custody, ownership, inventory, equipment, loadout, cargo, crew, and storage event model
+  - missing charge, ammo, fuel, use, durability, cooldown, integrity, movement, damage, repair, salvage, crafting, requisition, value, reward, and loss dependency routing
+  - missing asset effect binding contract
+  - missing generated asset provenance and random loot/table authority integration
+  - missing executable validators
+  unlocks:
+  - future inventory/equipment runtime owner decomposition planning
+  - future item instance schema owner planning
+  - future vehicle/platform runtime owner planning
+  - future asset effect validation owner planning
+  - future no-LLM-item-effect and no-LLM-vehicle-state tests
+  downstream_consumers:
+  - future inventory/equipment runtime owner
+  - future item instance schema owner
+  - future vehicle/platform runtime owner
+  - future asset effect validation owner
+  - future cargo, crew, repair, salvage, crafting, requisition, and reward consumers
+  donor_pressure_absorbed:
+  - premature inventory runtime pressure
+  - premature item instance pressure
+  - premature durable asset record pressure
+  - premature item effect pressure
+  - premature vehicle/platform runtime pressure
+  - premature cargo or crew system pressure
+  - premature repair/salvage/crafting pressure
+  - premature ownership/custody mutation pressure
+  - premature charge/ammo/fuel/durability/cooldown spend pressure
+  hard_refusals:
+  - owner scaffold cannot define inventory runtime, item instances, item effects, vehicle runtime, cargo system, crew system, repair mechanics, installable schema, condition/damage model, command IR, persistence writers, retrieval indexes, context-packet compilers, live-play prompts, training behavior, donor-content audit results, or canon promotion
+  - item/gear/vehicle records are not persistent owned instances until backend-owned state, identity, custody, provenance, validation, and event paths exist; asset use is downstream of RT-001; resource spend, loss, damage, repair, fuel, ammo, charge, durability, cost, reward, and consequence pressure remains downstream of RT-002 and RT-003 as applicable; ability/effect-bearing assets coordinate with RT-004; visible inventory/loadout/cargo/vehicle facts route through RT-005; generated assets require RT-008 provenance/recurrence controls; random loot/table/oracle asset outputs require RT-009 authority
+  - LLM cannot create durable item, gear, relic, implant, installable, vehicle, ship, platform, cargo, or asset records as backend truth; assign persistent item or vehicle IDs; change inventory, custody, ownership, equipment, loadout, cargo, crew, or storage state; spend charges, ammo, fuel, uses, durability, or cooldowns; apply item effects as mechanical truth; mutate vehicle/platform integrity, damage, movement, position, cargo, crew, or repair state; decide salvage, crafting, repair, requisition, price, value, reward, or loss outcomes; generate persistent assets without RT-008 provenance/recurrence controls; select random loot/table outputs without RT-009 backend RNG/table authority; bypass backend validation/reviewer approval; or treat equipment narration as backend inventory or asset state
+  escalation_triggers:
+  - scaffold is cited as inventory runtime, item instance, durable asset record, item effect, vehicle runtime, cargo system, crew system, repair mechanic, installable schema, condition/damage model, command IR, validator, generator, persistence writer, retrieval index, context-packet compiler, live-play, training, or canon authority
+  - narrated equipment, loot, cargo, vehicle damage, repair, salvage, reward, value, ownership, custody, or movement is treated as backend asset state
+  - generated assets are persisted without RT-008 or random loot/table outputs are committed without RT-009
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - source-pressure linkage test
+  - backend-first and model-interchangeability phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines asset identity, custody, inventory, equipment, loadout, cargo, crew, charge, durability, cooldown, integrity, movement, damage, repair, salvage, crafting, requisition, reward, value, effect-binding, provenance, context-packet, event, and validator scope before any implementation
+  - RT-001, RT-002, RT-003, RT-004, RT-005, RT-008, RT-009, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, inventory implementation, item instance creation, durable asset record creation, item effect implementation, vehicle/platform runtime, cargo or crew system, repair/salvage/crafting implementation, ownership/custody mutation, spend, persistence, retrieval, context-packet compiler, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no inventory implementation, no item instance creation, no durable asset record creation, no item effect implementation, no vehicle/platform runtime implementation, no cargo or crew system implementation, no repair/salvage/crafting implementation, no ownership/custody mutation, no charge/ammo/fuel/durability/cooldown spend, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
