@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.40
+  action: remediation_pr_c_context_packet_hidden_information_owner_scaffold
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001 tracking for the PR-C context-packet and hidden-information owner scaffold. This record is owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no narration validator implementation, no live-play prompt implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.39
   action: remediation_pr_b_owner_scaffolds
   actor: Astra Doctrine Council / synthesis assistant
@@ -5191,3 +5196,107 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: critical
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no damage table implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  filename: RT005_context_packet_hidden_information_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future scene activity and context-packet boundary control owner
+  purpose: Track the PR-C owner scaffold for RT-005 scene/activity orchestration and hidden-information/context-packet boundaries without implementing remediation.
+  owns:
+  - RT-005 owner scaffold only
+  - context-packet and hidden-information planning boundary
+  - scene-state visibility and redaction guardrail tracking
+  - narration downstream-of-backend guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - narration validator implementation
+  - live-play prompt implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-007-social-faction-knowledge-state
+  - RT-009-runtime-rng-table-oracle
+  - RT-011-validation-readiness-tooling
+  blocked_by:
+  - missing scene lifecycle state model
+  - missing context-packet compiler owner
+  - missing hidden-information partition schema
+  - missing knowledge/dialogue memory owner
+  - missing narration validator owner
+  - missing persistence/event owners
+  - missing executable validators
+  unlocks:
+  - context-packet and hidden-information owner decomposition planning
+  - future no-LLM-hidden-information-authority tests
+  - future narration downstream-of-backend tests
+  - future RT-007 knowledge-state handoff planning
+  - future RT-009 oracle-result redaction handoff planning
+  downstream_consumers:
+  - future scene/activity runtime owner
+  - future context-packet compiler owner
+  - future hidden-information partition owner
+  - future narration contract owner
+  - future social/faction knowledge owner
+  - future runtime RNG/table/oracle owner
+  donor_pressure_absorbed:
+  - premature context-packet compiler pressure
+  - premature hidden-state database pressure
+  - premature retrieval index pressure
+  - premature narration validator pressure
+  - premature live-play prompt pressure
+  - model memory as authoritative state pressure
+  hard_refusals:
+  - owner scaffold cannot define final packet schemas, hidden-state database schemas, actor-knowledge schemas, redaction algorithms, retrieval indexes, narration validators, context-packet compilers, live-play prompts, runtime code, generators, validators, persistence writers, command IR, training data, donor-content audit results, or canon promotion
+  - context packets are backend-produced projections, not model memory
+  - LLM cannot decide hidden information, reveal hidden state, decide player character knowledge, decide NPC/faction knowledge, select clues or oracle/table outcomes, invent backend facts for narration, treat narration as discovery, treat summaries as memory authority, mutate scene state, compile context packets, or bypass redaction boundaries
+  escalation_triggers:
+  - scaffold is cited as executable context-packet, redaction, hidden-state, knowledge-state, retrieval, narration-validator, live-play prompt, or runtime authority
+  - narration is treated as discovery or backend scene-state mutation
+  - dialogue transcripts or summaries are treated as automatically authoritative truth
+  - live-play prompts are authorized from this scaffold
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - source-pressure linkage test
+  - context-packets-not-model-memory test
+  - hidden-information distinction test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines scene-state, packet, redaction, knowledge, narration, retrieval, and validator scope before any implementation
+  - RT-001, RT-002, RT-003, RT-007, RT-009, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, persistence, retrieval, context-packet compiler, narration validator, live-play prompt, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no narration validator implementation, no live-play prompt implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.

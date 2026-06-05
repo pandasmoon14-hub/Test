@@ -268,3 +268,9 @@ Step 11 applies Step 10C findings to the repo:
 - No canon promotion.
 - No live-play/training authorization.
 - No donor-content audit.
+
+## 2026-06-05 — PR-C RT-005 context-packet / hidden-information owner scaffold
+
+Decision: Add PR-C as owner-scaffold planning only for `REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001`, covering RT-005 scene/activity orchestration and hidden-information/context-packet boundaries.
+
+Guardrails: This decision authorizes no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no narration validator implementation, no live-play prompt implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
