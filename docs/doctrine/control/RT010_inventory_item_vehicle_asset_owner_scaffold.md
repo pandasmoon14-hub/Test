@@ -89,7 +89,19 @@ Future RT-010 work, if separately authorized, must produce owner specifications 
 
 ## 11. LLM non-authority rules
 
-The LLM must not create item instances as backend truth, resolve equipment effects, determine slot/loadout authority, track charges or durability or cooldowns or ammunition, manage cargo or crew or capacity state, decide vehicle movement or damage or repair, transfer custody or ownership, commit acquisition or crafting or salvage results, invent item properties as durable facts, generate items or vehicles as persistent records, promote item or vehicle canon, bypass backend validation/reviewer approval, or treat inventory narration as backend state commitment.
+The LLM must not:
+
+- create durable item, gear, relic, implant, installable, vehicle, ship, platform, cargo, or asset records as backend truth;
+- assign persistent item or vehicle IDs;
+- change inventory, custody, ownership, equipment, loadout, cargo, crew, or storage state;
+- spend charges, ammo, fuel, uses, durability, or cooldowns;
+- apply item effects as mechanical truth;
+- mutate vehicle/platform integrity, damage, movement, position, cargo, crew, or repair state;
+- decide salvage, crafting, repair, requisition, price, value, reward, or loss outcomes;
+- generate persistent assets without RT-008 provenance/recurrence controls;
+- select random loot/table outputs without RT-009 backend RNG/table authority;
+- bypass backend validation/reviewer approval;
+- treat equipment narration as backend inventory or asset state.
 
 The LLM may only draft proposals, summaries, or player-facing narration from backend-approved and context-approved inputs. It may not convert inventory narration, equipment descriptions, vehicle prose, cargo summaries, damage descriptions, or item suggestions into backend facts.
 

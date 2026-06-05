@@ -67,19 +67,17 @@ def test_rt010_states_required_downstream_controls() -> None:
 def test_rt010_prohibits_llm_inventory_item_vehicle_authority() -> None:
     text = read(RT010_PATH)
     for phrase in [
-        "create item instances as backend truth",
-        "resolve equipment effects",
-        "determine slot/loadout authority",
-        "track charges or durability or cooldowns or ammunition",
-        "manage cargo or crew or capacity state",
-        "decide vehicle movement or damage or repair",
-        "transfer custody or ownership",
-        "commit acquisition or crafting or salvage results",
-        "invent item properties as durable facts",
-        "generate items or vehicles as persistent records",
-        "promote item or vehicle canon",
+        "durable item, gear, relic, implant, installable, vehicle, ship, platform, cargo, or asset records as backend truth",
+        "persistent item or vehicle IDs",
+        "inventory, custody, ownership, equipment, loadout, cargo, crew, or storage state",
+        "charges, ammo, fuel, uses, durability, or cooldowns",
+        "item effects as mechanical truth",
+        "vehicle/platform integrity, damage, movement, position, cargo, crew, or repair state",
+        "salvage, crafting, repair, requisition, price, value, reward, or loss outcomes",
+        "persistent assets without RT-008 provenance/recurrence controls",
+        "random loot/table outputs without RT-009 backend RNG/table authority",
         "bypass backend validation/reviewer approval",
-        "treat inventory narration as backend state commitment",
+        "equipment narration as backend inventory or asset state",
     ]:
         assert phrase in text
 
@@ -186,5 +184,12 @@ def test_no_file_claims_to_implement_runtime_or_training_behavior() -> None:
         "this scaffold implements context-packet compilers",
         "this scaffold implements live-play prompts",
         "this scaffold implements training behavior",
+        "persistent ids implemented",
+        "storage state implemented",
+        "fuel spend implemented",
+        "use spend implemented",
+        "vehicle position implemented",
+        "random loot implemented",
+        "asset persistence implemented",
     ]:
         assert forbidden not in text
