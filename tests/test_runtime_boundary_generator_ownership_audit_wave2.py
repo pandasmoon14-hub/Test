@@ -114,9 +114,11 @@ def test_wave2_audit_report_includes_required_layers_and_source_sample() -> None
     assert "Batch A" in areas
     assert "Batch B" in areas
     assert "Batch C" in areas
-    assert "schema_math_mechanics" in areas
-    assert "D-series/native-design source pack" in areas
+    assert "schema/math/mechanics" in areas
+    assert "D00-D19" in areas
     assert "docs/doctrine/native_design/d_series/source_packs/" in text
+    assert "draft source material only" in text
+    assert "not current runtime authority" in text
 
 
 def test_wave2_audit_report_states_no_unauthorized_work_was_performed() -> None:

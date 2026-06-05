@@ -633,7 +633,7 @@ notes: C10 is comparatively routeable because table shapes can be validated, but
 
 ```yaml
 subsystem_id: SM01.validation_schema_inventory_readiness_boundary
-source_area: schema_math_mechanics
+source_area: schema/math/mechanics
 source_files:
   - docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md
 classification:
@@ -679,7 +679,7 @@ notes: SM01 lowers audit ambiguity by naming readiness controls, but missing exe
 
 ```yaml
 subsystem_id: SM02.minimum_pilot_conversion_readiness_boundary
-source_area: schema_math_mechanics
+source_area: schema/math/mechanics
 source_files:
   - docs/doctrine/schema_math_mechanics/SM02_minimum_pilot_conversion_readiness_and_packet_validation_controls.md
 classification:
@@ -730,7 +730,7 @@ notes: SM02 is a control file, not runtime authority; the risk is governance ove
 
 ```yaml
 subsystem_id: D02.cost_commitment_success_at_cost_source_material_boundary
-source_area: D-series/native-design source pack
+source_area: D00-D19
 source_files:
   - docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-03_cost_commitment_overinvestment_and_success_at_cost.md
 classification:
