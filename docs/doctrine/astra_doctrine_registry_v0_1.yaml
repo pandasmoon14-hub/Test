@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.42
+  action: remediation_pr_e_ability_social_owner_scaffolds
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001 and REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001 tracking for PR-E owner scaffolds. These records are owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated ability creation, no advancement award, no relationship mutation, no faction action commitment, no actor-knowledge database implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.41
   action: remediation_pr_d_generated_content_and_d_series_owner_scaffolds
   actor: Astra Doctrine Council / synthesis assistant
@@ -5517,3 +5522,225 @@ file_records:
   runtime_relevance: high
   live_play_relevance: high
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated-record creation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no source-pack promotion, no sourcebook inclusion, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+
+- file_id: REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  filename: RT004_ability_effect_skill_binding_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT004_ability_effect_skill_binding_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future ability, effect, skill, and advancement-binding boundary owner
+  purpose: Track the PR-E owner scaffold for RT-004 ability, effect, cost, cooldown, skill, and advancement binding boundaries without implementing remediation.
+  owns:
+  - RT-004 owner scaffold only
+  - ability/effect/skill binding planning boundary
+  - prerequisite, acquisition, mastery, and advancement guardrail tracking
+  - cost, cooldown, and action-binding handoff planning
+  - generated ability prohibition and provenance handoff tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - generated ability creation
+  - advancement award
+  - relationship mutation
+  - faction action commitment
+  - actor-knowledge database implementation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-005-scene-activity-context-packets
+  - RT-008-generated-content-provenance
+  - RT-011-validation-readiness-tooling
+  - A08
+  - A09
+  - A10
+  - B02
+  - C03
+  - SM00
+  blocked_by:
+  - missing ability/effect owner specification
+  - missing prerequisite and acquisition validator owner
+  - missing cost/cooldown handoff contract
+  - missing effect taxonomy and visibility handoff contract
+  - missing generated ability provenance workflow
+  - missing executable validators
+  unlocks:
+  - ability/effect/skill binding owner decomposition planning
+  - future no-LLM-ability-invention tests
+  - future advancement-award prohibition tests
+  - future cost/cooldown handoff tests
+  - future generated ability provenance tests
+  downstream_consumers:
+  - future ability/effect owner
+  - future skill synthesis and advancement owner
+  - future command/action binding owner
+  - future cost/cooldown validator owner
+  - future generated ability provenance owner
+  - future context-packet projection owner
+  donor_pressure_absorbed:
+  - premature ability generation pressure
+  - premature power/technique/perk/mastery creation pressure
+  - premature advancement award pressure
+  - premature cost/cooldown formula pressure
+  - premature command IR pressure
+  - premature effect runtime pressure
+  - model narration as backend effect resolution pressure
+  hard_refusals:
+  - owner scaffold cannot define final schemas, ability records, generated powers, advancement rules, final formulas, command IR, runtime state, validators, generators, persistence writers, retrieval indexes, context-packet compilers, live-play prompts, training behavior, donor-content audit results, or canon promotion
+  - ability/effect use must remain downstream of RT-001 command lifecycle; cost/backlash/cooldown pressure must remain downstream of RT-002; generated abilities or techniques require RT-008 provenance/recurrence controls before persistence
+  - LLM cannot invent abilities, powers, techniques, skills, perks, or mastery; award advancement; change prerequisites; set costs or cooldowns; resolve effects as mechanical truth; bind abilities to actions as authority; decide skill synthesis outputs as persistent state; create generated abilities or techniques; grant player capability; bypass validation/reviewer approval; or treat ability narration as backend effect resolution
+  escalation_triggers:
+  - scaffold is cited as ability schema, runtime effect, command IR, cost formula, advancement rule, validator, generator, persistence, context-packet, live-play, training, or canon authority
+  - narration is treated as backend ability/effect resolution
+  - generated abilities or techniques are persisted without RT-008 provenance/recurrence controls
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - source-pressure linkage test
+  - backend-first and model-interchangeability phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines ability, effect, skill, prerequisite, advancement, cost/cooldown, generated-content, context-packet, and validator scope before any implementation
+  - RT-001, RT-002, RT-003, RT-005, RT-008, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, generated ability, advancement award, persistence, retrieval, context-packet compiler, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated ability creation, no advancement award, no relationship mutation, no faction action commitment, no actor-knowledge database implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  filename: RT007_social_faction_knowledge_state_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future social, faction, relationship, actor-knowledge, and institutional-state boundary owner
+  purpose: Track the PR-E owner scaffold for RT-007 social, faction, relationship, actor knowledge, and institutional state boundaries without implementing remediation.
+  owns:
+  - RT-007 owner scaffold only
+  - social/faction/relationship/knowledge-state planning boundary
+  - dialogue claim, standing, obligation, reputation, and hidden-agenda guardrail tracking
+  - actor-knowledge and faction memory backend ownership planning
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - generated ability creation
+  - advancement award
+  - relationship mutation
+  - faction action commitment
+  - actor-knowledge database implementation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-005-scene-activity-context-packets
+  - RT-008-generated-content-provenance
+  - RT-011-validation-readiness-tooling
+  - B09
+  - C01
+  - C05
+  - C06
+  - C07
+  blocked_by:
+  - missing social/faction owner specification
+  - missing relationship state validator owner
+  - missing actor-knowledge and faction-memory backend owner
+  - missing hidden-agenda redaction contract
+  - missing recurring faction/contact provenance workflow
+  - missing executable validators
+  unlocks:
+  - social/faction/relationship/knowledge-state owner decomposition planning
+  - future no-LLM-relationship-mutation tests
+  - future faction-standing authority tests
+  - future dialogue-claim-not-truth tests
+  - future hidden-agenda redaction tests
+  downstream_consumers:
+  - future social/faction state owner
+  - future relationship and standing validator owner
+  - future actor-knowledge and faction-memory owner
+  - future obligation/reputation consequence owner
+  - future provenance and recurrence owner
+  - future context-packet projection owner
+  donor_pressure_absorbed:
+  - premature relationship mutation pressure
+  - premature faction standing pressure
+  - premature actor knowledge database pressure
+  - premature dialogue memory authority pressure
+  - premature obligation/favor/debt/reputation commitment pressure
+  - premature faction action pressure
+  - hidden agenda reveal pressure
+  hard_refusals:
+  - owner scaffold cannot define final schemas, relationship mechanics, faction runtime, actor-knowledge database, dialogue memory system, persistence writers, context-packet compilers, generators, validators, live-play prompts, training behavior, donor-content audit results, or canon promotion
+  - dialogue may produce a claim candidate only, not authoritative truth; social/faction state must remain backend-owned, persistent, auditable, and redacted through RT-005; recurring factions, NPCs, and contacts require RT-008 provenance/recurrence controls
+  - LLM cannot mutate relationship state; change faction standing; decide NPC/faction beliefs as truth; create actor knowledge records; commit obligations, favors, debts, reputation, or institutional consequences; invent faction actions as backend events; treat dialogue as durable memory authority; treat summaries as relationship state; reveal hidden agendas; create recurring factions or contacts without provenance; or bypass backend validation/reviewer approval
+  escalation_triggers:
+  - scaffold is cited as relationship schema, social runtime, faction runtime, actor-knowledge database, dialogue memory system, validator, generator, persistence, context-packet, live-play, training, or canon authority
+  - dialogue transcripts or summaries are treated as durable relationship or faction truth
+  - recurring factions, NPCs, or contacts are persisted without RT-008 provenance/recurrence controls
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - source-pressure linkage test
+  - backend-first and hidden-info phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines relationship, standing, faction memory, actor belief, dialogue claim, obligation, reputation, institutional action, hidden redaction, recurrence, context-packet, and validator scope before any implementation
+  - RT-001, RT-002, RT-005, RT-008, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, relationship mutation, faction action, actor-knowledge database, persistence, retrieval, context-packet compiler, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated ability creation, no advancement award, no relationship mutation, no faction action commitment, no actor-knowledge database implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
