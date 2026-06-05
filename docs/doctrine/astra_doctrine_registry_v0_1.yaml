@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.41
+  action: remediation_pr_d_generated_content_and_d_series_owner_scaffolds
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001 and REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001 tracking for PR-D owner scaffolds. These records are owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated-record creation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no source-pack promotion, no sourcebook inclusion, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.40
   action: remediation_pr_c_context_packet_hidden_information_owner_scaffold
   actor: Astra Doctrine Council / synthesis assistant
@@ -5300,3 +5305,215 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: critical
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no narration validator implementation, no live-play prompt implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  filename: RT008_generated_content_provenance_recurrence_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future generated-content lifecycle, provenance, and recurrence boundary owner
+  purpose: Track the PR-D owner scaffold for RT-008 generated-content provenance, recurrence, durable-record eligibility, and canon-separation boundaries without implementing remediation.
+  owns:
+  - RT-008 owner scaffold only
+  - generated-content lifecycle planning boundary
+  - provenance and recurrence eligibility guardrail tracking
+  - source-local/generated/canon status distinction tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - generated-record creation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - source-pack promotion
+  - sourcebook inclusion
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-005-scene-activity-context-packets
+  - RT-006-mission-reward-clue-routing
+  - RT-007-social-faction-knowledge-state
+  - RT-009-runtime-rng-table-oracle
+  - RT-011-validation-readiness-tooling
+  blocked_by:
+  - missing generated-content lifecycle owner
+  - missing provenance/source-scope schema owner
+  - missing persistence commit path for generated records
+  - missing recurrence eligibility reviewer workflow
+  - missing retrieval index owner
+  - missing canon-promotion workflow binding
+  - missing executable validators
+  unlocks:
+  - generated-content provenance and recurrence owner decomposition planning
+  - future no-direct-LLM-durable-record tests
+  - future provenance-required tests
+  - future generated-content no-canon-promotion tests
+  - future source-local/generated/canon distinction tests
+  downstream_consumers:
+  - future generated-content lifecycle owner
+  - future provenance/source-local schema owner
+  - future generator-template owner
+  - future persistence/event owner
+  - future retrieval index owner
+  - future context-packet projection owner
+  - future canon-promotion separation owner
+  donor_pressure_absorbed:
+  - premature generator pressure
+  - premature generated-record pressure
+  - premature provenance database pressure
+  - premature recurrence policy pressure
+  - premature persistence writer pressure
+  - premature retrieval index pressure
+  - premature canon promotion pressure
+  - model memory as generated-content storage pressure
+  hard_refusals:
+  - owner scaffold cannot define final schemas, generator templates, generated records, recurrence policy, provenance database, retrieval index, content writer, canon promotion workflow, runtime code, validators, persistence writers, command IR, context-packet compilers, training data, sourcebook inclusion, donor-content audit results, or canon promotion
+  - generated content may begin as an ephemeral proposal, but durable recurrence requires backend-owned schema, provenance, validation, event/state commitment, persistence, and reviewer-controlled eligibility
+  - LLM cannot create durable generated records, decide recurrence eligibility, assign persistent IDs as authority, create provenance records, write generated content to files, promote generated content to canon, treat generated narration as persisted setting truth, create backend-truth records, bypass validation/reviewer approval, or use model memory as generated-content storage
+  escalation_triggers:
+  - scaffold is cited as executable generator, generated-record, schema, validator, runtime, persistence, retrieval-index, context-packet compiler, sourcebook, live-play, training, or canon authority
+  - repeated narration is treated as persistence or recurrence eligibility
+  - generated content is treated as canon before separate canon promotion
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - C01/C02/C05/C06/C07/C08/C09/C10 source-pressure linkage test
+  - backend-first/generated-content lifecycle phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines generated-content lifecycle, provenance, validation, recurrence, persistence, retrieval, context-packet, and canon-separation scope before any implementation
+  - RT-001, RT-002, RT-003, RT-005, RT-006, RT-007, RT-009, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, generated-record, persistence, retrieval, context-packet compiler, sourcebook, training, live-play, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated-record creation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no source-pack promotion, no sourcebook inclusion, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  filename: RT012_d_series_promotion_boundary_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT012_d_series_promotion_boundary_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future D-series native-design promotion-boundary control owner
+  purpose: Track the PR-D owner scaffold for RT-012 D-series/native-design source-pack promotion boundaries without implementing remediation.
+  owns:
+  - RT-012 owner scaffold only
+  - D-series/native-design draft-source promotion boundary planning
+  - authority hierarchy and canon/sourcebook promotion guardrail tracking
+  - source-pack presence is not adoption guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - validator implementation
+  - generator implementation
+  - generated-record creation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - source-pack promotion
+  - sourcebook inclusion
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-003-combat-hazard-damage-recovery
+  - RT-005-scene-activity-context-packets
+  - RT-008-generated-content-provenance
+  - RT-011-validation-readiness-tooling
+  blocked_by:
+  - missing promotion decision workflow
+  - missing draft-to-doctrine handoff record
+  - missing authority-level update owner
+  - missing canon/sourcebook inclusion policy binding
+  - missing canon conflict review owner
+  - missing no-direct-generator-use tests
+  - missing executable validators
+  unlocks:
+  - D-series/native-design promotion-boundary owner decomposition planning
+  - future D-series draft-source boundary tests
+  - future no-direct-generator-use assertion tests
+  - future no-canon-promotion assertion tests
+  - future source-pack presence is not adoption tests
+  downstream_consumers:
+  - future D-series promotion gate owner
+  - future draft-source handoff record owner
+  - future doctrine adoption decision owner
+  - future canon/sourcebook inclusion policy owner
+  - future authority hierarchy registry owner
+  - future no-direct-generator-use validator owner
+  donor_pressure_absorbed:
+  - premature D-series source-pack promotion pressure
+  - premature sourcebook inclusion pressure
+  - premature canon promotion pressure
+  - premature runtime authority pressure
+  - premature training authorization pressure
+  - premature mechanics conversion pressure
+  - source-pack presence as adoption pressure
+  hard_refusals:
+  - owner scaffold cannot define a promotion workflow implementation, canon promotion, sourcebook inclusion, runtime authority, training authorization, validator implementation, doctrine rewrite, final mechanics, final math, generators, generated records, context-packet compilers, persistence writers, retrieval indexes, command IR, donor-content audit results, or live-play behavior
+  - D-series/native-design material may exert design pressure only until explicitly promoted; promotion requires separate reviewer decision, canon/sourcebook inclusion policy, conflict review, authority-level update, and registry tracking
+  - LLM cannot promote D-series source-pack material to canon, treat D-series draft material as runtime authority, use D-series examples as live-play behavior, convert source-pack prose into mechanics, override canon hierarchy, resolve canon conflicts, authorize sourcebook inclusion, authorize training data, use draft material in context packets as authoritative truth, or treat source-pack presence as adoption
+  escalation_triggers:
+  - scaffold is cited as promotion workflow, canon/sourcebook inclusion, runtime authority, training authorization, validator, generator, live-play, or doctrine rewrite authority
+  - D-series source-pack material is used as current rules or live-play behavior
+  - source-pack presence is treated as adoption or canon promotion
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - audit-source linkage test
+  - D-series/native-design source-pack and D02 source-pressure linkage test
+  - authority hierarchy and canon/sourcebook promotion boundary phrase test
+  - LLM non-authority phrase test
+  - registry tracking test
+  - no-implementation guardrail test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines draft-source handoff, promotion review, authority-level update, conflict review, sourcebook/canon policy, registry tracking, and validator scope before any implementation
+  - RT-001, RT-002, RT-003, RT-005, RT-008, and RT-011 boundaries remain active where D-series material pressures runtime seams
+  - reviewer approval before any runtime, schema, command IR, math, validator, generator, generated-record, persistence, retrieval, context-packet compiler, source-pack promotion, sourcebook inclusion, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: medium
+  canon_relevance: high
+  runtime_relevance: high
+  live_play_relevance: high
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no generated-record creation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no source-pack promotion, no sourcebook inclusion, no canon promotion, no live-play/training authorization, and no donor-content audit.
