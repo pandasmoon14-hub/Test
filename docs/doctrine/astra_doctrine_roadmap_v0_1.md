@@ -1321,6 +1321,8 @@ Runtime implementation must prove:
 
 This roadmap adds a future audit item only. This PR does not perform the audit, rewrite Batch A/B/C doctrine, modify D00-D19 draft source material, implement runtime code, or create generator/runtime schemas.
 
+Audit preparation protocol: `docs/doctrine/control/runtime_boundary_generator_ownership_audit_protocol.md`. The protocol is control scaffolding only and does not contain audit findings.
+
 Audit scope:
 
 - Batch A;

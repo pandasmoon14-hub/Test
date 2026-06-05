@@ -132,3 +132,24 @@ Step 11 applies Step 10C findings to the repo:
 - It does not create database schemas, persistence writers, generated-content records, generators, live-play adapters, training sets, donor content, or canon promotion.
 - The Runtime Boundary + Generator Ownership Audit remains planned but not performed by this decision.
 - Registry and roadmap test results must be reported honestly, including missing PyYAML or other dependency failures.
+
+## 2026-06-05 decision log - Runtime Boundary + Generator Ownership Audit protocol scaffold
+
+- Decision ID: CTRL-RUNTIME-GENERATOR-AUDIT-PROTOCOL-001
+- Decision date: 2026-06-05
+- Decision type: documentation/control scaffold
+
+### Summary
+- Added `docs/doctrine/control/runtime_boundary_generator_ownership_audit_protocol.md` as the protocol for a future Runtime Boundary + Generator Ownership Audit.
+- The protocol fixes the future audit scope, allowed classification labels, input-source precedence, output schema, review process, and non-goals.
+- The protocol requires the later audit to evaluate whether each subsystem can eventually be executed by backend code without relying on the LLM to improvise missing mechanics, state, validation, memory, persistence, generators, or consequences.
+
+### Governance effect
+- Converts the roadmap's future audit placeholder into repeatable review instructions without performing the audit.
+- Preserves the backend-first model-interchangeability invariant and the distinction between backend authority and LLM narration/proposal.
+- Requires future findings to cite actual repo paths and to avoid donor-PDF/direct-donor-content auditing.
+
+### Guardrails reaffirmed
+- This scaffold is not a runtime implementation.
+- It does not classify subsystems, rewrite Batch A/B/C/D-series/SM doctrine, create generators, create validators, create persistence writers, promote canon, authorize live play, or create training material.
+- Runtime/training layers remain planned future layers unless actual repo files exist when the later audit is performed.
