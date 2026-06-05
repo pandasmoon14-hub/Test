@@ -110,3 +110,25 @@ Step 11 applies Step 10C findings to the repo:
 - State-change digest is a report from committed backend events and is never authority by itself.
 - Registry entries are tracking/work-order records, not canon or accepted terms.
 
+
+## 2026-06-05 decision log - current-state reconciliation after PR #204
+
+- Decision ID: CTRL-CURRENT-STATE-RECONCILIATION-001
+- Decision date: 2026-06-05
+- Decision type: documentation/control reconciliation
+
+### Summary
+- PR #204 is treated as merged for current-state control purposes.
+- Astra Ascension remains the project identity; Aether Forge is subordinate extraction/handoff developer tooling.
+- Backend-first model interchangeability, persistence ownership, generated-content lifecycle, knowledge/dialogue distinction, and narration validation remain planning/control posture unless future owner files implement them.
+
+### Governance effect
+- Supersedes stale roadmap-bootstrap instructions to create ROADMAP-001/REGISTRY-001 and redraft A01-A05 as immediate next actions.
+- Directs near-term work toward current-state reconciliation, registry hygiene, dependency/test repair, and preparation for a later Runtime Boundary + Generator Ownership Audit.
+- Preserves existing Batch A/B/C/D/control content unless a later audit explicitly authorizes changes.
+
+### Guardrails reaffirmed
+- This reconciliation is not runtime implementation.
+- It does not create database schemas, persistence writers, generated-content records, generators, live-play adapters, training sets, donor content, or canon promotion.
+- The Runtime Boundary + Generator Ownership Audit remains planned but not performed by this decision.
+- Registry and roadmap test results must be reported honestly, including missing PyYAML or other dependency failures.

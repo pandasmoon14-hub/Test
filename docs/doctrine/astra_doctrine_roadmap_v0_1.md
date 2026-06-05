@@ -10,7 +10,7 @@ layer: 0_control
 phase: 0
 version: 0.1
 created: 2026-05-18
-last_reviewed: 2026-05-18
+last_reviewed: 2026-06-05
 maintained_by: Astra Doctrine Council
 depends_on:
   - phase1_scope_model_and_construct_granularity_doctrine_v0_2_1_final.md
@@ -28,6 +28,22 @@ It is not setting canon. It is not mechanics doctrine. It is not runtime specifi
 It governs what must be drafted, in what order, with what gates, so Astra can absorb a roughly 1,900-donor TTRPG corpus without donor-law creep, doctrine fragmentation, schema chaos, premature runtime construction, or training-as-authority drift.
 
 This roadmap is planning authority. If this roadmap conflicts with the existing Scope Model, Conversion IR, Batch B unlock plan, or Batch C unlock plan, those active control files win and this roadmap must be revised.
+
+### Current State After PR #204
+
+PR #204 is treated as merged for roadmap-control purposes. It completed the public identity and backend-first invariant alignment for Astra Ascension by making the repository posture explicit: Astra Ascension is the project identity, the backend runtime must own truth/state/dice/persistence/file writers in any future live-play architecture, and Aether Forge remains subordinate extraction/handoff developer tooling rather than the project identity.
+
+The repository currently represents the following state:
+
+- ROADMAP-001 and REGISTRY-001 already exist and are tracked as control files. Do not follow any older instruction that says to create them from scratch.
+- A01-A15 draft doctrine files are present in the repo. Their existence does not mean every item is current, pressure-tested, or final; use the registry and owner files for exact status.
+- Batch B operational doctrine files, Batch C schema-family files, schema/math/mechanics control files, and D-series native-design source-pack material are present. This reconciliation does not rewrite Batch A/B/C/D content or change their authority.
+- Runtime implementation remains planned but not started by this roadmap-control layer. No runtime database, event kernel, writer, generator, live-play adapter, or training set is authorized here.
+- The Runtime Boundary + Generator Ownership Audit is planned as a later audit item. It is not performed by this current-state reconciliation.
+- Extraction/handoff tooling, including Aether Forge references, is current developer infrastructure for source-grounded packets and validation. It is subordinate to Astra doctrine and may not be treated as canon, runtime authority, or project identity.
+- The local test environment may be incomplete unless PyYAML and other test dependencies from `requirements-dev.txt` are installed. Any validation run must report dependency failures honestly instead of marking registry tests as passed.
+
+If a future model or reviewer finds roadmap text that appears to restart bootstrap work already represented in the repo, treat that text as superseded by this current-state section and inspect the actual files and registry before acting.
 
 ## 2. Purpose
 
@@ -1411,18 +1427,24 @@ C00_shared_content_record_base_and_schema_registry.md
 K04_conflict_ledger_and_cross_donor_pressure_protocol.md
 ```
 
-## 27. Immediate Next 10 Actions
+## 27. Immediate Next Actions After PR #204
 
-1. Commit ROADMAP-001 as `docs/doctrine/astra_doctrine_roadmap_v0_1.md`.
-2. Create REGISTRY-001 as `docs/doctrine/astra_doctrine_registry_v0_1.yaml`.
-3. Add registry entries for ROADMAP-001, REGISTRY-001, A01–A15, C00–C14, K01–K06, R01–R08, and T01–T07.
-4. Draft A01 using the required 14-section doctrine template.
-5. Draft A02 after A01 reaches review.
-6. Draft A03 after A01 and A02 reach review.
-7. Draft A04 after A01–A03 reach review.
-8. Draft A05 after A01–A04 reach review.
-9. Build a 12–18 packet setting-spine contradiction pilot.
-10. Begin K01 placeholder term registry once A01–A03 stable terms exist.
+The previous bootstrap-oriented instructions for committing ROADMAP-001, creating REGISTRY-001, adding the initial registry records, and drafting A01-A05 are superseded. Those instructions must not be followed as the current next-action list because the repository has already advanced through multiple doctrine, schema, and control PRs.
+
+Current immediate actions are:
+
+1. Reconcile roadmap, registry, and current-state language after PR #204 so future work starts from the actual repository state.
+2. Repair the local/test dependency setup so PyYAML-backed registry validation can run from the documented dependency instructions.
+3. Run focused doctrine and registry validation tests before broad test runs.
+4. Produce or update a current-state ledger entry that summarizes completed Batch A/B/C/D/control status as represented by the repo, without promoting uncertain files beyond their registry status.
+5. Add or maintain explicit notes warning future models and reviewers not to follow obsolete roadmap-bootstrap sections.
+6. Prepare the Runtime Boundary + Generator Ownership Audit as a later work item, but do not perform the audit in this reconciliation patch.
+7. Identify stale references that present Aether Forge as the project identity and demote them to extraction/handoff subsystem references.
+8. Confirm registry records added by PR #204 remain planning/control records and do not claim runtime implementation, generator implementation, persistence writers, or live-play behavior.
+9. Confirm that this cleanup creates no runtime code, database schemas, file writers, generated-content records, generators, live-play adapters, donor content, training sets, or canon promotion.
+10. Record test results honestly, including missing dependencies or environment limitations.
+
+Standing gates remain unchanged: runtime implementation is not authorized; live-play training is not authorized; broad conversion scale remains gated by current doctrine, schema, evaluation, and pilot readiness; extraction and handoff remain subordinate developer tooling.
 
 ## 28. Explicit Contradiction Test Pack
 

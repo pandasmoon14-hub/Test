@@ -1,10 +1,10 @@
-﻿# AstraCloud / Aether Forge Current Decisions Log v0.1
+# Astra Ascension / Aether Forge Extraction-Handoff Current Decisions Log v0.1
 
 > Cross-reference: For broader project and governance decision records, see `docs/decisions/current_decisions_log.md`.
 > Scope note: this file is the operations log for extraction, handoff, and conversion-intake pipeline execution decisions.
 
 Status: active working log  
-Scope: extraction, handoff contract, conversion-intake pipeline, and near-term runtime planning  
+Scope: Astra Ascension extraction/handoff developer infrastructure, conversion-intake pipeline, and historical near-term runtime planning notes
 Purpose: record project decisions that are not obvious from code, so future sessions do not re-litigate already-settled choices.
 
 ---
@@ -68,7 +68,7 @@ Decision:
 Do not block current progress on installing or stabilizing Marker, Docling, or equivalent heavyweight layout tools.
 
 Reason:
-The current work is proving the Aether Forge handoff contract and conversion-intake artifact shape. That can proceed with deterministic extraction, page truth, manifests, queues, and packet validation.
+The current work is proving the Astra Ascension extraction/handoff contract and conversion-intake artifact shape; Aether Forge is the subordinate toolchain name for that developer infrastructure. That can proceed with deterministic extraction, page truth, manifests, queues, and packet validation.
 
 Implication:
 AUTO fallback to Lane A due to missing external dependencies is acceptable in local pilots, provided the fallback is recorded in manifests and validation summaries.
