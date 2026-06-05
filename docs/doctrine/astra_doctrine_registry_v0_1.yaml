@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.33
+  action: current_state_reconciliation_after_pr204
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added CTRL-CURRENT-STATE-RECONCILIATION-001 and reconciled roadmap current-state/next-action language after PR #204. This is documentation/control cleanup only; it prevents obsolete bootstrap instructions from being followed and does not rewrite doctrine, perform the Runtime Boundary + Generator Ownership Audit, implement runtime, create generators, create writers, or authorize live-play/training.
+- date: '2026-06-05'
   version: 0.1.32
   action: roadmap_identity_and_backend_first_alignment
   actor: Astra Doctrine Council / synthesis assistant
@@ -4478,3 +4483,77 @@ file_records:
   runtime_relevance: high
   live_play_relevance: critical
   notes: Roadmap amendment only; it does not implement a validator or live-play adapter.
+
+- file_id: CTRL-CURRENT-STATE-RECONCILIATION-001
+  filename: current_state_reconciliation_after_pr204_control_item.md
+  proposed_path: docs/doctrine/control/current_state_reconciliation_after_pr204_control_item.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council
+  purpose: Track the documentation/control reconciliation that supersedes stale roadmap-bootstrap next actions after PR #204 and points future work toward actual current-state review, registry hygiene, test repair, and later audit preparation.
+  owns:
+  - roadmap current-state reconciliation tracking
+  - obsolete bootstrap instruction warning
+  - post-PR-204 next-action control posture
+  - documentation/control cleanup scope boundary
+  must_not_own:
+  - runtime implementation
+  - doctrine rewrite
+  - Batch A/B/C/D content changes
+  - Runtime Boundary + Generator Ownership Audit execution
+  - generator implementation
+  - persistence writer implementation
+  - live-play behavior
+  - training data creation
+  - canon promotion
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - CTRL-MODEL-INTERCHANGEABILITY-001
+  blocked_by: []
+  unlocks:
+  - current-state ledger cleanup
+  - registry hygiene review
+  - test environment repair planning
+  - future runtime boundary audit preparation
+  downstream_consumers:
+  - future doctrine/control PR planning
+  - registry validation review
+  - runtime boundary audit preparation
+  - extraction identity cleanup review
+  donor_pressure_absorbed:
+  - stale roadmap bootstrap sequencing
+  - Aether Forge identity drift
+  - premature runtime implementation pressure
+  - premature generator ownership claims
+  hard_refusals:
+  - reconciliation cannot implement runtime code
+  - reconciliation cannot create database schemas or file writers
+  - reconciliation cannot perform the Runtime Boundary + Generator Ownership Audit
+  - reconciliation cannot rewrite Batch A/B/C/D doctrine
+  - reconciliation cannot authorize live-play training or canon promotion
+  escalation_triggers:
+  - future work follows superseded ROADMAP-001 bootstrap actions
+  - registry record claims implementation completed by this control item
+  - Aether Forge is presented as project identity instead of extraction/handoff subsystem
+  - runtime, generator, writer, live-play, or training artifacts are created under reconciliation scope
+  required_tests:
+  - roadmap stale-next-actions review
+  - registry YAML validation
+  - focused doctrine registry pytest
+  - full pytest run when dependencies are available
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - roadmap current-state language reconciled
+  - registry changelog records cleanup scope
+  - tests or dependency blockers reported honestly
+  - no runtime or Batch A/B/C/D content changes included
+  scale_gate_relevance: medium
+  broad_conversion_relevance: medium
+  canon_relevance: indirect
+  runtime_relevance: indirect
+  live_play_relevance: indirect
+  notes: Documentation/control reconciliation only. This record prevents stale roadmap instructions from being followed; it does not implement runtime, rewrite doctrine, perform the planned audit, or create generator, writer, live-play, training, donor, or canon artifacts.
