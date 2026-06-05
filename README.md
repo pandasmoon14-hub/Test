@@ -134,6 +134,12 @@ The LLM may not:
 
 ## Development notes / tests
 
+Install the development/test dependencies before running validation commands. Doctrine registry validation requires PyYAML from `requirements-dev.txt`; if a local environment cannot download packages because of network or package-index restrictions, make PyYAML available by another approved local mechanism before treating registry validation as runnable.
+
+```bash
+python3 -m pip install -r requirements-dev.txt
+```
+
 Run the focused doctrine/registry validation tests when changing roadmap or registry files:
 
 ```bash
