@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.37
+  action: runtime_boundary_generator_ownership_remediation_priority_ledger
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-PRIORITY-LEDGER-001 tracking for docs/doctrine/reviews/runtime_boundary_generator_ownership_remediation_priority_ledger.md. This is a remediation-priority planning ledger only; it consolidates AUDIT-001, AUDIT-WAVE1-001, and AUDIT-WAVE2-001 findings; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no generator implementation, no validator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed. Future remediation requires separate PRs.
+- date: '2026-06-05'
   version: 0.1.36
   action: runtime_boundary_generator_ownership_audit_wave2_report
   actor: Astra Doctrine Council / synthesis assistant
@@ -4402,6 +4407,84 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: high
   notes: Wave 2 audit report only; no doctrine rewrite, no runtime implementation, no generator implementation, no validator implementation, no persistence writer implementation, no command IR implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+
+- file_id: REMEDIATION-PRIORITY-LEDGER-001
+  filename: runtime_boundary_generator_ownership_remediation_priority_ledger.md
+  proposed_path: docs/doctrine/reviews/runtime_boundary_generator_ownership_remediation_priority_ledger.md
+  layer: 0_control
+  phase: '4'
+  status: draft
+  authority_level: review
+  owner: Astra Doctrine Council / Runtime Boundary Reviewers
+  purpose: Track the remediation-priority planning ledger that consolidates accepted AUDIT-001, AUDIT-WAVE1-001, and AUDIT-WAVE2-001 findings into ordered remediation tracks without implementing remediation.
+  owns:
+  - remediation-priority planning ledger tracking
+  - Waves 1-2 accepted finding consolidation
+  - ordered remediation track planning
+  - recommended separate remediation PR sequence
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - generator implementation
+  - validator implementation
+  - persistence writer implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play authorization
+  - training authorization
+  - donor-content audit
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - none
+  unlocks:
+  - separate remediation owner-file planning PRs
+  - runtime boundary remediation planning after separate approval
+  - generator ownership remediation planning after separate approval
+  downstream_consumers:
+  - Astra Doctrine Council
+  - Astra Runtime Working Group
+  - generator/template planning
+  - validation test planning
+  - future remediation PR planning
+  donor_pressure_absorbed:
+  - LLM overreach pressure
+  - repeated critical/high-risk runtime boundary seams
+  - generated-content ownership ambiguity
+  - runtime/schema/math boundary confusion
+  - D-series source-material promotion pressure
+  hard_refusals:
+  - remediation-priority ledger cannot rewrite doctrine
+  - remediation-priority ledger cannot implement runtime, schemas, command IR, generators, validators, writers, context packets, or live-play adapters
+  - remediation-priority ledger cannot promote content to canon, audit donor content, or authorize live play/training
+  - future remediation requires separate PRs
+  escalation_triggers:
+  - ledger findings are treated as implemented remediation
+  - remediation track priority is used to authorize runtime or generator implementation
+  - D-series source material is treated as current runtime authority
+  - future remediation occurs without a separate scoped PR
+  required_tests:
+  - remediation ledger existence and planning-only guardrail test
+  - registry tracking assertion
+  - canonical remediation track shape test
+  - no-implementation scope assertion test
+  test_status: passing
+  review_status: drafted
+  promotion_requirements:
+  - review by doctrine and runtime owners
+  - separate remediation PRs for owner files, implementation, schema, generator, validator, or doctrine changes
+  scale_gate_relevance: medium
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Remediation-priority planning ledger only; consolidates AUDIT-001, AUDIT-WAVE1-001, and AUDIT-WAVE2-001 findings; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no generator implementation, no validator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed. Future remediation requires separate PRs.
 - file_id: AUDIT-RUNTIME-GENERATOR-OWNERSHIP-001
   filename: runtime_boundary_generator_ownership_audit_control_item.md
   proposed_path: docs/doctrine/control/runtime_boundary_generator_ownership_audit_control_item.md
