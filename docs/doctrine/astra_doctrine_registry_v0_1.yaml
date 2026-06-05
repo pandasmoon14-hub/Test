@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-05'
+  version: 0.1.32
+  action: roadmap_identity_and_backend_first_alignment
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added roadmap/doctrine tracking for backend-first model interchangeability, runtime boundary and generator ownership audit, persistence writer responsibilities, generated-content lifecycle, knowledge/dialogue memory distinction, and narration validation. These are roadmap/control amendments only, not implemented runtime code.
 - date: '2026-06-04'
   version: 0.1.31
   action: c12_draft_creation
@@ -4114,3 +4119,362 @@ file_records:
   runtime_relevance: indirect
   live_play_relevance: indirect
   notes: Tracking record for control/governance patch PREA01-001.
+
+- file_id: CTRL-MODEL-INTERCHANGEABILITY-001
+  filename: backend_first_model_interchangeability_invariant_control_item.md
+  proposed_path: docs/doctrine/control/backend_first_model_interchangeability_invariant_control_item.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council
+  purpose: Track the roadmap amendment establishing backend-first model interchangeability as a binding invariant for future runtime and live-play doctrine.
+  owns:
+  - roadmap tracking for model interchangeability invariant
+  - backend-first authority boundary reminder
+  - LLM-as-adapter control posture
+  must_not_own:
+  - runtime implementation
+  - model provider selection
+  - schema field semantics
+  - canon promotion
+  - generated content implementation
+  - live-play adapter implementation
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by: []
+  unlocks:
+  - R01
+  - T02
+  downstream_consumers:
+  - runtime doctrine drafting
+  - live-play adapter doctrine
+  - context packet compiler planning
+  - narration validation planning
+  donor_pressure_absorbed:
+  - model-as-game-engine assumptions
+  - model memory treated as truth
+  - model-side dice and hidden-state pressure
+  hard_refusals:
+  - LLM cannot own truth, state, dice, persistence, canon authority, or unvalidated consequence commits
+  - model memory cannot be authoritative runtime state
+  - model-side hidden state cannot replace backend hidden-information partitioning
+  escalation_triggers:
+  - feature depends on model memory for runtime truth
+  - adapter claims canon authority
+  - LLM writes or commits authoritative files directly
+  required_tests:
+  - future runtime boundary conformance review
+  - future narration contract review
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - roadmap amendment accepted
+  - future R-layer doctrine incorporates invariant
+  - registry tracking remains non-runtime
+  scale_gate_relevance: high
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Roadmap/control amendment only. It does not implement model routing or runtime code.
+- file_id: AUDIT-RUNTIME-GENERATOR-OWNERSHIP-001
+  filename: runtime_boundary_generator_ownership_audit_control_item.md
+  proposed_path: docs/doctrine/control/runtime_boundary_generator_ownership_audit_control_item.md
+  layer: 0_control
+  phase: '4'
+  status: todo
+  authority_level: planning
+  owner: Astra Doctrine Council / Astra Runtime Working Group
+  purpose: Track the planned Runtime Boundary + Generator Ownership Audit across Batch A, Batch B, Batch C, D00-D19, and schema/math/mechanics workstream files.
+  owns:
+  - planned audit tracking
+  - required audit output shape
+  - subsystem readiness classification labels
+  must_not_own:
+  - audit findings before audit execution
+  - Batch A doctrine rewrites
+  - Batch B doctrine rewrites
+  - Batch C schema rewrites
+  - D00-D19 draft source material changes
+  - runtime implementation
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - R01
+  unlocks:
+  - runtime boundary remediation planning
+  - generator ownership remediation planning
+  downstream_consumers:
+  - runtime doctrine drafting
+  - schema readiness planning
+  - generator/template planning
+  - validation test planning
+  donor_pressure_absorbed:
+  - LLM overreach pressure
+  - generator ownership ambiguity
+  - runtime/schema/math boundary confusion
+  hard_refusals:
+  - audit item cannot mark runtime code implemented
+  - audit item cannot promote donor content to canon
+  - audit item cannot collapse doctrine, schema, generator, validator, runtime, and narration layers
+  escalation_triggers:
+  - subsystem lacks backend owner but is treated as runtime-ready
+  - LLM is asked to provide persistent truth, dice, validation, or consequences
+  - generated content lacks schema/provenance/commit pathway
+  required_tests:
+  - future audit schema/output-shape validation
+  - future classification coverage review
+  test_status: not_started
+  review_status: not_reviewed
+  promotion_requirements:
+  - audit performed in a separate change
+  - output reviewed by doctrine and runtime owners
+  - missing backend pieces routed to owner files
+  scale_gate_relevance: medium
+  broad_conversion_relevance: medium
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Planned audit/control item only. This registry entry records scope and output shape; it does not perform the audit.
+- file_id: AMEND-PERSISTENCE-WRITERS-001
+  filename: persistence_writer_subsystem_amendment_tracking.md
+  proposed_path: docs/doctrine/control/persistence_writer_subsystem_amendment_tracking.md
+  layer: 0_control
+  phase: '4'
+  status: draft
+  authority_level: planning
+  owner: Astra Runtime Working Group
+  purpose: Track roadmap amendment naming backend-owned persistence and file/export writer responsibilities for future R01-R08 doctrine.
+  owns:
+  - persistence writer responsibility tracking
+  - file-export-not-source-of-truth control posture
+  - LLM-no-direct-file-writing reminder
+  must_not_own:
+  - database implementation
+  - event ledger implementation
+  - state store implementation
+  - file export implementation
+  - runtime code
+  - canon decisions
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - R01
+  unlocks:
+  - R08
+  downstream_consumers:
+  - R01 deterministic event kernel planning
+  - R08 persistence replay planning
+  - live-play adapter doctrine
+  donor_pressure_absorbed:
+  - model-side file writing assumptions
+  - Markdown-as-source-of-truth pressure
+  - campaign memory stored only in prompt context
+  hard_refusals:
+  - LLM writes no files directly as authoritative records
+  - files are materialized exports, not primary truth
+  - primary persistence must be backend/event-log/state-store backed
+  escalation_triggers:
+  - runtime design treats Markdown, JSON, YAML, or model memory as source of truth
+  - generated records bypass validation and event/state commit
+  required_tests:
+  - future persistence ownership conformance test
+  - future replay/hash verification test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - R-layer doctrine incorporates writer responsibilities
+  - persistence tests specified before runtime implementation
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: medium
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Roadmap amendment only; no database, writer, or runtime implementation is included.
+- file_id: AMEND-GENERATED-CONTENT-LIFECYCLE-001
+  filename: generated_content_lifecycle_amendment_tracking.md
+  proposed_path: docs/doctrine/control/generated_content_lifecycle_amendment_tracking.md
+  layer: 0_control
+  phase: '4'
+  status: draft
+  authority_level: planning
+  owner: Astra Runtime Working Group / Astra Canon Working Group
+  purpose: Track roadmap amendment requiring generated-content lifecycle statuses, persistent IDs, provenance, backend recurrence, and separation from canon promotion.
+  owns:
+  - generated-content lifecycle tracking
+  - persistence-versus-canon separation reminder
+  - backend-owned recurrence and retrieval posture
+  must_not_own:
+  - generator implementation
+  - generated content canon decisions
+  - content schemas
+  - runtime state implementation
+  - donor content promotion
+  - live-play narration text
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - C00
+  - R01
+  unlocks:
+  - generated content persistence planning
+  - generator/template pathway planning
+  downstream_consumers:
+  - schema doctrine drafting
+  - generator/template planning
+  - runtime persistence planning
+  - canon promotion workflow
+  donor_pressure_absorbed:
+  - disposable narration treated as recurring truth
+  - generated content promoted to canon by repetition
+  - unsupported model invention becoming campaign state
+  hard_refusals:
+  - generated content cannot recur without persistent IDs and provenance
+  - durable campaign instance is not automatically accepted canon
+  - LLM narration cannot make generated content durable or canonical
+  escalation_triggers:
+  - generated creature, NPC, faction, location, hazard, item, rumor, or mission recurs without backend record
+  - canon promotion bypasses K03 review
+  required_tests:
+  - future generated-record provenance test
+  - future canon-promotion separation test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - lifecycle statuses incorporated into owner doctrine
+  - backend commit pathway specified before runtime use
+  scale_gate_relevance: medium
+  broad_conversion_relevance: medium
+  canon_relevance: high
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Roadmap amendment only; it does not create generators or generated content records.
+- file_id: AMEND-KNOWLEDGE-DIALOGUE-MEMORY-001
+  filename: knowledge_claim_dialogue_memory_amendment_tracking.md
+  proposed_path: docs/doctrine/control/knowledge_claim_dialogue_memory_amendment_tracking.md
+  layer: 0_control
+  phase: '4'
+  status: draft
+  authority_level: planning
+  owner: Astra Runtime Working Group / Astra Canon Working Group
+  purpose: Track roadmap amendment distinguishing dialogue transcripts and summaries from validated knowledge claims, beliefs, hidden truths, relationship changes, and authoritative state deltas.
+  owns:
+  - knowledge/dialogue distinction tracking
+  - dialogue-to-claim extraction control posture
+  - authoritative memory boundary reminder
+  must_not_own:
+  - transcript storage implementation
+  - claim extraction implementation
+  - NPC belief mechanics
+  - canon fact promotion
+  - live-play adapter prose
+  - runtime database implementation
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - R01
+  - R02
+  - R05
+  unlocks:
+  - knowledge claim runtime planning
+  - dialogue memory planning
+  downstream_consumers:
+  - context packet compiler planning
+  - hidden information partitioning planning
+  - persistence writer planning
+  - live-play adapter doctrine
+  donor_pressure_absorbed:
+  - transcript treated as campaign truth
+  - NPC beliefs collapsed into objective facts
+  - rumors and false claims treated as canon
+  hard_refusals:
+  - narrated dialogue alone cannot become authoritative campaign state
+  - only validated claims, knowledge records, relationship changes, and state deltas can become authoritative
+  - hidden truths cannot be exposed through summary leakage
+  escalation_triggers:
+  - dialogue summary changes state without validated claim or delta
+  - actor knowledge leaks to unauthorized actor context
+  required_tests:
+  - future dialogue-to-claim validation test
+  - future hidden-knowledge partitioning test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - owner doctrine defines claim and transcript pathways
+  - validator requirements specified before live-play use
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: high
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Roadmap amendment only; it does not implement memory storage or claim extraction.
+- file_id: AMEND-NARRATION-VALIDATION-001
+  filename: narration_validation_amendment_tracking.md
+  proposed_path: docs/doctrine/control/narration_validation_amendment_tracking.md
+  layer: 0_control
+  phase: '5'
+  status: draft
+  authority_level: planning
+  owner: Astra Runtime Working Group / Astra Training and Evaluation Working Group
+  purpose: Track roadmap amendment requiring a future Narration Validator for LLM output after backend commitment or explicitly labeled proposal/flavor modes.
+  owns:
+  - narration validation tracking
+  - unsupported-claim and leakage control posture
+  - post-commit narration boundary reminder
+  must_not_own:
+  - LLM provider behavior
+  - live-play adapter implementation
+  - runtime state implementation
+  - canon promotion
+  - hidden-information database implementation
+  - donor terminology adoption
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  blocked_by:
+  - R01
+  - R05
+  - R06
+  - T02
+  unlocks:
+  - narration validator planning
+  - live-play adapter QA planning
+  downstream_consumers:
+  - T02 live-play adapter behavior contract
+  - T04 failure label taxonomy
+  - T07 unsafe behavior hard-fail matrix
+  donor_pressure_absorbed:
+  - model invents unsupported facts
+  - model leaks hidden information
+  - model invents rewards, injuries, locations, or factions
+  - donor terminology leakage
+  hard_refusals:
+  - narration cannot mutate uncommitted state
+  - narration cannot reveal hidden information without authorization
+  - narration cannot invent durable rewards, injuries, locations, factions, or consequences
+  escalation_triggers:
+  - player-facing narration contradicts backend state
+  - adapter outputs donor terminology as Astra canon
+  - model narrates uncommitted consequences as fact
+  required_tests:
+  - future narration validator hard-fail test
+  - future hidden-information leakage test
+  - future donor terminology leakage test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - validator checks specified in T-layer doctrine
+  - runtime context packet contracts available
+  - hard-fail matrix updated
+  scale_gate_relevance: medium
+  broad_conversion_relevance: low
+  canon_relevance: medium
+  runtime_relevance: high
+  live_play_relevance: critical
+  notes: Roadmap amendment only; it does not implement a validator or live-play adapter.
