@@ -90,16 +90,17 @@ Classification guidance:
 
 ## 6. Required output schema
 
-The later audit must emit one record per reviewed subsystem using this shape:
+The later audit must emit one record per reviewed subsystem using the following canonical required audit target schema. These fields are required for every audit record:
 
 ```yaml
 subsystem_id: <stable identifier>
 source_area: <Batch A | Batch B | Batch C | D00-D19 | schema/math/mechanics | roadmap/control | runtime/training>
-source_paths:
-  - <repo-relative path>
+source_files:
+  - <repo-relative file path>
 classification:
   - <one or more allowed classification labels>
 doctrine_owner: <file or pending owner>
+backend_truth_owner: <backend owner/workstream or pending owner>
 missing_backend_pieces:
   - <piece or none>
 required_schemas:
@@ -112,18 +113,20 @@ required_command_ir:
   - <command/IR requirement or none>
 required_state_event_fields:
   - <state/event field requirement or none>
-required_validators:
-  - <validator requirement or none>
-required_context_packets:
-  - <context-packet requirement or none>
-required_persistence_writers:
-  - <writer requirement or none>
+required_context_packet_projection:
+  - <context-packet projection requirement or none>
+required_narration_contract:
+  - <narration contract requirement or none>
 required_tests:
   - <test requirement or none>
 llm_overreach_risk: <none | low | medium | high | critical>
-escalation_required: <true | false>
+blocked_by:
+  - <blocking schema/math/runtime/control dependency or none>
+recommended_next_action: <short next action>
 notes: <short rationale>
 ```
+
+The audit may add optional supplementary fields such as `required_validators`, `required_persistence_writers`, or `escalation_required` when the later audit PR defines how those fields are consumed, but optional fields must not replace or rename the canonical required schema above.
 
 Stable subsystem identifiers should be derived from existing file IDs, headings, or repo naming conventions where possible, for example `A13.combat_consequence_boundary`, `B02.action_resolution_trigger`, `C03.ability_record_generator_inputs`, or `SM00.runtime_gate_dependency`. Reviewers must not invent subsystem IDs that imply implemented runtime ownership when none exists.
 
