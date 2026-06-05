@@ -186,6 +186,20 @@ These rules are absolute.
 | Schema → Doctrine | Schemas structure records; they do not define mechanics. |
 | Donor → Astra | Donors pressure doctrine; they do not become doctrine. |
 
+
+## 7A. Backend-First Model Interchangeability Invariant
+
+Astra Ascension is model-interchangeable by design. Astra may use any one interchangeable LLM, local or cloud, but no Astra subsystem may depend on that model as the holder of truth. The model is replaceable. The backend is authoritative. The runtime kernel, schemas, generators, validators, event logs, memory system, retrieval system, persistence writers, and file/export writers are the game. The LLM is only the voice at the table.
+
+Binding rules:
+
+- LLMs are interchangeable presentation adapters.
+- The backend owns truth, state, rules, dice, validation, persistence, retrieval, clocks, memory, consequences, generated content, and event commits.
+- No feature is runtime-ready if it depends on model memory, model-side hidden state, model-side dice, model-side file writing, model-side canon authority, or model-side unvalidated consequence commits.
+- Every runtime-relevant subsystem must eventually have doctrine owner, schema representation, runtime state representation when persistent, command/IR representation when interactive, validator, generator/template pathway when procedurally creatable, context-packet projection, narration contract, and tests.
+- Runtime state is never model memory, and model context is never authoritative persistence.
+- Conversion output remains evidence until canon promotion and conflict review are complete.
+
 ## 8. Anti-Fragmentation Doctrine
 
 The project must avoid two equal failures:
@@ -939,7 +953,25 @@ campaign persistence
 replay
 migration
 hash verification
+PersistenceOrchestrator
+EventLedgerWriter
+StateStoreWriter
+EntityRecordWriter
+GeneratedContentRecordWriter
+KnowledgeClaimWriter
+DialogueTranscriptWriter
+ConversationSummaryWriter
+RetrievalIndexWriter
+FileExportWriter
 ```
+
+Persistence and world-memory rules for R01-R08:
+
+- Primary persistence is database/event-log/state-store backed.
+- Markdown, JSON, YAML, or other files are materialized exports, not the source of truth.
+- The LLM writes no files directly and never serves as the durable memory store.
+- Generated creatures, NPCs, factions, locations, hazards, items, rumors, missions, table results, and other records become durable only through backend-owned schema, validation, provenance, and event/state commit pathways.
+- File exports are emitted by backend-owned writers after validation and commit; they are not model-side authored truth.
 
 Runtime must not:
 
@@ -947,7 +979,9 @@ Runtime must not:
 - create canon;
 - let LLMs mutate state;
 - let LLMs roll dice;
+- let LLMs write files directly;
 - use model memory as authoritative persistence;
+- treat generated narration as durable world memory;
 - implement donor mechanics as backend defaults.
 
 Gate to Phase 5:
@@ -958,6 +992,87 @@ Runtime prototype passes state-delta validation.
 Context packets preserve hidden information boundaries.
 Dice/RNG authority belongs to backend only.
 ```
+
+
+## 18A. Runtime Memory, Generated Content, and Narration Control Amendments
+
+These amendments are planning controls for future R01-R08 doctrine. They are not runtime implementation and do not create a database, runtime kernel, or live-play adapter in this roadmap revision.
+
+### Generated-content lifecycle
+
+Generated content is not disposable narration once the campaign may need to recur, retrieve, audit, or promote it. Future runtime doctrine must support lifecycle statuses including:
+
+```text
+ephemeral_proposal
+committed_instance
+source_local_record
+generator_candidate
+canon_candidate
+accepted_canon
+deprecated
+quarantined
+```
+
+Rules:
+
+- A generated creature, NPC, location, faction, relic, hazard, table result, rumor, or mission hook must receive persistent IDs and provenance before it can recur.
+- Recurrence and retrieval must be backend-owned through schemas, validators, committed state, event logs, and retrieval indexes.
+- Canon promotion remains separate from generated-content persistence; a durable campaign instance is not automatically Astra canon.
+- Generated-content persistence requires backend-owned schema, validation, provenance, and event/state commit pathways.
+- The LLM may propose generated content, but it cannot make that content durable or canonical by narration alone.
+
+### Knowledge and dialogue memory distinction
+
+Future runtime doctrine must distinguish narrated conversation from authoritative campaign truth. Required future support includes:
+
+- actor knowledge records;
+- player-known facts;
+- NPC/faction beliefs;
+- rumors;
+- unverified claims;
+- false claims;
+- hidden truths;
+- dialogue transcript records;
+- conversation summaries;
+- dialogue-to-claim extraction.
+
+Critical rule: narrated dialogue may be stored as transcript, but only validated claims, knowledge records, relationship changes, and state deltas become authoritative campaign state. Dialogue-to-claim extraction must route through backend-owned validation before a claim can affect truth, beliefs, retrieval, clocks, faction state, or consequences.
+
+### Narration Validator requirement
+
+Future runtime doctrine must require a Narration Validator for LLM output. The validator must check for:
+
+- unsupported factual claims;
+- hidden information leakage;
+- uncommitted state mutation;
+- unauthorized NPC knowledge;
+- invented rewards;
+- invented injuries;
+- invented locations;
+- invented factions;
+- donor terminology leakage;
+- tone/format violations.
+
+Narration happens after backend commitment, except when clearly labeled as proposal, clarification, or non-authoritative flavor. Player-facing narration must be derived from committed backend outcomes and context packets, not from model-side hidden state or unsupported invention.
+
+### Persistence and writer ownership
+
+Future runtime doctrine must define the following backend-owned responsibilities clearly enough that no model or adapter assumes the LLM writes files or remembers the world:
+
+```text
+PersistenceOrchestrator
+EventLedgerWriter
+StateStoreWriter
+EntityRecordWriter
+GeneratedContentRecordWriter
+KnowledgeClaimWriter
+DialogueTranscriptWriter
+ConversationSummaryWriter
+RetrievalIndexWriter
+FileExportWriter
+```
+
+These writers materialize committed truth, validated memory records, retrieval indexes, transcripts, summaries, and exports after backend validation. They do not transfer authority to Markdown, JSON, YAML, or model memory.
 
 ## 19. Phase 5 — Live-Play, Training, and Evaluation Doctrine
 
@@ -1176,10 +1291,81 @@ Runtime implementation must prove:
 - backend owns state;
 - backend owns dice/RNG;
 - backend owns validation;
-- backend owns persistence;
+- backend owns persistence through PersistenceOrchestrator, EventLedgerWriter, StateStoreWriter, EntityRecordWriter, GeneratedContentRecordWriter, KnowledgeClaimWriter, DialogueTranscriptWriter, ConversationSummaryWriter, RetrievalIndexWriter, and FileExportWriter responsibilities;
+- primary persistence is database/event-log/state-store backed, with files as materialized exports only;
 - LLMs cannot mutate state directly;
+- LLMs cannot write files directly;
 - context packets do not leak hidden information;
+- generated content becomes durable only through backend-owned schema, validation, provenance, and commit pathways;
+- dialogue transcripts remain distinct from validated authoritative claims and state deltas;
 - replay and hash verification work.
+
+
+## 24A. Future Runtime Boundary + Generator Ownership Audit
+
+This roadmap adds a future audit item only. This PR does not perform the audit, rewrite Batch A/B/C doctrine, modify D00-D19 draft source material, implement runtime code, or create generator/runtime schemas.
+
+Audit scope:
+
+- Batch A;
+- Batch B;
+- Batch C;
+- D00-D19;
+- schema/math/mechanics workstream files.
+
+The audit must classify each subsystem as one or more of:
+
+```text
+doctrine_only
+schema_ready
+runtime_ready
+generator_ready
+validator_ready
+context_packet_ready
+narration_only
+blocked_pending_schema
+blocked_pending_math
+blocked_pending_runtime
+```
+
+The audit output must identify, for each subsystem:
+
+- missing backend pieces;
+- required schemas;
+- required math/mechanics;
+- required generators/templates;
+- required command IR;
+- required state/event fields;
+- required tests;
+- whether the LLM is currently being asked to do too much.
+
+Required output shape:
+
+```yaml
+subsystem_id: <stable identifier>
+source_area: <Batch A | Batch B | Batch C | D00-D19 | schema/math/mechanics>
+classification:
+  - <one or more allowed classification labels>
+doctrine_owner: <file or pending owner>
+missing_backend_pieces:
+  - <piece>
+required_schemas:
+  - <schema or field family>
+required_math_mechanics:
+  - <math/mechanics requirement>
+required_generators_templates:
+  - <generator/template requirement>
+required_command_ir:
+  - <command/IR requirement>
+required_state_event_fields:
+  - <state/event field requirement>
+required_tests:
+  - <test requirement>
+llm_overreach_risk: <none | low | medium | high | critical>
+notes: <short rationale>
+```
+
+This audit must preserve the backend-first model interchangeability invariant: if a subsystem requires persistent truth, rules, dice, validation, generated content, retrieval, memory, or consequences, the backend must own the authoritative pathway and the LLM may only narrate, summarize, interpret, or propose within contract.
 
 ## 25. Live-Play / Training Gate
 
