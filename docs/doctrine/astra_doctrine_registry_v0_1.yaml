@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-05'
+  version: 0.1.39
+  action: remediation_pr_b_owner_scaffolds
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001 and REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001 tracking for PR-B owner scaffolds. These records are owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no damage table implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit was performed.
+- date: '2026-06-05'
   version: 0.1.38
   action: remediation_pr_a_owner_scaffolds
   actor: Astra Doctrine Council / synthesis assistant
@@ -5015,3 +5020,174 @@ file_records:
   runtime_relevance: high
   live_play_relevance: high
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  filename: RT002_resource_consequence_math_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT002_resource_consequence_math_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future resource and consequence math control owner
+  purpose: Track the PR-B owner scaffold for RT-002 resource, backlash, corruption, strain, and consequence math boundaries without implementing remediation.
+  owns:
+  - RT-002 owner scaffold only
+  - resource and consequence math planning boundary
+  - LLM non-authority guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - damage table implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-011-validation-readiness-tooling
+  blocked_by:
+  - missing final resource/cost math
+  - missing consequence event model
+  - missing runtime state persistence owner
+  - missing executable validators
+  unlocks:
+  - resource/consequence owner decomposition planning
+  - future no-LLM-cost-and-consequence tests
+  - future context-packet handoff planning for committed resource and consequence outcomes
+  downstream_consumers:
+  - RT-003 combat hazard damage recovery owner scaffold
+  - future resource/cost mechanics owner
+  - future consequence event model owner
+  - future runtime persistence owner
+  - future context-packet handoff owner
+  donor_pressure_absorbed:
+  - premature resource/cost formula pressure
+  - premature backlash/corruption/strain severity pressure
+  - premature reward/loss/consequence state mutation pressure
+  - D02 draft-source promotion pressure
+  hard_refusals:
+  - owner scaffold cannot define final resource values or formulas
+  - owner scaffold cannot implement runtime, schemas, command IR, validators, generators, persistence writers, or context-packet compilers
+  - LLM cannot choose costs, spend/refund resources, decide backlash severity, apply corruption/strain, determine damage/healing/recovery, grant rewards/losses, commit consequence events, convert narration into state deltas, invent formulas, or override backend validators
+  escalation_triggers:
+  - scaffold is cited as executable resource or consequence math authority
+  - narration is treated as resource or consequence state mutation
+  - D-series source material is promoted without explicit adoption decision
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - no-implementation guardrail test
+  - LLM non-authority phrase test
+  - registry tracking test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines math/event scope before any implementation
+  - RT-001 command lifecycle and RT-011 readiness boundaries remain active
+  - reviewer approval before any runtime, schema, formula, validator, generator, persistence, context-packet, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: high
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no damage table implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+- file_id: REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  filename: RT003_combat_hazard_damage_recovery_owner_scaffold.md
+  proposed_path: docs/doctrine/control/RT003_combat_hazard_damage_recovery_owner_scaffold.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future combat hazard damage recovery control owner
+  purpose: Track the PR-B owner scaffold for RT-003 combat, hazard exposure, damage, injury, and recovery boundaries without implementing remediation.
+  owns:
+  - RT-003 owner scaffold only
+  - combat/hazard/damage/recovery planning boundary
+  - LLM non-authority guardrail tracking
+  - remediation ledger linkage to REMEDIATION-PRIORITY-LEDGER-001
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - math implementation
+  - damage table implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - context-packet compiler implementation
+  - canon promotion
+  - live-play/training authorization
+  - donor-content audit
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - RT-001-command-lifecycle-action-legality
+  - RT-002-resource-backlash-consequence-math
+  - RT-009-runtime-rng-table-oracle
+  - RT-011-validation-readiness-tooling
+  blocked_by:
+  - missing damage/injury math
+  - missing hazard exposure state model
+  - missing active threat queue/event owner
+  - missing runtime RNG/table/oracle owner
+  - missing executable validators
+  unlocks:
+  - combat/hazard owner decomposition planning
+  - future no-LLM-damage-commit tests
+  - future hidden hazard redaction and context-packet planning
+  downstream_consumers:
+  - future combat/consequence mechanics owner
+  - future hazard runtime owner
+  - future recovery/condition owner
+  - future threat trigger/event owner
+  - future vehicle/platform integrity owner
+  donor_pressure_absorbed:
+  - premature combat runtime pressure
+  - premature damage table pressure
+  - premature hazard generator pressure
+  - premature encounter live-play pressure
+  hard_refusals:
+  - owner scaffold cannot define final combat procedure, damage tables, hazard runtime, condition schemas, recovery formulas, or encounter runtime
+  - owner scaffold cannot implement runtime, schemas, command IR, validators, generators, persistence writers, or context-packet compilers
+  - LLM cannot detect hidden threats as authority, decide exposure timing, roll/select hazard outcomes, apply damage/injury, kill/incapacitate actors, resolve mitigation/recovery, mutate vehicle/platform integrity, commit mission consequences, invent enemy behavior as mechanical truth, or treat combat narration as backend resolution
+  escalation_triggers:
+  - scaffold is cited as executable combat, hazard, damage, injury, or recovery authority
+  - narration is treated as backend combat resolution
+  - live encounter play is authorized from this scaffold
+  required_tests:
+  - owner scaffold file presence test
+  - remediation ledger linkage test
+  - no-implementation guardrail test
+  - LLM non-authority phrase test
+  - registry tracking test
+  test_status: designed
+  review_status: not_reviewed
+  promotion_requirements:
+  - future owner PR defines combat/hazard/damage/recovery scope before any implementation
+  - RT-001, RT-002, RT-009, and RT-011 boundaries remain active
+  - reviewer approval before any runtime, schema, formula, damage table, validator, generator, persistence, context-packet, live-play, training, or canon claim
+  scale_gate_relevance: medium
+  broad_conversion_relevance: high
+  canon_relevance: indirect
+  runtime_relevance: critical
+  live_play_relevance: critical
+  notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no damage table implementation, no validator implementation, no generator implementation, no persistence writer implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.

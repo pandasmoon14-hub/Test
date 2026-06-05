@@ -237,3 +237,34 @@ Step 11 applies Step 10C findings to the repo:
 - No canon promotion.
 - No live-play/training authorization.
 - No donor-content audit.
+
+## 2026-06-05 decision log - PR-B RT-002 and RT-003 remediation owner scaffolds
+
+- Decision ID: REMEDIATION-PR-B-OWNER-SCAFFOLDS-001
+- Decision date: 2026-06-05
+- Decision type: remediation owner-scaffold planning
+
+### Summary
+- Added `docs/doctrine/control/RT002_resource_consequence_math_owner_scaffold.md` for RT-002 resource, backlash, corruption, strain, and consequence math owner-boundary planning.
+- Added `docs/doctrine/control/RT003_combat_hazard_damage_recovery_owner_scaffold.md` for RT-003 combat, hazard exposure, damage, injury, and recovery owner-boundary planning.
+- PR-B follows `REMEDIATION-PRIORITY-LEDGER-001` by creating owner scaffolds only and not implementing remediation.
+
+### Governance effect
+- Establishes planning/control owner boundaries for RT-002 and RT-003 so later remediation can proceed through separate scoped PRs.
+- Reaffirms that owner scaffolds and model assertions are not formulas, damage tables, schemas, command IR, validators, runtime gates, generators, persistence writers, context-packet compilers, live-play authorization, training authorization, or canon promotion.
+
+### Guardrails reaffirmed
+- Owner scaffold only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No math implementation.
+- No damage table implementation.
+- No validator implementation.
+- No generator implementation.
+- No persistence writer implementation.
+- No context-packet compiler implementation.
+- No canon promotion.
+- No live-play/training authorization.
+- No donor-content audit.
