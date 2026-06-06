@@ -298,3 +298,39 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime implementat
 Decision: Add PR-G as owner-scaffold planning only for `REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001`, covering RT-010 inventory, item, gear, vehicle, platform, installable, and persistent asset state boundaries. PR-G follows `REMEDIATION-PRIORITY-LEDGER-001` by creating the owner scaffold after command, cost, provenance, and consequence scaffolds (PR-A through PR-F) exist.
 
 Guardrails: This decision authorizes no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no inventory implementation, no item instance creation, no durable asset record creation, no item effect implementation, no vehicle/platform runtime implementation, no cargo or crew system implementation, no repair/salvage/crafting implementation, no ownership/custody mutation, no charge/ammo/fuel/durability/cooldown spend, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+
+## 2026-06-06 decision log - Scaffold Completion Review and Stage 2 Plan
+
+- Decision ID: SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: scaffold completion review and Stage 2 planning
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_boundary_remediation_scaffold_completion_review_stage2_plan.md` as scaffold completion review and Stage 2 planning ledger.
+- Verified all twelve RT-001 through RT-012 owner scaffolds are present and complete.
+- Identified cross-track dependencies, overlap/conflict seams, and remaining gaps.
+- Planned Stage 2 owner-specification sequence (STAGE2-A through STAGE2-L).
+- Recommended STAGE2-A (RT-001 command lifecycle owner specification) as next PR.
+
+### Governance effect
+- Confirms scaffold phase complete; transitions to owner-specification phase.
+- Keeps Stage 2 planning separate from implementation; each stage requires separate PR.
+- Preserves all non-implementation guardrails from AUDIT-001, AUDIT-WAVE1-001, AUDIT-WAVE2-001, and REMEDIATION-PRIORITY-LEDGER-001.
+
+### Guardrails reaffirmed
+- Scaffold completion review and Stage 2 planning only.
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No math implementation.
+- No validator implementation.
+- No generator implementation.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No owner specification implementation.
+- No live-play/training authorization.
+- No donor-content audit.
+- No canon promotion.
+- Future owner specifications require separate PRs.
