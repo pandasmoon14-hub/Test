@@ -555,6 +555,49 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No canon promotion.
 
+## 2026-06-06 decision log - RUNTIME-SEQ-PR-A minimum backend kernel + runtime quality contract plan
+
+- Decision ID: RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: minimum-backend-kernel-runtime-quality-contract-plan
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_seq_pr_a_minimum_backend_kernel_runtime_quality_contract_plan.md` as a planning-only bridge from runtime/schema implementation sequencing review toward future minimum backend kernel planning.
+- This is RUNTIME-SEQ-PR-A planning only. It defines the minimum backend kernel spine (16 future artifact families) and the runtime-quality contract layer (15 future artifact families).
+- Incorporates the backend-first/model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Includes local 8B reliability requirements, transaction preview and correction policy, world invariant and canonical silence requirements, observability and replay/debug requirements, minimum backend kernel target boundary, implementation wave alignment (Waves 0–6), and blocked-until ledger.
+- Recommends staged follow-up PRs: RUNTIME-SEQ-PR-B through RUNTIME-SEQ-PR-E, then a separately authorized implementation-readiness review.
+
+### Governance effect
+- Establishes the planning framework for the minimum backend kernel spine and runtime-quality contracts without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant and all non-implementation guardrails from prior planning artifacts.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No state store.
+- No state delta model.
+- No event ledger.
+- No deterministic RNG service.
+- No table/oracle service.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No redaction algorithm.
+- No hidden-state database.
+- No domain runtime service.
+- No campaign memory system.
+- No live-play prompt implementation.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - Runtime/Schema Implementation Sequencing Review
 
 - Decision ID: RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001

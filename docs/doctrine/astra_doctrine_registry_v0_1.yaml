@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.60
+  action: runtime_seq_pr_a_minimum_backend_kernel_runtime_quality_contract_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001 tracking. This record is RUNTIME-SEQ-PR-A planning only; defines minimum backend kernel spine (16 future artifact families); defines runtime-quality contract layer (15 future artifact families); incorporates backend-first/model-interchangeability invariant; confirms LLM is not the game engine; includes local 8B reliability requirements; includes transaction preview and correction policy; includes world invariant and canonical silence requirements; includes observability and replay/debug requirements; includes minimum backend kernel target boundary; includes implementation wave alignment (Waves 0-6); includes blocked-until ledger; recommends staged follow-up PRs (RUNTIME-SEQ-PR-B through RUNTIME-SEQ-PR-E); no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no state store; no state delta model; no event ledger; no deterministic RNG service; no table/oracle service; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no redaction algorithm; no hidden-state database; no domain runtime service; no campaign memory system; no live-play prompt implementation; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-06'
   version: 0.1.59
   action: runtime_schema_implementation_sequencing_review
   actor: Astra Doctrine Council / synthesis assistant
