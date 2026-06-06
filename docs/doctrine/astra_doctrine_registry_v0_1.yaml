@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-06'
+  version: 0.1.45
+  action: remediation_scaffold_completion_review_stage2_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001 tracking for the completion review and Stage 2 planning ledger. This record verifies the RT-001 through RT-012 owner-scaffold pass, identifies gaps, overlaps, readiness classifications, and Stage 2 PR sequence, and recommends exactly one next PR; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no live-play prompt implementation, no training authorization, no donor-content audit, and no canon promotion was performed.
 - date: '2026-06-05'
   version: 0.1.44
   action: remediation_pr_g_inventory_item_vehicle_asset_owner_scaffold
@@ -6099,3 +6104,98 @@ file_records:
   runtime_relevance: critical
   live_play_relevance: critical
   notes: Owner scaffold only; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no inventory implementation, no item instance creation, no durable asset record creation, no item effect implementation, no vehicle/platform runtime implementation, no cargo or crew system implementation, no repair/salvage/crafting implementation, no ownership/custody mutation, no charge/ammo/fuel/durability/cooldown spend, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no canon promotion, no live-play/training authorization, and no donor-content audit.
+- file_id: REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  filename: runtime_boundary_generator_ownership_scaffold_completion_review_and_stage2_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_boundary_generator_ownership_scaffold_completion_review_and_stage2_plan.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / Runtime Boundary Reviewers
+  purpose: Track the completion review and Stage 2 planning ledger that verifies the RT-001 through RT-012 owner-scaffold pass, identifies gaps, overlaps, readiness classifications, and Stage 2 PR sequence, and recommends exactly one next PR without implementing remediation.
+  owns:
+  - completion review and Stage 2 planning ledger only
+  - RT-001 through RT-012 owner-scaffold pass verification
+  - gaps, overlaps, naming drift, readiness classifications, and Stage 2 PR sequence planning
+  - exactly one next PR recommendation
+  - non-implementation guardrail tracking
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - live-play prompt implementation
+  - training authorization
+  - donor-content audit
+  - canon promotion
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  blocked_by:
+  - later owner specification PRs not yet drafted
+  - executable validators not yet implemented
+  - runtime/schema/command IR/generator/persistence/context-packet systems not authorized
+  unlocks:
+  - future RT-001 owner specification planning
+  - future RT-011 owner specification planning
+  - future Stage 2 remediation sequencing reviews
+  downstream_consumers:
+  - future RT-001 owner specification PR
+  - future RT-011 validation/readiness owner specification PR
+  - future RT-002 through RT-012 owner specification planning PRs
+  donor_pressure_absorbed:
+  - pressure to treat owner scaffolds as implementation-ready runtime authority
+  - pressure to advance multiple downstream tracks before command lifecycle boundaries are specified
+  - pressure to promote D-series/native-design material before canon/sourcebook review resumes
+  hard_refusals:
+  - completion review and Stage 2 planning ledger cannot rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement live-play prompts, authorize training, audit donor content, or promote canon
+  - exactly one next PR recommendation does not authorize implementation or broaden remediation scope
+  escalation_triggers:
+  - ledger is cited as runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet, live-play, training, donor-audit, or canon authority
+  - Stage 2 PR sequence is used to skip owner-specification gates
+  - more than one immediate next PR is treated as authorized by this artifact
+  required_tests:
+  - completion review file exists test
+  - audit and remediation input linkage test
+  - RT-001 through RT-012 scaffold file reference test
+  - completion matrix track coverage test
+  - completion_status coverage test
+  - Stage 2 readiness classification test
+  - Stage 2 ledger presence test
+  - exactly one next PR recommendation test
+  - registry tracking test
+  - decision-log tracking test
+  - non-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - separate reviewer approval required before any Stage 2 owner-spec PR
+  - separate authorization required before any implementation work
+  - registry and decision-log tracking must remain aligned
+  scale_gate_relevance: critical
+  broad_conversion_relevance: indirect
+  canon_relevance: indirect
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Completion review and Stage 2 planning ledger only; verifies RT-001 through RT-012 owner-scaffold pass; identifies gaps, overlaps, readiness classifications, and Stage 2 PR sequence; recommends exactly one next PR; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no live-play prompt implementation, no training authorization, no donor-content audit, and no canon promotion.
