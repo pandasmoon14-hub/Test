@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.48
+  action: stage2_rt002_resource_consequence_math_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001 tracking for STAGE2-PR-C. This record is Stage 2 owner specification only; it upgrades the RT-002 scaffold into owner-spec planning for resource/consequence math governance, cost/backlash/corruption/strain/reward/loss boundaries, failed-command cost outcome requirements, downstream handoffs, future math artifact inventory, validation requirements, and LLM non-authority rules; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no RNG/dice/table implementation, no event ledger implementation, no database schema, no live-play prompt implementation, no training authorization, no donor-content audit, no sourcebook inclusion authorization, no pilot conversion authorization, and no canon promotion was performed.
+- date: '2026-06-06'
   version: 0.1.47
   action: stage2_rt011_validation_readiness_owner_specification
   actor: Astra Doctrine Council / synthesis assistant
@@ -6444,3 +6449,143 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Stage 2 owner specification only; upgrades RT-011 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+
+- file_id: REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  filename: RT002_resource_consequence_math_owner_specification.md
+  proposed_path: docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future resource and consequence math control owner
+  purpose: Track the STAGE2-PR-C owner specification for RT-002 resource/consequence math governance, cost/backlash/corruption/strain/reward/loss boundaries, failed-command cost outcome requirements, downstream handoffs, future math artifact inventory, validation requirements, and LLM non-authority rules without implementing remediation.
+  owns:
+  - Stage 2 owner specification only
+  - RT-002 resource/consequence math owner-spec planning
+  - upgrade of RT-002 scaffold into owner-spec planning
+  - resource/cost/consequence math ownership boundaries
+  - cost-family classification requirements
+  - cost declaration versus cost commitment handoff from RT-001
+  - failed-command cost outcome requirement planning
+  - overcommitment, refund, backlash, corruption, strain, reward/loss, recovery, repair, and consequence pressure requirement planning
+  - downstream handoff planning to RT-001 through RT-012
+  - future validation/readiness requirement planning with RT-011
+  - LLM non-authority and non-implementation guardrail tracking
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - RNG/dice/table implementation
+  - event ledger implementation
+  - database schema
+  - resource formula
+  - resource pool list
+  - cost table
+  - consequence table
+  - damage table
+  - recovery formula
+  - reward economy
+  - item price list
+  - mission reward table
+  - live-play prompt implementation
+  - training authorization
+  - donor-content audit
+  - sourcebook inclusion authorization
+  - pilot conversion authorization
+  - canon promotion
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - A10
+  - A13
+  - B02
+  - C03
+  - C07
+  - C09
+  - C12
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - final resource/cost/consequence math not authorized
+  - executable validators not authorized
+  - runtime state/event/persistence implementation not authorized
+  - final resource pools and cost tables not authorized
+  - downstream owner specifications not yet drafted
+  unlocks:
+  - future RT-005 owner specification planning
+  - future RT-003 owner specification planning
+  - future resource/consequence math artifact requirement planning
+  - future cost/consequence validator requirement planning after separate authorization
+  downstream_consumers:
+  - future RT-005 context-packet/hidden-information owner specification
+  - future RT-003 combat/hazard/damage/recovery owner specification
+  - future RT-004 ability/effect/skill binding owner specification
+  - future RT-006 mission/reward/clue owner specification
+  - future RT-007 social/faction/knowledge-state owner specification
+  - future RT-009 RNG/table/oracle owner specification
+  - future RT-010 inventory/item/vehicle/asset owner specification
+  - future RT-011 validation/readiness validator requirements
+  - future backend runtime state/event/persistence owners
+  donor_pressure_absorbed:
+  - pressure to treat source resource names, costs, formulas, refunds, backlash, corruption, strain, recovery, reward, damage, item value, or mission reward claims as final Astra mechanics
+  - pressure to let narration decide costs, refunds, consequences, rewards, losses, resource state, recovery, repair, or economy values
+  - pressure to implement runtime math, schemas, validators, persistence, RNG, event ledgers, context packets, live-play prompts, training data, sourcebook content, or canon promotion before owner specification review
+  hard_refusals:
+  - Stage 2 owner specification cannot rewrite doctrine, implement math, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon
+  - LLM narration cannot be treated as resource spending, refunding, failed-command cost outcome, overcommitment, backlash severity, corruption, strain, consequence event, reward/loss, recovery, repair, price, item value, mission reward, salvage output, memory, persistence, backend validation, canon, sourcebook, training, or live-play authority
+  escalation_triggers:
+  - specification is cited as executable runtime, math, schema, command IR, validator, generator, persistence, retrieval, context-packet, RNG, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon authority
+  - LLM narration is treated as cost/resource/consequence/reward/loss/recovery/repair state authority
+  - refunds, overcommitment effects, backlash severity, corruption, strain, reward economy, damage tables, or recovery formulas are assumed without separate authorization
+  test_expectations:
+  - owner specification file presence test
+  - Stage 2 PR-C and RT-002 linkage test
+  - Stage 2 plan, remediation ledger, RT002 scaffold, RT001 owner specification, RT011 owner specification, and audit-source linkage test
+  - source availability disclosure test
+  - resource/consequence family contract planning-placeholder test
+  - future math artifact inventory future_required_not_implemented test
+  - cost outcome contract non-implementation test
+  - backlash/corruption/strain/consequence contract non-implementation test
+  - validation/readiness handoff test
+  - LLM non-authority prohibition test
+  - RT-001 through RT-012 handoff coverage test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future owner-spec successor or implementation PR
+  - separate authorization before runtime, math, schema, command IR, validator, generator, persistence, retrieval, context-packet, RNG, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon claim
+  - RT-001 through RT-012 owner boundaries remain active
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 owner specification only; upgrades RT-002 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no math implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no resource formula; no resource pool list; no cost table; no damage table; no reward economy; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
