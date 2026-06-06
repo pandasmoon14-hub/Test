@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.46
+  action: stage2_rt001_command_lifecycle_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001 tracking for STAGE2-PR-A. This record is Stage 2 owner specification only; it upgrades the RT-001 scaffold into owner-spec planning; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no RNG/dice/table implementation, no event ledger implementation, no database schema, no live-play prompt implementation, no training authorization, no donor-content audit, and no canon promotion was performed.
+- date: '2026-06-06'
   version: 0.1.45
   action: remediation_scaffold_completion_review_stage2_plan
   actor: Astra Doctrine Council / synthesis assistant
@@ -6199,3 +6204,114 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Completion review and Stage 2 planning ledger only; verifies RT-001 through RT-012 owner-scaffold pass; identifies gaps, overlaps, readiness classifications, and Stage 2 PR sequence; recommends exactly one next PR; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no live-play prompt implementation, no training authorization, no donor-content audit, and no canon promotion.
+
+- file_id: REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  filename: RT001_command_lifecycle_action_legality_owner_specification.md
+  proposed_path: docs/doctrine/control/RT001_command_lifecycle_action_legality_owner_specification.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future command lifecycle control owner
+  purpose: Track the STAGE2-PR-A owner specification for RT-001 command lifecycle, action legality, cost commitment timing, command/event boundaries, validation handoffs, context/narration handoffs, and downstream dependency obligations without implementing remediation.
+  owns:
+  - Stage 2 owner specification only
+  - RT-001 command lifecycle/action legality/cost commitment owner-spec planning
+  - upgrade of RT-001 scaffold into owner-spec planning
+  - player intent, raw input, LLM proposal, clarification, candidate command, backend legality, cost timing, resolution trigger, validation handoff, event handoff, context/narration handoff, rejection/quarantine, and auditability boundary planning
+  - non-implementation guardrail tracking
+  must_not_own:
+  - doctrine rewrite
+  - runtime implementation
+  - schema implementation
+  - command IR implementation
+  - validator implementation
+  - generator implementation
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - RNG/dice/table implementation
+  - event ledger implementation
+  - database schema
+  - live-play prompt implementation
+  - training authorization
+  - donor-content audit
+  - canon promotion
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - B02
+  - A10
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - final command IR not authorized
+  - executable validators not authorized
+  - runtime state/event/persistence implementation not authorized
+  - cost/resource math owner specification not yet drafted
+  - downstream owner specifications not yet drafted
+  unlocks:
+  - future RT-011 owner specification planning
+  - future RT-002 owner specification planning
+  - future command lifecycle validator requirement planning
+  - future command/event boundary implementation planning after separate authorization
+  downstream_consumers:
+  - future RT-011 validation/readiness owner specification
+  - future RT-002 resource/consequence math owner specification
+  - future command IR owner
+  - future runtime state/event owner
+  - future context-packet and narration handoff owner
+  donor_pressure_absorbed:
+  - pressure to treat action declarations as state mutation
+  - pressure to let narration decide legality, costs, refunds, RNG, or event commitment
+  - pressure to implement command IR, schemas, validators, event ledgers, persistence, context-packet compilers, or live-play prompts before owner specification review
+  hard_refusals:
+  - Stage 2 owner specification cannot rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement live-play prompts, authorize training, audit donor content, or promote canon
+  - owner-spec planning cannot be treated as backend event authority, state mutation authority, cost math authority, hidden-information redaction authority, RNG authority, or canon/sourcebook authority
+  escalation_triggers:
+  - specification is cited as executable runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet, RNG, event ledger, database, live-play, training, donor-audit, or canon authority
+  - LLM narration is treated as legality, cost, random outcome, state delta, event, memory, or persistence authority
+  - rejected or quarantined commands are treated as mutating state
+  required_tests:
+  - owner specification file presence test
+  - Stage 2 PR-A and RT-001 linkage test
+  - Stage 2 plan, remediation ledger, RT001 scaffold, and audit-source linkage test
+  - scope and must-not-own boundary test
+  - conceptual lifecycle placeholder and non-implementation phrase test
+  - cost commitment and action legality contract test
+  - command/event boundary test
+  - future IR inventory future_required_not_implemented test
+  - downstream handoff coverage test
+  - LLM non-authority prohibition test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future owner-spec successor or implementation PR
+  - separate authorization before runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet, RNG, event ledger, database, live-play, training, donor-audit, or canon claim
+  - RT-002 through RT-012 downstream owner boundaries remain active
+  scale_gate_relevance: critical
+  broad_conversion_relevance: indirect
+  canon_relevance: indirect
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 owner specification only; upgrades RT-001 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no canon promotion.
