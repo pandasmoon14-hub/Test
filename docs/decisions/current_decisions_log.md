@@ -555,6 +555,54 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No canon promotion.
 
+## 2026-06-06 decision log - RUNTIME-SEQ-PR-D story-capable structure and playable-content plan
+
+- Decision ID: RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: story-capable-structure-playable-content-plan
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_seq_pr_d_story_capable_structure_playable_content_plan.md` as a planning-only story-capable structure and playable-content plan.
+- This is RUNTIME-SEQ-PR-D planning only. It defines the story-capable structure principle, playable-content boundary (PlayableSceneStructure, NarrativeSubstrate, SceneObjectContract, StoryletContract, ScenarioNodeContract, QuestScenarioDependencyDAG, PlayabilityProofContract, PlayerAgencyAffordanceSet, ConsequenceRouteContract, FailurePartialSuccessContract, EscalationHookContract, ClueRoutePlayableContract, RewardRoutePlayableContract, SocialContactPlayableContract, HazardPressurePlayableContract, SourceLocalCapsulePlayableBoundary), playability proof contract, narrative substrate contract, storylet contract, quest/scenario dependency DAG contract, NPC goal stack and actor-intent planning contract (NPCGoalStack, ActorIntentContract), DialogueActIR planning contract, content ecology contract (ContentEcologyContract), source-local capsule boundary expansion, generator-to-validate-to-commit pipeline, minimum viable scene object contract (MinimumViableSceneObject), runtime/narration handoff, runtime/event handoff, and domain handoff crosswalk (RT-001 through RT-012).
+- Primary owner tracks: RT-006 (mission/scenario/clue/reward routing), RT-007 (social/faction/actor knowledge), RT-008 (generated-content provenance/recurrence), RT-011 (validation/readiness tooling), and RT-012 (D-series/native-design promotion boundary).
+- Recommends RUNTIME-SEQ-PR-E (model evaluation, structured-output, and adversarial-command plan) as the next planning step.
+
+### Governance effect
+- Establishes the planning framework for story-capable structure and playable-content contracts without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Defines that playable content must be backend-owned structure before it is narrated; the LLM may propose or render but must not create durable story truth, decide quest state, mutate NPC goals, create clues, assign rewards, promote source-local content, or commit scenario consequences.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No storylet system.
+- No narrative substrate schema.
+- No playable-content validator.
+- No quest engine.
+- No scenario engine.
+- No dependency DAG engine.
+- No NPC AI.
+- No behavior tree.
+- No dialogue system.
+- No DialogueActIR implementation.
+- No content ecology engine.
+- No generator implementation.
+- No repair loop.
+- No evaluator/judge implementation.
+- No command IR implementation.
+- No validator implementation.
+- No state store implementation.
+- No event ledger implementation.
+- No context-packet compiler implementation.
+- No prompt templates.
+- No live-play adapter.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - RUNTIME-SEQ-PR-C state/event/invariant/transaction plan
 
 - Decision ID: RUNTIME-SEQ-PR-C-STATE-EVENT-INVARIANT-TRANSACTION-PLAN-001
