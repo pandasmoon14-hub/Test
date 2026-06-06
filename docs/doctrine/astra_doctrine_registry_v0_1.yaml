@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.55
+  action: stage2_rt010_rt012_deferred_convergence_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT010-RT012-DEFERRED-CONVERGENCE-PLAN-001 tracking for STAGE2-PR-H. This record is Stage 2 deferred convergence plan only; covers RT-010 and RT-012; does not create RT-010 owner specification; does not create RT-012 owner specification; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no inventory system; no item system; no vehicle system; no asset system; no durability system; no repair system; no salvage system; no crafting system; no requisition system; no cargo/custody system; no ownership system; no persistent asset state; no persistent ID allocator; no D-series promotion system; no native-design promotion system; no canon promotion procedure; no sourcebook inclusion procedure; no training policy; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; and no canon promotion was performed.
+- date: '2026-06-06'
   version: 0.1.54
   action: stage2_rt007_social_faction_actor_knowledge_owner_specification
   actor: Astra Doctrine Council / synthesis assistant
@@ -7620,3 +7625,143 @@ file_records:
   live_play_relevance: blocking
   notes: Stage 2 owner specification only; split from the original STAGE2-PR-G downstream-domain bundle for review safety; upgrades RT-003 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no combat rules; no hazard rules; no damage formulas; no injury tables; no condition system; no healing/recovery formulas; no mitigation math; no exposure clocks; no active-threat runtime; no initiative/action economy; no encounter runtime; no vehicle/platform damage system; no item durability system; no armor/resistance/soak rules; no death/dying rules; no monster/NPC combat schema; no hazard schema; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
 
+
+- file_id: REMEDIATION-STAGE2-RT010-RT012-DEFERRED-CONVERGENCE-PLAN-001
+  filename: runtime_boundary_generator_ownership_stage2_rt010_rt012_deferred_convergence_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_boundary_generator_ownership_stage2_rt010_rt012_deferred_convergence_plan.md
+  layer: 0_control
+  phase: remediation-stage2
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / Runtime Boundary Reviewers
+  purpose: Stage 2 deferred convergence plan only for RT-010 and RT-012; records why the inventory/item/vehicle/asset track and D-series/native-design promotion-boundary track remain deferred after upstream owner specifications now exist.
+  owns:
+  - Stage 2 deferred convergence plan only
+  - covers RT-010 and RT-012
+  - deferral rationale for RT-010 inventory, item, vehicle, cargo, custody, durability, repair, salvage, requisition, crafting, and persistent asset planning
+  - deferral rationale for RT-012 D-series/native-design promotion-boundary planning
+  - upstream dependency mapping to RT-001 through RT-009 and RT-011 owner specifications where present
+  - recommendation that future RT-010 and RT-012 owner specifications be split into separate future PRs or next-stage equivalents
+  - future artifact inventory as semantic requirements only with implementation status future_required_not_implemented
+  - LLM non-authority rules and non-implementation guardrails
+  - Stage 2 completion review checklist for RT-001 through RT-012 coverage
+  must_not_own:
+  - does not create RT-010 owner specification
+  - does not create RT-012 owner specification
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no inventory system
+  - no item system
+  - no vehicle system
+  - no asset system
+  - no durability system
+  - no repair system
+  - no salvage system
+  - no crafting system
+  - no requisition system
+  - no cargo/custody system
+  - no ownership system
+  - no persistent asset state
+  - no persistent ID allocator
+  - no D-series promotion system
+  - no native-design promotion system
+  - no canon promotion procedure
+  - no sourcebook inclusion procedure
+  - no training policy
+  - no RNG/dice/table implementation
+  - no event ledger implementation
+  - no database schema
+  - no persistence writer implementation
+  - no retrieval index implementation
+  - no context-packet compiler implementation
+  - no live-play prompt implementation
+  - no training authorization
+  - no donor-content audit
+  - no sourcebook inclusion authorization
+  - no pilot conversion authorization
+  - no canon promotion
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - C02
+  - C04
+  - C08
+  - C11
+  - C12
+  - C13
+  - B05
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - separate reviewer authorization required before future RT-010 owner specification
+  - separate reviewer authorization required before future RT-012 owner specification
+  - implementation_blocked
+  - runtime_blocked
+  - schema_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - live_play_blocked
+  - training_blocked
+  unlocks:
+  - future STAGE2-PR-H1 or next-stage equivalent RT-010 inventory/item/vehicle/asset owner specification sequencing decision
+  - future STAGE2-PR-H2 or next-stage equivalent RT-012 D-series/native-design promotion-boundary owner specification sequencing decision
+  - future Stage 2 completion review / remediation closure ledger after separate RT-010 and RT-012 sequencing review
+  downstream_consumers:
+  - future RT-010 inventory/item/vehicle/asset owner specification
+  - future RT-012 D-series/native-design promotion-boundary owner specification
+  - future Stage 2 completion review / remediation closure ledger
+  donor_pressure_absorbed:
+  - pressure to treat inventory, item, gear, relic, implant, installable, vehicle, ship, platform, companion, summon, cargo, custody, ammo, fuel, charge, durability, repair, salvage, crafting, requisition, ownership, or persistent asset state as implemented by planning prose
+  - pressure to treat D-series/native-design source packs, examples, converted content, generated content, summaries, or live-play narration as runtime authority, sourcebook inclusion, pilot conversion, training authority, donor-audit completion, or canon promotion
+  hard_refusals:
+  - This Stage 2 deferred convergence plan cannot create RT-010 owner specification, create RT-012 owner specification, rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement inventory systems, implement item systems, implement vehicle systems, implement asset systems, implement durability systems, implement repair systems, implement salvage systems, implement crafting systems, implement requisition systems, implement cargo/custody systems, implement ownership systems, create persistent asset state, create persistent ID allocators, create D-series promotion systems, create native-design promotion systems, create canon promotion procedures, create sourcebook inclusion procedures, create training policies, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon
+  - LLM output cannot create inventory state, create item/vehicle/asset state, assign ownership/custody/cargo/ammo/charges/fuel/durability/repair state, decide item prices/salvage values/requisition values/crafting results/reward values, apply item or vehicle damage, grant relics/implants/vehicles/companions/assets as backend truth, reveal hidden item properties or hidden cargo, create generated assets as durable truth, promote D-series/native-design content to runtime authority, canon, or sourcebook inclusion, treat source packs/examples/generated content/live-play narration/summaries as authority or promotion evidence, bypass reviewer/backend validation, or authorize training/live play/sourcebook inclusion/pilot conversion/donor audit/canon promotion
+  escalation_triggers:
+  - Any attempt to cite this plan as RT-010 owner specification or RT-012 owner specification
+  - Any attempt to cite this plan as runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon authority
+  - Any attempt to combine RT-010 persistent asset ownership and RT-012 promotion-boundary ownership into one future owner specification without explicit reviewer approval
+  required_tests:
+  - convergence plan file presence test
+  - STAGE2-PR-H, RT-010, and RT-012 linkage test
+  - audit-source, remediation-ledger, Stage 2 plan, RT010 scaffold, RT012 scaffold, and RT001 through RT009 plus RT011 owner-specification linkage test
+  - not-full-RT010-owner-specification and not-full-RT012-owner-specification guardrail test
+  - RT-010 deferral rationale test
+  - RT-012 deferral rationale test
+  - future RT-010 and RT-012 artifact inventory future_required_not_implemented test
+  - split recommendation test
+  - deferred convergence matrix test
+  - LLM non-authority prohibition test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before future RT-010 owner specification sequencing
+  - reviewer approval before future RT-012 owner specification sequencing
+  - separate authorization before runtime, schema, command IR, validator, generator, inventory, item, vehicle, asset, durability, repair, salvage, crafting, requisition, cargo/custody, ownership, persistent asset state, persistent ID allocator, D-series promotion, native-design promotion, canon promotion procedure, sourcebook inclusion procedure, training policy, RNG/dice/table, event ledger, database, persistence writer, retrieval index, context-packet compiler, live-play prompt, training, donor-audit, sourcebook inclusion, pilot-conversion, or canon claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 deferred convergence plan only; covers RT-010 and RT-012; does not create RT-010 owner specification; does not create RT-012 owner specification; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no inventory system; no item system; no vehicle system; no asset system; no durability system; no repair system; no salvage system; no crafting system; no requisition system; no cargo/custody system; no ownership system; no persistent asset state; no persistent ID allocator; no D-series promotion system; no native-design promotion system; no canon promotion procedure; no sourcebook inclusion procedure; no training policy; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
