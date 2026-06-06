@@ -555,6 +555,52 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No canon promotion.
 
+## 2026-06-06 decision log - RUNTIME-SEQ-PR-C state/event/invariant/transaction plan
+
+- Decision ID: RUNTIME-SEQ-PR-C-STATE-EVENT-INVARIANT-TRANSACTION-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: state-event-invariant-transaction-plan
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_seq_pr_c_state_event_invariant_transaction_plan.md` as a planning-only state/event/invariant/transaction plan.
+- This is RUNTIME-SEQ-PR-C planning only. It defines the state/event boundary (BackendStateStore, StateProjection, TransactionPreview, StateDeltaEnvelope, EventLedgerEntry, RuntimeTrace, NarrationDisplayOutput, SummaryArtifact, CorrectionEvent), transaction lifecycle contract (18 normal stages, 7 rejection/quarantine stages), transaction preview contract, StateDeltaEnvelope planning contract (15 field families), EventLedgerEntry planning contract (16 field families, 11 event-family categories), event-channel boundaries (9 channels), WorldInvariantRegistry planning contract (13 invariant categories), rollback-safe validation order (14 validation stages), CorrectionEventProtocol planning principles, replay/hash/audit requirements (11 requirement families), RuntimeTrace requirements (17 per-turn trace fields), LLM non-authority rules, and domain handoff crosswalk (RT-001 through RT-012).
+- Primary owner tracks: RT-001 (command lifecycle/event commitment boundary) and RT-011 (validation/readiness tooling).
+- Recommends RUNTIME-SEQ-PR-D (story-capable structure and playable-content plan) as the next planning step.
+
+### Governance effect
+- Establishes the planning framework for state/event/invariant/transaction contracts without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Defines that only backend-owned systems may create durable truth; narration, summaries, and model outputs are not committed state.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No state store implementation.
+- No state delta model implementation.
+- No event ledger implementation.
+- No transaction preview implementation.
+- No rollback implementation.
+- No invariant validator.
+- No correction event schema.
+- No replay/hash service.
+- No runtime trace implementation.
+- No persistence writer implementation.
+- No database schema.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No context-packet compiler implementation.
+- No redaction algorithm.
+- No RNG/table/oracle implementation.
+- No domain runtime service.
+- No live-play adapter.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - RUNTIME-SEQ-PR-B narration/context packet contract plan
 
 - Decision ID: RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001
