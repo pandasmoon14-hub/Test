@@ -6589,3 +6589,130 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Stage 2 owner specification only; upgrades RT-002 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no math implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no resource formula; no resource pool list; no cost table; no damage table; no reward economy; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+
+- file_id: REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  filename: RT005_context_packet_hidden_information_owner_specification.md
+  proposed_path: docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md
+  layer: 0_control
+  phase: remediation-stage2
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future context-packet and hidden-information control owner
+  purpose: Stage 2 owner specification only; upgrades RT-005 scaffold into owner-spec planning for context-packet projection, hidden-information partitions, redaction boundaries, narrator allowed/forbidden fact sets, claim/rumor/dialogue-summary boundaries, hidden-result routing, validation handoffs, and downstream ownership seams.
+  owns:
+  - Stage 2 owner-specification planning for RT-005 context-packet and hidden-information ownership
+  - visible, hidden, redacted, derived, narrator-facing, player-known, character-known, NPC/faction-known, rumor, false-claim, dialogue-summary, reviewer-only, and hidden-result partition requirements as future semantic requirements
+  - context-packet handoff requirements and narrator fact-set constraints as non-executable planning
+  - downstream handoff planning to RT-001 through RT-012
+  - LLM non-authority guardrails for hidden information, redaction, claims, summaries, memory, scene mutation, and canon/sourcebook/training/live-play use
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no persistence writer implementation
+  - no retrieval index implementation
+  - no context-packet compiler implementation
+  - no redaction algorithm implementation
+  - no narration validator implementation
+  - no hidden-state database
+  - no actor-knowledge database
+  - no memory system
+  - no RNG/dice/table implementation
+  - no event ledger implementation
+  - no database schema
+  - no live-play prompt implementation
+  - no training authorization
+  - no donor-content audit
+  - no canon promotion
+  - no sourcebook inclusion authorization
+  - no pilot conversion authorization
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - B01
+  - B09
+  - C01
+  - C05
+  - C06
+  - C07
+  - C09
+  - C10
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - final context-packet schemas not authorized
+  - context-packet compiler implementation not authorized
+  - hidden-state and actor-knowledge database schemas not authorized
+  - executable validators and narration validators not authorized
+  - retrieval indexes, memory systems, runtime state/event/persistence implementation, redaction algorithms, and live-play prompts not authorized
+  unlocks:
+  - future RT-008 generated-content provenance/recurrence owner specification planning
+  - future RT-009 runtime RNG/table/oracle owner specification planning
+  - future RT-006 mission/reward/clue routing owner specification planning
+  - future RT-007 social/faction/knowledge-state owner specification planning
+  - future context-packet, hidden-information, and redaction artifact requirement planning after separate authorization
+  downstream_consumers:
+  - future RT-006 mission/clue/hidden-truth owner specification
+  - future RT-007 social/faction/actor-knowledge owner specification
+  - future RT-008 generated-content provenance/recurrence owner specification
+  - future RT-009 RNG/table/oracle owner specification
+  - future RT-010 inventory/item/vehicle/asset owner specification
+  - future RT-011 validation/readiness validator requirements
+  - future backend context-packet, redaction, retrieval, memory, persistence, and narration-validator workstreams
+  donor_pressure_absorbed:
+  - pressure to treat hidden facts, active scene facts, participant visibility, NPC/faction beliefs, rumors, false claims, dialogue summaries, clues, hidden truths, table/oracle results, generated recurrence, item secrets, or D-series draft material as narrator-owned memory
+  - pressure to implement packet compilers, redaction algorithms, retrieval indexes, hidden-state databases, actor-knowledge databases, memory systems, validators, narration validators, persistence writers, live-play prompts, training data, donor-content audits, sourcebook content, or canon promotion before owner-spec review
+  hard_refusals:
+  - Stage 2 owner specification cannot rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement redaction algorithms, implement narration validators, create hidden-state databases, create actor-knowledge databases, create memory systems, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon
+  - LLM narration cannot decide hidden information, reveal hidden state, decide player/character/NPC/faction knowledge, treat NPC/faction beliefs as truth, reveal clues or hidden truths, select oracle/table outcomes, invent backend facts, treat narration as discovery, treat summaries as memory authority, treat dialogue as durable truth, mutate scene state, compile context packets, choose or bypass redaction, infer hidden information, override backend validators, or authorize canon/sourcebook/training/live-play use
+  escalation_triggers:
+  - specification is cited as executable runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet compiler, redaction algorithm, narration validator, hidden-state database, actor-knowledge database, memory system, RNG, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon authority
+  - LLM output is treated as hidden truth, visibility partition authority, redaction authority, retrieval eligibility, memory authority, discovery, actor knowledge, clue reveal, oracle outcome, scene mutation, source provenance, validation, persistence, or durable claim authority
+  required_tests:
+  - owner specification file presence test
+  - Stage 2 PR-D and RT-005 linkage test
+  - Stage 2 plan, remediation ledger, RT005 scaffold, RT001 owner specification, RT002 owner specification, RT011 owner specification, and audit-source linkage test
+  - source availability disclosure test
+  - information partition contract planning-placeholder test
+  - context-packet handoff contract test
+  - hidden-information and claim contract test
+  - future context/visibility artifact inventory future_required_not_implemented test
+  - validation/readiness requirements test
+  - LLM non-authority prohibition test
+  - RT-001 through RT-012 handoff coverage test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future owner-spec successor or implementation PR
+  - separate authorization before runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet compiler, redaction algorithm, narration validator, hidden-state database, actor-knowledge database, memory system, RNG, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon claim
+  - RT-001 through RT-012 owner boundaries remain active
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 owner specification only; upgrades RT-005 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no redaction algorithm implementation; no narration validator implementation; no hidden-state database; no actor-knowledge database; no memory system; no RNG/dice/table implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no canon promotion; no sourcebook inclusion authorization; no pilot conversion authorization.
