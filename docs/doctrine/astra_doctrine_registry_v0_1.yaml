@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.50
+  action: stage2_rt009_rng_table_oracle_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001 tracking for STAGE2-PR-F. This record is Stage 2 owner specification only; it upgrades the RT-009 scaffold into owner-spec planning for backend-owned random authority, table/oracle invocation ownership, seed/replay reference requirements, result-domain validation, table-weight validation, hidden-result redaction handoffs, random-result commitment boundaries, oracle/table outcome narration projection, random dependency disclosure, and downstream owner obligations; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no RNG implementation, no dice roller, no table roller, no oracle engine, no table data, no table schema, no result-domain schema, no seed service, no replay verifier, no table-weight validator, no random-result event schema, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no redaction algorithm implementation, no event ledger implementation, no database schema, no live-play prompt implementation, no training authorization, no donor-content audit, no sourcebook inclusion authorization, no pilot conversion authorization, and no canon promotion was performed.
+- date: '2026-06-06'
   version: 0.1.49
   action: stage2_rt008_generated_content_provenance_recurrence_owner_specification
   actor: Astra Doctrine Council / synthesis assistant
@@ -6850,4 +6855,145 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Stage 2 owner specification only; upgrades RT-008 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no procedural generation engine; no generated content records; no durable generated records; no stable ID allocator; no recurrence engine; no content writer; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+
+- file_id: REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  filename: RT009_runtime_rng_table_oracle_owner_specification.md
+  proposed_path: docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md
+  layer: 0_control
+  phase: remediation-stage2
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future runtime RNG, table, oracle, seed, replay, and hidden-result boundary owner
+  purpose: Stage 2 owner specification only; upgrades RT-009 scaffold into owner-spec planning for backend-owned random authority, table/oracle invocation ownership, seed/replay reference requirements, result-domain validation, table-weight validation, hidden-result redaction handoffs, random-result commitment boundaries, oracle/table outcome narration projection, random dependency disclosure, and downstream owner obligations.
+  owns:
+  - Stage 2 owner-specification planning for RT-009 runtime RNG/table/oracle ownership
+  - backend-owned random authority boundary requirements
+  - RNG/table/oracle invocation ownership boundaries
+  - table/oracle record reference requirements
+  - seed reference and replay reference requirement boundaries
+  - result-domain validation requirements and table-weight validation requirements
+  - hidden-result redaction handoff requirements
+  - random-result commitment boundaries
+  - oracle/table outcome narration projection requirements
+  - random dependency disclosure requirements
+  - generated-content random dependency handoff to RT-008
+  - mission/reward/clue random dependency handoff to RT-006
+  - combat/hazard/damage random dependency handoff to RT-003
+  - resource/reward/loss random dependency handoff to RT-002
+  - inventory/loot/item/asset random dependency handoff to RT-010
+  - context-packet and hidden-result projection handoff to RT-005
+  - validation/readiness handoff to RT-011
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no RNG implementation
+  - no dice roller
+  - no table roller
+  - no oracle engine
+  - no table data
+  - no table schema
+  - no result-domain schema
+  - no seed service
+  - no replay verifier
+  - no table-weight validator
+  - no random-result event schema
+  - no persistence writer implementation
+  - no retrieval index implementation
+  - no context-packet compiler implementation
+  - no redaction algorithm implementation
+  - no event ledger implementation
+  - no database schema
+  - no live-play prompt implementation
+  - no training authorization
+  - no donor-content audit
+  - no sourcebook inclusion authorization
+  - no pilot conversion authorization
+  - no canon promotion
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - C02
+  - C03
+  - C07
+  - C08
+  - C09
+  - C10
+  - C12
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - RNG implementation not authorized
+  - dice roller, table roller, oracle engine, seed service, replay verifier, and table-weight validator not authorized
+  - final table/oracle schema, result-domain schema, random-result event schema, and database schema not authorized
+  - persistence writer, retrieval index, context-packet compiler, redaction algorithm, and event ledger not authorized
+  - sourcebook inclusion, pilot conversion, live play, training, donor-content audit, and canon promotion not authorized
+  unlocks:
+  - future downstream domain owner-spec bundle for RT-003, RT-004, RT-006, and RT-007, pending review
+  - future RT-010 inventory/item/vehicle/asset owner specification planning that consumes random authority guardrails
+  - future RNG/table/oracle lifecycle artifact requirement planning after separate authorization
+  downstream_consumers:
+  - future RT-003 combat/hazard/damage/recovery owner specification
+  - future RT-004 ability/effect/skill binding owner specification
+  - future RT-006 mission/reward/clue routing owner specification
+  - future RT-007 social/faction/actor-knowledge owner specification
+  - future RT-010 inventory/item/vehicle/asset owner specification
+  - future RT-012 D-series/native-design promotion-boundary owner specification
+  - future backend RNG, seed, replay, table, oracle, and audit workstreams
+  donor_pressure_absorbed:
+  - pressure to treat donor table formats, random narration, model sampling, oracle suggestions, or LLM wording as RNG authority
+  - pressure to implement RNG systems, dice rollers, table rollers, oracle engines, seed services, replay verifiers, table-weight validators, result-domain schemas, random-result event schemas, validators, persistence writers, live-play prompts, training data, sourcebook content, donor-content audits, or canon promotion before owner-spec review
+  hard_refusals:
+  - Stage 2 owner specification cannot rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement RNG systems, implement dice rollers, implement table rollers, implement oracle engines, create table data, create table schemas, create result-domain schemas, implement seed services, implement replay verifiers, implement table-weight validators, create random-result event schemas, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement redaction algorithms, implement event ledgers, create database schemas, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon
+  - LLM output cannot roll dice, choose random results, select table rows, select oracle outcomes, create hidden random results, reveal hidden random results, set table weights, validate result domains, invent table rows as truth, use model randomness as RNG authority, treat narrated chance as backend randomness, commit random-result events, create seed or replay references, treat donor table formats as Astra runtime law, generate loot/rewards/hazards/missions/items as committed outcomes, bypass RT-005 redaction, bypass RT-008 provenance for generated outcomes, bypass RT-011 validation, or authorize canon/sourcebook/training/live-play use
+  required_tests:
+  - owner specification file presence test
+  - Stage 2 PR-F and RT-009 linkage test
+  - Stage 2 plan, remediation ledger, RT009 scaffold, RT001 owner specification, RT005 owner specification, RT008 owner specification, RT011 owner specification, and audit-source linkage test
+  - source availability disclosure test
+  - RNG/table/oracle dependency contract planning-placeholder test
+  - random-result commitment contract test
+  - table/oracle record contract test
+  - future RNG/table/oracle artifact inventory future_required_not_implemented test
+  - validation/readiness requirements test
+  - LLM non-authority prohibition test
+  - RT-001 through RT-012 handoff coverage test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future owner-spec successor or implementation PR
+  - separate authorization before runtime, schema, command IR, validator, generator, RNG, dice roller, table roller, oracle engine, table data, table schema, result-domain schema, seed service, replay verifier, table-weight validator, random-result event schema, persistence writer, retrieval index, context-packet compiler, redaction algorithm, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon claim
+  - RT-001 through RT-012 owner boundaries remain active
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 owner specification only; upgrades RT-009 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no RNG implementation; no dice roller; no table roller; no oracle engine; no table data; no table schema; no result-domain schema; no seed service; no replay verifier; no table-weight validator; no random-result event schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no redaction algorithm implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
 
