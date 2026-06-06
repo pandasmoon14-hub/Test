@@ -364,3 +364,52 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 Decision: Add Stage 2 owner-specification planning for `REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001`, covering `docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md`. This artifact is STAGE2-PR-G4 owner-specification planning only, split from the original STAGE2-PR-G downstream-domain bundle for review safety. It upgrades the RT-007 scaffold into owner-spec planning for social/faction/actor-knowledge ownership boundaries, actor knowledge, belief, rumor, false claim, verified fact, witness state, institutional knowledge routing, faction standing, reputation, relationship, influence, contact, patron, rival, obligation, debt, favor, oath, threat, blackmail, social consequence, faction response, institutional response, and downstream owner obligations.
 
 Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no social system, no faction system, no reputation system, no relationship engine, no influence system, no contact system, no dialogue system, no actor-knowledge database, no faction-knowledge database, no rumor system, no belief-state engine, no deception rules, no witness system, no obligation/debt economy, no favor economy, no faction clocks, no institutional clocks, no patron/rival system, no social schema, no faction state schema, no actor-knowledge schema, no reputation schema, no relationship schema, no contact schema, no RNG/dice/table implementation, no event ledger implementation, no database schema, no persistence writer, no persistence writer implementation, no retrieval index, no retrieval index implementation, no context-packet compiler, no context-packet compiler implementation, no live-play prompt, no live-play prompt implementation, no training data, no training authorization, no donor-content audit, no sourcebook inclusion authorization, no pilot conversion authorization, and no canon promotion.
+
+## 2026-06-06 decision log - STAGE2-PR-H RT-010 / RT-012 deferred convergence plan
+
+- Decision ID: REMEDIATION-STAGE2-RT010-RT012-DEFERRED-CONVERGENCE-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: runtime-boundary/deferred-convergence-planning
+
+### Summary
+- Added STAGE2-PR-H deferred convergence planning for RT-010 and RT-012 at `docs/doctrine/reviews/runtime_boundary_generator_ownership_stage2_rt010_rt012_deferred_convergence_plan.md`.
+- This is a Stage 2 deferred convergence plan only; it covers RT-010 and RT-012 and recommends separate future owner-specification sequencing for RT-010 inventory/item/vehicle/asset planning and RT-012 D-series/native-design promotion-boundary planning.
+- This record does not create RT-010 owner specification and does not create RT-012 owner specification.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No inventory system.
+- No item system.
+- No vehicle system.
+- No asset system.
+- No durability system.
+- No repair system.
+- No salvage system.
+- No crafting system.
+- No requisition system.
+- No cargo/custody system.
+- No ownership system.
+- No persistent asset state.
+- No persistent ID allocator.
+- No D-series promotion system.
+- No native-design promotion system.
+- No canon promotion procedure.
+- No sourcebook inclusion procedure.
+- No training policy.
+- No RNG/dice/table implementation.
+- No event ledger implementation.
+- No database schema.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No live-play prompt implementation.
+- No training authorization.
+- No donor-content audit.
+- No sourcebook inclusion authorization.
+- No pilot conversion authorization.
+- No canon promotion.
