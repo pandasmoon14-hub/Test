@@ -7894,3 +7894,121 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Stage 2 completion review and closure ledger only; verifies RT-001 through RT-009 and RT-011 owner-spec planning; records RT-010 and RT-012 as deferred through the STAGE2-PR-H convergence plan; no doctrine rewrite; no RT-010 owner specification; no RT-012 owner specification; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no inventory system; no item system; no vehicle system; no asset system; no D-series promotion system; no native-design promotion system; no canon promotion procedure; no sourcebook inclusion procedure; no training policy; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+- file_id: REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+  filename: RT010_inventory_item_vehicle_asset_owner_specification.md
+  proposed_path: docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_specification.md
+  layer: 0_control
+  phase: remediation-stage2
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future inventory, item, vehicle, and asset ownership boundary owner
+  purpose: STAGE2-PR-H1 owner specification only; resolves RT-010 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW; upgrades RT-010 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no inventory system; no item system; no gear system; no relic/implant/installable system; no vehicle/ship/platform system; no companion/summon asset system; no cargo/custody system; no ownership system; no loadout/storage/transfer system; no ammo/fuel/charge system; no durability/degradation system; no repair/salvage system; no crafting/requisition system; no asset economy; no price/value/salvage/requisition tables; no persistent asset state; no persistent ID allocator; no asset event schema; no item schema; no vehicle schema; no cargo schema; no crafting schema; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+  owns:
+  - STAGE2-PR-H1 owner specification only
+  - RT-010 inventory/item/vehicle/asset owner-specification planning
+  - resolution of the RT-010 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW
+  - upgrade of RT-010 scaffold into owner-spec planning
+  - inventory, item, gear, relic, implant, installable, vehicle, ship, platform, companion, summon, cargo, map, route, custody, ownership, loadout, storage, transfer, ammo, fuel, charge, durability, repair, salvage, crafting, requisition, value, hidden-property, generated-provenance, random-dependency, and persistent asset-state handoff requirements
+  - downstream handoff planning for RT-001 through RT-009, RT-011, and RT-012
+  - LLM non-authority and non-implementation guardrails for asset state and asset changes
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no inventory system
+  - no item system
+  - no gear system
+  - no relic/implant/installable system
+  - no vehicle/ship/platform system
+  - no companion/summon asset system
+  - no cargo/custody system
+  - no ownership system
+  - no loadout/storage/transfer system
+  - no ammo/fuel/charge system
+  - no durability/degradation system
+  - no repair/salvage system
+  - no crafting/requisition system
+  - no asset economy
+  - no price/value/salvage/requisition tables
+  - no persistent asset state
+  - no persistent ID allocator
+  - no asset event schema
+  - no item schema
+  - no vehicle schema
+  - no cargo schema
+  - no crafting schema
+  - no RNG/dice/table implementation
+  - no event ledger implementation
+  - no database schema
+  - no persistence writer implementation
+  - no retrieval index implementation
+  - no context-packet compiler implementation
+  - no live-play prompt implementation
+  - no training authorization
+  - no donor-content audit
+  - no sourcebook inclusion authorization
+  - no pilot conversion authorization
+  - no canon promotion
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-STAGE2-RT010-RT012-DEFERRED-CONVERGENCE-PLAN-001
+  - REMEDIATION-STAGE2-COMPLETION-REVIEW-CLOSURE-LEDGER-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  blocked_by:
+  - implementation_blocked
+  - runtime_blocked
+  - schema_blocked
+  - validator_blocked
+  - generator_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - live_play_blocked
+  - training_blocked
+  unlocks:
+  - future RT-012 owner specification sequencing decision, pending review
+  - future separately authorized backend inventory/item/vehicle/asset implementation planning review
+  downstream_consumers:
+  - future RT-012 D-series/native-design promotion-boundary owner specification
+  - future backend runtime owner, if separately authorized
+  - future validation/readiness tooling owner, if separately authorized
+  donor_pressure_absorbed:
+  - pressure to treat inventory, item, gear, relic, implant, installable, vehicle, ship, platform, companion, summon, cargo, custody, ownership, ammo, fuel, charge, durability, repair, salvage, crafting, requisition, loadout, storage, transfer, hidden properties, rewards, losses, generated asset provenance, random loot/salvage dependencies, or persistent asset-state handoffs as implemented systems
+  hard_refusals:
+  - This STAGE2-PR-H1 owner specification cannot implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement inventory systems, implement item systems, implement gear systems, implement relic/implant/installable systems, implement vehicle/ship/platform systems, implement companion/summon asset systems, implement cargo/custody systems, implement ownership systems, implement loadout/storage/transfer systems, implement ammo/fuel/charge systems, implement durability/degradation systems, implement repair/salvage systems, implement crafting/requisition systems, define asset economy, define price/value/salvage/requisition tables, create persistent asset state, create persistent ID allocators, create asset event schemas, create item schemas, create vehicle schemas, create cargo schemas, create crafting schemas, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon.
+  - LLM output cannot create inventory state, create item/vehicle/asset state, assign ownership or custody, spend charges, damage items or vehicles, reveal hidden properties or hidden cargo, decide prices or values, select random loot/salvage/cargo outcomes, create durable generated assets, mutate persistent asset state, or commit asset events.
+  escalation_triggers:
+  - Any attempt to cite this owner specification as runtime, schema, command IR, validator, generator, inventory, item, vehicle, asset, economy, durability, repair, salvage, crafting, requisition, RNG, event-ledger, persistence, retrieval, context-packet, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon authority
+  - Any attempt to treat narration, dialogue, summaries, or generated asset proposals as backend asset-state truth
+  required_tests:
+  - RT-010 owner specification file presence test
+  - STAGE2-PR-H1, parent STAGE2-PR-H, tracking ID, audit source, Stage 2 plan, deferred convergence, closure ledger, RT010 scaffold, RT001 through RT009 and RT011 owner specification, and RT012 scaffold linkage test
+  - scope, must-not-own, authority model, state-contract, visibility/custody/hidden-property, damage/repair/salvage/crafting/requisition/value, asset-commitment, future artifact, validation/readiness, downstream handoff, LLM non-authority, non-implementation, and Stage 2 classification block tests
+  - registry and decision-log tracking test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future runtime, schema, command IR, validator, generator, inventory, item, vehicle, asset, economy, durability, repair, salvage, crafting, requisition, RNG, event-ledger, database, persistence writer, retrieval index, context-packet compiler, live-play, training, donor-audit, sourcebook inclusion, pilot conversion, or canon claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: STAGE2-PR-H1 owner specification only; resolves RT-010 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW; upgrades RT-010 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no inventory system; no item system; no gear system; no relic/implant/installable system; no vehicle/ship/platform system; no companion/summon asset system; no cargo/custody system; no ownership system; no loadout/storage/transfer system; no ammo/fuel/charge system; no durability/degradation system; no repair/salvage system; no crafting/requisition system; no asset economy; no price/value/salvage/requisition tables; no persistent asset state; no persistent ID allocator; no asset event schema; no item schema; no vehicle schema; no cargo schema; no crafting schema; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.

@@ -455,3 +455,56 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No sourcebook inclusion authorization.
 - No pilot conversion authorization.
 - No canon promotion.
+
+## 2026-06-06 decision log - STAGE2-PR-H1 RT-010 inventory/item/vehicle/asset owner specification
+
+- Decision ID: REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+- Decision date: 2026-06-06
+- Decision type: runtime-boundary/stage2-owner-specification-planning
+
+### Summary
+- Added the STAGE2-PR-H1 RT-010 inventory/item/vehicle/asset owner specification at `docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_specification.md`.
+- This is STAGE2-PR-H1 owner-specification planning only, resolves RT-010 deferred owner-specification gap identified by STAGE2-PR-H and STAGE2-CLOSURE-REVIEW, and repeats the no-implementation guardrails.
+- It upgrades the RT-010 scaffold into owner-spec planning for inventory, items, gear, relics, implants, installables, vehicles, ships, platforms, companions, summons, cargo, maps/routes, custody, ownership, ammo, fuel, charges, durability, degradation, repair, salvage, crafting, requisition, loadout, storage, transfer, hidden properties, asset rewards, asset losses, generated asset provenance, random loot/salvage dependencies, and persistent asset-state handoffs.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No inventory system.
+- No item system.
+- No gear system.
+- No relic/implant/installable system.
+- No vehicle/ship/platform system.
+- No companion/summon asset system.
+- No cargo/custody system.
+- No ownership system.
+- No loadout/storage/transfer system.
+- No ammo/fuel/charge system.
+- No durability/degradation system.
+- No repair/salvage system.
+- No crafting/requisition system.
+- No asset economy.
+- No price/value/salvage/requisition tables.
+- No persistent asset state.
+- No persistent ID allocator.
+- No asset event schema.
+- No item schema.
+- No vehicle schema.
+- No cargo schema.
+- No crafting schema.
+- No RNG/dice/table implementation.
+- No event ledger implementation.
+- No database schema.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No live-play prompt implementation.
+- No training authorization.
+- No donor-content audit.
+- No sourcebook inclusion authorization.
+- No pilot conversion authorization.
+- No canon promotion.
