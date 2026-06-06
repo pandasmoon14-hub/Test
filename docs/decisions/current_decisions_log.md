@@ -413,3 +413,45 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No sourcebook inclusion authorization.
 - No pilot conversion authorization.
 - No canon promotion.
+
+## 2026-06-06 decision log - STAGE2-CLOSURE-REVIEW completion review and closure ledger
+
+- Decision ID: REMEDIATION-STAGE2-COMPLETION-REVIEW-CLOSURE-LEDGER-001
+- Decision date: 2026-06-06
+- Decision type: runtime-boundary/stage2-completion-review-closure-ledger
+
+### Summary
+- Added the Stage 2 completion review and remediation closure ledger at `docs/doctrine/reviews/runtime_boundary_generator_ownership_stage2_completion_review_and_closure_ledger.md`.
+- This is a Stage 2 completion review / closure ledger only. It verifies RT-001 through RT-009 and RT-011 owner-spec planning and records RT-010 and RT-012 as deferred through the STAGE2-PR-H convergence plan.
+- It does not create RT-010 owner specification and does not create RT-012 owner specification.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No RT-010 owner specification.
+- No RT-012 owner specification.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No inventory system.
+- No item system.
+- No vehicle system.
+- No asset system.
+- No D-series promotion system.
+- No native-design promotion system.
+- No canon promotion procedure.
+- No sourcebook inclusion procedure.
+- No training policy.
+- No RNG/dice/table implementation.
+- No event ledger implementation.
+- No database schema.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No live-play prompt implementation.
+- No training authorization.
+- No donor-content audit.
+- No sourcebook inclusion authorization.
+- No pilot conversion authorization.
+- No canon promotion.
