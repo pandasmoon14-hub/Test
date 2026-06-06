@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.63
+  action: runtime_seq_pr_d_story_capable_structure_playable_content_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001 tracking. This record is RUNTIME-SEQ-PR-D planning only; defines story-capable structure and playable-content contract layer; defines story-capable structure principle; defines playable-content boundary (PlayableSceneStructure, NarrativeSubstrate, SceneObjectContract, StoryletContract, ScenarioNodeContract, QuestScenarioDependencyDAG, PlayabilityProofContract, PlayerAgencyAffordanceSet, ConsequenceRouteContract, FailurePartialSuccessContract, EscalationHookContract, ClueRoutePlayableContract, RewardRoutePlayableContract, SocialContactPlayableContract, HazardPressurePlayableContract, SourceLocalCapsulePlayableBoundary); defines playability proof contract; defines narrative substrate contract; defines storylet contract; defines quest/scenario dependency DAG contract; defines NPC goal stack and actor-intent planning contract (NPCGoalStack, ActorIntentContract); defines DialogueActIR planning contract; defines content ecology contract (ContentEcologyContract); expands source-local capsule boundary (SourceLocalCapsuleBoundary); defines generator-to-validate-to-commit pipeline; defines minimum viable scene object contract (MinimumViableSceneObject); defines runtime/narration handoff; defines runtime/event handoff; defines domain handoff crosswalk (RT-001 through RT-012); recommends RUNTIME-SEQ-PR-E; no doctrine rewrite; no runtime implementation; no schema implementation; no storylet system; no narrative substrate schema; no playable-content validator; no quest engine; no scenario engine; no dependency DAG engine; no NPC AI; no behavior tree; no dialogue system; no DialogueActIR implementation; no content ecology engine; no generator implementation; no repair loop; no evaluator/judge implementation; no command IR implementation; no state store implementation; no event ledger implementation; no context-packet compiler implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-06'
   version: 0.1.62
   action: runtime_seq_pr_c_state_event_invariant_transaction_plan
   actor: Astra Doctrine Council / synthesis assistant
@@ -8421,6 +8426,167 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-SEQ-PR-B planning only; defines narration/context packet contract layer; defines packet layer separation; defines NarrationRenderPacket and ContextPacket planning contracts; defines visibility tiers; defines local 8B packet budget policy; defines narrator output contract; defines soft-state mutation detection requirements; defines missing-information policy; defines canonical silence and source-local/canon boundary notices; defines model role contracts; defines packet assembly trace requirements; recommends RUNTIME-SEQ-PR-C; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no context-packet compiler implementation; no narration render packet schema implementation; no narrator output schema implementation; no redaction algorithm; no hidden-state database; no packet budget enforcement; no soft-state mutation validator; no model routing implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001
+  filename: runtime_seq_pr_d_story_capable_structure_playable_content_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_seq_pr_d_story_capable_structure_playable_content_plan.md
+  layer: 0_control
+  phase: implementation-sequencing
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future story-capable-structure and playable-content contract owner
+  purpose: Defines story-capable structure principle, playable-content boundary, playability proof contract, narrative substrate contract, storylet contract, quest/scenario dependency DAG contract, NPC goal stack and actor-intent planning contract, DialogueActIR planning contract, content ecology contract, source-local capsule boundary expansion, generator-to-validate-to-commit pipeline, minimum viable scene object contract, runtime/narration handoff, runtime/event handoff, and domain handoff crosswalk. Planning only. No implementation.
+  owns:
+  - story-capable structure and playable-content contract plan
+  - story-capable structure principle
+  - playable-content boundary (PlayableSceneStructure, NarrativeSubstrate, SceneObjectContract, StoryletContract, ScenarioNodeContract, QuestScenarioDependencyDAG, PlayabilityProofContract, PlayerAgencyAffordanceSet, ConsequenceRouteContract, FailurePartialSuccessContract, EscalationHookContract, ClueRoutePlayableContract, RewardRoutePlayableContract, SocialContactPlayableContract, HazardPressurePlayableContract, SourceLocalCapsulePlayableBoundary)
+  - playability proof contract planning requirements
+  - narrative substrate contract planning requirements
+  - storylet contract planning requirements
+  - quest/scenario dependency DAG contract planning requirements
+  - NPC goal stack and actor-intent contract planning requirements (NPCGoalStack, ActorIntentContract)
+  - DialogueActIR planning contract
+  - content ecology contract planning requirements (ContentEcologyContract)
+  - source-local capsule boundary expansion (SourceLocalCapsuleBoundary)
+  - generator-to-validate-to-commit pipeline planning requirements
+  - minimum viable scene object contract planning requirements (MinimumViableSceneObject)
+  - runtime/narration handoff definition
+  - runtime/event handoff definition
+  - domain handoff crosswalk (RT-001 through RT-012)
+  - blocked-until ledger
+  - recommendation of RUNTIME-SEQ-PR-E as next planning step
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no storylet system
+  - no narrative substrate schema
+  - no playable-content validator
+  - no quest engine
+  - no scenario engine
+  - no dependency DAG engine
+  - no NPC AI
+  - no behavior tree
+  - no dialogue system
+  - no DialogueActIR implementation
+  - no content ecology engine
+  - no generator implementation
+  - no repair loop
+  - no evaluator/judge implementation
+  - no command IR implementation
+  - no validator implementation
+  - no state store implementation
+  - no event ledger implementation
+  - no context-packet compiler implementation
+  - no prompt templates
+  - no live-play adapter
+  - no training authorization
+  - no donor-content audit
+  - no pilot conversion authorization
+  - no sourcebook inclusion authorization
+  - no canon promotion
+  dependencies:
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001
+  - RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001
+  - RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001
+  - RUNTIME-SEQ-PR-C-STATE-EVENT-INVARIANT-TRANSACTION-PLAN-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001
+  blocked_by:
+  - implementation_blocked
+  - runtime_blocked
+  - schema_blocked
+  - storylet_system_blocked
+  - narrative_substrate_schema_blocked
+  - playable_content_validator_blocked
+  - quest_engine_blocked
+  - scenario_engine_blocked
+  - dependency_dag_engine_blocked
+  - npc_ai_blocked
+  - behavior_tree_blocked
+  - dialogue_system_blocked
+  - dialogue_act_ir_blocked
+  - content_ecology_engine_blocked
+  - generator_blocked
+  - validator_blocked
+  - state_store_blocked
+  - event_ledger_blocked
+  - context_packet_compiler_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - live_play_blocked
+  - training_blocked
+  unlocks:
+  - RUNTIME-SEQ-PR-E model evaluation structured-output and adversarial-command plan
+  - future separately authorized story-capable structure and playable-content implementation
+  downstream_consumers:
+  - future storylet system implementation owner, if separately authorized
+  - future narrative substrate schema implementation owner, if separately authorized
+  - future playable-content validator implementation owner, if separately authorized
+  - future quest/scenario engine implementation owner, if separately authorized
+  - future NPC goal stack implementation owner, if separately authorized
+  - future DialogueActIR implementation owner, if separately authorized
+  - future content ecology engine implementation owner, if separately authorized
+  - future generator implementation owner, if separately authorized
+  donor_pressure_absorbed:
+  - pressure to skip story-capable structure and playable-content contract planning and proceed directly to storylet systems, quest engines, scenario engines, NPC AI, dialogue systems, content ecology engines, generators, live-play, training, conversion, sourcebook inclusion, or canon promotion
+  hard_refusals:
+  - This story-capable structure and playable-content plan cannot implement runtime, implement schemas, implement storylet systems, implement narrative substrate schemas, implement playable-content validators, implement quest engines, implement scenario engines, implement dependency DAG engines, implement NPC AI, implement behavior trees, implement dialogue systems, implement DialogueActIR, implement content ecology engines, implement generators, implement repair loops, implement evaluator/judge systems, implement command IR, implement validators, implement state stores, implement event ledgers, implement context-packet compilers, create prompt templates, create live-play adapters, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon.
+  - LLM output cannot create durable story truth, decide quest state, mutate NPC goals, create clues, assign rewards, promote source-local content, commit scenario consequences, or override runtime decisions.
+  escalation_triggers:
+  - Any attempt to cite this plan as runtime, schema, storylet system, narrative substrate schema, playable-content validator, quest engine, scenario engine, dependency DAG engine, NPC AI, behavior tree, dialogue system, DialogueActIR, content ecology engine, generator, command IR, validator, state store, event ledger, context-packet compiler, prompt template, live-play, training, pilot conversion, sourcebook inclusion, or canon promotion authority
+  required_tests:
+  - plan file presence test
+  - RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001 tracking ID test
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001 lineage test
+  - RUNTIME-SEQ-PR-A lineage test
+  - RUNTIME-SEQ-PR-B lineage test
+  - RUNTIME-SEQ-PR-C lineage test
+  - RT-006, RT-007, RT-008, RT-011, RT-012 primary owner track test
+  - RT-001 through RT-012 reference test
+  - backend-first model-interchangeability invariant test
+  - LLM is not the game engine test
+  - story-capable structure principle test
+  - playable-content boundary test
+  - PlayabilityProofContract test
+  - NarrativeSubstrate test
+  - StoryletContract test
+  - QuestScenarioDependencyDAG test
+  - NPCGoalStack and ActorIntentContract test
+  - DialogueActIR planning contract test
+  - ContentEcologyContract test
+  - SourceLocalCapsuleBoundary expansion test
+  - generator-to-validate-to-commit pipeline test
+  - MinimumViableSceneObject contract test
+  - runtime/narration handoff test
+  - runtime/event handoff test
+  - domain handoff crosswalk test
+  - validation and test requirements test
+  - blocked-until ledger test
+  - RUNTIME-SEQ-PR-E recommendation test
+  - non-implementation reaffirmation test
+  - classification block test
+  - registry and decision-log tracking test
+  - no-implementation-claims guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future storylet system, narrative substrate schema, playable-content validator, quest engine, scenario engine, dependency DAG engine, NPC AI, behavior tree, dialogue system, DialogueActIR, content ecology engine, generator, command IR, validator, state store, event ledger, context-packet compiler, prompt template, live-play adapter, training, pilot conversion, sourcebook inclusion, or canon promotion claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-SEQ-PR-D planning only; defines story-capable structure and playable-content contract layer; defines story-capable structure principle; defines playable-content boundary; defines playability proof contract; defines narrative substrate contract; defines storylet contract; defines quest/scenario dependency DAG contract; defines NPC goal stack and actor-intent planning contract; defines DialogueActIR planning contract; defines content ecology contract; expands source-local capsule boundary; defines generator-to-validate-to-commit pipeline; defines minimum viable scene object contract; defines runtime/narration handoff; defines runtime/event handoff; defines domain handoff crosswalk; recommends RUNTIME-SEQ-PR-E; no doctrine rewrite; no runtime implementation; no schema implementation; no storylet system; no narrative substrate schema; no playable-content validator; no quest engine; no scenario engine; no dependency DAG engine; no NPC AI; no behavior tree; no dialogue system; no DialogueActIR implementation; no content ecology engine; no generator implementation; no repair loop; no evaluator/judge implementation; no command IR implementation; no state store implementation; no event ledger implementation; no context-packet compiler implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
 - file_id: RUNTIME-SEQ-PR-C-STATE-EVENT-INVARIANT-TRANSACTION-PLAN-001
   filename: runtime_seq_pr_c_state_event_invariant_transaction_plan.md
   proposed_path: docs/doctrine/reviews/runtime_seq_pr_c_state_event_invariant_transaction_plan.md
