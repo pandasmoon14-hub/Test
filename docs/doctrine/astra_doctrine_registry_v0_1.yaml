@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.54
+  action: stage2_rt007_social_faction_actor_knowledge_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001 tracking for STAGE2-PR-G4. This record is Stage 2 owner specification only; split from the original STAGE2-PR-G downstream-domain bundle for review safety; upgrades RT-007 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no social system; no faction system; no reputation system; no relationship engine; no influence system; no contact system; no dialogue system; no actor-knowledge database; no faction-knowledge database; no rumor system; no belief-state engine; no deception rules; no witness system; no obligation/debt economy; no favor economy; no faction clocks; no institutional clocks; no patron/rival system; no social schema; no faction state schema; no actor-knowledge schema; no reputation schema; no relationship schema; no contact schema; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; and no canon promotion was performed.
+- date: '2026-06-06'
   version: 0.1.53
   action: stage2_rt006_mission_reward_clue_routing_owner_specification
   actor: Astra Doctrine Council / synthesis assistant
@@ -7012,6 +7017,153 @@ file_records:
   live_play_relevance: blocking
   notes: Stage 2 owner specification only; upgrades RT-009 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no RNG implementation; no dice roller; no table roller; no oracle engine; no table data; no table schema; no result-domain schema; no seed service; no replay verifier; no table-weight validator; no random-result event schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no redaction algorithm implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
 
+
+
+- file_id: REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  filename: RT007_social_faction_actor_knowledge_owner_specification.md
+  proposed_path: docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md
+  layer: 0_control
+  phase: remediation-stage2
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future social, faction, actor-knowledge, relationship, reputation, standing, contact, institution, obligation, debt, favor, influence, deception, rumor, false-claim, witness, and knowledge-state routing boundary owner
+  purpose: Stage 2 owner specification only; split from the original STAGE2-PR-G downstream-domain bundle for review safety; upgrades RT-007 scaffold into owner-spec planning for social/faction/actor-knowledge ownership boundaries, actor knowledge, belief, rumor, false claim, verified fact, witness state, institutional knowledge routing, faction standing, reputation, relationship, influence, contact, patron, rival, obligation, debt, favor, oath, threat, blackmail, social consequence, faction response, institutional response, and downstream owner obligations.
+  owns:
+  - Stage 2 owner-specification planning for RT-007 social/faction/actor-knowledge ownership
+  - social/faction/actor-knowledge ownership boundaries
+  - actor knowledge, belief, rumor, false claim, verified fact, witness state, and institutional knowledge routing requirement boundaries
+  - faction standing, reputation, relationship, influence, contact, patron, rival, institution, debt, obligation, favor, oath, threat, blackmail, and leverage requirement boundaries
+  - social consequence, faction response, institutional response, witness response, relationship shift, contact availability, and reputation pressure boundaries
+  - social-to-command handoff requirements through RT-001
+  - obligation/debt/reputation/cost/consequence handoff requirements through RT-002
+  - combat/hazard/social fallout handoff requirements through RT-003
+  - social ability/effect/skill handoff requirements through RT-004
+  - hidden knowledge, false claims, rumors, actor-known facts, faction-known facts, redacted motives, secret agendas, and narrator visibility handoff through RT-005
+  - mission/contact/faction consequence handoff through RT-006
+  - generated faction/NPC/contact/institution/provenance handoff through RT-008
+  - random social/faction/reputation/contact/oracle dependency handoff through RT-009
+  - item/asset/custody/bribe/requisition/blackmail-material handoff through RT-010
+  - validation/readiness handoff through RT-011
+  - D-series/native-design pressure handoff through RT-012
+  - auditability requirements for future social/faction/actor-knowledge artifacts
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no social system
+  - no faction system
+  - no reputation system
+  - no relationship engine
+  - no influence system
+  - no contact system
+  - no dialogue system
+  - no actor-knowledge database
+  - no faction-knowledge database
+  - no rumor system
+  - no belief-state engine
+  - no deception rules
+  - no witness system
+  - no obligation/debt economy
+  - no favor economy
+  - no faction clocks
+  - no institutional clocks
+  - no patron/rival system
+  - no social schema
+  - no faction state schema
+  - no actor-knowledge schema
+  - no reputation schema
+  - no relationship schema
+  - no contact schema
+  - no RNG/dice/table implementation
+  - no event ledger implementation
+  - no database schema
+  - no persistence writer implementation
+  - no retrieval index implementation
+  - no context-packet compiler implementation
+  - no live-play prompt implementation
+  - no training authorization
+  - no donor-content audit
+  - no sourcebook inclusion authorization
+  - no pilot conversion authorization
+  - no canon promotion
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - C01
+  - C05
+  - C06
+  - C07
+  - C10
+  - C14
+  - B09
+  - B10
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - final social system, faction system, reputation system, relationship engine, influence system, contact system, dialogue system, actor-knowledge database, faction-knowledge database, rumor system, belief-state engine, deception rules, witness system, obligation/debt economy, favor economy, faction clocks, institutional clocks, and patron/rival system not authorized
+  - social schema, faction state schema, actor-knowledge schema, reputation schema, relationship schema, contact schema, runtime implementation, validators, generators, RNG/dice/table implementation, event ledger, persistence writer, retrieval index, context-packet compiler, live-play prompt, training, sourcebook inclusion, pilot conversion, and canon promotion not authorized
+  reviewer_notes:
+  - STAGE2-PR-G4 is split from the original STAGE2-PR-G downstream-domain bundle for review safety and handles only RT-007.
+  - Routing placeholders are planning terms only and are not final schemas, not database fields, not social rules, not faction rules, not relationship engines, not reputation systems, not actor-knowledge databases, not rumor systems, not belief engines, not clocks, not runtime state, not event records, not validators, and not live-play prompts.
+  hard_refusals:
+  - Stage 2 owner specification cannot rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement social systems, implement faction systems, implement reputation systems, implement relationship engines, implement influence systems, implement contact systems, implement dialogue systems, create actor-knowledge databases, create faction-knowledge databases, implement rumor systems, create belief-state engines, create deception rules, create witness systems, define obligation/debt economies, define favor economies, create faction clocks, create institutional clocks, create patron/rival systems, create social schemas, create faction state schemas, create actor-knowledge schemas, create reputation schemas, create relationship schemas, create contact schemas, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon
+  - LLM output cannot create social state as backend truth, create faction state as backend truth, decide what an actor knows, decide what a faction knows, convert rumors into facts, convert false claims into verified facts, decide witness state, assign reputation, assign faction standing, assign relationship state, create obligations/debts/favors/oaths/threats/blackmail as mechanical truth, determine social success or failure as mechanical truth, choose faction responses, choose institutional responses, select random rumors/contacts/reaction outcomes/faction complications, create generated NPCs/factions/contacts/institutions/relationship content as durable backend truth, mutate social/faction/actor-knowledge/relationship state, commit reputation/standing events, treat dialogue as durable memory, treat summaries as actor-knowledge authority, treat social narration as event commitment, invent schemas/fields/state machines/clocks/routes/tables/formulas, bypass RT-001/RT-002/RT-005/RT-006/RT-008/RT-009/RT-011, or authorize canon/sourcebook/training/live-play use
+  escalation_triggers:
+  - Any attempt to implement social runtime, faction runtime, reputation mechanics, relationship engines, influence rules, contact systems, dialogue systems, actor-knowledge databases, faction-knowledge databases, rumor systems, belief-state engines, deception rules, witness systems, obligation/debt economies, favor economies, faction clocks, institutional clocks, patron/rival systems, schemas, validators, generators, event ledgers, persistence, retrieval, context-packet compilation, live-play prompts, training, sourcebook inclusion, pilot conversion, or canon promotion from this planning artifact
+  required_tests:
+  - owner specification file presence test
+  - STAGE2-PR-G4, parent STAGE2-PR-G, and RT-007 linkage test
+  - Stage 2 plan, remediation ledger, RT007 scaffold, RT001 owner specification, RT002 owner specification, RT003 owner specification, RT004 owner specification, RT005 owner specification, RT006 owner specification, RT008 owner specification, RT009 owner specification, RT011 owner specification, and audit-source linkage test
+  - social/faction/actor-knowledge routing planning-placeholder test
+  - actor-knowledge, rumor, and belief-state routing contract test
+  - social consequence, reputation, and faction response routing contract test
+  - social/faction commitment contract test
+  - future social/faction/knowledge artifact inventory future_required_not_implemented test
+  - validation/readiness requirements test
+  - RT-001 through RT-012 handoff coverage test
+  - LLM non-authority prohibition test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future owner-spec successor or implementation PR
+  - separate authorization before runtime, schema, command IR, validator, generator, social system, faction system, reputation system, relationship engine, influence system, contact system, dialogue system, actor-knowledge database, faction-knowledge database, rumor system, belief-state engine, deception rules, witness system, obligation/debt economy, favor economy, faction clocks, institutional clocks, patron/rival system, social schema, faction state schema, actor-knowledge schema, reputation schema, relationship schema, contact schema, RNG/dice/table, event ledger, database, persistence writer, retrieval index, context-packet compiler, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon claim
+  - RT-001 through RT-012 owner boundaries remain active
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 owner specification only; split from the original STAGE2-PR-G downstream-domain bundle for review safety; upgrades RT-007 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no social system; no faction system; no reputation system; no relationship engine; no influence system; no contact system; no dialogue system; no actor-knowledge database; no faction-knowledge database; no rumor system; no belief-state engine; no deception rules; no witness system; no obligation/debt economy; no favor economy; no faction clocks; no institutional clocks; no patron/rival system; no social schema; no faction state schema; no actor-knowledge schema; no reputation schema; no relationship schema; no contact schema; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
 
 - file_id: REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
   filename: RT006_mission_reward_clue_routing_owner_specification.md
