@@ -508,3 +508,49 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No sourcebook inclusion authorization.
 - No pilot conversion authorization.
 - No canon promotion.
+
+## 2026-06-06 decision log - STAGE2-PR-H2 RT-012 D-series/native-design promotion-boundary owner specification
+
+- Decision ID: REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001
+- Decision date: 2026-06-06
+- Decision type: runtime-boundary/stage2-owner-specification-planning
+
+### Summary
+- Added the STAGE2-PR-H2 RT-012 D-series/native-design promotion-boundary owner specification at `docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md`.
+- This is STAGE2-PR-H2 owner-specification planning only, resolves RT-012 deferred owner-specification gap identified by STAGE2-PR-H and STAGE2-CLOSURE-REVIEW, and repeats the no-implementation guardrails.
+- It upgrades the RT-012 scaffold into owner-spec planning for D-series/native-design promotion-boundary ownership requirements, source-pack material as pressure, native-design claim routing, doctrine-to-sourcebook promotion handoffs, canon/sourcebook candidate separation, runtime-owner handoffs, rejection/quarantine of unpromoted content, reviewer decision requirements, conflict routing, no-automatic-promotion boundaries, live-play/training exclusion, and auditability.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No D-series promotion system.
+- No native-design promotion system.
+- No canon promotion procedure.
+- No sourcebook inclusion procedure.
+- No training policy.
+- No live-play policy.
+- No doctrine rewrite procedure.
+- No source-pack ingestion procedure.
+- No example-pack promotion procedure.
+- No converted-content promotion procedure.
+- No generated-content promotion procedure.
+- No promotion records.
+- No canon records.
+- No sourcebook records.
+- No reviewer workflow implementation.
+- No RNG/dice/table implementation.
+- No event ledger implementation.
+- No database schema.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No live-play prompt implementation.
+- No training authorization.
+- No donor-content audit.
+- No sourcebook inclusion authorization.
+- No pilot conversion authorization.
+- No canon promotion.

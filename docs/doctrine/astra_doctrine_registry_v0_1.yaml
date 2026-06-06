@@ -20,6 +20,16 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.58
+  action: stage2_rt012_d_series_promotion_boundary_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001 tracking for STAGE2-PR-H2. This record is STAGE2-PR-H2 owner specification only; resolves RT-012 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW; upgrades RT-012 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no D-series promotion system; no native-design promotion system; no canon promotion procedure; no sourcebook inclusion procedure; no training policy; no live-play policy; no doctrine rewrite procedure; no source-pack ingestion procedure; no example-pack promotion procedure; no converted-content promotion procedure; no generated-content promotion procedure; no promotion records; no canon records; no sourcebook records; no reviewer workflow implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+- date: '2026-06-06'
+  version: 0.1.57
+  action: stage2_rt010_inventory_item_vehicle_asset_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001 tracking for STAGE2-PR-H1. This record is STAGE2-PR-H1 owner specification only; resolves RT-010 deferred owner-specification gap; no further detail duplicated here since the v0.1.57 entry was already tracked in the v0.1.56 changelog era.
+- date: '2026-06-06'
   version: 0.1.56
   action: stage2_completion_review_closure_ledger
   actor: Astra Doctrine Council / synthesis assistant
@@ -8012,3 +8022,126 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: STAGE2-PR-H1 owner specification only; resolves RT-010 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW; upgrades RT-010 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no inventory system; no item system; no gear system; no relic/implant/installable system; no vehicle/ship/platform system; no companion/summon asset system; no cargo/custody system; no ownership system; no loadout/storage/transfer system; no ammo/fuel/charge system; no durability/degradation system; no repair/salvage system; no crafting/requisition system; no asset economy; no price/value/salvage/requisition tables; no persistent asset state; no persistent ID allocator; no asset event schema; no item schema; no vehicle schema; no cargo schema; no crafting schema; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+- file_id: REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001
+  filename: RT012_d_series_promotion_boundary_owner_specification.md
+  proposed_path: docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md
+  layer: 0_control
+  phase: remediation-stage2
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future D-series/native-design promotion-boundary control owner
+  purpose: STAGE2-PR-H2 owner specification only; resolves RT-012 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW; upgrades RT-012 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no D-series promotion system; no native-design promotion system; no canon promotion procedure; no sourcebook inclusion procedure; no training policy; no live-play policy; no doctrine rewrite procedure; no source-pack ingestion procedure; no example-pack promotion procedure; no converted-content promotion procedure; no generated-content promotion procedure; no promotion records; no canon records; no sourcebook records; no reviewer workflow implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
+  owns:
+  - STAGE2-PR-H2 owner specification only
+  - RT-012 D-series/native-design promotion-boundary owner-specification planning
+  - resolution of the RT-012 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW
+  - upgrade of RT-012 scaffold into owner-spec planning
+  - D-series/native-design promotion-boundary ownership requirements
+  - source-pack material as pressure not authority requirements
+  - native-design claim routing requirements
+  - doctrine-to-sourcebook promotion handoff requirements
+  - canon candidate versus sourcebook candidate separation requirements
+  - runtime-owner handoff requirements for D-series/native-design material proposing mechanics
+  - rejection and quarantine requirements for unpromoted design content
+  - reviewer decision requirements
+  - conflict-routing requirements
+  - no-automatic-promotion boundaries
+  - live-play/training exclusion requirements
+  - auditability requirements
+  - downstream handoff planning for RT-001 through RT-011 and future canon/sourcebook governance
+  - LLM non-authority and non-implementation guardrails for D-series/native-design promotion boundaries
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no D-series promotion system
+  - no native-design promotion system
+  - no canon promotion procedure
+  - no sourcebook inclusion procedure
+  - no training policy
+  - no live-play policy
+  - no doctrine rewrite procedure
+  - no source-pack ingestion procedure
+  - no example-pack promotion procedure
+  - no converted-content promotion procedure
+  - no generated-content promotion procedure
+  - no promotion records
+  - no canon records
+  - no sourcebook records
+  - no reviewer workflow implementation
+  - no RNG/dice/table implementation
+  - no event ledger implementation
+  - no database schema
+  - no persistence writer implementation
+  - no retrieval index implementation
+  - no context-packet compiler implementation
+  - no live-play prompt implementation
+  - no training authorization
+  - no donor-content audit
+  - no sourcebook inclusion authorization
+  - no pilot conversion authorization
+  - no canon promotion
+  dependencies:
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-STAGE2-RT010-RT012-DEFERRED-CONVERGENCE-PLAN-001
+  - REMEDIATION-STAGE2-COMPLETION-REVIEW-CLOSURE-LEDGER-001
+  - REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  blocked_by:
+  - implementation_blocked
+  - runtime_blocked
+  - schema_blocked
+  - validator_blocked
+  - generator_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - live_play_blocked
+  - training_blocked
+  unlocks:
+  - future separately authorized D-series/native-design promotion-boundary implementation planning review
+  - future separately authorized runtime/schema implementation sequencing review
+  downstream_consumers:
+  - future D-series/native-design promotion-boundary implementation owner, if separately authorized
+  - future canon/sourcebook governance owner, if separately authorized
+  - future backend runtime owner, if separately authorized
+  - future validation/readiness tooling owner, if separately authorized
+  donor_pressure_absorbed:
+  - pressure to treat D-series/native-design source packs, examples, converted content, generated content, summaries, narration, or training samples as authority or promotion evidence
+  hard_refusals:
+  - This STAGE2-PR-H2 owner specification cannot implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement D-series promotion systems, implement native-design promotion systems, create canon promotion procedures, create sourcebook inclusion procedures, create training policies, create live-play policies, create doctrine rewrite procedures, create source-pack ingestion procedures, create example-pack promotion procedures, create converted-content promotion procedures, create generated-content promotion procedures, create promotion records, create canon records, create sourcebook records, create reviewer workflow implementations, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon.
+  - LLM output cannot promote D-series/native-design content to doctrine, canon, or sourcebook; cannot treat source packs as authority; cannot authorize training, live-play, sourcebook inclusion, canon promotion, or pilot conversion; cannot resolve doctrine conflicts; cannot decide reviewer outcomes; cannot bypass RT owner handoffs; cannot create promotion records as backend truth; cannot mutate authority hierarchy.
+  escalation_triggers:
+  - Any attempt to cite this owner specification as runtime, schema, command IR, validator, generator, D-series promotion system, native-design promotion system, canon promotion, sourcebook inclusion, training, live-play, doctrine rewrite, source-pack ingestion, promotion records, canon records, sourcebook records, reviewer workflow, RNG, event-ledger, database, persistence writer, retrieval index, context-packet compiler, or pilot conversion authority
+  - Any attempt to treat D-series/native-design source packs, examples, converted content, generated content, summaries, narration, or training samples as authority or promotion evidence
+  required_tests:
+  - RT-012 owner specification file presence test
+  - STAGE2-PR-H2, parent STAGE2-PR-H, tracking ID, audit source, Stage 2 plan, deferred convergence, closure ledger, RT010 owner spec, RT012 scaffold, RT001 through RT011 owner specification linkage test
+  - scope, must-not-own, authority model, pressure contract, promotion-boundary contract, runtime-owner handoff contract, exclusion contract, future artifact, validation/readiness, downstream handoff, LLM non-authority, non-implementation, and Stage 2 classification block tests
+  - registry and decision-log tracking test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future runtime, schema, command IR, validator, generator, D-series promotion system, native-design promotion system, canon promotion, sourcebook inclusion, training, live-play, doctrine rewrite, source-pack ingestion, promotion records, canon records, sourcebook records, reviewer workflow, RNG, event-ledger, database, persistence writer, retrieval index, context-packet compiler, live-play prompt, or pilot conversion claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: STAGE2-PR-H2 owner specification only; resolves RT-012 deferred owner-specification gap from STAGE2-PR-H and STAGE2-CLOSURE-REVIEW; upgrades RT-012 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no D-series promotion system; no native-design promotion system; no canon promotion procedure; no sourcebook inclusion procedure; no training policy; no live-play policy; no doctrine rewrite procedure; no source-pack ingestion procedure; no example-pack promotion procedure; no converted-content promotion procedure; no generated-content promotion procedure; no promotion records; no canon records; no sourcebook records; no reviewer workflow implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
