@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.47
+  action: stage2_rt011_validation_readiness_owner_specification
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001 tracking for STAGE2-PR-B. This record is Stage 2 owner specification only; it upgrades the RT-011 scaffold into owner-spec planning for validation/readiness governance, prose-vs-executable validation boundaries, readiness classifications, future validator requirement inventory, reviewer decision records, non-implementation guardrail checks, registry/file tracking expectations, and RT-001 through RT-012 dependency handoffs; no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no validator implementation, no generator implementation, no persistence writer implementation, no retrieval index implementation, no context-packet compiler implementation, no RNG/dice/table implementation, no event ledger implementation, no database schema, no live-play prompt implementation, no training authorization, no donor-content audit, no sourcebook inclusion authorization, no pilot conversion authorization, and no canon promotion was performed.
+- date: '2026-06-06'
   version: 0.1.46
   action: stage2_rt001_command_lifecycle_owner_specification
   actor: Astra Doctrine Council / synthesis assistant
@@ -6315,3 +6320,127 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Stage 2 owner specification only; upgrades RT-001 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no canon promotion.
+
+- file_id: REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  filename: RT011_validation_readiness_tooling_owner_specification.md
+  proposed_path: docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md
+  layer: 0_control
+  phase: '0'
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future validation readiness tooling owner
+  purpose: Track the STAGE2-PR-B owner specification for RT-011 validation/readiness governance, prose-vs-executable validation boundaries, readiness classifications, future validator requirement inventory, reviewer decision records, non-implementation guardrail checks, registry/file tracking expectations, and dependency handoffs without implementing remediation.
+  owns:
+  - Stage 2 owner specification only
+  - RT-011 validation/readiness owner-spec planning
+  - upgrade of RT-011 scaffold into owner-spec planning
+  - prose readiness versus owner-spec readiness versus schema readiness versus executable validation versus runtime readiness versus live-play readiness boundary planning
+  - readiness classification vocabulary planning
+  - future validator requirement inventory planning
+  - reviewer decision record requirement planning
+  - registry and file tracking expectation planning
+  - non-implementation guardrail check requirement planning
+  - RT-001 through RT-012 dependency handoff planning
+  must_not_own:
+  - doctrine rewrite
+  - executable validator implementation
+  - runtime code
+  - schema implementation
+  - command IR implementation
+  - database schema
+  - persistence writer implementation
+  - retrieval index implementation
+  - context-packet compiler implementation
+  - RNG/dice/table implementation
+  - event ledger implementation
+  - generator implementation
+  - live-play prompts
+  - training data
+  - donor-content audits
+  - canon promotion
+  - pilot conversion authorization by prose alone
+  - sourcebook inclusion authorization
+  - automated reviewer replacement
+  dependencies:
+  - ROADMAP-001
+  - REGISTRY-001
+  - AUDIT-001
+  - AUDIT-WAVE1-001
+  - AUDIT-WAVE2-001
+  - REMEDIATION-PRIORITY-LEDGER-001
+  - REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
+  - REMEDIATION-RT001-COMMAND-LIFECYCLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT007-SOCIAL-FACTION-KNOWLEDGE-STATE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT011-VALIDATION-READINESS-OWNER-SCAFFOLD-001
+  - REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001
+  - SM00
+  - SM01
+  - SM02
+  blocked_by:
+  - executable validators not authorized
+  - final schemas not authorized
+  - runtime state/event/persistence implementation not authorized
+  - final reviewer decision record schema not authorized
+  - downstream owner specifications not yet drafted
+  unlocks:
+  - future RT-002 owner specification planning
+  - future RT-005 owner specification planning
+  - future validation family specification planning
+  - future reviewer decision record planning after separate authorization
+  - future readiness registry convention planning after separate authorization
+  downstream_consumers:
+  - future RT-002 resource/consequence math owner specification
+  - future RT-005 context-packet hidden-information owner specification
+  - future RT-008 generated-content provenance/recurrence owner specification
+  - future executable validator workstream
+  - future schema coverage matrix owner
+  - future reviewer decision record owner
+  donor_pressure_absorbed:
+  - pressure to treat prose readiness as executable validation
+  - pressure to let model confidence replace reviewer decisions
+  - pressure to treat registry or decision-log prose as runtime gates
+  - pressure to approve pilot conversion, live play, sourcebook inclusion, training, donor-content audits, or canon promotion from owner-spec prose
+  hard_refusals:
+  - Stage 2 owner specification cannot rewrite doctrine, implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement persistence writers, implement retrieval indexes, implement context-packet compilers, implement RNG/dice/table systems, implement event ledgers, create database schemas, implement live-play prompts, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon
+  - prose readiness, scaffold readiness, and owner-spec readiness cannot be treated as executable validation, schema readiness, validator readiness, runtime readiness, or live-play readiness
+  - LLM output cannot replace reviewer decisions, invent missing tracking, hide dependency skips, or declare tests passed without actual execution and reporting
+  escalation_triggers:
+  - specification is cited as executable validator, runtime, schema, command IR, generator, persistence, retrieval, context-packet, RNG, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon authority
+  - prose artifact is cited as executable validation
+  - LLM output declares readiness, approval, or validation without reviewer/backend evidence
+  - missing files are silently substituted or dependency skips are hidden
+  - readiness labels are treated as executable gates or final schema statuses
+  required_tests:
+  - owner specification file presence test
+  - Stage 2 PR-B and RT-011 linkage test
+  - Stage 2 plan, remediation ledger, RT011 scaffold, RT001 owner specification, and audit-source linkage test
+  - prose readiness versus executable validation boundary test
+  - readiness classification vocabulary non-executable label test
+  - conceptual validation layer future_required_not_implemented test
+  - future validation artifact inventory future_required_not_implemented test
+  - reviewer decision record requirement test
+  - LLM non-authority prohibition test
+  - RT-001 through RT-012 handoff coverage test
+  - registry and decision-log tracking test
+  - no-implementation guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future owner-spec successor or implementation PR
+  - separate authorization before runtime, schema, command IR, validator, generator, persistence, retrieval, context-packet, RNG, event ledger, database, live-play, training, donor-audit, sourcebook, pilot-conversion, or canon claim
+  - RT-001 through RT-012 owner boundaries remain active
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: high
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: Stage 2 owner specification only; upgrades RT-011 scaffold into owner-spec planning; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no RNG/dice/table implementation; no event ledger implementation; no database schema; no live-play prompt implementation; no training authorization; no donor-content audit; no sourcebook inclusion authorization; no pilot conversion authorization; no canon promotion.
