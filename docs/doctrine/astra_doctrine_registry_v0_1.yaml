@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.61
+  action: runtime_seq_pr_b_narration_context_packet_contract_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001 tracking. This record is RUNTIME-SEQ-PR-B planning only; defines narration/context packet contract layer; defines packet layer separation (BackendStateContext, ContextPacket, NarrationRenderPacket, IntentParsingPacket, ClarificationPacket, SummaryPacket, EvaluationPacket); defines NarrationRenderPacket and ContextPacket planning contracts; defines visibility tiers (backend_only through redacted_reference_only); defines local 8B packet budget policy; defines narrator output contract (NarratorOutputContract); defines soft-state mutation detection requirements; defines missing-information policy; defines canonical silence and source-local/canon boundary notices; defines model role contracts; defines packet assembly trace requirements; recommends RUNTIME-SEQ-PR-C (state/event/invariant/transaction plan); no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no context-packet compiler implementation; no narration render packet schema implementation; no narrator output schema implementation; no redaction algorithm; no hidden-state database; no packet budget enforcement; no soft-state mutation validator; no model routing implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-06'
   version: 0.1.60
   action: runtime_seq_pr_a_minimum_backend_kernel_runtime_quality_contract_plan
   actor: Astra Doctrine Council / synthesis assistant
@@ -8275,3 +8280,139 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: Runtime/schema implementation sequencing review only; confirms RT-001 through RT-012 owner-spec planning coverage; recommends future implementation-planning waves; recommends RUNTIME-SEQ-PR-A as the next planning step; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no state store; no state delta model; no event ledger; no deterministic RNG service; no table/oracle service; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no redaction algorithm; no hidden-state database; no domain runtime service; no campaign memory system; no live-play prompt implementation; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001
+  filename: runtime_seq_pr_b_narration_context_packet_contract_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_seq_pr_b_narration_context_packet_contract_plan.md
+  layer: 0_control
+  phase: implementation-sequencing
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future narration-context packet contract owner
+  purpose: RUNTIME-SEQ-PR-B planning only; defines narration/context packet contract layer; defines packet layer separation; defines NarrationRenderPacket and ContextPacket planning contracts; defines visibility tiers; defines local 8B packet budget policy; defines narrator output contract; defines soft-state mutation detection requirements; defines missing-information policy; defines canonical silence and source-local/canon boundary notices; defines model role contracts; defines packet assembly trace requirements; recommends RUNTIME-SEQ-PR-C; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no context-packet compiler implementation; no narration render packet schema implementation; no narrator output schema implementation; no redaction algorithm; no hidden-state database; no packet budget enforcement; no soft-state mutation validator; no model routing implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+  owns:
+  - narration/context packet contract plan
+  - packet layer separation (BackendStateContext, ContextPacket, NarrationRenderPacket, IntentParsingPacket, ClarificationPacket, SummaryPacket, EvaluationPacket)
+  - NarrationRenderPacket planning contract
+  - ContextPacket planning contract
+  - visibility tier definitions (backend_only through redacted_reference_only)
+  - local 8B packet budget policy
+  - narrator output contract (NarratorOutputContract)
+  - soft-state mutation detection requirements
+  - missing-information policy
+  - canonical silence policy for packets and narration
+  - source-local and canon boundary notices
+  - model role contracts (local_8b_narrator, local_8b_intent_parser, api_reflective_summarizer, api_evaluator_or_judge, api_canon_or_sourcebook_drafter, backend_validator, backend_packet_compiler)
+  - packet assembly trace requirements
+  - blocked-until ledger
+  - recommendation of RUNTIME-SEQ-PR-C as next planning step
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no context-packet compiler implementation
+  - no narration render packet schema implementation
+  - no narrator output schema implementation
+  - no redaction algorithm
+  - no hidden-state database
+  - no packet budget enforcement
+  - no soft-state mutation validator
+  - no model routing implementation
+  - no prompt templates
+  - no live-play adapter
+  - no training authorization
+  - no donor-content audit
+  - no pilot conversion authorization
+  - no sourcebook inclusion authorization
+  - no canon promotion
+  dependencies:
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001
+  - RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001
+  blocked_by:
+  - implementation_blocked
+  - runtime_blocked
+  - schema_blocked
+  - validator_blocked
+  - generator_blocked
+  - context_packet_compiler_blocked
+  - render_packet_schema_blocked
+  - narrator_output_schema_blocked
+  - redaction_algorithm_blocked
+  - hidden_state_database_blocked
+  - packet_budget_enforcement_blocked
+  - soft_state_mutation_validator_blocked
+  - model_routing_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - live_play_blocked
+  - training_blocked
+  unlocks:
+  - RUNTIME-SEQ-PR-C state/event/invariant/transaction plan
+  - future separately authorized packet/narration contract implementation
+  downstream_consumers:
+  - future context-packet compiler implementation owner, if separately authorized
+  - future narration render packet schema implementation owner, if separately authorized
+  - future narrator output schema implementation owner, if separately authorized
+  - future redaction algorithm implementation owner, if separately authorized
+  - future packet budget enforcement implementation owner, if separately authorized
+  - future soft-state mutation validator implementation owner, if separately authorized
+  - future model routing implementation owner, if separately authorized
+  donor_pressure_absorbed:
+  - pressure to skip packet/narration contract planning and proceed directly to packet compiler, render-packet schema, narrator output schema, redaction, live-play, training, conversion, sourcebook inclusion, or canon promotion
+  hard_refusals:
+  - This narration/context packet contract plan cannot implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement context-packet compilers, implement render-packet schemas, implement narrator output schemas, implement redaction algorithms, implement hidden-state databases, implement packet budget enforcement, implement soft-state mutation validators, implement model routing, create prompt templates, create live-play adapters, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon.
+  - LLM output cannot commit state, mutate records, roll dice, reveal hidden information, bypass validation, promote content to canon, or override runtime decisions.
+  escalation_triggers:
+  - Any attempt to cite this plan as runtime, schema, command IR, validator, generator, context-packet compiler, render-packet schema, narrator output schema, redaction algorithm, hidden-state database, packet budget enforcement, soft-state mutation validator, model routing, prompt template, live-play, training, pilot conversion, sourcebook inclusion, or canon promotion authority
+  required_tests:
+  - plan file presence test
+  - RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001 tracking ID test
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001 lineage test
+  - RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001 lineage test
+  - RT-005 and RT-011 primary owner track test
+  - RT-001 through RT-012 reference test
+  - backend-first model-interchangeability invariant test
+  - LLM is not the game engine test
+  - packet layer separation test
+  - NarrationRenderPacket contract test
+  - ContextPacket contract test
+  - visibility and hidden-information rules test
+  - local 8B packet budget policy test
+  - missing-information policy test
+  - NarratorOutputContract test
+  - soft-state mutation detection test
+  - CanonicalSilencePolicy test
+  - source-local and canon boundary notices test
+  - model role contracts test
+  - packet assembly trace requirements test
+  - validation and test requirements test
+  - blocked-until ledger test
+  - RUNTIME-SEQ-PR-C recommendation test
+  - non-implementation reaffirmation test
+  - classification block test
+  - registry and decision-log tracking test
+  - no-implementation-claims guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future context-packet compiler, render-packet schema, narrator output schema, redaction algorithm, hidden-state database, packet budget enforcement, soft-state mutation validator, model routing, prompt template, live-play adapter, training, pilot conversion, sourcebook inclusion, or canon promotion claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-SEQ-PR-B planning only; defines narration/context packet contract layer; defines packet layer separation; defines NarrationRenderPacket and ContextPacket planning contracts; defines visibility tiers; defines local 8B packet budget policy; defines narrator output contract; defines soft-state mutation detection requirements; defines missing-information policy; defines canonical silence and source-local/canon boundary notices; defines model role contracts; defines packet assembly trace requirements; recommends RUNTIME-SEQ-PR-C; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no context-packet compiler implementation; no narration render packet schema implementation; no narrator output schema implementation; no redaction algorithm; no hidden-state database; no packet budget enforcement; no soft-state mutation validator; no model routing implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.

@@ -555,6 +555,46 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No canon promotion.
 
+## 2026-06-06 decision log - RUNTIME-SEQ-PR-B narration/context packet contract plan
+
+- Decision ID: RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: narration-context-packet-contract-plan
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_seq_pr_b_narration_context_packet_contract_plan.md` as a planning-only narration/context packet contract plan.
+- This is RUNTIME-SEQ-PR-B planning only. It defines the narration/context packet contract layer including packet layer separation (7 packet families), NarrationRenderPacket and ContextPacket planning contracts, visibility tiers, local 8B packet budget policy, narrator output contract, soft-state mutation detection requirements, missing-information policy, canonical silence and source-local/canon boundary notices, model role contracts, and packet assembly trace requirements.
+- Primary owner tracks: RT-005 (context-packet/hidden-information) and RT-011 (validation/readiness tooling).
+- Recommends RUNTIME-SEQ-PR-C (state/event/invariant/transaction plan) as the next planning step.
+
+### Governance effect
+- Establishes the planning framework for narration/context packet contracts without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Defines hidden information leakage as a hard failure.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No context-packet compiler implementation.
+- No narration render packet schema implementation.
+- No narrator output schema implementation.
+- No redaction algorithm.
+- No hidden-state database.
+- No packet budget enforcement.
+- No soft-state mutation validator.
+- No model routing implementation.
+- No prompt templates.
+- No live-play adapter.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - RUNTIME-SEQ-PR-A minimum backend kernel + runtime quality contract plan
 
 - Decision ID: RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001
