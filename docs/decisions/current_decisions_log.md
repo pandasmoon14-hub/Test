@@ -554,3 +554,45 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No sourcebook inclusion authorization.
 - No pilot conversion authorization.
 - No canon promotion.
+
+## 2026-06-06 decision log - Runtime/Schema Implementation Sequencing Review
+
+- Decision ID: RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001
+- Decision date: 2026-06-06
+- Decision type: implementation-sequencing-review
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_schema_implementation_sequencing_review.md` as a planning-only runtime/schema implementation sequencing review.
+- This review confirms that RT-001 through RT-012 owner-specification planning is complete, defines an implementation dependency map, recommends twelve future implementation-planning waves (Wave 0 through Wave 11), and recommends RUNTIME-SEQ-PR-A (minimum backend kernel implementation plan) as the next planning step.
+- Owner-boundary planning is not implementation readiness by itself; the project is ready for implementation sequencing, not immediate full runtime implementation.
+
+### Governance effect
+- Establishes the sequencing framework for future runtime/schema implementation without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Identifies blocked-until conditions for runtime, schemas, validators, generators, domain services, live-play, training, conversion, sourcebook inclusion, and canon promotion.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No state store.
+- No state delta model.
+- No event ledger.
+- No deterministic RNG service.
+- No table/oracle service.
+- No persistence writer implementation.
+- No retrieval index implementation.
+- No context-packet compiler implementation.
+- No redaction algorithm.
+- No hidden-state database.
+- No domain runtime service.
+- No campaign memory system.
+- No live-play prompt implementation.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
