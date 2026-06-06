@@ -2,7 +2,7 @@
 
 Date prepared: 2026-06-06
 Status: completion review and second-stage remediation planning ledger only
-Tracking ID: AUDIT-SCAFFOLD-COMPLETION-STAGE2-PLAN-001
+Tracking ID: REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001
 Inputs: AUDIT-001, AUDIT-WAVE1-001, AUDIT-WAVE2-001, REMEDIATION-PRIORITY-LEDGER-001, RT-001 through RT-012 owner scaffolds
 Owner: Astra Doctrine Council / Runtime Boundary Reviewers
 
@@ -518,3 +518,5 @@ The next PR must be limited to owner-specification planning and must not bundle 
 ## 9. Non-implementation reaffirmation
 
 This completion review and Stage 2 plan is documentation/control planning only. It creates no runtime authority and no executable control. It marks the first owner-scaffold pass complete with minor cleanup debt for RT-011 direct Wave linkage phrasing, ranks second-stage planning, and recommends exactly one next PR: STAGE2-PR-A for RT-001 owner specification.
+
+Guardrails reaffirmed: no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no persistence writer implementation; no retrieval index implementation; no context-packet compiler implementation; no live-play prompt implementation; no training authorization; no donor-content audit; and no canon promotion.
