@@ -253,18 +253,6 @@ class TestNoUnauthorizedModules:
         os.path.dirname(__file__), "..", "..", "src", "astra_runtime", "kernel"
     )
 
-    @pytest.mark.parametrize(
-        "module",
-        [
-            "persistence_boundary.py",
-            "replay_audit.py",
-            "runtime_trace.py",
-        ],
-    )
-    def test_future_module_does_not_exist(self, module):
-        path = os.path.join(self.KERNEL_DIR, module)
-        assert not os.path.exists(path), f"Unauthorized module exists: {module}"
-
     def test_no_domain_service_package(self):
         path = os.path.join(
             os.path.dirname(__file__), "..", "..", "src", "astra_runtime", "domain"

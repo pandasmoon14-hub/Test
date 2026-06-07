@@ -1424,3 +1424,100 @@ runtime_impl_pr_6:
 - No prompt template package exists yet.
 - No live-play adapter package exists yet.
 - No UI/client package exists yet.
+
+## 2026-06-07 decision — RUNTIME-IMPL-PR-7 persistence boundary, replay/hash audit, and runtime trace skeleton
+
+- Decision ID: RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+- Decision date: 2026-06-07
+- Decision type: implementation/executable skeleton
+
+### Summary
+
+Seventh narrow runtime code PR. Implements only persistence boundary, replay/hash audit, and runtime trace skeletons under `src/astra_runtime/kernel/`. Follows RUNTIME-IMPL-PR-0 through PR-6 authorization. Preserves backend-first invariant. LLM is not the game engine.
+
+### Reason
+
+RUNTIME-IMPL-PR-6 authorized RUNTIME-IMPL-PR-7 as the next executable code step. The scope is narrowed to persistence boundary (immutable frozen dataclass request/result envelopes with validation, allowed operation types record_snapshot_prepare/event_append_prepare/trace_capture_prepare/audit_snapshot_prepare, allowed result statuses prepared/rejected/quarantined, no durable persistence), replay/hash audit (immutable frozen dataclass records with validation, deterministic canonical_payload_hash using json.dumps sort_keys + hashlib.sha256, no replay engine, no hash-chain enforcement), and runtime trace (immutable frozen dataclass entries with validation, allowed operation types covering all 14 kernel modules, no trace store, no telemetry). No other kernel systems are implemented.
+
+### Implication
+
+- `src/astra_runtime/kernel/persistence_boundary.py` now exists.
+- `src/astra_runtime/kernel/replay_audit.py` now exists.
+- `src/astra_runtime/kernel/runtime_trace.py` now exists.
+- `src/astra_runtime/kernel/__init__.py` exports all three modules.
+- 123 focused new tests pass.
+- Prior PR-3 through PR-6 guardrail tests updated to no longer forbid `persistence_boundary.py`, `replay_audit.py`, or `runtime_trace.py`.
+- No durable persistence/file I/O/database/replay engine/state store/trace store/domain/model/live-play artifacts created.
+
+### Revisit trigger
+
+- If persistence boundary needs storage-backend selection for durable persistence (PR-8+).
+- If replay/hash audit needs hash-chain enforcement or event replay for event store (PR-8+).
+- If runtime trace needs telemetry backend or trace store (PR-8+).
+- If RUNTIME-IMPL-PR-8 (post-kernel skeleton review and domain-service readiness gate) is authorized.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_7:
+  implementation_id: RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  artifact_type: executable_kernel_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+    - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+    - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+    - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+    - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+    - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+    - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+    - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_persistence_boundary_skeleton: true
+  implements_replay_hash_audit_skeleton: true
+  implements_canonical_payload_hash_helper: true
+  implements_runtime_trace_skeleton: true
+  authorizes_durable_persistence: false
+  authorizes_file_writer: false
+  authorizes_file_reader: false
+  authorizes_database_schema: false
+  authorizes_database_connection: false
+  authorizes_sqlite_integration: false
+  authorizes_migrations: false
+  authorizes_object_store: false
+  authorizes_event_store_persistence: false
+  authorizes_state_store: false
+  authorizes_state_restoration: false
+  authorizes_replay_engine: false
+  authorizes_event_replay: false
+  authorizes_hash_chain_enforcement_engine: false
+  authorizes_trace_store: false
+  authorizes_telemetry_backend: false
+  authorizes_logging_service: false
+  authorizes_command_execution: false
+  authorizes_state_mutation: false
+  authorizes_event_commitment: false
+  authorizes_transaction_lifecycle_engine: false
+  authorizes_domain_services: false
+  authorizes_context_packet_compiler: false
+  authorizes_prompt_templates: false
+  authorizes_model_integration: false
+  authorizes_live_play: false
+  authorizes_ui_client: false
+  authorizes_generators: false
+  authorizes_training: false
+  authorizes_pilot_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  next_allowed_step: RUNTIME-IMPL-PR-8 post-kernel skeleton review and domain-service readiness gate, pending review
+```
+
+### No-implementation guardrails
+
+- No context-packet compiler module exists.
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No live-play adapter package exists yet.
+- No UI/client package exists yet.
+- No database package exists yet.
+- No durable store package exists yet.
