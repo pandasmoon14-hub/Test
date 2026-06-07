@@ -9537,3 +9537,138 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-3 implementation; third narrow backend-kernel code skeleton; implements state delta envelope skeleton (StateDeltaEnvelope with create_state_delta_envelope, validate_state_delta_envelope, to_dict); implements event ledger entry envelope skeleton (EventLedgerEntry with create_event_ledger_entry, validate_event_ledger_entry, to_dict); follows RUNTIME-IMPL-PR-0 through PR-2 authorization; no mutable state store; no state application engine; no command execution; no command lifecycle engine; no transaction lifecycle engine; no rollback; no event store persistence; no database schema; no replay/hash service; no deterministic RNG service; no table/oracle service; no validation pipeline beyond local skeleton checks; no invariant validator; no correction event schema; no context-packet compiler; no hidden-information partition; no persistence writer; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+
+- file_id: RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  title: RUNTIME-IMPL-PR-4 Deterministic RNG and Table/Oracle Interface Skeleton
+  file_path: src/astra_runtime/kernel/rng_interface.py; src/astra_runtime/kernel/table_oracle.py
+  artifact_type: executable_kernel_skeleton
+  artifact_subtype: deterministic_rng_table_oracle_interface_skeleton
+  batch: runtime-impl
+  status: active
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_deterministic_rng_interface_skeleton: true
+  implements_table_oracle_interface_skeleton: true
+  does_not_authorize:
+  - full RNG service
+  - global random state
+  - non-deterministic randomness
+  - dice expression parser
+  - RNG session store
+  - weighted table engine
+  - encounter table library
+  - oracle content library
+  - event store persistence
+  - database schema
+  - replay/hash service
+  - validation pipeline beyond local skeleton checks
+  - invariant validator
+  - correction event schema
+  - state store
+  - state mutation
+  - command execution
+  - context-packet compiler
+  - hidden-information partition
+  - persistence writer
+  - domain services
+  - generators
+  - live-play adapter
+  - model integration
+  - prompt templates
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - RNG invocation valid creation test
+  - RNG invocation preserves rng_id test
+  - RNG invocation preserves seed test
+  - RNG invocation preserves purpose test
+  - RNG invocation preserves range_min test
+  - RNG invocation preserves range_max test
+  - RNG invocation rejects empty rng_id test
+  - RNG invocation rejects empty seed test
+  - RNG invocation rejects empty purpose test
+  - RNG invocation rejects non-int range_min test
+  - RNG invocation rejects non-int range_max test
+  - RNG invocation rejects bool range_min test
+  - RNG invocation rejects bool range_max test
+  - RNG invocation rejects range_min greater than range_max test
+  - RNG invocation metadata defaults to empty mapping test
+  - RNG invocation metadata copy-safe test
+  - RNG invocation to_dict test
+  - RNG invocation to_dict returns deep copy test
+  - RNG invocation validate helper accepts valid test
+  - RNG invocation validate helper rejects invalid test
+  - RNG invocation frozen immutability test
+  - RNG result valid creation test
+  - RNG result preserves fields test
+  - RNG result rejects value outside range test
+  - RNG result rejects bool value test
+  - RNG result validate helper accepts valid test
+  - deterministic_int same seed same result test
+  - deterministic_int within inclusive range test
+  - deterministic_int does not mutate global random state test
+  - no dice expression parser test
+  - no RNG session/store/persist method test
+  - table/oracle invocation valid creation test
+  - table/oracle invocation preserves oracle_id test
+  - table/oracle invocation preserves table_id test
+  - table/oracle invocation preserves seed test
+  - table/oracle invocation preserves roll test
+  - table/oracle invocation rejects empty oracle_id test
+  - table/oracle invocation rejects empty table_id test
+  - table/oracle invocation rejects empty seed test
+  - table/oracle invocation rejects non-int roll test
+  - table/oracle invocation rejects bool roll test
+  - table/oracle invocation metadata defaults to empty mapping test
+  - table/oracle invocation metadata copy-safe test
+  - table/oracle invocation to_dict test
+  - table/oracle invocation to_dict returns deep copy test
+  - table/oracle invocation validate helper accepts valid test
+  - table/oracle invocation validate helper rejects invalid test
+  - table/oracle result valid creation test
+  - table/oracle result preserves fields test
+  - table/oracle result rejects empty selected_key test
+  - table/oracle result selected_value deep-copy safe test
+  - table/oracle result validate helper accepts valid test
+  - select_table_entry rejects empty table test
+  - select_table_entry rejects non-mapping table test
+  - select_table_entry rejects non-string keys test
+  - select_table_entry deterministic selection test
+  - select_table_entry returns deep-copy-safe value test
+  - no weighted table engine test
+  - no table loading/parsing/generation method test
+  - guardrail no validation_pipeline module test
+  - guardrail no hidden_information module test
+  - guardrail no context_projection module test
+  - guardrail no persistence_boundary module test
+  - guardrail no replay_audit module test
+  - guardrail no runtime_trace module test
+  - guardrail no domain service package test
+  - guardrail no model integration package test
+  - guardrail no prompt template package test
+  - guardrail no live-play adapter package test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-5
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-4 implementation; fourth narrow backend-kernel code skeleton; implements deterministic RNG invocation/result interface skeleton (RNGInvocation, RNGResult with create_rng_invocation, create_rng_result, validate_rng_invocation, validate_rng_result, deterministic_int); implements table/oracle invocation/result interface skeleton (TableOracleInvocation, TableOracleResult with create_table_oracle_invocation, create_table_oracle_result, validate_table_oracle_invocation, validate_table_oracle_result, select_table_entry); follows RUNTIME-IMPL-PR-0 through PR-3 authorization; no full RNG service; no global random state; no non-deterministic randomness; no dice expression parser; no RNG session store; no encounter table library; no oracle content library; no weighted table engine; no event store persistence; no database schema; no replay/hash service; no validation pipeline beyond local skeleton checks; no invariant validator; no correction event schema; no state store; no state mutation; no command execution; no context-packet compiler; no hidden-information partition; no persistence writer; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
