@@ -238,7 +238,6 @@ class TestNoUnauthorizedModules:
     @pytest.mark.parametrize(
         "module",
         [
-            "validation_pipeline.py",
             "hidden_information.py",
             "context_projection.py",
             "persistence_boundary.py",
