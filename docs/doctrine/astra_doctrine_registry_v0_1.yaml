@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-06'
+  version: 0.1.64
+  action: runtime_seq_pr_e_model_evaluation_structured_output_adversarial_command_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-SEQ-PR-E-MODEL-EVALUATION-STRUCTURED-OUTPUT-ADVERSARIAL-COMMAND-PLAN-001 tracking. This record is RUNTIME-SEQ-PR-E planning only; defines model evaluation, structured-output, and adversarial-command contract layer; defines model role taxonomy (local_8b_narrator, local_8b_intent_parser, local_8b_clarification_assistant, local_8b_visible_summary_assistant, api_reflective_summarizer, api_evaluator_or_judge, api_canon_or_sourcebook_drafter, conversion_assistant, backend_validator, backend_packet_compiler); defines ModelBehaviorFingerprint contract; defines role qualification contract; defines structured-output contract; defines SchemaKeyBehaviorEvaluationPolicy; defines TruncationSafeStructuredOutputPolicy; defines AdversarialPlayerCommandCorpus plan; defines MetamorphicRuntimeNarrationTestPlan; defines local/cloud model comparison contract; defines FailureModeRoutingContract; defines evaluation packet and trace requirements; defines ModelRoleEligibilityLedger planning; recommends RUNTIME-SEQ-PR-F; no doctrine rewrite; no model evaluation code; no benchmark runner; no prompt templates; no model routing; no model adapter; no structured-output schema; no schema-key validator; no adversarial test harness; no metamorphic test runner; no model behavior fingerprint implementation; no role eligibility ledger implementation; no training data; no fine-tuning; no runtime implementation; no command IR implementation; no state store implementation; no event ledger implementation; no context-packet compiler implementation; no redaction algorithm; no validator implementation; no generator implementation; no live-play adapter; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-06'
   version: 0.1.63
   action: runtime_seq_pr_d_story_capable_structure_playable_content_plan
   actor: Astra Doctrine Council / synthesis assistant
@@ -8426,6 +8431,172 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-SEQ-PR-B planning only; defines narration/context packet contract layer; defines packet layer separation; defines NarrationRenderPacket and ContextPacket planning contracts; defines visibility tiers; defines local 8B packet budget policy; defines narrator output contract; defines soft-state mutation detection requirements; defines missing-information policy; defines canonical silence and source-local/canon boundary notices; defines model role contracts; defines packet assembly trace requirements; recommends RUNTIME-SEQ-PR-C; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no context-packet compiler implementation; no narration render packet schema implementation; no narrator output schema implementation; no redaction algorithm; no hidden-state database; no packet budget enforcement; no soft-state mutation validator; no model routing implementation; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-SEQ-PR-E-MODEL-EVALUATION-STRUCTURED-OUTPUT-ADVERSARIAL-COMMAND-PLAN-001
+  filename: runtime_seq_pr_e_model_evaluation_structured_output_adversarial_command_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_seq_pr_e_model_evaluation_structured_output_adversarial_command_plan.md
+  layer: 0_control
+  phase: implementation-sequencing
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future model-evaluation and structured-output contract owner
+  purpose: Defines model role taxonomy, ModelBehaviorFingerprint contract, role qualification contract, structured-output contract, SchemaKeyBehaviorEvaluationPolicy, TruncationSafeStructuredOutputPolicy, AdversarialPlayerCommandCorpus plan, MetamorphicRuntimeNarrationTestPlan, local/cloud model comparison contract, FailureModeRoutingContract, evaluation packet and trace requirements, and ModelRoleEligibilityLedger. Planning only. No implementation.
+  owns:
+  - model evaluation, structured-output, and adversarial-command contract plan
+  - model role taxonomy (local_8b_narrator, local_8b_intent_parser, local_8b_clarification_assistant, local_8b_visible_summary_assistant, api_reflective_summarizer, api_evaluator_or_judge, api_canon_or_sourcebook_drafter, conversion_assistant, backend_validator, backend_packet_compiler)
+  - ModelBehaviorFingerprint contract (21 evaluation dimensions)
+  - role qualification contract (8 LLM role gate sets)
+  - structured-output contract (16 structured-output field families)
+  - SchemaKeyBehaviorEvaluationPolicy (12 schema-key behavior tests)
+  - TruncationSafeStructuredOutputPolicy
+  - AdversarialPlayerCommandCorpus plan (16 adversarial test families)
+  - MetamorphicRuntimeNarrationTestPlan (10 metamorphic invariance tests)
+  - local/cloud model comparison contract (13 comparison dimensions)
+  - FailureModeRoutingContract (18 failure categories)
+  - evaluation packet and trace requirements (19 trace fields)
+  - ModelRoleEligibilityLedger planning (13 ledger fields)
+  - training and fine-tuning boundary
+  - runtime/narration handoff definition
+  - runtime/event handoff definition
+  - playable-content handoff definition
+  - domain handoff crosswalk (RT-001 through RT-012)
+  - blocked-until ledger
+  - recommendation of RUNTIME-SEQ-PR-F as next planning step
+  must_not_own:
+  - no doctrine rewrite
+  - no model evaluation code
+  - no benchmark runner
+  - no prompt templates
+  - no model routing
+  - no model adapter
+  - no structured-output schema
+  - no schema-key validator
+  - no adversarial test harness
+  - no metamorphic test runner
+  - no model behavior fingerprint implementation
+  - no role eligibility ledger implementation
+  - no training data
+  - no fine-tuning
+  - no runtime implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no state store implementation
+  - no event ledger implementation
+  - no context-packet compiler implementation
+  - no redaction algorithm
+  - no live-play adapter
+  - no donor-content audit
+  - no pilot conversion authorization
+  - no sourcebook inclusion authorization
+  - no canon promotion
+  dependencies:
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001
+  - RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001
+  - RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001
+  - RUNTIME-SEQ-PR-C-STATE-EVENT-INVARIANT-TRANSACTION-PLAN-001
+  - RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001
+  blocked_by:
+  - implementation_blocked
+  - model_evaluation_code_blocked
+  - benchmark_runner_blocked
+  - prompt_templates_blocked
+  - model_routing_blocked
+  - model_adapter_blocked
+  - structured_output_schema_blocked
+  - schema_key_validator_blocked
+  - adversarial_test_harness_blocked
+  - metamorphic_test_runner_blocked
+  - model_behavior_fingerprint_blocked
+  - role_eligibility_ledger_blocked
+  - training_data_blocked
+  - fine_tuning_blocked
+  - runtime_blocked
+  - command_ir_blocked
+  - validator_blocked
+  - generator_blocked
+  - state_store_blocked
+  - event_ledger_blocked
+  - context_packet_compiler_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - live_play_blocked
+  unlocks:
+  - RUNTIME-SEQ-PR-F implementation-readiness review and first executable-kernel authorization gate
+  - future separately authorized model evaluation and structured-output implementation
+  downstream_consumers:
+  - future model evaluation runner implementation owner, if separately authorized
+  - future benchmark harness implementation owner, if separately authorized
+  - future structured-output schema implementation owner, if separately authorized
+  - future adversarial test harness implementation owner, if separately authorized
+  - future metamorphic test runner implementation owner, if separately authorized
+  - future model behavior fingerprint implementation owner, if separately authorized
+  - future role eligibility ledger implementation owner, if separately authorized
+  - future failure-mode routing implementation owner, if separately authorized
+  donor_pressure_absorbed:
+  - pressure to skip model evaluation, structured-output, and adversarial-command contract planning and proceed directly to model evaluation code, benchmark runners, prompt templates, model routing, model adapters, structured-output schemas, adversarial test harnesses, metamorphic test runners, training, live-play, conversion, sourcebook inclusion, or canon promotion
+  hard_refusals:
+  - This model evaluation plan cannot implement model evaluation code, implement benchmark runners, create prompt templates, implement model routing, implement model adapters, implement structured-output schemas, implement schema-key validators, implement adversarial test harnesses, implement metamorphic test runners, implement model behavior fingerprints, implement role eligibility ledgers, create training data, authorize fine-tuning, implement runtime, implement command IR, implement validators, implement generators, implement state stores, implement event ledgers, implement context-packet compilers, implement redaction algorithms, create live-play adapters, authorize training, audit donor content, authorize sourcebook inclusion, authorize pilot conversion, or promote canon.
+  - LLM output cannot commit state, mutate records, roll dice, reveal hidden information, bypass validation, promote content to canon, or override runtime decisions.
+  escalation_triggers:
+  - Any attempt to cite this plan as model evaluation code, benchmark runner, prompt template, model routing, model adapter, structured-output schema, schema-key validator, adversarial test harness, metamorphic test runner, model behavior fingerprint implementation, role eligibility ledger implementation, training data, fine-tuning, runtime, command IR, validator, generator, state store, event ledger, context-packet compiler, live-play, pilot conversion, sourcebook inclusion, or canon promotion authority
+  required_tests:
+  - plan file presence test
+  - RUNTIME-SEQ-PR-E-MODEL-EVALUATION-STRUCTURED-OUTPUT-ADVERSARIAL-COMMAND-PLAN-001 tracking ID test
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001 lineage test
+  - RUNTIME-SEQ-PR-A lineage test
+  - RUNTIME-SEQ-PR-B lineage test
+  - RUNTIME-SEQ-PR-C lineage test
+  - RUNTIME-SEQ-PR-D lineage test
+  - RT-005, RT-011, RT-012 primary owner track test
+  - RT-001 through RT-012 reference test
+  - backend-first model-interchangeability invariant test
+  - LLM is not the game engine test
+  - model role taxonomy test
+  - ModelBehaviorFingerprint contract test
+  - role qualification contract test
+  - structured-output contract test
+  - SchemaKeyBehaviorEvaluationPolicy test
+  - TruncationSafeStructuredOutputPolicy test
+  - AdversarialPlayerCommandCorpus test
+  - MetamorphicRuntimeNarrationTestPlan test
+  - local/cloud model comparison contract test
+  - FailureModeRoutingContract test
+  - evaluation packet and trace requirements test
+  - ModelRoleEligibilityLedger test
+  - training and fine-tuning boundary test
+  - runtime/narration handoff test
+  - runtime/event handoff test
+  - playable-content handoff test
+  - domain handoff crosswalk test
+  - validation and test requirements test
+  - blocked-until ledger test
+  - RUNTIME-SEQ-PR-F recommendation test
+  - non-implementation reaffirmation test
+  - classification block test
+  - registry and decision-log tracking test
+  - no-implementation-claims guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future model evaluation code, benchmark runner, prompt template, model routing, model adapter, structured-output schema, schema-key validator, adversarial test harness, metamorphic test runner, model behavior fingerprint implementation, role eligibility ledger implementation, training data, fine-tuning, runtime, command IR, validator, generator, state store, event ledger, context-packet compiler, live-play adapter, pilot conversion, sourcebook inclusion, or canon promotion claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-SEQ-PR-E planning only; defines model evaluation, structured-output, and adversarial-command contract layer; defines model role taxonomy; defines ModelBehaviorFingerprint contract; defines role qualification contract; defines structured-output contract; defines SchemaKeyBehaviorEvaluationPolicy; defines TruncationSafeStructuredOutputPolicy; defines AdversarialPlayerCommandCorpus plan; defines MetamorphicRuntimeNarrationTestPlan; defines local/cloud model comparison contract; defines FailureModeRoutingContract; defines evaluation packet and trace requirements; defines ModelRoleEligibilityLedger planning; recommends RUNTIME-SEQ-PR-F; no doctrine rewrite; no model evaluation code; no benchmark runner; no prompt templates; no model routing; no model adapter; no structured-output schema; no schema-key validator; no adversarial test harness; no metamorphic test runner; no model behavior fingerprint implementation; no role eligibility ledger implementation; no training data; no fine-tuning; no runtime implementation; no command IR implementation; no state store implementation; no event ledger implementation; no context-packet compiler implementation; no redaction algorithm; no validator implementation; no generator implementation; no live-play adapter; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
 - file_id: RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001
   filename: runtime_seq_pr_d_story_capable_structure_playable_content_plan.md
   proposed_path: docs/doctrine/reviews/runtime_seq_pr_d_story_capable_structure_playable_content_plan.md
