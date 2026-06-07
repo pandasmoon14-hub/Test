@@ -1072,3 +1072,85 @@ runtime_impl_pr_2:
 - No domain service package exists yet.
 - No model integration package exists yet.
 - No prompt template package exists yet.
+
+## 2026-06-07 decision — RUNTIME-IMPL-PR-3 state delta and event ledger envelope skeleton
+
+- Decision ID: RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+- Decision date: 2026-06-07
+- Decision type: implementation/executable skeleton
+
+### Summary
+
+Third narrow runtime code PR. Implements only state delta envelope and event ledger entry envelope skeletons under `src/astra_runtime/kernel/`. Follows RUNTIME-IMPL-PR-0 through PR-2 authorization. Preserves backend-first invariant. LLM is not the game engine.
+
+### Reason
+
+RUNTIME-IMPL-PR-2 authorized RUNTIME-IMPL-PR-3 as the next executable code step. The scope is narrowed to state delta envelope (immutable frozen dataclass with validation, allowed change types, affected record IDs, copy-safe payload/metadata, `to_dict` conversion) and event ledger entry (immutable frozen dataclass with allowed event types, non-negative sequence, state delta ID references, actor/target record ID validation, copy-safe metadata, `to_dict` conversion). No other kernel systems are implemented.
+
+### Implication
+
+- `src/astra_runtime/kernel/state_delta.py` now exists.
+- `src/astra_runtime/kernel/event_ledger.py` now exists.
+- `src/astra_runtime/kernel/__init__.py` exports both modules.
+- 97 focused new tests pass (46 state delta + 51 event ledger).
+- No state store/replay/RNG/persistence/domain/model/live-play artifacts created.
+
+### Revisit trigger
+
+- If state delta envelope needs additional fields for state application engine (PR-4+).
+- If event ledger entry needs hash/replay fields for event store (PR-4+).
+- If RUNTIME-IMPL-PR-4 (deterministic RNG and table/oracle interface skeleton) is authorized.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_3:
+  implementation_id: RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  artifact_type: executable_kernel_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+    - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+    - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+    - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_state_delta_envelope_skeleton: true
+  implements_event_ledger_entry_skeleton: true
+  authorizes_mutable_state_store: false
+  authorizes_state_application_engine: false
+  authorizes_command_execution: false
+  authorizes_command_lifecycle_engine: false
+  authorizes_transaction_lifecycle_engine: false
+  authorizes_rollback: false
+  authorizes_event_store_persistence: false
+  authorizes_database_schema: false
+  authorizes_replay_hash_service: false
+  authorizes_rng_service: false
+  authorizes_table_oracle_service: false
+  authorizes_validation_pipeline: false
+  authorizes_invariant_validator: false
+  authorizes_correction_event_schema: false
+  authorizes_context_packet_compiler: false
+  authorizes_hidden_information_partition: false
+  authorizes_persistence_writer: false
+  authorizes_domain_services: false
+  authorizes_generators: false
+  authorizes_live_play: false
+  authorizes_model_integration: false
+  authorizes_training: false
+  authorizes_pilot_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  next_allowed_step: RUNTIME-IMPL-PR-4 deterministic RNG and table/oracle interface skeleton, pending review
+```
+
+### No-implementation guardrails
+
+- No RNG/table module exists yet.
+- No validation pipeline module exists yet.
+- No persistence/database module exists yet.
+- No context projection or hidden-information module exists yet.
+- No replay/audit module exists yet.
+- No runtime trace module exists yet.
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.

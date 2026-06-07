@@ -164,13 +164,13 @@ class TestNoUnauthorizedModules:
     @pytest.mark.parametrize(
         "module",
         [
-            "state_delta.py",
-            "event_ledger.py",
             "rng_interface.py",
             "validation_pipeline.py",
             "hidden_information.py",
             "context_projection.py",
             "persistence_boundary.py",
+            "replay_audit.py",
+            "runtime_trace.py",
         ],
     )
     def test_future_module_does_not_exist(self, module):
