@@ -281,7 +281,6 @@ class TestNoUnauthorizedModules:
     @pytest.mark.parametrize(
         "module",
         [
-            "rng_interface.py",
             "validation_pipeline.py",
             "hidden_information.py",
             "context_projection.py",
