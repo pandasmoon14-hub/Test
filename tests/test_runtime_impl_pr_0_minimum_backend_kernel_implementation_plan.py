@@ -212,10 +212,10 @@ def test_decision_log_tracking_exists():
 
 # --- No-implementation guardrail ---
 
-def test_no_runtime_code_created():
+def test_runtime_package_authorized_by_pr_1():
     runtime_src = PLAN_PATH.parent.parent.parent.parent / "src" / "astra_runtime"
-    assert not runtime_src.exists(), (
-        f"src/astra_runtime/ must not exist in this PR: {runtime_src}"
+    assert runtime_src.exists(), (
+        "src/astra_runtime/ should exist after RUNTIME-IMPL-PR-1 authorization"
     )
 
 

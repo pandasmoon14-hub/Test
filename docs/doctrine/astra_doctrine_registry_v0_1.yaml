@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-07'
+  version: 0.1.67
+  action: runtime_impl_pr_1_schema_registry_record_identity_skeleton
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001 tracking. This record is RUNTIME-IMPL-PR-1 implementation; first narrow backend-kernel code skeleton; implements minimal package structure (src/astra_runtime/kernel/); implements schema registry skeleton; implements record identity skeleton; adds focused runtime tests (40 tests); follows RUNTIME-IMPL-PR-0 authorization boundary; no command IR; no transaction preview; no state store; no state delta model; no event ledger; no RNG/table service; no validation pipeline beyond local skeleton checks; no context-packet compiler; no hidden-information partition; no persistence writer; no database schema; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-07'
   version: 0.1.66
   action: runtime_impl_pr_0_minimum_backend_kernel_executable_implementation_plan
   actor: Astra Doctrine Council / synthesis assistant
@@ -9233,3 +9238,75 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-0 planning only; minimum backend kernel executable implementation plan; defines future stack recommendation (Python/pytest); defines future package/module layout (src/astra_runtime/kernel/); defines minimum backend kernel target (14 interface skeletons); defines interface boundary plan (14 interfaces); defines RUNTIME-IMPL-PR-1 through PR-8 sequence; defines authorization boundary for RUNTIME-IMPL-PR-1; defines kernel skeleton invariants (10 invariants); defines storage-neutral persistence plan; defines testing strategy (16 test families); defines implementation risk controls (12 risks); defines blocked-until ledger (17 items); recommends RUNTIME-IMPL-PR-1; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no state store; no state delta model; no event ledger; no transaction system; no invariant validator; no correction event schema; no deterministic RNG service; no table/oracle service; no persistence writer; no database schema; no context-packet compiler; no redaction algorithm; no hidden-state database; no domain service; no model evaluation code; no benchmark runner; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  filename: src/astra_runtime/kernel/schema_registry.py
+  proposed_path: src/astra_runtime/kernel/
+  layer: 6_runtime_backend
+  phase: '3'
+  status: draft
+  authority_level: implementation
+  owner: Astra Doctrine Council - Runtime Working Group
+  purpose: First narrow backend-kernel code skeleton. Implements minimal package structure, schema registry skeleton, and record identity skeleton with focused tests.
+  owns:
+  - minimal runtime package structure
+  - schema registry skeleton
+  - record identity skeleton
+  - focused runtime skeleton tests
+  must_not_own:
+  - command IR
+  - transaction preview
+  - state store
+  - state delta model
+  - event ledger
+  - RNG/table/oracle service
+  - validation pipeline beyond local skeleton checks
+  - context-packet compiler
+  - hidden-information partition
+  - persistence writer
+  - database schema
+  - domain services
+  - generators
+  - live-play adapter
+  - model integration
+  - prompt templates
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - schema registry empty state test
+  - schema registry from_mapping test
+  - schema registry keys sorted test
+  - schema registry get existing key test
+  - schema registry get missing key raises test
+  - schema registry register valid test
+  - schema registry register duplicate raises test
+  - schema registry register duplicate with replace test
+  - schema registry reject empty key test
+  - schema registry reject non-mapping definition test
+  - schema registry immutability tests
+  - record identity build valid ID test
+  - record identity parse valid ID test
+  - record identity validate valid ID test
+  - record identity reject malformed IDs test
+  - record identity reject empty type test
+  - record identity reject empty local ID test
+  - record identity reject whitespace test
+  - record identity reject unsupported characters test
+  - record identity deterministic output test
+  - no random or persistent allocation test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-2
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-1 implementation; first narrow backend-kernel code skeleton; implements minimal package structure (src/astra_runtime/kernel/); implements schema registry skeleton (SchemaRegistry with from_mapping, register, get, has, keys, to_mapping); implements record identity skeleton (build_record_id, parse_record_id, is_valid_record_id, RecordId); adds 40 focused runtime tests; follows RUNTIME-IMPL-PR-0 authorization boundary; no command IR; no transaction preview; no state store; no state delta model; no event ledger; no RNG/table service; no validation pipeline beyond local skeleton checks; no context-packet compiler; no hidden-information partition; no persistence writer; no database schema; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
