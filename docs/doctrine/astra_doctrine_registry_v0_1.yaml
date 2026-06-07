@@ -9413,3 +9413,128 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-2 implementation; second narrow backend-kernel code skeleton; implements command envelope skeleton (CommandEnvelope, create_command_envelope, validate_command_envelope); implements transaction preview skeleton (TransactionPreview, create_transaction_preview, validate_transaction_preview); adds 60 focused runtime tests; follows RUNTIME-IMPL-PR-0 and PR-1 authorization sequence; no command lifecycle engine; no action legality engine; no command execution; no state store; no state delta model; no event ledger; no event commitment; no transaction system beyond local preview envelope skeleton; no rollback; no invariant validator; no correction event schema; no deterministic RNG service; no table/oracle service; no validation pipeline beyond local skeleton checks; no context-packet compiler; no hidden-information partition; no persistence writer; no database schema; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+  notes: RUNTIME-IMPL-PR-2 implementation; second narrow backend-kernel code skeleton; implements command envelope skeleton (CommandEnvelope with create_command_envelope, validate_command_envelope, to_dict); implements transaction preview skeleton (TransactionPreview with create_transaction_preview, validate_transaction_preview, to_dict); follows RUNTIME-IMPL-PR-0 and PR-1 authorization; no state store; no state delta model; no event ledger; no command lifecycle engine; no action legality engine; no command execution; no transaction system beyond local preview envelope skeleton; no rollback; no invariant validator; no correction event schema; no RNG/table service; no validation pipeline beyond local skeleton checks; no context-packet compiler; no hidden-information partition; no persistence writer; no database schema; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  filename: src/astra_runtime/kernel/state_delta.py
+  proposed_path: src/astra_runtime/kernel/
+  layer: 6_runtime_backend
+  phase: '3'
+  status: draft
+  authority_level: implementation
+  owner: Astra Doctrine Council - Runtime Working Group
+  purpose: Third narrow backend-kernel code skeleton. Implements state delta envelope skeleton and event ledger entry envelope skeleton with focused tests.
+  owns:
+  - state delta envelope skeleton
+  - event ledger entry envelope skeleton
+  - focused runtime skeleton tests for state delta and event ledger
+  must_not_own:
+  - mutable state store
+  - state application engine
+  - command execution
+  - command lifecycle engine
+  - transaction lifecycle engine
+  - rollback
+  - event store persistence
+  - database schema
+  - replay/hash service
+  - deterministic RNG service
+  - table/oracle service
+  - validation pipeline beyond local skeleton checks
+  - invariant validator
+  - correction event schema
+  - context-packet compiler
+  - hidden-information partition
+  - persistence writer
+  - domain services
+  - generators
+  - live-play adapter
+  - model integration
+  - prompt templates
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - state delta valid creation test
+  - state delta preserves delta_id test
+  - state delta preserves source_command_id test
+  - state delta preserves source_preview_id test
+  - state delta preserves change_type test
+  - state delta affected record IDs normalize to tuple test
+  - state delta valid affected record IDs accepted test
+  - state delta invalid affected record IDs rejected test
+  - state delta allowed change types accepted test
+  - state delta unsupported change type rejected test
+  - state delta payload defaults to empty mapping test
+  - state delta metadata defaults to empty mapping test
+  - state delta payload copy-safe test
+  - state delta metadata copy-safe test
+  - state delta to_dict test
+  - state delta to_dict returns deep copy test
+  - state delta reject empty delta_id test
+  - state delta reject empty source_command_id test
+  - state delta reject empty source_preview_id test
+  - state delta reject non-mapping payload test
+  - state delta reject non-mapping metadata test
+  - state delta validate helper accepts valid test
+  - state delta validate helper rejects invalid test
+  - state delta frozen immutability test
+  - state delta no state application method test
+  - event ledger valid creation test
+  - event ledger preserves event_id test
+  - event ledger preserves event_type test
+  - event ledger preserves sequence test
+  - event ledger preserves source_command_id test
+  - event ledger preserves source_preview_id test
+  - event ledger allowed event types accepted test
+  - event ledger unsupported event type rejected test
+  - event ledger sequence non-negative test
+  - event ledger sequence rejects float test
+  - event ledger sequence rejects bool test
+  - event ledger state_delta_ids normalize to tuple test
+  - event ledger empty delta ID rejected test
+  - event ledger actor_ids normalize to tuple test
+  - event ledger target_ids normalize to tuple test
+  - event ledger valid actor IDs accepted test
+  - event ledger invalid actor IDs rejected test
+  - event ledger valid target IDs accepted test
+  - event ledger invalid target IDs rejected test
+  - event ledger metadata defaults to empty mapping test
+  - event ledger metadata copy-safe test
+  - event ledger to_dict test
+  - event ledger to_dict returns deep copy test
+  - event ledger reject empty event_id test
+  - event ledger reject empty source_command_id test
+  - event ledger reject empty source_preview_id test
+  - event ledger reject non-mapping metadata test
+  - event ledger validate helper accepts valid test
+  - event ledger validate helper rejects invalid test
+  - event ledger frozen immutability test
+  - event ledger no append/store/replay method test
+  - guardrail no rng_interface module test
+  - guardrail no validation_pipeline module test
+  - guardrail no hidden_information module test
+  - guardrail no context_projection module test
+  - guardrail no persistence_boundary module test
+  - guardrail no replay_audit module test
+  - guardrail no runtime_trace module test
+  - guardrail no domain service package test
+  - guardrail no model integration package test
+  - guardrail no prompt template package test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-4
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-3 implementation; third narrow backend-kernel code skeleton; implements state delta envelope skeleton (StateDeltaEnvelope with create_state_delta_envelope, validate_state_delta_envelope, to_dict); implements event ledger entry envelope skeleton (EventLedgerEntry with create_event_ledger_entry, validate_event_ledger_entry, to_dict); follows RUNTIME-IMPL-PR-0 through PR-2 authorization; no mutable state store; no state application engine; no command execution; no command lifecycle engine; no transaction lifecycle engine; no rollback; no event store persistence; no database schema; no replay/hash service; no deterministic RNG service; no table/oracle service; no validation pipeline beyond local skeleton checks; no invariant validator; no correction event schema; no context-packet compiler; no hidden-information partition; no persistence writer; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
