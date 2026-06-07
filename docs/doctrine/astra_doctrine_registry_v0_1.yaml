@@ -9310,3 +9310,106 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-1 implementation; first narrow backend-kernel code skeleton; implements minimal package structure (src/astra_runtime/kernel/); implements schema registry skeleton (SchemaRegistry with from_mapping, register, get, has, keys, to_mapping); implements record identity skeleton (build_record_id, parse_record_id, is_valid_record_id, RecordId); adds 40 focused runtime tests; follows RUNTIME-IMPL-PR-0 authorization boundary; no command IR; no transaction preview; no state store; no state delta model; no event ledger; no RNG/table service; no validation pipeline beyond local skeleton checks; no context-packet compiler; no hidden-information partition; no persistence writer; no database schema; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  filename: src/astra_runtime/kernel/command_envelope.py
+  proposed_path: src/astra_runtime/kernel/
+  layer: 6_runtime_backend
+  phase: '3'
+  status: draft
+  authority_level: implementation
+  owner: Astra Doctrine Council - Runtime Working Group
+  purpose: Second narrow backend-kernel code skeleton. Implements command envelope skeleton and transaction preview skeleton with focused tests.
+  owns:
+  - command envelope skeleton
+  - transaction preview skeleton
+  - focused runtime skeleton tests for command envelope and transaction preview
+  must_not_own:
+  - command lifecycle engine
+  - action legality engine
+  - command execution
+  - state store
+  - state delta model
+  - event ledger
+  - event commitment
+  - transaction system beyond local preview envelope skeleton
+  - rollback
+  - invariant validator
+  - correction event schema
+  - deterministic RNG service
+  - table/oracle service
+  - validation pipeline beyond local skeleton checks
+  - context-packet compiler
+  - hidden-information partition
+  - persistence writer
+  - database schema
+  - domain services
+  - generators
+  - live-play adapter
+  - model integration
+  - prompt templates
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - command envelope valid creation test
+  - command envelope preserves command_id test
+  - command envelope preserves command_type test
+  - command envelope preserves source_actor_id test
+  - command envelope payload defaults to empty mapping test
+  - command envelope metadata defaults to empty mapping test
+  - command envelope payload copy-safe test
+  - command envelope metadata copy-safe test
+  - command envelope reject empty command_id test
+  - command envelope reject empty command_type test
+  - command envelope reject invalid source_actor_id test
+  - command envelope reject non-mapping payload test
+  - command envelope reject non-mapping metadata test
+  - command envelope to_dict test
+  - command envelope validate helper accepts valid test
+  - command envelope validate helper rejects invalid test
+  - command envelope frozen immutability test
+  - transaction preview valid creation test
+  - transaction preview preserves command_id test
+  - transaction preview default status test
+  - transaction preview allowed statuses test
+  - transaction preview unsupported status rejected test
+  - transaction preview messages normalized to tuple test
+  - transaction preview non-string message rejected test
+  - transaction preview metadata defaults to empty mapping test
+  - transaction preview metadata copy-safe test
+  - transaction preview non-mapping metadata rejected test
+  - transaction preview reject empty preview_id test
+  - transaction preview to_dict test
+  - transaction preview validate helper accepts valid test
+  - transaction preview validate helper rejects invalid test
+  - transaction preview frozen immutability test
+  - transaction preview no state_delta field test
+  - transaction preview no event_commit field test
+  - transaction preview creation does not mutate command envelope test
+  - guardrail no state_delta module test
+  - guardrail no event_ledger module test
+  - guardrail no rng_interface module test
+  - guardrail no validation_pipeline module test
+  - guardrail no hidden_information module test
+  - guardrail no context_projection module test
+  - guardrail no persistence_boundary module test
+  - guardrail no domain service package test
+  - guardrail no model integration package test
+  - guardrail no prompt template package test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-3
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-2 implementation; second narrow backend-kernel code skeleton; implements command envelope skeleton (CommandEnvelope, create_command_envelope, validate_command_envelope); implements transaction preview skeleton (TransactionPreview, create_transaction_preview, validate_transaction_preview); adds 60 focused runtime tests; follows RUNTIME-IMPL-PR-0 and PR-1 authorization sequence; no command lifecycle engine; no action legality engine; no command execution; no state store; no state delta model; no event ledger; no event commitment; no transaction system beyond local preview envelope skeleton; no rollback; no invariant validator; no correction event schema; no deterministic RNG service; no table/oracle service; no validation pipeline beyond local skeleton checks; no context-packet compiler; no hidden-information partition; no persistence writer; no database schema; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.

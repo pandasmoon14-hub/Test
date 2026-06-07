@@ -991,3 +991,84 @@ runtime_impl_pr_1:
 - No persistence/database module exists yet.
 - No context projection or hidden-information module exists yet.
 - No domain service package exists yet.
+
+## 2026-06-07 decision — RUNTIME-IMPL-PR-2 command envelope and transaction preview skeleton
+
+- Decision ID: RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+- Decision date: 2026-06-07
+- Decision type: implementation/executable skeleton
+
+### Summary
+
+Second narrow runtime code PR. Implements only command envelope and transaction preview skeletons under `src/astra_runtime/kernel/`. Follows RUNTIME-IMPL-PR-0 and PR-1 authorization. Preserves backend-first invariant. LLM is not the game engine.
+
+### Reason
+
+RUNTIME-IMPL-PR-1 authorized RUNTIME-IMPL-PR-2 as the next executable code step. The scope is narrowed to command envelope (immutable frozen dataclass with validation, copy-safe payload/metadata, `to_dict` conversion) and transaction preview (immutable frozen dataclass with restricted status set, message normalization, no state deltas, no event commitment). No other kernel systems are implemented.
+
+### Implication
+
+- `src/astra_runtime/kernel/command_envelope.py` now exists.
+- `src/astra_runtime/kernel/transaction_preview.py` now exists.
+- `src/astra_runtime/kernel/__init__.py` exports both modules.
+- 60 focused tests pass (34 command envelope + 26 transaction preview).
+- No state/event/RNG/persistence/domain/model/live-play artifacts created.
+
+### Revisit trigger
+
+- If command envelope needs additional fields for command lifecycle engine (PR-3+).
+- If transaction preview needs state delta references (PR-3).
+- If RUNTIME-IMPL-PR-3 (state delta and event ledger envelope skeleton) is authorized.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_2:
+  implementation_id: RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  artifact_type: executable_kernel_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+    - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+    - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_command_envelope_skeleton: true
+  implements_transaction_preview_skeleton: true
+  authorizes_command_lifecycle_engine: false
+  authorizes_action_legality_engine: false
+  authorizes_command_execution: false
+  authorizes_state_store: false
+  authorizes_state_delta_model: false
+  authorizes_event_ledger: false
+  authorizes_event_commitment: false
+  authorizes_transaction_system: false
+  authorizes_rollback: false
+  authorizes_invariant_validator: false
+  authorizes_correction_event_schema: false
+  authorizes_rng_service: false
+  authorizes_table_oracle_service: false
+  authorizes_validation_pipeline: false
+  authorizes_context_packet_compiler: false
+  authorizes_hidden_information_partition: false
+  authorizes_persistence_writer: false
+  authorizes_database_schema: false
+  authorizes_domain_services: false
+  authorizes_generators: false
+  authorizes_live_play: false
+  authorizes_model_integration: false
+  authorizes_training: false
+  authorizes_pilot_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  next_allowed_step: RUNTIME-IMPL-PR-3 state delta and event ledger envelope skeleton, pending review
+```
+
+### No-implementation guardrails
+
+- No state delta module exists yet.
+- No event ledger module exists yet.
+- No RNG/table module exists yet.
+- No persistence/database module exists yet.
+- No context projection or hidden-information module exists yet.
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
