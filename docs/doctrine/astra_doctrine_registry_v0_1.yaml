@@ -9811,3 +9811,142 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-5 implementation; fifth narrow backend-kernel code skeleton; implements validation issue/result skeleton (ValidationIssue, ValidationResult with create_validation_issue, create_validation_result, validate_validation_issue, validate_validation_result); implements validation pipeline skeleton (run_validation_checks); implements required-keys check helper (required_keys_check); implements invariant precheck descriptor/skeleton (InvariantPrecheck with create_invariant_precheck, validate_invariant_precheck, run_invariant_prechecks); follows RUNTIME-IMPL-PR-0 through PR-4 authorization; no full validation framework; no domain validation rules; no command legality engine; no action legality engine; no resource/cost validation; no combat validation; no mission validation; no social/faction validation; no inventory validation; no hidden-information partition; no context projection; no context-packet compiler; no full invariant validator; no correction event schema; no mutable state store; no state mutation; no command execution; no event commitment; no event store persistence; no database schema; no replay/hash service; no persistence writer; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+
+- file_id: RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  title: RUNTIME-IMPL-PR-6 Hidden-Information Partition and Context Projection Skeleton
+  file_path: src/astra_runtime/kernel/hidden_information.py
+  secondary_file_paths:
+  - src/astra_runtime/kernel/context_projection.py
+  artifact_type: executable_kernel_skeleton
+  artifact_subtype: hidden_information_context_projection_skeleton
+  batch: runtime-impl
+  status: active
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_hidden_information_partition_skeleton: true
+  implements_context_projection_skeleton: true
+  implements_visible_redacted_projection_helper: true
+  does_not_authorize:
+  - hidden-state database
+  - durable hidden-state store
+  - context-packet compiler
+  - prompt templates
+  - model-facing packet assembly
+  - narration render packet compiler
+  - live-play adapter
+  - UI projection layer
+  - full redaction engine
+  - access-control policy engine
+  - reveal mechanics
+  - social/faction knowledge engine
+  - clue engine
+  - state store
+  - state mutation
+  - command execution
+  - event commitment
+  - event store persistence
+  - database schema
+  - replay/hash service
+  - persistence writer
+  - runtime trace
+  - domain services
+  - generators
+  - model integration
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - hidden information valid creation test
+  - hidden information preserves record_id test
+  - hidden information preserves visibility_tier test
+  - hidden information preserves payload test
+  - hidden information preserves redaction_label test
+  - hidden information preserves metadata test
+  - hidden information allowed visibility tiers test
+  - hidden information unsupported visibility tier rejected test
+  - hidden information invalid record ID rejected test
+  - hidden information empty redaction label rejected test
+  - hidden information non-mapping payload rejected test
+  - hidden information non-mapping metadata rejected test
+  - hidden information payload defaults to empty mapping test
+  - hidden information metadata defaults to empty mapping test
+  - hidden information payload deep-copy safe test
+  - hidden information metadata deep-copy safe test
+  - hidden information to_dict returns deep copies test
+  - hidden information validate helper accepts valid test
+  - hidden information validate helper rejects invalid test
+  - hidden information frozen immutability test
+  - is_visible_to_tiers returns true for allowed tiers test
+  - is_visible_to_tiers returns false for disallowed tiers test
+  - redacted_copy does not expose payload test
+  - redacted_copy preserves record_id test
+  - redacted_copy preserves visibility_tier test
+  - redacted_copy preserves redaction_label test
+  - redacted_copy preserves metadata test
+  - no store/save/load/reveal/permission/database methods test
+  - context projection item valid creation test
+  - context projection item invalid record ID rejected test
+  - context projection item invalid visibility tier rejected test
+  - context projection item non-mapping payload rejected test
+  - context projection item non-bool redacted rejected test
+  - context projection item payload deep-copy safe test
+  - context projection item metadata deep-copy safe test
+  - context projection item to_dict returns deep copies test
+  - context projection item validate helper accepts valid test
+  - context projection item validate helper rejects invalid test
+  - context projection item frozen immutability test
+  - context projection valid creation test
+  - context projection invalid projection_id rejected test
+  - context projection invalid subject_ref rejected test
+  - context projection invalid allowed tier entries rejected test
+  - context projection invalid item entries rejected test
+  - context projection metadata deep-copy safe test
+  - context projection to_dict returns deep copies test
+  - context projection validate helper accepts valid test
+  - context projection validate helper rejects invalid test
+  - context projection frozen immutability test
+  - project_hidden_records includes payload for allowed tiers test
+  - project_hidden_records redacts payload for disallowed tiers test
+  - project_hidden_records never leaks backend-hidden payload test
+  - project_hidden_records preserves item order test
+  - project_hidden_records preserves record IDs test
+  - project_hidden_records preserves redacted flags test
+  - project_hidden_records rejects non-hidden-record inputs test
+  - project_hidden_records mixed visibility projection test
+  - guardrail no persistence_boundary module test
+  - guardrail no replay_audit module test
+  - guardrail no runtime_trace module test
+  - guardrail no context_packet_compiler module test
+  - guardrail no domain service package test
+  - guardrail no model integration package test
+  - guardrail no prompt template package test
+  - guardrail no live-play adapter package test
+  - guardrail no UI/client package test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-7
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-6 implementation; sixth narrow backend-kernel code skeleton; implements hidden-information record/partition skeleton (HiddenInformationRecord with create_hidden_information_record, validate_hidden_information_record, is_visible_to_tiers, redacted_copy; allowed visibility tiers public/player_visible/restricted/backend_hidden/redacted); implements context projection item/projection skeleton (ContextProjectionItem, ContextProjection with create_context_projection_item, create_context_projection, validate_context_projection_item, validate_context_projection); implements visible/redacted projection helper (project_hidden_records); follows RUNTIME-IMPL-PR-0 through PR-5 authorization; no hidden-state database; no durable hidden-state store; no context-packet compiler; no prompt templates; no model-facing packet assembly; no narration render packet compiler; no live-play adapter; no UI projection layer; no full redaction engine; no access-control policy engine; no reveal mechanics; no social/faction knowledge engine; no clue engine; no state store; no state mutation; no command execution; no event commitment; no event store persistence; no database schema; no replay/hash service; no persistence writer; no runtime trace; no domain service; no generator; no model integration; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
