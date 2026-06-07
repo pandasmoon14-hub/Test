@@ -555,6 +555,57 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No canon promotion.
 
+## 2026-06-07 decision log - RUNTIME-SEQ-PR-F implementation-readiness review and first executable-kernel authorization gate
+
+- Decision ID: RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+- Decision date: 2026-06-07
+- Decision type: implementation-readiness-review-and-authorization-gate
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_seq_pr_f_implementation_readiness_executable_kernel_authorization_gate.md` as a planning-only implementation-readiness review and first executable-kernel authorization gate.
+- This is RUNTIME-SEQ-PR-F planning/review only. It confirms owner-spec (RT-001 through RT-012) and RUNTIME-SEQ-PR-A through PR-E coverage is sufficient for a future minimum backend kernel implementation-plan PR.
+- Incorporates the backend-first/model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Includes readiness criteria matrix (19 criteria), implementation authorization gate finding, first executable kernel target definition (14 plan items), runtime stack decision review, storage and persistence decision review, minimum viable implementation sequence (RUNTIME-IMPL-PR-0 through PR-7), guardrail integrity review, blocked-until ledger, risk review (14 risks), future implementation test strategy (17 test families), and authorization boundary for RUNTIME-IMPL-PR-0.
+- Gate finding: implementation readiness for planning is ready; executable runtime implementation is not authorized by this PR; next step authorized is RUNTIME-IMPL-PR-0 (minimum backend kernel executable implementation plan).
+- Recommends RUNTIME-IMPL-PR-0 as the next step.
+
+### Governance effect
+- Establishes the implementation-readiness gate for the transition from planning-only runtime sequence into future implementation planning.
+- Reaffirms the backend-first model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Confirms all 12 owner specifications and all 5 runtime sequencing plans provide sufficient planning depth.
+- Identifies blocked-until conditions for runtime, schemas, validators, generators, domain services, live-play, training, conversion, sourcebook inclusion, and canon promotion.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No state store.
+- No state delta model.
+- No event ledger.
+- No transaction system.
+- No invariant validator.
+- No correction event schema.
+- No deterministic RNG service.
+- No table/oracle service.
+- No persistence writer.
+- No database schema.
+- No context-packet compiler.
+- No redaction algorithm.
+- No hidden-state database.
+- No domain service.
+- No model evaluation code.
+- No benchmark runner.
+- No prompt templates.
+- No live-play adapter.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - RUNTIME-SEQ-PR-E model evaluation, structured-output, and adversarial-command plan
 
 - Decision ID: RUNTIME-SEQ-PR-E-MODEL-EVALUATION-STRUCTURED-OUTPUT-ADVERSARIAL-COMMAND-PLAN-001
