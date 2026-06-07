@@ -555,6 +555,52 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No canon promotion.
 
+## 2026-06-06 decision log - RUNTIME-SEQ-PR-E model evaluation, structured-output, and adversarial-command plan
+
+- Decision ID: RUNTIME-SEQ-PR-E-MODEL-EVALUATION-STRUCTURED-OUTPUT-ADVERSARIAL-COMMAND-PLAN-001
+- Decision date: 2026-06-06
+- Decision type: model-evaluation-structured-output-adversarial-command-plan
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_seq_pr_e_model_evaluation_structured_output_adversarial_command_plan.md` as a planning-only model evaluation, structured-output, and adversarial-command plan.
+- This is RUNTIME-SEQ-PR-E planning only. It defines model role taxonomy, ModelBehaviorFingerprint contract, role qualification contract, structured-output contract, SchemaKeyBehaviorEvaluationPolicy, TruncationSafeStructuredOutputPolicy, AdversarialPlayerCommandCorpus plan, MetamorphicRuntimeNarrationTestPlan, local/cloud model comparison contract, FailureModeRoutingContract, evaluation packet and trace requirements, and ModelRoleEligibilityLedger.
+- Incorporates the backend-first/model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- No model is trusted because it is powerful, fluent, or aesthetically good. A model is eligible for a role only if future evaluation proves it can obey the role's packet contract, output contract, hidden-information limits, structured-output constraints, and non-authority boundaries.
+- Recommends RUNTIME-SEQ-PR-F (implementation-readiness review and first executable-kernel authorization gate) as the next planning step.
+
+### Governance effect
+- Establishes the planning framework for model evaluation, structured-output validation, and adversarial-command testing without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant and all non-implementation guardrails from prior planning artifacts.
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No model evaluation code.
+- No benchmark runner.
+- No prompt templates.
+- No model routing.
+- No model adapter.
+- No structured-output schema.
+- No schema-key validator.
+- No adversarial test harness.
+- No metamorphic test runner.
+- No model behavior fingerprint implementation.
+- No role eligibility ledger implementation.
+- No training data.
+- No fine-tuning.
+- No runtime implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No state store implementation.
+- No event ledger implementation.
+- No context-packet compiler implementation.
+- No redaction algorithm.
+- No live-play adapter.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - RUNTIME-SEQ-PR-D story-capable structure and playable-content plan
 
 - Decision ID: RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001
