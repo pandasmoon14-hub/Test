@@ -1241,3 +1241,95 @@ runtime_impl_pr_4:
 - No model integration package exists yet.
 - No prompt template package exists yet.
 - No live-play adapter package exists yet.
+
+## 2026-06-07 decision — RUNTIME-IMPL-PR-5 validation pipeline and invariant precheck skeleton
+
+- Decision ID: RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+- Decision date: 2026-06-07
+- Decision type: implementation/executable skeleton
+
+### Summary
+
+Fifth narrow runtime code PR. Implements only validation pipeline and invariant precheck skeletons under `src/astra_runtime/kernel/`. Follows RUNTIME-IMPL-PR-0 through PR-4 authorization. Preserves backend-first invariant. LLM is not the game engine.
+
+### Reason
+
+RUNTIME-IMPL-PR-4 authorized RUNTIME-IMPL-PR-5 as the next executable code step. The scope is narrowed to validation issue/result envelopes (immutable frozen dataclasses with validation, copy-safe metadata, `to_dict` conversion), validation pipeline skeleton (`run_validation_checks` helper that runs local check callables and determines pass/fail by severity), required-keys check helper (`required_keys_check` factory for mapping-shaped subjects), and invariant precheck descriptor/skeleton (immutable frozen dataclass descriptor with `run_invariant_prechecks` delegating to `run_validation_checks`). No other kernel systems are implemented.
+
+### Implication
+
+- `src/astra_runtime/kernel/validation_pipeline.py` now exists.
+- `src/astra_runtime/kernel/__init__.py` exports validation pipeline and invariant precheck symbols.
+- 110 focused new tests pass.
+- Prior PR-3 through PR-4 guardrail tests updated to no longer forbid `validation_pipeline.py`.
+- No full validation framework/domain validation/hidden-info/context projection/persistence/replay/domain/model/live-play artifacts created.
+
+### Revisit trigger
+
+- If validation pipeline needs domain-specific check registries for domain services (PR-6+).
+- If invariant precheck needs state-aware invariant checking for state application engine (PR-6+).
+- If RUNTIME-IMPL-PR-6 (hidden-information partition and context projection skeleton) is authorized.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_5:
+  implementation_id: RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  artifact_type: executable_kernel_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+    - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+    - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+    - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+    - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+    - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_validation_issue_result_skeleton: true
+  implements_validation_pipeline_skeleton: true
+  implements_required_keys_check_helper: true
+  implements_invariant_precheck_skeleton: true
+  authorizes_full_validation_framework: false
+  authorizes_domain_validation_rules: false
+  authorizes_command_legality_engine: false
+  authorizes_action_legality_engine: false
+  authorizes_resource_cost_validation: false
+  authorizes_combat_validation: false
+  authorizes_mission_validation: false
+  authorizes_social_faction_validation: false
+  authorizes_inventory_validation: false
+  authorizes_hidden_information_partition: false
+  authorizes_context_projection: false
+  authorizes_context_packet_compiler: false
+  authorizes_full_invariant_validator: false
+  authorizes_correction_event_schema: false
+  authorizes_mutable_state_store: false
+  authorizes_state_mutation: false
+  authorizes_command_execution: false
+  authorizes_event_commitment: false
+  authorizes_event_store_persistence: false
+  authorizes_database_schema: false
+  authorizes_replay_hash_service: false
+  authorizes_persistence_writer: false
+  authorizes_domain_services: false
+  authorizes_generators: false
+  authorizes_live_play: false
+  authorizes_model_integration: false
+  authorizes_training: false
+  authorizes_pilot_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  next_allowed_step: RUNTIME-IMPL-PR-6 hidden-information partition and context projection skeleton, pending review
+```
+
+### No-implementation guardrails
+
+- No hidden-information module exists yet.
+- No context projection module exists yet.
+- No persistence/database module exists yet.
+- No replay/audit module exists yet.
+- No runtime trace module exists yet.
+- No invariant validator module exists yet.
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No live-play adapter package exists yet.

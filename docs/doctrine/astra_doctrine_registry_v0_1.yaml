@@ -9672,3 +9672,142 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-4 implementation; fourth narrow backend-kernel code skeleton; implements deterministic RNG invocation/result interface skeleton (RNGInvocation, RNGResult with create_rng_invocation, create_rng_result, validate_rng_invocation, validate_rng_result, deterministic_int); implements table/oracle invocation/result interface skeleton (TableOracleInvocation, TableOracleResult with create_table_oracle_invocation, create_table_oracle_result, validate_table_oracle_invocation, validate_table_oracle_result, select_table_entry); follows RUNTIME-IMPL-PR-0 through PR-3 authorization; no full RNG service; no global random state; no non-deterministic randomness; no dice expression parser; no RNG session store; no encounter table library; no oracle content library; no weighted table engine; no event store persistence; no database schema; no replay/hash service; no validation pipeline beyond local skeleton checks; no invariant validator; no correction event schema; no state store; no state mutation; no command execution; no context-packet compiler; no hidden-information partition; no persistence writer; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  title: RUNTIME-IMPL-PR-5 Validation Pipeline and Invariant Precheck Skeleton
+  file_path: src/astra_runtime/kernel/validation_pipeline.py
+  artifact_type: executable_kernel_skeleton
+  artifact_subtype: validation_pipeline_invariant_precheck_skeleton
+  batch: runtime-impl
+  status: active
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_validation_issue_result_skeleton: true
+  implements_validation_pipeline_skeleton: true
+  implements_required_keys_check_helper: true
+  implements_invariant_precheck_skeleton: true
+  does_not_authorize:
+  - full validation framework
+  - domain validation rules
+  - command legality engine
+  - action legality engine
+  - resource/cost validation
+  - combat validation
+  - mission validation
+  - social/faction validation
+  - inventory validation
+  - hidden-information partition
+  - context projection
+  - context-packet compiler
+  - full invariant validator
+  - correction event schema
+  - mutable state store
+  - state mutation
+  - command execution
+  - event commitment
+  - event store persistence
+  - database schema
+  - replay/hash service
+  - persistence writer
+  - domain services
+  - generators
+  - live-play adapter
+  - model integration
+  - prompt templates
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - validation issue valid creation test
+  - validation issue preserves code test
+  - validation issue preserves message test
+  - validation issue preserves severity test
+  - validation issue preserves source test
+  - validation issue allowed severities test
+  - validation issue unsupported severity rejected test
+  - validation issue empty code rejected test
+  - validation issue empty message rejected test
+  - validation issue empty source rejected test
+  - validation issue metadata defaults to empty mapping test
+  - validation issue metadata copy-safe test
+  - validation issue to_dict returns deep copies test
+  - validation issue validate helper accepts valid test
+  - validation issue validate helper rejects invalid test
+  - validation issue frozen immutability test
+  - validation result valid creation test
+  - validation result preserves fields test
+  - validation result rejects empty validation_id test
+  - validation result rejects empty subject_ref test
+  - validation result rejects non-bool passed test
+  - validation result rejects non-ValidationIssue entries test
+  - validation result metadata copy-safe test
+  - validation result validate helper accepts valid test
+  - validation result validate helper rejects invalid test
+  - validation result frozen immutability test
+  - run_validation_checks runs check callables test
+  - run_validation_checks returns passed when no issues test
+  - run_validation_checks returns passed for info/warning only test
+  - run_validation_checks returns failed for error issue test
+  - run_validation_checks returns failed for critical issue test
+  - run_validation_checks accepts check returning one issue test
+  - run_validation_checks accepts check returning sequence test
+  - run_validation_checks accepts check returning None test
+  - run_validation_checks rejects non-callable check entries test
+  - run_validation_checks does not mutate subject test
+  - required_keys_check passes when all keys exist test
+  - required_keys_check returns one error per missing key test
+  - required_keys_check rejects non-mapping subject test
+  - required_keys_check rejects empty required key test
+  - required_keys_check rejects non-string required key test
+  - required_keys_check does not enforce nested shape test
+  - invariant precheck valid creation test
+  - invariant precheck preserves fields test
+  - invariant precheck allowed severities test
+  - invariant precheck unsupported severity rejected test
+  - invariant precheck empty invariant_id rejected test
+  - invariant precheck empty description rejected test
+  - invariant precheck empty source rejected test
+  - invariant precheck metadata copy-safe test
+  - invariant precheck to_dict returns deep copies test
+  - invariant precheck validate helper accepts valid test
+  - invariant precheck validate helper rejects invalid test
+  - invariant precheck frozen immutability test
+  - run_invariant_prechecks delegates and returns ValidationResult test
+  - run_invariant_prechecks fails on error issues test
+  - run_invariant_prechecks fails on critical issues test
+  - run_invariant_prechecks does not mutate subject test
+  - guardrail no hidden_information module test
+  - guardrail no context_projection module test
+  - guardrail no persistence_boundary module test
+  - guardrail no replay_audit module test
+  - guardrail no runtime_trace module test
+  - guardrail no invariant_validator module test
+  - guardrail no domain service package test
+  - guardrail no model integration package test
+  - guardrail no prompt template package test
+  - guardrail no live-play adapter package test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-6
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-5 implementation; fifth narrow backend-kernel code skeleton; implements validation issue/result skeleton (ValidationIssue, ValidationResult with create_validation_issue, create_validation_result, validate_validation_issue, validate_validation_result); implements validation pipeline skeleton (run_validation_checks); implements required-keys check helper (required_keys_check); implements invariant precheck descriptor/skeleton (InvariantPrecheck with create_invariant_precheck, validate_invariant_precheck, run_invariant_prechecks); follows RUNTIME-IMPL-PR-0 through PR-4 authorization; no full validation framework; no domain validation rules; no command legality engine; no action legality engine; no resource/cost validation; no combat validation; no mission validation; no social/faction validation; no inventory validation; no hidden-information partition; no context projection; no context-packet compiler; no full invariant validator; no correction event schema; no mutable state store; no state mutation; no command execution; no event commitment; no event store persistence; no database schema; no replay/hash service; no persistence writer; no domain service; no generator; no live-play adapter; no model integration; no prompt templates; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
