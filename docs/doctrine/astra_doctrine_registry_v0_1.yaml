@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-07'
+  version: 0.1.66
+  action: runtime_impl_pr_0_minimum_backend_kernel_executable_implementation_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001 tracking. This record is RUNTIME-IMPL-PR-0 planning only; minimum backend kernel executable implementation plan; defines future stack recommendation (Python/pytest); defines future package/module layout (src/astra_runtime/kernel/); defines minimum backend kernel target (14 interface skeletons); defines interface boundary plan (14 interfaces); defines RUNTIME-IMPL-PR-1 through PR-8 sequence; defines authorization boundary for RUNTIME-IMPL-PR-1; defines kernel skeleton invariants; defines storage-neutral persistence plan; defines testing strategy; defines implementation risk controls; recommends RUNTIME-IMPL-PR-1; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no state store; no state delta model; no event ledger; no transaction system; no invariant validator; no correction event schema; no deterministic RNG service; no table/oracle service; no persistence writer; no database schema; no context-packet compiler; no redaction algorithm; no hidden-state database; no domain service; no model evaluation code; no benchmark runner; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-07'
   version: 0.1.65
   action: runtime_seq_pr_f_implementation_readiness_executable_kernel_authorization_gate
   actor: Astra Doctrine Council / synthesis assistant
@@ -9072,3 +9077,159 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-SEQ-PR-F planning/review only; implementation-readiness review and first executable-kernel authorization gate; confirms owner-spec and RUNTIME-SEQ-PR-A through PR-E coverage; confirms readiness for future minimum backend kernel implementation-plan PR; recommends RUNTIME-IMPL-PR-0; defines readiness criteria matrix (19 criteria); defines implementation authorization gate finding; defines first executable kernel target (14 plan items); defines runtime stack decision review; defines storage and persistence decision review; defines minimum viable implementation sequence (RUNTIME-IMPL-PR-0 through PR-7); defines guardrail integrity review; defines blocked-until ledger (24 items); defines risk review (14 risks); defines future implementation test strategy (17 test families); defines authorization boundary for RUNTIME-IMPL-PR-0; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no state store; no state delta model; no event ledger; no transaction system; no invariant validator; no correction event schema; no deterministic RNG service; no table/oracle service; no persistence writer; no database schema; no context-packet compiler; no redaction algorithm; no hidden-state database; no domain service; no model evaluation code; no benchmark runner; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  filename: runtime_impl_pr_0_minimum_backend_kernel_executable_implementation_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_impl_pr_0_minimum_backend_kernel_executable_implementation_plan.md
+  layer: 0_control
+  phase: implementation-sequencing
+  status: draft
+  authority_level: planning
+  owner: Astra Doctrine Council / future minimum backend kernel implementation owner
+  purpose: Minimum backend kernel executable implementation plan. Defines future stack recommendation (Python/pytest). Defines future package/module layout (src/astra_runtime/kernel/). Defines minimum backend kernel target (14 interface skeletons). Defines interface boundary plan (14 interfaces). Defines RUNTIME-IMPL-PR-1 through PR-8 sequence. Defines authorization boundary for RUNTIME-IMPL-PR-1. Planning only. No implementation.
+  owns:
+  - minimum backend kernel executable implementation plan
+  - future stack recommendation (Python/pytest)
+  - future package/module layout (src/astra_runtime/kernel/)
+  - minimum backend kernel target definition (14 interface skeletons)
+  - interface boundary plan (14 interfaces)
+  - RUNTIME-IMPL-PR-1 through PR-8 implementation sequence
+  - RUNTIME-IMPL-PR-1 authorization boundary
+  - kernel skeleton invariants (10 invariants)
+  - storage-neutral persistence plan
+  - testing strategy (16 test families)
+  - implementation risk controls (12 risks)
+  - blocked-until ledger (17 items)
+  - recommendation of RUNTIME-IMPL-PR-1 as next step
+  must_not_own:
+  - no doctrine rewrite
+  - no runtime implementation
+  - no schema implementation
+  - no command IR implementation
+  - no validator implementation
+  - no generator implementation
+  - no state store
+  - no state delta model
+  - no event ledger
+  - no transaction system
+  - no invariant validator
+  - no correction event schema
+  - no deterministic RNG service
+  - no table/oracle service
+  - no persistence writer
+  - no database schema
+  - no context-packet compiler
+  - no redaction algorithm
+  - no hidden-state database
+  - no domain service
+  - no model evaluation code
+  - no benchmark runner
+  - no prompt templates
+  - no live-play adapter
+  - no training authorization
+  - no donor-content audit
+  - no pilot conversion authorization
+  - no sourcebook inclusion authorization
+  - no canon promotion
+  dependencies:
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  - RUNTIME-SEQ-PR-A-MINIMUM-BACKEND-KERNEL-RUNTIME-QUALITY-CONTRACT-PLAN-001
+  - RUNTIME-SEQ-PR-B-NARRATION-CONTEXT-PACKET-CONTRACT-PLAN-001
+  - RUNTIME-SEQ-PR-C-STATE-EVENT-INVARIANT-TRANSACTION-PLAN-001
+  - RUNTIME-SEQ-PR-D-STORY-CAPABLE-STRUCTURE-PLAYABLE-CONTENT-PLAN-001
+  - RUNTIME-SEQ-PR-E-MODEL-EVALUATION-STRUCTURED-OUTPUT-ADVERSARIAL-COMMAND-PLAN-001
+  - RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001
+  - REMEDIATION-STAGE2-COMPLETION-REVIEW-CLOSURE-LEDGER-001
+  - REMEDIATION-STAGE2-RT001-COMMAND-LIFECYCLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT002-RESOURCE-CONSEQUENCE-MATH-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT003-COMBAT-HAZARD-DAMAGE-RECOVERY-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT004-ABILITY-EFFECT-SKILL-BINDING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT005-CONTEXT-PACKET-HIDDEN-INFORMATION-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT007-SOCIAL-FACTION-ACTOR-KNOWLEDGE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT008-GENERATED-CONTENT-PROVENANCE-RECURRENCE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT010-INVENTORY-ITEM-VEHICLE-ASSET-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT011-VALIDATION-READINESS-OWNER-SPEC-001
+  - REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001
+  blocked_by:
+  - implementation_blocked
+  - runtime_blocked
+  - schema_blocked
+  - validator_blocked
+  - generator_blocked
+  - state_store_blocked
+  - state_delta_model_blocked
+  - event_ledger_blocked
+  - transaction_system_blocked
+  - invariant_validator_blocked
+  - correction_event_schema_blocked
+  - deterministic_rng_blocked
+  - table_oracle_blocked
+  - persistence_writer_blocked
+  - database_schema_blocked
+  - context_packet_compiler_blocked
+  - redaction_algorithm_blocked
+  - hidden_state_database_blocked
+  - domain_service_blocked
+  - model_evaluation_blocked
+  - benchmark_runner_blocked
+  - prompt_template_blocked
+  - live_play_blocked
+  - training_blocked
+  - canon_promotion_blocked
+  - sourcebook_inclusion_blocked
+  - pilot_conversion_blocked
+  unlocks:
+  - RUNTIME-IMPL-PR-1 schema registry and record identity skeleton
+  - future separately authorized runtime implementation sequence (PR-1 through PR-8)
+  downstream_consumers:
+  - future schema registry and record identity implementation owner (RUNTIME-IMPL-PR-1)
+  - future command envelope and transaction preview implementation owner (RUNTIME-IMPL-PR-2)
+  - future state delta and event ledger implementation owner (RUNTIME-IMPL-PR-3)
+  - future deterministic RNG/table interface implementation owner (RUNTIME-IMPL-PR-4)
+  - future validation pipeline implementation owner (RUNTIME-IMPL-PR-5)
+  - future hidden-information and context projection implementation owner (RUNTIME-IMPL-PR-6)
+  - future persistence, replay/hash, and trace implementation owner (RUNTIME-IMPL-PR-7)
+  - future post-kernel review owner (RUNTIME-IMPL-PR-8)
+  donor_pressure_absorbed:
+  - pressure to skip implementation planning and proceed directly to runtime implementation, schema implementation, command IR, state store, event ledger, domain services, live-play, training, conversion, sourcebook inclusion, or canon promotion
+  hard_refusals:
+  - This implementation plan cannot implement runtime, implement schemas, implement command IR, implement validators, implement generators, implement state stores, implement state delta models, implement event ledgers, implement transaction systems, implement invariant validators, implement correction event schemas, implement deterministic RNG services, implement table/oracle services, implement persistence writers, create database schemas, implement context-packet compilers, implement redaction algorithms, implement hidden-state databases, implement domain services, implement model evaluation code, implement benchmark runners, create prompt templates, create live-play adapters, authorize training, audit donor content, authorize pilot conversion, authorize sourcebook inclusion, or promote canon.
+  - LLM output cannot commit state, mutate records, roll dice, reveal hidden information, bypass validation, promote content to canon, or override runtime decisions.
+  escalation_triggers:
+  - Any attempt to cite this plan as runtime, schema, command IR, validator, generator, state store, state delta model, event ledger, transaction system, invariant validator, correction event schema, deterministic RNG service, table/oracle service, persistence writer, database schema, context-packet compiler, redaction algorithm, hidden-state database, domain service, model evaluation, benchmark runner, prompt template, live-play, training, pilot conversion, sourcebook inclusion, or canon promotion authority
+  required_tests:
+  - plan file presence test
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001 tracking ID test
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001 lineage test
+  - RUNTIME-SEQ-PR-A through PR-E lineage test
+  - RT-001 through RT-012 reference test
+  - backend-first model-interchangeability invariant test
+  - LLM is not the game engine test
+  - implementation stack decision test
+  - minimum backend kernel implementation target test
+  - proposed package/module layout test
+  - interface boundary plan test
+  - RUNTIME-IMPL-PR-1 through PR-8 sequence test
+  - RUNTIME-IMPL-PR-1 authorization boundary test
+  - kernel skeleton invariants test
+  - storage-neutral persistence plan test
+  - testing strategy test
+  - implementation risk controls test
+  - documentation and registry alignment test
+  - blocked-until ledger test
+  - RUNTIME-IMPL-PR-1 recommendation test
+  - non-implementation reaffirmation test
+  - classification block test
+  - registry and decision-log tracking test
+  - no-implementation-claims guardrail test
+  test_status: planned
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before any future runtime implementation, schema implementation, command IR, state store, state delta model, event ledger, transaction system, invariant validator, correction event schema, deterministic RNG service, table/oracle service, persistence writer, database schema, context-packet compiler, redaction algorithm, hidden-state database, domain service, model evaluation, benchmark runner, prompt template, live-play adapter, training, pilot conversion, sourcebook inclusion, or canon promotion claim
+  scale_gate_relevance: critical
+  broad_conversion_relevance: high
+  canon_relevance: blocking
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-0 planning only; minimum backend kernel executable implementation plan; defines future stack recommendation (Python/pytest); defines future package/module layout (src/astra_runtime/kernel/); defines minimum backend kernel target (14 interface skeletons); defines interface boundary plan (14 interfaces); defines RUNTIME-IMPL-PR-1 through PR-8 sequence; defines authorization boundary for RUNTIME-IMPL-PR-1; defines kernel skeleton invariants (10 invariants); defines storage-neutral persistence plan; defines testing strategy (16 test families); defines implementation risk controls (12 risks); defines blocked-until ledger (17 items); recommends RUNTIME-IMPL-PR-1; no doctrine rewrite; no runtime implementation; no schema implementation; no command IR implementation; no validator implementation; no generator implementation; no state store; no state delta model; no event ledger; no transaction system; no invariant validator; no correction event schema; no deterministic RNG service; no table/oracle service; no persistence writer; no database schema; no context-packet compiler; no redaction algorithm; no hidden-state database; no domain service; no model evaluation code; no benchmark runner; no prompt templates; no live-play adapter; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.

@@ -829,6 +829,53 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No sourcebook inclusion authorization.
 - No canon promotion.
 
+## 2026-06-07 decision log - RUNTIME-IMPL-PR-0 Minimum Backend Kernel Executable Implementation Plan
+
+- Decision ID: RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+- Decision date: 2026-06-07
+- Decision type: minimum-backend-kernel-executable-implementation-plan
+
+### Summary
+- Added `docs/doctrine/reviews/runtime_impl_pr_0_minimum_backend_kernel_executable_implementation_plan.md` as a planning-only minimum backend kernel executable implementation plan.
+- This plan defines the future implementation stack recommendation (Python/pytest), proposed package/module layout (src/astra_runtime/kernel/), minimum backend kernel target (14 interface skeletons), interface boundary plan (14 interfaces), RUNTIME-IMPL-PR-1 through PR-8 implementation sequence, RUNTIME-IMPL-PR-1 authorization boundary, kernel skeleton invariants, storage-neutral persistence plan, testing strategy, and implementation risk controls.
+- Recommends RUNTIME-IMPL-PR-1 (Schema Registry and Record Identity Skeleton) as the next step.
+
+### Governance effect
+- Establishes the concrete implementation plan for the future minimum backend kernel without performing implementation.
+- Reaffirms the backend-first model-interchangeability invariant: the LLM is not the game engine; the backend runtime kernel owns truth.
+- Defines authorization boundary for RUNTIME-IMPL-PR-1 (schema registry and record identity skeleton only).
+
+### Guardrails reaffirmed
+- No doctrine rewrite.
+- No runtime implementation.
+- No schema implementation.
+- No command IR implementation.
+- No validator implementation.
+- No generator implementation.
+- No state store.
+- No state delta model.
+- No event ledger.
+- No transaction system.
+- No invariant validator.
+- No correction event schema.
+- No deterministic RNG service.
+- No table/oracle service.
+- No persistence writer.
+- No database schema.
+- No context-packet compiler.
+- No redaction algorithm.
+- No hidden-state database.
+- No domain service.
+- No model evaluation code.
+- No benchmark runner.
+- No prompt templates.
+- No live-play adapter.
+- No training authorization.
+- No donor-content audit.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
 ## 2026-06-06 decision log - Runtime/Schema Implementation Sequencing Review
 
 - Decision ID: RUNTIME-SCHEMA-IMPLEMENTATION-SEQUENCING-REVIEW-001
