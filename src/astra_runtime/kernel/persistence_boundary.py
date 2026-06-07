@@ -34,6 +34,39 @@ ALLOWED_RESULT_STATUSES = frozenset({
 })
 
 
+def _require_non_empty_string(
+    value: object,
+    name: str,
+    error_cls: type[Exception],
+) -> str:
+    if not isinstance(value, str):
+        raise error_cls(f"{name} must be a string, got {type(value).__name__}")
+    if not value.strip():
+        raise error_cls(f"{name} must be a non-empty string (whitespace-only not allowed)")
+    return value
+
+
+def _safe_mapping(
+    value: Mapping[str, Any] | None,
+    name: str,
+    error_cls: type[Exception],
+) -> Mapping[str, Any]:
+    if value is None:
+        return MappingProxyType({})
+    if not isinstance(value, Mapping):
+        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
+    return MappingProxyType(copy.deepcopy(dict(value)))
+
+
+def _check_is_mapping(
+    value: object,
+    name: str,
+    error_cls: type[Exception],
+) -> None:
+    if not isinstance(value, Mapping):
+        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
+
+
 @dataclass(frozen=True)
 class PersistenceBoundaryRequest:
     """Immutable persistence boundary request envelope. No durable persistence."""
@@ -74,18 +107,6 @@ class PersistenceBoundaryResult:
         }
 
 
-def _safe_mapping(
-    value: Mapping[str, Any] | None,
-    name: str,
-    error_cls: type[Exception],
-) -> Mapping[str, Any]:
-    if value is None:
-        return MappingProxyType({})
-    if not isinstance(value, Mapping):
-        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
-    return MappingProxyType(copy.deepcopy(dict(value)))
-
-
 def create_persistence_boundary_request(
     *,
     request_id: str,
@@ -94,14 +115,12 @@ def create_persistence_boundary_request(
     payload: Mapping[str, Any] | None = None,
     metadata: Mapping[str, Any] | None = None,
 ) -> PersistenceBoundaryRequest:
-    if not request_id or not isinstance(request_id, str):
-        raise InvalidPersistenceBoundaryRequestError("request_id must be a non-empty string")
+    _require_non_empty_string(request_id, "request_id", InvalidPersistenceBoundaryRequestError)
     if operation_type not in ALLOWED_OPERATION_TYPES:
         raise InvalidPersistenceBoundaryRequestError(
             f"operation_type must be one of {sorted(ALLOWED_OPERATION_TYPES)}, got {operation_type!r}"
         )
-    if not subject_ref or not isinstance(subject_ref, str):
-        raise InvalidPersistenceBoundaryRequestError("subject_ref must be a non-empty string")
+    _require_non_empty_string(subject_ref, "subject_ref", InvalidPersistenceBoundaryRequestError)
     safe_payload = _safe_mapping(payload, "payload", InvalidPersistenceBoundaryRequestError)
     safe_metadata = _safe_mapping(metadata, "metadata", InvalidPersistenceBoundaryRequestError)
     return PersistenceBoundaryRequest(
@@ -121,8 +140,7 @@ def create_persistence_boundary_result(
     subject_ref: str,
     metadata: Mapping[str, Any] | None = None,
 ) -> PersistenceBoundaryResult:
-    if not request_id or not isinstance(request_id, str):
-        raise InvalidPersistenceBoundaryResultError("request_id must be a non-empty string")
+    _require_non_empty_string(request_id, "request_id", InvalidPersistenceBoundaryResultError)
     if operation_type not in ALLOWED_OPERATION_TYPES:
         raise InvalidPersistenceBoundaryResultError(
             f"operation_type must be one of {sorted(ALLOWED_OPERATION_TYPES)}, got {operation_type!r}"
@@ -131,8 +149,7 @@ def create_persistence_boundary_result(
         raise InvalidPersistenceBoundaryResultError(
             f"status must be one of {sorted(ALLOWED_RESULT_STATUSES)}, got {status!r}"
         )
-    if not subject_ref or not isinstance(subject_ref, str):
-        raise InvalidPersistenceBoundaryResultError("subject_ref must be a non-empty string")
+    _require_non_empty_string(subject_ref, "subject_ref", InvalidPersistenceBoundaryResultError)
     safe_metadata = _safe_mapping(metadata, "metadata", InvalidPersistenceBoundaryResultError)
     return PersistenceBoundaryResult(
         request_id=request_id,
@@ -148,14 +165,14 @@ def validate_persistence_boundary_request(obj: object) -> bool:
         raise InvalidPersistenceBoundaryRequestError(
             f"Expected PersistenceBoundaryRequest, got {type(obj).__name__}"
         )
-    if not obj.request_id:
-        raise InvalidPersistenceBoundaryRequestError("request_id must be non-empty")
+    _require_non_empty_string(obj.request_id, "request_id", InvalidPersistenceBoundaryRequestError)
     if obj.operation_type not in ALLOWED_OPERATION_TYPES:
         raise InvalidPersistenceBoundaryRequestError(
             f"operation_type must be one of {sorted(ALLOWED_OPERATION_TYPES)}"
         )
-    if not obj.subject_ref:
-        raise InvalidPersistenceBoundaryRequestError("subject_ref must be non-empty")
+    _require_non_empty_string(obj.subject_ref, "subject_ref", InvalidPersistenceBoundaryRequestError)
+    _check_is_mapping(obj.payload, "payload", InvalidPersistenceBoundaryRequestError)
+    _check_is_mapping(obj.metadata, "metadata", InvalidPersistenceBoundaryRequestError)
     return True
 
 
@@ -164,8 +181,7 @@ def validate_persistence_boundary_result(obj: object) -> bool:
         raise InvalidPersistenceBoundaryResultError(
             f"Expected PersistenceBoundaryResult, got {type(obj).__name__}"
         )
-    if not obj.request_id:
-        raise InvalidPersistenceBoundaryResultError("request_id must be non-empty")
+    _require_non_empty_string(obj.request_id, "request_id", InvalidPersistenceBoundaryResultError)
     if obj.operation_type not in ALLOWED_OPERATION_TYPES:
         raise InvalidPersistenceBoundaryResultError(
             f"operation_type must be one of {sorted(ALLOWED_OPERATION_TYPES)}"
@@ -174,6 +190,6 @@ def validate_persistence_boundary_result(obj: object) -> bool:
         raise InvalidPersistenceBoundaryResultError(
             f"status must be one of {sorted(ALLOWED_RESULT_STATUSES)}"
         )
-    if not obj.subject_ref:
-        raise InvalidPersistenceBoundaryResultError("subject_ref must be non-empty")
+    _require_non_empty_string(obj.subject_ref, "subject_ref", InvalidPersistenceBoundaryResultError)
+    _check_is_mapping(obj.metadata, "metadata", InvalidPersistenceBoundaryResultError)
     return True

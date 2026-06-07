@@ -25,6 +25,49 @@ class InvalidHashAuditRecordError(ReplayAuditError):
 ALLOWED_HASH_ALGORITHMS = frozenset({"sha256"})
 
 
+def _require_non_empty_string(
+    value: object,
+    name: str,
+    error_cls: type[Exception],
+) -> str:
+    if not isinstance(value, str):
+        raise error_cls(f"{name} must be a string, got {type(value).__name__}")
+    if not value.strip():
+        raise error_cls(f"{name} must be a non-empty string (whitespace-only not allowed)")
+    return value
+
+
+def _safe_mapping(
+    value: Mapping[str, Any] | None,
+    name: str,
+    error_cls: type[Exception],
+) -> Mapping[str, Any]:
+    if value is None:
+        return MappingProxyType({})
+    if not isinstance(value, Mapping):
+        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
+    return MappingProxyType(copy.deepcopy(dict(value)))
+
+
+def _check_is_mapping(
+    value: object,
+    name: str,
+    error_cls: type[Exception],
+) -> None:
+    if not isinstance(value, Mapping):
+        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
+
+
+def _validate_sequence(value: Any, error_cls: type[Exception]) -> int:
+    if isinstance(value, bool):
+        raise error_cls("sequence must be an integer, not bool")
+    if not isinstance(value, int):
+        raise error_cls(f"sequence must be an integer, got {type(value).__name__}")
+    if value < 0:
+        raise error_cls(f"sequence must be non-negative, got {value}")
+    return value
+
+
 @dataclass(frozen=True)
 class ReplayAuditRecord:
     """Immutable replay audit record. No replay engine or event replay."""
@@ -65,28 +108,6 @@ class HashAuditRecord:
         }
 
 
-def _safe_mapping(
-    value: Mapping[str, Any] | None,
-    name: str,
-    error_cls: type[Exception],
-) -> Mapping[str, Any]:
-    if value is None:
-        return MappingProxyType({})
-    if not isinstance(value, Mapping):
-        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
-    return MappingProxyType(copy.deepcopy(dict(value)))
-
-
-def _validate_sequence(value: Any, error_cls: type[Exception]) -> int:
-    if isinstance(value, bool):
-        raise error_cls("sequence must be an integer, not bool")
-    if not isinstance(value, int):
-        raise error_cls(f"sequence must be an integer, got {type(value).__name__}")
-    if value < 0:
-        raise error_cls(f"sequence must be non-negative, got {value}")
-    return value
-
-
 def create_replay_audit_record(
     *,
     replay_id: str,
@@ -95,13 +116,10 @@ def create_replay_audit_record(
     expected_hash: str,
     metadata: Mapping[str, Any] | None = None,
 ) -> ReplayAuditRecord:
-    if not replay_id or not isinstance(replay_id, str):
-        raise InvalidReplayAuditRecordError("replay_id must be a non-empty string")
-    if not source_ref or not isinstance(source_ref, str):
-        raise InvalidReplayAuditRecordError("source_ref must be a non-empty string")
+    _require_non_empty_string(replay_id, "replay_id", InvalidReplayAuditRecordError)
+    _require_non_empty_string(source_ref, "source_ref", InvalidReplayAuditRecordError)
     seq = _validate_sequence(sequence, InvalidReplayAuditRecordError)
-    if not expected_hash or not isinstance(expected_hash, str):
-        raise InvalidReplayAuditRecordError("expected_hash must be a non-empty string")
+    _require_non_empty_string(expected_hash, "expected_hash", InvalidReplayAuditRecordError)
     safe_metadata = _safe_mapping(metadata, "metadata", InvalidReplayAuditRecordError)
     return ReplayAuditRecord(
         replay_id=replay_id,
@@ -120,16 +138,13 @@ def create_hash_audit_record(
     payload_hash: str,
     metadata: Mapping[str, Any] | None = None,
 ) -> HashAuditRecord:
-    if not hash_id or not isinstance(hash_id, str):
-        raise InvalidHashAuditRecordError("hash_id must be a non-empty string")
-    if not source_ref or not isinstance(source_ref, str):
-        raise InvalidHashAuditRecordError("source_ref must be a non-empty string")
+    _require_non_empty_string(hash_id, "hash_id", InvalidHashAuditRecordError)
+    _require_non_empty_string(source_ref, "source_ref", InvalidHashAuditRecordError)
     if hash_algorithm not in ALLOWED_HASH_ALGORITHMS:
         raise InvalidHashAuditRecordError(
             f"hash_algorithm must be one of {sorted(ALLOWED_HASH_ALGORITHMS)}, got {hash_algorithm!r}"
         )
-    if not payload_hash or not isinstance(payload_hash, str):
-        raise InvalidHashAuditRecordError("payload_hash must be a non-empty string")
+    _require_non_empty_string(payload_hash, "payload_hash", InvalidHashAuditRecordError)
     safe_metadata = _safe_mapping(metadata, "metadata", InvalidHashAuditRecordError)
     return HashAuditRecord(
         hash_id=hash_id,
@@ -145,14 +160,11 @@ def validate_replay_audit_record(obj: object) -> bool:
         raise InvalidReplayAuditRecordError(
             f"Expected ReplayAuditRecord, got {type(obj).__name__}"
         )
-    if not obj.replay_id:
-        raise InvalidReplayAuditRecordError("replay_id must be non-empty")
-    if not obj.source_ref:
-        raise InvalidReplayAuditRecordError("source_ref must be non-empty")
-    if obj.sequence < 0:
-        raise InvalidReplayAuditRecordError("sequence must be non-negative")
-    if not obj.expected_hash:
-        raise InvalidReplayAuditRecordError("expected_hash must be non-empty")
+    _require_non_empty_string(obj.replay_id, "replay_id", InvalidReplayAuditRecordError)
+    _require_non_empty_string(obj.source_ref, "source_ref", InvalidReplayAuditRecordError)
+    _validate_sequence(obj.sequence, InvalidReplayAuditRecordError)
+    _require_non_empty_string(obj.expected_hash, "expected_hash", InvalidReplayAuditRecordError)
+    _check_is_mapping(obj.metadata, "metadata", InvalidReplayAuditRecordError)
     return True
 
 
@@ -161,16 +173,14 @@ def validate_hash_audit_record(obj: object) -> bool:
         raise InvalidHashAuditRecordError(
             f"Expected HashAuditRecord, got {type(obj).__name__}"
         )
-    if not obj.hash_id:
-        raise InvalidHashAuditRecordError("hash_id must be non-empty")
-    if not obj.source_ref:
-        raise InvalidHashAuditRecordError("source_ref must be non-empty")
+    _require_non_empty_string(obj.hash_id, "hash_id", InvalidHashAuditRecordError)
+    _require_non_empty_string(obj.source_ref, "source_ref", InvalidHashAuditRecordError)
     if obj.hash_algorithm not in ALLOWED_HASH_ALGORITHMS:
         raise InvalidHashAuditRecordError(
             f"hash_algorithm must be one of {sorted(ALLOWED_HASH_ALGORITHMS)}"
         )
-    if not obj.payload_hash:
-        raise InvalidHashAuditRecordError("payload_hash must be non-empty")
+    _require_non_empty_string(obj.payload_hash, "payload_hash", InvalidHashAuditRecordError)
+    _check_is_mapping(obj.metadata, "metadata", InvalidHashAuditRecordError)
     return True
 
 

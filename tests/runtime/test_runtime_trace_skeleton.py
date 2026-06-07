@@ -164,6 +164,107 @@ class TestRuntimeTraceEntry:
             entry.trace_id = "mutated"
 
 
+class TestRuntimeTraceMalformedDataclass:
+    """Tests for manually constructed malformed dataclasses caught by validators."""
+
+    def test_whitespace_only_trace_id_rejected_by_factory(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="   ",
+                operation_type="schema_registry",
+                subject_ref="astra:test:t-001",
+                sequence=0,
+            )
+
+    def test_whitespace_only_subject_ref_rejected_by_factory(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-001",
+                operation_type="schema_registry",
+                subject_ref="\t\n",
+                sequence=0,
+            )
+
+    def test_non_string_trace_id_rejected_by_factory(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id=123,
+                operation_type="schema_registry",
+                subject_ref="astra:test:t-001",
+                sequence=0,
+            )
+
+    def test_non_string_subject_ref_rejected_by_factory(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-001",
+                operation_type="schema_registry",
+                subject_ref=None,
+                sequence=0,
+            )
+
+    def test_validate_rejects_whitespace_trace_id(self):
+        obj = RuntimeTraceEntry(
+            trace_id="   ",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry(obj)
+
+    def test_validate_rejects_whitespace_subject_ref(self):
+        obj = RuntimeTraceEntry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="  \t  ",
+            sequence=0,
+        )
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry(obj)
+
+    def test_validate_rejects_non_string_trace_id(self):
+        obj = object.__new__(RuntimeTraceEntry)
+        object.__setattr__(obj, "trace_id", 999)
+        object.__setattr__(obj, "operation_type", "schema_registry")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "sequence", 0)
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry(obj)
+
+    def test_validate_rejects_bool_sequence(self):
+        obj = object.__new__(RuntimeTraceEntry)
+        object.__setattr__(obj, "trace_id", "trace-001")
+        object.__setattr__(obj, "operation_type", "schema_registry")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "sequence", False)
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry(obj)
+
+    def test_validate_rejects_invalid_operation_type(self):
+        obj = RuntimeTraceEntry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        object.__setattr__(obj, "operation_type", "domain_service")
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry(obj)
+
+    def test_validate_rejects_non_mapping_metadata(self):
+        obj = object.__new__(RuntimeTraceEntry)
+        object.__setattr__(obj, "trace_id", "trace-001")
+        object.__setattr__(obj, "operation_type", "schema_registry")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "sequence", 0)
+        object.__setattr__(obj, "metadata", "not a mapping")
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry(obj)
+
+
 class TestRuntimeTraceGuardrails:
     def test_no_write_log_emit_methods(self):
         entry = create_runtime_trace_entry(

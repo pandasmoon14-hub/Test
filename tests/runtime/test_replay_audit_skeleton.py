@@ -295,6 +295,152 @@ class TestCanonicalPayloadHash:
         assert isinstance(h, str) and len(h) == 64
 
 
+class TestReplayAuditMalformedDataclass:
+    """Tests for manually constructed malformed dataclasses caught by validators."""
+
+    def test_whitespace_only_replay_id_rejected_by_factory(self):
+        with pytest.raises(InvalidReplayAuditRecordError):
+            create_replay_audit_record(
+                replay_id="   ",
+                source_ref="astra:event:ev-001",
+                sequence=0,
+                expected_hash="abc123",
+            )
+
+    def test_whitespace_only_source_ref_rejected_by_factory(self):
+        with pytest.raises(InvalidReplayAuditRecordError):
+            create_replay_audit_record(
+                replay_id="replay-001",
+                source_ref="\t\n",
+                sequence=0,
+                expected_hash="abc123",
+            )
+
+    def test_whitespace_only_expected_hash_rejected_by_factory(self):
+        with pytest.raises(InvalidReplayAuditRecordError):
+            create_replay_audit_record(
+                replay_id="replay-001",
+                source_ref="astra:event:ev-001",
+                sequence=0,
+                expected_hash="   ",
+            )
+
+    def test_non_string_replay_id_rejected_by_factory(self):
+        with pytest.raises(InvalidReplayAuditRecordError):
+            create_replay_audit_record(
+                replay_id=42,
+                source_ref="astra:event:ev-001",
+                sequence=0,
+                expected_hash="abc123",
+            )
+
+    def test_non_string_source_ref_rejected_by_factory(self):
+        with pytest.raises(InvalidReplayAuditRecordError):
+            create_replay_audit_record(
+                replay_id="replay-001",
+                source_ref=None,
+                sequence=0,
+                expected_hash="abc123",
+            )
+
+    def test_validate_replay_rejects_whitespace_replay_id(self):
+        obj = ReplayAuditRecord(
+            replay_id="   ",
+            source_ref="astra:event:ev-001",
+            sequence=0,
+            expected_hash="abc123",
+        )
+        with pytest.raises(InvalidReplayAuditRecordError):
+            validate_replay_audit_record(obj)
+
+    def test_validate_replay_rejects_non_string_replay_id(self):
+        obj = object.__new__(ReplayAuditRecord)
+        object.__setattr__(obj, "replay_id", 123)
+        object.__setattr__(obj, "source_ref", "astra:event:ev-001")
+        object.__setattr__(obj, "sequence", 0)
+        object.__setattr__(obj, "expected_hash", "abc123")
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidReplayAuditRecordError):
+            validate_replay_audit_record(obj)
+
+    def test_validate_replay_rejects_bool_sequence(self):
+        obj = object.__new__(ReplayAuditRecord)
+        object.__setattr__(obj, "replay_id", "replay-001")
+        object.__setattr__(obj, "source_ref", "astra:event:ev-001")
+        object.__setattr__(obj, "sequence", True)
+        object.__setattr__(obj, "expected_hash", "abc123")
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidReplayAuditRecordError):
+            validate_replay_audit_record(obj)
+
+    def test_validate_replay_rejects_non_mapping_metadata(self):
+        obj = object.__new__(ReplayAuditRecord)
+        object.__setattr__(obj, "replay_id", "replay-001")
+        object.__setattr__(obj, "source_ref", "astra:event:ev-001")
+        object.__setattr__(obj, "sequence", 0)
+        object.__setattr__(obj, "expected_hash", "abc123")
+        object.__setattr__(obj, "metadata", "not a mapping")
+        with pytest.raises(InvalidReplayAuditRecordError):
+            validate_replay_audit_record(obj)
+
+    def test_whitespace_only_hash_id_rejected_by_factory(self):
+        with pytest.raises(InvalidHashAuditRecordError):
+            create_hash_audit_record(
+                hash_id="   ",
+                source_ref="astra:event:ev-001",
+                hash_algorithm="sha256",
+                payload_hash="abc123",
+            )
+
+    def test_whitespace_only_payload_hash_rejected_by_factory(self):
+        with pytest.raises(InvalidHashAuditRecordError):
+            create_hash_audit_record(
+                hash_id="hash-001",
+                source_ref="astra:event:ev-001",
+                hash_algorithm="sha256",
+                payload_hash="\t  ",
+            )
+
+    def test_non_string_hash_id_rejected_by_factory(self):
+        with pytest.raises(InvalidHashAuditRecordError):
+            create_hash_audit_record(
+                hash_id=99,
+                source_ref="astra:event:ev-001",
+                hash_algorithm="sha256",
+                payload_hash="abc123",
+            )
+
+    def test_validate_hash_rejects_whitespace_hash_id(self):
+        obj = HashAuditRecord(
+            hash_id="   ",
+            source_ref="astra:event:ev-001",
+            hash_algorithm="sha256",
+            payload_hash="abc123",
+        )
+        with pytest.raises(InvalidHashAuditRecordError):
+            validate_hash_audit_record(obj)
+
+    def test_validate_hash_rejects_non_string_hash_id(self):
+        obj = object.__new__(HashAuditRecord)
+        object.__setattr__(obj, "hash_id", 42)
+        object.__setattr__(obj, "source_ref", "astra:event:ev-001")
+        object.__setattr__(obj, "hash_algorithm", "sha256")
+        object.__setattr__(obj, "payload_hash", "abc123")
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidHashAuditRecordError):
+            validate_hash_audit_record(obj)
+
+    def test_validate_hash_rejects_non_mapping_metadata(self):
+        obj = object.__new__(HashAuditRecord)
+        object.__setattr__(obj, "hash_id", "hash-001")
+        object.__setattr__(obj, "source_ref", "astra:event:ev-001")
+        object.__setattr__(obj, "hash_algorithm", "sha256")
+        object.__setattr__(obj, "payload_hash", "abc123")
+        object.__setattr__(obj, "metadata", [1, 2])
+        with pytest.raises(InvalidHashAuditRecordError):
+            validate_hash_audit_record(obj)
+
+
 class TestReplayAuditGuardrails:
     def test_no_replay_restore_rebuild_methods(self):
         rec = create_replay_audit_record(

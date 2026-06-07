@@ -34,6 +34,49 @@ ALLOWED_TRACE_OPERATION_TYPES = frozenset({
 })
 
 
+def _require_non_empty_string(
+    value: object,
+    name: str,
+    error_cls: type[Exception],
+) -> str:
+    if not isinstance(value, str):
+        raise error_cls(f"{name} must be a string, got {type(value).__name__}")
+    if not value.strip():
+        raise error_cls(f"{name} must be a non-empty string (whitespace-only not allowed)")
+    return value
+
+
+def _safe_mapping(
+    value: Mapping[str, Any] | None,
+    name: str,
+    error_cls: type[Exception],
+) -> Mapping[str, Any]:
+    if value is None:
+        return MappingProxyType({})
+    if not isinstance(value, Mapping):
+        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
+    return MappingProxyType(copy.deepcopy(dict(value)))
+
+
+def _check_is_mapping(
+    value: object,
+    name: str,
+    error_cls: type[Exception],
+) -> None:
+    if not isinstance(value, Mapping):
+        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
+
+
+def _validate_sequence(value: Any, error_cls: type[Exception]) -> int:
+    if isinstance(value, bool):
+        raise error_cls("sequence must be an integer, not bool")
+    if not isinstance(value, int):
+        raise error_cls(f"sequence must be an integer, got {type(value).__name__}")
+    if value < 0:
+        raise error_cls(f"sequence must be non-negative, got {value}")
+    return value
+
+
 @dataclass(frozen=True)
 class RuntimeTraceEntry:
     """Immutable runtime trace entry. No trace store or telemetry backend."""
@@ -54,28 +97,6 @@ class RuntimeTraceEntry:
         }
 
 
-def _safe_mapping(
-    value: Mapping[str, Any] | None,
-    name: str,
-    error_cls: type[Exception],
-) -> Mapping[str, Any]:
-    if value is None:
-        return MappingProxyType({})
-    if not isinstance(value, Mapping):
-        raise error_cls(f"{name} must be a mapping, got {type(value).__name__}")
-    return MappingProxyType(copy.deepcopy(dict(value)))
-
-
-def _validate_sequence(value: Any, error_cls: type[Exception]) -> int:
-    if isinstance(value, bool):
-        raise error_cls("sequence must be an integer, not bool")
-    if not isinstance(value, int):
-        raise error_cls(f"sequence must be an integer, got {type(value).__name__}")
-    if value < 0:
-        raise error_cls(f"sequence must be non-negative, got {value}")
-    return value
-
-
 def create_runtime_trace_entry(
     *,
     trace_id: str,
@@ -84,14 +105,12 @@ def create_runtime_trace_entry(
     sequence: int,
     metadata: Mapping[str, Any] | None = None,
 ) -> RuntimeTraceEntry:
-    if not trace_id or not isinstance(trace_id, str):
-        raise InvalidRuntimeTraceEntryError("trace_id must be a non-empty string")
+    _require_non_empty_string(trace_id, "trace_id", InvalidRuntimeTraceEntryError)
     if operation_type not in ALLOWED_TRACE_OPERATION_TYPES:
         raise InvalidRuntimeTraceEntryError(
             f"operation_type must be one of {sorted(ALLOWED_TRACE_OPERATION_TYPES)}, got {operation_type!r}"
         )
-    if not subject_ref or not isinstance(subject_ref, str):
-        raise InvalidRuntimeTraceEntryError("subject_ref must be a non-empty string")
+    _require_non_empty_string(subject_ref, "subject_ref", InvalidRuntimeTraceEntryError)
     seq = _validate_sequence(sequence, InvalidRuntimeTraceEntryError)
     safe_metadata = _safe_mapping(metadata, "metadata", InvalidRuntimeTraceEntryError)
     return RuntimeTraceEntry(
@@ -108,14 +127,12 @@ def validate_runtime_trace_entry(obj: object) -> bool:
         raise InvalidRuntimeTraceEntryError(
             f"Expected RuntimeTraceEntry, got {type(obj).__name__}"
         )
-    if not obj.trace_id:
-        raise InvalidRuntimeTraceEntryError("trace_id must be non-empty")
+    _require_non_empty_string(obj.trace_id, "trace_id", InvalidRuntimeTraceEntryError)
     if obj.operation_type not in ALLOWED_TRACE_OPERATION_TYPES:
         raise InvalidRuntimeTraceEntryError(
             f"operation_type must be one of {sorted(ALLOWED_TRACE_OPERATION_TYPES)}"
         )
-    if not obj.subject_ref:
-        raise InvalidRuntimeTraceEntryError("subject_ref must be non-empty")
-    if obj.sequence < 0:
-        raise InvalidRuntimeTraceEntryError("sequence must be non-negative")
+    _require_non_empty_string(obj.subject_ref, "subject_ref", InvalidRuntimeTraceEntryError)
+    _validate_sequence(obj.sequence, InvalidRuntimeTraceEntryError)
+    _check_is_mapping(obj.metadata, "metadata", InvalidRuntimeTraceEntryError)
     return True

@@ -292,6 +292,139 @@ class TestPersistenceBoundaryResult:
             res.status = "mutated"
 
 
+class TestPersistenceBoundaryMalformedDataclass:
+    """Tests for manually constructed malformed dataclasses caught by validators."""
+
+    def test_whitespace_only_request_id_rejected_by_factory(self):
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            create_persistence_boundary_request(
+                request_id="   ",
+                operation_type="record_snapshot_prepare",
+                subject_ref="astra:test:t-001",
+            )
+
+    def test_whitespace_only_subject_ref_rejected_by_factory(self):
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            create_persistence_boundary_request(
+                request_id="req-001",
+                operation_type="record_snapshot_prepare",
+                subject_ref="  \t  ",
+            )
+
+    def test_non_string_request_id_rejected_by_factory(self):
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            create_persistence_boundary_request(
+                request_id=123,
+                operation_type="record_snapshot_prepare",
+                subject_ref="astra:test:t-001",
+            )
+
+    def test_non_string_subject_ref_rejected_by_factory(self):
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            create_persistence_boundary_request(
+                request_id="req-001",
+                operation_type="record_snapshot_prepare",
+                subject_ref=None,
+            )
+
+    def test_validate_request_rejects_whitespace_request_id(self):
+        obj = PersistenceBoundaryRequest(
+            request_id="   ",
+            operation_type="record_snapshot_prepare",
+            subject_ref="astra:test:t-001",
+        )
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            validate_persistence_boundary_request(obj)
+
+    def test_validate_request_rejects_whitespace_subject_ref(self):
+        obj = PersistenceBoundaryRequest(
+            request_id="req-001",
+            operation_type="record_snapshot_prepare",
+            subject_ref="\n\t",
+        )
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            validate_persistence_boundary_request(obj)
+
+    def test_validate_request_rejects_non_string_request_id(self):
+        obj = object.__new__(PersistenceBoundaryRequest)
+        object.__setattr__(obj, "request_id", 999)
+        object.__setattr__(obj, "operation_type", "record_snapshot_prepare")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "payload", {})
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            validate_persistence_boundary_request(obj)
+
+    def test_validate_request_rejects_invalid_operation_type(self):
+        obj = PersistenceBoundaryRequest(
+            request_id="req-001",
+            operation_type="write_to_disk",
+            subject_ref="astra:test:t-001",
+        )
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            validate_persistence_boundary_request(obj)
+
+    def test_validate_request_rejects_non_mapping_payload(self):
+        obj = object.__new__(PersistenceBoundaryRequest)
+        object.__setattr__(obj, "request_id", "req-001")
+        object.__setattr__(obj, "operation_type", "record_snapshot_prepare")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "payload", "not a mapping")
+        object.__setattr__(obj, "metadata", {})
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            validate_persistence_boundary_request(obj)
+
+    def test_validate_request_rejects_non_mapping_metadata(self):
+        obj = object.__new__(PersistenceBoundaryRequest)
+        object.__setattr__(obj, "request_id", "req-001")
+        object.__setattr__(obj, "operation_type", "record_snapshot_prepare")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "payload", {})
+        object.__setattr__(obj, "metadata", [1, 2, 3])
+        with pytest.raises(InvalidPersistenceBoundaryRequestError):
+            validate_persistence_boundary_request(obj)
+
+    def test_validate_result_rejects_whitespace_request_id(self):
+        obj = PersistenceBoundaryResult(
+            request_id="   ",
+            operation_type="record_snapshot_prepare",
+            status="prepared",
+            subject_ref="astra:test:t-001",
+        )
+        with pytest.raises(InvalidPersistenceBoundaryResultError):
+            validate_persistence_boundary_result(obj)
+
+    def test_validate_result_rejects_invalid_operation_type(self):
+        obj = PersistenceBoundaryResult(
+            request_id="req-001",
+            operation_type="bad_op",
+            status="prepared",
+            subject_ref="astra:test:t-001",
+        )
+        with pytest.raises(InvalidPersistenceBoundaryResultError):
+            validate_persistence_boundary_result(obj)
+
+    def test_validate_result_rejects_invalid_status(self):
+        obj = PersistenceBoundaryResult(
+            request_id="req-001",
+            operation_type="record_snapshot_prepare",
+            status="committed",
+            subject_ref="astra:test:t-001",
+        )
+        with pytest.raises(InvalidPersistenceBoundaryResultError):
+            validate_persistence_boundary_result(obj)
+
+    def test_validate_result_rejects_non_mapping_metadata(self):
+        obj = object.__new__(PersistenceBoundaryResult)
+        object.__setattr__(obj, "request_id", "req-001")
+        object.__setattr__(obj, "operation_type", "record_snapshot_prepare")
+        object.__setattr__(obj, "status", "prepared")
+        object.__setattr__(obj, "subject_ref", "astra:test:t-001")
+        object.__setattr__(obj, "metadata", 42)
+        with pytest.raises(InvalidPersistenceBoundaryResultError):
+            validate_persistence_boundary_result(obj)
+
+
 class TestPersistenceBoundaryGuardrails:
     def test_no_write_read_save_load_methods(self):
         req = create_persistence_boundary_request(
