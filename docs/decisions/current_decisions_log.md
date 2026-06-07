@@ -917,3 +917,77 @@ Guardrails: This decision authorizes no doctrine rewrite, no runtime code, no ru
 - No pilot conversion authorization.
 - No sourcebook inclusion authorization.
 - No canon promotion.
+
+## 2026-06-07 decision — RUNTIME-IMPL-PR-1 schema registry and record identity skeleton
+
+- Decision ID: RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+- Decision date: 2026-06-07
+- Decision type: implementation/executable skeleton
+
+### Summary
+
+First narrow runtime code PR. Implements only schema registry and record identity skeletons under `src/astra_runtime/kernel/`. Follows RUNTIME-IMPL-PR-0 authorization. Preserves backend-first invariant. LLM is not the game engine.
+
+### Reason
+
+RUNTIME-IMPL-PR-0 authorized RUNTIME-IMPL-PR-1 as the first executable code step. The scope is narrowed to schema registry (in-memory type-key registry with immutability-safe copies) and record identity (deterministic `astra:<type>:<local_id>` format with strict character policy). No other kernel systems are implemented.
+
+### Implication
+
+- `src/astra_runtime/kernel/` package now exists with two modules.
+- `pyproject.toml` added for editable install and pytest import resolution.
+- 40 focused tests pass.
+- No command/event/state/RNG/persistence/domain/model/live-play artifacts created.
+
+### Revisit trigger
+
+- If record ID format needs namespacing beyond `astra:<type>:<local_id>`.
+- If schema registry needs file-backed loading for later PRs.
+- If RUNTIME-IMPL-PR-2 (command envelope and transaction preview skeleton) is authorized.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_1:
+  implementation_id: RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  artifact_type: executable_kernel_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+    - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_minimal_package_structure: true
+  implements_schema_registry_skeleton: true
+  implements_record_identity_skeleton: true
+  authorizes_command_ir: false
+  authorizes_transaction_preview: false
+  authorizes_state_store: false
+  authorizes_state_delta_model: false
+  authorizes_event_ledger: false
+  authorizes_rng_service: false
+  authorizes_table_oracle_service: false
+  authorizes_validation_pipeline: false
+  authorizes_context_packet_compiler: false
+  authorizes_hidden_information_partition: false
+  authorizes_persistence_writer: false
+  authorizes_database_schema: false
+  authorizes_domain_services: false
+  authorizes_generators: false
+  authorizes_live_play: false
+  authorizes_model_integration: false
+  authorizes_training: false
+  authorizes_pilot_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  next_allowed_step: RUNTIME-IMPL-PR-2 command envelope and transaction preview skeleton, pending review
+```
+
+### No-implementation guardrails
+
+- No command envelope module exists yet.
+- No transaction preview module exists yet.
+- No state delta module exists yet.
+- No event ledger module exists yet.
+- No RNG/table module exists yet.
+- No persistence/database module exists yet.
+- No context projection or hidden-information module exists yet.
+- No domain service package exists yet.
