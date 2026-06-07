@@ -68,6 +68,12 @@ class TestCreateTransactionPreview:
         original["note"] = "beta"
         assert preview.metadata["note"] == "alpha"
 
+    def test_metadata_nested_copy_safe(self, sample_envelope):
+        original = {"context": {"key": "val"}}
+        preview = create_transaction_preview("prev-1", sample_envelope, metadata=original)
+        original["context"]["key"] = "changed"
+        assert preview.metadata["context"]["key"] == "val"
+
     def test_non_mapping_metadata_rejected(self, sample_envelope):
         with pytest.raises(InvalidTransactionPreviewError):
             create_transaction_preview("prev-1", sample_envelope, metadata="bad")
@@ -114,6 +120,14 @@ class TestTransactionPreviewToDict:
         )
         result = preview.to_dict()
         assert result["messages"] == ["hello"]
+
+    def test_to_dict_returns_deep_copy(self, sample_envelope):
+        preview = create_transaction_preview(
+            "prev-1", sample_envelope, metadata={"nested": {"b": 2}}
+        )
+        result = preview.to_dict()
+        result["metadata"]["nested"]["b"] = 999
+        assert preview.metadata["nested"]["b"] == 2
 
 
 class TestValidateTransactionPreview:

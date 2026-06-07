@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import Any, Mapping
@@ -32,8 +33,8 @@ class CommandEnvelope:
             "command_id": self.command_id,
             "command_type": self.command_type,
             "source_actor_id": self.source_actor_id,
-            "payload": dict(self.payload),
-            "metadata": dict(self.metadata),
+            "payload": copy.deepcopy(dict(self.payload)),
+            "metadata": copy.deepcopy(dict(self.metadata)),
         }
 
 
@@ -58,14 +59,14 @@ def create_command_envelope(
     elif not isinstance(payload, Mapping):
         raise InvalidCommandEnvelopeError("payload must be a mapping")
     else:
-        safe_payload = MappingProxyType(dict(payload))
+        safe_payload = MappingProxyType(copy.deepcopy(dict(payload)))
 
     if metadata is None:
         safe_metadata: Mapping[str, Any] = MappingProxyType({})
     elif not isinstance(metadata, Mapping):
         raise InvalidCommandEnvelopeError("metadata must be a mapping")
     else:
-        safe_metadata = MappingProxyType(dict(metadata))
+        safe_metadata = MappingProxyType(copy.deepcopy(dict(metadata)))
 
     return CommandEnvelope(
         command_id=command_id,

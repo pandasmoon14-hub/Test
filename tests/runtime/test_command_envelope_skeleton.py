@@ -45,11 +45,23 @@ class TestCreateCommandEnvelope:
         original["target"] = "south"
         assert env.payload["target"] == "north"
 
+    def test_payload_nested_copy_safe(self):
+        original = {"options": {"verbose": True}}
+        env = create_command_envelope("cmd-1", "move", VALID_ACTOR, payload=original)
+        original["options"]["verbose"] = False
+        assert env.payload["options"]["verbose"] is True
+
     def test_metadata_copy_safe(self):
         original = {"timestamp": "t0"}
         env = create_command_envelope("cmd-1", "move", VALID_ACTOR, metadata=original)
         original["timestamp"] = "t1"
         assert env.metadata["timestamp"] == "t0"
+
+    def test_metadata_nested_copy_safe(self):
+        original = {"context": {"session": "s1"}}
+        env = create_command_envelope("cmd-1", "move", VALID_ACTOR, metadata=original)
+        original["context"]["session"] = "s2"
+        assert env.metadata["context"]["session"] == "s1"
 
     def test_reject_empty_command_id(self):
         with pytest.raises(InvalidCommandEnvelopeError):
@@ -110,6 +122,14 @@ class TestCommandEnvelopeToDict:
         )
         result = env.to_dict()
         assert result["payload"] == {"x": 1}
+
+    def test_to_dict_returns_deep_copy(self):
+        env = create_command_envelope(
+            "cmd-1", "move", VALID_ACTOR, payload={"nested": {"a": 1}}
+        )
+        result = env.to_dict()
+        result["payload"]["nested"]["a"] = 999
+        assert env.payload["nested"]["a"] == 1
 
 
 class TestValidateCommandEnvelope:

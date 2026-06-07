@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import copy
 from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import Any, Mapping, Sequence
@@ -37,7 +38,7 @@ class TransactionPreview:
             "status": self.status,
             "messages": list(self.messages),
             "requires_confirmation": self.requires_confirmation,
-            "metadata": dict(self.metadata),
+            "metadata": copy.deepcopy(dict(self.metadata)),
         }
 
 
@@ -72,7 +73,7 @@ def create_transaction_preview(
     elif not isinstance(metadata, Mapping):
         raise InvalidTransactionPreviewError("metadata must be a mapping")
     else:
-        safe_metadata = MappingProxyType(dict(metadata))
+        safe_metadata = MappingProxyType(copy.deepcopy(dict(metadata)))
 
     return TransactionPreview(
         preview_id=preview_id,
