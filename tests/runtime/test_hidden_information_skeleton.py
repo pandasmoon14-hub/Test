@@ -294,9 +294,6 @@ class TestGuardrails:
     @pytest.mark.parametrize(
         "module",
         [
-            "persistence_boundary.py",
-            "replay_audit.py",
-            "runtime_trace.py",
             "context_packet_compiler.py",
         ],
     )

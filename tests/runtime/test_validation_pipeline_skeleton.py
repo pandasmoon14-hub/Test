@@ -503,9 +503,6 @@ class TestGuardrails:
     @pytest.mark.parametrize(
         "module",
         [
-            "persistence_boundary.py",
-            "replay_audit.py",
-            "runtime_trace.py",
             "invariant_validator.py",
         ],
     )

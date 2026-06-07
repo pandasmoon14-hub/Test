@@ -9950,3 +9950,140 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-6 implementation; sixth narrow backend-kernel code skeleton; implements hidden-information record/partition skeleton (HiddenInformationRecord with create_hidden_information_record, validate_hidden_information_record, is_visible_to_tiers, redacted_copy; allowed visibility tiers public/player_visible/restricted/backend_hidden/redacted); implements context projection item/projection skeleton (ContextProjectionItem, ContextProjection with create_context_projection_item, create_context_projection, validate_context_projection_item, validate_context_projection); implements visible/redacted projection helper (project_hidden_records); follows RUNTIME-IMPL-PR-0 through PR-5 authorization; no hidden-state database; no durable hidden-state store; no context-packet compiler; no prompt templates; no model-facing packet assembly; no narration render packet compiler; no live-play adapter; no UI projection layer; no full redaction engine; no access-control policy engine; no reveal mechanics; no social/faction knowledge engine; no clue engine; no state store; no state mutation; no command execution; no event commitment; no event store persistence; no database schema; no replay/hash service; no persistence writer; no runtime trace; no domain service; no generator; no model integration; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  title: RUNTIME-IMPL-PR-7 Persistence Boundary, Replay/Hash Audit, and Runtime Trace Skeleton
+  file_path: src/astra_runtime/kernel/persistence_boundary.py
+  secondary_file_paths:
+  - src/astra_runtime/kernel/replay_audit.py
+  - src/astra_runtime/kernel/runtime_trace.py
+  artifact_type: executable_kernel_skeleton
+  artifact_subtype: persistence_boundary_replay_audit_runtime_trace_skeleton
+  batch: runtime-impl
+  status: active
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_persistence_boundary_skeleton: true
+  implements_replay_hash_audit_skeleton: true
+  implements_canonical_payload_hash_helper: true
+  implements_runtime_trace_skeleton: true
+  does_not_authorize:
+  - durable persistence
+  - file writer
+  - file reader
+  - database schema
+  - database connection
+  - SQLite integration
+  - migrations
+  - object store
+  - event store persistence
+  - state store
+  - state restoration
+  - replay engine
+  - event replay
+  - hash-chain enforcement engine
+  - trace store
+  - telemetry backend
+  - logging service
+  - command execution
+  - state mutation
+  - event commitment
+  - transaction lifecycle engine
+  - domain services
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - generators
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - persistence boundary valid request creation test
+  - persistence boundary valid result creation test
+  - persistence boundary allowed operation types test
+  - persistence boundary unsupported operation type rejected test
+  - persistence boundary allowed result statuses test
+  - persistence boundary unsupported result status rejected test
+  - persistence boundary empty request ID rejected test
+  - persistence boundary empty subject ref rejected test
+  - persistence boundary non-mapping payload rejected test
+  - persistence boundary non-mapping metadata rejected test
+  - persistence boundary payload defaults to empty mapping test
+  - persistence boundary metadata defaults to empty mapping test
+  - persistence boundary payload deep-copy safe test
+  - persistence boundary metadata deep-copy safe test
+  - persistence boundary to_dict returns deep copies test
+  - persistence boundary validate accepts valid test
+  - persistence boundary validate rejects invalid test
+  - persistence boundary frozen immutability test
+  - persistence boundary no write/read/save/load methods test
+  - replay audit valid creation test
+  - replay audit empty IDs rejected test
+  - replay audit negative sequence rejected test
+  - replay audit bool sequence rejected test
+  - replay audit unsupported algorithm rejected test
+  - replay audit empty hash rejected test
+  - replay audit metadata defaults to empty mapping test
+  - replay audit metadata deep-copy safe test
+  - replay audit to_dict returns deep copies test
+  - replay audit validate accepts valid test
+  - replay audit validate rejects invalid test
+  - canonical_payload_hash deterministic for same mapping test
+  - canonical_payload_hash changes when payload changes test
+  - canonical_payload_hash rejects unsupported algorithm test
+  - canonical_payload_hash rejects non-JSON-serializable test
+  - no replay/restore/rebuild/hash_chain/store methods test
+  - runtime trace valid creation test
+  - runtime trace allowed operation types test
+  - runtime trace unsupported operation type rejected test
+  - runtime trace empty trace ID rejected test
+  - runtime trace empty subject ref rejected test
+  - runtime trace negative sequence rejected test
+  - runtime trace bool sequence rejected test
+  - runtime trace non-mapping metadata rejected test
+  - runtime trace metadata defaults to empty mapping test
+  - runtime trace metadata deep-copy safe test
+  - runtime trace to_dict returns deep copies test
+  - runtime trace validate accepts valid test
+  - runtime trace validate rejects invalid test
+  - runtime trace frozen immutability test
+  - no write/log/emit/telemetry/store methods test
+  - guardrail no context_packet_compiler module test
+  - guardrail no domain service package test
+  - guardrail no model integration package test
+  - guardrail no prompt template package test
+  - guardrail no live-play adapter package test
+  - guardrail no UI/client package test
+  - guardrail no database package test
+  - guardrail no durable store package test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-IMPL-PR-8
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-7 implementation; seventh narrow backend-kernel code skeleton; implements persistence boundary request/result skeleton (PersistenceBoundaryRequest, PersistenceBoundaryResult with create/validate helpers; allowed operation types record_snapshot_prepare/event_append_prepare/trace_capture_prepare/audit_snapshot_prepare; allowed result statuses prepared/rejected/quarantined); implements replay/hash audit record skeleton (ReplayAuditRecord, HashAuditRecord with create/validate helpers; allowed hash algorithm sha256); implements deterministic canonical payload hash helper (canonical_payload_hash using json.dumps sort_keys + hashlib.sha256); implements runtime trace entry skeleton (RuntimeTraceEntry with create/validate helpers; allowed operation types covering all 14 kernel modules); follows RUNTIME-IMPL-PR-0 through PR-6 authorization; no durable persistence; no file writer; no file reader; no database schema; no database connection; no SQLite integration; no migrations; no object store; no event store persistence; no state store; no state restoration; no replay engine; no event replay; no hash-chain enforcement engine; no trace store; no telemetry backend; no logging service; no command execution; no state mutation; no event commitment; no transaction lifecycle engine; no domain service; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no generator; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.

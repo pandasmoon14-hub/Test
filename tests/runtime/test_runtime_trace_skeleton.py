@@ -1,0 +1,204 @@
+"""Focused tests for RUNTIME-IMPL-PR-7: runtime trace skeleton."""
+
+from __future__ import annotations
+
+import copy
+from pathlib import Path
+
+import pytest
+
+from astra_runtime.kernel.runtime_trace import (
+    ALLOWED_TRACE_OPERATION_TYPES,
+    InvalidRuntimeTraceEntryError,
+    RuntimeTraceEntry,
+    RuntimeTraceError,
+    create_runtime_trace_entry,
+    validate_runtime_trace_entry,
+)
+
+KERNEL_DIR = Path(__file__).resolve().parent.parent.parent / "src" / "astra_runtime" / "kernel"
+
+
+class TestRuntimeTraceEntry:
+    def test_valid_creation(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:schema:type-001",
+            sequence=0,
+        )
+        assert isinstance(entry, RuntimeTraceEntry)
+
+    def test_preserves_fields(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-002",
+            operation_type="command_envelope",
+            subject_ref="astra:cmd:cmd-001",
+            sequence=3,
+        )
+        assert entry.trace_id == "trace-002"
+        assert entry.operation_type == "command_envelope"
+        assert entry.subject_ref == "astra:cmd:cmd-001"
+        assert entry.sequence == 3
+
+    @pytest.mark.parametrize("op", sorted(ALLOWED_TRACE_OPERATION_TYPES))
+    def test_allowed_operation_types(self, op):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-op",
+            operation_type=op,
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        assert entry.operation_type == op
+
+    def test_unsupported_operation_type_rejected(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-bad",
+                operation_type="domain_service",
+                subject_ref="astra:test:t-001",
+                sequence=0,
+            )
+
+    def test_empty_trace_id_rejected(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="",
+                operation_type="schema_registry",
+                subject_ref="astra:test:t-001",
+                sequence=0,
+            )
+
+    def test_empty_subject_ref_rejected(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-001",
+                operation_type="schema_registry",
+                subject_ref="",
+                sequence=0,
+            )
+
+    def test_negative_sequence_rejected(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-001",
+                operation_type="schema_registry",
+                subject_ref="astra:test:t-001",
+                sequence=-1,
+            )
+
+    def test_bool_sequence_rejected(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-001",
+                operation_type="schema_registry",
+                subject_ref="astra:test:t-001",
+                sequence=False,
+            )
+
+    def test_non_mapping_metadata_rejected(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            create_runtime_trace_entry(
+                trace_id="trace-001",
+                operation_type="schema_registry",
+                subject_ref="astra:test:t-001",
+                sequence=0,
+                metadata="not a mapping",
+            )
+
+    def test_metadata_defaults_to_empty_mapping(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        assert dict(entry.metadata) == {}
+
+    def test_metadata_deep_copy_safe(self):
+        original = {"nested": {"key": "value"}}
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+            metadata=original,
+        )
+        original["nested"]["key"] = "mutated"
+        assert dict(entry.metadata)["nested"]["key"] == "value"
+
+    def test_to_dict_returns_deep_copies(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+            metadata={"nested": {"key": "value"}},
+        )
+        d1 = entry.to_dict()
+        d2 = entry.to_dict()
+        d1["metadata"]["nested"]["key"] = "mutated"
+        assert d2["metadata"]["nested"]["key"] == "value"
+
+    def test_validate_accepts_valid(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        assert validate_runtime_trace_entry(entry) is True
+
+    def test_validate_rejects_invalid(self):
+        with pytest.raises(InvalidRuntimeTraceEntryError):
+            validate_runtime_trace_entry("not a trace entry")
+
+    def test_frozen_immutability(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        with pytest.raises(Exception):
+            entry.trace_id = "mutated"
+
+
+class TestRuntimeTraceGuardrails:
+    def test_no_write_log_emit_methods(self):
+        entry = create_runtime_trace_entry(
+            trace_id="trace-001",
+            operation_type="schema_registry",
+            subject_ref="astra:test:t-001",
+            sequence=0,
+        )
+        forbidden = [
+            "write", "log", "emit", "send", "telemetry",
+            "store", "save", "load",
+        ]
+        for method_name in forbidden:
+            assert not hasattr(entry, method_name), f"{method_name} method must not exist"
+
+    def test_no_context_packet_compiler_module(self):
+        assert not (KERNEL_DIR / "context_packet_compiler.py").exists()
+
+    def test_no_domain_service_package(self):
+        assert not (KERNEL_DIR.parent / "domain").exists()
+
+    def test_no_model_integration_package(self):
+        assert not (KERNEL_DIR.parent / "model").exists()
+
+    def test_no_prompt_template_package(self):
+        assert not (KERNEL_DIR.parent / "prompts").exists()
+
+    def test_no_live_play_adapter_package(self):
+        assert not (KERNEL_DIR.parent / "live_play").exists()
+
+    def test_no_ui_client_package(self):
+        assert not (KERNEL_DIR.parent / "ui").exists()
+
+    def test_no_database_package(self):
+        assert not (KERNEL_DIR.parent / "database").exists()
+
+    def test_no_durable_store_package(self):
+        assert not (KERNEL_DIR.parent / "store").exists()
