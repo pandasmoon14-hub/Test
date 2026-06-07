@@ -1333,3 +1333,94 @@ runtime_impl_pr_5:
 - No model integration package exists yet.
 - No prompt template package exists yet.
 - No live-play adapter package exists yet.
+
+## 2026-06-07 decision — RUNTIME-IMPL-PR-6 hidden-information partition and context projection skeleton
+
+- Decision ID: RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+- Decision date: 2026-06-07
+- Decision type: implementation/executable skeleton
+
+### Summary
+
+Sixth narrow runtime code PR. Implements only hidden-information partition and context projection skeletons under `src/astra_runtime/kernel/`. Follows RUNTIME-IMPL-PR-0 through PR-5 authorization. Preserves backend-first invariant. LLM is not the game engine.
+
+### Reason
+
+RUNTIME-IMPL-PR-5 authorized RUNTIME-IMPL-PR-6 as the next executable code step. The scope is narrowed to hidden-information record/partition skeleton (immutable frozen dataclass with validation, allowed visibility tiers, deep-copy-safe payload/metadata, `to_dict` conversion, explicit `is_visible_to_tiers` helper, explicit `redacted_copy` helper that strips payload) and context projection skeleton (immutable frozen dataclass item/projection with validation, `project_hidden_records` helper that includes payload for allowed tiers and redacts for disallowed tiers). No other kernel systems are implemented.
+
+### Implication
+
+- `src/astra_runtime/kernel/hidden_information.py` now exists.
+- `src/astra_runtime/kernel/context_projection.py` now exists.
+- `src/astra_runtime/kernel/__init__.py` exports both modules.
+- 109 focused new tests pass.
+- Prior PR-3 through PR-5 guardrail tests updated to no longer forbid `hidden_information.py` or `context_projection.py`.
+- No hidden-state database/durable store/context-packet compiler/prompt template/model-facing packet/narration render packet/live-play/UI/full redaction engine/access-control policy/reveal mechanics/social-faction knowledge/clue engine/persistence/replay/domain/model/live-play artifacts created.
+
+### Revisit trigger
+
+- If hidden-information record needs access-control policy or reveal mechanics for domain services (PR-7+).
+- If context projection needs packet budget or prioritization for context-packet compiler (PR-7+).
+- If RUNTIME-IMPL-PR-7 (persistence boundary, replay/hash audit, and runtime trace skeleton) is authorized.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_6:
+  implementation_id: RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  artifact_type: executable_kernel_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+    - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+    - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+    - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+    - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+    - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+    - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  implements_hidden_information_partition_skeleton: true
+  implements_context_projection_skeleton: true
+  implements_visible_redacted_projection_helper: true
+  authorizes_hidden_state_database: false
+  authorizes_durable_hidden_state_store: false
+  authorizes_context_packet_compiler: false
+  authorizes_prompt_templates: false
+  authorizes_model_facing_packet_assembly: false
+  authorizes_narration_render_packet_compiler: false
+  authorizes_live_play: false
+  authorizes_ui_projection_layer: false
+  authorizes_full_redaction_engine: false
+  authorizes_access_control_policy_engine: false
+  authorizes_reveal_mechanics: false
+  authorizes_social_faction_knowledge_engine: false
+  authorizes_clue_engine: false
+  authorizes_state_store: false
+  authorizes_state_mutation: false
+  authorizes_command_execution: false
+  authorizes_event_commitment: false
+  authorizes_event_store_persistence: false
+  authorizes_database_schema: false
+  authorizes_replay_hash_service: false
+  authorizes_persistence_writer: false
+  authorizes_runtime_trace: false
+  authorizes_domain_services: false
+  authorizes_generators: false
+  authorizes_model_integration: false
+  authorizes_training: false
+  authorizes_pilot_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  next_allowed_step: RUNTIME-IMPL-PR-7 persistence boundary replay/hash audit and runtime trace skeleton, pending review
+```
+
+### No-implementation guardrails
+
+- No persistence/database module exists yet.
+- No replay/audit module exists yet.
+- No runtime trace module exists yet.
+- No context-packet compiler module exists.
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No live-play adapter package exists yet.
+- No UI/client package exists yet.
