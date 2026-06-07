@@ -306,6 +306,20 @@ class TestRunValidationChecks:
         with pytest.raises(InvalidValidationCheckError):
             run_validation_checks("v", "s", {}, ["not callable"])
 
+    def test_rejects_check_returning_invalid_single_object(self):
+        with pytest.raises(InvalidValidationCheckError, match="check must return"):
+            run_validation_checks("v", "s", {}, [lambda _: "bad"])
+
+    def test_rejects_check_returning_sequence_with_non_validation_issue(self):
+        def check(subject):
+            return [
+                create_validation_issue(code="c", message="m", severity="info", source="s"),
+                "not an issue",
+            ]
+
+        with pytest.raises(InvalidValidationCheckError, match="non-ValidationIssue"):
+            run_validation_checks("v", "s", {}, [check])
+
     def test_does_not_mutate_subject(self):
         original = {"key": [1, 2, 3]}
         snapshot = copy.deepcopy(original)
@@ -472,6 +486,10 @@ class TestRunInvariantPrechecks:
 
         result = run_invariant_prechecks("v", "s", {}, [check])
         assert result.passed is False
+
+    def test_rejects_check_returning_invalid_object(self):
+        with pytest.raises(InvalidValidationCheckError):
+            run_invariant_prechecks("v", "s", {}, [lambda _: 42])
 
     def test_does_not_mutate_subject(self):
         original = {"key": [1, 2, 3]}

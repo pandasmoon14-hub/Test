@@ -257,8 +257,17 @@ def run_validation_checks(
             continue
         if isinstance(result, ValidationIssue):
             all_issues.append(result)
+        elif isinstance(result, Sequence) and not isinstance(result, (str, bytes)):
+            for j, item in enumerate(result):
+                if not isinstance(item, ValidationIssue):
+                    raise InvalidValidationCheckError(
+                        f"check returned sequence containing non-ValidationIssue at index {j}: {type(item).__name__}"
+                    )
+                all_issues.append(item)
         else:
-            all_issues.extend(result)
+            raise InvalidValidationCheckError(
+                f"check must return None, ValidationIssue, or Sequence[ValidationIssue], got: {type(result).__name__}"
+            )
 
     passed = not any(issue.severity in _FAILING_SEVERITIES for issue in all_issues)
     safe_meta = _safe_metadata(metadata, InvalidValidationCheckError)
