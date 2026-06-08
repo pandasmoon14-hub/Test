@@ -10309,3 +10309,131 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-0 planning only; domain service implementation sequencing plan; follows RUNTIME-IMPL-PR-8; defines domain-service family inventory; defines future PR sequence; defines dependency rules; defines kernel dependency matrix; defines blocked-until ledger; defines risk review; defines future integration test plan; recommends RUNTIME-DOMAIN-PR-1; no domain service code; no command execution; no action legality engine; no state store; no state mutation; no transaction lifecycle; no event commitment; no durable persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+
+- file_id: RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+  title: RUNTIME-DOMAIN-PR-1 Command Lifecycle and Action Legality Service Plan
+  file_path: docs/doctrine/reviews/runtime_domain_pr_1_command_lifecycle_action_legality_service_plan.md
+  artifact_type: command_lifecycle_action_legality_service_plan
+  artifact_subtype: command_lifecycle_action_legality_service_plan
+  batch: runtime-domain
+  status: active
+  implementation_status: non_executable_plan
+  derives_from:
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  - RT-001
+  - RT-011
+  defines_service_ownership: true
+  defines_command_lifecycle_state_model: true
+  defines_action_legality_decision_model: true
+  defines_kernel_interface_consumption_plan: true
+  defines_handoff_boundaries: true
+  defines_future_implementation_architecture: true
+  defines_future_data_shapes: true
+  defines_future_test_requirements: true
+  defines_corpus_scale_command_pressure_review: true
+  authorizes_command_lifecycle_code_by_this_pr: false
+  authorizes_action_legality_engine_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_command_parser_by_this_pr: false
+  authorizes_state_store_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_transaction_lifecycle_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_resolution_by_this_pr: false
+  authorizes_ability_resolution_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_mutation_by_this_pr: false
+  authorizes_social_faction_mutation_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  does_not_authorize:
+  - command lifecycle code
+  - action legality engine
+  - command execution
+  - command parser
+  - state store
+  - state mutation
+  - transaction lifecycle
+  - event commitment
+  - resource math
+  - combat resolution
+  - ability resolution
+  - inventory mutation
+  - mission/social mutation
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - plan file exists test
+  - RUNTIME-DOMAIN-PR-1 ID reference test
+  - RUNTIME-DOMAIN-PR-0 reference test
+  - RUNTIME-IMPL-PR-8 reference test
+  - RT-001 and RT-011 reference test
+  - backend-first invariant test
+  - LLM not game engine test
+  - service ownership test
+  - future service responsibilities test
+  - forbidden responsibilities test
+  - command lifecycle state model test
+  - action legality decision model test
+  - kernel interface consumption plan test
+  - dependency and handoff boundaries test
+  - future implementation architecture test
+  - future data shapes test
+  - implementation PR authorization boundary test
+  - test requirements for future implementation test
+  - corpus-scale command pressure review test
+  - guardrail review test
+  - risk review test
+  - non-implementation reaffirmation test
+  - gate finding test
+  - classification block test
+  - registry tracking test
+  - decision-log tracking test
+  - no domain service package guardrail test
+  - no model integration package guardrail test
+  - no prompt template package guardrail test
+  - no live-play adapter package guardrail test
+  - no UI/client package guardrail test
+  - no database package guardrail test
+  - no store package guardrail test
+  - no context_packet_compiler guardrail test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-1A
+  recommends_next_step: RUNTIME-DOMAIN-PR-1A command lifecycle and action legality skeleton implementation
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-1 planning only; command lifecycle and action legality service plan; follows RUNTIME-DOMAIN-PR-0; defines service ownership; defines command lifecycle state model; defines action legality decision model; defines kernel interface consumption plan; defines dependency/handoff boundaries; defines future implementation architecture; defines future data shapes; defines future implementation test requirements; defines corpus-scale command pressure review; recommends RUNTIME-DOMAIN-PR-1A; no command lifecycle code; no action legality engine; no command execution; no command parser; no state store; no state mutation; no transaction lifecycle; no event commitment; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
