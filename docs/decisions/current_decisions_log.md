@@ -1760,3 +1760,61 @@ Revisit trigger: When RUNTIME-DOMAIN-PR-1B review or RUNTIME-DOMAIN-PR-2 state s
 - Implements immutable `CommandLifecycleResult` and `ActionLegalityResult` surfaces.
 - Implements stateless `CommandLifecycleService` and `ActionLegalityService` wrappers.
 - Does not execute commands, mutate state, commit events, parse player prose, compute resources, resolve combat/abilities/items/missions/social state, call models, create prompts, run live play, execute conversion, include sourcebook content, or promote canon.
+
+## 2026-06-08 — PR-1B command lifecycle and action legality skeleton review
+
+Decision ID: RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+
+Decision: Complete RUNTIME-DOMAIN-PR-1B as a review/gate-only artifact assessing the PR-1A command lifecycle/action legality skeleton implementation.
+
+Decision type: command_lifecycle_action_legality_skeleton_review_gate
+
+Reason: PR-1A created the first authorized domain package. Before proceeding to state store/state projection planning, the skeleton implementation must be reviewed for scope compliance, guardrail safety, kernel dependency correctness, and corpus-scale readiness.
+
+### Summary
+
+- Review/gate only; no code changes.
+- Confirms PR-1A stayed within skeleton-only scope.
+- Confirms guardrail transition from "no domain package" to "authorized modules only" is safe.
+- Confirms command lifecycle and action legality skeletons are stable dependencies for future services.
+- Identifies future hardening candidates (terminal stage/status consistency, hidden-info-safe block reason enforcement, dependency declaration normalization, etc.) — none required before PR-2.
+- Authorizes RUNTIME-DOMAIN-PR-2 (state store and state projection service plan) as the next planning step.
+
+### Implication
+
+- PR-1A scope confirmed: no blockers, no violations.
+- Guardrail transition is safe.
+- Future hardening items are low-risk and belong to their respective RT owners.
+- PR-2 planning can proceed as planning-only.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-2 planning begins.
+- If future hardening items are promoted to blocking.
+- If kernel interfaces require changes during domain-service planning.
+
+### No-implementation guardrails reaffirmed
+
+- No runtime code.
+- No domain-service code.
+- No command execution.
+- No command parser.
+- No state store.
+- No state projection.
+- No state mutation.
+- No transaction lifecycle.
+- No event commitment.
+- No resource math.
+- No combat resolution.
+- No ability resolution.
+- No inventory mutation.
+- No mission/social mutation.
+- No context-packet compiler.
+- No prompt templates.
+- No model integration.
+- No live-play adapter.
+- No UI/client.
+- No training authorization.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.

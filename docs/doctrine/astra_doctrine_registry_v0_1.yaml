@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-08'
+  version: 0.1.69
+  action: runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001 tracking. Review/gate only; reviews first domain package creation; reviews command lifecycle skeleton; reviews action legality skeleton; reviews guardrail transition; reviews kernel dependency usage; reviews corpus-scale command pressure; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-2 state store and state projection service plan; no runtime code; no domain-service code; no command execution; no command parser; no state store; no state projection; no state mutation; no transaction lifecycle; no event commitment; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-08'
   version: 0.1.68
   action: runtime_domain_pr_1a_command_lifecycle_action_legality_skeleton_implementation
   actor: Astra Doctrine Council / synthesis assistant
@@ -10562,3 +10567,119 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-1A implementation; first narrow domain-service skeleton; creates src/astra_runtime/domain/ package; implements command lifecycle skeleton; implements action legality skeleton; implements stateless service wrappers; adds focused domain tests (148 tests); follows RUNTIME-DOMAIN-PR-1; no command execution; no command parser; no domain action legality engine beyond explicit skeleton; no state store; no state mutation; no transaction lifecycle; no event commitment; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+  filename: runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.md
+  proposed_path: docs/doctrine/reviews/runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.md
+  status: draft
+  authority_level: review_gate
+  layer: 3_runtime
+  phase: runtime_domain_skeleton_review
+  last_reviewed: '2026-06-08'
+  next_review_due: '2026-06-22'
+  maintained_by: Astra Doctrine Council
+  purpose: Review/gate artifact for first domain package creation; reviews command lifecycle and action legality skeleton implementation.
+  runtime_domain_pr_1b:
+    review_id: RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+    artifact_type: command_lifecycle_action_legality_skeleton_review_gate
+    implementation_status: non_executable_review_gate
+    derives_from:
+    - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+    - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+    - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+    - RT-001
+    - RT-011
+    reviews_first_domain_package_creation: true
+    reviews_command_lifecycle_skeleton: true
+    reviews_action_legality_skeleton: true
+    reviews_guardrail_transition: true
+    reviews_kernel_dependency_usage: true
+    reviews_corpus_scale_command_pressure: true
+    defines_future_hardening_ledger: true
+    authorizes_code_by_this_pr: false
+    authorizes_command_execution_by_this_pr: false
+    authorizes_command_parser_by_this_pr: false
+    authorizes_state_store_by_this_pr: false
+    authorizes_state_projection_by_this_pr: false
+    authorizes_state_mutation_by_this_pr: false
+    authorizes_transaction_lifecycle_by_this_pr: false
+    authorizes_event_commitment_by_this_pr: false
+    authorizes_resource_math_by_this_pr: false
+    authorizes_combat_resolution_by_this_pr: false
+    authorizes_ability_resolution_by_this_pr: false
+    authorizes_inventory_mutation_by_this_pr: false
+    authorizes_mission_mutation_by_this_pr: false
+    authorizes_social_faction_mutation_by_this_pr: false
+    authorizes_context_packet_compiler_by_this_pr: false
+    authorizes_prompt_templates_by_this_pr: false
+    authorizes_model_integration_by_this_pr: false
+    authorizes_live_play_by_this_pr: false
+    authorizes_ui_client_by_this_pr: false
+    authorizes_training_by_this_pr: false
+    authorizes_pilot_conversion_by_this_pr: false
+    authorizes_sourcebook_inclusion_by_this_pr: false
+    authorizes_canon_promotion_by_this_pr: false
+    next_allowed_step: RUNTIME-DOMAIN-PR-2 state store and state projection service plan, pending review
+  does_not_authorize:
+  - command execution
+  - command parser
+  - domain-service code
+  - state store
+  - state projection
+  - state mutation
+  - transaction lifecycle
+  - event commitment
+  - resource math
+  - combat resolution
+  - ability resolution
+  - inventory mutation
+  - mission/social mutation
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - training authorization
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  blocked_by: []
+  required_tests:
+  - review file exists
+  - references PR-1B ID
+  - references PR-1A
+  - references PR-1
+  - references PR-0
+  - references RT-001 and RT-011
+  - states backend-first invariant
+  - includes PR-1A implementation review
+  - includes command lifecycle skeleton review
+  - includes action legality skeleton review
+  - includes guardrail transition review
+  - includes kernel dependency review
+  - includes corpus-scale pressure review
+  - includes risk review
+  - includes future hardening ledger
+  - includes gate finding
+  - includes recommended next PR
+  - includes non-implementation reaffirmation
+  - includes classification block
+  - registry tracking exists
+  - decision-log tracking exists
+  - runtime guardrail tests
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-2
+  recommends_next_step: RUNTIME-DOMAIN-PR-2 state store and state projection service plan
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-1B review/gate only; reviews first domain package creation; reviews command lifecycle skeleton; reviews action legality skeleton; reviews guardrail transition; reviews kernel dependency usage; reviews corpus-scale command pressure; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-2; no runtime code; no domain-service code; no command execution; no command parser; no state store; no state projection; no state mutation; no transaction lifecycle; no event commitment; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
