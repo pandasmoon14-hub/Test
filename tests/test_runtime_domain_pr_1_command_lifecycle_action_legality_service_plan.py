@@ -644,8 +644,13 @@ class TestDecisionLogTracking:
 
 
 class TestRuntimeGuardrails:
-    def test_no_domain_package(self):
-        assert not (REPO_ROOT / "src" / "astra_runtime" / "domain").exists()
+    def test_domain_package_contains_only_authorized_modules(self):
+        domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
+        assert domain_dir.exists(), "Domain package should exist after PR-1A"
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "__pycache__"}
+        actual = {p.name for p in domain_dir.iterdir()}
+        unauthorized = actual - allowed
+        assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
 
     def test_no_model_package(self):
         assert not (REPO_ROOT / "src" / "astra_runtime" / "model").exists()
