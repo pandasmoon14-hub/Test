@@ -1656,3 +1656,88 @@ runtime_domain_pr_0:
 - No database package exists yet.
 - No durable store package exists yet.
 - No context-packet compiler module exists.
+
+---
+
+## RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+
+**Date:** 2026-06-08
+
+### Decision
+
+RUNTIME-DOMAIN-PR-1 is a planning-only command lifecycle and action legality service plan. It defines the future service's scope, ownership, command lifecycle state model, action legality decision model, kernel interface consumption plan, dependency and handoff boundaries, future implementation architecture, future data shapes, test requirements, corpus-scale command pressure review, guardrail review, and risk review. It authorizes only RUNTIME-DOMAIN-PR-1A skeleton implementation pending review.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-0 confirmed that command lifecycle and action legality is the first domain-service family and that RUNTIME-DOMAIN-PR-1 is the next allowed planning step. The service plan must be defined before any skeleton implementation can begin.
+
+### Implication
+
+- Defines RT-001 as primary service owner with RT-011, RT-002, RT-005, RT-009, and RT-012 as secondary dependencies.
+- Defines 12 command lifecycle states and 12 action legality decision categories.
+- Defines kernel interface consumption matrix for all 14 kernel modules.
+- Defines handoff boundaries to 13 future downstream services.
+- Defines future implementation architecture (3 modules, 8 proposed symbols).
+- Defines 6 future data shapes.
+- Defines 17 test families for future implementation.
+- Defines corpus-scale command pressure review covering 16 command categories.
+- Does not authorize command lifecycle code, action legality engine, command execution, command parser, state store, state mutation, transaction lifecycle, event commitment, resource math, combat resolution, ability resolution, inventory mutation, mission/social mutation, context-packet compiler, prompt templates, model integration, live-play adapter, UI/client, training, pilot conversion, sourcebook inclusion, or canon promotion.
+
+### Revisit trigger
+
+- If RUNTIME-DOMAIN-PR-1A (command lifecycle and action legality skeleton implementation) is authorized.
+- If kernel interfaces require changes during domain-service implementation.
+- If command lifecycle state model or action legality decision model requires revision after downstream service planning.
+
+### Classification block
+
+```yaml
+runtime_domain_pr_1:
+  implementation_id: RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+  artifact_type: command_lifecycle_action_legality_service_plan
+  implementation_status: non_executable_plan
+  defines_service_ownership: true
+  defines_command_lifecycle_state_model: true
+  defines_action_legality_decision_model: true
+  defines_kernel_interface_consumption_plan: true
+  defines_handoff_boundaries: true
+  defines_future_implementation_architecture: true
+  defines_future_data_shapes: true
+  defines_future_test_requirements: true
+  defines_corpus_scale_command_pressure_review: true
+  authorizes_command_lifecycle_code_by_this_pr: false
+  authorizes_action_legality_engine_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_command_parser_by_this_pr: false
+  authorizes_state_store_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_transaction_lifecycle_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_resolution_by_this_pr: false
+  authorizes_ability_resolution_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_mutation_by_this_pr: false
+  authorizes_social_faction_mutation_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-1A command lifecycle and action legality skeleton implementation, pending review
+```
+
+### No-implementation guardrails
+
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No live-play adapter package exists yet.
+- No UI/client package exists yet.
+- No database package exists yet.
+- No durable store package exists yet.
+- No context-packet compiler module exists.
