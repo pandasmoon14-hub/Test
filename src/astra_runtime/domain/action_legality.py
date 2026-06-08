@@ -59,6 +59,10 @@ _ALLOWED_DEPENDENCY_TYPES = frozenset({
 
 _MAY_PROCEED_DECISIONS = frozenset({"legal", "requires_confirmation"})
 
+_MUST_NOT_PROCEED_DECISIONS = (
+    ACTION_LEGALITY_BLOCKING_DECISIONS | {"requires_more_information"}
+)
+
 
 class ActionLegalityError(Exception):
     """Base error for action legality operations."""
@@ -376,6 +380,10 @@ def create_action_legality_result(
         raise InvalidActionLegalityResultError(
             "may_proceed_to_preview must be a bool"
         )
+    if may_proceed_to_preview and decision in _MUST_NOT_PROCEED_DECISIONS:
+        raise InvalidActionLegalityResultError(
+            f"may_proceed_to_preview must be False for decision {decision!r}"
+        )
     if not isinstance(requires_confirmation, bool):
         raise InvalidActionLegalityResultError(
             "requires_confirmation must be a bool"
@@ -451,6 +459,8 @@ def validate_action_legality_result(obj: Any) -> bool:
         return False
     if not isinstance(obj.may_proceed_to_preview, bool):
         return False
+    if obj.may_proceed_to_preview and obj.decision in _MUST_NOT_PROCEED_DECISIONS:
+        return False
     if not isinstance(obj.requires_confirmation, bool):
         return False
     if not isinstance(obj.dependencies, tuple):
@@ -500,6 +510,10 @@ def evaluate_action_legality(
         )
     if may_proceed_to_preview is None:
         may_proceed_to_preview = decision in _MAY_PROCEED_DECISIONS
+    elif may_proceed_to_preview and decision in _MUST_NOT_PROCEED_DECISIONS:
+        raise InvalidActionLegalityResultError(
+            f"may_proceed_to_preview=True contradicts blocking decision {decision!r}"
+        )
     return create_action_legality_result(
         legality_id=legality_id,
         command_id=command.command_id,

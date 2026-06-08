@@ -375,6 +375,22 @@ class TestCreateActionLegalityResult:
                 may_proceed_to_preview=True, requires_confirmation=False,
             )
 
+    def test_blocking_decision_rejects_may_proceed_true(self):
+        with pytest.raises(InvalidActionLegalityResultError):
+            create_action_legality_result(
+                legality_id="al-1", command_id="cmd-1", decision="illegal",
+                lifecycle_stage="legality_prechecked",
+                may_proceed_to_preview=True, requires_confirmation=False,
+            )
+
+    def test_blocking_decision_accepts_may_proceed_false(self):
+        result = create_action_legality_result(
+            legality_id="al-1", command_id="cmd-1", decision="illegal",
+            lifecycle_stage="legality_prechecked",
+            may_proceed_to_preview=False, requires_confirmation=False,
+        )
+        assert result.may_proceed_to_preview is False
+
 
 class TestValidateActionLegalityResult:
     def test_accepts_valid_result(self):
@@ -390,6 +406,28 @@ class TestValidateActionLegalityResult:
 
     def test_rejects_none(self):
         assert validate_action_legality_result(None) is False
+
+    def test_rejects_blocking_decision_with_may_proceed_true(self):
+        bad = ActionLegalityResult(
+            legality_id="al-1", command_id="cmd-1",
+            decision="blocked_by_timing", lifecycle_stage="legality_prechecked",
+            may_proceed_to_preview=True, requires_confirmation=False,
+            dependencies=(), block_reasons=(),
+            confirmation_requirement=None, quarantine_result=None,
+            validation_id=None,
+        )
+        assert validate_action_legality_result(bad) is False
+
+    def test_rejects_quarantined_decision_with_may_proceed_true(self):
+        bad = ActionLegalityResult(
+            legality_id="al-1", command_id="cmd-1",
+            decision="quarantined_for_validation", lifecycle_stage="legality_prechecked",
+            may_proceed_to_preview=True, requires_confirmation=False,
+            dependencies=(), block_reasons=(),
+            confirmation_requirement=None, quarantine_result=None,
+            validation_id=None,
+        )
+        assert validate_action_legality_result(bad) is False
 
 
 class TestEvaluateActionLegality:
@@ -433,12 +471,65 @@ class TestEvaluateActionLegality:
         result = evaluate_action_legality("al-1", env, decision="blocked_by_timing")
         assert result.may_proceed_to_preview is False
 
-    def test_explicit_may_proceed_overrides_default(self):
+    def test_blocked_decision_rejects_explicit_may_proceed_true(self):
+        env = _make_envelope()
+        with pytest.raises(InvalidActionLegalityResultError):
+            evaluate_action_legality(
+                "al-1", env, decision="blocked_by_timing", may_proceed_to_preview=True,
+            )
+
+    def test_blocked_by_hidden_information_cannot_proceed(self):
+        env = _make_envelope()
+        with pytest.raises(InvalidActionLegalityResultError):
+            evaluate_action_legality(
+                "al-1", env, decision="blocked_by_hidden_information",
+                may_proceed_to_preview=True,
+            )
+
+    def test_quarantined_for_validation_cannot_proceed(self):
+        env = _make_envelope()
+        with pytest.raises(InvalidActionLegalityResultError):
+            evaluate_action_legality(
+                "al-1", env, decision="quarantined_for_validation",
+                may_proceed_to_preview=True,
+            )
+
+    def test_requires_more_information_cannot_proceed(self):
+        env = _make_envelope()
+        with pytest.raises(InvalidActionLegalityResultError):
+            evaluate_action_legality(
+                "al-1", env, decision="requires_more_information",
+                may_proceed_to_preview=True,
+            )
+
+    def test_unsupported_command_type_cannot_proceed(self):
+        env = _make_envelope()
+        with pytest.raises(InvalidActionLegalityResultError):
+            evaluate_action_legality(
+                "al-1", env, decision="unsupported_command_type",
+                may_proceed_to_preview=True,
+            )
+
+    def test_requires_confirmation_may_proceed(self):
         env = _make_envelope()
         result = evaluate_action_legality(
-            "al-1", env, decision="blocked_by_timing", may_proceed_to_preview=True,
+            "al-1", env, decision="requires_confirmation",
+            may_proceed_to_preview=True,
         )
         assert result.may_proceed_to_preview is True
+
+    def test_legal_may_proceed(self):
+        env = _make_envelope()
+        result = evaluate_action_legality(
+            "al-1", env, decision="legal", may_proceed_to_preview=True,
+        )
+        assert result.may_proceed_to_preview is True
+
+    def test_blocked_decision_defaults_may_proceed_false(self):
+        env = _make_envelope()
+        for decision in ACTION_LEGALITY_BLOCKING_DECISIONS:
+            result = evaluate_action_legality("al-1", env, decision=decision)
+            assert result.may_proceed_to_preview is False, f"{decision} should default to False"
 
 
 class TestActionLegalityService:
