@@ -1521,3 +1521,66 @@ runtime_impl_pr_7:
 - No UI/client package exists yet.
 - No database package exists yet.
 - No durable store package exists yet.
+
+---
+
+## RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+
+**Date:** 2026-06-08
+
+### Decision
+
+RUNTIME-IMPL-PR-8 is a review/gate-only artifact. It confirms that the minimum backend kernel skeleton (PR-1 through PR-7) is complete enough to proceed to a future domain-service implementation-planning PR.
+
+### Reason
+
+All 14 kernel skeleton modules exist with passing tests, frozen dataclasses, backend-owned validation, and no domain logic, persistence side effects, or LLM authority. The kernel interface surface is sufficient for domain services to plan their consumption patterns.
+
+### Implication
+
+- Authorizes only RUNTIME-DOMAIN-PR-0 (domain service implementation sequencing plan), a future planning-only PR.
+- Does not authorize domain-service code, command execution, state store, state mutation, event commitment, durable persistence, database schema, replay engine, context-packet compiler, prompt templates, model integration, live-play adapter, UI/client, training, donor-content audit, pilot conversion, sourcebook inclusion, or canon promotion.
+- Domain services remain blocked until RUNTIME-DOMAIN-PR-0 defines order, boundaries, allowed dependencies, tests, and guardrails.
+
+### Revisit trigger
+
+- If RUNTIME-DOMAIN-PR-0 (domain service implementation sequencing plan) is authorized.
+- If kernel skeleton modules require interface changes during domain-service planning.
+
+### Classification block
+
+```yaml
+runtime_impl_pr_8:
+  implementation_id: RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  artifact_type: post_kernel_skeleton_review_and_domain_service_readiness_gate
+  implementation_status: non_executable_review_gate
+  confirms_minimum_backend_kernel_skeleton_complete: true
+  confirms_ready_for_domain_service_planning: true
+  authorizes_domain_service_code_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_state_store_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-0 domain service implementation sequencing plan, pending review
+```
+
+### No-implementation guardrails
+
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No live-play adapter package exists yet.
+- No UI/client package exists yet.
+- No database package exists yet.
+- No durable store package exists yet.
+- No context-packet compiler module exists.
