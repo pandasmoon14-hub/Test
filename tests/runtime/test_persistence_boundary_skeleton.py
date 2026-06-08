@@ -442,8 +442,13 @@ class TestPersistenceBoundaryGuardrails:
     def test_no_context_packet_compiler_module(self):
         assert not (KERNEL_DIR / "context_packet_compiler.py").exists()
 
-    def test_no_domain_service_package(self):
-        assert not (KERNEL_DIR.parent / "domain").exists()
+    def test_domain_package_contains_only_authorized_modules(self):
+        domain_dir = KERNEL_DIR.parent / "domain"
+        assert domain_dir.exists(), "Domain package should exist after PR-1A"
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "__pycache__"}
+        actual = {p.name for p in domain_dir.iterdir()}
+        unauthorized = actual - allowed
+        assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
 
     def test_no_model_integration_package(self):
         assert not (KERNEL_DIR.parent / "model").exists()

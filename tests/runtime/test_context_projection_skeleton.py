@@ -359,9 +359,13 @@ class TestGuardrails:
     def test_future_module_does_not_exist(self, module):
         assert not (KERNEL_DIR / module).exists(), f"{module} must not exist yet"
 
-    def test_no_domain_service_package(self):
+    def test_domain_package_contains_only_authorized_modules(self):
         domain_dir = KERNEL_DIR.parent / "domain"
-        assert not domain_dir.exists(), "domain service package must not exist yet"
+        assert domain_dir.exists(), "Domain package should exist after PR-1A"
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "__pycache__"}
+        actual = {p.name for p in domain_dir.iterdir()}
+        unauthorized = actual - allowed
+        assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
 
     def test_no_model_integration_package(self):
         model_dir = KERNEL_DIR.parent / "model"

@@ -253,11 +253,15 @@ class TestNoUnauthorizedModules:
         os.path.dirname(__file__), "..", "..", "src", "astra_runtime", "kernel"
     )
 
-    def test_no_domain_service_package(self):
+    def test_domain_package_contains_only_authorized_modules(self):
         path = os.path.join(
             os.path.dirname(__file__), "..", "..", "src", "astra_runtime", "domain"
         )
-        assert not os.path.isdir(path), "Unauthorized domain service package exists"
+        assert os.path.isdir(path), "Domain package should exist after PR-1A"
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "__pycache__"}
+        actual = set(os.listdir(path))
+        unauthorized = actual - allowed
+        assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
 
     def test_no_model_integration_package(self):
         path = os.path.join(

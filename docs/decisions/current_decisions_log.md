@@ -1733,7 +1733,7 @@ runtime_domain_pr_1:
 
 ### No-implementation guardrails
 
-- No domain service package exists yet.
+- Domain service package exists with authorized skeleton modules only (command_lifecycle.py, action_legality.py).
 - No model integration package exists yet.
 - No prompt template package exists yet.
 - No live-play adapter package exists yet.
@@ -1741,3 +1741,22 @@ runtime_domain_pr_1:
 - No database package exists yet.
 - No durable store package exists yet.
 - No context-packet compiler module exists.
+
+## 2026-06-08 — PR-1A command lifecycle and action legality skeleton implementation
+
+Decision: Implement RUNTIME-DOMAIN-PR-1A as the first narrow domain-service skeleton, creating `src/astra_runtime/domain/` with `command_lifecycle.py` and `action_legality.py`.
+
+Implementation ID: `RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001`
+
+Reason: RUNTIME-DOMAIN-PR-1 confirmed command lifecycle/action legality as the first domain-service implementation target. PR-1A implements only immutable result surfaces and stateless wrapper helpers.
+
+Implication: The domain package now exists with exactly three files (`__init__.py`, `command_lifecycle.py`, `action_legality.py`). Kernel guardrail tests updated to assert only authorized modules exist rather than asserting the package is absent.
+
+Revisit trigger: When RUNTIME-DOMAIN-PR-1B review or RUNTIME-DOMAIN-PR-2 state store planning begins.
+
+### Scope confirmation
+
+- Narrow skeleton implementation only.
+- Implements immutable `CommandLifecycleResult` and `ActionLegalityResult` surfaces.
+- Implements stateless `CommandLifecycleService` and `ActionLegalityService` wrappers.
+- Does not execute commands, mutate state, commit events, parse player prose, compute resources, resolve combat/abilities/items/missions/social state, call models, create prompts, run live play, execute conversion, include sourcebook content, or promote canon.
