@@ -1584,3 +1584,75 @@ runtime_impl_pr_8:
 - No database package exists yet.
 - No durable store package exists yet.
 - No context-packet compiler module exists.
+
+---
+
+## RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+
+**Date:** 2026-06-08
+
+### Decision
+
+RUNTIME-DOMAIN-PR-0 is a planning-only domain service implementation sequencing plan. It defines the domain-service implementation order, dependency rules, kernel dependency matrix, blocked-until ledger, risk review, and future integration test plan. It authorizes only RUNTIME-DOMAIN-PR-1 planning.
+
+### Reason
+
+RUNTIME-IMPL-PR-8 confirmed the minimum backend kernel skeleton sequence is complete and authorized RUNTIME-DOMAIN-PR-0 as a planning-only next step. Domain services require a sequencing plan before any implementation can begin.
+
+### Implication
+
+- Defines 14 domain-service families and their dependency order.
+- Defines RUNTIME-DOMAIN-PR-1 through PR-15 planning sequence.
+- Defines strict dependency rules for all future domain services.
+- Defines kernel dependency matrix connecting service families to kernel modules.
+- Does not authorize domain-service code, command execution, action legality engine, state store, state mutation, transaction lifecycle, event commitment, durable persistence, context-packet compiler, prompt templates, model integration, live-play adapter, UI/client, training, pilot conversion, sourcebook inclusion, or canon promotion.
+
+### Revisit trigger
+
+- If RUNTIME-DOMAIN-PR-1 (command lifecycle and action legality service plan) is authorized.
+- If kernel skeleton interfaces require changes during domain-service planning.
+
+### Classification block
+
+```yaml
+runtime_domain_pr_0:
+  implementation_id: RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  artifact_type: domain_service_implementation_sequencing_plan
+  implementation_status: non_executable_plan
+  defines_domain_service_family_inventory: true
+  defines_domain_service_pr_sequence: true
+  defines_dependency_rules: true
+  defines_kernel_dependency_matrix: true
+  defines_blocked_until_ledger: true
+  defines_risk_review: true
+  defines_future_integration_test_plan: true
+  authorizes_domain_service_code_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_action_legality_engine_by_this_pr: false
+  authorizes_state_store_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_transaction_lifecycle_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-1 command lifecycle and action legality service plan, pending review
+```
+
+### No-implementation guardrails
+
+- No domain service package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No live-play adapter package exists yet.
+- No UI/client package exists yet.
+- No database package exists yet.
+- No durable store package exists yet.
+- No context-packet compiler module exists.
