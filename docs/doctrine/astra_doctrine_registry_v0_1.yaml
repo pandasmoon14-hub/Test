@@ -10087,3 +10087,109 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-IMPL-PR-7 implementation; seventh narrow backend-kernel code skeleton; implements persistence boundary request/result skeleton (PersistenceBoundaryRequest, PersistenceBoundaryResult with create/validate helpers; allowed operation types record_snapshot_prepare/event_append_prepare/trace_capture_prepare/audit_snapshot_prepare; allowed result statuses prepared/rejected/quarantined); implements replay/hash audit record skeleton (ReplayAuditRecord, HashAuditRecord with create/validate helpers; allowed hash algorithm sha256); implements deterministic canonical payload hash helper (canonical_payload_hash using json.dumps sort_keys + hashlib.sha256); implements runtime trace entry skeleton (RuntimeTraceEntry with create/validate helpers; allowed operation types covering all 14 kernel modules); follows RUNTIME-IMPL-PR-0 through PR-6 authorization; no durable persistence; no file writer; no file reader; no database schema; no database connection; no SQLite integration; no migrations; no object store; no event store persistence; no state store; no state restoration; no replay engine; no event replay; no hash-chain enforcement engine; no trace store; no telemetry backend; no logging service; no command execution; no state mutation; no event commitment; no transaction lifecycle engine; no domain service; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no generator; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  title: RUNTIME-IMPL-PR-8 Post-Kernel Skeleton Review and Domain-Service Readiness Gate
+  file_path: docs/doctrine/reviews/runtime_impl_pr_8_post_kernel_skeleton_review_domain_service_readiness_gate.md
+  artifact_type: post_kernel_skeleton_review_and_domain_service_readiness_gate
+  artifact_subtype: post_kernel_skeleton_review_domain_service_readiness_gate
+  batch: runtime-impl
+  status: active
+  implementation_status: non_executable_review_gate
+  derives_from:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  confirms_minimum_backend_kernel_skeleton_complete: true
+  confirms_ready_for_domain_service_planning: true
+  authorizes_domain_service_code_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_state_store_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  does_not_authorize:
+  - domain services
+  - command execution
+  - state store
+  - state mutation
+  - event commitment
+  - durable persistence
+  - database schema
+  - replay engine
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - training authorization
+  - donor-content audit
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-IMPL-PR-0-MINIMUM-BACKEND-KERNEL-EXECUTABLE-IMPLEMENTATION-PLAN-001
+  - RUNTIME-IMPL-PR-1-SCHEMA-REGISTRY-RECORD-IDENTITY-SKELETON-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-4-DETERMINISTIC-RNG-TABLE-ORACLE-INTERFACE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  - RUNTIME-SEQ-PR-F-IMPLEMENTATION-READINESS-EXECUTABLE-KERNEL-AUTHORIZATION-GATE-001
+  blocked_by: []
+  required_tests:
+  - review file exists test
+  - PR-8 ID reference test
+  - PR-0 through PR-7 reference test
+  - SEQ-PR-F reference test
+  - RT-001 through RT-012 reference test
+  - backend-first invariant test
+  - LLM not game engine test
+  - kernel skeleton coverage review test
+  - interface completeness matrix test
+  - domain-service readiness finding test
+  - domain-service family sequencing proposal test
+  - RUNTIME-DOMAIN-PR-0 recommendation test
+  - guardrail integrity review test
+  - domain-service dependency rules test
+  - blocked-until ledger test
+  - risk review test
+  - future integration test families test
+  - non-implementation reaffirmation test
+  - classification block test
+  - registry tracking test
+  - decision-log tracking test
+  - no domain service package guardrail test
+  - no model integration package guardrail test
+  - no prompt template package guardrail test
+  - no live-play adapter package guardrail test
+  - no UI/client package guardrail test
+  - no database package guardrail test
+  - no durable store package guardrail test
+  - no context_packet_compiler guardrail test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-0
+  recommends_next_step: RUNTIME-DOMAIN-PR-0 domain service implementation sequencing plan
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-IMPL-PR-8 review/gate only; post-kernel skeleton review; domain-service readiness gate; confirms PR-1 through PR-7 kernel skeleton sequence complete; confirms readiness for future domain-service implementation-sequencing plan; recommends RUNTIME-DOMAIN-PR-0; no runtime code; no domain service implementation; no command execution; no state store; no state mutation; no event commitment; no durable persistence; no database schema; no replay engine; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no donor-content audit; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
