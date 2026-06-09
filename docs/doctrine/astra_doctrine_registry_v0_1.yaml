@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-09'
+  version: 0.1.73
+  action: runtime_domain_pr_3_transaction_lifecycle_event_commitment_service_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001 tracking. Planning only; transaction lifecycle and event commitment service plan; follows RUNTIME-DOMAIN-PR-2B; defines transaction lifecycle model; defines event commitment model; defines transaction/event boundary; defines kernel interface consumption plan; defines domain service handoff boundaries; defines future implementation architecture; defines future data shapes; defines commit-readiness invariants; defines corpus-scale transaction pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-3A; no transaction lifecycle code; no event commitment code; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no action legality expansion; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-09'
   version: 0.1.72
   action: runtime_domain_pr_2b_state_store_state_projection_skeleton_review
   actor: Astra Doctrine Council / synthesis assistant
