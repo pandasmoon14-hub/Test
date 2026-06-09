@@ -330,12 +330,25 @@ def validate_state_projection_request(obj: Any) -> bool:
         return False
     if not isinstance(obj.state_ref_ids, tuple):
         return False
+    for ref_id in obj.state_ref_ids:
+        if not isinstance(ref_id, str) or not ref_id.strip():
+            return False
     if obj.visibility_tier not in _VISIBILITY_TIERS:
         return False
     if not isinstance(obj.include_backend_hidden, bool):
         return False
+    if obj.include_backend_hidden and obj.projection_type in _BACKEND_HIDDEN_FORBIDDEN_TYPES:
+        return False
+    if obj.snapshot_id is not None:
+        if not isinstance(obj.snapshot_id, str) or not obj.snapshot_id.strip():
+            return False
     if not isinstance(obj.dependencies, tuple):
         return False
+    for dep in obj.dependencies:
+        if not isinstance(dep, StateProjectionDependency):
+            return False
+        if not validate_state_projection_dependency(dep):
+            return False
     if not isinstance(obj.metadata, Mapping):
         return False
     return True
@@ -430,12 +443,30 @@ def validate_state_projection_result(obj: Any) -> bool:
         return False
     if not isinstance(obj.state_ref_ids, tuple):
         return False
+    for ref_id in obj.state_ref_ids:
+        if not isinstance(ref_id, str) or not ref_id.strip():
+            return False
     if not isinstance(obj.redacted_state_ref_ids, tuple):
         return False
+    for ref_id in obj.redacted_state_ref_ids:
+        if not isinstance(ref_id, str) or not ref_id.strip():
+            return False
     if not isinstance(obj.visible_state_ref_ids, tuple):
         return False
-    if obj.rejection is not None and not isinstance(obj.rejection, StateProjectionRejection):
-        return False
+    for ref_id in obj.visible_state_ref_ids:
+        if not isinstance(ref_id, str) or not ref_id.strip():
+            return False
+    if obj.rejection is not None:
+        if not isinstance(obj.rejection, StateProjectionRejection):
+            return False
+        if not validate_state_projection_rejection(obj.rejection):
+            return False
+    if obj.validation_id is not None:
+        if not isinstance(obj.validation_id, str) or not obj.validation_id.strip():
+            return False
+    if obj.trace_id is not None:
+        if not isinstance(obj.trace_id, str) or not obj.trace_id.strip():
+            return False
     if not isinstance(obj.metadata, Mapping):
         return False
     return True

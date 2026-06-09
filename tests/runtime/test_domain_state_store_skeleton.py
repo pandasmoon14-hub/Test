@@ -312,3 +312,97 @@ class TestGuardrailsDomainPackage:
 
     def test_no_context_packet_compiler(self):
         assert not os.path.exists("src/astra_runtime/kernel/context_packet_compiler.py")
+
+
+class TestValidatorParityStateStore:
+    """Validator parity: validate_ functions must mirror constructor constraints."""
+
+    def test_validate_record_ref_rejects_empty_schema_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_store import StateRecordRef
+        vis = _make_vis()
+        # Bypass create helper to plant bad schema_id
+        bad = StateRecordRef(
+            state_ref_id="ref-1", record_id="rec-1", record_type="actor",
+            category="authoritative_runtime", authority_level="authoritative",
+            visibility=vis, schema_id="", source_event_id=None,
+            source_delta_id=None, provenance_id=None, metadata=MappingProxyType({}),
+        )
+        assert validate_state_record_ref(bad) is False
+
+    def test_validate_record_ref_rejects_empty_source_event_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_store import StateRecordRef
+        vis = _make_vis()
+        bad = StateRecordRef(
+            state_ref_id="ref-1", record_id="rec-1", record_type="actor",
+            category="authoritative_runtime", authority_level="authoritative",
+            visibility=vis, schema_id=None, source_event_id="",
+            source_delta_id=None, provenance_id=None, metadata=MappingProxyType({}),
+        )
+        assert validate_state_record_ref(bad) is False
+
+    def test_validate_record_ref_accepts_all_none_optionals(self):
+        assert validate_state_record_ref(_make_ref(
+            schema_id=None, source_event_id=None, source_delta_id=None, provenance_id=None
+        )) is True
+
+    def test_validate_snapshot_ref_rejects_empty_replay_audit_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_store import StateSnapshotRef
+        bad = StateSnapshotRef(
+            snapshot_id="snap-1", snapshot_scope="session",
+            state_ref_ids=("ref-1",), authority_level="authoritative",
+            source_event_id=None, replay_audit_id="",
+            persistence_boundary_id=None, metadata=MappingProxyType({}),
+        )
+        assert validate_state_snapshot_ref(bad) is False
+
+    def test_validate_snapshot_ref_rejects_empty_source_event_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_store import StateSnapshotRef
+        bad = StateSnapshotRef(
+            snapshot_id="snap-1", snapshot_scope="session",
+            state_ref_ids=("ref-1",), authority_level="authoritative",
+            source_event_id="", replay_audit_id=None,
+            persistence_boundary_id=None, metadata=MappingProxyType({}),
+        )
+        assert validate_state_snapshot_ref(bad) is False
+
+    def test_validate_snapshot_ref_accepts_all_none_optionals(self):
+        assert validate_state_snapshot_ref(_make_snap(
+            source_event_id=None, replay_audit_id=None, persistence_boundary_id=None
+        )) is True
+
+
+class TestDecisionLogTracking:
+    """Verify PR-2A appears exactly once in the decision log."""
+
+    def test_pr2a_id_appears_exactly_once(self):
+        path = "docs/decisions/current_decisions_log.md"
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+        id_str = "RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001"
+        # Count heading occurrences (## lines)
+        heading = f"## {id_str}"
+        count = content.count(heading)
+        assert count == 1, f"Expected exactly 1 heading occurrence, found {count}"
+
+
+class TestRegistryTracking:
+    """Verify PR-2A registry record uses file_id and appears once."""
+
+    def test_pr2a_file_id_appears_exactly_once(self):
+        path = "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+        file_id_str = "file_id: RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001"
+        count = content.count(file_id_str)
+        assert count == 1, f"Expected exactly 1 file_id occurrence, found {count}"
+
+    def test_pr2a_changelog_entry_appears_exactly_once(self):
+        path = "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
+        with open(path, "r", encoding="utf-8") as f:
+            content = f.read()
+        count = content.count("version: 0.1.71")
+        assert count == 1, f"Expected exactly 1 v0.1.71 changelog entry, found {count}"

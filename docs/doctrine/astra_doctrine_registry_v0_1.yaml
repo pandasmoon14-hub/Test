@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-09'
+  version: 0.1.71
+  action: runtime_domain_pr_2a_state_store_state_projection_skeleton_implementation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001 tracking. Narrow executable skeleton; implements immutable state record/snapshot/projection request/projection result surfaces and stateless wrappers; follows RUNTIME-DOMAIN-PR-2; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no action legality expansion; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-09'
   version: 0.1.70
   action: runtime_domain_pr_2_state_store_state_projection_service_plan
   actor: Astra Doctrine Council / synthesis assistant
@@ -10834,16 +10839,18 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-2 planning only; state store and state projection service plan; follows RUNTIME-DOMAIN-PR-1B; defines state ownership model; defines state projection model; defines state lifecycle model; defines kernel interface consumption plan; defines dependency/handoff boundaries; defines future implementation architecture; defines future data shapes; defines future implementation test requirements; defines corpus-scale state pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-2A; no state-store code; no state-projection code; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
-- date: '2026-06-09'
-  version: 0.1.71
-  action: runtime_domain_pr_2a_state_store_state_projection_skeleton_implementation
-  actor: Astra Doctrine Council / synthesis assistant
-  note: Added RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001 tracking. Narrow executable skeleton; implements immutable state record/snapshot/projection request/projection result surfaces and stateless wrappers; follows RUNTIME-DOMAIN-PR-2; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no action legality expansion; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
-- id: RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
-  type: skeleton_implementation
-  title: RUNTIME-DOMAIN-PR-2A State Store and State Projection Skeleton Implementation
-  status: implemented
-  date: '2026-06-09'
+- file_id: RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  filename: state_store.py / state_projection.py / domain/__init__.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  authority_level: implementation
+  layer: 3_runtime
+  phase: runtime_domain_skeleton
+  last_reviewed: '2026-06-09'
+  next_review_due: '2026-06-23'
+  maintained_by: Astra Doctrine Council
+  purpose: Second narrow domain-service skeleton implementation for state store and state projection.
+  implementation_status: narrow_executable_skeleton
   runtime_domain_pr_2a:
     implementation_id: RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
     artifact_type: state_store_state_projection_skeleton_implementation
@@ -10892,94 +10899,98 @@ file_records:
     authorizes_sourcebook_inclusion_by_this_pr: false
     authorizes_canon_promotion_by_this_pr: false
     next_allowed_step: RUNTIME-DOMAIN-PR-2B state store/state projection skeleton review or RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan, pending review
-  description: >
-    Narrow executable skeleton implementation. Implements immutable state record ref,
-    state snapshot ref, state visibility descriptor, state projection dependency,
-    state projection rejection, state projection request, state projection result surfaces,
-    and stateless service wrappers. Follows RUNTIME-DOMAIN-PR-2. Does not mutate state,
-    apply deltas, commit events, persist, replay, execute commands, parse commands,
-    compute resources, resolve combat/abilities/items/missions/social state, call models,
-    create prompts, run live play, execute conversion, include sourcebook content, or promote canon.
-  notes:
-  - narrow skeleton only
-  - immutable frozen dataclasses
-  - stateless service wrappers
-  - no mutable runtime state
-  - no database
-  - no state mutation
-  - no event commitment
-- date: '2026-06-09'
-  version: 0.1.71
-  action: runtime_domain_pr_2a_state_store_state_projection_skeleton_implementation
-  actor: Astra Doctrine Council / synthesis assistant
-  note: Added RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001 tracking. Narrow executable skeleton; implements immutable state record/snapshot/projection request/projection result surfaces and stateless wrappers; follows RUNTIME-DOMAIN-PR-2; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no action legality expansion; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
-
-- id: RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
-  type: skeleton_implementation
-  title: RUNTIME-DOMAIN-PR-2A State Store and State Projection Skeleton Implementation
-  status: implemented
-  date: '2026-06-09'
-  runtime_domain_pr_2a:
-    implementation_id: RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
-    artifact_type: state_store_state_projection_skeleton_implementation
-    implementation_status: narrow_executable_skeleton
-    derives_from:
-    - RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
-    - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
-    - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
-    - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
-    - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
-    - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
-    - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
-    - RT-005
-    - RT-011
-    implements_state_store_skeleton: true
-    implements_state_projection_skeleton: true
-    implements_stateless_service_wrappers: true
-    implements_immutable_state_reference_surfaces: true
-    implements_immutable_projection_surfaces: true
-    authorizes_mutable_runtime_state_by_this_pr: false
-    authorizes_state_mutation_by_this_pr: false
-    authorizes_state_delta_application_by_this_pr: false
-    authorizes_transaction_lifecycle_by_this_pr: false
-    authorizes_event_commitment_by_this_pr: false
-    authorizes_event_sourcing_by_this_pr: false
-    authorizes_durable_persistence_by_this_pr: false
-    authorizes_database_schema_by_this_pr: false
-    authorizes_replay_engine_by_this_pr: false
-    authorizes_command_execution_by_this_pr: false
-    authorizes_command_parser_by_this_pr: false
-    authorizes_action_legality_expansion_by_this_pr: false
-    authorizes_resource_math_by_this_pr: false
-    authorizes_combat_resolution_by_this_pr: false
-    authorizes_ability_resolution_by_this_pr: false
-    authorizes_inventory_mutation_by_this_pr: false
-    authorizes_mission_mutation_by_this_pr: false
-    authorizes_social_faction_mutation_by_this_pr: false
-    authorizes_generated_content_persistence_by_this_pr: false
-    authorizes_context_packet_compiler_by_this_pr: false
-    authorizes_prompt_templates_by_this_pr: false
-    authorizes_model_integration_by_this_pr: false
-    authorizes_live_play_by_this_pr: false
-    authorizes_ui_client_by_this_pr: false
-    authorizes_training_by_this_pr: false
-    authorizes_pilot_conversion_by_this_pr: false
-    authorizes_sourcebook_inclusion_by_this_pr: false
-    authorizes_canon_promotion_by_this_pr: false
-    next_allowed_step: RUNTIME-DOMAIN-PR-2B state store/state projection skeleton review or RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan, pending review
-  description: >
-    Narrow executable skeleton implementation. Implements immutable state record ref,
-    state snapshot ref, state visibility descriptor, state projection dependency,
-    state projection rejection, state projection request, state projection result surfaces,
-    and stateless service wrappers. Follows RUNTIME-DOMAIN-PR-2. Does not mutate state,
-    apply deltas, commit events, persist, replay, execute commands, parse commands,
-    compute resources, resolve combat/abilities/items/missions/social state, call models,
-    create prompts, run live play, execute conversion, include sourcebook content, or promote canon.
-  notes:
-  - narrow skeleton only
-  - immutable frozen dataclasses
-  - stateless service wrappers
-  - no mutable runtime state
-  - no database
-  - no state mutation
-  - no event commitment
+  does_not_authorize:
+  - mutable runtime state
+  - state mutation
+  - state delta application
+  - transaction lifecycle
+  - event commitment
+  - event sourcing
+  - durable persistence
+  - database schema
+  - replay engine
+  - command execution
+  - command parser
+  - action legality expansion
+  - resource math
+  - combat resolution
+  - ability resolution
+  - inventory mutation
+  - mission/social mutation
+  - generated-content persistence
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - training authorization
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - domain package imports state store symbols
+  - all 10 state record categories accepted
+  - unsupported category rejected
+  - all authority levels accepted
+  - unsupported authority level rejected
+  - all visibility tiers accepted
+  - unsupported visibility tier rejected
+  - valid StateVisibilityDescriptor creation succeeds
+  - invalid visibility descriptor fields rejected
+  - valid StateRecordRef creation succeeds
+  - optional IDs accept None
+  - optional IDs reject empty string
+  - invalid visibility type rejected
+  - metadata deep-copy safe
+  - to_dict returns deep copies
+  - frozen dataclass immutability
+  - validate_state_record_ref accepts valid ref
+  - validate_state_record_ref rejects invalid object
+  - valid StateSnapshotRef creation succeeds
+  - snapshot state_ref_ids normalize to tuple
+  - snapshot state_ref_ids reject bare string
+  - snapshot empty state_ref_id rejected
+  - validate_state_snapshot_ref accepts valid snapshot
+  - validate_state_snapshot_ref rejects invalid object
+  - StateStoreService is stateless
+  - StateStoreService has no forbidden methods
+  - domain package imports state projection symbols
+  - all 12 projection types accepted
+  - unsupported projection type rejected
+  - all projection statuses accepted
+  - unsupported status rejected
+  - valid StateProjectionDependency creation succeeds
+  - allowed dependency types accepted
+  - unsupported dependency type rejected
+  - valid StateProjectionRejection creation succeeds
+  - valid StateProjectionRequest creation succeeds
+  - request rejects non-bool include_backend_hidden
+  - request rejects backend-hidden for player-visible types
+  - valid StateProjectionResult creation succeeds
+  - metadata deep-copy safe
+  - frozen dataclass immutability
+  - project_state_view accepts valid request
+  - project_state_view rejects invalid request
+  - StateProjectionService is stateless
+  - StateProjectionService has no forbidden methods
+  - domain package contains only authorized files
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-2B
+  recommends_next_step: RUNTIME-DOMAIN-PR-2B state store/state projection skeleton review or RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-2A narrow executable skeleton; implements immutable state record ref, snapshot ref, visibility descriptor, projection dependency, projection rejection, projection request, projection result surfaces and stateless service wrappers; follows RUNTIME-DOMAIN-PR-2; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no action legality expansion; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.

@@ -305,3 +305,82 @@ class TestStateProjectionService:
         req = _make_request()
         result = svc.project("proj-svc-1", req)
         assert isinstance(result, StateProjectionResult)
+
+
+class TestValidatorParityProjection:
+    """Validator parity: validate_ functions must mirror constructor constraints."""
+
+    def test_validate_request_rejects_empty_state_ref_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_projection import StateProjectionRequest
+        bad = StateProjectionRequest(
+            projection_request_id="req-1", requester_id="actor-1",
+            projection_type="full_backend", state_ref_ids=("",),
+            snapshot_id=None, visibility_tier="backend_hidden",
+            include_backend_hidden=True, dependencies=(),
+            metadata=MappingProxyType({}),
+        )
+        assert validate_state_projection_request(bad) is False
+
+    def test_validate_request_rejects_backend_hidden_for_player_visible(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_projection import StateProjectionRequest
+        bad = StateProjectionRequest(
+            projection_request_id="req-1", requester_id="actor-1",
+            projection_type="player_visible", state_ref_ids=("ref-1",),
+            snapshot_id=None, visibility_tier="player_visible",
+            include_backend_hidden=True, dependencies=(),
+            metadata=MappingProxyType({}),
+        )
+        assert validate_state_projection_request(bad) is False
+
+    def test_validate_request_rejects_bad_dependency_entry(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_projection import StateProjectionRequest
+        bad = StateProjectionRequest(
+            projection_request_id="req-1", requester_id="actor-1",
+            projection_type="full_backend", state_ref_ids=("ref-1",),
+            snapshot_id=None, visibility_tier="backend_hidden",
+            include_backend_hidden=True, dependencies=("bad",),
+            metadata=MappingProxyType({}),
+        )
+        assert validate_state_projection_request(bad) is False
+
+    def test_validate_result_rejects_empty_visible_state_ref_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_projection import StateProjectionResult
+        bad = StateProjectionResult(
+            projection_id="proj-1", projection_request_id="req-1",
+            projection_type="full_backend", status="materialized",
+            state_ref_ids=(), redacted_state_ref_ids=(),
+            visible_state_ref_ids=("",), rejection=None,
+            validation_id=None, trace_id=None,
+            metadata=MappingProxyType({}),
+        )
+        assert validate_state_projection_result(bad) is False
+
+    def test_validate_result_rejects_empty_validation_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_projection import StateProjectionResult
+        bad = StateProjectionResult(
+            projection_id="proj-1", projection_request_id="req-1",
+            projection_type="full_backend", status="materialized",
+            state_ref_ids=(), redacted_state_ref_ids=(),
+            visible_state_ref_ids=(), rejection=None,
+            validation_id="", trace_id=None,
+            metadata=MappingProxyType({}),
+        )
+        assert validate_state_projection_result(bad) is False
+
+    def test_validate_result_rejects_empty_trace_id(self):
+        from types import MappingProxyType
+        from astra_runtime.domain.state_projection import StateProjectionResult
+        bad = StateProjectionResult(
+            projection_id="proj-1", projection_request_id="req-1",
+            projection_type="full_backend", status="materialized",
+            state_ref_ids=(), redacted_state_ref_ids=(),
+            visible_state_ref_ids=(), rejection=None,
+            validation_id=None, trace_id="",
+            metadata=MappingProxyType({}),
+        )
+        assert validate_state_projection_result(bad) is False

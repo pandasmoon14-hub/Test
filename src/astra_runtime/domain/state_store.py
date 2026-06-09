@@ -227,6 +227,10 @@ def validate_state_record_ref(obj: Any) -> bool:
         return False
     if not validate_state_visibility_descriptor(obj.visibility):
         return False
+    for opt in (obj.schema_id, obj.source_event_id, obj.source_delta_id, obj.provenance_id):
+        if opt is not None:
+            if not isinstance(opt, str) or not opt.strip():
+                return False
     if not isinstance(obj.metadata, Mapping):
         return False
     return True
@@ -311,6 +315,10 @@ def validate_state_snapshot_ref(obj: Any) -> bool:
             return False
     if obj.authority_level not in STATE_AUTHORITY_LEVELS:
         return False
+    for opt in (obj.source_event_id, obj.replay_audit_id, obj.persistence_boundary_id):
+        if opt is not None:
+            if not isinstance(opt, str) or not opt.strip():
+                return False
     if not isinstance(obj.metadata, Mapping):
         return False
     return True
