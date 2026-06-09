@@ -1954,3 +1954,118 @@ runtime_domain_pr_2a:
   authorizes_canon_promotion_by_this_pr: false
   next_allowed_step: RUNTIME-DOMAIN-PR-2B state store/state projection skeleton review or RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan, pending review
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+
+**Date:** 2026-06-09
+
+### Decision
+
+Review/gate only. Reviews and confirms RUNTIME-DOMAIN-PR-2A state store/state projection skeleton implementation scope, guardrail transition safety, validator surface adequacy, and kernel dependency posture. Authorizes RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan as the next step.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-2A delivered the state store and state projection skeleton implementation. PR-2B reviews that implementation before transaction lifecycle and event commitment planning can proceed. This follows the established gate pattern from RUNTIME-DOMAIN-PR-1B.
+
+### Implication
+
+PR-2A scope is confirmed as skeleton-only. Guardrail transition from 3 to 5 authorized domain files is safe. Validator surfaces mirror factory constraints with full parity. No PR-2C hardening pass is required before PR-3 planning. The next authorized step is RUNTIME-DOMAIN-PR-3 (transaction lifecycle and event commitment service plan, planning only).
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan begins.
+- If future hardening items from the PR-2B ledger need to be addressed before PR-3.
+- If hidden-information safety requirements need strengthening before transaction lifecycle planning.
+
+### No-implementation guardrails reaffirmed
+
+- No runtime code.
+- No domain-service code.
+- No state-store implementation changes.
+- No state-projection implementation changes.
+- No mutable runtime state.
+- No state mutation.
+- No state delta application.
+- No transaction lifecycle.
+- No event commitment.
+- No event sourcing.
+- No durable persistence.
+- No database schema.
+- No replay engine.
+- No command execution.
+- No command parser.
+- No action legality expansion.
+- No resource math.
+- No combat resolution.
+- No ability resolution.
+- No inventory mutation.
+- No mission/social mutation.
+- No generated-content persistence.
+- No context-packet compiler.
+- No prompt templates.
+- No model integration.
+- No live-play adapter.
+- No UI/client.
+- No training authorization.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_2b:
+  review_id: RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+  artifact_type: state_store_state_projection_skeleton_review_gate
+  implementation_status: non_executable_review_gate
+  derives_from:
+  - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  - RT-005
+  - RT-011
+  reviews_state_store_skeleton: true
+  reviews_state_projection_skeleton: true
+  reviews_validator_parity: true
+  reviews_guardrail_transition: true
+  reviews_kernel_dependency_usage: true
+  reviews_corpus_scale_state_pressure: true
+  defines_future_hardening_ledger: true
+  authorizes_code_by_this_pr: false
+  authorizes_mutable_runtime_state_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_state_delta_application_by_this_pr: false
+  authorizes_transaction_lifecycle_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_event_sourcing_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_database_schema_by_this_pr: false
+  authorizes_replay_engine_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_command_parser_by_this_pr: false
+  authorizes_action_legality_expansion_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_resolution_by_this_pr: false
+  authorizes_ability_resolution_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_mutation_by_this_pr: false
+  authorizes_social_faction_mutation_by_this_pr: false
+  authorizes_generated_content_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan, pending review
+```
