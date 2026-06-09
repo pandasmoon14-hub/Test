@@ -1818,3 +1818,61 @@ Reason: PR-1A created the first authorized domain package. Before proceeding to 
 - No pilot conversion authorization.
 - No sourcebook inclusion authorization.
 - No canon promotion.
+
+---
+
+## RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+
+**Date:** 2026-06-09
+
+### Decision
+
+Created RUNTIME-DOMAIN-PR-2: a planning-only state store and state projection service plan. Defines future state ownership model, state projection model, state lifecycle model, kernel interface consumption plan, dependency/handoff boundaries, future implementation architecture, future data shapes, future test requirements, corpus-scale state pressure review, and future hardening ledger.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-1B confirmed the command lifecycle/action legality skeleton is stable and authorized PR-2 as the next planning step. The state store/state projection service is the second domain-service family in the sequencing plan (RUNTIME-DOMAIN-PR-0) and blocks all downstream domain services that consume state projections.
+
+### Implication
+
+- State store and state projection service boundaries are defined.
+- Authorizes only a future narrow skeleton implementation PR (RUNTIME-DOMAIN-PR-2A) after review.
+- All downstream domain services (resource math, combat, abilities, inventory, mission, social/faction, generated-content) depend on this plan.
+- PR-2A planning can proceed as skeleton-only.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-2A skeleton implementation begins.
+- If state ownership model requires revision during implementation.
+- If kernel interfaces require changes during state store/projection implementation.
+- If hidden-information safety requirements need strengthening.
+
+### No-implementation guardrails reaffirmed
+
+- No state-store code.
+- No state-projection code.
+- No mutable runtime state.
+- No state mutation.
+- No state delta application.
+- No transaction lifecycle.
+- No event commitment.
+- No event sourcing.
+- No durable persistence.
+- No database schema.
+- No replay engine.
+- No command execution.
+- No command parser.
+- No resource math.
+- No combat resolution.
+- No ability resolution.
+- No inventory mutation.
+- No mission/social mutation.
+- No context-packet compiler.
+- No prompt templates.
+- No model integration.
+- No live-play adapter.
+- No UI/client.
+- No training authorization.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.

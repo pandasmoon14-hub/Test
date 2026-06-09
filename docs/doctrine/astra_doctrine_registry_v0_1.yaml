@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-09'
+  version: 0.1.70
+  action: runtime_domain_pr_2_state_store_state_projection_service_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001 tracking. Planning only; state store and state projection service plan; follows RUNTIME-DOMAIN-PR-1B; defines state ownership model; defines state projection model; defines state lifecycle model; defines kernel interface consumption plan; defines dependency/handoff boundaries; defines future implementation architecture; defines future data shapes; defines future implementation test requirements; defines corpus-scale state pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-2A; no state-store code; no state-projection code; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
 - date: '2026-06-08'
   version: 0.1.69
   action: runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review
@@ -10683,3 +10688,149 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-1B review/gate only; reviews first domain package creation; reviews command lifecycle skeleton; reviews action legality skeleton; reviews guardrail transition; reviews kernel dependency usage; reviews corpus-scale command pressure; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-2; no runtime code; no domain-service code; no command execution; no command parser; no state store; no state projection; no state mutation; no transaction lifecycle; no event commitment; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- file_id: RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+  filename: runtime_domain_pr_2_state_store_state_projection_service_plan.md
+  proposed_path: docs/doctrine/reviews/runtime_domain_pr_2_state_store_state_projection_service_plan.md
+  status: draft
+  authority_level: service_plan
+  layer: 3_runtime
+  phase: runtime_domain_service_plan
+  last_reviewed: '2026-06-09'
+  next_review_due: '2026-06-23'
+  maintained_by: Astra Doctrine Council
+  purpose: Planning-only state store and state projection service plan for the runtime domain-service layer.
+  runtime_domain_pr_2:
+    review_id: RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+    artifact_type: state_store_state_projection_service_plan
+    implementation_status: non_executable_plan
+    derives_from:
+    - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+    - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+    - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+    - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+    - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+    - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+    - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+    - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+    - RT-001
+    - RT-005
+    - RT-011
+    defines_state_ownership_model: true
+    defines_state_projection_model: true
+    defines_state_lifecycle_model: true
+    defines_kernel_interface_consumption_plan: true
+    defines_handoff_boundaries: true
+    defines_future_implementation_architecture: true
+    defines_future_data_shapes: true
+    defines_future_test_requirements: true
+    defines_corpus_scale_state_pressure_review: true
+    defines_future_hardening_ledger: true
+    authorizes_state_store_code_by_this_pr: false
+    authorizes_state_projection_code_by_this_pr: false
+    authorizes_mutable_runtime_state_by_this_pr: false
+    authorizes_state_mutation_by_this_pr: false
+    authorizes_state_delta_application_by_this_pr: false
+    authorizes_transaction_lifecycle_by_this_pr: false
+    authorizes_event_commitment_by_this_pr: false
+    authorizes_event_sourcing_by_this_pr: false
+    authorizes_durable_persistence_by_this_pr: false
+    authorizes_database_schema_by_this_pr: false
+    authorizes_replay_engine_by_this_pr: false
+    authorizes_command_execution_by_this_pr: false
+    authorizes_command_parser_by_this_pr: false
+    authorizes_resource_math_by_this_pr: false
+    authorizes_combat_resolution_by_this_pr: false
+    authorizes_ability_resolution_by_this_pr: false
+    authorizes_inventory_mutation_by_this_pr: false
+    authorizes_mission_mutation_by_this_pr: false
+    authorizes_social_faction_mutation_by_this_pr: false
+    authorizes_context_packet_compiler_by_this_pr: false
+    authorizes_prompt_templates_by_this_pr: false
+    authorizes_model_integration_by_this_pr: false
+    authorizes_live_play_by_this_pr: false
+    authorizes_ui_client_by_this_pr: false
+    authorizes_training_by_this_pr: false
+    authorizes_pilot_conversion_by_this_pr: false
+    authorizes_sourcebook_inclusion_by_this_pr: false
+    authorizes_canon_promotion_by_this_pr: false
+    next_allowed_step: RUNTIME-DOMAIN-PR-2A state store and state projection skeleton implementation, pending review
+  does_not_authorize:
+  - state-store code
+  - state-projection code
+  - mutable runtime state
+  - state mutation
+  - state delta application
+  - transaction lifecycle
+  - event commitment
+  - event sourcing
+  - durable persistence
+  - database schema
+  - replay engine
+  - command execution
+  - command parser
+  - resource math
+  - combat resolution
+  - ability resolution
+  - inventory mutation
+  - mission/social mutation
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - training authorization
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  blocked_by: []
+  required_tests:
+  - plan file exists
+  - references PR-2 ID
+  - references PR-1B
+  - references PR-1A
+  - references PR-1
+  - references PR-0
+  - references state_delta, event_ledger, validation_pipeline, hidden_information, context_projection, persistence_boundary, replay_audit, runtime_trace
+  - references RT-001, RT-005, RT-011
+  - states backend-first invariant
+  - includes service ownership
+  - includes future service responsibilities
+  - includes forbidden responsibilities
+  - includes state ownership model
+  - includes state projection model
+  - includes future state lifecycle model
+  - includes kernel interface consumption plan
+  - includes dependency and handoff boundaries
+  - includes future implementation architecture
+  - includes future data shapes
+  - includes implementation PR authorization boundary
+  - includes test requirements for future implementation
+  - includes corpus-scale state pressure review
+  - includes guardrail review
+  - includes risk review
+  - includes required future hardening ledger
+  - includes non-implementation reaffirmation
+  - includes gate finding
+  - includes classification block
+  - recommends RUNTIME-DOMAIN-PR-2A
+  - registry tracking exists
+  - decision-log tracking exists
+  - runtime guardrail tests
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-2A
+  recommends_next_step: RUNTIME-DOMAIN-PR-2A state store and state projection skeleton implementation
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-2 planning only; state store and state projection service plan; follows RUNTIME-DOMAIN-PR-1B; defines state ownership model; defines state projection model; defines state lifecycle model; defines kernel interface consumption plan; defines dependency/handoff boundaries; defines future implementation architecture; defines future data shapes; defines future implementation test requirements; defines corpus-scale state pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-2A; no state-store code; no state-projection code; no mutable runtime state; no state mutation; no state delta application; no transaction lifecycle; no event commitment; no event sourcing; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
