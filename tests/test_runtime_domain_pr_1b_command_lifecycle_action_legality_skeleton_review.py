@@ -228,16 +228,16 @@ class TestRuntimeGuardrails:
         assert os.path.isfile("src/astra_runtime/domain/action_legality.py")
 
     def test_domain_package_authorized_files_only(self):
-        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "__pycache__"}
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "__pycache__"}
         contents = set(os.listdir("src/astra_runtime/domain"))
         unauthorized = contents - allowed
         assert not unauthorized, f"Unauthorized domain files: {unauthorized}"
 
-    def test_no_state_store(self):
-        assert not os.path.exists("src/astra_runtime/domain/state_store.py")
+    def test_state_store_authorized(self):
+        assert os.path.exists("src/astra_runtime/domain/state_store.py")
 
-    def test_no_state_projection(self):
-        assert not os.path.exists("src/astra_runtime/domain/state_projection.py")
+    def test_state_projection_authorized(self):
+        assert os.path.exists("src/astra_runtime/domain/state_projection.py")
 
     def test_no_transaction_lifecycle(self):
         assert not os.path.exists("src/astra_runtime/domain/transaction_lifecycle.py")
