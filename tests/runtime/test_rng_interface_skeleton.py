@@ -258,7 +258,7 @@ class TestNoUnauthorizedModules:
             os.path.dirname(__file__), "..", "..", "src", "astra_runtime", "domain"
         )
         assert os.path.isdir(path), "Domain package should exist after PR-1A"
-        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "__pycache__"}
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "__pycache__"}
         actual = set(os.listdir(path))
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
