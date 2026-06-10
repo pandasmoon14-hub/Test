@@ -262,6 +262,7 @@ class TestRuntimeGuardrailsDomainPackage:
             "state_projection.py",
             "transaction_lifecycle.py",
             "event_commitment.py",
+            "validation_integration.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))
@@ -274,8 +275,8 @@ class TestRuntimeGuardrailsDomainPackage:
     def test_event_commitment_authorized(self):
         assert os.path.exists("src/astra_runtime/domain/event_commitment.py")
 
-    def test_no_validation_integration(self):
-        assert not os.path.exists("src/astra_runtime/domain/validation_integration.py")
+    def test_validation_integration_authorized(self):
+        assert os.path.exists("src/astra_runtime/domain/validation_integration.py")
 
     def test_no_resource_math(self):
         assert not os.path.exists("src/astra_runtime/domain/resource_math.py")
