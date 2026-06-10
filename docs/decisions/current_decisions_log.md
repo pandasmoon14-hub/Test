@@ -2193,3 +2193,74 @@ runtime_domain_pr_3:
   authorizes_canon_promotion_by_this_pr: false
   next_allowed_step: RUNTIME-DOMAIN-PR-3A transaction lifecycle and event commitment skeleton implementation, pending review
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+
+**Date:** 2026-06-10
+
+### Decision
+
+Narrow executable skeleton implementation only. Creates transaction lifecycle and event commitment skeleton modules under `src/astra_runtime/domain/`. Follows RUNTIME-DOMAIN-PR-3.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-3 defined the transaction lifecycle and event commitment service plan and authorized RUNTIME-DOMAIN-PR-3A as the next skeleton implementation step. PR-3A is constrained to skeleton surfaces only: immutable frozen dataclasses representing transaction dependencies, preconditions, requests, plans, and results; event commitment dependencies, rejections, requests, and results; plus stateless service wrapper classes.
+
+### Implication
+
+The domain package now exports transaction lifecycle and event commitment skeleton surfaces. No actual transaction execution, no actual event commitment, no event sourcing, no mutable runtime state, no state mutation, no state delta application, no event ledger append, no durable persistence, no database schema, no replay engine, no command execution, no parser, no action legality expansion, no resource math, no combat, no ability resolution, no inventory mutation, no mission/social mutation, no generated-content persistence, no context-packet compiler, no prompts, no model integration, no live play, no UI, no training, no pilot conversion, no sourcebook inclusion, no canon promotion.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-3B skeleton review begins.
+- When RUNTIME-DOMAIN-PR-4 planning begins.
+- If transaction lifecycle or event commitment model requires revision.
+- If kernel interfaces require changes during implementation.
+
+### Classification
+
+```yaml
+runtime_domain_pr_3a:
+  implementation_id: RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+  artifact_type: transaction_lifecycle_event_commitment_skeleton_implementation
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+  - RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  implements_transaction_lifecycle_skeleton: true
+  implements_event_commitment_skeleton: true
+  implements_stateless_service_wrappers: true
+  authorizes_transaction_execution_by_this_pr: false
+  authorizes_actual_event_commitment_by_this_pr: false
+  authorizes_event_sourcing_by_this_pr: false
+  authorizes_mutable_runtime_state_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_state_delta_application_by_this_pr: false
+  authorizes_event_ledger_append_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_database_schema_by_this_pr: false
+  authorizes_replay_engine_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_command_parser_by_this_pr: false
+  authorizes_action_legality_expansion_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_resolution_by_this_pr: false
+  authorizes_ability_resolution_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_mutation_by_this_pr: false
+  authorizes_social_faction_mutation_by_this_pr: false
+  authorizes_generated_content_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-3B transaction lifecycle and event commitment skeleton review gate or RUNTIME-DOMAIN-PR-4 planning, pending review
+```

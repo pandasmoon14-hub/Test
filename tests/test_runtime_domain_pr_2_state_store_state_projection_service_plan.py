@@ -560,7 +560,7 @@ class TestDomainPackageGuardrails:
         assert (DOMAIN_PACKAGE_DIR / "action_legality.py").exists()
 
     def test_domain_package_authorized_files_only(self):
-        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "__pycache__"}
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "transaction_lifecycle.py", "event_commitment.py", "__pycache__"}
         actual = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir() if p.name != "__pycache__"}
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized files in domain package: {unauthorized}"
@@ -568,8 +568,6 @@ class TestDomainPackageGuardrails:
     @pytest.mark.parametrize(
         "forbidden_file",
         [
-            "transaction_lifecycle.py",
-            "event_commitment.py",
             "validation_integration.py",
             "resource_math.py",
             "combat.py",

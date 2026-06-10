@@ -289,17 +289,13 @@ class TestGuardrailsDomainPackage:
             "action_legality.py",
             "state_store.py",
             "state_projection.py",
+            "transaction_lifecycle.py",
+            "event_commitment.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))
         unauthorized = entries - authorized
         assert not unauthorized, f"Unauthorized domain files found: {unauthorized}"
-
-    def test_no_transaction_lifecycle_module(self):
-        assert not os.path.exists("src/astra_runtime/domain/transaction_lifecycle.py")
-
-    def test_no_event_commitment_module(self):
-        assert not os.path.exists("src/astra_runtime/domain/event_commitment.py")
 
     def test_no_resource_math_module(self):
         assert not os.path.exists("src/astra_runtime/domain/resource_math.py")
