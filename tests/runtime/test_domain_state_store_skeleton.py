@@ -291,6 +291,7 @@ class TestGuardrailsDomainPackage:
             "state_projection.py",
             "transaction_lifecycle.py",
             "event_commitment.py",
+            "validation_integration.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))

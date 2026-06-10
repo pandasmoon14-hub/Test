@@ -796,21 +796,16 @@ class TestDomainPackageGuardrails:
             "__init__.py", "command_lifecycle.py", "action_legality.py",
             "state_store.py", "state_projection.py",
             "transaction_lifecycle.py", "event_commitment.py",
+            "validation_integration.py",
             "__pycache__",
         }
         actual = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir()}
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized files in domain package: {unauthorized}"
 
-    def test_validation_integration_not_created_in_pr_4(self):
-        assert not (DOMAIN_PACKAGE_DIR / "validation_integration.py").exists(), (
-            "validation_integration.py must not exist in PR-4 (planning only)"
-        )
-
     @pytest.mark.parametrize(
         "forbidden_file",
         [
-            "validation_integration.py",
             "invariant_enforcement.py",
             "resource_math.py",
             "combat.py",

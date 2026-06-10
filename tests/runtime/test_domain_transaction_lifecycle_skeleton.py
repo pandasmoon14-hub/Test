@@ -781,6 +781,7 @@ class TestGuardrailsDomainPackage:
             "state_projection.py",
             "transaction_lifecycle.py",
             "event_commitment.py",
+            "validation_integration.py",
             "__pycache__",
         }
         entries = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir()}
@@ -790,7 +791,6 @@ class TestGuardrailsDomainPackage:
     @pytest.mark.parametrize(
         "forbidden_file",
         [
-            "validation_integration.py",
             "resource_math.py",
             "combat.py",
             "ability_effects.py",

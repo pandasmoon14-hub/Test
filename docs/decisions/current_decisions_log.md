@@ -2379,6 +2379,72 @@ runtime_domain_pr_3b:
 
 ---
 
+## RUNTIME-DOMAIN-PR-4A-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-IMPLEMENTATION-001
+
+**Date:** 2026-06-10
+
+### Decision
+
+Narrow executable skeleton implementation for validation integration and invariant enforcement domain surfaces. Creates validation integration skeleton, invariant declaration skeleton surfaces, validation result/failure route reference surfaces. Updates domain exports. Adds focused skeleton tests. Follows RUNTIME-DOMAIN-PR-4 plan.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-4 authorized RUNTIME-DOMAIN-PR-4A as the next executable step. The scope is narrowed to immutable frozen dataclass surfaces for validation integration dependency, invariant declaration, failure route, request, and result; constant sets for stages, decisions, invariant families, failure routes, dependency types, and subject types; factory/validator helpers; and a stateless service wrapper. No validation rules, no invariant enforcement, no state mutation, no delta application, no event append, no persistence, no replay, no command execution, no model/live-play behavior.
+
+### Implication
+
+- `src/astra_runtime/domain/validation_integration.py` now exists.
+- `src/astra_runtime/domain/__init__.py` exports all new symbols.
+- Focused skeleton tests pass.
+- Domain package guardrail tests updated to authorize `validation_integration.py`.
+- No validation rules, invariant enforcement, state mutation, event append, persistence, replay, command execution, resource math, combat, abilities/effects, inventory, mission/social, generated-content persistence, context-packet compiler, model, live-play, UI, conversion, sourcebook, or canon behavior created.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-4B review gate begins.
+- If validation integration model, decision model, or invariant family model requires revision during review.
+- If kernel validation pipeline interfaces change during later integration.
+
+### Classification
+
+```yaml
+runtime_domain_pr_4a:
+  implementation_id: RUNTIME-DOMAIN-PR-4A-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-IMPLEMENTATION-001
+  artifact_type: executable_domain_skeleton
+  implementation_status: narrow_executable_skeleton
+  derives_from:
+    - RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
+  implements_validation_integration_skeleton: true
+  implements_invariant_declaration_skeleton: true
+  implements_validation_result_skeleton: true
+  implements_failure_route_skeleton: true
+  authorizes_domain_validation_rules_by_this_pr: false
+  authorizes_actual_invariant_enforcement_by_this_pr: false
+  authorizes_validation_pipeline_execution_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_delta_application_by_this_pr: false
+  authorizes_event_append_by_this_pr: false
+  authorizes_persistence_by_this_pr: false
+  authorizes_replay_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_by_this_pr: false
+  authorizes_abilities_effects_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_social_mutation_by_this_pr: false
+  authorizes_generated_content_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-4B validation integration and invariant enforcement skeleton review gate, pending review
+```
+
+---
+
 ## RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
 
 **Date:** 2026-06-10
