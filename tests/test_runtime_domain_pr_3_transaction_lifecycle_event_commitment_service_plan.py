@@ -622,6 +622,30 @@ class TestDomainPackageGuardrails:
         )
 
 
+class TestRegistryFileRecordTracking:
+    def test_registry_has_pr3_file_id(self, registry_text):
+        assert "file_id: RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001" in registry_text
+
+    def test_registry_pr3_file_id_unique(self, registry_text):
+        count = registry_text.count("file_id: RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001")
+        assert count == 1, f"Expected file_id exactly once, found {count} times"
+
+    def test_registry_pr3_content_type(self, registry_text):
+        assert "content_type: service_plan" in registry_text
+
+    def test_registry_pr3_implementation_status(self, registry_text):
+        assert "implementation_status: non_executable_plan" in registry_text
+
+    def test_registry_pr3_denies_transaction_lifecycle_code(self, registry_text):
+        assert "authorizes_transaction_lifecycle_code_by_this_pr: false" in registry_text
+
+    def test_registry_pr3_denies_event_commitment_code(self, registry_text):
+        assert "authorizes_event_commitment_code_by_this_pr: false" in registry_text
+
+    def test_registry_pr3_next_allowed_step(self, registry_text):
+        assert "next_allowed_step: RUNTIME-DOMAIN-PR-3A transaction lifecycle and event commitment skeleton implementation, pending review" in registry_text
+
+
 class TestNoUnauthorizedPackages:
     @pytest.mark.parametrize(
         "forbidden_path",
