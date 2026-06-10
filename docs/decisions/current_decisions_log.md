@@ -2069,3 +2069,127 @@ runtime_domain_pr_2b:
   authorizes_canon_promotion_by_this_pr: false
   next_allowed_step: RUNTIME-DOMAIN-PR-3 transaction lifecycle and event commitment service plan, pending review
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+
+**Date:** 2026-06-09
+
+### Decision
+
+Planning-only transaction lifecycle and event commitment service plan. Defines future transaction lifecycle ownership, event commitment ownership, transaction lifecycle model, event commitment model, transaction/event boundary, kernel interface consumption plan, domain service handoff boundaries, future implementation architecture, future data shapes, commit-readiness invariants, corpus-scale transaction pressure review, risk review, future hardening ledger, and implementation PR authorization boundary. Follows RUNTIME-DOMAIN-PR-2B. Authorizes only RUNTIME-DOMAIN-PR-3A (transaction lifecycle and event commitment skeleton implementation) pending review.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-2B confirmed the state store/state projection skeleton is stable and authorized PR-3 as the next planning step. The transaction lifecycle and event commitment service is the third domain-service family in the sequencing plan (RUNTIME-DOMAIN-PR-0) and is the future backend-owned boundary where validated command outcomes become committed runtime facts.
+
+### Implication
+
+- Transaction lifecycle and event commitment service boundaries are defined.
+- Authorizes only a future narrow skeleton implementation PR (RUNTIME-DOMAIN-PR-3A) after review.
+- Defines 18 transaction lifecycle stages and 12 event commitment decisions.
+- Defines kernel interface consumption matrix for all 14 kernel modules.
+- Defines handoff boundaries to 16 future downstream services.
+- No code is implemented by this PR.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-3A skeleton implementation begins.
+- If transaction lifecycle model requires revision during implementation.
+- If event commitment model requires revision during implementation.
+- If kernel interfaces require changes during transaction lifecycle/event commitment implementation.
+
+### No-implementation guardrails reaffirmed
+
+- No transaction lifecycle code.
+- No event commitment code.
+- No event sourcing.
+- No mutable runtime state.
+- No state mutation.
+- No state delta application.
+- No event ledger append.
+- No durable persistence.
+- No database schema.
+- No replay engine.
+- No command execution.
+- No command parser.
+- No action legality expansion.
+- No resource math.
+- No combat resolution.
+- No ability resolution.
+- No inventory mutation.
+- No mission/social mutation.
+- No generated-content persistence.
+- No context-packet compiler.
+- No prompt templates.
+- No model integration.
+- No live-play adapter.
+- No UI/client.
+- No training authorization.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_3:
+  plan_id: RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+  artifact_type: transaction_lifecycle_event_commitment_service_plan
+  implementation_status: non_executable_plan
+  derives_from:
+  - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  - RT-001
+  - RT-005
+  - RT-011
+  defines_transaction_lifecycle_model: true
+  defines_event_commitment_model: true
+  defines_transaction_event_boundary: true
+  defines_kernel_interface_consumption_plan: true
+  defines_domain_service_handoffs: true
+  defines_future_implementation_architecture: true
+  defines_future_data_shapes: true
+  defines_commit_readiness_invariants: true
+  defines_corpus_scale_transaction_pressure_review: true
+  defines_future_hardening_ledger: true
+  authorizes_transaction_lifecycle_code_by_this_pr: false
+  authorizes_event_commitment_code_by_this_pr: false
+  authorizes_event_sourcing_by_this_pr: false
+  authorizes_mutable_runtime_state_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_state_delta_application_by_this_pr: false
+  authorizes_event_ledger_append_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_database_schema_by_this_pr: false
+  authorizes_replay_engine_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_command_parser_by_this_pr: false
+  authorizes_action_legality_expansion_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_resolution_by_this_pr: false
+  authorizes_ability_resolution_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_mutation_by_this_pr: false
+  authorizes_social_faction_mutation_by_this_pr: false
+  authorizes_generated_content_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_prompt_templates_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_training_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-3A transaction lifecycle and event commitment skeleton implementation, pending review
+```
