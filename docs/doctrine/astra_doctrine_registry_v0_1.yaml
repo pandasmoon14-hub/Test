@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-10'
+  version: 0.1.74
+  action: runtime_domain_pr_3a_transaction_lifecycle_event_commitment_skeleton_implementation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001 tracking. Narrow executable skeleton; creates transaction lifecycle skeleton; creates event commitment skeleton; updates domain exports; adds focused skeleton tests; follows RUNTIME-DOMAIN-PR-3; no actual transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no parser; no action legality expansion; no resource math; no combat; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompts; no model integration; no live play; no UI; no training; no pilot conversion; no sourcebook inclusion; no canon promotion.
 - date: '2026-06-09'
   version: 0.1.73
   action: runtime_domain_pr_3_transaction_lifecycle_event_commitment_service_plan
@@ -11292,3 +11297,134 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-3 planning only; defines transaction lifecycle model; defines event commitment model; defines transaction vs event boundary; defines kernel interface consumption plan; defines domain service handoffs; defines future implementation architecture; defines future data shapes; defines commit-readiness invariants; defines corpus-scale transaction pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-3A; no transaction lifecycle code; no event commitment code; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no action legality expansion; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no training authorization; no pilot conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+
+- file_id: RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+  filename: transaction_lifecycle.py / event_commitment.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-3a
+  content_type: skeleton_implementation
+  purpose: Narrow executable skeleton implementation for transaction lifecycle and event commitment domain surfaces.
+  implementation_status: narrow_executable_skeleton
+  runtime_domain_pr_3a:
+    implementation_id: RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+    artifact_type: transaction_lifecycle_event_commitment_skeleton_implementation
+    implementation_status: narrow_executable_skeleton
+    derives_from:
+    - RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+    - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+    - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-DOMAIN-PR-2-STATE-STORE-STATE-PROJECTION-SERVICE-PLAN-001
+    - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+    - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+    - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+    - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+    - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+    - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+    - RT-001
+    - RT-005
+    - RT-011
+    implements_transaction_lifecycle_skeleton: true
+    implements_event_commitment_skeleton: true
+    implements_stateless_service_wrappers: true
+    implements_immutable_transaction_surfaces: true
+    implements_immutable_event_commitment_surfaces: true
+    authorizes_transaction_execution_by_this_pr: false
+    authorizes_actual_event_commitment_by_this_pr: false
+    authorizes_event_sourcing_by_this_pr: false
+    authorizes_mutable_runtime_state_by_this_pr: false
+    authorizes_state_mutation_by_this_pr: false
+    authorizes_state_delta_application_by_this_pr: false
+    authorizes_event_ledger_append_by_this_pr: false
+    authorizes_durable_persistence_by_this_pr: false
+    authorizes_database_schema_by_this_pr: false
+    authorizes_replay_engine_by_this_pr: false
+    authorizes_command_execution_by_this_pr: false
+    authorizes_command_parser_by_this_pr: false
+    authorizes_action_legality_expansion_by_this_pr: false
+    authorizes_resource_math_by_this_pr: false
+    authorizes_combat_resolution_by_this_pr: false
+    authorizes_ability_resolution_by_this_pr: false
+    authorizes_inventory_mutation_by_this_pr: false
+    authorizes_mission_mutation_by_this_pr: false
+    authorizes_social_faction_mutation_by_this_pr: false
+    authorizes_generated_content_persistence_by_this_pr: false
+    authorizes_context_packet_compiler_by_this_pr: false
+    authorizes_prompt_templates_by_this_pr: false
+    authorizes_model_integration_by_this_pr: false
+    authorizes_live_play_by_this_pr: false
+    authorizes_ui_client_by_this_pr: false
+    authorizes_training_by_this_pr: false
+    authorizes_pilot_conversion_by_this_pr: false
+    authorizes_sourcebook_inclusion_by_this_pr: false
+    authorizes_canon_promotion_by_this_pr: false
+    next_allowed_step: RUNTIME-DOMAIN-PR-3B transaction lifecycle and event commitment skeleton review gate or RUNTIME-DOMAIN-PR-4 planning, pending review
+  does_not_authorize:
+  - transaction execution
+  - actual event commitment
+  - event sourcing
+  - mutable runtime state
+  - state mutation
+  - state delta application
+  - event ledger append
+  - durable persistence
+  - database schema
+  - replay engine
+  - command execution
+  - parser
+  - action legality expansion
+  - resource math
+  - combat
+  - ability resolution
+  - inventory mutation
+  - mission/social mutation
+  - generated-content persistence
+  - context-packet compiler
+  - prompts
+  - model integration
+  - live play
+  - UI
+  - training
+  - pilot conversion
+  - sourcebook inclusion
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-IMPL-PR-2-COMMAND-ENVELOPE-TRANSACTION-PREVIEW-SKELETON-001
+  - RUNTIME-IMPL-PR-3-STATE-DELTA-EVENT-LEDGER-ENVELOPE-SKELETON-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - transaction lifecycle constants complete
+  - event commitment constants complete
+  - dependency creation/validation
+  - precondition creation/validation
+  - request creation/validation
+  - plan creation/validation
+  - result creation/validation
+  - skeleton invariant enforcement
+  - metadata deep-copy safety
+  - to_dict copy safety
+  - dataclasses frozen
+  - service wrapper stateless
+  - no forbidden methods
+  - guardrail tests
+  - decision-log tracking exists
+  - registry tracking exists
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-3B or RUNTIME-DOMAIN-PR-4
+  recommends_next_step: RUNTIME-DOMAIN-PR-3B transaction lifecycle and event commitment skeleton review gate or RUNTIME-DOMAIN-PR-4 planning
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-3A narrow executable skeleton; creates transaction lifecycle skeleton; creates event commitment skeleton; updates domain exports; adds focused skeleton tests; follows RUNTIME-DOMAIN-PR-3; no actual transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no parser; no action legality expansion; no resource math; no combat; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompts; no model integration; no live play; no UI; no training; no pilot conversion; no sourcebook inclusion; no canon promotion.

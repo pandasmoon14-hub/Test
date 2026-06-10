@@ -349,11 +349,11 @@ class TestGuardrails:
     def test_state_store_module_authorized(self):
         assert os.path.exists("src/astra_runtime/domain/state_store.py")
 
-    def test_no_transaction_lifecycle_module(self):
-        assert not os.path.exists("src/astra_runtime/domain/transaction_lifecycle.py")
+    def test_transaction_lifecycle_module_authorized(self):
+        assert os.path.exists("src/astra_runtime/domain/transaction_lifecycle.py")
 
-    def test_no_event_commitment_module(self):
-        assert not os.path.exists("src/astra_runtime/domain/event_commitment.py")
+    def test_event_commitment_module_authorized(self):
+        assert os.path.exists("src/astra_runtime/domain/event_commitment.py")
 
     def test_no_resource_math_module(self):
         assert not os.path.exists("src/astra_runtime/domain/resource_math.py")

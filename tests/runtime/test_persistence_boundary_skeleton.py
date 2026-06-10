@@ -445,7 +445,7 @@ class TestPersistenceBoundaryGuardrails:
     def test_domain_package_contains_only_authorized_modules(self):
         domain_dir = KERNEL_DIR.parent / "domain"
         assert domain_dir.exists(), "Domain package should exist after PR-1A"
-        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "__pycache__"}
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "transaction_lifecycle.py", "event_commitment.py", "__pycache__"}
         actual = {p.name for p in domain_dir.iterdir()}
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
