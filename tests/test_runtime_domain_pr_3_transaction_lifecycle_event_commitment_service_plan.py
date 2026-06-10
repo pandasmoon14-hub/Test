@@ -642,6 +642,9 @@ class TestRegistryFileRecordTracking:
     def test_registry_pr3_denies_event_commitment_code(self, registry_text):
         assert "authorizes_event_commitment_code_by_this_pr: false" in registry_text
 
+    def test_registry_pr3_denies_event_ledger_append(self, registry_text):
+        assert "authorizes_event_ledger_append_by_this_pr: false" in registry_text
+
     def test_registry_pr3_next_allowed_step(self, registry_text):
         assert "next_allowed_step: RUNTIME-DOMAIN-PR-3A transaction lifecycle and event commitment skeleton implementation, pending review" in registry_text
 
