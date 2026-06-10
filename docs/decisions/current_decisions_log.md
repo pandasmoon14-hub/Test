@@ -2264,3 +2264,115 @@ runtime_domain_pr_3a:
   authorizes_canon_promotion_by_this_pr: false
   next_allowed_step: RUNTIME-DOMAIN-PR-3B transaction lifecycle and event commitment skeleton review gate or RUNTIME-DOMAIN-PR-4 planning, pending review
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-3B-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-REVIEW-001
+
+**Date:** 2026-06-10
+
+### Decision
+
+Review/gate-only artifact. Reviews PR-3A transaction lifecycle and event commitment skeleton implementation. Confirms readiness for PR-4 planning.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-3A created transaction lifecycle and event commitment skeleton modules. PR-3B reviews that implementation for scope compliance, validator parity, anti-mutation/anti-append guardrails, domain-package guardrails, kernel dependency posture, corpus-scale pressure coverage, and risk assessment. The review found no blockers and no required PR-3C hardening.
+
+### Implication
+
+PR-3A's transaction lifecycle and event commitment skeletons are confirmed as scope-compliant skeleton-only implementations. The gate authorizes RUNTIME-DOMAIN-PR-4 planning as the next step. No PR-3C hardening is required.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-4 planning begins.
+- If transaction lifecycle or event commitment model requires revision during future implementation.
+- If kernel interfaces require changes during future domain service implementation.
+
+### No-implementation guardrails reaffirmed
+
+- No runtime code.
+- No domain-service code.
+- No transaction lifecycle implementation changes.
+- No event commitment implementation changes.
+- No transaction execution.
+- No actual event commitment.
+- No event sourcing.
+- No mutable runtime state.
+- No state mutation.
+- No state delta application.
+- No event ledger append.
+- No durable persistence.
+- No database schema.
+- No replay engine.
+- No rollback engine.
+- No command execution.
+- No command parser.
+- No action legality expansion.
+- No resource math.
+- No combat resolution.
+- No ability resolution.
+- No inventory mutation.
+- No mission/social mutation.
+- No generated-content persistence.
+- No context-packet compiler.
+- No prompt templates.
+- No model integration.
+- No live-play adapter.
+- No UI/client.
+- No training authorization.
+- No pilot conversion authorization.
+- No sourcebook inclusion authorization.
+- No canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_3b:
+  review_id: RUNTIME-DOMAIN-PR-3B-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-REVIEW-001
+  artifact_type: transaction_lifecycle_event_commitment_skeleton_review_gate
+  implementation_status: non_executable_review_gate
+  derives_from:
+  - RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  reviews_transaction_lifecycle_skeleton: true
+  reviews_event_commitment_skeleton: true
+  reviews_validator_parity: true
+  reviews_anti_mutation_guardrails: true
+  reviews_anti_append_guardrails: true
+  reviews_domain_package_guardrails: true
+  reviews_kernel_dependency_usage: true
+  reviews_corpus_scale_transaction_pressure: true
+  defines_future_hardening_ledger: true
+  authorizes_runtime_code_by_this_pr: false
+  authorizes_domain_code_by_this_pr: false
+  authorizes_transaction_execution_by_this_pr: false
+  authorizes_actual_event_commitment_by_this_pr: false
+  authorizes_event_sourcing_by_this_pr: false
+  authorizes_mutable_runtime_state_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_state_delta_application_by_this_pr: false
+  authorizes_event_ledger_append_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_database_schema_by_this_pr: false
+  authorizes_replay_engine_by_this_pr: false
+  authorizes_command_execution_by_this_pr: false
+  authorizes_command_parser_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_combat_resolution_by_this_pr: false
+  authorizes_ability_resolution_by_this_pr: false
+  authorizes_inventory_mutation_by_this_pr: false
+  authorizes_mission_mutation_by_this_pr: false
+  authorizes_social_faction_mutation_by_this_pr: false
+  authorizes_generated_content_persistence_by_this_pr: false
+  authorizes_context_packet_compiler_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_ui_client_by_this_pr: false
+  authorizes_pilot_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-4 planning, pending review
+```
