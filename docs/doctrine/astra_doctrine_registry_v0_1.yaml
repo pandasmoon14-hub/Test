@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-10'
+  version: 0.1.76
+  action: runtime_domain_pr_4_validation_integration_invariant_enforcement_service_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001 tracking. Planning only; validation integration and invariant enforcement service plan; follows RUNTIME-DOMAIN-PR-3B; defines validation integration model; defines invariant enforcement model; defines validation decision model; defines invariant family model; defines validation failure routing; defines hidden-information validation safety; defines generated-content provenance validation; defines kernel interface consumption plan; defines domain service handoff boundaries; defines future implementation architecture; defines future data shapes; defines corpus-scale validation pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-4A; no validation integration code; no invariant enforcement code; no domain validation rules; no runtime code; no domain code; no transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no conversion authorization; no sourcebook inclusion authorization; no canon promotion.
+- date: '2026-06-10'
   version: 0.1.75
   action: runtime_domain_pr_3b_transaction_lifecycle_event_commitment_skeleton_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -11571,3 +11576,172 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-3B review/gate only; reviews PR-3A transaction lifecycle skeleton; reviews PR-3A event commitment skeleton; reviews validator parity; reviews anti-mutation guardrails; reviews anti-append guardrails; reviews domain package guardrails; reviews kernel dependency posture; reviews corpus-scale transaction pressure; defines hardening ledger; recommends PR-4 planning; no runtime code; no domain code; no transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no persistence; no replay; no command execution; no model/live-play/UI; no conversion/sourcebook/canon.
+
+- file_id: RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
+  filename: runtime_domain_pr_4_validation_integration_invariant_enforcement_service_plan.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-4
+  content_type: service_plan
+  purpose: Planning-only validation integration and invariant enforcement service plan.
+  implementation_status: non_executable_plan
+  runtime_domain_pr_4:
+    plan_id: RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
+    artifact_type: validation_integration_invariant_enforcement_service_plan
+    implementation_status: non_executable_plan
+    derives_from:
+    - RUNTIME-DOMAIN-PR-3B-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-REVIEW-001
+    - RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+    - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+    - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+    - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+    - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+    - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+    - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+    - RT-001
+    - RT-005
+    - RT-008
+    - RT-011
+    defines_validation_integration_model: true
+    defines_invariant_enforcement_model: true
+    defines_validation_decision_model: true
+    defines_invariant_family_model: true
+    defines_validation_failure_routing: true
+    defines_hidden_information_validation_safety: true
+    defines_generated_content_provenance_validation: true
+    defines_kernel_interface_consumption_plan: true
+    defines_domain_service_handoff_boundaries: true
+    defines_future_implementation_architecture: true
+    defines_future_data_shapes: true
+    defines_corpus_scale_validation_pressure_review: true
+    defines_future_hardening_ledger: true
+    authorizes_validation_integration_code_by_this_pr: false
+    authorizes_invariant_enforcement_code_by_this_pr: false
+    authorizes_domain_validation_rules_by_this_pr: false
+    authorizes_runtime_code_by_this_pr: false
+    authorizes_domain_code_by_this_pr: false
+    authorizes_transaction_execution_by_this_pr: false
+    authorizes_actual_event_commitment_by_this_pr: false
+    authorizes_event_sourcing_by_this_pr: false
+    authorizes_mutable_runtime_state_by_this_pr: false
+    authorizes_state_mutation_by_this_pr: false
+    authorizes_state_delta_application_by_this_pr: false
+    authorizes_event_ledger_append_by_this_pr: false
+    authorizes_durable_persistence_by_this_pr: false
+    authorizes_database_schema_by_this_pr: false
+    authorizes_replay_engine_by_this_pr: false
+    authorizes_command_execution_by_this_pr: false
+    authorizes_command_parser_by_this_pr: false
+    authorizes_action_legality_expansion_by_this_pr: false
+    authorizes_resource_math_by_this_pr: false
+    authorizes_combat_resolution_by_this_pr: false
+    authorizes_ability_resolution_by_this_pr: false
+    authorizes_inventory_mutation_by_this_pr: false
+    authorizes_mission_mutation_by_this_pr: false
+    authorizes_social_faction_mutation_by_this_pr: false
+    authorizes_generated_content_persistence_by_this_pr: false
+    authorizes_context_packet_compiler_by_this_pr: false
+    authorizes_prompt_templates_by_this_pr: false
+    authorizes_model_integration_by_this_pr: false
+    authorizes_live_play_by_this_pr: false
+    authorizes_ui_client_by_this_pr: false
+    authorizes_training_by_this_pr: false
+    authorizes_pilot_conversion_by_this_pr: false
+    authorizes_sourcebook_inclusion_by_this_pr: false
+    authorizes_canon_promotion_by_this_pr: false
+    next_allowed_step: RUNTIME-DOMAIN-PR-4A validation integration and invariant enforcement skeleton implementation, pending review
+  does_not_authorize:
+  - validation integration code
+  - invariant enforcement code
+  - domain validation rules
+  - executable validators
+  - runtime code
+  - domain code
+  - transaction execution
+  - actual event commitment
+  - event sourcing
+  - mutable runtime state
+  - state mutation
+  - state delta application
+  - event ledger append
+  - durable persistence
+  - database schema
+  - replay engine
+  - command execution
+  - command parser
+  - action legality expansion
+  - resource math
+  - combat resolution
+  - ability resolution
+  - inventory mutation
+  - mission/social mutation
+  - generated-content persistence
+  - context-packet compiler
+  - prompt templates
+  - model integration
+  - live-play adapter
+  - UI/client
+  - training authorization
+  - pilot conversion authorization
+  - sourcebook inclusion authorization
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-3B-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-2B-STATE-STORE-STATE-PROJECTION-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-2A-STATE-STORE-STATE-PROJECTION-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-1B-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-REVIEW-001
+  - RUNTIME-DOMAIN-PR-1A-COMMAND-LIFECYCLE-ACTION-LEGALITY-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - plan file exists
+  - references RUNTIME-DOMAIN-PR-4 ID
+  - references RUNTIME-DOMAIN-PR-3B
+  - references RUNTIME-DOMAIN-PR-3A
+  - references RUNTIME-DOMAIN-PR-3
+  - references validation_pipeline
+  - references hidden_information and context_projection
+  - references persistence_boundary, replay_audit, runtime_trace
+  - references current domain skeleton modules
+  - states backend-first invariant
+  - states LLM is not the game engine
+  - includes service ownership
+  - includes validation integration model
+  - includes validation decision model
+  - includes invariant family model
+  - includes kernel interface consumption plan
+  - includes domain service handoff boundaries
+  - includes validation failure routing
+  - includes hidden-information and provenance safety
+  - includes future implementation architecture
+  - includes future data shapes
+  - includes commit-readiness validation invariants
+  - includes corpus-scale validation pressure review
+  - includes risk review
+  - includes hardening ledger
+  - includes implementation PR authorization boundary
+  - includes gate finding
+  - includes recommended next PR
+  - includes non-implementation reaffirmation
+  - includes classification block
+  - registry tracking exists
+  - decision-log tracking exists
+  - runtime guardrail tests
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-4A
+  recommends_next_step: RUNTIME-DOMAIN-PR-4A validation integration and invariant enforcement skeleton implementation
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-4 planning only; validation integration and invariant enforcement service plan; follows PR-3B; defines validation integration model; defines invariant enforcement model; defines validation decision model; defines invariant family model; defines validation failure routing; defines hidden-information validation safety; defines generated-content provenance validation; defines kernel interface consumption plan; defines domain service handoff boundaries; defines future implementation architecture; defines future data shapes; defines corpus-scale validation pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-4A; no validation integration code; no invariant enforcement code; no domain validation rules; no runtime code; no domain code; no transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no conversion/sourcebook/canon.

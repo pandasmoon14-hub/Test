@@ -2376,3 +2376,91 @@ runtime_domain_pr_3b:
   authorizes_canon_promotion_by_this_pr: false
   next_allowed_step: RUNTIME-DOMAIN-PR-4 planning, pending review
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
+
+**Date:** 2026-06-10
+
+### Decision
+
+Planning-only validation integration and invariant enforcement service plan. Defines validation integration ownership, invariant enforcement ownership, validation integration model (20 stages), validation decision model (16 decisions), invariant family model (21 families), validation failure routing (12 routes), hidden-information and provenance validation safety, kernel interface consumption plan, domain service handoff boundaries with command lifecycle / action legality / state store / state projection / transaction lifecycle / event commitment and future domain services, future implementation architecture, future data shapes, commit-readiness validation invariants, corpus-scale validation pressure review, risk review, future hardening ledger, and implementation PR authorization boundary. Follows RUNTIME-DOMAIN-PR-3B. Authorizes only RUNTIME-DOMAIN-PR-4A (validation integration and invariant enforcement skeleton implementation) pending review.
+
+### Reason
+
+RUNTIME-DOMAIN-PR-3B confirmed the transaction lifecycle and event commitment skeletons are scope-compliant, that validator surfaces are acceptable for later services, and that the next authorized step is RUNTIME-DOMAIN-PR-4 planning. RUNTIME-DOMAIN-PR-0 sequences validation integration / invariant enforcement as the fourth foundation domain service. Validation is a backend-owned authority layer: the LLM is not the game engine, the backend owns truth, and narration, model output, UI text, donor assumptions, source-local content, and generated content cannot validate themselves or override backend validation.
+
+### Implication
+
+- Validation integration and invariant enforcement service boundaries are defined.
+- Authorizes only a future narrow skeleton implementation PR (RUNTIME-DOMAIN-PR-4A) after review.
+- Validation failures route to block, reject, quarantine, or doctrine escalation; no silent passes.
+- Hidden information may be referenced internally but never exposed in player/model-facing validation summaries.
+- Generated content cannot become durable without provenance validation; source-local content cannot become canon by passing runtime validation.
+- No code is implemented by this PR.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-4A skeleton implementation begins.
+- If the validation integration model, decision model, or invariant family model requires revision during implementation.
+- If kernel validation pipeline interfaces change during validation integration implementation.
+- If a doctrine gap escalation reveals a missing invariant family.
+
+### No-implementation guardrails reaffirmed
+
+- No validation integration code.
+- No invariant enforcement code.
+- No domain validation rules.
+- No executable validators.
+- No runtime mutation.
+- No command execution.
+- No action resolution.
+- No transaction execution.
+- No event commitment.
+- No state delta application.
+- No event ledger append.
+- No persistence writes.
+- No replay engine.
+- No resource math.
+- No combat rules.
+- No ability/effect rules.
+- No inventory behavior.
+- No mission/social behavior.
+- No generated-content persistence.
+- No context-packet compiler.
+- No prompt templates.
+- No model integration.
+- No model routing.
+- No live-play adapter.
+- No UI/client.
+- No donor conversion.
+- No sourcebook inclusion.
+- No canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_4:
+  plan_id: RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
+  artifact_type: validation_integration_invariant_enforcement_service_plan
+  implementation_status: non_executable_plan
+  defines_validation_integration_model: true
+  defines_invariant_enforcement_model: true
+  defines_validation_decision_model: true
+  defines_invariant_family_model: true
+  defines_validation_failure_routing: true
+  defines_hidden_information_validation_safety: true
+  defines_generated_content_provenance_validation: true
+  authorizes_validation_integration_code_by_this_pr: false
+  authorizes_invariant_enforcement_code_by_this_pr: false
+  authorizes_domain_validation_rules_by_this_pr: false
+  authorizes_runtime_code_by_this_pr: false
+  authorizes_domain_code_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_event_ledger_append_by_this_pr: false
+  authorizes_durable_persistence_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-4A validation integration and invariant enforcement skeleton implementation, pending review
+```
