@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.87
+  action: runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5E resource and consequence math final planning hardening review gate tracking. Review-only; reviews PR-5D closure claims; finds residual PR-5F blockers around external subject/unit/dimension dependency binding, quantity precision/source-literal/negative-policy details, term optional resource/quantity combinations, bundle maximum semantics, and proposal-result validation linkage; requires PR-5F before PR-5A; authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+- date: '2026-06-11'
   version: 0.1.86
   action: runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening
   actor: Astra Doctrine Council / synthesis assistant
@@ -567,6 +572,95 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5E-RESOURCE-CONSEQUENCE-MATH-FINAL-PLANNING-HARDENING-REVIEW-001
+  filename: runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  layer: 0_control
+  phase: runtime-domain
+  owner: RT-002
+  purpose: Track PR-5E review-only findings for PR-5D resource/consequence math final planning hardening and select the single next step.
+  batch: runtime-domain
+  series: runtime-domain-pr-5e
+  content_type: final_planning_hardening_review_gate
+  implementation_status: review_only
+  authority_level: tracking
+  authority_note: Review gate only; reviews PR-5D closure claims; requires PR-5F residual planning hardening before PR-5A; no implementation authority.
+  follows:
+  - runtime-domain-pr-5d final planning hardening
+  review_only: true
+  follows_pr_5d: true
+  pr_5d_scope_confirmed: true
+  pr_5c_blockers_closed: partially
+  residual_blockers_exist: true
+  pr_5f_required_before_pr_5a: true
+  pr_5a_authorized: false
+  exactly_one_next_step: true
+  selected_next_step: RUNTIME-DOMAIN-PR-5F resource and consequence math residual planning hardening
+  next_allowed_step: RUNTIME-DOMAIN-PR-5F resource and consequence math residual planning hardening
+  full_non_implementation_boundary: true
+  backend_first_invariant: true
+  validation_integration_contract_acceptable: true
+  typed_subject_contract_acceptable: true
+  external_dependency_binding_complete: false
+  dependency_state_contract_acceptable: partially
+  quantity_contract_acceptable: partially
+  term_and_bundle_contracts_acceptable: partially
+  request_result_proposal_linkage_acceptable: partially
+  settlement_proposal_boundary_acceptable: partially
+  internal_reference_integrity_acceptable: true
+  serialization_boundary_acceptable: true
+  false_only_authority_contract_acceptable: true
+  factory_validator_parity_acceptable: partially
+  corpus_scale_pressure_acceptable: true
+  rt_002_owner_boundary_preserved: true
+  authorizes_code_or_runtime_behavior: false
+  authorizes_runtime_code_by_this_pr: false
+  authorizes_domain_code_by_this_pr: false
+  authorizes_calculation_by_this_pr: false
+  authorizes_affordability_execution_by_this_pr: false
+  authorizes_consequence_application_by_this_pr: false
+  authorizes_settlement_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_persistence_by_this_pr: false
+  authorizes_rng_execution_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  owns:
+  - Final review findings for PR-5D resource/consequence math planning hardening readiness and residual PR-5F blockers.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, persistence structures, resource schemas, resource calculations, consequence calculations, affordability execution, settlement, state mutation, event commitment, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  dependencies:
+  - runtime-domain-pr-5d final planning hardening
+  blocked_by: []
+  unlocks:
+  - RUNTIME-DOMAIN-PR-5F resource and consequence math residual planning hardening
+  downstream_consumers:
+  - RUNTIME-DOMAIN-PR-5F
+  donor_pressure_absorbed:
+  - 200-400 mixed donor source resource, cost, and consequence declarations
+  hard_refusals:
+  - runtime/domain implementation
+  - resource calculation
+  - consequence application
+  - settlement or state mutation
+  - persistence or canon promotion
+  escalation_triggers:
+  - PR-5A would have to invent dependency binding, quantity, term, bundle, or proposal linkage behavior
+  required_tests:
+  - tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - reviewer acceptance before PR-5F planning hardening proceeds
+  scale_gate_relevance: critical
+  notes: PR-5E is review-only; reviews PR-5D; finds residual shape, vocabulary, compatibility, linkage, and validator-authority blockers; PR-5F is required before PR-5A; no implementation authority.
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning
+  live_play_relevance: none
 - file_id: RUNTIME-DOMAIN-PR-5D-RESOURCE-CONSEQUENCE-MATH-FINAL-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening.md
   proposed_path: docs/doctrine/reviews/

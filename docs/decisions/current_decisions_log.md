@@ -2909,3 +2909,53 @@ runtime_domain_pr_5d_decision:
   next_step_authorized: RUNTIME-DOMAIN-PR-5E resource and consequence math final planning hardening review gate
   next_step_status: review_gate_only
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5E-RESOURCE-CONSEQUENCE-MATH-FINAL-PLANNING-HARDENING-REVIEW-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+review-only status is recorded for PR-5E. PR-5E reviews PR-5D closure claims and selects exactly one next step: **RUNTIME-DOMAIN-PR-5F resource and consequence math residual planning hardening**. PR-5A is not authorized.
+
+### Findings
+
+PR-5D scope is confirmed as planning/tracking only: no runtime/domain implementation, no kernel changes, no `src/astra_runtime/domain/resource_consequence_math.py`, and PR-5A remained blocked. PR-5D closes many PR-5C defects, including free-string validation posture, typed subject identity, quarantine/escalation blocking, consequence policy ownership, serialization ownership, and false-only authority.
+
+Residual blockers remain before PR-5A: external subject/unit/dimension reference fields lack typed dependency categories or exact exemptions; optional unsatisfied dependencies cannot be safely evaluated against those missing categories; precision, source-literal control-character/multiline behavior, and negative-value policy validator results are not exact; CostTerm and ConsequenceTerm optional resource/quantity combinations are incomplete; `maximum_allowed_terms` needs clarification under the declaration-bound rule; SettlementProposal-to-result validation equality and blocked/quarantined/escalated/validation-ready result exclusion rules are incomplete; and event-only consequence proposal handling needs an exact state-delta or event-route decision.
+
+### Implication
+
+PR-5F is required before PR-5A. The sole next step is **RUNTIME-DOMAIN-PR-5F resource and consequence math residual planning hardening**. This review authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5e_decision:
+  artifact_type: final_planning_hardening_review_gate
+  implementation_status: review_only
+  reviews_pr_5d: true
+  pr_5d_scope_confirmed: true
+  pr_5c_blockers_closed: partially
+  residual_blockers_exist: true
+  pr_5f_required_before_pr_5a: true
+  pr_5a_authorized: false
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5F resource and consequence math residual planning hardening
+  next_step_status: planning_hardening_pending_review
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+```
