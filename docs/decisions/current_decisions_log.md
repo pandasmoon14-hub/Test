@@ -3052,3 +3052,49 @@ runtime_domain_pr_5g_decision:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+planning-only final residual hardening status is recorded for PR-5H. PR-5H preserves the inherited constant-vocabulary, donor-shaped leakage, dependency-ownership, and Level A/Level B validation corrections; reconciles external field-binding language with the incomplete-dependency lifecycle; republishes the full effective decision/stage compatibility matrix; makes SettlementProposal eligibility exact; and lists the complete nineteen-field false-only authority surface. PR-5A remains blocked and is not authorized.
+
+### Implication
+
+PR-5I is the sole next step. PR-5H authorizes no implementation, runtime code, domain code, calculation, affordability execution, settlement, consequence application, mutation, state-delta application, transaction execution, event commitment, event append, persistence, replay, RNG execution, table-oracle execution, model authority, live play, UI behavior, conversion, or canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5h_decision:
+  artifact_type: final_residual_planning_hardening
+  planning_hardening_only: true
+  pr_5a_remains_blocked: true
+  pr_5a_authorized: false
+  pr_5i_is_sole_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5I resource and consequence math final residual planning hardening review gate
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  mutation_authorized_by_this_pr: false
+  state_delta_application_authorized_by_this_pr: false
+  transaction_execution_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  event_append_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  replay_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  table_oracle_execution_authorized_by_this_pr: false
+  model_authority_authorized_by_this_pr: false
+  live_play_authorized_by_this_pr: false
+  ui_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+```
