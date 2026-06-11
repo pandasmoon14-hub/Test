@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.83
+  action: runtime_domain_pr_5_resource_consequence_math_service_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5 resource and consequence math service plan tracking. Planning only; follows PR-4F authorization; defines backend-first resource/consequence math boundaries; records RT-002 ownership and non-ownership; plans resource, cost, and consequence taxonomies; separates declaration, calculation, affordability, reservation proposal, settlement proposal, commitment, persistence, replay, and audit; records deterministic numeric representation requirements; records units, dimensions, conversion, rounding, expression, RNG/table, hidden-information, validation, state, transaction, event, persistence, replay, and audit handoffs; reviews corpus-scale donor pressure; records lawful donor outcomes; selects PR-5A reference-only non-calculating skeleton as exactly one next step; authorizes no formulas, values, final resource pools, currencies, affordability execution, reservation, settlement, consequence application, expression evaluation, RNG/table execution, mutation, event append, persistence, replay, domain mechanics, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+- date: '2026-06-11'
   version: 0.1.82
   action: runtime_domain_pr_4f_validation_integration_residual_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -547,6 +552,85 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5-RESOURCE-CONSEQUENCE-MATH-SERVICE-PLAN-001
+  filename: runtime_domain_pr_5_resource_consequence_math_service_plan.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-5
+  content_type: service_plan
+  implementation_status: planning_only
+  authority_level: tracking
+  authority_note: Planning only; resource and consequence math service plan; selects exactly one next step; authorizes no code, runtime behavior, formulas, resource pools, affordability execution, settlement, consequence application, or persistence.
+  follows:
+  - RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001
+  source_ledger_includes_pr_4f: true
+  source_ledger_includes_pr_0: true
+  source_ledger_includes_rt_001_through_rt_012: true
+  backend_first_invariant: true
+  llm_is_not_game_engine: true
+  rt_002_ownership_recorded: true
+  explicit_non_ownership_recorded: true
+  resource_model_without_final_pools: true
+  resource_cost_consequence_taxonomies: true
+  cost_lifecycle_and_decision_models: true
+  separates_declaration_calculation_affordability_reservation_settlement_commitment_persistence: true
+  timing_and_outcome_policies: true
+  bundle_alternative_atomicity_partial_settlement_planning: true
+  overcommitment_partial_payment_substitution_debt_boundaries: true
+  refund_reversal_compensation_rollback_accounting_boundaries: true
+  reward_loss_recovery_repair_salvage_crafting_upkeep_requisition_handoffs: true
+  deterministic_numeric_representation_requirements: true
+  units_dimensions_aliases_conversion_rounding_audit_lineage: true
+  safe_expression_architecture_no_eval: true
+  rng_table_oracle_handoff_to_rt_009: true
+  hidden_information_visibility_requirements: true
+  validation_ready_is_not_validation_passed: true
+  state_transaction_event_persistence_replay_audit_handoffs: true
+  future_reference_only_architecture_for_resource_consequence_math_py: true
+  proposed_immutable_future_shapes: true
+  resource_math_invariants: true
+  corpus_scale_donor_pressure_review: true
+  lawful_donor_outcomes: true
+  risk_review: true
+  hardening_and_decision_ledger: true
+  future_test_requirements: true
+  pr_5a_authorization_boundary: true
+  selects_exactly_one_next_step: true
+  gate_finding: ready_for_runtime_domain_pr_5a_reference_only_skeleton
+  next_allowed_step: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation, pending review
+  authorizes_code_or_runtime_behavior: false
+  authorizes_runtime_code_by_this_pr: false
+  authorizes_domain_code_by_this_pr: false
+  authorizes_resource_math_by_this_pr: false
+  authorizes_consequence_application_by_this_pr: false
+  authorizes_formulas_or_values_by_this_pr: false
+  authorizes_final_resource_pools_by_this_pr: false
+  authorizes_final_currencies_or_economies_by_this_pr: false
+  authorizes_affordability_execution_by_this_pr: false
+  authorizes_reservation_or_settlement_by_this_pr: false
+  authorizes_expression_parsing_or_evaluation_by_this_pr: false
+  authorizes_rng_or_table_execution_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_state_delta_application_by_this_pr: false
+  authorizes_event_append_or_commitment_by_this_pr: false
+  authorizes_persistence_or_replay_by_this_pr: false
+  authorizes_combat_by_this_pr: false
+  authorizes_abilities_by_this_pr: false
+  authorizes_inventory_by_this_pr: false
+  authorizes_mission_by_this_pr: false
+  authorizes_social_by_this_pr: false
+  authorizes_model_live_play_ui_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  required_tests:
+  - tests/test_runtime_domain_pr_5_resource_consequence_math_service_plan.py
+  notes: PR-5 is a planning-only resource and consequence math service plan for roughly 200-400 mixed donor sources. It plans future reference-only immutable shapes including ResourceReference, QuantitySpecification, CostTerm, CostBundle, ConsequenceTerm, ResourceMathRequest, ResourceMathResult, and SettlementProposal without creating src/astra_runtime/domain/resource_consequence_math.py.
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning
+  live_play_relevance: none
 - file_id: RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001
   filename: runtime_domain_pr_4f_validation_integration_residual_hardening_review.md
   proposed_path: docs/doctrine/reviews/

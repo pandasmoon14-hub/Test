@@ -2737,3 +2737,45 @@ runtime_domain_pr_4f_decision:
   selected_next_step: RUNTIME-DOMAIN-PR-5 resource and consequence math service planning, pending review
   full_non_implementation_boundary: true
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5-RESOURCE-CONSEQUENCE-MATH-SERVICE-PLAN-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+planning-only status recorded for PR-5. PR-5 follows PR-4F authorization and records a resource and consequence math service plan for roughly 200-400 mixed donor sources. It creates no runtime/domain module and does not create `src/astra_runtime/domain/resource_consequence_math.py`.
+
+### Findings
+
+The plan records the backend-first invariant that the LLM is not the game engine. It assigns RT-002 ownership for future resource quantity, cost bundle, consequence quantity, deterministic numeric representation, unit/dimension, rounding, audit-lineage, and settlement-proposal math boundaries while preserving explicit non-ownership for RT-001 through RT-012 handoffs. It separates declaration, calculation, affordability, reservation proposal, settlement proposal, commitment, persistence, replay, and audit. It records that validation_ready is not validation_passed.
+
+The plan is sufficient to select one next step. PR-5A must be reference-only and non-calculating.
+
+### Implication
+
+The selected next step is RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation, pending review. PR-5A may only create reference-only immutable non-calculating skeleton surfaces if authorized by review.
+
+PR-5 preserves the full non-implementation boundary: no runtime code, no domain-service code, no resource math, no consequence application, no formulas or values, no final resource names or pools, no final currencies or economies, no affordability execution, no reservation or settlement, no expression parsing or evaluation, no RNG/table execution, no state mutation, no state-delta application, no event append or commitment, no persistence or replay, no combat, no abilities/effects, no inventory mutation, no mission/social mutation, no generated-content persistence, no model integration, no live-play adapter, no UI/client, no conversion, no sourcebook inclusion, and no canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5_decision:
+  artifact_type: service_plan_only
+  implementation_status: planning_only
+  follows_pr_4f: true
+  backend_first_invariant: true
+  llm_is_not_game_engine: true
+  rt_002_ownership_recorded: true
+  explicit_non_ownership_recorded: true
+  validation_ready_is_not_validation_passed: true
+  corpus_scale_donor_pressure_review: true
+  lawful_donor_outcomes_recorded: true
+  selects_exactly_one_next_step: true
+  selected_next_step: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation, pending review
+  pr_5a_must_be_reference_only_and_non_calculating: true
+  full_non_implementation_boundary: true
+```
