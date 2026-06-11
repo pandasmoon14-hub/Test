@@ -280,124 +280,161 @@ All false-only fields default `False`.
 
 ## 4. Consolidated controlled constants
 
-This section lists every effective controlled constant set with all members. No inherited value is silently removed. The `precision` type correction from `str` to `int | None` (PR-5F) is noted in the QuantitySpecification shape above.
+This section lists every effective controlled constant set with all members after applying PR-5B > PR-5D > PR-5F > PR-5H precedence. No inherited value is silently removed unless a later artifact explicitly replaced it. PR-5H makes no deliberate replacements to any controlled constant set; all values are inherited from their originating artifacts. The `precision` type correction from `str` to `int | None` (PR-5F) is noted in the QuantitySpecification shape above.
 
-### RESOURCE_MATH_STAGES (14 values, from PR-5B)
+### Provenance summary
 
-1. `refs_declared`
-2. `quantities_declared`
-3. `costs_declared`
-4. `consequences_declared`
-5. `bundles_declared`
-6. `policy_refs_declared`
-7. `source_local_refs_declared`
-8. `dependencies_declared`
-9. `validation_refs_declared`
-10. `blocked_pending_owner_handoff`
-11. `blocked_missing_dependency`
-12. `blocked_hidden_information`
+| Set | Count | Originating artifact | Later changes | PR-5H changes | Rationale |
+|---|---|---|---|---|---|
+| RESOURCE_MATH_STAGES | 14 | PR-5B | -- | No | -- |
+| RESOURCE_MATH_DECISIONS | 10 | PR-5B | -- | No | -- |
+| RESOURCE_FAMILIES | 18 | PR-5B | -- | No | -- |
+| COST_FAMILIES | 23 | PR-5B | -- | No | -- |
+| CONSEQUENCE_FAMILIES | 21 | PR-5B | -- | No | -- |
+| COST_TIMING_POLICIES | 12 | PR-5B | -- | No | -- |
+| COST_OUTCOME_POLICIES | 11 | PR-5B | -- | No | -- |
+| QUANTITY_KINDS | 18 | PR-5B | -- | No | -- |
+| QUANTITY_REPRESENTATION_KINDS | 6 | PR-5B | -- | No | -- |
+| CONVERSION_POLICIES | 6 | PR-5B | -- | No | -- |
+| ROUNDING_POLICIES | 9 | PR-5B | -- | No | -- |
+| VISIBILITY_POLICIES | 7 | PR-5B | -- | No | -- |
+| ATOMICITY_POLICIES | 10 | PR-5B | -- | No | -- |
+| ORDERING_POLICIES | 5 | PR-5B | -- | No | -- |
+| PARTIAL_SETTLEMENT_POLICIES | 5 | PR-5B | -- | No | -- |
+| QUANTITY_NEGATIVE_VALUE_POLICIES | 3 | PR-5D | -- | No | -- |
+| RESOURCE_MATH_DEPENDENCY_TYPES | 19 | PR-5B (20) | PR-5D reduced to 16, renamed 2; PR-5F added 3 to reach 19 | No | -- |
+| RESOURCE_MATH_SUBJECT_TYPES | 14 | PR-5B | -- | No | -- |
+| RESOURCE_MATH_SUBJECT_ROLES | 9 | PR-5D | -- | No | -- |
+| RESOURCE_MATH_OWNER_DOMAINS | 14 | PR-5B | -- | No | -- |
+| RESOURCE_TERM_VALUE_MODES | 4 | PR-5F | -- | No | -- |
+| RESOURCE_TERM_POLICY_ROUTES | 3 | PR-5F | -- | No | -- |
+| DECLARATION_PROGRESS_STAGES | 9 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| SOURCE_LOCAL_STAGES | 5 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| VALIDATION_BLOCK_STAGES | 1 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| OWNER_HANDOFF_STAGES | 1 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| MISSING_DEPENDENCY_STAGES | 3 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| POLICY_BLOCK_STAGES | 1 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| HIDDEN_INFORMATION_BLOCK_STAGES | 2 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| QUARANTINE_STAGES | 1 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+| ESCALATION_STAGES | 1 | PR-5D | -- | No | Subset of RESOURCE_MATH_STAGES |
+
+### RESOURCE_MATH_STAGES (14 values, inherited from PR-5B, unchanged)
+
+1. `resource_math_requested`
+2. `source_declaration_captured`
+3. `subject_refs_bound`
+4. `resource_refs_declared`
+5. `quantity_specs_declared`
+6. `terms_declared`
+7. `bundle_structure_declared`
+8. `policy_refs_declared`
+9. `dependency_refs_bound`
+10. `calculation_ready_for_review`
+11. `blocked_pending_validation`
+12. `blocked_pending_owner_handoff`
 13. `quarantined_for_review`
 14. `escalated_to_doctrine`
 
-### RESOURCE_MATH_DECISIONS (10 values, from PR-5B)
+### RESOURCE_MATH_DECISIONS (10 values, inherited from PR-5B, unchanged)
 
 1. `accepted_for_planning`
 2. `normalized_for_planning`
 3. `source_local_retained`
-4. `blocked_incompatible_policy`
-5. `blocked_missing_dependency`
-6. `blocked_hidden_information`
-7. `requires_owner_handoff`
-8. `quarantined_for_review`
-9. `escalated_to_doctrine`
-10. `validation_blocked`
+4. `requires_validation_review`
+5. `requires_owner_handoff`
+6. `blocked_missing_dependency`
+7. `blocked_incompatible_policy`
+8. `blocked_hidden_information`
+9. `quarantined_for_review`
+10. `escalated_to_doctrine`
 
-### RESOURCE_FAMILIES (18 values, from PR-5B)
+### RESOURCE_FAMILIES (18 values, inherited from PR-5B, unchanged)
 
-1. `currency`
-2. `hit_points`
-3. `spell_slots`
-4. `ability_uses`
-5. `ammunition`
-6. `rations`
-7. `fuel`
-8. `cargo_capacity`
-9. `crew_capacity`
-10. `morale`
-11. `reputation`
-12. `influence`
-13. `experience_points`
-14. `action_points`
-15. `movement_points`
-16. `fate_points`
-17. `narrative_currency`
+1. `pooled_expendable`
+2. `scene_counter`
+3. `charge`
+4. `currency_like`
+5. `material`
+6. `asset_integrity`
+7. `vehicle_integrity`
+8. `time_window`
+9. `opportunity`
+10. `social_capital`
+11. `faction_standing`
+12. `clue_information`
+13. `risk_heat`
+14. `strain_corruption`
+15. `injury_recovery`
+16. `cooldown`
+17. `debt_obligation`
 18. `source_local_resource`
 
-### COST_FAMILIES (22 values, from PR-5B, including validation_blocked)
+### COST_FAMILIES (23 values, inherited from PR-5B, unchanged)
 
-1. `resource_spend`
-2. `resource_sacrifice`
-3. `resource_lock`
-4. `resource_transfer`
-5. `resource_consume`
-6. `action_cost`
-7. `movement_cost`
-8. `time_cost`
-9. `slot_cost`
-10. `opportunity_cost`
-11. `risk_cost`
-12. `conditional_cost`
-13. `deferred_cost`
-14. `recurring_cost`
-15. `compound_cost`
-16. `policy_only_cost`
-17. `source_local_cost`
-18. `quarantine_cost`
-19. `escalation_cost`
-20. `owner_handoff_cost`
-21. `hidden_information_cost`
-22. `validation_blocked`
+1. `activation`
+2. `upkeep`
+3. `maintenance`
+4. `opportunity`
+5. `prerequisite_lock`
+6. `reservation_hold`
+7. `partial_payment`
+8. `substitution`
+9. `overcommitment`
+10. `debt_creation`
+11. `success_at_cost`
+12. `failure_at_cost`
+13. `cancellation`
+14. `interruption`
+15. `refund`
+16. `reversal`
+17. `compensation`
+18. `repair`
+19. `recovery`
+20. `crafting`
+21. `salvage`
+22. `requisition`
+23. `validation_blocked`
 
-### CONSEQUENCE_FAMILIES (21 values, from PR-5B)
+### CONSEQUENCE_FAMILIES (21 values, inherited from PR-5B, unchanged)
 
-1. `resource_gain`
-2. `resource_loss`
-3. `resource_transform`
-4. `resource_transfer`
-5. `resource_unlock`
-6. `status_apply`
-7. `status_remove`
-8. `condition_apply`
-9. `condition_remove`
-10. `position_change`
-11. `narrative_consequence`
-12. `deferred_consequence`
-13. `recurring_consequence`
-14. `conditional_consequence`
-15. `compound_consequence`
-16. `policy_only_consequence`
-17. `source_local_consequence`
-18. `quarantine_consequence`
-19. `escalation_consequence`
-20. `owner_handoff_consequence`
-21. `hidden_information_consequence`
+1. `gain`
+2. `loss`
+3. `transfer`
+4. `lock`
+5. `unlock`
+6. `exposure`
+7. `exhaustion`
+8. `degradation`
+9. `escalation`
+10. `cooldown`
+11. `debt`
+12. `obligation`
+13. `harm_pressure`
+14. `recovery_pressure`
+15. `visibility_change`
+16. `mission_route`
+17. `clue_route`
+18. `social_faction_change`
+19. `inventory_asset_change`
+20. `provenance_recurrence`
+21. `quarantine_escalation`
 
-### COST_TIMING_POLICIES (12 values, from PR-5B)
+### COST_TIMING_POLICIES (12 values, inherited from PR-5B, unchanged)
 
-1. `blocked_pending_validation`
-2. `immediate_on_declaration`
-3. `deferred_until_settlement`
-4. `deferred_until_event_commitment`
-5. `deferred_until_owner_handoff`
-6. `recurring_per_turn`
-7. `recurring_per_round`
-8. `recurring_per_session`
-9. `conditional_on_trigger`
-10. `conditional_on_validation`
-11. `source_local_timing`
-12. `quarantine_timing`
+1. `pay_before_resolution`
+2. `reserve_before_resolution`
+3. `pay_on_attempt`
+4. `pay_on_success`
+5. `pay_on_failure`
+6. `pay_on_commitment`
+7. `pay_over_time`
+8. `upkeep_interval`
+9. `refund_on_cancel`
+10. `no_refund_on_interrupt`
+11. `compensate_after_rollback`
+12. `blocked_pending_validation`
 
-### COST_OUTCOME_POLICIES (11 values, from PR-5B)
+### COST_OUTCOME_POLICIES (11 values, inherited from PR-5B, unchanged)
 
 1. `success`
 2. `failure`
@@ -411,7 +448,7 @@ This section lists every effective controlled constant set with all members. No 
 10. `escalated`
 11. `rollback_required`
 
-### QUANTITY_KINDS (18 values, from PR-5B)
+### QUANTITY_KINDS (18 values, inherited from PR-5B, unchanged)
 
 1. `count`
 2. `pool_amount`
@@ -432,7 +469,7 @@ This section lists every effective controlled constant set with all members. No 
 17. `source_literal_quantity`
 18. `unknown_pending_review`
 
-### QUANTITY_REPRESENTATION_KINDS (6 values)
+### QUANTITY_REPRESENTATION_KINDS (6 values, inherited from PR-5B, unchanged)
 
 1. `integer_exact`
 2. `decimal_exact`
@@ -441,7 +478,7 @@ This section lists every effective controlled constant set with all members. No 
 5. `source_literal_only`
 6. `blocked_pending_numeric_choice`
 
-### CONVERSION_POLICIES (6 values)
+### CONVERSION_POLICIES (6 values, inherited from PR-5B, unchanged)
 
 1. `no_conversion`
 2. `exact_conversion`
@@ -450,7 +487,7 @@ This section lists every effective controlled constant set with all members. No 
 5. `source_local_conversion`
 6. `escalation_required`
 
-### ROUNDING_POLICIES (9 values)
+### ROUNDING_POLICIES (9 values, inherited from PR-5B, unchanged)
 
 1. `no_rounding`
 2. `round_down`
@@ -462,7 +499,7 @@ This section lists every effective controlled constant set with all members. No 
 8. `tie_away_from_zero`
 9. `blocked_pending_rounding_choice`
 
-### VISIBILITY_POLICIES (7 values)
+### VISIBILITY_POLICIES (7 values, inherited from PR-5B, unchanged)
 
 1. `public`
 2. `actor_visible`
@@ -472,7 +509,7 @@ This section lists every effective controlled constant set with all members. No 
 6. `delayed_reveal`
 7. `derived_only`
 
-### ATOMICITY_POLICIES (10 values)
+### ATOMICITY_POLICIES (10 values, inherited from PR-5B, unchanged)
 
 1. `all_or_nothing_requested`
 2. `best_effort_requested`
@@ -485,7 +522,7 @@ This section lists every effective controlled constant set with all members. No 
 9. `invalid_mixed_atomicity`
 10. `blocked_pending_transaction_policy`
 
-### ORDERING_POLICIES (5 values)
+### ORDERING_POLICIES (5 values, inherited from PR-5B, unchanged)
 
 1. `unordered_terms`
 2. `source_ordered_terms`
@@ -493,7 +530,7 @@ This section lists every effective controlled constant set with all members. No 
 4. `priority_ordered_terms`
 5. `blocked_pending_ordering_policy`
 
-### PARTIAL_SETTLEMENT_POLICIES (5 values)
+### PARTIAL_SETTLEMENT_POLICIES (5 values, inherited from PR-5B, unchanged)
 
 1. `no_partial_settlement`
 2. `partial_settlement_allowed`
@@ -501,13 +538,13 @@ This section lists every effective controlled constant set with all members. No 
 4. `partial_settlement_requires_validation`
 5. `blocked_pending_settlement_policy`
 
-### QUANTITY_NEGATIVE_VALUE_POLICIES (3 values)
+### QUANTITY_NEGATIVE_VALUE_POLICIES (3 values, introduced by PR-5D, unchanged)
 
 1. `negative_values_forbidden`
 2. `negative_values_allowed_by_source`
 3. `negative_values_require_owner_handoff`
 
-### RESOURCE_MATH_DEPENDENCY_TYPES (19 values, from PR-5F)
+### RESOURCE_MATH_DEPENDENCY_TYPES (19 values, originated PR-5B, reduced by PR-5D to 16, extended by PR-5F to 19, unchanged by PR-5H)
 
 1. `command_ref`
 2. `action_legality_ref`
@@ -529,24 +566,24 @@ This section lists every effective controlled constant set with all members. No 
 18. `unit_ref`
 19. `dimension_ref`
 
-### RESOURCE_MATH_SUBJECT_TYPES (14 values, from PR-5D)
+### RESOURCE_MATH_SUBJECT_TYPES (14 values, inherited from PR-5B, unchanged)
 
-1. `character`
-2. `npc`
-3. `creature`
-4. `vehicle`
-5. `ship`
-6. `platform`
-7. `faction`
-8. `organization`
+1. `actor`
+2. `command`
+3. `action`
+4. `item`
+5. `asset`
+6. `vehicle`
+7. `mission`
+8. `faction`
 9. `location`
-10. `item`
-11. `asset`
-12. `abstract_entity`
-13. `generated_entity`
-14. `source_local_entity`
+10. `state_record`
+11. `generated_content`
+12. `resource_owner`
+13. `source_local_subject`
+14. `unknown_pending_review`
 
-### RESOURCE_MATH_SUBJECT_ROLES (9 values, from PR-5D)
+### RESOURCE_MATH_SUBJECT_ROLES (9 values, introduced by PR-5D, unchanged)
 
 1. `primary_subject`
 2. `payer_subject`
@@ -558,37 +595,37 @@ This section lists every effective controlled constant set with all members. No 
 8. `authority_source`
 9. `provenance_source`
 
-### RESOURCE_MATH_OWNER_DOMAINS (14 values, from PR-5D/PR-5B)
+### RESOURCE_MATH_OWNER_DOMAINS (14 values, inherited from PR-5B, unchanged)
 
-1. `rt_001_command_lifecycle`
-2. `rt_002_resource_math`
-3. `rt_003_combat_hazard`
-4. `rt_004_ability_effect`
-5. `rt_005_hidden_information`
-6. `rt_006_mission_reward`
-7. `rt_007_social_faction`
-8. `rt_008_generated_content`
-9. `rt_009_rng_table`
-10. `rt_010_inventory_asset`
-11. `rt_011_validation_readiness`
-12. `rt_012_promotion_boundary`
-13. `source_local`
+1. `RT001_command_lifecycle_action_legality`
+2. `RT002_resource_consequence_math`
+3. `RT003_combat_hazard_damage_recovery`
+4. `RT004_ability_effect_skill_binding`
+5. `RT005_context_packet_hidden_information`
+6. `RT006_mission_reward_clue_routing`
+7. `RT007_social_faction_actor_knowledge`
+8. `RT008_generated_content_provenance_recurrence`
+9. `RT009_runtime_rng_table_oracle`
+10. `RT010_inventory_item_vehicle_asset`
+11. `RT011_validation_readiness_tooling`
+12. `RT012_d_series_promotion_boundary`
+13. `source_local_owner`
 14. `doctrine_escalation`
 
-### RESOURCE_TERM_VALUE_MODES (4 values, from PR-5F)
+### RESOURCE_TERM_VALUE_MODES (4 values, introduced by PR-5F, unchanged)
 
 1. `resource_quantity`
 2. `resource_reference_only`
 3. `quantity_only`
 4. `policy_only`
 
-### RESOURCE_TERM_POLICY_ROUTES (3 values, from PR-5F)
+### RESOURCE_TERM_POLICY_ROUTES (3 values, introduced by PR-5F, unchanged)
 
 1. `owner_handoff_required`
 2. `quarantine_required`
 3. `doctrine_escalation_required`
 
-### Stage sets used in compatibility (from PR-5D)
+### Stage subsets used in compatibility (inherited from PR-5D, unchanged; all members verified as RESOURCE_MATH_STAGES members)
 
 **DECLARATION_PROGRESS_STAGES:**
 `source_declaration_captured`, `subject_refs_bound`, `resource_refs_declared`, `quantity_specs_declared`, `terms_declared`, `bundle_structure_declared`, `policy_refs_declared`, `dependency_refs_bound`, `calculation_ready_for_review`
@@ -709,11 +746,12 @@ Each dependency-carrying shape owns its dependencies for a specific purpose:
 
 **`ResourceMathResult.dependencies`** owns result-side and validation-side dependencies:
 - Resource math request reference dependency (`resource_math_request_ref`)
-- Resource math result reference dependency (`resource_math_result_ref`)
 - Validation request reference dependency (`validation_request_ref`)
 - Validation result reference dependency (`validation_result_ref`)
 - Runtime trace reference dependency (`runtime_trace_ref`)
 - Result-specific policy dependencies
+
+`ResourceMathResult` does not own a `resource_math_result_ref` self-binding. No result field requires a reference to itself. A `resource_math_result_ref` dependency belongs only to `SettlementProposal.dependencies`, where the proposal references the result it is built from.
 
 **`SettlementProposal.dependencies`** owns proposal-side dependencies:
 - Resource math result reference dependency (`resource_math_result_ref`)
@@ -849,13 +887,21 @@ def validate_settlement_proposal(
 
 ### Exact validation order
 
-Validation proceeds in the following exact order. No step may be skipped, reordered, or short-circuited.
+Validation proceeds in the following exact order. No step may be skipped, reordered, or short-circuited. Request validation has two explicitly named levels.
 
-1. **Validate the `ResourceMathRequest` aggregate.** The request must be structurally valid: all required fields present, all constant-governed fields within their constant sets, all binding dependencies satisfied (Section 6, state A), no missing binding dependencies (Section 6, state C), all ID uniqueness constraints met, all closure constraints met, all bundle compatibility constraints met (Section 5), all quantity and source-literal contracts met (Section 9).
+**Level A. Request structural validation.**
+
+The request must be structurally valid: all required fields present, all constant-governed fields within their constant sets, no missing binding dependencies (Section 6, state C — missing record or wrong type/reference rejects the request), all ID uniqueness constraints met, all closure constraints met, all bundle compatibility constraints met (Section 5), all quantity and source-literal contracts met (Section 9). Correctly represented incomplete required dependencies (Section 6, state B — existing correctly typed binding record with `required=True`, `satisfied=False`) are structurally valid. A request that passes structural validation may contain unsatisfied required bindings; it is structurally valid but not resolution-ready. Such a request may produce only a `blocked_missing_dependency` result when scoped.
+
+**Level B. Proposal-eligibility validation.**
+
+A result that is settlement-eligible (non-blocking, not quarantined, not escalated, decision is `accepted_for_planning` or `normalized_for_planning`) requires all binding dependencies needed by the scoped records of that result to be satisfied (Section 6, state A). Advisory optional unsatisfied dependencies (Section 6, state E) may coexist with a non-blocking result only when unbound, unnamed, and unscoped. Settlement eligibility is checked as part of proposal validation (step 3 below), not as part of request structural validation.
+
+1. **Validate the `ResourceMathRequest` aggregate (Level A).** Apply request structural validation as defined above. A structurally valid request with incomplete required bindings is permitted; it is not rejected, but any result whose typed scope reaches the unsatisfied binding must use `blocked_missing_dependency` as its decision.
 
 2. **Validate `ResourceMathResult` against that exact supplied request.** The result's `request_id` must match the supplied request's `request_id`. All typed scope IDs must resolve within the supplied request. All scope cardinality rules (Section 7) must hold. The result's decision, stage, blocking state, escalated state, and quarantined state must be consistent with the blocker-precedence table (Section 8). All result-side dependencies must be valid.
 
-3. **Validate `SettlementProposal` against that exact result and request.** The proposal's `result_id` must match the supplied result's `result_id`. The proposal must reference the same validation result and decision. The result must be eligible for settlement (non-blocking, not quarantined, not escalated). The proposal's `proposed_state_delta_refs` must be non-empty. All false-only fields must be `False`. All proposal-side dependencies must be valid.
+3. **Validate `SettlementProposal` against that exact result and request (includes Level B).** The proposal's `result_id` must match the supplied result's `result_id`. The proposal must reference the same validation result and decision. The result must be eligible for settlement (non-blocking, not quarantined, not escalated). All binding dependencies needed by the scoped records of the settlement-eligible result must be satisfied (Level B). The proposal's `proposed_state_delta_refs` must be non-empty. All false-only fields must be `False`. All proposal-side dependencies must be valid.
 
 4. **Enforce request/result/proposal ID and typed dependency linkage.** The chain `request.request_id == result.request_id`, `result.result_id == proposal.result_id` must hold. Typed dependencies linking these objects must be present and satisfied in the appropriate dependency aggregates.
 

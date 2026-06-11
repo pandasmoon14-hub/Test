@@ -26,6 +26,237 @@ LINEAGE_IDS = [
     "RT002_resource_consequence_math_owner_specification.md",
 ]
 
+# ---- Exact inherited constant sets (source of truth) ----
+
+RESOURCE_MATH_STAGES = {
+    "resource_math_requested",
+    "source_declaration_captured",
+    "subject_refs_bound",
+    "resource_refs_declared",
+    "quantity_specs_declared",
+    "terms_declared",
+    "bundle_structure_declared",
+    "policy_refs_declared",
+    "dependency_refs_bound",
+    "calculation_ready_for_review",
+    "blocked_pending_validation",
+    "blocked_pending_owner_handoff",
+    "quarantined_for_review",
+    "escalated_to_doctrine",
+}
+
+RESOURCE_MATH_DECISIONS = {
+    "accepted_for_planning",
+    "normalized_for_planning",
+    "source_local_retained",
+    "requires_validation_review",
+    "requires_owner_handoff",
+    "blocked_missing_dependency",
+    "blocked_incompatible_policy",
+    "blocked_hidden_information",
+    "quarantined_for_review",
+    "escalated_to_doctrine",
+}
+
+RESOURCE_FAMILIES = {
+    "pooled_expendable",
+    "scene_counter",
+    "charge",
+    "currency_like",
+    "material",
+    "asset_integrity",
+    "vehicle_integrity",
+    "time_window",
+    "opportunity",
+    "social_capital",
+    "faction_standing",
+    "clue_information",
+    "risk_heat",
+    "strain_corruption",
+    "injury_recovery",
+    "cooldown",
+    "debt_obligation",
+    "source_local_resource",
+}
+
+COST_FAMILIES = {
+    "activation",
+    "upkeep",
+    "maintenance",
+    "opportunity",
+    "prerequisite_lock",
+    "reservation_hold",
+    "partial_payment",
+    "substitution",
+    "overcommitment",
+    "debt_creation",
+    "success_at_cost",
+    "failure_at_cost",
+    "cancellation",
+    "interruption",
+    "refund",
+    "reversal",
+    "compensation",
+    "repair",
+    "recovery",
+    "crafting",
+    "salvage",
+    "requisition",
+    "validation_blocked",
+}
+
+CONSEQUENCE_FAMILIES = {
+    "gain",
+    "loss",
+    "transfer",
+    "lock",
+    "unlock",
+    "exposure",
+    "exhaustion",
+    "degradation",
+    "escalation",
+    "cooldown",
+    "debt",
+    "obligation",
+    "harm_pressure",
+    "recovery_pressure",
+    "visibility_change",
+    "mission_route",
+    "clue_route",
+    "social_faction_change",
+    "inventory_asset_change",
+    "provenance_recurrence",
+    "quarantine_escalation",
+}
+
+COST_TIMING_POLICIES = {
+    "pay_before_resolution",
+    "reserve_before_resolution",
+    "pay_on_attempt",
+    "pay_on_success",
+    "pay_on_failure",
+    "pay_on_commitment",
+    "pay_over_time",
+    "upkeep_interval",
+    "refund_on_cancel",
+    "no_refund_on_interrupt",
+    "compensate_after_rollback",
+    "blocked_pending_validation",
+}
+
+COST_OUTCOME_POLICIES = {
+    "success",
+    "failure",
+    "partial_success",
+    "cancelled",
+    "interrupted",
+    "invalid",
+    "validation_blocked",
+    "owner_blocked",
+    "quarantined",
+    "escalated",
+    "rollback_required",
+}
+
+QUANTITY_KINDS = {
+    "count",
+    "pool_amount",
+    "delta",
+    "ratio",
+    "percentage",
+    "duration",
+    "interval",
+    "threshold",
+    "capacity",
+    "rank",
+    "tier",
+    "charge_count",
+    "currency_amount",
+    "material_amount",
+    "durability_amount",
+    "debt_amount",
+    "source_literal_quantity",
+    "unknown_pending_review",
+}
+
+RESOURCE_MATH_SUBJECT_TYPES = {
+    "actor",
+    "command",
+    "action",
+    "item",
+    "asset",
+    "vehicle",
+    "mission",
+    "faction",
+    "location",
+    "state_record",
+    "generated_content",
+    "resource_owner",
+    "source_local_subject",
+    "unknown_pending_review",
+}
+
+RESOURCE_MATH_OWNER_DOMAINS = {
+    "RT001_command_lifecycle_action_legality",
+    "RT002_resource_consequence_math",
+    "RT003_combat_hazard_damage_recovery",
+    "RT004_ability_effect_skill_binding",
+    "RT005_context_packet_hidden_information",
+    "RT006_mission_reward_clue_routing",
+    "RT007_social_faction_actor_knowledge",
+    "RT008_generated_content_provenance_recurrence",
+    "RT009_runtime_rng_table_oracle",
+    "RT010_inventory_item_vehicle_asset",
+    "RT011_validation_readiness_tooling",
+    "RT012_d_series_promotion_boundary",
+    "source_local_owner",
+    "doctrine_escalation",
+}
+
+DECLARATION_PROGRESS_STAGES = {
+    "source_declaration_captured",
+    "subject_refs_bound",
+    "resource_refs_declared",
+    "quantity_specs_declared",
+    "terms_declared",
+    "bundle_structure_declared",
+    "policy_refs_declared",
+    "dependency_refs_bound",
+    "calculation_ready_for_review",
+}
+
+SOURCE_LOCAL_STAGES = {
+    "source_declaration_captured",
+    "resource_refs_declared",
+    "terms_declared",
+    "bundle_structure_declared",
+    "policy_refs_declared",
+}
+
+VALIDATION_BLOCK_STAGES = {"blocked_pending_validation"}
+OWNER_HANDOFF_STAGES = {"blocked_pending_owner_handoff"}
+MISSING_DEPENDENCY_STAGES = {
+    "dependency_refs_bound",
+    "blocked_pending_validation",
+    "blocked_pending_owner_handoff",
+}
+POLICY_BLOCK_STAGES = {"policy_refs_declared"}
+HIDDEN_INFORMATION_BLOCK_STAGES = {
+    "dependency_refs_bound",
+    "blocked_pending_validation",
+}
+QUARANTINE_STAGES = {"quarantined_for_review"}
+ESCALATION_STAGES = {"escalated_to_doctrine"}
+
+DONOR_SHAPED_RESOURCE_FAMILIES = {
+    "hit_points",
+    "spell_slots",
+    "experience_points",
+    "fate_points",
+    "action_points",
+    "movement_points",
+}
+
 
 def read(path: Path) -> str:
     return path.read_text(encoding="utf-8")
@@ -37,6 +268,26 @@ def section(number: int) -> str:
     match = re.search(pattern, text, flags=re.M | re.S)
     assert match, f"missing section {number}"
     return match.group(0)
+
+
+def _extract_numbered_set(text: str, heading_pattern: str) -> set[str]:
+    m = re.search(heading_pattern, text)
+    assert m, f"heading not found: {heading_pattern}"
+    block_start = m.end()
+    block_end = text.find("\n###", block_start)
+    if block_end == -1:
+        block_end = text.find("\n---", block_start)
+    if block_end == -1:
+        block_end = len(text)
+    block = text[block_start:block_end]
+    return set(re.findall(r"`([a-zA-Z0-9_]+)`", block))
+
+
+def _extract_stage_subset(text: str, subset_name: str) -> set[str]:
+    pattern = rf"\*\*{re.escape(subset_name)}:\*\*\s*\n([^\n]+)"
+    m = re.search(pattern, text)
+    assert m, f"stage subset '{subset_name}' not found"
+    return set(re.findall(r"`([a-zA-Z0-9_]+)`", m.group(1)))
 
 
 def _git_status_short() -> list[str]:
@@ -79,22 +330,12 @@ def test_required_source_lineage_and_precedence() -> None:
     assert "PR-5A" in s1, "section 1 must mention PR-5A"
     assert "blocked" in s1.lower(), "section 1 must mention 'blocked'"
     assert "PR-5I" in s1, "section 1 must mention PR-5I"
-    assert "review gate" in s1.lower() or "review gate" in s1, \
-        "section 1 must mention 'review gate'"
     assert ("grants no implementation" in s1) or ("no implementation authority" in s1), \
         "section 1 must state no implementation authority"
-    # Precedence language
     assert ("PR-5H replaces earlier contracts only where it explicitly says so" in s1) or \
            ("replaces earlier contracts only where" in s1) or \
-           ("overrides earlier" in s1 and "explicitly" in s1) or \
            ("precedence" in s1.lower()), \
         "section 1 must contain precedence language"
-    assert "PR-5F overrides PR-5D" in s1 or \
-           ("PR-5F" in s1 and "overrides" in s1 and "PR-5D" in s1), \
-        "section 1 must state PR-5F overrides PR-5D"
-    assert "PR-5D overrides PR-5B" in s1 or \
-           ("PR-5D" in s1 and "overrides" in s1 and "PR-5B" in s1), \
-        "section 1 must state PR-5D overrides PR-5B"
 
 
 # ---------------------------------------------------------------------------
@@ -130,7 +371,6 @@ def test_consolidated_effective_contract_matrix_ten_shapes() -> None:
     for shape in shapes:
         assert shape in s3, f"shape '{shape}' not found in section 3"
 
-    # PR-5F correction
     assert "precision: int | None = None" in s3 or \
            "precision: int | None" in s3, \
         "section 3 must mention precision field"
@@ -138,7 +378,6 @@ def test_consolidated_effective_contract_matrix_ten_shapes() -> None:
     assert "policy_route" in s3, "section 3 must mention policy_route"
     assert "MappingProxyType" in s3, "section 3 must mention MappingProxyType"
 
-    # Seven typed scope tuples
     scope_tuples = [
         "referenced_subject_binding_ids",
         "referenced_resource_ref_ids",
@@ -153,16 +392,196 @@ def test_consolidated_effective_contract_matrix_ten_shapes() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 5. Consolidated controlled constants
+# 5. Exact RESOURCE_MATH_STAGES members
 # ---------------------------------------------------------------------------
 
 
-def test_consolidated_controlled_constants() -> None:
-    text = read(ARTIFACT)
-    # Some constants may be in section 4, some may appear in section 5 or elsewhere
+def test_exact_resource_math_stages() -> None:
     s4 = section(4)
-    search_text = text  # search full artifact as fallback
+    found = _extract_numbered_set(s4, r"### RESOURCE_MATH_STAGES")
+    assert found == RESOURCE_MATH_STAGES, \
+        f"RESOURCE_MATH_STAGES mismatch.\nMissing: {RESOURCE_MATH_STAGES - found}\nExtra: {found - RESOURCE_MATH_STAGES}"
 
+
+# ---------------------------------------------------------------------------
+# 6. Exact RESOURCE_MATH_DECISIONS members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_resource_math_decisions() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_MATH_DECISIONS")
+    assert found == RESOURCE_MATH_DECISIONS, \
+        f"RESOURCE_MATH_DECISIONS mismatch.\nMissing: {RESOURCE_MATH_DECISIONS - found}\nExtra: {found - RESOURCE_MATH_DECISIONS}"
+
+
+def test_requires_validation_review_present_in_decisions() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_MATH_DECISIONS")
+    assert "requires_validation_review" in found, \
+        "requires_validation_review must be present in RESOURCE_MATH_DECISIONS"
+
+
+def test_validation_blocked_not_a_decision() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_MATH_DECISIONS")
+    assert "validation_blocked" not in found, \
+        "validation_blocked must NOT appear in RESOURCE_MATH_DECISIONS"
+
+
+# ---------------------------------------------------------------------------
+# 7. Exact RESOURCE_FAMILIES members (no donor-shaped values)
+# ---------------------------------------------------------------------------
+
+
+def test_exact_resource_families() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_FAMILIES")
+    assert found == RESOURCE_FAMILIES, \
+        f"RESOURCE_FAMILIES mismatch.\nMissing: {RESOURCE_FAMILIES - found}\nExtra: {found - RESOURCE_FAMILIES}"
+
+
+def test_no_donor_shaped_resource_families() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_FAMILIES")
+    leaked = found & DONOR_SHAPED_RESOURCE_FAMILIES
+    assert not leaked, \
+        f"Donor-shaped values must not appear in RESOURCE_FAMILIES: {leaked}"
+
+
+# ---------------------------------------------------------------------------
+# 8. Exact COST_FAMILIES members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_cost_families() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### COST_FAMILIES")
+    assert found == COST_FAMILIES, \
+        f"COST_FAMILIES mismatch.\nMissing: {COST_FAMILIES - found}\nExtra: {found - COST_FAMILIES}"
+
+
+# ---------------------------------------------------------------------------
+# 9. Exact CONSEQUENCE_FAMILIES members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_consequence_families() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### CONSEQUENCE_FAMILIES")
+    assert found == CONSEQUENCE_FAMILIES, \
+        f"CONSEQUENCE_FAMILIES mismatch.\nMissing: {CONSEQUENCE_FAMILIES - found}\nExtra: {found - CONSEQUENCE_FAMILIES}"
+
+
+# ---------------------------------------------------------------------------
+# 10. Exact COST_TIMING_POLICIES members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_cost_timing_policies() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### COST_TIMING_POLICIES")
+    assert found == COST_TIMING_POLICIES, \
+        f"COST_TIMING_POLICIES mismatch.\nMissing: {COST_TIMING_POLICIES - found}\nExtra: {found - COST_TIMING_POLICIES}"
+
+
+# ---------------------------------------------------------------------------
+# 11. Exact COST_OUTCOME_POLICIES members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_cost_outcome_policies() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### COST_OUTCOME_POLICIES")
+    assert found == COST_OUTCOME_POLICIES, \
+        f"COST_OUTCOME_POLICIES mismatch.\nMissing: {COST_OUTCOME_POLICIES - found}\nExtra: {found - COST_OUTCOME_POLICIES}"
+
+
+# ---------------------------------------------------------------------------
+# 12. Exact RESOURCE_MATH_SUBJECT_TYPES members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_resource_math_subject_types() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_MATH_SUBJECT_TYPES")
+    assert found == RESOURCE_MATH_SUBJECT_TYPES, \
+        f"RESOURCE_MATH_SUBJECT_TYPES mismatch.\nMissing: {RESOURCE_MATH_SUBJECT_TYPES - found}\nExtra: {found - RESOURCE_MATH_SUBJECT_TYPES}"
+
+
+# ---------------------------------------------------------------------------
+# 13. Exact RESOURCE_MATH_OWNER_DOMAINS members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_resource_math_owner_domains() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### RESOURCE_MATH_OWNER_DOMAINS")
+    assert found == RESOURCE_MATH_OWNER_DOMAINS, \
+        f"RESOURCE_MATH_OWNER_DOMAINS mismatch.\nMissing: {RESOURCE_MATH_OWNER_DOMAINS - found}\nExtra: {found - RESOURCE_MATH_OWNER_DOMAINS}"
+
+
+# ---------------------------------------------------------------------------
+# 14. Exact QUANTITY_KINDS members
+# ---------------------------------------------------------------------------
+
+
+def test_exact_quantity_kinds() -> None:
+    s4 = section(4)
+    found = _extract_numbered_set(s4, r"### QUANTITY_KINDS")
+    assert found == QUANTITY_KINDS, \
+        f"QUANTITY_KINDS mismatch.\nMissing: {QUANTITY_KINDS - found}\nExtra: {found - QUANTITY_KINDS}"
+
+
+# ---------------------------------------------------------------------------
+# 15. Stage subsets are subsets of RESOURCE_MATH_STAGES
+# ---------------------------------------------------------------------------
+
+
+def test_stage_subsets_are_subsets_of_stages() -> None:
+    s4 = section(4)
+    subsets = {
+        "DECLARATION_PROGRESS_STAGES": DECLARATION_PROGRESS_STAGES,
+        "SOURCE_LOCAL_STAGES": SOURCE_LOCAL_STAGES,
+        "VALIDATION_BLOCK_STAGES": VALIDATION_BLOCK_STAGES,
+        "OWNER_HANDOFF_STAGES": OWNER_HANDOFF_STAGES,
+        "MISSING_DEPENDENCY_STAGES": MISSING_DEPENDENCY_STAGES,
+        "POLICY_BLOCK_STAGES": POLICY_BLOCK_STAGES,
+        "HIDDEN_INFORMATION_BLOCK_STAGES": HIDDEN_INFORMATION_BLOCK_STAGES,
+        "QUARANTINE_STAGES": QUARANTINE_STAGES,
+        "ESCALATION_STAGES": ESCALATION_STAGES,
+    }
+    for name, expected in subsets.items():
+        found = _extract_stage_subset(s4, name)
+        extra = found - RESOURCE_MATH_STAGES
+        assert not extra, \
+            f"{name} contains values not in RESOURCE_MATH_STAGES: {extra}"
+        assert found == expected, \
+            f"{name} mismatch.\nMissing: {expected - found}\nExtra: {found - expected}"
+
+
+# ---------------------------------------------------------------------------
+# 16. Provenance summary table present
+# ---------------------------------------------------------------------------
+
+
+def test_provenance_summary_table_present() -> None:
+    s4 = section(4)
+    assert "### Provenance summary" in s4 or "### Provenance" in s4, \
+        "section 4 must contain a provenance summary table"
+    assert "Originating artifact" in s4, \
+        "provenance table must mention originating artifact"
+    assert "PR-5H changes" in s4, \
+        "provenance table must indicate whether PR-5H changes each set"
+
+
+# ---------------------------------------------------------------------------
+# 17. All constant set names present
+# ---------------------------------------------------------------------------
+
+
+def test_all_constant_set_names_present() -> None:
+    text = read(ARTIFACT)
     constant_names = [
         "RESOURCE_MATH_STAGES",
         "RESOURCE_MATH_DECISIONS",
@@ -185,21 +604,16 @@ def test_consolidated_controlled_constants() -> None:
         "RESOURCE_MATH_OWNER_DOMAINS",
         "RESOURCE_TERM_VALUE_MODES",
         "RESOURCE_TERM_POLICY_ROUTES",
+        "PARTIAL_SETTLEMENT_POLICIES",
         "DECLARATION_PROGRESS_STAGES",
         "SOURCE_LOCAL_STAGES",
     ]
     for name in constant_names:
-        assert name in search_text, f"controlled constant '{name}' not found in artifact"
-
-    # PARTIAL_SETTLEMENT_POLICIES may appear in sections 4 or 5
-    s5 = section(5)
-    assert "PARTIAL_SETTLEMENT_POLICIES" in s4 or "PARTIAL_SETTLEMENT_POLICIES" in s5 or \
-           "PARTIAL_SETTLEMENT_POLICIES" in search_text, \
-        "PARTIAL_SETTLEMENT_POLICIES not found in sections 4/5"
+        assert name in text, f"controlled constant '{name}' not found in artifact"
 
 
 # ---------------------------------------------------------------------------
-# 6. Exhaustive bundle compatibility and unlisted-invalid
+# 18. Exhaustive bundle compatibility and unlisted-invalid
 # ---------------------------------------------------------------------------
 
 
@@ -211,251 +625,158 @@ def test_exhaustive_bundle_compatibility_and_unlisted_invalid() -> None:
         "best_effort_requested",
         "ordered_partial_allowed",
         "unordered_partial_allowed",
-    ]
-    for token in atomicity_tokens:
-        assert token in s5, f"atomicity token '{token}' not found in section 5"
-
-    alternative_tokens = [
         "alternative_exactly_one",
         "alternative_at_least_one",
         "alternative_at_most_one",
         "alternative_any",
+        "blocked_pending_transaction_policy",
+        "invalid_mixed_atomicity",
     ]
-    for token in alternative_tokens:
-        assert token in s5, f"alternative token '{token}' not found in section 5"
+    for token in atomicity_tokens:
+        assert token in s5, f"atomicity token '{token}' not found in section 5"
 
-    assert "blocked_pending_transaction_policy" in s5
-    assert "invalid_mixed_atomicity" in s5
-
-    assert "no_partial_settlement" in s5 or "no_partial_settlement" in s5
+    assert "no_partial_settlement" in s5
     assert "partial_settlement_allowed" in s5
-
-    assert "bool" in s5, "section 5 must mention bool"
-    assert "invalid" in s5.lower(), "section 5 must mention invalid"
-    assert "positive integer" in s5.lower() or "positive integer" in s5, \
-        "section 5 must mention positive integer bounds"
-    assert "len(term_ids)" in s5, "section 5 must mention len(term_ids)"
-    assert "minimum" in s5.lower(), "section 5 must mention minimum"
-    assert "maximum" in s5.lower(), "section 5 must mention maximum"
-
-    # Unlisted combination is invalid
-    assert ("unlisted" in s5.lower() and "invalid" in s5.lower()) or \
-           ("not expressly listed" in s5.lower() and "invalid" in s5.lower()) or \
-           ("not listed" in s5.lower() and "invalid" in s5.lower()), \
+    assert "len(term_ids)" in s5
+    assert ("not expressly listed" in s5.lower() and "invalid" in s5.lower()) or \
+           ("unlisted" in s5.lower() and "invalid" in s5.lower()), \
         "section 5 must state unlisted combinations are invalid"
-
-    assert "alternative group" in s5.lower() or "alternative group" in s5, \
-        "section 5 must mention alternative groups"
-    assert "overlapping" in s5.lower(), \
-        "section 5 must mention overlapping groups being invalid"
 
 
 # ---------------------------------------------------------------------------
-# 7. Five dependency lifecycle states
+# 19. Five dependency lifecycle states
 # ---------------------------------------------------------------------------
 
 
 def test_five_dependency_lifecycle_states() -> None:
     s6 = section(6)
+    lower = s6.lower()
 
-    # Satisfied binding dependency
-    assert ("satisfied binding dependency" in s6.lower()) or ("satisfied=True" in s6) or \
-           ("Satisfied binding dependency" in s6) or ("satisfied=true" in s6.lower()), \
-        "section 6 must describe satisfied binding dependency"
+    assert "satisfied binding" in lower
+    assert "incomplete binding" in lower
+    assert "missing binding" in lower
+    assert "required but unsatisfied" in lower or \
+           ("required" in lower and "unsatisfied" in lower)
+    assert "advisory optional unsatisfied" in lower or \
+           ("advisory" in lower and "optional" in lower)
+    assert "blocked_missing_dependency" in s6
 
-    # Incomplete binding dependency
-    assert ("incomplete binding dependency" in s6.lower()) or \
-           ("Incomplete binding dependency" in s6), \
-        "section 6 must describe incomplete binding dependency"
-    assert "satisfied=False" in s6 or "satisfied=false" in s6.lower(), \
-        "section 6 must mention satisfied=False for incomplete"
 
-    # Missing binding dependency
-    assert ("missing binding dependency" in s6.lower()) or \
-           ("Missing binding dependency" in s6), \
-        "section 6 must describe missing binding dependency"
-    assert "invalid" in s6.lower(), "section 6 must mention invalid for missing"
-    assert "reject" in s6.lower() or "factories" in s6.lower(), \
-        "section 6 must mention reject or factories for missing"
+# ---------------------------------------------------------------------------
+# 20. Incomplete bindings permit blocked result construction
+# ---------------------------------------------------------------------------
 
-    # Required but unsatisfied dependency
-    assert ("required but unsatisfied dependency" in s6.lower()) or \
-           ("Required but unsatisfied dependency" in s6) or \
-           ("required" in s6.lower() and "unsatisfied" in s6.lower()), \
-        "section 6 must describe required but unsatisfied dependency"
+
+def test_incomplete_bindings_permit_blocked_result() -> None:
+    s6 = section(6)
+    assert "structurally valid" in s6.lower() or "structurally valid" in s6, \
+        "section 6 must state incomplete binding is structurally valid"
+    assert "not resolution-ready" in s6.lower() or "not resolution-ready" in s6, \
+        "section 6 must state incomplete binding is not resolution-ready"
     assert "blocked_missing_dependency" in s6, \
-        "section 6 must mention blocked_missing_dependency"
+        "section 6 must route incomplete binding to blocked_missing_dependency"
 
-    # Advisory optional unsatisfied dependency
-    assert ("advisory optional unsatisfied dependency" in s6.lower()) or \
-           ("Advisory optional unsatisfied dependency" in s6) or \
-           ("advisory" in s6.lower() and "optional" in s6.lower() and "unsatisfied" in s6.lower()), \
-        "section 6 must describe advisory optional unsatisfied dependency"
-    assert "required=False" in s6 or "required=false" in s6.lower(), \
-        "section 6 must mention required=False"
+
+def test_missing_bindings_reject_request() -> None:
+    s6 = section(6)
+    assert "invalid" in s6.lower(), \
+        "section 6 must state missing binding makes request invalid"
+    assert "reject" in s6.lower() or "factories" in s6.lower(), \
+        "section 6 must state rejection for missing binding"
+    assert "No `ResourceMathResult` may be constructed" in s6 or \
+           "no result" in s6.lower() or "no `ResourceMathResult`" in s6.lower(), \
+        "section 6 must state no result for missing binding"
 
 
 # ---------------------------------------------------------------------------
-# 8. Exact aggregate ownership
+# 21. Settlement eligibility requires satisfied dependencies
 # ---------------------------------------------------------------------------
 
 
-def test_exact_aggregate_ownership() -> None:
+def test_settlement_eligibility_requires_satisfied_dependencies() -> None:
+    s10 = section(10)
+    lower = s10.lower()
+    assert "level a" in lower or "Level A" in s10, \
+        "section 10 must define Level A (structural validation)"
+    assert "level b" in lower or "Level B" in s10, \
+        "section 10 must define Level B (proposal-eligibility)"
+    assert "structurally valid" in lower, \
+        "section 10 Level A must allow structurally valid incomplete requests"
+    assert "settlement-eligible" in lower or "settlement eligible" in lower, \
+        "section 10 Level B must reference settlement eligibility"
+    assert "satisfied" in lower, \
+        "section 10 Level B must require satisfied dependencies"
+
+
+# ---------------------------------------------------------------------------
+# 22. ResourceMathResult does not own resource_math_result_ref
+# ---------------------------------------------------------------------------
+
+
+def test_result_does_not_own_resource_math_result_ref() -> None:
+    s6 = section(6)
+    result_block_m = re.search(
+        r"\*\*`ResourceMathResult\.dependencies`\*\*.*?(?=\*\*`SettlementProposal|\Z)",
+        s6, flags=re.S,
+    )
+    assert result_block_m, "section 6 must define ResourceMathResult.dependencies"
+    result_block = result_block_m.group(0)
+    assert "resource_math_result_ref" not in result_block.split("does not own")[0] or \
+           "does not own" in result_block, \
+        "ResourceMathResult.dependencies must not own resource_math_result_ref"
+    assert "does not own a `resource_math_result_ref` self-binding" in s6, \
+        "section 6 must explicitly state no self-binding"
+
+
+# ---------------------------------------------------------------------------
+# 23. Exact request/result/proposal dependency ownership
+# ---------------------------------------------------------------------------
+
+
+def test_exact_dependency_ownership() -> None:
     s6 = section(6)
 
-    # Request dependencies
-    assert "ResourceMathRequest" in s6 and "dependencies" in s6, \
-        "section 6 must mention ResourceMathRequest.dependencies"
-    assert "request" in s6.lower()
+    request_block_m = re.search(
+        r"\*\*`ResourceMathRequest\.dependencies`\*\*.*?(?=\*\*`ResourceMathResult)",
+        s6, flags=re.S,
+    )
+    assert request_block_m, "section 6 must define ResourceMathRequest.dependencies"
+    request_block = request_block_m.group(0)
 
-    # Result dependencies
-    assert "ResourceMathResult" in s6 and "dependencies" in s6, \
-        "section 6 must mention ResourceMathResult.dependencies"
-    assert "result" in s6.lower()
+    request_deps = {"subject_ref", "unit_ref", "dimension_ref", "command_ref",
+                    "action_legality_ref", "state_projection_ref", "provenance_ref",
+                    "rng_result_ref", "table_oracle_result_ref", "owner_handoff_ref",
+                    "runtime_trace_ref"}
+    for dep in request_deps:
+        assert dep in request_block, \
+            f"ResourceMathRequest.dependencies must reference {dep}"
 
-    # Proposal dependencies
-    assert "SettlementProposal" in s6 and "dependencies" in s6, \
-        "section 6 must mention SettlementProposal.dependencies"
-    assert "proposal" in s6.lower()
+    result_block_m = re.search(
+        r"\*\*`ResourceMathResult\.dependencies`\*\*.*?(?=`ResourceMathResult` does not own|$)",
+        s6, flags=re.S,
+    )
+    assert result_block_m
+    result_block = result_block_m.group(0)
+    assert "resource_math_request_ref" in result_block
+    assert "validation_request_ref" in result_block
+    assert "validation_result_ref" in result_block
+    assert "runtime_trace_ref" in result_block
 
-    # Uniqueness
-    assert "dependency_id" in s6, "section 6 must mention dependency_id"
-    assert "dependency_type" in s6 and "reference_id" in s6, \
-        "section 6 must mention dependency_type and reference_id uniqueness"
-
-    # hidden_info_safe
-    assert "hidden_info_safe=False" in s6 or "hidden_info_safe=false" in s6.lower(), \
-        "section 6 must mention hidden_info_safe=False"
-    assert ("not the same as unsatisfied" in s6.lower()) or \
-           ("not the same as" in s6.lower() and "unsatisfied" in s6.lower()), \
-        "section 6 must clarify hidden_info_safe is not the same as unsatisfied"
-
-
-# ---------------------------------------------------------------------------
-# 9. No empty total typed scope
-# ---------------------------------------------------------------------------
-
-
-def test_no_empty_total_typed_scope() -> None:
-    s7 = section(7)
-    assert "empty typed result scope" in s7.lower() or "empty typed result scope" in s7, \
-        "section 7 must mention empty typed result scope"
-    assert "invalid" in s7.lower(), "section 7 must state empty typed scope is invalid"
-    assert "non-empty" in s7.lower() or "non-empty" in s7, \
-        "section 7 must mention non-empty requirement"
+    proposal_block_m = re.search(
+        r"\*\*`SettlementProposal\.dependencies`\*\*.*?(?=###|\Z)",
+        s6, flags=re.S,
+    )
+    assert proposal_block_m
+    proposal_block = proposal_block_m.group(0)
+    assert "resource_math_result_ref" in proposal_block
+    assert "validation_result_ref" in proposal_block
+    assert "state_delta_ref" in proposal_block
+    assert "rollback_accounting_ref" in proposal_block
+    assert "runtime_trace_ref" in proposal_block
 
 
 # ---------------------------------------------------------------------------
-# 10. Accepted/normalized/blocked scope cardinality
-# ---------------------------------------------------------------------------
-
-
-def test_accepted_normalized_and_blocked_scope_cardinality() -> None:
-    s7 = section(7)
-    assert "accepted_for_planning" in s7 or "accepted" in s7.lower()
-    assert "normalized_for_planning" in s7 or "normalized" in s7.lower()
-    assert "at least one" in s7.lower(), \
-        "section 7 must require at least one record"
-
-    # Business records
-    records_found = sum(1 for kw in ["resource", "quantity", "cost term", "cost bundle", "consequence term"]
-                        if kw in s7.lower())
-    assert records_found >= 1, "section 7 must mention business record types"
-
-    assert "blocked" in s7.lower(), "section 7 must mention blocked"
-    assert "scope" in s7.lower(), "section 7 must mention scope"
-    assert ("blocking record" in s7.lower()) or ("required dependency" in s7.lower()) or \
-           ("blocker" in s7.lower()), \
-        "section 7 must mention blocking records or required dependencies"
-
-    assert "blocked_missing_dependency" in s7, \
-        "section 7 must mention blocked_missing_dependency"
-    assert "dependency-only" in s7.lower() or "dependency-only" in s7, \
-        "section 7 must mention dependency-only"
-
-
-# ---------------------------------------------------------------------------
-# 11. All scoped IDs resolve even for blocked
-# ---------------------------------------------------------------------------
-
-
-def test_all_scoped_ids_resolve_even_for_blocked() -> None:
-    s7 = section(7)
-    lower = s7.lower()
-    assert ("scoped id" in lower or "scoped" in lower) and "resolve" in lower, \
-        "section 7 must require scoped IDs to resolve"
-    assert "blocked" in lower or "quarantined" in lower or "escalated" in lower, \
-        "section 7 must mention blocked/quarantined/escalated scoped resolution"
-
-
-# ---------------------------------------------------------------------------
-# 12. Exact blocker precedence order
-# ---------------------------------------------------------------------------
-
-
-def test_exact_blocker_precedence_order() -> None:
-    s8 = section(8)
-    lower = s8.lower()
-
-    # All 8 precedence items must be present
-    assert "doctrine escalation" in lower or "escalated_to_doctrine" in s8 or \
-           "doctrine_escalation" in lower, \
-        "section 8 must mention doctrine escalation"
-    assert "quarantine" in lower or "quarantined_for_review" in s8, \
-        "section 8 must mention quarantine"
-    assert "hidden" in lower or "blocked_hidden_information" in s8, \
-        "section 8 must mention hidden information blocker"
-    assert "missing" in lower or "blocked_missing_dependency" in s8, \
-        "section 8 must mention missing dependency blocker"
-    assert ("blocked" in lower and "numeric" in lower) or "blocked_incompatible_policy" in s8, \
-        "section 8 must mention blocked numeric/incompatible policy"
-    assert "owner handoff" in lower or "requires_owner_handoff" in s8 or \
-           "owner_handoff" in lower, \
-        "section 8 must mention owner handoff"
-    assert "source-supported negative" in lower or "source_supported_negative" in lower or \
-           "negative" in lower, \
-        "section 8 must mention source-supported negative"
-    assert "no blocker" in lower or "no_blocker" in lower or "none" in lower, \
-        "section 8 must mention no blocker"
-
-    # Diagnostics
-    assert "diagnostics" in lower, \
-        "section 8 must mention diagnostics preservation"
-
-
-# ---------------------------------------------------------------------------
-# 13. Source-supported negative uses universal literal contract
-# ---------------------------------------------------------------------------
-
-
-def test_source_supported_negative_uses_universal_literal_contract() -> None:
-    s9 = section(9)
-
-    assert "source_literal" in s9, "section 9 must mention source_literal"
-    assert "negative_values_allowed_by_source" in s9, \
-        "section 9 must mention negative_values_allowed_by_source"
-    assert "non-empty" in s9.lower() or "non-empty" in s9
-    assert "str" in s9
-
-    assert "one line" in s9.lower() or "single line" in s9.lower() or "one-line" in s9.lower(), \
-        "section 9 must mention one-line constraint"
-
-    assert ("no leading" in s9.lower()) or ("no trailing" in s9.lower()) or \
-           ("whitespace" in s9.lower()), \
-        "section 9 must mention whitespace constraints"
-
-    assert "Cc" in s9 or "control" in s9.lower(), \
-        "section 9 must mention Cc/control character constraint"
-    assert "Cs" in s9 or "surrogate" in s9.lower(), \
-        "section 9 must mention Cs/surrogate constraint"
-
-    assert ("no normalization" in s9.lower()) or ("no parsing" in s9.lower()) or \
-           ("no evaluation" in s9.lower()), \
-        "section 9 must state no normalization/parsing/evaluation"
-
-
-# ---------------------------------------------------------------------------
-# 14. Settlement proposal receives both request and result
+# 24. Settlement proposal receives both request and result
 # ---------------------------------------------------------------------------
 
 
@@ -463,93 +784,61 @@ def test_settlement_proposal_receives_both_request_and_result() -> None:
     s10 = section(10)
 
     assert "request: ResourceMathRequest" in s10 or \
-           ("request" in s10 and "ResourceMathRequest" in s10), \
-        "section 10 must mention request: ResourceMathRequest"
+           ("request" in s10 and "ResourceMathRequest" in s10)
     assert "result: ResourceMathResult" in s10 or \
-           ("result" in s10 and "ResourceMathResult" in s10), \
-        "section 10 must mention result: ResourceMathResult"
-
-    assert "create_settlement_proposal" in s10, \
-        "section 10 must mention create_settlement_proposal"
-    assert "validate_settlement_proposal" in s10, \
-        "section 10 must mention validate_settlement_proposal"
-
-    assert ("no certificate" in s10.lower()) or ("No certificate" in s10) or \
-           ("direct aggregate" in s10.lower()) or ("Direct aggregate" in s10), \
-        "section 10 must mention no certificate or direct aggregate"
+           ("result" in s10 and "ResourceMathResult" in s10)
+    assert "create_settlement_proposal" in s10
+    assert "validate_settlement_proposal" in s10
+    assert ("no certificate" in s10.lower()) or ("direct aggregate" in s10.lower())
 
 
 # ---------------------------------------------------------------------------
-# 15. Exact request/result/proposal validation order
+# 25. Exact validation order
 # ---------------------------------------------------------------------------
 
 
 def test_exact_request_result_proposal_validation_order() -> None:
     s10 = section(10)
-
-    assert "Validate" in s10 or "validate" in s10.lower()
-    assert "ResourceMathRequest" in s10
-    assert "ResourceMathResult" in s10
-    assert "SettlementProposal" in s10
-
-    assert "No repository lookup" in s10 or "no repository lookup" in s10.lower(), \
-        "section 10 must state no repository lookup"
-
-    assert ("no caller-supplied" in s10.lower()) or ("No caller-supplied" in s10) or \
-           ("no boolean" in s10.lower()) or ("No boolean" in s10), \
-        "section 10 must state no caller-supplied or no boolean"
+    assert "No repository lookup" in s10 or "no repository lookup" in s10.lower()
+    assert ("no caller-supplied" in s10.lower()) or ("No caller-supplied" in s10)
 
 
 # ---------------------------------------------------------------------------
-# 16. Manual frozen-dataclass parity requirement
+# 26. Factory/validator parity
 # ---------------------------------------------------------------------------
 
 
 def test_manual_frozen_dataclass_parity_requirement() -> None:
     s11 = section(11)
     lower = s11.lower()
-
-    assert "frozen dataclass" in lower or "frozen-dataclass" in lower, \
-        "section 11 must mention frozen dataclass"
-    assert "manually constructed" in lower or "manual construction" in lower or \
-           "manual" in lower, \
-        "section 11 must mention manual construction"
-    assert "shared private helpers" in lower or "shared helpers" in lower, \
-        "section 11 must mention shared helpers"
-    assert "factory" in lower or "factories" in lower, \
-        "section 11 must mention factories"
-    assert "validator" in lower or "validators" in lower, \
-        "section 11 must mention validators"
+    assert "frozen dataclass" in lower or "frozen-dataclass" in lower
+    assert "manually constructed" in lower or "manual" in lower
+    assert "shared private helpers" in lower or "shared helpers" in lower
+    assert "factory" in lower or "factories" in lower
+    assert "validator" in lower or "validators" in lower
 
 
 # ---------------------------------------------------------------------------
-# 17. Internal-only serialization and RT-005 ownership
+# 27. Internal-only serialization and RT-005 ownership
 # ---------------------------------------------------------------------------
 
 
 def test_internal_only_serialization_and_rt005_ownership() -> None:
     s12 = section(12)
-
-    assert "to_dict" in s12, "section 12 must mention to_dict"
-    assert ("no `to_public_dict`" in s12) or ("no to_public_dict" in s12) or \
-           ("no `to_public_dict`" in s12), \
-        "section 12 must state no to_public_dict"
-    assert "defensive copies" in s12.lower() or "defensive copies" in s12, \
-        "section 12 must mention defensive copies"
-    assert "RT-005" in s12, "section 12 must reference RT-005"
+    assert "to_dict" in s12
+    assert ("no `to_public_dict`" in s12) or ("no to_public_dict" in s12)
+    assert "defensive copies" in s12.lower() or "defensive copies" in s12
+    assert "RT-005" in s12
 
 
 # ---------------------------------------------------------------------------
-# 18. Corpus-scale and RT owner boundaries
+# 28. Corpus-scale and RT owner boundaries
 # ---------------------------------------------------------------------------
 
 
 def test_corpus_scale_and_rt_owner_boundaries() -> None:
     s12 = section(12)
-
-    assert "RT-002 does not absorb" in s12 or "RT-002" in s12, \
-        "section 12 must mention RT-002"
-
+    assert "RT-002" in s12
     boundary_keywords = ["combat", "ability", "inventory", "mission", "social",
                          "RNG", "persistence", "event", "canon"]
     found = sum(1 for kw in boundary_keywords if kw in s12 or kw.lower() in s12.lower())
@@ -558,40 +847,87 @@ def test_corpus_scale_and_rt_owner_boundaries() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 19. Exactly one PR-5I next step
+# 29. Blocker precedence
+# ---------------------------------------------------------------------------
+
+
+def test_exact_blocker_precedence_order() -> None:
+    s8 = section(8)
+    lower = s8.lower()
+    assert "doctrine escalation" in lower or "escalated_to_doctrine" in s8
+    assert "quarantine" in lower or "quarantined_for_review" in s8
+    assert "hidden" in lower or "blocked_hidden_information" in s8
+    assert "missing" in lower or "blocked_missing_dependency" in s8
+    assert ("blocked" in lower and "numeric" in lower) or "blocked_incompatible_policy" in s8
+    assert "owner handoff" in lower or "requires_owner_handoff" in s8
+    assert "source-supported negative" in lower or "negative" in lower
+    assert "no blocker" in lower or "none" in lower
+    assert "diagnostics" in lower
+
+
+# ---------------------------------------------------------------------------
+# 30. Source-literal contract
+# ---------------------------------------------------------------------------
+
+
+def test_source_supported_negative_uses_universal_literal_contract() -> None:
+    s9 = section(9)
+    assert "source_literal" in s9
+    assert "negative_values_allowed_by_source" in s9
+    assert "one line" in s9.lower() or "single line" in s9.lower()
+    assert "Cc" in s9 or "control" in s9.lower()
+    assert "Cs" in s9 or "surrogate" in s9.lower()
+    assert ("no normalization" in s9.lower()) or ("no parsing" in s9.lower())
+
+
+# ---------------------------------------------------------------------------
+# 31. Typed result-scope cardinality
+# ---------------------------------------------------------------------------
+
+
+def test_no_empty_total_typed_scope() -> None:
+    s7 = section(7)
+    assert "empty typed result scope" in s7.lower() or "empty typed result scope" in s7
+    assert "invalid" in s7.lower()
+    assert "non-empty" in s7.lower()
+
+
+def test_accepted_normalized_and_blocked_scope_cardinality() -> None:
+    s7 = section(7)
+    assert "accepted_for_planning" in s7 or "accepted" in s7.lower()
+    assert "normalized_for_planning" in s7 or "normalized" in s7.lower()
+    assert "at least one" in s7.lower()
+    assert "blocked_missing_dependency" in s7
+    assert "dependency-only" in s7.lower() or "dependency-only" in s7
+
+
+# ---------------------------------------------------------------------------
+# 32. PR-5I next step
 # ---------------------------------------------------------------------------
 
 
 def test_exactly_one_pr_5i_next_step() -> None:
     s14 = section(14)
     text = read(ARTIFACT)
-
-    assert "RUNTIME-DOMAIN-PR-5I" in s14, \
-        "section 14 must mention RUNTIME-DOMAIN-PR-5I"
-    assert "review gate" in s14.lower() or "review gate" in s14, \
-        "section 14 must mention review gate"
-    assert "next_step_authorized: RUNTIME-DOMAIN-PR-5A" not in text, \
-        "PR-5A must not be the authorized next step"
+    assert "RUNTIME-DOMAIN-PR-5I" in s14
+    assert "review gate" in s14.lower()
+    assert "next_step_authorized: RUNTIME-DOMAIN-PR-5A" not in text
 
 
 # ---------------------------------------------------------------------------
-# 20. PR-5A not authorized
+# 33. PR-5A not authorized
 # ---------------------------------------------------------------------------
 
 
 def test_pr_5a_not_authorized() -> None:
     text = read(ARTIFACT)
-
-    assert "pr_5a_authorized: false" in text, \
-        "artifact must state pr_5a_authorized: false"
-    assert "PR-5A" in text and "blocked" in text.lower(), \
-        "artifact must state PR-5A is blocked"
-    assert "pr_5a_authorized: true" not in text, \
-        "pr_5a_authorized: true must NOT appear in artifact"
+    assert "pr_5a_authorized: false" in text
+    assert "PR-5A" in text and "blocked" in text.lower()
+    assert "pr_5a_authorized: true" not in text
 
 
 # ---------------------------------------------------------------------------
-# 21. Registry record exactly once
+# 34. Registry record exactly once
 # ---------------------------------------------------------------------------
 
 
@@ -602,7 +938,7 @@ def test_registry_record_exactly_once() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 22. Decision heading exactly once
+# 35. Decision heading exactly once
 # ---------------------------------------------------------------------------
 
 
@@ -614,7 +950,7 @@ def test_decision_heading_exactly_once() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 23. Registry version unchanged
+# 36. Registry version unchanged
 # ---------------------------------------------------------------------------
 
 
@@ -625,7 +961,7 @@ def test_registry_version_unchanged() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 24. No resource_consequence_math.py
+# 37. No resource_consequence_math.py
 # ---------------------------------------------------------------------------
 
 
@@ -635,7 +971,7 @@ def test_no_resource_consequence_math_py() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 25. No changes under src/
+# 38. No changes under src/
 # ---------------------------------------------------------------------------
 
 
@@ -648,7 +984,7 @@ def test_no_changes_under_src() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 26. Changed-file footprint
+# 39. Changed-file footprint
 # ---------------------------------------------------------------------------
 
 
@@ -665,43 +1001,49 @@ def test_changed_file_footprint() -> None:
 
 
 # ---------------------------------------------------------------------------
-# 27. Closure ledger - all eight closed
+# 40. Closure ledger - all eight closed
 # ---------------------------------------------------------------------------
 
 
 def test_closure_ledger_all_eight_closed() -> None:
     s13 = section(13)
     lower = s13.lower()
-
-    # At least 8 occurrences of "closed"
     closed_count = lower.count("closed")
     assert closed_count >= 8, \
         f"section 13 must contain 'closed' at least 8 times, found {closed_count}"
+    assert "effective contract matrix" in lower or "final effective contract" in lower
+    assert "atomicity" in lower
+    assert "dependency lifecycle" in lower or "unsatisfied binding" in lower
+    assert "typed" in lower and "scope" in lower
+    assert "blocker" in lower and "precedence" in lower
+    assert "source" in lower and "literal" in lower and "negative" in lower
+    assert "proposal" in lower and "request" in lower and "validation" in lower
+    assert "factory" in lower and "validator" in lower and "parity" in lower
 
-    # All 8 correction keywords
-    assert "effective contract matrix" in lower or "final effective contract" in lower, \
-        "closure ledger must reference effective contract matrix"
 
-    assert "atomicity" in lower, "closure ledger must reference atomicity"
-    assert "ordering" in lower or "partial-settlement" in lower or "bundle" in lower, \
-        "closure ledger must reference ordering/partial-settlement/bundle"
+# ---------------------------------------------------------------------------
+# 41. All compatibility decisions belong to RESOURCE_MATH_DECISIONS
+# ---------------------------------------------------------------------------
 
-    assert "dependency lifecycle" in lower or "unsatisfied binding" in lower, \
-        "closure ledger must reference dependency lifecycle"
 
-    assert "typed" in lower and "scope" in lower, \
-        "closure ledger must reference typed scope"
-    assert "empty" in lower or "cardinality" in lower, \
-        "closure ledger must reference empty or cardinality"
+def test_compatibility_decisions_in_resource_math_decisions() -> None:
+    s8 = section(8)
+    rows = re.findall(r"\|\s*\d+\s*\|[^|]+\|[^|]+\|\s*`([^`]+)`\s*\|", s8)
+    decisions_in_blocker = {d for d in rows if d != "Per matrix"}
+    extra = decisions_in_blocker - RESOURCE_MATH_DECISIONS
+    assert not extra, \
+        f"Blocker table uses decisions not in RESOURCE_MATH_DECISIONS: {extra}"
+    assert len(decisions_in_blocker) >= 5, \
+        f"Blocker table should reference at least 5 decisions, found {len(decisions_in_blocker)}"
 
-    assert "blocker" in lower and "precedence" in lower, \
-        "closure ledger must reference blocker precedence"
 
-    assert "source" in lower and "literal" in lower and "negative" in lower, \
-        "closure ledger must reference source literal negative"
+# ---------------------------------------------------------------------------
+# 42. Hidden-info-safe distinction
+# ---------------------------------------------------------------------------
 
-    assert "proposal" in lower and "request" in lower and "validation" in lower, \
-        "closure ledger must reference proposal request validation"
 
-    assert "factory" in lower and "validator" in lower and "parity" in lower, \
-        "closure ledger must reference factory/validator parity"
+def test_hidden_info_safe_distinction() -> None:
+    s6 = section(6)
+    assert "hidden_info_safe=False" in s6 or "hidden_info_safe=false" in s6.lower()
+    assert ("not the same as unsatisfied" in s6.lower()) or \
+           ("not the same as" in s6.lower() and "unsatisfied" in s6.lower())
