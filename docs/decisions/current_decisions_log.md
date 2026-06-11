@@ -2752,11 +2752,13 @@ planning-only status recorded for PR-5. PR-5 follows PR-4F authorization and rec
 
 The plan records the backend-first invariant that the LLM is not the game engine. It assigns RT-002 ownership for future resource quantity, cost bundle, consequence quantity, deterministic numeric representation, unit/dimension, rounding, audit-lineage, and settlement-proposal math boundaries while preserving explicit non-ownership for RT-001 through RT-012 handoffs. It separates declaration, calculation, affordability, reservation proposal, settlement proposal, commitment, persistence, replay, and audit. It records that validation_ready is not validation_passed.
 
-The plan is sufficient to select one next step. PR-5A must be reference-only and non-calculating.
+The corrected plan adds exact proposed stage, decision, family, policy, quantity-kind, atomicity, and dependency vocabularies; dataclass field contracts; factory/validator invariants; decision/stage compatibility; bundle, term, subject, unit, provenance, trace, validation, and dependency linkage; and false-only mutation, commitment, persistence, RNG/table, and model-authority flags. It also adds detailed resource/cost/consequence family matrices and a decision ledger separating work required before PR-5A, before executable calculation, and before settlement or commitment.
+
+The plan is sufficient to select one next step. PR-5B must be planning-only and non-implementing.
 
 ### Implication
 
-The selected next step is RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation, pending review. PR-5A may only create reference-only immutable non-calculating skeleton surfaces if authorized by review.
+The selected next step is RUNTIME-DOMAIN-PR-5B Resource and Consequence Math Planning Hardening, pending review. PR-5B may only harden planning prose, registry tracking, decision logging, and focused tests; it may not create runtime/domain modules or reference-only skeleton surfaces. PR-5A remains blocked until PR-5B hardening is reviewed.
 
 PR-5 preserves the full non-implementation boundary: no runtime code, no domain-service code, no resource math, no consequence application, no formulas or values, no final resource names or pools, no final currencies or economies, no affordability execution, no reservation or settlement, no expression parsing or evaluation, no RNG/table execution, no state mutation, no state-delta application, no event append or commitment, no persistence or replay, no combat, no abilities/effects, no inventory mutation, no mission/social mutation, no generated-content persistence, no model integration, no live-play adapter, no UI/client, no conversion, no sourcebook inclusion, and no canon promotion.
 
@@ -2775,7 +2777,15 @@ runtime_domain_pr_5_decision:
   corpus_scale_donor_pressure_review: true
   lawful_donor_outcomes_recorded: true
   selects_exactly_one_next_step: true
-  selected_next_step: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation, pending review
-  pr_5a_must_be_reference_only_and_non_calculating: true
+  selected_next_step: RUNTIME-DOMAIN-PR-5B Resource and Consequence Math Planning Hardening, pending review
+  pr_5b_must_be_planning_only_and_non_implementing: true
+  exact_vocabularies_added: true
+  field_contracts_added: true
+  factory_validator_invariants_added: true
+  decision_stage_compatibility_added: true
+  linkage_requirements_added: true
+  false_only_authority_flags_added: true
+  family_matrices_added: true
+  decision_ledger_separates_required_before_pr_5a_executable_calculation_and_settlement_commitment: true
   full_non_implementation_boundary: true
 ```

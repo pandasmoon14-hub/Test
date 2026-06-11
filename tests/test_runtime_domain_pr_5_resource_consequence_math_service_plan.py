@@ -11,7 +11,7 @@ RESOURCE_MATH = DOMAIN / "resource_consequence_math.py"
 
 PR5_ID = "RUNTIME-DOMAIN-PR-5-RESOURCE-CONSEQUENCE-MATH-SERVICE-PLAN-001"
 PR4F_ID = "RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001"
-NEXT_STEP = "RUNTIME-DOMAIN-PR-5A: Resource and Consequence Math Skeleton Implementation"
+NEXT_STEP = "RUNTIME-DOMAIN-PR-5B: Resource and Consequence Math Planning Hardening"
 
 
 def read(path: Path) -> str:
@@ -84,19 +84,53 @@ def test_plan_contains_required_sections_and_backend_first_invariant() -> None:
         "Risk review",
         "Hardening and decision ledger",
         "Future test requirements",
-        "PR-5A authorization boundary",
+        "Exact proposed planning vocabularies",
+        "Stage vocabulary",
+        "Decision vocabulary",
+        "Family vocabulary",
+        "Policy vocabulary",
+        "Quantity-kind vocabulary",
+        "Atomicity vocabulary",
+        "Dependency vocabulary",
+        "Dataclass field contracts for future reference-only shapes",
+        "Factory and validator invariants",
+        "Decision/stage compatibility",
+        "Linkage requirements",
+        "Bundle linkage",
+        "Term linkage",
+        "Subject linkage",
+        "Unit linkage",
+        "Provenance linkage",
+        "Trace linkage",
+        "Validation linkage",
+        "Dependency linkage",
+        "False-only authority flags",
+        "mutation_authorized: false",
+        "commitment_authorized: false",
+        "persistence_authorized: false",
+        "rng_execution_authorized: false",
+        "model_authority_authorized: false",
+        "Detailed resource/cost/consequence family matrices",
+        "Resource family matrix",
+        "Cost family matrix",
+        "Consequence family matrix",
+        "Real decision ledger",
+        "Required before PR-5A",
+        "Required before executable calculation",
+        "Required before settlement or commitment",
+        "PR-5B authorization boundary",
     ]
     for phrase in required_phrases:
         assert phrase in text
 
 
-def test_gate_finding_is_exactly_one_and_selects_pr5a() -> None:
+def test_gate_finding_is_exactly_one_and_selects_pr5b() -> None:
     text = read(PLAN)
     assert text.count("gate_finding:") == 1
     assert text.count("next_step_authorized:") == 1
-    assert "gate_finding: ready_for_runtime_domain_pr_5a_reference_only_skeleton" in text
+    assert "gate_finding: ready_for_runtime_domain_pr_5b_planning_hardening" in text
     assert f"selected_next_step: {NEXT_STEP}" in text
-    assert "pr_5a_must_be_reference_only_and_non_calculating: true" in text
+    assert "pr_5b_must_be_planning_only_and_non_implementing: true" in text
 
 
 def test_non_implementation_boundaries_are_explicit() -> None:
@@ -138,16 +172,26 @@ def test_registry_records_pr5_once() -> None:
     assert "version: 0.1.83" in registry
     assert "runtime_domain_pr_5_resource_consequence_math_service_plan" in registry
     assert "selects_exactly_one_next_step: true" in registry
-    assert "next_allowed_step: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation, pending review" in registry
+    assert "next_allowed_step: RUNTIME-DOMAIN-PR-5B Resource and Consequence Math Planning Hardening, pending review" in registry
     assert "authorizes_resource_math_by_this_pr: false" in registry
     assert "authorizes_consequence_application_by_this_pr: false" in registry
+    assert "exact_stage_decision_family_policy_quantity_atomicity_dependency_vocabularies: true" in registry
+    assert "dataclass_field_contracts: true" in registry
+    assert "factory_validator_invariants: true" in registry
+    assert "decision_stage_compatibility: true" in registry
+    assert "false_only_mutation_commitment_persistence_rng_model_authority_flags: true" in registry
+    assert "decision_ledger_required_before_pr_5a: true" in registry
 
 
 def test_decision_log_records_pr5_heading_once() -> None:
     decisions = read(DECISIONS)
     assert decisions.count(f"## {PR5_ID}") == 1
     assert "planning-only status recorded for PR-5" in decisions
-    assert "PR-5A must be reference-only and non-calculating" in decisions
+    assert "PR-5B must be planning-only and non-implementing" in decisions
+    assert "exact proposed stage, decision, family, policy, quantity-kind, atomicity, and dependency vocabularies" in decisions
+    assert "required before PR-5A" in decisions
+    assert "before executable calculation" in decisions
+    assert "before settlement or commitment" in decisions
     assert "validation_ready is not validation_passed" in decisions
     assert "no resource math" in decisions
     assert "no canon promotion" in decisions

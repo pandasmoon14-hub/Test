@@ -15,7 +15,7 @@ Source ledger reviewed for this plan:
 - Kernel skeletons: `schema_registry`, `record_identity`, `command_envelope`, `transaction_preview`, `state_delta`, `event_ledger`, `validation_pipeline`, `hidden_information`, `context_projection`, `persistence_boundary`, `replay_audit`, `runtime_trace`, `rng_interface`, and `table_oracle`.
 - Relevant A/B doctrine and C00-C14 schema families, doctrine registry `docs/doctrine/astra_doctrine_registry_v0_1.yaml`, and current decision log `docs/decisions/current_decisions_log.md`.
 
-PR-4F authorizes PR-5 planning. It does not authorize PR-5A implementation until this plan is reviewed.
+PR-4F authorizes PR-5 planning. It does not authorize PR-5B hardening until this plan is reviewed.
 
 Lineage references retained for implementation sequencing: **RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001**, **RUNTIME-DOMAIN-PR-3B-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-REVIEW-001**, **RUNTIME-DOMAIN-PR-3A-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-IMPLEMENTATION-001**, **RUNTIME-DOMAIN-PR-3-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SERVICE-PLAN-001**, **RUNTIME-DOMAIN-PR-2B**, **RUNTIME-DOMAIN-PR-2A**, **RUNTIME-DOMAIN-PR-1B**, **RUNTIME-DOMAIN-PR-1A**, and **RUNTIME-DOMAIN-PR-0** remain upstream context for the state, transaction, event, command, action-legality, and validation-integration boundaries.
 
@@ -24,7 +24,7 @@ Lineage references retained for implementation sequencing: **RUNTIME-DOMAIN-PR-4
 
 Astra Ascension is backend-first: **the LLM is not the game engine**. The backend owns truth, state, calculations, commitment, persistence, replay, audit, validation readiness, hidden-information enforcement, and runtime authority. LLM output may propose narrative text or structured requests only after backend-controlled boundaries permit it; generated content cannot calculate its own costs, cannot validate itself, cannot mutate state, cannot settle consequences, and cannot promote source-local donor content into canon.
 
-The future RT-002 service must be deterministic, auditable, backend-owned, and non-authorial. It may expose reference-only planning shapes in PR-5A, but it must not make live-play decisions, execute donor code, or infer unavailable state from prose.
+The future RT-002 service must be deterministic, auditable, backend-owned, and non-authorial. It may expose reference-only planning shapes only in a later PR-5A after PR-5B hardening, but it must not make live-play decisions, execute donor code, or infer unavailable state from prose.
 
 ## 3. RT-002 ownership and explicit non-ownership
 
@@ -134,7 +134,7 @@ Conversion policies must be explicit: no conversion, exact conversion, table-dri
 
 Future expression architecture must be data-only. It must use declarative expression trees or reference-only expression descriptors with whitelisted operators, typed operands, source spans, validation status, and audit lineage. There must be **no `eval`**, no `exec`, no import of donor code, no executable donor script, no runtime plugin execution from sourcebooks, and no model-authored expression authority.
 
-Expression parsing/evaluation is not authorized by PR-5 or PR-5A. Future expression work must have a separate authorization and validation plan.
+Expression parsing/evaluation is not authorized by PR-5, PR-5B, or PR-5A. Future expression work must have a separate authorization and validation plan.
 
 ## 16. RNG/table-oracle handoff to RT-009
 
@@ -162,9 +162,9 @@ A future settlement proposal may include references suitable for state-delta con
 
 ## 20. Future reference-only architecture for `src/astra_runtime/domain/resource_consequence_math.py`
 
-A later PR-5A may create `src/astra_runtime/domain/resource_consequence_math.py` as a reference-only, immutable, non-calculating skeleton. This PR does **not** create that file.
+A later PR-5A may create `src/astra_runtime/domain/resource_consequence_math.py` as a reference-only, immutable, non-calculating skeleton, but only after PR-5B planning hardening is accepted. This PR does **not** create that file, and PR-5B must not create that file either.
 
-Future PR-5A boundaries: no formulas, no final values, no resource pools, no currencies, no affordability execution, no reservation, no settlement, no consequence application, no expression parsing/evaluation, no RNG/table execution, no state mutation, no event append, no persistence, no replay, no combat, no abilities, no inventory, no mission, no social, no model/live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
+Future PR-5A boundaries after PR-5B review: no formulas, no final values, no resource pools, no currencies, no affordability execution, no reservation, no settlement, no consequence application, no expression parsing/evaluation, no RNG/table execution, no state mutation, no event append, no persistence, no replay, no combat, no abilities, no inventory, no mission, no social, no model/live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
 
 ## 21. Proposed immutable future shapes
 
@@ -181,7 +181,242 @@ Reference-only future shapes may include:
 
 These shapes must be immutable and serializable. They must not perform calculation in constructors, validators, import-time code, or serialization methods.
 
-## 22. Resource-math invariant requirements
+## 22. Exact proposed planning vocabularies
+
+The following vocabularies are proposed for PR-5B hardening review only. They are not final enums, not runtime constants, and not executable policy.
+
+### Stage vocabulary
+
+| proposed stage | meaning | non-authority boundary |
+|---|---|---|
+| `resource_math_requested` | backend received a non-executing request envelope | does not validate or calculate |
+| `source_declaration_captured` | donor/local declaration is recorded with source lineage | does not normalize or canonize |
+| `subject_refs_bound` | command, actor, item, asset, mission, or state subject refs are shape-bound | does not dereference existence |
+| `resource_refs_declared` | resource references and aliases are declared | does not select final pools |
+| `quantity_specs_declared` | quantities, units, dimensions, and literals are declared | does not choose representation globally |
+| `terms_declared` | cost and consequence terms are captured | does not test affordability |
+| `bundle_structure_declared` | alternatives, groups, and atomicity requests are captured | does not reserve or settle |
+| `policy_refs_declared` | timing/outcome/rounding/conversion policies are named | does not execute policy |
+| `dependency_refs_bound` | validation, trace, provenance, RNG/table, and owner dependencies are linked | does not call dependencies |
+| `calculation_ready_for_review` | planning surface has enough data for future calculation review | not calculation passed |
+| `blocked_pending_validation` | validation integration has not cleared a future executable path | not failure settlement |
+| `blocked_pending_owner_handoff` | RT owner boundary must decide domain meaning | not denial by RT-002 |
+| `quarantined_for_review` | donor/source pressure cannot be safely mapped | no runtime use |
+| `escalated_to_doctrine` | policy gap requires doctrine decision | no canon promotion |
+
+### Decision vocabulary
+
+| proposed decision | compatible high-level stages | meaning |
+|---|---|---|
+| `accepted_for_planning` | declaration and dependency stages | shape can continue through planning |
+| `normalized_for_planning` | declaration stages | source-local vocabulary was normalized with lineage |
+| `source_local_retained` | declaration or owner-handoff stages | retained without canon promotion |
+| `requires_validation_review` | dependency or calculation-ready stages | RT-011 readiness needed |
+| `requires_owner_handoff` | owner-handoff stages | RT-001/003/004/005/006/007/008/009/010/012 decision needed |
+| `blocked_missing_dependency` | dependency stages | required reference or owner link absent |
+| `blocked_incompatible_policy` | policy or bundle stages | proposed policies conflict |
+| `blocked_hidden_information` | visibility-sensitive stages | RT-005 visibility posture unresolved |
+| `quarantined_for_review` | quarantine stage | unsafe or unsupported donor pressure |
+| `escalated_to_doctrine` | escalation stage | doctrine decision required |
+
+### Family vocabulary
+
+Resource families: `pooled_expendable`, `scene_counter`, `charge`, `currency_like`, `material`, `asset_integrity`, `vehicle_integrity`, `time_window`, `opportunity`, `social_capital`, `faction_standing`, `clue_information`, `risk_heat`, `strain_corruption`, `injury_recovery`, `cooldown`, `debt_obligation`, `source_local_resource`.
+
+Cost families: `activation`, `upkeep`, `maintenance`, `opportunity`, `prerequisite_lock`, `reservation_hold`, `partial_payment`, `substitution`, `overcommitment`, `debt_creation`, `success_at_cost`, `failure_at_cost`, `cancellation`, `interruption`, `refund`, `reversal`, `compensation`, `repair`, `recovery`, `crafting`, `salvage`, `requisition`, `validation_blocked`.
+
+Consequence families: `gain`, `loss`, `transfer`, `lock`, `unlock`, `exposure`, `exhaustion`, `degradation`, `escalation`, `cooldown`, `debt`, `obligation`, `harm_pressure`, `recovery_pressure`, `visibility_change`, `mission_route`, `clue_route`, `social_faction_change`, `inventory_asset_change`, `provenance_recurrence`, `quarantine_escalation`.
+
+### Policy vocabulary
+
+Timing policies: `pay_before_resolution`, `reserve_before_resolution`, `pay_on_attempt`, `pay_on_success`, `pay_on_failure`, `pay_on_commitment`, `pay_over_time`, `upkeep_interval`, `refund_on_cancel`, `no_refund_on_interrupt`, `compensate_after_rollback`, `blocked_pending_validation`.
+
+Outcome policies: `success`, `failure`, `partial_success`, `cancelled`, `interrupted`, `invalid`, `validation_blocked`, `owner_blocked`, `quarantined`, `escalated`, `rollback_required`.
+
+Numeric policies: `integer_exact`, `decimal_exact`, `fraction_exact`, `fixed_point_scaled`, `source_literal_only`, `blocked_pending_numeric_choice`.
+
+Conversion policies: `no_conversion`, `exact_conversion`, `table_driven_conversion`, `doctrine_approved_conversion`, `source_local_conversion`, `escalation_required`.
+
+Rounding policies: `no_rounding`, `round_down`, `round_up`, `round_nearest`, `round_toward_zero`, `round_away_from_zero`, `tie_to_even`, `tie_away_from_zero`, `blocked_pending_rounding_choice`.
+
+Visibility policies: `public`, `actor_visible`, `narrator_only`, `hidden`, `redacted`, `delayed_reveal`, `derived_only`.
+
+### Quantity-kind vocabulary
+
+Quantity kinds: `count`, `pool_amount`, `delta`, `ratio`, `percentage`, `duration`, `interval`, `threshold`, `capacity`, `rank`, `tier`, `charge_count`, `currency_amount`, `material_amount`, `durability_amount`, `debt_amount`, `source_literal_quantity`, `unknown_pending_review`.
+
+### Atomicity vocabulary
+
+Atomicity policies: `all_or_nothing_requested`, `best_effort_requested`, `ordered_partial_allowed`, `unordered_partial_allowed`, `alternative_exactly_one`, `alternative_at_least_one`, `alternative_at_most_one`, `alternative_any`, `invalid_mixed_atomicity`, `blocked_pending_transaction_policy`.
+
+### Dependency vocabulary
+
+Dependency kinds: `command_ref`, `action_legality_ref`, `state_snapshot_ref`, `state_record_ref`, `state_delta_ref`, `transaction_ref`, `transaction_preview_ref`, `event_commitment_ref`, `event_record_ref`, `validation_request_ref`, `validation_result_ref`, `runtime_trace_ref`, `hidden_information_ref`, `context_projection_ref`, `provenance_ref`, `rng_request_ref`, `table_oracle_ref`, `owner_handoff_ref`, `registry_ref`, `decision_log_ref`.
+
+## 23. Dataclass field contracts for future reference-only shapes
+
+These are proposed field contracts for a later PR-5A skeleton, after PR-5B hardening. They must be immutable, keyword-only if implemented, copy-safe, serialization-safe, and non-calculating.
+
+| future shape | required field contracts | forbidden behavior |
+|---|---|---|
+| `ResourceReference` | `resource_ref_id`, `source_label`, `alias_labels`, `family`, `owner_domain`, `visibility_policy`, `provenance_refs`, `validation_posture`, `metadata` | no pool creation, no canonical-name selection, no dereference |
+| `QuantitySpecification` | `quantity_id`, `quantity_kind`, `representation_policy`, `source_literal`, `magnitude_text`, `unit`, `dimension`, `conversion_policy`, `rounding_policy`, `audit_lineage`, `metadata` | no Decimal/Fraction conversion at construction unless separately authorized, no rounding |
+| `CostTerm` | `term_id`, `resource_ref`, `quantity`, `cost_family`, `timing_policy`, `outcome_policy`, `visibility_policy`, `subject_refs`, `dependency_refs`, `provenance_refs`, `flags` | no affordability check, no reservation |
+| `CostBundle` | `bundle_id`, `terms`, `alternative_groups`, `atomicity_policy`, `partial_settlement_policy`, `ordering_policy`, `subject_refs`, `dependency_refs`, `provenance_refs` | no alternative selection, no settlement |
+| `ConsequenceTerm` | `consequence_id`, `consequence_family`, `quantity`, `owner_domain`, `subject_refs`, `visibility_policy`, `dependency_refs`, `provenance_refs`, `validation_posture` | no consequence application |
+| `ResourceMathRequest` | `request_id`, `command_ref`, `state_refs`, `transaction_refs`, `subject_refs`, `declared_terms`, `declared_bundles`, `declared_consequences`, `dependency_refs`, `trace_ref`, `metadata` | no calculation, no state read |
+| `ResourceMathResult` | `result_id`, `request_ref`, `stage`, `decision`, `diagnostics`, `normalized_terms`, `blocked_reasons`, `dependency_refs`, `trace_ref`, `validation_refs`, `metadata` | no mutation, no commitment |
+| `SettlementProposal` | `proposal_id`, `result_ref`, `proposed_delta_refs`, `commitment_prerequisites`, `rollback_accounting_refs`, `visibility_policy`, `dependency_refs`, `trace_ref`, `metadata` | no delta application, no event append, no persistence |
+
+Every future `metadata` field must be mapping-shaped, copy-safe, recursively immutable or serialized defensively, and unable to carry callable objects or executable donor code.
+
+## 24. Factory and validator invariants
+
+Future factories must only assemble shapes from explicit inputs, copy caller-provided collections, preserve source literals, require stable ids, and set all authority flags to false. Future validators must check shape consistency only. They must not call RNG, tables, state stores, persistence, model services, or owner-domain mechanics.
+
+Factory/validator invariants proposed for PR-5B review:
+
+- factory and validator parity for every future shape;
+- required ids are non-empty strings and locally unique within their envelope;
+- tuple/frozenset fields are immutable after construction;
+- subject refs must be present before terms can be marked `calculation_ready_for_review`;
+- dependency refs must declare dependency kind and target id;
+- provenance refs must be present for normalized donor-derived terms;
+- hidden or redacted visibility policies must block public quantity serialization;
+- quantity unit and dimension must be present unless `quantity_kind` is `source_literal_quantity` or `unknown_pending_review`;
+- atomicity policy must be compatible with bundle alternative structure;
+- no constructor, validator, serializer, or helper may calculate affordability or settlement.
+
+## 25. Decision/stage compatibility
+
+Decision/stage compatibility must be table-driven and non-executing. Proposed compatibility:
+
+| stage | allowed decisions |
+|---|---|
+| `resource_math_requested` | `accepted_for_planning`, `blocked_missing_dependency` |
+| `source_declaration_captured` | `accepted_for_planning`, `normalized_for_planning`, `source_local_retained`, `quarantined_for_review` |
+| `subject_refs_bound` | `accepted_for_planning`, `blocked_missing_dependency`, `requires_owner_handoff` |
+| `resource_refs_declared` | `accepted_for_planning`, `source_local_retained`, `requires_validation_review`, `escalated_to_doctrine` |
+| `quantity_specs_declared` | `accepted_for_planning`, `blocked_incompatible_policy`, `requires_validation_review` |
+| `terms_declared` | `accepted_for_planning`, `requires_owner_handoff`, `blocked_hidden_information` |
+| `bundle_structure_declared` | `accepted_for_planning`, `blocked_incompatible_policy` |
+| `policy_refs_declared` | `accepted_for_planning`, `blocked_incompatible_policy`, `escalated_to_doctrine` |
+| `dependency_refs_bound` | `accepted_for_planning`, `blocked_missing_dependency`, `requires_validation_review` |
+| `calculation_ready_for_review` | `requires_validation_review`, `requires_owner_handoff`, `accepted_for_planning` |
+| `blocked_pending_validation` | `requires_validation_review` |
+| `blocked_pending_owner_handoff` | `requires_owner_handoff` |
+| `quarantined_for_review` | `quarantined_for_review` |
+| `escalated_to_doctrine` | `escalated_to_doctrine` |
+
+PR-5B must harden this table before PR-5A creates reference-only constants.
+
+## 26. Linkage requirements
+
+Bundle linkage: every `CostBundle` must link term ids, alternative-group ids, atomicity policy, source declaration refs, subject refs, validation refs, dependency refs, and trace refs. A bundle cannot claim atomic readiness if any required term linkage is absent.
+
+Term linkage: every `CostTerm` and `ConsequenceTerm` must link its subject refs, quantity spec, family, timing/outcome/visibility policies, provenance refs, validation posture, and dependency refs. Terms must not embed live state.
+
+Subject linkage: subject refs must distinguish actor, command, item, asset, vehicle, mission, faction, location, state record, and generated-content subjects without dereferencing them.
+
+Unit linkage: every unit must link to a dimension and conversion policy. Aliases must link to source labels and audit lineage. Unit conversion cannot occur without a conversion-policy dependency.
+
+Provenance linkage: every normalized mapping must link source ledger entries, source-local labels, normalization notes, and donor outcome. Source-local retention must remain non-canonical.
+
+Trace linkage: every request, result, and proposal must carry or require a `runtime_trace_ref` for audit lineage without writing a trace.
+
+Validation linkage: every calculation-ready or settlement-proposal-shaped object must link validation request/result refs and must preserve that `validation_ready` is not `validation_passed`.
+
+Dependency linkage: every dependency ref must include dependency kind, target id, owner domain, visibility policy, and whether the dependency is required before PR-5A, before executable calculation, or before settlement/commitment.
+
+## 27. False-only authority flags
+
+Future request/result/proposal shapes must expose false-only authority flags until separate implementation PRs authorize behavior:
+
+```yaml
+mutation_authorized: false
+state_delta_application_authorized: false
+commitment_authorized: false
+event_append_authorized: false
+persistence_authorized: false
+replay_authorized: false
+rng_execution_authorized: false
+table_oracle_execution_authorized: false
+model_authority_authorized: false
+live_play_authorized: false
+ui_authorized: false
+conversion_authorized: false
+canon_promotion_authorized: false
+```
+
+PR-5B must harden the exact flag names and ensure any later PR-5A skeleton can only represent false values.
+
+## 28. Detailed resource/cost/consequence family matrices
+
+### Resource family matrix
+
+| family | examples of pressure | RT owner handoff | PR-5 status |
+|---|---|---|---|
+| pooled/counter/charge resources | points, uses, charges, counters | RT-002 with RT-011 | planning only |
+| currency/material resources | money-like values, components, salvage | RT-010, RT-006, RT-012 | no final economy |
+| asset integrity resources | item, vehicle, platform condition | RT-010, RT-003 | no repair math |
+| time/opportunity resources | downtime, actions, windows | RT-001, RT-006 | no scheduler |
+| social/faction/information resources | favor, trust, clue access | RT-005, RT-006, RT-007 | no reveal or reputation mutation |
+| risk/strain/injury/cooldown resources | heat, corruption, wounds, cooldowns | RT-003, RT-004, RT-009 | no combat or ability execution |
+| debt/source-local resources | obligations, local donor meters | RT-008, RT-011, RT-012 | retain/quarantine/escalate |
+
+### Cost family matrix
+
+| family | planning requirement | execution blocker |
+|---|---|---|
+| activation/upkeep/maintenance | timing and owner refs required | command lifecycle authorization |
+| opportunity/prerequisite/reservation | explicit declaration and policy refs | action legality and transaction authorization |
+| partial/substitution/overcommitment/debt | explicit policy, visibility, and audit refs | doctrine and validation hardening |
+| success-at-cost/failure-at-cost | outcome-policy linkage | owner-domain outcome decision |
+| cancellation/interruption/refund/reversal/compensation | rollback-accounting separation | transaction/event/persistence authority |
+| repair/recovery/crafting/salvage/requisition | owner handoff and source lineage | RT-003/004/010/006 execution authority |
+| validation-blocked | reason and dependency refs | RT-011 readiness and validation execution |
+
+### Consequence family matrix
+
+| family | planning requirement | owner boundary |
+|---|---|---|
+| gain/loss/transfer/lock/unlock | subject and quantity linkage | state/event owners |
+| exposure/exhaustion/degradation/escalation | severity and visibility posture | RT-003/005/011 |
+| cooldown/debt/obligation | timing and policy linkage | RT-001/004/007 |
+| harm/recovery pressure | severity, duration, clearing refs | RT-003/004 |
+| mission/clue/social/faction route | visibility and route refs | RT-005/006/007 |
+| inventory/asset route | item/asset subject refs | RT-010 |
+| provenance/quarantine/escalation | donor outcome and review refs | RT-008/011/012 |
+
+## 29. Real decision ledger
+
+### Required before PR-5A
+
+- PR-5B must harden exact stage, decision, family, policy, quantity-kind, atomicity, and dependency vocabularies.
+- PR-5B must harden dataclass field contracts for all proposed future shapes.
+- PR-5B must harden factory/validator invariants and decision/stage compatibility.
+- PR-5B must harden bundle, term, subject, unit, provenance, trace, validation, and dependency linkage.
+- PR-5B must harden false-only mutation, commitment, persistence, RNG, table-oracle, model, live-play, UI, conversion, and canon-authority flags.
+- PR-5B must keep `src/astra_runtime/domain/resource_consequence_math.py` absent.
+
+### Required before executable calculation
+
+- Numeric representation choice per quantity family must be approved.
+- Unit, dimension, alias, conversion, and rounding policies must be validated.
+- Expression descriptors must be separately authorized and remain data-only.
+- RT-011 validation execution must exist for resource/cost/consequence readiness.
+- RT-009 RNG/table outputs must be authoritative before any random cost or consequence is consumed.
+- Hidden-information public/private serialization must be enforced by RT-005.
+
+### Required before settlement or commitment
+
+- Affordability execution must be separately authorized and tested.
+- Reservation and settlement proposal generation must be separately authorized.
+- Transaction lifecycle and event commitment must accept or reject proposals.
+- State-delta application, event append, persistence, replay, rollback, refund, reversal, and compensation accounting must be separately authorized.
+- Owner-domain mechanics for combat, abilities, inventory, mission, social, generated content, and canon boundaries must be explicit.
+
+## 30. Resource-math invariant requirements
 
 Future invariant requirements:
 
@@ -199,13 +434,13 @@ Future invariant requirements:
 - every normalized value retains source/audit lineage;
 - every quarantine/escalation reason is explicit.
 
-## 23. Corpus-scale donor pressure review
+## 31. Corpus-scale donor pressure review
 
 For roughly 200-400 mixed donor sources, resource/consequence pressure is expected to include inconsistent names, incompatible units, prose formulas, tables, random outcomes, hidden costs, optional substitutions, success-at-cost patterns, failure-at-cost patterns, partial payments, refunds, crafting/requisition economies, asset degradation, repair/recovery loops, and social/mission consequences.
 
 The plan requires ingestion pressure handling that can classify without canonicalizing prematurely. It must tolerate repeated local vocabularies, conflicting donor economies, duplicate labels with different meanings, identical mechanics with different names, and incomplete source evidence. Backend review must prevent corpus-scale donor pressure from becoming a silent ruleset adoption.
 
-## 24. Lawful donor outcomes
+## 32. Lawful donor outcomes
 
 Every donor resource/cost/consequence pressure must land in one lawful outcome:
 
@@ -217,41 +452,41 @@ Every donor resource/cost/consequence pressure must land in one lawful outcome:
 
 No donor outcome may bypass validation readiness, hidden-information controls, owner handoffs, registry tracking, decision logging, or PR authorization.
 
-## 25. Risk review
+## 33. Risk review
 
 Risks: accidental formula adoption, hidden final resource-pool selection, donor economy leakage, implicit currencies, binary-float nondeterminism, unsafe expression evaluation, hidden-information leakage, treating affordability as settlement, treating settlement proposal as commitment, treating rollback as refund, RNG leakage into RT-002, owner-domain takeover, validation-ready confusion, and broad conversion/canon creep.
 
-Mitigations: planning-only scope, explicit non-ownership, no code file, future immutable data-only shapes, no eval/executable donor code, RT-009 handoff, RT-005 visibility handoff, RT-011 validation handoff, transaction/event/persistence handoffs, registry/decision tracking, focused tests, and reviewer gate before PR-5A.
+Mitigations: planning-only scope, explicit non-ownership, no code file, future immutable data-only shapes, no eval/executable donor code, RT-009 handoff, RT-005 visibility handoff, RT-011 validation handoff, transaction/event/persistence handoffs, registry/decision tracking, focused tests, and reviewer gate before PR-5B and a separate reviewer gate before PR-5A.
 
-## 26. Hardening and decision ledger
+## 34. Hardening and decision ledger
 
 Future hardening ledger:
 
-- PR-5A: reference-only non-calculating skeleton, if this plan is accepted.
-- PR-5B: review of PR-5A immutability, non-calculation, and boundary guardrails.
+- PR-5B: planning-only hardening review of vocabularies, field contracts, invariants, linkage, false-only flags, family matrices, and decision ledgers, if this plan is accepted.
+- PR-5A: later reference-only non-calculating skeleton only after PR-5B closes required planning blockers.
 - Later separately authorized work: numeric representation selection, expression descriptor design, validation execution, affordability execution, reservation/settlement proposal generation, and owner-specific integrations.
 
 Decision ledger for PR-5: PR-5 records planning readiness only. It does not settle formulas, resource names, pools, currencies, economies, conversion policy, expression semantics, donor inclusion, or canon promotion.
 
-## 27. Future test requirements
+## 35. Future test requirements
 
-Future tests must verify immutable shapes, no import-time calculation, no binary-float settlement authority, explicit unit/dimension behavior, no implicit conversion, explicit rounding metadata, no eval/exec/imported donor code, no RNG/table execution, validation-ready versus validation-passed separation, hidden-information-safe public serialization, strict state/transaction/event/persistence separation, registry uniqueness, decision-log uniqueness, authorized domain file set, and absence of unauthorized modules before PR-5A.
+Future tests must verify immutable shapes, no import-time calculation, no binary-float settlement authority, explicit unit/dimension behavior, no implicit conversion, explicit rounding metadata, no eval/exec/imported donor code, no RNG/table execution, validation-ready versus validation-passed separation, hidden-information-safe public serialization, strict state/transaction/event/persistence separation, registry uniqueness, decision-log uniqueness, authorized domain file set, and absence of unauthorized modules before PR-5A, with PR-5B adding additional planning-hardening tests only.
 
 PR-5 focused tests must verify this plan's required sections, IDs, gate, selected next step, registry/decision uniqueness, non-implementation boundaries, unchanged authorized domain-file set, and absence of `resource_consequence_math.py`.
 
-## 28. PR-5A authorization boundary
+## 36. PR-5B authorization boundary
 
-PR-5A is authorized only if reviewers accept this plan as sufficiently complete. The default next step, if accepted, is **RUNTIME-DOMAIN-PR-5A: Resource and Consequence Math Skeleton Implementation**.
+PR-5B is authorized only if reviewers accept this plan as sufficiently complete. The default next step, if accepted, is **RUNTIME-DOMAIN-PR-5B: Resource and Consequence Math Planning Hardening**.
 
-PR-5A must be reference-only and non-calculating. It may create immutable dataclasses/constants and guardrail tests only. It may not implement or finalize formulas or values; final resource names or pools; final currencies or economies; affordability execution; reservation or settlement; consequence application; expression parsing/evaluation; RNG/table execution; state mutation or delta application; event append or commitment; persistence or replay; combat, abilities, inventory, mission, or social mechanics; model/live-play/UI behavior; conversion, sourcebook inclusion, or canon promotion.
+PR-5B must be planning-only and non-implementing. It may harden this plan, registry tracking, decision logging, and focused tests. It may not create runtime/domain modules or immutable dataclasses/constants. It may not implement or finalize formulas or values; final resource names or pools; final currencies or economies; affordability execution; reservation or settlement; consequence application; expression parsing/evaluation; RNG/table execution; state mutation or delta application; event append or commitment; persistence or replay; combat, abilities, inventory, mission, or social mechanics; model/live-play/UI behavior; conversion, sourcebook inclusion, or canon promotion.
 
-## 29. Gate finding and next step
+## 37. Gate finding and next step
 
 ```yaml
-gate_finding: ready_for_runtime_domain_pr_5a_reference_only_skeleton
-next_step_authorized: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation
-selected_next_step: RUNTIME-DOMAIN-PR-5A: Resource and Consequence Math Skeleton Implementation
-pr_5a_must_be_reference_only_and_non_calculating: true
+gate_finding: ready_for_runtime_domain_pr_5b_planning_hardening
+next_step_authorized: RUNTIME-DOMAIN-PR-5B Resource and Consequence Math Planning Hardening
+selected_next_step: RUNTIME-DOMAIN-PR-5B: Resource and Consequence Math Planning Hardening
+pr_5b_must_be_planning_only_and_non_implementing: true
 runtime_code_authorized_by_this_pr: false
 domain_code_authorized_by_this_pr: false
 resource_consequence_math_file_created_by_this_pr: false
