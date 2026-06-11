@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.89
+  action: runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5G resource and consequence math residual planning hardening review gate tracking. Review-only; reviews PR-5F closure claims; finds PR-5F scope confirmed and PR-5E blockers partially closed, but requires PR-5H before PR-5A for remaining effective-contract, constant-surface, dependency-lifecycle, typed-scope, blocker-precedence, bundle-compatibility, proposal/request-validation, and validator-parity hardening; authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+- date: '2026-06-11'
   version: 0.1.88
   action: runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening
   actor: Astra Doctrine Council / synthesis assistant
@@ -577,6 +582,97 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5G-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-REVIEW-001
+  filename: runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  layer: 0_control
+  phase: runtime-domain
+  owner: RT-002
+  purpose: Track PR-5G review-only findings for PR-5F resource/consequence math residual planning hardening and select the single next step.
+  batch: runtime-domain
+  series: runtime-domain-pr-5g
+  content_type: residual_planning_hardening_review_gate
+  implementation_status: review_only
+  authority_level: tracking
+  authority_note: Review gate only; reviews PR-5F closure claims; requires PR-5H before PR-5A; no implementation authority.
+  follows:
+  - runtime-domain-pr-5f residual planning hardening
+  review_only: true
+  reviews_pr_5f: true
+  pr_5f_scope_confirmed: true
+  pr_5e_blockers_closed: partially
+  effective_contract_inventory_unambiguous: false
+  constant_surfaces_acceptable: partially
+  stage_decision_and_blocker_precedence_acceptable: partially
+  external_dependency_binding_complete: partially
+  optional_dependency_contract_acceptable: partially
+  result_request_aggregate_contract_acceptable: partially
+  typed_scope_contract_acceptable: partially
+  quantity_contract_acceptable: partially
+  term_value_mode_and_policy_route_contract_acceptable: true
+  bundle_contract_acceptable: partially
+  settlement_proposal_contract_acceptable: partially
+  internal_reference_integrity_acceptable: true
+  factory_validator_parity_acceptable: partially
+  serialization_boundary_acceptable: true
+  corpus_scale_pressure_acceptable: true
+  rt_002_owner_boundary_preserved: true
+  pr_5h_required_before_pr_5a: true
+  pr_5a_authorized: false
+  no_implementation_authority: true
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+  owns:
+  - Review-only gate findings for PR-5F closure claims, remaining PR-5H hardening needs, selected next step, and non-implementation boundary.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, persistence structures, resource schemas, calculations, affordability execution, settlement, state mutation, event commitment, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  dependencies:
+  - runtime-domain-pr-5f residual planning hardening
+  - RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001
+  - RT-002
+  blocked_by: []
+  unlocks:
+  - RUNTIME-DOMAIN-PR-5H resource and consequence math final residual planning hardening
+  downstream_consumers:
+  - RUNTIME-DOMAIN-PR-5H
+  donor_pressure_absorbed:
+  - Review pressure across resource, cost, consequence, dependency, typed-scope, bundle, proposal, serialization, and owner-boundary contracts.
+  hard_refusals:
+  - runtime/domain implementation
+  - arithmetic or formula evaluation
+  - affordability execution
+  - settlement or state mutation
+  - event commitment
+  - persistence or canon promotion
+  escalation_triggers:
+  - PR-5H fails to close aggregate-validation, effective-contract, dependency-lifecycle, typed-scope, bundle, and proposal/request hardening defects.
+  required_tests:
+  - tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - PR-5H final residual planning hardening before PR-5A implementation may be authorized
+  scale_gate_relevance: critical
+  notes: PR-5G is review-only; PR-5F scope is confirmed; PR-5E blockers are partially closed; PR-5H is required before PR-5A; no implementation authority.
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning_review_only
+  live_play_relevance: none
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5H resource and consequence math final residual planning hardening
+  next_step_status: planning_hardening_pending_review
 - file_id: RUNTIME-DOMAIN-PR-5F-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening.md
   proposed_path: docs/doctrine/reviews/
