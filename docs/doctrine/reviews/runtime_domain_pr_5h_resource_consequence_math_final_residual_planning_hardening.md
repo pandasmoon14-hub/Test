@@ -48,7 +48,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty external/upstream subject reference; exactly one required/satisfied subject_ref dependency in enclosing request; no dereference",
+        "invariant": "non-empty external/upstream subject reference; Exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "subject_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -96,7 +96,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5D",
@@ -218,7 +218,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request",
+        "invariant": "None or non-empty unit reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "unit_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -230,7 +230,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request",
+        "invariant": "None or non-empty dimension reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "dimension_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -242,7 +242,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -352,7 +352,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request",
+        "invariant": "None or non-empty unit reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "unit_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -364,7 +364,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request",
+        "invariant": "None or non-empty dimension reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "dimension_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -424,7 +424,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -692,7 +692,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -850,7 +850,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1020,7 +1020,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1058,7 +1058,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty command reference; when non-None matching command_ref dependency is required/satisfied",
+        "invariant": "None or non-empty command reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "command_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1070,7 +1070,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty action-legality reference; when non-None matching action_legality_ref dependency is required/satisfied",
+        "invariant": "None or non-empty action-legality reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "action_legality_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1094,7 +1094,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple of state projection refs; each supplied ref has required/satisfied state_projection_ref dependency",
+        "invariant": "tuple of state projection refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "state_projection_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1178,7 +1178,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required runtime trace reference; matching required/satisfied runtime_trace_ref dependency",
+        "invariant": "required runtime trace reference; Exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "runtime_trace_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1190,7 +1190,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple of provenance refs; each supplied ref has required/satisfied provenance_ref dependency",
+        "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1202,7 +1202,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple of owner handoff refs; each supplied ref has required/satisfied owner_handoff_ref dependency",
+        "invariant": "tuple of owner handoff refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "owner_handoff_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1214,7 +1214,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty validation request ref; when non-None matching validation_request_ref dependency and validation co-presence rules apply",
+        "invariant": "None or non-empty validation request ref; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
         "external_dependency_type": "validation_request_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1480,7 +1480,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty; binds the exact supplied ResourceMathRequest through one required/satisfied resource_math_request_ref dependency",
+        "invariant": "non-empty; binds the exact supplied ResourceMathRequest; Exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
         "external_dependency_type": "resource_math_request_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1648,7 +1648,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "same-request internal reference",
-        "invariant": "tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request",
+        "invariant": "tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request; satisfied=True is required for accepted/normalized results; required=True satisfied=False is lifecycle State D and forces blocked_missing_dependency when reached; State C missing/malformed/optional/duplicate records are invalid",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1660,7 +1660,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "owned dependency tuple",
-        "invariant": "owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding",
+        "invariant": "owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding; accepted/normalized results require all reached required dependencies satisfied; required unsatisfied reached dependencies are State D and lawful only for blocked_missing_dependency results",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1672,7 +1672,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required runtime trace reference; matching required/satisfied runtime_trace_ref dependency in result.dependencies",
+        "invariant": "required runtime trace reference; Exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
         "external_dependency_type": "runtime_trace_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1684,7 +1684,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty validation request ref; validation co-presence rules apply against result.dependencies",
+        "invariant": "None or non-empty validation request ref; validation co-presence rules apply; When supplied, exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
         "external_dependency_type": "validation_request_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1696,7 +1696,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "None or non-empty validation result ref; validation co-presence rules and proposal equality apply",
+        "invariant": "None or non-empty validation result ref; validation co-presence rules and proposal equality apply; When supplied, exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
         "external_dependency_type": "validation_result_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1974,7 +1974,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty; binds the exact supplied ResourceMathResult through one required/satisfied resource_math_result_ref dependency",
+        "invariant": "non-empty; binds the exact supplied ResourceMathResult; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
         "external_dependency_type": "resource_math_result_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1986,7 +1986,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required non-empty unique tuple; each proposed state-delta ref has required/satisfied state_delta_ref dependency",
+        "invariant": "required non-empty unique tuple of proposed state-delta refs; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
         "external_dependency_type": "state_delta_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1998,7 +1998,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty validation result ref equal to supplied result.validation_result_ref_id; matching required/satisfied validation_result_ref dependency",
+        "invariant": "non-empty validation result ref equal to supplied result.validation_result_ref_id; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
         "external_dependency_type": "validation_result_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -2022,7 +2022,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "owned dependency tuple",
-        "invariant": "owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references",
+        "invariant": "owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references; every required proposal dependency must be satisfied; incomplete dependencies are forbidden",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -2034,7 +2034,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required runtime trace reference; matching required/satisfied runtime_trace_ref dependency",
+        "invariant": "required runtime trace reference; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
         "external_dependency_type": "runtime_trace_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -2058,7 +2058,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple of rollback accounting refs; each supplied ref has rollback_accounting_ref dependency",
+        "invariant": "tuple of rollback accounting refs when supplied; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
         "external_dependency_type": "rollback_accounting_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -3368,7 +3368,86 @@ The following YAML block is normative for PR-5H tests and future review.
     "conversion_authorized_by_this_pr",
     "canon_promotion_authorized_by_this_pr"
   ],
-  "result_self_binding_rule": "A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; only a downstream SettlementProposal binds result.result_id through resource_math_result_ref."
+  "result_self_binding_rule": "A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; only a downstream SettlementProposal binds result.result_id through resource_math_result_ref.",
+  "binding_state_matrix": [
+    {
+      "aggregate": "request",
+      "field_family": "request field binding",
+      "matching_record_required": "exactly one",
+      "required_flag": "required=True",
+      "satisfied_true_posture": "State A complete binding; request structurally valid and may support non-blocking result if all other rules pass",
+      "satisfied_false_posture": "State B incomplete binding; request structurally valid but incomplete; any result reaching it must be blocked_missing_dependency",
+      "missing_malformed_posture": "State C aggregate-invalid before result construction",
+      "permitted_result_decision": "blocked_missing_dependency when reached if satisfied=False; otherwise ordinary matrix",
+      "proposal_eligibility": "not eligible while reached dependency is unsatisfied"
+    },
+    {
+      "aggregate": "request",
+      "field_family": "request named dependency",
+      "matching_record_required": "record must exist when named by dependency_ids or scope",
+      "required_flag": "required=True for required named dependency",
+      "satisfied_true_posture": "State A complete named dependency",
+      "satisfied_false_posture": "State D required-unsatisfied named dependency when named by a record or scope; structurally present but blocks result when reached",
+      "missing_malformed_posture": "State C aggregate-invalid when missing, wrong type/reference, duplicate, or required=False for required named dependency",
+      "permitted_result_decision": "blocked_missing_dependency when reached if satisfied=False",
+      "proposal_eligibility": "not eligible while reached dependency is unsatisfied"
+    },
+    {
+      "aggregate": "result",
+      "field_family": "result request binding",
+      "matching_record_required": "exactly one resource_math_request_ref in result.dependencies",
+      "required_flag": "required=True",
+      "satisfied_true_posture": "complete result-to-request binding; accepted/normalized may proceed if all other rules pass",
+      "satisfied_false_posture": "State D; lawful only for blocked_missing_dependency result that scopes or reaches this dependency",
+      "missing_malformed_posture": "State C result aggregate invalid",
+      "permitted_result_decision": "accepted/normalized require satisfied=True; satisfied=False requires blocked_missing_dependency",
+      "proposal_eligibility": "not eligible unless satisfied=True"
+    },
+    {
+      "aggregate": "result",
+      "field_family": "result validation/trace dependency",
+      "matching_record_required": "exactly one matching record when field supplied or required",
+      "required_flag": "required=True",
+      "satisfied_true_posture": "complete result-owned validation/trace dependency",
+      "satisfied_false_posture": "State D; lawful only for blocked_missing_dependency result that scopes or reaches this dependency",
+      "missing_malformed_posture": "State C result aggregate invalid",
+      "permitted_result_decision": "accepted/normalized require satisfied=True; satisfied=False requires blocked_missing_dependency",
+      "proposal_eligibility": "not eligible unless satisfied=True"
+    },
+    {
+      "aggregate": "result",
+      "field_family": "scoped named dependency",
+      "matching_record_required": "existing request/result dependency named by typed scope or scoped record",
+      "required_flag": "required=True for required scoped dependency",
+      "satisfied_true_posture": "complete scoped dependency",
+      "satisfied_false_posture": "State D; forces blocked_missing_dependency when reached",
+      "missing_malformed_posture": "State C aggregate invalid because scoped references must resolve",
+      "permitted_result_decision": "blocked_missing_dependency when satisfied=False; accepted/normalized require satisfied=True",
+      "proposal_eligibility": "not eligible unless satisfied=True"
+    },
+    {
+      "aggregate": "request/result",
+      "field_family": "advisory optional dependency",
+      "matching_record_required": "optional advisory record may exist only when unbound, unnamed, and unscoped",
+      "required_flag": "required=False",
+      "satisfied_true_posture": "advisory record is not a required binding and satisfies no required field",
+      "satisfied_false_posture": "State E advisory optional unsatisfied; may coexist with non-blocking result only when unbound, unnamed, and unscoped; satisfies nothing",
+      "missing_malformed_posture": "if used as a binding or named/scoped dependency it becomes State C invalid",
+      "permitted_result_decision": "no result decision effect when truly advisory; invalid if used as required binding",
+      "proposal_eligibility": "does not support proposal eligibility and cannot satisfy required proposal dependency"
+    },
+    {
+      "aggregate": "proposal",
+      "field_family": "proposal dependency",
+      "matching_record_required": "exactly one matching record for each proposal binding/reference",
+      "required_flag": "required=True",
+      "satisfied_true_posture": "complete proposal dependency; proposal may remain eligible if all other rules pass",
+      "satisfied_false_posture": "incomplete dependencies are forbidden in SettlementProposal",
+      "missing_malformed_posture": "proposal aggregate invalid",
+      "permitted_result_decision": "proposal only follows eligible accepted/normalized result; no blocked result may create proposal",
+      "proposal_eligibility": "eligible only when every required proposal dependency is satisfied"
+    }
+  ]
 }
 ```
 
@@ -3379,11 +3458,11 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 |---|---|---|---|---|---|---|---|---|---|
 | `subject_binding_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.subject_refs` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
 | `subject_type` | `str` | `required` | `RESOURCE_MATH_SUBJECT_TYPES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `subject_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty external/upstream subject reference; exactly one required/satisfied subject_ref dependency in enclosing request; no dereference` | `subject_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `PR-5F binding-contract refinement` |
+| `subject_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty external/upstream subject reference; Exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `subject_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `PR-5F binding-contract refinement` |
 | `subject_role` | `str` | `required` | `RESOURCE_MATH_SUBJECT_ROLES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
 | `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5D` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5D` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5D` | `none` |
 
 ### ResourceReference
@@ -3397,9 +3476,9 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `source_aliases` | `tuple[str, ...]` | `()` | `none` | `local source-label tuple` | `tuple[str, ...]; aliases are source labels, not reference IDs; require non-empty strings if supplied; duplicates rejected only if an inherited alias contract explicitly requires it; no ID resolution` | `none` | `tuple copied internally; copied list in internal to_dict; no public projection authority` | `PR-5B inherited` | `none` |
 | `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
-| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty unit reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
+| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty dimension reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `source_local` | `bool` | `False` | `none` | `local field` | `boolean value; bool-specific validation, not a string/non-empty check` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
@@ -3412,13 +3491,13 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `source_literal` | `str \| None` | `None` | `none` | `local field` | `None or non-empty string; no implicit normalization` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `precision` | `int \| None` | `None` | `none` | `local field` | `positive non-bool int only for decimal_exact; declaration metadata only` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
 | `scale` | `int \| None` | `None` | `none` | `local field` | `non-negative non-bool int only for fixed_point_scaled` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
-| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
+| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty unit reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
+| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty dimension reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
 | `conversion_policy` | `str` | `"no_conversion"` | `CONVERSION_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `rounding_policy` | `str` | `"no_rounding"` | `ROUNDING_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `negative_value_policy` | `str` | `"negative_values_forbidden"` | `QUANTITY_NEGATIVE_VALUE_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### ResourceMathDependency
@@ -3448,7 +3527,7 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request dependency_id references; each resolves in request.dependencies` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### CostBundle
@@ -3465,7 +3544,7 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request dependency_id references; each resolves in request.dependencies` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### ConsequenceTerm
@@ -3483,27 +3562,27 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request dependency_id references; each resolves in request.dependencies` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### ResourceMathRequest
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
 | `request_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; identifies this ResourceMathRequest` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `command_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty command reference; when non-None matching command_ref dependency is required/satisfied` | `command_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `action_legality_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty action-legality reference; when non-None matching action_legality_ref dependency is required/satisfied` | `action_legality_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `command_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty command reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `command_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `action_legality_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty action-legality reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `action_legality_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `subject_refs` | `tuple[ResourceMathSubjectReference, ...]` | `required` | `none` | `same-aggregate member collection` | `non-empty tuple; exactly one primary_subject; subject_binding_id values unique in request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5D` | `none` |
-| `state_projection_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of state projection refs; each supplied ref has required/satisfied state_projection_ref dependency` | `state_projection_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `state_projection_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of state projection refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `state_projection_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `resource_refs` | `tuple[ResourceReference, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of ResourceReference records; resource_ref_id values unique; each subject_binding_id resolves in subject_refs` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `quantity_specs` | `tuple[QuantitySpecification, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of QuantitySpecification records; quantity_id values unique; lexical-only validation applies` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `cost_terms` | `tuple[CostTerm, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of CostTerm records; term_id values unique; internal references resolve in the same request` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `cost_bundles` | `tuple[CostBundle, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of CostBundle records; bundle_id values unique; CostBundle matrix and bound rules apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `consequence_terms` | `tuple[ConsequenceTerm, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of ConsequenceTerm records; consequence_id values unique; no consequence application` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns request/input external bindings; dependency_id and (dependency_type, reference_id) unique; lifecycle states A-E apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; matching required/satisfied runtime_trace_ref dependency` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; each supplied ref has required/satisfied provenance_ref dependency` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `owner_handoff_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of owner handoff refs; each supplied ref has required/satisfied owner_handoff_ref dependency` | `owner_handoff_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation request ref; when non-None matching validation_request_ref dependency and validation co-presence rules apply` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; Exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `owner_handoff_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of owner handoff refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `owner_handoff_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation request ref; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 | `calculation_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `affordability_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
@@ -3529,7 +3608,7 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
 | `result_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; identifies this ResourceMathResult; no resource_math_result_ref self-binding` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5H no-self-binding correction` |
-| `request_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty; binds the exact supplied ResourceMathRequest through one required/satisfied resource_math_request_ref dependency` | `resource_math_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `request_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty; binds the exact supplied ResourceMathRequest; Exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.` | `resource_math_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
 | `stage` | `str` | `required` | `RESOURCE_MATH_STAGES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `decision` | `str` | `required` | `RESOURCE_MATH_DECISIONS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `blocking` | `bool` | `required` | `none` | `local field` | `bool required; exact value determined by stage/decision compatibility and blocker precedence` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
@@ -3543,11 +3622,11 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `referenced_cost_term_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request CostTerm.term_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
 | `referenced_cost_bundle_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request CostBundle.bundle_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
 | `referenced_consequence_term_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request ConsequenceTerm.consequence_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; matching required/satisfied runtime_trace_ref dependency in result.dependencies` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation request ref; validation co-presence rules apply against result.dependencies` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
-| `validation_result_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation result ref; validation co-presence rules and proposal equality apply` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `referenced_dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request; satisfied=True is required for accepted/normalized results; required=True satisfied=False is lifecycle State D and forces blocked_missing_dependency when reached; State C missing/malformed/optional/duplicate records are invalid` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding; accepted/normalized results require all reached required dependencies satisfied; required unsatisfied reached dependencies are State D and lawful only for blocked_missing_dependency results` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; Exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation request ref; validation co-presence rules apply; When supplied, exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `validation_result_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation result ref; validation co-presence rules and proposal equality apply; When supplied, exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
 | `validation_decision` | `str \| None` | `None` | `VALIDATION_INTEGRATION_DECISIONS` | `local field` | `validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 | `calculation_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
@@ -3574,14 +3653,14 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
 | `proposal_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; identifies this SettlementProposal` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `result_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty; binds the exact supplied ResourceMathResult through one required/satisfied resource_math_result_ref dependency` | `resource_math_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
-| `proposed_state_delta_refs` | `tuple[str, ...]` | `required` | `none` | `external dependency binding` | `required non-empty unique tuple; each proposed state-delta ref has required/satisfied state_delta_ref dependency` | `state_delta_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
-| `validation_result_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty validation result ref equal to supplied result.validation_result_ref_id; matching required/satisfied validation_result_ref dependency` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `result_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty; binds the exact supplied ResourceMathResult; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.` | `resource_math_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `proposed_state_delta_refs` | `tuple[str, ...]` | `required` | `none` | `external dependency binding` | `required non-empty unique tuple of proposed state-delta refs; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.` | `state_delta_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `validation_result_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty validation result ref equal to supplied result.validation_result_ref_id; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
 | `validation_decision` | `str` | `required` | `VALIDATION_INTEGRATION_DECISIONS` | `local field` | `validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
-| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; matching required/satisfied runtime_trace_ref dependency` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references; every required proposal dependency must be satisfied; incomplete dependencies are forbidden` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `rollback_accounting_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of rollback accounting refs; each supplied ref has rollback_accounting_ref dependency` | `rollback_accounting_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `rollback_accounting_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of rollback accounting refs when supplied; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.` | `rollback_accounting_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 | `calculation_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `affordability_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
@@ -3610,7 +3689,7 @@ The constants in the YAML block restate the effective PR-5B/PR-5D/PR-5F controll
 Every allowed stage/decision/flag combination is in `stage_decision_matrix`; every unlisted pair is invalid. Quarantine and escalation are terminal planning findings only. Accepted and normalized planning are not executable, transactional, or settlement authority. `validation_blocked` belongs to validation-integration surfaces and is not a `ResourceMathResult.decision`.
 
 ## 7. Dependency ownership and lifecycle
-Dependency ownership remains separate: `request.dependencies` owns request/input references; `result.dependencies` owns request binding, result validation, trace, and result-specific references; `proposal.dependencies` owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references. No result self-binding is added. A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; only a downstream SettlementProposal binds result.result_id through resource_math_result_ref. Lifecycle states A through E are exact in the YAML block; optional unsatisfied advisory records satisfy nothing. Malformed/missing binding State C is rejected before result construction.
+Dependency ownership remains separate: `request.dependencies` owns request/input references; `result.dependencies` owns request binding, result validation, trace, and result-specific references; `proposal.dependencies` owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references. No result self-binding is added. A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; only a downstream SettlementProposal binds result.result_id through resource_math_result_ref. Lifecycle states A through E are exact in the YAML block and in `binding_state_matrix`. Structural binding validity requires exactly one matching ResourceMathDependency record, correct dependency_type, correct reference_id, required=True, unique dependency_id, and unique (dependency_type, reference_id). satisfied=True is complete; satisfied=False may remain structurally valid as State B or State D only where the matrix permits, but any result reaching it must be blocked_missing_dependency and it cannot support SettlementProposal eligibility. State C remains aggregate-invalid for missing, wrong, duplicate, optional, or malformed binding records. Optional unsatisfied advisory records satisfy nothing.
 
 ## 8. Typed result-scope cardinality and closure
 The seven exact typed tuples are `referenced_subject_binding_ids`, `referenced_resource_ref_ids`, `referenced_quantity_ids`, `referenced_cost_term_ids`, `referenced_cost_bundle_ids`, `referenced_consequence_term_ids`, and `referenced_dependency_ids`. Each tuple contains unique non-empty IDs; every ID resolves in the supplied request; the combined typed scope cannot be entirely empty; accepted and normalized results require at least one scoped resource, quantity, cost term, cost bundle, or consequence term; subject or advisory dependency scope alone is insufficient; blocked results must scope an actual blocker; blocked_missing_dependency may be dependency-only when an existing request-level required-unsatisfied dependency is the blocker; bundle scope includes all contained terms; term scope includes applicable quantities and dependencies; all scoped references resolve even for blocked, quarantined, or escalated results; normalized_reference_ids remains diagnostic only.

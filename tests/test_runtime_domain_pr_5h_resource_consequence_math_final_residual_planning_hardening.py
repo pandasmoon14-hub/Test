@@ -157,7 +157,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                       'default': '()',
                       'external_dependency_type': 'provenance_ref',
                       'field': 'provenance_refs',
-                      'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                      'invariant': 'tuple of provenance refs; When supplied, exactly one matching required dependency '
+                                   'record is required for structural validity (correct dependency_type, correct '
+                                   'reference_id, unique dependency_id, unique dependency_type/reference_id pair). '
+                                   'satisfied=True is complete; satisfied=False is lifecycle State B and remains '
+                                   'structurally valid but incomplete; State C cases are aggregate-invalid.',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                       'source_artifact': 'PR-5B inherited'},
@@ -296,7 +300,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                  'default': '()',
                  'external_dependency_type': 'provenance_ref',
                  'field': 'provenance_refs',
-                 'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                 'invariant': 'tuple of provenance refs; When supplied, exactly one matching required dependency '
+                              'record is required for structural validity (correct dependency_type, correct '
+                              'reference_id, unique dependency_id, unique dependency_type/reference_id pair). '
+                              'satisfied=True is complete; satisfied=False is lifecycle State B and remains '
+                              'structurally valid but incomplete; State C cases are aggregate-invalid.',
                  'replacement_artifact': 'none',
                  'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                  'source_artifact': 'PR-5B inherited'},
@@ -438,7 +446,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                'default': '()',
                'external_dependency_type': 'provenance_ref',
                'field': 'provenance_refs',
-               'invariant': 'tuple copied; unique non-empty ids where references are carried',
+               'invariant': 'tuple of provenance refs; When supplied, exactly one matching required dependency record '
+                            'is required for structural validity (correct dependency_type, correct reference_id, '
+                            'unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is '
+                            'complete; satisfied=False is lifecycle State B and remains structurally valid but '
+                            'incomplete; State C cases are aggregate-invalid.',
                'replacement_artifact': 'none',
                'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                'source_artifact': 'PR-5B inherited'},
@@ -524,8 +536,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                             'default': 'None',
                             'external_dependency_type': 'unit_ref',
                             'field': 'unit_ref_id',
-                            'invariant': 'None or non-empty unit reference; when non-None exactly one '
-                                         'required/satisfied unit_ref dependency in enclosing request',
+                            'invariant': 'None or non-empty unit reference; When supplied, exactly one matching '
+                                         'required dependency record is required for structural validity (correct '
+                                         'dependency_type, correct reference_id, unique dependency_id, unique '
+                                         'dependency_type/reference_id pair). satisfied=True is complete; '
+                                         'satisfied=False is lifecycle State B and remains structurally valid but '
+                                         'incomplete; State C cases are aggregate-invalid.',
                             'replacement_artifact': 'PR-5F binding-contract refinement',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
@@ -536,8 +552,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                             'default': 'None',
                             'external_dependency_type': 'dimension_ref',
                             'field': 'dimension_ref_id',
-                            'invariant': 'None or non-empty dimension reference; when non-None exactly one '
-                                         'required/satisfied dimension_ref dependency in enclosing request',
+                            'invariant': 'None or non-empty dimension reference; When supplied, exactly one matching '
+                                         'required dependency record is required for structural validity (correct '
+                                         'dependency_type, correct reference_id, unique dependency_id, unique '
+                                         'dependency_type/reference_id pair). satisfied=True is complete; '
+                                         'satisfied=False is lifecycle State B and remains structurally valid but '
+                                         'incomplete; State C cases are aggregate-invalid.',
                             'replacement_artifact': 'PR-5F binding-contract refinement',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
@@ -592,7 +612,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                             'default': '()',
                             'external_dependency_type': 'provenance_ref',
                             'field': 'provenance_refs',
-                            'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                            'invariant': 'tuple of provenance refs; When supplied, exactly one matching required '
+                                         'dependency record is required for structural validity (correct '
+                                         'dependency_type, correct reference_id, unique dependency_id, unique '
+                                         'dependency_type/reference_id pair). satisfied=True is complete; '
+                                         'satisfied=False is lifecycle State B and remains structurally valid but '
+                                         'incomplete; State C cases are aggregate-invalid.',
                             'replacement_artifact': 'none',
                             'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                             'source_artifact': 'PR-5B inherited'},
@@ -722,8 +747,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': 'None',
                           'external_dependency_type': 'command_ref',
                           'field': 'command_ref_id',
-                          'invariant': 'None or non-empty command reference; when non-None matching command_ref '
-                                       'dependency is required/satisfied',
+                          'invariant': 'None or non-empty command reference; When supplied, exactly one matching '
+                                       'required dependency record is required for structural validity (correct '
+                                       'dependency_type, correct reference_id, unique dependency_id, unique '
+                                       'dependency_type/reference_id pair). satisfied=True is complete; '
+                                       'satisfied=False is lifecycle State B and remains structurally valid but '
+                                       'incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -734,8 +763,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': 'None',
                           'external_dependency_type': 'action_legality_ref',
                           'field': 'action_legality_ref_id',
-                          'invariant': 'None or non-empty action-legality reference; when non-None matching '
-                                       'action_legality_ref dependency is required/satisfied',
+                          'invariant': 'None or non-empty action-legality reference; When supplied, exactly one '
+                                       'matching required dependency record is required for structural validity '
+                                       '(correct dependency_type, correct reference_id, unique dependency_id, unique '
+                                       'dependency_type/reference_id pair). satisfied=True is complete; '
+                                       'satisfied=False is lifecycle State B and remains structurally valid but '
+                                       'incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -757,8 +790,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': '()',
                           'external_dependency_type': 'state_projection_ref',
                           'field': 'state_projection_ref_ids',
-                          'invariant': 'tuple of state projection refs; each supplied ref has required/satisfied '
-                                       'state_projection_ref dependency',
+                          'invariant': 'tuple of state projection refs; When supplied, exactly one matching required '
+                                       'dependency record is required for structural validity (correct '
+                                       'dependency_type, correct reference_id, unique dependency_id, unique '
+                                       'dependency_type/reference_id pair). satisfied=True is complete; '
+                                       'satisfied=False is lifecycle State B and remains structurally valid but '
+                                       'incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
@@ -839,8 +876,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': 'required',
                           'external_dependency_type': 'runtime_trace_ref',
                           'field': 'trace_ref_id',
-                          'invariant': 'required runtime trace reference; matching required/satisfied '
-                                       'runtime_trace_ref dependency',
+                          'invariant': 'required runtime trace reference; Exactly one matching required dependency '
+                                       'record is required for structural validity (correct dependency_type, correct '
+                                       'reference_id, unique dependency_id, unique dependency_type/reference_id pair). '
+                                       'satisfied=True is complete; satisfied=False is lifecycle State B and remains '
+                                       'structurally valid but incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -851,8 +891,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': '()',
                           'external_dependency_type': 'provenance_ref',
                           'field': 'provenance_refs',
-                          'invariant': 'tuple of provenance refs; each supplied ref has required/satisfied '
-                                       'provenance_ref dependency',
+                          'invariant': 'tuple of provenance refs; When supplied, exactly one matching required '
+                                       'dependency record is required for structural validity (correct '
+                                       'dependency_type, correct reference_id, unique dependency_id, unique '
+                                       'dependency_type/reference_id pair). satisfied=True is complete; '
+                                       'satisfied=False is lifecycle State B and remains structurally valid but '
+                                       'incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
@@ -862,8 +906,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': '()',
                           'external_dependency_type': 'owner_handoff_ref',
                           'field': 'owner_handoff_ref_ids',
-                          'invariant': 'tuple of owner handoff refs; each supplied ref has required/satisfied '
-                                       'owner_handoff_ref dependency',
+                          'invariant': 'tuple of owner handoff refs; When supplied, exactly one matching required '
+                                       'dependency record is required for structural validity (correct '
+                                       'dependency_type, correct reference_id, unique dependency_id, unique '
+                                       'dependency_type/reference_id pair). satisfied=True is complete; '
+                                       'satisfied=False is lifecycle State B and remains structurally valid but '
+                                       'incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
@@ -873,8 +921,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                           'default': 'None',
                           'external_dependency_type': 'validation_request_ref',
                           'field': 'validation_request_ref_id',
-                          'invariant': 'None or non-empty validation request ref; when non-None matching '
-                                       'validation_request_ref dependency and validation co-presence rules apply',
+                          'invariant': 'None or non-empty validation request ref; When supplied, exactly one matching '
+                                       'required dependency record is required for structural validity (correct '
+                                       'dependency_type, correct reference_id, unique dependency_id, unique '
+                                       'dependency_type/reference_id pair). satisfied=True is complete; '
+                                       'satisfied=False is lifecycle State B and remains structurally valid but '
+                                       'incomplete; State C cases are aggregate-invalid.',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -1117,8 +1169,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': 'required',
                          'external_dependency_type': 'resource_math_request_ref',
                          'field': 'request_id',
-                         'invariant': 'non-empty; binds the exact supplied ResourceMathRequest through one '
-                                      'required/satisfied resource_math_request_ref dependency',
+                         'invariant': 'non-empty; binds the exact supplied ResourceMathRequest; Exactly one matching '
+                                      'required dependency record is required for structural validity. satisfied=True '
+                                      'is required for accepted_for_planning or normalized_for_planning; required=True '
+                                      'and satisfied=False is lifecycle State D and is lawful only on '
+                                      'blocked_missing_dependency results that scope or reach that dependency; '
+                                      'missing, malformed, optional, or duplicated binding records are structurally '
+                                      'invalid.',
                          'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
                                                  'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
@@ -1279,7 +1336,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'external_dependency_type': 'none',
                          'field': 'referenced_dependency_ids',
                          'invariant': 'tuple of same-request ResourceMathDependency.dependency_id references; unique '
-                                      'non-empty IDs; resolves in supplied request',
+                                      'non-empty IDs; resolves in supplied request; satisfied=True is required for '
+                                      'accepted/normalized results; required=True satisfied=False is lifecycle State D '
+                                      'and forces blocked_missing_dependency when reached; State C '
+                                      'missing/malformed/optional/duplicate records are invalid',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
@@ -1290,7 +1350,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'external_dependency_type': 'none',
                          'field': 'dependencies',
                          'invariant': 'owns request binding, result validation, trace, and result-specific references; '
-                                      'no resource_math_result_ref self-binding',
+                                      'no resource_math_result_ref self-binding; accepted/normalized results require '
+                                      'all reached required dependencies satisfied; required unsatisfied reached '
+                                      'dependencies are State D and lawful only for blocked_missing_dependency results',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1301,8 +1363,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': 'required',
                          'external_dependency_type': 'runtime_trace_ref',
                          'field': 'trace_ref_id',
-                         'invariant': 'required runtime trace reference; matching required/satisfied runtime_trace_ref '
-                                      'dependency in result.dependencies',
+                         'invariant': 'required runtime trace reference; Exactly one matching required dependency '
+                                      'record is required for structural validity. satisfied=True is required for '
+                                      'accepted_for_planning or normalized_for_planning; required=True and '
+                                      'satisfied=False is lifecycle State D and is lawful only on '
+                                      'blocked_missing_dependency results that scope or reach that dependency; '
+                                      'missing, malformed, optional, or duplicated binding records are structurally '
+                                      'invalid.',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1313,8 +1380,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': 'None',
                          'external_dependency_type': 'validation_request_ref',
                          'field': 'validation_request_ref_id',
-                         'invariant': 'None or non-empty validation request ref; validation co-presence rules apply '
-                                      'against result.dependencies',
+                         'invariant': 'None or non-empty validation request ref; validation co-presence rules apply; '
+                                      'When supplied, exactly one matching required dependency record is required for '
+                                      'structural validity. satisfied=True is required for accepted_for_planning or '
+                                      'normalized_for_planning; required=True and satisfied=False is lifecycle State D '
+                                      'and is lawful only on blocked_missing_dependency results that scope or reach '
+                                      'that dependency; missing, malformed, optional, or duplicated binding records '
+                                      'are structurally invalid.',
                          'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
                                                  'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
@@ -1327,7 +1399,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'external_dependency_type': 'validation_result_ref',
                          'field': 'validation_result_ref_id',
                          'invariant': 'None or non-empty validation result ref; validation co-presence rules and '
-                                      'proposal equality apply',
+                                      'proposal equality apply; When supplied, exactly one matching required '
+                                      'dependency record is required for structural validity. satisfied=True is '
+                                      'required for accepted_for_planning or normalized_for_planning; required=True '
+                                      'and satisfied=False is lifecycle State D and is lawful only on '
+                                      'blocked_missing_dependency results that scope or reach that dependency; '
+                                      'missing, malformed, optional, or duplicated binding records are structurally '
+                                      'invalid.',
                          'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
                                                  'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
@@ -1595,9 +1673,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                                    'default': 'required',
                                    'external_dependency_type': 'subject_ref',
                                    'field': 'subject_ref_id',
-                                   'invariant': 'non-empty external/upstream subject reference; exactly one '
-                                                'required/satisfied subject_ref dependency in enclosing request; no '
-                                                'dereference',
+                                   'invariant': 'non-empty external/upstream subject reference; Exactly one matching '
+                                                'required dependency record is required for structural validity '
+                                                '(correct dependency_type, correct reference_id, unique dependency_id, '
+                                                'unique dependency_type/reference_id pair). satisfied=True is '
+                                                'complete; satisfied=False is lifecycle State B and remains '
+                                                'structurally valid but incomplete; State C cases are '
+                                                'aggregate-invalid.',
                                    'replacement_artifact': 'PR-5F binding-contract refinement',
                                    'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                             'projection authority',
@@ -1641,7 +1723,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                                    'default': '()',
                                    'external_dependency_type': 'provenance_ref',
                                    'field': 'provenance_refs',
-                                   'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                                   'invariant': 'tuple of provenance refs; When supplied, exactly one matching '
+                                                'required dependency record is required for structural validity '
+                                                '(correct dependency_type, correct reference_id, unique dependency_id, '
+                                                'unique dependency_type/reference_id pair). satisfied=True is '
+                                                'complete; satisfied=False is lifecycle State B and remains '
+                                                'structurally valid but incomplete; State C cases are '
+                                                'aggregate-invalid.',
                                    'replacement_artifact': 'none',
                                    'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                                    'source_artifact': 'PR-5D'},
@@ -1753,8 +1841,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                         'default': 'None',
                         'external_dependency_type': 'unit_ref',
                         'field': 'unit_ref_id',
-                        'invariant': 'None or non-empty unit reference; when non-None exactly one required/satisfied '
-                                     'unit_ref dependency in enclosing request',
+                        'invariant': 'None or non-empty unit reference; When supplied, exactly one matching required '
+                                     'dependency record is required for structural validity (correct dependency_type, '
+                                     'correct reference_id, unique dependency_id, unique dependency_type/reference_id '
+                                     'pair). satisfied=True is complete; satisfied=False is lifecycle State B and '
+                                     'remains structurally valid but incomplete; State C cases are aggregate-invalid.',
                         'replacement_artifact': 'PR-5F binding-contract refinement',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1765,8 +1856,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                         'default': 'None',
                         'external_dependency_type': 'dimension_ref',
                         'field': 'dimension_ref_id',
-                        'invariant': 'None or non-empty dimension reference; when non-None exactly one '
-                                     'required/satisfied dimension_ref dependency in enclosing request',
+                        'invariant': 'None or non-empty dimension reference; When supplied, exactly one matching '
+                                     'required dependency record is required for structural validity (correct '
+                                     'dependency_type, correct reference_id, unique dependency_id, unique '
+                                     'dependency_type/reference_id pair). satisfied=True is complete; satisfied=False '
+                                     'is lifecycle State B and remains structurally valid but incomplete; State C '
+                                     'cases are aggregate-invalid.',
                         'replacement_artifact': 'PR-5F binding-contract refinement',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1777,7 +1872,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                         'default': '()',
                         'external_dependency_type': 'provenance_ref',
                         'field': 'provenance_refs',
-                        'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                        'invariant': 'tuple of provenance refs; When supplied, exactly one matching required '
+                                     'dependency record is required for structural validity (correct dependency_type, '
+                                     'correct reference_id, unique dependency_id, unique dependency_type/reference_id '
+                                     'pair). satisfied=True is complete; satisfied=False is lifecycle State B and '
+                                     'remains structurally valid but incomplete; State C cases are aggregate-invalid.',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                         'source_artifact': 'PR-5B inherited'},
@@ -1819,8 +1918,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': 'required',
                          'external_dependency_type': 'resource_math_result_ref',
                          'field': 'result_id',
-                         'invariant': 'non-empty; binds the exact supplied ResourceMathResult through one '
-                                      'required/satisfied resource_math_result_ref dependency',
+                         'invariant': 'non-empty; binds the exact supplied ResourceMathResult; Exactly one matching '
+                                      'required/satisfied dependency record is required; no incomplete dependency may '
+                                      'enter a SettlementProposal.',
                          'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
                                                  'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
@@ -1832,8 +1932,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': 'required',
                          'external_dependency_type': 'state_delta_ref',
                          'field': 'proposed_state_delta_refs',
-                         'invariant': 'required non-empty unique tuple; each proposed state-delta ref has '
-                                      'required/satisfied state_delta_ref dependency',
+                         'invariant': 'required non-empty unique tuple of proposed state-delta refs; Exactly one '
+                                      'matching required/satisfied dependency record is required; no incomplete '
+                                      'dependency may enter a SettlementProposal.',
                          'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
                                                  'request/result/proposal validation refinement',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
@@ -1845,8 +1946,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'external_dependency_type': 'validation_result_ref',
                          'field': 'validation_result_ref_id',
                          'invariant': 'non-empty validation result ref equal to supplied '
-                                      'result.validation_result_ref_id; matching required/satisfied '
-                                      'validation_result_ref dependency',
+                                      'result.validation_result_ref_id; Exactly one matching required/satisfied '
+                                      'dependency record is required; no incomplete dependency may enter a '
+                                      'SettlementProposal.',
                          'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
                                                  'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
@@ -1872,7 +1974,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'external_dependency_type': 'none',
                          'field': 'dependencies',
                          'invariant': 'owns result binding, validation result, state deltas, trace, rollback '
-                                      'accounting, and proposal-specific references',
+                                      'accounting, and proposal-specific references; every required proposal '
+                                      'dependency must be satisfied; incomplete dependencies are forbidden',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1883,8 +1986,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': 'required',
                          'external_dependency_type': 'runtime_trace_ref',
                          'field': 'trace_ref_id',
-                         'invariant': 'required runtime trace reference; matching required/satisfied runtime_trace_ref '
-                                      'dependency',
+                         'invariant': 'required runtime trace reference; Exactly one matching required/satisfied '
+                                      'dependency record is required; no incomplete dependency may enter a '
+                                      'SettlementProposal.',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1906,8 +2010,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                          'default': '()',
                          'external_dependency_type': 'rollback_accounting_ref',
                          'field': 'rollback_accounting_refs',
-                         'invariant': 'tuple of rollback accounting refs; each supplied ref has '
-                                      'rollback_accounting_ref dependency',
+                         'invariant': 'tuple of rollback accounting refs when supplied; Exactly one matching '
+                                      'required/satisfied dependency record is required; no incomplete dependency may '
+                                      'enter a SettlementProposal.',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5B inherited'},
@@ -2701,6 +2806,81 @@ EXPECTED_BLOCKER_TABLE = [{'aggregate_validity_prerequisite': 'structural reques
   'quarantined': 'ordinary compatibility matrix',
   'required_dependency': 'all scoped required dependencies satisfied',
   'trigger': 'no blocker detected'}]
+EXPECTED_BINDING_STATE_MATRIX = [{'aggregate': 'request',
+  'field_family': 'request field binding',
+  'matching_record_required': 'exactly one',
+  'missing_malformed_posture': 'State C aggregate-invalid before result construction',
+  'permitted_result_decision': 'blocked_missing_dependency when reached if satisfied=False; otherwise ordinary matrix',
+  'proposal_eligibility': 'not eligible while reached dependency is unsatisfied',
+  'required_flag': 'required=True',
+  'satisfied_false_posture': 'State B incomplete binding; request structurally valid but incomplete; any result '
+                             'reaching it must be blocked_missing_dependency',
+  'satisfied_true_posture': 'State A complete binding; request structurally valid and may support non-blocking result '
+                            'if all other rules pass'},
+ {'aggregate': 'request',
+  'field_family': 'request named dependency',
+  'matching_record_required': 'record must exist when named by dependency_ids or scope',
+  'missing_malformed_posture': 'State C aggregate-invalid when missing, wrong type/reference, duplicate, or '
+                               'required=False for required named dependency',
+  'permitted_result_decision': 'blocked_missing_dependency when reached if satisfied=False',
+  'proposal_eligibility': 'not eligible while reached dependency is unsatisfied',
+  'required_flag': 'required=True for required named dependency',
+  'satisfied_false_posture': 'State D required-unsatisfied named dependency when named by a record or scope; '
+                             'structurally present but blocks result when reached',
+  'satisfied_true_posture': 'State A complete named dependency'},
+ {'aggregate': 'result',
+  'field_family': 'result request binding',
+  'matching_record_required': 'exactly one resource_math_request_ref in result.dependencies',
+  'missing_malformed_posture': 'State C result aggregate invalid',
+  'permitted_result_decision': 'accepted/normalized require satisfied=True; satisfied=False requires '
+                               'blocked_missing_dependency',
+  'proposal_eligibility': 'not eligible unless satisfied=True',
+  'required_flag': 'required=True',
+  'satisfied_false_posture': 'State D; lawful only for blocked_missing_dependency result that scopes or reaches this '
+                             'dependency',
+  'satisfied_true_posture': 'complete result-to-request binding; accepted/normalized may proceed if all other rules '
+                            'pass'},
+ {'aggregate': 'result',
+  'field_family': 'result validation/trace dependency',
+  'matching_record_required': 'exactly one matching record when field supplied or required',
+  'missing_malformed_posture': 'State C result aggregate invalid',
+  'permitted_result_decision': 'accepted/normalized require satisfied=True; satisfied=False requires '
+                               'blocked_missing_dependency',
+  'proposal_eligibility': 'not eligible unless satisfied=True',
+  'required_flag': 'required=True',
+  'satisfied_false_posture': 'State D; lawful only for blocked_missing_dependency result that scopes or reaches this '
+                             'dependency',
+  'satisfied_true_posture': 'complete result-owned validation/trace dependency'},
+ {'aggregate': 'result',
+  'field_family': 'scoped named dependency',
+  'matching_record_required': 'existing request/result dependency named by typed scope or scoped record',
+  'missing_malformed_posture': 'State C aggregate invalid because scoped references must resolve',
+  'permitted_result_decision': 'blocked_missing_dependency when satisfied=False; accepted/normalized require '
+                               'satisfied=True',
+  'proposal_eligibility': 'not eligible unless satisfied=True',
+  'required_flag': 'required=True for required scoped dependency',
+  'satisfied_false_posture': 'State D; forces blocked_missing_dependency when reached',
+  'satisfied_true_posture': 'complete scoped dependency'},
+ {'aggregate': 'request/result',
+  'field_family': 'advisory optional dependency',
+  'matching_record_required': 'optional advisory record may exist only when unbound, unnamed, and unscoped',
+  'missing_malformed_posture': 'if used as a binding or named/scoped dependency it becomes State C invalid',
+  'permitted_result_decision': 'no result decision effect when truly advisory; invalid if used as required binding',
+  'proposal_eligibility': 'does not support proposal eligibility and cannot satisfy required proposal dependency',
+  'required_flag': 'required=False',
+  'satisfied_false_posture': 'State E advisory optional unsatisfied; may coexist with non-blocking result only when '
+                             'unbound, unnamed, and unscoped; satisfies nothing',
+  'satisfied_true_posture': 'advisory record is not a required binding and satisfies no required field'},
+ {'aggregate': 'proposal',
+  'field_family': 'proposal dependency',
+  'matching_record_required': 'exactly one matching record for each proposal binding/reference',
+  'missing_malformed_posture': 'proposal aggregate invalid',
+  'permitted_result_decision': 'proposal only follows eligible accepted/normalized result; no blocked result may '
+                               'create proposal',
+  'proposal_eligibility': 'eligible only when every required proposal dependency is satisfied',
+  'required_flag': 'required=True',
+  'satisfied_false_posture': 'incomplete dependencies are forbidden in SettlementProposal',
+  'satisfied_true_posture': 'complete proposal dependency; proposal may remain eligible if all other rules pass'}]
 EXPECTED_GRAMMARS = {'blocked_pending_numeric_choice': {'exact_grammar': '^\\S(?:.*\\S)?$ plus universal source_literal character contract',
                                     'explicit_exclusions': 'no empty string, no leading/trailing whitespace, blocks '
                                                            'progression',
@@ -2948,7 +3128,7 @@ def test_dependency_ownership_lifecycle_and_bindings() -> None:
     assert "required=False" in states["C_missing_or_malformed_binding"]
     assert "forces blocked_missing_dependency" in states["D_required_unsatisfied_named_dependency"]
     assert "satisfies nothing" in states["E_advisory_optional_unsatisfied"]
-    assert "Malformed/missing binding State C is rejected before result construction" in doc_text()
+    assert "State C remains aggregate-invalid" in doc_text()
     assert shape_field_map("SettlementProposal")["rollback_accounting_refs"]["external_dependency_type"] == "rollback_accounting_ref"
     assert shape_field_map("SettlementProposal")["proposed_state_delta_refs"]["external_dependency_type"] == "state_delta_ref"
     dep_fields = shape_field_map("ResourceMathDependency")
@@ -3037,6 +3217,42 @@ def test_complete_costbundle_matrix_and_corrected_bounds() -> None:
         "all_or_nothing_requested bounds both None or both equal len(term_ids)",
         "no selection or settlement execution in PR-5A",
     ]
+
+
+def test_binding_state_matrix_reconciles_field_invariants() -> None:
+    matrix = contract()["binding_state_matrix"]
+    assert matrix == EXPECTED_BINDING_STATE_MATRIX
+    rows = {(row["aggregate"], row["field_family"]): row for row in matrix}
+    assert "State B incomplete binding" in rows[("request", "request field binding")]["satisfied_false_posture"]
+    assert "structurally valid" in rows[("request", "request field binding")]["satisfied_false_posture"]
+    assert rows[("request", "request field binding")]["missing_malformed_posture"] == "State C aggregate-invalid before result construction"
+    assert "State D" in rows[("result", "scoped named dependency")]["satisfied_false_posture"]
+    assert "blocked_missing_dependency" in rows[("result", "scoped named dependency")]["permitted_result_decision"]
+    assert "accepted/normalized require satisfied=True" in rows[("result", "result request binding")]["permitted_result_decision"]
+    assert rows[("proposal", "proposal dependency")]["satisfied_false_posture"] == "incomplete dependencies are forbidden in SettlementProposal"
+    assert rows[("proposal", "proposal dependency")]["proposal_eligibility"] == "eligible only when every required proposal dependency is satisfied"
+
+
+def test_external_binding_invariants_allow_structural_incomplete_states() -> None:
+    subject_ref = shape_field_map("ResourceMathSubjectReference")["subject_ref_id"]["invariant"]
+    unit_ref = shape_field_map("ResourceReference")["unit_ref_id"]["invariant"]
+    dimension_ref = shape_field_map("ResourceReference")["dimension_ref_id"]["invariant"]
+    quantity_unit = shape_field_map("QuantitySpecification")["unit_ref_id"]["invariant"]
+    quantity_dimension = shape_field_map("QuantitySpecification")["dimension_ref_id"]["invariant"]
+    for invariant in [subject_ref, unit_ref, dimension_ref, quantity_unit, quantity_dimension]:
+        assert "satisfied=False is lifecycle State B" in invariant
+        assert "structurally valid but incomplete" in invariant
+        assert "required/satisfied" not in invariant
+    result_request = shape_field_map("ResourceMathResult")["request_id"]["invariant"]
+    result_trace = shape_field_map("ResourceMathResult")["trace_ref_id"]["invariant"]
+    scoped_dependency = shape_field_map("ResourceMathResult")["referenced_dependency_ids"]["invariant"]
+    for invariant in [result_request, result_trace, scoped_dependency]:
+        assert "State D" in invariant
+        assert "blocked_missing_dependency" in invariant
+        assert "accepted/normalized" in invariant or "accepted_for_planning or normalized_for_planning" in invariant
+    proposal_dependencies = shape_field_map("SettlementProposal")["dependencies"]["invariant"]
+    assert "every required proposal dependency must be satisfied" in proposal_dependencies
+    assert "incomplete dependencies are forbidden" in proposal_dependencies
 
 
 def test_source_literals_negative_policies_and_no_evaluation() -> None:
