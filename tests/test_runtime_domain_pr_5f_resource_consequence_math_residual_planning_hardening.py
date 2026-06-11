@@ -1,3 +1,4 @@
+import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -77,6 +78,7 @@ def test_pr_5e_closure_matrix_closes_required_defects() -> None:
         "proposal validation-result equality",
         "proposal result eligibility",
         "event-only consequence routing",
+        "result request/quantity aggregate validation",
         "factory/validator parity",
     ]:
         assert defect in text
@@ -215,6 +217,24 @@ def test_blocked_pending_numeric_choice_result_rule() -> None:
         "terminal quarantine/escalation pairs",
         "may not appear in `accepted_for_planning`, `normalized_for_planning`, `source_local_retained`, or `SettlementProposal`",
         "No numeric choice is made in PR-5A",
+        "ResourceMathResult request aggregate validation and typed scope",
+        "create_resource_math_result(",
+        "request: ResourceMathRequest",
+        "validate_resource_math_result(",
+        "result: ResourceMathResult",
+        "`result.request_id == request.request_id`",
+        "required/satisfied `resource_math_request_ref` dependency",
+        "`normalized_reference_ids` remains diagnostic only",
+        "referenced_quantity_ids: tuple[str, ...] = ()",
+        "Result quantity scope is the union",
+        "scoped cost bundles and their scoped `term_ids`",
+        "value_mode` is `resource_quantity` or `quantity_only`",
+        "not in the typed scope is not inspected",
+        "Any scoped required dependency with `satisfied=False`",
+        "Any scoped quantity with `representation_kind == blocked_pending_numeric_choice`",
+        "Any scoped lexically negative quantity using `negative_values_require_owner_handoff`",
+        "Any scoped `CostTerm` or `ConsequenceTerm` with `value_mode=policy_only`",
+        "aggregate-only; leaf validators do not inspect request contents",
     ]:
         assert phrase in text
 
@@ -252,12 +272,28 @@ def test_corrected_bundle_min_max_rules() -> None:
         "`minimum_required_terms <= len(term_ids)`",
         "`maximum_allowed_terms <= len(term_ids)`",
         "`minimum_required_terms <= maximum_allowed_terms`",
-        "`atomicity_policy == all_or_nothing_required`",
+        "`atomicity_policy == all_or_nothing_requested`",
         "bounds may both be `None`, or both must equal `len(term_ids)`",
         "alternative groups remain subject to unique-group, contained-member, and no-overlap rules",
         "replaces the prior rule requiring `maximum_allowed_terms` to be at least `len(term_ids)`",
     ]:
         assert phrase in text
+    inherited_atomicity_literals = {
+        "all_or_nothing_requested",
+        "best_effort_requested",
+        "ordered_partial_allowed",
+        "unordered_partial_allowed",
+        "alternative_settlement_requested",
+    }
+    referenced_atomicity_literals = set(
+        re.findall(
+            r"(?:all_or_nothing|best_effort|ordered_partial|unordered_partial|alternative_settlement)_[a-z_]+",
+            text,
+        )
+    )
+    assert referenced_atomicity_literals
+    assert referenced_atomicity_literals <= inherited_atomicity_literals
+    assert "all_or_nothing_required" not in read(ARTIFACT)
 
 
 def test_settlement_proposal_result_equality_and_eligibility() -> None:
@@ -340,6 +376,7 @@ def test_factory_validator_parity_and_serialization() -> None:
         "term value modes",
         "bundle bounds",
         "proposal/result compatibility",
+        "result/request aggregate validation",
         "non-empty state-delta refs",
         "internal-reference resolution",
         "false-only authority fields",

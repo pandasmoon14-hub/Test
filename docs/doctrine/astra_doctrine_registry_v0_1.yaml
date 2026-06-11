@@ -23,7 +23,7 @@ changelog:
   version: 0.1.88
   action: runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening
   actor: Astra Doctrine Council / synthesis assistant
-  note: Added PR-5F resource and consequence math residual planning hardening tracking. Planning hardening only; follows PR-5E; closes PR-5E residual blockers around subject/unit/dimension dependency types, optional dependency semantics, precision, source-literal characters, negative policies, blocked numeric choice, term value modes, bundle bounds, proposal/result compatibility, and event-only routing; PR-5A remains blocked; PR-5G is the sole next step; no implementation authority.
+  note: Added PR-5F resource and consequence math residual planning hardening tracking. Planning hardening only; follows PR-5E; closes PR-5E residual blockers around subject/unit/dimension dependency types, optional dependency semantics, precision, source-literal characters, negative policies, blocked numeric choice, term value modes, bundle bounds, inherited atomicity literal alignment, result/request aggregate validation, proposal/result compatibility, and event-only routing; PR-5A remains blocked; PR-5G is the sole next step; no implementation authority.
 - date: '2026-06-11'
   version: 0.1.87
   action: runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review
@@ -629,7 +629,7 @@ file_records:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
   owns:
-  - Residual planning contracts for resource/consequence math dependency binding, quantity precision, source literals, negative policy, term value modes, bundle bounds, proposal/result eligibility, event-only routing, and parity.
+  - Residual planning contracts for resource/consequence math dependency binding, quantity precision, source literals, negative policy, term value modes, bundle bounds, result/request aggregate validation, proposal/result eligibility, event-only routing, and parity.
   must_not_own:
   - Runtime/domain implementation modules, formulas, evaluators, persistence structures, resource schemas, calculations, affordability execution, settlement, state mutation, event commitment, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
   dependencies:

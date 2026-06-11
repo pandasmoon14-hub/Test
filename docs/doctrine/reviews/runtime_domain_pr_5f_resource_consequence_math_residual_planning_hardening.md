@@ -45,14 +45,15 @@ The backend-first invariant is mandatory:
 | optional-unsatisfied dependency semantics | Define advisory-only optional unsatisfied dependencies and forbid them from satisfying any binding or named dependency. | `ResourceMathDependency`, all aggregates | Binding or named dependencies must be `required=True` and `satisfied=True`; required unsatisfied dependencies force `blocked_missing_dependency`. | Assert advisory-only conditions and blocked missing dependency outcome. | closed |
 | precision semantics | Replace free-string precision with `precision: int \| None = None`; only positive non-bool integer precision for `decimal_exact`; no comparison or rounding. | `QuantitySpecification` | Reject bool, non-positive, or non-decimal precision; preserve scale contract. | Assert exact precision/scale rules. | closed |
 | source-literal control-character and multiline posture | Source literals must be non-empty single-line strings without edge whitespace, Cc controls, Cs surrogates, CR, LF, tab, or NUL. | `QuantitySpecification` | Reject forbidden characters and preserve lawful ordinary Unicode exactly without normalization. | Assert single-line/control-character contract. | closed |
-| negative-value-policy behavior | Define lexical negativity by leading `-`, including `-0`, `-0.0`, and `-0/1`; specify forbidden, source-supported, and owner-handoff outcomes. | `QuantitySpecification`, `ResourceMathResult`, `SettlementProposal` | Reject forbidden negatives; require provenance dependencies for source-supported negatives; require owner handoff result route for owner-handoff negatives. | Assert lexical `-0` behavior and each policy result. | closed |
-| blocked-pending-numeric-choice result behavior | Force referenced blocked numeric choices to `decision=blocked_incompatible_policy`, `stage=policy_refs_declared`, `blocking=True`, unless terminal quarantine/escalation applies. | `QuantitySpecification`, `ResourceMathResult` | Reject accepted, normalized, source-local, or proposal use of blocked numeric choices. | Assert result rule and barred destinations. | closed |
+| negative-value-policy behavior | Define lexical negativity by leading `-`, including `-0`, `-0.0`, and `-0/1`; specify forbidden, source-supported, and owner-handoff outcomes. | `QuantitySpecification`, `ResourceMathResult`, `SettlementProposal` | Reject forbidden negatives; require provenance dependencies for source-supported negatives; aggregate result validation receives the supplied request, derives typed scoped quantities, and requires owner handoff result routes for scoped owner-handoff negatives. | Assert lexical `-0`, result/request aggregate contract, and each policy result. | closed |
+| blocked-pending-numeric-choice result behavior | Force scoped blocked numeric choices to `decision=blocked_incompatible_policy`, `stage=policy_refs_declared`, `blocking=True`, unless terminal quarantine/escalation applies. | `QuantitySpecification`, `ResourceMathResult` | Aggregate result validation receives the supplied request, derives typed scoped quantities, and rejects accepted, normalized, source-local, or proposal use of blocked numeric choices. | Assert result/request aggregate contract, result rule, and barred destinations. | closed |
 | CostTerm resource/quantity combinations | Add required `value_mode` and exact co-presence matrix. | `CostTerm` | Validate `resource_quantity`, `resource_reference_only`, `quantity_only`, and `policy_only` co-presence and internal references. | Assert value modes and matrix. | closed |
 | ConsequenceTerm resource/quantity combinations | Add required `value_mode` and exact co-presence matrix, including policy-only routing for non-pool consequences. | `ConsequenceTerm` | Validate co-presence; require owner handoff, quarantine, or escalation for unusual/source-local policy-only terms. | Assert value modes, matrix, and event-only route. | closed |
 | maximum_allowed_terms semantics | Replace declaration-count minimum rule with selection-policy bounds capped by `len(term_ids)`. | `CostBundle` | Positive non-bool bounds; min/max <= len; min <= max; all-or-nothing bounds None or equal len. | Assert corrected max rule. | closed |
 | proposal validation-result equality | Require proposal validation result and decision to equal the supplied result's fields. | `SettlementProposal`, `ResourceMathResult` | Validate `proposal.validation_result_ref_id == result.validation_result_ref_id` and `proposal.validation_decision == result.validation_decision`. | Assert equality language. | closed |
 | proposal result eligibility | Proposals are only constructed/validated with a supplied eligible result object that is passed, non-blocking, non-quarantined, non-escalated, calculation-ready, and accepted/normalized. | `SettlementProposal`, `ResourceMathResult` | Reject `validation_ready`, failed, blocked, quarantined, escalated, source-local-only, handoff, review, or missing-dependency results. | Assert eligibility and rejection list. | closed |
 | event-only consequence routing | Event-only consequences remain `ConsequenceTerm(value_mode=policy_only)` and route to another owner; no settlement proposal or event shape is created by RT-002. | `ConsequenceTerm`, `SettlementProposal` | Reject empty state-delta proposals; route event-only through owner handoff/quarantine/escalation. | Assert event-only owner-handoff route and no proposed-event shape. | closed |
+| result request/quantity aggregate validation | PR-5D result fields did not define how a result inspects request quantities or policy-only terms. | `ResourceMathResult`, `ResourceMathRequest` | Result factories and validators receive the supplied request, require request-id equality and request dependency binding, derive typed scope from explicit typed reference fields, and enforce missing-dependency, blocked numeric, negative owner-handoff, and policy-only routing rules. | Assert result/request aggregate signatures, typed scope fields, scope derivation, and precedence. | closed |
 | factory/validator parity | Require shared private helpers for every residual rule and identical factory/validator enforcement. | all ten inherited shapes | Manual construction of frozen dataclasses must not bypass validators. | Assert helper list and parity language. | closed |
 
 All PR-5E residual rows are closed for PR-5A planning purposes; none are left for PR-5A invention.
@@ -172,6 +173,62 @@ Any `QuantitySpecification` with `representation_kind == blocked_pending_numeric
 
 It may instead be quarantined or escalated only through the already lawful terminal quarantine/escalation pairs. It may not appear in `accepted_for_planning`, `normalized_for_planning`, `source_local_retained`, or `SettlementProposal`. No numeric choice is made in PR-5A.
 
+### ResourceMathResult request aggregate validation and typed scope
+
+A `ResourceMathResult` may be constructed only against a supplied `ResourceMathRequest` object. Future factory and validator signatures must make aggregate validation receive both objects, for example:
+
+```python
+create_resource_math_result(
+    *,
+    request: ResourceMathRequest,
+    ...
+) -> ResourceMathResult
+
+validate_resource_math_result(
+    result: ResourceMathResult,
+    *,
+    request: ResourceMathRequest,
+) -> bool
+```
+
+No repository lookup or dereference occurs. The supplied request/result pair must satisfy all of:
+
+- `result.request_id == request.request_id`.
+- Exactly one matching required/satisfied `resource_math_request_ref` dependency binds `result.request_id`.
+- Every result dependency carried in `result.dependencies` or named by `result.referenced_dependency_ids`, validation fields, trace fields, or result policy fields is required/satisfied unless the result is deliberately reporting `blocked_missing_dependency` for that dependency.
+- `normalized_reference_ids` remains diagnostic only and never determines policy scope.
+
+PR-5F adds exact future typed scope fields to `ResourceMathResult` so PR-5A does not infer from untyped `normalized_reference_ids`:
+
+```python
+referenced_subject_binding_ids: tuple[str, ...] = ()
+referenced_resource_ref_ids: tuple[str, ...] = ()
+referenced_quantity_ids: tuple[str, ...] = ()
+referenced_cost_term_ids: tuple[str, ...] = ()
+referenced_cost_bundle_ids: tuple[str, ...] = ()
+referenced_consequence_term_ids: tuple[str, ...] = ()
+referenced_dependency_ids: tuple[str, ...] = ()
+```
+
+Typed scope rules:
+
+- Each typed reference tuple must contain unique non-empty internal IDs.
+- Every typed reference must resolve in the supplied `ResourceMathRequest`.
+- Result quantity scope is the union of `referenced_quantity_ids`, every `quantity_id` on scoped cost terms, every `quantity_id` on scoped consequence terms, and every `quantity_id` reached through scoped cost bundles and their scoped `term_ids`.
+- Term-derived quantities count only when the term `value_mode` is `resource_quantity` or `quantity_only`; `resource_reference_only` and `policy_only` do not add a quantity.
+- Cost-bundle scope includes each contained `term_id`; alternative groups do not perform selection and therefore do not reduce the scoped term set in PR-5A.
+- A quantity, term, bundle, consequence, or dependency that is not in the typed scope is not inspected for result policy enforcement.
+- Any internal record named by typed result scope that names `dependency_ids` brings those dependencies into result dependency scope.
+
+Aggregate result enforcement uses this precedence when no lawful terminal quarantine/escalation pair is present:
+
+1. Any scoped required dependency with `satisfied=False`, including a binding dependency or a dependency named by a scoped record, forces `decision=blocked_missing_dependency`, `blocking=True`, and a lawful stage from `MISSING_DEPENDENCY_STAGES`.
+2. Any scoped quantity with `representation_kind == blocked_pending_numeric_choice` forces `decision=blocked_incompatible_policy`, `stage=policy_refs_declared`, `blocking=True`, `quarantined=False`, and `escalated=False`.
+3. Any scoped lexically negative quantity using `negative_values_require_owner_handoff` forces `decision=requires_owner_handoff`, `stage=blocked_pending_owner_handoff`, `blocking=True`, and at least one matching required/satisfied `owner_handoff_ref` dependency.
+4. Any scoped `CostTerm` or `ConsequenceTerm` with `value_mode=policy_only` that is event-only, source-local, unusual donor semantics, or otherwise not a proposed resource state delta must route through `requires_owner_handoff`, `quarantined_for_review`, or `escalated_to_doctrine`; PR-5A may not normalize it as a numeric resource change.
+
+A result whose typed scope contains any of the above blockers cannot be used by `SettlementProposal` unless a later valid result with accepted or normalized planning status and no blocker is supplied. This contract is aggregate-only; leaf validators do not inspect request contents.
+
 ## 10. Term value-mode contract
 
 Add the exact future controlled surface `RESOURCE_TERM_VALUE_MODES` with values:
@@ -219,7 +276,7 @@ Rules:
 - `maximum_allowed_terms <= len(term_ids)`.
 - When both are supplied, `minimum_required_terms <= maximum_allowed_terms`.
 
-For `atomicity_policy == all_or_nothing_required`, bounds may both be `None`, or both must equal `len(term_ids)`. For atomicity policies permitting subsets or alternatives, bounds may declare future selection limits, compatibility must match the inherited atomicity/ordering/partial-settlement matrix, alternative groups remain subject to unique-group, contained-member, and no-overlap rules, and every unlisted combination remains invalid. This correction replaces the prior rule requiring `maximum_allowed_terms` to be at least `len(term_ids)`.
+For `atomicity_policy == all_or_nothing_requested`, bounds may both be `None`, or both must equal `len(term_ids)`. For atomicity policies permitting subsets or alternatives, bounds may declare future selection limits, compatibility must match the inherited atomicity/ordering/partial-settlement matrix, alternative groups remain subject to unique-group, contained-member, and no-overlap rules, and every unlisted combination remains invalid. This correction replaces the prior rule requiring `maximum_allowed_terms` to be at least `len(term_ids)`.
 
 ## 12. Settlement-proposal result eligibility
 
@@ -277,7 +334,7 @@ External identities include subject, unit, dimension, command, action legality, 
 
 PR-5A must later provide shared private validation helpers and create/validate functions for all ten inherited shapes: `ResourceMathSubjectReference`, `ResourceReference`, `QuantitySpecification`, `ResourceMathDependency`, `CostTerm`, `CostBundle`, `ConsequenceTerm`, `ResourceMathRequest`, `ResourceMathResult`, and `SettlementProposal`.
 
-PR-5F specifically requires shared helpers for external field/dependency binding; optional-unsatisfied dependency classification; precision and scale; source-literal characters; negative-value policies; blocked numeric choice; term value modes; bundle bounds; proposal/result compatibility; non-empty state-delta refs; internal-reference resolution; and false-only authority fields. Factories and validators must enforce the same rules. Manual construction of a frozen dataclass must not bypass them.
+PR-5F specifically requires shared helpers for external field/dependency binding; optional-unsatisfied dependency classification; precision and scale; source-literal characters; negative-value policies; blocked numeric choice; term value modes; bundle bounds; proposal/result compatibility; result/request aggregate validation; non-empty state-delta refs; internal-reference resolution; and false-only authority fields. Factories and validators must enforce the same rules. Manual construction of a frozen dataclass must not bypass them.
 
 ## 16. Serialization and hidden information
 

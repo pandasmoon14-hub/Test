@@ -2972,7 +2972,7 @@ planning-hardening-only status is recorded for PR-5F. PR-5F follows PR-5E, close
 
 ### Implication
 
-PR-5G is the sole next step. PR-5F records residual planning corrections for subject/unit/dimension dependencies, optional dependency semantics, precision, source literals, negative policies, blocked numeric choice, term value modes, bundle bounds, proposal/result compatibility, event-only routing, internal/external reference integrity, and factory/validator parity. It grants no implementation authority.
+PR-5G is the sole next step. PR-5F records residual planning corrections for subject/unit/dimension dependencies, optional dependency semantics, precision, source literals, negative policies, blocked numeric choice, term value modes, bundle bounds, inherited atomicity literal alignment, result/request aggregate validation, proposal/result compatibility, event-only routing, internal/external reference integrity, and factory/validator parity. It grants no implementation authority.
 
 ### Classification
 
