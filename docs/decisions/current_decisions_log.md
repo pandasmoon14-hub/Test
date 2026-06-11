@@ -3052,3 +3052,60 @@ runtime_domain_pr_5g_decision:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+planning-only status is recorded for PR-5H. PR-5H follows PR-5G and closes all eight PR-5G-required corrections. PR-5A is not authorized. The sole next step is **RUNTIME-DOMAIN-PR-5I resource and consequence math final residual hardening review gate**. PR-5H grants no implementation authority.
+
+### Findings
+
+All eight PR-5G residual contracts were addressed:
+
+1. One consolidated effective contract matrix restates all inherited fields, defaults, annotations, controlled surfaces, and governed constants after PR-5B, PR-5D, PR-5F, and PR-5H precedence for all ten shapes.
+2. The complete inherited atomicity, ordering, and partial-settlement surface is restated as one exhaustive bundle compatibility matrix with every unlisted combination explicitly invalid.
+3. The exact dependency lifecycle defines five states: satisfied binding, incomplete binding, missing binding, required but unsatisfied, and advisory optional unsatisfied, with explicit aggregate ownership for request, result, and proposal.
+4. Empty typed result scope is invalid for every ResourceMathResult; accepted and normalized results require at least one scoped business record; blocked results require at least one blocking record or required dependency.
+5. A complete simultaneous blocker-precedence table defines deterministic result routing with doctrine escalation highest, followed by quarantine, hidden-information block, missing dependency, blocked numeric choice, owner handoff, source-supported negative, and no-blocker; all detected blockers are preserved in diagnostics.
+6. Source-supported negative source_literal evidence is bound to the universal source-literal character contract: non-empty, single-line, no edge whitespace, no Cc/Cs/CR/LF/tab/NUL, no normalization or evaluation.
+7. The direct aggregate architecture is chosen: SettlementProposal validation receives both the supplied result and original request with exact validation ordering and no certificate object.
+8. Factory/validator parity requires shared private helpers for all effective contracts including manual frozen-dataclass construction.
+
+PR-5A remains blocked. PR-5I is required before PR-5A. No implementation authority is granted.
+
+### Implication
+
+PR-5I must review PR-5H before PR-5A. PR-5A is not authorized. The sole next step is **RUNTIME-DOMAIN-PR-5I resource and consequence math final residual hardening review gate**. This artifact authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5h_decision:
+  artifact_type: final_residual_planning_hardening
+  implementation_status: planning_only
+  follows_pr_5g: true
+  closes_pr_5g_required_corrections: true
+  pr_5i_required_before_pr_5a: true
+  pr_5a_authorized: false
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5I resource and consequence math final residual hardening review gate
+  next_step_status: review_gate_pending
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+```

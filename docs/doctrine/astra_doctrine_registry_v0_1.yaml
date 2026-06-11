@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.90
+  action: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5H resource and consequence math final residual planning hardening tracking. Planning hardening only; follows PR-5G; closes all eight PR-5G-required corrections including consolidated effective contract matrix, complete bundle compatibility surface, dependency lifecycle states, typed result-scope cardinality, simultaneous blocker-precedence table, source-literal contract consistency, direct proposal/result/request validation architecture, and factory/validator parity; PR-5A remains blocked; PR-5I is the sole next step; authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+- date: '2026-06-11'
   version: 0.1.89
   action: runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -673,6 +678,79 @@ file_records:
   exactly_one_next_step: true
   next_step_authorized: RUNTIME-DOMAIN-PR-5H resource and consequence math final residual planning hardening
   next_step_status: planning_hardening_pending_review
+- file_id: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+  filename: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  layer: 0_control
+  phase: runtime-domain
+  owner: RT-002
+  purpose: Track PR-5H final residual planning hardening that closes all eight PR-5G-required corrections for resource/consequence math contracts.
+  batch: runtime-domain
+  series: runtime-domain-pr-5h
+  content_type: final_residual_planning_hardening
+  implementation_status: planning_only
+  authority_level: tracking
+  authority_note: Planning hardening only; follows PR-5G; closes effective-contract, bundle-compatibility, dependency-lifecycle, typed-scope, blocker-precedence, source-literal, proposal/request-validation, and factory/validator-parity defects; no implementation authority.
+  follows:
+  - runtime-domain-pr-5g residual planning hardening review gate
+  planning_only: true
+  closes_pr_5g_required_corrections: true
+  pr_5i_required_before_pr_5a: true
+  pr_5a_authorized: false
+  no_implementation_authority: true
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+  owns:
+  - Final residual planning hardening contracts including consolidated effective contract matrix, complete bundle compatibility surface, dependency lifecycle, typed result-scope cardinality, blocker precedence, source-literal consistency, proposal/result/request validation architecture, and factory/validator parity.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, persistence structures, resource schemas, calculations, affordability execution, settlement, state mutation, event commitment, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  dependencies:
+  - runtime-domain-pr-5g residual planning hardening review gate
+  - RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001
+  - RT-002
+  blocked_by: []
+  unlocks:
+  - RUNTIME-DOMAIN-PR-5I resource and consequence math final residual hardening review gate
+  downstream_consumers:
+  - RUNTIME-DOMAIN-PR-5I
+  donor_pressure_absorbed:
+  - Planning hardening pressure across effective contracts, bundle compatibility, dependency lifecycle, typed scope, blocker precedence, source-literal consistency, validation ordering, and factory/validator parity.
+  hard_refusals:
+  - runtime/domain implementation
+  - arithmetic or formula evaluation
+  - affordability execution
+  - settlement or state mutation
+  - event commitment
+  - persistence or canon promotion
+  escalation_triggers:
+  - PR-5I finds that PR-5H failed to close aggregate-validation, effective-contract, dependency-lifecycle, typed-scope, bundle, or proposal/request hardening defects.
+  required_tests:
+  - tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - PR-5I final residual hardening review gate before PR-5A implementation may be authorized
+  scale_gate_relevance: critical
+  notes: PR-5H is planning-only; PR-5G corrections are closed; PR-5A remains blocked; PR-5I is the sole next step; no implementation authority.
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning_only
+  live_play_relevance: none
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5I resource and consequence math final residual hardening review gate
+  next_step_status: review_gate_pending
 - file_id: RUNTIME-DOMAIN-PR-5F-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening.md
   proposed_path: docs/doctrine/reviews/
