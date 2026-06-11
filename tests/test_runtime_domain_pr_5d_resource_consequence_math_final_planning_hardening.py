@@ -11,6 +11,69 @@ PR5B_ID = "RUNTIME-DOMAIN-PR-5B-RESOURCE-CONSEQUENCE-MATH-PLANNING-HARDENING-001
 PR5_ID = "RUNTIME-DOMAIN-PR-5-RESOURCE-CONSEQUENCE-MATH-SERVICE-PLAN-001"
 PR4F_ID = "RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001"
 
+RESOURCE_MATH_STAGES = [
+    "resource_math_requested",
+    "source_declaration_captured",
+    "subject_refs_bound",
+    "resource_refs_declared",
+    "quantity_specs_declared",
+    "terms_declared",
+    "bundle_structure_declared",
+    "policy_refs_declared",
+    "dependency_refs_bound",
+    "calculation_ready_for_review",
+    "blocked_pending_validation",
+    "blocked_pending_owner_handoff",
+    "quarantined_for_review",
+    "escalated_to_doctrine",
+]
+
+RESOURCE_MATH_DECISIONS = [
+    "accepted_for_planning",
+    "normalized_for_planning",
+    "source_local_retained",
+    "requires_validation_review",
+    "requires_owner_handoff",
+    "blocked_missing_dependency",
+    "blocked_incompatible_policy",
+    "blocked_hidden_information",
+    "quarantined_for_review",
+    "escalated_to_doctrine",
+]
+
+DECISION_ALLOWED_STAGES = {
+    "accepted_for_planning": {"resource_math_requested", "calculation_ready_for_review"},
+    "normalized_for_planning": {
+        "source_declaration_captured",
+        "subject_refs_bound",
+        "resource_refs_declared",
+        "quantity_specs_declared",
+        "terms_declared",
+        "bundle_structure_declared",
+        "policy_refs_declared",
+        "dependency_refs_bound",
+        "calculation_ready_for_review",
+    },
+    "source_local_retained": {
+        "source_declaration_captured",
+        "resource_refs_declared",
+        "terms_declared",
+        "bundle_structure_declared",
+        "policy_refs_declared",
+    },
+    "requires_validation_review": {"blocked_pending_validation"},
+    "requires_owner_handoff": {"blocked_pending_owner_handoff"},
+    "blocked_missing_dependency": {
+        "dependency_refs_bound",
+        "blocked_pending_validation",
+        "blocked_pending_owner_handoff",
+    },
+    "blocked_incompatible_policy": {"policy_refs_declared"},
+    "blocked_hidden_information": {"dependency_refs_bound", "blocked_pending_validation"},
+    "quarantined_for_review": {"quarantined_for_review"},
+    "escalated_to_doctrine": {"escalated_to_doctrine"},
+}
+
 SHAPES = [
     "ResourceMathSubjectReference",
     "ResourceReference",
@@ -129,6 +192,7 @@ def test_subject_reference_and_roles() -> None:
 def test_stage_decision_blocking_matrix() -> None:
     text = read(ARTIFACT)
     stage_section = text.split("## 5. Stage and decision compatibility", 1)[1].split("## 6.", 1)[0]
+    assert '`accepted_for_planning` | `{"resource_math_requested", "calculation_ready_for_review"}`' in stage_section
     for forbidden in [
         "any non-terminal planning stage",
         "validation/review stage",
@@ -161,6 +225,24 @@ def test_stage_decision_blocking_matrix() -> None:
         "Every decision/stage pair not admitted by the table is invalid for PR-5A",
     ]:
         assert exact_rule in stage_section
+
+
+def test_every_stage_and_decision_has_lawful_compatibility() -> None:
+    text = read(ARTIFACT)
+    stage_section = text.split("## 5. Stage and decision compatibility", 1)[1].split("## 6.", 1)[0]
+
+    assert set(DECISION_ALLOWED_STAGES) == set(RESOURCE_MATH_DECISIONS)
+    for decision, stages in DECISION_ALLOWED_STAGES.items():
+        assert stages, f"{decision} must have at least one lawful stage"
+        assert f"`{decision}`" in stage_section
+        for stage in stages:
+            assert stage in RESOURCE_MATH_STAGES
+            assert stage in stage_section
+
+    covered_stages = set().union(*DECISION_ALLOWED_STAGES.values())
+    assert covered_stages == set(RESOURCE_MATH_STAGES)
+    assert "resource_math_requested" in DECISION_ALLOWED_STAGES["accepted_for_planning"]
+
 
 
 def test_dependency_field_binding_matrix() -> None:

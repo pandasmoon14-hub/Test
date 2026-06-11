@@ -113,7 +113,7 @@ Exact compatibility matrix:
 
 | decision | allowed-stage set | blocking | quarantined | escalated | terminal | validation dependency requirement | owner dependency requirement |
 |---|---|---:|---:|---:|---:|---|---|
-| `accepted_for_planning` | `{"calculation_ready_for_review"}` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
+| `accepted_for_planning` | `{"resource_math_requested", "calculation_ready_for_review"}` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
 | `normalized_for_planning` | `DECLARATION_PROGRESS_STAGES` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
 | `source_local_retained` | `SOURCE_LOCAL_STAGES` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
 | `requires_validation_review` | `VALIDATION_BLOCK_STAGES` | `True` | `False` | `False` | `False` | exactly one required/satisfied `validation_request_ref` matching `validation_request_ref_id`; `validation_result_ref_id` absent | no owner-handoff dependency required; owner handoff refs forbidden |
