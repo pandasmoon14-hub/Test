@@ -17,46 +17,48 @@ AUTHORIZED_FILES = {
     "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
     "docs/decisions/current_decisions_log.md",
 }
-EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate internal reference',
+EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate identity',
                       'annotation': 'str',
                       'controlled_surface': 'none',
                       'default': 'required',
                       'external_dependency_type': 'none',
                       'field': 'consequence_id',
-                      'invariant': 'non-empty when required; exact annotation/default enforced',
+                      'invariant': 'local aggregate identity; unique within ResourceMathRequest.consequence_terms',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
                       'source_artifact': 'PR-5B inherited'},
-                     {'aggregate_owner': 'same-aggregate internal reference',
+                     {'aggregate_owner': 'same-request internal reference',
                       'annotation': 'str',
                       'controlled_surface': 'none',
                       'default': 'required',
                       'external_dependency_type': 'none',
                       'field': 'subject_binding_id',
-                      'invariant': 'non-empty when required; exact annotation/default enforced',
+                      'invariant': 'same-request reference to ResourceMathRequest.subject_refs.subject_binding_id',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
                       'source_artifact': 'PR-5D'},
-                     {'aggregate_owner': 'same-aggregate internal reference',
+                     {'aggregate_owner': 'same-request internal reference',
                       'annotation': 'str | None',
                       'controlled_surface': 'none',
                       'default': 'None',
                       'external_dependency_type': 'none',
                       'field': 'resource_ref_id',
-                      'invariant': 'non-empty when required; exact annotation/default enforced',
+                      'invariant': 'None or same-request reference to '
+                                   'ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
                       'source_artifact': 'PR-5B inherited'},
-                     {'aggregate_owner': 'same-aggregate internal reference',
+                     {'aggregate_owner': 'same-request internal reference',
                       'annotation': 'str | None',
                       'controlled_surface': 'none',
                       'default': 'None',
                       'external_dependency_type': 'none',
                       'field': 'quantity_id',
-                      'invariant': 'non-empty when required; exact annotation/default enforced',
+                      'invariant': 'None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, '
+                                   'controlled by value_mode',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
@@ -67,8 +69,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                       'default': 'required',
                       'external_dependency_type': 'none',
                       'field': 'value_mode',
-                      'invariant': 'required; co-presence matrix controls resource_ref_id, quantity_id, and '
-                                   'policy_route',
+                      'invariant': 'non-empty string required',
                       'replacement_artifact': 'PR-5F',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
@@ -79,8 +80,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                       'default': 'None',
                       'external_dependency_type': 'none',
                       'field': 'policy_route',
-                      'invariant': 'None unless value_mode is policy_only; policy_only requires '
-                                   'owner_handoff_required, quarantine_required, or doctrine_escalation_required',
+                      'invariant': 'None or non-empty string; no implicit normalization',
                       'replacement_artifact': 'PR-5F',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
@@ -91,7 +91,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                       'default': 'required',
                       'external_dependency_type': 'none',
                       'field': 'consequence_family',
-                      'invariant': 'non-empty when required; exact annotation/default enforced',
+                      'invariant': 'non-empty string required',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
@@ -135,18 +135,19 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                       'default': 'required',
                       'external_dependency_type': 'none',
                       'field': 'owner_domain',
-                      'invariant': 'non-empty when required; exact annotation/default enforced',
+                      'invariant': 'non-empty string required',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                'authority',
                       'source_artifact': 'PR-5B inherited'},
-                     {'aggregate_owner': 'same-aggregate internal reference',
+                     {'aggregate_owner': 'same-request internal reference',
                       'annotation': 'tuple[str, ...]',
                       'controlled_surface': 'none',
                       'default': '()',
                       'external_dependency_type': 'none',
                       'field': 'dependency_ids',
-                      'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                      'invariant': 'tuple of same-request dependency_id references; each resolves in '
+                                   'request.dependencies',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                       'source_artifact': 'PR-5B inherited'},
@@ -166,28 +167,28 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                       'default': 'MappingProxyType({})',
                       'external_dependency_type': 'none',
                       'field': 'metadata',
-                      'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                      'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                       'replacement_artifact': 'none',
                       'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType internally',
                       'source_artifact': 'PR-5B inherited'}],
- 'CostBundle': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'CostBundle': [{'aggregate_owner': 'local aggregate identity',
                  'annotation': 'str',
                  'controlled_surface': 'none',
                  'default': 'required',
                  'external_dependency_type': 'none',
                  'field': 'bundle_id',
-                 'invariant': 'non-empty when required; exact annotation/default enforced',
+                 'invariant': 'local aggregate identity; unique within ResourceMathRequest.cost_bundles',
                  'replacement_artifact': 'none',
                  'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                           'authority',
                  'source_artifact': 'PR-5B inherited'},
-                {'aggregate_owner': 'same-aggregate internal reference',
+                {'aggregate_owner': 'same-request internal reference',
                  'annotation': 'tuple[str, ...]',
                  'controlled_surface': 'none',
                  'default': 'required',
                  'external_dependency_type': 'none',
                  'field': 'term_ids',
-                 'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                 'invariant': 'required non-empty unique tuple of same-request CostTerm.term_id references',
                  'replacement_artifact': 'none',
                  'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                  'source_artifact': 'PR-5B inherited'},
@@ -274,18 +275,18 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                  'default': 'required',
                  'external_dependency_type': 'none',
                  'field': 'owner_domain',
-                 'invariant': 'non-empty when required; exact annotation/default enforced',
+                 'invariant': 'non-empty string required',
                  'replacement_artifact': 'none',
                  'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                           'authority',
                  'source_artifact': 'PR-5B inherited'},
-                {'aggregate_owner': 'same-aggregate internal reference',
+                {'aggregate_owner': 'same-request internal reference',
                  'annotation': 'tuple[str, ...]',
                  'controlled_surface': 'none',
                  'default': '()',
                  'external_dependency_type': 'none',
                  'field': 'dependency_ids',
-                 'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                 'invariant': 'tuple of same-request dependency_id references; each resolves in request.dependencies',
                  'replacement_artifact': 'none',
                  'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                  'source_artifact': 'PR-5B inherited'},
@@ -305,47 +306,49 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                  'default': 'MappingProxyType({})',
                  'external_dependency_type': 'none',
                  'field': 'metadata',
-                 'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                 'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                  'replacement_artifact': 'none',
                  'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType internally',
                  'source_artifact': 'PR-5B inherited'}],
- 'CostTerm': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'CostTerm': [{'aggregate_owner': 'local aggregate identity',
                'annotation': 'str',
                'controlled_surface': 'none',
                'default': 'required',
                'external_dependency_type': 'none',
                'field': 'term_id',
-               'invariant': 'non-empty when required; exact annotation/default enforced',
+               'invariant': 'local aggregate identity; unique within ResourceMathRequest.cost_terms',
                'replacement_artifact': 'none',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5B inherited'},
-              {'aggregate_owner': 'same-aggregate internal reference',
+              {'aggregate_owner': 'same-request internal reference',
                'annotation': 'str',
                'controlled_surface': 'none',
                'default': 'required',
                'external_dependency_type': 'none',
                'field': 'subject_binding_id',
-               'invariant': 'non-empty when required; exact annotation/default enforced',
+               'invariant': 'same-request reference to ResourceMathRequest.subject_refs.subject_binding_id',
                'replacement_artifact': 'none',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5D'},
-              {'aggregate_owner': 'same-aggregate internal reference',
+              {'aggregate_owner': 'same-request internal reference',
                'annotation': 'str | None',
                'controlled_surface': 'none',
                'default': 'None',
                'external_dependency_type': 'none',
                'field': 'resource_ref_id',
-               'invariant': 'non-empty when required; exact annotation/default enforced',
+               'invariant': 'None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, '
+                            'controlled by value_mode',
                'replacement_artifact': 'none',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5B inherited'},
-              {'aggregate_owner': 'same-aggregate internal reference',
+              {'aggregate_owner': 'same-request internal reference',
                'annotation': 'str | None',
                'controlled_surface': 'none',
                'default': 'None',
                'external_dependency_type': 'none',
                'field': 'quantity_id',
-               'invariant': 'non-empty when required; exact annotation/default enforced',
+               'invariant': 'None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, '
+                            'controlled by value_mode',
                'replacement_artifact': 'none',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5B inherited'},
@@ -355,7 +358,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                'default': 'required',
                'external_dependency_type': 'none',
                'field': 'value_mode',
-               'invariant': 'required; co-presence matrix controls resource_ref_id, quantity_id, and policy_route',
+               'invariant': 'non-empty string required',
                'replacement_artifact': 'PR-5F',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5F explicit replacement/addition'},
@@ -365,8 +368,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                'default': 'None',
                'external_dependency_type': 'none',
                'field': 'policy_route',
-               'invariant': 'None unless value_mode is policy_only; policy_only requires owner_handoff_required, '
-                            'quarantine_required, or doctrine_escalation_required',
+               'invariant': 'None or non-empty string; no implicit normalization',
                'replacement_artifact': 'PR-5F',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5F explicit replacement/addition'},
@@ -376,7 +378,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                'default': 'required',
                'external_dependency_type': 'none',
                'field': 'cost_family',
-               'invariant': 'non-empty when required; exact annotation/default enforced',
+               'invariant': 'non-empty string required',
                'replacement_artifact': 'none',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5B inherited'},
@@ -416,17 +418,17 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                'default': 'required',
                'external_dependency_type': 'none',
                'field': 'owner_domain',
-               'invariant': 'non-empty when required; exact annotation/default enforced',
+               'invariant': 'non-empty string required',
                'replacement_artifact': 'none',
                'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',
                'source_artifact': 'PR-5B inherited'},
-              {'aggregate_owner': 'same-aggregate internal reference',
+              {'aggregate_owner': 'same-request internal reference',
                'annotation': 'tuple[str, ...]',
                'controlled_surface': 'none',
                'default': '()',
                'external_dependency_type': 'none',
                'field': 'dependency_ids',
-               'invariant': 'tuple copied; unique non-empty ids where references are carried',
+               'invariant': 'tuple of same-request dependency_id references; each resolves in request.dependencies',
                'replacement_artifact': 'none',
                'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                'source_artifact': 'PR-5B inherited'},
@@ -446,17 +448,17 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                'default': 'MappingProxyType({})',
                'external_dependency_type': 'none',
                'field': 'metadata',
-               'invariant': 'defensive MappingProxyType copy; no callable metadata',
+               'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                'replacement_artifact': 'none',
                'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType internally',
                'source_artifact': 'PR-5B inherited'}],
- 'QuantitySpecification': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'QuantitySpecification': [{'aggregate_owner': 'local aggregate identity',
                             'annotation': 'str',
                             'controlled_surface': 'none',
                             'default': 'required',
                             'external_dependency_type': 'none',
                             'field': 'quantity_id',
-                            'invariant': 'non-empty when required; exact annotation/default enforced',
+                            'invariant': 'local aggregate identity; unique within ResourceMathRequest.quantity_specs',
                             'replacement_artifact': 'none',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
@@ -467,7 +469,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                             'default': 'required',
                             'external_dependency_type': 'none',
                             'field': 'representation_kind',
-                            'invariant': 'non-empty when required; exact annotation/default enforced',
+                            'invariant': 'non-empty string required',
                             'replacement_artifact': 'none',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
@@ -478,8 +480,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                             'default': 'None',
                             'external_dependency_type': 'none',
                             'field': 'magnitude_text',
-                            'invariant': 'ASCII full-string grammar only; no Decimal, Fraction, float, arithmetic, '
-                                         'comparison, conversion, rounding, or affordability execution',
+                            'invariant': 'None or non-empty string; no implicit normalization',
                             'replacement_artifact': 'none',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
@@ -490,8 +491,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                             'default': 'None',
                             'external_dependency_type': 'none',
                             'field': 'source_literal',
-                            'invariant': 'universal one-line source literal contract; no parsing, normalization, '
-                                         'arithmetic, or evaluation',
+                            'invariant': 'None or non-empty string; no implicit normalization',
                             'replacement_artifact': 'none',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
@@ -524,8 +524,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                             'default': 'None',
                             'external_dependency_type': 'unit_ref',
                             'field': 'unit_ref_id',
-                            'invariant': 'non-empty when required; exact annotation/default enforced',
-                            'replacement_artifact': 'none',
+                            'invariant': 'None or non-empty unit reference; when non-None exactly one '
+                                         'required/satisfied unit_ref dependency in enclosing request',
+                            'replacement_artifact': 'PR-5F binding-contract refinement',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
                             'source_artifact': 'PR-5B inherited'},
@@ -535,8 +536,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                             'default': 'None',
                             'external_dependency_type': 'dimension_ref',
                             'field': 'dimension_ref_id',
-                            'invariant': 'non-empty when required; exact annotation/default enforced',
-                            'replacement_artifact': 'none',
+                            'invariant': 'None or non-empty dimension reference; when non-None exactly one '
+                                         'required/satisfied dimension_ref dependency in enclosing request',
+                            'replacement_artifact': 'PR-5F binding-contract refinement',
                             'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                      'projection authority',
                             'source_artifact': 'PR-5B inherited'},
@@ -600,84 +602,94 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                             'default': 'MappingProxyType({})',
                             'external_dependency_type': 'none',
                             'field': 'metadata',
-                            'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                            'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                             'replacement_artifact': 'none',
                             'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType '
                                                      'internally',
                             'source_artifact': 'PR-5B inherited'}],
- 'ResourceMathDependency': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'ResourceMathDependency': [{'aggregate_owner': 'local aggregate identity',
                              'annotation': 'str',
                              'controlled_surface': 'none',
                              'default': 'required',
                              'external_dependency_type': 'none',
                              'field': 'dependency_id',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'non-empty string; unique inside its owning dependency tuple',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
                              'source_artifact': 'PR-5B inherited'},
-                            {'aggregate_owner': 'local field',
+                            {'aggregate_owner': 'local controlled field',
                              'annotation': 'str',
                              'controlled_surface': 'RESOURCE_MATH_DEPENDENCY_TYPES',
                              'default': 'required',
                              'external_dependency_type': 'none',
                              'field': 'dependency_type',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'controlled dependency type; interprets reference_id; no dereference or '
+                                          'execution',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
                              'source_artifact': 'PR-5B inherited'},
-                            {'aggregate_owner': 'same-aggregate internal reference',
+                            {'aggregate_owner': 'dependency-record external reference value',
                              'annotation': 'str',
                              'controlled_surface': 'none',
                              'default': 'required',
                              'external_dependency_type': 'none',
                              'field': 'reference_id',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'typed external-reference value interpreted according to dependency_type; '
+                                          'not a same-aggregate internal reference; not resolved against '
+                                          'subject/resource/quantity/term/bundle/consequence IDs unless that '
+                                          'dependency type expressly represents such a reference; does not require a '
+                                          'second dependency record',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
                              'source_artifact': 'PR-5B inherited'},
-                            {'aggregate_owner': 'local field',
+                            {'aggregate_owner': 'local controlled field',
                              'annotation': 'str',
                              'controlled_surface': 'RESOURCE_MATH_OWNER_DOMAINS',
                              'default': 'required',
                              'external_dependency_type': 'none',
                              'field': 'owner_domain',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'controlled owner domain for the dependency record',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
                              'source_artifact': 'PR-5B inherited'},
-                            {'aggregate_owner': 'local field',
+                            {'aggregate_owner': 'local lifecycle flag',
                              'annotation': 'bool',
                              'controlled_surface': 'none',
                              'default': 'True',
                              'external_dependency_type': 'none',
                              'field': 'required',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'bool; controls whether the dependency is mandatory; required=False cannot '
+                                          'satisfy required bindings and participates in lifecycle State C or E as '
+                                          'specified',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
                              'source_artifact': 'PR-5B inherited'},
-                            {'aggregate_owner': 'local field',
+                            {'aggregate_owner': 'local lifecycle flag',
                              'annotation': 'bool',
                              'controlled_surface': 'none',
                              'default': 'False',
                              'external_dependency_type': 'none',
                              'field': 'satisfied',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'bool; participates in lifecycle states A-E; required=True and '
+                                          'satisfied=False is incomplete or required-unsatisfied, not malformed by '
+                                          'itself',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
                              'source_artifact': 'PR-5B inherited'},
-                            {'aggregate_owner': 'local field',
+                            {'aggregate_owner': 'local hidden-information flag',
                              'annotation': 'bool',
                              'controlled_surface': 'none',
                              'default': 'True',
                              'external_dependency_type': 'none',
                              'field': 'hidden_info_safe',
-                             'invariant': 'non-empty when required; exact annotation/default enforced',
+                             'invariant': 'bool; False is distinct from unsatisfied; a scoped otherwise-satisfied '
+                                          'dependency with False routes through blocked_hidden_information',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
@@ -688,18 +700,18 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                              'default': 'MappingProxyType({})',
                              'external_dependency_type': 'none',
                              'field': 'metadata',
-                             'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                             'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType '
                                                       'internally',
                              'source_artifact': 'PR-5B inherited'}],
- 'ResourceMathRequest': [{'aggregate_owner': 'external dependency binding',
+ 'ResourceMathRequest': [{'aggregate_owner': 'local aggregate identity',
                           'annotation': 'str',
                           'controlled_surface': 'none',
                           'default': 'required',
-                          'external_dependency_type': 'resource_math_request_ref',
+                          'external_dependency_type': 'none',
                           'field': 'request_id',
-                          'invariant': 'result binds exact supplied request; not a SettlementProposal field',
+                          'invariant': 'local aggregate identity; identifies this ResourceMathRequest',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -710,7 +722,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': 'None',
                           'external_dependency_type': 'command_ref',
                           'field': 'command_ref_id',
-                          'invariant': 'non-empty when required; exact annotation/default enforced',
+                          'invariant': 'None or non-empty command reference; when non-None matching command_ref '
+                                       'dependency is required/satisfied',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -721,12 +734,13 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': 'None',
                           'external_dependency_type': 'action_legality_ref',
                           'field': 'action_legality_ref_id',
-                          'invariant': 'non-empty when required; exact annotation/default enforced',
+                          'invariant': 'None or non-empty action-legality reference; when non-None matching '
+                                       'action_legality_ref dependency is required/satisfied',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'same-aggregate internal reference',
+                         {'aggregate_owner': 'same-aggregate member collection',
                           'annotation': 'tuple[ResourceMathSubjectReference, ...]',
                           'controlled_surface': 'none',
                           'default': 'required',
@@ -743,74 +757,78 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': '()',
                           'external_dependency_type': 'state_projection_ref',
                           'field': 'state_projection_ref_ids',
-                          'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                          'invariant': 'tuple of state projection refs; each supplied ref has required/satisfied '
+                                       'state_projection_ref dependency',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'same-aggregate internal reference',
+                         {'aggregate_owner': 'same-aggregate member collection',
                           'annotation': 'tuple[ResourceReference, ...]',
                           'controlled_surface': 'none',
                           'default': '()',
                           'external_dependency_type': 'none',
                           'field': 'resource_refs',
-                          'invariant': 'same-request resource_ref_id uniqueness; subject_binding_id resolves to '
-                                       'request.subject_refs',
+                          'invariant': 'tuple of ResourceReference records; resource_ref_id values unique; each '
+                                       'subject_binding_id resolves in subject_refs',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'same-aggregate internal reference',
+                         {'aggregate_owner': 'same-aggregate member collection',
                           'annotation': 'tuple[QuantitySpecification, ...]',
                           'controlled_surface': 'none',
                           'default': '()',
                           'external_dependency_type': 'none',
                           'field': 'quantity_specs',
-                          'invariant': 'same-request quantity_id uniqueness; lexical-only quantity validation',
+                          'invariant': 'tuple of QuantitySpecification records; quantity_id values unique; '
+                                       'lexical-only validation applies',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'same-aggregate internal reference',
+                         {'aggregate_owner': 'same-aggregate member collection',
                           'annotation': 'tuple[CostTerm, ...]',
                           'controlled_surface': 'none',
                           'default': '()',
                           'external_dependency_type': 'none',
                           'field': 'cost_terms',
-                          'invariant': 'same-request term_id uniqueness; subject/resource/quantity/dependency '
-                                       'references resolve',
+                          'invariant': 'tuple of CostTerm records; term_id values unique; internal references resolve '
+                                       'in the same request',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'same-aggregate internal reference',
+                         {'aggregate_owner': 'same-aggregate member collection',
                           'annotation': 'tuple[CostBundle, ...]',
                           'controlled_surface': 'none',
                           'default': '()',
                           'external_dependency_type': 'none',
                           'field': 'cost_bundles',
-                          'invariant': 'same-request bundle_id uniqueness; bundle matrix and bound rules apply',
+                          'invariant': 'tuple of CostBundle records; bundle_id values unique; CostBundle matrix and '
+                                       'bound rules apply',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'same-aggregate internal reference',
+                         {'aggregate_owner': 'same-aggregate member collection',
                           'annotation': 'tuple[ConsequenceTerm, ...]',
                           'controlled_surface': 'none',
                           'default': '()',
                           'external_dependency_type': 'none',
                           'field': 'consequence_terms',
-                          'invariant': 'same-request consequence_id uniqueness; no consequence application',
+                          'invariant': 'tuple of ConsequenceTerm records; consequence_id values unique; no consequence '
+                                       'application',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
                           'source_artifact': 'PR-5B inherited'},
-                         {'aggregate_owner': 'local field',
+                         {'aggregate_owner': 'owned dependency tuple',
                           'annotation': 'tuple[ResourceMathDependency, ...]',
                           'controlled_surface': 'none',
                           'default': '()',
                           'external_dependency_type': 'none',
                           'field': 'dependencies',
-                          'invariant': 'dependency_id unique; (dependency_type, reference_id) unique within owning '
-                                       'aggregate; lifecycle states A-E apply',
+                          'invariant': 'owns request/input external bindings; dependency_id and (dependency_type, '
+                                       'reference_id) unique; lifecycle states A-E apply',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -821,7 +839,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': 'required',
                           'external_dependency_type': 'runtime_trace_ref',
                           'field': 'trace_ref_id',
-                          'invariant': 'required runtime_trace_ref external binding',
+                          'invariant': 'required runtime trace reference; matching required/satisfied '
+                                       'runtime_trace_ref dependency',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -832,7 +851,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': '()',
                           'external_dependency_type': 'provenance_ref',
                           'field': 'provenance_refs',
-                          'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                          'invariant': 'tuple of provenance refs; each supplied ref has required/satisfied '
+                                       'provenance_ref dependency',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
@@ -842,7 +862,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': '()',
                           'external_dependency_type': 'owner_handoff_ref',
                           'field': 'owner_handoff_ref_ids',
-                          'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                          'invariant': 'tuple of owner handoff refs; each supplied ref has required/satisfied '
+                                       'owner_handoff_ref dependency',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                           'source_artifact': 'PR-5B inherited'},
@@ -852,7 +873,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': 'None',
                           'external_dependency_type': 'validation_request_ref',
                           'field': 'validation_request_ref_id',
-                          'invariant': 'non-empty when required; exact annotation/default enforced',
+                          'invariant': 'None or non-empty validation request ref; when non-None matching '
+                                       'validation_request_ref dependency and validation co-presence rules apply',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                    'authority',
@@ -863,7 +885,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'default': 'MappingProxyType({})',
                           'external_dependency_type': 'none',
                           'field': 'metadata',
-                          'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                          'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                           'replacement_artifact': 'none',
                           'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType '
                                                    'internally',
@@ -1077,14 +1099,15 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                           'replacement_artifact': 'none',
                           'serialization_posture': 'internal to_dict only; preserved false; no public projection',
                           'source_artifact': 'PR-5B inherited'}],
- 'ResourceMathResult': [{'aggregate_owner': 'external dependency binding',
+ 'ResourceMathResult': [{'aggregate_owner': 'local aggregate identity',
                          'annotation': 'str',
                          'controlled_surface': 'none',
                          'default': 'required',
-                         'external_dependency_type': 'resource_math_result_ref',
+                         'external_dependency_type': 'none',
                          'field': 'result_id',
-                         'invariant': 'proposal binds exact supplied result',
-                         'replacement_artifact': 'none',
+                         'invariant': 'local aggregate identity; identifies this ResourceMathResult; no '
+                                      'resource_math_result_ref self-binding',
+                         'replacement_artifact': 'PR-5H no-self-binding correction',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1094,8 +1117,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'resource_math_request_ref',
                          'field': 'request_id',
-                         'invariant': 'result binds exact supplied request; not a SettlementProposal field',
-                         'replacement_artifact': 'none',
+                         'invariant': 'non-empty; binds the exact supplied ResourceMathRequest through one '
+                                      'required/satisfied resource_math_request_ref dependency',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1105,7 +1130,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'none',
                          'field': 'stage',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
+                         'invariant': 'non-empty string required',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1116,7 +1141,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'none',
                          'field': 'decision',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
+                         'invariant': 'non-empty string required',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1127,7 +1152,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'none',
                          'field': 'blocking',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
+                         'invariant': 'bool required; exact value determined by stage/decision compatibility and '
+                                      'blocker precedence',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1138,7 +1164,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'False',
                          'external_dependency_type': 'none',
                          'field': 'quarantined',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
+                         'invariant': 'bool default False; True only for the lawful quarantined_for_review '
+                                      'stage/decision pair',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1149,110 +1176,121 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'False',
                          'external_dependency_type': 'none',
                          'field': 'escalated',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
+                         'invariant': 'bool default False; True only for the lawful escalated_to_doctrine '
+                                      'stage/decision pair',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
-                        {'aggregate_owner': 'local field',
+                        {'aggregate_owner': 'local diagnostic text',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'diagnostics',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple[str, ...]; diagnostics are not internal reference IDs; preserve supplied '
+                                      'ordering; require non-empty strings if supplied; retain all detected blocker '
+                                      'diagnostics; no same-request ID resolution',
                          'replacement_artifact': 'none',
-                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
-                                                  'authority',
+                         'serialization_posture': 'tuple copied internally; copied list in internal to_dict; no public '
+                                                  'projection authority',
                          'source_artifact': 'PR-5B inherited'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'local diagnostic references',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'normalized_reference_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'diagnostic-only tuple; never determines policy scope; no same-request '
+                                      'resolution requirement for result policy enforcement',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5B inherited'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_subject_binding_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request subject_binding_id references; unique non-empty IDs; '
+                                      'resolves in supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_resource_ref_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request resource_ref_id references; unique non-empty IDs; '
+                                      'resolves in supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_quantity_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request quantity_id references; unique non-empty IDs; resolves in '
+                                      'supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_cost_term_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request CostTerm.term_id references; unique non-empty IDs; '
+                                      'resolves in supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_cost_bundle_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request CostBundle.bundle_id references; unique non-empty IDs; '
+                                      'resolves in supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_consequence_term_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request ConsequenceTerm.consequence_id references; unique '
+                                      'non-empty IDs; resolves in supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'same-aggregate internal reference',
+                        {'aggregate_owner': 'same-request internal reference',
                          'annotation': 'tuple[str, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'referenced_dependency_ids',
-                         'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                         'invariant': 'tuple of same-request ResourceMathDependency.dependency_id references; unique '
+                                      'non-empty IDs; resolves in supplied request',
                          'replacement_artifact': 'PR-5F',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5F explicit replacement/addition'},
-                        {'aggregate_owner': 'local field',
+                        {'aggregate_owner': 'owned dependency tuple',
                          'annotation': 'tuple[ResourceMathDependency, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'dependencies',
-                         'invariant': 'dependency_id unique; (dependency_type, reference_id) unique within owning '
-                                      'aggregate; lifecycle states A-E apply',
+                         'invariant': 'owns request binding, result validation, trace, and result-specific references; '
+                                      'no resource_math_result_ref self-binding',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1263,7 +1301,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'runtime_trace_ref',
                          'field': 'trace_ref_id',
-                         'invariant': 'required runtime_trace_ref external binding',
+                         'invariant': 'required runtime trace reference; matching required/satisfied runtime_trace_ref '
+                                      'dependency in result.dependencies',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1274,8 +1313,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'None',
                          'external_dependency_type': 'validation_request_ref',
                          'field': 'validation_request_ref_id',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
-                         'replacement_artifact': 'none',
+                         'invariant': 'None or non-empty validation request ref; validation co-presence rules apply '
+                                      'against result.dependencies',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1285,8 +1326,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'None',
                          'external_dependency_type': 'validation_result_ref',
                          'field': 'validation_result_ref_id',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
-                         'replacement_artifact': 'none',
+                         'invariant': 'None or non-empty validation result ref; validation co-presence rules and '
+                                      'proposal equality apply',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1296,9 +1339,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'None',
                          'external_dependency_type': 'none',
                          'field': 'validation_decision',
-                         'invariant': 'validation co-presence with validation request/result refs; proposal requires '
-                                      'validation_passed',
-                         'replacement_artifact': 'none',
+                         'invariant': 'validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence '
+                                      'rules apply; proposal requires validation_passed and equality with result',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1308,7 +1352,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'MappingProxyType({})',
                          'external_dependency_type': 'none',
                          'field': 'metadata',
-                         'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                         'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType '
                                                   'internally',
@@ -1522,13 +1566,14 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; preserved false; no public projection',
                          'source_artifact': 'PR-5B inherited'}],
- 'ResourceMathSubjectReference': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'ResourceMathSubjectReference': [{'aggregate_owner': 'local aggregate identity',
                                    'annotation': 'str',
                                    'controlled_surface': 'none',
                                    'default': 'required',
                                    'external_dependency_type': 'none',
                                    'field': 'subject_binding_id',
-                                   'invariant': 'non-empty when required; exact annotation/default enforced',
+                                   'invariant': 'local aggregate identity; unique within '
+                                                'ResourceMathRequest.subject_refs',
                                    'replacement_artifact': 'none',
                                    'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                             'projection authority',
@@ -1539,7 +1584,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                                    'default': 'required',
                                    'external_dependency_type': 'none',
                                    'field': 'subject_type',
-                                   'invariant': 'non-empty when required; exact annotation/default enforced',
+                                   'invariant': 'non-empty string required',
                                    'replacement_artifact': 'none',
                                    'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                             'projection authority',
@@ -1550,8 +1595,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                                    'default': 'required',
                                    'external_dependency_type': 'subject_ref',
                                    'field': 'subject_ref_id',
-                                   'invariant': 'non-empty when required; exact annotation/default enforced',
-                                   'replacement_artifact': 'none',
+                                   'invariant': 'non-empty external/upstream subject reference; exactly one '
+                                                'required/satisfied subject_ref dependency in enclosing request; no '
+                                                'dereference',
+                                   'replacement_artifact': 'PR-5F binding-contract refinement',
                                    'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                             'projection authority',
                                    'source_artifact': 'PR-5D'},
@@ -1561,7 +1608,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                                    'default': 'required',
                                    'external_dependency_type': 'none',
                                    'field': 'subject_role',
-                                   'invariant': 'non-empty when required; exact annotation/default enforced',
+                                   'invariant': 'non-empty string required',
                                    'replacement_artifact': 'none',
                                    'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                             'projection authority',
@@ -1572,7 +1619,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                                    'default': 'required',
                                    'external_dependency_type': 'none',
                                    'field': 'owner_domain',
-                                   'invariant': 'non-empty when required; exact annotation/default enforced',
+                                   'invariant': 'non-empty string required',
                                    'replacement_artifact': 'none',
                                    'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                             'projection authority',
@@ -1604,29 +1651,30 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                                    'default': 'MappingProxyType({})',
                                    'external_dependency_type': 'none',
                                    'field': 'metadata',
-                                   'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                                   'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no '
+                                                'callables',
                                    'replacement_artifact': 'none',
                                    'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType '
                                                             'internally',
                                    'source_artifact': 'PR-5D'}],
- 'ResourceReference': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'ResourceReference': [{'aggregate_owner': 'local aggregate identity',
                         'annotation': 'str',
                         'controlled_surface': 'none',
                         'default': 'required',
                         'external_dependency_type': 'none',
                         'field': 'resource_ref_id',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'local aggregate identity; unique within ResourceMathRequest.resource_refs',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
                         'source_artifact': 'PR-5B inherited'},
-                       {'aggregate_owner': 'same-aggregate internal reference',
+                       {'aggregate_owner': 'same-request internal reference',
                         'annotation': 'str',
                         'controlled_surface': 'none',
                         'default': 'required',
                         'external_dependency_type': 'none',
                         'field': 'subject_binding_id',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'same-request reference to ResourceMathRequest.subject_refs.subject_binding_id',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1637,7 +1685,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'required',
                         'external_dependency_type': 'none',
                         'field': 'resource_family',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'non-empty string required',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1648,7 +1696,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'required',
                         'external_dependency_type': 'none',
                         'field': 'resource_key',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'non-empty string required',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1659,21 +1707,23 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'None',
                         'external_dependency_type': 'none',
                         'field': 'source_label',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'None or non-empty string; no implicit normalization',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
                         'source_artifact': 'PR-5B inherited'},
-                       {'aggregate_owner': 'local field',
+                       {'aggregate_owner': 'local source-label tuple',
                         'annotation': 'tuple[str, ...]',
                         'controlled_surface': 'none',
                         'default': '()',
                         'external_dependency_type': 'none',
                         'field': 'source_aliases',
-                        'invariant': 'tuple copied; unique non-empty ids where references are carried',
+                        'invariant': 'tuple[str, ...]; aliases are source labels, not reference IDs; require non-empty '
+                                     'strings if supplied; duplicates rejected only if an inherited alias contract '
+                                     'explicitly requires it; no ID resolution',
                         'replacement_artifact': 'none',
-                        'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
-                                                 'authority',
+                        'serialization_posture': 'tuple copied internally; copied list in internal to_dict; no public '
+                                                 'projection authority',
                         'source_artifact': 'PR-5B inherited'},
                        {'aggregate_owner': 'local field',
                         'annotation': 'str',
@@ -1681,7 +1731,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'required',
                         'external_dependency_type': 'none',
                         'field': 'owner_domain',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'non-empty string required',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1703,8 +1753,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'None',
                         'external_dependency_type': 'unit_ref',
                         'field': 'unit_ref_id',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
-                        'replacement_artifact': 'none',
+                        'invariant': 'None or non-empty unit reference; when non-None exactly one required/satisfied '
+                                     'unit_ref dependency in enclosing request',
+                        'replacement_artifact': 'PR-5F binding-contract refinement',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
                         'source_artifact': 'PR-5B inherited'},
@@ -1714,8 +1765,9 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'None',
                         'external_dependency_type': 'dimension_ref',
                         'field': 'dimension_ref_id',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
-                        'replacement_artifact': 'none',
+                        'invariant': 'None or non-empty dimension reference; when non-None exactly one '
+                                     'required/satisfied dimension_ref dependency in enclosing request',
+                        'replacement_artifact': 'PR-5F binding-contract refinement',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
                         'source_artifact': 'PR-5B inherited'},
@@ -1735,7 +1787,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'False',
                         'external_dependency_type': 'none',
                         'field': 'source_local',
-                        'invariant': 'non-empty when required; exact annotation/default enforced',
+                        'invariant': 'boolean value; bool-specific validation, not a string/non-empty check',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                  'authority',
@@ -1746,17 +1798,17 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                         'default': 'MappingProxyType({})',
                         'external_dependency_type': 'none',
                         'field': 'metadata',
-                        'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                        'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                         'replacement_artifact': 'none',
                         'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType internally',
                         'source_artifact': 'PR-5B inherited'}],
- 'SettlementProposal': [{'aggregate_owner': 'same-aggregate internal reference',
+ 'SettlementProposal': [{'aggregate_owner': 'local aggregate identity',
                          'annotation': 'str',
                          'controlled_surface': 'none',
                          'default': 'required',
                          'external_dependency_type': 'none',
                          'field': 'proposal_id',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
+                         'invariant': 'local aggregate identity; identifies this SettlementProposal',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1767,8 +1819,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'resource_math_result_ref',
                          'field': 'result_id',
-                         'invariant': 'proposal binds exact supplied result',
-                         'replacement_artifact': 'none',
+                         'invariant': 'non-empty; binds the exact supplied ResourceMathResult through one '
+                                      'required/satisfied resource_math_result_ref dependency',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1778,9 +1832,10 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'state_delta_ref',
                          'field': 'proposed_state_delta_refs',
-                         'invariant': 'required non-empty unique tuple; each ref has required/satisfied '
-                                      'state_delta_ref dependency',
-                         'replacement_artifact': 'none',
+                         'invariant': 'required non-empty unique tuple; each proposed state-delta ref has '
+                                      'required/satisfied state_delta_ref dependency',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5B inherited'},
                         {'aggregate_owner': 'external dependency binding',
@@ -1789,8 +1844,11 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'validation_result_ref',
                          'field': 'validation_result_ref_id',
-                         'invariant': 'non-empty when required; exact annotation/default enforced',
-                         'replacement_artifact': 'none',
+                         'invariant': 'non-empty validation result ref equal to supplied '
+                                      'result.validation_result_ref_id; matching required/satisfied '
+                                      'validation_result_ref dependency',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
@@ -1800,20 +1858,21 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'none',
                          'field': 'validation_decision',
-                         'invariant': 'validation co-presence with validation request/result refs; proposal requires '
-                                      'validation_passed',
-                         'replacement_artifact': 'none',
+                         'invariant': 'validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence '
+                                      'rules apply; proposal requires validation_passed and equality with result',
+                         'replacement_artifact': 'PR-5F aggregate-validation refinement; PR-5H direct '
+                                                 'request/result/proposal validation refinement',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
                          'source_artifact': 'PR-5B inherited'},
-                        {'aggregate_owner': 'local field',
+                        {'aggregate_owner': 'owned dependency tuple',
                          'annotation': 'tuple[ResourceMathDependency, ...]',
                          'controlled_surface': 'none',
                          'default': '()',
                          'external_dependency_type': 'none',
                          'field': 'dependencies',
-                         'invariant': 'dependency_id unique; (dependency_type, reference_id) unique within owning '
-                                      'aggregate; lifecycle states A-E apply',
+                         'invariant': 'owns result binding, validation result, state deltas, trace, rollback '
+                                      'accounting, and proposal-specific references',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1824,7 +1883,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'required',
                          'external_dependency_type': 'runtime_trace_ref',
                          'field': 'trace_ref_id',
-                         'invariant': 'required runtime_trace_ref external binding',
+                         'invariant': 'required runtime trace reference; matching required/satisfied runtime_trace_ref '
+                                      'dependency',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '
                                                   'authority',
@@ -1846,7 +1906,8 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': '()',
                          'external_dependency_type': 'rollback_accounting_ref',
                          'field': 'rollback_accounting_refs',
-                         'invariant': 'tuple; each supplied ref has rollback_accounting_ref dependency',
+                         'invariant': 'tuple of rollback accounting refs; each supplied ref has '
+                                      'rollback_accounting_ref dependency',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'tuple copied internally; copied list in internal to_dict',
                          'source_artifact': 'PR-5B inherited'},
@@ -1856,7 +1917,7 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'same-aggregate inter
                          'default': 'MappingProxyType({})',
                          'external_dependency_type': 'none',
                          'field': 'metadata',
-                         'invariant': 'defensive MappingProxyType copy; no callable metadata',
+                         'invariant': 'immutable defensive metadata only; copied to MappingProxyType; no callables',
                          'replacement_artifact': 'none',
                          'serialization_posture': 'defensive dict copy in internal to_dict; MappingProxyType '
                                                   'internally',
@@ -2792,6 +2853,13 @@ def test_exact_ten_shape_complete_contract_matrix() -> None:
     assert shape_field_map("ResourceReference")["unit_ref_id"]["external_dependency_type"] == "unit_ref"
     assert shape_field_map("ResourceReference")["dimension_ref_id"]["external_dependency_type"] == "dimension_ref"
     assert shape_field_map("ResourceMathSubjectReference")["subject_ref_id"]["external_dependency_type"] == "subject_ref"
+    assert shape_field_map("ResourceMathResult")["result_id"]["aggregate_owner"] == "local aggregate identity"
+    assert shape_field_map("ResourceMathResult")["result_id"]["external_dependency_type"] == "none"
+    assert shape_field_map("ResourceMathResult")["request_id"]["external_dependency_type"] == "resource_math_request_ref"
+    assert shape_field_map("SettlementProposal")["result_id"]["external_dependency_type"] == "resource_math_result_ref"
+    assert shape_field_map("ResourceMathDependency")["reference_id"]["aggregate_owner"] != "same-aggregate internal reference"
+    assert shape_field_map("ResourceMathResult")["diagnostics"]["aggregate_owner"] == "local diagnostic text"
+    assert shape_field_map("ResourceReference")["source_aliases"]["aggregate_owner"] == "local source-label tuple"
     assert "stage" not in shape_field_map("ResourceMathRequest")
     assert "request_id" not in shape_field_map("SettlementProposal")
 
@@ -2813,7 +2881,7 @@ def test_absence_of_aliases_and_exact_typed_scope_fields() -> None:
     for field in expected:
         assert result_fields[field]["annotation"] == "tuple[str, ...]"
         assert result_fields[field]["default"] == "()"
-        assert result_fields[field]["aggregate_owner"] == "same-aggregate internal reference"
+        assert result_fields[field]["aggregate_owner"] == "same-request internal reference"
 
 
 def test_all_controlled_surfaces_exact() -> None:
@@ -2824,6 +2892,11 @@ def test_all_controlled_surfaces_exact() -> None:
         "pr_5f_replacement": "none",
         "pr_5h_change": "none",
     }
+    assert shape_field_map("ResourceMathSubjectReference")["subject_ref_id"]["replacement_artifact"] == "PR-5F binding-contract refinement"
+    assert shape_field_map("ResourceReference")["unit_ref_id"]["replacement_artifact"] == "PR-5F binding-contract refinement"
+    assert shape_field_map("ResourceReference")["dimension_ref_id"]["replacement_artifact"] == "PR-5F binding-contract refinement"
+    assert shape_field_map("QuantitySpecification")["unit_ref_id"]["replacement_artifact"] == "PR-5F binding-contract refinement"
+    assert shape_field_map("QuantitySpecification")["dimension_ref_id"]["replacement_artifact"] == "PR-5F binding-contract refinement"
     assert "validation_blocked" not in contract()["constants"]["RESOURCE_MATH_DECISIONS"]
     forbidden = {"hit_points", "spell_slots", "experience_points", "fate_points", "action_points", "movement_points"}
     assert not forbidden & set(contract()["constants"]["RESOURCE_FAMILIES"])
@@ -2878,6 +2951,10 @@ def test_dependency_ownership_lifecycle_and_bindings() -> None:
     assert "Malformed/missing binding State C is rejected before result construction" in doc_text()
     assert shape_field_map("SettlementProposal")["rollback_accounting_refs"]["external_dependency_type"] == "rollback_accounting_ref"
     assert shape_field_map("SettlementProposal")["proposed_state_delta_refs"]["external_dependency_type"] == "state_delta_ref"
+    dep_fields = shape_field_map("ResourceMathDependency")
+    assert "mandatory" in dep_fields["required"]["invariant"]
+    assert "lifecycle states A-E" in dep_fields["satisfied"]["invariant"]
+    assert "False is distinct from unsatisfied" in dep_fields["hidden_info_safe"]["invariant"]
 
 
 def test_typed_scope_cardinality_and_closure_rules_are_exact() -> None:
@@ -3084,6 +3161,20 @@ def test_tracking_uniqueness_registry_decision_log_and_authority() -> None:
     assert "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py" in registry
     assert "PRs #278 and #279 were abandoned" in decisions
     assert "no implementation authority" in decisions
+
+
+def test_resource_math_result_has_no_resource_math_result_ref_self_binding() -> None:
+    result_fields = shape_field_map("ResourceMathResult")
+    proposal_fields = shape_field_map("SettlementProposal")
+    assert result_fields["result_id"]["external_dependency_type"] == "none"
+    assert "no resource_math_result_ref self-binding" in result_fields["result_id"]["invariant"]
+    assert result_fields["dependencies"]["external_dependency_type"] == "none"
+    assert "no resource_math_result_ref self-binding" in result_fields["dependencies"]["invariant"]
+    assert proposal_fields["result_id"]["external_dependency_type"] == "resource_math_result_ref"
+    assert contract()["result_self_binding_rule"] == (
+        "A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; "
+        "only a downstream SettlementProposal binds result.result_id through resource_math_result_ref."
+    )
 
 
 def test_git_footprint_when_base_ref_available_and_absence_of_implementation_module() -> None:

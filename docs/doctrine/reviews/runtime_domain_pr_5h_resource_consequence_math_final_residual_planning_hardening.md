@@ -23,8 +23,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; unique within ResourceMathRequest.subject_refs",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -36,7 +36,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_SUBJECT_TYPES",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -48,11 +48,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty external/upstream subject reference; exactly one required/satisfied subject_ref dependency in enclosing request; no dereference",
         "external_dependency_type": "subject_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F binding-contract refinement"
       },
       {
         "field": "subject_role",
@@ -60,7 +60,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_SUBJECT_ROLES",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -72,7 +72,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -108,7 +108,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5D",
@@ -121,8 +121,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; unique within ResourceMathRequest.resource_refs",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -133,8 +133,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "same-request reference to ResourceMathRequest.subject_refs.subject_binding_id",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -146,7 +146,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_FAMILIES",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -158,7 +158,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -170,7 +170,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty string; no implicit normalization",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -181,10 +181,10 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "local source-label tuple",
+        "invariant": "tuple[str, ...]; aliases are source labels, not reference IDs; require non-empty strings if supplied; duplicates rejected only if an inherited alias contract explicitly requires it; no ID resolution",
         "external_dependency_type": "none",
-        "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
+        "serialization_posture": "tuple copied internally; copied list in internal to_dict; no public projection authority",
         "source_artifact": "PR-5B inherited",
         "replacement_artifact": "none"
       },
@@ -194,7 +194,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -218,11 +218,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request",
         "external_dependency_type": "unit_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F binding-contract refinement"
       },
       {
         "field": "dimension_ref_id",
@@ -230,11 +230,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request",
         "external_dependency_type": "dimension_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F binding-contract refinement"
       },
       {
         "field": "provenance_refs",
@@ -254,7 +254,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "False",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "boolean value; bool-specific validation, not a string/non-empty check",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -266,7 +266,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -279,8 +279,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; unique within ResourceMathRequest.quantity_specs",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -292,7 +292,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "QUANTITY_REPRESENTATION_KINDS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -304,7 +304,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "ASCII full-string grammar only; no Decimal, Fraction, float, arithmetic, comparison, conversion, rounding, or affordability execution",
+        "invariant": "None or non-empty string; no implicit normalization",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -316,7 +316,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "universal one-line source literal contract; no parsing, normalization, arithmetic, or evaluation",
+        "invariant": "None or non-empty string; no implicit normalization",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -352,11 +352,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request",
         "external_dependency_type": "unit_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F binding-contract refinement"
       },
       {
         "field": "dimension_ref_id",
@@ -364,11 +364,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request",
         "external_dependency_type": "dimension_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F binding-contract refinement"
       },
       {
         "field": "conversion_policy",
@@ -436,7 +436,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -449,8 +449,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "non-empty string; unique inside its owning dependency tuple",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -461,8 +461,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_DEPENDENCY_TYPES",
-        "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local controlled field",
+        "invariant": "controlled dependency type; interprets reference_id; no dereference or execution",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -473,8 +473,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "dependency-record external reference value",
+        "invariant": "typed external-reference value interpreted according to dependency_type; not a same-aggregate internal reference; not resolved against subject/resource/quantity/term/bundle/consequence IDs unless that dependency type expressly represents such a reference; does not require a second dependency record",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -485,8 +485,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-        "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local controlled field",
+        "invariant": "controlled owner domain for the dependency record",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -497,8 +497,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "bool",
         "default": "True",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local lifecycle flag",
+        "invariant": "bool; controls whether the dependency is mandatory; required=False cannot satisfy required bindings and participates in lifecycle State C or E as specified",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -509,8 +509,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "bool",
         "default": "False",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local lifecycle flag",
+        "invariant": "bool; participates in lifecycle states A-E; required=True and satisfied=False is incomplete or required-unsatisfied, not malformed by itself",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -521,8 +521,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "bool",
         "default": "True",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local hidden-information flag",
+        "invariant": "bool; False is distinct from unsatisfied; a scoped otherwise-satisfied dependency with False routes through blocked_hidden_information",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -534,7 +534,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -547,8 +547,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; unique within ResourceMathRequest.cost_terms",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -559,8 +559,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "same-request reference to ResourceMathRequest.subject_refs.subject_binding_id",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -571,8 +571,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str | None",
         "default": "None",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -583,8 +583,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str | None",
         "default": "None",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, controlled by value_mode",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -596,7 +596,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_TERM_VALUE_MODES",
         "aggregate_owner": "local field",
-        "invariant": "required; co-presence matrix controls resource_ref_id, quantity_id, and policy_route",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -608,7 +608,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "RESOURCE_TERM_POLICY_ROUTES",
         "aggregate_owner": "local field",
-        "invariant": "None unless value_mode is policy_only; policy_only requires owner_handoff_required, quarantine_required, or doctrine_escalation_required",
+        "invariant": "None or non-empty string; no implicit normalization",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -620,7 +620,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "COST_FAMILIES",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -668,7 +668,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -679,8 +679,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request dependency_id references; each resolves in request.dependencies",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -704,7 +704,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -717,8 +717,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; unique within ResourceMathRequest.cost_bundles",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -729,8 +729,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "required non-empty unique tuple of same-request CostTerm.term_id references",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -826,7 +826,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -837,8 +837,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request dependency_id references; each resolves in request.dependencies",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -862,7 +862,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -875,8 +875,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; unique within ResourceMathRequest.consequence_terms",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -887,8 +887,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "same-request reference to ResourceMathRequest.subject_refs.subject_binding_id",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5D",
@@ -899,8 +899,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str | None",
         "default": "None",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -911,8 +911,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str | None",
         "default": "None",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, controlled by value_mode",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -924,7 +924,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_TERM_VALUE_MODES",
         "aggregate_owner": "local field",
-        "invariant": "required; co-presence matrix controls resource_ref_id, quantity_id, and policy_route",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -936,7 +936,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "RESOURCE_TERM_POLICY_ROUTES",
         "aggregate_owner": "local field",
-        "invariant": "None unless value_mode is policy_only; policy_only requires owner_handoff_required, quarantine_required, or doctrine_escalation_required",
+        "invariant": "None or non-empty string; no implicit normalization",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -948,7 +948,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "CONSEQUENCE_FAMILIES",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -996,7 +996,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1007,8 +1007,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request dependency_id references; each resolves in request.dependencies",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1032,7 +1032,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -1045,9 +1045,9 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "external dependency binding",
-        "invariant": "result binds exact supplied request; not a SettlementProposal field",
-        "external_dependency_type": "resource_math_request_ref",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; identifies this ResourceMathRequest",
+        "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
         "replacement_artifact": "none"
@@ -1058,7 +1058,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty command reference; when non-None matching command_ref dependency is required/satisfied",
         "external_dependency_type": "command_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1070,7 +1070,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty action-legality reference; when non-None matching action_legality_ref dependency is required/satisfied",
         "external_dependency_type": "action_legality_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1081,7 +1081,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[ResourceMathSubjectReference, ...]",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
+        "aggregate_owner": "same-aggregate member collection",
         "invariant": "non-empty tuple; exactly one primary_subject; subject_binding_id values unique in request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
@@ -1094,7 +1094,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of state projection refs; each supplied ref has required/satisfied state_projection_ref dependency",
         "external_dependency_type": "state_projection_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1105,8 +1105,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[ResourceReference, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "same-request resource_ref_id uniqueness; subject_binding_id resolves to request.subject_refs",
+        "aggregate_owner": "same-aggregate member collection",
+        "invariant": "tuple of ResourceReference records; resource_ref_id values unique; each subject_binding_id resolves in subject_refs",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1117,8 +1117,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[QuantitySpecification, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "same-request quantity_id uniqueness; lexical-only quantity validation",
+        "aggregate_owner": "same-aggregate member collection",
+        "invariant": "tuple of QuantitySpecification records; quantity_id values unique; lexical-only validation applies",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1129,8 +1129,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[CostTerm, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "same-request term_id uniqueness; subject/resource/quantity/dependency references resolve",
+        "aggregate_owner": "same-aggregate member collection",
+        "invariant": "tuple of CostTerm records; term_id values unique; internal references resolve in the same request",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1141,8 +1141,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[CostBundle, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "same-request bundle_id uniqueness; bundle matrix and bound rules apply",
+        "aggregate_owner": "same-aggregate member collection",
+        "invariant": "tuple of CostBundle records; bundle_id values unique; CostBundle matrix and bound rules apply",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1153,8 +1153,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[ConsequenceTerm, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "same-request consequence_id uniqueness; no consequence application",
+        "aggregate_owner": "same-aggregate member collection",
+        "invariant": "tuple of ConsequenceTerm records; consequence_id values unique; no consequence application",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1165,8 +1165,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[ResourceMathDependency, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "dependency_id unique; (dependency_type, reference_id) unique within owning aggregate; lifecycle states A-E apply",
+        "aggregate_owner": "owned dependency tuple",
+        "invariant": "owns request/input external bindings; dependency_id and (dependency_type, reference_id) unique; lifecycle states A-E apply",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1178,7 +1178,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required runtime_trace_ref external binding",
+        "invariant": "required runtime trace reference; matching required/satisfied runtime_trace_ref dependency",
         "external_dependency_type": "runtime_trace_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1190,7 +1190,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of provenance refs; each supplied ref has required/satisfied provenance_ref dependency",
         "external_dependency_type": "provenance_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1202,7 +1202,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "invariant": "tuple of owner handoff refs; each supplied ref has required/satisfied owner_handoff_ref dependency",
         "external_dependency_type": "owner_handoff_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1214,7 +1214,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty validation request ref; when non-None matching validation_request_ref dependency and validation co-presence rules apply",
         "external_dependency_type": "validation_request_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1226,7 +1226,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -1467,12 +1467,12 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "external dependency binding",
-        "invariant": "proposal binds exact supplied result",
-        "external_dependency_type": "resource_math_result_ref",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; identifies this ResourceMathResult; no resource_math_result_ref self-binding",
+        "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5H no-self-binding correction"
       },
       {
         "field": "request_id",
@@ -1480,11 +1480,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "result binds exact supplied request; not a SettlementProposal field",
+        "invariant": "non-empty; binds the exact supplied ResourceMathRequest through one required/satisfied resource_math_request_ref dependency",
         "external_dependency_type": "resource_math_request_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "stage",
@@ -1492,7 +1492,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_STAGES",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1504,7 +1504,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "RESOURCE_MATH_DECISIONS",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty string required",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1516,7 +1516,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "bool required; exact value determined by stage/decision compatibility and blocker precedence",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1528,7 +1528,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "False",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "bool default False; True only for the lawful quarantined_for_review stage/decision pair",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1540,7 +1540,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "False",
         "controlled_surface": "none",
         "aggregate_owner": "local field",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "bool default False; True only for the lawful escalated_to_doctrine stage/decision pair",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1551,10 +1551,10 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "local diagnostic text",
+        "invariant": "tuple[str, ...]; diagnostics are not internal reference IDs; preserve supplied ordering; require non-empty strings if supplied; retain all detected blocker diagnostics; no same-request ID resolution",
         "external_dependency_type": "none",
-        "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
+        "serialization_posture": "tuple copied internally; copied list in internal to_dict; no public projection authority",
         "source_artifact": "PR-5B inherited",
         "replacement_artifact": "none"
       },
@@ -1563,8 +1563,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "local diagnostic references",
+        "invariant": "diagnostic-only tuple; never determines policy scope; no same-request resolution requirement for result policy enforcement",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -1575,8 +1575,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request subject_binding_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1587,8 +1587,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request resource_ref_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1599,8 +1599,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request quantity_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1611,8 +1611,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request CostTerm.term_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1623,8 +1623,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request CostBundle.bundle_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1635,8 +1635,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request ConsequenceTerm.consequence_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1647,8 +1647,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[str, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "tuple copied; unique non-empty ids where references are carried",
+        "aggregate_owner": "same-request internal reference",
+        "invariant": "tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request",
         "external_dependency_type": "none",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5F explicit replacement/addition",
@@ -1659,8 +1659,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "tuple[ResourceMathDependency, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "dependency_id unique; (dependency_type, reference_id) unique within owning aggregate; lifecycle states A-E apply",
+        "aggregate_owner": "owned dependency tuple",
+        "invariant": "owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1672,7 +1672,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required runtime_trace_ref external binding",
+        "invariant": "required runtime trace reference; matching required/satisfied runtime_trace_ref dependency in result.dependencies",
         "external_dependency_type": "runtime_trace_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1684,11 +1684,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty validation request ref; validation co-presence rules apply against result.dependencies",
         "external_dependency_type": "validation_request_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "validation_result_ref_id",
@@ -1696,11 +1696,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "None or non-empty validation result ref; validation co-presence rules and proposal equality apply",
         "external_dependency_type": "validation_result_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "validation_decision",
@@ -1708,11 +1708,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "None",
         "controlled_surface": "VALIDATION_INTEGRATION_DECISIONS",
         "aggregate_owner": "local field",
-        "invariant": "validation co-presence with validation request/result refs; proposal requires validation_passed",
+        "invariant": "validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "metadata",
@@ -1720,7 +1720,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -1961,8 +1961,8 @@ The following YAML block is normative for PR-5H tests and future review.
         "annotation": "str",
         "default": "required",
         "controlled_surface": "none",
-        "aggregate_owner": "same-aggregate internal reference",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "aggregate_owner": "local aggregate identity",
+        "invariant": "local aggregate identity; identifies this SettlementProposal",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -1974,11 +1974,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "proposal binds exact supplied result",
+        "invariant": "non-empty; binds the exact supplied ResourceMathResult through one required/satisfied resource_math_result_ref dependency",
         "external_dependency_type": "resource_math_result_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "proposed_state_delta_refs",
@@ -1986,11 +1986,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required non-empty unique tuple; each ref has required/satisfied state_delta_ref dependency",
+        "invariant": "required non-empty unique tuple; each proposed state-delta ref has required/satisfied state_delta_ref dependency",
         "external_dependency_type": "state_delta_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "validation_result_ref_id",
@@ -1998,11 +1998,11 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "non-empty when required; exact annotation/default enforced",
+        "invariant": "non-empty validation result ref equal to supplied result.validation_result_ref_id; matching required/satisfied validation_result_ref dependency",
         "external_dependency_type": "validation_result_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "validation_decision",
@@ -2010,19 +2010,19 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "VALIDATION_INTEGRATION_DECISIONS",
         "aggregate_owner": "local field",
-        "invariant": "validation co-presence with validation request/result refs; proposal requires validation_passed",
+        "invariant": "validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
-        "replacement_artifact": "none"
+        "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
       },
       {
         "field": "dependencies",
         "annotation": "tuple[ResourceMathDependency, ...]",
         "default": "()",
         "controlled_surface": "none",
-        "aggregate_owner": "local field",
-        "invariant": "dependency_id unique; (dependency_type, reference_id) unique within owning aggregate; lifecycle states A-E apply",
+        "aggregate_owner": "owned dependency tuple",
+        "invariant": "owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -2034,7 +2034,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "required",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "required runtime_trace_ref external binding",
+        "invariant": "required runtime trace reference; matching required/satisfied runtime_trace_ref dependency",
         "external_dependency_type": "runtime_trace_ref",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -2058,7 +2058,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "()",
         "controlled_surface": "none",
         "aggregate_owner": "external dependency binding",
-        "invariant": "tuple; each supplied ref has rollback_accounting_ref dependency",
+        "invariant": "tuple of rollback accounting refs; each supplied ref has rollback_accounting_ref dependency",
         "external_dependency_type": "rollback_accounting_ref",
         "serialization_posture": "tuple copied internally; copied list in internal to_dict",
         "source_artifact": "PR-5B inherited",
@@ -2070,7 +2070,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "MappingProxyType({})",
         "controlled_surface": "none",
         "aggregate_owner": "local metadata",
-        "invariant": "defensive MappingProxyType copy; no callable metadata",
+        "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
         "external_dependency_type": "none",
         "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
         "source_artifact": "PR-5B inherited",
@@ -3367,7 +3367,8 @@ The following YAML block is normative for PR-5H tests and future review.
     "ui_authorized_by_this_pr",
     "conversion_authorized_by_this_pr",
     "canon_promotion_authorized_by_this_pr"
-  ]
+  ],
+  "result_self_binding_rule": "A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; only a downstream SettlementProposal binds result.result_id through resource_math_result_ref."
 }
 ```
 
@@ -3376,85 +3377,85 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 ### ResourceMathSubjectReference
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `subject_binding_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `subject_type` | `str` | `required` | `RESOURCE_MATH_SUBJECT_TYPES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `subject_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `subject_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `subject_role` | `str` | `required` | `RESOURCE_MATH_SUBJECT_ROLES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `subject_binding_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.subject_refs` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `subject_type` | `str` | `required` | `RESOURCE_MATH_SUBJECT_TYPES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `subject_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty external/upstream subject reference; exactly one required/satisfied subject_ref dependency in enclosing request; no dereference` | `subject_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `PR-5F binding-contract refinement` |
+| `subject_role` | `str` | `required` | `RESOURCE_MATH_SUBJECT_ROLES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
 | `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5D` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5D` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5D` | `none` |
 
 ### ResourceReference
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `resource_ref_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `subject_binding_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `resource_family` | `str` | `required` | `RESOURCE_FAMILIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `resource_key` | `str` | `required` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `source_label` | `str \| None` | `None` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `source_aliases` | `tuple[str, ...]` | `()` | `none` | `local field` | `tuple copied; unique non-empty ids where references are carried` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `resource_ref_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.resource_refs` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `subject_binding_id` | `str` | `required` | `none` | `same-request internal reference` | `same-request reference to ResourceMathRequest.subject_refs.subject_binding_id` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `resource_family` | `str` | `required` | `RESOURCE_FAMILIES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `resource_key` | `str` | `required` | `none` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `source_label` | `str \| None` | `None` | `none` | `local field` | `None or non-empty string; no implicit normalization` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `source_aliases` | `tuple[str, ...]` | `()` | `none` | `local source-label tuple` | `tuple[str, ...]; aliases are source labels, not reference IDs; require non-empty strings if supplied; duplicates rejected only if an inherited alias contract explicitly requires it; no ID resolution` | `none` | `tuple copied internally; copied list in internal to_dict; no public projection authority` | `PR-5B inherited` | `none` |
+| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
+| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
 | `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `source_local` | `bool` | `False` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `source_local` | `bool` | `False` | `none` | `local field` | `boolean value; bool-specific validation, not a string/non-empty check` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### QuantitySpecification
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `quantity_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `representation_kind` | `str` | `required` | `QUANTITY_REPRESENTATION_KINDS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `magnitude_text` | `str \| None` | `None` | `none` | `local field` | `ASCII full-string grammar only; no Decimal, Fraction, float, arithmetic, comparison, conversion, rounding, or affordability execution` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `source_literal` | `str \| None` | `None` | `none` | `local field` | `universal one-line source literal contract; no parsing, normalization, arithmetic, or evaluation` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `quantity_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.quantity_specs` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `representation_kind` | `str` | `required` | `QUANTITY_REPRESENTATION_KINDS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `magnitude_text` | `str \| None` | `None` | `none` | `local field` | `None or non-empty string; no implicit normalization` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `source_literal` | `str \| None` | `None` | `none` | `local field` | `None or non-empty string; no implicit normalization` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `precision` | `int \| None` | `None` | `none` | `local field` | `positive non-bool int only for decimal_exact; declaration metadata only` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
 | `scale` | `int \| None` | `None` | `none` | `local field` | `non-negative non-bool int only for fixed_point_scaled` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `unit_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty unit reference; when non-None exactly one required/satisfied unit_ref dependency in enclosing request` | `unit_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
+| `dimension_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty dimension reference; when non-None exactly one required/satisfied dimension_ref dependency in enclosing request` | `dimension_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F binding-contract refinement` |
 | `conversion_policy` | `str` | `"no_conversion"` | `CONVERSION_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `rounding_policy` | `str` | `"no_rounding"` | `ROUNDING_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `negative_value_policy` | `str` | `"negative_values_forbidden"` | `QUANTITY_NEGATIVE_VALUE_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### ResourceMathDependency
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `dependency_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dependency_type` | `str` | `required` | `RESOURCE_MATH_DEPENDENCY_TYPES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `reference_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `required` | `bool` | `True` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `satisfied` | `bool` | `False` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `hidden_info_safe` | `bool` | `True` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `dependency_id` | `str` | `required` | `none` | `local aggregate identity` | `non-empty string; unique inside its owning dependency tuple` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `dependency_type` | `str` | `required` | `RESOURCE_MATH_DEPENDENCY_TYPES` | `local controlled field` | `controlled dependency type; interprets reference_id; no dereference or execution` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `reference_id` | `str` | `required` | `none` | `dependency-record external reference value` | `typed external-reference value interpreted according to dependency_type; not a same-aggregate internal reference; not resolved against subject/resource/quantity/term/bundle/consequence IDs unless that dependency type expressly represents such a reference; does not require a second dependency record` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local controlled field` | `controlled owner domain for the dependency record` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `required` | `bool` | `True` | `none` | `local lifecycle flag` | `bool; controls whether the dependency is mandatory; required=False cannot satisfy required bindings and participates in lifecycle State C or E as specified` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `satisfied` | `bool` | `False` | `none` | `local lifecycle flag` | `bool; participates in lifecycle states A-E; required=True and satisfied=False is incomplete or required-unsatisfied, not malformed by itself` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `hidden_info_safe` | `bool` | `True` | `none` | `local hidden-information flag` | `bool; False is distinct from unsatisfied; a scoped otherwise-satisfied dependency with False routes through blocked_hidden_information` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### CostTerm
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `term_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `subject_binding_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `resource_ref_id` | `str \| None` | `None` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `quantity_id` | `str \| None` | `None` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `value_mode` | `str` | `required` | `RESOURCE_TERM_VALUE_MODES` | `local field` | `required; co-presence matrix controls resource_ref_id, quantity_id, and policy_route` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `policy_route` | `str \| None` | `None` | `RESOURCE_TERM_POLICY_ROUTES` | `local field` | `None unless value_mode is policy_only; policy_only requires owner_handoff_required, quarantine_required, or doctrine_escalation_required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `cost_family` | `str` | `required` | `COST_FAMILIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `term_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.cost_terms` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `subject_binding_id` | `str` | `required` | `none` | `same-request internal reference` | `same-request reference to ResourceMathRequest.subject_refs.subject_binding_id` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `resource_ref_id` | `str \| None` | `None` | `none` | `same-request internal reference` | `None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `quantity_id` | `str \| None` | `None` | `none` | `same-request internal reference` | `None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, controlled by value_mode` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `value_mode` | `str` | `required` | `RESOURCE_TERM_VALUE_MODES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `policy_route` | `str \| None` | `None` | `RESOURCE_TERM_POLICY_ROUTES` | `local field` | `None or non-empty string; no implicit normalization` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `cost_family` | `str` | `required` | `COST_FAMILIES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `timing_policy` | `str` | `"blocked_pending_validation"` | `COST_TIMING_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `outcome_policy` | `str` | `"validation_blocked"` | `COST_OUTCOME_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request dependency_id references; each resolves in request.dependencies` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### CostBundle
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `bundle_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `term_ids` | `tuple[str, ...]` | `required` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `bundle_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.cost_bundles` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `term_ids` | `tuple[str, ...]` | `required` | `none` | `same-request internal reference` | `required non-empty unique tuple of same-request CostTerm.term_id references` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `atomicity_policy` | `str` | `"all_or_nothing_requested"` | `ATOMICITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `ordering_policy` | `str` | `"unordered_terms"` | `ORDERING_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `partial_settlement_policy` | `str` | `"no_partial_settlement"` | `PARTIAL_SETTLEMENT_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
@@ -3462,48 +3463,48 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `maximum_allowed_terms` | `int \| None` | `None` | `none` | `local field` | `positive non-bool int when supplied; <= len(term_ids); >= minimum when minimum supplied` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `alternative_groups` | `tuple[tuple[str, tuple[str, ...]], ...]` | `()` | `none` | `local field` | `unique groups; contained non-overlapping term IDs; no alternative selection in PR-5A` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request dependency_id references; each resolves in request.dependencies` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### ConsequenceTerm
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `consequence_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `subject_binding_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
-| `resource_ref_id` | `str \| None` | `None` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `quantity_id` | `str \| None` | `None` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `value_mode` | `str` | `required` | `RESOURCE_TERM_VALUE_MODES` | `local field` | `required; co-presence matrix controls resource_ref_id, quantity_id, and policy_route` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `policy_route` | `str \| None` | `None` | `RESOURCE_TERM_POLICY_ROUTES` | `local field` | `None unless value_mode is policy_only; policy_only requires owner_handoff_required, quarantine_required, or doctrine_escalation_required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `consequence_family` | `str` | `required` | `CONSEQUENCE_FAMILIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `consequence_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; unique within ResourceMathRequest.consequence_terms` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `subject_binding_id` | `str` | `required` | `none` | `same-request internal reference` | `same-request reference to ResourceMathRequest.subject_refs.subject_binding_id` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5D` | `none` |
+| `resource_ref_id` | `str \| None` | `None` | `none` | `same-request internal reference` | `None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `quantity_id` | `str \| None` | `None` | `none` | `same-request internal reference` | `None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, controlled by value_mode` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `value_mode` | `str` | `required` | `RESOURCE_TERM_VALUE_MODES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `policy_route` | `str \| None` | `None` | `RESOURCE_TERM_POLICY_ROUTES` | `local field` | `None or non-empty string; no implicit normalization` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `consequence_family` | `str` | `required` | `CONSEQUENCE_FAMILIES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `timing_policy` | `str` | `"blocked_pending_validation"` | `COST_TIMING_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `outcome_policy` | `str` | `"validation_blocked"` | `COST_OUTCOME_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request dependency_id references; each resolves in request.dependencies` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
 | `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### ResourceMathRequest
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `request_id` | `str` | `required` | `none` | `external dependency binding` | `result binds exact supplied request; not a SettlementProposal field` | `resource_math_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `command_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `command_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `action_legality_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `action_legality_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `subject_refs` | `tuple[ResourceMathSubjectReference, ...]` | `required` | `none` | `same-aggregate internal reference` | `non-empty tuple; exactly one primary_subject; subject_binding_id values unique in request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5D` | `none` |
-| `state_projection_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `state_projection_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `resource_refs` | `tuple[ResourceReference, ...]` | `()` | `none` | `same-aggregate internal reference` | `same-request resource_ref_id uniqueness; subject_binding_id resolves to request.subject_refs` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `quantity_specs` | `tuple[QuantitySpecification, ...]` | `()` | `none` | `same-aggregate internal reference` | `same-request quantity_id uniqueness; lexical-only quantity validation` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `cost_terms` | `tuple[CostTerm, ...]` | `()` | `none` | `same-aggregate internal reference` | `same-request term_id uniqueness; subject/resource/quantity/dependency references resolve` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `cost_bundles` | `tuple[CostBundle, ...]` | `()` | `none` | `same-aggregate internal reference` | `same-request bundle_id uniqueness; bundle matrix and bound rules apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `consequence_terms` | `tuple[ConsequenceTerm, ...]` | `()` | `none` | `same-aggregate internal reference` | `same-request consequence_id uniqueness; no consequence application` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `local field` | `dependency_id unique; (dependency_type, reference_id) unique within owning aggregate; lifecycle states A-E apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime_trace_ref external binding` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `owner_handoff_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple copied; unique non-empty ids where references are carried` | `owner_handoff_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `request_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; identifies this ResourceMathRequest` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `command_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty command reference; when non-None matching command_ref dependency is required/satisfied` | `command_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `action_legality_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty action-legality reference; when non-None matching action_legality_ref dependency is required/satisfied` | `action_legality_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `subject_refs` | `tuple[ResourceMathSubjectReference, ...]` | `required` | `none` | `same-aggregate member collection` | `non-empty tuple; exactly one primary_subject; subject_binding_id values unique in request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5D` | `none` |
+| `state_projection_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of state projection refs; each supplied ref has required/satisfied state_projection_ref dependency` | `state_projection_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `resource_refs` | `tuple[ResourceReference, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of ResourceReference records; resource_ref_id values unique; each subject_binding_id resolves in subject_refs` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `quantity_specs` | `tuple[QuantitySpecification, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of QuantitySpecification records; quantity_id values unique; lexical-only validation applies` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `cost_terms` | `tuple[CostTerm, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of CostTerm records; term_id values unique; internal references resolve in the same request` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `cost_bundles` | `tuple[CostBundle, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of CostBundle records; bundle_id values unique; CostBundle matrix and bound rules apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `consequence_terms` | `tuple[ConsequenceTerm, ...]` | `()` | `none` | `same-aggregate member collection` | `tuple of ConsequenceTerm records; consequence_id values unique; no consequence application` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns request/input external bindings; dependency_id and (dependency_type, reference_id) unique; lifecycle states A-E apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; matching required/satisfied runtime_trace_ref dependency` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `provenance_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of provenance refs; each supplied ref has required/satisfied provenance_ref dependency` | `provenance_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `owner_handoff_ref_ids` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of owner handoff refs; each supplied ref has required/satisfied owner_handoff_ref dependency` | `owner_handoff_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation request ref; when non-None matching validation_request_ref dependency and validation co-presence rules apply` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 | `calculation_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `affordability_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `reservation_authorized` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
@@ -3527,28 +3528,28 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 ### ResourceMathResult
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `result_id` | `str` | `required` | `none` | `external dependency binding` | `proposal binds exact supplied result` | `resource_math_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `request_id` | `str` | `required` | `none` | `external dependency binding` | `result binds exact supplied request; not a SettlementProposal field` | `resource_math_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `stage` | `str` | `required` | `RESOURCE_MATH_STAGES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `decision` | `str` | `required` | `RESOURCE_MATH_DECISIONS` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `blocking` | `bool` | `required` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `quarantined` | `bool` | `False` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `escalated` | `bool` | `False` | `none` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `diagnostics` | `tuple[str, ...]` | `()` | `none` | `local field` | `tuple copied; unique non-empty ids where references are carried` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `normalized_reference_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `referenced_subject_binding_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_resource_ref_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_quantity_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_cost_term_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_cost_bundle_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_consequence_term_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `referenced_dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-aggregate internal reference` | `tuple copied; unique non-empty ids where references are carried` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
-| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `local field` | `dependency_id unique; (dependency_type, reference_id) unique within owning aggregate; lifecycle states A-E apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime_trace_ref external binding` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `validation_result_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `validation_decision` | `str \| None` | `None` | `VALIDATION_INTEGRATION_DECISIONS` | `local field` | `validation co-presence with validation request/result refs; proposal requires validation_passed` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `result_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; identifies this ResourceMathResult; no resource_math_result_ref self-binding` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5H no-self-binding correction` |
+| `request_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty; binds the exact supplied ResourceMathRequest through one required/satisfied resource_math_request_ref dependency` | `resource_math_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `stage` | `str` | `required` | `RESOURCE_MATH_STAGES` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `decision` | `str` | `required` | `RESOURCE_MATH_DECISIONS` | `local field` | `non-empty string required` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `blocking` | `bool` | `required` | `none` | `local field` | `bool required; exact value determined by stage/decision compatibility and blocker precedence` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `quarantined` | `bool` | `False` | `none` | `local field` | `bool default False; True only for the lawful quarantined_for_review stage/decision pair` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `escalated` | `bool` | `False` | `none` | `local field` | `bool default False; True only for the lawful escalated_to_doctrine stage/decision pair` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `diagnostics` | `tuple[str, ...]` | `()` | `none` | `local diagnostic text` | `tuple[str, ...]; diagnostics are not internal reference IDs; preserve supplied ordering; require non-empty strings if supplied; retain all detected blocker diagnostics; no same-request ID resolution` | `none` | `tuple copied internally; copied list in internal to_dict; no public projection authority` | `PR-5B inherited` | `none` |
+| `normalized_reference_ids` | `tuple[str, ...]` | `()` | `none` | `local diagnostic references` | `diagnostic-only tuple; never determines policy scope; no same-request resolution requirement for result policy enforcement` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `referenced_subject_binding_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request subject_binding_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `referenced_resource_ref_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request resource_ref_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `referenced_quantity_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request quantity_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `referenced_cost_term_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request CostTerm.term_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `referenced_cost_bundle_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request CostBundle.bundle_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `referenced_consequence_term_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request ConsequenceTerm.consequence_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `referenced_dependency_ids` | `tuple[str, ...]` | `()` | `none` | `same-request internal reference` | `tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request` | `none` | `tuple copied internally; copied list in internal to_dict` | `PR-5F explicit replacement/addition` | `PR-5F` |
+| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; matching required/satisfied runtime_trace_ref dependency in result.dependencies` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `validation_request_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation request ref; validation co-presence rules apply against result.dependencies` | `validation_request_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `validation_result_ref_id` | `str \| None` | `None` | `none` | `external dependency binding` | `None or non-empty validation result ref; validation co-presence rules and proposal equality apply` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `validation_decision` | `str \| None` | `None` | `VALIDATION_INTEGRATION_DECISIONS` | `local field` | `validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 | `calculation_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `affordability_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `reservation_authorized` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
@@ -3572,16 +3573,16 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 ### SettlementProposal
 | field | annotation | default | controlled_surface | aggregate_owner | invariant | external_dependency_type | serialization_posture | source_artifact | replacement_artifact |
 |---|---|---|---|---|---|---|---|---|---|
-| `proposal_id` | `str` | `required` | `none` | `same-aggregate internal reference` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `result_id` | `str` | `required` | `none` | `external dependency binding` | `proposal binds exact supplied result` | `resource_math_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `proposed_state_delta_refs` | `tuple[str, ...]` | `required` | `none` | `external dependency binding` | `required non-empty unique tuple; each ref has required/satisfied state_delta_ref dependency` | `state_delta_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `validation_result_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty when required; exact annotation/default enforced` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `validation_decision` | `str` | `required` | `VALIDATION_INTEGRATION_DECISIONS` | `local field` | `validation co-presence with validation request/result refs; proposal requires validation_passed` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `local field` | `dependency_id unique; (dependency_type, reference_id) unique within owning aggregate; lifecycle states A-E apply` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime_trace_ref external binding` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `proposal_id` | `str` | `required` | `none` | `local aggregate identity` | `local aggregate identity; identifies this SettlementProposal` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `result_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty; binds the exact supplied ResourceMathResult through one required/satisfied resource_math_result_ref dependency` | `resource_math_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `proposed_state_delta_refs` | `tuple[str, ...]` | `required` | `none` | `external dependency binding` | `required non-empty unique tuple; each proposed state-delta ref has required/satisfied state_delta_ref dependency` | `state_delta_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `validation_result_ref_id` | `str` | `required` | `none` | `external dependency binding` | `non-empty validation result ref equal to supplied result.validation_result_ref_id; matching required/satisfied validation_result_ref dependency` | `validation_result_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `validation_decision` | `str` | `required` | `VALIDATION_INTEGRATION_DECISIONS` | `local field` | `validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement` |
+| `dependencies` | `tuple[ResourceMathDependency, ...]` | `()` | `none` | `owned dependency tuple` | `owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `trace_ref_id` | `str` | `required` | `none` | `external dependency binding` | `required runtime trace reference; matching required/satisfied runtime_trace_ref dependency` | `runtime_trace_ref` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `visibility_policy` | `str` | `"public"` | `VISIBILITY_POLICIES` | `local field` | `non-empty when required; exact annotation/default enforced` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `rollback_accounting_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple; each supplied ref has rollback_accounting_ref dependency` | `rollback_accounting_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
-| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `defensive MappingProxyType copy; no callable metadata` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
+| `rollback_accounting_refs` | `tuple[str, ...]` | `()` | `none` | `external dependency binding` | `tuple of rollback accounting refs; each supplied ref has rollback_accounting_ref dependency` | `rollback_accounting_ref` | `tuple copied internally; copied list in internal to_dict` | `PR-5B inherited` | `none` |
+| `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 | `calculation_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `affordability_executed` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
 | `reservation_authorized` | `bool` | `False` | `none` | `aggregate false-only authority` | `false-only authority field; factories and validators reject True including manual frozen dataclasses` | `none` | `internal to_dict only; preserved false; no public projection` | `PR-5B inherited` | `none` |
@@ -3609,7 +3610,7 @@ The constants in the YAML block restate the effective PR-5B/PR-5D/PR-5F controll
 Every allowed stage/decision/flag combination is in `stage_decision_matrix`; every unlisted pair is invalid. Quarantine and escalation are terminal planning findings only. Accepted and normalized planning are not executable, transactional, or settlement authority. `validation_blocked` belongs to validation-integration surfaces and is not a `ResourceMathResult.decision`.
 
 ## 7. Dependency ownership and lifecycle
-Dependency ownership remains separate: `request.dependencies` owns request/input references; `result.dependencies` owns request binding, result validation, trace, and result-specific references; `proposal.dependencies` owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references. No result self-binding is added. Lifecycle states A through E are exact in the YAML block; optional unsatisfied advisory records satisfy nothing. Malformed/missing binding State C is rejected before result construction.
+Dependency ownership remains separate: `request.dependencies` owns request/input references; `result.dependencies` owns request binding, result validation, trace, and result-specific references; `proposal.dependencies` owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references. No result self-binding is added. A ResourceMathResult never carries a resource_math_result_ref dependency for its own result_id; only a downstream SettlementProposal binds result.result_id through resource_math_result_ref. Lifecycle states A through E are exact in the YAML block; optional unsatisfied advisory records satisfy nothing. Malformed/missing binding State C is rejected before result construction.
 
 ## 8. Typed result-scope cardinality and closure
 The seven exact typed tuples are `referenced_subject_binding_ids`, `referenced_resource_ref_ids`, `referenced_quantity_ids`, `referenced_cost_term_ids`, `referenced_cost_bundle_ids`, `referenced_consequence_term_ids`, and `referenced_dependency_ids`. Each tuple contains unique non-empty IDs; every ID resolves in the supplied request; the combined typed scope cannot be entirely empty; accepted and normalized results require at least one scoped resource, quantity, cost term, cost bundle, or consequence term; subject or advisory dependency scope alone is insufficient; blocked results must scope an actual blocker; blocked_missing_dependency may be dependency-only when an existing request-level required-unsatisfied dependency is the blocker; bundle scope includes all contained terms; term scope includes applicable quantities and dependencies; all scoped references resolve even for blocked, quarantined, or escalated results; normalized_reference_ids remains diagnostic only.
