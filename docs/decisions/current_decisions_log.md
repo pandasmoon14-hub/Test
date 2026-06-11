@@ -2651,3 +2651,52 @@ runtime_domain_pr_4d_decision:
   selected_next_step: RUNTIME-DOMAIN-PR-4E validation integration residual skeleton hardening, pending review
   full_non_implementation_boundary: true
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-4E-VALIDATION-INTEGRATION-RESIDUAL-SKELETON-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+PR-4D required PR-4E before PR-5 Resource / Consequence Math planning. PR-4E is narrow executable skeleton hardening for validation integration residual object-shape and identity-linkage defects.
+
+### Hardening recorded
+
+- Cross-subject routes now require explicit typed relationships.
+- Same-subject routes must match the result subject.
+- Result subjects are bound structurally to request subjects.
+- Result request, trace, validation-result, and provenance references are linked through typed dependencies.
+- Dependency uniqueness is enforced.
+- `validation_ready` cannot be hidden-information unsafe.
+- Intermediate checked stages align with their flags.
+- No validation execution or runtime authority is added.
+
+### Implication
+
+PR-5 remains blocked pending PR-4F review. PR-4E adds no validation execution, invariant execution, state mutation, state delta application, event append, persistence, replay, command execution, resource or consequence math, model behavior, live-play behavior, UI behavior, conversion behavior, sourcebook inclusion, or canon promotion.
+
+### Next step
+
+RUNTIME-DOMAIN-PR-4F validation integration residual hardening review gate
+
+### Classification
+
+```yaml
+runtime_domain_pr_4e_decision:
+  artifact_type: executable_skeleton_hardening
+  implementation_status: narrow_residual_skeleton_hardening
+  pr_4d_required_pr_4e: true
+  explicit_typed_cross_subject_relationships_required: true
+  same_subject_routes_match_result_subject: true
+  result_subjects_bound_to_request_subjects: true
+  typed_request_trace_result_and_provenance_dependencies: true
+  dependency_uniqueness_enforced: true
+  validation_ready_hidden_information_safe_required: true
+  intermediate_checked_stages_align_with_flags: true
+  adds_validation_execution: false
+  adds_runtime_authority: false
+  pr_5_blocked_pending_pr_4f: true
+  selected_next_step: RUNTIME-DOMAIN-PR-4F validation integration residual hardening review gate
+```

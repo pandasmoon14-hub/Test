@@ -92,6 +92,46 @@ def _make_request(**kwargs):
     return create_validation_integration_request(**defaults)
 
 
+def _make_result_dependencies(validation_request_id="vreq-1", trace_id="trace-1", validation_result_ref_id="vres-1", provenance_ref_ids=()):
+    dependencies = [
+        _make_dep(
+            dependency_id="dep-request",
+            dependency_type="validation_request_ref",
+            reference_id=validation_request_id,
+            satisfied=True,
+        ),
+    ]
+    if isinstance(trace_id, str) and trace_id.strip():
+        dependencies.append(
+            _make_dep(
+                dependency_id="dep-trace",
+                dependency_type="runtime_trace_ref",
+                reference_id=trace_id,
+                satisfied=True,
+            )
+        )
+    if isinstance(validation_result_ref_id, str) and validation_result_ref_id.strip():
+        dependencies.append(
+            _make_dep(
+                dependency_id="dep-result",
+                dependency_type="validation_result_ref",
+                reference_id=validation_result_ref_id,
+                satisfied=True,
+            )
+        )
+    for index, ref in enumerate(provenance_ref_ids or ()):
+        if isinstance(ref, str) and ref.strip():
+            dependencies.append(
+                _make_dep(
+                    dependency_id=f"dep-provenance-{index}",
+                    dependency_type="generated_content_provenance_ref",
+                    reference_id=ref,
+                    satisfied=True,
+                )
+            )
+    return tuple(dependencies)
+
+
 def _make_result(**kwargs):
     defaults = dict(
         validation_request_id="vreq-1",
@@ -99,11 +139,26 @@ def _make_result(**kwargs):
         final_stage="validation_failed",
         subject_type="command",
         subject_ref_id="cmd-1",
+        request_subject_type="command",
+        request_subject_ref_id="cmd-1",
         validation_result_ref_id="vres-1",
         failure_routes=[_make_failure_route(decision="validation_failed")],
         trace_id="trace-1",
     )
     defaults.update(kwargs)
+    if "request_subject_type" not in kwargs:
+        defaults["request_subject_type"] = defaults["subject_type"]
+    if "request_subject_ref_id" not in kwargs:
+        defaults["request_subject_ref_id"] = defaults["subject_ref_id"]
+    defaults.setdefault(
+        "dependencies",
+        _make_result_dependencies(
+            defaults["validation_request_id"],
+            defaults.get("trace_id"),
+            defaults.get("validation_result_ref_id"),
+            defaults.get("provenance_ref_ids", ()),
+        ),
+    )
     return create_validation_integration_result(**defaults)
 
 
@@ -214,7 +269,7 @@ class TestValidationFailureRoutes:
 
 
 class TestValidationDependencyTypes:
-    def test_all_27_types_present(self):
+    def test_all_28_types_present(self):
         expected = {
             "schema_registry_ref",
             "record_identity_ref",
@@ -232,6 +287,7 @@ class TestValidationDependencyTypes:
             "state_delta_ref",
             "event_ledger_ref",
             "validation_pipeline_ref",
+            "validation_request_ref",
             "validation_result_ref",
             "invariant_precheck_ref",
             "hidden_information_ref",
@@ -245,7 +301,7 @@ class TestValidationDependencyTypes:
             "conversion_boundary_ref",
         }
         assert expected == set(VALIDATION_DEPENDENCY_TYPES)
-        assert len(VALIDATION_DEPENDENCY_TYPES) == 27
+        assert len(VALIDATION_DEPENDENCY_TYPES) == 28
 
 
 class TestValidationSubjectTypes:
@@ -1227,7 +1283,10 @@ class TestValidationIntegrationService:
             final_stage="validation_failed",
             subject_type="command",
             subject_ref_id="cmd-1",
+            request_subject_type="command",
+            request_subject_ref_id="cmd-1",
             validation_result_ref_id="vres-1",
+            dependencies=_make_result_dependencies(),
             failure_routes=[_make_failure_route(decision="validation_failed")],
             trace_id="trace-1",
         )
