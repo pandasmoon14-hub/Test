@@ -2959,3 +2959,47 @@ runtime_domain_pr_5e_decision:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5F-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+planning-hardening-only status is recorded for PR-5F. PR-5F follows PR-5E, closes PR-5E residual blockers, keeps PR-5A blocked, and selects exactly one next step: **RUNTIME-DOMAIN-PR-5G resource and consequence math residual planning hardening review gate**.
+
+### Implication
+
+PR-5G is the sole next step. PR-5F records residual planning corrections for subject/unit/dimension dependencies, optional dependency semantics, precision, source literals, negative policies, blocked numeric choice, term value modes, term policy routes, bundle bounds, inherited atomicity literal alignment, result/request aggregate validation, proposal/result compatibility, event-only routing, internal/external reference integrity, and factory/validator parity. It grants no implementation authority.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5f_decision:
+  artifact_type: residual_planning_hardening
+  planning_hardening_only: true
+  follows_pr_5e: true
+  closes_pr_5e_residual_blockers: true
+  pr_5a_remains_blocked: true
+  pr_5g_is_sole_next_step: true
+  no_implementation_authority: true
+  ready_for_pr_5g_review_gate: true
+  ready_for_pr_5a_implementation: false
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+  next_step_authorized: RUNTIME-DOMAIN-PR-5G resource and consequence math residual planning hardening review gate
+  next_step_status: review_gate_only
+```
