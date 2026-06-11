@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.85
+  action: runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5C resource and consequence math planning hardening review gate tracking. Review gate only; reviews PR-5B contracts; finds PR-5D is required before PR-5A because validation posture, subject typing, default/surface compatibility, consequence timing/outcome defaults, quarantine/escalation blocking posture, dependency linkage, bundle bounds, proposal validation linkage, and serialization ownership need final planning hardening; authorizes no implementation, runtime code, domain code, resource calculation, consequence calculation, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion; exactly one next step is PR-5D final planning hardening.
+- date: '2026-06-11'
   version: 0.1.84
   action: runtime_domain_pr_5b_resource_consequence_math_planning_hardening
   actor: Astra Doctrine Council / synthesis assistant
@@ -557,6 +562,73 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5C-RESOURCE-CONSEQUENCE-MATH-PLANNING-HARDENING-REVIEW-001
+  filename: runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-5c
+  content_type: planning_hardening_review_gate
+  implementation_status: non_executable_review_gate
+  authority_level: tracking
+  authority_note: Review gate only; reviews PR-5B; selects PR-5D final planning hardening before PR-5A; no implementation authority.
+  follows:
+  - runtime-domain-pr-5b planning hardening
+  - runtime-domain-pr-5 service plan
+  - runtime-domain-pr-4f validation residual hardening review
+  - RT-002
+  review_gate_only: true
+  reviews_pr_5b: true
+  backend_first_invariant: true
+  llm_is_not_game_engine: true
+  pr_5d_required_before_pr_5a: true
+  pr_5a_authorized: false
+  reviews_constant_surfaces: true
+  reviews_defaults: true
+  reviews_stage_model: true
+  reviews_decision_stage_compatibility: true
+  reviews_dataclass_contracts: true
+  reviews_validation_posture: true
+  reviews_subject_identity: true
+  reviews_dependencies: true
+  reviews_quantities: true
+  reviews_terms_and_bundles: true
+  reviews_request_result_proposal_linkage: true
+  reviews_false_only_authority: true
+  reviews_serialization: true
+  reviews_corpus_scale_pressure: true
+  reviews_owner_boundaries: true
+  defines_risk_ledger: true
+  defines_hardening_ledger: true
+  gate_finding: requires_pr_5d_before_pr_5a
+  next_allowed_step: RUNTIME-DOMAIN-PR-5D resource and consequence math final planning hardening
+  selected_next_step: RUNTIME-DOMAIN-PR-5D final planning hardening
+  authorizes_code_or_runtime_behavior: false
+  authorizes_runtime_code_by_this_pr: false
+  authorizes_domain_code_by_this_pr: false
+  authorizes_resource_calculation_by_this_pr: false
+  authorizes_consequence_calculation_by_this_pr: false
+  authorizes_settlement_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_persistence_by_this_pr: false
+  authorizes_rng_execution_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  owns:
+  - Review-gate findings for PR-5B resource/consequence math planning hardening and the PR-5D hardening ledger.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, schemas, persistence structures, resource calculations, consequence calculations, affordability execution, reservation, settlement, state mutation, event commitment, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  dependencies:
+  - runtime-domain-pr-5b planning hardening
+  required_tests:
+  - tests/test_runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review.py
+  notes: PR-5C is a non-executable review gate. It requires PR-5D before PR-5A to avoid forcing the reference-only skeleton to invent missing contract behavior.
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning
+  live_play_relevance: none
 - file_id: RUNTIME-DOMAIN-PR-5B-RESOURCE-CONSEQUENCE-MATH-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5b_resource_consequence_math_planning_hardening.md
   proposed_path: docs/doctrine/reviews/

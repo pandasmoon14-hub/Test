@@ -2835,3 +2835,48 @@ runtime_domain_pr_5b_decision:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5C-RESOURCE-CONSEQUENCE-MATH-PLANNING-HARDENING-REVIEW-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+Review-gate-only status is recorded for PR-5C. The review evaluates PR-5B resource/consequence math planning hardening and selects exactly one next step: **RUNTIME-DOMAIN-PR-5D resource and consequence math final planning hardening**.
+
+### Major findings
+
+PR-5B stayed within its planning-only scope and preserved the backend-first invariant that the LLM is not the game engine. The review also finds material shape/contract defects that would force PR-5A to invent behavior: validation posture is not a controlled vocabulary or typed validation dependency; subject references are not paired with subject types; some defaults do not clearly belong to governing constant surfaces; ConsequenceTerm timing/outcome defaults need hardening; quarantine and escalation must be blocking/terminal rather than non-blocking planning; dependency references need structural linkage; bundle minimum/maximum semantics need exact rules; proposal validation linkage needs exact rules; public serialization ownership must route through RT-005 or remain explicitly internal-only.
+
+### Implication
+
+PR-5D is required before PR-5A. PR-5A is not authorized by this gate. The sole next step is PR-5D final planning hardening. This review authorizes no implementation, runtime code, domain code, resource calculation, consequence calculation, affordability execution, reservation, settlement, state mutation, state-delta application, transaction execution, event commitment, event append, persistence, replay, RNG/table execution, model integration, live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5c_decision:
+  artifact_type: resource_consequence_math_planning_hardening_review_gate
+  implementation_status: non_executable_review_gate
+  reviews_pr_5b: true
+  pr_5d_required_before_pr_5a: true
+  pr_5a_authorized: false
+  next_step_authorized: RUNTIME-DOMAIN-PR-5D resource and consequence math final planning hardening
+  next_step_status: planning_hardening_pending_review
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  resource_calculation_authorized_by_this_pr: false
+  consequence_calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  reservation_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+```
