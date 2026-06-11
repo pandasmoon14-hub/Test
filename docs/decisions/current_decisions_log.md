@@ -2700,3 +2700,40 @@ runtime_domain_pr_4e_decision:
   pr_5_blocked_pending_pr_4f: true
   selected_next_step: RUNTIME-DOMAIN-PR-4F validation integration residual hardening review gate
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-4F-VALIDATION-INTEGRATION-RESIDUAL-HARDENING-REVIEW-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+PR-4F is a review/gate-only artifact. It reviews PR-4E residual validation-integration hardening and records that PR-4D blockers are closed for PR-5 planning. PR-4F adds no runtime code, no domain-service code, and no validation implementation changes.
+
+### Findings
+
+Material PR-4D blockers are closed for planning: subject relations are explicit; same-subject and cross-subject route semantics are shape-checked; result/request subject declarations are bound; validation request, runtime trace, validation result, and generated-content provenance dependencies are typed and exact; dependency IDs and bindings are unique; `validation_ready` is hidden-information safe; intermediate checked stages are consistent; and factory/validator parity is acceptable.
+
+Residual findings remain but do not require PR-4G before PR-5 planning: route-type/relation compatibility, cross-subject route dependency binding, primary subject dependency binding, request/trace/result dereference, provenance-object linkage, duplicate route IDs, route priority, request trace policy, dependency hidden-info posture, recursive metadata immutability, and typed identity grammar are implementation or executable-validation concerns.
+
+### Implication
+
+PR-4G is not required before PR-5 planning. PR-5 planning is authorized. The selected next step is RUNTIME-DOMAIN-PR-5 resource and consequence math service planning, pending review.
+
+Full non-implementation boundary: no runtime code, no domain-service code, no validation implementation changes, no validation execution, no invariant evaluation, no state mutation, no state-delta application, no event append, no transaction execution, no actual event commitment, no persistence, no replay, no command execution, no resource math, no consequence application, no combat, no abilities/effects, no inventory mutation, no mission/social mutation, no generated-content persistence, no context-packet compiler, no model integration, no live-play adapter, no UI/client, no conversion, no sourcebook inclusion, and no canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_4f_decision:
+  artifact_type: review_gate_only
+  reviews_pr_4e: true
+  pr_4d_blockers_closed_for_pr_5_planning: true
+  material_residual_findings_before_planning: false
+  residual_findings_deferred_to_implementation_or_execution: true
+  pr_4g_required_before_pr_5: false
+  pr_5_planning_authorized: true
+  selected_next_step: RUNTIME-DOMAIN-PR-5 resource and consequence math service planning, pending review
+  full_non_implementation_boundary: true
+```
