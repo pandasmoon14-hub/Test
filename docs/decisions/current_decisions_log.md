@@ -3003,3 +3003,52 @@ runtime_domain_pr_5f_decision:
   next_step_authorized: RUNTIME-DOMAIN-PR-5G resource and consequence math residual planning hardening review gate
   next_step_status: review_gate_only
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5G-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-REVIEW-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+review-only status is recorded for PR-5G. PR-5G reviews PR-5F closure claims and selects exactly one next step: **RUNTIME-DOMAIN-PR-5H resource and consequence math final residual planning hardening**. PR-5A is not authorized.
+
+### Findings
+
+PR-5F scope is confirmed as planning/tracking only: four-file footprint, no runtime/domain implementation changes, no `src/astra_runtime/domain/resource_consequence_math.py`, consistent registry and decision tracking, PR-5A remained blocked, and PR-5G was the sole next step.
+
+PR-5E blockers are partially closed. PR-5F closes subject/unit/dimension dependency types, term value modes, policy-only routes, blocked numeric choice routing, proposal/result equality, event-only routing, and much of the quantity and aggregate-validation surface. PR-5H is required because remaining material defects would force PR-5A to invent behavior: one final effective contract matrix, complete inherited atomicity/ordering/partial-settlement compatibility, unsatisfied binding dependency lifecycle, empty typed-scope legality, simultaneous blocker precedence, source-supported negative literal character posture, proposal/request validation prerequisite, and final factory/validator parity.
+
+### Implication
+
+PR-5H is required before PR-5A. PR-5A is not authorized. The sole next step is **RUNTIME-DOMAIN-PR-5H resource and consequence math final residual planning hardening**. This review authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5g_decision:
+  artifact_type: residual_planning_hardening_review_gate
+  implementation_status: review_only
+  reviews_pr_5f: true
+  pr_5f_scope_confirmed: true
+  pr_5e_blockers_closed: partially
+  pr_5h_required_before_pr_5a: true
+  pr_5a_authorized: false
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5H resource and consequence math final residual planning hardening
+  next_step_status: planning_hardening_pending_review
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+```
