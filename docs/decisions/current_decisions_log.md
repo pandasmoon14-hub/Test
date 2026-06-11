@@ -2615,3 +2615,39 @@ runtime_domain_pr_4c_decision:
   pr_5_blocked_pending_pr_4d: true
   selected_next_step: RUNTIME-DOMAIN-PR-4D validation integration skeleton hardening review gate
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-4D-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-HARDENING-REVIEW-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+Review/gate-only status recorded for PR-4D. The review confirms PR-4C remained within its authorized hardening scope and added no validation execution, invariant evaluation, mutation, event append, persistence, replay, command execution, resource math, model integration, live-play behavior, UI behavior, conversion behavior, sourcebook inclusion, or canon promotion.
+
+### Findings
+
+PR-4B blockers are partially closed. PR-4C closes the focused blocker set for successful-result references and traces, blocking posture, decision/final-stage compatibility, terminal routes, rejected-route matching, quarantine/escalation compatibility, trace-required linkage, generated-content success provenance linkage, sanitized public reason codes, unsupported-scope routing, request-stage restrictions, invariant-precheck references, failure-route blocking, and factory/validator parity.
+
+Material residual findings remain: route `subject_ref_id` can differ from result `subject_ref_id`; result subjects are not linked to request subjects; trace and validation-result references are shape-only; generated-content provenance references are untyped and can be unrelated-looking; `validation_ready` can carry hidden-information-unsafe posture; and stage/flag contradictions remain possible for ready intermediate states.
+
+### Implication
+
+PR-4E is required before PR-5 planning. PR-5 planning is not authorized by this decision. The selected next step is RUNTIME-DOMAIN-PR-4E validation integration residual skeleton hardening, pending review.
+
+PR-4D preserves the full non-implementation boundary: no runtime code, no domain-service code, no validation implementation changes, no validation execution, no invariant evaluation, no state mutation, no state-delta application, no event append, no transaction execution, no actual event commitment, no persistence, no replay, no command execution, no resource math, no combat, no abilities/effects, no inventory mutation, no mission/social mutation, no generated-content persistence, no context-packet compiler, no model integration, no live-play adapter, no UI/client, no conversion, no sourcebook inclusion, and no canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_4d_decision:
+  artifact_type: review_gate_only
+  reviews_pr_4c: true
+  pr_4b_blockers_closed: partially
+  material_residual_findings: true
+  pr_4e_required_before_pr_5: true
+  pr_5_planning_authorized: false
+  selected_next_step: RUNTIME-DOMAIN-PR-4E validation integration residual skeleton hardening, pending review
+  full_non_implementation_boundary: true
+```
