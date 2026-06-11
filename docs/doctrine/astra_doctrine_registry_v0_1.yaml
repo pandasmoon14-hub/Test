@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.79
+  action: runtime_domain_pr_4c_validation_integration_invariant_enforcement_skeleton_hardening
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-4C narrow executable skeleton hardening tracking. Follows PR-4B; hardens decision/final-stage compatibility; hardens passed-result invariants; hardens failure-route requirements; hardens quarantine and escalation consistency; requires trace references; requires terminal validation-result references; adds subject identity to results; adds generated-content provenance linkage; restricts request stages; adds sanitized public reason codes; adds safe public route serialization; preserves false-only mutation/event/persistence/model authority flags; adds focused hardening tests; does not execute validation rules; does not execute invariant checks; does not call the validation pipeline; does not mutate state; does not apply deltas; does not append events; does not persist; does not replay; does not execute commands; does not implement resource math; does not implement combat, abilities, inventory, mission, social, generated-content persistence, context-packet compilation, model integration, live play, UI, conversion, sourcebook inclusion, or canon promotion.
+- date: '2026-06-11'
   version: 0.1.78
   action: runtime_domain_pr_4b_validation_integration_invariant_enforcement_skeleton_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -527,6 +532,71 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-4C-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-HARDENING-001
+  filename: validation_integration.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-4c
+  content_type: executable_skeleton_hardening
+  implementation_status: narrow_executable_skeleton_hardening
+  authority_level: runtime_domain_skeleton
+  authority_note: Narrow validation integration skeleton hardening only; backend decision artifacts and references only; no validation execution or runtime mutation authority.
+  follows:
+  - PR-4B validation integration skeleton review gate
+  hardens:
+  - decision/final-stage compatibility
+  - passed-result invariants
+  - failure-route requirements
+  - quarantine and escalation consistency
+  - trace reference requirements
+  - terminal validation-result reference requirements
+  - result subject identity
+  - generated-content provenance linkage
+  - request-stage restrictions
+  - sanitized public reason codes
+  - safe public failure-route serialization
+  preserves_false_only_authority_flags:
+  - state_mutation_allowed
+  - event_append_allowed
+  - persistence_allowed
+  - model_authority_allowed
+  adds_tests:
+  - tests/runtime/test_domain_validation_integration_hardening.py
+  - tests/runtime/test_domain_validation_integration_skeleton.py
+  does_not_implement:
+  - validation rule execution
+  - invariant check execution
+  - validation pipeline calls
+  - state mutation
+  - state delta application
+  - event append
+  - persistence
+  - replay
+  - command execution
+  - resource math
+  - combat
+  - abilities
+  - inventory
+  - mission behavior
+  - social behavior
+  - generated-content persistence
+  - context-packet compilation
+  - model integration
+  - live play
+  - UI
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  required_tests:
+  - focused hardening tests
+  - existing validation integration skeleton tests
+  - PR-4B review gate tests
+  - PR-4 service plan tests
+  - adjacent runtime domain skeleton tests
+  - validation pipeline skeleton tests
+  - doctrine registry tests
+  next_allowed_step: RUNTIME-DOMAIN-PR-4D validation integration skeleton hardening review gate, pending review
 - file_id: ROADMAP-001
   filename: astra_doctrine_roadmap_v0_1.md
   proposed_path: docs/doctrine/astra_doctrine_roadmap_v0_1.md

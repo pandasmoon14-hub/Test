@@ -2566,3 +2566,52 @@ runtime_domain_pr_4b_decision:
   selected_next_step: RUNTIME-DOMAIN-PR-4C validation integration skeleton hardening, pending review
   full_non_implementation_boundary: true
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-4C-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+PR-4B required PR-4C before PR-5 Resource / Consequence Math planning. This entry records narrow executable skeleton hardening for the validation integration and invariant enforcement surface.
+
+### Hardening recorded
+
+- Decision/stage compatibility is now enforced.
+- Successful results require non-blocking posture, a validation result reference, a trace reference, and the correct final stage.
+- Terminal failures require failure routes and traceability.
+- Quarantine and escalation semantics are aligned with their route types and decisions.
+- Generated-content success requires result-side provenance linkage.
+- Player-visible failure routes use sanitized public reason codes and safe public serialization.
+- Request stages cannot claim terminal outcomes.
+- No validation execution or runtime authority is added.
+
+### Implication
+
+PR-5 remains blocked pending PR-4D review. PR-4C adds no validation rule execution, invariant enforcement, validation pipeline execution, state mutation, state delta application, event append, persistence, replay, command execution, resource math, model integration, live-play behavior, UI behavior, conversion behavior, sourcebook inclusion, or canon promotion.
+
+### Next step
+
+RUNTIME-DOMAIN-PR-4D validation integration skeleton hardening review gate
+
+### Classification
+
+```yaml
+runtime_domain_pr_4c_decision:
+  artifact_type: executable_skeleton_hardening
+  implementation_status: narrow_executable_skeleton_hardening
+  pr_4b_required_pr_4c: true
+  decision_stage_compatibility_enforced: true
+  successful_results_require_non_blocking_result_ref_trace_and_correct_stage: true
+  terminal_failures_require_routes_and_traceability: true
+  quarantine_and_escalation_semantics_aligned: true
+  generated_content_success_requires_provenance_linkage: true
+  player_visible_routes_use_sanitized_reason_codes: true
+  request_stages_cannot_claim_terminal_outcomes: true
+  adds_validation_execution: false
+  adds_runtime_authority: false
+  pr_5_blocked_pending_pr_4d: true
+  selected_next_step: RUNTIME-DOMAIN-PR-4D validation integration skeleton hardening review gate
+```

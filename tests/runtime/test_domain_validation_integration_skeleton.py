@@ -14,6 +14,7 @@ from astra_runtime.domain import (
     VALIDATION_INTEGRATION_DECISIONS,
     VALIDATION_INTEGRATION_STAGES,
     VALIDATION_INVARIANT_FAMILIES,
+    VALIDATION_PUBLIC_REASON_CODES,
     VALIDATION_SUBJECT_TYPES,
     InvalidValidationFailureRouteError,
     InvalidValidationIntegrationDependencyError,
@@ -96,6 +97,11 @@ def _make_result(**kwargs):
         validation_request_id="vreq-1",
         decision="validation_failed",
         final_stage="validation_failed",
+        subject_type="command",
+        subject_ref_id="cmd-1",
+        validation_result_ref_id="vres-1",
+        failure_routes=[_make_failure_route(decision="validation_failed")],
+        trace_id="trace-1",
     )
     defaults.update(kwargs)
     return create_validation_integration_result(**defaults)
@@ -480,7 +486,11 @@ class TestValidationFailureRoute:
             _make_failure_route(player_visible=True, hidden_info_safe=False)
 
     def test_player_visible_with_hidden_info_safe_accepted(self):
-        r = _make_failure_route(player_visible=True, hidden_info_safe=True)
+        r = _make_failure_route(
+            player_visible=True,
+            hidden_info_safe=True,
+            public_reason_code="validation_rejected",
+        )
         assert r.player_visible is True
         assert r.hidden_info_safe is True
 
@@ -694,7 +704,9 @@ class TestValidationIntegrationResult:
         r = _make_result(
             decision="validation_passed",
             final_stage="validation_passed",
+            failure_routes=[],
             passed=True,
+            blocking=False,
         )
         assert r.passed is True
         assert r.decision == "validation_passed"
@@ -706,6 +718,7 @@ class TestValidationIntegrationResult:
                 decision="validation_passed",
                 final_stage="validation_passed",
                 passed=True,
+                blocking=False,
                 failure_routes=[route],
             )
 
@@ -754,6 +767,11 @@ class TestValidationIntegrationResult:
         r = _make_result(
             decision="quarantined_for_review",
             final_stage="validation_quarantined",
+            failure_routes=[_make_failure_route(
+                route_type="quarantine_transaction",
+                decision="quarantined_for_review",
+                quarantines=True,
+            )],
             quarantined=True,
         )
         assert r.quarantined is True
@@ -770,6 +788,11 @@ class TestValidationIntegrationResult:
         r = _make_result(
             decision="escalated_to_doctrine",
             final_stage="validation_escalated",
+            failure_routes=[_make_failure_route(
+                route_type="escalate_doctrine_gap",
+                decision="escalated_to_doctrine",
+                escalates=True,
+            )],
             escalated=True,
         )
         assert r.escalated is True
@@ -779,7 +802,9 @@ class TestValidationIntegrationResult:
             _make_result(
                 decision="validation_passed",
                 final_stage="validation_passed",
+                failure_routes=[],
                 passed=True,
+                blocking=False,
                 hidden_info_safe=False,
             )
 
@@ -961,11 +986,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="validation_failed",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=True,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -979,11 +1007,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="validation_failed",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=True,
             persistence_allowed=False,
@@ -997,11 +1028,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="validation_failed",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=True,
@@ -1015,11 +1049,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="validation_failed",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -1033,11 +1070,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="validation_failed",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=True, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -1051,11 +1091,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="validation_passed",
             final_stage="validation_passed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -1069,11 +1112,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="rejected_by_missing_command_ref",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -1087,11 +1133,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="quarantined_for_review",
             final_stage="validation_quarantined",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -1105,11 +1154,14 @@ class TestValidatorParityValidationIntegration:
             validation_request_id="vreq-1",
             decision="escalated_to_doctrine",
             final_stage="validation_escalated",
+            subject_type="command",
+            subject_ref_id="cmd-1",
             validation_result_ref_id=None,
             invariant_precheck_ref_id=None,
             failure_routes=(),
             passed=False, blocking=True, quarantined=False, escalated=False,
             hidden_info_safe=True, provenance_checked=False,
+            provenance_ref_ids=(),
             state_mutation_allowed=False,
             event_append_allowed=False,
             persistence_allowed=False,
@@ -1173,6 +1225,11 @@ class TestValidationIntegrationService:
             validation_request_id="vreq-1",
             decision="validation_failed",
             final_stage="validation_failed",
+            subject_type="command",
+            subject_ref_id="cmd-1",
+            validation_result_ref_id="vres-1",
+            failure_routes=[_make_failure_route(decision="validation_failed")],
+            trace_id="trace-1",
         )
         assert isinstance(r, ValidationIntegrationResult)
 

@@ -89,6 +89,122 @@ VALIDATION_FAILURE_ROUTES = frozenset({
     "request_downstream_domain_validation",
 })
 
+
+VALIDATION_PUBLIC_REASON_CODES = frozenset({
+    "validation_pending",
+    "validation_blocked",
+    "validation_rejected",
+    "validation_quarantined",
+    "validation_escalated",
+    "unsupported_validation_scope",
+})
+
+_REQUESTABLE_VALIDATION_STAGES = frozenset({
+    "validation_integration_requested",
+    "validation_scope_declared",
+    "dependency_refs_bound",
+    "state_refs_bound",
+    "transaction_refs_bound",
+    "event_commitment_refs_bound",
+    "invariant_set_declared",
+    "invariant_precheck_requested",
+    "domain_validation_required",
+    "domain_validation_referenced",
+})
+
+_QUARANTINE_FAILURE_ROUTES = frozenset({
+    "quarantine_transaction",
+    "quarantine_event_commitment",
+    "quarantine_generated_content",
+})
+
+_ROUTE_DECISION_COMPATIBILITY = MappingProxyType({
+    "block_command_before_transaction": frozenset({
+        "validation_failed",
+        "rejected_by_missing_command_ref",
+        "rejected_by_authority_mismatch",
+        "rejected_by_phase_boundary",
+    }),
+    "block_transaction_before_commitment": frozenset({
+        "validation_failed",
+        "rejected_by_missing_state_ref",
+        "rejected_by_missing_transaction_ref",
+        "rejected_by_missing_invariant_set",
+        "rejected_by_schema_mismatch",
+        "rejected_by_authority_mismatch",
+        "rejected_by_phase_boundary",
+    }),
+    "block_event_commitment": frozenset({
+        "validation_failed",
+        "rejected_by_missing_event_commitment_ref",
+        "rejected_by_missing_state_ref",
+        "rejected_by_missing_invariant_set",
+        "rejected_by_hidden_information_risk",
+        "rejected_by_provenance_gap",
+        "rejected_by_schema_mismatch",
+        "rejected_by_authority_mismatch",
+        "rejected_by_phase_boundary",
+    }),
+    "quarantine_transaction": frozenset({"quarantined_for_review"}),
+    "quarantine_event_commitment": frozenset({"quarantined_for_review"}),
+    "quarantine_generated_content": frozenset({"quarantined_for_review"}),
+    "escalate_doctrine_gap": frozenset({"escalated_to_doctrine"}),
+    "reject_source_local_authority": frozenset({
+        "rejected_by_authority_mismatch",
+        "rejected_by_phase_boundary",
+    }),
+    "reject_hidden_info_leak": frozenset({"rejected_by_hidden_information_risk"}),
+    "reject_schema_mismatch": frozenset({"rejected_by_schema_mismatch"}),
+    "reject_phase_boundary_violation": frozenset({"rejected_by_phase_boundary"}),
+    "request_downstream_domain_validation": frozenset({
+        "validation_ready",
+        "unsupported_validation_scope",
+    }),
+})
+
+_PUBLIC_REASON_COMPATIBILITY = MappingProxyType({
+    "validation_ready": frozenset({"validation_pending", "validation_blocked"}),
+    "validation_failed": frozenset({"validation_blocked", "validation_rejected"}),
+    "quarantined_for_review": frozenset({"validation_quarantined"}),
+    "escalated_to_doctrine": frozenset({"validation_escalated"}),
+    "unsupported_validation_scope": frozenset({"unsupported_validation_scope", "validation_pending"}),
+})
+
+# validation_cancelled, validation_superseded, and invariant_precheck_failed remain
+# reserved stages until a later doctrine decision adds lawful decision mappings.
+_DECISION_FINAL_STAGE_COMPATIBILITY = MappingProxyType({
+    "validation_passed": frozenset({"validation_passed"}),
+    "validation_failed": frozenset({"validation_failed"}),
+    "rejected_by_missing_command_ref": frozenset({"validation_failed"}),
+    "rejected_by_missing_state_ref": frozenset({"validation_failed"}),
+    "rejected_by_missing_transaction_ref": frozenset({"validation_failed"}),
+    "rejected_by_missing_event_commitment_ref": frozenset({"validation_failed"}),
+    "rejected_by_missing_invariant_set": frozenset({"validation_failed"}),
+    "rejected_by_hidden_information_risk": frozenset({"validation_failed"}),
+    "rejected_by_provenance_gap": frozenset({"validation_failed"}),
+    "rejected_by_schema_mismatch": frozenset({"validation_failed"}),
+    "rejected_by_authority_mismatch": frozenset({"validation_failed"}),
+    "rejected_by_phase_boundary": frozenset({"validation_failed"}),
+    "quarantined_for_review": frozenset({"validation_quarantined"}),
+    "escalated_to_doctrine": frozenset({"validation_escalated"}),
+    "unsupported_validation_scope": frozenset({"domain_validation_required"}),
+    "validation_ready": frozenset({
+        "validation_integration_requested",
+        "validation_scope_declared",
+        "dependency_refs_bound",
+        "state_refs_bound",
+        "transaction_refs_bound",
+        "event_commitment_refs_bound",
+        "invariant_set_declared",
+        "invariant_precheck_requested",
+        "invariant_precheck_passed",
+        "domain_validation_required",
+        "domain_validation_referenced",
+        "hidden_info_safety_checked",
+        "provenance_checked",
+    }),
+})
+
 VALIDATION_DEPENDENCY_TYPES = frozenset({
     "schema_registry_ref",
     "record_identity_ref",
@@ -200,6 +316,155 @@ def _require_bool(value: Any, name: str, error_cls: type[Exception]) -> None:
         raise error_cls(f"{name} must be a bool")
 
 
+def _public_reason_codes_for_decision(decision: str) -> frozenset[str]:
+    if decision.startswith("rejected_by_"):
+        return frozenset({"validation_rejected", "validation_blocked"})
+    return _PUBLIC_REASON_COMPATIBILITY.get(decision, frozenset())
+
+
+def _validate_failure_route_fields(obj: Any, error_cls: type[Exception]) -> None:
+    _require_non_empty(obj.route_id, "route_id", error_cls)
+    if obj.route_type not in VALIDATION_FAILURE_ROUTES:
+        raise error_cls("route_type must be a known validation failure route")
+    if obj.decision not in VALIDATION_INTEGRATION_DECISIONS:
+        raise error_cls("decision must be a known validation integration decision")
+    _require_non_empty(obj.subject_ref_id, "subject_ref_id", error_cls)
+    _require_bool(obj.blocking, "blocking", error_cls)
+    _require_bool(obj.quarantines, "quarantines", error_cls)
+    _require_bool(obj.escalates, "escalates", error_cls)
+    _require_bool(obj.player_visible, "player_visible", error_cls)
+    _require_bool(obj.hidden_info_safe, "hidden_info_safe", error_cls)
+    _require_bool(obj.trace_required, "trace_required", error_cls)
+    if obj.decision == "validation_passed":
+        raise error_cls("decision must not be 'validation_passed' on a failure route")
+    if not obj.blocking:
+        raise error_cls("blocking must be True on every failure route")
+    if not obj.trace_required:
+        raise error_cls("trace_required must be True on every failure route")
+    if obj.quarantines != (obj.route_type in _QUARANTINE_FAILURE_ROUTES):
+        raise error_cls("quarantines must exactly match quarantine route types")
+    if obj.escalates != (obj.route_type == "escalate_doctrine_gap"):
+        raise error_cls("escalates must be True only for doctrine escalation routes")
+    if obj.decision not in _ROUTE_DECISION_COMPATIBILITY[obj.route_type]:
+        raise error_cls("route_type and decision are incompatible")
+    public_reason_code = getattr(obj, "public_reason_code", None)
+    if public_reason_code is not None:
+        if public_reason_code not in VALIDATION_PUBLIC_REASON_CODES:
+            raise error_cls("public_reason_code must be a supported sanitized reason code")
+        if public_reason_code not in _public_reason_codes_for_decision(obj.decision):
+            raise error_cls("public_reason_code is incompatible with decision")
+    if obj.player_visible:
+        if not obj.hidden_info_safe:
+            raise error_cls("hidden_info_safe must be True when player_visible is True")
+        if public_reason_code is None:
+            raise error_cls("public_reason_code is required when player_visible is True")
+    if not isinstance(obj.metadata, Mapping):
+        raise error_cls("metadata must be a mapping")
+
+
+def _validate_request_stage(requested_stage: str, error_cls: type[Exception]) -> None:
+    if requested_stage not in VALIDATION_INTEGRATION_STAGES:
+        raise error_cls("requested_stage must be a known validation integration stage")
+    if requested_stage not in _REQUESTABLE_VALIDATION_STAGES:
+        raise error_cls("requested_stage must not claim a terminal or outcome stage")
+
+
+def _validate_result_semantics(obj: Any, error_cls: type[Exception]) -> None:
+    _require_non_empty(obj.validation_request_id, "validation_request_id", error_cls)
+    if obj.decision not in VALIDATION_INTEGRATION_DECISIONS:
+        raise error_cls("decision must be a known validation integration decision")
+    if obj.final_stage not in VALIDATION_INTEGRATION_STAGES:
+        raise error_cls("final_stage must be a known validation integration stage")
+    if obj.final_stage not in _DECISION_FINAL_STAGE_COMPATIBILITY[obj.decision]:
+        raise error_cls("decision and final_stage are incompatible")
+    if getattr(obj, "subject_type", None) not in VALIDATION_SUBJECT_TYPES:
+        raise error_cls("subject_type must be a known validation subject type")
+    _require_non_empty(getattr(obj, "subject_ref_id", None), "subject_ref_id", error_cls)
+    _require_non_empty(obj.trace_id, "trace_id", error_cls)
+    if obj.validation_result_ref_id is not None:
+        _require_non_empty(obj.validation_result_ref_id, "validation_result_ref_id", error_cls)
+    if obj.decision != "validation_ready":
+        _require_non_empty(obj.validation_result_ref_id, "validation_result_ref_id", error_cls)
+    _optional_non_empty(obj.invariant_precheck_ref_id, "invariant_precheck_ref_id", error_cls)
+    if obj.final_stage in {"invariant_precheck_passed", "invariant_precheck_failed"}:
+        _require_non_empty(obj.invariant_precheck_ref_id, "invariant_precheck_ref_id", error_cls)
+    if not isinstance(obj.failure_routes, tuple):
+        raise error_cls("failure_routes must be a tuple")
+    for route in obj.failure_routes:
+        if not isinstance(route, ValidationFailureRoute):
+            raise error_cls("failure_routes entries must be ValidationFailureRoute")
+        _validate_failure_route_fields(route, error_cls)
+    for bool_field in (
+        "passed", "blocking", "quarantined", "escalated", "hidden_info_safe",
+        "provenance_checked", "state_mutation_allowed", "event_append_allowed",
+        "persistence_allowed", "model_authority_allowed",
+    ):
+        _require_bool(getattr(obj, bool_field), bool_field, error_cls)
+    if not isinstance(getattr(obj, "provenance_ref_ids", None), tuple):
+        raise error_cls("provenance_ref_ids must be a tuple")
+    for i, ref in enumerate(obj.provenance_ref_ids):
+        if not isinstance(ref, str) or not ref.strip():
+            raise error_cls(f"provenance_ref_ids[{i}] must be a non-empty string")
+    if obj.provenance_ref_ids and not obj.provenance_checked:
+        raise error_cls("provenance_checked must be True when provenance_ref_ids are present")
+    if obj.state_mutation_allowed:
+        raise error_cls("state_mutation_allowed must be False in PR-4C skeleton")
+    if obj.event_append_allowed:
+        raise error_cls("event_append_allowed must be False in PR-4C skeleton")
+    if obj.persistence_allowed:
+        raise error_cls("persistence_allowed must be False in PR-4C skeleton")
+    if obj.model_authority_allowed:
+        raise error_cls("model_authority_allowed must be False in PR-4C skeleton")
+    if obj.quarantined != (obj.decision == "quarantined_for_review"):
+        raise error_cls("quarantined flag must exactly match quarantined_for_review decision")
+    if obj.escalated != (obj.decision == "escalated_to_doctrine"):
+        raise error_cls("escalated flag must exactly match escalated_to_doctrine decision")
+    if obj.blocking != (obj.decision != "validation_passed"):
+        raise error_cls("blocking must be False if and only if decision is validation_passed")
+    if obj.decision == "validation_passed":
+        if not obj.passed:
+            raise error_cls("passed must be True when decision is validation_passed")
+        if obj.final_stage != "validation_passed":
+            raise error_cls("final_stage must be validation_passed for passed results")
+        if obj.failure_routes:
+            raise error_cls("failure_routes must be empty for passed results")
+        if not obj.hidden_info_safe:
+            raise error_cls("hidden_info_safe must be True for passed results")
+        if obj.subject_type == "generated_content":
+            if not obj.provenance_checked or not obj.provenance_ref_ids:
+                raise error_cls("generated-content pass requires provenance linkage")
+        return
+    if obj.passed:
+        raise error_cls("passed must be False for non-passed decisions")
+    if obj.decision == "validation_ready":
+        for route in obj.failure_routes:
+            if route.route_type != "request_downstream_domain_validation" or route.decision != "validation_ready":
+                raise error_cls("validation_ready routes must request downstream domain validation")
+        return
+    if not obj.failure_routes:
+        raise error_cls("terminal non-passed decisions require at least one failure route")
+    if obj.decision == "validation_failed" or obj.decision.startswith("rejected_by_"):
+        for route in obj.failure_routes:
+            if route.decision != obj.decision:
+                raise error_cls("failure route decision must match result decision")
+        return
+    if obj.decision == "quarantined_for_review":
+        for route in obj.failure_routes:
+            if route.route_type not in _QUARANTINE_FAILURE_ROUTES or route.decision != obj.decision:
+                raise error_cls("quarantine decisions require quarantine routes")
+        return
+    if obj.decision == "escalated_to_doctrine":
+        for route in obj.failure_routes:
+            if route.route_type != "escalate_doctrine_gap" or route.decision != obj.decision:
+                raise error_cls("escalation decisions require doctrine escalation routes")
+        return
+    if obj.decision == "unsupported_validation_scope":
+        for route in obj.failure_routes:
+            if route.route_type != "request_downstream_domain_validation" or route.decision != obj.decision:
+                raise error_cls("unsupported scope requires downstream validation route")
+        return
+
+
 @dataclass(frozen=True)
 class ValidationIntegrationDependency:
     dependency_id: str
@@ -262,6 +527,7 @@ class ValidationFailureRoute:
     player_visible: bool = False
     hidden_info_safe: bool = True
     trace_required: bool = True
+    public_reason_code: str | None = None
     metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
 
     def to_dict(self) -> dict[str, Any]:
@@ -276,7 +542,21 @@ class ValidationFailureRoute:
             "player_visible": self.player_visible,
             "hidden_info_safe": self.hidden_info_safe,
             "trace_required": self.trace_required,
+            "public_reason_code": self.public_reason_code,
             "metadata": copy.deepcopy(dict(self.metadata)),
+        }
+
+    def to_public_dict(self) -> dict[str, Any]:
+        if not self.player_visible or not self.hidden_info_safe:
+            raise InvalidValidationFailureRouteError(
+                "public route serialization requires player_visible=True and hidden_info_safe=True"
+            )
+        _validate_failure_route_fields(self, InvalidValidationFailureRouteError)
+        return {
+            "reason_code": self.public_reason_code,
+            "blocking": self.blocking,
+            "quarantines": self.quarantines,
+            "escalates": self.escalates,
         }
 
 
@@ -325,6 +605,8 @@ class ValidationIntegrationResult:
     validation_request_id: str
     decision: str
     final_stage: str
+    subject_type: str
+    subject_ref_id: str
     validation_result_ref_id: str | None = None
     invariant_precheck_ref_id: str | None = None
     failure_routes: tuple[ValidationFailureRoute, ...] = ()
@@ -334,6 +616,7 @@ class ValidationIntegrationResult:
     escalated: bool = False
     hidden_info_safe: bool = True
     provenance_checked: bool = False
+    provenance_ref_ids: tuple[str, ...] = ()
     state_mutation_allowed: bool = False
     event_append_allowed: bool = False
     persistence_allowed: bool = False
@@ -346,6 +629,8 @@ class ValidationIntegrationResult:
             "validation_request_id": self.validation_request_id,
             "decision": self.decision,
             "final_stage": self.final_stage,
+            "subject_type": self.subject_type,
+            "subject_ref_id": self.subject_ref_id,
             "validation_result_ref_id": self.validation_result_ref_id,
             "invariant_precheck_ref_id": self.invariant_precheck_ref_id,
             "failure_routes": [r.to_dict() for r in self.failure_routes],
@@ -355,6 +640,7 @@ class ValidationIntegrationResult:
             "escalated": self.escalated,
             "hidden_info_safe": self.hidden_info_safe,
             "provenance_checked": self.provenance_checked,
+            "provenance_ref_ids": list(self.provenance_ref_ids),
             "state_mutation_allowed": self.state_mutation_allowed,
             "event_append_allowed": self.event_append_allowed,
             "persistence_allowed": self.persistence_allowed,
@@ -464,42 +750,11 @@ def create_validation_failure_route(
     player_visible: bool = False,
     hidden_info_safe: bool = True,
     trace_required: bool = True,
+    public_reason_code: str | None = None,
     metadata: Mapping[str, Any] | None = None,
 ) -> ValidationFailureRoute:
-    _require_non_empty(route_id, "route_id", InvalidValidationFailureRouteError)
-    if route_type not in VALIDATION_FAILURE_ROUTES:
-        raise InvalidValidationFailureRouteError(
-            f"route_type must be one of {sorted(VALIDATION_FAILURE_ROUTES)}, got: {route_type!r}"
-        )
-    if decision not in VALIDATION_INTEGRATION_DECISIONS:
-        raise InvalidValidationFailureRouteError(
-            f"decision must be one of {sorted(VALIDATION_INTEGRATION_DECISIONS)}, got: {decision!r}"
-        )
-    _require_non_empty(subject_ref_id, "subject_ref_id", InvalidValidationFailureRouteError)
-    _require_bool(blocking, "blocking", InvalidValidationFailureRouteError)
-    _require_bool(quarantines, "quarantines", InvalidValidationFailureRouteError)
-    _require_bool(escalates, "escalates", InvalidValidationFailureRouteError)
-    _require_bool(player_visible, "player_visible", InvalidValidationFailureRouteError)
-    _require_bool(hidden_info_safe, "hidden_info_safe", InvalidValidationFailureRouteError)
-    _require_bool(trace_required, "trace_required", InvalidValidationFailureRouteError)
-    if decision == "validation_passed":
-        raise InvalidValidationFailureRouteError(
-            "decision must not be 'validation_passed' on a failure route"
-        )
-    if player_visible and not hidden_info_safe:
-        raise InvalidValidationFailureRouteError(
-            "hidden_info_safe must be True when player_visible is True"
-        )
-    if route_type.startswith("quarantine_") and not quarantines:
-        raise InvalidValidationFailureRouteError(
-            "quarantines must be True when route_type starts with 'quarantine_'"
-        )
-    if route_type == "escalate_doctrine_gap" and not escalates:
-        raise InvalidValidationFailureRouteError(
-            "escalates must be True when route_type is 'escalate_doctrine_gap'"
-        )
     safe_meta = _safe_meta(metadata, InvalidValidationFailureRouteError)
-    return ValidationFailureRoute(
+    route = ValidationFailureRoute(
         route_id=route_id,
         route_type=route_type,
         decision=decision,
@@ -510,8 +765,11 @@ def create_validation_failure_route(
         player_visible=player_visible,
         hidden_info_safe=hidden_info_safe,
         trace_required=trace_required,
+        public_reason_code=public_reason_code,
         metadata=safe_meta,
     )
+    _validate_failure_route_fields(route, InvalidValidationFailureRouteError)
+    return route
 
 
 def _safe_obj_seq(
@@ -562,10 +820,7 @@ def create_validation_integration_request(
         )
     _require_non_empty(subject_ref_id, "subject_ref_id", InvalidValidationIntegrationRequestError)
     _require_non_empty(requesting_service, "requesting_service", InvalidValidationIntegrationRequestError)
-    if requested_stage not in VALIDATION_INTEGRATION_STAGES:
-        raise InvalidValidationIntegrationRequestError(
-            f"requested_stage must be one of {sorted(VALIDATION_INTEGRATION_STAGES)}, got: {requested_stage!r}"
-        )
+    _validate_request_stage(requested_stage, InvalidValidationIntegrationRequestError)
     safe_deps = _safe_obj_seq(
         dependencies,
         "dependencies",
@@ -626,6 +881,8 @@ def create_validation_integration_result(
     validation_request_id: str,
     decision: str,
     final_stage: str,
+    subject_type: str,
+    subject_ref_id: str,
     validation_result_ref_id: str | None = None,
     invariant_precheck_ref_id: str | None = None,
     failure_routes: Sequence[ValidationFailureRoute] | None = None,
@@ -635,6 +892,7 @@ def create_validation_integration_result(
     escalated: bool = False,
     hidden_info_safe: bool = True,
     provenance_checked: bool = False,
+    provenance_ref_ids: Sequence[str] | None = None,
     state_mutation_allowed: bool = False,
     event_append_allowed: bool = False,
     persistence_allowed: bool = False,
@@ -642,18 +900,9 @@ def create_validation_integration_result(
     trace_id: str | None = None,
     metadata: Mapping[str, Any] | None = None,
 ) -> ValidationIntegrationResult:
-    _require_non_empty(validation_request_id, "validation_request_id", InvalidValidationIntegrationResultError)
-    if decision not in VALIDATION_INTEGRATION_DECISIONS:
-        raise InvalidValidationIntegrationResultError(
-            f"decision must be one of {sorted(VALIDATION_INTEGRATION_DECISIONS)}, got: {decision!r}"
-        )
-    if final_stage not in VALIDATION_INTEGRATION_STAGES:
-        raise InvalidValidationIntegrationResultError(
-            f"final_stage must be one of {sorted(VALIDATION_INTEGRATION_STAGES)}, got: {final_stage!r}"
-        )
-    _optional_non_empty(validation_result_ref_id, "validation_result_ref_id", InvalidValidationIntegrationResultError)
-    _optional_non_empty(invariant_precheck_ref_id, "invariant_precheck_ref_id", InvalidValidationIntegrationResultError)
-    _optional_non_empty(trace_id, "trace_id", InvalidValidationIntegrationResultError)
+    # Runtime validation success for source-local, conversion, or canon-reference
+    # subjects is only a backend decision about this runtime reference; it never
+    # promotes canon or grants authority beyond the validated reference.
     safe_routes = _safe_obj_seq(
         failure_routes,
         "failure_routes",
@@ -661,66 +910,18 @@ def create_validation_integration_result(
         ValidationFailureRoute,
         validate_validation_failure_route,
     )
-    _require_bool(passed, "passed", InvalidValidationIntegrationResultError)
-    _require_bool(blocking, "blocking", InvalidValidationIntegrationResultError)
-    _require_bool(quarantined, "quarantined", InvalidValidationIntegrationResultError)
-    _require_bool(escalated, "escalated", InvalidValidationIntegrationResultError)
-    _require_bool(hidden_info_safe, "hidden_info_safe", InvalidValidationIntegrationResultError)
-    _require_bool(provenance_checked, "provenance_checked", InvalidValidationIntegrationResultError)
-    _require_bool(state_mutation_allowed, "state_mutation_allowed", InvalidValidationIntegrationResultError)
-    _require_bool(event_append_allowed, "event_append_allowed", InvalidValidationIntegrationResultError)
-    _require_bool(persistence_allowed, "persistence_allowed", InvalidValidationIntegrationResultError)
-    _require_bool(model_authority_allowed, "model_authority_allowed", InvalidValidationIntegrationResultError)
-    if state_mutation_allowed:
-        raise InvalidValidationIntegrationResultError("state_mutation_allowed must be False in PR-4A skeleton")
-    if event_append_allowed:
-        raise InvalidValidationIntegrationResultError("event_append_allowed must be False in PR-4A skeleton")
-    if persistence_allowed:
-        raise InvalidValidationIntegrationResultError("persistence_allowed must be False in PR-4A skeleton")
-    if model_authority_allowed:
-        raise InvalidValidationIntegrationResultError("model_authority_allowed must be False in PR-4A skeleton")
-    if passed:
-        if decision != "validation_passed":
-            raise InvalidValidationIntegrationResultError(
-                "decision must be 'validation_passed' when passed is True"
-            )
-        if safe_routes:
-            raise InvalidValidationIntegrationResultError(
-                "failure_routes must be empty when passed is True"
-            )
-        if not hidden_info_safe:
-            raise InvalidValidationIntegrationResultError(
-                "hidden_info_safe must be True when passed is True"
-            )
-    if decision == "validation_passed" and not passed:
-        raise InvalidValidationIntegrationResultError(
-            "passed must be True when decision is 'validation_passed'"
-        )
-    if decision != "validation_passed" and passed:
-        raise InvalidValidationIntegrationResultError(
-            "passed must be False when decision is not 'validation_passed'"
-        )
-    if decision.startswith("rejected_") and not safe_routes:
-        raise InvalidValidationIntegrationResultError(
-            "failure_routes must be non-empty when decision starts with 'rejected_'"
-        )
-    if decision == "quarantined_for_review" and not quarantined:
-        raise InvalidValidationIntegrationResultError(
-            "quarantined must be True when decision is 'quarantined_for_review'"
-        )
-    if decision == "escalated_to_doctrine" and not escalated:
-        raise InvalidValidationIntegrationResultError(
-            "escalated must be True when decision is 'escalated_to_doctrine'"
-        )
-    if not hidden_info_safe and passed:
-        raise InvalidValidationIntegrationResultError(
-            "passed must be False when hidden_info_safe is False"
-        )
+    safe_provenance_refs = _safe_str_seq(
+        provenance_ref_ids,
+        "provenance_ref_ids",
+        InvalidValidationIntegrationResultError,
+    )
     safe_meta = _safe_meta(metadata, InvalidValidationIntegrationResultError)
-    return ValidationIntegrationResult(
+    result = ValidationIntegrationResult(
         validation_request_id=validation_request_id,
         decision=decision,
         final_stage=final_stage,
+        subject_type=subject_type,
+        subject_ref_id=subject_ref_id,
         validation_result_ref_id=validation_result_ref_id,
         invariant_precheck_ref_id=invariant_precheck_ref_id,
         failure_routes=safe_routes,
@@ -730,6 +931,7 @@ def create_validation_integration_result(
         escalated=escalated,
         hidden_info_safe=hidden_info_safe,
         provenance_checked=provenance_checked,
+        provenance_ref_ids=safe_provenance_refs,
         state_mutation_allowed=state_mutation_allowed,
         event_append_allowed=event_append_allowed,
         persistence_allowed=persistence_allowed,
@@ -737,6 +939,8 @@ def create_validation_integration_result(
         trace_id=trace_id,
         metadata=safe_meta,
     )
+    _validate_result_semantics(result, InvalidValidationIntegrationResultError)
+    return result
 
 
 # ---------------------------------------------------------------------------
@@ -799,35 +1003,9 @@ def validate_validation_invariant_declaration(obj: Any) -> bool:
 def validate_validation_failure_route(obj: Any) -> bool:
     if not isinstance(obj, ValidationFailureRoute):
         return False
-    if not isinstance(obj.route_id, str) or not obj.route_id.strip():
-        return False
-    if obj.route_type not in VALIDATION_FAILURE_ROUTES:
-        return False
-    if obj.decision not in VALIDATION_INTEGRATION_DECISIONS:
-        return False
-    if not isinstance(obj.subject_ref_id, str) or not obj.subject_ref_id.strip():
-        return False
-    if not isinstance(obj.blocking, bool):
-        return False
-    if not isinstance(obj.quarantines, bool):
-        return False
-    if not isinstance(obj.escalates, bool):
-        return False
-    if not isinstance(obj.player_visible, bool):
-        return False
-    if not isinstance(obj.hidden_info_safe, bool):
-        return False
-    if not isinstance(obj.trace_required, bool):
-        return False
-    if obj.decision == "validation_passed":
-        return False
-    if obj.player_visible and not obj.hidden_info_safe:
-        return False
-    if obj.route_type.startswith("quarantine_") and not obj.quarantines:
-        return False
-    if obj.route_type == "escalate_doctrine_gap" and not obj.escalates:
-        return False
-    if not isinstance(obj.metadata, Mapping):
+    try:
+        _validate_failure_route_fields(obj, InvalidValidationFailureRouteError)
+    except InvalidValidationFailureRouteError:
         return False
     return True
 
@@ -843,7 +1021,9 @@ def validate_validation_integration_request(obj: Any) -> bool:
         return False
     if not isinstance(obj.requesting_service, str) or not obj.requesting_service.strip():
         return False
-    if obj.requested_stage not in VALIDATION_INTEGRATION_STAGES:
+    try:
+        _validate_request_stage(obj.requested_stage, InvalidValidationIntegrationRequestError)
+    except InvalidValidationIntegrationRequestError:
         return False
     if not isinstance(obj.dependencies, tuple):
         return False
@@ -893,59 +1073,9 @@ def validate_validation_integration_request(obj: Any) -> bool:
 def validate_validation_integration_result(obj: Any) -> bool:
     if not isinstance(obj, ValidationIntegrationResult):
         return False
-    if not isinstance(obj.validation_request_id, str) or not obj.validation_request_id.strip():
-        return False
-    if obj.decision not in VALIDATION_INTEGRATION_DECISIONS:
-        return False
-    if obj.final_stage not in VALIDATION_INTEGRATION_STAGES:
-        return False
-    if obj.validation_result_ref_id is not None:
-        if not isinstance(obj.validation_result_ref_id, str) or not obj.validation_result_ref_id.strip():
-            return False
-    if obj.invariant_precheck_ref_id is not None:
-        if not isinstance(obj.invariant_precheck_ref_id, str) or not obj.invariant_precheck_ref_id.strip():
-            return False
-    if obj.trace_id is not None:
-        if not isinstance(obj.trace_id, str) or not obj.trace_id.strip():
-            return False
-    if not isinstance(obj.failure_routes, tuple):
-        return False
-    for route in obj.failure_routes:
-        if not isinstance(route, ValidationFailureRoute):
-            return False
-        if not validate_validation_failure_route(route):
-            return False
-    for bool_field in ("passed", "blocking", "quarantined", "escalated", "hidden_info_safe",
-                       "provenance_checked", "state_mutation_allowed", "event_append_allowed",
-                       "persistence_allowed", "model_authority_allowed"):
-        if not isinstance(getattr(obj, bool_field), bool):
-            return False
-    if obj.state_mutation_allowed:
-        return False
-    if obj.event_append_allowed:
-        return False
-    if obj.persistence_allowed:
-        return False
-    if obj.model_authority_allowed:
-        return False
-    if obj.passed:
-        if obj.decision != "validation_passed":
-            return False
-        if obj.failure_routes:
-            return False
-        if not obj.hidden_info_safe:
-            return False
-    if obj.decision == "validation_passed" and not obj.passed:
-        return False
-    if obj.decision != "validation_passed" and obj.passed:
-        return False
-    if obj.decision.startswith("rejected_") and not obj.failure_routes:
-        return False
-    if obj.decision == "quarantined_for_review" and not obj.quarantined:
-        return False
-    if obj.decision == "escalated_to_doctrine" and not obj.escalated:
-        return False
-    if not obj.hidden_info_safe and obj.passed:
+    try:
+        _validate_result_semantics(obj, InvalidValidationIntegrationResultError)
+    except InvalidValidationIntegrationResultError:
         return False
     if not isinstance(obj.metadata, Mapping):
         return False
