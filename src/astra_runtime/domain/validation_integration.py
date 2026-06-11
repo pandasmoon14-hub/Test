@@ -222,6 +222,7 @@ VALIDATION_DEPENDENCY_TYPES = frozenset({
     "state_delta_ref",
     "event_ledger_ref",
     "validation_pipeline_ref",
+    "validation_request_ref",
     "validation_result_ref",
     "invariant_precheck_ref",
     "hidden_information_ref",
@@ -251,6 +252,16 @@ VALIDATION_SUBJECT_TYPES = frozenset({
     "hidden_information",
     "context_projection",
     "runtime_trace",
+})
+
+VALIDATION_SUBJECT_RELATIONS = frozenset({
+    "same_subject",
+    "blocking_dependency",
+    "affected_subject",
+    "source_subject",
+    "target_subject",
+    "authority_source",
+    "provenance_source",
 })
 
 
@@ -311,6 +322,68 @@ def _safe_str_seq(value: Any, name: str, error_cls: type[Exception]) -> tuple[st
     return tuple(result)
 
 
+def _validate_dependency_uniqueness(
+    dependencies: tuple["ValidationIntegrationDependency", ...],
+    error_cls: type[Exception],
+) -> None:
+    seen_ids: set[str] = set()
+    seen_bindings: set[tuple[str, str]] = set()
+    for dep in dependencies:
+        if not isinstance(dep, ValidationIntegrationDependency):
+            raise error_cls("dependencies entries must be ValidationIntegrationDependency")
+        if not validate_validation_integration_dependency(dep):
+            raise error_cls("dependencies entries must be valid ValidationIntegrationDependency")
+        if dep.dependency_id in seen_ids:
+            raise error_cls("dependency_id values must be unique")
+        seen_ids.add(dep.dependency_id)
+        binding = (dep.dependency_type, dep.reference_id)
+        if binding in seen_bindings:
+            raise error_cls("dependency bindings must be unique by type and reference")
+        seen_bindings.add(binding)
+
+
+def _collect_dependencies_by_type(
+    dependencies: tuple["ValidationIntegrationDependency", ...],
+) -> dict[str, tuple["ValidationIntegrationDependency", ...]]:
+    collected: dict[str, list[ValidationIntegrationDependency]] = {}
+    for dep in dependencies:
+        collected.setdefault(dep.dependency_type, []).append(dep)
+    return {dep_type: tuple(values) for dep_type, values in collected.items()}
+
+
+def _require_exact_bound_dependency(
+    dependencies_by_type: Mapping[str, tuple["ValidationIntegrationDependency", ...]],
+    dependency_type: str,
+    reference_id: str,
+    name: str,
+    error_cls: type[Exception],
+) -> None:
+    deps = dependencies_by_type.get(dependency_type, ())
+    if len(deps) != 1:
+        raise error_cls(f"{name} requires exactly one {dependency_type} dependency")
+    dep = deps[0]
+    if dep.reference_id != reference_id:
+        raise error_cls(f"{name} dependency reference_id must match the bound reference")
+    if not dep.required or not dep.satisfied:
+        raise error_cls(f"{name} dependency must be required and satisfied")
+
+
+def _safe_dependency_seq(
+    value: Any,
+    name: str,
+    error_cls: type[Exception],
+) -> tuple["ValidationIntegrationDependency", ...]:
+    dependencies = _safe_obj_seq(
+        value,
+        name,
+        error_cls,
+        ValidationIntegrationDependency,
+        validate_validation_integration_dependency,
+    )
+    _validate_dependency_uniqueness(dependencies, error_cls)
+    return dependencies
+
+
 def _require_bool(value: Any, name: str, error_cls: type[Exception]) -> None:
     if not isinstance(value, bool):
         raise error_cls(f"{name} must be a bool")
@@ -328,7 +401,11 @@ def _validate_failure_route_fields(obj: Any, error_cls: type[Exception]) -> None
         raise error_cls("route_type must be a known validation failure route")
     if obj.decision not in VALIDATION_INTEGRATION_DECISIONS:
         raise error_cls("decision must be a known validation integration decision")
+    if getattr(obj, "subject_type", None) not in VALIDATION_SUBJECT_TYPES:
+        raise error_cls("subject_type must be a known validation subject type")
     _require_non_empty(obj.subject_ref_id, "subject_ref_id", error_cls)
+    if getattr(obj, "subject_relation", None) not in VALIDATION_SUBJECT_RELATIONS:
+        raise error_cls("subject_relation must be a known validation subject relation")
     _require_bool(obj.blocking, "blocking", error_cls)
     _require_bool(obj.quarantines, "quarantines", error_cls)
     _require_bool(obj.escalates, "escalates", error_cls)
@@ -369,6 +446,90 @@ def _validate_request_stage(requested_stage: str, error_cls: type[Exception]) ->
         raise error_cls("requested_stage must not claim a terminal or outcome stage")
 
 
+def _validate_route_result_subject_relationships(obj: Any, error_cls: type[Exception]) -> None:
+    result_pair = (obj.subject_type, obj.subject_ref_id)
+    for route in obj.failure_routes:
+        route_pair = (route.subject_type, route.subject_ref_id)
+        if route.subject_relation == "same_subject":
+            if route_pair != result_pair:
+                raise error_cls("same_subject failure routes must match the result subject")
+        elif route_pair == result_pair:
+            raise error_cls("cross-subject failure routes must reference a different subject")
+
+
+def _validate_result_request_subject_binding(obj: Any, error_cls: type[Exception]) -> None:
+    if getattr(obj, "request_subject_type", None) not in VALIDATION_SUBJECT_TYPES:
+        raise error_cls("request_subject_type must be a known validation subject type")
+    _require_non_empty(getattr(obj, "request_subject_ref_id", None), "request_subject_ref_id", error_cls)
+    if obj.request_subject_type != obj.subject_type:
+        raise error_cls("request_subject_type must match subject_type")
+    if obj.request_subject_ref_id != obj.subject_ref_id:
+        raise error_cls("request_subject_ref_id must match subject_ref_id")
+
+
+def _validate_request_trace_dependency(obj: Any, error_cls: type[Exception]) -> None:
+    _validate_dependency_uniqueness(obj.dependencies, error_cls)
+    if obj.trace_id is None:
+        return
+    dependencies_by_type = _collect_dependencies_by_type(obj.dependencies)
+    _require_exact_bound_dependency(
+        dependencies_by_type,
+        "runtime_trace_ref",
+        obj.trace_id,
+        "trace_id",
+        error_cls,
+    )
+
+
+def _validate_result_dependencies(obj: Any, error_cls: type[Exception]) -> None:
+    if not isinstance(getattr(obj, "dependencies", None), tuple):
+        raise error_cls("dependencies must be a tuple")
+    _validate_dependency_uniqueness(obj.dependencies, error_cls)
+    dependencies_by_type = _collect_dependencies_by_type(obj.dependencies)
+    _require_exact_bound_dependency(
+        dependencies_by_type,
+        "validation_request_ref",
+        obj.validation_request_id,
+        "validation_request_id",
+        error_cls,
+    )
+    _require_exact_bound_dependency(
+        dependencies_by_type,
+        "runtime_trace_ref",
+        obj.trace_id,
+        "trace_id",
+        error_cls,
+    )
+    validation_result_deps = dependencies_by_type.get("validation_result_ref", ())
+    if obj.validation_result_ref_id is None:
+        if validation_result_deps:
+            raise error_cls("validation_result_ref dependency requires validation_result_ref_id")
+    else:
+        _require_exact_bound_dependency(
+            dependencies_by_type,
+            "validation_result_ref",
+            obj.validation_result_ref_id,
+            "validation_result_ref_id",
+            error_cls,
+        )
+
+
+def _validate_provenance_dependency_linkage(obj: Any, error_cls: type[Exception]) -> None:
+    provenance_refs = obj.provenance_ref_ids
+    if len(set(provenance_refs)) != len(provenance_refs):
+        raise error_cls("provenance_ref_ids must be unique")
+    dependencies_by_type = _collect_dependencies_by_type(obj.dependencies)
+    provenance_deps = dependencies_by_type.get("generated_content_provenance_ref", ())
+    dep_refs = tuple(dep.reference_id for dep in provenance_deps)
+    if len(set(dep_refs)) != len(dep_refs):
+        raise error_cls("generated_content_provenance_ref dependencies must be unique")
+    for dep in provenance_deps:
+        if not dep.required or not dep.satisfied:
+            raise error_cls("generated_content_provenance_ref dependencies must be required and satisfied")
+    if set(provenance_refs) != set(dep_refs):
+        raise error_cls("provenance_ref_ids must exactly match generated_content_provenance_ref dependencies")
+
+
 def _validate_result_semantics(obj: Any, error_cls: type[Exception]) -> None:
     _require_non_empty(obj.validation_request_id, "validation_request_id", error_cls)
     if obj.decision not in VALIDATION_INTEGRATION_DECISIONS:
@@ -380,6 +541,7 @@ def _validate_result_semantics(obj: Any, error_cls: type[Exception]) -> None:
     if getattr(obj, "subject_type", None) not in VALIDATION_SUBJECT_TYPES:
         raise error_cls("subject_type must be a known validation subject type")
     _require_non_empty(getattr(obj, "subject_ref_id", None), "subject_ref_id", error_cls)
+    _validate_result_request_subject_binding(obj, error_cls)
     _require_non_empty(obj.trace_id, "trace_id", error_cls)
     if obj.validation_result_ref_id is not None:
         _require_non_empty(obj.validation_result_ref_id, "validation_result_ref_id", error_cls)
@@ -394,6 +556,7 @@ def _validate_result_semantics(obj: Any, error_cls: type[Exception]) -> None:
         if not isinstance(route, ValidationFailureRoute):
             raise error_cls("failure_routes entries must be ValidationFailureRoute")
         _validate_failure_route_fields(route, error_cls)
+    _validate_route_result_subject_relationships(obj, error_cls)
     for bool_field in (
         "passed", "blocking", "quarantined", "escalated", "hidden_info_safe",
         "provenance_checked", "state_mutation_allowed", "event_append_allowed",
@@ -407,6 +570,16 @@ def _validate_result_semantics(obj: Any, error_cls: type[Exception]) -> None:
             raise error_cls(f"provenance_ref_ids[{i}] must be a non-empty string")
     if obj.provenance_ref_ids and not obj.provenance_checked:
         raise error_cls("provenance_checked must be True when provenance_ref_ids are present")
+    if obj.final_stage == "provenance_checked" and not obj.provenance_checked:
+        raise error_cls("provenance_checked final_stage requires provenance_checked=True")
+    if obj.final_stage == "provenance_checked" and obj.subject_type == "generated_content" and not obj.provenance_ref_ids:
+        raise error_cls("generated-content provenance_checked stage requires provenance linkage")
+    if obj.final_stage == "hidden_info_safety_checked" and not obj.hidden_info_safe:
+        raise error_cls("hidden_info_safety_checked final_stage requires hidden_info_safe=True")
+    if obj.final_stage == "invariant_precheck_passed" and obj.invariant_precheck_ref_id is None:
+        raise error_cls("invariant_precheck_passed requires invariant_precheck_ref_id")
+    _validate_result_dependencies(obj, error_cls)
+    _validate_provenance_dependency_linkage(obj, error_cls)
     if obj.state_mutation_allowed:
         raise error_cls("state_mutation_allowed must be False in PR-4C skeleton")
     if obj.event_append_allowed:
@@ -437,6 +610,8 @@ def _validate_result_semantics(obj: Any, error_cls: type[Exception]) -> None:
     if obj.passed:
         raise error_cls("passed must be False for non-passed decisions")
     if obj.decision == "validation_ready":
+        if not obj.hidden_info_safe:
+            raise error_cls("hidden_info_safe must be True when decision is validation_ready")
         for route in obj.failure_routes:
             if route.route_type != "request_downstream_domain_validation" or route.decision != "validation_ready":
                 raise error_cls("validation_ready routes must request downstream domain validation")
@@ -521,6 +696,8 @@ class ValidationFailureRoute:
     route_type: str
     decision: str
     subject_ref_id: str
+    subject_type: str = "command"
+    subject_relation: str = "same_subject"
     blocking: bool = True
     quarantines: bool = False
     escalates: bool = False
@@ -535,7 +712,9 @@ class ValidationFailureRoute:
             "route_id": self.route_id,
             "route_type": self.route_type,
             "decision": self.decision,
+            "subject_type": self.subject_type,
             "subject_ref_id": self.subject_ref_id,
+            "subject_relation": self.subject_relation,
             "blocking": self.blocking,
             "quarantines": self.quarantines,
             "escalates": self.escalates,
@@ -607,8 +786,11 @@ class ValidationIntegrationResult:
     final_stage: str
     subject_type: str
     subject_ref_id: str
+    request_subject_type: str = ""
+    request_subject_ref_id: str = ""
     validation_result_ref_id: str | None = None
     invariant_precheck_ref_id: str | None = None
+    dependencies: tuple[ValidationIntegrationDependency, ...] = ()
     failure_routes: tuple[ValidationFailureRoute, ...] = ()
     passed: bool = False
     blocking: bool = True
@@ -631,8 +813,11 @@ class ValidationIntegrationResult:
             "final_stage": self.final_stage,
             "subject_type": self.subject_type,
             "subject_ref_id": self.subject_ref_id,
+            "request_subject_type": self.request_subject_type,
+            "request_subject_ref_id": self.request_subject_ref_id,
             "validation_result_ref_id": self.validation_result_ref_id,
             "invariant_precheck_ref_id": self.invariant_precheck_ref_id,
+            "dependencies": [d.to_dict() for d in self.dependencies],
             "failure_routes": [r.to_dict() for r in self.failure_routes],
             "passed": self.passed,
             "blocking": self.blocking,
@@ -744,6 +929,8 @@ def create_validation_failure_route(
     route_type: str,
     decision: str,
     subject_ref_id: str,
+    subject_type: str = "command",
+    subject_relation: str = "same_subject",
     blocking: bool = True,
     quarantines: bool = False,
     escalates: bool = False,
@@ -758,7 +945,9 @@ def create_validation_failure_route(
         route_id=route_id,
         route_type=route_type,
         decision=decision,
+        subject_type=subject_type,
         subject_ref_id=subject_ref_id,
+        subject_relation=subject_relation,
         blocking=blocking,
         quarantines=quarantines,
         escalates=escalates,
@@ -821,12 +1010,10 @@ def create_validation_integration_request(
     _require_non_empty(subject_ref_id, "subject_ref_id", InvalidValidationIntegrationRequestError)
     _require_non_empty(requesting_service, "requesting_service", InvalidValidationIntegrationRequestError)
     _validate_request_stage(requested_stage, InvalidValidationIntegrationRequestError)
-    safe_deps = _safe_obj_seq(
+    safe_deps = _safe_dependency_seq(
         dependencies,
         "dependencies",
         InvalidValidationIntegrationRequestError,
-        ValidationIntegrationDependency,
-        validate_validation_integration_dependency,
     )
     safe_invs = _safe_obj_seq(
         invariants,
@@ -857,7 +1044,7 @@ def create_validation_integration_request(
                 "generated_content_ref_ids must be non-empty when any invariant family is 'generated_content_provenance_invariant'"
             )
     safe_meta = _safe_meta(metadata, InvalidValidationIntegrationRequestError)
-    return ValidationIntegrationRequest(
+    request = ValidationIntegrationRequest(
         validation_request_id=validation_request_id,
         subject_type=subject_type,
         subject_ref_id=subject_ref_id,
@@ -875,6 +1062,8 @@ def create_validation_integration_request(
         trace_id=trace_id,
         metadata=safe_meta,
     )
+    _validate_request_trace_dependency(request, InvalidValidationIntegrationRequestError)
+    return request
 
 
 def create_validation_integration_result(
@@ -883,8 +1072,11 @@ def create_validation_integration_result(
     final_stage: str,
     subject_type: str,
     subject_ref_id: str,
+    request_subject_type: str | None = None,
+    request_subject_ref_id: str | None = None,
     validation_result_ref_id: str | None = None,
     invariant_precheck_ref_id: str | None = None,
+    dependencies: Sequence[ValidationIntegrationDependency] | None = None,
     failure_routes: Sequence[ValidationFailureRoute] | None = None,
     passed: bool = False,
     blocking: bool = True,
@@ -915,6 +1107,15 @@ def create_validation_integration_result(
         "provenance_ref_ids",
         InvalidValidationIntegrationResultError,
     )
+    if request_subject_type is None:
+        request_subject_type = subject_type
+    if request_subject_ref_id is None:
+        request_subject_ref_id = subject_ref_id
+    safe_deps = _safe_dependency_seq(
+        dependencies,
+        "dependencies",
+        InvalidValidationIntegrationResultError,
+    )
     safe_meta = _safe_meta(metadata, InvalidValidationIntegrationResultError)
     result = ValidationIntegrationResult(
         validation_request_id=validation_request_id,
@@ -922,8 +1123,11 @@ def create_validation_integration_result(
         final_stage=final_stage,
         subject_type=subject_type,
         subject_ref_id=subject_ref_id,
+        request_subject_type=request_subject_type,
+        request_subject_ref_id=request_subject_ref_id,
         validation_result_ref_id=validation_result_ref_id,
         invariant_precheck_ref_id=invariant_precheck_ref_id,
+        dependencies=safe_deps,
         failure_routes=safe_routes,
         passed=passed,
         blocking=blocking,
@@ -1032,6 +1236,10 @@ def validate_validation_integration_request(obj: Any) -> bool:
             return False
         if not validate_validation_integration_dependency(dep):
             return False
+    try:
+        _validate_request_trace_dependency(obj, InvalidValidationIntegrationRequestError)
+    except InvalidValidationIntegrationRequestError:
+        return False
     if not isinstance(obj.invariants, tuple):
         return False
     for inv in obj.invariants:

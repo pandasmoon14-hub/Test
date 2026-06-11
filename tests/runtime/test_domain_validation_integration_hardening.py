@@ -16,6 +16,7 @@ from astra_runtime.domain import (
     ValidationIntegrationResult,
     ValidationIntegrationService,
     create_validation_failure_route,
+    create_validation_integration_dependency,
     create_validation_integration_request,
     create_validation_integration_result,
     validate_validation_failure_route,
@@ -131,7 +132,7 @@ def _route_kwargs(route_type="block_command_before_transaction", decision="valid
         "route_id": f"route-{route_type}-{decision}",
         "route_type": route_type,
         "decision": decision,
-        "subject_ref_id": "subject-1",
+        "subject_ref_id": "cmd-1",
         "quarantines": route_type.startswith("quarantine_"),
         "escalates": route_type == "escalate_doctrine_gap",
     }
@@ -141,6 +142,30 @@ def _route_kwargs(route_type="block_command_before_transaction", decision="valid
 
 def route(route_type="block_command_before_transaction", decision="validation_failed", **kwargs):
     return create_validation_failure_route(**_route_kwargs(route_type, decision, **kwargs))
+
+
+def dep(dependency_id, dependency_type, reference_id, *, required=True, satisfied=True):
+    return create_validation_integration_dependency(
+        dependency_id=dependency_id,
+        dependency_type=dependency_type,
+        reference_id=reference_id,
+        required=required,
+        satisfied=satisfied,
+    )
+
+
+def result_deps(validation_request_id="vreq-1", trace_id="trace-1", validation_result_ref_id="vres-1", provenance_ref_ids=()):
+    deps = [
+        dep("dep-request", "validation_request_ref", validation_request_id),
+    ]
+    if isinstance(trace_id, str) and trace_id.strip():
+        deps.append(dep("dep-trace", "runtime_trace_ref", trace_id))
+    if isinstance(validation_result_ref_id, str) and validation_result_ref_id.strip():
+        deps.append(dep("dep-result", "validation_result_ref", validation_result_ref_id))
+    for index, ref in enumerate(provenance_ref_ids or ()):
+        if isinstance(ref, str) and ref.strip():
+            deps.append(dep(f"dep-provenance-{index}", "generated_content_provenance_ref", ref))
+    return tuple(deps)
 
 
 def _result_kwargs(decision="validation_failed", final_stage=None, **kwargs):
@@ -159,6 +184,8 @@ def _result_kwargs(decision="validation_failed", final_stage=None, **kwargs):
         "final_stage": final_stage,
         "subject_type": "command",
         "subject_ref_id": "cmd-1",
+        "request_subject_type": "command",
+        "request_subject_ref_id": "cmd-1",
         "validation_result_ref_id": "vres-1",
         "failure_routes": [route(decision=decision)] if decision == "validation_failed" else [],
         "trace_id": "trace-1",
@@ -188,6 +215,19 @@ def _result_kwargs(decision="validation_failed", final_stage=None, **kwargs):
             "failure_routes": [],
         })
     data.update(kwargs)
+    if "request_subject_type" not in kwargs:
+        data["request_subject_type"] = data["subject_type"]
+    if "request_subject_ref_id" not in kwargs:
+        data["request_subject_ref_id"] = data["subject_ref_id"]
+    data.setdefault(
+        "dependencies",
+        result_deps(
+            data["validation_request_id"],
+            data.get("trace_id"),
+            data.get("validation_result_ref_id"),
+            data.get("provenance_ref_ids", ()),
+        ),
+    )
     return data
 
 
@@ -370,6 +410,8 @@ class TestDecisionStageAndResultInvariants:
     @pytest.mark.parametrize("stage", sorted(READY_STAGES))
     def test_validation_ready_allowed_stages(self, stage):
         kwargs = {"invariant_precheck_ref_id": "precheck-1"} if stage == "invariant_precheck_passed" else {}
+        if stage == "provenance_checked":
+            kwargs["provenance_checked"] = True
         assert result("validation_ready", stage, **kwargs).final_stage == stage
 
     @pytest.mark.parametrize(

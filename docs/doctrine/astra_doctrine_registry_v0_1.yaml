@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.81
+  action: runtime_domain_pr_4e_validation_integration_residual_skeleton_hardening
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-4E narrow residual skeleton hardening tracking. Follows PR-4D; adds typed subject relationships; permits explicit lawful cross-subject routes; blocks ambiguous unrelated route subjects; binds result subjects to request subjects; adds typed validation-request reference dependencies; adds typed runtime-trace dependencies; adds typed validation-result dependencies; adds typed provenance dependency linkage; hardens dependency uniqueness; hardens validation_ready hidden-information posture; aligns intermediate stages with status flags; preserves factory/validator parity; preserves sanitized public serialization; preserves all false-only authority flags; adds focused residual-hardening tests; does not execute validation; does not calculate resources; does not mutate state; does not apply deltas; does not append events; does not persist; does not replay; does not execute commands; does not add model/live-play/UI behavior; does not perform conversion; does not promote canon. PR-5 remains blocked pending PR-4F review.
+- date: '2026-06-11'
   version: 0.1.80
   action: runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -537,6 +542,51 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-4E-VALIDATION-INTEGRATION-RESIDUAL-SKELETON-HARDENING-001
+  filename: validation_integration.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-4e
+  content_type: executable_skeleton_hardening
+  implementation_status: narrow_residual_skeleton_hardening
+  authority_level: runtime_domain_skeleton
+  purpose: Harden validation integration residual object-shape and identity-linkage semantics without adding validation execution or runtime authority.
+  follows:
+  - RUNTIME-DOMAIN-PR-4D validation integration hardening review gate
+  records:
+  - typed subject relationships
+  - explicit lawful cross-subject routes
+  - ambiguous unrelated route subject blocking
+  - result subject binding to request subject declarations
+  - typed validation-request reference dependencies
+  - typed runtime-trace dependencies
+  - typed validation-result dependencies
+  - typed generated-content provenance dependency linkage
+  - dependency uniqueness hardening
+  - validation_ready hidden-information-safe posture
+  - intermediate checked-stage flag consistency
+  - factory/validator parity
+  - sanitized public serialization preservation
+  - false-only authority flag preservation
+  - focused residual-hardening tests
+  non_authorizations:
+  - validation execution
+  - resource calculation
+  - state mutation
+  - state delta application
+  - event append
+  - persistence
+  - replay
+  - command execution
+  - model/live-play/UI behavior
+  - conversion
+  - canon promotion
+  required_tests:
+  - tests/runtime/test_domain_validation_integration_residual_hardening.py
+  - tests/runtime/test_domain_validation_integration_hardening.py
+  - tests/runtime/test_domain_validation_integration_skeleton.py
+  next_allowed_step: RUNTIME-DOMAIN-PR-4F validation integration residual hardening review gate, pending review
 - file_id: RUNTIME-DOMAIN-PR-4D-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-HARDENING-REVIEW-001
   filename: runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review.md
   proposed_path: docs/doctrine/reviews/
