@@ -51,8 +51,12 @@ Exact future validation fields:
 Rules:
 
 - Any validation decision must belong to the existing `VALIDATION_INTEGRATION_DECISIONS` surface.
+- On `ResourceMathResult`, `validation_decision is None` requires both `validation_request_ref_id is None` and `validation_result_ref_id is None`.
+- On `ResourceMathResult`, any non-None `validation_decision` requires `validation_request_ref_id` plus a matching typed `validation_request_ref` dependency.
 - `validation_ready` may omit `validation_result_ref_id`.
-- Every other supplied validation decision requires `validation_result_ref_id`.
+- `validation_ready` may include `validation_result_ref_id` only when a matching typed `validation_result_ref` dependency is present.
+- Every other supplied validation decision requires `validation_result_ref_id` plus a matching typed `validation_result_ref` dependency.
+- `validation_result_ref_id` may not exist without `validation_decision`.
 - `SettlementProposal` requires `validation_decision == "validation_passed"`, a non-empty `validation_result_ref_id`, and a matching typed validation-result dependency.
 - No validation field authorizes calculation, settlement, mutation, or event commitment.
 
@@ -87,28 +91,44 @@ Exact fields:
 
 Rules: `subject_type` belongs to `RESOURCE_MATH_SUBJECT_TYPES`; `subject_role` belongs to `RESOURCE_MATH_SUBJECT_ROLES`; `owner_domain` belongs to `RESOURCE_MATH_OWNER_DOMAINS`; all IDs are non-empty; subject-binding IDs are unique; no object dereferencing occurs; cross-subject costs and consequences use explicit subject bindings; raw untyped subject IDs are not sufficient. All future shape contracts use subject-binding IDs rather than untyped subject references where appropriate.
 
+Aggregate cardinality rules: `ResourceMathRequest.subject_refs` is non-empty; exactly one subject reference in each request has `subject_role == "primary_subject"`; zero primary subjects is invalid; multiple primary subjects are invalid; `subject_binding_id` values are unique within the request; every `ResourceReference.subject_binding_id`, `CostTerm.subject_binding_id`, and `ConsequenceTerm.subject_binding_id` resolves inside the same `ResourceMathRequest.subject_refs` aggregate.
+
 ## 5. Stage and decision compatibility
 
 PR-5D preserves PR-5B's stage and decision vocabularies except where PR-5C required correction. `ResourceMathResult` must define exact fields `stage`, `decision`, `blocking`, `quarantined`, and `escalated`.
 
-Compatibility matrix:
+Exact controlled stage sets used by this matrix:
 
-| decision | required stage rule | blocking | quarantined | escalated | terminal |
-|---|---|---:|---:|---:|---:|
-| `accepted_for_planning` | any non-terminal planning stage | `False` | `False` | `False` | `False` |
-| `normalized_for_planning` | any non-terminal planning stage | `False` | `False` | `False` | `False` |
-| `source_local_retained` | any non-terminal planning stage | `False` | `False` | `False` | `False` |
-| `requires_validation_review` | validation/review stage | `True` | `False` | `False` | `False` |
-| `requires_owner_handoff` | owner-handoff stage | `True` | `False` | `False` | `False` |
-| every `blocked_*` decision | matching blocked stage when available | `True` | `False` | `False` | `False` |
-| `quarantined_for_review` | `stage=quarantined_for_review` | `True` | `True` | `False` | `True` |
-| `escalated_to_doctrine` | `stage=escalated_to_doctrine` | `True` | `False` | `True` | `True` |
+- `DECLARATION_PROGRESS_STAGES = {"source_declaration_captured", "subject_refs_bound", "resource_refs_declared", "quantity_specs_declared", "terms_declared", "bundle_structure_declared", "policy_refs_declared", "dependency_refs_bound", "calculation_ready_for_review"}`
+- `SOURCE_LOCAL_STAGES = {"source_declaration_captured", "resource_refs_declared", "terms_declared", "bundle_structure_declared", "policy_refs_declared"}`
+- `VALIDATION_BLOCK_STAGES = {"blocked_pending_validation"}`
+- `OWNER_HANDOFF_STAGES = {"blocked_pending_owner_handoff"}`
+- `MISSING_DEPENDENCY_STAGES = {"dependency_refs_bound", "blocked_pending_validation", "blocked_pending_owner_handoff"}`
+- `POLICY_BLOCK_STAGES = {"policy_refs_declared"}`
+- `HIDDEN_INFORMATION_BLOCK_STAGES = {"dependency_refs_bound", "blocked_pending_validation"}`
+- `QUARANTINE_STAGES = {"quarantined_for_review"}`
+- `ESCALATION_STAGES = {"escalated_to_doctrine"}`
 
-No quarantined, escalated, blocked, validation-review, or owner-handoff result may be treated as accepted planning or transaction-ready. Dual use of `quarantined_for_review` and `escalated_to_doctrine` as both stage and decision is explicitly lawful only through this compatibility matrix.
+Exact compatibility matrix:
+
+| decision | allowed-stage set | blocking | quarantined | escalated | terminal | validation dependency requirement | owner dependency requirement |
+|---|---|---:|---:|---:|---:|---|---|
+| `accepted_for_planning` | `{"calculation_ready_for_review"}` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
+| `normalized_for_planning` | `DECLARATION_PROGRESS_STAGES` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
+| `source_local_retained` | `SOURCE_LOCAL_STAGES` | `False` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required; owner handoff refs forbidden |
+| `requires_validation_review` | `VALIDATION_BLOCK_STAGES` | `True` | `False` | `False` | `False` | exactly one required/satisfied `validation_request_ref` matching `validation_request_ref_id`; `validation_result_ref_id` absent | no owner-handoff dependency required; owner handoff refs forbidden |
+| `requires_owner_handoff` | `OWNER_HANDOFF_STAGES` | `True` | `False` | `False` | `False` | no validation dependency required unless section 3 co-presence is satisfied | exactly one required/satisfied `owner_handoff_ref` for each owner handoff field reference |
+| `blocked_missing_dependency` | `MISSING_DEPENDENCY_STAGES` | `True` | `False` | `False` | `False` | no validation dependency required unless section 3 co-presence is satisfied | no owner-handoff dependency required unless owner handoff refs are present |
+| `blocked_incompatible_policy` | `POLICY_BLOCK_STAGES` | `True` | `False` | `False` | `False` | no validation dependency required; validation refs forbidden unless section 3 co-presence is satisfied | no owner-handoff dependency required unless owner handoff refs are present |
+| `blocked_hidden_information` | `HIDDEN_INFORMATION_BLOCK_STAGES` | `True` | `False` | `False` | `False` | no validation dependency required unless section 3 co-presence is satisfied | no owner-handoff dependency required unless owner handoff refs are present |
+| `quarantined_for_review` | `QUARANTINE_STAGES` | `True` | `True` | `False` | `True` | no validation dependency required unless section 3 co-presence is satisfied | no owner-handoff dependency required unless owner handoff refs are present |
+| `escalated_to_doctrine` | `ESCALATION_STAGES` | `True` | `False` | `True` | `True` | no validation dependency required unless section 3 co-presence is satisfied | no owner-handoff dependency required unless owner handoff refs are present |
+
+No quarantined, escalated, blocked, validation-review, or owner-handoff result may be treated as accepted planning or transaction-ready. Dual use of `quarantined_for_review` and `escalated_to_doctrine` as both stage and decision is explicitly lawful only through this compatibility matrix. Every decision/stage pair not admitted by the table is invalid for PR-5A.
 
 ## 6. Dependency contract and exact field-binding matrix
 
-PR-5D uses PR-5B's `RESOURCE_MATH_DEPENDENCY_TYPES` as baseline and adds missing typed reference categories required by PR-5C. Exact future dependency types include: `command_ref`, `action_legality_ref`, `state_projection_ref`, `validation_request_ref`, `validation_result_ref`, `runtime_trace_ref`, `owner_handoff_ref`, `provenance_ref`, `rng_result_ref`, `table_oracle_result_ref`, `state_delta_ref`, `transaction_ref`, and `event_commitment_ref`.
+PR-5D uses PR-5B's `RESOURCE_MATH_DEPENDENCY_TYPES` as baseline and adds missing typed reference categories required by PR-5C. Exact future dependency types include: `command_ref`, `action_legality_ref`, `state_projection_ref`, `validation_request_ref`, `validation_result_ref`, `runtime_trace_ref`, `owner_handoff_ref`, `provenance_ref`, `rng_result_ref`, `table_oracle_result_ref`, `state_delta_ref`, `transaction_ref`, `event_commitment_ref`, `resource_math_request_ref`, `resource_math_result_ref`, and `rollback_accounting_ref`.
 
 Every external reference field must have exactly one matching required and satisfied `ResourceMathDependency`:
 
@@ -127,6 +147,11 @@ Every external reference field must have exactly one matching required and satis
 | proposed state delta | `state_delta_ref` |
 | transaction prerequisite | `transaction_ref` |
 | event-commitment prerequisite | `event_commitment_ref` |
+| `ResourceMathResult.request_id` | `resource_math_request_ref` |
+| `SettlementProposal.result_id` | `resource_math_result_ref` |
+| `SettlementProposal.rollback_accounting_refs` | `rollback_accounting_ref` |
+
+Validation co-presence rules for `ResourceMathResult`: `validation_decision is None` requires `validation_request_ref_id is None` and `validation_result_ref_id is None`; any non-None `validation_decision` requires `validation_request_ref_id` plus exactly one required/satisfied `validation_request_ref` dependency; `validation_ready` may omit `validation_result_ref_id`; `validation_ready` may include `validation_result_ref_id` only with exactly one required/satisfied `validation_result_ref` dependency; every non-`validation_ready` validation decision requires `validation_result_ref_id` plus exactly one required/satisfied `validation_result_ref` dependency. `validation_result_ref_id` may not exist without `validation_decision`.
 
 Rules: `dependency_id` is unique; `(dependency_type, reference_id)` is unique; binding dependencies are `required=True` and `satisfied=True`; `required=True` and `satisfied=False` forces a blocking result; `required=False` and `satisfied=False` is lawful but cannot satisfy a required field binding; `hidden_info_safe=False` prohibits public projection and requires RT-005 handling; internal IDs for subject bindings, resources, quantities, terms, bundles, and consequences resolve inside the same aggregate and do not require external dependency records; no dependency is executed or dereferenced.
 
@@ -145,15 +170,20 @@ Exact future lexical rules:
 - Empty strings are rejected where the representation requires a value.
 - Case-insensitive NaN and infinity tokens are rejected.
 - Binary-float input is rejected.
-- `integer_exact` uses a signed-integer lexical grammar.
-- `decimal_exact` uses a signed exact-decimal lexical grammar.
-- `fraction_exact` uses signed numerator/non-zero unsigned denominator grammar.
-- `fixed_point_scaled` uses signed-integer magnitude plus non-negative scale.
-- `source_literal_only` preserves a non-empty source literal without evaluating it.
-- `blocked_pending_numeric_choice` preserves the literal and blocks progression.
-- Lexical checks may use string inspection or regular expressions.
-- PR-5A must not instantiate `Decimal`, `Fraction`, `float`, or perform comparison, arithmetic, rounding, conversion, or affordability checks.
-- Negative-value permission is an explicit field, `negative_value_policy: str = "negative_values_forbidden"`, controlled by `QUANTITY_NEGATIVE_VALUE_POLICIES`; negative values must never be implicitly accepted.
+Exact lexical grammars are ASCII regular expressions matched against the entire string:
+
+| representation_kind | required lexical fields | exact grammar | explicit exclusions |
+|---|---|---|---|
+| `integer_exact` | `magnitude_text` | `^[+-]?(0|[1-9][0-9]*)$` | no whitespace, exponent notation, decimal point, leading zero except `0`, or embedded separators |
+| `decimal_exact` | `magnitude_text` | `^[+-]?(0|[1-9][0-9]*)\.[0-9]+$` | no exponent notation, leading decimal point, trailing decimal point, leading zero except before `.`, or embedded separators |
+| `fraction_exact` | `magnitude_text` | `^[+-]?(0|[1-9][0-9]*)/[1-9][0-9]*$` | no zero denominator, signed denominator, decimal numerator, decimal denominator, or mixed-number shorthand |
+| `fixed_point_scaled` | `magnitude_text` plus `scale` | magnitude `^[+-]?(0|[1-9][0-9]*)$`; scale is an `int` that is not `bool` and is `>= 0` | no decimal point in magnitude, no exponent notation, no negative scale |
+| `source_literal_only` | `source_literal` | `^\S(?:.*\S)?$` | no empty string, no leading/trailing whitespace, no evaluation |
+| `blocked_pending_numeric_choice` | `source_literal` | `^\S(?:.*\S)?$` | no empty string, no leading/trailing whitespace, blocks progression |
+
+Plus signs are permitted only by the grammars above. Leading zeros are rejected except for the single literal `0` or a decimal beginning `0.`. Decimal exponent notation is always rejected. Lexical checks may use string inspection or regular expressions.
+
+PR-5A must not instantiate `Decimal`, `Fraction`, `float`, or perform comparison, arithmetic, rounding, conversion, or affordability checks. Negative-value permission is an explicit field, `negative_value_policy: str = "negative_values_forbidden"`, controlled by `QUANTITY_NEGATIVE_VALUE_POLICIES`; negative values must never be implicitly accepted.
 
 `QUANTITY_NEGATIVE_VALUE_POLICIES`: `negative_values_forbidden`, `negative_values_allowed_by_source`, `negative_values_require_owner_handoff`.
 
@@ -171,22 +201,44 @@ Exact future lexical rules:
 
 Alternative groups must have unique group IDs, non-empty unique member term IDs, members contained in `term_ids`, no term in more than one alternative group unless a future explicit policy authorizes overlap, and no alternative selection in PR-5A.
 
-Compatibility matrix:
+Compatibility matrix controlled sets:
 
-| atomicity_policy | ordering_policy | partial_settlement_policy | alternative groups | lawful PR-5A posture |
+- `ORDERING_DECLARED_SET = {"unordered_terms", "source_ordered_terms", "dependency_ordered_terms", "priority_ordered_terms"}`
+- `ORDERING_ORDERED_SET = {"source_ordered_terms", "dependency_ordered_terms", "priority_ordered_terms"}`
+- `PARTIAL_REVIEW_SET = {"partial_settlement_requires_owner_review", "partial_settlement_requires_validation"}`
+- `ALTERNATIVE_ATOMICITY_SET = {"alternative_exactly_one", "alternative_at_least_one", "alternative_at_most_one", "alternative_any"}`
+
+Exact compatibility matrix; every combination not listed here is invalid for PR-5A:
+
+| atomicity_policy | ordering_policy set | partial_settlement_policy set | alternative groups | lawful PR-5A posture |
 |---|---|---|---|---|
-| `all_or_nothing_requested` | `unordered_terms` | `no_partial_settlement` | absent | valid declaration, no settlement |
-| `all_or_nothing_requested` | `blocked_pending_ordering_policy` | `no_partial_settlement` | absent | blocking review |
-| `all_or_nothing_requested` | any | `partial_settlement_requires_validation` | absent | blocking validation review |
-| `alternative_exactly_one` | `unordered_terms` | `no_partial_settlement` | present and valid | valid declaration, no alternative chosen |
-| `alternative_exactly_one` | any | any | absent | invalid: alternative groups required |
-| any | any | any | overlapping groups | invalid unless future policy authorizes overlap |
+| `all_or_nothing_requested` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | absent | valid declaration, no settlement |
+| `all_or_nothing_requested` | `{ "blocked_pending_ordering_policy" }` | `{ "no_partial_settlement" }` | absent | blocking review |
+| `best_effort_requested` | `ORDERING_DECLARED_SET` | `{ "partial_settlement_allowed" }` | absent | valid declaration, no settlement |
+| `best_effort_requested` | `ORDERING_DECLARED_SET` | `PARTIAL_REVIEW_SET` | absent | blocking review; owner or validation route follows the partial policy |
+| `best_effort_requested` | `{ "blocked_pending_ordering_policy" }` | `{ "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | absent | blocking review |
+| `ordered_partial_allowed` | `ORDERING_ORDERED_SET` | `{ "partial_settlement_allowed" }` | absent | valid declaration, no settlement |
+| `ordered_partial_allowed` | `ORDERING_ORDERED_SET` | `PARTIAL_REVIEW_SET` | absent | blocking review; owner or validation route follows the partial policy |
+| `ordered_partial_allowed` | `{ "blocked_pending_ordering_policy" }` | `{ "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | absent | blocking review |
+| `unordered_partial_allowed` | `{ "unordered_terms" }` | `{ "partial_settlement_allowed" }` | absent | valid declaration, no settlement |
+| `unordered_partial_allowed` | `{ "unordered_terms" }` | `PARTIAL_REVIEW_SET` | absent | blocking review; owner or validation route follows the partial policy |
+| `unordered_partial_allowed` | `{ "blocked_pending_ordering_policy" }` | `{ "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | absent | blocking review |
+| `alternative_exactly_one` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | present and valid | valid declaration, no alternative chosen |
+| `alternative_at_least_one` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | present and valid | valid declaration, no alternative chosen |
+| `alternative_at_most_one` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | present and valid | valid declaration, no alternative chosen |
+| `alternative_any` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | present and valid | valid declaration, no alternative chosen |
+| `ALTERNATIVE_ATOMICITY_SET` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | absent | invalid: alternative groups required |
+| `ALTERNATIVE_ATOMICITY_SET` | `ORDERING_DECLARED_SET` | `{ "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | present or absent | invalid: alternatives cannot also declare partial settlement in PR-5A |
+| `invalid_mixed_atomicity` | `ORDERING_DECLARED_SET` or `{ "blocked_pending_ordering_policy" }` | `{ "no_partial_settlement", "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | present or absent | invalid mixed atomicity |
+| `blocked_pending_transaction_policy` | `ORDERING_DECLARED_SET` or `{ "blocked_pending_ordering_policy" }` | `{ "no_partial_settlement", "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | present or absent | blocking owner/transaction-policy review |
+| `{ "all_or_nothing_requested", "best_effort_requested", "ordered_partial_allowed", "unordered_partial_allowed" }` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement", "partial_settlement_allowed", "partial_settlement_requires_owner_review", "partial_settlement_requires_validation", "blocked_pending_settlement_policy" }` | overlapping groups | invalid: non-alternative atomicity cannot declare alternative groups |
+| `ALTERNATIVE_ATOMICITY_SET` | `ORDERING_DECLARED_SET` | `{ "no_partial_settlement" }` | overlapping groups | invalid unless a future explicit policy authorizes overlap |
 
 No settlement or alternative choice is executed.
 
 ## 10. Request/result/proposal contracts
 
-`ResourceMathRequest` must bind request ID; command/action-legality refs where applicable; typed subject bindings; state-projection refs; declared resources; quantity specifications; terms; bundles; consequences; external dependencies; trace; provenance; owner handoffs; and optional validation-request ref.
+`ResourceMathRequest` must bind request ID; command/action-legality refs where applicable; non-empty typed subject bindings with exactly one `primary_subject`; state-projection refs; declared resources; quantity specifications; terms; bundles; consequences; external dependencies; trace; provenance; owner handoffs; and optional validation-request ref.
 
 `ResourceMathResult` must bind result ID; request ID; stage; decision; blocking/quarantine/escalation flags; diagnostics; normalized internal reference IDs; external dependencies; trace; optional validation request/result and decision fields; and all false-only authority fields.
 
@@ -234,7 +286,7 @@ Fields: `bundle_id: str` required; `term_ids: tuple[str, ...]` required non-empt
 Fields: `consequence_id: str` required; `subject_binding_id: str` required; `resource_ref_id: str | None = None`; `quantity_id: str | None = None`; `consequence_family: str` required controlled by `CONSEQUENCE_FAMILIES`; `timing_policy: str = "blocked_pending_validation"` controlled by `COST_TIMING_POLICIES`; `outcome_policy: str = "validation_blocked"` controlled by `COST_OUTCOME_POLICIES`; `visibility_policy: str = "public"`; `owner_domain: str` required; `dependency_ids: tuple[str, ...] = ()`; `provenance_refs: tuple[str, ...] = ()`; `metadata: Mapping[str, object] = MappingProxyType({})`. `validation_posture` is not a field. Invariants: subject/resource/quantity/dependency IDs exist where supplied, no consequence application. False-only fields: none.
 
 ### ResourceMathRequest
-Fields: `request_id: str` required; `command_ref_id: str | None = None`; `action_legality_ref_id: str | None = None`; `subject_refs: tuple[ResourceMathSubjectReference, ...] = ()`; `state_projection_ref_ids: tuple[str, ...] = ()`; `resource_refs: tuple[ResourceReference, ...] = ()`; `quantity_specs: tuple[QuantitySpecification, ...] = ()`; `cost_terms: tuple[CostTerm, ...] = ()`; `cost_bundles: tuple[CostBundle, ...] = ()`; `consequence_terms: tuple[ConsequenceTerm, ...] = ()`; `dependencies: tuple[ResourceMathDependency, ...] = ()`; `trace_ref_id: str` required; `provenance_refs: tuple[str, ...] = ()`; `owner_handoff_ref_ids: tuple[str, ...] = ()`; `validation_request_ref_id: str | None = None`; `metadata: Mapping[str, object] = MappingProxyType({})`; all false-only fields default `False`. Invariants: section 10 binding, section 11 integrity, section 13 false-only rejection.
+Fields: `request_id: str` required; `command_ref_id: str | None = None`; `action_legality_ref_id: str | None = None`; `subject_refs: tuple[ResourceMathSubjectReference, ...]` required non-empty; `state_projection_ref_ids: tuple[str, ...] = ()`; `resource_refs: tuple[ResourceReference, ...] = ()`; `quantity_specs: tuple[QuantitySpecification, ...] = ()`; `cost_terms: tuple[CostTerm, ...] = ()`; `cost_bundles: tuple[CostBundle, ...] = ()`; `consequence_terms: tuple[ConsequenceTerm, ...] = ()`; `dependencies: tuple[ResourceMathDependency, ...] = ()`; `trace_ref_id: str` required; `provenance_refs: tuple[str, ...] = ()`; `owner_handoff_ref_ids: tuple[str, ...] = ()`; `validation_request_ref_id: str | None = None`; `metadata: Mapping[str, object] = MappingProxyType({})`; all false-only fields default `False`. Invariants: section 4 subject cardinality, section 10 binding, section 11 integrity, section 13 false-only rejection.
 
 ### ResourceMathResult
 Fields: `result_id: str` required; `request_id: str` required; `stage: str` required; `decision: str` required; `blocking: bool` required; `quarantined: bool = False`; `escalated: bool = False`; `diagnostics: tuple[str, ...] = ()`; `normalized_reference_ids: tuple[str, ...] = ()`; `dependencies: tuple[ResourceMathDependency, ...] = ()`; `trace_ref_id: str` required; `validation_request_ref_id: str | None = None`; `validation_result_ref_id: str | None = None`; `validation_decision: str | None = None`; `metadata: Mapping[str, object] = MappingProxyType({})`; all false-only fields default `False`. Invariants: stage/decision compatibility, validation integration contract, dependency linkage, false-only rejection.

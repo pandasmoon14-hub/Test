@@ -116,22 +116,51 @@ def test_subject_reference_and_roles() -> None:
     ]:
         assert f"`{role}`" in text
     assert "raw untyped subject IDs are not sufficient" in text
+    for cardinality_rule in [
+        "ResourceMathRequest.subject_refs` is non-empty",
+        "exactly one subject reference in each request has `subject_role == \"primary_subject\"`",
+        "zero primary subjects is invalid",
+        "multiple primary subjects are invalid",
+        "every `ResourceReference.subject_binding_id`, `CostTerm.subject_binding_id`, and `ConsequenceTerm.subject_binding_id` resolves",
+    ]:
+        assert cardinality_rule in text
 
 
 def test_stage_decision_blocking_matrix() -> None:
     text = read(ARTIFACT)
-    for row in [
-        "`accepted_for_planning`",
-        "`normalized_for_planning`",
-        "`source_local_retained`",
-        "`requires_validation_review`",
-        "`requires_owner_handoff`",
-        "every `blocked_*` decision",
-        "`quarantined_for_review` | `stage=quarantined_for_review` | `True` | `True` | `False` | `True`",
-        "`escalated_to_doctrine` | `stage=escalated_to_doctrine` | `True` | `False` | `True` | `True`",
+    stage_section = text.split("## 5. Stage and decision compatibility", 1)[1].split("## 6.", 1)[0]
+    for forbidden in [
+        "any non-terminal planning stage",
+        "validation/review stage",
+        "owner-handoff stage",
+        "matching blocked stage when available",
     ]:
-        assert row in text
-    assert "Dual use of `quarantined_for_review` and `escalated_to_doctrine` as both stage and decision" in text
+        assert forbidden not in stage_section
+    for stage_set in [
+        "DECLARATION_PROGRESS_STAGES",
+        "SOURCE_LOCAL_STAGES",
+        "VALIDATION_BLOCK_STAGES",
+        "OWNER_HANDOFF_STAGES",
+        "MISSING_DEPENDENCY_STAGES",
+        "POLICY_BLOCK_STAGES",
+        "HIDDEN_INFORMATION_BLOCK_STAGES",
+        "QUARANTINE_STAGES",
+        "ESCALATION_STAGES",
+    ]:
+        assert stage_set in stage_section
+    for decision in [
+        "accepted_for_planning", "normalized_for_planning", "source_local_retained",
+        "requires_validation_review", "requires_owner_handoff", "blocked_missing_dependency",
+        "blocked_incompatible_policy", "blocked_hidden_information", "quarantined_for_review",
+        "escalated_to_doctrine",
+    ]:
+        assert f"`{decision}`" in stage_section
+    for exact_rule in [
+        "exactly one required/satisfied `validation_request_ref` matching `validation_request_ref_id`",
+        "exactly one required/satisfied `owner_handoff_ref` for each owner handoff field reference",
+        "Every decision/stage pair not admitted by the table is invalid for PR-5A",
+    ]:
+        assert exact_rule in stage_section
 
 
 def test_dependency_field_binding_matrix() -> None:
@@ -140,6 +169,7 @@ def test_dependency_field_binding_matrix() -> None:
         "command_ref", "action_legality_ref", "state_projection_ref", "validation_request_ref",
         "validation_result_ref", "runtime_trace_ref", "owner_handoff_ref", "provenance_ref",
         "rng_result_ref", "table_oracle_result_ref", "state_delta_ref", "transaction_ref", "event_commitment_ref",
+        "resource_math_request_ref", "resource_math_result_ref", "rollback_accounting_ref",
     ]:
         assert f"`{dep_type}`" in text
     for rule in [
@@ -148,6 +178,11 @@ def test_dependency_field_binding_matrix() -> None:
         "`(dependency_type, reference_id)` is unique",
         "`required=True` and `satisfied=False` forces a blocking result",
         "no dependency is executed or dereferenced",
+        "`ResourceMathResult.request_id` | `resource_math_request_ref`",
+        "`SettlementProposal.result_id` | `resource_math_result_ref`",
+        "`SettlementProposal.rollback_accounting_refs` | `rollback_accounting_ref`",
+        "`validation_result_ref_id` may not exist without `validation_decision`",
+        "any non-None `validation_decision` requires `validation_request_ref_id`",
     ]:
         assert rule in text
 
@@ -162,6 +197,10 @@ def test_consequence_policy_reuse_and_quantity_lexical_contract() -> None:
         "magnitude_text` and `source_literal` are strings, never floats",
         "Leading/trailing whitespace is rejected",
         "Case-insensitive NaN and infinity tokens are rejected",
+        "`integer_exact` | `magnitude_text` | `^[+-]?(0|[1-9][0-9]*)$`",
+        "`decimal_exact` | `magnitude_text` | `^[+-]?(0|[1-9][0-9]*)\\.[0-9]+$`",
+        "`fraction_exact` | `magnitude_text` | `^[+-]?(0|[1-9][0-9]*)/[1-9][0-9]*$`",
+        "no exponent notation, leading decimal point, trailing decimal point",
         "PR-5A must not instantiate `Decimal`, `Fraction`, `float`",
         "negative values must never be implicitly accepted",
     ]:
@@ -179,16 +218,27 @@ def test_bundle_bounds_alternatives_and_compatibility() -> None:
         "unique group IDs",
         "no term in more than one alternative group",
         "No settlement or alternative choice is executed",
-        "`alternative_exactly_one` | any | any | absent | invalid: alternative groups required",
+        "`best_effort_requested`",
+        "`ordered_partial_allowed`",
+        "`unordered_partial_allowed`",
+        "`alternative_at_least_one`",
+        "`alternative_at_most_one`",
+        "`alternative_any`",
+        "`invalid_mixed_atomicity`",
+        "`blocked_pending_transaction_policy`",
+        "every combination not listed here is invalid for PR-5A",
+        "`ALTERNATIVE_ATOMICITY_SET` | `ORDERING_DECLARED_SET` | `{ \"no_partial_settlement\" }` | absent | invalid: alternative groups required",
     ]:
         assert token in text
+    bundle_section = text.split("## 9. CostBundle exact semantics", 1)[1].split("## 10.", 1)[0]
+    assert " | any | " not in bundle_section
 
 
 def test_request_result_proposal_linkage_and_validation_passed_requirement() -> None:
     text = read(ARTIFACT)
     for token in [
         "ResourceMathRequest` must bind request ID",
-        "typed subject bindings",
+        "non-empty typed subject bindings with exactly one `primary_subject`",
         "optional validation-request ref",
         "ResourceMathResult` must bind result ID",
         "blocking/quarantine/escalation flags",
