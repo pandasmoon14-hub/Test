@@ -2530,3 +2530,39 @@ runtime_domain_pr_4:
   authorizes_canon_promotion_by_this_pr: false
   next_allowed_step: RUNTIME-DOMAIN-PR-4A validation integration and invariant enforcement skeleton implementation, pending review
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-4B-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-REVIEW-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+Review/gate-only status recorded for PR-4B. The review confirms PR-4A stayed within its authorized validation integration skeleton scope and did not add validation execution, invariant enforcement, mutation, event append, persistence, replay, model, live-play, conversion, or canon behavior.
+
+### Findings
+
+Primary findings: constants and reference-only kernel posture are acceptable; anti-authority guardrails are acceptable; domain package guardrail transition is safe. Semantic and traceability gaps were found: successful validation can omit `validation_result_ref_id` and `trace_id`, can remain `blocking=True`, can use loose final-stage combinations, and can pass generated-content paths without result-side provenance linkage. Terminal failure, quarantine, escalation, unsupported-scope, and failure-route semantics lack sufficient cross-field compatibility and trace linkage. Hidden-information flags exist, but player-visible route safety needs a future sanitized reason-code boundary.
+
+### Implication
+
+PR-4C is required before PR-5 planning. The selected next step is RUNTIME-DOMAIN-PR-4C validation integration skeleton hardening, pending review. PR-4B authorizes no runtime code, no domain-service code, no validation rule execution, no invariant enforcement, no validation pipeline execution, no state mutation, no state delta application, no event ledger append, no transaction execution, no actual event commitment, no persistence, no replay, no command execution, no resource math, no combat, no ability/effect resolution, no inventory mutation, no mission/social mutation, no generated-content persistence, no context-packet compiler, no model integration, no live-play adapter, no UI/client, no conversion, no sourcebook inclusion, and no canon promotion.
+
+### Revisit trigger
+
+- When RUNTIME-DOMAIN-PR-4C begins.
+- If validation result, failure-route, trace, provenance, or hidden-information compatibility rules change before PR-5 planning.
+
+### Classification
+
+```yaml
+runtime_domain_pr_4b_decision:
+  artifact_type: review_gate_only
+  reviews_pr_4a: true
+  semantic_gaps_found: true
+  traceability_gaps_found: true
+  pr_4c_required_before_pr_5: true
+  selected_next_step: RUNTIME-DOMAIN-PR-4C validation integration skeleton hardening, pending review
+  full_non_implementation_boundary: true
+```

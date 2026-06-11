@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-11'
+  version: 0.1.78
+  action: runtime_domain_pr_4b_validation_integration_invariant_enforcement_skeleton_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-4B validation integration skeleton review gate tracking. Review/gate only; reviews PR-4A; reviews constants; reviews dataclasses; reviews factory/validator parity; reviews decision/stage compatibility; reviews success-result semantics; reviews failure-route semantics; reviews trace/audit linkage; reviews hidden-information safety; reviews provenance and authority separation; reviews anti-authority guardrails; reviews kernel dependencies; reviews corpus-scale pressure; defines a hardening ledger; selects PR-4C hardening; authorizes no code or runtime behavior.
 - date: '2026-06-10'
   version: 0.1.77
   action: runtime_domain_pr_4a_validation_integration_invariant_enforcement_skeleton_implementation
@@ -11581,6 +11586,122 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-3B review/gate only; reviews PR-3A transaction lifecycle skeleton; reviews PR-3A event commitment skeleton; reviews validator parity; reviews anti-mutation guardrails; reviews anti-append guardrails; reviews domain package guardrails; reviews kernel dependency posture; reviews corpus-scale transaction pressure; defines hardening ledger; recommends PR-4 planning; no runtime code; no domain code; no transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no persistence; no replay; no command execution; no model/live-play/UI; no conversion/sourcebook/canon.
+
+
+- file_id: RUNTIME-DOMAIN-PR-4B-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-REVIEW-001
+  filename: runtime_domain_pr_4b_validation_integration_invariant_enforcement_skeleton_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-4b
+  content_type: review_gate
+  purpose: Review/gate-only artifact for PR-4A validation integration and invariant enforcement skeleton.
+  implementation_status: non_executable_review_gate
+  runtime_domain_pr_4b:
+    artifact_type: validation_integration_invariant_enforcement_skeleton_review_gate
+    implementation_status: non_executable_review_gate
+    reviews_pr_4a: true
+    reviews_constants: true
+    reviews_dataclasses: true
+    reviews_factory_validator_parity: true
+    reviews_decision_stage_compatibility: true
+    reviews_success_result_semantics: true
+    reviews_failure_route_semantics: true
+    reviews_trace_audit_linkage: true
+    reviews_hidden_information_safety: true
+    reviews_provenance_and_authority_separation: true
+    reviews_anti_authority_guardrails: true
+    reviews_kernel_dependencies: true
+    reviews_corpus_scale_pressure: true
+    defines_hardening_ledger: true
+    selects_pr_4c_hardening: true
+    selects_pr_5_planning: false
+    authorizes_code_or_runtime_behavior: false
+    authorizes_runtime_code_by_this_pr: false
+    authorizes_domain_code_by_this_pr: false
+    authorizes_validation_rule_execution_by_this_pr: false
+    authorizes_invariant_enforcement_by_this_pr: false
+    authorizes_state_mutation_by_this_pr: false
+    authorizes_state_delta_application_by_this_pr: false
+    authorizes_event_ledger_append_by_this_pr: false
+    authorizes_transaction_execution_by_this_pr: false
+    authorizes_actual_event_commitment_by_this_pr: false
+    authorizes_persistence_by_this_pr: false
+    authorizes_replay_by_this_pr: false
+    authorizes_command_execution_by_this_pr: false
+    authorizes_resource_math_by_this_pr: false
+    authorizes_model_integration_by_this_pr: false
+    authorizes_live_play_by_this_pr: false
+    authorizes_conversion_by_this_pr: false
+    authorizes_canon_promotion_by_this_pr: false
+    next_allowed_step: RUNTIME-DOMAIN-PR-4C validation integration skeleton hardening, pending review
+  does_not_authorize:
+  - runtime code
+  - domain-service code
+  - validation rule execution
+  - invariant enforcement
+  - validation pipeline execution
+  - state mutation
+  - state delta application
+  - event ledger append
+  - transaction execution
+  - actual event commitment
+  - persistence
+  - replay
+  - command execution
+  - resource math
+  - combat
+  - abilities/effects
+  - inventory mutation
+  - mission/social mutation
+  - generated-content persistence
+  - context-packet compiler
+  - model integration
+  - live-play
+  - UI/client
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  dependencies:
+  - RUNTIME-DOMAIN-PR-4A-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-4-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SERVICE-PLAN-001
+  - RUNTIME-DOMAIN-PR-3B-TRANSACTION-LIFECYCLE-EVENT-COMMITMENT-SKELETON-REVIEW-001
+  - RUNTIME-IMPL-PR-5-VALIDATION-PIPELINE-INVARIANT-PRECHECK-SKELETON-001
+  - RUNTIME-IMPL-PR-6-HIDDEN-INFORMATION-PARTITION-CONTEXT-PROJECTION-SKELETON-001
+  - RUNTIME-IMPL-PR-7-PERSISTENCE-BOUNDARY-REPLAY-HASH-AUDIT-RUNTIME-TRACE-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - review file exists
+  - review IDs and lineage exist
+  - backend-first invariant exists
+  - constants review exists
+  - dataclass review exists
+  - factory validator parity review exists
+  - decision stage compatibility review exists
+  - success-result semantics review exists
+  - failure-route semantics review exists
+  - trace audit review exists
+  - hidden information review exists
+  - provenance source-local conversion canon review exists
+  - anti-authority review exists
+  - kernel dependency review exists
+  - domain handoff review exists
+  - corpus-scale pressure review exists
+  - risk review exists
+  - hardening ledger exists
+  - gate finding exists
+  - classification block exists
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before PR-4C
+  recommends_next_step: RUNTIME-DOMAIN-PR-4C validation integration skeleton hardening
+  scale_gate_relevance: critical
+  broad_conversion_relevance: medium
+  canon_relevance: boundary
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: PR-4B review/gate only; reviews PR-4A validation integration and invariant enforcement skeleton; reviews constants, dataclasses, factory/validator parity, decision/stage compatibility, success-result semantics, failure-route semantics, trace/audit linkage, hidden-information safety, provenance and authority separation, anti-authority guardrails, kernel dependencies, and corpus-scale pressure; defines hardening ledger; requires PR-4C before PR-5 planning; authorizes no code or runtime behavior.
 
 - file_id: RUNTIME-DOMAIN-PR-4A-VALIDATION-INTEGRATION-INVARIANT-ENFORCEMENT-SKELETON-IMPLEMENTATION-001
   filename: validation_integration.py
