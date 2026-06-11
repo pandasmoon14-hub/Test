@@ -2880,3 +2880,32 @@ runtime_domain_pr_5c_decision:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5D-RESOURCE-CONSEQUENCE-MATH-FINAL-PLANNING-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+Planning-hardening-only status is recorded for PR-5D. PR-5D follows PR-5C, closes the PR-5C contract defects, keeps PR-5A blocked, and selects exactly one next step: **RUNTIME-DOMAIN-PR-5E resource and consequence math final planning hardening review gate**.
+
+### Implication
+
+PR-5D authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion. PR-5A remains blocked until PR-5E accepts the final planning contracts.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5d_decision:
+  artifact_type: final_planning_hardening
+  planning_hardening_only: true
+  follows_pr_5c: true
+  closes_pr_5c_contract_defects: true
+  pr_5a_remains_blocked: true
+  pr_5e_is_sole_next_step: true
+  no_implementation_authority: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5E resource and consequence math final planning hardening review gate
+  next_step_status: review_gate_only
+```

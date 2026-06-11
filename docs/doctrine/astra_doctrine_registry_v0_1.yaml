@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.86
+  action: runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5D resource and consequence math final planning hardening tracking. Planning hardening only; follows PR-5C; closes the PR-5C contract defects; PR-5A remains blocked; PR-5E is the sole next step; authorizes no implementation, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+- date: '2026-06-11'
   version: 0.1.85
   action: runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -562,6 +567,69 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5D-RESOURCE-CONSEQUENCE-MATH-FINAL-PLANNING-HARDENING-001
+  filename: runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  batch: runtime-domain
+  series: runtime-domain-pr-5d
+  content_type: final_planning_hardening
+  implementation_status: planning_only
+  authority_level: tracking
+  authority_note: Planning hardening only; follows PR-5C; closes PR-5C contract defects; PR-5A remains blocked; PR-5E is the sole next step; no implementation authority.
+  follows:
+  - runtime-domain-pr-5c planning hardening review
+  planning_hardening_only: true
+  follows_pr_5c: true
+  closes_pr_5c_contract_defects: true
+  pr_5a_remains_blocked: true
+  pr_5e_is_sole_next_step: true
+  no_implementation_authority: true
+  backend_first_invariant: true
+  validation_integration_contract_defined: true
+  typed_subject_identity_defined: true
+  decision_stage_blocking_semantics_defined: true
+  dependency_field_binding_defined: true
+  consequence_policy_reuse_defined: true
+  quantity_lexical_contract_defined: true
+  bundle_bound_and_alternative_semantics_defined: true
+  request_result_proposal_contracts_defined: true
+  internal_reference_integrity_defined: true
+  serialization_ownership_defined: true
+  false_only_authority_contract_preserved: true
+  exact_future_shape_inventory_defined: true
+  factory_validator_parity_defined: true
+  corpus_scale_pressure_review_complete: true
+  gate_finding: ready_for_pr_5e_review_gate
+  next_allowed_step: RUNTIME-DOMAIN-PR-5E resource and consequence math final planning hardening review gate
+  selected_next_step: RUNTIME-DOMAIN-PR-5E final planning hardening review gate
+  authorizes_code_or_runtime_behavior: false
+  authorizes_runtime_code_by_this_pr: false
+  authorizes_domain_code_by_this_pr: false
+  authorizes_calculation_by_this_pr: false
+  authorizes_affordability_execution_by_this_pr: false
+  authorizes_consequence_application_by_this_pr: false
+  authorizes_settlement_by_this_pr: false
+  authorizes_state_mutation_by_this_pr: false
+  authorizes_event_commitment_by_this_pr: false
+  authorizes_persistence_by_this_pr: false
+  authorizes_rng_execution_by_this_pr: false
+  authorizes_model_integration_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  owns:
+  - Final planning contracts for future resource/consequence math subject identity, validation integration, dependency linkage, quantity lexical validation, bundle semantics, serialization ownership, and false-only authority boundaries.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, persistence structures, resource schemas, resource calculations, consequence calculations, affordability execution, settlement, state mutation, event commitment, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  dependencies:
+  - runtime-domain-pr-5c planning hardening review
+  required_tests:
+  - tests/test_runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening.py
+  notes: PR-5D is planning hardening only; follows PR-5C; closes the PR-5C contract defects; PR-5A remains blocked; PR-5E is the sole next step; no implementation authority.
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning
+  live_play_relevance: none
 - file_id: RUNTIME-DOMAIN-PR-5C-RESOURCE-CONSEQUENCE-MATH-PLANNING-HARDENING-REVIEW-001
   filename: runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review.md
   proposed_path: docs/doctrine/reviews/
