@@ -47,12 +47,12 @@ The backend-first invariant is mandatory:
 | source-literal control-character and multiline posture | Source literals must be non-empty single-line strings without edge whitespace, Cc controls, Cs surrogates, CR, LF, tab, or NUL. | `QuantitySpecification` | Reject forbidden characters and preserve lawful ordinary Unicode exactly without normalization. | Assert single-line/control-character contract. | closed |
 | negative-value-policy behavior | Define lexical negativity by leading `-`, including `-0`, `-0.0`, and `-0/1`; specify forbidden, source-supported, and owner-handoff outcomes. | `QuantitySpecification`, `ResourceMathResult`, `SettlementProposal` | Reject forbidden negatives; require provenance dependencies for source-supported negatives; aggregate result validation receives the supplied request, derives typed scoped quantities, and requires owner handoff result routes for scoped owner-handoff negatives. | Assert lexical `-0`, result/request aggregate contract, and each policy result. | closed |
 | blocked-pending-numeric-choice result behavior | Force scoped blocked numeric choices to `decision=blocked_incompatible_policy`, `stage=policy_refs_declared`, `blocking=True`, unless terminal quarantine/escalation applies. | `QuantitySpecification`, `ResourceMathResult` | Aggregate result validation receives the supplied request, derives typed scoped quantities, and rejects accepted, normalized, source-local, or proposal use of blocked numeric choices. | Assert result/request aggregate contract, result rule, and barred destinations. | closed |
-| CostTerm resource/quantity combinations | Add required `value_mode` and exact co-presence matrix. | `CostTerm` | Validate `resource_quantity`, `resource_reference_only`, `quantity_only`, and `policy_only` co-presence and internal references. | Assert value modes and matrix. | closed |
-| ConsequenceTerm resource/quantity combinations | Add required `value_mode` and exact co-presence matrix, including policy-only routing for non-pool consequences. | `ConsequenceTerm` | Validate co-presence; require owner handoff, quarantine, or escalation for unusual/source-local policy-only terms. | Assert value modes, matrix, and event-only route. | closed |
+| CostTerm resource/quantity combinations | Add required `value_mode`, `policy_route`, exact co-presence matrix, and controlled policy-only route surface. | `CostTerm` | Validate value mode, resource/quantity co-presence, internal references, and exactly one valid policy route for `policy_only`. | Assert value modes, policy routes, co-presence matrix, and unclassified policy-only rejection. | closed |
+| ConsequenceTerm resource/quantity combinations | Add required `value_mode`, `policy_route`, exact co-presence matrix, and controlled policy-only route surface for non-pool consequences. | `ConsequenceTerm` | Validate value mode, resource/quantity co-presence, internal references, and exactly one valid policy route for `policy_only`; never infer route from donor text. | Assert value modes, policy routes, co-presence matrix, and unclassified policy-only rejection. | closed |
 | maximum_allowed_terms semantics | Replace declaration-count minimum rule with selection-policy bounds capped by `len(term_ids)`. | `CostBundle` | Positive non-bool bounds; min/max <= len; min <= max; all-or-nothing bounds None or equal len. | Assert corrected max rule. | closed |
 | proposal validation-result equality | Require proposal validation result and decision to equal the supplied result's fields. | `SettlementProposal`, `ResourceMathResult` | Validate `proposal.validation_result_ref_id == result.validation_result_ref_id` and `proposal.validation_decision == result.validation_decision`. | Assert equality language. | closed |
 | proposal result eligibility | Proposals are only constructed/validated with a supplied eligible result object that is passed, non-blocking, non-quarantined, non-escalated, calculation-ready, and accepted/normalized. | `SettlementProposal`, `ResourceMathResult` | Reject `validation_ready`, failed, blocked, quarantined, escalated, source-local-only, handoff, review, or missing-dependency results. | Assert eligibility and rejection list. | closed |
-| event-only consequence routing | Event-only consequences remain `ConsequenceTerm(value_mode=policy_only)` and route to another owner; no settlement proposal or event shape is created by RT-002. | `ConsequenceTerm`, `SettlementProposal` | Reject empty state-delta proposals; route event-only through owner handoff/quarantine/escalation. | Assert event-only owner-handoff route and no proposed-event shape. | closed |
+| event-only consequence routing | Event-only consequences remain `ConsequenceTerm(value_mode=policy_only)` with exactly one controlled `policy_route`; no settlement proposal or event shape is created by RT-002. | `ConsequenceTerm`, `SettlementProposal` | Reject empty state-delta proposals and unclassified policy-only terms; route only through the declared policy route. | Assert controlled policy routes and no proposed-event shape. | closed |
 | result request/quantity aggregate validation | PR-5D result fields did not define how a result inspects request quantities or policy-only terms. | `ResourceMathResult`, `ResourceMathRequest` | Result factories and validators receive the supplied request, require request-id equality and request dependency binding, derive typed scope from explicit typed reference fields, and enforce missing-dependency, blocked numeric, negative owner-handoff, and policy-only routing rules. | Assert result/request aggregate signatures, typed scope fields, scope derivation, and precedence. | closed |
 | factory/validator parity | Require shared private helpers for every residual rule and identical factory/validator enforcement. | all ten inherited shapes | Manual construction of frozen dataclasses must not bypass validators. | Assert helper list and parity language. | closed |
 
@@ -225,7 +225,7 @@ Aggregate result enforcement uses this precedence when no lawful terminal quaran
 1. Any scoped required dependency with `satisfied=False`, including a binding dependency or a dependency named by a scoped record, forces `decision=blocked_missing_dependency`, `blocking=True`, and a lawful stage from `MISSING_DEPENDENCY_STAGES`.
 2. Any scoped quantity with `representation_kind == blocked_pending_numeric_choice` forces `decision=blocked_incompatible_policy`, `stage=policy_refs_declared`, `blocking=True`, `quarantined=False`, and `escalated=False`.
 3. Any scoped lexically negative quantity using `negative_values_require_owner_handoff` forces `decision=requires_owner_handoff`, `stage=blocked_pending_owner_handoff`, `blocking=True`, and at least one matching required/satisfied `owner_handoff_ref` dependency.
-4. Any scoped `CostTerm` or `ConsequenceTerm` with `value_mode=policy_only` that is event-only, source-local, unusual donor semantics, or otherwise not a proposed resource state delta must route through `requires_owner_handoff`, `quarantined_for_review`, or `escalated_to_doctrine`; PR-5A may not normalize it as a numeric resource change.
+4. Any scoped `CostTerm` or `ConsequenceTerm` with `value_mode=policy_only` must declare exactly one controlled `policy_route` and must follow that route's exact stage/decision pair; PR-5A may not classify policy-only semantics by donor text, infer event/source-local meaning, or normalize policy-only terms as numeric resource changes.
 
 A result whose typed scope contains any of the above blockers cannot be used by `SettlementProposal` unless a later valid result with accepted or normalized planning status and no blocker is supplied. This contract is aggregate-only; leaf validators do not inspect request contents.
 
@@ -238,24 +238,41 @@ Add the exact future controlled surface `RESOURCE_TERM_VALUE_MODES` with values:
 - `quantity_only`
 - `policy_only`
 
-Add required field to both `CostTerm` and `ConsequenceTerm`:
+Add fields to both `CostTerm` and `ConsequenceTerm`:
 
 ```python
 value_mode: str
+policy_route: str | None = None
 ```
 
-No default. The caller must declare the mode.
+`value_mode` has no default. The caller must declare the mode.
 
 Exact co-presence rules:
 
-| value_mode | resource_ref_id | quantity_id |
-|---|---|---|
-| `resource_quantity` | required | required |
-| `resource_reference_only` | required | must be `None` |
-| `quantity_only` | must be `None` | required |
-| `policy_only` | must be `None` | must be `None` |
+| value_mode | resource_ref_id | quantity_id | policy_route |
+|---|---|---|---|
+| `resource_quantity` | required | required | must be `None` |
+| `resource_reference_only` | required | must be `None` | must be `None` |
+| `quantity_only` | must be `None` | required | must be `None` |
+| `policy_only` | must be `None` | must be `None` | required valid `RESOURCE_TERM_POLICY_ROUTES` value |
 
-Additional rules: all supplied internal IDs must resolve in the enclosing request; no value mode calculates affordability or applies a consequence; source-local or unusual donor terms may use `policy_only` only with an explicit owner handoff, quarantine, or doctrine-escalation route; family-specific semantic legality remains owned by the relevant RT owner; PR-5A validates co-presence and references only. This provides a lawful place for event-like, qualitative, time, opportunity, social, source-local, and non-pool consequences without pretending they are numeric resource changes.
+Add the exact future controlled surface `RESOURCE_TERM_POLICY_ROUTES` with values:
+
+- `owner_handoff_required`
+- `quarantine_required`
+- `doctrine_escalation_required`
+
+Exact policy-route rules:
+
+- `value_mode != policy_only` requires `policy_route is None`.
+- `value_mode == policy_only` requires exactly one valid `policy_route`.
+- A `policy_only` term with `policy_route is None` is an unclassified policy-only term and is invalid.
+- `owner_handoff_required` forces `decision=requires_owner_handoff`, `stage=blocked_pending_owner_handoff`, `blocking=True`, and a matching required/satisfied `owner_handoff_ref` dependency.
+- `quarantine_required` forces the lawful quarantine pair: `decision=quarantined_for_review`, `stage=quarantined_for_review`, `blocking=True`, `quarantined=True`, and `escalated=False`.
+- `doctrine_escalation_required` forces the lawful escalation pair: `decision=escalated_to_doctrine`, `stage=escalated_to_doctrine`, `blocking=True`, `quarantined=False`, and `escalated=True`.
+- No `policy_only` term may produce `accepted_for_planning`, `normalized_for_planning`, or a `SettlementProposal`.
+
+Additional rules: all supplied internal IDs must resolve in the enclosing request; no value mode calculates affordability or applies a consequence; family-specific semantic legality remains owned by the relevant RT owner; PR-5A validates co-presence, references, and explicit policy routes only. This provides a lawful controlled destination for event-like, qualitative, time, opportunity, social, source-local, and non-pool consequences without requiring PR-5A to decide what those donor phrases mean and without pretending they are numeric resource changes.
 
 ## 11. Cost-bundle bound semantics
 
@@ -316,8 +333,8 @@ Ownership clarification:
 
 - RT-002 `SettlementProposal` is only for proposed resource/consequence state changes.
 - A purely event-only consequence with no proposed state delta does not create a `SettlementProposal`.
-- An event-only or policy-only consequence remains represented as a `ConsequenceTerm` using `value_mode=policy_only`.
-- It must route through `requires_owner_handoff`, quarantine, or doctrine escalation to the relevant owner.
+- An event-only or policy-only consequence remains represented as a `ConsequenceTerm` using `value_mode=policy_only` plus exactly one controlled `policy_route`.
+- Its `policy_route` must force exactly one of the owner-handoff, quarantine, or doctrine-escalation result routes defined by `RESOURCE_TERM_POLICY_ROUTES`.
 - RT-001, RT-003, RT-006, RT-007, RT-010, or another lawful owner may later produce an event-specific artifact.
 - RT-002 does not append or commit events.
 - PR-5A does not add a proposed-event shape.
@@ -334,7 +351,7 @@ External identities include subject, unit, dimension, command, action legality, 
 
 PR-5A must later provide shared private validation helpers and create/validate functions for all ten inherited shapes: `ResourceMathSubjectReference`, `ResourceReference`, `QuantitySpecification`, `ResourceMathDependency`, `CostTerm`, `CostBundle`, `ConsequenceTerm`, `ResourceMathRequest`, `ResourceMathResult`, and `SettlementProposal`.
 
-PR-5F specifically requires shared helpers for external field/dependency binding; optional-unsatisfied dependency classification; precision and scale; source-literal characters; negative-value policies; blocked numeric choice; term value modes; bundle bounds; proposal/result compatibility; result/request aggregate validation; non-empty state-delta refs; internal-reference resolution; and false-only authority fields. Factories and validators must enforce the same rules. Manual construction of a frozen dataclass must not bypass them.
+PR-5F specifically requires shared helpers for external field/dependency binding; optional-unsatisfied dependency classification; precision and scale; source-literal characters; negative-value policies; blocked numeric choice; term value modes; term policy routes; bundle bounds; proposal/result compatibility; result/request aggregate validation; non-empty state-delta refs; internal-reference resolution; and false-only authority fields. Factories and validators must enforce the same rules. Manual construction of a frozen dataclass must not bypass them.
 
 ## 16. Serialization and hidden information
 
@@ -368,12 +385,12 @@ Across these donor families, corrected subject bindings, typed dependencies, val
 | Source literals lacked exact control-character/multiline posture. | Define single-line no-control no-surrogate literal contract. | Reject edge whitespace, multiline, Cc/Cs, tab, NUL, CR, and LF. | closed |
 | Negative policy results were not exact. | Define lexical negativity and three policy outcomes. | Treat `-0`, `-0.0`, and `-0/1` as negative; enforce provenance or owner handoff rules. | closed |
 | Blocked numeric choice did not force a result route. | Force blocked incompatible policy unless terminal quarantine/escalation applies. | Reject accepted/normalized/source-local/proposal use. | closed |
-| CostTerm optional resource/quantity combinations were incomplete. | Add `RESOURCE_TERM_VALUE_MODES` and co-presence matrix. | Validate mode, co-presence, and internal ID resolution. | closed |
-| ConsequenceTerm optional resource/quantity combinations were incomplete. | Add same value-mode matrix and event/policy-only routing. | Validate co-presence and required owner route for unusual policy-only terms. | closed |
+| CostTerm optional resource/quantity combinations were incomplete. | Add `RESOURCE_TERM_VALUE_MODES`, `RESOURCE_TERM_POLICY_ROUTES`, and co-presence matrix. | Validate mode, co-presence, internal ID resolution, and exact policy-only route. | closed |
+| ConsequenceTerm optional resource/quantity combinations were incomplete. | Add same value-mode matrix and controlled policy-only routing. | Validate co-presence and require exactly one controlled policy route for every policy-only term. | closed |
 | `maximum_allowed_terms` semantics were contradictory. | Define selection-policy upper bound `<= len(term_ids)`. | Enforce bounds, all-or-nothing special rule, and inherited matrix compatibility. | closed |
 | Proposal validation-result equality was missing. | Require proposal and supplied result equality for validation result and decision. | Compare supplied result object; no repository lookup. | closed |
 | Proposal result eligibility was underspecified. | Require passed, calculation-ready, accepted/normalized, non-blocking, non-quarantined, non-escalated result. | Reject validation-ready, failed, blocked, quarantined, escalated, source-local-only, handoff, review, and missing-dependency results. | closed |
-| Event-only routing could absorb general event ownership. | Keep event-only as policy-only consequence and route to owners; no proposal without state delta. | Enforce non-empty state delta and no proposed-event shape. | closed |
+| Event-only routing could absorb general event ownership. | Keep event-only as policy-only consequence with exactly one controlled policy route; no proposal without state delta. | Enforce non-empty state delta, no proposed-event shape, and no unclassified policy-only term. | closed |
 | Factory/validator parity could still diverge. | Require shared private helpers and parity for all residual rules. | Factories and validators reject identical invalid states, including frozen dataclass manual construction bypasses. | closed |
 
 Every PR-5E blocker is closed for PR-5A planning; none is irrelevant to PR-5A.
@@ -399,6 +416,7 @@ gate_finding:
   negative_value_policy_contract_defined: true
   blocked_numeric_choice_contract_defined: true
   term_value_mode_contract_defined: true
+  term_policy_route_contract_defined: true
   bundle_bound_semantics_defined: true
   settlement_result_eligibility_defined: true
   validation_result_equality_defined: true

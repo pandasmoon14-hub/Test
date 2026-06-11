@@ -234,12 +234,15 @@ def test_blocked_pending_numeric_choice_result_rule() -> None:
         "Any scoped quantity with `representation_kind == blocked_pending_numeric_choice`",
         "Any scoped lexically negative quantity using `negative_values_require_owner_handoff`",
         "Any scoped `CostTerm` or `ConsequenceTerm` with `value_mode=policy_only`",
+        "must declare exactly one controlled `policy_route`",
+        "follow that route's exact stage/decision pair",
+        "may not classify policy-only semantics by donor text",
         "aggregate-only; leaf validators do not inspect request contents",
     ]:
         assert phrase in text
 
 
-def test_term_value_modes_and_copresence_matrix() -> None:
+def test_term_value_modes_policy_routes_and_copresence_matrix() -> None:
     text = section(read(ARTIFACT), "## 10. Term value-mode contract")
     for phrase in [
         "`RESOURCE_TERM_VALUE_MODES`",
@@ -248,14 +251,28 @@ def test_term_value_modes_and_copresence_matrix() -> None:
         "`quantity_only`",
         "`policy_only`",
         "value_mode: str",
-        "No default",
-        "| `resource_quantity` | required | required |",
-        "| `resource_reference_only` | required | must be `None` |",
-        "| `quantity_only` | must be `None` | required |",
-        "| `policy_only` | must be `None` | must be `None` |",
+        "policy_route: str | None = None",
+        "`value_mode` has no default",
+        "| value_mode | resource_ref_id | quantity_id | policy_route |",
+        "| `resource_quantity` | required | required | must be `None` |",
+        "| `resource_reference_only` | required | must be `None` | must be `None` |",
+        "| `quantity_only` | must be `None` | required | must be `None` |",
+        "| `policy_only` | must be `None` | must be `None` | required valid `RESOURCE_TERM_POLICY_ROUTES` value |",
+        "`RESOURCE_TERM_POLICY_ROUTES`",
+        "`owner_handoff_required`",
+        "`quarantine_required`",
+        "`doctrine_escalation_required`",
+        "`value_mode != policy_only` requires `policy_route is None`",
+        "`value_mode == policy_only` requires exactly one valid `policy_route`",
+        "unclassified policy-only term and is invalid",
+        "`owner_handoff_required` forces `decision=requires_owner_handoff`, `stage=blocked_pending_owner_handoff`, `blocking=True`, and a matching required/satisfied `owner_handoff_ref` dependency",
+        "`quarantine_required` forces the lawful quarantine pair: `decision=quarantined_for_review`, `stage=quarantined_for_review`, `blocking=True`, `quarantined=True`, and `escalated=False`",
+        "`doctrine_escalation_required` forces the lawful escalation pair: `decision=escalated_to_doctrine`, `stage=escalated_to_doctrine`, `blocking=True`, `quarantined=False`, and `escalated=True`",
+        "No `policy_only` term may produce `accepted_for_planning`, `normalized_for_planning`, or a `SettlementProposal`",
         "all supplied internal IDs must resolve",
         "no value mode calculates affordability or applies a consequence",
-        "policy_only` only with an explicit owner handoff, quarantine, or doctrine-escalation route",
+        "PR-5A validates co-presence, references, and explicit policy routes only",
+        "without requiring PR-5A to decide what those donor phrases mean",
     ]:
         assert phrase in text
 
@@ -335,8 +352,8 @@ def test_state_delta_and_event_only_route() -> None:
         "required/satisfied `state_delta_ref` dependency",
         "only for proposed resource/consequence state changes",
         "purely event-only consequence with no proposed state delta does not create a `SettlementProposal`",
-        "`ConsequenceTerm` using `value_mode=policy_only`",
-        "route through `requires_owner_handoff`, quarantine, or doctrine escalation",
+        "`ConsequenceTerm` using `value_mode=policy_only` plus exactly one controlled `policy_route`",
+        "`policy_route` must force exactly one of the owner-handoff, quarantine, or doctrine-escalation result routes",
         "RT-001, RT-003, RT-006, RT-007, RT-010",
         "RT-002 does not append or commit events",
         "PR-5A does not add a proposed-event shape",
@@ -374,6 +391,7 @@ def test_factory_validator_parity_and_serialization() -> None:
         "negative-value policies",
         "blocked numeric choice",
         "term value modes",
+        "term policy routes",
         "bundle bounds",
         "proposal/result compatibility",
         "result/request aggregate validation",
@@ -420,6 +438,7 @@ def test_corpus_scale_review_and_gate() -> None:
     for phrase in [
         "resource_consequence_math_residual_planning_hardening_defined: true",
         "pr_5e_blockers_addressed: true",
+        "term_policy_route_contract_defined: true",
         "ready_for_pr_5g_review_gate: true",
         "ready_for_pr_5a_implementation: false",
         "runtime_code_authorized_by_this_pr: false",
