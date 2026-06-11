@@ -2789,3 +2789,49 @@ runtime_domain_pr_5_decision:
   decision_ledger_separates_required_before_pr_5a_executable_calculation_and_settlement_commitment: true
   full_non_implementation_boundary: true
 ```
+---
+
+## RUNTIME-DOMAIN-PR-5B-RESOURCE-CONSEQUENCE-MATH-PLANNING-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+Planning hardening only is recorded for PR-5B. PR-5B follows PR-5 and defines exact contracts for future resource/consequence math constant surfaces, stage and decision compatibility, dataclass fields, defaults, validation rules, dependency rules, authority boundaries, serialization behavior, family matrices, numeric/unit/conversion ledgers, validation handoffs, and unresolved risk classifications.
+
+### Findings
+
+PR-5B preserves the backend-first invariant that the LLM is not the game engine. It records that RT-002 produces reference-only planning contracts at this stage, no resource truth changes because a request/result/proposal exists, validation_ready is not validation_passed, settlement proposals are not committed state, and donor terminology is not Astra authority. It hardens all PR-5 proposal surfaces without creating `src/astra_runtime/domain/resource_consequence_math.py` or any runtime/domain implementation module.
+
+### Implication
+
+PR-5A remains blocked. The sole next step is **RUNTIME-DOMAIN-PR-5C resource and consequence math planning hardening review gate**. PR-5B authorizes no implementation, runtime code, domain code, resource calculation, consequence calculation, affordability execution, reservation, settlement, mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5b_decision:
+  artifact_type: planning_hardening_only
+  follows_pr_5: true
+  exact_contracts_defined: true
+  pr_5a_remains_blocked: true
+  pr_5c_is_sole_next_step: true
+  no_implementation_authority: true
+  gate_finding: ready_for_pr_5c_review_gate
+  next_step_authorized: RUNTIME-DOMAIN-PR-5C resource and consequence math planning hardening review gate
+  next_step_status: review_gate_only
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  resource_calculation_authorized_by_this_pr: false
+  consequence_calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  reservation_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  state_mutation_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+```
