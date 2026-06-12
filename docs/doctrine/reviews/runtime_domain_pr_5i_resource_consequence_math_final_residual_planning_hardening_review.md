@@ -5,74 +5,74 @@ Artifact ID: **RUNTIME-DOMAIN-PR-5I-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLA
 Artifact type: **final_residual_planning_hardening_review_gate**. Implementation status: **review_only**. Owner: **RT-002**.
 
 ## 1. Purpose, status, source ledger, and precedence
-PR-5I is review-only, reviews PR-5H, creates no runtime/domain code, does not itself implement PR-5A, selects exactly one lawful gate outcome, and does not treat PRs #278 or #279 as authority. The source ledger and precedence are normative in the YAML block below. Tracking records and tests are verification surfaces, not superior doctrine.
+PR-5I is review-only, reviews PR-5H, creates no runtime/domain code, does not itself implement PR-5A, selects exactly one lawful gate outcome, and does not treat PRs #278 or #279 as authority. It cites PR-5H as the authoritative machine-readable source instead of republishing PR-5H as a competing contract.
 
 ## 2. PR-5H scope and footprint review
-Merged PR-5H is reviewed as an exact four-file planning footprint: its doctrine file, its focused test, the registry, and the decision log. PR-5I finds no `src/` file changed, no `resource_consequence_math.py` created, no executable behavior introduced, PR-5A remained blocked, and PR-5I was selected as the sole next step.
+Examined PR-5H registry/decision tracking and focused tests. Machine keys reviewed: PR-5H record fields and PR-5H `test_git_footprint_when_base_ref_available_and_absence_of_implementation_module`. Finding: PR-5H was a four-file planning-only footprint, changed no `src/`, created no runtime module, left PR-5A blocked, and selected PR-5I as sole next step. Gate effect: proceed to closure review.
 
 ## 3. PR-5G defect-closure matrix
-Each of the eight PR-5G defects is independently reviewed. Doctrine, machine-readable contract, prose, and focused tests agree, so each finding is `closed` and PR-5A would not need to invent behavior for that defect.
+The eight closure rows below name distinct PR-5H source keys and exact PR-5H test functions. Each row is `closed`; none leaves PR-5A implementation invention.
 
 ## 4. Ten-shape effective-contract review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `future_shapes, typed_scope_fields`. Focused tests reviewed: test_exact_ten_shape_complete_contract_matrix, test_absence_of_aliases_and_exact_typed_scope_fields. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 5. Controlled-constant review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `constants, constant_provenance`. Focused tests reviewed: test_all_controlled_surfaces_exact. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 6. Stage, decision, and flag compatibility review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `stage_decision_matrix, false_only_fields`. Focused tests reviewed: test_exact_stage_decision_flag_matrix, test_all_nineteen_false_only_fields_on_three_aggregate_shapes. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 7. Dependency lifecycle review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `dependency_lifecycle_states, binding_state_matrix, dependency_ownership, result_self_binding_rule`. Focused tests reviewed: test_dependency_ownership_lifecycle_and_bindings, test_binding_state_matrix_reconciles_field_invariants, test_resource_math_result_has_no_resource_math_result_ref_self_binding. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 8. Hidden-information and simultaneous-blocker review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `simultaneous_blocker_table, dependency_hidden_information_collision_matrix`. Focused tests reviewed: test_exact_simultaneous_blocker_table, test_dependency_hidden_information_collision_matrix_exact_cases, test_hidden_information_collision_cross_section_consistency. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 9. Typed result-scope review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `typed_scope_fields, future_shapes`. Focused tests reviewed: test_absence_of_aliases_and_exact_typed_scope_fields, test_typed_scope_cardinality_and_closure_rules_are_exact. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 10. Quantity and source-literal review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `quantity_lexical_grammars, quantity_execution_bans, constants`. Focused tests reviewed: test_quantity_lexical_grammars_and_execution_bans_exact, test_source_literals_negative_policies_and_no_evaluation. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 11. CostBundle review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `cost_bundle_sets, cost_bundle_matrix, cost_bundle_bound_corrections`. Focused tests reviewed: test_complete_costbundle_matrix_and_corrected_bounds. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 12. Direct validation architecture review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `direct_validation_signatures, settlement_eligibility`. Focused tests reviewed: test_direct_request_result_proposal_architecture_and_eligibility. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 13. SettlementProposal eligibility review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `settlement_eligibility, future_shapes`. Focused tests reviewed: test_direct_request_result_proposal_architecture_and_eligibility. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 14. Factory/validator parity review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `public_helpers, private_helper_responsibilities`. Focused tests reviewed: test_factory_validator_parity_and_private_helper_responsibilities. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 15. Serialization and visibility review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `future_shapes, quantity_execution_bans`. Focused tests reviewed: test_exact_ten_shape_complete_contract_matrix, test_quantity_lexical_grammars_and_execution_bans_exact. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 16. Owner-boundary review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `authority_false_fields, false_only_fields`. Focused tests reviewed: test_classification_authority_fields_match_registry_and_are_complete. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 17. Corpus-scale pressure review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `constants, future_shapes`. Focused tests reviewed: test_corpus_pressure_review_is_explicit. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 18. Implementation-derivability review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `future_shapes, constants, helpers, validation, matrices, lifecycle, blockers`. Focused tests reviewed: . Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 19. Test-quality review
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined PR-5H `PR-5H focused test functions`. Focused tests reviewed: test_exact_ten_shape_complete_contract_matrix, test_all_controlled_surfaces_exact, test_dependency_ownership_lifecycle_and_bindings, test_typed_scope_cardinality_and_closure_rules_are_exact, test_exact_simultaneous_blocker_table, test_quantity_lexical_grammars_and_execution_bans_exact, test_complete_costbundle_matrix_and_corrected_bounds, test_direct_request_result_proposal_architecture_and_eligibility, test_factory_validator_parity_and_private_helper_responsibilities, test_classification_authority_fields_match_registry_and_are_complete, test_corpus_pressure_review_is_explicit. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 20. Risk and closure ledger
-PR-5I reviewed this surface against PR-5H doctrine, the PR-5H machine-readable contract, PR-5H focused tests, lineage artifacts, owner specifications, and runtime boundary skeletons. The detailed normative finding is recorded in `pr5i_review_contract`; no material contradiction remains and no PR-5H patch is made by this review gate.
+Examined the eight PR-5G risks against the compact evidence rows. Machine evidence: PR-5G closure rows. Doctrine, machine data, and focused tests agree; no residual implementation choice remains. Gate effect: no ledger item blocks PR-5A.
 
 ### Eight-defect human ledger
-- **consolidated effective contract inventory** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **complete CostBundle compatibility surface** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **exact dependency lifecycle** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **exact typed-result-scope cardinality and closure** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **simultaneous blocker precedence** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **universal source-literal consistency** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **request/result/proposal validation architecture** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
-- **factory/validator parity** — finding: `closed`; materiality: material before review, none remaining after PR-5H closure; PR-5A invention required: `false`.
+- **consolidated effective contract inventory** — finding: `closed`; source keys: `future_shapes, constants, false_only_fields, authority_false_fields`; tests: `test_exact_ten_shape_complete_contract_matrix, test_all_controlled_surfaces_exact, test_all_nineteen_false_only_fields_on_three_aggregate_shapes`; PR-5A invention required: `false`.
+- **complete CostBundle compatibility surface** — finding: `closed`; source keys: `cost_bundle_sets, cost_bundle_matrix, cost_bundle_bound_corrections`; tests: `test_complete_costbundle_matrix_and_corrected_bounds`; PR-5A invention required: `false`.
+- **exact dependency lifecycle** — finding: `closed`; source keys: `dependency_lifecycle_states, binding_state_matrix, dependency_ownership, result_self_binding_rule`; tests: `test_dependency_ownership_lifecycle_and_bindings, test_binding_state_matrix_reconciles_field_invariants, test_external_binding_invariants_allow_structural_incomplete_states, test_resource_math_result_has_no_resource_math_result_ref_self_binding`; PR-5A invention required: `false`.
+- **exact typed-result-scope cardinality and closure** — finding: `closed`; source keys: `typed_scope_fields, future_shapes`; tests: `test_absence_of_aliases_and_exact_typed_scope_fields, test_typed_scope_cardinality_and_closure_rules_are_exact`; PR-5A invention required: `false`.
+- **simultaneous blocker precedence** — finding: `closed`; source keys: `stage_decision_matrix, simultaneous_blocker_table, dependency_hidden_information_collision_matrix`; tests: `test_exact_stage_decision_flag_matrix, test_exact_simultaneous_blocker_table, test_dependency_hidden_information_collision_matrix_exact_cases, test_hidden_information_collision_cross_section_consistency`; PR-5A invention required: `false`.
+- **universal source-literal consistency** — finding: `closed`; source keys: `quantity_lexical_grammars, quantity_execution_bans, constants`; tests: `test_quantity_lexical_grammars_and_execution_bans_exact, test_source_literals_negative_policies_and_no_evaluation`; PR-5A invention required: `false`.
+- **request/result/proposal validation architecture** — finding: `closed`; source keys: `direct_validation_signatures, settlement_eligibility, stage_decision_matrix`; tests: `test_direct_request_result_proposal_architecture_and_eligibility, test_exact_stage_decision_flag_matrix`; PR-5A invention required: `false`.
+- **factory/validator parity** — finding: `closed`; source keys: `public_helpers, private_helper_responsibilities, future_shapes`; tests: `test_factory_validator_parity_and_private_helper_responsibilities, test_exact_ten_shape_complete_contract_matrix`; PR-5A invention required: `false`.
 
 ### Backend-first posture reaffirmed
 The LLM is not the game engine. References are not calculations. Results are not state. Settlement proposals are not transactions. `validation_ready` is not `validation_passed`. Planning acceptance is not runtime execution. Internal serialization is not player-visible projection. Proposed state-delta references do not apply deltas. PR-5I grants no mutation, commitment, persistence, replay, RNG, model, conversion, or canon authority.
@@ -90,8 +90,9 @@ The LLM is not the game engine. References are not calculations. Results are not
   },
   "reviewed_artifact": {
     "artifact_id": "RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001",
-    "artifact_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-    "focused_test": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py"
+    "file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "focused_test_file": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+    "source_block": "pr5h_effective_contract"
   },
   "source_ledger": [
     "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
@@ -173,99 +174,397 @@ The LLM is not the game engine. References are not calculations. Results are not
     "pr_5a_remained_blocked": true,
     "pr_5i_selected_as_sole_next_step": true
   },
+  "pr_5i_footprint_finding": {
+    "changed_files_exact": [
+      "docs/decisions/current_decisions_log.md",
+      "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+      "docs/doctrine/reviews/runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.md",
+      "tests/test_runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.py"
+    ],
+    "src_files_changed": false,
+    "reviewed_pr_5h_files_modified": false,
+    "resource_consequence_math_module_created_by_pr_5i": false,
+    "runtime_or_domain_implementation_added": false
+  },
   "pr_5g_closure_matrix": [
     {
       "defect": "consolidated effective contract inventory",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "future_shapes",
+          "constants",
+          "false_only_fields",
+          "authority_false_fields"
+        ],
+        "focused_test_functions": [
+          "test_exact_ten_shape_complete_contract_matrix",
+          "test_all_controlled_surfaces_exact",
+          "test_all_nineteen_false_only_fields_on_three_aggregate_shapes"
+        ],
+        "reviewed_shape_order": [
+          "ResourceMathSubjectReference",
+          "ResourceReference",
+          "QuantitySpecification",
+          "CostTerm",
+          "CostBundle",
+          "ConsequenceTerm",
+          "ResourceMathDependency",
+          "ResourceMathRequest",
+          "ResourceMathResult",
+          "SettlementProposal"
+        ],
+        "constant_surface_names": [
+          "RESOURCE_MATH_STAGES",
+          "RESOURCE_MATH_DECISIONS",
+          "RESOURCE_FAMILIES",
+          "COST_FAMILIES",
+          "CONSEQUENCE_FAMILIES",
+          "COST_TIMING_POLICIES",
+          "COST_OUTCOME_POLICIES",
+          "QUANTITY_KINDS",
+          "QUANTITY_REPRESENTATION_KINDS",
+          "CONVERSION_POLICIES",
+          "ROUNDING_POLICIES",
+          "QUANTITY_NEGATIVE_VALUE_POLICIES",
+          "VISIBILITY_POLICIES",
+          "RESOURCE_MATH_DEPENDENCY_TYPES",
+          "RESOURCE_MATH_SUBJECT_TYPES",
+          "RESOURCE_MATH_SUBJECT_ROLES",
+          "RESOURCE_MATH_OWNER_DOMAINS",
+          "RESOURCE_TERM_VALUE_MODES",
+          "RESOURCE_TERM_POLICY_ROUTES",
+          "ATOMICITY_POLICIES",
+          "ORDERING_POLICIES",
+          "PARTIAL_SETTLEMENT_POLICIES",
+          "DECLARATION_PROGRESS_STAGES",
+          "SOURCE_LOCAL_STAGES",
+          "VALIDATION_BLOCK_STAGES",
+          "OWNER_HANDOFF_STAGES",
+          "MISSING_DEPENDENCY_STAGES",
+          "POLICY_BLOCK_STAGES",
+          "HIDDEN_INFORMATION_BLOCK_STAGES",
+          "QUARANTINE_STAGES",
+          "ESCALATION_STAGES",
+          "VALIDATION_INTEGRATION_DECISIONS"
+        ],
+        "false_only_field_count": 19
+      }
     },
     {
       "defect": "complete CostBundle compatibility surface",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "cost_bundle_sets",
+          "cost_bundle_matrix",
+          "cost_bundle_bound_corrections"
+        ],
+        "focused_test_functions": [
+          "test_complete_costbundle_matrix_and_corrected_bounds"
+        ],
+        "reviewed_cost_bundle_set_names": [
+          "ORDERING_DECLARED_SET",
+          "ORDERING_ORDERED_SET",
+          "PARTIAL_REVIEW_SET",
+          "ALTERNATIVE_ATOMICITY_SET"
+        ],
+        "matrix_row_count": 21,
+        "bound_correction_count": 5
+      }
     },
     {
       "defect": "exact dependency lifecycle",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "dependency_lifecycle_states",
+          "binding_state_matrix",
+          "dependency_ownership",
+          "result_self_binding_rule"
+        ],
+        "focused_test_functions": [
+          "test_dependency_ownership_lifecycle_and_bindings",
+          "test_binding_state_matrix_reconciles_field_invariants",
+          "test_external_binding_invariants_allow_structural_incomplete_states",
+          "test_resource_math_result_has_no_resource_math_result_ref_self_binding"
+        ],
+        "reviewed_lifecycle_states": [
+          "A_complete_binding",
+          "B_incomplete_binding",
+          "C_missing_or_malformed_binding",
+          "D_required_unsatisfied_named_dependency",
+          "E_advisory_optional_unsatisfied"
+        ],
+        "binding_matrix_row_count": 7,
+        "ownership_aggregates": [
+          "request.dependencies",
+          "result.dependencies",
+          "proposal.dependencies"
+        ]
+      }
     },
     {
       "defect": "exact typed-result-scope cardinality and closure",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "typed_scope_fields",
+          "future_shapes"
+        ],
+        "focused_test_functions": [
+          "test_absence_of_aliases_and_exact_typed_scope_fields",
+          "test_typed_scope_cardinality_and_closure_rules_are_exact"
+        ],
+        "typed_scope_fields": [
+          "referenced_subject_binding_ids",
+          "referenced_resource_ref_ids",
+          "referenced_quantity_ids",
+          "referenced_cost_term_ids",
+          "referenced_cost_bundle_ids",
+          "referenced_consequence_term_ids",
+          "referenced_dependency_ids"
+        ],
+        "typed_scope_count": 7,
+        "resource_math_result_scope_signature": [
+          [
+            "referenced_subject_binding_ids",
+            "tuple[str, ...]",
+            "()"
+          ],
+          [
+            "referenced_resource_ref_ids",
+            "tuple[str, ...]",
+            "()"
+          ],
+          [
+            "referenced_quantity_ids",
+            "tuple[str, ...]",
+            "()"
+          ],
+          [
+            "referenced_cost_term_ids",
+            "tuple[str, ...]",
+            "()"
+          ],
+          [
+            "referenced_cost_bundle_ids",
+            "tuple[str, ...]",
+            "()"
+          ],
+          [
+            "referenced_consequence_term_ids",
+            "tuple[str, ...]",
+            "()"
+          ],
+          [
+            "referenced_dependency_ids",
+            "tuple[str, ...]",
+            "()"
+          ]
+        ]
+      }
     },
     {
       "defect": "simultaneous blocker precedence",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "stage_decision_matrix",
+          "simultaneous_blocker_table",
+          "dependency_hidden_information_collision_matrix"
+        ],
+        "focused_test_functions": [
+          "test_exact_stage_decision_flag_matrix",
+          "test_exact_simultaneous_blocker_table",
+          "test_dependency_hidden_information_collision_matrix_exact_cases",
+          "test_hidden_information_collision_cross_section_consistency"
+        ],
+        "stage_decision_count": 10,
+        "blocker_precedence_rows": 9,
+        "hidden_collision_case_count": 7
+      }
     },
     {
       "defect": "universal source-literal consistency",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "quantity_lexical_grammars",
+          "quantity_execution_bans",
+          "constants"
+        ],
+        "focused_test_functions": [
+          "test_quantity_lexical_grammars_and_execution_bans_exact",
+          "test_source_literals_negative_policies_and_no_evaluation"
+        ],
+        "quantity_grammar_names": [
+          "integer_exact",
+          "decimal_exact",
+          "fraction_exact",
+          "fixed_point_scaled",
+          "source_literal_only",
+          "blocked_pending_numeric_choice"
+        ],
+        "execution_ban_count": 12,
+        "negative_policy_surface": "QUANTITY_NEGATIVE_VALUE_POLICIES"
+      }
     },
     {
       "defect": "request/result/proposal validation architecture",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "direct_validation_signatures",
+          "settlement_eligibility",
+          "stage_decision_matrix"
+        ],
+        "focused_test_functions": [
+          "test_direct_request_result_proposal_architecture_and_eligibility",
+          "test_exact_stage_decision_flag_matrix"
+        ],
+        "direct_validation_signature_count": 4,
+        "settlement_requires_count": 10,
+        "settlement_rejects_count": 6
+      }
     },
     {
       "defect": "factory/validator parity",
-      "pr_5g_requirement": "PR-5G required PR-5H to close this residual before PR-5A could proceed.",
-      "pr_5h_closure_surface": "PR-5H effective contract, prose review sections, registry tracking, decision log, and focused test assertions.",
-      "doctrine_location": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-      "machine_readable_location": "pr5h_effective_contract",
-      "focused_test_coverage": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-      "review_finding": "closed",
-      "materiality": "material; closure required for PR-5A derivability",
-      "pr_5a_would_need_to_invent_behavior": false
+      "pr_5g_requirement": "close this PR-5G residual before PR-5A can derive a reference-only skeleton without invention",
+      "pr_5h_closure_surface": "PR-5H doctrine prose plus pr5h_effective_contract machine data plus focused PR-5H tests",
+      "finding": "closed",
+      "materiality": "material before PR-5H; no residual blocker after PR-5I review",
+      "pr_5a_would_need_to_invent_behavior": false,
+      "evidence": {
+        "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+        "authoritative_source_block": "pr5h_effective_contract",
+        "material_contradictions_remaining": false,
+        "pr_5a_invention_required": false,
+        "authoritative_source_keys": [
+          "public_helpers",
+          "private_helper_responsibilities",
+          "future_shapes"
+        ],
+        "focused_test_functions": [
+          "test_factory_validator_parity_and_private_helper_responsibilities",
+          "test_exact_ten_shape_complete_contract_matrix"
+        ],
+        "public_helper_names": [
+          "create_resource_math_subject_reference",
+          "validate_resource_math_subject_reference",
+          "create_resource_reference",
+          "validate_resource_reference",
+          "create_quantity_specification",
+          "validate_quantity_specification",
+          "create_resource_math_dependency",
+          "validate_resource_math_dependency",
+          "create_cost_term",
+          "validate_cost_term",
+          "create_cost_bundle",
+          "validate_cost_bundle",
+          "create_consequence_term",
+          "validate_consequence_term",
+          "create_resource_math_request",
+          "validate_resource_math_request",
+          "create_resource_math_result",
+          "validate_resource_math_result",
+          "create_settlement_proposal",
+          "validate_settlement_proposal"
+        ],
+        "public_helper_count": 20,
+        "private_responsibility_names": [
+          "constants/defaults",
+          "subject identity",
+          "internal refs",
+          "external bindings",
+          "dependency lifecycle",
+          "typed scope",
+          "blocker precedence",
+          "quantity grammar",
+          "source literals",
+          "negative policies",
+          "term modes/routes",
+          "bundle matrix",
+          "request/result validation",
+          "proposal/request/result validation",
+          "false-only fields",
+          "tuple/metadata immutability",
+          "internal serialization"
+        ]
+      }
     }
   ],
   "ten_shape_contract_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "shape_order": [
+    "authoritative_source_keys": [
+      "future_shapes",
+      "typed_scope_fields"
+    ],
+    "focused_test_functions": [
+      "test_exact_ten_shape_complete_contract_matrix",
+      "test_absence_of_aliases_and_exact_typed_scope_fields"
+    ],
+    "reviewed_shape_order": [
       "ResourceMathSubjectReference",
       "ResourceReference",
       "QuantitySpecification",
@@ -277,3151 +576,1146 @@ The LLM is not the game engine. References are not calculations. Results are not
       "ResourceMathResult",
       "SettlementProposal"
     ],
-    "future_shapes": {
+    "reviewed_field_signatures": {
       "ResourceMathSubjectReference": [
-        {
-          "field": "subject_binding_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; unique within ResourceMathRequest.subject_refs",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "subject_type",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_SUBJECT_TYPES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "subject_ref_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "non-empty external/upstream subject reference; Exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "subject_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "PR-5F binding-contract refinement"
-        },
-        {
-          "field": "subject_role",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_SUBJECT_ROLES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_domain",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        }
+        [
+          "subject_binding_id",
+          "str",
+          "required"
+        ],
+        [
+          "subject_type",
+          "str",
+          "required"
+        ],
+        [
+          "subject_ref_id",
+          "str",
+          "required"
+        ],
+        [
+          "subject_role",
+          "str",
+          "required"
+        ],
+        [
+          "owner_domain",
+          "str",
+          "required"
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "ResourceReference": [
-        {
-          "field": "resource_ref_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; unique within ResourceMathRequest.resource_refs",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "subject_binding_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "same-request reference to ResourceMathRequest.subject_refs.subject_binding_id",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "resource_family",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_FAMILIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "resource_key",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "source_label",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "None or non-empty string; no implicit normalization",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "source_aliases",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "local source-label tuple",
-          "invariant": "tuple[str, ...]; aliases are source labels, not reference IDs; require non-empty strings if supplied; duplicates rejected only if an inherited alias contract explicitly requires it; no ID resolution",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_domain",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "unit_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty unit reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "unit_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F binding-contract refinement"
-        },
-        {
-          "field": "dimension_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty dimension reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "dimension_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F binding-contract refinement"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "source_local",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "boolean value; bool-specific validation, not a string/non-empty check",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "resource_ref_id",
+          "str",
+          "required"
+        ],
+        [
+          "subject_binding_id",
+          "str",
+          "required"
+        ],
+        [
+          "resource_family",
+          "str",
+          "required"
+        ],
+        [
+          "resource_key",
+          "str",
+          "required"
+        ],
+        [
+          "source_label",
+          "str | None",
+          "None"
+        ],
+        [
+          "source_aliases",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "owner_domain",
+          "str",
+          "required"
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "unit_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "dimension_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "source_local",
+          "bool",
+          "False"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "QuantitySpecification": [
-        {
-          "field": "quantity_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; unique within ResourceMathRequest.quantity_specs",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "representation_kind",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "QUANTITY_REPRESENTATION_KINDS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "magnitude_text",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "None or non-empty string; no implicit normalization",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "source_literal",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "None or non-empty string; no implicit normalization",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "precision",
-          "annotation": "int | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "positive non-bool int only for decimal_exact; declaration metadata only",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "scale",
-          "annotation": "int | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "non-negative non-bool int only for fixed_point_scaled",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "unit_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty unit reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "unit_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F binding-contract refinement"
-        },
-        {
-          "field": "dimension_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty dimension reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "dimension_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F binding-contract refinement"
-        },
-        {
-          "field": "conversion_policy",
-          "annotation": "str",
-          "default": "\"no_conversion\"",
-          "controlled_surface": "CONVERSION_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "rounding_policy",
-          "annotation": "str",
-          "default": "\"no_rounding\"",
-          "controlled_surface": "ROUNDING_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "negative_value_policy",
-          "annotation": "str",
-          "default": "\"negative_values_forbidden\"",
-          "controlled_surface": "QUANTITY_NEGATIVE_VALUE_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "quantity_id",
+          "str",
+          "required"
+        ],
+        [
+          "representation_kind",
+          "str",
+          "required"
+        ],
+        [
+          "magnitude_text",
+          "str | None",
+          "None"
+        ],
+        [
+          "source_literal",
+          "str | None",
+          "None"
+        ],
+        [
+          "precision",
+          "int | None",
+          "None"
+        ],
+        [
+          "scale",
+          "int | None",
+          "None"
+        ],
+        [
+          "unit_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "dimension_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "conversion_policy",
+          "str",
+          "\"no_conversion\""
+        ],
+        [
+          "rounding_policy",
+          "str",
+          "\"no_rounding\""
+        ],
+        [
+          "negative_value_policy",
+          "str",
+          "\"negative_values_forbidden\""
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "CostTerm": [
-        {
-          "field": "term_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; unique within ResourceMathRequest.cost_terms",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "subject_binding_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "same-request reference to ResourceMathRequest.subject_refs.subject_binding_id",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "resource_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "quantity_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, controlled by value_mode",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "value_mode",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_TERM_VALUE_MODES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "policy_route",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "RESOURCE_TERM_POLICY_ROUTES",
-          "aggregate_owner": "local field",
-          "invariant": "None or non-empty string; no implicit normalization",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "cost_family",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "COST_FAMILIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "timing_policy",
-          "annotation": "str",
-          "default": "\"blocked_pending_validation\"",
-          "controlled_surface": "COST_TIMING_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "outcome_policy",
-          "annotation": "str",
-          "default": "\"validation_blocked\"",
-          "controlled_surface": "COST_OUTCOME_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_domain",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "dependency_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request dependency_id references; each resolves in request.dependencies",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "term_id",
+          "str",
+          "required"
+        ],
+        [
+          "subject_binding_id",
+          "str",
+          "required"
+        ],
+        [
+          "resource_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "quantity_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "value_mode",
+          "str",
+          "required"
+        ],
+        [
+          "policy_route",
+          "str | None",
+          "None"
+        ],
+        [
+          "cost_family",
+          "str",
+          "required"
+        ],
+        [
+          "timing_policy",
+          "str",
+          "\"blocked_pending_validation\""
+        ],
+        [
+          "outcome_policy",
+          "str",
+          "\"validation_blocked\""
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "owner_domain",
+          "str",
+          "required"
+        ],
+        [
+          "dependency_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "CostBundle": [
-        {
-          "field": "bundle_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; unique within ResourceMathRequest.cost_bundles",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "term_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "required non-empty unique tuple of same-request CostTerm.term_id references",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "atomicity_policy",
-          "annotation": "str",
-          "default": "\"all_or_nothing_requested\"",
-          "controlled_surface": "ATOMICITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "ordering_policy",
-          "annotation": "str",
-          "default": "\"unordered_terms\"",
-          "controlled_surface": "ORDERING_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "partial_settlement_policy",
-          "annotation": "str",
-          "default": "\"no_partial_settlement\"",
-          "controlled_surface": "PARTIAL_SETTLEMENT_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "minimum_required_terms",
-          "annotation": "int | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "positive non-bool int when supplied; <= len(term_ids); <= maximum when maximum supplied",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "maximum_allowed_terms",
-          "annotation": "int | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "positive non-bool int when supplied; <= len(term_ids); >= minimum when minimum supplied",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "alternative_groups",
-          "annotation": "tuple[tuple[str, tuple[str, ...]], ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "unique groups; contained non-overlapping term IDs; no alternative selection in PR-5A",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_domain",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "dependency_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request dependency_id references; each resolves in request.dependencies",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "bundle_id",
+          "str",
+          "required"
+        ],
+        [
+          "term_ids",
+          "tuple[str, ...]",
+          "required"
+        ],
+        [
+          "atomicity_policy",
+          "str",
+          "\"all_or_nothing_requested\""
+        ],
+        [
+          "ordering_policy",
+          "str",
+          "\"unordered_terms\""
+        ],
+        [
+          "partial_settlement_policy",
+          "str",
+          "\"no_partial_settlement\""
+        ],
+        [
+          "minimum_required_terms",
+          "int | None",
+          "None"
+        ],
+        [
+          "maximum_allowed_terms",
+          "int | None",
+          "None"
+        ],
+        [
+          "alternative_groups",
+          "tuple[tuple[str, tuple[str, ...]], ...]",
+          "()"
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "owner_domain",
+          "str",
+          "required"
+        ],
+        [
+          "dependency_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "ConsequenceTerm": [
-        {
-          "field": "consequence_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; unique within ResourceMathRequest.consequence_terms",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "subject_binding_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "same-request reference to ResourceMathRequest.subject_refs.subject_binding_id",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "resource_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "None or same-request reference to ResourceMathRequest.resource_refs.resource_ref_id, controlled by value_mode",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "quantity_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "None or same-request reference to ResourceMathRequest.quantity_specs.quantity_id, controlled by value_mode",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "value_mode",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_TERM_VALUE_MODES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "policy_route",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "RESOURCE_TERM_POLICY_ROUTES",
-          "aggregate_owner": "local field",
-          "invariant": "None or non-empty string; no implicit normalization",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "consequence_family",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "CONSEQUENCE_FAMILIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "timing_policy",
-          "annotation": "str",
-          "default": "\"blocked_pending_validation\"",
-          "controlled_surface": "COST_TIMING_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "outcome_policy",
-          "annotation": "str",
-          "default": "\"validation_blocked\"",
-          "controlled_surface": "COST_OUTCOME_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_domain",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "dependency_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request dependency_id references; each resolves in request.dependencies",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "consequence_id",
+          "str",
+          "required"
+        ],
+        [
+          "subject_binding_id",
+          "str",
+          "required"
+        ],
+        [
+          "resource_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "quantity_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "value_mode",
+          "str",
+          "required"
+        ],
+        [
+          "policy_route",
+          "str | None",
+          "None"
+        ],
+        [
+          "consequence_family",
+          "str",
+          "required"
+        ],
+        [
+          "timing_policy",
+          "str",
+          "\"blocked_pending_validation\""
+        ],
+        [
+          "outcome_policy",
+          "str",
+          "\"validation_blocked\""
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "owner_domain",
+          "str",
+          "required"
+        ],
+        [
+          "dependency_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "ResourceMathDependency": [
-        {
-          "field": "dependency_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "non-empty string; unique inside its owning dependency tuple",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "dependency_type",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_DEPENDENCY_TYPES",
-          "aggregate_owner": "local controlled field",
-          "invariant": "controlled dependency type; interprets reference_id; no dereference or execution",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "reference_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "dependency-record external reference value",
-          "invariant": "typed external-reference value interpreted according to dependency_type; not a same-aggregate internal reference; not resolved against subject/resource/quantity/term/bundle/consequence IDs unless that dependency type expressly represents such a reference; does not require a second dependency record",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_domain",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_OWNER_DOMAINS",
-          "aggregate_owner": "local controlled field",
-          "invariant": "controlled owner domain for the dependency record",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "required",
-          "annotation": "bool",
-          "default": "True",
-          "controlled_surface": "none",
-          "aggregate_owner": "local lifecycle flag",
-          "invariant": "bool; controls whether the dependency is mandatory; required=False cannot satisfy required bindings and participates in lifecycle State C or E as specified",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "satisfied",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "local lifecycle flag",
-          "invariant": "bool; participates in lifecycle states A-E; required=True and satisfied=False is incomplete or required-unsatisfied, not malformed by itself",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "hidden_info_safe",
-          "annotation": "bool",
-          "default": "True",
-          "controlled_surface": "none",
-          "aggregate_owner": "local hidden-information flag",
-          "invariant": "bool; False is distinct from unsatisfied; dependency-derived blocked_hidden_information requires the same dependency record to be otherwise complete (required=True and satisfied=True); required=True and satisfied=False with hidden_info_safe=False remains State B or State D missing-dependency for that same record with hidden risk retained in diagnostics and does not replace blocked_missing_dependency",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "dependency_id",
+          "str",
+          "required"
+        ],
+        [
+          "dependency_type",
+          "str",
+          "required"
+        ],
+        [
+          "reference_id",
+          "str",
+          "required"
+        ],
+        [
+          "owner_domain",
+          "str",
+          "required"
+        ],
+        [
+          "required",
+          "bool",
+          "True"
+        ],
+        [
+          "satisfied",
+          "bool",
+          "False"
+        ],
+        [
+          "hidden_info_safe",
+          "bool",
+          "True"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ]
       ],
       "ResourceMathRequest": [
-        {
-          "field": "request_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; identifies this ResourceMathRequest",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "command_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty command reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "command_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "action_legality_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty action-legality reference; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "action_legality_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "subject_refs",
-          "annotation": "tuple[ResourceMathSubjectReference, ...]",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-aggregate member collection",
-          "invariant": "non-empty tuple; exactly one primary_subject; subject_binding_id values unique in request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5D",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "state_projection_ref_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of state projection refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "state_projection_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "resource_refs",
-          "annotation": "tuple[ResourceReference, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-aggregate member collection",
-          "invariant": "tuple of ResourceReference records; resource_ref_id values unique; each subject_binding_id resolves in subject_refs",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "quantity_specs",
-          "annotation": "tuple[QuantitySpecification, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-aggregate member collection",
-          "invariant": "tuple of QuantitySpecification records; quantity_id values unique; lexical-only validation applies",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "cost_terms",
-          "annotation": "tuple[CostTerm, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-aggregate member collection",
-          "invariant": "tuple of CostTerm records; term_id values unique; internal references resolve in the same request",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "cost_bundles",
-          "annotation": "tuple[CostBundle, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-aggregate member collection",
-          "invariant": "tuple of CostBundle records; bundle_id values unique; CostBundle matrix and bound rules apply",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "consequence_terms",
-          "annotation": "tuple[ConsequenceTerm, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-aggregate member collection",
-          "invariant": "tuple of ConsequenceTerm records; consequence_id values unique; no consequence application",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "dependencies",
-          "annotation": "tuple[ResourceMathDependency, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "owned dependency tuple",
-          "invariant": "owns request/input external bindings; dependency_id and (dependency_type, reference_id) unique; lifecycle states A-E apply",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "trace_ref_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "required runtime trace reference; Exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "runtime_trace_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "provenance_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of provenance refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "provenance_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "owner_handoff_ref_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of owner handoff refs; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "owner_handoff_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "validation_request_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty validation request ref; When supplied, exactly one matching required dependency record is required for structural validity (correct dependency_type, correct reference_id, unique dependency_id, unique dependency_type/reference_id pair). satisfied=True is complete; satisfied=False is lifecycle State B and remains structurally valid but incomplete; State C cases are aggregate-invalid.",
-          "external_dependency_type": "validation_request_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "calculation_executed",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "affordability_executed",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "reservation_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "settlement_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "consequence_application_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "mutation_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "state_delta_application_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "transaction_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "event_commitment_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "event_append_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "persistence_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "replay_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "rng_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "table_oracle_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "model_authority_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "live_play_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "ui_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "conversion_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "canon_promotion_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "request_id",
+          "str",
+          "required"
+        ],
+        [
+          "command_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "action_legality_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "subject_refs",
+          "tuple[ResourceMathSubjectReference, ...]",
+          "required"
+        ],
+        [
+          "state_projection_ref_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "resource_refs",
+          "tuple[ResourceReference, ...]",
+          "()"
+        ],
+        [
+          "quantity_specs",
+          "tuple[QuantitySpecification, ...]",
+          "()"
+        ],
+        [
+          "cost_terms",
+          "tuple[CostTerm, ...]",
+          "()"
+        ],
+        [
+          "cost_bundles",
+          "tuple[CostBundle, ...]",
+          "()"
+        ],
+        [
+          "consequence_terms",
+          "tuple[ConsequenceTerm, ...]",
+          "()"
+        ],
+        [
+          "dependencies",
+          "tuple[ResourceMathDependency, ...]",
+          "()"
+        ],
+        [
+          "trace_ref_id",
+          "str",
+          "required"
+        ],
+        [
+          "provenance_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "owner_handoff_ref_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "validation_request_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ],
+        [
+          "calculation_executed",
+          "bool",
+          "False"
+        ],
+        [
+          "affordability_executed",
+          "bool",
+          "False"
+        ],
+        [
+          "reservation_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "settlement_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "consequence_application_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "mutation_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "state_delta_application_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "transaction_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "event_commitment_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "event_append_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "persistence_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "replay_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "rng_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "table_oracle_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "model_authority_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "live_play_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "ui_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "conversion_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "canon_promotion_authorized",
+          "bool",
+          "False"
+        ]
       ],
       "ResourceMathResult": [
-        {
-          "field": "result_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; identifies this ResourceMathResult; no resource_math_result_ref self-binding",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5H no-self-binding correction"
-        },
-        {
-          "field": "request_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "non-empty; binds the exact supplied ResourceMathRequest; Exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
-          "external_dependency_type": "resource_math_request_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "stage",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_STAGES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "decision",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "RESOURCE_MATH_DECISIONS",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty string required",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "blocking",
-          "annotation": "bool",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "bool required; exact value determined by stage/decision compatibility and blocker precedence",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "quarantined",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "bool default False; True only for the lawful quarantined_for_review stage/decision pair",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "escalated",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "local field",
-          "invariant": "bool default False; True only for the lawful escalated_to_doctrine stage/decision pair",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "diagnostics",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "local diagnostic text",
-          "invariant": "tuple[str, ...]; diagnostics are not internal reference IDs; preserve supplied ordering; require non-empty strings if supplied; retain all detected blocker diagnostics; no same-request ID resolution",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "normalized_reference_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "local diagnostic references",
-          "invariant": "diagnostic-only tuple; never determines policy scope; no same-request resolution requirement for result policy enforcement",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "referenced_subject_binding_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request subject_binding_id references; unique non-empty IDs; resolves in supplied request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "referenced_resource_ref_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request resource_ref_id references; unique non-empty IDs; resolves in supplied request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "referenced_quantity_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request quantity_id references; unique non-empty IDs; resolves in supplied request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "referenced_cost_term_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request CostTerm.term_id references; unique non-empty IDs; resolves in supplied request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "referenced_cost_bundle_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request CostBundle.bundle_id references; unique non-empty IDs; resolves in supplied request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "referenced_consequence_term_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request ConsequenceTerm.consequence_id references; unique non-empty IDs; resolves in supplied request",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "referenced_dependency_ids",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "same-request internal reference",
-          "invariant": "tuple of same-request ResourceMathDependency.dependency_id references; unique non-empty IDs; resolves in supplied request; satisfied=True is required for accepted/normalized results; required=True satisfied=False is lifecycle State D and forces blocked_missing_dependency when reached; State C missing/malformed/optional/duplicate records are invalid",
-          "external_dependency_type": "none",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5F explicit replacement/addition",
-          "replacement_artifact": "PR-5F"
-        },
-        {
-          "field": "dependencies",
-          "annotation": "tuple[ResourceMathDependency, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "owned dependency tuple",
-          "invariant": "owns request binding, result validation, trace, and result-specific references; no resource_math_result_ref self-binding; accepted/normalized results require all reached required dependencies satisfied; required unsatisfied reached dependencies are State D and lawful only for blocked_missing_dependency results",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "trace_ref_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "required runtime trace reference; Exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
-          "external_dependency_type": "runtime_trace_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "validation_request_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty validation request ref; validation co-presence rules apply; When supplied, exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
-          "external_dependency_type": "validation_request_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "validation_result_ref_id",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "None or non-empty validation result ref; validation co-presence rules and proposal equality apply; When supplied, exactly one matching required dependency record is required for structural validity. satisfied=True is required for accepted_for_planning or normalized_for_planning; required=True and satisfied=False is lifecycle State D and is lawful only on blocked_missing_dependency results that scope or reach that dependency; missing, malformed, optional, or duplicated binding records are structurally invalid.",
-          "external_dependency_type": "validation_result_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "validation_decision",
-          "annotation": "str | None",
-          "default": "None",
-          "controlled_surface": "VALIDATION_INTEGRATION_DECISIONS",
-          "aggregate_owner": "local field",
-          "invariant": "validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "calculation_executed",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "affordability_executed",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "reservation_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "settlement_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "consequence_application_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "mutation_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "state_delta_application_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "transaction_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "event_commitment_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "event_append_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "persistence_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "replay_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "rng_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "table_oracle_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "model_authority_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "live_play_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "ui_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "conversion_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "canon_promotion_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "result_id",
+          "str",
+          "required"
+        ],
+        [
+          "request_id",
+          "str",
+          "required"
+        ],
+        [
+          "stage",
+          "str",
+          "required"
+        ],
+        [
+          "decision",
+          "str",
+          "required"
+        ],
+        [
+          "blocking",
+          "bool",
+          "required"
+        ],
+        [
+          "quarantined",
+          "bool",
+          "False"
+        ],
+        [
+          "escalated",
+          "bool",
+          "False"
+        ],
+        [
+          "diagnostics",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "normalized_reference_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_subject_binding_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_resource_ref_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_quantity_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_cost_term_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_cost_bundle_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_consequence_term_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "referenced_dependency_ids",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "dependencies",
+          "tuple[ResourceMathDependency, ...]",
+          "()"
+        ],
+        [
+          "trace_ref_id",
+          "str",
+          "required"
+        ],
+        [
+          "validation_request_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "validation_result_ref_id",
+          "str | None",
+          "None"
+        ],
+        [
+          "validation_decision",
+          "str | None",
+          "None"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ],
+        [
+          "calculation_executed",
+          "bool",
+          "False"
+        ],
+        [
+          "affordability_executed",
+          "bool",
+          "False"
+        ],
+        [
+          "reservation_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "settlement_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "consequence_application_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "mutation_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "state_delta_application_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "transaction_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "event_commitment_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "event_append_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "persistence_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "replay_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "rng_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "table_oracle_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "model_authority_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "live_play_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "ui_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "conversion_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "canon_promotion_authorized",
+          "bool",
+          "False"
+        ]
       ],
       "SettlementProposal": [
-        {
-          "field": "proposal_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "local aggregate identity",
-          "invariant": "local aggregate identity; identifies this SettlementProposal",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "result_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "non-empty; binds the exact supplied ResourceMathResult; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
-          "external_dependency_type": "resource_math_result_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "proposed_state_delta_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "required non-empty unique tuple of proposed state-delta refs; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
-          "external_dependency_type": "state_delta_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "validation_result_ref_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "non-empty validation result ref equal to supplied result.validation_result_ref_id; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
-          "external_dependency_type": "validation_result_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "validation_decision",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "VALIDATION_INTEGRATION_DECISIONS",
-          "aggregate_owner": "local field",
-          "invariant": "validation decision belongs to VALIDATION_INTEGRATION_DECISIONS; co-presence rules apply; proposal requires validation_passed and equality with result",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "PR-5F aggregate-validation refinement; PR-5H direct request/result/proposal validation refinement"
-        },
-        {
-          "field": "dependencies",
-          "annotation": "tuple[ResourceMathDependency, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "owned dependency tuple",
-          "invariant": "owns result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references; every required proposal dependency must be satisfied; incomplete dependencies are forbidden",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "trace_ref_id",
-          "annotation": "str",
-          "default": "required",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "required runtime trace reference; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
-          "external_dependency_type": "runtime_trace_ref",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "visibility_policy",
-          "annotation": "str",
-          "default": "\"public\"",
-          "controlled_surface": "VISIBILITY_POLICIES",
-          "aggregate_owner": "local field",
-          "invariant": "non-empty when required; exact annotation/default enforced",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "rollback_accounting_refs",
-          "annotation": "tuple[str, ...]",
-          "default": "()",
-          "controlled_surface": "none",
-          "aggregate_owner": "external dependency binding",
-          "invariant": "tuple of rollback accounting refs when supplied; Exactly one matching required/satisfied dependency record is required; no incomplete dependency may enter a SettlementProposal.",
-          "external_dependency_type": "rollback_accounting_ref",
-          "serialization_posture": "tuple copied internally; copied list in internal to_dict",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "metadata",
-          "annotation": "Mapping[str, object]",
-          "default": "MappingProxyType({})",
-          "controlled_surface": "none",
-          "aggregate_owner": "local metadata",
-          "invariant": "immutable defensive metadata only; copied to MappingProxyType; no callables",
-          "external_dependency_type": "none",
-          "serialization_posture": "defensive dict copy in internal to_dict; MappingProxyType internally",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "calculation_executed",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "affordability_executed",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "reservation_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "settlement_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "consequence_application_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "mutation_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "state_delta_application_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "transaction_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "event_commitment_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "event_append_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "persistence_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "replay_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "rng_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "table_oracle_execution_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "model_authority_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "live_play_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "ui_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "conversion_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        },
-        {
-          "field": "canon_promotion_authorized",
-          "annotation": "bool",
-          "default": "False",
-          "controlled_surface": "none",
-          "aggregate_owner": "aggregate false-only authority",
-          "invariant": "false-only authority field; factories and validators reject True including manual frozen dataclasses",
-          "external_dependency_type": "none",
-          "serialization_posture": "internal to_dict only; preserved false; no public projection",
-          "source_artifact": "PR-5B inherited",
-          "replacement_artifact": "none"
-        }
+        [
+          "proposal_id",
+          "str",
+          "required"
+        ],
+        [
+          "result_id",
+          "str",
+          "required"
+        ],
+        [
+          "proposed_state_delta_refs",
+          "tuple[str, ...]",
+          "required"
+        ],
+        [
+          "validation_result_ref_id",
+          "str",
+          "required"
+        ],
+        [
+          "validation_decision",
+          "str",
+          "required"
+        ],
+        [
+          "dependencies",
+          "tuple[ResourceMathDependency, ...]",
+          "()"
+        ],
+        [
+          "trace_ref_id",
+          "str",
+          "required"
+        ],
+        [
+          "visibility_policy",
+          "str",
+          "\"public\""
+        ],
+        [
+          "rollback_accounting_refs",
+          "tuple[str, ...]",
+          "()"
+        ],
+        [
+          "metadata",
+          "Mapping[str, object]",
+          "MappingProxyType({})"
+        ],
+        [
+          "calculation_executed",
+          "bool",
+          "False"
+        ],
+        [
+          "affordability_executed",
+          "bool",
+          "False"
+        ],
+        [
+          "reservation_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "settlement_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "consequence_application_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "mutation_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "state_delta_application_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "transaction_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "event_commitment_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "event_append_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "persistence_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "replay_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "rng_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "table_oracle_execution_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "model_authority_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "live_play_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "ui_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "conversion_authorized",
+          "bool",
+          "False"
+        ],
+        [
+          "canon_promotion_authorized",
+          "bool",
+          "False"
+        ]
       ]
     },
-    "no_extra_shape": true,
-    "no_missing_shape": true,
     "resource_math_request_has_no_stage": true,
     "settlement_proposal_has_no_request_id": true,
     "resource_math_result_has_no_resource_math_result_ref": true,
-    "typed_scope_fields": [
-      "referenced_subject_binding_ids",
-      "referenced_resource_ref_ids",
-      "referenced_quantity_ids",
-      "referenced_cost_term_ids",
-      "referenced_cost_bundle_ids",
-      "referenced_consequence_term_ids",
-      "referenced_dependency_ids"
+    "cost_bundle_policy_fields": [
+      "atomicity_policy",
+      "ordering_policy",
+      "partial_settlement_policy"
     ],
-    "cost_bundle_preserves_atomicity_ordering_partial": true,
-    "bundle_policy_replacement_exists": false
+    "bundle_policy_replacement_exists": false,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "constant_surface_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "constants": {
-      "RESOURCE_MATH_STAGES": [
-        "resource_math_requested",
-        "source_declaration_captured",
-        "subject_refs_bound",
-        "resource_refs_declared",
-        "quantity_specs_declared",
-        "terms_declared",
-        "bundle_structure_declared",
-        "policy_refs_declared",
-        "dependency_refs_bound",
-        "calculation_ready_for_review",
-        "blocked_pending_validation",
-        "blocked_pending_owner_handoff",
-        "quarantined_for_review",
-        "escalated_to_doctrine"
-      ],
-      "RESOURCE_MATH_DECISIONS": [
-        "accepted_for_planning",
-        "normalized_for_planning",
-        "source_local_retained",
-        "requires_validation_review",
-        "requires_owner_handoff",
-        "blocked_missing_dependency",
-        "blocked_incompatible_policy",
-        "blocked_hidden_information",
-        "quarantined_for_review",
-        "escalated_to_doctrine"
-      ],
-      "RESOURCE_FAMILIES": [
-        "pooled_expendable",
-        "scene_counter",
-        "charge",
-        "currency_like",
-        "material",
-        "asset_integrity",
-        "vehicle_integrity",
-        "time_window",
-        "opportunity",
-        "social_capital",
-        "faction_standing",
-        "clue_information",
-        "risk_heat",
-        "strain_corruption",
-        "injury_recovery",
-        "cooldown",
-        "debt_obligation",
-        "source_local_resource"
-      ],
-      "COST_FAMILIES": [
-        "activation",
-        "upkeep",
-        "maintenance",
-        "opportunity",
-        "prerequisite_lock",
-        "reservation_hold",
-        "partial_payment",
-        "substitution",
-        "overcommitment",
-        "debt_creation",
-        "success_at_cost",
-        "failure_at_cost",
-        "cancellation",
-        "interruption",
-        "refund",
-        "reversal",
-        "compensation",
-        "repair",
-        "recovery",
-        "crafting",
-        "salvage",
-        "requisition",
-        "validation_blocked"
-      ],
-      "CONSEQUENCE_FAMILIES": [
-        "gain",
-        "loss",
-        "transfer",
-        "lock",
-        "unlock",
-        "exposure",
-        "exhaustion",
-        "degradation",
-        "escalation",
-        "cooldown",
-        "debt",
-        "obligation",
-        "harm_pressure",
-        "recovery_pressure",
-        "visibility_change",
-        "mission_route",
-        "clue_route",
-        "social_faction_change",
-        "inventory_asset_change",
-        "provenance_recurrence",
-        "quarantine_escalation"
-      ],
-      "COST_TIMING_POLICIES": [
-        "pay_before_resolution",
-        "reserve_before_resolution",
-        "pay_on_attempt",
-        "pay_on_success",
-        "pay_on_failure",
-        "pay_on_commitment",
-        "pay_over_time",
-        "upkeep_interval",
-        "refund_on_cancel",
-        "no_refund_on_interrupt",
-        "compensate_after_rollback",
-        "blocked_pending_validation"
-      ],
-      "COST_OUTCOME_POLICIES": [
-        "success",
-        "failure",
-        "partial_success",
-        "cancelled",
-        "interrupted",
-        "invalid",
-        "validation_blocked",
-        "owner_blocked",
-        "quarantined",
-        "escalated",
-        "rollback_required"
-      ],
-      "QUANTITY_KINDS": [
-        "count",
-        "pool_amount",
-        "delta",
-        "ratio",
-        "percentage",
-        "duration",
-        "interval",
-        "threshold",
-        "capacity",
-        "rank",
-        "tier",
-        "charge_count",
-        "currency_amount",
-        "material_amount",
-        "durability_amount",
-        "debt_amount",
-        "source_literal_quantity",
-        "unknown_pending_review"
-      ],
-      "QUANTITY_REPRESENTATION_KINDS": [
-        "integer_exact",
-        "decimal_exact",
-        "fraction_exact",
-        "fixed_point_scaled",
-        "source_literal_only",
-        "blocked_pending_numeric_choice"
-      ],
-      "CONVERSION_POLICIES": [
-        "no_conversion",
-        "exact_conversion",
-        "table_driven_conversion",
-        "doctrine_approved_conversion",
-        "source_local_conversion",
-        "escalation_required"
-      ],
-      "ROUNDING_POLICIES": [
-        "no_rounding",
-        "round_down",
-        "round_up",
-        "round_nearest",
-        "round_toward_zero",
-        "round_away_from_zero",
-        "tie_to_even",
-        "tie_away_from_zero",
-        "blocked_pending_rounding_choice"
-      ],
-      "QUANTITY_NEGATIVE_VALUE_POLICIES": [
-        "negative_values_forbidden",
-        "negative_values_allowed_by_source",
-        "negative_values_require_owner_handoff"
-      ],
-      "VISIBILITY_POLICIES": [
-        "public",
-        "actor_visible",
-        "narrator_only",
-        "hidden",
-        "redacted",
-        "delayed_reveal",
-        "derived_only"
-      ],
-      "RESOURCE_MATH_DEPENDENCY_TYPES": [
-        "command_ref",
-        "action_legality_ref",
-        "state_snapshot_ref",
-        "state_record_ref",
-        "state_projection_ref",
-        "state_delta_ref",
-        "transaction_ref",
-        "transaction_preview_ref",
-        "event_commitment_ref",
-        "event_record_ref",
-        "validation_request_ref",
-        "validation_result_ref",
-        "runtime_trace_ref",
-        "hidden_information_ref",
-        "context_projection_ref",
-        "provenance_ref",
-        "rng_request_ref",
-        "rng_result_ref",
-        "table_oracle_ref",
-        "table_oracle_result_ref",
-        "owner_handoff_ref",
-        "registry_ref",
-        "decision_log_ref",
-        "subject_ref",
-        "unit_ref",
-        "dimension_ref",
-        "resource_math_request_ref",
-        "resource_math_result_ref",
-        "rollback_accounting_ref"
-      ],
-      "RESOURCE_MATH_SUBJECT_TYPES": [
-        "actor",
-        "command",
-        "action",
-        "item",
-        "asset",
-        "vehicle",
-        "mission",
-        "faction",
-        "location",
-        "state_record",
-        "generated_content",
-        "resource_owner",
-        "source_local_subject",
-        "unknown_pending_review"
-      ],
-      "RESOURCE_MATH_SUBJECT_ROLES": [
-        "primary_subject",
-        "payer_subject",
-        "beneficiary_subject",
-        "resource_owner",
-        "affected_subject",
-        "source_subject",
-        "target_subject",
-        "authority_source",
-        "provenance_source"
-      ],
-      "RESOURCE_MATH_OWNER_DOMAINS": [
-        "RT001_command_lifecycle_action_legality",
-        "RT002_resource_consequence_math",
-        "RT003_combat_hazard_damage_recovery",
-        "RT004_ability_effect_skill_binding",
-        "RT005_context_packet_hidden_information",
-        "RT006_mission_reward_clue_routing",
-        "RT007_social_faction_actor_knowledge",
-        "RT008_generated_content_provenance_recurrence",
-        "RT009_runtime_rng_table_oracle",
-        "RT010_inventory_item_vehicle_asset",
-        "RT011_validation_readiness_tooling",
-        "RT012_d_series_promotion_boundary",
-        "source_local_owner",
-        "doctrine_escalation"
-      ],
-      "RESOURCE_TERM_VALUE_MODES": [
-        "resource_quantity",
-        "resource_reference_only",
-        "quantity_only",
-        "policy_only"
-      ],
-      "RESOURCE_TERM_POLICY_ROUTES": [
-        "owner_handoff_required",
-        "quarantine_required",
-        "doctrine_escalation_required"
-      ],
-      "ATOMICITY_POLICIES": [
-        "all_or_nothing_requested",
-        "best_effort_requested",
-        "ordered_partial_allowed",
-        "unordered_partial_allowed",
-        "alternative_exactly_one",
-        "alternative_at_least_one",
-        "alternative_at_most_one",
-        "alternative_any",
-        "invalid_mixed_atomicity",
-        "blocked_pending_transaction_policy"
-      ],
-      "ORDERING_POLICIES": [
-        "unordered_terms",
-        "source_ordered_terms",
-        "dependency_ordered_terms",
-        "priority_ordered_terms",
-        "blocked_pending_ordering_policy"
-      ],
-      "PARTIAL_SETTLEMENT_POLICIES": [
-        "no_partial_settlement",
-        "partial_settlement_allowed",
-        "partial_settlement_requires_owner_review",
-        "partial_settlement_requires_validation",
-        "blocked_pending_settlement_policy"
-      ],
-      "DECLARATION_PROGRESS_STAGES": [
-        "source_declaration_captured",
-        "subject_refs_bound",
-        "resource_refs_declared",
-        "quantity_specs_declared",
-        "terms_declared",
-        "bundle_structure_declared",
-        "policy_refs_declared",
-        "dependency_refs_bound",
-        "calculation_ready_for_review"
-      ],
-      "SOURCE_LOCAL_STAGES": [
-        "source_declaration_captured",
-        "resource_refs_declared",
-        "terms_declared",
-        "bundle_structure_declared",
-        "policy_refs_declared"
-      ],
-      "VALIDATION_BLOCK_STAGES": [
-        "blocked_pending_validation"
-      ],
-      "OWNER_HANDOFF_STAGES": [
-        "blocked_pending_owner_handoff"
-      ],
-      "MISSING_DEPENDENCY_STAGES": [
-        "dependency_refs_bound",
-        "blocked_pending_validation",
-        "blocked_pending_owner_handoff"
-      ],
-      "POLICY_BLOCK_STAGES": [
-        "policy_refs_declared"
-      ],
-      "HIDDEN_INFORMATION_BLOCK_STAGES": [
-        "dependency_refs_bound",
-        "blocked_pending_validation"
-      ],
-      "QUARANTINE_STAGES": [
-        "quarantined_for_review"
-      ],
-      "ESCALATION_STAGES": [
-        "escalated_to_doctrine"
-      ],
-      "VALIDATION_INTEGRATION_DECISIONS": [
-        "validation_ready",
-        "validation_passed",
-        "validation_failed",
-        "rejected_by_missing_command_ref",
-        "rejected_by_missing_state_ref",
-        "rejected_by_missing_transaction_ref",
-        "rejected_by_missing_event_commitment_ref",
-        "rejected_by_missing_invariant_set",
-        "rejected_by_hidden_information_risk",
-        "rejected_by_provenance_gap",
-        "rejected_by_schema_mismatch",
-        "rejected_by_authority_mismatch",
-        "rejected_by_phase_boundary",
-        "quarantined_for_review",
-        "escalated_to_doctrine",
-        "unsupported_validation_scope"
-      ]
-    },
-    "missing_dependency_stage_set": null,
-    "proposal_eligible_stage_decision_sets": [
-      "result.stage == calculation_ready_for_review",
-      "result.decision in {accepted_for_planning, normalized_for_planning}",
-      "validation_decision == validation_passed",
-      "non-blocking",
-      "non-quarantined",
-      "non-escalated",
-      "every scoped dependency satisfied",
-      "no scoped blocker",
-      "non-empty unique proposed_state_delta_refs",
-      "matching required/satisfied state_delta_ref dependencies"
+    "authoritative_source_keys": [
+      "constants",
+      "constant_provenance"
     ],
-    "no_inherited_constant_dropped": true,
+    "focused_test_functions": [
+      "test_all_controlled_surfaces_exact"
+    ],
+    "constant_surface_names": [
+      "RESOURCE_MATH_STAGES",
+      "RESOURCE_MATH_DECISIONS",
+      "RESOURCE_FAMILIES",
+      "COST_FAMILIES",
+      "CONSEQUENCE_FAMILIES",
+      "COST_TIMING_POLICIES",
+      "COST_OUTCOME_POLICIES",
+      "QUANTITY_KINDS",
+      "QUANTITY_REPRESENTATION_KINDS",
+      "CONVERSION_POLICIES",
+      "ROUNDING_POLICIES",
+      "QUANTITY_NEGATIVE_VALUE_POLICIES",
+      "VISIBILITY_POLICIES",
+      "RESOURCE_MATH_DEPENDENCY_TYPES",
+      "RESOURCE_MATH_SUBJECT_TYPES",
+      "RESOURCE_MATH_SUBJECT_ROLES",
+      "RESOURCE_MATH_OWNER_DOMAINS",
+      "RESOURCE_TERM_VALUE_MODES",
+      "RESOURCE_TERM_POLICY_ROUTES",
+      "ATOMICITY_POLICIES",
+      "ORDERING_POLICIES",
+      "PARTIAL_SETTLEMENT_POLICIES",
+      "DECLARATION_PROGRESS_STAGES",
+      "SOURCE_LOCAL_STAGES",
+      "VALIDATION_BLOCK_STAGES",
+      "OWNER_HANDOFF_STAGES",
+      "MISSING_DEPENDENCY_STAGES",
+      "POLICY_BLOCK_STAGES",
+      "HIDDEN_INFORMATION_BLOCK_STAGES",
+      "QUARANTINE_STAGES",
+      "ESCALATION_STAGES",
+      "VALIDATION_INTEGRATION_DECISIONS"
+    ],
+    "constant_surface_count": 32,
     "no_donor_specific_pool_or_economy": true,
-    "no_contradictory_duplicate_surface": true
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "stage_decision_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "stage_decision_matrix": {
-      "accepted_for_planning": {
-        "allowed_stages": [
-          "resource_math_requested",
-          "calculation_ready_for_review"
-        ],
-        "blocking": false,
-        "quarantined": false,
-        "escalated": false
-      },
-      "normalized_for_planning": {
-        "allowed_stages": [
-          "source_declaration_captured",
-          "subject_refs_bound",
-          "resource_refs_declared",
-          "quantity_specs_declared",
-          "terms_declared",
-          "bundle_structure_declared",
-          "policy_refs_declared",
-          "dependency_refs_bound",
-          "calculation_ready_for_review"
-        ],
-        "blocking": false,
-        "quarantined": false,
-        "escalated": false
-      },
-      "source_local_retained": {
-        "allowed_stages": [
-          "source_declaration_captured",
-          "resource_refs_declared",
-          "terms_declared",
-          "bundle_structure_declared",
-          "policy_refs_declared"
-        ],
-        "blocking": false,
-        "quarantined": false,
-        "escalated": false
-      },
-      "requires_validation_review": {
-        "allowed_stages": [
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false
-      },
-      "requires_owner_handoff": {
-        "allowed_stages": [
-          "blocked_pending_owner_handoff"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false
-      },
-      "blocked_missing_dependency": {
-        "allowed_stages": [
-          "dependency_refs_bound",
-          "blocked_pending_validation",
-          "blocked_pending_owner_handoff"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false
-      },
-      "blocked_incompatible_policy": {
-        "allowed_stages": [
-          "policy_refs_declared"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false
-      },
-      "blocked_hidden_information": {
-        "allowed_stages": [
-          "dependency_refs_bound",
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false
-      },
-      "quarantined_for_review": {
-        "allowed_stages": [
-          "quarantined_for_review"
-        ],
-        "blocking": true,
-        "quarantined": true,
-        "escalated": false
-      },
-      "escalated_to_doctrine": {
-        "allowed_stages": [
-          "escalated_to_doctrine"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": true
-      }
-    },
-    "every_unlisted_pair_invalid": true,
+    "authoritative_source_keys": [
+      "stage_decision_matrix",
+      "false_only_fields"
+    ],
+    "focused_test_functions": [
+      "test_exact_stage_decision_flag_matrix",
+      "test_all_nineteen_false_only_fields_on_three_aggregate_shapes"
+    ],
+    "decision_names": [
+      "accepted_for_planning",
+      "normalized_for_planning",
+      "source_local_retained",
+      "requires_validation_review",
+      "requires_owner_handoff",
+      "blocked_missing_dependency",
+      "blocked_incompatible_policy",
+      "blocked_hidden_information",
+      "quarantined_for_review",
+      "escalated_to_doctrine"
+    ],
+    "decision_count": 10,
     "validation_blocked_is_resource_math_result_decision": false,
-    "false_only_authority_flags_remain_false": true
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "dependency_lifecycle_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "states": {
-      "A_complete_binding": "correct type/reference, required=True, satisfied=True; hidden_info_safe=False on this otherwise-complete dependency can supply a dependency-derived blocked_hidden_information blocker",
-      "B_incomplete_binding": "correct type/reference, required=True, satisfied=False; structurally valid but not resolution-ready; any scoped result reaching it must be blocked_missing_dependency; hidden_info_safe=False on the same unsatisfied record is retained in diagnostics and does not replace blocked_missing_dependency",
-      "C_missing_or_malformed_binding": "missing record, wrong type/reference, duplicate match, or required=False; aggregate invalid before result construction",
-      "D_required_unsatisfied_named_dependency": "record exists, required=True, satisfied=False, named by a record or scope; forces blocked_missing_dependency when reached; hidden_info_safe=False on the same unsatisfied record is retained in diagnostics and does not replace blocked_missing_dependency",
-      "E_advisory_optional_unsatisfied": "required=False, satisfied=False, unbound, unnamed, and unscoped; may coexist with a non-blocking result but satisfies nothing; hidden_info_safe=False while genuinely State E and unscoped creates no result blocker"
-    },
-    "binding_state_matrix": [
-      {
-        "aggregate": "request",
-        "field_family": "request field binding",
-        "matching_record_required": "exactly one",
-        "required_flag": "required=True",
-        "satisfied_true_posture": "State A complete binding; request structurally valid and may support non-blocking result if all other rules pass; hidden_info_safe=False on the same complete record can supply hidden-information blocker when scoped",
-        "satisfied_false_posture": "State B incomplete binding; request structurally valid but incomplete; any result reaching it must be blocked_missing_dependency; hidden_info_safe=False on the same record is diagnostic only and does not change the decision",
-        "missing_malformed_posture": "State C aggregate-invalid before result construction",
-        "permitted_result_decision": "blocked_missing_dependency when reached if satisfied=False; otherwise ordinary matrix",
-        "proposal_eligibility": "not eligible while reached dependency is unsatisfied"
-      },
-      {
-        "aggregate": "request",
-        "field_family": "request named dependency",
-        "matching_record_required": "record must exist when named by dependency_ids or scope",
-        "required_flag": "required=True for required named dependency",
-        "satisfied_true_posture": "State A complete named dependency",
-        "satisfied_false_posture": "State D required-unsatisfied named dependency when named by a record or scope; structurally present but blocks result when reached; hidden_info_safe=False on the same record is diagnostic only and does not change the decision",
-        "missing_malformed_posture": "State C aggregate-invalid when missing, wrong type/reference, duplicate, or required=False for required named dependency",
-        "permitted_result_decision": "blocked_missing_dependency when reached if satisfied=False",
-        "proposal_eligibility": "not eligible while reached dependency is unsatisfied"
-      },
-      {
-        "aggregate": "result",
-        "field_family": "result request binding",
-        "matching_record_required": "exactly one resource_math_request_ref in result.dependencies",
-        "required_flag": "required=True",
-        "satisfied_true_posture": "complete result-to-request binding; accepted/normalized may proceed if all other rules pass",
-        "satisfied_false_posture": "State D; lawful only for blocked_missing_dependency result that scopes or reaches this dependency",
-        "missing_malformed_posture": "State C result aggregate invalid",
-        "permitted_result_decision": "accepted/normalized require satisfied=True; satisfied=False requires blocked_missing_dependency",
-        "proposal_eligibility": "not eligible unless satisfied=True"
-      },
-      {
-        "aggregate": "result",
-        "field_family": "result validation/trace dependency",
-        "matching_record_required": "exactly one matching record when field supplied or required",
-        "required_flag": "required=True",
-        "satisfied_true_posture": "complete result-owned validation/trace dependency",
-        "satisfied_false_posture": "State D; lawful only for blocked_missing_dependency result that scopes or reaches this dependency",
-        "missing_malformed_posture": "State C result aggregate invalid",
-        "permitted_result_decision": "accepted/normalized require satisfied=True; satisfied=False requires blocked_missing_dependency",
-        "proposal_eligibility": "not eligible unless satisfied=True"
-      },
-      {
-        "aggregate": "result",
-        "field_family": "scoped named dependency",
-        "matching_record_required": "existing request/result dependency named by typed scope or scoped record",
-        "required_flag": "required=True for required scoped dependency",
-        "satisfied_true_posture": "complete scoped dependency; hidden_info_safe=False on this otherwise-complete record supplies blocked_hidden_information",
-        "satisfied_false_posture": "State D; forces blocked_missing_dependency when reached; hidden_info_safe=False on the same unsatisfied record is retained diagnostically and does not replace blocked_missing_dependency",
-        "missing_malformed_posture": "State C aggregate invalid because scoped references must resolve",
-        "permitted_result_decision": "blocked_missing_dependency when satisfied=False; accepted/normalized require satisfied=True",
-        "proposal_eligibility": "not eligible unless satisfied=True"
-      },
-      {
-        "aggregate": "request/result",
-        "field_family": "advisory optional dependency",
-        "matching_record_required": "optional advisory record may exist only when unbound, unnamed, and unscoped",
-        "required_flag": "required=False",
-        "satisfied_true_posture": "advisory record is not a required binding and satisfies no required field",
-        "satisfied_false_posture": "State E advisory optional unsatisfied; may coexist with non-blocking result only when unbound, unnamed, and unscoped; hidden_info_safe=False while genuinely State E creates no result blocker because it is outside typed scope; satisfies nothing",
-        "missing_malformed_posture": "if used as a binding or named/scoped dependency it becomes State C invalid",
-        "permitted_result_decision": "no result decision effect when truly advisory; invalid if used as required binding",
-        "proposal_eligibility": "does not support proposal eligibility and cannot satisfy required proposal dependency"
-      },
-      {
-        "aggregate": "proposal",
-        "field_family": "proposal dependency",
-        "matching_record_required": "exactly one matching record for each proposal binding/reference",
-        "required_flag": "required=True",
-        "satisfied_true_posture": "complete proposal dependency; proposal may remain eligible if all other rules pass",
-        "satisfied_false_posture": "incomplete dependencies are forbidden in SettlementProposal",
-        "missing_malformed_posture": "proposal aggregate invalid",
-        "permitted_result_decision": "proposal only follows eligible accepted/normalized result; no blocked result may create proposal",
-        "proposal_eligibility": "eligible only when every required proposal dependency is satisfied"
-      }
+    "authoritative_source_keys": [
+      "dependency_lifecycle_states",
+      "binding_state_matrix",
+      "dependency_ownership",
+      "result_self_binding_rule"
     ],
-    "ownership": {
-      "request.dependencies": "request/input references",
-      "result.dependencies": "request binding, result validation, trace, and result-specific references",
-      "proposal.dependencies": "result binding, validation result, state deltas, trace, rollback accounting, and proposal-specific references"
-    },
-    "no_optional_dependency_satisfies_binding": true,
-    "no_incomplete_dependency_supports_proposal_eligibility": true,
-    "no_result_self_binding": true
+    "focused_test_functions": [
+      "test_dependency_ownership_lifecycle_and_bindings",
+      "test_binding_state_matrix_reconciles_field_invariants",
+      "test_resource_math_result_has_no_resource_math_result_ref_self_binding"
+    ],
+    "state_names": [
+      "A_complete_binding",
+      "B_incomplete_binding",
+      "C_missing_or_malformed_binding",
+      "D_required_unsatisfied_named_dependency",
+      "E_advisory_optional_unsatisfied"
+    ],
+    "binding_state_matrix_rows": 7,
+    "ownership_aggregates": [
+      "request.dependencies",
+      "result.dependencies",
+      "proposal.dependencies"
+    ],
+    "no_result_self_binding": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "blocker_precedence_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "simultaneous_blocker_table": [
-      {
-        "precedence": 1,
-        "trigger": "policy_route == doctrine_escalation_required or doctrine escalation route detected",
-        "aggregate_validity_prerequisite": "structural request valid; malformed/missing binding State C already rejected",
-        "exact_decision": "escalated_to_doctrine",
-        "exact_stage_or_allowed_stage_set": [
-          "escalated_to_doctrine"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": true,
-        "required_dependency": "none unless referenced fields independently require bindings",
-        "diagnostics_rule": "preserve lower-priority blockers in diagnostics"
-      },
-      {
-        "precedence": 2,
-        "trigger": "policy_route == quarantine_required or quarantine route detected",
-        "aggregate_validity_prerequisite": "structural request valid; malformed/missing binding State C already rejected",
-        "exact_decision": "quarantined_for_review",
-        "exact_stage_or_allowed_stage_set": [
-          "quarantined_for_review"
-        ],
-        "blocking": true,
-        "quarantined": true,
-        "escalated": false,
-        "required_dependency": "none unless referenced fields independently require bindings",
-        "diagnostics_rule": "preserve lower-priority blockers in diagnostics"
-      },
-      {
-        "precedence": 3,
-        "trigger": "hidden_info_safe=False on a scoped dependency that is otherwise complete (required=True and satisfied=True), or another independently valid hidden-information blocker",
-        "aggregate_validity_prerequisite": "structural request valid; the dependency record resolves; dependency-based hidden-information blocking requires required=True and satisfied=True",
-        "exact_decision": "blocked_hidden_information",
-        "exact_stage_or_allowed_stage_set": [
-          "dependency_refs_bound",
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "required_dependency": "for a dependency-based hidden-information blocker, the scoped dependency is required=True, satisfied=True, hidden_info_safe=False; separately referenced hidden-information evidence uses its lawful RT-005 dependency type",
-        "diagnostics_rule": "preserve every simultaneous lower-priority blocker, including missing or unsatisfied dependencies on other records"
-      },
-      {
-        "precedence": 4,
-        "trigger": "State B incomplete binding or State D required-unsatisfied named dependency reached by scope",
-        "aggregate_validity_prerequisite": "State C missing/malformed binding rejected before result construction",
-        "exact_decision": "blocked_missing_dependency",
-        "exact_stage_or_allowed_stage_set": [
-          "dependency_refs_bound",
-          "blocked_pending_validation",
-          "blocked_pending_owner_handoff"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "required_dependency": "the reached dependency record exists with required=True and satisfied=False",
-        "diagnostics_rule": "record all missing/unsatisfied dependency blockers and preserve lower-priority blockers"
-      },
-      {
-        "precedence": 5,
-        "trigger": "blocked_pending_numeric_choice or incompatible policy in typed scope",
-        "aggregate_validity_prerequisite": "structural request valid; quantity/term/bundle resolves",
-        "exact_decision": "blocked_incompatible_policy",
-        "exact_stage_or_allowed_stage_set": [
-          "policy_refs_declared"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "required_dependency": "none beyond dependencies named by scoped records",
-        "diagnostics_rule": "preserve lower-priority blockers in diagnostics"
-      },
-      {
-        "precedence": 6,
-        "trigger": "negative_values_require_owner_handoff or policy_route == owner_handoff_required",
-        "aggregate_validity_prerequisite": "structural request valid; owner-handoff reference bindings resolve",
-        "exact_decision": "requires_owner_handoff",
-        "exact_stage_or_allowed_stage_set": [
-          "blocked_pending_owner_handoff"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "required_dependency": "owner_handoff_ref required and satisfied for each owner handoff reference",
-        "diagnostics_rule": "preserve lower-priority blockers in diagnostics"
-      },
-      {
-        "precedence": 7,
-        "trigger": "validation review required by validation co-presence or partial-settlement validation route",
-        "aggregate_validity_prerequisite": "structural request valid; validation request binding resolves",
-        "exact_decision": "requires_validation_review",
-        "exact_stage_or_allowed_stage_set": [
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "required_dependency": "validation_request_ref required and satisfied; validation_result_ref absent until result exists",
-        "diagnostics_rule": "preserve lower-priority blockers in diagnostics"
-      },
-      {
-        "precedence": 8,
-        "trigger": "negative_values_allowed_by_source with valid source_literal and provenance bindings",
-        "aggregate_validity_prerequisite": "structural request valid; provenance dependencies required/satisfied",
-        "exact_decision": "non_blocking_no_decision_override",
-        "exact_stage_or_allowed_stage_set": "ordinary compatibility matrix",
-        "blocking": false,
-        "quarantined": false,
-        "escalated": false,
-        "required_dependency": "provenance_ref required and satisfied for each provenance ref",
-        "diagnostics_rule": "diagnostic note allowed; does not block or override higher-priority blockers"
-      },
-      {
-        "precedence": 9,
-        "trigger": "no blocker detected",
-        "aggregate_validity_prerequisite": "structural request valid and typed scope closed",
-        "exact_decision": "ordinary compatibility matrix",
-        "exact_stage_or_allowed_stage_set": "ordinary compatibility matrix",
-        "blocking": "ordinary compatibility matrix",
-        "quarantined": "ordinary compatibility matrix",
-        "escalated": "ordinary compatibility matrix",
-        "required_dependency": "all scoped required dependencies satisfied",
-        "diagnostics_rule": "normal diagnostics only"
-      }
+    "authoritative_source_keys": [
+      "simultaneous_blocker_table",
+      "dependency_hidden_information_collision_matrix"
     ],
-    "dependency_hidden_information_collision_matrix": [
-      {
-        "case": "same_record_unsatisfied_and_unsafe",
-        "dependency_arrangement": "one reached dependency record has required=True, satisfied=False, hidden_info_safe=False",
-        "structural_validity": "structurally valid only as State B request binding or State D named/scoped dependency; State C rules still reject missing, malformed, duplicate, or optional bindings",
-        "governing_lifecycle_state_or_states": [
-          "State B incomplete binding",
-          "State D required-unsatisfied named dependency"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "blocked_missing_dependency; not blocked_hidden_information for that same record because the dependency is not otherwise satisfied",
-        "stage_or_allowed_stage_set": [
-          "dependency_refs_bound",
-          "blocked_pending_validation",
-          "blocked_pending_owner_handoff"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "diagnostics_retention_rule": "retain hidden-information risk in diagnostics together with the missing-dependency finding",
-        "proposal_eligibility": "not eligible"
-      },
-      {
-        "case": "separate_complete_unsafe_and_unsatisfied",
-        "dependency_arrangement": "Dependency A has required=True, satisfied=True, hidden_info_safe=False; Dependency B has required=True, satisfied=False, hidden_info_safe=True",
-        "structural_validity": "both records resolve and are structurally valid; blockers occur on separate records",
-        "governing_lifecycle_state_or_states": [
-          "A complete unsafe dependency",
-          "B State B or State D missing dependency"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "blocked_hidden_information determines result because the valid hidden-information blocker is on a separate otherwise-complete record and has higher precedence",
-        "stage_or_allowed_stage_set": [
-          "dependency_refs_bound",
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "diagnostics_retention_rule": "retain the missing-dependency finding for Dependency B; both records remain visible to internal validation; neither finding is discarded",
-        "proposal_eligibility": "not eligible"
-      },
-      {
-        "case": "separate_complete_unsafe_and_unsatisfied_unsafe",
-        "dependency_arrangement": "Dependency A has required=True, satisfied=True, hidden_info_safe=False; Dependency B has required=True, satisfied=False, hidden_info_safe=False",
-        "structural_validity": "both records resolve and are structurally valid when B is State B or State D; blockers occur on separate records",
-        "governing_lifecycle_state_or_states": [
-          "A complete unsafe dependency",
-          "B State B or State D missing dependency with diagnostic hidden risk"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "blocked_hidden_information determines result because Dependency A supplies the otherwise-complete unsafe blocker; Dependency B remains a missing-dependency blocker for its own record",
-        "stage_or_allowed_stage_set": [
-          "dependency_refs_bound",
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "diagnostics_retention_rule": "retain hidden-information and missing-dependency findings for all records; neither finding is discarded",
-        "proposal_eligibility": "not eligible"
-      },
-      {
-        "case": "complete_unsafe",
-        "dependency_arrangement": "one reached dependency record has required=True, satisfied=True, hidden_info_safe=False",
-        "structural_validity": "structurally valid complete dependency",
-        "governing_lifecycle_state_or_states": [
-          "State A complete binding with hidden-information risk"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "blocked_hidden_information",
-        "stage_or_allowed_stage_set": [
-          "dependency_refs_bound",
-          "blocked_pending_validation"
-        ],
-        "blocking": true,
-        "quarantined": false,
-        "escalated": false,
-        "diagnostics_retention_rule": "retain hidden-information diagnostic for the unsafe dependency",
-        "proposal_eligibility": "not eligible"
-      },
-      {
-        "case": "complete_safe",
-        "dependency_arrangement": "one reached dependency record has required=True, satisfied=True, hidden_info_safe=True",
-        "structural_validity": "structurally valid complete dependency",
-        "governing_lifecycle_state_or_states": [
-          "State A complete binding"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "no dependency-derived hidden-information blocker",
-        "stage_or_allowed_stage_set": "ordinary compatibility matrix",
-        "blocking": false,
-        "quarantined": false,
-        "escalated": false,
-        "diagnostics_retention_rule": "no hidden-information diagnostic required by this dependency",
-        "proposal_eligibility": "eligible only if all other SettlementProposal rules pass"
-      },
-      {
-        "case": "advisory_optional_unscoped_unsafe",
-        "dependency_arrangement": "one dependency record has required=False, satisfied=False, hidden_info_safe=False and remains unbound, unnamed, and unscoped",
-        "structural_validity": "lawful only as State E advisory optional unsatisfied outside typed scope",
-        "governing_lifecycle_state_or_states": [
-          "State E advisory optional unsatisfied"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "no result blocker because it is outside typed scope and satisfies nothing",
-        "stage_or_allowed_stage_set": "ordinary compatibility matrix",
-        "blocking": false,
-        "quarantined": false,
-        "escalated": false,
-        "diagnostics_retention_rule": "no blocker diagnostic required; internal advisory diagnostics may note unsatisfied optional record",
-        "proposal_eligibility": "does not support eligibility and cannot satisfy required proposal dependency"
-      },
-      {
-        "case": "optional_bound_named_or_scoped",
-        "dependency_arrangement": "dependency record has required=False, satisfied=False and is bound, named, or scoped where a required dependency is expected",
-        "structural_validity": "not State E; aggregate-invalid State C",
-        "governing_lifecycle_state_or_states": [
-          "State C missing or malformed binding"
-        ],
-        "exact_result_decision_or_aggregate_rejection": "aggregate rejection before result construction; not a blocked result",
-        "stage_or_allowed_stage_set": "not applicable; no result constructed",
-        "blocking": "not applicable",
-        "quarantined": "not applicable",
-        "escalated": "not applicable",
-        "diagnostics_retention_rule": "report structural invalidity; do not convert to hidden-information or missing-dependency result decision",
-        "proposal_eligibility": "not eligible"
-      }
+    "focused_test_functions": [
+      "test_exact_simultaneous_blocker_table",
+      "test_dependency_hidden_information_collision_matrix_exact_cases",
+      "test_hidden_information_collision_cross_section_consistency"
     ],
+    "simultaneous_blocker_rows": 9,
+    "hidden_information_collision_cases": 7,
     "dependency_derived_hidden_information_requires": {
       "required": true,
       "satisfied": true,
       "hidden_info_safe": false
     },
-    "diagnostic_preservation": true
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "typed_scope_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
+    "authoritative_source_keys": [
+      "typed_scope_fields",
+      "future_shapes"
+    ],
+    "focused_test_functions": [
+      "test_absence_of_aliases_and_exact_typed_scope_fields",
+      "test_typed_scope_cardinality_and_closure_rules_are_exact"
+    ],
     "typed_scope_fields": [
       "referenced_subject_binding_ids",
       "referenced_resource_ref_ids",
@@ -3431,392 +1725,133 @@ The LLM is not the game engine. References are not calculations. Results are not
       "referenced_consequence_term_ids",
       "referenced_dependency_ids"
     ],
-    "exact_cardinality": 7,
-    "ids_unique_non_empty": true,
-    "all_ids_resolve_in_request": true,
-    "combined_scope_cannot_be_empty": true,
-    "accepted_normalized_require_substantive_scope": true,
-    "normalized_reference_ids_diagnostic_only": true
+    "typed_scope_count": 7,
+    "normalized_reference_ids_diagnostic_only": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "quantity_source_literal_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "quantity_lexical_grammars": {
-      "integer_exact": {
-        "required_lexical_fields": [
-          "magnitude_text"
-        ],
-        "exact_grammar": "^[+-]?(0|[1-9][0-9]*)$",
-        "explicit_exclusions": "no whitespace, exponent notation, decimal point, leading zero except `0`, or embedded separators"
-      },
-      "decimal_exact": {
-        "required_lexical_fields": [
-          "magnitude_text"
-        ],
-        "exact_grammar": "^[+-]?(0|[1-9][0-9]*)\\.[0-9]+$",
-        "explicit_exclusions": "no exponent notation, leading decimal point, trailing decimal point, leading zero except before `.`, or embedded separators"
-      },
-      "fraction_exact": {
-        "required_lexical_fields": [
-          "magnitude_text"
-        ],
-        "exact_grammar": "^[+-]?(0|[1-9][0-9]*)/[1-9][0-9]*$",
-        "explicit_exclusions": "no zero denominator, signed denominator, decimal numerator, decimal denominator, or mixed-number shorthand"
-      },
-      "fixed_point_scaled": {
-        "required_lexical_fields": [
-          "magnitude_text",
-          "scale"
-        ],
-        "exact_grammar": "magnitude ^[+-]?(0|[1-9][0-9]*)$; scale is an int that is not bool and is >= 0",
-        "explicit_exclusions": "no decimal point in magnitude, no exponent notation, no negative scale"
-      },
-      "source_literal_only": {
-        "required_lexical_fields": [
-          "source_literal"
-        ],
-        "exact_grammar": "^\\S(?:.*\\S)?$ plus universal source_literal character contract",
-        "explicit_exclusions": "no empty string, no leading/trailing whitespace, no evaluation"
-      },
-      "blocked_pending_numeric_choice": {
-        "required_lexical_fields": [
-          "source_literal"
-        ],
-        "exact_grammar": "^\\S(?:.*\\S)?$ plus universal source_literal character contract",
-        "explicit_exclusions": "no empty string, no leading/trailing whitespace, blocks progression"
-      }
-    },
-    "quantity_execution_bans": [
-      "no Decimal",
-      "no Fraction",
-      "no float",
-      "no exponent notation",
-      "no arithmetic",
-      "no comparison",
-      "no conversion",
-      "no rounding",
-      "no affordability execution",
-      "bool rejection for precision and scale",
-      "precision positive and decimal_exact only",
-      "scale non-negative and fixed_point_scaled only"
+    "authoritative_source_keys": [
+      "quantity_lexical_grammars",
+      "quantity_execution_bans",
+      "constants"
     ],
-    "integer_bool_distinction": true,
-    "full_string_matching": true,
-    "exponent_prohibition": true,
-    "lexical_negative_recognition": [
+    "focused_test_functions": [
+      "test_quantity_lexical_grammars_and_execution_bans_exact",
+      "test_source_literals_negative_policies_and_no_evaluation"
+    ],
+    "quantity_grammar_names": [
+      "integer_exact",
+      "decimal_exact",
+      "fraction_exact",
+      "fixed_point_scaled",
+      "source_literal_only",
+      "blocked_pending_numeric_choice"
+    ],
+    "execution_ban_count": 12,
+    "lexical_negative_examples": [
       "-0",
       "-0.0",
       "-0/1"
     ],
-    "source_literal_universal": true,
-    "no_source_literal_parsing_or_normalization": true
+    "no_source_literal_parsing_or_normalization": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "cost_bundle_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "cost_bundle_sets": {
-      "ORDERING_DECLARED_SET": [
-        "unordered_terms",
-        "source_ordered_terms",
-        "dependency_ordered_terms",
-        "priority_ordered_terms"
-      ],
-      "ORDERING_ORDERED_SET": [
-        "source_ordered_terms",
-        "dependency_ordered_terms",
-        "priority_ordered_terms"
-      ],
-      "PARTIAL_REVIEW_SET": [
-        "partial_settlement_requires_owner_review",
-        "partial_settlement_requires_validation"
-      ],
-      "ALTERNATIVE_ATOMICITY_SET": [
-        "alternative_exactly_one",
-        "alternative_at_least_one",
-        "alternative_at_most_one",
-        "alternative_any"
-      ]
-    },
-    "cost_bundle_matrix": [
-      [
-        "all_or_nothing_requested",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "absent",
-        "valid declaration, no settlement"
-      ],
-      [
-        "all_or_nothing_requested",
-        [
-          "blocked_pending_ordering_policy"
-        ],
-        [
-          "no_partial_settlement"
-        ],
-        "absent",
-        "blocking review"
-      ],
-      [
-        "best_effort_requested",
-        "ORDERING_DECLARED_SET",
-        [
-          "partial_settlement_allowed"
-        ],
-        "absent",
-        "valid declaration, no settlement"
-      ],
-      [
-        "best_effort_requested",
-        "ORDERING_DECLARED_SET",
-        "PARTIAL_REVIEW_SET",
-        "absent",
-        "blocking review; owner or validation route follows the partial policy"
-      ],
-      [
-        "best_effort_requested",
-        [
-          "blocked_pending_ordering_policy"
-        ],
-        [
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "absent",
-        "blocking review"
-      ],
-      [
-        "ordered_partial_allowed",
-        "ORDERING_ORDERED_SET",
-        [
-          "partial_settlement_allowed"
-        ],
-        "absent",
-        "valid declaration, no settlement"
-      ],
-      [
-        "ordered_partial_allowed",
-        "ORDERING_ORDERED_SET",
-        "PARTIAL_REVIEW_SET",
-        "absent",
-        "blocking review; owner or validation route follows the partial policy"
-      ],
-      [
-        "ordered_partial_allowed",
-        [
-          "blocked_pending_ordering_policy"
-        ],
-        [
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "absent",
-        "blocking review"
-      ],
-      [
-        "unordered_partial_allowed",
-        [
-          "unordered_terms"
-        ],
-        [
-          "partial_settlement_allowed"
-        ],
-        "absent",
-        "valid declaration, no settlement"
-      ],
-      [
-        "unordered_partial_allowed",
-        [
-          "unordered_terms"
-        ],
-        "PARTIAL_REVIEW_SET",
-        "absent",
-        "blocking review; owner or validation route follows the partial policy"
-      ],
-      [
-        "unordered_partial_allowed",
-        [
-          "blocked_pending_ordering_policy"
-        ],
-        [
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "absent",
-        "blocking review"
-      ],
-      [
-        "alternative_exactly_one",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "present and valid",
-        "valid declaration, no alternative chosen"
-      ],
-      [
-        "alternative_at_least_one",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "present and valid",
-        "valid declaration, no alternative chosen"
-      ],
-      [
-        "alternative_at_most_one",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "present and valid",
-        "valid declaration, no alternative chosen"
-      ],
-      [
-        "alternative_any",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "present and valid",
-        "valid declaration, no alternative chosen"
-      ],
-      [
-        "ALTERNATIVE_ATOMICITY_SET",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "absent",
-        "invalid: alternative groups required"
-      ],
-      [
-        "ALTERNATIVE_ATOMICITY_SET",
-        "ORDERING_DECLARED_SET",
-        [
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "present or absent",
-        "invalid: alternatives cannot also declare partial settlement in PR-5A"
-      ],
-      [
-        "invalid_mixed_atomicity",
-        "ORDERING_DECLARED_SET or { \"blocked_pending_ordering_policy\" }",
-        [
-          "no_partial_settlement",
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "present or absent",
-        "invalid mixed atomicity"
-      ],
-      [
-        "blocked_pending_transaction_policy",
-        "ORDERING_DECLARED_SET or { \"blocked_pending_ordering_policy\" }",
-        [
-          "no_partial_settlement",
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "present or absent",
-        "blocking owner/transaction-policy review"
-      ],
-      [
-        [
-          "all_or_nothing_requested",
-          "best_effort_requested",
-          "ordered_partial_allowed",
-          "unordered_partial_allowed"
-        ],
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement",
-          "partial_settlement_allowed",
-          "partial_settlement_requires_owner_review",
-          "partial_settlement_requires_validation",
-          "blocked_pending_settlement_policy"
-        ],
-        "overlapping groups",
-        "invalid: non-alternative atomicity cannot declare alternative groups"
-      ],
-      [
-        "ALTERNATIVE_ATOMICITY_SET",
-        "ORDERING_DECLARED_SET",
-        [
-          "no_partial_settlement"
-        ],
-        "overlapping groups",
-        "invalid unless a future explicit policy authorizes overlap"
-      ]
+    "authoritative_source_keys": [
+      "cost_bundle_sets",
+      "cost_bundle_matrix",
+      "cost_bundle_bound_corrections"
     ],
-    "bound_corrections": [
-      "minimum_required_terms <= len(term_ids)",
-      "maximum_allowed_terms <= len(term_ids)",
-      "minimum_required_terms <= maximum_allowed_terms when both supplied",
-      "all_or_nothing_requested bounds both None or both equal len(term_ids)",
-      "no selection or settlement execution in PR-5A"
+    "focused_test_functions": [
+      "test_complete_costbundle_matrix_and_corrected_bounds"
     ],
-    "every_unlisted_combination_invalid": true,
-    "no_selection_affordability_reservation_or_settlement_execution": true
+    "cost_bundle_set_names": [
+      "ORDERING_DECLARED_SET",
+      "ORDERING_ORDERED_SET",
+      "PARTIAL_REVIEW_SET",
+      "ALTERNATIVE_ATOMICITY_SET"
+    ],
+    "cost_bundle_matrix_rows": 21,
+    "bound_correction_count": 5,
+    "no_selection_affordability_reservation_or_settlement_execution": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "validation_architecture_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "direct_validation_signatures": [
-      "create_resource_math_result(*, request: ResourceMathRequest, ...) -> ResourceMathResult",
-      "validate_resource_math_result(result: ResourceMathResult, *, request: ResourceMathRequest) -> bool",
-      "create_settlement_proposal(*, request: ResourceMathRequest, result: ResourceMathResult, ...) -> SettlementProposal",
-      "validate_settlement_proposal(proposal: SettlementProposal, *, request: ResourceMathRequest, result: ResourceMathResult) -> bool"
+    "authoritative_source_keys": [
+      "direct_validation_signatures",
+      "settlement_eligibility"
     ],
-    "request_validation_precedes_result_validation": true,
-    "result_request_identity_and_dependency_checks_precede_proposal_eligibility": true,
+    "focused_test_functions": [
+      "test_direct_request_result_proposal_architecture_and_eligibility"
+    ],
+    "direct_validation_signature_count": 4,
+    "signature_names": [
+      "create_resource_math_result",
+      "validate_resource_math_result",
+      "create_settlement_proposal",
+      "validate_settlement_proposal"
+    ],
     "no_certificate_object": true,
-    "no_repository_lookup_or_cached_valid_flag": true
+    "no_repository_lookup_or_cached_valid_flag": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "settlement_proposal_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "settlement_eligibility": {
-      "requires": [
-        "result.stage == calculation_ready_for_review",
-        "result.decision in {accepted_for_planning, normalized_for_planning}",
-        "validation_decision == validation_passed",
-        "non-blocking",
-        "non-quarantined",
-        "non-escalated",
-        "every scoped dependency satisfied",
-        "no scoped blocker",
-        "non-empty unique proposed_state_delta_refs",
-        "matching required/satisfied state_delta_ref dependencies"
-      ],
-      "rejects": [
-        "accepted_for_planning at resource_math_requested",
-        "normalized_for_planning at earlier declaration stages",
-        "source_local_retained",
-        "blocked, handoff, review, quarantine, or escalation results",
-        "event-only consequences",
-        "policy-only terms"
-      ]
-    },
-    "requires_calculation_ready_for_review": true,
-    "requires_accepted_or_normalized_decision": true,
-    "requires_validation_passed": true,
-    "requires_state_delta_dependencies": true,
-    "rejects_event_only_and_policy_only": true
+    "authoritative_source_keys": [
+      "settlement_eligibility",
+      "future_shapes"
+    ],
+    "focused_test_functions": [
+      "test_direct_request_result_proposal_architecture_and_eligibility"
+    ],
+    "eligibility_requires_count": 10,
+    "eligibility_rejects_count": 6,
+    "future_pr_5a_may_create_reference_only_module": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "parity_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "public_helpers": [
+    "authoritative_source_keys": [
+      "public_helpers",
+      "private_helper_responsibilities"
+    ],
+    "focused_test_functions": [
+      "test_factory_validator_parity_and_private_helper_responsibilities"
+    ],
+    "public_helper_names": [
       "create_resource_math_subject_reference",
       "validate_resource_math_subject_reference",
       "create_resource_reference",
@@ -3839,7 +1874,7 @@ The LLM is not the game engine. References are not calculations. Results are not
       "validate_settlement_proposal"
     ],
     "public_helper_count": 20,
-    "private_helper_responsibilities": [
+    "private_responsibility_names": [
       "constants/defaults",
       "subject identity",
       "internal refs",
@@ -3858,47 +1893,64 @@ The LLM is not the game engine. References are not calculations. Results are not
       "tuple/metadata immutability",
       "internal serialization"
     ],
-    "create_validate_parity_for_every_shape": true,
-    "manual_construction_cannot_bypass_invariants": true,
-    "tuple_mapping_defensive_copying": true,
-    "callable_metadata_rejection": true,
-    "no_generic_helper_replaces_exact_helpers": true
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "serialization_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
+    "authoritative_source_keys": [
+      "future_shapes",
+      "quantity_execution_bans"
+    ],
+    "focused_test_functions": [
+      "test_exact_ten_shape_complete_contract_matrix",
+      "test_quantity_lexical_grammars_and_execution_bans_exact"
+    ],
     "internal_to_dict_only": true,
     "to_public_dict_exists": false,
-    "public_player_narrator_model_gm_projection": false,
-    "redaction_implementation": false,
-    "hidden_information_release": false,
-    "defensive_serialization": true,
+    "rt_005_remains_public_projection_redaction_owner": true,
     "no_calculation_during_serialization": true,
-    "rt_005_remains_public_projection_redaction_owner": true
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "owner_boundary_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
-    "rt_002_does_not_absorb": [
-      "command/action-legality ownership",
-      "combat/hazard/damage/recovery ownership",
-      "ability/effect/skill ownership",
-      "hidden-information ownership",
-      "mission/reward/clue ownership",
-      "social/faction/knowledge ownership",
-      "generated-content provenance ownership",
-      "RNG/table execution",
-      "inventory/item/vehicle ownership",
-      "validation-readiness ownership",
-      "promotion/canon ownership",
-      "state mutation",
-      "transaction execution",
-      "event commitment",
-      "persistence",
-      "replay",
-      "model/live-play/UI behavior"
-    ]
+    "authoritative_source_keys": [
+      "authority_false_fields",
+      "false_only_fields"
+    ],
+    "focused_test_functions": [
+      "test_classification_authority_fields_match_registry_and_are_complete"
+    ],
+    "rt_002_does_not_absorb_count": 16,
+    "owner_boundaries_preserved": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "corpus_pressure_finding": {
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false,
     "finding": "closed",
+    "authoritative_source_keys": [
+      "constants",
+      "future_shapes"
+    ],
+    "focused_test_functions": [
+      "test_corpus_pressure_review_is_explicit"
+    ],
     "families_reviewed": [
       "fantasy resources and recovery",
       "science-fiction energy ammunition shields logistics implants vehicles platforms",
@@ -3928,41 +1980,55 @@ The LLM is not the game engine. References are not calculations. Results are not
       "quarantine",
       "doctrine escalation"
     ],
-    "no_donor_default_law_promoted": true
+    "no_donor_default_law_promoted": true,
+    "doctrine_machine_data_and_tests_agree": true,
+    "residual_implementation_choice_remaining": false,
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "test_coverage_finding": {
     "finding": "closed",
+    "authoritative_source_file": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+    "focused_test_functions": [
+      "test_exact_ten_shape_complete_contract_matrix",
+      "test_all_controlled_surfaces_exact",
+      "test_dependency_ownership_lifecycle_and_bindings",
+      "test_typed_scope_cardinality_and_closure_rules_are_exact",
+      "test_exact_simultaneous_blocker_table",
+      "test_quantity_lexical_grammars_and_execution_bans_exact",
+      "test_complete_costbundle_matrix_and_corrected_bounds",
+      "test_direct_request_result_proposal_architecture_and_eligibility",
+      "test_factory_validator_parity_and_private_helper_responsibilities",
+      "test_classification_authority_fields_match_registry_and_are_complete",
+      "test_corpus_pressure_review_is_explicit"
+    ],
     "pr_5h_tests_are_substantive_not_prose_only": true,
-    "coverage": [
-      "exact shape inventories",
-      "exact fields/defaults",
-      "constants",
-      "compatibility matrices",
-      "dependency lifecycle",
-      "typed scope",
-      "hidden-information collisions",
-      "source-literal rules",
-      "bundle behavior",
-      "direct validation",
-      "proposal eligibility",
-      "helper parity",
-      "authority flags",
-      "registry tracking",
-      "four-file footprint",
-      "absence of runtime implementation"
-    ]
+    "material_contradictions_remaining": false,
+    "pr_5a_invention_required": false
   },
   "implementation_derivability_finding": {
     "finding": "derivable_without_new_doctrine_decision",
+    "authoritative_source_file": "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
+    "authoritative_source_block": "pr5h_effective_contract",
+    "authoritative_source_keys": [
+      "future_shapes",
+      "constants",
+      "public_helpers",
+      "private_helper_responsibilities",
+      "direct_validation_signatures",
+      "cost_bundle_matrix",
+      "dependency_lifecycle_states",
+      "simultaneous_blocker_table"
+    ],
     "pr_5a_can_derive_reference_only_skeleton": true,
     "all_implementation_relevant_contract_surfaces_unambiguous": true,
     "material_contradictions_remaining": false,
-    "guessed_behavior_required": false
+    "guessed_behavior_required": false,
+    "pr_5a_invention_required": false
   },
   "risk_ledger": [
     {
       "risk_or_defect": "consolidated effective contract inventory",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -3971,7 +2037,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "complete CostBundle compatibility surface",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -3980,7 +2046,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "exact dependency lifecycle",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -3989,7 +2055,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "exact typed-result-scope cardinality and closure",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -3998,7 +2064,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "simultaneous blocker precedence",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -4007,7 +2073,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "universal source-literal consistency",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -4016,7 +2082,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "request/result/proposal validation architecture",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -4025,7 +2091,7 @@ The LLM is not the game engine. References are not calculations. Results are not
     },
     {
       "risk_or_defect": "factory/validator parity",
-      "pr_5h_mitigation": "Closed in PR-5H effective contract and focused tests.",
+      "pr_5h_mitigation": "Closed by the evidence keys and PR-5H tests named in the closure matrix row.",
       "pr_5i_finding": "closed",
       "severity": "none_remaining",
       "pr_5a_would_need_invention": false,
@@ -4040,7 +2106,8 @@ The LLM is not the game engine. References are not calculations. Results are not
       "exact factories and validators",
       "internal defensive serialization",
       "domain exports",
-      "focused tests"
+      "focused tests",
+      "narrow reference-only resource_consequence_math.py module"
     ],
     "must_not_create": [
       "formulas",
@@ -4058,10 +2125,7 @@ The LLM is not the game engine. References are not calculations. Results are not
       "persistence",
       "replay",
       "RNG or table execution",
-      "combat",
-      "abilities",
-      "inventory",
-      "mission or social mechanics",
+      "combat, ability, inventory, mission or social semantics",
       "public projection or redaction",
       "model, live-play, or UI behavior",
       "conversion",
@@ -4103,4 +2167,4 @@ The LLM is not the game engine. References are not calculations. Results are not
 ```
 
 ## Gate decision
-PR-5I selects **AUTHORIZE_PR_5A**. PR-5H is accepted for the limited purpose of allowing the already planned PR-5A reference-only skeleton to proceed. PR-5A remains limited to immutable frozen keyword-only shapes, exact constants, exact factories and validators, internal defensive serialization, domain exports, and focused tests. PR-5I authorizes no formulas, arithmetic, settlement, state mutation, transaction execution, event commitment, persistence, replay, RNG/table execution, public projection, redaction, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+PR-5I selects **AUTHORIZE_PR_5A**. PR-5H is accepted for the limited purpose of allowing the already planned PR-5A reference-only skeleton to proceed. PR-5A may create immutable frozen keyword-only shapes, exact constants, exact factories and validators, internal defensive serialization, domain exports, focused tests, and the narrow reference-only `resource_consequence_math.py` module. PR-5I itself authorizes no `src/` change and no PR-5A implementation. PR-5A remains forbidden from formulas, arithmetic, expression parsing/evaluation, final pools, values, currencies or economies, affordability, reservation, settlement, consequence application, state mutation or delta application, transaction execution, event append or commitment, persistence, replay, RNG/table execution, public projection/redaction, combat, ability, inventory, mission or social semantics, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.

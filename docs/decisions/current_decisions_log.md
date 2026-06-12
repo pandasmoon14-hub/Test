@@ -3109,6 +3109,7 @@ runtime_domain_pr_5i_decision:
   artifact_type: final_residual_planning_hardening_review_gate
   implementation_status: review_only
   reviewed_pr_5h_artifact: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+  reviewed_pr_5h_file: docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
   closure_findings:
     consolidated effective contract inventory: closed
     complete CostBundle compatibility surface: closed
