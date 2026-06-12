@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-12'
+  version: 0.1.91
+  action: runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5I final residual planning hardening review gate tracking. Review-only; independently reviews PR-5H against the eight PR-5G defects, ten-shape contract, constants, dependency lifecycle, typed-scope closure, blocker precedence, source-literal rules, CostBundle compatibility, direct validation, SettlementProposal eligibility, helper parity, serialization, owner boundaries, corpus pressure, and tests; selects AUTHORIZE_PR_5A as the sole next step for a narrow reference-only skeleton; all non-authority fields remain false.
 - date: '2026-06-11'
   version: 0.1.90
   action: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening
@@ -587,6 +592,109 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5I-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-REVIEW-001
+  filename: runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  layer: 0_control
+  phase: runtime-domain
+  owner: RT-002
+  purpose: Track PR-5I review-only gate findings for PR-5H and the limited authorization of the future PR-5A reference-only skeleton.
+  batch: runtime-domain
+  series: runtime-domain-pr-5i
+  content_type: final_residual_planning_hardening_review_gate
+  implementation_status: review_only
+  review_only: true
+  authority_level: tracking
+  authority_note: Review-only tracking; confirms PR-5H closure and authorizes only the future narrow reference-only PR-5A skeleton; no execution, conversion, sourcebook, canon, model, live-play, UI, or owner-boundary expansion authority.
+  reviewed_pr_5h_artifact: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
+  closure_findings:
+  - consolidated effective contract inventory: closed
+  - complete CostBundle compatibility surface: closed
+  - exact dependency lifecycle: closed
+  - exact typed-result-scope cardinality and closure: closed
+  - simultaneous blocker precedence: closed
+  - universal source-literal consistency: closed
+  - request/result/proposal validation architecture: closed
+  - factory/validator parity: closed
+  gate_outcome: AUTHORIZE_PR_5A
+  pr_5h_accepted: true
+  pr_5a_authorized_as_sole_next_step: true
+  pr_5a_blocked: false
+  pr_5a_status: narrow_reference_only_skeleton_authorized
+  pr_5a_implementation_part_of_this_pr: false
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation
+  next_step_status: narrow_reference_only_skeleton_authorized
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  formula_execution_authorized_by_this_pr: false
+  expression_parsing_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  reservation_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  mutation_authorized_by_this_pr: false
+  state_delta_application_authorized_by_this_pr: false
+  transaction_execution_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  event_append_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  replay_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  table_oracle_execution_authorized_by_this_pr: false
+  model_authority_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  live_play_authorized_by_this_pr: false
+  ui_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  sourcebook_inclusion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+  public_projection_authorized_by_this_pr: false
+  redaction_authorized_by_this_pr: false
+  hidden_information_release_authorized_by_this_pr: false
+  owns:
+  - Review-only PR-5I gate finding, PR-5H closure assessment, PR-5A readiness decision, non-execution boundary restatement, registry tracking, and decision-log tracking.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, resource_consequence_math.py, calculations, affordability execution, reservation, settlement, consequence application, state mutation, transaction execution, event commitment, persistence, replay, RNG/table execution, public projection, redaction, model/live-play/UI behavior, conversion, sourcebook inclusion, canon promotion, or any other owner domain.
+  dependencies:
+  - RUNTIME-DOMAIN-PR-5H final residual planning hardening
+  - RUNTIME-DOMAIN-PR-5G residual planning hardening review gate
+  - RUNTIME-DOMAIN-PR-5F residual planning hardening
+  - RUNTIME-DOMAIN-PR-5D final planning hardening
+  - RUNTIME-DOMAIN-PR-5B planning hardening
+  - RUNTIME-DOMAIN-PR-5 service plan
+  - RT-002
+  blocked_by: []
+  unlocks:
+  - RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation
+  downstream_consumers:
+  - RUNTIME-DOMAIN-PR-5A
+  donor_pressure_absorbed:
+  - Fantasy resources, recovery, spell-like costs, injuries, and recovery pressures are reviewed as mappable, normalized, source-local, owner-routed, quarantined, or escalated without becoming default law.
+  - Science-fiction energy, ammunition, shields, logistics, implants, vehicles, platforms, and platform resources are reviewed without adding donor-specific pools or economies.
+  - Cultivation qi, essence, breakthroughs, bottlenecks, tribulations, backlash, class/archetype/profession/career, point-buy, narrative currency, tags, aspects, stress, sanity, corruption, doom, cyberware, biotech, psionics, relics, horror, investigation, companions, summons, crafting, salvage, requisition, repair, mission, reward, debt, faction, cosmology, generated-content, and persistent-campaign pressures are routed through lawful destinations only.
+  hard_refusals:
+  - PR-5I is review-only and adds no executable behavior, no runtime or domain module, no src/ change, and no resource_consequence_math.py.
+  - No formula, arithmetic, expression parsing or evaluation, conversion, rounding, affordability, reservation, selection, settlement, consequence application, state mutation, state-delta application, transaction execution, event append, event commitment, persistence, replay, RNG, or table execution.
+  - No public projection, redaction implementation, hidden-information release, model authority, model integration, live-play authority, UI authority, conversion authorization, sourcebook inclusion, canon promotion, or owner-boundary expansion.
+  escalation_triggers:
+  - PR-5H closure data and tests cease to agree on any of the eight PR-5G defects or any ten-shape, constant, dependency, scope, blocker, quantity, bundle, validation, proposal, helper, serialization, or owner-boundary surface.
+  - Future PR-5A would need to invent fields, defaults, constants, dependency semantics, typed-scope behavior, blocker precedence, bundle compatibility, quantity grammar, validation ordering, proposal eligibility, helper behavior, owner authority, or serialization behavior.
+  - Any proposed PR-5A work exceeds the authorized narrow reference-only skeleton or enters another runtime owner domain.
+  required_tests:
+  - tests/test_runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.py
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - PR-5I focused tests must pass and remaining broader-suite failures must reproduce at the merge base before PR-5A proceeds.
+  scale_gate_relevance: critical
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: planning_review_only
+  live_play_relevance: none
+  notes: PR-5I independently reviews PR-5H and selects AUTHORIZE_PR_5A only for a future narrow reference-only skeleton. It creates no runtime/domain code and grants no conversion, sourcebook, canon, model, live-play, UI, mutation, persistence, replay, RNG, settlement, or owner-boundary expansion authority.
 - file_id: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
   proposed_path: docs/doctrine/reviews/
