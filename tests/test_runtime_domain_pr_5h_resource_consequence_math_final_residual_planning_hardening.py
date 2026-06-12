@@ -5,6 +5,8 @@ import re
 import subprocess
 from pathlib import Path
 
+import yaml
+
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md"
 REGISTRY = ROOT / "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
@@ -3553,6 +3555,122 @@ def test_tracking_uniqueness_registry_decision_log_and_authority() -> None:
     assert "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py" in registry
     assert "PRs #278 and #279 were abandoned" in decisions
     assert "no implementation authority" in decisions
+
+
+def test_pr_5h_registry_record_has_required_tracking_shape() -> None:
+    data = yaml.safe_load(REGISTRY.read_text())
+    records = [record for record in data["file_records"] if record.get("file_id") == ARTIFACT_ID]
+    assert len(records) == 1
+    record = records[0]
+    required_keys = {
+        "file_id",
+        "filename",
+        "proposed_path",
+        "layer",
+        "phase",
+        "status",
+        "authority_level",
+        "owner",
+        "purpose",
+        "owns",
+        "must_not_own",
+        "dependencies",
+        "blocked_by",
+        "unlocks",
+        "downstream_consumers",
+        "donor_pressure_absorbed",
+        "hard_refusals",
+        "escalation_triggers",
+        "required_tests",
+        "test_status",
+        "review_status",
+        "promotion_requirements",
+        "scale_gate_relevance",
+        "broad_conversion_relevance",
+        "canon_relevance",
+        "runtime_relevance",
+        "live_play_relevance",
+        "notes",
+    }
+    assert required_keys <= set(record)
+    for key in ["donor_pressure_absorbed", "hard_refusals", "escalation_triggers"]:
+        assert isinstance(record[key], list), key
+        assert record[key], key
+        assert all(isinstance(item, str) and item.strip() == item and item for item in record[key])
+
+    donor_text = "\n".join(record["donor_pressure_absorbed"]).lower()
+    for phrase in [
+        "fantasy",
+        "science-fiction",
+        "cultivation",
+        "class",
+        "point-buy",
+        "narrative",
+        "cyberware",
+        "source-local cosmology",
+        "persistent campaign consequences",
+    ]:
+        assert phrase in donor_text
+    assert "not automatic astra canon" in donor_text
+
+    hard_refusal_text = "\n".join(record["hard_refusals"]).lower()
+    for phrase in [
+        "no runtime or domain implementation authority",
+        "no resource calculation",
+        "affordability execution",
+        "reservation execution",
+        "settlement execution",
+        "consequence application",
+        "state mutation",
+        "transaction execution",
+        "event append",
+        "event commitment",
+        "persistence",
+        "replay",
+        "rng execution",
+        "table/oracle execution",
+        "model authority",
+        "live-play authority",
+        "ui authority",
+        "conversion authorization",
+        "sourcebook inclusion",
+        "canon promotion",
+        "no public projection",
+        "no cross-owner authority capture",
+    ]:
+        assert phrase in hard_refusal_text
+
+    escalation_text = "\n".join(record["escalation_triggers"]).lower()
+    for phrase in [
+        "cannot map into the ten-shape planning contract",
+        "not owned by rt-002",
+        "actual calculation",
+        "hidden information",
+        "rt-005",
+        "combat",
+        "rt-003",
+        "ability",
+        "rt-004",
+        "mission",
+        "generated-content",
+        "source-local donor metaphysics",
+        "external dependency owner",
+        "new field",
+        "doctrine or owner specifications",
+        "quarantine",
+    ]:
+        assert phrase in escalation_text
+
+    assert record["pr_5a_authorized"] is False
+    assert record["pr_5a_blocked"] is True
+    assert record["pr_5i_only_next_step"] is True
+    assert record["next_step_authorized"].startswith("RUNTIME-DOMAIN-PR-5I")
+    for field in EXPECTED_AUTHORITY_FALSE:
+        assert record[field] is False
+    record_text = "\n".join(str(value) for value in record.values()).lower()
+    assert "src/astra_runtime/domain/resource_consequence_math.py" not in record_text
+    assert "resource_consequence_math.py creation" in record_text
+    assert "implements runtime" not in record_text
 
 
 def test_resource_math_result_has_no_resource_math_result_ref_self_binding() -> None:

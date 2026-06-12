@@ -655,6 +655,33 @@ file_records:
   - RUNTIME-DOMAIN-PR-5I resource and consequence math final residual planning hardening review gate
   downstream_consumers:
   - RUNTIME-DOMAIN-PR-5I
+  donor_pressure_absorbed:
+  - Fantasy resource pools, costs, spell-like expenditures, injuries, and recovery pressures may be received for declaration, source-local retention, owner handoff, quarantine, or escalation without becoming Astra default mechanics.
+  - Science-fiction energy, ammunition, shields, logistics, vehicles, implants, and platform resources may be mapped only through the PR-5H planning contract, source-local retention, owner handoff, quarantine, or escalation.
+  - Cultivation qi, essence, meridians, breakthroughs, tribulations, bottlenecks, and backlash pressures remain donor/source-local or route to owner handoff, quarantine, or escalation rather than becoming Astra-wide pools.
+  - Class, archetype, profession, career, and point-buy cost structures may be declared as planning inputs while ability, progression, and economy semantics remain source-local or owner-routed.
+  - Narrative currencies, tags, aspects, stress, sanity, corruption, doom, and investigation tracks may be retained as source-local declarations or routed to handoff, quarantine, or escalation without adopting donor law.
+  - Cyberware, biotech, psionic, relic, companion, summon, crafting, salvage, requisition, mission, faction, and debt consequences may be declared or proposed only within PR-5H planning boundaries and owner-routed when semantics exceed RT-002.
+  - Source-local cosmology and unusual donor economies are accepted for declaration, source-local retention, handoff, quarantine, or escalation, not automatic Astra canon.
+  - Persistent campaign consequences and generated-content provenance pressures remain non-executable planning pressure and route through provenance, state-delta review, source-local retention, quarantine, or escalation as applicable.
+  hard_refusals:
+  - Planning-only; no executable behavior, no runtime or domain implementation authority, and no resource_consequence_math.py creation.
+  - No resource calculation, formula execution, affordability execution, reservation execution, settlement execution, consequence application, state mutation, or state-delta application.
+  - No transaction execution, event append, event commitment, persistence, replay, RNG execution, or table/oracle execution.
+  - No model authority, model integration, live-play authority, UI authority, conversion authorization, sourcebook inclusion, or canon promotion.
+  - No donor vocabulary, economy, cosmology, resource pool, class model, progression assumption, or unusual donor economy becomes Astra default law through PR-5H.
+  - No public projection, redaction bypass, hidden-information release outside RT-005, and no cross-owner authority capture by RT-002.
+  escalation_triggers:
+  - A donor resource, cost, quantity, consequence, unit, or policy cannot map into the ten-shape planning contract without inventing a new field, constant, shape, authority, or lifecycle state.
+  - Required numeric, unit, conversion, rounding, expression, affordability, reservation, settlement, mutation, event, persistence, replay, RNG, or table semantics are not owned by RT-002.
+  - A construct requires actual calculation, formula execution, affordability execution, reservation, settlement, mutation, event commitment, persistence, replay, RNG, table execution, or other executable behavior.
+  - Hidden information, redaction, public projection, or visibility partitioning requires RT-005 ownership.
+  - Combat, hazard, damage, injury, or recovery semantics require RT-003 ownership.
+  - Ability, effect, spell, technique, cyberware, biotech, psionic, relic, or similar power semantics require RT-004 or another declared owner.
+  - Mission, clue, reward, social, faction, inventory, vehicle, platform, generated-content, or persistence semantics belong to another runtime owner.
+  - Source-local donor metaphysics, cosmology, or economy would otherwise become Astra-wide doctrine.
+  - An external dependency owner is absent, contradictory, insufficiently specified, or conflicts with doctrine or owner specifications.
+  - Lawful mapping requires quarantine, canon-level adoption, or doctrine escalation rather than local normalization.
   required_tests:
   - tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py
   test_status: pending
