@@ -522,7 +522,7 @@ The following YAML block is normative for PR-5H tests and future review.
         "default": "True",
         "controlled_surface": "none",
         "aggregate_owner": "local hidden-information flag",
-        "invariant": "bool; False is distinct from unsatisfied; a scoped otherwise-satisfied dependency with False routes through blocked_hidden_information",
+        "invariant": "bool; False is distinct from unsatisfied; dependency-derived blocked_hidden_information requires the same dependency record to be otherwise complete (required=True and satisfied=True); required=True and satisfied=False with hidden_info_safe=False remains State B or State D missing-dependency for that same record with hidden risk retained in diagnostics and does not replace blocked_missing_dependency",
         "external_dependency_type": "none",
         "serialization_posture": "internal to_dict only; defensive scalar copy; no public projection authority",
         "source_artifact": "PR-5B inherited",
@@ -2792,11 +2792,11 @@ The following YAML block is normative for PR-5H tests and future review.
     "referenced_dependency_ids"
   ],
   "dependency_lifecycle_states": {
-    "A_complete_binding": "correct type/reference, required=True, satisfied=True",
-    "B_incomplete_binding": "correct type/reference, required=True, satisfied=False; structurally valid but not resolution-ready; any scoped result reaching it must be blocked_missing_dependency",
+    "A_complete_binding": "correct type/reference, required=True, satisfied=True; hidden_info_safe=False on this otherwise-complete dependency can supply a dependency-derived blocked_hidden_information blocker",
+    "B_incomplete_binding": "correct type/reference, required=True, satisfied=False; structurally valid but not resolution-ready; any scoped result reaching it must be blocked_missing_dependency; hidden_info_safe=False on the same unsatisfied record is retained in diagnostics and does not replace blocked_missing_dependency",
     "C_missing_or_malformed_binding": "missing record, wrong type/reference, duplicate match, or required=False; aggregate invalid before result construction",
-    "D_required_unsatisfied_named_dependency": "record exists, required=True, satisfied=False, named by a record or scope; forces blocked_missing_dependency when reached",
-    "E_advisory_optional_unsatisfied": "required=False, satisfied=False, unbound, unnamed, and unscoped; may coexist with a non-blocking result but satisfies nothing"
+    "D_required_unsatisfied_named_dependency": "record exists, required=True, satisfied=False, named by a record or scope; forces blocked_missing_dependency when reached; hidden_info_safe=False on the same unsatisfied record is retained in diagnostics and does not replace blocked_missing_dependency",
+    "E_advisory_optional_unsatisfied": "required=False, satisfied=False, unbound, unnamed, and unscoped; may coexist with a non-blocking result but satisfies nothing; hidden_info_safe=False while genuinely State E and unscoped creates no result blocker"
   },
   "dependency_ownership": {
     "request.dependencies": "request/input references",
@@ -3148,8 +3148,8 @@ The following YAML block is normative for PR-5H tests and future review.
     },
     {
       "precedence": 3,
-      "trigger": "hidden_info_safe=False on a scoped dependency or hidden-information blocker",
-      "aggregate_validity_prerequisite": "structural request valid; scoped dependency resolves",
+      "trigger": "hidden_info_safe=False on a scoped dependency that is otherwise complete (required=True and satisfied=True), or another independently valid hidden-information blocker",
+      "aggregate_validity_prerequisite": "structural request valid; the dependency record resolves; dependency-based hidden-information blocking requires required=True and satisfied=True",
       "exact_decision": "blocked_hidden_information",
       "exact_stage_or_allowed_stage_set": [
         "dependency_refs_bound",
@@ -3158,8 +3158,8 @@ The following YAML block is normative for PR-5H tests and future review.
       "blocking": true,
       "quarantined": false,
       "escalated": false,
-      "required_dependency": "hidden_information_ref or context_projection_ref when external hidden-information evidence is referenced",
-      "diagnostics_rule": "preserve lower-priority blockers in diagnostics"
+      "required_dependency": "for a dependency-based hidden-information blocker, the scoped dependency is required=True, satisfied=True, hidden_info_safe=False; separately referenced hidden-information evidence uses its lawful RT-005 dependency type",
+      "diagnostics_rule": "preserve every simultaneous lower-priority blocker, including missing or unsatisfied dependencies on other records"
     },
     {
       "precedence": 4,
@@ -3375,8 +3375,8 @@ The following YAML block is normative for PR-5H tests and future review.
       "field_family": "request field binding",
       "matching_record_required": "exactly one",
       "required_flag": "required=True",
-      "satisfied_true_posture": "State A complete binding; request structurally valid and may support non-blocking result if all other rules pass",
-      "satisfied_false_posture": "State B incomplete binding; request structurally valid but incomplete; any result reaching it must be blocked_missing_dependency",
+      "satisfied_true_posture": "State A complete binding; request structurally valid and may support non-blocking result if all other rules pass; hidden_info_safe=False on the same complete record can supply hidden-information blocker when scoped",
+      "satisfied_false_posture": "State B incomplete binding; request structurally valid but incomplete; any result reaching it must be blocked_missing_dependency; hidden_info_safe=False on the same record is diagnostic only and does not change the decision",
       "missing_malformed_posture": "State C aggregate-invalid before result construction",
       "permitted_result_decision": "blocked_missing_dependency when reached if satisfied=False; otherwise ordinary matrix",
       "proposal_eligibility": "not eligible while reached dependency is unsatisfied"
@@ -3387,7 +3387,7 @@ The following YAML block is normative for PR-5H tests and future review.
       "matching_record_required": "record must exist when named by dependency_ids or scope",
       "required_flag": "required=True for required named dependency",
       "satisfied_true_posture": "State A complete named dependency",
-      "satisfied_false_posture": "State D required-unsatisfied named dependency when named by a record or scope; structurally present but blocks result when reached",
+      "satisfied_false_posture": "State D required-unsatisfied named dependency when named by a record or scope; structurally present but blocks result when reached; hidden_info_safe=False on the same record is diagnostic only and does not change the decision",
       "missing_malformed_posture": "State C aggregate-invalid when missing, wrong type/reference, duplicate, or required=False for required named dependency",
       "permitted_result_decision": "blocked_missing_dependency when reached if satisfied=False",
       "proposal_eligibility": "not eligible while reached dependency is unsatisfied"
@@ -3419,8 +3419,8 @@ The following YAML block is normative for PR-5H tests and future review.
       "field_family": "scoped named dependency",
       "matching_record_required": "existing request/result dependency named by typed scope or scoped record",
       "required_flag": "required=True for required scoped dependency",
-      "satisfied_true_posture": "complete scoped dependency",
-      "satisfied_false_posture": "State D; forces blocked_missing_dependency when reached",
+      "satisfied_true_posture": "complete scoped dependency; hidden_info_safe=False on this otherwise-complete record supplies blocked_hidden_information",
+      "satisfied_false_posture": "State D; forces blocked_missing_dependency when reached; hidden_info_safe=False on the same unsatisfied record is retained diagnostically and does not replace blocked_missing_dependency",
       "missing_malformed_posture": "State C aggregate invalid because scoped references must resolve",
       "permitted_result_decision": "blocked_missing_dependency when satisfied=False; accepted/normalized require satisfied=True",
       "proposal_eligibility": "not eligible unless satisfied=True"
@@ -3431,7 +3431,7 @@ The following YAML block is normative for PR-5H tests and future review.
       "matching_record_required": "optional advisory record may exist only when unbound, unnamed, and unscoped",
       "required_flag": "required=False",
       "satisfied_true_posture": "advisory record is not a required binding and satisfies no required field",
-      "satisfied_false_posture": "State E advisory optional unsatisfied; may coexist with non-blocking result only when unbound, unnamed, and unscoped; satisfies nothing",
+      "satisfied_false_posture": "State E advisory optional unsatisfied; may coexist with non-blocking result only when unbound, unnamed, and unscoped; hidden_info_safe=False while genuinely State E creates no result blocker because it is outside typed scope; satisfies nothing",
       "missing_malformed_posture": "if used as a binding or named/scoped dependency it becomes State C invalid",
       "permitted_result_decision": "no result decision effect when truly advisory; invalid if used as required binding",
       "proposal_eligibility": "does not support proposal eligibility and cannot satisfy required proposal dependency"
@@ -3446,6 +3446,129 @@ The following YAML block is normative for PR-5H tests and future review.
       "missing_malformed_posture": "proposal aggregate invalid",
       "permitted_result_decision": "proposal only follows eligible accepted/normalized result; no blocked result may create proposal",
       "proposal_eligibility": "eligible only when every required proposal dependency is satisfied"
+    }
+  ],
+  "dependency_hidden_information_collision_matrix": [
+    {
+      "case": "same_record_unsatisfied_and_unsafe",
+      "dependency_arrangement": "one reached dependency record has required=True, satisfied=False, hidden_info_safe=False",
+      "structural_validity": "structurally valid only as State B request binding or State D named/scoped dependency; State C rules still reject missing, malformed, duplicate, or optional bindings",
+      "governing_lifecycle_state_or_states": [
+        "State B incomplete binding",
+        "State D required-unsatisfied named dependency"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "blocked_missing_dependency; not blocked_hidden_information for that same record because the dependency is not otherwise satisfied",
+      "stage_or_allowed_stage_set": [
+        "dependency_refs_bound",
+        "blocked_pending_validation",
+        "blocked_pending_owner_handoff"
+      ],
+      "blocking": true,
+      "quarantined": false,
+      "escalated": false,
+      "diagnostics_retention_rule": "retain hidden-information risk in diagnostics together with the missing-dependency finding",
+      "proposal_eligibility": "not eligible"
+    },
+    {
+      "case": "separate_complete_unsafe_and_unsatisfied",
+      "dependency_arrangement": "Dependency A has required=True, satisfied=True, hidden_info_safe=False; Dependency B has required=True, satisfied=False, hidden_info_safe=True",
+      "structural_validity": "both records resolve and are structurally valid; blockers occur on separate records",
+      "governing_lifecycle_state_or_states": [
+        "A complete unsafe dependency",
+        "B State B or State D missing dependency"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "blocked_hidden_information determines result because the valid hidden-information blocker is on a separate otherwise-complete record and has higher precedence",
+      "stage_or_allowed_stage_set": [
+        "dependency_refs_bound",
+        "blocked_pending_validation"
+      ],
+      "blocking": true,
+      "quarantined": false,
+      "escalated": false,
+      "diagnostics_retention_rule": "retain the missing-dependency finding for Dependency B; both records remain visible to internal validation; neither finding is discarded",
+      "proposal_eligibility": "not eligible"
+    },
+    {
+      "case": "separate_complete_unsafe_and_unsatisfied_unsafe",
+      "dependency_arrangement": "Dependency A has required=True, satisfied=True, hidden_info_safe=False; Dependency B has required=True, satisfied=False, hidden_info_safe=False",
+      "structural_validity": "both records resolve and are structurally valid when B is State B or State D; blockers occur on separate records",
+      "governing_lifecycle_state_or_states": [
+        "A complete unsafe dependency",
+        "B State B or State D missing dependency with diagnostic hidden risk"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "blocked_hidden_information determines result because Dependency A supplies the otherwise-complete unsafe blocker; Dependency B remains a missing-dependency blocker for its own record",
+      "stage_or_allowed_stage_set": [
+        "dependency_refs_bound",
+        "blocked_pending_validation"
+      ],
+      "blocking": true,
+      "quarantined": false,
+      "escalated": false,
+      "diagnostics_retention_rule": "retain hidden-information and missing-dependency findings for all records; neither finding is discarded",
+      "proposal_eligibility": "not eligible"
+    },
+    {
+      "case": "complete_unsafe",
+      "dependency_arrangement": "one reached dependency record has required=True, satisfied=True, hidden_info_safe=False",
+      "structural_validity": "structurally valid complete dependency",
+      "governing_lifecycle_state_or_states": [
+        "State A complete binding with hidden-information risk"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "blocked_hidden_information",
+      "stage_or_allowed_stage_set": [
+        "dependency_refs_bound",
+        "blocked_pending_validation"
+      ],
+      "blocking": true,
+      "quarantined": false,
+      "escalated": false,
+      "diagnostics_retention_rule": "retain hidden-information diagnostic for the unsafe dependency",
+      "proposal_eligibility": "not eligible"
+    },
+    {
+      "case": "complete_safe",
+      "dependency_arrangement": "one reached dependency record has required=True, satisfied=True, hidden_info_safe=True",
+      "structural_validity": "structurally valid complete dependency",
+      "governing_lifecycle_state_or_states": [
+        "State A complete binding"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "no dependency-derived hidden-information blocker",
+      "stage_or_allowed_stage_set": "ordinary compatibility matrix",
+      "blocking": false,
+      "quarantined": false,
+      "escalated": false,
+      "diagnostics_retention_rule": "no hidden-information diagnostic required by this dependency",
+      "proposal_eligibility": "eligible only if all other SettlementProposal rules pass"
+    },
+    {
+      "case": "advisory_optional_unscoped_unsafe",
+      "dependency_arrangement": "one dependency record has required=False, satisfied=False, hidden_info_safe=False and remains unbound, unnamed, and unscoped",
+      "structural_validity": "lawful only as State E advisory optional unsatisfied outside typed scope",
+      "governing_lifecycle_state_or_states": [
+        "State E advisory optional unsatisfied"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "no result blocker because it is outside typed scope and satisfies nothing",
+      "stage_or_allowed_stage_set": "ordinary compatibility matrix",
+      "blocking": false,
+      "quarantined": false,
+      "escalated": false,
+      "diagnostics_retention_rule": "no blocker diagnostic required; internal advisory diagnostics may note unsatisfied optional record",
+      "proposal_eligibility": "does not support eligibility and cannot satisfy required proposal dependency"
+    },
+    {
+      "case": "optional_bound_named_or_scoped",
+      "dependency_arrangement": "dependency record has required=False, satisfied=False and is bound, named, or scoped where a required dependency is expected",
+      "structural_validity": "not State E; aggregate-invalid State C",
+      "governing_lifecycle_state_or_states": [
+        "State C missing or malformed binding"
+      ],
+      "exact_result_decision_or_aggregate_rejection": "aggregate rejection before result construction; not a blocked result",
+      "stage_or_allowed_stage_set": "not applicable; no result constructed",
+      "blocking": "not applicable",
+      "quarantined": "not applicable",
+      "escalated": "not applicable",
+      "diagnostics_retention_rule": "report structural invalidity; do not convert to hidden-information or missing-dependency result decision",
+      "proposal_eligibility": "not eligible"
     }
   ]
 }
@@ -3509,7 +3632,7 @@ Exactly these ten future frozen keyword-only dataclasses are in scope; no other 
 | `owner_domain` | `str` | `required` | `RESOURCE_MATH_OWNER_DOMAINS` | `local controlled field` | `controlled owner domain for the dependency record` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `required` | `bool` | `True` | `none` | `local lifecycle flag` | `bool; controls whether the dependency is mandatory; required=False cannot satisfy required bindings and participates in lifecycle State C or E as specified` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `satisfied` | `bool` | `False` | `none` | `local lifecycle flag` | `bool; participates in lifecycle states A-E; required=True and satisfied=False is incomplete or required-unsatisfied, not malformed by itself` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
-| `hidden_info_safe` | `bool` | `True` | `none` | `local hidden-information flag` | `bool; False is distinct from unsatisfied; a scoped otherwise-satisfied dependency with False routes through blocked_hidden_information` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
+| `hidden_info_safe` | `bool` | `True` | `none` | `local hidden-information flag` | `bool; False is distinct from unsatisfied; dependency-derived blocked_hidden_information requires the same dependency record to be otherwise complete (required=True and satisfied=True); required=True and satisfied=False with hidden_info_safe=False remains State B or State D missing-dependency for that same record with hidden risk retained in diagnostics and does not replace blocked_missing_dependency` | `none` | `internal to_dict only; defensive scalar copy; no public projection authority` | `PR-5B inherited` | `none` |
 | `metadata` | `Mapping[str, object]` | `MappingProxyType({})` | `none` | `local metadata` | `immutable defensive metadata only; copied to MappingProxyType; no callables` | `none` | `defensive dict copy in internal to_dict; MappingProxyType internally` | `PR-5B inherited` | `none` |
 
 ### CostTerm
@@ -3695,7 +3818,7 @@ Dependency ownership remains separate: `request.dependencies` owns request/input
 The seven exact typed tuples are `referenced_subject_binding_ids`, `referenced_resource_ref_ids`, `referenced_quantity_ids`, `referenced_cost_term_ids`, `referenced_cost_bundle_ids`, `referenced_consequence_term_ids`, and `referenced_dependency_ids`. Each tuple contains unique non-empty IDs; every ID resolves in the supplied request; the combined typed scope cannot be entirely empty; accepted and normalized results require at least one scoped resource, quantity, cost term, cost bundle, or consequence term; subject or advisory dependency scope alone is insufficient; blocked results must scope an actual blocker; blocked_missing_dependency may be dependency-only when an existing request-level required-unsatisfied dependency is the blocker; bundle scope includes all contained terms; term scope includes applicable quantities and dependencies; all scoped references resolve even for blocked, quarantined, or escalated results; normalized_reference_ids remains diagnostic only.
 
 ## 9. Deterministic simultaneous-blocker precedence
-The exact simultaneous-blocker table is machine-readable in `simultaneous_blocker_table`. It states that doctrine_escalation_required maps exactly to `escalated_to_doctrine`, quarantine_required maps exactly to `quarantined_for_review`, owner_handoff_required maps exactly to `requires_owner_handoff`, hidden_info_safe=False maps exactly to `blocked_hidden_information`, State B and State D map to `blocked_missing_dependency`, and blocked_pending_numeric_choice maps exactly to `blocked_incompatible_policy` at `policy_refs_declared`. Lower-priority blockers remain in diagnostics even when a higher-priority blocker determines the result.
+The exact simultaneous-blocker table is machine-readable in `simultaneous_blocker_table`, and same-record/separate-record dependency hidden-information collisions are machine-readable in `dependency_hidden_information_collision_matrix`. Doctrine escalation, quarantine, and owner handoff still map exactly to their controlled decisions. Dependency-derived hidden information maps to `blocked_hidden_information` only when the unsafe dependency is otherwise complete (`required=True`, `satisfied=True`, `hidden_info_safe=False`) or when another independently valid hidden-information blocker exists. State B and State D on the same unsatisfied record map to `blocked_missing_dependency`; hidden risk on that same record is diagnostic and does not replace missing-dependency. Separate complete unsafe records retain hidden-information precedence over missing dependencies on other records, while every lower-priority finding remains in diagnostics.
 
 ## 10. Complete inherited CostBundle compatibility
 The full inherited PR-5D compatibility matrix, policy sets, and only PR-5F bound corrections are in the YAML block. Bool bounds are invalid; supplied bounds are positive integers; minimum and maximum are each `<= len(term_ids)`; minimum is `<= maximum`; all-or-nothing bounds are both `None` or both equal to `len(term_ids)`; PR-5A performs no selection or settlement execution; alternative groups are unique, contained, and non-overlapping unless later explicitly authorized; every unlisted atomicity/ordering/partial-settlement combination is invalid.
@@ -3719,7 +3842,7 @@ Create/validate parity is required for all ten shapes through the exact helper l
 | complete CostBundle compatibility surface | closed by the inherited PR-5D matrix plus only PR-5F bound corrections |
 | exact dependency lifecycle | closed by states A-E and ownership split |
 | exact typed-result-scope cardinality and closure | closed by seven tuple scope rules |
-| simultaneous blocker precedence | closed by machine-readable precedence table |
+| simultaneous blocker precedence | closed by machine-readable precedence table plus exact same-record and separate-record hidden-information/missing-dependency collision matrix |
 | universal source-literal consistency | closed by one source-literal contract plus exact lexical grammars |
 | request/result/proposal validation architecture | closed by direct aggregate signatures/order |
 | factory/validator parity | closed by explicit helper list and private-helper responsibility list |

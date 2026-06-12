@@ -713,8 +713,12 @@ EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate iden
                              'default': 'True',
                              'external_dependency_type': 'none',
                              'field': 'hidden_info_safe',
-                             'invariant': 'bool; False is distinct from unsatisfied; a scoped otherwise-satisfied '
-                                          'dependency with False routes through blocked_hidden_information',
+                             'invariant': 'bool; False is distinct from unsatisfied; dependency-derived '
+                                          'blocked_hidden_information requires the same dependency record to be '
+                                          'otherwise complete (required=True and satisfied=True); required=True and '
+                                          'satisfied=False with hidden_info_safe=False remains State B or State D '
+                                          'missing-dependency for that same record with hidden risk retained in '
+                                          'diagnostics and does not replace blocked_missing_dependency',
                              'replacement_artifact': 'none',
                              'serialization_posture': 'internal to_dict only; defensive scalar copy; no public '
                                                       'projection authority',
@@ -2732,17 +2736,21 @@ EXPECTED_BLOCKER_TABLE = [{'aggregate_validity_prerequisite': 'structural reques
   'quarantined': True,
   'required_dependency': 'none unless referenced fields independently require bindings',
   'trigger': 'policy_route == quarantine_required or quarantine route detected'},
- {'aggregate_validity_prerequisite': 'structural request valid; scoped dependency resolves',
+ {'aggregate_validity_prerequisite': 'structural request valid; the dependency record resolves; dependency-based '
+                                     'hidden-information blocking requires required=True and satisfied=True',
   'blocking': True,
-  'diagnostics_rule': 'preserve lower-priority blockers in diagnostics',
+  'diagnostics_rule': 'preserve every simultaneous lower-priority blocker, including missing or unsatisfied '
+                      'dependencies on other records',
   'escalated': False,
   'exact_decision': 'blocked_hidden_information',
   'exact_stage_or_allowed_stage_set': ['dependency_refs_bound', 'blocked_pending_validation'],
   'precedence': 3,
   'quarantined': False,
-  'required_dependency': 'hidden_information_ref or context_projection_ref when external hidden-information evidence '
-                         'is referenced',
-  'trigger': 'hidden_info_safe=False on a scoped dependency or hidden-information blocker'},
+  'required_dependency': 'for a dependency-based hidden-information blocker, the scoped dependency is required=True, '
+                         'satisfied=True, hidden_info_safe=False; separately referenced hidden-information evidence '
+                         'uses its lawful RT-005 dependency type',
+  'trigger': 'hidden_info_safe=False on a scoped dependency that is otherwise complete (required=True and '
+             'satisfied=True), or another independently valid hidden-information blocker'},
  {'aggregate_validity_prerequisite': 'State C missing/malformed binding rejected before result construction',
   'blocking': True,
   'diagnostics_rule': 'record all missing/unsatisfied dependency blockers and preserve lower-priority blockers',
@@ -2814,9 +2822,11 @@ EXPECTED_BINDING_STATE_MATRIX = [{'aggregate': 'request',
   'proposal_eligibility': 'not eligible while reached dependency is unsatisfied',
   'required_flag': 'required=True',
   'satisfied_false_posture': 'State B incomplete binding; request structurally valid but incomplete; any result '
-                             'reaching it must be blocked_missing_dependency',
+                             'reaching it must be blocked_missing_dependency; hidden_info_safe=False on the same '
+                             'record is diagnostic only and does not change the decision',
   'satisfied_true_posture': 'State A complete binding; request structurally valid and may support non-blocking result '
-                            'if all other rules pass'},
+                            'if all other rules pass; hidden_info_safe=False on the same complete record can supply '
+                            'hidden-information blocker when scoped'},
  {'aggregate': 'request',
   'field_family': 'request named dependency',
   'matching_record_required': 'record must exist when named by dependency_ids or scope',
@@ -2826,7 +2836,8 @@ EXPECTED_BINDING_STATE_MATRIX = [{'aggregate': 'request',
   'proposal_eligibility': 'not eligible while reached dependency is unsatisfied',
   'required_flag': 'required=True for required named dependency',
   'satisfied_false_posture': 'State D required-unsatisfied named dependency when named by a record or scope; '
-                             'structurally present but blocks result when reached',
+                             'structurally present but blocks result when reached; hidden_info_safe=False on the same '
+                             'record is diagnostic only and does not change the decision',
   'satisfied_true_posture': 'State A complete named dependency'},
  {'aggregate': 'result',
   'field_family': 'result request binding',
@@ -2859,8 +2870,11 @@ EXPECTED_BINDING_STATE_MATRIX = [{'aggregate': 'request',
                                'satisfied=True',
   'proposal_eligibility': 'not eligible unless satisfied=True',
   'required_flag': 'required=True for required scoped dependency',
-  'satisfied_false_posture': 'State D; forces blocked_missing_dependency when reached',
-  'satisfied_true_posture': 'complete scoped dependency'},
+  'satisfied_false_posture': 'State D; forces blocked_missing_dependency when reached; hidden_info_safe=False on the '
+                             'same unsatisfied record is retained diagnostically and does not replace '
+                             'blocked_missing_dependency',
+  'satisfied_true_posture': 'complete scoped dependency; hidden_info_safe=False on this otherwise-complete record '
+                            'supplies blocked_hidden_information'},
  {'aggregate': 'request/result',
   'field_family': 'advisory optional dependency',
   'matching_record_required': 'optional advisory record may exist only when unbound, unnamed, and unscoped',
@@ -2869,7 +2883,8 @@ EXPECTED_BINDING_STATE_MATRIX = [{'aggregate': 'request',
   'proposal_eligibility': 'does not support proposal eligibility and cannot satisfy required proposal dependency',
   'required_flag': 'required=False',
   'satisfied_false_posture': 'State E advisory optional unsatisfied; may coexist with non-blocking result only when '
-                             'unbound, unnamed, and unscoped; satisfies nothing',
+                             'unbound, unnamed, and unscoped; hidden_info_safe=False while genuinely State E creates '
+                             'no result blocker because it is outside typed scope; satisfies nothing',
   'satisfied_true_posture': 'advisory record is not a required binding and satisfies no required field'},
  {'aggregate': 'proposal',
   'field_family': 'proposal dependency',
@@ -2881,6 +2896,105 @@ EXPECTED_BINDING_STATE_MATRIX = [{'aggregate': 'request',
   'required_flag': 'required=True',
   'satisfied_false_posture': 'incomplete dependencies are forbidden in SettlementProposal',
   'satisfied_true_posture': 'complete proposal dependency; proposal may remain eligible if all other rules pass'}]
+EXPECTED_COLLISION_MATRIX = [{'blocking': True,
+  'case': 'same_record_unsatisfied_and_unsafe',
+  'dependency_arrangement': 'one reached dependency record has required=True, satisfied=False, hidden_info_safe=False',
+  'diagnostics_retention_rule': 'retain hidden-information risk in diagnostics together with the missing-dependency '
+                                'finding',
+  'escalated': False,
+  'exact_result_decision_or_aggregate_rejection': 'blocked_missing_dependency; not blocked_hidden_information for that '
+                                                  'same record because the dependency is not otherwise satisfied',
+  'governing_lifecycle_state_or_states': ['State B incomplete binding',
+                                          'State D required-unsatisfied named dependency'],
+  'proposal_eligibility': 'not eligible',
+  'quarantined': False,
+  'stage_or_allowed_stage_set': ['dependency_refs_bound',
+                                 'blocked_pending_validation',
+                                 'blocked_pending_owner_handoff'],
+  'structural_validity': 'structurally valid only as State B request binding or State D named/scoped dependency; State '
+                         'C rules still reject missing, malformed, duplicate, or optional bindings'},
+ {'blocking': True,
+  'case': 'separate_complete_unsafe_and_unsatisfied',
+  'dependency_arrangement': 'Dependency A has required=True, satisfied=True, hidden_info_safe=False; Dependency B has '
+                            'required=True, satisfied=False, hidden_info_safe=True',
+  'diagnostics_retention_rule': 'retain the missing-dependency finding for Dependency B; both records remain visible '
+                                'to internal validation; neither finding is discarded',
+  'escalated': False,
+  'exact_result_decision_or_aggregate_rejection': 'blocked_hidden_information determines result because the valid '
+                                                  'hidden-information blocker is on a separate otherwise-complete '
+                                                  'record and has higher precedence',
+  'governing_lifecycle_state_or_states': ['A complete unsafe dependency', 'B State B or State D missing dependency'],
+  'proposal_eligibility': 'not eligible',
+  'quarantined': False,
+  'stage_or_allowed_stage_set': ['dependency_refs_bound', 'blocked_pending_validation'],
+  'structural_validity': 'both records resolve and are structurally valid; blockers occur on separate records'},
+ {'blocking': True,
+  'case': 'separate_complete_unsafe_and_unsatisfied_unsafe',
+  'dependency_arrangement': 'Dependency A has required=True, satisfied=True, hidden_info_safe=False; Dependency B has '
+                            'required=True, satisfied=False, hidden_info_safe=False',
+  'diagnostics_retention_rule': 'retain hidden-information and missing-dependency findings for all records; neither '
+                                'finding is discarded',
+  'escalated': False,
+  'exact_result_decision_or_aggregate_rejection': 'blocked_hidden_information determines result because Dependency A '
+                                                  'supplies the otherwise-complete unsafe blocker; Dependency B '
+                                                  'remains a missing-dependency blocker for its own record',
+  'governing_lifecycle_state_or_states': ['A complete unsafe dependency',
+                                          'B State B or State D missing dependency with diagnostic hidden risk'],
+  'proposal_eligibility': 'not eligible',
+  'quarantined': False,
+  'stage_or_allowed_stage_set': ['dependency_refs_bound', 'blocked_pending_validation'],
+  'structural_validity': 'both records resolve and are structurally valid when B is State B or State D; blockers occur '
+                         'on separate records'},
+ {'blocking': True,
+  'case': 'complete_unsafe',
+  'dependency_arrangement': 'one reached dependency record has required=True, satisfied=True, hidden_info_safe=False',
+  'diagnostics_retention_rule': 'retain hidden-information diagnostic for the unsafe dependency',
+  'escalated': False,
+  'exact_result_decision_or_aggregate_rejection': 'blocked_hidden_information',
+  'governing_lifecycle_state_or_states': ['State A complete binding with hidden-information risk'],
+  'proposal_eligibility': 'not eligible',
+  'quarantined': False,
+  'stage_or_allowed_stage_set': ['dependency_refs_bound', 'blocked_pending_validation'],
+  'structural_validity': 'structurally valid complete dependency'},
+ {'blocking': False,
+  'case': 'complete_safe',
+  'dependency_arrangement': 'one reached dependency record has required=True, satisfied=True, hidden_info_safe=True',
+  'diagnostics_retention_rule': 'no hidden-information diagnostic required by this dependency',
+  'escalated': False,
+  'exact_result_decision_or_aggregate_rejection': 'no dependency-derived hidden-information blocker',
+  'governing_lifecycle_state_or_states': ['State A complete binding'],
+  'proposal_eligibility': 'eligible only if all other SettlementProposal rules pass',
+  'quarantined': False,
+  'stage_or_allowed_stage_set': 'ordinary compatibility matrix',
+  'structural_validity': 'structurally valid complete dependency'},
+ {'blocking': False,
+  'case': 'advisory_optional_unscoped_unsafe',
+  'dependency_arrangement': 'one dependency record has required=False, satisfied=False, hidden_info_safe=False and '
+                            'remains unbound, unnamed, and unscoped',
+  'diagnostics_retention_rule': 'no blocker diagnostic required; internal advisory diagnostics may note unsatisfied '
+                                'optional record',
+  'escalated': False,
+  'exact_result_decision_or_aggregate_rejection': 'no result blocker because it is outside typed scope and satisfies '
+                                                  'nothing',
+  'governing_lifecycle_state_or_states': ['State E advisory optional unsatisfied'],
+  'proposal_eligibility': 'does not support eligibility and cannot satisfy required proposal dependency',
+  'quarantined': False,
+  'stage_or_allowed_stage_set': 'ordinary compatibility matrix',
+  'structural_validity': 'lawful only as State E advisory optional unsatisfied outside typed scope'},
+ {'blocking': 'not applicable',
+  'case': 'optional_bound_named_or_scoped',
+  'dependency_arrangement': 'dependency record has required=False, satisfied=False and is bound, named, or scoped '
+                            'where a required dependency is expected',
+  'diagnostics_retention_rule': 'report structural invalidity; do not convert to hidden-information or '
+                                'missing-dependency result decision',
+  'escalated': 'not applicable',
+  'exact_result_decision_or_aggregate_rejection': 'aggregate rejection before result construction; not a blocked '
+                                                  'result',
+  'governing_lifecycle_state_or_states': ['State C missing or malformed binding'],
+  'proposal_eligibility': 'not eligible',
+  'quarantined': 'not applicable',
+  'stage_or_allowed_stage_set': 'not applicable; no result constructed',
+  'structural_validity': 'not State E; aggregate-invalid State C'}]
 EXPECTED_GRAMMARS = {'blocked_pending_numeric_choice': {'exact_grammar': '^\\S(?:.*\\S)?$ plus universal source_literal character contract',
                                     'explicit_exclusions': 'no empty string, no leading/trailing whitespace, blocks '
                                                            'progression',
@@ -3046,7 +3160,9 @@ def test_exact_ten_shape_complete_contract_matrix() -> None:
 
 def test_absence_of_aliases_and_exact_typed_scope_fields() -> None:
     text = doc_text()
-    assert "scoped_" not in text
+    forbidden_aliases = ["scoped_subject", "scoped_resource", "scoped_quantity", "scoped_cost", "scoped_bundle", "scoped_consequence", "scoped_dependency"]
+    for alias in forbidden_aliases:
+        assert alias not in text
     expected = [
         "referenced_subject_binding_ids",
         "referenced_resource_ref_ids",
@@ -3163,11 +3279,13 @@ def test_exact_simultaneous_blocker_table() -> None:
     assert table[0]["exact_decision"] == "escalated_to_doctrine"
     assert table[1]["exact_decision"] == "quarantined_for_review"
     assert table[2]["exact_decision"] == "blocked_hidden_information"
+    assert "otherwise complete" in table[2]["trigger"]
+    assert "required=True and satisfied=True" in table[2]["aggregate_validity_prerequisite"]
     assert table[3]["exact_decision"] == "blocked_missing_dependency"
     assert table[4]["exact_decision"] == "blocked_incompatible_policy"
     assert table[4]["exact_stage_or_allowed_stage_set"] == ["policy_refs_declared"]
     assert table[5]["exact_decision"] == "requires_owner_handoff"
-    assert "Lower-priority blockers remain in diagnostics" in doc_text()
+    assert "lower-priority" in doc_text() and "diagnostics" in doc_text()
     assert table[8]["diagnostics_rule"] == "normal diagnostics only"
 
 
@@ -3253,6 +3371,64 @@ def test_external_binding_invariants_allow_structural_incomplete_states() -> Non
     proposal_dependencies = shape_field_map("SettlementProposal")["dependencies"]["invariant"]
     assert "every required proposal dependency must be satisfied" in proposal_dependencies
     assert "incomplete dependencies are forbidden" in proposal_dependencies
+
+
+def test_dependency_hidden_information_collision_matrix_exact_cases() -> None:
+    matrix = contract()["dependency_hidden_information_collision_matrix"]
+    assert matrix == EXPECTED_COLLISION_MATRIX
+    rows = {row["case"]: row for row in matrix}
+    same = rows["same_record_unsatisfied_and_unsafe"]
+    assert same["exact_result_decision_or_aggregate_rejection"].startswith("blocked_missing_dependency")
+    assert "not blocked_hidden_information" in same["exact_result_decision_or_aggregate_rejection"]
+    assert same["stage_or_allowed_stage_set"] == ["dependency_refs_bound", "blocked_pending_validation", "blocked_pending_owner_handoff"]
+    assert same["blocking"] is True and same["quarantined"] is False and same["escalated"] is False
+    assert "hidden-information risk" in same["diagnostics_retention_rule"]
+    separate = rows["separate_complete_unsafe_and_unsatisfied"]
+    assert separate["exact_result_decision_or_aggregate_rejection"].startswith("blocked_hidden_information")
+    assert "missing-dependency finding" in separate["diagnostics_retention_rule"]
+    separate_unsafe = rows["separate_complete_unsafe_and_unsatisfied_unsafe"]
+    assert separate_unsafe["exact_result_decision_or_aggregate_rejection"].startswith("blocked_hidden_information")
+    assert "Dependency B remains a missing-dependency blocker" in separate_unsafe["exact_result_decision_or_aggregate_rejection"]
+    complete_unsafe = rows["complete_unsafe"]
+    assert complete_unsafe["exact_result_decision_or_aggregate_rejection"] == "blocked_hidden_information"
+    complete_safe = rows["complete_safe"]
+    assert complete_safe["exact_result_decision_or_aggregate_rejection"] == "no dependency-derived hidden-information blocker"
+    assert complete_safe["blocking"] is False
+    advisory = rows["advisory_optional_unscoped_unsafe"]
+    assert advisory["governing_lifecycle_state_or_states"] == ["State E advisory optional unsatisfied"]
+    assert advisory["exact_result_decision_or_aggregate_rejection"] == "no result blocker because it is outside typed scope and satisfies nothing"
+    optional_invalid = rows["optional_bound_named_or_scoped"]
+    assert optional_invalid["governing_lifecycle_state_or_states"] == ["State C missing or malformed binding"]
+    assert optional_invalid["exact_result_decision_or_aggregate_rejection"] == "aggregate rejection before result construction; not a blocked result"
+
+
+def test_hidden_information_collision_cross_section_consistency() -> None:
+    c = contract()
+    hidden_invariant = shape_field_map("ResourceMathDependency")["hidden_info_safe"]["invariant"]
+    assert "otherwise complete (required=True and satisfied=True)" in hidden_invariant
+    assert "required=True and satisfied=False" in hidden_invariant
+    assert "does not replace blocked_missing_dependency" in hidden_invariant
+    states = c["dependency_lifecycle_states"]
+    assert "does not replace blocked_missing_dependency" in states["B_incomplete_binding"]
+    assert "does not replace blocked_missing_dependency" in states["D_required_unsatisfied_named_dependency"]
+    assert "creates no result blocker" in states["E_advisory_optional_unsatisfied"]
+    binding_rows = {row["field_family"]: row for row in c["binding_state_matrix"]}
+    assert "hidden_info_safe=False on the same record is diagnostic only" in binding_rows["request field binding"]["satisfied_false_posture"]
+    assert "hidden_info_safe=False on this otherwise-complete record supplies blocked_hidden_information" in binding_rows["scoped named dependency"]["satisfied_true_posture"]
+    hidden_row = c["simultaneous_blocker_table"][2]
+    assert "otherwise complete" in hidden_row["trigger"]
+    assert "required=True, satisfied=True, hidden_info_safe=False" in hidden_row["required_dependency"]
+    collision_cases = {row["case"] for row in c["dependency_hidden_information_collision_matrix"]}
+    assert collision_cases == {
+        "same_record_unsatisfied_and_unsafe",
+        "separate_complete_unsafe_and_unsatisfied",
+        "separate_complete_unsafe_and_unsatisfied_unsafe",
+        "complete_unsafe",
+        "complete_safe",
+        "advisory_optional_unscoped_unsafe",
+        "optional_bound_named_or_scoped",
+    }
+    assert "same-record and separate-record hidden-information/missing-dependency collision matrix" in doc_text()
 
 
 def test_source_literals_negative_policies_and_no_evaluation() -> None:
