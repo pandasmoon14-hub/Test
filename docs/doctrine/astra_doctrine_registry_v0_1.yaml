@@ -592,7 +592,7 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
-- file_id: &pr5h_artifact RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+- file_id: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
   proposed_path: docs/doctrine/reviews/
   status: draft
@@ -717,7 +717,8 @@ file_records:
   review_only: true
   authority_level: tracking
   authority_note: Review-only tracking; confirms PR-5H closure and authorizes only the future narrow reference-only PR-5A skeleton; no execution, conversion, sourcebook, canon, model, live-play, UI, or owner-boundary expansion authority.
-  reviewed_pr_5h_artifact: *pr5h_artifact
+  reviewed_pr_5h_artifact: "RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-\
+    HARDENING-001"
   reviewed_pr_5h_file: docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
   closure_findings:
   - consolidated effective contract inventory: closed

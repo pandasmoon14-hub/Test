@@ -56,7 +56,7 @@ Examined PR-5H `authority_false_fields, false_only_fields`. Focused tests review
 Examined PR-5H `constants, future_shapes`. Focused tests reviewed: test_corpus_pressure_review_is_explicit. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 18. Implementation-derivability review
-Examined PR-5H `future_shapes, constants, helpers, validation, matrices, lifecycle, blockers`. Focused tests reviewed: . Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
+Examined PR-5H `future_shapes, constants, helpers, validation, matrices, lifecycle, blockers`. Focused tests reviewed: test_exact_ten_shape_complete_contract_matrix, test_all_controlled_surfaces_exact, test_dependency_ownership_lifecycle_and_bindings, test_typed_scope_cardinality_and_closure_rules_are_exact, test_exact_simultaneous_blocker_table, test_complete_costbundle_matrix_and_corrected_bounds, test_direct_request_result_proposal_architecture_and_eligibility, test_factory_validator_parity_and_private_helper_responsibilities. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
 
 ## 19. Test-quality review
 Examined PR-5H `PR-5H focused test functions`. Focused tests reviewed: test_exact_ten_shape_complete_contract_matrix, test_all_controlled_surfaces_exact, test_dependency_ownership_lifecycle_and_bindings, test_typed_scope_cardinality_and_closure_rules_are_exact, test_exact_simultaneous_blocker_table, test_quantity_lexical_grammars_and_execution_bans_exact, test_complete_costbundle_matrix_and_corrected_bounds, test_direct_request_result_proposal_architecture_and_eligibility, test_factory_validator_parity_and_private_helper_responsibilities, test_classification_authority_fields_match_registry_and_are_complete, test_corpus_pressure_review_is_explicit. Doctrine, machine data, and tests agree; no material contradiction or residual implementation choice remains. Gate effect: supports `AUTHORIZE_PR_5A` while keeping PR-5I review-only and subordinate to PR-5H.
@@ -2023,7 +2023,18 @@ The LLM is not the game engine. References are not calculations. Results are not
     "all_implementation_relevant_contract_surfaces_unambiguous": true,
     "material_contradictions_remaining": false,
     "guessed_behavior_required": false,
-    "pr_5a_invention_required": false
+    "pr_5a_invention_required": false,
+    "focused_test_functions": [
+      "test_exact_ten_shape_complete_contract_matrix",
+      "test_all_controlled_surfaces_exact",
+      "test_dependency_ownership_lifecycle_and_bindings",
+      "test_typed_scope_cardinality_and_closure_rules_are_exact",
+      "test_exact_simultaneous_blocker_table",
+      "test_complete_costbundle_matrix_and_corrected_bounds",
+      "test_direct_request_result_proposal_architecture_and_eligibility",
+      "test_factory_validator_parity_and_private_helper_responsibilities"
+    ],
+    "gate_effect": "supports_AUTHORIZE_PR_5A"
   },
   "risk_ledger": [
     {

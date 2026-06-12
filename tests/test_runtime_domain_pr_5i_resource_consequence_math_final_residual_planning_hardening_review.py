@@ -71,6 +71,27 @@ PR5H_TEST_NAMES = {
     "test_resource_math_result_has_no_resource_math_result_ref_self_binding",
 }
 
+CRITICAL_IMPLEMENTATION_DERIVABILITY_TESTS = {
+    "test_exact_ten_shape_complete_contract_matrix",
+    "test_all_controlled_surfaces_exact",
+    "test_dependency_ownership_lifecycle_and_bindings",
+    "test_typed_scope_cardinality_and_closure_rules_are_exact",
+    "test_exact_simultaneous_blocker_table",
+    "test_complete_costbundle_matrix_and_corrected_bounds",
+    "test_direct_request_result_proposal_architecture_and_eligibility",
+    "test_factory_validator_parity_and_private_helper_responsibilities",
+}
+CRITICAL_IMPLEMENTATION_SOURCE_KEYS = {
+    "future_shapes",
+    "constants",
+    "public_helpers",
+    "private_helper_responsibilities",
+    "direct_validation_signatures",
+    "cost_bundle_matrix",
+    "dependency_lifecycle_states",
+    "simultaneous_blocker_table",
+}
+
 
 def text() -> str:
     return DOC.read_text(encoding="utf-8")
@@ -103,6 +124,13 @@ def pr5i_registry_record() -> dict:
     records = [record for record in registry_records() if record.get("file_id") == ARTIFACT_ID]
     assert len(records) == 1
     return records[0]
+
+
+def raw_pr5i_registry_record_text() -> str:
+    registry = REGISTRY.read_text(encoding="utf-8")
+    start = registry.index(f"- file_id: {ARTIFACT_ID}")
+    following = registry.find("\n- file_id:", start + 1)
+    return registry[start:] if following == -1 else registry[start:following]
 
 
 def decision_yaml() -> dict:
@@ -326,9 +354,17 @@ def test_21_corpus_family_pressure_is_reviewed() -> None:
 def test_22_implementation_derivability_is_reviewed() -> None:
     data = contract()["implementation_derivability_finding"]
     assert data["finding"] == "derivable_without_new_doctrine_decision"
+    assert data["authoritative_source_file"] == REVIEWED_FILE
+    assert data["authoritative_source_block"] == "pr5h_effective_contract"
     assert set(data["authoritative_source_keys"]).issubset(pr5h_contract().keys())
+    assert CRITICAL_IMPLEMENTATION_SOURCE_KEYS.issubset(set(data["authoritative_source_keys"]))
+    assert data["focused_test_functions"]
+    assert set(data["focused_test_functions"]).issubset(PR5H_TEST_NAMES)
+    assert CRITICAL_IMPLEMENTATION_DERIVABILITY_TESTS.issubset(set(data["focused_test_functions"]))
     assert data["pr_5a_can_derive_reference_only_skeleton"] is True
     assert data["material_contradictions_remaining"] is False
+    assert data["pr_5a_invention_required"] is False
+    assert data["gate_effect"] == "supports_AUTHORIZE_PR_5A"
     assert data["guessed_behavior_required"] is False
 
 
@@ -404,6 +440,11 @@ def test_30_registry_contains_exactly_one_complete_pr5i_record() -> None:
     assert record["implementation_status"] == "review_only"
     assert record["reviewed_pr_5h_artifact"] == REVIEWED_ID
     assert record["reviewed_pr_5h_file"] == REVIEWED_FILE
+    raw_record = raw_pr5i_registry_record_text()
+    assert "reviewed_pr_5h_artifact:" in raw_record
+    assert "*pr5h_artifact" not in raw_record
+    assert "&pr5h_artifact" not in REGISTRY.read_text(encoding="utf-8")
+    assert "*pr5h_artifact" not in REGISTRY.read_text(encoding="utf-8")
 
 
 def test_31_registry_lists_are_non_empty_strings() -> None:
@@ -478,9 +519,23 @@ def test_38_review_contract_cross_checks_multiple_pr5h_machine_surfaces() -> Non
 
 def test_39_review_sections_are_present_and_non_boilerplate() -> None:
     body = text()
+    section_bodies: list[str] = []
     for number in range(1, 21):
         assert f"## {number}." in body
-    assert body.count("Doctrine, machine data, and tests agree") >= 16
+    for number in range(4, 20):
+        match = re.search(rf"## {number}\. .*?\n(.*?)(?=\n## {number + 1}\. )", body, re.DOTALL)
+        assert match, f"Missing section {number}"
+        section = match.group(1).strip()
+        section_bodies.append(section)
+        assert re.search(r"Examined PR-5H `[^`]+`", section), section
+        focused = re.search(r"Focused tests reviewed: ([^.]+)\.", section)
+        assert focused, section
+        assert focused.group(1).strip(), section
+        assert "Finding:" in section or "Doctrine, machine data, and tests agree" in section
+        assert "Gate effect:" in section
+        for placeholder in ["Focused tests reviewed: .", "Focused tests reviewed:\n", "TBD", "TODO"]:
+            assert placeholder not in section
+    assert len(set(section_bodies)) == len(section_bodies)
     assert "## Machine-readable review contract" in body
     assert "## Gate decision" in body
 
