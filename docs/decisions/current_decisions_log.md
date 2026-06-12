@@ -3052,3 +3052,33 @@ runtime_domain_pr_5g_decision:
   conversion_authorized_by_this_pr: false
   canon_promotion_authorized_by_this_pr: false
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+
+**Date:** 2026-06-11
+
+### Decision
+
+PR-5H is recorded as planning-only final residual hardening for RT-002 resource and consequence math. It closes the eight remaining PR-5G defects: consolidated effective contract inventory; complete CostBundle compatibility surface; exact dependency lifecycle; exact typed-result-scope cardinality and closure; simultaneous blocker precedence; universal source-literal consistency; request/result/proposal validation architecture; and factory/validator parity.
+
+### Implication
+
+PR-5A remains blocked and unauthorized. PR-5H grants no implementation authority, runtime code, domain code, calculation, affordability execution, consequence application, settlement, state mutation, event commitment, persistence, RNG execution, model integration, conversion, or canon promotion. The only next step authorized by PR-5H is **RUNTIME-DOMAIN-PR-5I: Resource and Consequence Math Final Residual Planning Hardening Review Gate**.
+
+PRs #278 and #279 were abandoned, not merged, and are non-authoritative. They are not a base, precedent, doctrine source, or test source for PR-5H.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5h_decision:
+  artifact_type: final_residual_planning_hardening
+  planning_only: true
+  closes_eight_pr_5g_defects: true
+  pr_5a_blocked: true
+  pr_5a_authorized: false
+  pr_5i_only_next_step: true
+  no_implementation_authority: true
+  abandoned_prs_278_279_non_authoritative: true
+```

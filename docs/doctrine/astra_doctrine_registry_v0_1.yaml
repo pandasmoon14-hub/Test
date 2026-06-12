@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-11'
+  version: 0.1.90
+  action: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added PR-5H resource and consequence math final residual planning hardening tracking. Planning-only; RT-002 ownership; closes the eight PR-5G residual defects with one effective ten-shape contract, complete CostBundle compatibility, dependency lifecycle, typed-scope closure, blocker precedence, universal source-literal rules, direct aggregate validation, and factory/validator parity; PR-5A remains unauthorized and blocked; PR-5I is the sole next step; all non-authority fields remain false.
+- date: '2026-06-11'
   version: 0.1.89
   action: runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -582,6 +587,116 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+  filename: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
+  proposed_path: docs/doctrine/reviews/
+  status: draft
+  layer: 0_control
+  phase: runtime-domain
+  owner: RT-002
+  purpose: Track PR-5H final residual planning hardening that closes the eight remaining PR-5G defects before PR-5I review.
+  batch: runtime-domain
+  series: runtime-domain-pr-5h
+  content_type: final_residual_planning_hardening
+  implementation_status: planning_only
+  planning_only: true
+  authority_level: tracking
+  authority_note: Planning-only; RT-002 ownership; PR-5A unauthorized and blocked; PR-5I is the sole next step; no implementation authority.
+  follows:
+  - runtime-domain-pr-5g residual planning hardening review gate
+  closes_pr_5g_defects:
+  - consolidated effective contract inventory
+  - complete CostBundle compatibility surface
+  - exact dependency lifecycle
+  - exact typed-result-scope cardinality and closure
+  - simultaneous blocker precedence
+  - universal source-literal consistency
+  - request/result/proposal validation architecture
+  - factory/validator parity
+  rt_002_ownership: true
+  pr_5a_authorized: false
+  pr_5a_blocked: true
+  pr_5i_only_next_step: true
+  no_implementation_authority: true
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  reservation_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  mutation_authorized_by_this_pr: false
+  state_delta_application_authorized_by_this_pr: false
+  transaction_execution_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  event_append_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  replay_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  table_oracle_execution_authorized_by_this_pr: false
+  model_authority_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  live_play_authorized_by_this_pr: false
+  ui_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+  owns:
+  - Effective planning-only ten-shape field/default matrix, constants, dependency lifecycle, typed result scope, blocker precedence, CostBundle matrix, direct aggregate validation, SettlementProposal eligibility, factory/validator parity, PR-5G closure ledger, and PR-5I-only gate classification.
+  must_not_own:
+  - Runtime/domain implementation modules, formulas, evaluators, resource_consequence_math.py, calculations, affordability execution, settlement, state mutation, event commitment, persistence, RNG/table execution, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  dependencies:
+  - runtime-domain-pr-5g residual planning hardening review gate
+  - runtime-domain-pr-5f residual planning hardening
+  - runtime-domain-pr-5d final planning hardening
+  - runtime-domain-pr-5b planning hardening
+  - RT-002
+  blocked_by: []
+  unlocks:
+  - RUNTIME-DOMAIN-PR-5I resource and consequence math final residual planning hardening review gate
+  downstream_consumers:
+  - RUNTIME-DOMAIN-PR-5I
+  donor_pressure_absorbed:
+  - Fantasy resource pools, costs, spell-like expenditures, injuries, and recovery pressures may be received for declaration, source-local retention, owner handoff, quarantine, or escalation without becoming Astra default mechanics.
+  - Science-fiction energy, ammunition, shields, logistics, vehicles, implants, and platform resources may be mapped only through the PR-5H planning contract, source-local retention, owner handoff, quarantine, or escalation.
+  - Cultivation qi, essence, meridians, breakthroughs, tribulations, bottlenecks, and backlash pressures remain donor/source-local or route to owner handoff, quarantine, or escalation rather than becoming Astra-wide pools.
+  - Class, archetype, profession, career, and point-buy cost structures may be declared as planning inputs while ability, progression, and economy semantics remain source-local or owner-routed.
+  - Narrative currencies, tags, aspects, stress, sanity, corruption, doom, and investigation tracks may be retained as source-local declarations or routed to handoff, quarantine, or escalation without adopting donor law.
+  - Cyberware, biotech, psionic, relic, companion, summon, crafting, salvage, requisition, mission, faction, and debt consequences may be declared or proposed only within PR-5H planning boundaries and owner-routed when semantics exceed RT-002.
+  - Source-local cosmology and unusual donor economies are accepted for declaration, source-local retention, handoff, quarantine, or escalation, not automatic Astra canon.
+  - Persistent campaign consequences and generated-content provenance pressures remain non-executable planning pressure and route through provenance, state-delta review, source-local retention, quarantine, or escalation as applicable.
+  hard_refusals:
+  - Planning-only; no executable behavior, no runtime or domain implementation authority, and no resource_consequence_math.py creation.
+  - No resource calculation, formula execution, affordability execution, reservation execution, settlement execution, consequence application, state mutation, or state-delta application.
+  - No transaction execution, event append, event commitment, persistence, replay, RNG execution, or table/oracle execution.
+  - No model authority, model integration, live-play authority, UI authority, conversion authorization, sourcebook inclusion, or canon promotion.
+  - No donor vocabulary, economy, cosmology, resource pool, class model, progression assumption, or unusual donor economy becomes Astra default law through PR-5H.
+  - No public projection, redaction bypass, hidden-information release outside RT-005, and no cross-owner authority capture by RT-002.
+  escalation_triggers:
+  - A donor resource, cost, quantity, consequence, unit, or policy cannot map into the ten-shape planning contract without inventing a new field, constant, shape, authority, or lifecycle state.
+  - Required numeric, unit, conversion, rounding, expression, affordability, reservation, settlement, mutation, event, persistence, replay, RNG, or table semantics are not owned by RT-002.
+  - A construct requires actual calculation, formula execution, affordability execution, reservation, settlement, mutation, event commitment, persistence, replay, RNG, table execution, or other executable behavior.
+  - Hidden information, redaction, public projection, or visibility partitioning requires RT-005 ownership.
+  - Combat, hazard, damage, injury, or recovery semantics require RT-003 ownership.
+  - Ability, effect, spell, technique, cyberware, biotech, psionic, relic, or similar power semantics require RT-004 or another declared owner.
+  - Mission, clue, reward, social, faction, inventory, vehicle, platform, generated-content, or persistence semantics belong to another runtime owner.
+  - Source-local donor metaphysics, cosmology, or economy would otherwise become Astra-wide doctrine.
+  - An external dependency owner is absent, contradictory, insufficiently specified, or conflicts with doctrine or owner specifications.
+  - Lawful mapping requires quarantine, canon-level adoption, or doctrine escalation rather than local normalization.
+  required_tests:
+  - tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - PR-5I review acceptance before PR-5A implementation may be authorized
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: planning_review_only
+  live_play_relevance: none
+  notes: PR-5H is planning-only; PR-5A remains unauthorized and blocked; PR-5I is the sole next step; no implementation authority; PRs #278 and #279 are abandoned, unmerged, and non-authoritative.
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5I resource and consequence math final residual planning hardening review gate
+  next_step_status: review_gate_only
 - file_id: RUNTIME-DOMAIN-PR-5G-RESOURCE-CONSEQUENCE-MATH-RESIDUAL-PLANNING-HARDENING-REVIEW-001
   filename: runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.md
   proposed_path: docs/doctrine/reviews/
