@@ -3082,3 +3082,71 @@ runtime_domain_pr_5h_decision:
   no_implementation_authority: true
   abandoned_prs_278_279_non_authoritative: true
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5I-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-REVIEW-001
+
+**Date:** 2026-06-12
+
+### Decision
+
+PR-5I is recorded as a review-only final residual planning hardening review gate for RT-002 resource and consequence math. It reviews **RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001** on current main and does not use abandoned PRs #278 or #279 as authority.
+
+PR-5I finds all eight PR-5G defects closed by PR-5H: consolidated effective contract inventory; complete CostBundle compatibility surface; exact dependency lifecycle; exact typed-result-scope cardinality and closure; simultaneous blocker precedence; universal source-literal consistency; request/result/proposal validation architecture; and factory/validator parity.
+
+### Implication
+
+Selected gate outcome: **AUTHORIZE_PR_5A**. PR-5A is authorized as the sole next step only for the future narrow reference-only skeleton: immutable frozen keyword-only shapes, exact constants, exact factories and validators, internal defensive serialization, domain exports, and focused tests.
+
+PR-5I itself creates no runtime/domain code and authorizes no formulas, arithmetic, expression parsing or evaluation, final resource pools or values, currencies or economies, affordability, reservation, settlement, consequence application, state mutation or delta application, transaction execution, event append or commitment, persistence, replay, RNG/table execution, combat, abilities, inventory, mission or social mechanics, public projection or redaction, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion. No owner boundary is expanded.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5i_decision:
+  date: '2026-06-12'
+  artifact_type: final_residual_planning_hardening_review_gate
+  implementation_status: review_only
+  reviewed_pr_5h_artifact: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+  reviewed_pr_5h_file: docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
+  closure_findings:
+    consolidated effective contract inventory: closed
+    complete CostBundle compatibility surface: closed
+    exact dependency lifecycle: closed
+    exact typed-result-scope cardinality and closure: closed
+    simultaneous blocker precedence: closed
+    universal source-literal consistency: closed
+    request/result/proposal validation architecture: closed
+    factory/validator parity: closed
+  selected_gate_outcome: AUTHORIZE_PR_5A
+  pr_5h_accepted: true
+  pr_5a_authorized_as_sole_next_step: true
+  pr_5a_status: narrow_reference_only_skeleton_authorized
+  exactly_one_next_step: true
+  next_step_authorized: RUNTIME-DOMAIN-PR-5A Resource and Consequence Math Skeleton Implementation
+  runtime_code_authorized_by_this_pr: false
+  domain_code_authorized_by_this_pr: false
+  calculation_authorized_by_this_pr: false
+  affordability_execution_authorized_by_this_pr: false
+  reservation_authorized_by_this_pr: false
+  settlement_authorized_by_this_pr: false
+  consequence_application_authorized_by_this_pr: false
+  mutation_authorized_by_this_pr: false
+  state_delta_application_authorized_by_this_pr: false
+  transaction_execution_authorized_by_this_pr: false
+  event_commitment_authorized_by_this_pr: false
+  event_append_authorized_by_this_pr: false
+  persistence_authorized_by_this_pr: false
+  replay_authorized_by_this_pr: false
+  rng_execution_authorized_by_this_pr: false
+  table_oracle_execution_authorized_by_this_pr: false
+  model_authority_authorized_by_this_pr: false
+  model_integration_authorized_by_this_pr: false
+  live_play_authorized_by_this_pr: false
+  ui_authorized_by_this_pr: false
+  conversion_authorized_by_this_pr: false
+  sourcebook_inclusion_authorized_by_this_pr: false
+  canon_promotion_authorized_by_this_pr: false
+  no_canon_or_conversion_authority: true
+```
