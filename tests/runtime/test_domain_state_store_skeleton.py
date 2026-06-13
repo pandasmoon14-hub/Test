@@ -293,6 +293,7 @@ class TestGuardrailsDomainPackage:
             "event_commitment.py",
             "validation_integration.py",
             "resource_consequence_math.py",
+            "context_packet_compiler.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))
