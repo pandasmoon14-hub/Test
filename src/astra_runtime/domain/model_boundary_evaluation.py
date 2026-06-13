@@ -714,3 +714,583 @@ def evaluate_model_boundary_suite(
         violation_counts=sorted_violation_counts,
         metadata=suite.metadata,
     )
+
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 3 — Expected Boundary Assertion Layer
+# ---------------------------------------------------------------------------
+
+_CASE_ASSERTION_MISMATCH_CODES = frozenset({
+    "status_mismatch",
+    "passed_flag_mismatch",
+    "violation_codes_mismatch",
+    "forbidden_field_hits_mismatch",
+    "packet_warning_refs_mismatch",
+})
+
+_SUITE_ASSERTION_MISMATCH_CODES = frozenset({
+    "total_cases_mismatch",
+    "passed_cases_mismatch",
+    "failed_cases_mismatch",
+    "needs_review_cases_mismatch",
+    "all_passed_mismatch",
+    "status_counts_mismatch",
+    "violation_counts_mismatch",
+})
+
+
+class ModelBoundaryAssertionError(ModelBoundaryEvaluationError):
+    """Raised for malformed expectation/assertion construction.
+
+    Not used for normal assertion failures; those are reported through
+    immutable assertion result objects.
+    """
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryExpectedCaseOutcome:
+    """Immutable expected outcome for a single model-boundary case.
+
+    Declares what a captured or constructed ``ModelBoundaryEvaluationResult``
+    should look like. Does not call models or execute runtime behavior.
+    """
+
+    expectation_ref: str
+    expected_status: str
+    expected_passed: bool
+    expected_violation_codes: tuple[str, ...] = field(default_factory=tuple)
+    expected_forbidden_field_hits: tuple[str, ...] = field(default_factory=tuple)
+    expected_packet_warning_refs: tuple[str, ...] = field(default_factory=tuple)
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryAssertionError
+
+        _validate_non_empty_string(
+            self.expectation_ref, "expectation_ref", error_cls
+        )
+
+        _validate_non_empty_string(self.expected_status, "expected_status", error_cls)
+        if self.expected_status not in MODEL_BOUNDARY_STATUS_VALUES:
+            raise error_cls(
+                f"unknown expected_status: {self.expected_status!r}; "
+                f"expected one of {sorted(MODEL_BOUNDARY_STATUS_VALUES)}"
+            )
+
+        if not isinstance(self.expected_passed, bool):
+            raise error_cls("expected_passed must be a bool")
+
+        safe_violations = _normalize_string_tuple(
+            self.expected_violation_codes, "expected_violation_codes", error_cls
+        )
+        safe_violations = tuple(sorted(safe_violations))
+        for code in safe_violations:
+            if code not in MODEL_BOUNDARY_VIOLATION_CODES:
+                raise error_cls(f"unknown violation_code: {code!r}")
+
+        safe_forbidden_hits = _normalize_string_tuple(
+            self.expected_forbidden_field_hits,
+            "expected_forbidden_field_hits",
+            error_cls,
+        )
+        safe_forbidden_hits = tuple(sorted(safe_forbidden_hits))
+
+        safe_warning_refs = _normalize_string_tuple(
+            self.expected_packet_warning_refs,
+            "expected_packet_warning_refs",
+            error_cls,
+        )
+        safe_warning_refs = tuple(sorted(safe_warning_refs))
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "expected_violation_codes", safe_violations)
+        object.__setattr__(
+            self, "expected_forbidden_field_hits", safe_forbidden_hits
+        )
+        object.__setattr__(
+            self, "expected_packet_warning_refs", safe_warning_refs
+        )
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCaseAssertionResult:
+    """Immutable result of asserting an expected case outcome.
+
+    Reports deterministic comparison details without executing models or
+    mutating the underlying evaluation result.
+    """
+
+    expectation_ref: str
+    case_ref: str
+    assertion_passed: bool
+    mismatch_codes: tuple[str, ...]
+    expected_status: str
+    actual_status: str
+    expected_passed: bool
+    actual_passed: bool
+    expected_violation_codes: tuple[str, ...]
+    actual_violation_codes: tuple[str, ...]
+    expected_forbidden_field_hits: tuple[str, ...]
+    actual_forbidden_field_hits: tuple[str, ...]
+    expected_packet_warning_refs: tuple[str, ...]
+    actual_packet_warning_refs: tuple[str, ...]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryAssertionError
+
+        _validate_non_empty_string(
+            self.expectation_ref, "expectation_ref", error_cls
+        )
+        _validate_non_empty_string(self.case_ref, "case_ref", error_cls)
+
+        if not isinstance(self.assertion_passed, bool):
+            raise error_cls("assertion_passed must be a bool")
+
+        for name, value in (
+            ("expected_status", self.expected_status),
+            ("actual_status", self.actual_status),
+        ):
+            _validate_non_empty_string(value, name, error_cls)
+            if value not in MODEL_BOUNDARY_STATUS_VALUES:
+                raise error_cls(
+                    f"unknown {name}: {value!r}; "
+                    f"expected one of {sorted(MODEL_BOUNDARY_STATUS_VALUES)}"
+                )
+
+        for name, value in (
+            ("expected_passed", self.expected_passed),
+            ("actual_passed", self.actual_passed),
+        ):
+            if not isinstance(value, bool):
+                raise error_cls(f"{name} must be a bool")
+
+        safe_mismatch_codes = _normalize_string_tuple(
+            self.mismatch_codes, "mismatch_codes", error_cls
+        )
+        safe_mismatch_codes = tuple(sorted(safe_mismatch_codes))
+        for code in safe_mismatch_codes:
+            if code not in _CASE_ASSERTION_MISMATCH_CODES:
+                raise error_cls(f"unknown mismatch_code: {code!r}")
+
+        expected_violations = _normalize_string_tuple(
+            self.expected_violation_codes, "expected_violation_codes", error_cls
+        )
+        expected_violations = tuple(sorted(expected_violations))
+        for code in expected_violations:
+            if code not in MODEL_BOUNDARY_VIOLATION_CODES:
+                raise error_cls(f"unknown expected_violation_codes: {code!r}")
+
+        actual_violations = _normalize_string_tuple(
+            self.actual_violation_codes, "actual_violation_codes", error_cls
+        )
+        actual_violations = tuple(sorted(actual_violations))
+        for code in actual_violations:
+            if code not in MODEL_BOUNDARY_VIOLATION_CODES:
+                raise error_cls(f"unknown actual_violation_codes: {code!r}")
+
+        expected_hits = _normalize_string_tuple(
+            self.expected_forbidden_field_hits,
+            "expected_forbidden_field_hits",
+            error_cls,
+        )
+        expected_hits = tuple(sorted(expected_hits))
+
+        actual_hits = _normalize_string_tuple(
+            self.actual_forbidden_field_hits,
+            "actual_forbidden_field_hits",
+            error_cls,
+        )
+        actual_hits = tuple(sorted(actual_hits))
+
+        expected_warnings = _normalize_string_tuple(
+            self.expected_packet_warning_refs,
+            "expected_packet_warning_refs",
+            error_cls,
+        )
+        expected_warnings = tuple(sorted(expected_warnings))
+
+        actual_warnings = _normalize_string_tuple(
+            self.actual_packet_warning_refs,
+            "actual_packet_warning_refs",
+            error_cls,
+        )
+        actual_warnings = tuple(sorted(actual_warnings))
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "mismatch_codes", safe_mismatch_codes)
+        object.__setattr__(self, "expected_violation_codes", expected_violations)
+        object.__setattr__(self, "actual_violation_codes", actual_violations)
+        object.__setattr__(self, "expected_forbidden_field_hits", expected_hits)
+        object.__setattr__(self, "actual_forbidden_field_hits", actual_hits)
+        object.__setattr__(
+            self, "expected_packet_warning_refs", expected_warnings
+        )
+        object.__setattr__(self, "actual_packet_warning_refs", actual_warnings)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_expected_case_outcome(
+    *,
+    expectation_ref: str,
+    expected_status: str,
+    expected_passed: bool,
+    expected_violation_codes: Sequence[str] = (),
+    expected_forbidden_field_hits: Sequence[str] = (),
+    expected_packet_warning_refs: Sequence[str] = (),
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryExpectedCaseOutcome:
+    """Construct and validate a ModelBoundaryExpectedCaseOutcome.
+
+    Raises ModelBoundaryAssertionError on invalid input.
+    """
+    return ModelBoundaryExpectedCaseOutcome(
+        expectation_ref=expectation_ref,
+        expected_status=expected_status,
+        expected_passed=expected_passed,
+        expected_violation_codes=expected_violation_codes,
+        expected_forbidden_field_hits=expected_forbidden_field_hits,
+        expected_packet_warning_refs=expected_packet_warning_refs,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def assert_model_boundary_case_result(
+    *,
+    expectation: ModelBoundaryExpectedCaseOutcome,
+    actual_result: ModelBoundaryEvaluationResult,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCaseAssertionResult:
+    """Compare an expected case outcome against an actual case result.
+
+    Returns an immutable ``ModelBoundaryCaseAssertionResult``. Does not call
+    models, execute prompts, or mutate inputs.
+    """
+    error_cls = ModelBoundaryAssertionError
+
+    if not isinstance(expectation, ModelBoundaryExpectedCaseOutcome):
+        raise error_cls(
+            "expectation must be a ModelBoundaryExpectedCaseOutcome instance"
+        )
+    if not isinstance(actual_result, ModelBoundaryEvaluationResult):
+        raise error_cls(
+            "actual_result must be a ModelBoundaryEvaluationResult instance"
+        )
+
+    mismatches: list[str] = []
+    if expectation.expected_status != actual_result.status:
+        mismatches.append("status_mismatch")
+    if expectation.expected_passed != actual_result.passed:
+        mismatches.append("passed_flag_mismatch")
+    if expectation.expected_violation_codes != actual_result.violation_codes:
+        mismatches.append("violation_codes_mismatch")
+    if expectation.expected_forbidden_field_hits != actual_result.forbidden_field_hits:
+        mismatches.append("forbidden_field_hits_mismatch")
+    if expectation.expected_packet_warning_refs != actual_result.packet_warning_refs:
+        mismatches.append("packet_warning_refs_mismatch")
+
+    safe_metadata = _safe_frozen_mapping(
+        metadata if metadata is not None else {}, error_cls
+    )
+
+    return ModelBoundaryCaseAssertionResult(
+        expectation_ref=expectation.expectation_ref,
+        case_ref=actual_result.case_ref,
+        assertion_passed=len(mismatches) == 0,
+        mismatch_codes=tuple(sorted(mismatches)),
+        expected_status=expectation.expected_status,
+        actual_status=actual_result.status,
+        expected_passed=expectation.expected_passed,
+        actual_passed=actual_result.passed,
+        expected_violation_codes=expectation.expected_violation_codes,
+        actual_violation_codes=actual_result.violation_codes,
+        expected_forbidden_field_hits=expectation.expected_forbidden_field_hits,
+        actual_forbidden_field_hits=actual_result.forbidden_field_hits,
+        expected_packet_warning_refs=expectation.expected_packet_warning_refs,
+        actual_packet_warning_refs=actual_result.packet_warning_refs,
+        metadata=safe_metadata,
+    )
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryExpectedSuiteOutcome:
+    """Immutable expected outcome for a model-boundary evaluation suite.
+
+    Declares what a captured or constructed ``ModelBoundaryEvaluationSuiteResult``
+    should look like. Does not call models or execute runtime behavior.
+    """
+
+    expectation_ref: str
+    expected_total_cases: int
+    expected_passed_cases: int
+    expected_failed_cases: int
+    expected_needs_review_cases: int
+    expected_all_passed: bool
+    expected_status_counts: Mapping[str, int]
+    expected_violation_counts: Mapping[str, int] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryAssertionError
+
+        _validate_non_empty_string(
+            self.expectation_ref, "expectation_ref", error_cls
+        )
+
+        total = _validate_non_negative_int_not_bool(
+            self.expected_total_cases, "expected_total_cases", error_cls
+        )
+        passed = _validate_non_negative_int_not_bool(
+            self.expected_passed_cases, "expected_passed_cases", error_cls
+        )
+        failed = _validate_non_negative_int_not_bool(
+            self.expected_failed_cases, "expected_failed_cases", error_cls
+        )
+        needs_review = _validate_non_negative_int_not_bool(
+            self.expected_needs_review_cases,
+            "expected_needs_review_cases",
+            error_cls,
+        )
+
+        if not isinstance(self.expected_all_passed, bool):
+            raise error_cls("expected_all_passed must be a bool")
+
+        if passed + failed + needs_review != total:
+            raise error_cls(
+                "expected_passed_cases + expected_failed_cases + "
+                "expected_needs_review_cases must equal expected_total_cases"
+            )
+
+        if not isinstance(self.expected_status_counts, Mapping):
+            raise error_cls("expected_status_counts must be a mapping")
+        missing_status_keys = MODEL_BOUNDARY_STATUS_VALUES - set(
+            self.expected_status_counts.keys()
+        )
+        if missing_status_keys:
+            raise error_cls(
+                f"expected_status_counts missing keys: {sorted(missing_status_keys)}"
+            )
+        safe_status_counts = _validate_status_counts(
+            self.expected_status_counts, error_cls
+        )
+        safe_violation_counts = _validate_violation_counts(
+            self.expected_violation_counts, error_cls
+        )
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "expected_status_counts", safe_status_counts)
+        object.__setattr__(
+            self, "expected_violation_counts", safe_violation_counts
+        )
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundarySuiteAssertionResult:
+    """Immutable result of asserting an expected suite outcome.
+
+    Reports deterministic comparison details without executing models or
+    mutating the underlying suite result.
+    """
+
+    expectation_ref: str
+    suite_ref: str
+    assertion_passed: bool
+    mismatch_codes: tuple[str, ...]
+    expected_total_cases: int
+    actual_total_cases: int
+    expected_passed_cases: int
+    actual_passed_cases: int
+    expected_failed_cases: int
+    actual_failed_cases: int
+    expected_needs_review_cases: int
+    actual_needs_review_cases: int
+    expected_all_passed: bool
+    actual_all_passed: bool
+    expected_status_counts: Mapping[str, int]
+    actual_status_counts: Mapping[str, int]
+    expected_violation_counts: Mapping[str, int]
+    actual_violation_counts: Mapping[str, int]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryAssertionError
+
+        _validate_non_empty_string(
+            self.expectation_ref, "expectation_ref", error_cls
+        )
+        _validate_non_empty_string(self.suite_ref, "suite_ref", error_cls)
+
+        if not isinstance(self.assertion_passed, bool):
+            raise error_cls("assertion_passed must be a bool")
+
+        for name, value in (
+            ("expected_total_cases", self.expected_total_cases),
+            ("actual_total_cases", self.actual_total_cases),
+            ("expected_passed_cases", self.expected_passed_cases),
+            ("actual_passed_cases", self.actual_passed_cases),
+            ("expected_failed_cases", self.expected_failed_cases),
+            ("actual_failed_cases", self.actual_failed_cases),
+            ("expected_needs_review_cases", self.expected_needs_review_cases),
+            ("actual_needs_review_cases", self.actual_needs_review_cases),
+        ):
+            _validate_non_negative_int_not_bool(value, name, error_cls)
+
+        for name, value in (
+            ("expected_all_passed", self.expected_all_passed),
+            ("actual_all_passed", self.actual_all_passed),
+        ):
+            if not isinstance(value, bool):
+                raise error_cls(f"{name} must be a bool")
+
+        safe_mismatch_codes = _normalize_string_tuple(
+            self.mismatch_codes, "mismatch_codes", error_cls
+        )
+        safe_mismatch_codes = tuple(sorted(safe_mismatch_codes))
+        for code in safe_mismatch_codes:
+            if code not in _SUITE_ASSERTION_MISMATCH_CODES:
+                raise error_cls(f"unknown mismatch_code: {code!r}")
+
+        safe_expected_status_counts = _validate_status_counts(
+            self.expected_status_counts, error_cls
+        )
+        safe_actual_status_counts = _validate_status_counts(
+            self.actual_status_counts, error_cls
+        )
+
+        safe_expected_violation_counts = _validate_violation_counts(
+            self.expected_violation_counts, error_cls
+        )
+        safe_actual_violation_counts = _validate_violation_counts(
+            self.actual_violation_counts, error_cls
+        )
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "mismatch_codes", safe_mismatch_codes)
+        object.__setattr__(
+            self, "expected_status_counts", safe_expected_status_counts
+        )
+        object.__setattr__(
+            self, "actual_status_counts", safe_actual_status_counts
+        )
+        object.__setattr__(
+            self, "expected_violation_counts", safe_expected_violation_counts
+        )
+        object.__setattr__(
+            self, "actual_violation_counts", safe_actual_violation_counts
+        )
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_expected_suite_outcome(
+    *,
+    expectation_ref: str,
+    expected_total_cases: int,
+    expected_passed_cases: int,
+    expected_failed_cases: int,
+    expected_needs_review_cases: int,
+    expected_all_passed: bool,
+    expected_status_counts: Mapping[str, int],
+    expected_violation_counts: Mapping[str, int] | None = None,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryExpectedSuiteOutcome:
+    """Construct and validate a ModelBoundaryExpectedSuiteOutcome.
+
+    Raises ModelBoundaryAssertionError on invalid input.
+    """
+    return ModelBoundaryExpectedSuiteOutcome(
+        expectation_ref=expectation_ref,
+        expected_total_cases=expected_total_cases,
+        expected_passed_cases=expected_passed_cases,
+        expected_failed_cases=expected_failed_cases,
+        expected_needs_review_cases=expected_needs_review_cases,
+        expected_all_passed=expected_all_passed,
+        expected_status_counts=expected_status_counts,
+        expected_violation_counts=expected_violation_counts
+        if expected_violation_counts is not None
+        else {},
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def assert_model_boundary_suite_result(
+    *,
+    expectation: ModelBoundaryExpectedSuiteOutcome,
+    actual_result: ModelBoundaryEvaluationSuiteResult,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundarySuiteAssertionResult:
+    """Compare an expected suite outcome against an actual suite result.
+
+    Returns an immutable ``ModelBoundarySuiteAssertionResult``. Does not call
+    models, execute prompts, or mutate inputs.
+    """
+    error_cls = ModelBoundaryAssertionError
+
+    if not isinstance(expectation, ModelBoundaryExpectedSuiteOutcome):
+        raise error_cls(
+            "expectation must be a ModelBoundaryExpectedSuiteOutcome instance"
+        )
+    if not isinstance(actual_result, ModelBoundaryEvaluationSuiteResult):
+        raise error_cls(
+            "actual_result must be a ModelBoundaryEvaluationSuiteResult instance"
+        )
+
+    mismatches: list[str] = []
+    if expectation.expected_total_cases != actual_result.total_cases:
+        mismatches.append("total_cases_mismatch")
+    if expectation.expected_passed_cases != actual_result.passed_cases:
+        mismatches.append("passed_cases_mismatch")
+    if expectation.expected_failed_cases != actual_result.failed_cases:
+        mismatches.append("failed_cases_mismatch")
+    if expectation.expected_needs_review_cases != actual_result.needs_review_cases:
+        mismatches.append("needs_review_cases_mismatch")
+    if expectation.expected_all_passed != actual_result.all_passed:
+        mismatches.append("all_passed_mismatch")
+    if expectation.expected_status_counts != actual_result.status_counts:
+        mismatches.append("status_counts_mismatch")
+    if expectation.expected_violation_counts != actual_result.violation_counts:
+        mismatches.append("violation_counts_mismatch")
+
+    safe_metadata = _safe_frozen_mapping(
+        metadata if metadata is not None else {}, error_cls
+    )
+
+    return ModelBoundarySuiteAssertionResult(
+        expectation_ref=expectation.expectation_ref,
+        suite_ref=actual_result.suite_ref,
+        assertion_passed=len(mismatches) == 0,
+        mismatch_codes=tuple(sorted(mismatches)),
+        expected_total_cases=expectation.expected_total_cases,
+        actual_total_cases=actual_result.total_cases,
+        expected_passed_cases=expectation.expected_passed_cases,
+        actual_passed_cases=actual_result.passed_cases,
+        expected_failed_cases=expectation.expected_failed_cases,
+        actual_failed_cases=actual_result.failed_cases,
+        expected_needs_review_cases=expectation.expected_needs_review_cases,
+        actual_needs_review_cases=actual_result.needs_review_cases,
+        expected_all_passed=expectation.expected_all_passed,
+        actual_all_passed=actual_result.all_passed,
+        expected_status_counts=expectation.expected_status_counts,
+        actual_status_counts=actual_result.status_counts,
+        expected_violation_counts=expectation.expected_violation_counts,
+        actual_violation_counts=actual_result.violation_counts,
+        metadata=safe_metadata,
+    )
