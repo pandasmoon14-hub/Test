@@ -416,3 +416,301 @@ def evaluate_model_boundary_case(
         forbidden_field_hits=tuple(sorted(forbidden_hits)),
         packet_warning_refs=tuple(sorted(packet_warning_refs)),
     )
+
+
+class ModelBoundaryEvaluationSuiteError(ModelBoundaryEvaluationError):
+    """Raised for malformed suite/suite-result construction.
+
+    Not used for normal evaluation failures; those are reported through
+    ModelBoundaryEvaluationSuiteResult objects.
+    """
+
+
+def _validate_non_empty_string(
+    value: Any,
+    name: str,
+    error_cls: type[Exception],
+) -> str:
+    """Validate that value is a non-empty string."""
+    if not isinstance(value, str) or not value.strip():
+        raise error_cls(f"{name} must be a non-empty string")
+    return value
+
+
+def _validate_non_negative_int_not_bool(
+    value: Any,
+    name: str,
+    error_cls: type[Exception],
+) -> int:
+    """Validate that value is a non-negative integer and not a bool."""
+    if isinstance(value, bool) or not isinstance(value, int):
+        raise error_cls(f"{name} must be a non-negative integer")
+    if value < 0:
+        raise error_cls(f"{name} must be non-negative")
+    return value
+
+
+def _normalize_case_sequence(
+    cases: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryEvaluationCase, ...]:
+    """Normalize a sequence of evaluation cases into a tuple.
+
+    Rejects bare strings, empty sequences, non-case values, and duplicate
+    case_ref values.
+    """
+    if isinstance(cases, str):
+        raise error_cls("cases must not be a bare string")
+    if not isinstance(cases, Sequence):
+        raise error_cls("cases must be a sequence")
+    if len(cases) == 0:
+        raise error_cls("cases must contain at least one case")
+
+    normalized: list[ModelBoundaryEvaluationCase] = []
+    seen_refs: set[str] = set()
+    for i, item in enumerate(cases):
+        if not isinstance(item, ModelBoundaryEvaluationCase):
+            raise error_cls(f"cases[{i}] must be a ModelBoundaryEvaluationCase")
+        if item.case_ref in seen_refs:
+            raise error_cls(f"duplicate case_ref: {item.case_ref!r}")
+        seen_refs.add(item.case_ref)
+        normalized.append(item)
+    return tuple(normalized)
+
+
+def _normalize_result_sequence(
+    case_results: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryEvaluationResult, ...]:
+    """Normalize a sequence of evaluation results into a tuple."""
+    if isinstance(case_results, str):
+        raise error_cls("case_results must not be a bare string")
+    if not isinstance(case_results, Sequence):
+        raise error_cls("case_results must be a sequence")
+
+    normalized: list[ModelBoundaryEvaluationResult] = []
+    for i, item in enumerate(case_results):
+        if not isinstance(item, ModelBoundaryEvaluationResult):
+            raise error_cls(
+                f"case_results[{i}] must be a ModelBoundaryEvaluationResult"
+            )
+        normalized.append(item)
+    return tuple(normalized)
+
+
+def _validate_status_counts(
+    status_counts: Any,
+    error_cls: type[Exception],
+) -> Mapping[str, int]:
+    """Validate and freeze status counts for all known status values."""
+    if not isinstance(status_counts, Mapping):
+        raise error_cls("status_counts must be a mapping")
+
+    copied: dict[str, int] = {}
+    for status in MODEL_BOUNDARY_STATUS_VALUES:
+        count = status_counts.get(status, 0)
+        _validate_non_negative_int_not_bool(count, f"status_counts[{status!r}]", error_cls)
+        copied[status] = count
+
+    unknown_keys = set(status_counts.keys()) - MODEL_BOUNDARY_STATUS_VALUES
+    if unknown_keys:
+        raise error_cls(
+            f"unknown status keys: {sorted(unknown_keys)}; "
+            f"expected one of {sorted(MODEL_BOUNDARY_STATUS_VALUES)}"
+        )
+
+    return MappingProxyType(copied)
+
+
+def _validate_violation_counts(
+    violation_counts: Any,
+    error_cls: type[Exception],
+) -> Mapping[str, int]:
+    """Validate and freeze violation counts for known violation codes."""
+    if not isinstance(violation_counts, Mapping):
+        raise error_cls("violation_counts must be a mapping")
+
+    copied: dict[str, int] = {}
+    for code, count in violation_counts.items():
+        if code not in MODEL_BOUNDARY_VIOLATION_CODES:
+            raise error_cls(
+                f"unknown violation_code: {code!r}; "
+                f"expected one of {sorted(MODEL_BOUNDARY_VIOLATION_CODES)}"
+            )
+        _validate_non_negative_int_not_bool(
+            count, f"violation_counts[{code!r}]", error_cls
+        )
+        copied[code] = count
+
+    return MappingProxyType(copied)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryEvaluationSuite:
+    """Immutable suite of model-boundary evaluation cases.
+
+    Carries an ordered collection of prebuilt evaluation cases without
+    invoking models or executing runtime behavior.
+    """
+
+    suite_ref: str
+    suite_label: str
+    cases: tuple[ModelBoundaryEvaluationCase, ...]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryEvaluationSuiteError
+
+        _validate_non_empty_string(self.suite_ref, "suite_ref", error_cls)
+        _validate_non_empty_string(self.suite_label, "suite_label", error_cls)
+        safe_cases = _normalize_case_sequence(self.cases, error_cls)
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "cases", safe_cases)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryEvaluationSuiteResult:
+    """Immutable aggregate result of evaluating a model boundary suite.
+
+    Reports deterministic structural findings for the whole suite without
+    executing model behavior or mutating runtime state.
+    """
+
+    suite_ref: str
+    suite_label: str
+    total_cases: int
+    passed_cases: int
+    failed_cases: int
+    needs_review_cases: int
+    all_passed: bool
+    case_results: tuple[ModelBoundaryEvaluationResult, ...]
+    status_counts: Mapping[str, int]
+    violation_counts: Mapping[str, int]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryEvaluationSuiteError
+
+        _validate_non_empty_string(self.suite_ref, "suite_ref", error_cls)
+        _validate_non_empty_string(self.suite_label, "suite_label", error_cls)
+        total_cases = _validate_non_negative_int_not_bool(
+            self.total_cases, "total_cases", error_cls
+        )
+        passed_cases = _validate_non_negative_int_not_bool(
+            self.passed_cases, "passed_cases", error_cls
+        )
+        failed_cases = _validate_non_negative_int_not_bool(
+            self.failed_cases, "failed_cases", error_cls
+        )
+        needs_review_cases = _validate_non_negative_int_not_bool(
+            self.needs_review_cases, "needs_review_cases", error_cls
+        )
+
+        if not isinstance(self.all_passed, bool):
+            raise error_cls("all_passed must be a bool")
+
+        safe_case_results = _normalize_result_sequence(
+            self.case_results, error_cls
+        )
+        if total_cases != len(safe_case_results):
+            raise error_cls(
+                f"total_cases ({total_cases}) must equal len(case_results) "
+                f"({len(safe_case_results)})"
+            )
+        if passed_cases + failed_cases + needs_review_cases != total_cases:
+            raise error_cls(
+                "passed_cases + failed_cases + needs_review_cases must equal total_cases"
+            )
+
+        safe_status_counts = _validate_status_counts(
+            self.status_counts, error_cls
+        )
+        safe_violation_counts = _validate_violation_counts(
+            self.violation_counts, error_cls
+        )
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "case_results", safe_case_results)
+        object.__setattr__(self, "status_counts", safe_status_counts)
+        object.__setattr__(self, "violation_counts", safe_violation_counts)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_evaluation_suite(
+    *,
+    suite_ref: str,
+    suite_label: str,
+    cases: Sequence[ModelBoundaryEvaluationCase],
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryEvaluationSuite:
+    """Construct and validate a ModelBoundaryEvaluationSuite.
+
+    Raises ModelBoundaryEvaluationSuiteError on invalid input.
+    """
+    return ModelBoundaryEvaluationSuite(
+        suite_ref=suite_ref,
+        suite_label=suite_label,
+        cases=cases,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def evaluate_model_boundary_suite(
+    suite: ModelBoundaryEvaluationSuite,
+) -> ModelBoundaryEvaluationSuiteResult:
+    """Evaluate every case in a model boundary suite.
+
+    Calls ``evaluate_model_boundary_case`` for each case in order and produces
+    an immutable aggregate result. Does not call models, read runtime state,
+    aggregate packets beyond the per-case audit warnings already present, or
+    mutate the input suite.
+    """
+    if not isinstance(suite, ModelBoundaryEvaluationSuite):
+        raise ModelBoundaryEvaluationSuiteError(
+            "suite must be a ModelBoundaryEvaluationSuite instance"
+        )
+
+    case_results: list[ModelBoundaryEvaluationResult] = []
+    status_counts: dict[str, int] = {
+        status: 0 for status in MODEL_BOUNDARY_STATUS_VALUES
+    }
+    violation_counts: dict[str, int] = {}
+
+    for case in suite.cases:
+        result = evaluate_model_boundary_case(case)
+        case_results.append(result)
+        status_counts[result.status] += 1
+        for code in result.violation_codes:
+            violation_counts[code] = violation_counts.get(code, 0) + 1
+
+    passed_cases = status_counts["passed"]
+    failed_cases = status_counts["failed"]
+    needs_review_cases = status_counts["needs_review"]
+    all_passed = passed_cases == len(case_results) and len(case_results) > 0
+
+    # Deterministic ordering of violation counts by code key.
+    sorted_violation_counts = {
+        code: violation_counts[code] for code in sorted(violation_counts)
+    }
+
+    return ModelBoundaryEvaluationSuiteResult(
+        suite_ref=suite.suite_ref,
+        suite_label=suite.suite_label,
+        total_cases=len(case_results),
+        passed_cases=passed_cases,
+        failed_cases=failed_cases,
+        needs_review_cases=needs_review_cases,
+        all_passed=all_passed,
+        case_results=case_results,
+        status_counts=status_counts,
+        violation_counts=sorted_violation_counts,
+        metadata=suite.metadata,
+    )
