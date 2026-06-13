@@ -47,6 +47,10 @@ class ContextPacketCompilerError(Exception):
     """Base error for context packet compiler operations."""
 
 
+class ContextPacketSelectionError(ContextPacketCompilerError):
+    """Raised for selection, dispatch, or serialization failures."""
+
+
 class InvalidSingleEventNarrationPacketError(ContextPacketCompilerError):
     """Raised when a SingleEventNarrationPacket fails validation."""
 
@@ -664,6 +668,8 @@ def validate_packet_kind(kind: str) -> bool:
     return True
 
 
+
+
 @dataclass(frozen=True, kw_only=True)
 class VisibleSummaryPacket:
     """Immutable visibility-safe packet for a committed-state summary.
@@ -992,3 +998,105 @@ def validate_visible_summary_packet(value: Any) -> bool:
         raise error_cls("metadata must be a MappingProxyType")
 
     return True
+
+
+# ---------------------------------------------------------------------------
+# Slice 4 — context packet selection and serialization helpers
+# ---------------------------------------------------------------------------
+
+_KNOWN_PACKET_TYPES = frozenset({
+    SingleEventNarrationPacket,
+    NoCommitIntentPacket,
+    VisibleSummaryPacket,
+})
+
+_PACKET_KIND_TO_CLASS: dict[str, type] = {
+    "single_event_narration": SingleEventNarrationPacket,
+    "no_commit_intent": NoCommitIntentPacket,
+    "visible_summary": VisibleSummaryPacket,
+}
+
+
+def get_context_packet_kind(value: Any) -> str:
+    """Return the packet_kind string for a known context packet instance.
+
+    Accepts exactly one of SingleEventNarrationPacket, NoCommitIntentPacket,
+    or VisibleSummaryPacket. Rejects all other values.
+    """
+    for cls in _KNOWN_PACKET_TYPES:
+        if isinstance(value, cls):
+            return value.packet_kind
+    raise ContextPacketSelectionError(
+        f"unsupported context packet type: {type(value)!r}"
+    )
+
+
+def select_context_packet_validator(kind: str) -> Any:
+    """Return the validator function for the given known packet kind.
+
+    Does not call the validator. Raises ContextPacketSelectionError
+    for empty, non-string, or unknown kinds.
+    """
+    if not isinstance(kind, str) or not kind.strip():
+        raise ContextPacketSelectionError(
+            "packet kind must be a non-empty string"
+        )
+    if kind not in PACKET_KINDS:
+        raise ContextPacketSelectionError(
+            f"unknown packet kind: {kind!r}; "
+            f"expected one of {sorted(PACKET_KINDS)}"
+        )
+    _validator_map: dict[str, Any] = {
+        "single_event_narration": validate_single_event_narration_packet,
+        "no_commit_intent": validate_no_commit_intent_packet,
+        "visible_summary": validate_visible_summary_packet,
+    }
+    return _validator_map[kind]
+
+
+def select_context_packet_serializer(kind: str) -> Any:
+    """Return a callable that serializes a matching packet via to_dict().
+
+    Does not serialize anything by itself. Raises ContextPacketSelectionError
+    for empty, non-string, or unknown kinds.
+    """
+    if not isinstance(kind, str) or not kind.strip():
+        raise ContextPacketSelectionError(
+            "packet kind must be a non-empty string"
+        )
+    if kind not in PACKET_KINDS:
+        raise ContextPacketSelectionError(
+            f"unknown packet kind: {kind!r}; "
+            f"expected one of {sorted(PACKET_KINDS)}"
+        )
+
+    def _serialize(packet: Any) -> dict[str, Any]:
+        return packet.to_dict()
+
+    return _serialize
+
+
+def validate_context_packet(value: Any) -> bool:
+    """Return True for a valid known context packet instance.
+
+    Uses get_context_packet_kind to select the type, then delegates
+    to the matching packet-specific validator. Raises
+    ContextPacketSelectionError for unsupported types. Allows
+    packet-specific validators to raise their own errors.
+    """
+    kind = get_context_packet_kind(value)
+    validator = select_context_packet_validator(kind)
+    return validator(value)
+
+
+def serialize_context_packet(value: Any) -> dict[str, Any]:
+    """Return a deterministic deep-copied plain-dict serialization.
+
+    Validates the packet before serialization. Returns a deep copy
+    so mutating the result cannot affect the original packet metadata.
+    Raises ContextPacketSelectionError for unsupported values. Allows
+    packet-specific validators to raise their own errors.
+    """
+    validate_context_packet(value)
+    raw = value.to_dict()
+    return copy.deepcopy(raw)
