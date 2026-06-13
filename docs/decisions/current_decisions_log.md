@@ -3237,3 +3237,53 @@ runtime_domain_pr_5a_decision:
   next_step_authorized: review/merge PR-5A before starting PR-6
   no_canon_or_conversion_authority: true
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-6 — Context Packet Compiler v0.1 Scope Alignment
+
+**Date:** 2026-06-12
+
+### Decision
+
+RUNTIME-DOMAIN-PR-6 is realigned from its original PR-0 sequencing assignment (combat/hazard/damage/recovery service planning) to **Context Packet Compiler v0.1**.
+
+PR-5A has been merged and unlocks PR-6 for this workstream.
+
+### Authoritative PR-6 scope (current workstream)
+
+- Single-event narration packet (`SingleEventNarrationPacket`).
+- No-commit intent packet (`NoCommitIntentPacket`).
+- Visible-summary packet (`VisibleSummaryPacket`).
+- Backend-owned deterministic packet assembly.
+- Visibility-safe packet contracts (no hidden information).
+- Compact narrator-facing packet contracts suitable for constrained 8B models.
+
+### Superseded scope
+
+The older PR-0 sequencing plan (`runtime_domain_pr_0_domain_service_implementation_sequencing_plan.md`) that assigned PR-6 to combat/hazard/damage/recovery service planning is superseded for the current runtime workstream. Combat/hazard/damage/recovery service work is deferred/renumbered and not authorized by this PR-6 track.
+
+### Authority sources
+
+- Merged PR-5A (branch `runtime-gate-b/pr-5a-resource-consequence-math-skeleton`).
+- `docs/doctrine/reviews/runtime_seq_pr_b_narration_context_packet_contract_plan.md` (RUNTIME-SEQ-PR-B).
+- Current decision-log entry.
+
+### Authorized work
+
+This alignment entry authorizes only planning and implementation of context-packet skeleton shapes, constants, factories, validators, focused tests, and domain exports. It does not authorize live-play behavior.
+
+### Explicit non-authorities
+
+- No model authority.
+- No narration generation.
+- No live-play behavior.
+- No hidden-information release.
+- No state mutation.
+- No state-delta application.
+- No transaction execution.
+- No event commitment.
+- No persistence or replay.
+- No RNG, dice, tables, or oracle execution.
+- No combat, ability, inventory, mission, or social mechanics.
+- No conversion, sourcebook inclusion, or canon promotion.

@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-12'
+  version: 0.1.93
+  action: runtime_domain_pr_6_context_packet_scope_alignment
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-PR-6 scope alignment tracking. Realigns PR-6 from original PR-0 sequencing assignment (combat/hazard/damage/recovery service planning) to Context Packet Compiler v0.1. Supersedes old PR-6 local numbering from the PR-0 plan. Combat/hazard/damage/recovery deferred/renumbered and not authorized by this PR-6 track. PR-5A merged and unlocks PR-6. Authoritative PR-6 scope: single-event narration packet, no-commit intent packet, visible-summary packet, backend-owned deterministic packet assembly, visibility-safe packet contracts, compact narrator-facing packet contracts. Authority sources: merged PR-5A, runtime_seq_pr_b_narration_context_packet_contract_plan.md, current decision-log entry. Implementation status: not implemented. Next authorized: PR-6 context-packet skeleton after this alignment lands."
+- date: '2026-06-12'
   version: 0.1.92
   action: runtime_domain_pr_5a_resource_consequence_math_skeleton_implementation
   actor: Astra Doctrine Council / synthesis assistant
