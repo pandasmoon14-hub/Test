@@ -1,4 +1,4 @@
-"""Domain subsystem — command lifecycle, action legality, state store, state projection, transaction lifecycle, event commitment, validation integration."""
+"""Domain subsystem — command lifecycle, action legality, state store, state projection, transaction lifecycle, event commitment, validation integration, context packet compiler."""
 
 from astra_runtime.domain.command_lifecycle import (
     COMMAND_LIFECYCLE_STAGES,
@@ -161,6 +161,17 @@ from astra_runtime.domain.validation_integration import (
     validate_validation_integration_request,
     validate_validation_integration_result,
     validate_validation_invariant_declaration,
+)
+from astra_runtime.domain.context_packet_compiler import (
+    PACKET_KINDS,
+    PACKET_PURPOSE_LABELS,
+    NON_AUTHORITY_SEAL,
+    ContextPacketCompilerError,
+    InvalidSingleEventNarrationPacketError,
+    SingleEventNarrationPacket,
+    create_single_event_narration_packet,
+    validate_single_event_narration_packet,
+    validate_packet_kind,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -378,6 +389,16 @@ __all__ = [
     "validate_validation_invariant_declaration",
     # resource_consequence_math — PR-5A
     "ATOMICITY_POLICIES",
+    # context_packet_compiler — PR-6 Slice 1
+    "PACKET_KINDS",
+    "PACKET_PURPOSE_LABELS",
+    "NON_AUTHORITY_SEAL",
+    "ContextPacketCompilerError",
+    "InvalidSingleEventNarrationPacketError",
+    "SingleEventNarrationPacket",
+    "create_single_event_narration_packet",
+    "validate_single_event_narration_packet",
+    "validate_packet_kind",
     "CONSEQUENCE_FAMILIES",
     "CONVERSION_POLICIES",
     "COST_FAMILIES",
