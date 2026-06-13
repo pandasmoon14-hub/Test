@@ -377,23 +377,15 @@ def test_validator_rejects_non_packet_value() -> None:
         validate_single_event_narration_packet("not-a-packet")
 
 
-def test_validator_rejects_mutated_packet_kind() -> None:
-    # We can't actually mutate a frozen dataclass, but we can construct
-    # one directly with invalid values to test the validator.
-    from dataclasses import FrozenInstanceError
-    try:
-        p = SingleEventNarrationPacket(
+def test_validator_rejects_directly_constructed_invalid_packet_kind() -> None:
+    """Direct construction with invalid packet_kind is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
             packet_kind="wrong",
             event_ref="evt-1",
             event_kind="test",
             visible_fact_refs=("fact-1",),
         )
-        # If construction succeeded, validation must reject
-        with pytest.raises(InvalidSingleEventNarrationPacketError):
-            validate_single_event_narration_packet(p)
-    except FrozenInstanceError:
-        # This path is for when frozen=True validation catches it at construction
-        pass
 
 
 # ── Package exports ──
@@ -505,3 +497,156 @@ def test_tuple_defaults_are_empty() -> None:
     assert packet.target_refs == ()
     assert packet.sensory_cues == ()
     assert packet.forbidden_claims == ()
+
+
+# ── Direct construction safety tests ──
+
+
+def test_direct_construction_list_fields_normalize_to_tuples() -> None:
+    """Direct construction with list fields normalizes them to tuples via __post_init__."""
+    packet = SingleEventNarrationPacket(
+        packet_kind="single_event_narration",
+        event_ref="evt-direct-1",
+        event_kind="test",
+        visible_fact_refs=["fact-1", "fact-2"],
+        actor_refs=["actor-1", "actor-2"],
+        target_refs=["target-1"],
+        sensory_cues=["cue-1", "cue-2"],
+        forbidden_claims=["claim-1"],
+    )
+    assert isinstance(packet.visible_fact_refs, tuple)
+    assert isinstance(packet.actor_refs, tuple)
+    assert isinstance(packet.target_refs, tuple)
+    assert isinstance(packet.sensory_cues, tuple)
+    assert isinstance(packet.forbidden_claims, tuple)
+    assert packet.visible_fact_refs == ("fact-1", "fact-2")
+    assert packet.actor_refs == ("actor-1", "actor-2")
+
+
+def test_direct_construction_dict_metadata_converts_to_mapping_proxy_type() -> None:
+    """Direct construction with plain dict metadata converts to MappingProxyType."""
+    packet = SingleEventNarrationPacket(
+        packet_kind="single_event_narration",
+        event_ref="evt-direct-meta",
+        event_kind="test",
+        visible_fact_refs=["fact-1"],
+        metadata={"key": "value", "nested": {"inner": 42}},
+    )
+    assert isinstance(packet.metadata, MappingProxyType)
+
+
+def test_direct_construction_metadata_mutation_does_not_affect_packet() -> None:
+    """Mutation of the original metadata dict after direct construction does not affect packet."""
+    original = {"key": "original", "nested": {"inner": 1}}
+    packet = SingleEventNarrationPacket(
+        packet_kind="single_event_narration",
+        event_ref="evt-direct-mut",
+        event_kind="test",
+        visible_fact_refs=["fact-1"],
+        metadata=original,
+    )
+    # Mutate the original dict
+    original["key"] = "mutated"
+    original["nested"]["inner"] = 999
+    original["new_key"] = "injected"
+    # Packet should be unaffected
+    assert packet.metadata["key"] == "original"
+    assert packet.metadata["nested"]["inner"] == 1
+    assert "new_key" not in packet.metadata
+
+
+def test_direct_construction_omitted_non_authority_seal_defaults() -> None:
+    """Direct construction with omitted/empty non_authority_seal defaults to sorted NON_AUTHORITY_SEAL."""
+    packet = SingleEventNarrationPacket(
+        packet_kind="single_event_narration",
+        event_ref="evt-direct-seal",
+        event_kind="test",
+        visible_fact_refs=["fact-1"],
+    )
+    expected_seal = tuple(sorted(NON_AUTHORITY_SEAL))
+    assert packet.non_authority_seal == expected_seal
+    assert len(packet.non_authority_seal) == 5
+
+
+def test_direct_construction_invalid_packet_kind_raises() -> None:
+    """Direct construction with invalid packet_kind raises InvalidSingleEventNarrationPacketError."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="wrong_kind",
+            event_ref="evt-direct-bad-kind",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+        )
+
+
+def test_direct_construction_hidden_information_excluded_false_raises() -> None:
+    """Direct construction with hidden_information_excluded=False raises."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-direct-hid",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+            hidden_information_excluded=False,
+        )
+
+
+def test_direct_construction_empty_event_ref_raises() -> None:
+    """Direct construction with empty event_ref raises."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+        )
+
+
+def test_direct_construction_empty_visible_fact_refs_raises() -> None:
+    """Direct construction with empty visible_fact_refs raises."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-direct-empty-vis",
+            event_kind="test",
+            visible_fact_refs=(),
+        )
+
+
+def test_validator_rejects_object_setattr_corrupted_packet() -> None:
+    """Validator rejects a packet corrupted via object.__setattr__ after construction."""
+    packet = create_single_event_narration_packet(
+        event_ref="evt-validate-corrupt",
+        event_kind="test",
+        visible_fact_refs=["fact-1"],
+    )
+    # Corrupt the packet_kind via object.__setattr__
+    object.__setattr__(packet, "packet_kind", "corrupted")
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        validate_single_event_narration_packet(packet)
+
+
+def test_validator_rejects_empty_non_authority_seal() -> None:
+    """Validator rejects a packet with empty non_authority_seal."""
+    packet = create_single_event_narration_packet(
+        event_ref="evt-validate-empty-seal",
+        event_kind="test",
+        visible_fact_refs=["fact-1"],
+    )
+    # Corrupt non_authority_seal via object.__setattr__
+    object.__setattr__(packet, "non_authority_seal", ())
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        validate_single_event_narration_packet(packet)
+
+
+def test_validator_rejects_non_mapping_proxy_metadata() -> None:
+    """Validator rejects a packet whose metadata is not MappingProxyType."""
+    packet = create_single_event_narration_packet(
+        event_ref="evt-validate-bad-meta",
+        event_kind="test",
+        visible_fact_refs=["fact-1"],
+    )
+    # Corrupt metadata via object.__setattr__
+    object.__setattr__(packet, "metadata", {"bad": "plain_dict"})
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        validate_single_event_narration_packet(packet)

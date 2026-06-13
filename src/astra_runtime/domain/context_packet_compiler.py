@@ -111,6 +111,74 @@ class SingleEventNarrationPacket:
         default_factory=lambda: MappingProxyType({})
     )
 
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass.
+
+        Uses object.__setattr__ because the dataclass is frozen.
+        """
+        error_cls = InvalidSingleEventNarrationPacketError
+
+        # Validate and normalize packet_kind
+        if not isinstance(self.packet_kind, str) or not self.packet_kind.strip():
+            raise error_cls("packet_kind must be a non-empty string")
+        if self.packet_kind != "single_event_narration":
+            raise error_cls(
+                f"packet_kind must be 'single_event_narration', got: {self.packet_kind!r}"
+            )
+
+        # Validate event_ref
+        if not isinstance(self.event_ref, str) or not self.event_ref.strip():
+            raise error_cls("event_ref must be a non-empty string")
+
+        # Validate event_kind
+        if not isinstance(self.event_kind, str) or not self.event_kind.strip():
+            raise error_cls("event_kind must be a non-empty string")
+
+        # Validate hidden_information_excluded — must be exactly True
+        if self.hidden_information_excluded is not True:
+            raise error_cls("hidden_information_excluded must be exactly True")
+
+        # Normalize visible_fact_refs (reject empty strings inside, must be non-empty)
+        normalized_visible = _normalize_string_tuple(
+            list(self.visible_fact_refs), "visible_fact_refs", error_cls
+        )
+        if len(normalized_visible) == 0:
+            raise error_cls("visible_fact_refs must not be empty")
+
+        # Normalize tuple fields
+        safe_actor_refs = _normalize_string_tuple(
+            list(self.actor_refs), "actor_refs", error_cls
+        )
+        safe_target_refs = _normalize_string_tuple(
+            list(self.target_refs), "target_refs", error_cls
+        )
+        safe_sensory_cues = _normalize_string_tuple(
+            list(self.sensory_cues), "sensory_cues", error_cls
+        )
+        safe_forbidden_claims = _normalize_string_tuple(
+            list(self.forbidden_claims), "forbidden_claims", error_cls
+        )
+
+        # Normalize non_authority_seal — default to sorted NON_AUTHORITY_SEAL if empty
+        if len(self.non_authority_seal) == 0:
+            safe_non_authority_seal = tuple(sorted(NON_AUTHORITY_SEAL))
+        else:
+            safe_non_authority_seal = _normalize_string_tuple(
+                list(self.non_authority_seal), "non_authority_seal", error_cls
+            )
+
+        # Deep-copy and freeze metadata
+        safe_metadata = _safe_metadata(self.metadata, error_cls)
+
+        # Use object.__setattr__ to update frozen fields
+        object.__setattr__(self, "visible_fact_refs", normalized_visible)
+        object.__setattr__(self, "actor_refs", safe_actor_refs)
+        object.__setattr__(self, "target_refs", safe_target_refs)
+        object.__setattr__(self, "sensory_cues", safe_sensory_cues)
+        object.__setattr__(self, "forbidden_claims", safe_forbidden_claims)
+        object.__setattr__(self, "non_authority_seal", safe_non_authority_seal)
+        object.__setattr__(self, "metadata", safe_metadata)
+
     def to_dict(self) -> dict[str, Any]:
         """Return a deterministic plain-dict serialization."""
         return {
@@ -145,10 +213,13 @@ def create_single_event_narration_packet(
     """Construct and validate a SingleEventNarrationPacket.
 
     Raises InvalidSingleEventNarrationPacketError on invalid input.
+
+    This is the canonical public construction helper. It pre-validates
+    inputs and delegates final normalization to __post_init__.
     """
     error_cls = InvalidSingleEventNarrationPacketError
 
-    # Validate packet_kind
+    # Pre-validate packet_kind
     if not isinstance(packet_kind, str) or not packet_kind.strip():
         raise error_cls("packet_kind must be a non-empty string")
     if packet_kind != "single_event_narration":
@@ -156,60 +227,63 @@ def create_single_event_narration_packet(
             f"packet_kind must be 'single_event_narration', got: {packet_kind!r}"
         )
 
-    # Validate event_ref
+    # Pre-validate event_ref
     if not isinstance(event_ref, str) or not event_ref.strip():
         raise error_cls("event_ref must be a non-empty string")
 
-    # Validate event_kind
+    # Pre-validate event_kind
     if not isinstance(event_kind, str) or not event_kind.strip():
         raise error_cls("event_kind must be a non-empty string")
 
-    # Validate visible_fact_refs — must be non-empty
+    # Pre-validate visible_fact_refs — must be non-empty
     if not isinstance(visible_fact_refs, Sequence) or isinstance(visible_fact_refs, str):
         raise error_cls("visible_fact_refs must be a sequence")
     if len(visible_fact_refs) == 0:
         raise error_cls("visible_fact_refs must not be empty")
 
-    # Validate hidden_information_excluded — must be exactly True
+    # Pre-validate hidden_information_excluded — must be exactly True
     if hidden_information_excluded is not True:
         raise error_cls("hidden_information_excluded must be exactly True")
 
-    # Normalize tuple fields
-    safe_actor_refs = _normalize_string_tuple(actor_refs, "actor_refs", error_cls)
-    safe_target_refs = _normalize_string_tuple(target_refs, "target_refs", error_cls)
-    safe_sensory_cues = _normalize_string_tuple(sensory_cues, "sensory_cues", error_cls)
-    safe_forbidden_claims = _normalize_string_tuple(
-        forbidden_claims, "forbidden_claims", error_cls
-    )
+    # Pre-validate optional tuple fields are sequences (not bare strings)
+    for field_name, field_value in (
+        ("actor_refs", actor_refs),
+        ("target_refs", target_refs),
+        ("sensory_cues", sensory_cues),
+        ("forbidden_claims", forbidden_claims),
+        ("non_authority_seal", non_authority_seal),
+    ):
+        if field_value is not None:
+            if isinstance(field_value, str):
+                raise error_cls(f"{field_name} must not be a bare string")
+            if not isinstance(field_value, Sequence):
+                raise error_cls(f"{field_name} must be a sequence")
 
-    # Normalize visible_fact_refs (reject empty strings inside)
-    normalized_visible_fact_refs = _normalize_string_tuple(
-        list(visible_fact_refs), "visible_fact_refs", error_cls
-    )
+    # Pre-validate metadata type if provided
+    if metadata is not None and not isinstance(metadata, Mapping):
+        raise error_cls("metadata must be a mapping")
 
-    # Default non_authority_seal if not provided
-    if non_authority_seal is None:
-        safe_non_authority_seal = tuple(sorted(NON_AUTHORITY_SEAL))
-    else:
-        safe_non_authority_seal = _normalize_string_tuple(
-            non_authority_seal, "non_authority_seal", error_cls
-        )
+    # Build kwargs for direct construction — __post_init__ handles normalization
+    # For non_authority_seal, pass () if None so __post_init__ can default it
+    kwargs: dict[str, Any] = {
+        "packet_kind": packet_kind,
+        "event_ref": event_ref,
+        "event_kind": event_kind,
+        "visible_fact_refs": list(visible_fact_refs),
+        "actor_refs": list(actor_refs) if actor_refs is not None else (),
+        "target_refs": list(target_refs) if target_refs is not None else (),
+        "sensory_cues": list(sensory_cues) if sensory_cues is not None else (),
+        "forbidden_claims": (
+            list(forbidden_claims) if forbidden_claims is not None else ()
+        ),
+        "non_authority_seal": (
+            list(non_authority_seal) if non_authority_seal is not None else ()
+        ),
+        "hidden_information_excluded": hidden_information_excluded,
+        "metadata": dict(metadata) if metadata is not None else {},
+    }
 
-    safe_metadata = _safe_metadata(metadata, error_cls)
-
-    return SingleEventNarrationPacket(
-        packet_kind=packet_kind,
-        event_ref=event_ref,
-        event_kind=event_kind,
-        visible_fact_refs=normalized_visible_fact_refs,
-        actor_refs=safe_actor_refs,
-        target_refs=safe_target_refs,
-        sensory_cues=safe_sensory_cues,
-        forbidden_claims=safe_forbidden_claims,
-        non_authority_seal=safe_non_authority_seal,
-        hidden_information_excluded=hidden_information_excluded,
-        metadata=safe_metadata,
-    )
+    return SingleEventNarrationPacket(**kwargs)
 
 
 def validate_single_event_narration_packet(value: Any) -> bool:
@@ -253,7 +327,6 @@ def validate_single_event_narration_packet(value: Any) -> bool:
         ("target_refs", value.target_refs),
         ("sensory_cues", value.sensory_cues),
         ("forbidden_claims", value.forbidden_claims),
-        ("non_authority_seal", value.non_authority_seal),
     ):
         if not isinstance(field_value, tuple):
             raise error_cls(f"{field_name} must be a tuple")
@@ -261,13 +334,22 @@ def validate_single_event_narration_packet(value: Any) -> bool:
             if not isinstance(item, str) or not item.strip():
                 raise error_cls(f"{field_name} items must be non-empty strings")
 
+    # Validate non_authority_seal — must be non-empty tuple of non-empty strings
+    if not isinstance(value.non_authority_seal, tuple):
+        raise error_cls("non_authority_seal must be a tuple")
+    if len(value.non_authority_seal) == 0:
+        raise error_cls("non_authority_seal must not be empty")
+    for item in value.non_authority_seal:
+        if not isinstance(item, str) or not item.strip():
+            raise error_cls("non_authority_seal items must be non-empty strings")
+
     # Validate hidden_information_excluded — must be exactly True
     if value.hidden_information_excluded is not True:
         raise error_cls("hidden_information_excluded must be exactly True")
 
-    # Validate metadata
-    if not isinstance(value.metadata, Mapping):
-        raise error_cls("metadata must be a Mapping")
+    # Validate metadata is MappingProxyType
+    if not isinstance(value.metadata, MappingProxyType):
+        raise error_cls("metadata must be a MappingProxyType")
 
     return True
 
