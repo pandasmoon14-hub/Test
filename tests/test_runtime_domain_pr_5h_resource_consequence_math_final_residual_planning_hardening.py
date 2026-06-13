@@ -14,10 +14,26 @@ DECISIONS = ROOT / "docs/decisions/current_decisions_log.md"
 RESOURCE_MATH_MODULE = ROOT / "src/astra_runtime/domain/resource_consequence_math.py"
 ARTIFACT_ID = "RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001"
 AUTHORIZED_FILES = {
-    "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md",
-    "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
-    "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
     "docs/decisions/current_decisions_log.md",
+    "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+    "src/astra_runtime/domain/__init__.py",
+    "src/astra_runtime/domain/resource_consequence_math.py",
+    "tests/runtime/test_command_envelope_skeleton.py",
+    "tests/runtime/test_context_projection_skeleton.py",
+    "tests/runtime/test_domain_event_commitment_skeleton.py",
+    "tests/runtime/test_domain_state_store_skeleton.py",
+    "tests/runtime/test_domain_transaction_lifecycle_skeleton.py",
+    "tests/runtime/test_domain_validation_integration_skeleton.py",
+    "tests/runtime/test_event_ledger_skeleton.py",
+    "tests/runtime/test_hidden_information_skeleton.py",
+    "tests/runtime/test_persistence_boundary_skeleton.py",
+    "tests/runtime/test_replay_audit_skeleton.py",
+    "tests/runtime/test_rng_interface_skeleton.py",
+    "tests/runtime/test_runtime_trace_skeleton.py",
+    "tests/runtime/test_state_delta_skeleton.py",
+    "tests/runtime/test_table_oracle_skeleton.py",
+    "tests/runtime/test_validation_pipeline_skeleton.py",
+    "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
 }
 EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate identity',
                       'annotation': 'str',
@@ -3687,11 +3703,11 @@ def test_resource_math_result_has_no_resource_math_result_ref_self_binding() -> 
     )
 
 
-def test_git_footprint_when_base_ref_available_and_absence_of_implementation_module() -> None:
+def test_git_footprint_when_base_ref_available_and_implementation_module_present() -> None:
     ref = subprocess.run(["git", "rev-parse", "--verify", "origin/main"], cwd=ROOT, text=True, capture_output=True)
     if ref.returncode == 0:
         diff = subprocess.run(["git", "diff", "--name-only", "origin/main...HEAD"], cwd=ROOT, text=True, capture_output=True, check=True)
         assert set(diff.stdout.splitlines()) == AUTHORIZED_FILES
     else:
         assert "exact four-file footprint" in doc_text()
-    assert not RESOURCE_MATH_MODULE.exists()
+    assert RESOURCE_MATH_MODULE.exists()

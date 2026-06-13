@@ -125,6 +125,7 @@ def test_current_authorized_domain_files_remain_narrow():
         "transaction_lifecycle.py",
         "event_commitment.py",
         "validation_integration.py",
+        "resource_consequence_math.py",
     }
     assert actual - optional == expected
     assert actual <= expected | optional

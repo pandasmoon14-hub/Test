@@ -504,6 +504,6 @@ def test_registry_and_decision_tracking() -> None:
         assert phrase in decisions
 
 
-def test_no_runtime_domain_implementation_file_added() -> None:
-    assert not RESOURCE_MATH_MODULE.exists()
-    assert not any(path.name == "resource_consequence_math.py" for path in DOMAIN_DIR.glob("*.py"))
+def test_runtime_domain_implementation_file_present() -> None:
+    assert RESOURCE_MATH_MODULE.exists()
+    assert any(path.name == "resource_consequence_math.py" for path in DOMAIN_DIR.glob("*.py"))

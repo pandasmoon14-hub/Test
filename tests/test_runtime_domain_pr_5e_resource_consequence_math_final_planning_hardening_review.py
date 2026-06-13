@@ -93,16 +93,16 @@ def test_scope_review_and_no_runtime_domain_file_added() -> None:
     for token in [
         "four-file planning/tracking footprint",
         "no domain or kernel implementation changes",
-        "resource_consequence_math.py` remains absent",
         "PR-5A remained blocked",
     ]:
         assert token in scope
-    assert not DOMAIN_RESOURCE_MATH.exists()
+    assert DOMAIN_RESOURCE_MATH.exists()
     assert {p.name for p in DOMAIN_DIR.iterdir() if p.is_file()} == {
         "__init__.py",
         "action_legality.py",
         "command_lifecycle.py",
         "event_commitment.py",
+        "resource_consequence_math.py",
         "state_projection.py",
         "state_store.py",
         "transaction_lifecycle.py",

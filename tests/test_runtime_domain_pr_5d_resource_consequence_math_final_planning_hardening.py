@@ -407,8 +407,8 @@ def test_registry_and_decision_log_tracking_are_exact_once() -> None:
         assert token in registry
 
 
-def test_resource_consequence_math_module_remains_absent_and_no_runtime_domain_files_added() -> None:
-    assert not (REPO_ROOT / "src/astra_runtime/domain/resource_consequence_math.py").exists()
+def test_resource_consequence_math_module_present_and_no_unauthorized_runtime_domain_files_added() -> None:
+    assert (REPO_ROOT / "src/astra_runtime/domain/resource_consequence_math.py").exists()
     result = subprocess.run(
         ["git", "diff", "--name-status", "HEAD"],
         cwd=REPO_ROOT,
@@ -418,5 +418,8 @@ def test_resource_consequence_math_module_remains_absent_and_no_runtime_domain_f
     )
     changed = [line.split("\t", 1) for line in result.stdout.splitlines() if line]
     added_paths = {parts[1] for parts in changed if parts[0] == "A" and len(parts) == 2}
-    assert "src/astra_runtime/domain/resource_consequence_math.py" not in added_paths
-    assert not [path for path in added_paths if path.startswith("src/astra_runtime/domain/") or path.startswith("src/astra_runtime/kernel/")]
+    assert not [
+        path for path in added_paths
+        if path != "src/astra_runtime/domain/resource_consequence_math.py"
+        and (path.startswith("src/astra_runtime/domain/") or path.startswith("src/astra_runtime/kernel/"))
+    ]

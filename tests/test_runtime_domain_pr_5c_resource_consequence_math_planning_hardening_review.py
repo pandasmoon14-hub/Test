@@ -230,8 +230,8 @@ def test_decision_heading_once_and_records_non_implementation() -> None:
         assert token in section
 
 
-def test_no_resource_consequence_math_module_or_runtime_domain_file_added() -> None:
-    assert not DOMAIN_RESOURCE_MATH.exists()
+def test_resource_consequence_math_module_and_runtime_domain_file_state() -> None:
+    assert DOMAIN_RESOURCE_MATH.exists()
     added_files = set(
         line[3:]
         for line in re.sub(r"\x1b\[[0-9;]*m", "", __import__("subprocess").check_output(
@@ -239,5 +239,8 @@ def test_no_resource_consequence_math_module_or_runtime_domain_file_added() -> N
         )).splitlines()
         if line.startswith("A  ") or line.startswith("?? ")
     )
-    assert not any(path.startswith("src/astra_runtime/domain/") for path in added_files)
+    assert not any(
+        path.startswith("src/astra_runtime/domain/") for path in added_files
+        if path != "src/astra_runtime/domain/resource_consequence_math.py"
+    )
     assert not any(path.startswith("src/astra_runtime/kernel/") for path in added_files)
