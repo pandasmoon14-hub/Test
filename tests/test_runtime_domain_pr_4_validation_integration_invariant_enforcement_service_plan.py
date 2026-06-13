@@ -797,6 +797,7 @@ class TestDomainPackageGuardrails:
             "state_store.py", "state_projection.py",
             "transaction_lifecycle.py", "event_commitment.py",
             "validation_integration.py",
+            "resource_consequence_math.py",
             "__pycache__",
         }
         actual = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir()}

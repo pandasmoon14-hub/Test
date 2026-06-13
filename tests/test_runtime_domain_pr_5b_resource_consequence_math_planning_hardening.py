@@ -296,5 +296,5 @@ def test_registry_and_decision_log_uniqueness() -> None:
         assert "no implementation" in text or "no_implementation_authority: true" in text
 
 
-def test_no_runtime_domain_file_added() -> None:
-    assert not DOMAIN_RESOURCE_MATH.exists()
+def test_runtime_domain_file_present() -> None:
+    assert DOMAIN_RESOURCE_MATH.exists()

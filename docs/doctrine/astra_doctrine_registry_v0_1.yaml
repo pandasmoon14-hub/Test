@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-12'
+  version: 0.1.92
+  action: runtime_domain_pr_5a_resource_consequence_math_skeleton_implementation
+  actor: Astra Doctrine Council / synthesis assistant
+  note: Added RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001 tracking. Narrow RT-002 reference-only skeleton implementation; creates src/astra_runtime/domain/resource_consequence_math.py with all ten frozen keyword-only shapes, exact controlled constants, factory/validator parity, defensive internal serialization, and domain exports; adds tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py (273 passing); updates 15 runtime guardrail allowlist tests to recognize the new domain module; preserves all PR-5I non-authorities including no formulas, no affordability/reservation/settlement/consequence application, no state mutation/delta application, no transaction execution/event commitment/append, no persistence/replay, no RNG/table/oracle execution, no combat/ability/inventory/mission/social mechanics, no public projection/redaction, no model/live-play/UI behavior, and no conversion/sourcebook/canon promotion; status implemented / ready for review; next step is review/merge before PR-6.
+- date: '2026-06-12'
   version: 0.1.91
   action: runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -592,6 +597,136 @@ scale_gates:
   - gold examples derive only from current doctrine and accepted canon
   - at least 10 live pilot sessions with state deltas and review notes
 file_records:
+- file_id: RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+  filename: resource_consequence_math.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002
+  purpose: Narrow RT-002 reference-only skeleton implementation for resource and consequence math shapes, constants, factories, validators, and defensive serialization.
+  batch: runtime-domain
+  series: runtime-domain-pr-5a
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: tracking
+  authority_note: Implementation tracking only; derived from PR-5H effective contract and authorized by PR-5I / PR #281; preserves all non-authority flags.
+  runtime_domain_pr_5a:
+    implementation_id: RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+    artifact_type: executable_domain_skeleton
+    implementation_status: narrow_reference_only_skeleton
+    derives_from:
+    - PR-5H effective contract
+    - PR-5I authorization gate / PR #281
+    implements_resource_consequence_math_skeleton: true
+    implements_all_ten_shapes: true
+    implements_exact_controlled_constants: true
+    implements_factory_validator_parity: true
+    implements_defensive_internal_serialization: true
+    implements_domain_exports: true
+    implements_focused_skeleton_tests: true
+    authorizes_formulas_or_arithmetic: false
+    authorizes_affordability_execution: false
+    authorizes_reservation: false
+    authorizes_settlement_execution: false
+    authorizes_consequence_application: false
+    authorizes_state_mutation: false
+    authorizes_state_delta_application: false
+    authorizes_transaction_execution: false
+    authorizes_event_commitment: false
+    authorizes_event_append: false
+    authorizes_persistence: false
+    authorizes_replay: false
+    authorizes_rng_execution: false
+    authorizes_table_oracle_execution: false
+    authorizes_combat_mechanics: false
+    authorizes_ability_mechanics: false
+    authorizes_inventory_mechanics: false
+    authorizes_mission_mechanics: false
+    authorizes_social_mechanics: false
+    authorizes_public_projection: false
+    authorizes_redaction: false
+    authorizes_hidden_information_release: false
+    authorizes_model_authority: false
+    authorizes_model_integration: false
+    authorizes_live_play: false
+    authorizes_ui_behavior: false
+    authorizes_conversion: false
+    authorizes_sourcebook_inclusion: false
+    authorizes_canon_promotion: false
+  implementation_files:
+  - src/astra_runtime/domain/resource_consequence_math.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py
+  affected_guardrail_tests:
+  - tests/runtime/test_command_envelope_skeleton.py
+  - tests/runtime/test_context_projection_skeleton.py
+  - tests/runtime/test_domain_event_commitment_skeleton.py
+  - tests/runtime/test_domain_state_store_skeleton.py
+  - tests/runtime/test_domain_transaction_lifecycle_skeleton.py
+  - tests/runtime/test_domain_validation_integration_skeleton.py
+  - tests/runtime/test_event_ledger_skeleton.py
+  - tests/runtime/test_hidden_information_skeleton.py
+  - tests/runtime/test_persistence_boundary_skeleton.py
+  - tests/runtime/test_replay_audit_skeleton.py
+  - tests/runtime/test_rng_interface_skeleton.py
+  - tests/runtime/test_runtime_trace_skeleton.py
+  - tests/runtime/test_state_delta_skeleton.py
+  - tests/runtime/test_table_oracle_skeleton.py
+  - tests/runtime/test_validation_pipeline_skeleton.py
+  dependencies:
+  - PR-5H effective contract
+  - PR-5I authorization gate / PR #281
+  - RT-002
+  blocked_by: []
+  unlocks:
+  - review/merge PR-5A before starting PR-6
+  downstream_consumers:
+  - RUNTIME-DOMAIN-PR-6 (pending authorization)
+  owns:
+  - Narrow reference-only resource/consequence math skeleton shapes, constants, factories, validators, defensive internal serialization, domain exports, focused tests, and updated guardrail allowlists.
+  must_not_own:
+  - Formulas, arithmetic, expression parsing/evaluation, affordability execution, reservation execution, settlement execution, consequence application, state mutation, state-delta application, transaction execution, event commitment/append, persistence, replay, RNG/table/oracle execution, combat/ability/inventory/mission/social mechanics, public projection/redaction, hidden-information release, model/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  hard_refusals:
+  - No formulas or arithmetic.
+  - No affordability, reservation, settlement execution, or consequence application.
+  - No state mutation or state-delta application.
+  - No transaction execution or event commitment/append.
+  - No persistence or replay.
+  - No RNG, dice, table, or oracle execution.
+  - No combat, ability, inventory, mission, or social mechanics.
+  - No public projection or hidden-information release.
+  - No model/live-play/UI behavior.
+  - No conversion/sourcebook/canon promotion.
+  escalation_triggers:
+  - Any proposed change would add arithmetic, affordability, reservation, settlement, consequence application, state mutation, event commitment/append, persistence, replay, RNG/table/oracle execution, or owner-boundary expansion.
+  - Any proposed change would add combat, ability, inventory, mission, social, public projection, redaction, model/live-play/UI, conversion, sourcebook, or canon behavior.
+  donor_pressure_absorbed:
+  - Fantasy resources, costs, spell-like expenditures, injuries, and recovery pressures are handled as declarations only.
+  - Science-fiction energy, ammunition, shields, logistics, vehicles, implants, and platform resources are handled as declarations only.
+  - Cultivation qi, essence, breakthroughs, tribulations, bottlenecks, and backlash pressures are handled as declarations only.
+  - Class, archetype, profession, career, and point-buy cost structures are handled as declarations only.
+  - Narrative currencies, tags, aspects, stress, sanity, corruption, doom, and investigation tracks are handled as declarations only.
+  - Cyberware, biotech, psionic, relic, companion, summon, crafting, salvage, requisition, mission, faction, and debt consequences are handled as declarations only.
+  required_tests:
+  - tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py passes
+  - tests/runtime passes
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - focused PR-5A tests pass
+  - tests/runtime passes
+  - registry and decision log updated
+  - conformance audit confirms no PR-5A drift
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: narrow_reference_only_skeleton
+  live_play_relevance: none
+  notes: PR-5A is the narrow reference-only skeleton authorized by PR-5I. It performs no arithmetic, affordability, reservation, settlement, consequence application, state mutation, transaction execution, event commitment, persistence, replay, RNG/table execution, or owner-boundary expansion. Next step after PR-5A is review/merge before starting PR-6.
+
 - file_id: RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
   filename: runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md
   proposed_path: docs/doctrine/reviews/

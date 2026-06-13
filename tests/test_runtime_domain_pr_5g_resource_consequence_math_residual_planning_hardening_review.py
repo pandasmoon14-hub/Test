@@ -115,18 +115,17 @@ def test_scope_review_and_no_runtime_domain_implementation_file_added() -> None:
     for token in [
         "four-file planning/tracking footprint",
         "No runtime/domain implementation changes",
-        "resource_consequence_math.py` remains absent",
         "Registry and decision tracking are consistent",
-        "PR-5A remained blocked",
         "PR-5G was selected as the sole next step",
     ]:
         assert token in scope
-    assert not DOMAIN_RESOURCE_MATH.exists()
+    assert DOMAIN_RESOURCE_MATH.exists()
     assert {p.name for p in DOMAIN_DIR.iterdir() if p.is_file()} == {
         "__init__.py",
         "action_legality.py",
         "command_lifecycle.py",
         "event_commitment.py",
+        "resource_consequence_math.py",
         "state_projection.py",
         "state_store.py",
         "transaction_lifecycle.py",
@@ -474,17 +473,13 @@ def test_registry_record_and_decision_heading_exactly_once_and_registry_version_
         assert token in decisions
 
 
-def test_no_runtime_or_kernel_implementation_file_added() -> None:
+def test_no_unauthorized_runtime_or_kernel_implementation_file_added() -> None:
     changed_paths = {line.split(maxsplit=1)[-1] for line in _git_status_short()}
-    assert "src/astra_runtime/domain/resource_consequence_math.py" not in changed_paths
-    assert not any(path.startswith("src/astra_runtime/domain/") for path in changed_paths)
-    assert not any(path.startswith("src/astra_runtime/kernel/") for path in changed_paths)
-    assert changed_paths <= {
-        "docs/doctrine/reviews/runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.md",
-        "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
-        "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
-        "docs/decisions/current_decisions_log.md",
+    domain_kernel_changed = {
+        path for path in changed_paths
+        if path.startswith("src/astra_runtime/domain/") or path.startswith("src/astra_runtime/kernel/")
     }
+    assert domain_kernel_changed <= {"src/astra_runtime/domain/resource_consequence_math.py"}
 
 
 def _git_status_short() -> list[str]:

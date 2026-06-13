@@ -125,6 +125,7 @@ def test_authorized_domain_files_remain_exactly_expected() -> None:
         "transaction_lifecycle.py",
         "event_commitment.py",
         "validation_integration.py",
+        "resource_consequence_math.py",
         "__pycache__",
     }
     assert {path.name for path in DOMAIN.iterdir()} == expected

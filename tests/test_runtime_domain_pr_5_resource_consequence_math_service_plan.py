@@ -207,11 +207,12 @@ def test_authorized_domain_files_remain_exactly_expected() -> None:
         "transaction_lifecycle.py",
         "event_commitment.py",
         "validation_integration.py",
+        "resource_consequence_math.py",
         "__pycache__",
     }
     assert {path.name for path in DOMAIN.iterdir() if path.is_file()} == (expected - {"__pycache__"})
 
 
-def test_resource_consequence_math_module_absent() -> None:
-    assert not RESOURCE_MATH.exists()
+def test_resource_consequence_math_module_present() -> None:
+    assert RESOURCE_MATH.exists()
     assert "resource_consequence_math.py" in read(PLAN)

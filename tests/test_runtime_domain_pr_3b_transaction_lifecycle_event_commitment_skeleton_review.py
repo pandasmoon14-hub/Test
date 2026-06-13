@@ -180,6 +180,7 @@ class TestDomainPackageGuardrails:
             "transaction_lifecycle.py",
             "event_commitment.py",
             "validation_integration.py",
+            "resource_consequence_math.py",
             "__pycache__",
         }
         entries = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir()}
