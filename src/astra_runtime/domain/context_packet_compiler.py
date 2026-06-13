@@ -17,6 +17,7 @@ Design constraints:
 from __future__ import annotations
 
 import copy
+import json
 from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import Any, Mapping, Sequence
@@ -1340,3 +1341,241 @@ def assemble_and_serialize_context_packet(request: Any) -> dict[str, Any]:
     """
     packet = assemble_context_packet(request)
     return serialize_context_packet(packet)
+
+
+# ---------------------------------------------------------------------------
+# Slice 6 — context packet audit and size estimate helpers
+# ---------------------------------------------------------------------------
+
+# Audit forbidden keys reuse the same boundary set defined for assembly payloads.
+# The literals are intentionally isolated in FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS so
+# prior source-scan tests can exclude them; aliasing avoids duplicating them here.
+_AUDIT_FORBIDDEN_SERIALIZED_KEYS = FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS
+
+
+class ContextPacketAuditError(ContextPacketCompilerError):
+    """Raised for unsupported audit inputs or malformed serialized packet mappings."""
+
+
+@dataclass(frozen=True, kw_only=True)
+class ContextPacketAuditReport:
+    """Immutable audit/report object for an already-serialized context packet.
+
+    Reports deterministic size estimates and structural/boundary risk flags.
+    This object does not enforce token caps or packet budgets.
+    """
+
+    packet_kind: str
+    estimated_chars: int
+    estimated_words: int
+    estimated_top_level_keys: int
+    hidden_information_excluded: bool
+    non_authority_seal_present: bool
+    committed_state_only: bool | None
+    forbidden_claims_count: int | None
+    forbidden_key_hits: tuple[str, ...]
+    warnings: tuple[str, ...]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass.
+
+        Uses object.__setattr__ because the dataclass is frozen.
+        """
+        error_cls = ContextPacketAuditError
+
+        # Validate packet_kind
+        if not isinstance(self.packet_kind, str) or not self.packet_kind.strip():
+            raise error_cls("packet_kind must be a non-empty string")
+        if self.packet_kind not in PACKET_KINDS:
+            raise error_cls(
+                f"packet_kind must be one of {sorted(PACKET_KINDS)}; "
+                f"got: {self.packet_kind!r}"
+            )
+
+        # Validate non-negative integer size estimates
+        for name in (
+            "estimated_chars",
+            "estimated_words",
+            "estimated_top_level_keys",
+        ):
+            val = getattr(self, name)
+            if not isinstance(val, int) or isinstance(val, bool) or val < 0:
+                raise error_cls(f"{name} must be a non-negative integer")
+
+        # Validate boolean flags
+        if not isinstance(self.hidden_information_excluded, bool):
+            raise error_cls("hidden_information_excluded must be a bool")
+        if not isinstance(self.non_authority_seal_present, bool):
+            raise error_cls("non_authority_seal_present must be a bool")
+
+        # Validate committed_state_only is bool or None
+        if self.committed_state_only is not None and not isinstance(
+            self.committed_state_only, bool
+        ):
+            raise error_cls("committed_state_only must be a bool or None")
+
+        # Validate forbidden_claims_count is non-negative int or None
+        if self.forbidden_claims_count is not None:
+            if (
+                not isinstance(self.forbidden_claims_count, int)
+                or isinstance(self.forbidden_claims_count, bool)
+                or self.forbidden_claims_count < 0
+            ):
+                raise error_cls(
+                    "forbidden_claims_count must be a non-negative integer or None"
+                )
+
+        # Normalize forbidden_key_hits to sorted tuple of strings
+        safe_hits = _normalize_string_tuple(
+            self.forbidden_key_hits, "forbidden_key_hits", error_cls
+        )
+        safe_hits = tuple(sorted(safe_hits))
+
+        # Normalize warnings to tuple of strings
+        safe_warnings = _normalize_string_tuple(
+            self.warnings, "warnings", error_cls
+        )
+
+        # Deep-copy and freeze metadata
+        safe_metadata = _safe_metadata(self.metadata, error_cls)
+
+        # Use object.__setattr__ to update frozen fields
+        object.__setattr__(self, "forbidden_key_hits", safe_hits)
+        object.__setattr__(self, "warnings", safe_warnings)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def estimate_context_packet_size(value: Any) -> dict[str, int]:
+    """Estimate packet size from a packet instance or serialized mapping.
+
+    Returns a deterministic dict with character, word, and top-level-key
+    estimates. Uses JSON serialization with sorted keys for the character
+    estimate and a simple whitespace split for the word estimate. Does not
+    enforce limits or modify the input.
+    """
+    if isinstance(value, Mapping):
+        serialized = copy.deepcopy(dict(value))
+    else:
+        try:
+            serialized = serialize_context_packet(value)
+        except ContextPacketSelectionError as exc:
+            raise ContextPacketAuditError(
+                f"unsupported context packet value: {exc}"
+            ) from exc
+
+    packet_kind = serialized.get("packet_kind")
+    if not isinstance(packet_kind, str) or packet_kind not in PACKET_KINDS:
+        raise ContextPacketAuditError(
+            f"packet_kind must be a known kind; got {packet_kind!r}"
+        )
+
+    json_str = json.dumps(serialized, sort_keys=True)
+    return {
+        "estimated_chars": len(json_str),
+        "estimated_words": len(json_str.split()),
+        "estimated_top_level_keys": len(serialized),
+    }
+
+
+def audit_context_packet(value: Any) -> ContextPacketAuditReport:
+    """Audit a known context packet instance.
+
+    Serializes the packet and delegates to audit_serialized_context_packet.
+    Raises ContextPacketAuditError for unsupported values.
+    """
+    try:
+        serialized = serialize_context_packet(value)
+    except ContextPacketSelectionError as exc:
+        raise ContextPacketAuditError(
+            f"unsupported context packet value: {exc}"
+        ) from exc
+    return audit_serialized_context_packet(serialized)
+
+
+def audit_serialized_context_packet(value: Any) -> ContextPacketAuditReport:
+    """Audit an already-serialized context packet mapping.
+
+    Requires a known packet_kind. Estimates size and reports structural
+    warnings without rejecting packets for warnings. Only malformed inputs
+    or unknown packet kinds are rejected.
+    """
+    if not isinstance(value, Mapping):
+        raise ContextPacketAuditError("value must be a mapping")
+
+    serialized = copy.deepcopy(dict(value))
+    packet_kind = serialized.get("packet_kind")
+    if not isinstance(packet_kind, str) or packet_kind not in PACKET_KINDS:
+        raise ContextPacketAuditError(
+            f"unknown packet kind: {packet_kind!r}; "
+            f"expected one of {sorted(PACKET_KINDS)}"
+        )
+
+    size = estimate_context_packet_size(serialized)
+    warnings_list: list[str] = []
+
+    # hidden_information_excluded must be exactly True
+    hidden_information_excluded = serialized.get("hidden_information_excluded") is True
+    if not hidden_information_excluded:
+        warnings_list.append("hidden_information_excluded_missing_or_false")
+
+    # non_authority_seal must exist and be non-empty
+    non_authority_seal = serialized.get("non_authority_seal")
+    non_authority_seal_present = bool(
+        isinstance(non_authority_seal, Sequence)
+        and not isinstance(non_authority_seal, str)
+        and len(non_authority_seal) > 0
+    )
+    if not non_authority_seal_present:
+        warnings_list.append("non_authority_seal_missing_or_empty")
+
+    # committed_state_only if present; otherwise None
+    committed_state_only: bool | None = None
+    if "committed_state_only" in serialized:
+        val = serialized["committed_state_only"]
+        if isinstance(val, bool):
+            committed_state_only = val
+        if val is False:
+            warnings_list.append("committed_state_only_false")
+
+    # forbidden_claims_count when a forbidden-claim list exists
+    forbidden_claims_count: int | None = None
+    for key in (
+        "narrator_forbidden_claims",
+        "forbidden_claim_refs",
+        "forbidden_claims",
+    ):
+        if key in serialized:
+            claims = serialized[key]
+            if isinstance(claims, Sequence) and not isinstance(claims, str):
+                forbidden_claims_count = len(claims)
+            else:
+                forbidden_claims_count = 0
+            break
+
+    # forbidden serialized key hits
+    forbidden_key_hits = sorted(
+        set(serialized.keys()) & _AUDIT_FORBIDDEN_SERIALIZED_KEYS
+    )
+    if forbidden_key_hits:
+        warnings_list.append("forbidden_serialized_keys_present")
+
+    metadata = serialized.get("metadata")
+    if not isinstance(metadata, Mapping):
+        metadata = {}
+
+    return ContextPacketAuditReport(
+        packet_kind=packet_kind,
+        estimated_chars=size["estimated_chars"],
+        estimated_words=size["estimated_words"],
+        estimated_top_level_keys=size["estimated_top_level_keys"],
+        hidden_information_excluded=hidden_information_excluded,
+        non_authority_seal_present=non_authority_seal_present,
+        committed_state_only=committed_state_only,
+        forbidden_claims_count=forbidden_claims_count,
+        forbidden_key_hits=tuple(forbidden_key_hits),
+        warnings=tuple(warnings_list),
+        metadata=metadata,
+    )
