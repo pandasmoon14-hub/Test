@@ -203,6 +203,16 @@ from astra_runtime.domain.context_packet_compiler import (
     validate_single_event_narration_packet,
     validate_visible_summary_packet,
 )
+from astra_runtime.domain.model_boundary_evaluation import (
+    MODEL_BOUNDARY_OUTPUT_FAMILIES,
+    MODEL_BOUNDARY_STATUS_VALUES,
+    MODEL_BOUNDARY_VIOLATION_CODES,
+    ModelBoundaryEvaluationCase,
+    ModelBoundaryEvaluationError,
+    ModelBoundaryEvaluationResult,
+    create_model_boundary_evaluation_case,
+    evaluate_model_boundary_case,
+)
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
     CONSEQUENCE_FAMILIES,
@@ -344,6 +354,14 @@ __all__ = [
     "TransactionPrecondition",
     "TransactionRequest",
     "TransactionResult",
+    "MODEL_BOUNDARY_OUTPUT_FAMILIES",
+    "MODEL_BOUNDARY_STATUS_VALUES",
+    "MODEL_BOUNDARY_VIOLATION_CODES",
+    "ModelBoundaryEvaluationCase",
+    "ModelBoundaryEvaluationError",
+    "ModelBoundaryEvaluationResult",
+    "create_model_boundary_evaluation_case",
+    "evaluate_model_boundary_case",
     "create_action_legality_result",
     "create_command_lifecycle_result",
     "create_command_quarantine_result",
