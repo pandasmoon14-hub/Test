@@ -3150,3 +3150,90 @@ runtime_domain_pr_5i_decision:
   canon_promotion_authorized_by_this_pr: false
   no_canon_or_conversion_authority: true
 ```
+
+---
+
+## RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+
+**Date:** 2026-06-12
+
+### Decision
+
+RUNTIME-DOMAIN-PR-5A — Resource and Consequence Math Skeleton Implementation is recorded as implemented on branch `runtime-gate-b/pr-5a-resource-consequence-math-skeleton`.
+
+Authority: PR-5H effective contract, authorized by PR-5I / PR #281.
+
+Scope: narrow RT-002 reference-only skeleton.
+
+### Implemented
+
+- All ten frozen keyword-only shapes: `ResourceMathSubjectReference`, `ResourceReference`, `QuantitySpecification`, `ResourceMathDependency`, `CostTerm`, `ConsequenceTerm`, `CostBundle`, `ResourceMathRequest`, `ResourceMathResult`, `SettlementProposal`.
+- Exact controlled constants from the PR-5H effective contract.
+- Factory/validator parity: one `create_*` and one `validate_*` helper per shape.
+- Defensive internal serialization (`to_dict()`) on every shape.
+- Package exports from `astra_runtime.domain`.
+- Focused skeleton tests (273 passing).
+- Updated obsolete domain-module guardrails in 15 runtime guardrail tests so the new `resource_consequence_math.py` module is recognized in the runtime domain-module allowlist.
+
+### Explicit non-authorities preserved
+
+- No formulas or arithmetic.
+- No affordability, reservation, settlement execution, or consequence application.
+- No state mutation or state-delta application.
+- No transaction execution or event commitment/append.
+- No persistence or replay.
+- No RNG, dice, tables, or oracle execution.
+- No combat, ability, inventory, mission, or social mechanics.
+- No public projection or hidden-information release.
+- No model/live-play/UI behavior.
+- No conversion/sourcebook/canon promotion.
+
+### Next step
+
+Review/merge PR-5A before starting PR-6.
+
+### Classification
+
+```yaml
+runtime_domain_pr_5a_decision:
+  date: '2026-06-12'
+  artifact_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  derives_from:
+    - RUNTIME-DOMAIN-PR-5H-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-001
+    - RUNTIME-DOMAIN-PR-5I-RESOURCE-CONSEQUENCE-MATH-FINAL-RESIDUAL-PLANNING-HARDENING-REVIEW-001
+  implements_resource_consequence_math_skeleton: true
+  implements_all_ten_shapes: true
+  implements_exact_controlled_constants: true
+  implements_factory_validator_parity: true
+  implements_defensive_internal_serialization: true
+  implements_domain_exports: true
+  implements_focused_skeleton_tests: true
+  updates_runtime_guardrail_allowlists: true
+  calculation_executed: false
+  affordability_executed: false
+  reservation_authorized: false
+  settlement_authorized: false
+  consequence_application_authorized: false
+  mutation_authorized: false
+  state_delta_application_authorized: false
+  transaction_execution_authorized: false
+  event_commitment_authorized: false
+  event_append_authorized: false
+  persistence_authorized: false
+  replay_authorized: false
+  rng_execution_authorized: false
+  table_oracle_execution_authorized: false
+  model_authority_authorized: false
+  model_integration_authorized: false
+  live_play_authorized: false
+  ui_authorized: false
+  conversion_authorized: false
+  sourcebook_inclusion_authorized: false
+  canon_promotion_authorized: false
+  public_projection_authorized: false
+  redaction_authorized: false
+  hidden_information_release_authorized: false
+  next_step_authorized: review/merge PR-5A before starting PR-6
+  no_canon_or_conversion_authority: true
+```
