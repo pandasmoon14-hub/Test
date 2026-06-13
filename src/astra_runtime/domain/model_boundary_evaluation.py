@@ -1462,3 +1462,202 @@ def create_model_boundary_case_from_captured_output_fixture(
         evaluator_notes=fixture.evaluator_notes,
         metadata=case_metadata,
     )
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 5 — Captured Fixture Assertion Runner
+# ---------------------------------------------------------------------------
+
+
+class ModelBoundaryCapturedFixtureAssertionError(ModelBoundaryEvaluationError):
+    """Raised for malformed captured-fixture assertion construction.
+
+    Not used for normal assertion failures; those are represented in the
+    returned ModelBoundaryCapturedFixtureAssertionResult object.
+    """
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedFixtureAssertionResult:
+    """Immutable combined result of asserting a captured-output fixture.
+
+    Connects a captured-output fixture, its derived evaluation case, the
+    static evaluation result, and the assertion against an expected outcome.
+    Does not call models, execute prompts, or mutate inputs.
+    """
+
+    fixture_ref: str
+    capture_ref: str
+    case_ref: str
+    expectation_ref: str
+    candidate_model_ref: str
+    expected_output_family: str
+    assertion_passed: bool
+    evaluation_result: ModelBoundaryEvaluationResult
+    assertion_result: ModelBoundaryCaseAssertionResult
+    has_raw_captured_text: bool
+    evaluator_notes: tuple[str, ...] = field(default_factory=tuple)
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedFixtureAssertionError
+
+        # Validate identifiers
+        _validate_non_empty_string(self.fixture_ref, "fixture_ref", error_cls)
+        _validate_non_empty_string(self.capture_ref, "capture_ref", error_cls)
+        _validate_non_empty_string(self.case_ref, "case_ref", error_cls)
+        _validate_non_empty_string(
+            self.expectation_ref, "expectation_ref", error_cls
+        )
+        _validate_non_empty_string(
+            self.candidate_model_ref, "candidate_model_ref", error_cls
+        )
+
+        # Validate expected output family
+        _validate_non_empty_string(
+            self.expected_output_family, "expected_output_family", error_cls
+        )
+        if self.expected_output_family not in MODEL_BOUNDARY_OUTPUT_FAMILIES:
+            raise error_cls(
+                f"unknown expected_output_family: {self.expected_output_family!r}; "
+                f"expected one of {sorted(MODEL_BOUNDARY_OUTPUT_FAMILIES)}"
+            )
+
+        # Validate assertion_passed is bool
+        if not isinstance(self.assertion_passed, bool):
+            raise error_cls("assertion_passed must be a bool")
+
+        # Validate evaluation_result type
+        if not isinstance(
+            self.evaluation_result, ModelBoundaryEvaluationResult
+        ):
+            raise error_cls(
+                "evaluation_result must be a ModelBoundaryEvaluationResult instance"
+            )
+
+        # Validate assertion_result type
+        if not isinstance(
+            self.assertion_result, ModelBoundaryCaseAssertionResult
+        ):
+            raise error_cls(
+                "assertion_result must be a ModelBoundaryCaseAssertionResult instance"
+            )
+
+        # Validate cross-field consistency
+        if self.assertion_passed != self.assertion_result.assertion_passed:
+            raise error_cls(
+                "assertion_passed must equal assertion_result.assertion_passed"
+            )
+        if self.case_ref != self.evaluation_result.case_ref:
+            raise error_cls(
+                "case_ref must equal evaluation_result.case_ref"
+            )
+        if self.expectation_ref != self.assertion_result.expectation_ref:
+            raise error_cls(
+                "expectation_ref must equal assertion_result.expectation_ref"
+            )
+        if self.candidate_model_ref != self.evaluation_result.candidate_model_ref:
+            raise error_cls(
+                "candidate_model_ref must equal evaluation_result.candidate_model_ref"
+            )
+        if (
+            self.expected_output_family
+            != self.evaluation_result.expected_output_family
+        ):
+            raise error_cls(
+                "expected_output_family must equal "
+                "evaluation_result.expected_output_family"
+            )
+
+        # Validate has_raw_captured_text is bool
+        if not isinstance(self.has_raw_captured_text, bool):
+            raise error_cls("has_raw_captured_text must be a bool")
+
+        # Normalize notes and metadata
+        safe_notes = _normalize_string_tuple(
+            self.evaluator_notes, "evaluator_notes", error_cls
+        )
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        # Use object.__setattr__ because the dataclass is frozen
+        object.__setattr__(self, "evaluator_notes", safe_notes)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def assert_model_boundary_captured_output_fixture(
+    *,
+    fixture: ModelBoundaryCapturedOutputFixture,
+    expectation: ModelBoundaryExpectedCaseOutcome,
+    case_ref: str | None = None,
+    case_metadata: Mapping[str, Any] | None = None,
+    assertion_metadata: Mapping[str, Any] | None = None,
+    result_metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedFixtureAssertionResult:
+    """Assert a captured-output fixture against an expected case outcome.
+
+    Converts the fixture into a ``ModelBoundaryEvaluationCase``, evaluates it
+    statically, and asserts the actual result against ``expectation``. Returns
+    an immutable combined result. Does not call models, parse raw captured text,
+    or execute runtime behavior.
+    """
+    error_cls = ModelBoundaryCapturedFixtureAssertionError
+
+    if not isinstance(fixture, ModelBoundaryCapturedOutputFixture):
+        raise error_cls(
+            "fixture must be a ModelBoundaryCapturedOutputFixture instance"
+        )
+    if not isinstance(expectation, ModelBoundaryExpectedCaseOutcome):
+        raise error_cls(
+            "expectation must be a ModelBoundaryExpectedCaseOutcome instance"
+        )
+
+    if case_ref is not None and (
+        not isinstance(case_ref, str) or not case_ref.strip()
+    ):
+        raise error_cls("case_ref must be a non-empty string when provided")
+
+    # Derive the evaluation case from the fixture without mutating inputs.
+    case = create_model_boundary_case_from_captured_output_fixture(
+        fixture,
+        case_ref=case_ref,
+        metadata=case_metadata,
+    )
+
+    # Static evaluation only.
+    evaluation_result = evaluate_model_boundary_case(case)
+
+    # Assert against the expected outcome.
+    assertion_result = assert_model_boundary_case_result(
+        expectation=expectation,
+        actual_result=evaluation_result,
+        metadata=assertion_metadata,
+    )
+
+    has_raw_captured_text = fixture.raw_captured_text is not None
+
+    if result_metadata is None:
+        result_metadata = {
+            **dict(fixture.metadata),
+            "fixture_ref": fixture.fixture_ref,
+            "capture_ref": fixture.capture_ref,
+            "case_ref": case.case_ref,
+            "expectation_ref": expectation.expectation_ref,
+            "has_raw_captured_text": has_raw_captured_text,
+        }
+
+    return ModelBoundaryCapturedFixtureAssertionResult(
+        fixture_ref=fixture.fixture_ref,
+        capture_ref=fixture.capture_ref,
+        case_ref=case.case_ref,
+        expectation_ref=expectation.expectation_ref,
+        candidate_model_ref=fixture.candidate_model_ref,
+        expected_output_family=fixture.expected_output_family,
+        assertion_passed=assertion_result.assertion_passed,
+        evaluation_result=evaluation_result,
+        assertion_result=assertion_result,
+        has_raw_captured_text=has_raw_captured_text,
+        evaluator_notes=fixture.evaluator_notes,
+        metadata=result_metadata,
+    )
