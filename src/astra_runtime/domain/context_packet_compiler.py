@@ -55,6 +55,10 @@ class InvalidNoCommitIntentPacketError(ContextPacketCompilerError):
     """Raised when a NoCommitIntentPacket fails validation."""
 
 
+class InvalidVisibleSummaryPacketError(ContextPacketCompilerError):
+    """Raised when a VisibleSummaryPacket fails validation."""
+
+
 def _normalize_string_tuple(
     values: Sequence[str] | None,
     name: str,
@@ -657,4 +661,334 @@ def validate_packet_kind(kind: str) -> bool:
             f"unknown packet kind: {kind!r}; "
             f"expected one of {sorted(PACKET_KINDS)}"
         )
+    return True
+
+
+@dataclass(frozen=True, kw_only=True)
+class VisibleSummaryPacket:
+    """Immutable visibility-safe packet for a committed-state summary.
+
+    This packet carries a visibility-safe summary of already-committed
+    visible facts and state for narrator context. It must not expose
+    hidden information, alter state, commit events, resolve uncertainty,
+    execute chance, or generate narration.
+    """
+
+    packet_kind: str
+    summary_ref: str
+    summary_scope: str
+    summary_timestamp: str
+    visible_fact_refs: tuple[str, ...]
+    actor_refs: tuple[str, ...] = field(default_factory=tuple)
+    location_refs: tuple[str, ...] = field(default_factory=tuple)
+    faction_refs: tuple[str, ...] = field(default_factory=tuple)
+    item_refs: tuple[str, ...] = field(default_factory=tuple)
+    condition_refs: tuple[str, ...] = field(default_factory=tuple)
+    unresolved_visible_refs: tuple[str, ...] = field(default_factory=tuple)
+    forbidden_claims: tuple[str, ...] = field(default_factory=tuple)
+    hidden_information_excluded: bool = True
+    committed_state_only: bool = True
+    non_authority_seal: tuple[str, ...] = field(default_factory=tuple)
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass.
+
+        Uses object.__setattr__ because the dataclass is frozen.
+        """
+        error_cls = InvalidVisibleSummaryPacketError
+
+        # Validate and normalize packet_kind
+        if not isinstance(self.packet_kind, str) or not self.packet_kind.strip():
+            raise error_cls("packet_kind must be a non-empty string")
+        if self.packet_kind != "visible_summary":
+            raise error_cls(
+                f"packet_kind must be 'visible_summary', got: {self.packet_kind!r}"
+            )
+
+        # Validate summary_ref
+        if not isinstance(self.summary_ref, str) or not self.summary_ref.strip():
+            raise error_cls("summary_ref must be a non-empty string")
+
+        # Validate summary_scope
+        if not isinstance(self.summary_scope, str) or not self.summary_scope.strip():
+            raise error_cls("summary_scope must be a non-empty string")
+
+        # Validate summary_timestamp
+        if not isinstance(self.summary_timestamp, str) or not self.summary_timestamp.strip():
+            raise error_cls("summary_timestamp must be a non-empty string")
+
+        # Validate hidden_information_excluded — must be exactly True
+        if self.hidden_information_excluded is not True:
+            raise error_cls("hidden_information_excluded must be exactly True")
+
+        # Validate committed_state_only — must be exactly True
+        if self.committed_state_only is not True:
+            raise error_cls("committed_state_only must be exactly True")
+
+        # Normalize visible_fact_refs (must be non-empty)
+        normalized_visible = _normalize_string_tuple(
+            self.visible_fact_refs, "visible_fact_refs", error_cls
+        )
+        if len(normalized_visible) == 0:
+            raise error_cls("visible_fact_refs must not be empty")
+
+        # Normalize tuple fields
+        safe_actor_refs = _normalize_string_tuple(
+            self.actor_refs, "actor_refs", error_cls
+        )
+        safe_location_refs = _normalize_string_tuple(
+            self.location_refs, "location_refs", error_cls
+        )
+        safe_faction_refs = _normalize_string_tuple(
+            self.faction_refs, "faction_refs", error_cls
+        )
+        safe_item_refs = _normalize_string_tuple(
+            self.item_refs, "item_refs", error_cls
+        )
+        safe_condition_refs = _normalize_string_tuple(
+            self.condition_refs, "condition_refs", error_cls
+        )
+        safe_unresolved_visible_refs = _normalize_string_tuple(
+            self.unresolved_visible_refs, "unresolved_visible_refs", error_cls
+        )
+        safe_forbidden_claims = _normalize_string_tuple(
+            self.forbidden_claims, "forbidden_claims", error_cls
+        )
+
+        # Normalize non_authority_seal — default to sorted NON_AUTHORITY_SEAL if empty
+        if len(self.non_authority_seal) == 0:
+            safe_non_authority_seal = tuple(sorted(NON_AUTHORITY_SEAL))
+        else:
+            safe_non_authority_seal = _normalize_string_tuple(
+                self.non_authority_seal, "non_authority_seal", error_cls
+            )
+
+        # Deep-copy and freeze metadata
+        safe_metadata = _safe_metadata(self.metadata, error_cls)
+
+        # Use object.__setattr__ to update frozen fields
+        object.__setattr__(self, "visible_fact_refs", normalized_visible)
+        object.__setattr__(self, "actor_refs", safe_actor_refs)
+        object.__setattr__(self, "location_refs", safe_location_refs)
+        object.__setattr__(self, "faction_refs", safe_faction_refs)
+        object.__setattr__(self, "item_refs", safe_item_refs)
+        object.__setattr__(self, "condition_refs", safe_condition_refs)
+        object.__setattr__(self, "unresolved_visible_refs", safe_unresolved_visible_refs)
+        object.__setattr__(self, "forbidden_claims", safe_forbidden_claims)
+        object.__setattr__(self, "non_authority_seal", safe_non_authority_seal)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+    def to_dict(self) -> dict[str, Any]:
+        """Return a deterministic plain-dict serialization."""
+        return {
+            "packet_kind": self.packet_kind,
+            "summary_ref": self.summary_ref,
+            "summary_scope": self.summary_scope,
+            "summary_timestamp": self.summary_timestamp,
+            "visible_fact_refs": list(self.visible_fact_refs),
+            "actor_refs": list(self.actor_refs),
+            "location_refs": list(self.location_refs),
+            "faction_refs": list(self.faction_refs),
+            "item_refs": list(self.item_refs),
+            "condition_refs": list(self.condition_refs),
+            "unresolved_visible_refs": list(self.unresolved_visible_refs),
+            "forbidden_claims": list(self.forbidden_claims),
+            "hidden_information_excluded": self.hidden_information_excluded,
+            "committed_state_only": self.committed_state_only,
+            "non_authority_seal": list(self.non_authority_seal),
+            "metadata": copy.deepcopy(dict(self.metadata)),
+        }
+
+
+def create_visible_summary_packet(
+    *,
+    packet_kind: str = "visible_summary",
+    summary_ref: str,
+    summary_scope: str,
+    summary_timestamp: str,
+    visible_fact_refs: Sequence[str],
+    actor_refs: Sequence[str] | None = None,
+    location_refs: Sequence[str] | None = None,
+    faction_refs: Sequence[str] | None = None,
+    item_refs: Sequence[str] | None = None,
+    condition_refs: Sequence[str] | None = None,
+    unresolved_visible_refs: Sequence[str] | None = None,
+    forbidden_claims: Sequence[str] | None = None,
+    hidden_information_excluded: bool = True,
+    committed_state_only: bool = True,
+    non_authority_seal: Sequence[str] | None = None,
+    metadata: Mapping[str, Any] | None = None,
+) -> VisibleSummaryPacket:
+    """Construct and validate a VisibleSummaryPacket.
+
+    Raises InvalidVisibleSummaryPacketError on invalid input.
+
+    This is the canonical public construction helper. It pre-validates
+    inputs and delegates final normalization to __post_init__.
+    """
+    error_cls = InvalidVisibleSummaryPacketError
+
+    # Pre-validate packet_kind
+    if not isinstance(packet_kind, str) or not packet_kind.strip():
+        raise error_cls("packet_kind must be a non-empty string")
+    if packet_kind != "visible_summary":
+        raise error_cls(
+            f"packet_kind must be 'visible_summary', got: {packet_kind!r}"
+        )
+
+    # Pre-validate summary_ref
+    if not isinstance(summary_ref, str) or not summary_ref.strip():
+        raise error_cls("summary_ref must be a non-empty string")
+
+    # Pre-validate summary_scope
+    if not isinstance(summary_scope, str) or not summary_scope.strip():
+        raise error_cls("summary_scope must be a non-empty string")
+
+    # Pre-validate summary_timestamp
+    if not isinstance(summary_timestamp, str) or not summary_timestamp.strip():
+        raise error_cls("summary_timestamp must be a non-empty string")
+
+    # Pre-validate visible_fact_refs — must be non-empty
+    if not isinstance(visible_fact_refs, Sequence) or isinstance(visible_fact_refs, str):
+        raise error_cls("visible_fact_refs must be a sequence")
+    if len(visible_fact_refs) == 0:
+        raise error_cls("visible_fact_refs must not be empty")
+
+    # Pre-validate hidden_information_excluded — must be exactly True
+    if hidden_information_excluded is not True:
+        raise error_cls("hidden_information_excluded must be exactly True")
+
+    # Pre-validate committed_state_only — must be exactly True
+    if committed_state_only is not True:
+        raise error_cls("committed_state_only must be exactly True")
+
+    # Pre-validate optional tuple fields are sequences (not bare strings)
+    for field_name, field_value in (
+        ("actor_refs", actor_refs),
+        ("location_refs", location_refs),
+        ("faction_refs", faction_refs),
+        ("item_refs", item_refs),
+        ("condition_refs", condition_refs),
+        ("unresolved_visible_refs", unresolved_visible_refs),
+        ("forbidden_claims", forbidden_claims),
+        ("non_authority_seal", non_authority_seal),
+    ):
+        if field_value is not None:
+            if isinstance(field_value, str):
+                raise error_cls(f"{field_name} must not be a bare string")
+            if not isinstance(field_value, Sequence):
+                raise error_cls(f"{field_name} must be a sequence")
+
+    # Pre-validate metadata type if provided
+    if metadata is not None and not isinstance(metadata, Mapping):
+        raise error_cls("metadata must be a mapping")
+
+    # Build kwargs for direct construction — __post_init__ handles normalization
+    kwargs: dict[str, Any] = {
+        "packet_kind": packet_kind,
+        "summary_ref": summary_ref,
+        "summary_scope": summary_scope,
+        "summary_timestamp": summary_timestamp,
+        "visible_fact_refs": list(visible_fact_refs),
+        "actor_refs": list(actor_refs) if actor_refs is not None else (),
+        "location_refs": list(location_refs) if location_refs is not None else (),
+        "faction_refs": list(faction_refs) if faction_refs is not None else (),
+        "item_refs": list(item_refs) if item_refs is not None else (),
+        "condition_refs": list(condition_refs) if condition_refs is not None else (),
+        "unresolved_visible_refs": (
+            list(unresolved_visible_refs) if unresolved_visible_refs is not None else ()
+        ),
+        "forbidden_claims": (
+            list(forbidden_claims) if forbidden_claims is not None else ()
+        ),
+        "hidden_information_excluded": hidden_information_excluded,
+        "committed_state_only": committed_state_only,
+        "non_authority_seal": (
+            list(non_authority_seal) if non_authority_seal is not None else ()
+        ),
+        "metadata": dict(metadata) if metadata is not None else {},
+    }
+
+    return VisibleSummaryPacket(**kwargs)
+
+
+def validate_visible_summary_packet(value: Any) -> bool:
+    """Return True for a valid VisibleSummaryPacket instance.
+
+    Raises InvalidVisibleSummaryPacketError for invalid values.
+    """
+    error_cls = InvalidVisibleSummaryPacketError
+
+    if not isinstance(value, VisibleSummaryPacket):
+        raise error_cls("value must be a VisibleSummaryPacket instance")
+
+    # Validate packet_kind
+    if not isinstance(value.packet_kind, str) or not value.packet_kind.strip():
+        raise error_cls("packet_kind must be a non-empty string")
+    if value.packet_kind != "visible_summary":
+        raise error_cls(
+            f"packet_kind must be 'visible_summary', got: {value.packet_kind!r}"
+        )
+
+    # Validate summary_ref
+    if not isinstance(value.summary_ref, str) or not value.summary_ref.strip():
+        raise error_cls("summary_ref must be a non-empty string")
+
+    # Validate summary_scope
+    if not isinstance(value.summary_scope, str) or not value.summary_scope.strip():
+        raise error_cls("summary_scope must be a non-empty string")
+
+    # Validate summary_timestamp
+    if not isinstance(value.summary_timestamp, str) or not value.summary_timestamp.strip():
+        raise error_cls("summary_timestamp must be a non-empty string")
+
+    # Validate visible_fact_refs — must be non-empty tuple of non-empty strings
+    if not isinstance(value.visible_fact_refs, tuple):
+        raise error_cls("visible_fact_refs must be a tuple")
+    if len(value.visible_fact_refs) == 0:
+        raise error_cls("visible_fact_refs must not be empty")
+    for item in value.visible_fact_refs:
+        if not isinstance(item, str) or not item.strip():
+            raise error_cls("visible_fact_refs items must be non-empty strings")
+
+    # Validate tuple fields
+    for field_name, field_value in (
+        ("actor_refs", value.actor_refs),
+        ("location_refs", value.location_refs),
+        ("faction_refs", value.faction_refs),
+        ("item_refs", value.item_refs),
+        ("condition_refs", value.condition_refs),
+        ("unresolved_visible_refs", value.unresolved_visible_refs),
+        ("forbidden_claims", value.forbidden_claims),
+    ):
+        if not isinstance(field_value, tuple):
+            raise error_cls(f"{field_name} must be a tuple")
+        for item in field_value:
+            if not isinstance(item, str) or not item.strip():
+                raise error_cls(f"{field_name} items must be non-empty strings")
+
+    # Validate non_authority_seal — must be non-empty tuple of non-empty strings
+    if not isinstance(value.non_authority_seal, tuple):
+        raise error_cls("non_authority_seal must be a tuple")
+    if len(value.non_authority_seal) == 0:
+        raise error_cls("non_authority_seal must not be empty")
+    for item in value.non_authority_seal:
+        if not isinstance(item, str) or not item.strip():
+            raise error_cls("non_authority_seal items must be non-empty strings")
+
+    # Validate hidden_information_excluded — must be exactly True
+    if value.hidden_information_excluded is not True:
+        raise error_cls("hidden_information_excluded must be exactly True")
+
+    # Validate committed_state_only — must be exactly True
+    if value.committed_state_only is not True:
+        raise error_cls("committed_state_only must be exactly True")
+
+    # Validate metadata is MappingProxyType
+    if not isinstance(value.metadata, MappingProxyType):
+        raise error_cls("metadata must be a MappingProxyType")
+
     return True

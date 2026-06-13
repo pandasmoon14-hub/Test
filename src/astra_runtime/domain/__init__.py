@@ -169,12 +169,16 @@ from astra_runtime.domain.context_packet_compiler import (
     ContextPacketCompilerError,
     InvalidNoCommitIntentPacketError,
     InvalidSingleEventNarrationPacketError,
+    InvalidVisibleSummaryPacketError,
     NoCommitIntentPacket,
     SingleEventNarrationPacket,
+    VisibleSummaryPacket,
     create_no_commit_intent_packet,
     create_single_event_narration_packet,
+    create_visible_summary_packet,
     validate_no_commit_intent_packet,
     validate_single_event_narration_packet,
+    validate_visible_summary_packet,
     validate_packet_kind,
 )
 from astra_runtime.domain.resource_consequence_math import (
@@ -408,6 +412,11 @@ __all__ = [
     "NoCommitIntentPacket",
     "create_no_commit_intent_packet",
     "validate_no_commit_intent_packet",
+    # context_packet_compiler — PR-6 Slice 3
+    "InvalidVisibleSummaryPacketError",
+    "VisibleSummaryPacket",
+    "create_visible_summary_packet",
+    "validate_visible_summary_packet",
     "CONSEQUENCE_FAMILIES",
     "CONVERSION_POLICIES",
     "COST_FAMILIES",
