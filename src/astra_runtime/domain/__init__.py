@@ -185,6 +185,11 @@ from astra_runtime.domain.context_packet_compiler import (
     audit_context_packet,
     audit_serialized_context_packet,
     estimate_context_packet_size,
+    # context_packet_compiler — PR-6 Slice 7
+    ContextPacketCompilerResult,
+    ContextPacketCompilerResultError,
+    compile_and_audit_context_packet,
+    compile_context_packet_from_request,
     create_no_commit_intent_packet,
     create_single_event_narration_packet,
     create_visible_summary_packet,
@@ -453,6 +458,11 @@ __all__ = [
     "audit_context_packet",
     "audit_serialized_context_packet",
     "estimate_context_packet_size",
+    # context_packet_compiler — PR-6 Slice 7
+    "ContextPacketCompilerResult",
+    "ContextPacketCompilerResultError",
+    "compile_and_audit_context_packet",
+    "compile_context_packet_from_request",
     "CONSEQUENCE_FAMILIES",
     "CONVERSION_POLICIES",
     "COST_FAMILIES",

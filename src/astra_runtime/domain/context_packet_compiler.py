@@ -1579,3 +1579,149 @@ def audit_serialized_context_packet(value: Any) -> ContextPacketAuditReport:
         warnings=tuple(warnings_list),
         metadata=metadata,
     )
+
+
+# ---------------------------------------------------------------------------
+# Slice 7 — explicit single-packet compiler result shell
+# ---------------------------------------------------------------------------
+
+class ContextPacketCompilerResultError(ContextPacketCompilerError):
+    """Raised for invalid compiler-result construction or invalid request dispatch."""
+
+
+@dataclass(frozen=True, kw_only=True)
+class ContextPacketCompilerResult:
+    """Immutable result of compiling and auditing exactly one context packet.
+
+    This is a narrow, stateless facade over the Slice 5 assembly shell and the
+    Slice 6 audit helpers. It does not aggregate packets, read runtime state,
+    call models, generate narration, write events, or modify state.
+    """
+
+    request_ref: str
+    packet_kind: str
+    serialized_packet: Mapping[str, Any]
+    audit_report: ContextPacketAuditReport
+    assembly_succeeded: bool
+    serialization_succeeded: bool
+    audit_succeeded: bool
+    hidden_information_excluded: bool
+    non_authority_seal_present: bool
+    warnings: tuple[str, ...]
+    non_authority_seal: tuple[str, ...] = field(default_factory=tuple)
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass.
+
+        Uses object.__setattr__ because the dataclass is frozen.
+        """
+        error_cls = ContextPacketCompilerResultError
+
+        # Validate request_ref
+        if not isinstance(self.request_ref, str) or not self.request_ref.strip():
+            raise error_cls("request_ref must be a non-empty string")
+
+        # Validate packet_kind
+        if not isinstance(self.packet_kind, str) or not self.packet_kind.strip():
+            raise error_cls("packet_kind must be a non-empty string")
+        if self.packet_kind not in PACKET_KINDS:
+            raise error_cls(
+                f"packet_kind must be one of {sorted(PACKET_KINDS)}; "
+                f"got: {self.packet_kind!r}"
+            )
+
+        # Validate and freeze serialized_packet
+        if not isinstance(self.serialized_packet, Mapping):
+            raise error_cls("serialized_packet must be a mapping")
+        safe_serialized: dict[str, Any] = {}
+        for key, value in self.serialized_packet.items():
+            if callable(value):
+                raise error_cls("serialized_packet values must not be callable")
+            safe_serialized[key] = copy.deepcopy(value)
+        object.__setattr__(
+            self, "serialized_packet", MappingProxyType(safe_serialized)
+        )
+
+        # Validate audit_report
+        if not isinstance(self.audit_report, ContextPacketAuditReport):
+            raise error_cls("audit_report must be a ContextPacketAuditReport")
+
+        # Validate boolean success flags
+        for flag_name in (
+            "assembly_succeeded",
+            "serialization_succeeded",
+            "audit_succeeded",
+            "hidden_information_excluded",
+            "non_authority_seal_present",
+        ):
+            flag_value = getattr(self, flag_name)
+            if not isinstance(flag_value, bool):
+                raise error_cls(f"{flag_name} must be a bool")
+
+        # Normalize warnings
+        safe_warnings = _normalize_string_tuple(
+            self.warnings, "warnings", error_cls
+        )
+
+        # Normalize non_authority_seal — default to sorted NON_AUTHORITY_SEAL if empty
+        if len(self.non_authority_seal) == 0:
+            safe_non_authority_seal = tuple(sorted(NON_AUTHORITY_SEAL))
+        else:
+            safe_non_authority_seal = _normalize_string_tuple(
+                self.non_authority_seal, "non_authority_seal", error_cls
+            )
+
+        # Deep-copy and freeze metadata
+        safe_metadata = _safe_metadata(self.metadata, error_cls)
+
+        # Use object.__setattr__ to update frozen fields
+        object.__setattr__(self, "warnings", safe_warnings)
+        object.__setattr__(self, "non_authority_seal", safe_non_authority_seal)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def compile_context_packet_from_request(
+    request: ContextPacketAssemblyRequest,
+) -> ContextPacketCompilerResult:
+    """Compile and audit exactly one context packet from an explicit request.
+
+    Accepts only a ContextPacketAssemblyRequest, assembles the packet,
+    serializes it, audits the serialized form, and returns an immutable
+    ContextPacketCompilerResult. Does not catch packet-specific validation
+    errors, aggregate packets, read runtime state, or call models.
+    """
+    if not isinstance(request, ContextPacketAssemblyRequest):
+        raise ContextPacketCompilerResultError(
+            "request must be a ContextPacketAssemblyRequest instance"
+        )
+
+    packet = assemble_context_packet(request)
+    serialized_packet = serialize_context_packet(packet)
+    audit_report = audit_serialized_context_packet(serialized_packet)
+
+    return ContextPacketCompilerResult(
+        request_ref=request.request_ref,
+        packet_kind=request.packet_kind,
+        serialized_packet=serialized_packet,
+        audit_report=audit_report,
+        assembly_succeeded=True,
+        serialization_succeeded=True,
+        audit_succeeded=True,
+        hidden_information_excluded=audit_report.hidden_information_excluded,
+        non_authority_seal_present=audit_report.non_authority_seal_present,
+        warnings=audit_report.warnings,
+    )
+
+
+def compile_and_audit_context_packet(
+    request: ContextPacketAssemblyRequest,
+) -> ContextPacketCompilerResult:
+    """Alias-style public helper that compiles and audits a single packet.
+
+    Delegates to compile_context_packet_from_request to make the result-shell
+    intent discoverable. No extra behavior beyond delegation.
+    """
+    return compile_context_packet_from_request(request)
