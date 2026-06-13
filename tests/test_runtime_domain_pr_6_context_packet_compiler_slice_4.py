@@ -418,16 +418,28 @@ class TestForbiddenSourceTerms:
     ]
 
     def _get_helper_source(self) -> str:
-        """Return the source text of the Slice 4 helper area in the compiler module."""
+        """Return the source text of the Slice 4 helper area in the compiler module.
+
+        Excludes the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS frozenset area which
+        intentionally contains tokens like rng_result and model_output as
+        rejected payload keys.
+        """
         from astra_runtime.domain import context_packet_compiler as mod
 
         source = inspect.getsource(mod)
         # Extract from ContextPacketSelectionError class onward
         idx = source.find("class ContextPacketSelectionError")
         if idx < 0:
-            # Fallback: return entire source
             return source
-        return source[idx:]
+        helper_source = source[idx:]
+        # Exclude the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS block
+        marker_start = "FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS"
+        marker_idx = helper_source.find(marker_start)
+        if marker_idx != -1:
+            closing = helper_source.find(")", marker_idx)
+            if closing != -1:
+                helper_source = helper_source[:marker_idx] + helper_source[closing + 1 :]
+        return helper_source
 
     def test_no_forbidden_terms_in_helper_area(self) -> None:
         source = self._get_helper_source()
@@ -439,7 +451,18 @@ class TestForbiddenSourceTerms:
     def test_no_forbidden_terms_in_module(self) -> None:
         from astra_runtime.domain import context_packet_compiler as mod
 
-        source = inspect.getsource(mod)
+        full_source = inspect.getsource(mod)
+        # Exclude the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS block
+        marker_start = "FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS"
+        marker_idx = full_source.find(marker_start)
+        if marker_idx != -1:
+            closing = full_source.find(")", marker_idx)
+            if closing != -1:
+                source = full_source[:marker_idx] + full_source[closing + 1 :]
+            else:
+                source = full_source
+        else:
+            source = full_source
         for term in self.FORBIDDEN:
             # Allow no_event_commitment in NON_AUTHORITY_SEAL (it's a seal, not authority)
             if term == "commit_event(":

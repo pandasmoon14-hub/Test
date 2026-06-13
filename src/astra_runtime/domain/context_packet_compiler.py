@@ -1100,3 +1100,243 @@ def serialize_context_packet(value: Any) -> dict[str, Any]:
     validate_context_packet(value)
     raw = value.to_dict()
     return copy.deepcopy(raw)
+
+
+# ---------------------------------------------------------------------------
+# Slice 5 — context packet single-packet assembly shell
+# ---------------------------------------------------------------------------
+
+FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS = frozenset({
+    "runtime_state",
+    "state_store",
+    "event_ledger",
+    "hidden_state",
+    "hidden_fact_refs",
+    "hidden_payload",
+    "secret_refs",
+    "unrevealed_refs",
+    "state_delta",
+    "commit_event",
+    "mutation",
+    "rng_result",
+    "roll_result",
+    "model_output",
+    "narration_output",
+})
+
+
+class ContextPacketAssemblyError(ContextPacketCompilerError):
+    """Raised for assembly-request and assembly-dispatch failures."""
+
+
+@dataclass(frozen=True, kw_only=True)
+class ContextPacketAssemblyRequest:
+    """Frozen request to assemble exactly one context packet from an explicit payload mapping.
+
+    This is a backend-owned, deterministic, stateless assembly request.
+    It must not read runtime state, compile packets from stores, aggregate
+    packets, execute transactions, call models, or generate narration.
+    """
+
+    request_ref: str
+    packet_kind: str
+    packet_payload: Mapping[str, Any]
+    assembly_timestamp: str
+    hidden_information_excluded: bool = True
+    explicit_payload_only: bool = True
+    no_runtime_state_source: bool = True
+    non_authority_seal: tuple[str, ...] = field(default_factory=tuple)
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass.
+
+        Uses object.__setattr__ because the dataclass is frozen.
+        """
+        error_cls = ContextPacketAssemblyError
+
+        # Validate request_ref
+        if not isinstance(self.request_ref, str) or not self.request_ref.strip():
+            raise error_cls("request_ref must be a non-empty string")
+
+        # Validate assembly_timestamp
+        if not isinstance(self.assembly_timestamp, str) or not self.assembly_timestamp.strip():
+            raise error_cls("assembly_timestamp must be a non-empty string")
+
+        # Validate packet_kind is a known kind
+        if not isinstance(self.packet_kind, str) or not self.packet_kind.strip():
+            raise error_cls("packet_kind must be a non-empty string")
+        if self.packet_kind not in PACKET_KINDS:
+            raise error_cls(
+                f"unknown packet_kind: {self.packet_kind!r}; "
+                f"expected one of {sorted(PACKET_KINDS)}"
+            )
+
+        # Validate packet_payload is a mapping
+        if not isinstance(self.packet_payload, Mapping):
+            raise error_cls("packet_payload must be a mapping")
+
+        # Check for forbidden payload keys
+        payload_keys = set(self.packet_payload.keys())
+        forbidden_found = payload_keys & FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS
+        if forbidden_found:
+            raise error_cls(
+                f"packet_payload contains forbidden keys: {sorted(forbidden_found)}"
+            )
+
+        # Require safety flags are exactly True
+        if self.hidden_information_excluded is not True:
+            raise error_cls("hidden_information_excluded must be exactly True")
+        if self.explicit_payload_only is not True:
+            raise error_cls("explicit_payload_only must be exactly True")
+        if self.no_runtime_state_source is not True:
+            raise error_cls("no_runtime_state_source must be exactly True")
+
+        # Deep-copy and freeze packet_payload
+        safe_payload: dict[str, Any] = {}
+        for key, value in self.packet_payload.items():
+            safe_payload[key] = copy.deepcopy(value)
+        object.__setattr__(self, "packet_payload", MappingProxyType(safe_payload))
+
+        # Normalize non_authority_seal — default to sorted NON_AUTHORITY_SEAL if empty
+        if len(self.non_authority_seal) == 0:
+            safe_non_authority_seal = tuple(sorted(NON_AUTHORITY_SEAL))
+        else:
+            safe_non_authority_seal = _normalize_string_tuple(
+                self.non_authority_seal, "non_authority_seal", error_cls
+            )
+
+        # Deep-copy and freeze metadata
+        safe_metadata = _safe_metadata(self.metadata, error_cls)
+
+        # Use object.__setattr__ to update frozen fields
+        object.__setattr__(self, "non_authority_seal", safe_non_authority_seal)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_context_packet_assembly_request(
+    *,
+    request_ref: str,
+    packet_kind: str,
+    packet_payload: Mapping[str, Any],
+    assembly_timestamp: str,
+    hidden_information_excluded: bool = True,
+    explicit_payload_only: bool = True,
+    no_runtime_state_source: bool = True,
+    non_authority_seal: Sequence[str] | None = None,
+    metadata: Mapping[str, Any] | None = None,
+) -> ContextPacketAssemblyRequest:
+    """Construct and validate a ContextPacketAssemblyRequest.
+
+    Raises ContextPacketAssemblyError on invalid input.
+    """
+    error_cls = ContextPacketAssemblyError
+
+    # Pre-validate request_ref
+    if not isinstance(request_ref, str) or not request_ref.strip():
+        raise error_cls("request_ref must be a non-empty string")
+
+    # Pre-validate assembly_timestamp
+    if not isinstance(assembly_timestamp, str) or not assembly_timestamp.strip():
+        raise error_cls("assembly_timestamp must be a non-empty string")
+
+    # Pre-validate packet_kind
+    if not isinstance(packet_kind, str) or not packet_kind.strip():
+        raise error_cls("packet_kind must be a non-empty string")
+    if packet_kind not in PACKET_KINDS:
+        raise error_cls(
+            f"unknown packet_kind: {packet_kind!r}; "
+            f"expected one of {sorted(PACKET_KINDS)}"
+        )
+
+    # Pre-validate packet_payload is a mapping
+    if not isinstance(packet_payload, Mapping):
+        raise error_cls("packet_payload must be a mapping")
+
+    # Check for forbidden payload keys
+    payload_keys = set(packet_payload.keys())
+    forbidden_found = payload_keys & FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS
+    if forbidden_found:
+        raise error_cls(
+            f"packet_payload contains forbidden keys: {sorted(forbidden_found)}"
+        )
+
+    # Require safety flags
+    if hidden_information_excluded is not True:
+        raise error_cls("hidden_information_excluded must be exactly True")
+    if explicit_payload_only is not True:
+        raise error_cls("explicit_payload_only must be exactly True")
+    if no_runtime_state_source is not True:
+        raise error_cls("no_runtime_state_source must be exactly True")
+
+    # Pre-validate optional tuple fields
+    if non_authority_seal is not None:
+        if isinstance(non_authority_seal, str):
+            raise error_cls("non_authority_seal must not be a bare string")
+        if not isinstance(non_authority_seal, Sequence):
+            raise error_cls("non_authority_seal must be a sequence")
+
+    # Pre-validate metadata type if provided
+    if metadata is not None and not isinstance(metadata, Mapping):
+        raise error_cls("metadata must be a mapping")
+
+    # Build kwargs — __post_init__ handles normalization
+    kwargs: dict[str, Any] = {
+        "request_ref": request_ref,
+        "packet_kind": packet_kind,
+        "packet_payload": dict(packet_payload),
+        "assembly_timestamp": assembly_timestamp,
+        "hidden_information_excluded": hidden_information_excluded,
+        "explicit_payload_only": explicit_payload_only,
+        "no_runtime_state_source": no_runtime_state_source,
+        "non_authority_seal": (
+            list(non_authority_seal) if non_authority_seal is not None else ()
+        ),
+        "metadata": dict(metadata) if metadata is not None else {},
+    }
+
+    return ContextPacketAssemblyRequest(**kwargs)
+
+
+def assemble_context_packet(request: Any) -> Any:
+    """Assemble exactly one context packet from an explicit assembly request.
+
+    Dispatches to the correct packet factory based on packet_kind.
+    Validates the resulting packet before returning.
+    Raises ContextPacketAssemblyError for invalid request objects or unknown
+    packet kinds. Allows packet-specific factory/validator errors to pass
+    through for invalid packet payload content.
+    """
+    if not isinstance(request, ContextPacketAssemblyRequest):
+        raise ContextPacketAssemblyError(
+            "request must be a ContextPacketAssemblyRequest instance"
+        )
+
+    _factory_map: dict[str, Any] = {
+        "single_event_narration": create_single_event_narration_packet,
+        "no_commit_intent": create_no_commit_intent_packet,
+        "visible_summary": create_visible_summary_packet,
+    }
+
+    if request.packet_kind not in _factory_map:
+        raise ContextPacketAssemblyError(
+            f"unknown packet_kind: {request.packet_kind!r}"
+        )
+
+    factory = _factory_map[request.packet_kind]
+    packet = factory(**request.packet_payload)
+    validate_context_packet(packet)
+    return packet
+
+
+def assemble_and_serialize_context_packet(request: Any) -> dict[str, Any]:
+    """Assemble and serialize exactly one context packet from an assembly request.
+
+    Calls assemble_context_packet then serialize_context_packet.
+    Returns a deep copy so mutating the result cannot affect the request
+    or packet. Does not aggregate packets or read runtime state.
+    """
+    packet = assemble_context_packet(request)
+    return serialize_context_packet(packet)

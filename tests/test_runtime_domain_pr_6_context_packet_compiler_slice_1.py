@@ -422,11 +422,25 @@ def test_forbidden_scope_strings_absent_from_module_source() -> None:
 
     The module must not contain: roll, random, commit_event, mutate,
     apply_delta, persist, replay, generate_narration, to_public_dict.
+
+    Excludes the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS frozenset area which
+    intentionally contains these tokens as rejected payload keys.
     """
     import astra_runtime.domain.context_packet_compiler as mod
     import inspect
 
-    source = inspect.getsource(mod)
+    full_source = inspect.getsource(mod)
+
+    # Exclude the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS block which intentionally
+    # contains forbidden tokens as string literals to reject in payloads.
+    marker_start = "FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS"
+    marker_idx = full_source.find(marker_start)
+    if marker_idx != -1:
+        # Skip from the marker to the end of the frozenset closing paren
+        closing = full_source.find(")", marker_idx)
+        source_excluding_payload_keys = full_source[:marker_idx] + full_source[closing + 1 :]
+    else:
+        source_excluding_payload_keys = full_source
 
     forbidden = [
         "roll",
@@ -440,7 +454,7 @@ def test_forbidden_scope_strings_absent_from_module_source() -> None:
         "to_public_dict",
     ]
     for token in forbidden:
-        assert token not in source, (
+        assert token not in source_excluding_payload_keys, (
             f"Forbidden token {token!r} found in context_packet_compiler.py source"
         )
 
