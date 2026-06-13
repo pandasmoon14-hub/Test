@@ -1294,3 +1294,171 @@ def assert_model_boundary_suite_result(
         actual_violation_counts=actual_result.violation_counts,
         metadata=safe_metadata,
     )
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 4 — Captured Output Fixture Adapter
+# ---------------------------------------------------------------------------
+
+
+class ModelBoundaryCapturedOutputFixtureError(ModelBoundaryEvaluationError):
+    """Raised for malformed captured-output fixture construction/adaptation.
+
+    Not used for normal evaluation failures; those are reported through
+    ModelBoundaryEvaluationResult objects.
+    """
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedOutputFixture:
+    """Immutable captured-output fixture for model-boundary evaluation.
+
+    Carries a pre-captured model output as an explicit candidate mapping,
+    together with the packet result that was supplied to the model boundary.
+    The raw captured text is stored only as inert evidence and is never
+    parsed or executed.
+    """
+
+    fixture_ref: str
+    capture_ref: str
+    candidate_model_ref: str
+    expected_output_family: str
+    packet_result: ContextPacketCompilerResult
+    candidate_output: Mapping[str, Any]
+    raw_captured_text: str | None = None
+    evaluator_notes: tuple[str, ...] = field(default_factory=tuple)
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedOutputFixtureError
+
+        # Validate identifiers
+        if not isinstance(self.fixture_ref, str) or not self.fixture_ref.strip():
+            raise error_cls("fixture_ref must be a non-empty string")
+        if not isinstance(self.capture_ref, str) or not self.capture_ref.strip():
+            raise error_cls("capture_ref must be a non-empty string")
+        if (
+            not isinstance(self.candidate_model_ref, str)
+            or not self.candidate_model_ref.strip()
+        ):
+            raise error_cls("candidate_model_ref must be a non-empty string")
+
+        # Validate expected output family
+        if (
+            not isinstance(self.expected_output_family, str)
+            or not self.expected_output_family.strip()
+        ):
+            raise error_cls("expected_output_family must be a non-empty string")
+        if self.expected_output_family not in MODEL_BOUNDARY_OUTPUT_FAMILIES:
+            raise error_cls(
+                f"unknown expected_output_family: {self.expected_output_family!r}; "
+                f"expected one of {sorted(MODEL_BOUNDARY_OUTPUT_FAMILIES)}"
+            )
+
+        # Validate packet result type
+        if not isinstance(self.packet_result, ContextPacketCompilerResult):
+            raise error_cls(
+                "packet_result must be a ContextPacketCompilerResult instance"
+            )
+
+        # Validate and freeze candidate output mapping
+        safe_candidate_output = _safe_frozen_mapping(
+            self.candidate_output, error_cls
+        )
+
+        # Validate raw captured text is inert evidence only
+        if self.raw_captured_text is not None:
+            if (
+                not isinstance(self.raw_captured_text, str)
+                or not self.raw_captured_text.strip()
+            ):
+                raise error_cls(
+                    "raw_captured_text must be a non-empty string when provided"
+                )
+
+        # Normalize notes and metadata
+        safe_notes = _normalize_string_tuple(
+            self.evaluator_notes, "evaluator_notes", error_cls
+        )
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        # Use object.__setattr__ because the dataclass is frozen
+        object.__setattr__(
+            self, "candidate_output", safe_candidate_output
+        )
+        object.__setattr__(self, "evaluator_notes", safe_notes)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_captured_output_fixture(
+    *,
+    fixture_ref: str,
+    capture_ref: str,
+    candidate_model_ref: str,
+    expected_output_family: str,
+    packet_result: ContextPacketCompilerResult,
+    candidate_output: Mapping[str, Any],
+    raw_captured_text: str | None = None,
+    evaluator_notes: Sequence[str] = (),
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedOutputFixture:
+    """Construct and validate a ModelBoundaryCapturedOutputFixture.
+
+    Raises ModelBoundaryCapturedOutputFixtureError on invalid input.
+    """
+    return ModelBoundaryCapturedOutputFixture(
+        fixture_ref=fixture_ref,
+        capture_ref=capture_ref,
+        candidate_model_ref=candidate_model_ref,
+        expected_output_family=expected_output_family,
+        packet_result=packet_result,
+        candidate_output=candidate_output,
+        raw_captured_text=raw_captured_text,
+        evaluator_notes=evaluator_notes,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def create_model_boundary_case_from_captured_output_fixture(
+    fixture: ModelBoundaryCapturedOutputFixture,
+    *,
+    case_ref: str | None = None,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryEvaluationCase:
+    """Adapt a captured-output fixture into a ModelBoundaryEvaluationCase.
+
+    Uses explicit fixture fields and caller-supplied overrides only. Does not
+    call models, parse raw captured text, or evaluate the case.
+    """
+    error_cls = ModelBoundaryCapturedOutputFixtureError
+
+    if not isinstance(fixture, ModelBoundaryCapturedOutputFixture):
+        raise error_cls(
+            "fixture must be a ModelBoundaryCapturedOutputFixture instance"
+        )
+
+    resolved_case_ref = case_ref if case_ref is not None else fixture.fixture_ref
+    if not isinstance(resolved_case_ref, str) or not resolved_case_ref.strip():
+        raise error_cls("case_ref must be a non-empty string")
+
+    if metadata is not None:
+        case_metadata = metadata
+    else:
+        case_metadata = {
+            **dict(fixture.metadata),
+            "fixture_ref": fixture.fixture_ref,
+            "capture_ref": fixture.capture_ref,
+            "has_raw_captured_text": fixture.raw_captured_text is not None,
+        }
+
+    return create_model_boundary_evaluation_case(
+        case_ref=resolved_case_ref,
+        candidate_model_ref=fixture.candidate_model_ref,
+        expected_output_family=fixture.expected_output_family,
+        packet_result=fixture.packet_result,
+        candidate_output=fixture.candidate_output,
+        evaluator_notes=fixture.evaluator_notes,
+        metadata=case_metadata,
+    )
