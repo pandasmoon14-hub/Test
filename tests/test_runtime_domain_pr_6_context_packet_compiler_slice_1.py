@@ -650,3 +650,77 @@ def test_validator_rejects_non_mapping_proxy_metadata() -> None:
     object.__setattr__(packet, "metadata", {"bad": "plain_dict"})
     with pytest.raises(InvalidSingleEventNarrationPacketError):
         validate_single_event_narration_packet(packet)
+
+
+# ── Bare string rejection tests (direct construction) ──
+
+
+def test_direct_construction_bare_string_visible_fact_refs_raises() -> None:
+    """Direct construction with bare string visible_fact_refs is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-bare-vis",
+            event_kind="test",
+            visible_fact_refs="fact-1",  # type: ignore[arg-type]
+        )
+
+
+def test_direct_construction_bare_string_actor_refs_raises() -> None:
+    """Direct construction with bare string actor_refs is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-bare-actor",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+            actor_refs="actor-1",  # type: ignore[arg-type]
+        )
+
+
+def test_direct_construction_bare_string_target_refs_raises() -> None:
+    """Direct construction with bare string target_refs is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-bare-target",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+            target_refs="target-1",  # type: ignore[arg-type]
+        )
+
+
+def test_direct_construction_bare_string_sensory_cues_raises() -> None:
+    """Direct construction with bare string sensory_cues is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-bare-cue",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+            sensory_cues="cue-1",  # type: ignore[arg-type]
+        )
+
+
+def test_direct_construction_bare_string_forbidden_claims_raises() -> None:
+    """Direct construction with bare string forbidden_claims is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-bare-claim",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+            forbidden_claims="claim-1",  # type: ignore[arg-type]
+        )
+
+
+def test_direct_construction_bare_string_non_authority_seal_raises() -> None:
+    """Direct construction with bare string non_authority_seal is rejected by __post_init__."""
+    with pytest.raises(InvalidSingleEventNarrationPacketError):
+        SingleEventNarrationPacket(
+            packet_kind="single_event_narration",
+            event_ref="evt-bare-seal",
+            event_kind="test",
+            visible_fact_refs=("fact-1",),
+            non_authority_seal="no_model_authority",  # type: ignore[arg-type]
+        )

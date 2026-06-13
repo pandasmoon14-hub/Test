@@ -140,23 +140,23 @@ class SingleEventNarrationPacket:
 
         # Normalize visible_fact_refs (reject empty strings inside, must be non-empty)
         normalized_visible = _normalize_string_tuple(
-            list(self.visible_fact_refs), "visible_fact_refs", error_cls
+            self.visible_fact_refs, "visible_fact_refs", error_cls
         )
         if len(normalized_visible) == 0:
             raise error_cls("visible_fact_refs must not be empty")
 
         # Normalize tuple fields
         safe_actor_refs = _normalize_string_tuple(
-            list(self.actor_refs), "actor_refs", error_cls
+            self.actor_refs, "actor_refs", error_cls
         )
         safe_target_refs = _normalize_string_tuple(
-            list(self.target_refs), "target_refs", error_cls
+            self.target_refs, "target_refs", error_cls
         )
         safe_sensory_cues = _normalize_string_tuple(
-            list(self.sensory_cues), "sensory_cues", error_cls
+            self.sensory_cues, "sensory_cues", error_cls
         )
         safe_forbidden_claims = _normalize_string_tuple(
-            list(self.forbidden_claims), "forbidden_claims", error_cls
+            self.forbidden_claims, "forbidden_claims", error_cls
         )
 
         # Normalize non_authority_seal — default to sorted NON_AUTHORITY_SEAL if empty
@@ -164,7 +164,7 @@ class SingleEventNarrationPacket:
             safe_non_authority_seal = tuple(sorted(NON_AUTHORITY_SEAL))
         else:
             safe_non_authority_seal = _normalize_string_tuple(
-                list(self.non_authority_seal), "non_authority_seal", error_cls
+                self.non_authority_seal, "non_authority_seal", error_cls
             )
 
         # Deep-copy and freeze metadata
