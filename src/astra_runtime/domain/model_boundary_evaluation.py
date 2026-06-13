@@ -2346,3 +2346,417 @@ def serialize_model_boundary_captured_fixture_assertion_report_snapshot(
         "packet_warning_case_refs": list(snapshot.packet_warning_case_refs),
         "metadata": dict(snapshot.metadata),
     }
+
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 8 — Captured Fixture Evaluation Run Snapshot
+# ---------------------------------------------------------------------------
+
+
+def _normalize_report_snapshot_sequence(
+    snapshots: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryCapturedFixtureAssertionReportSnapshot, ...]:
+    """Normalize a sequence of report snapshots into a tuple.
+
+    Rejects bare strings/bytes, empty sequences, non-report-snapshot values, and
+    duplicate report_ref values. Preserves caller order.
+    """
+    if isinstance(snapshots, (str, bytes)):
+        raise error_cls("report_snapshots must not be a bare string or bytes")
+    if not isinstance(snapshots, Sequence):
+        raise error_cls("report_snapshots must be a sequence")
+    if len(snapshots) == 0:
+        raise error_cls("report_snapshots must contain at least one report snapshot")
+
+    normalized: list[ModelBoundaryCapturedFixtureAssertionReportSnapshot] = []
+    seen_refs: set[str] = set()
+    for i, item in enumerate(snapshots):
+        if not isinstance(item, ModelBoundaryCapturedFixtureAssertionReportSnapshot):
+            raise error_cls(
+                f"report_snapshots[{i}] must be a "
+                "ModelBoundaryCapturedFixtureAssertionReportSnapshot"
+            )
+        if item.report_ref in seen_refs:
+            raise error_cls(f"duplicate report_ref: {item.report_ref!r}")
+        seen_refs.add(item.report_ref)
+        normalized.append(item)
+    return tuple(normalized)
+
+
+class ModelBoundaryCapturedFixtureEvaluationRunError(ModelBoundaryEvaluationError):
+    """Raised for malformed run snapshot construction/serialization.
+
+    Not used for normal run generation; those are represented in returned
+    ModelBoundaryCapturedFixtureEvaluationRunSnapshot objects.
+    """
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedFixtureEvaluationRunSnapshot:
+    """Immutable deterministic snapshot of a captured-fixture evaluation run.
+
+    Summarizes one or more already-built
+    ``ModelBoundaryCapturedFixtureAssertionReportSnapshot`` objects into stable,
+    compact, structured data. Does not call models, parse prose, read runtime
+    state, mutate inputs, or write files.
+    """
+
+    run_ref: str
+    run_label: str
+    total_reports: int
+    total_specs: int
+    passed_specs: int
+    failed_specs: int
+    all_passed: bool
+    report_refs: tuple[str, ...]
+    suite_refs: tuple[str, ...]
+    suite_labels: tuple[str, ...]
+    failed_report_refs: tuple[str, ...] = field(default_factory=tuple)
+    failed_suite_refs: tuple[str, ...] = field(default_factory=tuple)
+    packet_warning_report_refs: tuple[str, ...] = field(default_factory=tuple)
+    status_counts: Mapping[str, int]
+    violation_counts: Mapping[str, int]
+    report_snapshots: tuple[ModelBoundaryCapturedFixtureAssertionReportSnapshot, ...]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedFixtureEvaluationRunError
+
+        _validate_non_empty_string(self.run_ref, "run_ref", error_cls)
+        _validate_non_empty_string(self.run_label, "run_label", error_cls)
+
+        total_reports = _validate_non_negative_int_not_bool(
+            self.total_reports, "total_reports", error_cls
+        )
+        total_specs = _validate_non_negative_int_not_bool(
+            self.total_specs, "total_specs", error_cls
+        )
+        passed_specs = _validate_non_negative_int_not_bool(
+            self.passed_specs, "passed_specs", error_cls
+        )
+        failed_specs = _validate_non_negative_int_not_bool(
+            self.failed_specs, "failed_specs", error_cls
+        )
+
+        if not isinstance(self.all_passed, bool):
+            raise error_cls("all_passed must be a bool")
+
+        if passed_specs + failed_specs != total_specs:
+            raise error_cls(
+                "passed_specs + failed_specs must equal total_specs"
+            )
+        if self.all_passed != (failed_specs == 0):
+            raise error_cls("all_passed must equal (failed_specs == 0)")
+
+        safe_report_snapshots = _normalize_report_snapshot_sequence(
+            self.report_snapshots, error_cls
+        )
+        if total_reports != len(safe_report_snapshots):
+            raise error_cls(
+                f"total_reports ({total_reports}) must equal "
+                f"len(report_snapshots) ({len(safe_report_snapshots)})"
+            )
+
+        safe_report_refs = _normalize_string_tuple(
+            self.report_refs, "report_refs", error_cls
+        )
+        safe_suite_refs = _normalize_string_tuple(
+            self.suite_refs, "suite_refs", error_cls
+        )
+        safe_suite_labels = _normalize_string_tuple(
+            self.suite_labels, "suite_labels", error_cls
+        )
+
+        if len(safe_report_refs) != total_reports:
+            raise error_cls(
+                f"len(report_refs) ({len(safe_report_refs)}) must equal "
+                f"total_reports ({total_reports})"
+            )
+        if len(safe_suite_refs) != total_reports:
+            raise error_cls(
+                f"len(suite_refs) ({len(safe_suite_refs)}) must equal "
+                f"total_reports ({total_reports})"
+            )
+        if len(safe_suite_labels) != total_reports:
+            raise error_cls(
+                f"len(suite_labels) ({len(safe_suite_labels)}) must equal "
+                f"total_reports ({total_reports})"
+            )
+
+        safe_failed_report_refs = _normalize_string_tuple(
+            self.failed_report_refs, "failed_report_refs", error_cls
+        )
+        safe_failed_suite_refs = _normalize_string_tuple(
+            self.failed_suite_refs, "failed_suite_refs", error_cls
+        )
+        safe_packet_warning_report_refs = _normalize_string_tuple(
+            self.packet_warning_report_refs,
+            "packet_warning_report_refs",
+            error_cls,
+        )
+
+        if not isinstance(self.status_counts, Mapping):
+            raise error_cls("status_counts must be a mapping")
+        missing_status_keys = MODEL_BOUNDARY_STATUS_VALUES - set(
+            self.status_counts.keys()
+        )
+        if missing_status_keys:
+            raise error_cls(
+                f"status_counts missing keys: {sorted(missing_status_keys)}"
+            )
+
+        safe_status_counts = _validate_status_counts(
+            self.status_counts, error_cls
+        )
+        safe_violation_counts = _validate_violation_counts(
+            self.violation_counts, error_cls
+        )
+
+        # Cross-check aggregate counts against report snapshots.
+        derived_total_specs = sum(
+            report.total_specs for report in safe_report_snapshots
+        )
+        if total_specs != derived_total_specs:
+            raise error_cls(
+                f"total_specs ({total_specs}) must equal sum of report "
+                f"total_specs ({derived_total_specs})"
+            )
+        derived_passed_specs = sum(
+            report.passed_specs for report in safe_report_snapshots
+        )
+        if passed_specs != derived_passed_specs:
+            raise error_cls(
+                f"passed_specs ({passed_specs}) must equal sum of report "
+                f"passed_specs ({derived_passed_specs})"
+            )
+        derived_failed_specs = sum(
+            report.failed_specs for report in safe_report_snapshots
+        )
+        if failed_specs != derived_failed_specs:
+            raise error_cls(
+                f"failed_specs ({failed_specs}) must equal sum of report "
+                f"failed_specs ({derived_failed_specs})"
+            )
+        derived_all_passed = all(
+            report.all_passed for report in safe_report_snapshots
+        )
+        if self.all_passed != derived_all_passed:
+            raise error_cls(
+                f"all_passed ({self.all_passed}) must equal all report "
+                f"all_passed ({derived_all_passed})"
+            )
+        derived_report_refs = tuple(
+            report.report_ref for report in safe_report_snapshots
+        )
+        if safe_report_refs != derived_report_refs:
+            raise error_cls(
+                f"report_refs ({list(safe_report_refs)}) must equal report "
+                f"report_refs ({list(derived_report_refs)})"
+            )
+        derived_suite_refs = tuple(
+            report.suite_ref for report in safe_report_snapshots
+        )
+        if safe_suite_refs != derived_suite_refs:
+            raise error_cls(
+                f"suite_refs ({list(safe_suite_refs)}) must equal report "
+                f"suite_refs ({list(derived_suite_refs)})"
+            )
+        derived_suite_labels = tuple(
+            report.suite_label for report in safe_report_snapshots
+        )
+        if safe_suite_labels != derived_suite_labels:
+            raise error_cls(
+                f"suite_labels ({list(safe_suite_labels)}) must equal report "
+                f"suite_labels ({list(derived_suite_labels)})"
+            )
+
+        sorted_status_counts = {
+            status: safe_status_counts[status]
+            for status in sorted(safe_status_counts)
+        }
+        sorted_violation_counts = {
+            code: safe_violation_counts[code]
+            for code in sorted(safe_violation_counts)
+        }
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "report_snapshots", safe_report_snapshots)
+        object.__setattr__(self, "report_refs", safe_report_refs)
+        object.__setattr__(self, "suite_refs", safe_suite_refs)
+        object.__setattr__(self, "suite_labels", safe_suite_labels)
+        object.__setattr__(
+            self, "failed_report_refs", safe_failed_report_refs
+        )
+        object.__setattr__(
+            self, "failed_suite_refs", safe_failed_suite_refs
+        )
+        object.__setattr__(
+            self,
+            "packet_warning_report_refs",
+            safe_packet_warning_report_refs,
+        )
+        object.__setattr__(
+            self, "status_counts", MappingProxyType(sorted_status_counts)
+        )
+        object.__setattr__(
+            self,
+            "violation_counts",
+            MappingProxyType(sorted_violation_counts),
+        )
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_captured_fixture_evaluation_run_snapshot(
+    *,
+    run_ref: str,
+    run_label: str,
+    report_snapshots: Sequence[
+        ModelBoundaryCapturedFixtureAssertionReportSnapshot
+    ],
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedFixtureEvaluationRunSnapshot:
+    """Build a deterministic run snapshot from already-built report snapshots.
+
+    Derives compact summary fields from ``report_snapshots`` without calling
+    models, parsing raw captured text, reading runtime state, or writing files.
+    """
+    error_cls = ModelBoundaryCapturedFixtureEvaluationRunError
+
+    _validate_non_empty_string(run_ref, "run_ref", error_cls)
+    _validate_non_empty_string(run_label, "run_label", error_cls)
+
+    safe_report_snapshots = _normalize_report_snapshot_sequence(
+        report_snapshots, error_cls
+    )
+
+    total_reports = len(safe_report_snapshots)
+    total_specs = sum(
+        report.total_specs for report in safe_report_snapshots
+    )
+    passed_specs = sum(
+        report.passed_specs for report in safe_report_snapshots
+    )
+    failed_specs = sum(
+        report.failed_specs for report in safe_report_snapshots
+    )
+    all_passed = all(
+        report.all_passed for report in safe_report_snapshots
+    )
+
+    report_refs = tuple(
+        report.report_ref for report in safe_report_snapshots
+    )
+    suite_refs = tuple(
+        report.suite_ref for report in safe_report_snapshots
+    )
+    suite_labels = tuple(
+        report.suite_label for report in safe_report_snapshots
+    )
+
+    failed_report_refs = tuple(
+        report.report_ref
+        for report in safe_report_snapshots
+        if report.all_passed is False
+    )
+    failed_suite_refs = tuple(
+        report.suite_ref
+        for report in safe_report_snapshots
+        if report.all_passed is False
+    )
+    packet_warning_report_refs = tuple(
+        report.report_ref
+        for report in safe_report_snapshots
+        if report.packet_warning_case_refs
+    )
+
+    status_counts: dict[str, int] = {
+        status: 0 for status in MODEL_BOUNDARY_STATUS_VALUES
+    }
+    for report in safe_report_snapshots:
+        for status in MODEL_BOUNDARY_STATUS_VALUES:
+            status_counts[status] += report.status_counts[status]
+
+    violation_counts: dict[str, int] = {}
+    for report in safe_report_snapshots:
+        for code, count in report.violation_counts.items():
+            violation_counts[code] = violation_counts.get(code, 0) + count
+
+    if metadata is None:
+        metadata = {
+            "run_ref": run_ref,
+            "run_label": run_label,
+            "total_reports": total_reports,
+            "total_specs": total_specs,
+            "all_passed": all_passed,
+        }
+
+    return ModelBoundaryCapturedFixtureEvaluationRunSnapshot(
+        run_ref=run_ref,
+        run_label=run_label,
+        total_reports=total_reports,
+        total_specs=total_specs,
+        passed_specs=passed_specs,
+        failed_specs=failed_specs,
+        all_passed=all_passed,
+        report_refs=report_refs,
+        suite_refs=suite_refs,
+        suite_labels=suite_labels,
+        failed_report_refs=failed_report_refs,
+        failed_suite_refs=failed_suite_refs,
+        packet_warning_report_refs=packet_warning_report_refs,
+        status_counts=status_counts,
+        violation_counts=violation_counts,
+        report_snapshots=safe_report_snapshots,
+        metadata=metadata,
+    )
+
+
+def serialize_model_boundary_captured_fixture_evaluation_run_snapshot(
+    snapshot: ModelBoundaryCapturedFixtureEvaluationRunSnapshot,
+) -> dict[str, Any]:
+    """Serialize a run snapshot into a deterministic plain dict.
+
+    Returns stable, compact summary data. Does not include the nested
+    ``report_snapshots`` or any raw captured text.
+    """
+    error_cls = ModelBoundaryCapturedFixtureEvaluationRunError
+
+    if not isinstance(
+        snapshot, ModelBoundaryCapturedFixtureEvaluationRunSnapshot
+    ):
+        raise error_cls(
+            "snapshot must be a "
+            "ModelBoundaryCapturedFixtureEvaluationRunSnapshot instance"
+        )
+
+    return {
+        "run_ref": snapshot.run_ref,
+        "run_label": snapshot.run_label,
+        "total_reports": snapshot.total_reports,
+        "total_specs": snapshot.total_specs,
+        "passed_specs": snapshot.passed_specs,
+        "failed_specs": snapshot.failed_specs,
+        "all_passed": snapshot.all_passed,
+        "report_refs": list(snapshot.report_refs),
+        "suite_refs": list(snapshot.suite_refs),
+        "suite_labels": list(snapshot.suite_labels),
+        "failed_report_refs": list(snapshot.failed_report_refs),
+        "failed_suite_refs": list(snapshot.failed_suite_refs),
+        "packet_warning_report_refs": list(
+            snapshot.packet_warning_report_refs
+        ),
+        "status_counts": {
+            status: snapshot.status_counts[status]
+            for status in sorted(snapshot.status_counts)
+        },
+        "violation_counts": {
+            code: snapshot.violation_counts[code]
+            for code in sorted(snapshot.violation_counts)
+        },
+        "metadata": dict(snapshot.metadata),
+    }
