@@ -1661,3 +1661,373 @@ def assert_model_boundary_captured_output_fixture(
         evaluator_notes=fixture.evaluator_notes,
         metadata=result_metadata,
     )
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 6 — Captured Fixture Assertion Suite Runner
+# ---------------------------------------------------------------------------
+
+
+class ModelBoundaryCapturedFixtureAssertionSuiteError(ModelBoundaryEvaluationError):
+    """Raised for malformed captured-fixture assertion suite construction.
+
+    Not used for normal assertion failures; those are represented in returned
+    assertion result objects.
+    """
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedFixtureAssertionSpec:
+    """Immutable specification for one captured-fixture assertion in a suite.
+
+    Binds a captured-output fixture and its expected outcome so that a suite
+    runner can execute them in deterministic order without calling models or
+    mutating inputs.
+    """
+
+    spec_ref: str
+    fixture: ModelBoundaryCapturedOutputFixture
+    expectation: ModelBoundaryExpectedCaseOutcome
+    case_ref: str | None = None
+    case_metadata: Mapping[str, Any] | None = None
+    assertion_metadata: Mapping[str, Any] | None = None
+    result_metadata: Mapping[str, Any] | None = None
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedFixtureAssertionSuiteError
+
+        _validate_non_empty_string(self.spec_ref, "spec_ref", error_cls)
+
+        if not isinstance(self.fixture, ModelBoundaryCapturedOutputFixture):
+            raise error_cls(
+                "fixture must be a ModelBoundaryCapturedOutputFixture instance"
+            )
+        if not isinstance(self.expectation, ModelBoundaryExpectedCaseOutcome):
+            raise error_cls(
+                "expectation must be a ModelBoundaryExpectedCaseOutcome instance"
+            )
+
+        if self.case_ref is not None and (
+            not isinstance(self.case_ref, str) or not self.case_ref.strip()
+        ):
+            raise error_cls("case_ref must be a non-empty string when provided")
+
+        if self.case_metadata is not None:
+            safe_case_metadata = _safe_frozen_mapping(
+                self.case_metadata, error_cls
+            )
+            object.__setattr__(self, "case_metadata", safe_case_metadata)
+
+        if self.assertion_metadata is not None:
+            safe_assertion_metadata = _safe_frozen_mapping(
+                self.assertion_metadata, error_cls
+            )
+            object.__setattr__(
+                self, "assertion_metadata", safe_assertion_metadata
+            )
+
+        if self.result_metadata is not None:
+            safe_result_metadata = _safe_frozen_mapping(
+                self.result_metadata, error_cls
+            )
+            object.__setattr__(self, "result_metadata", safe_result_metadata)
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_captured_fixture_assertion_spec(
+    *,
+    spec_ref: str,
+    fixture: ModelBoundaryCapturedOutputFixture,
+    expectation: ModelBoundaryExpectedCaseOutcome,
+    case_ref: str | None = None,
+    case_metadata: Mapping[str, Any] | None = None,
+    assertion_metadata: Mapping[str, Any] | None = None,
+    result_metadata: Mapping[str, Any] | None = None,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedFixtureAssertionSpec:
+    """Construct and validate a ModelBoundaryCapturedFixtureAssertionSpec.
+
+    Raises ModelBoundaryCapturedFixtureAssertionSuiteError on invalid input.
+    """
+    return ModelBoundaryCapturedFixtureAssertionSpec(
+        spec_ref=spec_ref,
+        fixture=fixture,
+        expectation=expectation,
+        case_ref=case_ref,
+        case_metadata=case_metadata,
+        assertion_metadata=assertion_metadata,
+        result_metadata=result_metadata,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def _normalize_fixture_assertion_spec_sequence(
+    specs: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryCapturedFixtureAssertionSpec, ...]:
+    """Normalize a sequence of fixture assertion specs into a tuple.
+
+    Rejects bare strings/bytes, empty sequences, non-spec values, and duplicate
+    spec_ref values. Preserves caller order.
+    """
+    if isinstance(specs, (str, bytes)):
+        raise error_cls("specs must not be a bare string or bytes")
+    if not isinstance(specs, Sequence):
+        raise error_cls("specs must be a sequence")
+    if len(specs) == 0:
+        raise error_cls("specs must contain at least one spec")
+
+    normalized: list[ModelBoundaryCapturedFixtureAssertionSpec] = []
+    seen_refs: set[str] = set()
+    for i, item in enumerate(specs):
+        if not isinstance(item, ModelBoundaryCapturedFixtureAssertionSpec):
+            raise error_cls(
+                f"specs[{i}] must be a ModelBoundaryCapturedFixtureAssertionSpec"
+            )
+        if item.spec_ref in seen_refs:
+            raise error_cls(f"duplicate spec_ref: {item.spec_ref!r}")
+        seen_refs.add(item.spec_ref)
+        normalized.append(item)
+    return tuple(normalized)
+
+
+def _normalize_fixture_assertion_result_sequence(
+    spec_results: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryCapturedFixtureAssertionResult, ...]:
+    """Normalize a sequence of fixture assertion results into a tuple."""
+    if isinstance(spec_results, (str, bytes)):
+        raise error_cls("spec_results must not be a bare string or bytes")
+    if not isinstance(spec_results, Sequence):
+        raise error_cls("spec_results must be a sequence")
+
+    normalized: list[ModelBoundaryCapturedFixtureAssertionResult] = []
+    for i, item in enumerate(spec_results):
+        if not isinstance(item, ModelBoundaryCapturedFixtureAssertionResult):
+            raise error_cls(
+                f"spec_results[{i}] must be a "
+                "ModelBoundaryCapturedFixtureAssertionResult"
+            )
+        normalized.append(item)
+    return tuple(normalized)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedFixtureAssertionSuite:
+    """Immutable suite of captured-fixture assertion specs.
+
+    Carries an ordered collection of prebuilt fixture assertion specs without
+    invoking models or executing runtime behavior.
+    """
+
+    suite_ref: str
+    suite_label: str
+    specs: tuple[ModelBoundaryCapturedFixtureAssertionSpec, ...]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedFixtureAssertionSuiteError
+
+        _validate_non_empty_string(self.suite_ref, "suite_ref", error_cls)
+        _validate_non_empty_string(self.suite_label, "suite_label", error_cls)
+        safe_specs = _normalize_fixture_assertion_spec_sequence(
+            self.specs, error_cls
+        )
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "specs", safe_specs)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_captured_fixture_assertion_suite(
+    *,
+    suite_ref: str,
+    suite_label: str,
+    specs: Sequence[ModelBoundaryCapturedFixtureAssertionSpec],
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedFixtureAssertionSuite:
+    """Construct and validate a ModelBoundaryCapturedFixtureAssertionSuite.
+
+    Raises ModelBoundaryCapturedFixtureAssertionSuiteError on invalid input.
+    """
+    return ModelBoundaryCapturedFixtureAssertionSuite(
+        suite_ref=suite_ref,
+        suite_label=suite_label,
+        specs=specs,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedFixtureAssertionSuiteResult:
+    """Immutable aggregate result of running a captured-fixture assertion suite.
+
+    Reports deterministic structural findings for the whole suite without
+    executing model behavior or mutating runtime state.
+    """
+
+    suite_ref: str
+    suite_label: str
+    total_specs: int
+    passed_specs: int
+    failed_specs: int
+    all_passed: bool
+    spec_results: tuple[ModelBoundaryCapturedFixtureAssertionResult, ...]
+    status_counts: Mapping[str, int]
+    violation_counts: Mapping[str, int]
+    metadata: Mapping[str, Any] = field(
+        default_factory=lambda: MappingProxyType({})
+    )
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedFixtureAssertionSuiteError
+
+        _validate_non_empty_string(self.suite_ref, "suite_ref", error_cls)
+        _validate_non_empty_string(self.suite_label, "suite_label", error_cls)
+        total_specs = _validate_non_negative_int_not_bool(
+            self.total_specs, "total_specs", error_cls
+        )
+        passed_specs = _validate_non_negative_int_not_bool(
+            self.passed_specs, "passed_specs", error_cls
+        )
+        failed_specs = _validate_non_negative_int_not_bool(
+            self.failed_specs, "failed_specs", error_cls
+        )
+
+        if not isinstance(self.all_passed, bool):
+            raise error_cls("all_passed must be a bool")
+
+        safe_spec_results = _normalize_fixture_assertion_result_sequence(
+            self.spec_results, error_cls
+        )
+        if total_specs != len(safe_spec_results):
+            raise error_cls(
+                f"total_specs ({total_specs}) must equal len(spec_results) "
+                f"({len(safe_spec_results)})"
+            )
+        if passed_specs + failed_specs != total_specs:
+            raise error_cls(
+                "passed_specs + failed_specs must equal total_specs"
+            )
+        if self.all_passed != (failed_specs == 0):
+            raise error_cls(
+                "all_passed must equal (failed_specs == 0)"
+            )
+
+        if not isinstance(self.status_counts, Mapping):
+            raise error_cls("status_counts must be a mapping")
+        missing_status_keys = MODEL_BOUNDARY_STATUS_VALUES - set(
+            self.status_counts.keys()
+        )
+        if missing_status_keys:
+            raise error_cls(
+                f"status_counts missing keys: {sorted(missing_status_keys)}"
+            )
+
+        safe_status_counts = _validate_status_counts(
+            self.status_counts, error_cls
+        )
+        safe_violation_counts = _validate_violation_counts(
+            self.violation_counts, error_cls
+        )
+
+        # Deterministic ordering of status and violation counts by key.
+        sorted_status_counts = {
+            status: safe_status_counts[status]
+            for status in sorted(safe_status_counts)
+        }
+        sorted_violation_counts = {
+            code: safe_violation_counts[code]
+            for code in sorted(safe_violation_counts)
+        }
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "spec_results", safe_spec_results)
+        object.__setattr__(
+            self, "status_counts", MappingProxyType(sorted_status_counts)
+        )
+        object.__setattr__(
+            self,
+            "violation_counts",
+            MappingProxyType(sorted_violation_counts),
+        )
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def assert_model_boundary_captured_fixture_assertion_suite(
+    suite: ModelBoundaryCapturedFixtureAssertionSuite,
+    *,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedFixtureAssertionSuiteResult:
+    """Run every captured-fixture assertion spec in a suite.
+
+    Calls ``assert_model_boundary_captured_output_fixture`` for each spec in
+    order and produces an immutable aggregate result. Does not call models,
+    read runtime state, parse raw captured text, or mutate the input suite.
+    """
+    error_cls = ModelBoundaryCapturedFixtureAssertionSuiteError
+
+    if not isinstance(suite, ModelBoundaryCapturedFixtureAssertionSuite):
+        raise error_cls(
+            "suite must be a ModelBoundaryCapturedFixtureAssertionSuite instance"
+        )
+
+    spec_results: list[ModelBoundaryCapturedFixtureAssertionResult] = []
+    status_counts: dict[str, int] = {
+        status: 0 for status in MODEL_BOUNDARY_STATUS_VALUES
+    }
+    violation_counts: dict[str, int] = {}
+
+    for spec in suite.specs:
+        result = assert_model_boundary_captured_output_fixture(
+            fixture=spec.fixture,
+            expectation=spec.expectation,
+            case_ref=spec.case_ref,
+            case_metadata=spec.case_metadata,
+            assertion_metadata=spec.assertion_metadata,
+            result_metadata=spec.result_metadata,
+        )
+        spec_results.append(result)
+        status_counts[result.evaluation_result.status] += 1
+        for code in result.evaluation_result.violation_codes:
+            violation_counts[code] = violation_counts.get(code, 0) + 1
+
+    passed_specs = sum(1 for result in spec_results if result.assertion_passed is True)
+    failed_specs = sum(1 for result in spec_results if result.assertion_passed is False)
+    all_passed = failed_specs == 0
+
+    sorted_violation_counts = {
+        code: violation_counts[code] for code in sorted(violation_counts)
+    }
+
+    if metadata is None:
+        metadata = {
+            **dict(suite.metadata),
+            "suite_ref": suite.suite_ref,
+            "suite_label": suite.suite_label,
+            "total_specs": len(spec_results),
+            "all_passed": all_passed,
+        }
+
+    return ModelBoundaryCapturedFixtureAssertionSuiteResult(
+        suite_ref=suite.suite_ref,
+        suite_label=suite.suite_label,
+        total_specs=len(spec_results),
+        passed_specs=passed_specs,
+        failed_specs=failed_specs,
+        all_passed=all_passed,
+        spec_results=spec_results,
+        status_counts=status_counts,
+        violation_counts=sorted_violation_counts,
+        metadata=metadata,
+    )
