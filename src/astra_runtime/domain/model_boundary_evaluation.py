@@ -2002,8 +2002,8 @@ def assert_model_boundary_captured_fixture_assertion_suite(
         for code in result.evaluation_result.violation_codes:
             violation_counts[code] = violation_counts.get(code, 0) + 1
 
-    passed_specs = status_counts["passed"]
-    failed_specs = status_counts["failed"] + status_counts["needs_review"]
+    passed_specs = sum(1 for result in spec_results if result.assertion_passed is True)
+    failed_specs = sum(1 for result in spec_results if result.assertion_passed is False)
     all_passed = failed_specs == 0
 
     sorted_violation_counts = {
