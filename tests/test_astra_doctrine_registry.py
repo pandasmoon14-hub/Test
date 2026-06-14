@@ -30,16 +30,14 @@ REQUIRED_TOP_LEVEL_FIELDS = {
     "dependency_rules",
 }
 
-REQUIRED_FILE_FIELDS = {
+STANDARD_FILE_FIELDS = {
     "file_id",
-    "status",
-}
-
-OPTIONAL_STANDARD_FILE_FIELDS = {
     "filename",
     "proposed_path",
     "layer",
     "phase",
+    "status",
+    "authority_level",
     "owner",
     "purpose",
     "owns",
@@ -61,7 +59,24 @@ OPTIONAL_STANDARD_FILE_FIELDS = {
     "runtime_relevance",
     "live_play_relevance",
     "notes",
-    "authority_level",
+}
+
+MINIMUM_AUDIT_RECORD_FIELDS = {
+    "file_id",
+    "status",
+}
+
+MINIMUM_AUDIT_PATH_FIELDS = {
+    "filename",
+    "file_path",
+    "proposed_path",
+}
+
+MINIMUM_AUDIT_CONTEXT_FIELDS = {
+    "purpose",
+    "notes",
+    "authority_note",
+    "title",
 }
 
 CONTROL_FILE_IDS = {"ROADMAP-001", "REGISTRY-001"}
@@ -77,6 +92,7 @@ EXPECTED_FILE_IDS = (
 )
 
 FILE_ID_PATTERN = re.compile(r"^(ROADMAP-001|REGISTRY-001|PREA01-\d+|A\d{2}|C\d{2}|K\d{2}|R\d{2}|T\d{2})$")
+STANDARD_FILE_RECORD_IDS = set(EXPECTED_FILE_IDS)
 
 
 def load_registry():
@@ -128,8 +144,22 @@ def test_every_file_record_has_required_fields():
         assert isinstance(record, dict), f"File record must be a mapping: {record!r}"
         file_id = record.get("file_id", "<missing file_id>")
 
-        missing = REQUIRED_FILE_FIELDS - set(record.keys())
-        assert not missing, f"{file_id} missing required fields: {sorted(missing)}"
+        if file_id in STANDARD_FILE_RECORD_IDS:
+            missing = STANDARD_FILE_FIELDS - set(record.keys())
+            assert not missing, f"{file_id} missing required fields: {sorted(missing)}"
+            continue
+
+        missing = MINIMUM_AUDIT_RECORD_FIELDS - set(record.keys())
+        assert not missing, f"{file_id} missing minimum audit fields: {sorted(missing)}"
+
+        assert MINIMUM_AUDIT_PATH_FIELDS & set(record.keys()), (
+            f"{file_id} missing minimum audit path field: "
+            f"one of {sorted(MINIMUM_AUDIT_PATH_FIELDS)}"
+        )
+        assert MINIMUM_AUDIT_CONTEXT_FIELDS & set(record.keys()), (
+            f"{file_id} missing minimum audit context field: "
+            f"one of {sorted(MINIMUM_AUDIT_CONTEXT_FIELDS)}"
+        )
 
 
 def test_file_ids_and_filenames_are_unique():
@@ -198,7 +228,7 @@ def test_owns_and_must_not_own_are_populated():
     for record in registry_records(data):
         file_id = record["file_id"]
 
-        if "owns" not in record and "must_not_own" not in record:
+        if file_id not in STANDARD_FILE_RECORD_IDS and "owns" not in record and "must_not_own" not in record:
             continue
 
         assert isinstance(record["owns"], list), f"{file_id}.owns must be a list."
