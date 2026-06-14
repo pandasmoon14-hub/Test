@@ -15,6 +15,8 @@ from typing import Any, Mapping, Sequence
 
 from astra_runtime.domain.context_packet_compiler import (
     ContextPacketCompilerResult,
+    compile_context_packet_from_request,
+    create_context_packet_assembly_request,
 )
 
 
@@ -3072,4 +3074,394 @@ def serialize_model_boundary_captured_fixture_evaluation_run_orchestrator_result
         "report_refs": list(result.report_refs),
         "run_snapshot": dict(result.serialized_run_snapshot),
         "metadata": dict(result.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 10 — Static Boundary Fixture Catalog
+# ---------------------------------------------------------------------------
+
+
+class ModelBoundaryStaticFixtureCatalogError(ModelBoundaryEvaluationError):
+    """Raised for malformed static fixture catalog construction or serialization."""
+
+
+def _normalize_captured_fixture_assertion_suite_sequence_for_catalog(
+    suites: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryCapturedFixtureAssertionSuite, ...]:
+    if isinstance(suites, (str, bytes)):
+        raise error_cls("suites must not be a bare string or bytes")
+    if not isinstance(suites, Sequence):
+        raise error_cls("suites must be a sequence")
+    if len(suites) == 0:
+        raise error_cls("suites must contain at least one suite")
+
+    normalized: list[ModelBoundaryCapturedFixtureAssertionSuite] = []
+    seen_refs: set[str] = set()
+    for i, item in enumerate(suites):
+        if not isinstance(item, ModelBoundaryCapturedFixtureAssertionSuite):
+            raise error_cls(
+                f"suites[{i}] must be a "
+                "ModelBoundaryCapturedFixtureAssertionSuite"
+            )
+        if item.suite_ref in seen_refs:
+            raise error_cls(f"duplicate suite_ref: {item.suite_ref!r}")
+        seen_refs.add(item.suite_ref)
+        normalized.append(item)
+    return tuple(normalized)
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryStaticFixtureCatalog:
+    """Immutable catalog of static captured-fixture assertion suites."""
+
+    catalog_ref: str
+    catalog_label: str
+    suite_refs: tuple[str, ...]
+    suites: tuple[ModelBoundaryCapturedFixtureAssertionSuite, ...]
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        error_cls = ModelBoundaryStaticFixtureCatalogError
+
+        _validate_non_empty_string(self.catalog_ref, "catalog_ref", error_cls)
+        _validate_non_empty_string(self.catalog_label, "catalog_label", error_cls)
+
+        safe_suites = _normalize_captured_fixture_assertion_suite_sequence_for_catalog(
+            self.suites, error_cls
+        )
+        derived_suite_refs = tuple(s.suite_ref for s in safe_suites)
+
+        if isinstance(self.suite_refs, (str, bytes)):
+            raise error_cls("suite_refs must not be a bare string or bytes")
+        if not isinstance(self.suite_refs, Sequence):
+            raise error_cls("suite_refs must be a sequence")
+        supplied_suite_refs = tuple(self.suite_refs)
+        if len(supplied_suite_refs) != len(derived_suite_refs):
+            raise error_cls(
+                f"suite_refs length ({len(supplied_suite_refs)}) must equal "
+                f"len(suites) ({len(derived_suite_refs)})"
+            )
+        if supplied_suite_refs != derived_suite_refs:
+            raise error_cls(
+                f"suite_refs {list(supplied_suite_refs)} must equal "
+                f"tuple(suite.suite_ref for suite in suites) "
+                f"{list(derived_suite_refs)}"
+            )
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "suite_refs", derived_suite_refs)
+        object.__setattr__(self, "suites", safe_suites)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def _make_static_packet_result(
+    *,
+    request_ref: str = "static-req-1",
+    warnings: tuple[str, ...] = (),
+) -> ContextPacketCompilerResult:
+    request = create_context_packet_assembly_request(
+        request_ref=request_ref,
+        packet_kind="single_event_narration",
+        packet_payload={
+            "event_ref": "static-evt-1",
+            "event_kind": "narration",
+            "visible_fact_refs": ["static-fact-1"],
+        },
+        assembly_timestamp="2026-01-01T00:00:00Z",
+    )
+    result = compile_context_packet_from_request(request)
+    if warnings:
+        return ContextPacketCompilerResult(
+            request_ref=result.request_ref,
+            packet_kind=result.packet_kind,
+            serialized_packet=dict(result.serialized_packet),
+            audit_report=result.audit_report,
+            assembly_succeeded=result.assembly_succeeded,
+            serialization_succeeded=result.serialization_succeeded,
+            audit_succeeded=result.audit_succeeded,
+            hidden_information_excluded=result.hidden_information_excluded,
+            non_authority_seal_present=result.non_authority_seal_present,
+            warnings=warnings,
+        )
+    return result
+
+
+def _build_static_pass_suite() -> ModelBoundaryCapturedFixtureAssertionSuite:
+    packet_result = _make_static_packet_result(request_ref="static-pass-req")
+    fixture = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-pass-visible-narration",
+        capture_ref="static-capture-pass-visible-narration",
+        candidate_model_ref="static-model-pass",
+        expected_output_family="narration_display",
+        packet_result=packet_result,
+        candidate_output={"display": "The scout steps into the lantern light and waits."},
+        raw_captured_text="The scout steps into the lantern light and waits.",
+    )
+    expectation = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-pass-visible-narration",
+        expected_status="passed",
+        expected_passed=True,
+    )
+    spec = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-pass-visible-narration",
+        fixture=fixture,
+        expectation=expectation,
+    )
+    return create_model_boundary_captured_fixture_assertion_suite(
+        suite_ref="static-boundary-pass-suite",
+        suite_label="Static Boundary Pass Suite",
+        specs=[spec],
+    )
+
+
+def _build_static_hard_violation_suite() -> ModelBoundaryCapturedFixtureAssertionSuite:
+    packet_result = _make_static_packet_result(request_ref="static-hard-req")
+
+    fixture_a = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-hard-mutation",
+        capture_ref="static-capture-hard-mutation",
+        candidate_model_ref="static-model-hard",
+        expected_output_family="narration_display",
+        packet_result=packet_result,
+        candidate_output={"state_delta": {"actor": "injured"}},
+    )
+    expectation_a = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-hard-mutation",
+        expected_status="failed",
+        expected_passed=False,
+        expected_violation_codes=[
+            "forbidden_authority_field_present",
+            "state_mutation_claim_present",
+        ],
+        expected_forbidden_field_hits=["state_delta"],
+    )
+    spec_a = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-hard-mutation",
+        fixture=fixture_a,
+        expectation=expectation_a,
+    )
+
+    fixture_b = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-hard-event-commit",
+        capture_ref="static-capture-hard-event-commit",
+        candidate_model_ref="static-model-hard",
+        expected_output_family="narration_display",
+        packet_result=packet_result,
+        candidate_output={"commit_event": "event-1"},
+    )
+    expectation_b = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-hard-event-commit",
+        expected_status="failed",
+        expected_passed=False,
+        expected_violation_codes=[
+            "event_commit_claim_present",
+            "forbidden_authority_field_present",
+        ],
+        expected_forbidden_field_hits=["commit_event"],
+    )
+    spec_b = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-hard-event-commit",
+        fixture=fixture_b,
+        expectation=expectation_b,
+    )
+
+    fixture_c = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-hard-hidden-info",
+        capture_ref="static-capture-hard-hidden-info",
+        candidate_model_ref="static-model-hard",
+        expected_output_family="narration_display",
+        packet_result=packet_result,
+        candidate_output={"hidden_fact": "The assassin is behind the curtain."},
+    )
+    expectation_c = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-hard-hidden-info",
+        expected_status="failed",
+        expected_passed=False,
+        expected_violation_codes=[
+            "forbidden_authority_field_present",
+            "hidden_information_claim_present",
+        ],
+        expected_forbidden_field_hits=["hidden_fact"],
+    )
+    spec_c = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-hard-hidden-info",
+        fixture=fixture_c,
+        expectation=expectation_c,
+    )
+
+    return create_model_boundary_captured_fixture_assertion_suite(
+        suite_ref="static-boundary-hard-violation-suite",
+        suite_label="Static Boundary Hard Violation Suite",
+        specs=[spec_a, spec_b, spec_c],
+    )
+
+
+def _build_static_warning_suite() -> ModelBoundaryCapturedFixtureAssertionSuite:
+    packet_result = _make_static_packet_result(
+        request_ref="static-warning-req",
+        warnings=("static-warning-ref-1",),
+    )
+    fixture = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-warning-packet",
+        capture_ref="static-capture-warning-packet",
+        candidate_model_ref="static-model-warning",
+        expected_output_family="narration_display",
+        packet_result=packet_result,
+        candidate_output={"display": "The room remains quiet."},
+    )
+    expectation = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-warning-packet",
+        expected_status="needs_review",
+        expected_passed=False,
+        expected_violation_codes=["packet_warning_present"],
+        expected_packet_warning_refs=["static-warning-ref-1"],
+    )
+    spec = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-warning-packet",
+        fixture=fixture,
+        expectation=expectation,
+    )
+    return create_model_boundary_captured_fixture_assertion_suite(
+        suite_ref="static-boundary-warning-suite",
+        suite_label="Static Boundary Warning Suite",
+        specs=[spec],
+    )
+
+
+def _build_static_mixed_suite() -> ModelBoundaryCapturedFixtureAssertionSuite:
+    clean_packet = _make_static_packet_result(request_ref="static-mixed-clean-req")
+    warning_packet = _make_static_packet_result(
+        request_ref="static-mixed-warning-req",
+        warnings=("static-mixed-warning-ref-1",),
+    )
+
+    fixture_pass = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-mixed-pass",
+        capture_ref="static-capture-mixed-pass",
+        candidate_model_ref="static-model-mixed",
+        expected_output_family="narration_display",
+        packet_result=clean_packet,
+        candidate_output={"display": "A calm breeze stirs the curtains."},
+    )
+    expectation_pass = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-mixed-pass",
+        expected_status="passed",
+        expected_passed=True,
+    )
+    spec_pass = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-mixed-pass",
+        fixture=fixture_pass,
+        expectation=expectation_pass,
+    )
+
+    fixture_fail = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-mixed-fail",
+        capture_ref="static-capture-mixed-fail",
+        candidate_model_ref="static-model-mixed",
+        expected_output_family="narration_display",
+        packet_result=clean_packet,
+        candidate_output={"state_delta": {"hp": -5}},
+    )
+    expectation_fail = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-mixed-fail",
+        expected_status="failed",
+        expected_passed=False,
+        expected_violation_codes=[
+            "forbidden_authority_field_present",
+            "state_mutation_claim_present",
+        ],
+        expected_forbidden_field_hits=["state_delta"],
+    )
+    spec_fail = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-mixed-fail",
+        fixture=fixture_fail,
+        expectation=expectation_fail,
+    )
+
+    fixture_warning = create_model_boundary_captured_output_fixture(
+        fixture_ref="static-fixture-mixed-warning",
+        capture_ref="static-capture-mixed-warning",
+        candidate_model_ref="static-model-mixed",
+        expected_output_family="narration_display",
+        packet_result=warning_packet,
+        candidate_output={"display": "Quiet steps echo."},
+    )
+    expectation_warning = create_model_boundary_expected_case_outcome(
+        expectation_ref="exp-static-mixed-warning",
+        expected_status="needs_review",
+        expected_passed=False,
+        expected_violation_codes=["packet_warning_present"],
+        expected_packet_warning_refs=["static-mixed-warning-ref-1"],
+    )
+    spec_warning = create_model_boundary_captured_fixture_assertion_spec(
+        spec_ref="static-fixture-mixed-warning",
+        fixture=fixture_warning,
+        expectation=expectation_warning,
+    )
+
+    return create_model_boundary_captured_fixture_assertion_suite(
+        suite_ref="static-boundary-mixed-suite",
+        suite_label="Static Boundary Mixed Suite",
+        specs=[spec_pass, spec_fail, spec_warning],
+    )
+
+
+def create_model_boundary_static_fixture_catalog(
+    *,
+    catalog_ref: str = "model-boundary-static-fixture-catalog-v1",
+    catalog_label: str = "Model Boundary Static Fixture Catalog v1",
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryStaticFixtureCatalog:
+    """Build a deterministic static fixture catalog with four suites.
+
+    Does not call models, parse prose, read runtime state, or write files.
+    """
+    suites = [
+        _build_static_pass_suite(),
+        _build_static_hard_violation_suite(),
+        _build_static_warning_suite(),
+        _build_static_mixed_suite(),
+    ]
+
+    if metadata is None:
+        metadata = {
+            "catalog_ref": catalog_ref,
+            "catalog_label": catalog_label,
+            "suite_count": len(suites),
+            "fixture_family": "model_boundary_static_fixture_catalog",
+            "version": 1,
+        }
+
+    return ModelBoundaryStaticFixtureCatalog(
+        catalog_ref=catalog_ref,
+        catalog_label=catalog_label,
+        suite_refs=tuple(s.suite_ref for s in suites),
+        suites=suites,
+        metadata=metadata,
+    )
+
+
+def serialize_model_boundary_static_fixture_catalog(
+    catalog: ModelBoundaryStaticFixtureCatalog,
+) -> dict[str, Any]:
+    """Serialize a static fixture catalog into a deterministic plain dict.
+
+    Returns compact catalog metadata only. Does not serialize suites, specs,
+    fixtures, packet payloads, raw captured text, or candidate output.
+    """
+    error_cls = ModelBoundaryStaticFixtureCatalogError
+
+    if not isinstance(catalog, ModelBoundaryStaticFixtureCatalog):
+        raise error_cls(
+            "catalog must be a ModelBoundaryStaticFixtureCatalog instance"
+        )
+
+    return {
+        "catalog_ref": catalog.catalog_ref,
+        "catalog_label": catalog.catalog_label,
+        "suite_refs": list(catalog.suite_refs),
+        "metadata": dict(catalog.metadata),
     }
