@@ -587,10 +587,9 @@ class TestBuilder:
     def test_no_narration_generation(self, default_dry_run):
         assert default_dry_run.narration_generated is False
 
-    def test_no_single_event_narration_packet_import(self):
-        source = Path(__file__).resolve().parent.parent / "src" / "astra_runtime" / "domain" / "tiny_vertical_slice.py"
-        content = source.read_text()
-        assert "SingleEventNarrationPacket" not in content
+    def test_no_single_event_narration_packet_in_increment_7(self, default_dry_run):
+        assert not hasattr(default_dry_run, "packet")
+        assert not hasattr(default_dry_run, "narration_packet")
 
 
 # ---------------------------------------------------------------------------

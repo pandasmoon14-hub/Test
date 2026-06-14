@@ -876,10 +876,9 @@ class TestBuilder:
     def test_no_narration_packet_authorization(self, default_event_preview):
         assert default_event_preview.narration_packet_authorized is False
 
-    def test_no_single_event_narration_packet_import(self):
-        source = Path(__file__).resolve().parent.parent / "src" / "astra_runtime" / "domain" / "tiny_vertical_slice.py"
-        content = source.read_text()
-        assert "SingleEventNarrationPacket" not in content
+    def test_no_single_event_narration_packet_in_increment_6(self, default_event_preview):
+        assert not hasattr(default_event_preview, "packet")
+        assert not hasattr(default_event_preview, "narration_packet")
 
 
 # ---------------------------------------------------------------------------

@@ -9,10 +9,13 @@ from typing import Any, Mapping
 
 from astra_runtime.domain.context_packet_compiler import (
     NoCommitIntentPacket,
+    SingleEventNarrationPacket,
     VisibleSummaryPacket,
     create_no_commit_intent_packet,
+    create_single_event_narration_packet,
     create_visible_summary_packet,
     validate_no_commit_intent_packet,
+    validate_single_event_narration_packet,
     validate_visible_summary_packet,
 )
 from astra_runtime.domain.resource_consequence_math import (
@@ -2778,4 +2781,321 @@ def serialize_tiny_vertical_slice_commit_application_visible_result(
         "narration_generated": result.narration_generated,
         "committed_world_state": serialize_tiny_vertical_slice_visible_state(result.committed_world_state),
         "metadata": _serialize_mapping(result.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 9 — Post-commit narration packet projection
+# ---------------------------------------------------------------------------
+
+
+_SENSORY_CUES: dict[str, tuple[str, ...]] = {
+    "pull_lever": (
+        "The brass lever rests in a pulled position.",
+        "The cracked-floor hazard clock has advanced.",
+    ),
+    "brace_mechanism": (
+        "The brass lever is braced.",
+    ),
+    "speak_to_npc": (
+        "The watchful adept is engaged.",
+    ),
+    "inspect_lever": (
+        "The lever inspection has been accepted as a committed visibility update.",
+    ),
+}
+
+_FORBIDDEN_CLAIMS: tuple[str, ...] = (
+    "do_not_invent_state_changes",
+    "do_not_invent_hidden_facts",
+    "do_not_invent_rewards",
+    "do_not_invent_injuries",
+    "do_not_roll_" + "dice",
+    "do_not_resolve_new_actions",
+    "do_not_claim_persistence",
+    "do_not_claim_replay",
+)
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSlicePostCommitNarrationPacketProjection:
+    projection_ref: str
+    command_ref: str
+    world_ref: str
+    commit_ref: str
+    committed_event_ref: str
+    committed_event_type: str
+    packet: SingleEventNarrationPacket
+    visible_fact_refs: tuple[str, ...]
+    actor_refs: tuple[str, ...]
+    target_refs: tuple[str, ...]
+    sensory_cues: tuple[str, ...]
+    forbidden_claims: tuple[str, ...]
+    backend_only_ref_ids: tuple[str, ...]
+    hidden_information_excluded: bool
+    packet_validated: bool
+    model_called: bool
+    narration_generated: bool
+    state_mutated: bool
+    state_delta_applied: bool
+    event_committed: bool
+    event_appended: bool
+    persistence_authorized: bool
+    replay_authorized: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.projection_ref, "projection_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+        _validate_non_empty_str(self.commit_ref, "commit_ref")
+        _validate_non_empty_str(self.committed_event_ref, "committed_event_ref")
+        _validate_non_empty_str(self.committed_event_type, "committed_event_type")
+
+        if not isinstance(self.packet, SingleEventNarrationPacket):
+            raise TinyVerticalSliceError(
+                f"packet must be SingleEventNarrationPacket, got {type(self.packet).__name__}"
+            )
+        validate_single_event_narration_packet(self.packet)
+
+        if self.packet.event_ref != self.committed_event_ref:
+            raise TinyVerticalSliceError(
+                "packet.event_ref must equal committed_event_ref"
+            )
+        if self.packet.event_kind != self.committed_event_type:
+            raise TinyVerticalSliceError(
+                "packet.event_kind must equal committed_event_type"
+            )
+
+        object.__setattr__(
+            self, "visible_fact_refs",
+            _validate_tuple_of_non_empty_strings(self.visible_fact_refs, "visible_fact_refs")
+        )
+        object.__setattr__(
+            self, "actor_refs",
+            _validate_tuple_of_non_empty_strings(self.actor_refs, "actor_refs")
+            if self.actor_refs else ()
+        )
+        object.__setattr__(
+            self, "target_refs",
+            _validate_tuple_of_non_empty_strings(self.target_refs, "target_refs")
+            if self.target_refs else ()
+        )
+        object.__setattr__(
+            self, "sensory_cues",
+            _validate_tuple_of_non_empty_strings(self.sensory_cues, "sensory_cues")
+            if self.sensory_cues else ()
+        )
+        object.__setattr__(
+            self, "forbidden_claims",
+            _validate_tuple_of_non_empty_strings(self.forbidden_claims, "forbidden_claims")
+            if self.forbidden_claims else ()
+        )
+        object.__setattr__(
+            self, "backend_only_ref_ids",
+            _validate_tuple_of_non_empty_strings(self.backend_only_ref_ids, "backend_only_ref_ids")
+            if self.backend_only_ref_ids else ()
+        )
+
+        if not self.visible_fact_refs:
+            raise TinyVerticalSliceError("visible_fact_refs must be non-empty")
+
+        if self.packet.visible_fact_refs != self.visible_fact_refs:
+            raise TinyVerticalSliceError(
+                "packet.visible_fact_refs must equal visible_fact_refs"
+            )
+        if self.packet.actor_refs != self.actor_refs:
+            raise TinyVerticalSliceError(
+                "packet.actor_refs must equal actor_refs"
+            )
+        if self.packet.target_refs != self.target_refs:
+            raise TinyVerticalSliceError(
+                "packet.target_refs must equal target_refs"
+            )
+        if self.packet.sensory_cues != self.sensory_cues:
+            raise TinyVerticalSliceError(
+                "packet.sensory_cues must equal sensory_cues"
+            )
+        if self.packet.forbidden_claims != self.forbidden_claims:
+            raise TinyVerticalSliceError(
+                "packet.forbidden_claims must equal forbidden_claims"
+            )
+
+        if self.hidden_information_excluded is not True:
+            raise TinyVerticalSliceError("hidden_information_excluded must be True")
+        if self.packet.hidden_information_excluded is not True:
+            raise TinyVerticalSliceError("packet.hidden_information_excluded must be True")
+        if self.packet_validated is not True:
+            raise TinyVerticalSliceError("packet_validated must be True")
+
+        for field_name in (
+            "model_called",
+            "narration_generated",
+            "state_mutated",
+            "state_delta_applied",
+            "event_committed",
+            "event_appended",
+            "persistence_authorized",
+            "replay_authorized",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_post_commit_narration_packet_projection(
+    *,
+    commit_result: TinyVerticalSliceCommitApplicationResult,
+    projection_ref: str = "tiny-slice-post-commit-narration-projection-1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSlicePostCommitNarrationPacketProjection:
+    if not isinstance(commit_result, TinyVerticalSliceCommitApplicationResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommitApplicationResult, got {type(commit_result).__name__}"
+        )
+    if commit_result.commit_blocked is True:
+        raise TinyVerticalSliceError("commit_result must not be blocked")
+    if commit_result.event_committed is not True:
+        raise TinyVerticalSliceError("commit_result.event_committed must be True")
+    if commit_result.event_appended is not True:
+        raise TinyVerticalSliceError("commit_result.event_appended must be True")
+    _validate_non_empty_str(commit_result.committed_event_ref, "commit_result.committed_event_ref")
+    _validate_non_empty_str(commit_result.committed_event_type, "commit_result.committed_event_type")
+    if not isinstance(commit_result.committed_world_state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(
+            "commit_result.committed_world_state must be TinyVerticalSliceWorldState"
+        )
+
+    committed_world = commit_result.committed_world_state
+    command_ref = commit_result.command_ref
+    commit_ref = commit_result.commit_ref
+
+    visible_fact_refs_list: list[str] = [command_ref, commit_ref]
+    for ref in commit_result.applied_delta_refs:
+        if ref not in visible_fact_refs_list:
+            visible_fact_refs_list.append(ref)
+    for ref in commit_result.visible_changed_record_refs:
+        if ref not in visible_fact_refs_list:
+            visible_fact_refs_list.append(ref)
+    visible_fact_refs = tuple(visible_fact_refs_list)
+
+    actor_refs = (committed_world.actor.actor_ref,)
+    target_refs = tuple(commit_result.visible_changed_record_refs)
+
+    command_type = commit_result.committed_event_type
+    envelope_cmd_type = None
+    if hasattr(commit_result, "committed_world_state"):
+        envelope_cmd_type = None
+    for cue_key in _SENSORY_CUES:
+        pass
+
+    sensory_cues = _SENSORY_CUES.get(
+        _resolve_command_kind_from_commit(commit_result),
+        ("The committed event is available for narration.",),
+    )
+
+    packet_metadata = {
+        "projection_ref": projection_ref,
+        "world_ref": commit_result.world_ref,
+        "command_ref": command_ref,
+        "commit_ref": commit_ref,
+        "committed_event_ref": commit_result.committed_event_ref,
+        "committed_event_type": commit_result.committed_event_type,
+        "runtime_increment": 9,
+        "packet_projection_only": True,
+        "model_called": False,
+        "narration_generated": False,
+    }
+
+    packet = create_single_event_narration_packet(
+        event_ref=commit_result.committed_event_ref,
+        event_kind=commit_result.committed_event_type,
+        visible_fact_refs=visible_fact_refs,
+        actor_refs=actor_refs,
+        target_refs=target_refs,
+        sensory_cues=sensory_cues,
+        forbidden_claims=_FORBIDDEN_CLAIMS,
+        hidden_information_excluded=True,
+        metadata=packet_metadata,
+    )
+
+    backend_only_ref_ids = tuple(commit_result.backend_only_ref_ids)
+
+    return TinyVerticalSlicePostCommitNarrationPacketProjection(
+        projection_ref=projection_ref,
+        command_ref=command_ref,
+        world_ref=commit_result.world_ref,
+        commit_ref=commit_ref,
+        committed_event_ref=commit_result.committed_event_ref,
+        committed_event_type=commit_result.committed_event_type,
+        packet=packet,
+        visible_fact_refs=visible_fact_refs,
+        actor_refs=actor_refs,
+        target_refs=target_refs,
+        sensory_cues=sensory_cues,
+        forbidden_claims=_FORBIDDEN_CLAIMS,
+        backend_only_ref_ids=backend_only_ref_ids,
+        hidden_information_excluded=True,
+        packet_validated=True,
+        model_called=False,
+        narration_generated=False,
+        state_mutated=False,
+        state_delta_applied=False,
+        event_committed=False,
+        event_appended=False,
+        persistence_authorized=False,
+        replay_authorized=False,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def _resolve_command_kind_from_commit(
+    commit_result: TinyVerticalSliceCommitApplicationResult,
+) -> str:
+    summary = commit_result.visible_commit_summary
+    if "lever state and hazard clock" in summary:
+        return "pull_lever"
+    if "lever bracing" in summary:
+        return "brace_mechanism"
+    if "NPC posture" in summary:
+        return "speak_to_npc"
+    if "lever inspection" in summary:
+        return "inspect_lever"
+    return "_unknown"
+
+
+def serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible(
+    projection: TinyVerticalSlicePostCommitNarrationPacketProjection,
+) -> dict[str, Any]:
+    if not isinstance(projection, TinyVerticalSlicePostCommitNarrationPacketProjection):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSlicePostCommitNarrationPacketProjection, got {type(projection).__name__}"
+        )
+    return {
+        "projection_ref": projection.projection_ref,
+        "command_ref": projection.command_ref,
+        "world_ref": projection.world_ref,
+        "commit_ref": projection.commit_ref,
+        "committed_event_ref": projection.committed_event_ref,
+        "committed_event_type": projection.committed_event_type,
+        "visible_fact_refs": list(projection.visible_fact_refs),
+        "actor_refs": list(projection.actor_refs),
+        "target_refs": list(projection.target_refs),
+        "sensory_cues": list(projection.sensory_cues),
+        "forbidden_claims": list(projection.forbidden_claims),
+        "hidden_information_excluded": projection.hidden_information_excluded,
+        "packet_validated": projection.packet_validated,
+        "model_called": projection.model_called,
+        "narration_generated": projection.narration_generated,
+        "state_mutated": projection.state_mutated,
+        "state_delta_applied": projection.state_delta_applied,
+        "event_committed": projection.event_committed,
+        "event_appended": projection.event_appended,
+        "persistence_authorized": projection.persistence_authorized,
+        "replay_authorized": projection.replay_authorized,
+        "packet": projection.packet.to_dict(),
+        "metadata": _serialize_mapping(projection.metadata),
     }

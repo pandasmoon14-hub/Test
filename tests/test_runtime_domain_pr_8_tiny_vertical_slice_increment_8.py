@@ -489,12 +489,10 @@ class TestBuilder:
             assert result.model_called is False
             assert result.narration_generated is False
 
-    def test_no_single_event_narration_packet_imported(self):
-        src = Path(__file__).resolve().parent.parent / "src" / "astra_runtime" / "domain" / "tiny_vertical_slice.py"
-        text = src.read_text(encoding="utf-8")
-        assert "SingleEventNarrationPacket" not in text or "SingleEventNarrationPacket" in text.split("from astra_runtime")[0]
-        import astra_runtime.domain.tiny_vertical_slice as mod
-        assert not hasattr(mod, "SingleEventNarrationPacket") or "SingleEventNarrationPacket" not in dir(mod)
+    def test_no_single_event_narration_packet_in_increment_8(self, world):
+        result = _make_commit_application(world, "inspect_lever")
+        assert not hasattr(result, "packet")
+        assert not hasattr(result, "narration_packet")
 
 
 # ---------------------------------------------------------------------------
