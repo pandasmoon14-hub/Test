@@ -261,6 +261,20 @@ from astra_runtime.domain.model_boundary_evaluation import (
     evaluate_model_boundary_case,
     evaluate_model_boundary_suite,
 )
+from astra_runtime.domain.tiny_vertical_slice import (
+    TinyVerticalSliceError,
+    TinyVerticalSliceScene,
+    TinyVerticalSliceActor,
+    TinyVerticalSliceNpc,
+    TinyVerticalSliceHazardClock,
+    TinyVerticalSliceLever,
+    TinyVerticalSliceInjury,
+    TinyVerticalSliceHiddenFact,
+    TinyVerticalSliceWorldState,
+    create_tiny_vertical_slice_world_state,
+    serialize_tiny_vertical_slice_visible_state,
+    serialize_tiny_vertical_slice_hidden_state_for_backend,
+)
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
     CONSEQUENCE_FAMILIES,
@@ -638,4 +652,17 @@ __all__ = [
     "validate_resource_math_subject_reference",
     "validate_resource_reference",
     "validate_settlement_proposal",
+    # tiny_vertical_slice — PR-8 Increment 1
+    "TinyVerticalSliceError",
+    "TinyVerticalSliceScene",
+    "TinyVerticalSliceActor",
+    "TinyVerticalSliceNpc",
+    "TinyVerticalSliceHazardClock",
+    "TinyVerticalSliceLever",
+    "TinyVerticalSliceInjury",
+    "TinyVerticalSliceHiddenFact",
+    "TinyVerticalSliceWorldState",
+    "create_tiny_vertical_slice_world_state",
+    "serialize_tiny_vertical_slice_visible_state",
+    "serialize_tiny_vertical_slice_hidden_state_for_backend",
 ]
