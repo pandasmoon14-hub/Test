@@ -2404,3 +2404,378 @@ def serialize_tiny_vertical_slice_commit_dry_run_visible_result(
         "transaction_preview": result.transaction_preview.to_dict(),
         "metadata": _serialize_mapping(result.metadata),
     }
+
+
+# ---------------------------------------------------------------------------
+# Increment 8 — Commit application boundary
+# ---------------------------------------------------------------------------
+
+
+_COMMIT_APPLICATION_SUMMARIES: dict[str, str] = {
+    "pull_lever": "Commit applied lever state and hazard clock deltas; event committed in memory only.",
+    "brace_mechanism": "Commit applied lever bracing delta; event committed in memory only.",
+    "speak_to_npc": "Commit applied NPC posture delta; event committed in memory only.",
+    "inspect_lever": "Commit accepted lever inspection visibility delta; event committed in memory only.",
+}
+
+_COMMIT_APPLICATION_BLOCKED_SUMMARY = (
+    "Commit application blocked; no state delta was applied and no event was committed."
+)
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceCommitApplicationResult:
+    commit_ref: str
+    command_ref: str
+    world_ref: str
+    dry_run_ref: str
+    source_world_state: TinyVerticalSliceWorldState
+    committed_world_state: TinyVerticalSliceWorldState
+    applied_delta_refs: tuple[str, ...]
+    committed_event_ref: str | None
+    committed_event_type: str | None
+    visible_commit_summary: str
+    visible_changed_record_refs: tuple[str, ...]
+    backend_only_ref_ids: tuple[str, ...]
+    commit_attempted: bool
+    commit_blocked: bool
+    commit_authorized: bool
+    transaction_executed: bool
+    state_changed: bool
+    state_delta_applied: bool
+    event_committed: bool
+    event_appended: bool
+    persistence_authorized: bool
+    persisted: bool
+    replay_authorized: bool
+    replayed: bool
+    narration_packet_authorized: bool
+    model_called: bool
+    narration_generated: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.commit_ref, "commit_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+        _validate_non_empty_str(self.dry_run_ref, "dry_run_ref")
+        _validate_non_empty_str(self.visible_commit_summary, "visible_commit_summary")
+
+        if not isinstance(self.source_world_state, TinyVerticalSliceWorldState):
+            raise TinyVerticalSliceError(
+                f"source_world_state must be TinyVerticalSliceWorldState, got {type(self.source_world_state).__name__}"
+            )
+        if not isinstance(self.committed_world_state, TinyVerticalSliceWorldState):
+            raise TinyVerticalSliceError(
+                f"committed_world_state must be TinyVerticalSliceWorldState, got {type(self.committed_world_state).__name__}"
+            )
+        if self.source_world_state.world_ref != self.world_ref:
+            raise TinyVerticalSliceError(
+                "source_world_state.world_ref must equal world_ref"
+            )
+        if self.committed_world_state.world_ref != self.world_ref:
+            raise TinyVerticalSliceError(
+                "committed_world_state.world_ref must equal world_ref"
+            )
+
+        object.__setattr__(
+            self, "applied_delta_refs",
+            _validate_tuple_of_non_empty_strings(self.applied_delta_refs, "applied_delta_refs")
+            if self.applied_delta_refs else ()
+        )
+        object.__setattr__(
+            self, "visible_changed_record_refs",
+            _validate_tuple_of_non_empty_strings(self.visible_changed_record_refs, "visible_changed_record_refs")
+            if self.visible_changed_record_refs else ()
+        )
+        object.__setattr__(
+            self, "backend_only_ref_ids",
+            _validate_tuple_of_non_empty_strings(self.backend_only_ref_ids, "backend_only_ref_ids")
+            if self.backend_only_ref_ids else ()
+        )
+
+        if self.committed_event_ref is not None:
+            _validate_non_empty_str(self.committed_event_ref, "committed_event_ref")
+        if self.committed_event_type is not None:
+            _validate_non_empty_str(self.committed_event_type, "committed_event_type")
+
+        for field_name in (
+            "commit_attempted",
+            "commit_blocked",
+            "commit_authorized",
+            "transaction_executed",
+            "state_changed",
+            "state_delta_applied",
+            "event_committed",
+            "event_appended",
+            "persistence_authorized",
+            "persisted",
+            "replay_authorized",
+            "replayed",
+            "narration_packet_authorized",
+            "model_called",
+            "narration_generated",
+        ):
+            _validate_bool(getattr(self, field_name), field_name)
+
+        if self.commit_blocked:
+            if self.commit_authorized is not False:
+                raise TinyVerticalSliceError("commit_authorized must be False when commit_blocked is True")
+            if self.transaction_executed is not False:
+                raise TinyVerticalSliceError("transaction_executed must be False when commit_blocked is True")
+            if self.state_changed is not False:
+                raise TinyVerticalSliceError("state_changed must be False when commit_blocked is True")
+            if self.state_delta_applied is not False:
+                raise TinyVerticalSliceError("state_delta_applied must be False when commit_blocked is True")
+            if self.event_committed is not False:
+                raise TinyVerticalSliceError("event_committed must be False when commit_blocked is True")
+            if self.event_appended is not False:
+                raise TinyVerticalSliceError("event_appended must be False when commit_blocked is True")
+            if self.applied_delta_refs:
+                raise TinyVerticalSliceError("applied_delta_refs must be empty when commit_blocked is True")
+        else:
+            if self.commit_attempted is not True:
+                raise TinyVerticalSliceError("commit_attempted must be True when commit_blocked is False")
+            if self.commit_authorized is not True:
+                raise TinyVerticalSliceError("commit_authorized must be True when commit_blocked is False")
+            if self.transaction_executed is not True:
+                raise TinyVerticalSliceError("transaction_executed must be True when commit_blocked is False")
+            if self.state_changed is not True:
+                raise TinyVerticalSliceError("state_changed must be True when commit_blocked is False")
+            if self.state_delta_applied is not True:
+                raise TinyVerticalSliceError("state_delta_applied must be True when commit_blocked is False")
+            if self.event_committed is not True:
+                raise TinyVerticalSliceError("event_committed must be True when commit_blocked is False")
+            if self.event_appended is not True:
+                raise TinyVerticalSliceError("event_appended must be True when commit_blocked is False")
+            if self.committed_event_ref is None:
+                raise TinyVerticalSliceError("committed_event_ref must be non-empty when commit_blocked is False")
+            if self.committed_event_type is None:
+                raise TinyVerticalSliceError("committed_event_type must be non-empty when commit_blocked is False")
+            if not self.applied_delta_refs:
+                raise TinyVerticalSliceError("applied_delta_refs must be non-empty when commit_blocked is False")
+
+        if self.persistence_authorized is not False:
+            raise TinyVerticalSliceError("persistence_authorized must be False")
+        if self.persisted is not False:
+            raise TinyVerticalSliceError("persisted must be False")
+        if self.replay_authorized is not False:
+            raise TinyVerticalSliceError("replay_authorized must be False")
+        if self.replayed is not False:
+            raise TinyVerticalSliceError("replayed must be False")
+        if self.narration_packet_authorized is not False:
+            raise TinyVerticalSliceError("narration_packet_authorized must be False")
+        if self.model_called is not False:
+            raise TinyVerticalSliceError("model_called must be False")
+        if self.narration_generated is not False:
+            raise TinyVerticalSliceError("narration_generated must be False")
+
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def apply_tiny_vertical_slice_commit_application(
+    *,
+    state: TinyVerticalSliceWorldState,
+    dry_run_result: TinyVerticalSliceCommitDryRunResult,
+    commit_ref: str = "tiny-slice-commit-application-1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceCommitApplicationResult:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(dry_run_result, TinyVerticalSliceCommitDryRunResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommitDryRunResult, got {type(dry_run_result).__name__}"
+        )
+    if dry_run_result.world_ref != state.world_ref:
+        raise TinyVerticalSliceError("dry_run_result.world_ref must match state.world_ref")
+    _validate_non_empty_str(dry_run_result.command_ref, "dry_run_result.command_ref")
+
+    is_blocked = (
+        dry_run_result.transaction_preview.status != "preview_created"
+        or dry_run_result.candidate_event_ref is None
+        or not dry_run_result.candidate_delta_refs
+        or dry_run_result.commit_authorized is not False
+        or dry_run_result.transaction_executed is not False
+    )
+
+    frozen_metadata = metadata if metadata is not None else {}
+
+    if is_blocked:
+        return TinyVerticalSliceCommitApplicationResult(
+            commit_ref=commit_ref,
+            command_ref=dry_run_result.command_ref,
+            world_ref=state.world_ref,
+            dry_run_ref=dry_run_result.dry_run_ref,
+            source_world_state=state,
+            committed_world_state=state,
+            applied_delta_refs=(),
+            committed_event_ref=None,
+            committed_event_type=None,
+            visible_commit_summary=_COMMIT_APPLICATION_BLOCKED_SUMMARY,
+            visible_changed_record_refs=(),
+            backend_only_ref_ids=(),
+            commit_attempted=True,
+            commit_blocked=True,
+            commit_authorized=False,
+            transaction_executed=False,
+            state_changed=False,
+            state_delta_applied=False,
+            event_committed=False,
+            event_appended=False,
+            persistence_authorized=False,
+            persisted=False,
+            replay_authorized=False,
+            replayed=False,
+            narration_packet_authorized=False,
+            model_called=False,
+            narration_generated=False,
+            metadata=frozen_metadata,
+        )
+
+    command_type = dry_run_result.command_envelope.command_type
+    changed_refs: list[str] = []
+    backend_only_ref_ids: list[str] = []
+
+    new_lever = state.lever
+    new_hazard_clock = state.hazard_clock
+    new_npc = state.npc
+
+    if command_type == "pull_lever":
+        candidate_lever_value = "pulled"
+        candidate_tick_value = min(state.hazard_clock.current_tick + 1, state.hazard_clock.max_ticks)
+        for envelope in dry_run_result.command_envelope.payload.get("_unused_sentinel", [None]):
+            pass
+        for delta_ref in dry_run_result.candidate_delta_refs:
+            if "lever" in delta_ref:
+                candidate_lever_value = "pulled"
+            if "hazard-clock" in delta_ref:
+                candidate_tick_value = min(state.hazard_clock.current_tick + 1, state.hazard_clock.max_ticks)
+        new_lever = TinyVerticalSliceLever(
+            lever_ref=state.lever.lever_ref,
+            lever_label=state.lever.lever_label,
+            visible_description=state.lever.visible_description,
+            visible_state=candidate_lever_value,
+            metadata=dict(state.lever.metadata),
+        )
+        new_hazard_clock = TinyVerticalSliceHazardClock(
+            clock_ref=state.hazard_clock.clock_ref,
+            clock_label=state.hazard_clock.clock_label,
+            visible_description=state.hazard_clock.visible_description,
+            current_tick=candidate_tick_value,
+            max_ticks=state.hazard_clock.max_ticks,
+            metadata=dict(state.hazard_clock.metadata),
+        )
+        changed_refs.extend([state.lever.lever_ref, state.hazard_clock.clock_ref])
+        backend_only_ref_ids.append(state.hidden_fact.hidden_fact_ref)
+
+    elif command_type == "brace_mechanism":
+        new_lever = TinyVerticalSliceLever(
+            lever_ref=state.lever.lever_ref,
+            lever_label=state.lever.lever_label,
+            visible_description=state.lever.visible_description,
+            visible_state="braced",
+            metadata=dict(state.lever.metadata),
+        )
+        changed_refs.append(state.lever.lever_ref)
+        backend_only_ref_ids.append(state.hidden_fact.hidden_fact_ref)
+
+    elif command_type == "speak_to_npc":
+        new_npc = TinyVerticalSliceNpc(
+            npc_ref=state.npc.npc_ref,
+            npc_label=state.npc.npc_label,
+            visible_description=state.npc.visible_description,
+            visible_disposition="engaged",
+            metadata=dict(state.npc.metadata),
+        )
+        changed_refs.append(state.npc.npc_ref)
+
+    elif command_type == "inspect_lever":
+        changed_refs.append(state.lever.lever_ref)
+        backend_only_ref_ids.append(state.hidden_fact.hidden_fact_ref)
+
+    committed_world = TinyVerticalSliceWorldState(
+        world_ref=state.world_ref,
+        world_label=state.world_label,
+        scene=state.scene,
+        actor=state.actor,
+        npc=new_npc,
+        hazard_clock=new_hazard_clock,
+        lever=new_lever,
+        injury=state.injury,
+        hidden_fact=state.hidden_fact,
+        metadata=dict(state.metadata),
+    )
+
+    visible_summary = _COMMIT_APPLICATION_SUMMARIES.get(
+        command_type, _COMMIT_APPLICATION_BLOCKED_SUMMARY
+    )
+
+    committed_event_type = "command_event"
+
+    return TinyVerticalSliceCommitApplicationResult(
+        commit_ref=commit_ref,
+        command_ref=dry_run_result.command_ref,
+        world_ref=state.world_ref,
+        dry_run_ref=dry_run_result.dry_run_ref,
+        source_world_state=state,
+        committed_world_state=committed_world,
+        applied_delta_refs=dry_run_result.candidate_delta_refs,
+        committed_event_ref=dry_run_result.candidate_event_ref,
+        committed_event_type=committed_event_type,
+        visible_commit_summary=visible_summary,
+        visible_changed_record_refs=tuple(changed_refs),
+        backend_only_ref_ids=tuple(backend_only_ref_ids),
+        commit_attempted=True,
+        commit_blocked=False,
+        commit_authorized=True,
+        transaction_executed=True,
+        state_changed=True,
+        state_delta_applied=True,
+        event_committed=True,
+        event_appended=True,
+        persistence_authorized=False,
+        persisted=False,
+        replay_authorized=False,
+        replayed=False,
+        narration_packet_authorized=False,
+        model_called=False,
+        narration_generated=False,
+        metadata=frozen_metadata,
+    )
+
+
+def serialize_tiny_vertical_slice_commit_application_visible_result(
+    result: TinyVerticalSliceCommitApplicationResult,
+) -> dict[str, Any]:
+    if not isinstance(result, TinyVerticalSliceCommitApplicationResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommitApplicationResult, got {type(result).__name__}"
+        )
+    return {
+        "commit_ref": result.commit_ref,
+        "command_ref": result.command_ref,
+        "world_ref": result.world_ref,
+        "dry_run_ref": result.dry_run_ref,
+        "applied_delta_refs": list(result.applied_delta_refs),
+        "committed_event_ref": result.committed_event_ref,
+        "committed_event_type": result.committed_event_type,
+        "visible_commit_summary": result.visible_commit_summary,
+        "visible_changed_record_refs": list(result.visible_changed_record_refs),
+        "commit_attempted": result.commit_attempted,
+        "commit_blocked": result.commit_blocked,
+        "commit_authorized": result.commit_authorized,
+        "transaction_executed": result.transaction_executed,
+        "state_changed": result.state_changed,
+        "state_delta_applied": result.state_delta_applied,
+        "event_committed": result.event_committed,
+        "event_appended": result.event_appended,
+        "persistence_authorized": result.persistence_authorized,
+        "persisted": result.persisted,
+        "replay_authorized": result.replay_authorized,
+        "replayed": result.replayed,
+        "narration_packet_authorized": result.narration_packet_authorized,
+        "model_called": result.model_called,
+        "narration_generated": result.narration_generated,
+        "committed_world_state": serialize_tiny_vertical_slice_visible_state(result.committed_world_state),
+        "metadata": _serialize_mapping(result.metadata),
+    }
