@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-14'
+  version: 0.1.94
+  action: runtime_domain_pr_9_post_pr8_runtime_generalization_planning
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-PR-9 post-PR-8 runtime generalization planning tracking. Planning only; follows merged PR #302 (RUNTIME-DOMAIN-PR-8 tiny vertical slice) and PR #303 guardrail baseline cleanup; defines the next narrow runtime generalization seam after the PR-8 proof; selects a backend-owned typed scene-command execution skeleton / runtime transaction assembly as the candidate next implementation; authorizes no implementation, no expansion of tiny_vertical_slice.py, no live-play behavior, no LLM narration authority, no persistence implementation, no RNG/table/oracle execution, no arbitrary state mutation, no settlement, no broad consequence application, no conversion, no sourcebook inclusion, and no canon promotion; records PR-8 proofs and non-proofs, generalization targets, candidate modules, backend-owned boundaries, forbidden LLM boundaries, gating tests, allowed touch surfaces, forbidden touch surfaces, and lawful escalation points to RT-001 through RT-012 and Astra Doctrine Council review."
 - date: '2026-06-12'
   version: 0.1.93
   action: runtime_domain_pr_6_context_packet_scope_alignment
@@ -13175,3 +13180,98 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-4 planning only; validation integration and invariant enforcement service plan; follows PR-3B; defines validation integration model; defines invariant enforcement model; defines validation decision model; defines invariant family model; defines validation failure routing; defines hidden-information validation safety; defines generated-content provenance validation; defines kernel interface consumption plan; defines domain service handoff boundaries; defines future implementation architecture; defines future data shapes; defines corpus-scale validation pressure review; defines future hardening ledger; recommends RUNTIME-DOMAIN-PR-4A; no validation integration code; no invariant enforcement code; no domain validation rules; no runtime code; no domain code; no transaction execution; no actual event commitment; no event sourcing; no mutable runtime state; no state mutation; no state delta application; no event ledger append; no durable persistence; no database schema; no replay engine; no command execution; no command parser; no resource math; no combat resolution; no ability resolution; no inventory mutation; no mission/social mutation; no generated-content persistence; no context-packet compiler; no prompt templates; no model integration; no live-play adapter; no UI/client; no conversion/sourcebook/canon.
+
+- file_id: RUNTIME-DOMAIN-PR-9-POST-PR8-RUNTIME-GENERALIZATION-PLANNING-001
+  title: RUNTIME-DOMAIN-PR-9 Post-PR-8 Runtime Generalization Planning
+  file_path: docs/doctrine/reviews/runtime_domain_pr_9_post_pr8_runtime_generalization_planning.md
+  filename: runtime_domain_pr_9_post_pr8_runtime_generalization_planning.md
+  proposed_path: docs/doctrine/reviews/runtime_domain_pr_9_post_pr8_runtime_generalization_planning.md
+  artifact_type: runtime_generalization_planning
+  artifact_subtype: post_pr8_runtime_generalization_planning
+  batch: runtime-domain
+  status: draft
+  implementation_status: non_executable_plan
+  derives_from:
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-001
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-002
+  - PR-303-GUARDRAIL-BASELINE-CLEANUP-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-6-CONTEXT-PACKET-COMPILER-SCOPE-ALIGNMENT-001
+  - RUNTIME-DOMAIN-PR-7-MODEL-BOUNDARY-EVALUATION-SLICE-001
+  defines_next_runtime_generalization_seam: true
+  defines_implementation_constraints: true
+  defines_required_tests_before_implementation: true
+  pr_8_proved_backend_owned_deterministic_assembly: true
+  pr_8_did_not_prove_generalization: true
+  next_implementation_candidate: scene_command_execution_skeleton_or_runtime_transaction_assembly
+  authorizes_implementation_by_this_pr: false
+  authorizes_tiny_vertical_slice_expansion_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_llm_narration_authority_by_this_pr: false
+  authorizes_persistence_implementation_by_this_pr: false
+  authorizes_rng_table_oracle_execution_by_this_pr: false
+  authorizes_arbitrary_state_mutation_by_this_pr: false
+  authorizes_settlement_authorization_by_this_pr: false
+  authorizes_broad_consequence_application_by_this_pr: false
+  authorizes_pr5_arithmetic_execution_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  does_not_authorize:
+  - implementation code
+  - tiny_vertical_slice.py expansion
+  - live-play behavior
+  - LLM narration authority
+  - persistence implementation
+  - RNG/table/oracle execution
+  - arbitrary state mutation
+  - settlement authorization
+  - broad consequence application
+  - PR-5 arithmetic execution
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  - prompt templates
+  - prompt execution
+  - prose parsing
+  - model calls
+  dependencies:
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-001
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-002
+  - PR-303-GUARDRAIL-BASELINE-CLEANUP-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-6-CONTEXT-PACKET-COMPILER-SCOPE-ALIGNMENT-001
+  - RUNTIME-DOMAIN-PR-7-MODEL-BOUNDARY-EVALUATION-SLICE-001
+  blocked_by: []
+  required_tests:
+  - planning file exists test
+  - RUNTIME-DOMAIN-PR-9 ID reference test
+  - PR-8 merge commit reference test
+  - PR-303 merge commit reference test
+  - PR-8 proof list test
+  - PR-8 non-proof list test
+  - generalization target list test
+  - candidate module list test
+  - backend-owned boundary list test
+  - forbidden LLM boundary list test
+  - gating test list test
+  - allowed touch surface list test
+  - forbidden touch surface list test
+  - lawful escalation point list test
+  - gate finding exists test
+  - non-implementation reaffirmation test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before RUNTIME-DOMAIN-PR-9A implementation PR
+  recommends_next_step: RUNTIME-DOMAIN-PR-9A scene command execution skeleton or runtime transaction assembly implementation
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-9 planning only; post-PR-8 runtime generalization planning; follows merged PR #302 (RUNTIME-DOMAIN-PR-8 tiny vertical slice) and PR #303 guardrail baseline cleanup; defines next narrow runtime generalization seam; selects backend-owned typed scene-command execution skeleton / runtime transaction assembly as candidate next implementation; authorizes no implementation, no tiny_vertical_slice.py expansion, no live-play behavior, no LLM narration authority, no persistence implementation, no RNG/table/oracle execution, no arbitrary state mutation, no settlement, no broad consequence application, no PR-5 arithmetic execution, no conversion, no sourcebook inclusion, and no canon promotion.

@@ -3287,3 +3287,70 @@ This alignment entry authorizes only planning and implementation of context-pack
 - No RNG, dice, tables, or oracle execution.
 - No combat, ability, inventory, mission, or social mechanics.
 - No conversion, sourcebook inclusion, or canon promotion.
+
+---
+
+## RUNTIME-DOMAIN-PR-9-POST-PR8-RUNTIME-GENERALIZATION-PLANNING-001
+
+**Date:** 2026-06-14
+
+### Decision
+
+RUNTIME-DOMAIN-PR-9 is a planning-only artifact that decides how to generalize the proof delivered by RUNTIME-DOMAIN-PR-8 (`Tiny Vertical Slice`, merged via PR #302) into a reusable, backend-owned runtime execution path. It selects a narrow "scene command execution skeleton" or "runtime transaction assembly" as the candidate next implementation and defines the constraints and gating tests for that implementation PR.
+
+### Reason
+
+PR #302 proved that a deterministic, backend-owned tiny vertical slice can be assembled end-to-end using the existing kernel skeletons, without collapsing authority into the LLM. PR #303 cleaned up the guardrail baseline after the rebase. Before broadening into live play, model integration, or full domain services, the project needs a planning gate that records what PR-8 proved, what it deliberately did not prove, and what narrow generalization seam comes next.
+
+### Implication
+
+- Authorizes only planning for the next narrow runtime generalization PR (tentatively RUNTIME-DOMAIN-PR-9A: Scene Command Execution Skeleton / Runtime Transaction Assembly).
+- Does not authorize implementation code, expansion of `tiny_vertical_slice.py`, live-play behavior, LLM narration authority, persistence implementation, RNG/table/oracle execution, arbitrary state mutation, settlement, broad consequence application, PR-5 arithmetic execution, conversion, sourcebook inclusion, or canon promotion.
+- Records PR-8 proofs, PR-8 non-proofs, generalization targets, candidate modules, backend-owned boundaries, forbidden LLM boundaries, gating tests, allowed touch surfaces, forbidden touch surfaces, and lawful escalation points to RT-001 through RT-012.
+- Supersedes the PR-0 sequencing plan assignment of RUNTIME-DOMAIN-PR-9 to mission/reward/clue routing for the current runtime workstream; that assignment is deferred/renumbered and not authorized by this PR-9 track.
+
+### Revisit trigger
+
+- If RUNTIME-DOMAIN-PR-9A (scene command execution skeleton / runtime transaction assembly implementation) is authorized.
+- If PR-8's proof assumptions are invalidated by new kernel interface changes.
+- If generalization requires new doctrine beyond RT-001 through RT-012, triggering Astra Doctrine Council review.
+
+### Classification block
+
+```yaml
+runtime_domain_pr_9:
+  implementation_id: RUNTIME-DOMAIN-PR-9-POST-PR8-RUNTIME-GENERALIZATION-PLANNING-001
+  artifact_type: post_pr8_runtime_generalization_planning
+  implementation_status: non_executable_plan
+  pr_8_proved_backend_owned_deterministic_assembly: true
+  pr_8_did_not_prove_generalization: true
+  defines_next_runtime_generalization_seam: true
+  defines_implementation_constraints: true
+  defines_required_tests_before_implementation: true
+  next_implementation_candidate: scene_command_execution_skeleton_or_runtime_transaction_assembly
+  authorizes_implementation_by_this_pr: false
+  authorizes_tiny_vertical_slice_expansion_by_this_pr: false
+  authorizes_live_play_by_this_pr: false
+  authorizes_llm_narration_authority_by_this_pr: false
+  authorizes_persistence_implementation_by_this_pr: false
+  authorizes_rng_table_oracle_execution_by_this_pr: false
+  authorizes_arbitrary_state_mutation_by_this_pr: false
+  authorizes_settlement_authorization_by_this_pr: false
+  authorizes_broad_consequence_application_by_this_pr: false
+  authorizes_pr5_arithmetic_execution_by_this_pr: false
+  authorizes_conversion_by_this_pr: false
+  authorizes_sourcebook_inclusion_by_this_pr: false
+  authorizes_canon_promotion_by_this_pr: false
+  next_allowed_step: RUNTIME-DOMAIN-PR-9A scene command execution skeleton or runtime transaction assembly implementation, pending review
+```
+
+### No-implementation guardrails
+
+- `tiny_vertical_slice.py` remains a closed proof-of-concept.
+- No live-play adapter package exists yet.
+- No model integration package exists yet.
+- No prompt template package exists yet.
+- No UI/client package exists yet.
+- No database package exists yet.
+- No durable store package exists yet.
+- No RNG/table/oracle execution module exists yet.
