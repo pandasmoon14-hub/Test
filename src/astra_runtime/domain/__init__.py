@@ -274,6 +274,15 @@ from astra_runtime.domain.tiny_vertical_slice import (
     create_tiny_vertical_slice_world_state,
     serialize_tiny_vertical_slice_visible_state,
     serialize_tiny_vertical_slice_hidden_state_for_backend,
+    TinyVerticalSliceCommandIntent,
+    TinyVerticalSliceCommandValidationResult,
+    TinyVerticalSliceCommandPreviewResult,
+    TinyVerticalSliceCommandLifecycleResult,
+    create_tiny_vertical_slice_command_intent,
+    validate_tiny_vertical_slice_command_intent,
+    preview_tiny_vertical_slice_command_intent,
+    run_tiny_vertical_slice_command_lifecycle,
+    serialize_tiny_vertical_slice_command_lifecycle_visible_result,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -665,4 +674,14 @@ __all__ = [
     "create_tiny_vertical_slice_world_state",
     "serialize_tiny_vertical_slice_visible_state",
     "serialize_tiny_vertical_slice_hidden_state_for_backend",
+    # tiny_vertical_slice — PR-8 Increment 2
+    "TinyVerticalSliceCommandIntent",
+    "TinyVerticalSliceCommandValidationResult",
+    "TinyVerticalSliceCommandPreviewResult",
+    "TinyVerticalSliceCommandLifecycleResult",
+    "create_tiny_vertical_slice_command_intent",
+    "validate_tiny_vertical_slice_command_intent",
+    "preview_tiny_vertical_slice_command_intent",
+    "run_tiny_vertical_slice_command_lifecycle",
+    "serialize_tiny_vertical_slice_command_lifecycle_visible_result",
 ]
