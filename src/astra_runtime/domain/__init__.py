@@ -299,6 +299,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     TinyVerticalSliceEventLedgerCandidatePreview,
     build_tiny_vertical_slice_event_ledger_candidate_preview,
     serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview,
+    # tiny_vertical_slice — PR-8 Increment 7
+    TinyVerticalSliceCommitDryRunResult,
+    build_tiny_vertical_slice_commit_dry_run_result,
+    serialize_tiny_vertical_slice_commit_dry_run_visible_result,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -716,4 +720,8 @@ __all__ = [
     "TinyVerticalSliceEventLedgerCandidatePreview",
     "build_tiny_vertical_slice_event_ledger_candidate_preview",
     "serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview",
+    # tiny_vertical_slice — PR-8 Increment 7
+    "TinyVerticalSliceCommitDryRunResult",
+    "build_tiny_vertical_slice_commit_dry_run_result",
+    "serialize_tiny_vertical_slice_commit_dry_run_visible_result",
 ]
