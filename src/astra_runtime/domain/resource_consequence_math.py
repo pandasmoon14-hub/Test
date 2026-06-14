@@ -2125,8 +2125,25 @@ def create_resource_math_request(
     )
 
     authority_kwargs = {
-        name: locals()[name]
-        for name in _RESOURCE_MATH_FALSE_ONLY_AUTHORITY_FIELDS
+        "calculation_executed": calculation_executed,
+        "affordability_executed": affordability_executed,
+        "reservation_authorized": reservation_authorized,
+        "settlement_authorized": settlement_authorized,
+        "consequence_application_authorized": consequence_application_authorized,
+        "mutation_authorized": mutation_authorized,
+        "state_delta_application_authorized": state_delta_application_authorized,
+        "transaction_execution_authorized": transaction_execution_authorized,
+        "event_commitment_authorized": event_commitment_authorized,
+        "event_append_authorized": event_append_authorized,
+        "persistence_authorized": persistence_authorized,
+        "replay_authorized": replay_authorized,
+        "rng_execution_authorized": rng_execution_authorized,
+        "table_oracle_execution_authorized": table_oracle_execution_authorized,
+        "model_authority_authorized": model_authority_authorized,
+        "live_play_authorized": live_play_authorized,
+        "ui_authorized": ui_authorized,
+        "conversion_authorized": conversion_authorized,
+        "canon_promotion_authorized": canon_promotion_authorized,
     }
     _validate_false_only_authority_fields(authority_kwargs, error_cls)
 
@@ -2613,8 +2630,25 @@ def create_resource_math_result(
     )
 
     authority_kwargs = {
-        name: locals()[name]
-        for name in _RESOURCE_MATH_FALSE_ONLY_AUTHORITY_FIELDS
+        "calculation_executed": calculation_executed,
+        "affordability_executed": affordability_executed,
+        "reservation_authorized": reservation_authorized,
+        "settlement_authorized": settlement_authorized,
+        "consequence_application_authorized": consequence_application_authorized,
+        "mutation_authorized": mutation_authorized,
+        "state_delta_application_authorized": state_delta_application_authorized,
+        "transaction_execution_authorized": transaction_execution_authorized,
+        "event_commitment_authorized": event_commitment_authorized,
+        "event_append_authorized": event_append_authorized,
+        "persistence_authorized": persistence_authorized,
+        "replay_authorized": replay_authorized,
+        "rng_execution_authorized": rng_execution_authorized,
+        "table_oracle_execution_authorized": table_oracle_execution_authorized,
+        "model_authority_authorized": model_authority_authorized,
+        "live_play_authorized": live_play_authorized,
+        "ui_authorized": ui_authorized,
+        "conversion_authorized": conversion_authorized,
+        "canon_promotion_authorized": canon_promotion_authorized,
     }
     _validate_false_only_authority_fields(authority_kwargs, error_cls)
 
@@ -3028,8 +3062,25 @@ def create_settlement_proposal(
     _validate_non_empty_string(trace_ref_id, "trace_ref_id", error_cls)
 
     authority_kwargs = {
-        name: locals()[name]
-        for name in _RESOURCE_MATH_FALSE_ONLY_AUTHORITY_FIELDS
+        "calculation_executed": calculation_executed,
+        "affordability_executed": affordability_executed,
+        "reservation_authorized": reservation_authorized,
+        "settlement_authorized": settlement_authorized,
+        "consequence_application_authorized": consequence_application_authorized,
+        "mutation_authorized": mutation_authorized,
+        "state_delta_application_authorized": state_delta_application_authorized,
+        "transaction_execution_authorized": transaction_execution_authorized,
+        "event_commitment_authorized": event_commitment_authorized,
+        "event_append_authorized": event_append_authorized,
+        "persistence_authorized": persistence_authorized,
+        "replay_authorized": replay_authorized,
+        "rng_execution_authorized": rng_execution_authorized,
+        "table_oracle_execution_authorized": table_oracle_execution_authorized,
+        "model_authority_authorized": model_authority_authorized,
+        "live_play_authorized": live_play_authorized,
+        "ui_authorized": ui_authorized,
+        "conversion_authorized": conversion_authorized,
+        "canon_promotion_authorized": canon_promotion_authorized,
     }
     _validate_false_only_authority_fields(authority_kwargs, error_cls)
 

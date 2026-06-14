@@ -261,6 +261,65 @@ from astra_runtime.domain.model_boundary_evaluation import (
     evaluate_model_boundary_case,
     evaluate_model_boundary_suite,
 )
+from astra_runtime.domain.tiny_vertical_slice import (
+    TinyVerticalSliceError,
+    TinyVerticalSliceScene,
+    TinyVerticalSliceActor,
+    TinyVerticalSliceNpc,
+    TinyVerticalSliceHazardClock,
+    TinyVerticalSliceLever,
+    TinyVerticalSliceInjury,
+    TinyVerticalSliceHiddenFact,
+    TinyVerticalSliceWorldState,
+    create_tiny_vertical_slice_world_state,
+    serialize_tiny_vertical_slice_visible_state,
+    serialize_tiny_vertical_slice_hidden_state_for_backend,
+    TinyVerticalSliceCommandIntent,
+    TinyVerticalSliceCommandValidationResult,
+    TinyVerticalSliceCommandPreviewResult,
+    TinyVerticalSliceCommandLifecycleResult,
+    create_tiny_vertical_slice_command_intent,
+    validate_tiny_vertical_slice_command_intent,
+    preview_tiny_vertical_slice_command_intent,
+    run_tiny_vertical_slice_command_lifecycle,
+    serialize_tiny_vertical_slice_command_lifecycle_visible_result,
+    # tiny_vertical_slice — PR-8 Increment 3
+    TinyVerticalSliceResourceConsequencePlanningPreview,
+    build_tiny_vertical_slice_resource_consequence_planning_preview,
+    serialize_tiny_vertical_slice_resource_consequence_planning_visible_preview,
+    # tiny_vertical_slice — PR-8 Increment 4
+    TinyVerticalSliceContextPacketProjection,
+    build_tiny_vertical_slice_context_packet_projection,
+    serialize_tiny_vertical_slice_context_packet_projection_visible,
+    # tiny_vertical_slice — PR-8 Increment 5
+    TinyVerticalSliceStateDeltaCandidatePreview,
+    build_tiny_vertical_slice_state_delta_candidate_preview,
+    serialize_tiny_vertical_slice_state_delta_candidate_visible_preview,
+    # tiny_vertical_slice — PR-8 Increment 6
+    TinyVerticalSliceEventLedgerCandidatePreview,
+    build_tiny_vertical_slice_event_ledger_candidate_preview,
+    serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview,
+    # tiny_vertical_slice — PR-8 Increment 7
+    TinyVerticalSliceCommitDryRunResult,
+    build_tiny_vertical_slice_commit_dry_run_result,
+    serialize_tiny_vertical_slice_commit_dry_run_visible_result,
+    # tiny_vertical_slice — PR-8 Increment 8
+    TinyVerticalSliceCommitApplicationResult,
+    apply_tiny_vertical_slice_commit_application,
+    serialize_tiny_vertical_slice_commit_application_visible_result,
+    # tiny_vertical_slice — PR-8 Increment 9
+    TinyVerticalSlicePostCommitNarrationPacketProjection,
+    build_tiny_vertical_slice_post_commit_narration_packet_projection,
+    serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible,
+    # tiny_vertical_slice — PR-8 Increment 10
+    TinyVerticalSliceModelBoundaryEvaluationFixture,
+    build_tiny_vertical_slice_model_boundary_evaluation_fixture,
+    serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible,
+    # tiny_vertical_slice — PR-8 Increment 11
+    TinyVerticalSliceClosureManifest,
+    build_tiny_vertical_slice_closure_manifest,
+    serialize_tiny_vertical_slice_closure_manifest_visible,
+)
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
     CONSEQUENCE_FAMILIES,
@@ -638,4 +697,63 @@ __all__ = [
     "validate_resource_math_subject_reference",
     "validate_resource_reference",
     "validate_settlement_proposal",
+    # tiny_vertical_slice — PR-8 Increment 1
+    "TinyVerticalSliceError",
+    "TinyVerticalSliceScene",
+    "TinyVerticalSliceActor",
+    "TinyVerticalSliceNpc",
+    "TinyVerticalSliceHazardClock",
+    "TinyVerticalSliceLever",
+    "TinyVerticalSliceInjury",
+    "TinyVerticalSliceHiddenFact",
+    "TinyVerticalSliceWorldState",
+    "create_tiny_vertical_slice_world_state",
+    "serialize_tiny_vertical_slice_visible_state",
+    "serialize_tiny_vertical_slice_hidden_state_for_backend",
+    # tiny_vertical_slice — PR-8 Increment 2
+    "TinyVerticalSliceCommandIntent",
+    "TinyVerticalSliceCommandValidationResult",
+    "TinyVerticalSliceCommandPreviewResult",
+    "TinyVerticalSliceCommandLifecycleResult",
+    "create_tiny_vertical_slice_command_intent",
+    "validate_tiny_vertical_slice_command_intent",
+    "preview_tiny_vertical_slice_command_intent",
+    "run_tiny_vertical_slice_command_lifecycle",
+    "serialize_tiny_vertical_slice_command_lifecycle_visible_result",
+    # tiny_vertical_slice — PR-8 Increment 3
+    "TinyVerticalSliceResourceConsequencePlanningPreview",
+    "build_tiny_vertical_slice_resource_consequence_planning_preview",
+    "serialize_tiny_vertical_slice_resource_consequence_planning_visible_preview",
+    # tiny_vertical_slice — PR-8 Increment 4
+    "TinyVerticalSliceContextPacketProjection",
+    "build_tiny_vertical_slice_context_packet_projection",
+    "serialize_tiny_vertical_slice_context_packet_projection_visible",
+    # tiny_vertical_slice — PR-8 Increment 5
+    "TinyVerticalSliceStateDeltaCandidatePreview",
+    "build_tiny_vertical_slice_state_delta_candidate_preview",
+    "serialize_tiny_vertical_slice_state_delta_candidate_visible_preview",
+    # tiny_vertical_slice — PR-8 Increment 6
+    "TinyVerticalSliceEventLedgerCandidatePreview",
+    "build_tiny_vertical_slice_event_ledger_candidate_preview",
+    "serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview",
+    # tiny_vertical_slice — PR-8 Increment 7
+    "TinyVerticalSliceCommitDryRunResult",
+    "build_tiny_vertical_slice_commit_dry_run_result",
+    "serialize_tiny_vertical_slice_commit_dry_run_visible_result",
+    # tiny_vertical_slice — PR-8 Increment 8
+    "TinyVerticalSliceCommitApplicationResult",
+    "apply_tiny_vertical_slice_commit_application",
+    "serialize_tiny_vertical_slice_commit_application_visible_result",
+    # tiny_vertical_slice — PR-8 Increment 9
+    "TinyVerticalSlicePostCommitNarrationPacketProjection",
+    "build_tiny_vertical_slice_post_commit_narration_packet_projection",
+    "serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible",
+    # tiny_vertical_slice — PR-8 Increment 10
+    "TinyVerticalSliceModelBoundaryEvaluationFixture",
+    "build_tiny_vertical_slice_model_boundary_evaluation_fixture",
+    "serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible",
+    # tiny_vertical_slice — PR-8 Increment 11
+    "TinyVerticalSliceClosureManifest",
+    "build_tiny_vertical_slice_closure_manifest",
+    "serialize_tiny_vertical_slice_closure_manifest_visible",
 ]
