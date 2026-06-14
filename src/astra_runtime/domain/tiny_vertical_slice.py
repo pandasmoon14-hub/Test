@@ -7,6 +7,14 @@ from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import Any, Mapping
 
+from astra_runtime.domain.context_packet_compiler import (
+    NoCommitIntentPacket,
+    VisibleSummaryPacket,
+    create_no_commit_intent_packet,
+    create_visible_summary_packet,
+    validate_no_commit_intent_packet,
+    validate_visible_summary_packet,
+)
 from astra_runtime.domain.resource_consequence_math import (
     ConsequenceTerm,
     CostTerm,
@@ -1132,4 +1140,250 @@ def serialize_tiny_vertical_slice_resource_consequence_planning_visible_preview(
         "resource_math_request": request_dict,
         "resource_math_result": result_dict,
         "metadata": _serialize_mapping(preview.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 4 — Context packet projection bridge
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceContextPacketProjection:
+    projection_ref: str
+    command_ref: str
+    world_ref: str
+    no_commit_intent_packet: NoCommitIntentPacket
+    visible_summary_packet: VisibleSummaryPacket
+    packet_refs: tuple[str, ...]
+    visible_packet_kinds: tuple[str, ...]
+    visible_context_refs: tuple[str, ...]
+    excluded_backend_ref_ids: tuple[str, ...]
+    hidden_information_excluded: bool
+    state_changed: bool
+    event_committed: bool
+    model_called: bool
+    narration_generated: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.projection_ref, "projection_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+        if not isinstance(self.no_commit_intent_packet, NoCommitIntentPacket):
+            raise TinyVerticalSliceError(
+                f"no_commit_intent_packet must be NoCommitIntentPacket, got {type(self.no_commit_intent_packet).__name__}"
+            )
+        if not isinstance(self.visible_summary_packet, VisibleSummaryPacket):
+            raise TinyVerticalSliceError(
+                f"visible_summary_packet must be VisibleSummaryPacket, got {type(self.visible_summary_packet).__name__}"
+            )
+        object.__setattr__(self, "packet_refs", _validate_tuple_of_non_empty_strings(self.packet_refs, "packet_refs"))
+        object.__setattr__(
+            self, "visible_packet_kinds", _validate_tuple_of_non_empty_strings(self.visible_packet_kinds, "visible_packet_kinds")
+        )
+        object.__setattr__(
+            self, "visible_context_refs", _validate_tuple_of_non_empty_strings(self.visible_context_refs, "visible_context_refs")
+        )
+        object.__setattr__(
+            self, "excluded_backend_ref_ids", _validate_tuple_of_non_empty_strings(self.excluded_backend_ref_ids, "excluded_backend_ref_ids")
+        )
+        expected_packet_refs = {
+            self.no_commit_intent_packet.intent_ref,
+            self.visible_summary_packet.summary_ref,
+        }
+        if set(self.packet_refs) != expected_packet_refs:
+            raise TinyVerticalSliceError(
+                "packet_refs must contain exactly the no_commit_intent_packet.intent_ref and visible_summary_packet.summary_ref"
+            )
+        if self.visible_packet_kinds != ("no_commit_intent", "visible_summary"):
+            raise TinyVerticalSliceError(
+                f"visible_packet_kinds must be ('no_commit_intent', 'visible_summary'), got {self.visible_packet_kinds!r}"
+            )
+        for field_name in ("hidden_information_excluded",):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not True:
+                raise TinyVerticalSliceError(f"{field_name} must be True")
+        for field_name in (
+            "state_changed",
+            "event_committed",
+            "model_called",
+            "narration_generated",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_context_packet_projection(
+    *,
+    state: TinyVerticalSliceWorldState,
+    lifecycle_result: TinyVerticalSliceCommandLifecycleResult,
+    planning_preview: TinyVerticalSliceResourceConsequencePlanningPreview,
+    projection_ref: str = "tiny-slice-context-packet-projection-1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceContextPacketProjection:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(lifecycle_result, TinyVerticalSliceCommandLifecycleResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommandLifecycleResult, got {type(lifecycle_result).__name__}"
+        )
+    if not isinstance(planning_preview, TinyVerticalSliceResourceConsequencePlanningPreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceResourceConsequencePlanningPreview, got {type(planning_preview).__name__}"
+        )
+    if lifecycle_result.resulting_state is not state:
+        raise TinyVerticalSliceError("lifecycle_result.resulting_state must be the supplied state object")
+    command = lifecycle_result.command
+    command_ref = command.command_ref
+    if planning_preview.command_ref != command_ref:
+        raise TinyVerticalSliceError("planning_preview.command_ref must match lifecycle_result.command.command_ref")
+    if planning_preview.resource_math_request.command_ref_id != command_ref:
+        raise TinyVerticalSliceError(
+            "planning_preview.resource_math_request.command_ref_id must match lifecycle_result.command.command_ref"
+        )
+
+    is_lever = command.command_kind in _LEVER_COMMAND_KINDS
+    intent_timestamp = "tiny-slice-static-t0"
+    summary_timestamp = "tiny-slice-static-t0"
+
+    visible_context_refs: list[str] = [
+        state.world_ref,
+        state.scene.scene_ref,
+        state.actor.actor_ref,
+        state.injury.injury_ref,
+        command_ref,
+        planning_preview.preview_ref,
+    ]
+    if is_lever:
+        visible_context_refs.append(state.lever.lever_ref)
+    else:
+        visible_context_refs.append(state.npc.npc_ref)
+    if command.command_kind == "pull_lever":
+        visible_context_refs.append(state.hazard_clock.clock_ref)
+    visible_context_refs = list(dict.fromkeys(visible_context_refs))
+
+    declared_resource_refs = tuple(
+        r.resource_ref_id for r in planning_preview.resource_math_request.resource_refs
+    )
+    declared_cost_refs = planning_preview.visible_cost_refs
+
+    no_commit_packet = create_no_commit_intent_packet(
+        intent_ref=command_ref,
+        actor_ref=command.actor_ref,
+        proposed_action_kind=command.command_kind,
+        intent_timestamp=intent_timestamp,
+        target_refs=(command.target_ref,),
+        declared_resource_refs=declared_resource_refs,
+        declared_cost_refs=declared_cost_refs,
+        visible_context_refs=tuple(visible_context_refs),
+        confirmation_required=True,
+        hidden_information_excluded=True,
+        no_commit_marker=True,
+        metadata={
+            "projection_ref": projection_ref,
+            "world_ref": state.world_ref,
+            "command_ref": command_ref,
+            "lifecycle_status": lifecycle_result.lifecycle_status,
+            "commit_status": lifecycle_result.commit_status,
+            "runtime_increment": 4,
+        },
+    )
+
+    visible_fact_refs: list[str] = [
+        state.world_ref,
+        state.scene.scene_ref,
+        state.actor.actor_ref,
+        state.npc.npc_ref,
+        state.hazard_clock.clock_ref,
+        state.injury.injury_ref,
+        command_ref,
+        planning_preview.preview_ref,
+    ]
+    if is_lever:
+        visible_fact_refs.append(state.lever.lever_ref)
+    visible_fact_refs = list(dict.fromkeys(visible_fact_refs))
+
+    item_refs = (state.lever.lever_ref,) if is_lever else ()
+
+    forbidden_claims = (
+        "do_not_claim_state_changed",
+        "do_not_claim_event_committed",
+        "do_not_claim_hidden_fact",
+        "do_not_roll_" + "dice",
+        "do_not_resolve_action",
+        "do_not_generate_reward",
+    )
+
+    visible_summary_packet = create_visible_summary_packet(
+        summary_ref=f"tiny-slice-visible-summary-{command_ref}",
+        summary_scope="tiny_vertical_slice_runtime_preview",
+        summary_timestamp=summary_timestamp,
+        visible_fact_refs=tuple(visible_fact_refs),
+        actor_refs=(state.actor.actor_ref, state.npc.npc_ref),
+        location_refs=(state.scene.scene_ref,),
+        item_refs=item_refs,
+        condition_refs=(state.injury.injury_ref,),
+        unresolved_visible_refs=planning_preview.visible_dependency_refs,
+        forbidden_claims=forbidden_claims,
+        hidden_information_excluded=True,
+        committed_state_only=True,
+        metadata={
+            "projection_ref": projection_ref,
+            "world_ref": state.world_ref,
+            "command_ref": command_ref,
+            "planning_preview_ref": planning_preview.preview_ref,
+            "lifecycle_status": lifecycle_result.lifecycle_status,
+            "commit_status": lifecycle_result.commit_status,
+            "runtime_increment": 4,
+        },
+    )
+
+    all_visible_context_refs = list(dict.fromkeys(visible_context_refs + list(visible_fact_refs)))
+
+    return TinyVerticalSliceContextPacketProjection(
+        projection_ref=projection_ref,
+        command_ref=command_ref,
+        world_ref=state.world_ref,
+        no_commit_intent_packet=no_commit_packet,
+        visible_summary_packet=visible_summary_packet,
+        packet_refs=(no_commit_packet.intent_ref, visible_summary_packet.summary_ref),
+        visible_packet_kinds=("no_commit_intent", "visible_summary"),
+        visible_context_refs=tuple(all_visible_context_refs),
+        excluded_backend_ref_ids=(state.hidden_fact.hidden_fact_ref,),
+        hidden_information_excluded=True,
+        state_changed=False,
+        event_committed=False,
+        model_called=False,
+        narration_generated=False,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def serialize_tiny_vertical_slice_context_packet_projection_visible(
+    projection: TinyVerticalSliceContextPacketProjection,
+) -> dict[str, Any]:
+    if not isinstance(projection, TinyVerticalSliceContextPacketProjection):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceContextPacketProjection, got {type(projection).__name__}"
+        )
+    return {
+        "projection_ref": projection.projection_ref,
+        "command_ref": projection.command_ref,
+        "world_ref": projection.world_ref,
+        "packet_refs": list(projection.packet_refs),
+        "visible_packet_kinds": list(projection.visible_packet_kinds),
+        "visible_context_refs": list(projection.visible_context_refs),
+        "hidden_information_excluded": projection.hidden_information_excluded,
+        "state_changed": projection.state_changed,
+        "event_committed": projection.event_committed,
+        "model_called": projection.model_called,
+        "narration_generated": projection.narration_generated,
+        "no_commit_intent_packet": projection.no_commit_intent_packet.to_dict(),
+        "visible_summary_packet": projection.visible_summary_packet.to_dict(),
+        "metadata": _serialize_mapping(projection.metadata),
     }
