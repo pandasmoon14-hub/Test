@@ -394,6 +394,144 @@ class TestVisibleLifecycleSerializer:
 
 
 # ---------------------------------------------------------------------------
+# Preview result construction invariants
+# ---------------------------------------------------------------------------
+
+class TestPreviewResultConstruction:
+    def _valid_preview(self, **overrides):
+        defaults = {
+            "command_ref": "cmd-1",
+            "preview_status": "preview_available",
+            "would_require_resolution": False,
+            "visible_preview": "Preview text.",
+            "visible_risk_refs": (),
+            "visible_target_refs": ("lever-brass-threshold",),
+            "hidden_fact_refs_used_by_backend": (),
+        }
+        defaults.update(overrides)
+        return TinyVerticalSliceCommandPreviewResult(**defaults)
+
+    def test_rejects_bare_string_for_hidden_fact_refs(self):
+        with pytest.raises(TinyVerticalSliceError, match="hidden_fact_refs_used_by_backend"):
+            self._valid_preview(hidden_fact_refs_used_by_backend="hidden-fact-lever-feeds-clock")
+
+    def test_rejects_non_sequence_for_hidden_fact_refs(self):
+        with pytest.raises(TinyVerticalSliceError, match="hidden_fact_refs_used_by_backend"):
+            self._valid_preview(hidden_fact_refs_used_by_backend=123)
+
+    def test_rejects_empty_string_item_in_hidden_fact_refs(self):
+        with pytest.raises(TinyVerticalSliceError, match="hidden_fact_refs_used_by_backend"):
+            self._valid_preview(hidden_fact_refs_used_by_backend=("hidden-fact-lever-feeds-clock", ""))
+
+    def test_rejects_non_string_item_in_hidden_fact_refs(self):
+        with pytest.raises(TinyVerticalSliceError, match="hidden_fact_refs_used_by_backend"):
+            self._valid_preview(hidden_fact_refs_used_by_backend=("hidden-fact-lever-feeds-clock", 123))
+
+    def test_accepts_list_of_non_empty_strings_and_normalizes_to_tuple(self):
+        preview = self._valid_preview(hidden_fact_refs_used_by_backend=["a", "b"])
+        assert isinstance(preview.hidden_fact_refs_used_by_backend, tuple)
+        assert preview.hidden_fact_refs_used_by_backend == ("a", "b")
+
+
+# ---------------------------------------------------------------------------
+# Lifecycle result construction invariants
+# ---------------------------------------------------------------------------
+
+class TestLifecycleResultConstruction:
+    def _valid_result(self, world, command, validation, preview, **overrides):
+        defaults = {
+            "command_ref": command.command_ref,
+            "lifecycle_status": "validated_preview",
+            "commit_status": "commit_ready" if command.requests_commit else "not_requested",
+            "state_changed": False,
+            "event_committed": False,
+            "command": command,
+            "validation": validation,
+            "preview": preview,
+            "resulting_state": world,
+        }
+        defaults.update(overrides)
+        return TinyVerticalSliceCommandLifecycleResult(**defaults)
+
+    def _make_validation_preview(self, world, **command_overrides):
+        command = create_tiny_vertical_slice_command_intent(**command_overrides)
+        validation = validate_tiny_vertical_slice_command_intent(state=world, command=command)
+        preview = preview_tiny_vertical_slice_command_intent(state=world, command=command, validation=validation)
+        return command, validation, preview
+
+    def test_rejects_state_changed_true(self, world):
+        command, validation, preview = self._make_validation_preview(world)
+        with pytest.raises(TinyVerticalSliceError, match="state_changed"):
+            self._valid_result(world, command, validation, preview, state_changed=True)
+
+    def test_rejects_event_committed_true(self, world):
+        command, validation, preview = self._make_validation_preview(world)
+        with pytest.raises(TinyVerticalSliceError, match="event_committed"):
+            self._valid_result(world, command, validation, preview, event_committed=True)
+
+    def test_invalid_validation_rejects_validated_preview_lifecycle_status(self, world):
+        command, validation, preview = self._make_validation_preview(world, actor_ref="actor-unknown")
+        with pytest.raises(TinyVerticalSliceError, match="lifecycle_status"):
+            self._valid_result(
+                world, command, validation, preview, lifecycle_status="validated_preview", commit_status="blocked"
+            )
+
+    def test_invalid_validation_rejects_not_requested_commit_status(self, world):
+        command, validation, preview = self._make_validation_preview(world, actor_ref="actor-unknown")
+        with pytest.raises(TinyVerticalSliceError, match="commit_status"):
+            self._valid_result(
+                world, command, validation, preview, lifecycle_status="blocked", commit_status="not_requested"
+            )
+
+    def test_invalid_validation_rejects_commit_ready_commit_status(self, world):
+        command, validation, preview = self._make_validation_preview(world, actor_ref="actor-unknown")
+        with pytest.raises(TinyVerticalSliceError, match="commit_status"):
+            self._valid_result(
+                world, command, validation, preview, lifecycle_status="blocked", commit_status="commit_ready"
+            )
+
+    def test_valid_non_commit_command_rejects_commit_ready(self, world):
+        command, validation, preview = self._make_validation_preview(world, requests_commit=False)
+        with pytest.raises(TinyVerticalSliceError, match="commit_status"):
+            self._valid_result(world, command, validation, preview, commit_status="commit_ready")
+
+    def test_valid_commit_requesting_command_rejects_not_requested(self, world):
+        command, validation, preview = self._make_validation_preview(world, requests_commit=True)
+        with pytest.raises(TinyVerticalSliceError, match="commit_status"):
+            self._valid_result(world, command, validation, preview, commit_status="not_requested")
+
+    def test_valid_validation_rejects_preview_blocked_preview_status(self, world):
+        command, validation, preview = self._make_validation_preview(world)
+        bad_preview = TinyVerticalSliceCommandPreviewResult(
+            command_ref=command.command_ref,
+            preview_status="preview_blocked",
+            would_require_resolution=False,
+            visible_preview="Blocked.",
+            visible_risk_refs=(),
+            visible_target_refs=(),
+            hidden_fact_refs_used_by_backend=(),
+        )
+        with pytest.raises(TinyVerticalSliceError, match="preview.preview_status"):
+            self._valid_result(world, command, validation, bad_preview)
+
+    def test_invalid_validation_rejects_preview_available_preview_status(self, world):
+        command, validation, preview = self._make_validation_preview(world, actor_ref="actor-unknown")
+        bad_preview = TinyVerticalSliceCommandPreviewResult(
+            command_ref=command.command_ref,
+            preview_status="preview_available",
+            would_require_resolution=False,
+            visible_preview="Available.",
+            visible_risk_refs=(),
+            visible_target_refs=(),
+            hidden_fact_refs_used_by_backend=(),
+        )
+        with pytest.raises(TinyVerticalSliceError, match="preview.preview_status"):
+            self._valid_result(
+                world, command, validation, bad_preview, lifecycle_status="blocked", commit_status="blocked"
+            )
+
+
+# ---------------------------------------------------------------------------
 # Source scan — forbidden patterns
 # ---------------------------------------------------------------------------
 

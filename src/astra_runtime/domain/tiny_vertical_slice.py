@@ -503,9 +503,7 @@ class TinyVerticalSliceCommandPreviewResult:
         _validate_non_empty_str(self.visible_preview, "visible_preview")
         object.__setattr__(self, "visible_risk_refs", _validate_tuple_of_non_empty_strings(self.visible_risk_refs, "visible_risk_refs"))
         object.__setattr__(self, "visible_target_refs", _validate_tuple_of_non_empty_strings(self.visible_target_refs, "visible_target_refs"))
-        normalized_hidden = tuple(self.hidden_fact_refs_used_by_backend) if isinstance(self.hidden_fact_refs_used_by_backend, (tuple, list)) else self.hidden_fact_refs_used_by_backend
-        if not isinstance(normalized_hidden, tuple):
-            raise TinyVerticalSliceError("hidden_fact_refs_used_by_backend must be a tuple or list")
+        normalized_hidden = _validate_tuple_of_non_empty_strings(self.hidden_fact_refs_used_by_backend, "hidden_fact_refs_used_by_backend")
         object.__setattr__(self, "hidden_fact_refs_used_by_backend", normalized_hidden)
         object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
 
@@ -621,6 +619,42 @@ class TinyVerticalSliceCommandLifecycleResult:
             raise TinyVerticalSliceError("command_ref must match validation.command_ref")
         if self.command_ref != self.preview.command_ref:
             raise TinyVerticalSliceError("command_ref must match preview.command_ref")
+        if self.state_changed is not False:
+            raise TinyVerticalSliceError("state_changed must be False")
+        if self.event_committed is not False:
+            raise TinyVerticalSliceError("event_committed must be False")
+        if not self.validation.is_valid:
+            if self.lifecycle_status != "blocked":
+                raise TinyVerticalSliceError(
+                    f"lifecycle_status must be 'blocked' when validation is invalid, got {self.lifecycle_status!r}"
+                )
+            if self.commit_status != "blocked":
+                raise TinyVerticalSliceError(
+                    f"commit_status must be 'blocked' when validation is invalid, got {self.commit_status!r}"
+                )
+            if self.preview.preview_status != "preview_blocked":
+                raise TinyVerticalSliceError(
+                    f"preview.preview_status must be 'preview_blocked' when validation is invalid, got {self.preview.preview_status!r}"
+                )
+        else:
+            if self.lifecycle_status != "validated_preview":
+                raise TinyVerticalSliceError(
+                    f"lifecycle_status must be 'validated_preview' when validation is valid, got {self.lifecycle_status!r}"
+                )
+            if self.command.requests_commit:
+                if self.commit_status != "commit_ready":
+                    raise TinyVerticalSliceError(
+                        f"commit_status must be 'commit_ready' when command.requests_commit is True, got {self.commit_status!r}"
+                    )
+            else:
+                if self.commit_status != "not_requested":
+                    raise TinyVerticalSliceError(
+                        f"commit_status must be 'not_requested' when command.requests_commit is False, got {self.commit_status!r}"
+                    )
+            if self.preview.preview_status != "preview_available":
+                raise TinyVerticalSliceError(
+                    f"preview.preview_status must be 'preview_available' when validation is valid, got {self.preview.preview_status!r}"
+                )
         object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
 
 
