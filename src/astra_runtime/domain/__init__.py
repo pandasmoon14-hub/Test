@@ -307,6 +307,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     TinyVerticalSliceCommitApplicationResult,
     apply_tiny_vertical_slice_commit_application,
     serialize_tiny_vertical_slice_commit_application_visible_result,
+    # tiny_vertical_slice — PR-8 Increment 9
+    TinyVerticalSlicePostCommitNarrationPacketProjection,
+    build_tiny_vertical_slice_post_commit_narration_packet_projection,
+    serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -732,4 +736,8 @@ __all__ = [
     "TinyVerticalSliceCommitApplicationResult",
     "apply_tiny_vertical_slice_commit_application",
     "serialize_tiny_vertical_slice_commit_application_visible_result",
+    # tiny_vertical_slice — PR-8 Increment 9
+    "TinyVerticalSlicePostCommitNarrationPacketProjection",
+    "build_tiny_vertical_slice_post_commit_narration_packet_projection",
+    "serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible",
 ]
