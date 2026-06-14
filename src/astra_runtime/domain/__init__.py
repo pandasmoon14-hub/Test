@@ -303,6 +303,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     TinyVerticalSliceCommitDryRunResult,
     build_tiny_vertical_slice_commit_dry_run_result,
     serialize_tiny_vertical_slice_commit_dry_run_visible_result,
+    # tiny_vertical_slice — PR-8 Increment 8
+    TinyVerticalSliceCommitApplicationResult,
+    apply_tiny_vertical_slice_commit_application,
+    serialize_tiny_vertical_slice_commit_application_visible_result,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -724,4 +728,8 @@ __all__ = [
     "TinyVerticalSliceCommitDryRunResult",
     "build_tiny_vertical_slice_commit_dry_run_result",
     "serialize_tiny_vertical_slice_commit_dry_run_visible_result",
+    # tiny_vertical_slice — PR-8 Increment 8
+    "TinyVerticalSliceCommitApplicationResult",
+    "apply_tiny_vertical_slice_commit_application",
+    "serialize_tiny_vertical_slice_commit_application_visible_result",
 ]
