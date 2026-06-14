@@ -263,7 +263,7 @@ class TestRuntimeGuardrailsDomainPackage:
             "transaction_lifecycle.py",
             "event_commitment.py",
             "validation_integration.py",
-            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py",
+            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))
