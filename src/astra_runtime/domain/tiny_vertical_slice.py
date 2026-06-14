@@ -8,9 +8,12 @@ from types import MappingProxyType
 from typing import Any, Mapping
 
 from astra_runtime.domain.context_packet_compiler import (
+    ContextPacketCompilerResult,
     NoCommitIntentPacket,
     SingleEventNarrationPacket,
     VisibleSummaryPacket,
+    compile_context_packet_from_request,
+    create_context_packet_assembly_request,
     create_no_commit_intent_packet,
     create_single_event_narration_packet,
     create_visible_summary_packet,
@@ -33,6 +36,12 @@ from astra_runtime.domain.resource_consequence_math import (
     create_resource_math_result,
     create_resource_math_subject_reference,
     create_resource_reference,
+)
+from astra_runtime.domain.model_boundary_evaluation import (
+    ModelBoundaryEvaluationCase,
+    ModelBoundaryEvaluationResult,
+    create_model_boundary_evaluation_case,
+    evaluate_model_boundary_case,
 )
 from astra_runtime.kernel.command_envelope import (
     CommandEnvelope,
@@ -3098,4 +3107,398 @@ def serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visibl
         "replay_authorized": projection.replay_authorized,
         "packet": projection.packet.to_dict(),
         "metadata": _serialize_mapping(projection.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 10 — Model-boundary evaluation fixture
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceModelBoundaryEvaluationFixture:
+    fixture_ref: str
+    command_ref: str
+    world_ref: str
+    commit_ref: str
+    projection_ref: str
+    packet_result: ContextPacketCompilerResult
+    safe_case: ModelBoundaryEvaluationCase
+    safe_result: ModelBoundaryEvaluationResult
+    violation_case: ModelBoundaryEvaluationCase
+    violation_result: ModelBoundaryEvaluationResult
+    candidate_model_ref: str
+    expected_output_family: str
+    packet_kind: str
+    safe_candidate_output_keys: tuple[str, ...]
+    violation_candidate_output_keys: tuple[str, ...]
+    safe_status: str
+    violation_status: str
+    safe_violation_codes: tuple[str, ...]
+    violation_codes: tuple[str, ...]
+    forbidden_field_hits: tuple[str, ...]
+    backend_only_ref_ids: tuple[str, ...]
+    model_called: bool
+    narration_generated: bool
+    prose_parsed: bool
+    state_mutated: bool
+    state_delta_applied: bool
+    event_committed: bool
+    event_appended: bool
+    persistence_authorized: bool
+    replay_authorized: bool
+    rng_or_oracle_called: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.fixture_ref, "fixture_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+        _validate_non_empty_str(self.commit_ref, "commit_ref")
+        _validate_non_empty_str(self.projection_ref, "projection_ref")
+        _validate_non_empty_str(self.candidate_model_ref, "candidate_model_ref")
+        _validate_non_empty_str(self.expected_output_family, "expected_output_family")
+        _validate_non_empty_str(self.packet_kind, "packet_kind")
+
+        if not isinstance(self.packet_result, ContextPacketCompilerResult):
+            raise TinyVerticalSliceError(
+                f"packet_result must be ContextPacketCompilerResult, got {type(self.packet_result).__name__}"
+            )
+        if not isinstance(self.safe_case, ModelBoundaryEvaluationCase):
+            raise TinyVerticalSliceError(
+                f"safe_case must be ModelBoundaryEvaluationCase, got {type(self.safe_case).__name__}"
+            )
+        if not isinstance(self.safe_result, ModelBoundaryEvaluationResult):
+            raise TinyVerticalSliceError(
+                f"safe_result must be ModelBoundaryEvaluationResult, got {type(self.safe_result).__name__}"
+            )
+        if not isinstance(self.violation_case, ModelBoundaryEvaluationCase):
+            raise TinyVerticalSliceError(
+                f"violation_case must be ModelBoundaryEvaluationCase, got {type(self.violation_case).__name__}"
+            )
+        if not isinstance(self.violation_result, ModelBoundaryEvaluationResult):
+            raise TinyVerticalSliceError(
+                f"violation_result must be ModelBoundaryEvaluationResult, got {type(self.violation_result).__name__}"
+            )
+
+        if self.packet_result.packet_kind != self.packet_kind:
+            raise TinyVerticalSliceError(
+                "packet_result.packet_kind must equal packet_kind"
+            )
+        if self.safe_case.packet_result is not self.packet_result:
+            raise TinyVerticalSliceError(
+                "safe_case.packet_result must be the same packet_result object"
+            )
+        if self.violation_case.packet_result is not self.packet_result:
+            raise TinyVerticalSliceError(
+                "violation_case.packet_result must be the same packet_result object"
+            )
+        if self.safe_result.case_ref != self.safe_case.case_ref:
+            raise TinyVerticalSliceError(
+                "safe_result.case_ref must equal safe_case.case_ref"
+            )
+        if self.violation_result.case_ref != self.violation_case.case_ref:
+            raise TinyVerticalSliceError(
+                "violation_result.case_ref must equal violation_case.case_ref"
+            )
+        if self.safe_case.candidate_model_ref != self.candidate_model_ref:
+            raise TinyVerticalSliceError(
+                "safe_case.candidate_model_ref must equal candidate_model_ref"
+            )
+        if self.violation_case.candidate_model_ref != self.candidate_model_ref:
+            raise TinyVerticalSliceError(
+                "violation_case.candidate_model_ref must equal candidate_model_ref"
+            )
+        if self.safe_case.expected_output_family != self.expected_output_family:
+            raise TinyVerticalSliceError(
+                "safe_case.expected_output_family must equal expected_output_family"
+            )
+        if self.violation_case.expected_output_family != self.expected_output_family:
+            raise TinyVerticalSliceError(
+                "violation_case.expected_output_family must equal expected_output_family"
+            )
+        if self.safe_status != self.safe_result.status:
+            raise TinyVerticalSliceError(
+                "safe_status must equal safe_result.status"
+            )
+        if self.violation_status != self.violation_result.status:
+            raise TinyVerticalSliceError(
+                "violation_status must equal violation_result.status"
+            )
+        if self.safe_violation_codes != self.safe_result.violation_codes:
+            raise TinyVerticalSliceError(
+                "safe_violation_codes must equal safe_result.violation_codes"
+            )
+        if self.violation_codes != self.violation_result.violation_codes:
+            raise TinyVerticalSliceError(
+                "violation_codes must equal violation_result.violation_codes"
+            )
+        if self.forbidden_field_hits != self.violation_result.forbidden_field_hits:
+            raise TinyVerticalSliceError(
+                "forbidden_field_hits must equal violation_result.forbidden_field_hits"
+            )
+
+        if self.safe_result.passed is not True:
+            raise TinyVerticalSliceError("safe_result.passed must be True")
+        if self.safe_result.status != "passed":
+            raise TinyVerticalSliceError("safe_result.status must be 'passed'")
+        if self.safe_result.violation_codes:
+            raise TinyVerticalSliceError("safe_result.violation_codes must be empty")
+        if self.violation_result.passed is not False:
+            raise TinyVerticalSliceError("violation_result.passed must be False")
+        if self.violation_result.status != "failed":
+            raise TinyVerticalSliceError("violation_result.status must be 'failed'")
+        if not self.violation_result.violation_codes:
+            raise TinyVerticalSliceError("violation_result.violation_codes must be non-empty")
+
+        object.__setattr__(
+            self, "safe_candidate_output_keys",
+            _validate_tuple_of_non_empty_strings(self.safe_candidate_output_keys, "safe_candidate_output_keys")
+            if self.safe_candidate_output_keys else ()
+        )
+        object.__setattr__(
+            self, "violation_candidate_output_keys",
+            _validate_tuple_of_non_empty_strings(self.violation_candidate_output_keys, "violation_candidate_output_keys")
+            if self.violation_candidate_output_keys else ()
+        )
+        object.__setattr__(
+            self, "safe_violation_codes",
+            _validate_tuple_of_non_empty_strings(self.safe_violation_codes, "safe_violation_codes")
+            if self.safe_violation_codes else ()
+        )
+        object.__setattr__(
+            self, "violation_codes",
+            _validate_tuple_of_non_empty_strings(self.violation_codes, "violation_codes")
+            if self.violation_codes else ()
+        )
+        object.__setattr__(
+            self, "forbidden_field_hits",
+            _validate_tuple_of_non_empty_strings(self.forbidden_field_hits, "forbidden_field_hits")
+            if self.forbidden_field_hits else ()
+        )
+        object.__setattr__(
+            self, "backend_only_ref_ids",
+            _validate_tuple_of_non_empty_strings(self.backend_only_ref_ids, "backend_only_ref_ids")
+            if self.backend_only_ref_ids else ()
+        )
+
+        for field_name in (
+            "model_called",
+            "narration_generated",
+            "prose_parsed",
+            "state_mutated",
+            "state_delta_applied",
+            "event_committed",
+            "event_appended",
+            "persistence_authorized",
+            "replay_authorized",
+            "rng_or_oracle_called",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_model_boundary_evaluation_fixture(
+    *,
+    projection: TinyVerticalSlicePostCommitNarrationPacketProjection,
+    fixture_ref: str = "tiny-slice-model-boundary-fixture-1",
+    candidate_model_ref: str = "static-fixture-narrator",
+    expected_output_family: str = "narration_display",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceModelBoundaryEvaluationFixture:
+    if not isinstance(projection, TinyVerticalSlicePostCommitNarrationPacketProjection):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSlicePostCommitNarrationPacketProjection, got {type(projection).__name__}"
+        )
+    if projection.packet_validated is not True:
+        raise TinyVerticalSliceError("projection.packet_validated must be True")
+    if projection.model_called is not False:
+        raise TinyVerticalSliceError("projection.model_called must be False")
+    if projection.narration_generated is not False:
+        raise TinyVerticalSliceError("projection.narration_generated must be False")
+    if projection.packet.packet_kind != "single_event_narration":
+        raise TinyVerticalSliceError(
+            "projection.packet.packet_kind must be 'single_event_narration'"
+        )
+
+    request = create_context_packet_assembly_request(
+        request_ref=f"{fixture_ref}-packet-request",
+        packet_kind="single_event_narration",
+        packet_payload=projection.packet.to_dict(),
+        assembly_timestamp="static-pr8-increment-10",
+        hidden_information_excluded=True,
+        explicit_payload_only=True,
+        no_runtime_state_source=True,
+        metadata={
+            "fixture_ref": fixture_ref,
+            "projection_ref": projection.projection_ref,
+            "runtime_increment": 10,
+        },
+    )
+
+    packet_result = compile_context_packet_from_request(request)
+
+    safe_candidate_output = {
+        "output_family": "narration_display",
+        "visible_text": "Static fixture narration display only.",
+        "used_packet_ref": projection.committed_event_ref,
+        "schema_version": 1,
+    }
+
+    violation_candidate_output = {
+        "output_family": "narration_display",
+        "hidden_fact": "forbidden",
+        "state_delta": {"forbidden": True},
+        "commit_event": True,
+        "rng_result": 17,
+        "durable_truth": "forbidden",
+    }
+
+    safe_case = create_model_boundary_evaluation_case(
+        case_ref=f"{fixture_ref}-safe-case",
+        candidate_model_ref=candidate_model_ref,
+        expected_output_family=expected_output_family,
+        packet_result=packet_result,
+        candidate_output=safe_candidate_output,
+        evaluator_notes=("tiny-slice-safe-static-output",),
+        metadata={
+            "fixture_ref": fixture_ref,
+            "projection_ref": projection.projection_ref,
+            "runtime_increment": 10,
+            "fixture_case": "safe",
+        },
+    )
+
+    safe_result = evaluate_model_boundary_case(safe_case)
+
+    violation_case = create_model_boundary_evaluation_case(
+        case_ref=f"{fixture_ref}-violation-case",
+        candidate_model_ref=candidate_model_ref,
+        expected_output_family=expected_output_family,
+        packet_result=packet_result,
+        candidate_output=violation_candidate_output,
+        evaluator_notes=("tiny-slice-violation-static-output",),
+        metadata={
+            "fixture_ref": fixture_ref,
+            "projection_ref": projection.projection_ref,
+            "runtime_increment": 10,
+            "fixture_case": "violation",
+        },
+    )
+
+    violation_result = evaluate_model_boundary_case(violation_case)
+
+    backend_only_ref_ids = tuple(projection.backend_only_ref_ids)
+
+    return TinyVerticalSliceModelBoundaryEvaluationFixture(
+        fixture_ref=fixture_ref,
+        command_ref=projection.command_ref,
+        world_ref=projection.world_ref,
+        commit_ref=projection.commit_ref,
+        projection_ref=projection.projection_ref,
+        packet_result=packet_result,
+        safe_case=safe_case,
+        safe_result=safe_result,
+        violation_case=violation_case,
+        violation_result=violation_result,
+        candidate_model_ref=candidate_model_ref,
+        expected_output_family=expected_output_family,
+        packet_kind=packet_result.packet_kind,
+        safe_candidate_output_keys=tuple(sorted(safe_candidate_output.keys())),
+        violation_candidate_output_keys=tuple(sorted(violation_candidate_output.keys())),
+        safe_status=safe_result.status,
+        violation_status=violation_result.status,
+        safe_violation_codes=safe_result.violation_codes,
+        violation_codes=violation_result.violation_codes,
+        forbidden_field_hits=violation_result.forbidden_field_hits,
+        backend_only_ref_ids=backend_only_ref_ids,
+        model_called=False,
+        narration_generated=False,
+        prose_parsed=False,
+        state_mutated=False,
+        state_delta_applied=False,
+        event_committed=False,
+        event_appended=False,
+        persistence_authorized=False,
+        replay_authorized=False,
+        rng_or_oracle_called=False,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def _serialize_compact_packet_result(
+    pr: ContextPacketCompilerResult,
+) -> dict[str, Any]:
+    return {
+        "request_ref": pr.request_ref,
+        "packet_kind": pr.packet_kind,
+        "assembly_succeeded": pr.assembly_succeeded,
+        "serialization_succeeded": pr.serialization_succeeded,
+        "audit_succeeded": pr.audit_succeeded,
+        "hidden_information_excluded": pr.hidden_information_excluded,
+        "non_authority_seal_present": pr.non_authority_seal_present,
+        "warnings": list(pr.warnings),
+        "non_authority_seal": list(pr.non_authority_seal),
+        "metadata": dict(pr.metadata),
+    }
+
+
+def _serialize_compact_eval_result(
+    er: ModelBoundaryEvaluationResult,
+) -> dict[str, Any]:
+    return {
+        "case_ref": er.case_ref,
+        "candidate_model_ref": er.candidate_model_ref,
+        "packet_kind": er.packet_kind,
+        "expected_output_family": er.expected_output_family,
+        "status": er.status,
+        "passed": er.passed,
+        "violation_codes": list(er.violation_codes),
+        "forbidden_field_hits": list(er.forbidden_field_hits),
+        "packet_warning_refs": list(er.packet_warning_refs),
+        "metadata": dict(er.metadata),
+    }
+
+
+def serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible(
+    fixture: TinyVerticalSliceModelBoundaryEvaluationFixture,
+) -> dict[str, Any]:
+    if not isinstance(fixture, TinyVerticalSliceModelBoundaryEvaluationFixture):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceModelBoundaryEvaluationFixture, got {type(fixture).__name__}"
+        )
+    return {
+        "fixture_ref": fixture.fixture_ref,
+        "command_ref": fixture.command_ref,
+        "world_ref": fixture.world_ref,
+        "commit_ref": fixture.commit_ref,
+        "projection_ref": fixture.projection_ref,
+        "candidate_model_ref": fixture.candidate_model_ref,
+        "expected_output_family": fixture.expected_output_family,
+        "packet_kind": fixture.packet_kind,
+        "safe_candidate_output_keys": list(fixture.safe_candidate_output_keys),
+        "violation_candidate_output_keys": list(fixture.violation_candidate_output_keys),
+        "safe_status": fixture.safe_status,
+        "violation_status": fixture.violation_status,
+        "safe_violation_codes": list(fixture.safe_violation_codes),
+        "violation_codes": list(fixture.violation_codes),
+        "forbidden_field_hits": list(fixture.forbidden_field_hits),
+        "model_called": fixture.model_called,
+        "narration_generated": fixture.narration_generated,
+        "prose_parsed": fixture.prose_parsed,
+        "state_mutated": fixture.state_mutated,
+        "state_delta_applied": fixture.state_delta_applied,
+        "event_committed": fixture.event_committed,
+        "event_appended": fixture.event_appended,
+        "persistence_authorized": fixture.persistence_authorized,
+        "replay_authorized": fixture.replay_authorized,
+        "rng_or_oracle_called": fixture.rng_or_oracle_called,
+        "packet_result": _serialize_compact_packet_result(fixture.packet_result),
+        "safe_result": _serialize_compact_eval_result(fixture.safe_result),
+        "violation_result": _serialize_compact_eval_result(fixture.violation_result),
+        "metadata": _serialize_mapping(fixture.metadata),
     }
