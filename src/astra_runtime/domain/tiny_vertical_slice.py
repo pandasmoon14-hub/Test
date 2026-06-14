@@ -31,12 +31,22 @@ from astra_runtime.domain.resource_consequence_math import (
     create_resource_math_subject_reference,
     create_resource_reference,
 )
+from astra_runtime.kernel.command_envelope import (
+    CommandEnvelope,
+    create_command_envelope,
+    validate_command_envelope,
+)
 from astra_runtime.kernel.event_ledger import (
     EventLedgerEntry,
     create_event_ledger_entry,
     validate_event_ledger_entry,
 )
 from astra_runtime.kernel.record_identity import build_record_id
+from astra_runtime.kernel.transaction_preview import (
+    TransactionPreview,
+    create_transaction_preview,
+    validate_transaction_preview,
+)
 from astra_runtime.kernel.state_delta import (
     StateDeltaEnvelope,
     create_state_delta_envelope,
@@ -2044,4 +2054,353 @@ def serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview(
         "narration_generated": preview.narration_generated,
         "candidate_event_entry": entry_dict,
         "metadata": _serialize_mapping(preview.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 7 — Commit boundary dry-run result
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceCommitDryRunResult:
+    dry_run_ref: str
+    command_ref: str
+    world_ref: str
+    lifecycle_status: str
+    commit_status: str
+    planning_preview_ref: str
+    context_projection_ref: str
+    delta_preview_ref: str
+    event_preview_ref: str
+    command_envelope: CommandEnvelope
+    transaction_preview: TransactionPreview
+    candidate_delta_refs: tuple[str, ...]
+    candidate_event_ref: str | None
+    visible_dry_run_summary: str
+    visible_commit_requirements: tuple[str, ...]
+    backend_only_ref_ids: tuple[str, ...]
+    commit_authorized: bool
+    transaction_executed: bool
+    state_changed: bool
+    state_delta_applied: bool
+    event_committed: bool
+    event_appended: bool
+    persistence_authorized: bool
+    replay_authorized: bool
+    narration_packet_authorized: bool
+    model_called: bool
+    narration_generated: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.dry_run_ref, "dry_run_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+        _validate_non_empty_str(self.lifecycle_status, "lifecycle_status")
+        if self.lifecycle_status not in _VALID_LIFECYCLE_STATUSES:
+            raise TinyVerticalSliceError(
+                f"lifecycle_status must be one of {sorted(_VALID_LIFECYCLE_STATUSES)}, got {self.lifecycle_status!r}"
+            )
+        _validate_non_empty_str(self.commit_status, "commit_status")
+        if self.commit_status not in _VALID_COMMIT_STATUSES:
+            raise TinyVerticalSliceError(
+                f"commit_status must be one of {sorted(_VALID_COMMIT_STATUSES)}, got {self.commit_status!r}"
+            )
+        _validate_non_empty_str(self.planning_preview_ref, "planning_preview_ref")
+        _validate_non_empty_str(self.context_projection_ref, "context_projection_ref")
+        _validate_non_empty_str(self.delta_preview_ref, "delta_preview_ref")
+        _validate_non_empty_str(self.event_preview_ref, "event_preview_ref")
+        _validate_non_empty_str(self.visible_dry_run_summary, "visible_dry_run_summary")
+
+        if not isinstance(self.command_envelope, CommandEnvelope):
+            raise TinyVerticalSliceError(
+                f"command_envelope must be CommandEnvelope, got {type(self.command_envelope).__name__}"
+            )
+        if not validate_command_envelope(self.command_envelope):
+            raise TinyVerticalSliceError("command_envelope failed validation")
+        if self.command_envelope.command_id != self.command_ref:
+            raise TinyVerticalSliceError(
+                "command_envelope.command_id must equal command_ref"
+            )
+
+        if not isinstance(self.transaction_preview, TransactionPreview):
+            raise TinyVerticalSliceError(
+                f"transaction_preview must be TransactionPreview, got {type(self.transaction_preview).__name__}"
+            )
+        if not validate_transaction_preview(self.transaction_preview):
+            raise TinyVerticalSliceError("transaction_preview failed validation")
+        if self.transaction_preview.command_id != self.command_ref:
+            raise TinyVerticalSliceError(
+                "transaction_preview.command_id must equal command_ref"
+            )
+        if self.transaction_preview.preview_id != self.dry_run_ref:
+            raise TinyVerticalSliceError(
+                "transaction_preview.preview_id must equal dry_run_ref"
+            )
+
+        object.__setattr__(
+            self, "candidate_delta_refs",
+            _validate_tuple_of_non_empty_strings(self.candidate_delta_refs, "candidate_delta_refs")
+            if self.candidate_delta_refs else ()
+        )
+        object.__setattr__(
+            self, "visible_commit_requirements",
+            _validate_tuple_of_non_empty_strings(self.visible_commit_requirements, "visible_commit_requirements")
+            if self.visible_commit_requirements else ()
+        )
+        object.__setattr__(
+            self, "backend_only_ref_ids",
+            _validate_tuple_of_non_empty_strings(self.backend_only_ref_ids, "backend_only_ref_ids")
+            if self.backend_only_ref_ids else ()
+        )
+
+        if self.candidate_event_ref is not None:
+            _validate_non_empty_str(self.candidate_event_ref, "candidate_event_ref")
+
+        for field_name in (
+            "commit_authorized",
+            "transaction_executed",
+            "state_changed",
+            "state_delta_applied",
+            "event_committed",
+            "event_appended",
+            "persistence_authorized",
+            "replay_authorized",
+            "narration_packet_authorized",
+            "model_called",
+            "narration_generated",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_commit_dry_run_result(
+    *,
+    state: TinyVerticalSliceWorldState,
+    lifecycle_result: TinyVerticalSliceCommandLifecycleResult,
+    planning_preview: TinyVerticalSliceResourceConsequencePlanningPreview,
+    context_projection: TinyVerticalSliceContextPacketProjection,
+    delta_preview: TinyVerticalSliceStateDeltaCandidatePreview,
+    event_preview: TinyVerticalSliceEventLedgerCandidatePreview,
+    dry_run_ref: str = "tiny-slice-commit-dry-run-1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceCommitDryRunResult:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(lifecycle_result, TinyVerticalSliceCommandLifecycleResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommandLifecycleResult, got {type(lifecycle_result).__name__}"
+        )
+    if not isinstance(planning_preview, TinyVerticalSliceResourceConsequencePlanningPreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceResourceConsequencePlanningPreview, got {type(planning_preview).__name__}"
+        )
+    if not isinstance(context_projection, TinyVerticalSliceContextPacketProjection):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceContextPacketProjection, got {type(context_projection).__name__}"
+        )
+    if not isinstance(delta_preview, TinyVerticalSliceStateDeltaCandidatePreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceStateDeltaCandidatePreview, got {type(delta_preview).__name__}"
+        )
+    if not isinstance(event_preview, TinyVerticalSliceEventLedgerCandidatePreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceEventLedgerCandidatePreview, got {type(event_preview).__name__}"
+        )
+    if lifecycle_result.resulting_state is not state:
+        raise TinyVerticalSliceError("lifecycle_result.resulting_state must be the supplied state object")
+
+    command = lifecycle_result.command
+    command_ref = command.command_ref
+
+    if planning_preview.command_ref != command_ref:
+        raise TinyVerticalSliceError("planning_preview.command_ref must match lifecycle_result.command.command_ref")
+    if context_projection.command_ref != command_ref:
+        raise TinyVerticalSliceError("context_projection.command_ref must match lifecycle_result.command.command_ref")
+    if context_projection.world_ref != state.world_ref:
+        raise TinyVerticalSliceError("context_projection.world_ref must match state.world_ref")
+    if delta_preview.command_ref != command_ref:
+        raise TinyVerticalSliceError("delta_preview.command_ref must match lifecycle_result.command.command_ref")
+    if delta_preview.world_ref != state.world_ref:
+        raise TinyVerticalSliceError("delta_preview.world_ref must match state.world_ref")
+    if delta_preview.planning_preview_ref != planning_preview.preview_ref:
+        raise TinyVerticalSliceError("delta_preview.planning_preview_ref must match planning_preview.preview_ref")
+    if delta_preview.context_projection_ref != context_projection.projection_ref:
+        raise TinyVerticalSliceError("delta_preview.context_projection_ref must match context_projection.projection_ref")
+    if event_preview.command_ref != command_ref:
+        raise TinyVerticalSliceError("event_preview.command_ref must match lifecycle_result.command.command_ref")
+    if event_preview.world_ref != state.world_ref:
+        raise TinyVerticalSliceError("event_preview.world_ref must match state.world_ref")
+    if event_preview.planning_preview_ref != planning_preview.preview_ref:
+        raise TinyVerticalSliceError("event_preview.planning_preview_ref must match planning_preview.preview_ref")
+    if event_preview.context_projection_ref != context_projection.projection_ref:
+        raise TinyVerticalSliceError("event_preview.context_projection_ref must match context_projection.projection_ref")
+    if event_preview.delta_preview_ref != delta_preview.delta_preview_ref:
+        raise TinyVerticalSliceError("event_preview.delta_preview_ref must match delta_preview.delta_preview_ref")
+
+    has_candidate = event_preview.candidate_event_entry is not None
+
+    envelope = create_command_envelope(
+        command_id=command_ref,
+        command_type=command.command_kind,
+        source_actor_id=build_record_id("actor", "ascendant_1"),
+        payload={
+            "world_ref": state.world_ref,
+            "actor_ref": state.actor.actor_ref,
+            "target_ref": command.target_ref,
+            "command_kind": command.command_kind,
+            "requests_commit": command.requests_commit,
+            "dry_run_only": True,
+            "commit_authorized": False,
+        },
+        metadata={
+            "dry_run_ref": dry_run_ref,
+            "planning_preview_ref": planning_preview.preview_ref,
+            "context_projection_ref": context_projection.projection_ref,
+            "delta_preview_ref": delta_preview.delta_preview_ref,
+            "event_preview_ref": event_preview.event_preview_ref,
+            "runtime_increment": 7,
+        },
+    )
+
+    candidate_event_ref = event_preview.candidate_event_ref
+    candidate_delta_refs = delta_preview.candidate_delta_refs
+
+    txn_metadata = {
+        "world_ref": state.world_ref,
+        "command_ref": command_ref,
+        "planning_preview_ref": planning_preview.preview_ref,
+        "context_projection_ref": context_projection.projection_ref,
+        "delta_preview_ref": delta_preview.delta_preview_ref,
+        "event_preview_ref": event_preview.event_preview_ref,
+        "candidate_event_ref": candidate_event_ref,
+        "candidate_delta_refs": list(candidate_delta_refs),
+        "dry_run_only": True,
+        "commit_authorized": False,
+        "transaction_executed": False,
+        "runtime_increment": 7,
+    }
+
+    if has_candidate:
+        txn_status = "preview_created"
+        txn_messages = (
+            "commit_boundary_dry_run_created",
+            "state_deltas_candidate_only",
+            "event_entry_candidate_only",
+            "no_commit_performed",
+        )
+        txn_requires_confirmation = True
+        visible_summary = (
+            "Commit boundary dry run prepared command, state-delta, and event candidates; "
+            "no transaction has executed and no event has been committed."
+        )
+        visible_commit_requirements = (
+            "backend_commit_service_required",
+            "state_delta_application_required",
+            "event_append_required",
+            "persistence_boundary_required",
+            "post_commit_narration_packet_required",
+        )
+    else:
+        txn_status = "preview_rejected"
+        txn_messages = (
+            "commit_boundary_dry_run_blocked",
+            "no_candidate_event_available",
+            "no_commit_performed",
+        )
+        txn_requires_confirmation = False
+        visible_summary = (
+            "Commit boundary dry run is blocked because no candidate event is available; "
+            "no transaction has executed and no event has been committed."
+        )
+        visible_commit_requirements = (
+            "valid_candidate_event_required",
+            "valid_candidate_state_deltas_required",
+        )
+
+    txn_preview = create_transaction_preview(
+        preview_id=dry_run_ref,
+        command=envelope,
+        status=txn_status,
+        messages=txn_messages,
+        requires_confirmation=txn_requires_confirmation,
+        metadata=txn_metadata,
+    )
+
+    backend_only_ref_ids: list[str] = []
+    if command.command_kind in _LEVER_COMMAND_KINDS:
+        backend_only_ref_ids.append(state.hidden_fact.hidden_fact_ref)
+
+    return TinyVerticalSliceCommitDryRunResult(
+        dry_run_ref=dry_run_ref,
+        command_ref=command_ref,
+        world_ref=state.world_ref,
+        lifecycle_status=lifecycle_result.lifecycle_status,
+        commit_status=lifecycle_result.commit_status,
+        planning_preview_ref=planning_preview.preview_ref,
+        context_projection_ref=context_projection.projection_ref,
+        delta_preview_ref=delta_preview.delta_preview_ref,
+        event_preview_ref=event_preview.event_preview_ref,
+        command_envelope=envelope,
+        transaction_preview=txn_preview,
+        candidate_delta_refs=candidate_delta_refs,
+        candidate_event_ref=candidate_event_ref,
+        visible_dry_run_summary=visible_summary,
+        visible_commit_requirements=visible_commit_requirements,
+        backend_only_ref_ids=tuple(backend_only_ref_ids),
+        commit_authorized=False,
+        transaction_executed=False,
+        state_changed=False,
+        state_delta_applied=False,
+        event_committed=False,
+        event_appended=False,
+        persistence_authorized=False,
+        replay_authorized=False,
+        narration_packet_authorized=False,
+        model_called=False,
+        narration_generated=False,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def serialize_tiny_vertical_slice_commit_dry_run_visible_result(
+    result: TinyVerticalSliceCommitDryRunResult,
+) -> dict[str, Any]:
+    if not isinstance(result, TinyVerticalSliceCommitDryRunResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommitDryRunResult, got {type(result).__name__}"
+        )
+    return {
+        "dry_run_ref": result.dry_run_ref,
+        "command_ref": result.command_ref,
+        "world_ref": result.world_ref,
+        "lifecycle_status": result.lifecycle_status,
+        "commit_status": result.commit_status,
+        "planning_preview_ref": result.planning_preview_ref,
+        "context_projection_ref": result.context_projection_ref,
+        "delta_preview_ref": result.delta_preview_ref,
+        "event_preview_ref": result.event_preview_ref,
+        "candidate_delta_refs": list(result.candidate_delta_refs),
+        "candidate_event_ref": result.candidate_event_ref,
+        "visible_dry_run_summary": result.visible_dry_run_summary,
+        "visible_commit_requirements": list(result.visible_commit_requirements),
+        "commit_authorized": result.commit_authorized,
+        "transaction_executed": result.transaction_executed,
+        "state_changed": result.state_changed,
+        "state_delta_applied": result.state_delta_applied,
+        "event_committed": result.event_committed,
+        "event_appended": result.event_appended,
+        "persistence_authorized": result.persistence_authorized,
+        "replay_authorized": result.replay_authorized,
+        "narration_packet_authorized": result.narration_packet_authorized,
+        "model_called": result.model_called,
+        "narration_generated": result.narration_generated,
+        "command_envelope": result.command_envelope.to_dict(),
+        "transaction_preview": result.transaction_preview.to_dict(),
+        "metadata": _serialize_mapping(result.metadata),
     }
