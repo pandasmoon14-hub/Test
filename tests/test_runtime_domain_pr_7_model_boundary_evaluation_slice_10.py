@@ -152,6 +152,49 @@ class TestCatalogValidation:
                 suites=[suite, suite],
             )
 
+    def test_rejects_bare_string_suite_refs(self) -> None:
+        catalog = create_model_boundary_static_fixture_catalog()
+        with pytest.raises(ModelBoundaryStaticFixtureCatalogError):
+            ModelBoundaryStaticFixtureCatalog(
+                catalog_ref="ref",
+                catalog_label="label",
+                suite_refs="not-a-sequence",  # type: ignore[arg-type]
+                suites=catalog.suites,
+            )
+
+    def test_rejects_suite_refs_value_mismatch(self) -> None:
+        catalog = create_model_boundary_static_fixture_catalog()
+        wrong_refs = ("wrong-ref-1", "wrong-ref-2", "wrong-ref-3", "wrong-ref-4")
+        with pytest.raises(ModelBoundaryStaticFixtureCatalogError, match="must equal"):
+            ModelBoundaryStaticFixtureCatalog(
+                catalog_ref="ref",
+                catalog_label="label",
+                suite_refs=wrong_refs,
+                suites=catalog.suites,
+            )
+
+    def test_rejects_suite_refs_order_mismatch(self) -> None:
+        catalog = create_model_boundary_static_fixture_catalog()
+        reversed_refs = tuple(reversed(catalog.suite_refs))
+        with pytest.raises(ModelBoundaryStaticFixtureCatalogError, match="must equal"):
+            ModelBoundaryStaticFixtureCatalog(
+                catalog_ref="ref",
+                catalog_label="label",
+                suite_refs=reversed_refs,
+                suites=catalog.suites,
+            )
+
+    def test_rejects_suite_refs_length_mismatch(self) -> None:
+        catalog = create_model_boundary_static_fixture_catalog()
+        short_refs = catalog.suite_refs[:2]
+        with pytest.raises(ModelBoundaryStaticFixtureCatalogError, match="length"):
+            ModelBoundaryStaticFixtureCatalog(
+                catalog_ref="ref",
+                catalog_label="label",
+                suite_refs=short_refs,
+                suites=catalog.suites,
+            )
+
 
 # ---------------------------------------------------------------------------
 # Catalog factory defaults

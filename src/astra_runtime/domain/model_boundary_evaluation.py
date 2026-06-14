@@ -3131,14 +3131,28 @@ class ModelBoundaryStaticFixtureCatalog:
         safe_suites = _normalize_captured_fixture_assertion_suite_sequence_for_catalog(
             self.suites, error_cls
         )
-        safe_suite_refs = tuple(s.suite_ref for s in safe_suites)
+        derived_suite_refs = tuple(s.suite_ref for s in safe_suites)
 
         if isinstance(self.suite_refs, (str, bytes)):
             raise error_cls("suite_refs must not be a bare string or bytes")
+        if not isinstance(self.suite_refs, Sequence):
+            raise error_cls("suite_refs must be a sequence")
+        supplied_suite_refs = tuple(self.suite_refs)
+        if len(supplied_suite_refs) != len(derived_suite_refs):
+            raise error_cls(
+                f"suite_refs length ({len(supplied_suite_refs)}) must equal "
+                f"len(suites) ({len(derived_suite_refs)})"
+            )
+        if supplied_suite_refs != derived_suite_refs:
+            raise error_cls(
+                f"suite_refs {list(supplied_suite_refs)} must equal "
+                f"tuple(suite.suite_ref for suite in suites) "
+                f"{list(derived_suite_refs)}"
+            )
 
         safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
 
-        object.__setattr__(self, "suite_refs", safe_suite_refs)
+        object.__setattr__(self, "suite_refs", derived_suite_refs)
         object.__setattr__(self, "suites", safe_suites)
         object.__setattr__(self, "metadata", safe_metadata)
 
