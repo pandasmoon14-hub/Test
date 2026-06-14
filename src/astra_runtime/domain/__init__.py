@@ -311,6 +311,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     TinyVerticalSlicePostCommitNarrationPacketProjection,
     build_tiny_vertical_slice_post_commit_narration_packet_projection,
     serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible,
+    # tiny_vertical_slice — PR-8 Increment 10
+    TinyVerticalSliceModelBoundaryEvaluationFixture,
+    build_tiny_vertical_slice_model_boundary_evaluation_fixture,
+    serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -740,4 +744,8 @@ __all__ = [
     "TinyVerticalSlicePostCommitNarrationPacketProjection",
     "build_tiny_vertical_slice_post_commit_narration_packet_projection",
     "serialize_tiny_vertical_slice_post_commit_narration_packet_projection_visible",
+    # tiny_vertical_slice — PR-8 Increment 10
+    "TinyVerticalSliceModelBoundaryEvaluationFixture",
+    "build_tiny_vertical_slice_model_boundary_evaluation_fixture",
+    "serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible",
 ]
