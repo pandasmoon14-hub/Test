@@ -291,6 +291,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     TinyVerticalSliceContextPacketProjection,
     build_tiny_vertical_slice_context_packet_projection,
     serialize_tiny_vertical_slice_context_packet_projection_visible,
+    # tiny_vertical_slice — PR-8 Increment 5
+    TinyVerticalSliceStateDeltaCandidatePreview,
+    build_tiny_vertical_slice_state_delta_candidate_preview,
+    serialize_tiny_vertical_slice_state_delta_candidate_visible_preview,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -700,4 +704,8 @@ __all__ = [
     "TinyVerticalSliceContextPacketProjection",
     "build_tiny_vertical_slice_context_packet_projection",
     "serialize_tiny_vertical_slice_context_packet_projection_visible",
+    # tiny_vertical_slice — PR-8 Increment 5
+    "TinyVerticalSliceStateDeltaCandidatePreview",
+    "build_tiny_vertical_slice_state_delta_candidate_preview",
+    "serialize_tiny_vertical_slice_state_delta_candidate_visible_preview",
 ]

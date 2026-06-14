@@ -31,6 +31,12 @@ from astra_runtime.domain.resource_consequence_math import (
     create_resource_math_subject_reference,
     create_resource_reference,
 )
+from astra_runtime.kernel.record_identity import build_record_id
+from astra_runtime.kernel.state_delta import (
+    StateDeltaEnvelope,
+    create_state_delta_envelope,
+    validate_state_delta_envelope,
+)
 
 
 _VALID_SEVERITIES = frozenset({"minor", "moderate", "severe"})
@@ -1386,4 +1392,310 @@ def serialize_tiny_vertical_slice_context_packet_projection_visible(
         "no_commit_intent_packet": projection.no_commit_intent_packet.to_dict(),
         "visible_summary_packet": projection.visible_summary_packet.to_dict(),
         "metadata": _serialize_mapping(projection.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 5 — State delta candidate preview
+# ---------------------------------------------------------------------------
+
+
+def _validate_state_delta_envelope_sequence(value: object, name: str) -> tuple[StateDeltaEnvelope, ...]:
+    if isinstance(value, str) or not isinstance(value, (tuple, list)):
+        raise TinyVerticalSliceError(f"{name} must be a tuple or list")
+    result: list[StateDeltaEnvelope] = []
+    for i, item in enumerate(value):
+        if not isinstance(item, StateDeltaEnvelope):
+            raise TinyVerticalSliceError(f"{name}[{i}] must be StateDeltaEnvelope, got {type(item).__name__}")
+        if not validate_state_delta_envelope(item):
+            raise TinyVerticalSliceError(f"{name}[{i}] is not a valid StateDeltaEnvelope")
+        result.append(item)
+    return tuple(result)
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceStateDeltaCandidatePreview:
+    delta_preview_ref: str
+    command_ref: str
+    world_ref: str
+    lifecycle_status: str
+    commit_status: str
+    planning_preview_ref: str
+    context_projection_ref: str
+    candidate_delta_envelopes: tuple[StateDeltaEnvelope, ...]
+    candidate_delta_refs: tuple[str, ...]
+    affected_visible_record_refs: tuple[str, ...]
+    visible_delta_summary: str
+    visible_change_kinds: tuple[str, ...]
+    backend_only_ref_ids: tuple[str, ...]
+    apply_authorized: bool
+    state_changed: bool
+    event_committed: bool
+    persistence_authorized: bool
+    replay_authorized: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.delta_preview_ref, "delta_preview_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+        _validate_non_empty_str(self.lifecycle_status, "lifecycle_status")
+        if self.lifecycle_status not in _VALID_LIFECYCLE_STATUSES:
+            raise TinyVerticalSliceError(
+                f"lifecycle_status must be one of {sorted(_VALID_LIFECYCLE_STATUSES)}, got {self.lifecycle_status!r}"
+            )
+        _validate_non_empty_str(self.commit_status, "commit_status")
+        if self.commit_status not in _VALID_COMMIT_STATUSES:
+            raise TinyVerticalSliceError(
+                f"commit_status must be one of {sorted(_VALID_COMMIT_STATUSES)}, got {self.commit_status!r}"
+            )
+        _validate_non_empty_str(self.planning_preview_ref, "planning_preview_ref")
+        _validate_non_empty_str(self.context_projection_ref, "context_projection_ref")
+        _validate_non_empty_str(self.visible_delta_summary, "visible_delta_summary")
+        safe_envelopes = _validate_state_delta_envelope_sequence(self.candidate_delta_envelopes, "candidate_delta_envelopes")
+        object.__setattr__(self, "candidate_delta_envelopes", safe_envelopes)
+        object.__setattr__(self, "candidate_delta_refs", _validate_tuple_of_non_empty_strings(self.candidate_delta_refs, "candidate_delta_refs"))
+        object.__setattr__(self, "affected_visible_record_refs", _validate_tuple_of_non_empty_strings(self.affected_visible_record_refs, "affected_visible_record_refs"))
+        object.__setattr__(self, "visible_change_kinds", _validate_tuple_of_non_empty_strings(self.visible_change_kinds, "visible_change_kinds"))
+        object.__setattr__(self, "backend_only_ref_ids", _validate_tuple_of_non_empty_strings(self.backend_only_ref_ids, "backend_only_ref_ids"))
+        expected_delta_refs = tuple(e.delta_id for e in safe_envelopes)
+        if self.candidate_delta_refs != expected_delta_refs:
+            raise TinyVerticalSliceError(
+                f"candidate_delta_refs {self.candidate_delta_refs!r} must match delta_ids {expected_delta_refs!r}"
+            )
+        for i, envelope in enumerate(safe_envelopes):
+            if envelope.source_command_id != self.command_ref:
+                raise TinyVerticalSliceError(
+                    f"candidate_delta_envelopes[{i}].source_command_id must match command_ref"
+                )
+            if envelope.source_preview_id != self.delta_preview_ref:
+                raise TinyVerticalSliceError(
+                    f"candidate_delta_envelopes[{i}].source_preview_id must match delta_preview_ref"
+                )
+        for field_name in (
+            "apply_authorized",
+            "state_changed",
+            "event_committed",
+            "persistence_authorized",
+            "replay_authorized",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_state_delta_candidate_preview(
+    *,
+    state: TinyVerticalSliceWorldState,
+    lifecycle_result: TinyVerticalSliceCommandLifecycleResult,
+    planning_preview: TinyVerticalSliceResourceConsequencePlanningPreview,
+    context_projection: TinyVerticalSliceContextPacketProjection,
+    delta_preview_ref: str = "tiny-slice-state-delta-preview-1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceStateDeltaCandidatePreview:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(lifecycle_result, TinyVerticalSliceCommandLifecycleResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommandLifecycleResult, got {type(lifecycle_result).__name__}"
+        )
+    if not isinstance(planning_preview, TinyVerticalSliceResourceConsequencePlanningPreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceResourceConsequencePlanningPreview, got {type(planning_preview).__name__}"
+        )
+    if not isinstance(context_projection, TinyVerticalSliceContextPacketProjection):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceContextPacketProjection, got {type(context_projection).__name__}"
+        )
+    if lifecycle_result.resulting_state is not state:
+        raise TinyVerticalSliceError("lifecycle_result.resulting_state must be the supplied state object")
+    command = lifecycle_result.command
+    command_ref = command.command_ref
+    if planning_preview.command_ref != command_ref:
+        raise TinyVerticalSliceError("planning_preview.command_ref must match lifecycle_result.command.command_ref")
+    if context_projection.command_ref != command_ref:
+        raise TinyVerticalSliceError("context_projection.command_ref must match lifecycle_result.command.command_ref")
+    if context_projection.world_ref != state.world_ref:
+        raise TinyVerticalSliceError("context_projection.world_ref must match state.world_ref")
+
+    is_blocked = lifecycle_result.lifecycle_status == "blocked"
+    delta_metadata = {
+        "world_ref": state.world_ref,
+        "command_ref": command_ref,
+        "runtime_increment": 5,
+    }
+    candidate_deltas: list[StateDeltaEnvelope] = []
+    affected_visible_record_refs: list[str] = []
+    visible_change_kinds: list[str] = []
+    backend_only_ref_ids: list[str] = []
+
+    if not is_blocked:
+        if command.command_kind in {"inspect_lever", "brace_mechanism", "pull_lever"}:
+            backend_only_ref_ids.append(state.hidden_fact.hidden_fact_ref)
+
+        if command.command_kind == "pull_lever":
+            candidate_deltas.append(
+                create_state_delta_envelope(
+                    delta_id=f"state-delta-candidate-{command_ref}-lever",
+                    source_command_id=command_ref,
+                    source_preview_id=delta_preview_ref,
+                    affected_record_ids=(build_record_id("item", "brass_threshold_lever"),),
+                    change_type="record_update",
+                    payload={
+                        "record_ref": state.lever.lever_ref,
+                        "field": "visible_state",
+                        "current_value": state.lever.visible_state,
+                        "candidate_value": "pulled",
+                        "applied": False,
+                        "commit_required": True,
+                    },
+                    metadata=delta_metadata,
+                )
+            )
+            candidate_deltas.append(
+                create_state_delta_envelope(
+                    delta_id=f"state-delta-candidate-{command_ref}-hazard-clock",
+                    source_command_id=command_ref,
+                    source_preview_id=delta_preview_ref,
+                    affected_record_ids=(build_record_id("hazard_clock", "cracked_floor"),),
+                    change_type="record_update",
+                    payload={
+                        "record_ref": state.hazard_clock.clock_ref,
+                        "field": "current_tick",
+                        "current_value": state.hazard_clock.current_tick,
+                        "candidate_value": state.hazard_clock.current_tick + 1,
+                        "max_ticks": state.hazard_clock.max_ticks,
+                        "applied": False,
+                        "commit_required": True,
+                    },
+                    metadata=delta_metadata,
+                )
+            )
+            affected_visible_record_refs.extend([state.lever.lever_ref, state.hazard_clock.clock_ref])
+            visible_change_kinds.extend(["lever_state_candidate", "hazard_clock_tick_candidate"])
+            visible_delta_summary = "Candidate state deltas prepared for lever state and hazard clock tick; no delta has been applied."
+
+        elif command.command_kind == "inspect_lever":
+            candidate_deltas.append(
+                create_state_delta_envelope(
+                    delta_id=f"state-delta-candidate-{command_ref}-visibility",
+                    source_command_id=command_ref,
+                    source_preview_id=delta_preview_ref,
+                    affected_record_ids=(build_record_id("item", "brass_threshold_lever"),),
+                    change_type="visibility_update",
+                    payload={
+                        "record_ref": state.lever.lever_ref,
+                        "candidate_visibility_note": "inspection_may_surface_visible_mechanism_clues_after_commit",
+                        "applied": False,
+                        "commit_required": True,
+                    },
+                    metadata=delta_metadata,
+                )
+            )
+            affected_visible_record_refs.append(state.lever.lever_ref)
+            visible_change_kinds.append("visibility_candidate")
+            visible_delta_summary = "Candidate visibility delta prepared for lever inspection; no delta has been applied."
+
+        elif command.command_kind == "brace_mechanism":
+            candidate_deltas.append(
+                create_state_delta_envelope(
+                    delta_id=f"state-delta-candidate-{command_ref}-lever-braced",
+                    source_command_id=command_ref,
+                    source_preview_id=delta_preview_ref,
+                    affected_record_ids=(build_record_id("item", "brass_threshold_lever"),),
+                    change_type="record_update",
+                    payload={
+                        "record_ref": state.lever.lever_ref,
+                        "field": "visible_state",
+                        "current_value": state.lever.visible_state,
+                        "candidate_value": "braced",
+                        "applied": False,
+                        "commit_required": True,
+                    },
+                    metadata=delta_metadata,
+                )
+            )
+            affected_visible_record_refs.append(state.lever.lever_ref)
+            visible_change_kinds.append("lever_state_candidate")
+            visible_delta_summary = "Candidate lever-state delta prepared for bracing; no delta has been applied."
+
+        elif command.command_kind == "speak_to_npc":
+            candidate_deltas.append(
+                create_state_delta_envelope(
+                    delta_id=f"state-delta-candidate-{command_ref}-npc-posture",
+                    source_command_id=command_ref,
+                    source_preview_id=delta_preview_ref,
+                    affected_record_ids=(build_record_id("npc", "watchful_adept"),),
+                    change_type="relationship_update",
+                    payload={
+                        "record_ref": state.npc.npc_ref,
+                        "field": "visible_disposition",
+                        "current_value": state.npc.visible_disposition,
+                        "candidate_value": "engaged",
+                        "applied": False,
+                        "commit_required": True,
+                    },
+                    metadata=delta_metadata,
+                )
+            )
+            affected_visible_record_refs.append(state.npc.npc_ref)
+            visible_change_kinds.append("npc_posture_candidate")
+            visible_delta_summary = "Candidate NPC posture delta prepared; no delta has been applied."
+
+        else:
+            visible_delta_summary = "No candidate state delta available for this command kind."
+    else:
+        visible_delta_summary = "State-delta candidate preview is blocked because the command lifecycle is blocked."
+
+    return TinyVerticalSliceStateDeltaCandidatePreview(
+        delta_preview_ref=delta_preview_ref,
+        command_ref=command_ref,
+        world_ref=state.world_ref,
+        lifecycle_status=lifecycle_result.lifecycle_status,
+        commit_status=lifecycle_result.commit_status,
+        planning_preview_ref=planning_preview.preview_ref,
+        context_projection_ref=context_projection.projection_ref,
+        candidate_delta_envelopes=tuple(candidate_deltas),
+        candidate_delta_refs=tuple(d.delta_id for d in candidate_deltas),
+        affected_visible_record_refs=tuple(dict.fromkeys(affected_visible_record_refs)),
+        visible_delta_summary=visible_delta_summary,
+        visible_change_kinds=tuple(visible_change_kinds),
+        backend_only_ref_ids=tuple(dict.fromkeys(backend_only_ref_ids)),
+        apply_authorized=False,
+        state_changed=False,
+        event_committed=False,
+        persistence_authorized=False,
+        replay_authorized=False,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def serialize_tiny_vertical_slice_state_delta_candidate_visible_preview(
+    preview: TinyVerticalSliceStateDeltaCandidatePreview,
+) -> dict[str, Any]:
+    if not isinstance(preview, TinyVerticalSliceStateDeltaCandidatePreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceStateDeltaCandidatePreview, got {type(preview).__name__}"
+        )
+    return {
+        "delta_preview_ref": preview.delta_preview_ref,
+        "command_ref": preview.command_ref,
+        "world_ref": preview.world_ref,
+        "lifecycle_status": preview.lifecycle_status,
+        "commit_status": preview.commit_status,
+        "planning_preview_ref": preview.planning_preview_ref,
+        "context_projection_ref": preview.context_projection_ref,
+        "candidate_delta_refs": list(preview.candidate_delta_refs),
+        "affected_visible_record_refs": list(preview.affected_visible_record_refs),
+        "visible_delta_summary": preview.visible_delta_summary,
+        "visible_change_kinds": list(preview.visible_change_kinds),
+        "apply_authorized": preview.apply_authorized,
+        "state_changed": preview.state_changed,
+        "event_committed": preview.event_committed,
+        "persistence_authorized": preview.persistence_authorized,
+        "replay_authorized": preview.replay_authorized,
+        "candidate_delta_envelopes": [e.to_dict() for e in preview.candidate_delta_envelopes],
+        "metadata": _serialize_mapping(preview.metadata),
     }
