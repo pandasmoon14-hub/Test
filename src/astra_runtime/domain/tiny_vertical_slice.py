@@ -9,6 +9,12 @@ from typing import Any, Mapping
 
 
 _VALID_SEVERITIES = frozenset({"minor", "moderate", "severe"})
+_VALID_COMMAND_KINDS = frozenset({"inspect_lever", "brace_mechanism", "pull_lever", "speak_to_npc"})
+_VALID_VALIDATION_STATUSES = frozenset({"valid", "invalid"})
+_VALID_PREVIEW_STATUSES = frozenset({"preview_available", "preview_blocked"})
+_VALID_LIFECYCLE_STATUSES = frozenset({"validated_preview", "blocked"})
+_VALID_COMMIT_STATUSES = frozenset({"not_requested", "blocked", "commit_ready"})
+_LEVER_COMMAND_KINDS = frozenset({"inspect_lever", "brace_mechanism", "pull_lever"})
 
 
 class TinyVerticalSliceError(ValueError):
@@ -34,6 +40,12 @@ def _validate_tuple_of_non_empty_strings(value: object, name: str) -> tuple[str,
 
 def _freeze_metadata(value: Mapping[str, Any]) -> MappingProxyType[str, Any]:
     return MappingProxyType(copy.deepcopy(dict(value)))
+
+
+def _validate_bool(value: object, name: str) -> bool:
+    if not isinstance(value, bool):
+        raise TinyVerticalSliceError(f"{name} must be a bool, got {value!r}")
+    return value
 
 
 def _validate_int_not_bool(value: object, name: str) -> int:
@@ -338,4 +350,355 @@ def serialize_tiny_vertical_slice_hidden_state_for_backend(
             "reveal_condition": state.hidden_fact.reveal_condition,
             "metadata": _serialize_mapping(state.hidden_fact.metadata),
         },
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 2 — Command lifecycle skeleton
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceCommandIntent:
+    command_ref: str
+    actor_ref: str
+    command_kind: str
+    target_ref: str
+    declared_intent: str
+    requests_commit: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.actor_ref, "actor_ref")
+        _validate_non_empty_str(self.command_kind, "command_kind")
+        _validate_non_empty_str(self.target_ref, "target_ref")
+        _validate_non_empty_str(self.declared_intent, "declared_intent")
+        _validate_bool(self.requests_commit, "requests_commit")
+        if self.command_kind not in _VALID_COMMAND_KINDS:
+            raise TinyVerticalSliceError(
+                f"command_kind must be one of {sorted(_VALID_COMMAND_KINDS)}, got {self.command_kind!r}"
+            )
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def create_tiny_vertical_slice_command_intent(
+    *,
+    command_ref: str = "command-inspect-lever-1",
+    actor_ref: str = "actor-ascendant-1",
+    command_kind: str = "inspect_lever",
+    target_ref: str = "lever-brass-threshold",
+    declared_intent: str = "Inspect the brass threshold lever without pulling it.",
+    requests_commit: bool = False,
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceCommandIntent:
+    return TinyVerticalSliceCommandIntent(
+        command_ref=command_ref,
+        actor_ref=actor_ref,
+        command_kind=command_kind,
+        target_ref=target_ref,
+        declared_intent=declared_intent,
+        requests_commit=requests_commit,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceCommandValidationResult:
+    command_ref: str
+    is_valid: bool
+    validation_status: str
+    reason_codes: tuple[str, ...]
+    visible_explanation: str
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_bool(self.is_valid, "is_valid")
+        _validate_non_empty_str(self.validation_status, "validation_status")
+        if self.validation_status not in _VALID_VALIDATION_STATUSES:
+            raise TinyVerticalSliceError(
+                f"validation_status must be one of {sorted(_VALID_VALIDATION_STATUSES)}, got {self.validation_status!r}"
+            )
+        if self.is_valid and self.validation_status != "valid":
+            raise TinyVerticalSliceError("validation_status must be 'valid' when is_valid is True")
+        if not self.is_valid and self.validation_status != "invalid":
+            raise TinyVerticalSliceError("validation_status must be 'invalid' when is_valid is False")
+        normalized = _validate_tuple_of_non_empty_strings(self.reason_codes, "reason_codes")
+        object.__setattr__(self, "reason_codes", normalized)
+        _validate_non_empty_str(self.visible_explanation, "visible_explanation")
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def validate_tiny_vertical_slice_command_intent(
+    *,
+    state: TinyVerticalSliceWorldState,
+    command: TinyVerticalSliceCommandIntent,
+) -> TinyVerticalSliceCommandValidationResult:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(command, TinyVerticalSliceCommandIntent):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceCommandIntent, got {type(command).__name__}")
+
+    if command.actor_ref != state.actor.actor_ref:
+        return TinyVerticalSliceCommandValidationResult(
+            command_ref=command.command_ref,
+            is_valid=False,
+            validation_status="invalid",
+            reason_codes=("actor_not_in_world",),
+            visible_explanation=f"Actor ref '{command.actor_ref}' does not match the world actor.",
+        )
+
+    if command.command_kind not in _VALID_COMMAND_KINDS:
+        return TinyVerticalSliceCommandValidationResult(
+            command_ref=command.command_ref,
+            is_valid=False,
+            validation_status="invalid",
+            reason_codes=("unknown_command_kind",),
+            visible_explanation=f"Command kind '{command.command_kind}' is not recognized.",
+        )
+
+    if command.command_kind in _LEVER_COMMAND_KINDS:
+        expected_target = state.lever.lever_ref
+    else:
+        expected_target = state.npc.npc_ref
+
+    if command.target_ref != expected_target:
+        return TinyVerticalSliceCommandValidationResult(
+            command_ref=command.command_ref,
+            is_valid=False,
+            validation_status="invalid",
+            reason_codes=("target_not_valid_for_command",),
+            visible_explanation=f"Target ref '{command.target_ref}' is not valid for command kind '{command.command_kind}'.",
+        )
+
+    return TinyVerticalSliceCommandValidationResult(
+        command_ref=command.command_ref,
+        is_valid=True,
+        validation_status="valid",
+        reason_codes=("command_valid",),
+        visible_explanation="Command is valid.",
+    )
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceCommandPreviewResult:
+    command_ref: str
+    preview_status: str
+    would_require_resolution: bool
+    visible_preview: str
+    visible_risk_refs: tuple[str, ...]
+    visible_target_refs: tuple[str, ...]
+    hidden_fact_refs_used_by_backend: tuple[str, ...]
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.preview_status, "preview_status")
+        if self.preview_status not in _VALID_PREVIEW_STATUSES:
+            raise TinyVerticalSliceError(
+                f"preview_status must be one of {sorted(_VALID_PREVIEW_STATUSES)}, got {self.preview_status!r}"
+            )
+        _validate_bool(self.would_require_resolution, "would_require_resolution")
+        _validate_non_empty_str(self.visible_preview, "visible_preview")
+        object.__setattr__(self, "visible_risk_refs", _validate_tuple_of_non_empty_strings(self.visible_risk_refs, "visible_risk_refs"))
+        object.__setattr__(self, "visible_target_refs", _validate_tuple_of_non_empty_strings(self.visible_target_refs, "visible_target_refs"))
+        normalized_hidden = tuple(self.hidden_fact_refs_used_by_backend) if isinstance(self.hidden_fact_refs_used_by_backend, (tuple, list)) else self.hidden_fact_refs_used_by_backend
+        if not isinstance(normalized_hidden, tuple):
+            raise TinyVerticalSliceError("hidden_fact_refs_used_by_backend must be a tuple or list")
+        object.__setattr__(self, "hidden_fact_refs_used_by_backend", normalized_hidden)
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def preview_tiny_vertical_slice_command_intent(
+    *,
+    state: TinyVerticalSliceWorldState,
+    command: TinyVerticalSliceCommandIntent,
+    validation: TinyVerticalSliceCommandValidationResult,
+) -> TinyVerticalSliceCommandPreviewResult:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(command, TinyVerticalSliceCommandIntent):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceCommandIntent, got {type(command).__name__}")
+    if not isinstance(validation, TinyVerticalSliceCommandValidationResult):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceCommandValidationResult, got {type(validation).__name__}")
+
+    if not validation.is_valid:
+        return TinyVerticalSliceCommandPreviewResult(
+            command_ref=command.command_ref,
+            preview_status="preview_blocked",
+            would_require_resolution=False,
+            visible_preview="Command cannot be previewed because validation failed.",
+            visible_risk_refs=(),
+            visible_target_refs=(),
+            hidden_fact_refs_used_by_backend=(),
+        )
+
+    hidden_fact_ref = state.hidden_fact.hidden_fact_ref
+
+    if command.command_kind == "inspect_lever":
+        return TinyVerticalSliceCommandPreviewResult(
+            command_ref=command.command_ref,
+            preview_status="preview_available",
+            would_require_resolution=False,
+            visible_preview="Inspecting the lever may reveal visible details about its mechanism; backend may determine whether hidden mechanism clues become available.",
+            visible_risk_refs=(),
+            visible_target_refs=(state.lever.lever_ref,),
+            hidden_fact_refs_used_by_backend=(hidden_fact_ref,),
+        )
+
+    if command.command_kind == "brace_mechanism":
+        return TinyVerticalSliceCommandPreviewResult(
+            command_ref=command.command_ref,
+            preview_status="preview_available",
+            would_require_resolution=False,
+            visible_preview="Bracing the mechanism prepares it and may affect a later lever interaction.",
+            visible_risk_refs=(),
+            visible_target_refs=(state.lever.lever_ref,),
+            hidden_fact_refs_used_by_backend=(hidden_fact_ref,),
+        )
+
+    if command.command_kind == "pull_lever":
+        return TinyVerticalSliceCommandPreviewResult(
+            command_ref=command.command_ref,
+            preview_status="preview_available",
+            would_require_resolution=True,
+            visible_preview="Pulling the lever is risky and may interact with the hazard clock.",
+            visible_risk_refs=(state.hazard_clock.clock_ref,),
+            visible_target_refs=(state.lever.lever_ref,),
+            hidden_fact_refs_used_by_backend=(hidden_fact_ref,),
+        )
+
+    return TinyVerticalSliceCommandPreviewResult(
+        command_ref=command.command_ref,
+        preview_status="preview_available",
+        would_require_resolution=False,
+        visible_preview="Speaking to the NPC may change social posture later, but no social engine is implemented in this increment.",
+        visible_risk_refs=(),
+        visible_target_refs=(state.npc.npc_ref,),
+        hidden_fact_refs_used_by_backend=(),
+    )
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceCommandLifecycleResult:
+    command_ref: str
+    lifecycle_status: str
+    commit_status: str
+    state_changed: bool
+    event_committed: bool
+    command: TinyVerticalSliceCommandIntent
+    validation: TinyVerticalSliceCommandValidationResult
+    preview: TinyVerticalSliceCommandPreviewResult
+    resulting_state: TinyVerticalSliceWorldState
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.lifecycle_status, "lifecycle_status")
+        if self.lifecycle_status not in _VALID_LIFECYCLE_STATUSES:
+            raise TinyVerticalSliceError(
+                f"lifecycle_status must be one of {sorted(_VALID_LIFECYCLE_STATUSES)}, got {self.lifecycle_status!r}"
+            )
+        _validate_non_empty_str(self.commit_status, "commit_status")
+        if self.commit_status not in _VALID_COMMIT_STATUSES:
+            raise TinyVerticalSliceError(
+                f"commit_status must be one of {sorted(_VALID_COMMIT_STATUSES)}, got {self.commit_status!r}"
+            )
+        _validate_bool(self.state_changed, "state_changed")
+        _validate_bool(self.event_committed, "event_committed")
+        if not isinstance(self.command, TinyVerticalSliceCommandIntent):
+            raise TinyVerticalSliceError(f"command must be TinyVerticalSliceCommandIntent, got {type(self.command).__name__}")
+        if not isinstance(self.validation, TinyVerticalSliceCommandValidationResult):
+            raise TinyVerticalSliceError(f"validation must be TinyVerticalSliceCommandValidationResult, got {type(self.validation).__name__}")
+        if not isinstance(self.preview, TinyVerticalSliceCommandPreviewResult):
+            raise TinyVerticalSliceError(f"preview must be TinyVerticalSliceCommandPreviewResult, got {type(self.preview).__name__}")
+        if not isinstance(self.resulting_state, TinyVerticalSliceWorldState):
+            raise TinyVerticalSliceError(f"resulting_state must be TinyVerticalSliceWorldState, got {type(self.resulting_state).__name__}")
+        if self.command_ref != self.command.command_ref:
+            raise TinyVerticalSliceError("command_ref must match command.command_ref")
+        if self.command_ref != self.validation.command_ref:
+            raise TinyVerticalSliceError("command_ref must match validation.command_ref")
+        if self.command_ref != self.preview.command_ref:
+            raise TinyVerticalSliceError("command_ref must match preview.command_ref")
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def run_tiny_vertical_slice_command_lifecycle(
+    *,
+    state: TinyVerticalSliceWorldState,
+    command: TinyVerticalSliceCommandIntent,
+) -> TinyVerticalSliceCommandLifecycleResult:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(command, TinyVerticalSliceCommandIntent):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceCommandIntent, got {type(command).__name__}")
+
+    validation = validate_tiny_vertical_slice_command_intent(state=state, command=command)
+    preview = preview_tiny_vertical_slice_command_intent(state=state, command=command, validation=validation)
+
+    if not validation.is_valid:
+        lifecycle_status = "blocked"
+        commit_status = "blocked"
+    elif command.requests_commit:
+        lifecycle_status = "validated_preview"
+        commit_status = "commit_ready"
+    else:
+        lifecycle_status = "validated_preview"
+        commit_status = "not_requested"
+
+    return TinyVerticalSliceCommandLifecycleResult(
+        command_ref=command.command_ref,
+        lifecycle_status=lifecycle_status,
+        commit_status=commit_status,
+        state_changed=False,
+        event_committed=False,
+        command=command,
+        validation=validation,
+        preview=preview,
+        resulting_state=state,
+    )
+
+
+def serialize_tiny_vertical_slice_command_lifecycle_visible_result(
+    result: TinyVerticalSliceCommandLifecycleResult,
+) -> dict[str, Any]:
+    if not isinstance(result, TinyVerticalSliceCommandLifecycleResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommandLifecycleResult, got {type(result).__name__}"
+        )
+    return {
+        "command_ref": result.command_ref,
+        "lifecycle_status": result.lifecycle_status,
+        "commit_status": result.commit_status,
+        "state_changed": result.state_changed,
+        "event_committed": result.event_committed,
+        "command": {
+            "command_ref": result.command.command_ref,
+            "actor_ref": result.command.actor_ref,
+            "command_kind": result.command.command_kind,
+            "target_ref": result.command.target_ref,
+            "declared_intent": result.command.declared_intent,
+            "requests_commit": result.command.requests_commit,
+            "metadata": _serialize_mapping(result.command.metadata),
+        },
+        "validation": {
+            "command_ref": result.validation.command_ref,
+            "is_valid": result.validation.is_valid,
+            "validation_status": result.validation.validation_status,
+            "reason_codes": list(result.validation.reason_codes),
+            "visible_explanation": result.validation.visible_explanation,
+            "metadata": _serialize_mapping(result.validation.metadata),
+        },
+        "preview": {
+            "command_ref": result.preview.command_ref,
+            "preview_status": result.preview.preview_status,
+            "would_require_resolution": result.preview.would_require_resolution,
+            "visible_preview": result.preview.visible_preview,
+            "visible_risk_refs": list(result.preview.visible_risk_refs),
+            "visible_target_refs": list(result.preview.visible_target_refs),
+            "metadata": _serialize_mapping(result.preview.metadata),
+        },
+        "resulting_visible_state": serialize_tiny_vertical_slice_visible_state(result.resulting_state),
+        "metadata": _serialize_mapping(result.metadata),
     }
