@@ -7,6 +7,23 @@ from dataclasses import dataclass, field
 from types import MappingProxyType
 from typing import Any, Mapping
 
+from astra_runtime.domain.resource_consequence_math import (
+    ConsequenceTerm,
+    CostTerm,
+    ResourceMathDependency,
+    ResourceMathRequest,
+    ResourceMathResult,
+    ResourceMathSubjectReference,
+    ResourceReference,
+    create_consequence_term,
+    create_cost_term,
+    create_resource_math_dependency,
+    create_resource_math_request,
+    create_resource_math_result,
+    create_resource_math_subject_reference,
+    create_resource_reference,
+)
+
 
 _VALID_SEVERITIES = frozenset({"minor", "moderate", "severe"})
 _VALID_COMMAND_KINDS = frozenset({"inspect_lever", "brace_mechanism", "pull_lever", "speak_to_npc"})
@@ -735,4 +752,384 @@ def serialize_tiny_vertical_slice_command_lifecycle_visible_result(
         },
         "resulting_visible_state": serialize_tiny_vertical_slice_visible_state(result.resulting_state),
         "metadata": _serialize_mapping(result.metadata),
+    }
+
+
+# ---------------------------------------------------------------------------
+# Increment 3 — Resource/consequence planning preview bridge
+# ---------------------------------------------------------------------------
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceResourceConsequencePlanningPreview:
+    preview_ref: str
+    command_ref: str
+    lifecycle_status: str
+    commit_status: str
+    resource_math_request: ResourceMathRequest
+    resource_math_result: ResourceMathResult
+    visible_summary: str
+    visible_cost_refs: tuple[str, ...]
+    visible_consequence_refs: tuple[str, ...]
+    visible_dependency_refs: tuple[str, ...]
+    backend_only_ref_ids: tuple[str, ...]
+    calculation_executed: bool
+    settlement_authorized: bool
+    consequence_application_authorized: bool
+    state_changed: bool
+    event_committed: bool
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.preview_ref, "preview_ref")
+        _validate_non_empty_str(self.command_ref, "command_ref")
+        _validate_non_empty_str(self.lifecycle_status, "lifecycle_status")
+        if self.lifecycle_status not in _VALID_LIFECYCLE_STATUSES:
+            raise TinyVerticalSliceError(
+                f"lifecycle_status must be one of {sorted(_VALID_LIFECYCLE_STATUSES)}, got {self.lifecycle_status!r}"
+            )
+        _validate_non_empty_str(self.commit_status, "commit_status")
+        if self.commit_status not in _VALID_COMMIT_STATUSES:
+            raise TinyVerticalSliceError(
+                f"commit_status must be one of {sorted(_VALID_COMMIT_STATUSES)}, got {self.commit_status!r}"
+            )
+        if not isinstance(self.resource_math_request, ResourceMathRequest):
+            raise TinyVerticalSliceError(
+                f"resource_math_request must be ResourceMathRequest, got {type(self.resource_math_request).__name__}"
+            )
+        if not isinstance(self.resource_math_result, ResourceMathResult):
+            raise TinyVerticalSliceError(
+                f"resource_math_result must be ResourceMathResult, got {type(self.resource_math_result).__name__}"
+            )
+        if self.resource_math_result.request_id != self.resource_math_request.request_id:
+            raise TinyVerticalSliceError(
+                "resource_math_result.request_id must match resource_math_request.request_id"
+            )
+        if self.command_ref != self.resource_math_request.command_ref_id:
+            raise TinyVerticalSliceError(
+                "command_ref must match resource_math_request.command_ref_id"
+            )
+        object.__setattr__(
+            self, "visible_cost_refs", _validate_tuple_of_non_empty_strings(self.visible_cost_refs, "visible_cost_refs")
+        )
+        object.__setattr__(
+            self, "visible_consequence_refs", _validate_tuple_of_non_empty_strings(self.visible_consequence_refs, "visible_consequence_refs")
+        )
+        object.__setattr__(
+            self, "visible_dependency_refs", _validate_tuple_of_non_empty_strings(self.visible_dependency_refs, "visible_dependency_refs")
+        )
+        object.__setattr__(
+            self, "backend_only_ref_ids", _validate_tuple_of_non_empty_strings(self.backend_only_ref_ids, "backend_only_ref_ids")
+        )
+        for field_name in (
+            "calculation_executed",
+            "settlement_authorized",
+            "consequence_application_authorized",
+            "state_changed",
+            "event_committed",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_resource_consequence_planning_preview(
+    *,
+    state: TinyVerticalSliceWorldState,
+    lifecycle_result: TinyVerticalSliceCommandLifecycleResult,
+    preview_ref: str = "tiny-slice-resource-consequence-preview-1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceResourceConsequencePlanningPreview:
+    if not isinstance(state, TinyVerticalSliceWorldState):
+        raise TinyVerticalSliceError(f"Expected TinyVerticalSliceWorldState, got {type(state).__name__}")
+    if not isinstance(lifecycle_result, TinyVerticalSliceCommandLifecycleResult):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceCommandLifecycleResult, got {type(lifecycle_result).__name__}"
+        )
+    if lifecycle_result.resulting_state is not state:
+        raise TinyVerticalSliceError("lifecycle_result.resulting_state must be the supplied state object")
+
+    command = lifecycle_result.command
+    command_ref = command.command_ref
+    command_kind = command.command_kind
+    is_lever = command_kind in _LEVER_COMMAND_KINDS
+    is_blocked = lifecycle_result.lifecycle_status == "blocked"
+
+    actor_subject = create_resource_math_subject_reference(
+        subject_binding_id="subject-actor-ascendant-1",
+        subject_type="actor",
+        subject_ref_id=state.actor.actor_ref,
+        subject_role="primary_subject",
+        owner_domain="RT002_resource_consequence_math",
+        visibility_policy="actor_visible",
+    )
+    command_subject = create_resource_math_subject_reference(
+        subject_binding_id="subject-command",
+        subject_type="command",
+        subject_ref_id=command_ref,
+        subject_role="source_subject",
+        owner_domain="RT002_resource_consequence_math",
+        visibility_policy="actor_visible",
+    )
+    if is_lever:
+        target_subject = create_resource_math_subject_reference(
+            subject_binding_id="subject-target",
+            subject_type="item",
+            subject_ref_id=state.lever.lever_ref,
+            subject_role="target_subject",
+            owner_domain="RT002_resource_consequence_math",
+            visibility_policy="actor_visible",
+        )
+    else:
+        target_subject = create_resource_math_subject_reference(
+            subject_binding_id="subject-target",
+            subject_type="actor",
+            subject_ref_id=state.npc.npc_ref,
+            subject_role="target_subject",
+            owner_domain="RT002_resource_consequence_math",
+            visibility_policy="actor_visible",
+        )
+    subject_refs = (actor_subject, command_subject, target_subject)
+
+    resource_refs: list[ResourceReference] = []
+    cost_terms: list[CostTerm] = []
+    consequence_terms: list[ConsequenceTerm] = []
+
+    if command_kind == "pull_lever":
+        resource_refs.append(
+            create_resource_reference(
+                resource_ref_id="resource-hazard-clock-pressure",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_family="risk_heat",
+                resource_key="cracked_floor_clock_pressure",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+        cost_terms.append(
+            create_cost_term(
+                term_id="cost-pull-lever-risky-interaction",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_ref_id="resource-hazard-clock-pressure",
+                value_mode="resource_reference_only",
+                cost_family="activation",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+        consequence_terms.append(
+            create_consequence_term(
+                consequence_id="consequence-pull-lever-hazard-escalation",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_ref_id="resource-hazard-clock-pressure",
+                value_mode="resource_reference_only",
+                consequence_family="escalation",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+    elif command_kind == "inspect_lever":
+        resource_refs.append(
+            create_resource_reference(
+                resource_ref_id="resource-lever-mechanism-clue",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_family="clue_information",
+                resource_key="lever_mechanism_clue",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+        consequence_terms.append(
+            create_consequence_term(
+                consequence_id="consequence-inspect-lever-clue-route",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_ref_id="resource-lever-mechanism-clue",
+                value_mode="resource_reference_only",
+                consequence_family="clue_route",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+    elif command_kind == "brace_mechanism":
+        resource_refs.append(
+            create_resource_reference(
+                resource_ref_id="resource-mechanism-bracing-position",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_family="opportunity",
+                resource_key="mechanism_bracing_position",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+        consequence_terms.append(
+            create_consequence_term(
+                consequence_id="consequence-brace-mechanism-preparation",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_ref_id="resource-mechanism-bracing-position",
+                value_mode="resource_reference_only",
+                consequence_family="visibility_change",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+    elif command_kind == "speak_to_npc":
+        resource_refs.append(
+            create_resource_reference(
+                resource_ref_id="resource-watchful-adept-social-posture",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_family="social_capital",
+                resource_key="watchful_adept_social_posture",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+        consequence_terms.append(
+            create_consequence_term(
+                consequence_id="consequence-speak-npc-social-posture",
+                subject_binding_id=actor_subject.subject_binding_id,
+                resource_ref_id="resource-watchful-adept-social-posture",
+                value_mode="resource_reference_only",
+                consequence_family="social_faction_change",
+                owner_domain="RT002_resource_consequence_math",
+                visibility_policy="actor_visible",
+            )
+        )
+
+    dependencies: list[ResourceMathDependency] = [
+        create_resource_math_dependency(
+            dependency_id="dep-command-ref",
+            dependency_type="command_ref",
+            reference_id=command_ref,
+            owner_domain="RT002_resource_consequence_math",
+            required=True,
+            satisfied=True,
+            hidden_info_safe=True,
+        )
+    ]
+    if is_lever:
+        dependencies.append(
+            create_resource_math_dependency(
+                dependency_id="dep-hidden-fact-lever-clock",
+                dependency_type="hidden_information_ref",
+                reference_id=state.hidden_fact.hidden_fact_ref,
+                owner_domain="RT002_resource_consequence_math",
+                required=False,
+                satisfied=True,
+                hidden_info_safe=True,
+            )
+        )
+
+    request_id = f"resource-math-request-{command_ref}"
+    trace_ref_id = f"tiny-slice-trace-{command_ref}"
+    request = create_resource_math_request(
+        request_id=request_id,
+        trace_ref_id=trace_ref_id,
+        subject_refs=subject_refs,
+        command_ref_id=command_ref,
+        resource_refs=resource_refs,
+        cost_terms=cost_terms,
+        consequence_terms=consequence_terms,
+        dependencies=dependencies,
+        metadata={
+            "preview_ref": preview_ref,
+            "world_ref": state.world_ref,
+            "command_ref": command_ref,
+            "command_kind": command_kind,
+            "lifecycle_status": lifecycle_result.lifecycle_status,
+            "commit_status": lifecycle_result.commit_status,
+            "runtime_increment": 3,
+        },
+    )
+
+    result = create_resource_math_result(
+        result_id=f"resource-math-result-{command_ref}",
+        request_id=request_id,
+        trace_ref_id=trace_ref_id,
+        stage="calculation_ready_for_review",
+        decision="accepted_for_planning",
+        blocking=False,
+        diagnostics=("reference_only_planning_preview",),
+        normalized_reference_ids=(request_id, command_ref),
+        request=request,
+        metadata={
+            "preview_ref": preview_ref,
+            "world_ref": state.world_ref,
+            "command_ref": command_ref,
+            "command_kind": command_kind,
+            "reference_only": True,
+            "runtime_increment": 3,
+        },
+    )
+
+    if is_blocked:
+        visible_summary = "Resource and consequence planning preview is blocked because the command lifecycle is blocked."
+    else:
+        visible_summary = "Resource and consequence planning preview is available; no calculation, settlement, state mutation, or event commitment has occurred."
+
+    return TinyVerticalSliceResourceConsequencePlanningPreview(
+        preview_ref=preview_ref,
+        command_ref=command_ref,
+        lifecycle_status=lifecycle_result.lifecycle_status,
+        commit_status=lifecycle_result.commit_status,
+        resource_math_request=request,
+        resource_math_result=result,
+        visible_summary=visible_summary,
+        visible_cost_refs=tuple(t.term_id for t in cost_terms),
+        visible_consequence_refs=tuple(t.consequence_id for t in consequence_terms),
+        visible_dependency_refs=tuple(d.dependency_id for d in dependencies),
+        backend_only_ref_ids=(state.hidden_fact.hidden_fact_ref,),
+        calculation_executed=False,
+        settlement_authorized=False,
+        consequence_application_authorized=False,
+        state_changed=False,
+        event_committed=False,
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def _strip_backend_refs(value: Any, backend_ids: set[str]) -> Any:
+    if isinstance(value, dict):
+        return {
+            key: _strip_backend_refs(val, backend_ids)
+            for key, val in value.items()
+            if not (isinstance(val, str) and val in backend_ids)
+        }
+    if isinstance(value, list):
+        return [
+            _strip_backend_refs(item, backend_ids)
+            for item in value
+            if not (isinstance(item, str) and item in backend_ids)
+        ]
+    return value
+
+
+def serialize_tiny_vertical_slice_resource_consequence_planning_visible_preview(
+    preview: TinyVerticalSliceResourceConsequencePlanningPreview,
+) -> dict[str, Any]:
+    if not isinstance(preview, TinyVerticalSliceResourceConsequencePlanningPreview):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceResourceConsequencePlanningPreview, got {type(preview).__name__}"
+        )
+    backend_ids = set(preview.backend_only_ref_ids)
+    request_dict = _strip_backend_refs(preview.resource_math_request.to_dict(), backend_ids)
+    result_dict = _strip_backend_refs(preview.resource_math_result.to_dict(), backend_ids)
+    return {
+        "preview_ref": preview.preview_ref,
+        "command_ref": preview.command_ref,
+        "lifecycle_status": preview.lifecycle_status,
+        "commit_status": preview.commit_status,
+        "visible_summary": preview.visible_summary,
+        "visible_cost_refs": list(preview.visible_cost_refs),
+        "visible_consequence_refs": list(preview.visible_consequence_refs),
+        "visible_dependency_refs": list(preview.visible_dependency_refs),
+        "calculation_executed": preview.calculation_executed,
+        "settlement_authorized": preview.settlement_authorized,
+        "consequence_application_authorized": preview.consequence_application_authorized,
+        "state_changed": preview.state_changed,
+        "event_committed": preview.event_committed,
+        "resource_math_request": request_dict,
+        "resource_math_result": result_dict,
+        "metadata": _serialize_mapping(preview.metadata),
     }

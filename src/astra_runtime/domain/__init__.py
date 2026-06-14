@@ -283,6 +283,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     preview_tiny_vertical_slice_command_intent,
     run_tiny_vertical_slice_command_lifecycle,
     serialize_tiny_vertical_slice_command_lifecycle_visible_result,
+    # tiny_vertical_slice — PR-8 Increment 3
+    TinyVerticalSliceResourceConsequencePlanningPreview,
+    build_tiny_vertical_slice_resource_consequence_planning_preview,
+    serialize_tiny_vertical_slice_resource_consequence_planning_visible_preview,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -684,4 +688,8 @@ __all__ = [
     "preview_tiny_vertical_slice_command_intent",
     "run_tiny_vertical_slice_command_lifecycle",
     "serialize_tiny_vertical_slice_command_lifecycle_visible_result",
+    # tiny_vertical_slice — PR-8 Increment 3
+    "TinyVerticalSliceResourceConsequencePlanningPreview",
+    "build_tiny_vertical_slice_resource_consequence_planning_preview",
+    "serialize_tiny_vertical_slice_resource_consequence_planning_visible_preview",
 ]
