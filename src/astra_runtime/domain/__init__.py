@@ -315,6 +315,10 @@ from astra_runtime.domain.tiny_vertical_slice import (
     TinyVerticalSliceModelBoundaryEvaluationFixture,
     build_tiny_vertical_slice_model_boundary_evaluation_fixture,
     serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible,
+    # tiny_vertical_slice — PR-8 Increment 11
+    TinyVerticalSliceClosureManifest,
+    build_tiny_vertical_slice_closure_manifest,
+    serialize_tiny_vertical_slice_closure_manifest_visible,
 )
 from astra_runtime.domain.resource_consequence_math import (
     ATOMICITY_POLICIES,
@@ -748,4 +752,8 @@ __all__ = [
     "TinyVerticalSliceModelBoundaryEvaluationFixture",
     "build_tiny_vertical_slice_model_boundary_evaluation_fixture",
     "serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible",
+    # tiny_vertical_slice — PR-8 Increment 11
+    "TinyVerticalSliceClosureManifest",
+    "build_tiny_vertical_slice_closure_manifest",
+    "serialize_tiny_vertical_slice_closure_manifest_visible",
 ]

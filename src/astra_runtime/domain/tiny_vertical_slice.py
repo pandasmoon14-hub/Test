@@ -3502,3 +3502,411 @@ def serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible(
         "violation_result": _serialize_compact_eval_result(fixture.violation_result),
         "metadata": _serialize_mapping(fixture.metadata),
     }
+
+
+# ---------------------------------------------------------------------------
+# Increment 11 — Closure Manifest
+# ---------------------------------------------------------------------------
+
+_TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES = (
+    "world_state",
+    "command_intent",
+    "command_lifecycle",
+    "resource_consequence_planning_preview",
+    "context_packet_projection",
+    "state_delta_candidate_preview",
+    "event_ledger_candidate_preview",
+    "commit_dry_run",
+    "commit_application",
+    "post_commit_narration_packet_projection",
+    "model_boundary_evaluation_fixture",
+)
+
+_TINY_VERTICAL_SLICE_CLOSURE_COMMAND_KINDS = (
+    "inspect_lever",
+    "brace_mechanism",
+    "pull_lever",
+    "speak_to_npc",
+)
+
+_TINY_VERTICAL_SLICE_CLOSURE_COMMAND_REFS = (
+    "tiny-closure-inspect-lever-command",
+    "tiny-closure-brace-mechanism-command",
+    "tiny-closure-pull-lever-command",
+    "tiny-closure-speak-to-npc-command",
+)
+
+
+def _freeze_nested_mapping(
+    m: Mapping[str, Any],
+) -> MappingProxyType:
+    result = {}
+    for k, v in m.items():
+        if isinstance(v, Mapping):
+            result[k] = _freeze_nested_mapping(v)
+        else:
+            result[k] = v
+    return MappingProxyType(result)
+
+
+@dataclass(frozen=True, kw_only=True)
+class TinyVerticalSliceClosureManifest:
+    manifest_ref: str
+    world_ref: str
+    command_refs: tuple[str, ...]
+    command_kinds: tuple[str, ...]
+    stage_refs_by_command: Mapping[str, Mapping[str, str]]
+    total_commands: int
+    total_stages_per_command: int
+    total_stage_refs: int
+    required_stage_names: tuple[str, ...]
+    missing_stage_names: tuple[str, ...]
+    all_commands_closed: bool
+    closure_ready: bool
+    visibility_boundary_preserved: bool
+    hidden_information_excluded: bool
+    backend_authority_preserved: bool
+    model_boundary_fixture_passed: bool
+    model_boundary_fixture_failed_when_expected: bool
+    model_called: bool
+    narration_generated: bool
+    prose_parsed: bool
+    state_mutated_by_manifest: bool
+    state_delta_applied_by_manifest: bool
+    event_committed_by_manifest: bool
+    event_appended_by_manifest: bool
+    persistence_authorized: bool
+    replay_authorized: bool
+    rng_or_oracle_called: bool
+    arithmetic_executed: bool
+    settlement_authorized: bool
+    consequence_application_authorized: bool
+    backend_only_ref_ids: tuple[str, ...]
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        _validate_non_empty_str(self.manifest_ref, "manifest_ref")
+        _validate_non_empty_str(self.world_ref, "world_ref")
+
+        object.__setattr__(
+            self, "command_refs",
+            _validate_tuple_of_non_empty_strings(self.command_refs, "command_refs"),
+        )
+        if not self.command_refs:
+            raise TinyVerticalSliceError("command_refs must be non-empty")
+
+        object.__setattr__(
+            self, "command_kinds",
+            _validate_tuple_of_non_empty_strings(self.command_kinds, "command_kinds"),
+        )
+        if not self.command_kinds:
+            raise TinyVerticalSliceError("command_kinds must be non-empty")
+
+        if len(self.command_refs) != len(self.command_kinds):
+            raise TinyVerticalSliceError(
+                "len(command_refs) must equal len(command_kinds)"
+            )
+
+        if self.command_kinds != _TINY_VERTICAL_SLICE_CLOSURE_COMMAND_KINDS:
+            raise TinyVerticalSliceError(
+                "command_kinds must equal _TINY_VERTICAL_SLICE_CLOSURE_COMMAND_KINDS"
+            )
+
+        object.__setattr__(
+            self, "required_stage_names",
+            _validate_tuple_of_non_empty_strings(
+                self.required_stage_names, "required_stage_names",
+            ),
+        )
+        if self.required_stage_names != _TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES:
+            raise TinyVerticalSliceError(
+                "required_stage_names must equal _TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES"
+            )
+
+        if not isinstance(self.stage_refs_by_command, Mapping):
+            raise TinyVerticalSliceError("stage_refs_by_command must be a mapping")
+
+        computed_missing: list[str] = []
+        for cmd_ref in self.command_refs:
+            if cmd_ref not in self.stage_refs_by_command:
+                raise TinyVerticalSliceError(
+                    f"command_ref {cmd_ref!r} missing from stage_refs_by_command"
+                )
+            stage_map = self.stage_refs_by_command[cmd_ref]
+            for stage_name in _TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES:
+                if stage_name not in stage_map:
+                    computed_missing.append(stage_name)
+                elif not stage_map[stage_name] or not isinstance(stage_map[stage_name], str):
+                    raise TinyVerticalSliceError(
+                        f"stage ref for {stage_name!r} in command {cmd_ref!r} must be a non-empty string"
+                    )
+
+        object.__setattr__(
+            self, "missing_stage_names",
+            _validate_tuple_of_non_empty_strings(
+                self.missing_stage_names, "missing_stage_names",
+            ) if self.missing_stage_names else (),
+        )
+
+        if tuple(computed_missing) != self.missing_stage_names:
+            raise TinyVerticalSliceError(
+                "missing_stage_names does not match computed missing stages"
+            )
+
+        expected_total_commands = len(self.command_refs)
+        if self.total_commands != expected_total_commands:
+            raise TinyVerticalSliceError(
+                f"total_commands must be {expected_total_commands}, got {self.total_commands}"
+            )
+
+        expected_stages_per_command = len(_TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES)
+        if self.total_stages_per_command != expected_stages_per_command:
+            raise TinyVerticalSliceError(
+                f"total_stages_per_command must be {expected_stages_per_command}, "
+                f"got {self.total_stages_per_command}"
+            )
+
+        expected_total_refs = expected_total_commands * expected_stages_per_command
+        if self.total_stage_refs != expected_total_refs:
+            raise TinyVerticalSliceError(
+                f"total_stage_refs must be {expected_total_refs}, got {self.total_stage_refs}"
+            )
+
+        expected_all_closed = len(computed_missing) == 0
+        if self.all_commands_closed is not expected_all_closed:
+            raise TinyVerticalSliceError(
+                f"all_commands_closed must be {expected_all_closed}"
+            )
+
+        for field_name in (
+            "visibility_boundary_preserved",
+            "hidden_information_excluded",
+            "backend_authority_preserved",
+            "model_boundary_fixture_passed",
+            "model_boundary_fixture_failed_when_expected",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not True:
+                raise TinyVerticalSliceError(f"{field_name} must be True")
+
+        expected_closure_ready = (
+            self.all_commands_closed
+            and self.visibility_boundary_preserved
+            and self.hidden_information_excluded
+            and self.backend_authority_preserved
+            and self.model_boundary_fixture_passed
+            and self.model_boundary_fixture_failed_when_expected
+        )
+        for field_name in (
+            "model_called",
+            "narration_generated",
+            "prose_parsed",
+            "state_mutated_by_manifest",
+            "state_delta_applied_by_manifest",
+            "event_committed_by_manifest",
+            "event_appended_by_manifest",
+            "persistence_authorized",
+            "replay_authorized",
+            "rng_or_oracle_called",
+            "arithmetic_executed",
+            "settlement_authorized",
+            "consequence_application_authorized",
+        ):
+            value = getattr(self, field_name)
+            _validate_bool(value, field_name)
+            if value is not False:
+                raise TinyVerticalSliceError(f"{field_name} must be False")
+
+        expected_closure_ready = expected_closure_ready and True
+        if self.closure_ready is not expected_closure_ready:
+            raise TinyVerticalSliceError(
+                f"closure_ready must be {expected_closure_ready}"
+            )
+
+        object.__setattr__(
+            self, "backend_only_ref_ids",
+            _validate_tuple_of_non_empty_strings(
+                self.backend_only_ref_ids, "backend_only_ref_ids",
+            ) if self.backend_only_ref_ids else (),
+        )
+
+        frozen_stages = _freeze_nested_mapping(dict(self.stage_refs_by_command))
+        object.__setattr__(self, "stage_refs_by_command", frozen_stages)
+        object.__setattr__(self, "metadata", _freeze_metadata(self.metadata))
+
+
+def build_tiny_vertical_slice_closure_manifest(
+    *,
+    manifest_ref: str = "tiny-vertical-slice-closure-manifest-v1",
+    metadata: Mapping[str, Any] | None = None,
+) -> TinyVerticalSliceClosureManifest:
+    command_refs: list[str] = []
+    command_kinds: list[str] = []
+    stage_refs_by_command: dict[str, dict[str, str]] = {}
+    all_backend_only_refs: list[str] = []
+    all_hidden_excluded = True
+    all_safe_passed = True
+    all_violation_failed = True
+    world_ref = ""
+
+    for cmd_kind, cmd_ref in zip(
+        _TINY_VERTICAL_SLICE_CLOSURE_COMMAND_KINDS,
+        _TINY_VERTICAL_SLICE_CLOSURE_COMMAND_REFS,
+    ):
+        command_refs.append(cmd_ref)
+        command_kinds.append(cmd_kind)
+
+        world = create_tiny_vertical_slice_world_state()
+        world_ref = world.world_ref
+
+        intent_kwargs: dict[str, Any] = {
+            "command_kind": cmd_kind,
+            "command_ref": cmd_ref,
+        }
+        if cmd_kind == "speak_to_npc":
+            intent_kwargs["target_ref"] = "npc-watchful-adept"
+            intent_kwargs["declared_intent"] = "Speak to the watchful adept."
+
+        command = create_tiny_vertical_slice_command_intent(**intent_kwargs)
+        lifecycle = run_tiny_vertical_slice_command_lifecycle(
+            state=world, command=command,
+        )
+        planning = build_tiny_vertical_slice_resource_consequence_planning_preview(
+            state=world, lifecycle_result=lifecycle,
+        )
+        projection = build_tiny_vertical_slice_context_packet_projection(
+            state=world, lifecycle_result=lifecycle, planning_preview=planning,
+        )
+        delta = build_tiny_vertical_slice_state_delta_candidate_preview(
+            state=world, lifecycle_result=lifecycle,
+            planning_preview=planning, context_projection=projection,
+        )
+        event = build_tiny_vertical_slice_event_ledger_candidate_preview(
+            state=world, lifecycle_result=lifecycle,
+            planning_preview=planning, context_projection=projection,
+            delta_preview=delta,
+        )
+        dry_run = build_tiny_vertical_slice_commit_dry_run_result(
+            state=world, lifecycle_result=lifecycle,
+            planning_preview=planning, context_projection=projection,
+            delta_preview=delta, event_preview=event,
+        )
+        commit = apply_tiny_vertical_slice_commit_application(
+            state=world, dry_run_result=dry_run,
+        )
+        narration_proj = build_tiny_vertical_slice_post_commit_narration_packet_projection(
+            commit_result=commit,
+        )
+        mb_fixture = build_tiny_vertical_slice_model_boundary_evaluation_fixture(
+            projection=narration_proj,
+        )
+
+        stage_refs_by_command[cmd_ref] = {
+            "world_state": world.world_ref,
+            "command_intent": command.command_ref,
+            "command_lifecycle": lifecycle.command_ref,
+            "resource_consequence_planning_preview": planning.preview_ref,
+            "context_packet_projection": projection.projection_ref,
+            "state_delta_candidate_preview": delta.delta_preview_ref,
+            "event_ledger_candidate_preview": event.event_preview_ref,
+            "commit_dry_run": dry_run.dry_run_ref,
+            "commit_application": commit.commit_ref,
+            "post_commit_narration_packet_projection": narration_proj.projection_ref,
+            "model_boundary_evaluation_fixture": mb_fixture.fixture_ref,
+        }
+
+        for ref_id in narration_proj.backend_only_ref_ids:
+            if ref_id not in all_backend_only_refs:
+                all_backend_only_refs.append(ref_id)
+
+        if narration_proj.hidden_information_excluded is not True:
+            all_hidden_excluded = False
+        if mb_fixture.safe_result.passed is not True:
+            all_safe_passed = False
+        if mb_fixture.violation_result.passed is not False:
+            all_violation_failed = False
+
+    missing: list[str] = []
+
+    return TinyVerticalSliceClosureManifest(
+        manifest_ref=manifest_ref,
+        world_ref=world_ref,
+        command_refs=tuple(command_refs),
+        command_kinds=tuple(command_kinds),
+        stage_refs_by_command=stage_refs_by_command,
+        total_commands=len(command_refs),
+        total_stages_per_command=len(_TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES),
+        total_stage_refs=len(command_refs) * len(_TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES),
+        required_stage_names=_TINY_VERTICAL_SLICE_CLOSURE_REQUIRED_STAGE_NAMES,
+        missing_stage_names=tuple(missing),
+        all_commands_closed=True,
+        closure_ready=True,
+        visibility_boundary_preserved=True,
+        hidden_information_excluded=all_hidden_excluded,
+        backend_authority_preserved=True,
+        model_boundary_fixture_passed=all_safe_passed,
+        model_boundary_fixture_failed_when_expected=all_violation_failed,
+        model_called=False,
+        narration_generated=False,
+        prose_parsed=False,
+        state_mutated_by_manifest=False,
+        state_delta_applied_by_manifest=False,
+        event_committed_by_manifest=False,
+        event_appended_by_manifest=False,
+        persistence_authorized=False,
+        replay_authorized=False,
+        rng_or_oracle_called=False,
+        arithmetic_executed=False,
+        settlement_authorized=False,
+        consequence_application_authorized=False,
+        backend_only_ref_ids=tuple(all_backend_only_refs),
+        metadata=metadata if metadata is not None else {},
+    )
+
+
+def serialize_tiny_vertical_slice_closure_manifest_visible(
+    manifest: TinyVerticalSliceClosureManifest,
+) -> dict[str, Any]:
+    if not isinstance(manifest, TinyVerticalSliceClosureManifest):
+        raise TinyVerticalSliceError(
+            f"Expected TinyVerticalSliceClosureManifest, got {type(manifest).__name__}"
+        )
+
+    stage_refs_plain: dict[str, dict[str, str]] = {}
+    for cmd_ref, stage_map in manifest.stage_refs_by_command.items():
+        stage_refs_plain[cmd_ref] = dict(stage_map)
+
+    return {
+        "manifest_ref": manifest.manifest_ref,
+        "world_ref": manifest.world_ref,
+        "command_refs": list(manifest.command_refs),
+        "command_kinds": list(manifest.command_kinds),
+        "stage_refs_by_command": stage_refs_plain,
+        "total_commands": manifest.total_commands,
+        "total_stages_per_command": manifest.total_stages_per_command,
+        "total_stage_refs": manifest.total_stage_refs,
+        "required_stage_names": list(manifest.required_stage_names),
+        "missing_stage_names": list(manifest.missing_stage_names),
+        "all_commands_closed": manifest.all_commands_closed,
+        "closure_ready": manifest.closure_ready,
+        "visibility_boundary_preserved": manifest.visibility_boundary_preserved,
+        "hidden_information_excluded": manifest.hidden_information_excluded,
+        "backend_authority_preserved": manifest.backend_authority_preserved,
+        "model_boundary_fixture_passed": manifest.model_boundary_fixture_passed,
+        "model_boundary_fixture_failed_when_expected": manifest.model_boundary_fixture_failed_when_expected,
+        "model_called": manifest.model_called,
+        "narration_generated": manifest.narration_generated,
+        "prose_parsed": manifest.prose_parsed,
+        "state_mutated_by_manifest": manifest.state_mutated_by_manifest,
+        "state_delta_applied_by_manifest": manifest.state_delta_applied_by_manifest,
+        "event_committed_by_manifest": manifest.event_committed_by_manifest,
+        "event_appended_by_manifest": manifest.event_appended_by_manifest,
+        "persistence_authorized": manifest.persistence_authorized,
+        "replay_authorized": manifest.replay_authorized,
+        "rng_or_oracle_called": manifest.rng_or_oracle_called,
+        "arithmetic_executed": manifest.arithmetic_executed,
+        "settlement_authorized": manifest.settlement_authorized,
+        "consequence_application_authorized": manifest.consequence_application_authorized,
+        "metadata": _serialize_mapping(manifest.metadata),
+    }
