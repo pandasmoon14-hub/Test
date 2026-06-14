@@ -3465,3 +3465,360 @@ def serialize_model_boundary_static_fixture_catalog(
         "suite_refs": list(catalog.suite_refs),
         "metadata": dict(catalog.metadata),
     }
+
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 11 — Model Boundary Harness Closure Manifest
+# ---------------------------------------------------------------------------
+
+_DEFAULT_REQUIRED_SUITE_REFS = (
+    "static-boundary-pass-suite",
+    "static-boundary-hard-violation-suite",
+    "static-boundary-warning-suite",
+    "static-boundary-mixed-suite",
+)
+
+
+class ModelBoundaryEvaluationHarnessClosureManifestError(
+    ModelBoundaryEvaluationError,
+):
+    """Raised for malformed closure manifest construction or serialization inputs."""
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryEvaluationHarnessClosureManifest:
+    """Immutable closure manifest for the PR-7 model-boundary evaluation harness.
+
+    Proves that the static captured fixture catalog, orchestrator, report
+    snapshots, and run snapshot form a coherent deterministic chain. Does not
+    call models, parse prose, read runtime state, mutate inputs, or write files.
+    """
+
+    manifest_ref: str
+    manifest_label: str
+    catalog_ref: str
+    catalog_label: str
+    run_ref: str
+    run_label: str
+    suite_refs: tuple[str, ...]
+    report_refs: tuple[str, ...]
+    required_suite_refs: tuple[str, ...]
+    missing_required_suite_refs: tuple[str, ...]
+    total_suites: int
+    total_reports: int
+    total_specs: int
+    assertion_passed: bool
+    closure_ready: bool
+    status_counts: Mapping[str, int]
+    violation_counts: Mapping[str, int]
+    packet_warning_report_refs: tuple[str, ...]
+    catalog: ModelBoundaryStaticFixtureCatalog
+    orchestrator_result: ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        error_cls = ModelBoundaryEvaluationHarnessClosureManifestError
+
+        _validate_non_empty_string(self.manifest_ref, "manifest_ref", error_cls)
+        _validate_non_empty_string(self.manifest_label, "manifest_label", error_cls)
+        _validate_non_empty_string(self.catalog_ref, "catalog_ref", error_cls)
+        _validate_non_empty_string(self.catalog_label, "catalog_label", error_cls)
+        _validate_non_empty_string(self.run_ref, "run_ref", error_cls)
+        _validate_non_empty_string(self.run_label, "run_label", error_cls)
+
+        if not isinstance(self.catalog, ModelBoundaryStaticFixtureCatalog):
+            raise error_cls(
+                "catalog must be a ModelBoundaryStaticFixtureCatalog instance"
+            )
+        if not isinstance(
+            self.orchestrator_result,
+            ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult,
+        ):
+            raise error_cls(
+                "orchestrator_result must be a "
+                "ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult instance"
+            )
+
+        safe_suite_refs = _normalize_string_tuple(
+            self.suite_refs, "suite_refs", error_cls
+        )
+        safe_report_refs = _normalize_string_tuple(
+            self.report_refs, "report_refs", error_cls
+        )
+        safe_required_suite_refs = _normalize_string_tuple(
+            self.required_suite_refs, "required_suite_refs", error_cls
+        )
+        safe_missing_required_suite_refs = _normalize_string_tuple(
+            self.missing_required_suite_refs,
+            "missing_required_suite_refs",
+            error_cls,
+        )
+        safe_packet_warning_report_refs = _normalize_string_tuple(
+            self.packet_warning_report_refs,
+            "packet_warning_report_refs",
+            error_cls,
+        )
+
+        total_suites = _validate_non_negative_int_not_bool(
+            self.total_suites, "total_suites", error_cls
+        )
+        total_reports = _validate_non_negative_int_not_bool(
+            self.total_reports, "total_reports", error_cls
+        )
+        total_specs = _validate_non_negative_int_not_bool(
+            self.total_specs, "total_specs", error_cls
+        )
+
+        if not isinstance(self.assertion_passed, bool):
+            raise error_cls("assertion_passed must be a bool")
+        if not isinstance(self.closure_ready, bool):
+            raise error_cls("closure_ready must be a bool")
+
+        safe_status_counts = _validate_status_counts(
+            self.status_counts, error_cls
+        )
+        safe_violation_counts = _validate_violation_counts(
+            self.violation_counts, error_cls
+        )
+
+        if self.catalog_ref != self.catalog.catalog_ref:
+            raise error_cls(
+                f"catalog_ref ({self.catalog_ref!r}) must equal "
+                f"catalog.catalog_ref ({self.catalog.catalog_ref!r})"
+            )
+        if self.catalog_label != self.catalog.catalog_label:
+            raise error_cls(
+                f"catalog_label ({self.catalog_label!r}) must equal "
+                f"catalog.catalog_label ({self.catalog.catalog_label!r})"
+            )
+        if self.run_ref != self.orchestrator_result.run_ref:
+            raise error_cls(
+                f"run_ref ({self.run_ref!r}) must equal "
+                f"orchestrator_result.run_ref ({self.orchestrator_result.run_ref!r})"
+            )
+        if self.run_label != self.orchestrator_result.run_label:
+            raise error_cls(
+                f"run_label ({self.run_label!r}) must equal "
+                f"orchestrator_result.run_label ({self.orchestrator_result.run_label!r})"
+            )
+        if safe_suite_refs != self.catalog.suite_refs:
+            raise error_cls(
+                "suite_refs must equal catalog.suite_refs"
+            )
+        if safe_suite_refs != self.orchestrator_result.suite_refs:
+            raise error_cls(
+                "suite_refs must equal orchestrator_result.suite_refs"
+            )
+        if safe_report_refs != self.orchestrator_result.report_refs:
+            raise error_cls(
+                "report_refs must equal orchestrator_result.report_refs"
+            )
+        if total_suites != len(safe_suite_refs):
+            raise error_cls(
+                f"total_suites ({total_suites}) must equal "
+                f"len(suite_refs) ({len(safe_suite_refs)})"
+            )
+        if total_reports != len(safe_report_refs):
+            raise error_cls(
+                f"total_reports ({total_reports}) must equal "
+                f"len(report_refs) ({len(safe_report_refs)})"
+            )
+        if total_specs != self.orchestrator_result.run_snapshot.total_specs:
+            raise error_cls(
+                f"total_specs ({total_specs}) must equal "
+                f"orchestrator_result.run_snapshot.total_specs "
+                f"({self.orchestrator_result.run_snapshot.total_specs})"
+            )
+        if self.assertion_passed != self.orchestrator_result.run_snapshot.all_passed:
+            raise error_cls(
+                f"assertion_passed ({self.assertion_passed}) must equal "
+                f"orchestrator_result.run_snapshot.all_passed "
+                f"({self.orchestrator_result.run_snapshot.all_passed})"
+            )
+
+        expected_missing = tuple(
+            ref for ref in safe_required_suite_refs
+            if ref not in set(safe_suite_refs)
+        )
+        if safe_missing_required_suite_refs != expected_missing:
+            raise error_cls(
+                f"missing_required_suite_refs ({list(safe_missing_required_suite_refs)}) "
+                f"must equal required refs not in suite_refs ({list(expected_missing)})"
+            )
+
+        expected_closure_ready = (
+            self.assertion_passed is True
+            and len(safe_missing_required_suite_refs) == 0
+            and total_suites >= 4
+            and total_reports >= 4
+            and total_specs >= 1
+            and safe_status_counts.get("passed", 0) >= 1
+            and safe_status_counts.get("failed", 0) >= 1
+            and safe_status_counts.get("needs_review", 0) >= 1
+        )
+        if self.closure_ready != expected_closure_ready:
+            raise error_cls(
+                f"closure_ready ({self.closure_ready}) does not match "
+                f"computed value ({expected_closure_ready})"
+            )
+
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "suite_refs", safe_suite_refs)
+        object.__setattr__(self, "report_refs", safe_report_refs)
+        object.__setattr__(self, "required_suite_refs", safe_required_suite_refs)
+        object.__setattr__(
+            self, "missing_required_suite_refs", safe_missing_required_suite_refs
+        )
+        object.__setattr__(
+            self, "packet_warning_report_refs", safe_packet_warning_report_refs
+        )
+        object.__setattr__(self, "status_counts", MappingProxyType(dict(safe_status_counts)))
+        object.__setattr__(self, "violation_counts", MappingProxyType(dict(safe_violation_counts)))
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def create_model_boundary_evaluation_harness_closure_manifest(
+    *,
+    manifest_ref: str = "model-boundary-evaluation-harness-closure-v1",
+    manifest_label: str = "Model Boundary Evaluation Harness Closure v1",
+    catalog: ModelBoundaryStaticFixtureCatalog | None = None,
+    run_ref: str = "model-boundary-evaluation-harness-closure-run-v1",
+    run_label: str = "Model Boundary Evaluation Harness Closure Run v1",
+    required_suite_refs: Sequence[str] | None = None,
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryEvaluationHarnessClosureManifest:
+    """Build a deterministic closure manifest from catalog + orchestrator.
+
+    Does not call models, parse prose, read runtime state, write files,
+    or mutate state.
+    """
+    if catalog is None:
+        catalog = create_model_boundary_static_fixture_catalog()
+
+    if required_suite_refs is None:
+        required_suite_refs = _DEFAULT_REQUIRED_SUITE_REFS
+
+    safe_required = tuple(required_suite_refs)
+
+    orchestrator_result = run_model_boundary_captured_fixture_evaluation(
+        run_ref=run_ref,
+        run_label=run_label,
+        suites=list(catalog.suites),
+        report_ref_prefix="closure-report",
+    )
+
+    run_snapshot = orchestrator_result.run_snapshot
+
+    suite_refs = catalog.suite_refs
+    report_refs = orchestrator_result.report_refs
+    total_suites = len(suite_refs)
+    total_reports = len(report_refs)
+    total_specs = run_snapshot.total_specs
+    assertion_passed = run_snapshot.all_passed
+
+    status_counts = dict(run_snapshot.status_counts)
+    violation_counts = dict(run_snapshot.violation_counts)
+    packet_warning_report_refs = tuple(run_snapshot.packet_warning_report_refs)
+
+    suite_ref_set = set(suite_refs)
+    missing_required = tuple(
+        ref for ref in safe_required if ref not in suite_ref_set
+    )
+
+    closure_ready = (
+        assertion_passed is True
+        and len(missing_required) == 0
+        and total_suites >= 4
+        and total_reports >= 4
+        and total_specs >= 1
+        and status_counts.get("passed", 0) >= 1
+        and status_counts.get("failed", 0) >= 1
+        and status_counts.get("needs_review", 0) >= 1
+    )
+
+    if metadata is None:
+        metadata = {
+            "manifest_ref": manifest_ref,
+            "manifest_label": manifest_label,
+            "catalog_ref": catalog.catalog_ref,
+            "run_ref": run_ref,
+            "required_suite_count": len(safe_required),
+            "suite_count": total_suites,
+            "total_specs": total_specs,
+            "assertion_passed": assertion_passed,
+            "closure_ready": closure_ready,
+            "fixture_family": "model_boundary_evaluation_harness_closure",
+            "version": 1,
+        }
+
+    return ModelBoundaryEvaluationHarnessClosureManifest(
+        manifest_ref=manifest_ref,
+        manifest_label=manifest_label,
+        catalog_ref=catalog.catalog_ref,
+        catalog_label=catalog.catalog_label,
+        run_ref=run_ref,
+        run_label=run_label,
+        suite_refs=suite_refs,
+        report_refs=report_refs,
+        required_suite_refs=safe_required,
+        missing_required_suite_refs=missing_required,
+        total_suites=total_suites,
+        total_reports=total_reports,
+        total_specs=total_specs,
+        assertion_passed=assertion_passed,
+        closure_ready=closure_ready,
+        status_counts=status_counts,
+        violation_counts=violation_counts,
+        packet_warning_report_refs=packet_warning_report_refs,
+        catalog=catalog,
+        orchestrator_result=orchestrator_result,
+        metadata=metadata,
+    )
+
+
+def serialize_model_boundary_evaluation_harness_closure_manifest(
+    manifest: ModelBoundaryEvaluationHarnessClosureManifest,
+) -> dict[str, Any]:
+    """Serialize a closure manifest into a deterministic plain dict.
+
+    Returns compact manifest metadata only. Does not serialize catalog,
+    orchestrator_result, suites, specs, fixtures, packet payloads,
+    candidate_output, raw captured text, suite_results, report_snapshots,
+    source_suite_result, or run_snapshot.
+    """
+    error_cls = ModelBoundaryEvaluationHarnessClosureManifestError
+
+    if not isinstance(manifest, ModelBoundaryEvaluationHarnessClosureManifest):
+        raise error_cls(
+            "manifest must be a "
+            "ModelBoundaryEvaluationHarnessClosureManifest instance"
+        )
+
+    return {
+        "manifest_ref": manifest.manifest_ref,
+        "manifest_label": manifest.manifest_label,
+        "catalog_ref": manifest.catalog_ref,
+        "catalog_label": manifest.catalog_label,
+        "run_ref": manifest.run_ref,
+        "run_label": manifest.run_label,
+        "suite_refs": list(manifest.suite_refs),
+        "report_refs": list(manifest.report_refs),
+        "required_suite_refs": list(manifest.required_suite_refs),
+        "missing_required_suite_refs": list(manifest.missing_required_suite_refs),
+        "total_suites": manifest.total_suites,
+        "total_reports": manifest.total_reports,
+        "total_specs": manifest.total_specs,
+        "assertion_passed": manifest.assertion_passed,
+        "closure_ready": manifest.closure_ready,
+        "status_counts": {
+            status: manifest.status_counts[status]
+            for status in sorted(manifest.status_counts)
+        },
+        "violation_counts": {
+            code: manifest.violation_counts[code]
+            for code in sorted(manifest.violation_counts)
+        },
+        "packet_warning_report_refs": list(manifest.packet_warning_report_refs),
+        "metadata": dict(manifest.metadata),
+    }
