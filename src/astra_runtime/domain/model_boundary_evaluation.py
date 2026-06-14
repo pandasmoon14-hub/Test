@@ -2760,3 +2760,316 @@ def serialize_model_boundary_captured_fixture_evaluation_run_snapshot(
         },
         "metadata": dict(snapshot.metadata),
     }
+
+
+# ---------------------------------------------------------------------------
+# PR-7 Slice 9 — Captured Fixture Evaluation Run Orchestrator
+# ---------------------------------------------------------------------------
+
+
+def _normalize_captured_fixture_assertion_suite_sequence(
+    suites: Any,
+    error_cls: type[Exception],
+) -> tuple[ModelBoundaryCapturedFixtureAssertionSuite, ...]:
+    """Normalize a sequence of captured-fixture assertion suites into a tuple.
+
+    Rejects bare strings/bytes, empty sequences, non-suite values, and duplicate
+    suite_ref values. Preserves caller order.
+    """
+    if isinstance(suites, (str, bytes)):
+        raise error_cls("suites must not be a bare string or bytes")
+    if not isinstance(suites, Sequence):
+        raise error_cls("suites must be a sequence")
+    if len(suites) == 0:
+        raise error_cls("suites must contain at least one suite")
+
+    normalized: list[ModelBoundaryCapturedFixtureAssertionSuite] = []
+    seen_refs: set[str] = set()
+    for i, item in enumerate(suites):
+        if not isinstance(item, ModelBoundaryCapturedFixtureAssertionSuite):
+            raise error_cls(
+                f"suites[{i}] must be a "
+                "ModelBoundaryCapturedFixtureAssertionSuite"
+            )
+        if item.suite_ref in seen_refs:
+            raise error_cls(f"duplicate suite_ref: {item.suite_ref!r}")
+        seen_refs.add(item.suite_ref)
+        normalized.append(item)
+    return tuple(normalized)
+
+
+class ModelBoundaryCapturedFixtureEvaluationRunOrchestratorError(
+    ModelBoundaryEvaluationError,
+):
+    """Raised for malformed orchestrator inputs or serialization inputs."""
+
+
+@dataclass(frozen=True, kw_only=True)
+class ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult:
+    """Immutable result of running the captured-fixture evaluation orchestrator.
+
+    Connects already-built suites, their suite results, report snapshots, and
+    a run snapshot into a single deterministic result object. Does not call
+    models, parse prose, read runtime state, mutate inputs, or write files.
+    """
+
+    run_ref: str
+    run_label: str
+    report_ref_prefix: str
+    suite_refs: tuple[str, ...]
+    report_refs: tuple[str, ...]
+    suites: tuple[ModelBoundaryCapturedFixtureAssertionSuite, ...]
+    suite_results: tuple[ModelBoundaryCapturedFixtureAssertionSuiteResult, ...]
+    report_snapshots: tuple[ModelBoundaryCapturedFixtureAssertionReportSnapshot, ...]
+    run_snapshot: ModelBoundaryCapturedFixtureEvaluationRunSnapshot
+    serialized_run_snapshot: Mapping[str, Any]
+    metadata: Mapping[str, Any] = field(default_factory=lambda: MappingProxyType({}))
+
+    def __post_init__(self) -> None:
+        """Post-init validation and normalization for frozen dataclass."""
+        error_cls = ModelBoundaryCapturedFixtureEvaluationRunOrchestratorError
+
+        _validate_non_empty_string(self.run_ref, "run_ref", error_cls)
+        _validate_non_empty_string(self.run_label, "run_label", error_cls)
+        _validate_non_empty_string(
+            self.report_ref_prefix, "report_ref_prefix", error_cls
+        )
+
+        safe_suite_refs = _normalize_string_tuple(
+            self.suite_refs, "suite_refs", error_cls
+        )
+        safe_report_refs = _normalize_string_tuple(
+            self.report_refs, "report_refs", error_cls
+        )
+
+        safe_suites = _normalize_captured_fixture_assertion_suite_sequence(
+            self.suites, error_cls
+        )
+
+        if isinstance(self.suite_results, (str, bytes)):
+            raise error_cls("suite_results must not be a bare string or bytes")
+        if not isinstance(self.suite_results, Sequence):
+            raise error_cls("suite_results must be a sequence")
+        safe_suite_results: list[ModelBoundaryCapturedFixtureAssertionSuiteResult] = []
+        for i, item in enumerate(self.suite_results):
+            if not isinstance(item, ModelBoundaryCapturedFixtureAssertionSuiteResult):
+                raise error_cls(
+                    f"suite_results[{i}] must be a "
+                    "ModelBoundaryCapturedFixtureAssertionSuiteResult"
+                )
+            safe_suite_results.append(item)
+        safe_suite_results_tuple = tuple(safe_suite_results)
+
+        if isinstance(self.report_snapshots, (str, bytes)):
+            raise error_cls("report_snapshots must not be a bare string or bytes")
+        if not isinstance(self.report_snapshots, Sequence):
+            raise error_cls("report_snapshots must be a sequence")
+        safe_report_snapshots: list[
+            ModelBoundaryCapturedFixtureAssertionReportSnapshot
+        ] = []
+        for i, item in enumerate(self.report_snapshots):
+            if not isinstance(
+                item, ModelBoundaryCapturedFixtureAssertionReportSnapshot
+            ):
+                raise error_cls(
+                    f"report_snapshots[{i}] must be a "
+                    "ModelBoundaryCapturedFixtureAssertionReportSnapshot"
+                )
+            safe_report_snapshots.append(item)
+        safe_report_snapshots_tuple = tuple(safe_report_snapshots)
+
+        if not isinstance(
+            self.run_snapshot, ModelBoundaryCapturedFixtureEvaluationRunSnapshot
+        ):
+            raise error_cls(
+                "run_snapshot must be a "
+                "ModelBoundaryCapturedFixtureEvaluationRunSnapshot instance"
+            )
+
+        if not isinstance(self.serialized_run_snapshot, Mapping):
+            raise error_cls("serialized_run_snapshot must be a mapping")
+
+        # Cross-field consistency checks.
+        derived_suite_refs = tuple(s.suite_ref for s in safe_suites)
+        if safe_suite_refs != derived_suite_refs:
+            raise error_cls(
+                "suite_refs must equal tuple(suite.suite_ref for suite in suites)"
+            )
+
+        result_suite_refs = tuple(r.suite_ref for r in safe_suite_results)
+        if safe_suite_refs != result_suite_refs:
+            raise error_cls(
+                "suite_refs must equal tuple(result.suite_ref for result in suite_results)"
+            )
+
+        derived_report_refs = tuple(
+            r.report_ref for r in safe_report_snapshots
+        )
+        if safe_report_refs != derived_report_refs:
+            raise error_cls(
+                "report_refs must equal tuple(report.report_ref for report in report_snapshots)"
+            )
+
+        report_suite_refs = tuple(
+            r.suite_ref for r in safe_report_snapshots
+        )
+        if report_suite_refs != safe_suite_refs:
+            raise error_cls(
+                "tuple(report.suite_ref for report in report_snapshots) must equal suite_refs"
+            )
+
+        if self.run_snapshot.report_refs != safe_report_refs:
+            raise error_cls(
+                "run_snapshot.report_refs must equal report_refs"
+            )
+        if self.run_snapshot.suite_refs != safe_suite_refs:
+            raise error_cls(
+                "run_snapshot.suite_refs must equal suite_refs"
+            )
+
+        if self.serialized_run_snapshot.get("run_ref") != self.run_ref:
+            raise error_cls(
+                'serialized_run_snapshot["run_ref"] must equal run_ref'
+            )
+        if tuple(self.serialized_run_snapshot.get("report_refs", [])) != safe_report_refs:
+            raise error_cls(
+                'serialized_run_snapshot["report_refs"] must equal list(report_refs)'
+            )
+        if tuple(self.serialized_run_snapshot.get("suite_refs", [])) != safe_suite_refs:
+            raise error_cls(
+                'serialized_run_snapshot["suite_refs"] must equal list(suite_refs)'
+            )
+
+        # Freeze mapping fields.
+        safe_serialized = _safe_frozen_mapping(
+            self.serialized_run_snapshot, error_cls
+        )
+        safe_metadata = _safe_frozen_mapping(self.metadata, error_cls)
+
+        object.__setattr__(self, "suite_refs", safe_suite_refs)
+        object.__setattr__(self, "report_refs", safe_report_refs)
+        object.__setattr__(self, "suites", safe_suites)
+        object.__setattr__(self, "suite_results", safe_suite_results_tuple)
+        object.__setattr__(self, "report_snapshots", safe_report_snapshots_tuple)
+        object.__setattr__(self, "serialized_run_snapshot", safe_serialized)
+        object.__setattr__(self, "metadata", safe_metadata)
+
+
+def run_model_boundary_captured_fixture_evaluation(
+    *,
+    run_ref: str,
+    run_label: str,
+    suites: Sequence[ModelBoundaryCapturedFixtureAssertionSuite],
+    report_ref_prefix: str = "report",
+    metadata: Mapping[str, Any] | None = None,
+) -> ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult:
+    """Run the captured-fixture evaluation orchestrator.
+
+    Accepts explicit already-built captured fixture assertion suites, runs the
+    existing suite runner, creates report snapshots and a run snapshot, and
+    returns an immutable result. Does not call models, parse raw captured text,
+    read or write files, or mutate runtime state.
+    """
+    error_cls = ModelBoundaryCapturedFixtureEvaluationRunOrchestratorError
+
+    _validate_non_empty_string(run_ref, "run_ref", error_cls)
+    _validate_non_empty_string(run_label, "run_label", error_cls)
+    _validate_non_empty_string(
+        report_ref_prefix, "report_ref_prefix", error_cls
+    )
+
+    safe_suites = _normalize_captured_fixture_assertion_suite_sequence(
+        suites, error_cls
+    )
+
+    suite_results: list[ModelBoundaryCapturedFixtureAssertionSuiteResult] = []
+    report_snapshots: list[
+        ModelBoundaryCapturedFixtureAssertionReportSnapshot
+    ] = []
+
+    for index, suite in enumerate(safe_suites):
+        suite_result = assert_model_boundary_captured_fixture_assertion_suite(
+            suite
+        )
+        suite_results.append(suite_result)
+
+        report_ref = f"{report_ref_prefix}-{index + 1}-{suite.suite_ref}"
+        report_snapshot = (
+            create_model_boundary_captured_fixture_assertion_report_snapshot(
+                report_ref=report_ref,
+                suite_result=suite_result,
+            )
+        )
+        report_snapshots.append(report_snapshot)
+
+    run_snapshot = create_model_boundary_captured_fixture_evaluation_run_snapshot(
+        run_ref=run_ref,
+        run_label=run_label,
+        report_snapshots=report_snapshots,
+    )
+
+    serialized_run_snapshot = (
+        serialize_model_boundary_captured_fixture_evaluation_run_snapshot(
+            run_snapshot
+        )
+    )
+
+    suite_refs = tuple(s.suite_ref for s in safe_suites)
+    report_refs = tuple(r.report_ref for r in report_snapshots)
+
+    total_specs = sum(r.total_specs for r in suite_results)
+    all_passed = all(r.all_passed for r in suite_results)
+
+    if metadata is None:
+        metadata = {
+            "run_ref": run_ref,
+            "run_label": run_label,
+            "report_ref_prefix": report_ref_prefix,
+            "suite_count": len(safe_suites),
+            "all_passed": all_passed,
+            "total_specs": total_specs,
+        }
+
+    return ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult(
+        run_ref=run_ref,
+        run_label=run_label,
+        report_ref_prefix=report_ref_prefix,
+        suite_refs=suite_refs,
+        report_refs=report_refs,
+        suites=safe_suites,
+        suite_results=tuple(suite_results),
+        report_snapshots=tuple(report_snapshots),
+        run_snapshot=run_snapshot,
+        serialized_run_snapshot=serialized_run_snapshot,
+        metadata=metadata,
+    )
+
+
+def serialize_model_boundary_captured_fixture_evaluation_run_orchestrator_result(
+    result: ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult,
+) -> dict[str, Any]:
+    """Serialize an orchestrator result into a deterministic plain dict.
+
+    Returns stable summary data. Does not include suites, suite_results,
+    report_snapshots, source_suite_result, or raw captured text.
+    """
+    error_cls = ModelBoundaryCapturedFixtureEvaluationRunOrchestratorError
+
+    if not isinstance(
+        result,
+        ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult,
+    ):
+        raise error_cls(
+            "result must be a "
+            "ModelBoundaryCapturedFixtureEvaluationRunOrchestratorResult instance"
+        )
+
+    return {
+        "run_ref": result.run_ref,
+        "run_label": result.run_label,
+        "report_ref_prefix": result.report_ref_prefix,
+        "suite_refs": list(result.suite_refs),
+        "report_refs": list(result.report_refs),
+        "run_snapshot": dict(result.serialized_run_snapshot),
+        "metadata": dict(result.metadata),
+    }
