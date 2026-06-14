@@ -1340,6 +1340,7 @@ class TestGuardrailsDomainPackage:
             "resource_consequence_math.py",
             "context_packet_compiler.py",
             "model_boundary_evaluation.py",
+            "tiny_vertical_slice.py",
             "__pycache__",
         }
         entries = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir()}
