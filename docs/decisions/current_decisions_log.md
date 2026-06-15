@@ -3786,3 +3786,33 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **scene_command_execution_skeleton.py**: not modified
 - **command_kind_routing_skeleton.py**: not modified
 - **validation_integration_bridge_skeleton.py**: not modified
+
+## 2026-06-15 decision — RUNTIME-DOMAIN-RT-001A Action Legality Service Plan and Execution Boundary Review
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001A-ACTION-LEGALITY-SERVICE-PLAN-001
+- **Date**: 2026-06-15
+- **PR**: RUNTIME-DOMAIN-RT-001A
+- **Purpose**: Planning/review-only artifact that defines the backend-owned action legality boundary before any execution behavior is implemented. Defines legality status vocabulary, blocker class taxonomy, hidden-information containment rules, player-visible versus backend-only separation, source-local/donor-specific handling, corpus-scale command-family pressure analysis, and future implementation sequence.
+- **Follows**: PR-9E (transaction preview packet bridge skeleton / authority flag hardening, merged as PR #310). Completes the post-PR-8 command-path reference seam and establishes the legality boundary as the next domain-service planning step.
+- **Files added**:
+  - docs/doctrine/reviews/runtime_domain_rt_001a_action_legality_service_plan.md
+- **Files modified**:
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Legality status vocabulary defined**: legal, illegal, blocked, deferred, quarantined, unknown, escalated
+- **Blocker classes defined**: 18 classes covering actor existence/reference, actor authority/capability, access/permission, target existence/reference, target reachability/scope, scene/location boundary, command-kind routing, validation integration, resource prerequisite (without affordability), timing/cooldown/phase (without clocks), hidden-information, ambiguity/clarification, unsupported command-family, source-local/donor-specific, doctrine gap, schema gap, runtime owner handoff, policy/safety/meta-action, anti-authority
+- **Hidden-information containment**: denial messages must not reveal hidden entity existence, secret passages, concealed traps, hidden social state, future events, or differential information through error specificity
+- **Next allowed step**: RT-001B — action legality skeleton dataclasses/constants/validators/serializers
+- **Authoritative denials**:
+  - No action legality engine implementation
+  - No command execution
+  - No state mutation or event append
+  - No persistence or replay writes
+  - No RNG/table/oracle execution
+  - No resource/consequence math execution
+  - No affordability calculation, reservation, or settlement
+  - No consequence application
+  - No model calls, prompt rendering, prompt execution, or prose parsing
+  - No narration generation
+  - No live-play/session authority, UI/client authority
+  - No conversion, sourcebook inclusion, or canon promotion
