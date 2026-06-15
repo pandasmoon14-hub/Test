@@ -3615,7 +3615,128 @@ classification:
   next_allowed_step: review/merge of PR-9C, then PR-9D validation integration bridge
 ```
 
+## RUNTIME-DOMAIN-PR-9D: Validation Integration Bridge Skeleton
+
+**Date:** 2026-06-15
+
+**Artifact ID:** RUNTIME-DOMAIN-PR-9D-VALIDATION-INTEGRATION-BRIDGE-SKELETON-001
+
+PR-9D implements a narrow backend-owned validation integration bridge skeleton that
+ties together PR-9A scene command execution assembly surfaces, PR-9C command-kind
+routing results, and existing validation pipeline / validation integration skeleton
+surfaces.
+
+PR-9D follows merged PR #307 (PR-9C). It consumes PR-9C `CommandKindRoutingResult`
+objects by reference without reclassifying commands. It references validation surfaces
+without executing legality or validation rules.
+
+Key implementation details:
+
+- Creates `src/astra_runtime/domain/validation_integration_bridge_skeleton.py` with:
+  - 7 error classes (`ValidationIntegrationBridgeSkeletonError`, `InvalidValidationBridgeRequestError`,
+    `InvalidValidationBridgeSubjectRefError`, `InvalidValidationBridgeRequirementRefError`,
+    `InvalidValidationBridgeResultRefError`, `InvalidValidationBridgeOwnerRouteRefError`,
+    `InvalidValidationBridgeAuthorityFlagsError`, `InvalidValidationBridgeResultError`)
+  - 4 reference dataclasses (`ValidationBridgeSubjectRef`, `ValidationBridgeRequirementRef`,
+    `ValidationBridgeOwnerRouteRef`, `ValidationBridgeResultRef`)
+  - Bridge request/result types (`ValidationIntegrationBridgeRequest`, `ValidationIntegrationBridgeResult`)
+  - Authority flags (`ValidationIntegrationBridgeAuthorityFlags`) with 22 denied authorities
+  - Factory functions, validator functions, deterministic serializer functions
+- Bridge accepts: `CommandEnvelope` + `CommandKindRoutingResult` + optional `SceneCommandExecutionAssemblyRequest`,
+  `SceneCommandExecutionValidationRef`, or kernel `ValidationResult`
+- Bridge validates command references match between envelope and routing result
+- Bridge produces pending `ValidationBridgeResultRef` when no `ValidationResult` is supplied
+- Bridge carries command family/kind/owner route from PR-9C without reclassifying
+- All authority flags default to False; constructing with any True flag raises an error
+- Deterministic serialization with `MappingProxyType` for metadata immutability
+
+Does not authorize:
++ legality resolution
++ validation rule execution
++ command execution
++ runtime action execution
++ state mutation
++ event append
++ persistence write
++ RNG/table/oracle execution
++ settlement authorization
++ PR-5 arithmetic execution
++ consequence application
++ packet compilation
++ model authority
++ prompt rendering
++ prompt execution
++ prose parsing
++ narration generation
++ live-play/session authority
++ UI/client authority
++ conversion
++ sourcebook inclusion
++ canon promotion
+
+Unblocks later PR-9E transaction preview packet bridge but does not implement PR-9E.
+
+### Summary statistics
+
+```
+  pr_id: RUNTIME-DOMAIN-PR-9D
+  type: implementation-skeleton
+  base_main_sha: ceeeffb15979596871441a0ec1a5d516f5941823
+  branch: runtime-gate-b/pr-9d-validation-integration-bridge-skeleton
+  files_added:
+    - src/astra_runtime/domain/validation_integration_bridge_skeleton.py
+    - tests/test_runtime_domain_pr_9d_validation_integration_bridge_skeleton.py
+  files_modified:
+    - src/astra_runtime/domain/__init__.py
+    - docs/doctrine/astra_doctrine_registry_v0_1.yaml
+    - docs/decisions/current_decisions_log.md
+  error_classes_added: 8
+  reference_dataclasses_added: 4
+  request_result_dataclasses_added: 4
+  authority_flags_denied: 22
+  factory_functions_added: 7
+  validator_functions_added: 8
+  serialization_functions_added: 2
+  new_runtime_behavior: false
+  authorized_legality_resolution: false
+  authorized_validation_rule_execution: false
+  authorized_command_execution: false
+  authorized_runtime_action_execution: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_persistence_write: false
+  authorized_rng_execution: false
+  authorized_settlement: false
+  authorized_pr5_arithmetic_execution: false
+  authorized_consequence_application: false
+  authorized_packet_compilation: false
+  authorized_model_authority: false
+  authorized_prompt_rendering: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  files_touched:
+    - src/astra_runtime/domain/validation_integration_bridge_skeleton.py
+    - src/astra_runtime/domain/__init__.py
+    - tests/test_runtime_domain_pr_9d_validation_integration_bridge_skeleton.py
+    - docs/doctrine/astra_doctrine_registry_v0_1.yaml
+    - docs/decisions/current_decisions_log.md
+  next_allowed_step: review/merge of PR-9D, then PR-9E transaction preview packet bridge
+```
+
 ### Non-implementation reaffirmation
+
+   - `tiny_vertical_slice.py` remains a closed proof-of-concept and was not modified.
+   - `scene_command_execution_skeleton.py` was not modified.
+   - `command_kind_routing_skeleton.py` was not modified.
+   - No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
+   - No legality resolution, validation rule execution, command execution, runtime action execution, state mutation, event append, persistence write, RNG/table/oracle execution, settlement authorization, PR-5 arithmetic execution, consequence application, packet compilation, conversion, sourcebook inclusion, or canon promotion behavior was implemented.
+   - Bridge is reference-only — no owner surface is called or executed.
 
 - `tiny_vertical_slice.py` remains a closed proof-of-concept and was not modified.
 - `scene_command_execution_skeleton.py` was not modified.
