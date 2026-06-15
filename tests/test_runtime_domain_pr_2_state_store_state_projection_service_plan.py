@@ -560,7 +560,7 @@ class TestDomainPackageGuardrails:
         assert (DOMAIN_PACKAGE_DIR / "action_legality.py").exists()
 
     def test_domain_package_authorized_files_only(self):
-        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "transaction_lifecycle.py", "event_commitment.py", "validation_integration.py", "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "__pycache__"}
+        allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "transaction_lifecycle.py", "event_commitment.py", "validation_integration.py", "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py", "__pycache__"}
         actual = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir() if p.name != "__pycache__"}
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized files in domain package: {unauthorized}"

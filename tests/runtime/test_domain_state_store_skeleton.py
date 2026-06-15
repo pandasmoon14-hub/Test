@@ -296,7 +296,7 @@ class TestGuardrailsDomainPackage:
             "context_packet_compiler.py",
             "model_boundary_evaluation.py",
             "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
-            "__pycache__",
+            "command_kind_routing_skeleton.py", "__pycache__",
         }
         entries = set(os.listdir(domain_dir))
         unauthorized = entries - authorized

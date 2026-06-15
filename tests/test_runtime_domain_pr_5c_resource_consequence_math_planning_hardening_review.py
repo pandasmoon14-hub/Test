@@ -242,6 +242,7 @@ def test_resource_consequence_math_module_and_runtime_domain_file_state() -> Non
     allowed_domain_additions = {
         "src/astra_runtime/domain/resource_consequence_math.py",
         "src/astra_runtime/domain/scene_command_execution_skeleton.py",
+        "src/astra_runtime/domain/command_kind_routing_skeleton.py",
     }
     assert not any(
         path.startswith("src/astra_runtime/domain/") for path in added_files
