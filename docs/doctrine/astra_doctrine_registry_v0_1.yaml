@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-15'
+  version: 0.1.97
+  action: runtime_domain_pr_9c_command_kind_routing_skeleton
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-PR-9C command-kind routing skeleton tracking. Implementation follows merged PR #306 (RUNTIME-DOMAIN-PR-9B). Adds src/astra_runtime/domain/command_kind_routing_skeleton.py with frozen keyword-only dataclasses, deterministic command-family classification, dispatch-shell owner-route references, false-only authority flags covering 20 denied authorities, factory/validator parity, and deterministic serialization. Adds tests/test_runtime_domain_pr_9c_command_kind_routing_skeleton.py. Updates domain package exports and guardrail allowlists narrowly. Defines 14 command families (movement, inspection, interaction, social, combat, ability, inventory, recovery, crafting, travel, research, mission, system_meta, unknown). Authorizes no legality resolution, no command execution, no runtime action execution, no state mutation, no event append, no persistence write, no RNG/table/oracle execution, no settlement authorization, no PR-5 arithmetic execution, no consequence application, no model authority, no prompt rendering, no prompt execution, no prose parsing, no narration generation, no live-play/session authority, no UI/client authority, no conversion, no sourcebook inclusion, and no canon promotion. Unblocks PR-9D validation integration bridge but does not implement PR-9D."
+- date: '2026-06-15'
   version: 0.1.96
   action: runtime_domain_pr_9b_scene_command_execution_hardening_review
   actor: Astra Doctrine Council / synthesis assistant

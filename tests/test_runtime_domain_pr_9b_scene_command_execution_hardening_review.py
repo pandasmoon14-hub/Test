@@ -159,6 +159,7 @@ class TestPR9BReviewHardeningOnly:
             "model_boundary_evaluation.py",
             "resource_consequence_math.py",
             "scene_command_execution_skeleton.py",
+            "command_kind_routing_skeleton.py",
             "state_projection.py",
             "state_store.py",
             "tiny_vertical_slice.py",
@@ -401,6 +402,7 @@ class TestGuardrailAllowlistNarrow:
             assert p in {
                 "src/astra_runtime/domain/resource_consequence_math.py",
                 "src/astra_runtime/domain/scene_command_execution_skeleton.py",
+                "src/astra_runtime/domain/command_kind_routing_skeleton.py",
             }, f"unexpected domain path in PR-5c allowlist: {p}"
 
     def test_pr5g_domain_dir_allowlist_does_not_include_unexpected_files(self):
@@ -411,6 +413,7 @@ class TestGuardrailAllowlistNarrow:
             "event_commitment.py", "resource_consequence_math.py",
             "context_packet_compiler.py", "model_boundary_evaluation.py",
             "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
+            "command_kind_routing_skeleton.py",
             "state_projection.py", "state_store.py", "transaction_lifecycle.py",
             "validation_integration.py",
         }

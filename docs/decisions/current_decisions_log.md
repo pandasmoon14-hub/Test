@@ -3536,3 +3536,89 @@ classification:
 - No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
 - No RNG/table/oracle execution, state mutation, event append, settlement, conversion, or canon promotion behavior was implemented.
 - No new runtime behavior was added.
+
+## RUNTIME-DOMAIN-PR-9C: Command-Kind Routing Skeleton
+
+**Date:** 2026-06-15
+**Artifact ID:** RUNTIME-DOMAIN-PR-9C-COMMAND-KIND-ROUTING-SKELETON-001
+
+### Decision
+
+PR-9C implements a narrow backend-owned command-kind routing skeleton that
+classifies command intent/envelope data into known command families and produces
+dispatch-shell references to intended owner surfaces. It follows PR-9B (merged
+as PR #306) and does not implement legality resolution, command execution,
+runtime mutation, persistence, RNG, settlement, consequence application, model
+calls, prompt execution, narration generation, or live play.
+
+### Reason
+
+The PR-9A scene command execution skeleton accepts arbitrary `command_type`
+strings from `CommandEnvelope` but has no classification or routing layer. Before
+building the PR-9D validation integration bridge, the runtime needs a declared
+vocabulary of command families and a deterministic routing mechanism that maps
+command types to intended owner surfaces without executing them.
+
+### Implication
+
+PR-9D (validation integration bridge) is unblocked but not implemented by PR-9C.
+The routing skeleton provides classification metadata that PR-9D and later PRs
+can consume, but the skeleton itself does not call, execute, or authorize any
+owner surface.
+
+### Revisit trigger
+
+Revisit if new command families are needed for corpus-scale donor pressure
+beyond the initial 14 families, or if the prefix-match classification mode
+proves insufficient for complex multi-token command types.
+
+```yaml
+classification:
+  pr_id: RUNTIME-DOMAIN-PR-9C
+  type: implementation-skeleton
+  follows: RUNTIME-DOMAIN-PR-9B (merged as PR #306)
+  command_families_defined: 14
+  authority_flags_denied: 20
+  dataclasses_added: 6
+  factory_functions_added: 7
+  validator_functions_added: 6
+  routing_functions_added: 3
+  serialization_functions_added: 2
+  new_runtime_behavior: false
+  authorized_legality_resolution: false
+  authorized_command_execution: false
+  authorized_runtime_action_execution: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_persistence_write: false
+  authorized_rng_execution: false
+  authorized_settlement: false
+  authorized_pr5_arithmetic_execution: false
+  authorized_consequence_application: false
+  authorized_model_authority: false
+  authorized_prompt_rendering: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  files_touched:
+    - src/astra_runtime/domain/command_kind_routing_skeleton.py
+    - src/astra_runtime/domain/__init__.py
+    - tests/test_runtime_domain_pr_9c_command_kind_routing_skeleton.py
+    - docs/doctrine/astra_doctrine_registry_v0_1.yaml
+    - docs/decisions/current_decisions_log.md
+    - guardrail allowlist updates across multiple test files
+  next_allowed_step: review/merge of PR-9C, then PR-9D validation integration bridge
+```
+
+### Non-implementation reaffirmation
+
+- `tiny_vertical_slice.py` remains a closed proof-of-concept and was not modified.
+- `scene_command_execution_skeleton.py` was not modified.
+- No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
+- No legality resolution, command execution, state mutation, event append, persistence write, RNG/table/oracle execution, settlement, consequence application, conversion, sourcebook inclusion, or canon promotion behavior was implemented.
+- Routing is classification and dispatch-shell reference only — no owner surface is called or executed.
