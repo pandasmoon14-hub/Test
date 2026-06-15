@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-15'
+  version: 0.1.96
+  action: runtime_domain_pr_9b_scene_command_execution_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-PR-9B scene command execution skeleton hardening review tracking. Review/hardening only; follows merged PR #305 (RUNTIME-DOMAIN-PR-9A); audits and validates the PR-9A skeleton before any new runtime behavior is built on top of it; adds review artifact, focused hardening tests, registry entry, and decision-log entry; updates guardrail allowlists narrowly; authorizes no new runtime behavior, no command-kind routing, no validation bridge, no packet bridge, no live play, no model calls, no prompt execution, no prose parsing, no narration generation, no persistence implementation, no RNG/table/oracle execution, no state mutation, no event append, no settlement, no PR-5 arithmetic execution, no consequence application, no conversion, no sourcebook inclusion, and no canon promotion."
 - date: '2026-06-14'
   version: 0.1.95
   action: runtime_domain_pr_9a_scene_command_execution_skeleton
@@ -13381,3 +13386,63 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-9A skeleton implementation; backend-owned typed scene command execution / runtime transaction assembly; follows PR-9 planning; generalizes PR-8 tiny vertical slice without expanding tiny_vertical_slice.py; consumes existing kernel and domain skeleton surfaces; explicit anti-authority flags; no live play, model calls, prompt execution, prose parsing, narration generation, persistence writes, RNG/table/oracle execution, state mutation, event append, settlement, PR-5 arithmetic, broad consequence application, conversion, sourcebook inclusion, or canon promotion.
+
+- file_id: RUNTIME-DOMAIN-PR-9B-SCENE-COMMAND-EXECUTION-HARDENING-REVIEW-001
+  title: 'RUNTIME-DOMAIN-PR-9B: Scene Command Execution Skeleton Hardening Review'
+  file_path: docs/doctrine/reviews/runtime_domain_pr_9b_scene_command_execution_hardening_review.md
+  status: review
+  authority_level: review-gate
+  authority_note: Review/hardening gate for PR-9A. No new runtime behavior authorized.
+  layer: 6_runtime_backend
+  phase: 'PR-9B'
+  last_reviewed: '2026-06-15'
+  next_review_due: '2026-06-22'
+  maintained_by: Astra Doctrine Council
+  purpose: Audit and harden the PR-9A scene command execution skeleton before any new runtime behavior is built on top of it.
+  pr_context: Follows merged PR #305 (RUNTIME-DOMAIN-PR-9A). Blocks PR-9C until reviewed.
+  authorized_new_runtime_behavior: false
+  authorized_live_play: false
+  authorized_model_calls: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_persistence_writes: false
+  authorized_rng_execution: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_settlement: false
+  authorized_pr5_arithmetic_execution: false
+  authorized_consequence_application: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  authorized_command_kind_routing: false
+  authorized_validation_bridge: false
+  authorized_packet_bridge: false
+  depends_on:
+  - RUNTIME-DOMAIN-PR-9A-SCENE-COMMAND-EXECUTION-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - review artifact exists test
+  - no new domain module added test
+  - no runtime side effects test
+  - hidden-info not in visible serialization test
+  - persistence prepare-only reference surface test
+  - authority flags all false and cannot be set true test
+  - no forbidden enabled behavior terms test
+  - guardrail allowlist narrowness test
+  - tiny_vertical_slice.py not modified test
+  - PR-9A structural smoke test
+  - runtime structural check test
+  - serialization completeness test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before merge
+  recommends_next_step: review/merge of PR-9B, then planning for PR-9C or authorized runtime generalization implementation
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-9B review/hardening gate; audits and validates PR-9A skeleton; adds review artifact, focused hardening tests, registry and decision-log entries; updates guardrail allowlists narrowly; no new runtime behavior; blocks PR-9C until reviewed.

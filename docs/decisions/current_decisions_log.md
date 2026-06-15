@@ -3454,3 +3454,85 @@ runtime_domain_pr_9a:
 - `tiny_vertical_slice.py` remains a closed proof-of-concept and was not modified.
 - No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
 - No RNG/table/oracle execution, state mutation, event append, settlement, conversion, or canon promotion behavior was implemented.
+
+---
+
+## RUNTIME-DOMAIN-PR-9B: Scene Command Execution Skeleton Hardening Review
+
+**Date:** 2026-06-15
+**Artifact ID:** RUNTIME-DOMAIN-PR-9B-SCENE-COMMAND-EXECUTION-HARDENING-REVIEW-001
+
+### Decision
+
+PR-9B is a review/hardening gate for PR-9A (scene command execution skeleton).
+It audits, validates, and tightens the PR-9A skeleton before any new runtime
+behavior is built on top of it. PR-9B adds no new runtime behavior.
+
+### Reason
+
+The PR-9A skeleton introduced a large new module (~1304 lines, 16 frozen
+dataclasses) that generalizes the PR-8 tiny vertical slice into a reusable
+backend-owned runtime transaction assembly path. Before building on it
+(PR-9C or later), we need independent validation that:
+- No names imply real execution or live-play behavior
+- Hidden-info contracts don't leak into visible serialization
+- PersistenceBoundaryRequest is treated as prepare-only
+- Authority flags cover all denied authorities from PR-9
+- No forbidden paths were introduced
+- Guardrail allowlist updates are narrow
+- tiny_vertical_slice.py was not modified
+
+### Implication
+
+PR-9C and subsequent runtime generalization work is blocked until PR-9B
+is reviewed and merged.
+
+### Revisit trigger
+
+Revisit if PR-9A is discovered to have structural issues that require
+a different skeleton shape, or if the authority flag set needs expansion
+for newly identified denied authorities.
+
+```yaml
+classification:
+  pr_id: RUNTIME-DOMAIN-PR-9B
+  type: review-hardening-gate
+  follows: RUNTIME-DOMAIN-PR-9A (merged as PR #305)
+  audit_criteria_count: 12
+  audit_findings: all 12 criteria passed
+  hardening_actions:
+    - review artifact added
+    - focused hardening tests added
+    - registry entry added
+    - decision-log entry added
+    - guardrail allowlists updated narrowly
+  new_runtime_behavior: false
+  authorized_live_play: false
+  authorized_model_calls: false
+  authorized_prompt_execution: false
+  authorized_persistence_writes: false
+  authorized_rng_execution: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_settlement: false
+  authorized_conversion: false
+  authorized_canon_promotion: false
+  authorized_command_kind_routing: false
+  authorized_validation_bridge: false
+  authorized_packet_bridge: false
+  files_touched:
+    - docs/doctrine/reviews/runtime_domain_pr_9b_scene_command_execution_hardening_review.md
+    - docs/doctrine/astra_doctrine_registry_v0_1.yaml
+    - docs/decisions/current_decisions_log.md
+    - tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py
+    - tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py
+  next_allowed_step: review/merge of PR-9B, then planning for PR-9C or authorized runtime generalization implementation
+```
+
+### Non-implementation reaffirmation
+
+- `tiny_vertical_slice.py` remains a closed proof-of-concept and was not modified.
+- `scene_command_execution_skeleton.py` was not modified — only audited and validated.
+- No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
+- No RNG/table/oracle execution, state mutation, event append, settlement, conversion, or canon promotion behavior was implemented.
+- No new runtime behavior was added.

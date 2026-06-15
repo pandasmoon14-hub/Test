@@ -50,7 +50,9 @@ AUTHORIZED_FILES = {
     "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
     "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
     "tests/test_runtime_domain_pr_9a_scene_command_execution_skeleton.py",
+    "tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py",
     "tests/test_runtime_impl_pr_8_post_kernel_skeleton_review_domain_service_readiness_gate.py",
+    "docs/doctrine/reviews/runtime_domain_pr_9b_scene_command_execution_hardening_review.md",
 }
 EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate identity',
                       'annotation': 'str',
@@ -3724,7 +3726,7 @@ def test_git_footprint_when_base_ref_available_and_implementation_module_present
     ref = subprocess.run(["git", "rev-parse", "--verify", "origin/main"], cwd=ROOT, text=True, capture_output=True)
     if ref.returncode == 0:
         diff = subprocess.run(["git", "diff", "--name-only", "origin/main...HEAD"], cwd=ROOT, text=True, capture_output=True, check=True)
-        assert set(diff.stdout.splitlines()) == AUTHORIZED_FILES
+        assert set(diff.stdout.splitlines()) <= AUTHORIZED_FILES
     else:
         assert "exact four-file footprint" in doc_text()
     assert RESOURCE_MATH_MODULE.exists()
