@@ -3354,3 +3354,103 @@ runtime_domain_pr_9:
 - No database package exists yet.
 - No durable store package exists yet.
 - No RNG/table/oracle execution module exists yet.
+
+---
+
+## RUNTIME-DOMAIN-PR-9A-SCENE-COMMAND-EXECUTION-SKELETON-001
+
+**Date:** 2026-06-14
+
+### Decision
+
+RUNTIME-DOMAIN-PR-9A implements a narrow backend-owned typed scene command execution skeleton, generalizing the PR-8 tiny vertical slice into a reusable runtime transaction assembly path.
+
+### Reason
+
+PR #302 proved that a deterministic, backend-owned tiny vertical slice can be assembled end-to-end without collapsing authority into the LLM. PR #304 planned the next narrow generalization seam. This PR realizes that seam as a typed skeleton that consumes existing kernel and domain skeleton interfaces.
+
+### Implication
+
+- Adds `src/astra_runtime/domain/scene_command_execution_skeleton.py` as the sole new implementation module.
+- Exports frozen dataclasses, factories, validators, and serializers through `src/astra_runtime/domain/__init__.py`.
+- Adds focused tests in `tests/test_runtime_domain_pr_9a_scene_command_execution_skeleton.py`.
+- Does not expand `tiny_vertical_slice.py`.
+- Does not authorize live play, model calls, prompt execution, prose parsing, narration generation, persistence writes, RNG/table/oracle execution, state mutation, event append, settlement, PR-5 arithmetic execution, broad consequence application, conversion, sourcebook inclusion, or canon promotion.
+- All authority flags on `SceneCommandExecutionAssemblyAuthorityFlags` remain explicitly `False`.
+
+### Revisit trigger
+
+- If the skeleton needs to expand beyond typed assembly into execution engines.
+- If new kernel interfaces invalidate the assembly assumptions.
+- If generalization requires doctrine beyond RT-001 through RT-012.
+
+### Classification block
+
+```yaml
+runtime_domain_pr_9a:
+  implementation_id: RUNTIME-DOMAIN-PR-9A-SCENE-COMMAND-EXECUTION-SKELETON-001
+  artifact_type: scene_command_execution_skeleton
+  implementation_status: skeleton_implementation
+  follows_pr_9_planning: true
+  generalizes_pr_8_tiny_vertical_slice: true
+  backend_owned_typed_assembly: true
+  authorizes_implementation_beyond_skeleton: false
+  authorizes_live_play: false
+  authorizes_model_calls: false
+  authorizes_prompt_rendering: false
+  authorizes_prose_parsing: false
+  authorizes_narration_generation: false
+  authorizes_persistence_writes: false
+  authorizes_rng_table_oracle_execution: false
+  authorizes_state_mutation: false
+  authorizes_event_append: false
+  authorizes_settlement: false
+  authorizes_pr5_arithmetic_execution: false
+  authorizes_consequence_application: false
+  authorizes_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  touched_files:
+    - src/astra_runtime/domain/scene_command_execution_skeleton.py
+    - src/astra_runtime/domain/__init__.py
+    - tests/test_runtime_domain_pr_9a_scene_command_execution_skeleton.py
+    - docs/doctrine/astra_doctrine_registry_v0_1.yaml
+    - docs/decisions/current_decisions_log.md
+    - tests/test_runtime_domain_pr_0_domain_service_implementation_sequencing_plan.py
+    - tests/test_runtime_domain_pr_1_command_lifecycle_action_legality_service_plan.py
+    - tests/test_runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.py
+    - tests/test_runtime_domain_pr_2_state_store_state_projection_service_plan.py
+    - tests/test_runtime_domain_pr_2b_state_store_state_projection_skeleton_review.py
+    - tests/test_runtime_domain_pr_3_transaction_lifecycle_event_commitment_service_plan.py
+    - tests/test_runtime_domain_pr_3b_transaction_lifecycle_event_commitment_skeleton_review.py
+    - tests/test_runtime_domain_pr_4_validation_integration_invariant_enforcement_service_plan.py
+    - tests/test_runtime_domain_pr_4b_validation_integration_invariant_enforcement_skeleton_review.py
+    - tests/test_runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review.py
+    - tests/test_runtime_domain_pr_4f_validation_integration_residual_hardening_review.py
+    - tests/test_runtime_domain_pr_5_resource_consequence_math_service_plan.py
+    - tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py
+    - tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py
+    - tests/test_runtime_impl_pr_8_post_kernel_skeleton_review_domain_service_readiness_gate.py
+    - tests/runtime/test_command_envelope_skeleton.py
+    - tests/runtime/test_context_projection_skeleton.py
+    - tests/runtime/test_domain_event_commitment_skeleton.py
+    - tests/runtime/test_domain_state_store_skeleton.py
+    - tests/runtime/test_domain_transaction_lifecycle_skeleton.py
+    - tests/runtime/test_domain_validation_integration_skeleton.py
+    - tests/runtime/test_event_ledger_skeleton.py
+    - tests/runtime/test_hidden_information_skeleton.py
+    - tests/runtime/test_persistence_boundary_skeleton.py
+    - tests/runtime/test_replay_audit_skeleton.py
+    - tests/runtime/test_rng_interface_skeleton.py
+    - tests/runtime/test_runtime_trace_skeleton.py
+    - tests/runtime/test_state_delta_skeleton.py
+    - tests/runtime/test_table_oracle_skeleton.py
+    - tests/runtime/test_validation_pipeline_skeleton.py
+  next_allowed_step: review/merge of PR-9A, then planning for PR-9B or authorized runtime generalization implementation
+```
+
+### Non-implementation reaffirmation
+
+- `tiny_vertical_slice.py` remains a closed proof-of-concept and was not modified.
+- No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
+- No RNG/table/oracle execution, state mutation, event append, settlement, conversion, or canon promotion behavior was implemented.

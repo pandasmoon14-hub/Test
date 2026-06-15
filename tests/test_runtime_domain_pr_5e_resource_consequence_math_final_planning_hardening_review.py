@@ -102,7 +102,7 @@ def test_scope_review_and_no_runtime_domain_file_added() -> None:
         "action_legality.py",
         "command_lifecycle.py",
         "event_commitment.py",
-        "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py",
+        "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
         "state_projection.py",
         "state_store.py",
         "transaction_lifecycle.py",

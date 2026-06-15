@@ -601,7 +601,7 @@ class TestDomainPackageGuardrails:
             "state_store.py", "state_projection.py",
             "transaction_lifecycle.py", "event_commitment.py",
             "validation_integration.py",
-            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py",
+            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
             "__pycache__",
         }
         actual = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir() if p.name != "__pycache__"}
