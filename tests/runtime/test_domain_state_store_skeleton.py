@@ -295,7 +295,7 @@ class TestGuardrailsDomainPackage:
             "resource_consequence_math.py",
             "context_packet_compiler.py",
             "model_boundary_evaluation.py",
-            "tiny_vertical_slice.py",
+            "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))

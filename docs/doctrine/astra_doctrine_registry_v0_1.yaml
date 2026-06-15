@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-14'
+  version: 0.1.95
+  action: runtime_domain_pr_9a_scene_command_execution_skeleton
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-PR-9A scene command execution skeleton tracking. Narrow backend-owned typed assembly implementation that generalizes the PR-8 tiny vertical slice without expanding tiny_vertical_slice.py. Adds src/astra_runtime/domain/scene_command_execution_skeleton.py with frozen dataclasses, factory/validator parity, deterministic serialization, explicit anti-authority flags, and consumption of existing kernel/domain skeleton surfaces. Adds focused tests in tests/test_runtime_domain_pr_9a_scene_command_execution_skeleton.py. Updates domain package exports and guardrail allowlists. Does not authorize live play, model calls, prompt execution, prose parsing, narration generation, persistence writes, RNG/table/oracle execution, state mutation, event append, settlement, PR-5 arithmetic execution, broad consequence application, conversion, sourcebook inclusion, or canon promotion."
+- date: '2026-06-14'
   version: 0.1.94
   action: runtime_domain_pr_9_post_pr8_runtime_generalization_planning
   actor: Astra Doctrine Council / synthesis assistant
@@ -13275,3 +13280,104 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-9 planning only; post-PR-8 runtime generalization planning; follows merged PR #302 (RUNTIME-DOMAIN-PR-8 tiny vertical slice) and PR #303 guardrail baseline cleanup; defines next narrow runtime generalization seam; selects backend-owned typed scene-command execution skeleton / runtime transaction assembly as candidate next implementation; authorizes no implementation, no tiny_vertical_slice.py expansion, no live-play behavior, no LLM narration authority, no persistence implementation, no RNG/table/oracle execution, no arbitrary state mutation, no settlement, no broad consequence application, no PR-5 arithmetic execution, no conversion, no sourcebook inclusion, and no canon promotion.
+
+- file_id: RUNTIME-DOMAIN-PR-9A-SCENE-COMMAND-EXECUTION-SKELETON-001
+  title: RUNTIME-DOMAIN-PR-9A Scene Command Execution Skeleton (Backend-Owned Typed Assembly)
+  file_path: src/astra_runtime/domain/scene_command_execution_skeleton.py
+  filename: scene_command_execution_skeleton.py
+  proposed_path: src/astra_runtime/domain/scene_command_execution_skeleton.py
+  artifact_type: scene_command_execution_skeleton
+  artifact_subtype: backend_owned_typed_assembly
+  batch: runtime-domain
+  status: draft
+  implementation_status: skeleton_implementation
+  derives_from:
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-001
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-002
+  - RUNTIME-DOMAIN-PR-9-POST-PR8-RUNTIME-GENERALIZATION-PLANNING-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-6-CONTEXT-PACKET-COMPILER-SCOPE-ALIGNMENT-001
+  - RUNTIME-DOMAIN-PR-7-MODEL-BOUNDARY-EVALUATION-SLICE-001
+  generalizes_pr_8_tiny_vertical_slice: true
+  backend_owned_typed_assembly: true
+  consumes_kernel_skeletons: true
+  consumes_domain_skeletons: true
+  authorizes_implementation_beyond_skeleton: false
+  authorizes_tiny_vertical_slice_expansion: false
+  authorizes_live_play: false
+  authorizes_llm_narration_authority: false
+  authorizes_persistence_implementation: false
+  authorizes_rng_table_oracle_execution: false
+  authorizes_arbitrary_state_mutation: false
+  authorizes_settlement_authorization: false
+  authorizes_broad_consequence_application: false
+  authorizes_pr5_arithmetic_execution: false
+  authorizes_conversion: false
+  authorizes_sourcebook_inclusion: false
+  authorizes_canon_promotion: false
+  authorizes_prompt_templates: false
+  authorizes_prompt_execution: false
+  authorizes_prose_parsing: false
+  authorizes_model_calls: false
+  does_not_authorize:
+  - implementation beyond skeleton
+  - tiny_vertical_slice.py expansion
+  - live-play behavior
+  - LLM narration authority
+  - persistence implementation
+  - RNG/table/oracle execution
+  - arbitrary state mutation
+  - settlement authorization
+  - broad consequence application
+  - PR-5 arithmetic execution
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  - prompt templates
+  - prompt execution
+  - prose parsing
+  - model calls
+  - UI/client packages
+  - live-play adapter packages
+  dependencies:
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-001
+  - RUNTIME-DOMAIN-PR-8-TINY-VERTICAL-SLICE-002
+  - RUNTIME-DOMAIN-PR-9-POST-PR8-RUNTIME-GENERALIZATION-PLANNING-001
+  - RUNTIME-IMPL-PR-8-POST-KERNEL-SKELETON-REVIEW-DOMAIN-SERVICE-READINESS-GATE-001
+  - RUNTIME-DOMAIN-PR-0-DOMAIN-SERVICE-IMPLEMENTATION-SEQUENCING-PLAN-001
+  - RUNTIME-DOMAIN-PR-5A-RESOURCE-CONSEQUENCE-MATH-SKELETON-IMPLEMENTATION-001
+  - RUNTIME-DOMAIN-PR-6-CONTEXT-PACKET-COMPILER-SCOPE-ALIGNMENT-001
+  - RUNTIME-DOMAIN-PR-7-MODEL-BOUNDARY-EVALUATION-SLICE-001
+  blocked_by: []
+  required_tests:
+  - module exists test
+  - public exports exist test
+  - frozen dataclass test
+  - factory validator parity test
+  - deterministic serialization test
+  - command envelope consumption test
+  - scene contract multiple actors/objects/hidden test
+  - transaction assembly result surfaces test
+  - input immutability test
+  - no persistence write authority test
+  - no RNG/table/oracle execution authority test
+  - no model/prompt/prose/narration authority test
+  - no settlement/consequence/arithmetic authority test
+  - no conversion/canon/sourcebook authority test
+  - tiny_vertical_slice.py untouched test
+  - deterministic repeatability test
+  - malformed input error hierarchy test
+  - kernel/domain skeleton consumption test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before merge
+  recommends_next_step: review/merge of PR-9A, then planning for PR-9B or authorized runtime generalization implementation
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-PR-9A skeleton implementation; backend-owned typed scene command execution / runtime transaction assembly; follows PR-9 planning; generalizes PR-8 tiny vertical slice without expanding tiny_vertical_slice.py; consumes existing kernel and domain skeleton surfaces; explicit anti-authority flags; no live play, model calls, prompt execution, prose parsing, narration generation, persistence writes, RNG/table/oracle execution, state mutation, event append, settlement, PR-5 arithmetic, broad consequence application, conversion, sourcebook inclusion, or canon promotion.

@@ -239,8 +239,12 @@ def test_resource_consequence_math_module_and_runtime_domain_file_state() -> Non
         )).splitlines()
         if line.startswith("A  ") or line.startswith("?? ")
     )
+    allowed_domain_additions = {
+        "src/astra_runtime/domain/resource_consequence_math.py",
+        "src/astra_runtime/domain/scene_command_execution_skeleton.py",
+    }
     assert not any(
         path.startswith("src/astra_runtime/domain/") for path in added_files
-        if path != "src/astra_runtime/domain/resource_consequence_math.py"
+        if path not in allowed_domain_additions
     )
     assert not any(path.startswith("src/astra_runtime/kernel/") for path in added_files)
