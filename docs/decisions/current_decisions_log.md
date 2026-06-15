@@ -3743,3 +3743,46 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - No live-play adapter, model integration, prompt template, UI/client, database, or durable store package was added.
 - No legality resolution, command execution, state mutation, event append, persistence write, RNG/table/oracle execution, settlement, consequence application, conversion, sourcebook inclusion, or canon promotion behavior was implemented.
 - Routing is classification and dispatch-shell reference only — no owner surface is called or executed.
+
+## RUNTIME-DOMAIN-PR-9E: Transaction Preview Packet Bridge Skeleton
+
+- **Status**: implemented (pending merge)
+- **Date**: 2026-06-15
+- **PR**: RUNTIME-DOMAIN-PR-9E
+- **Purpose**: Creates a narrow backend-owned transaction preview packet bridge skeleton that compiles PR-9A assembly, PR-9C routing, PR-9D validation bridge, and kernel TransactionPreview surfaces into deterministic packet descriptor / packet reference shells.
+- **Follows**: PR-9D (validation integration bridge skeleton)
+- **Consumes**: PR-9A scene command execution assembly result, PR-9C command kind routing result, PR-9D validation integration bridge result, kernel TransactionPreview
+- **Produces**: TransactionPreviewPacketBridgeResult with:
+  - context packet descriptor (single_event_context_packet)
+  - narration packet descriptor (single_event_narration_packet)
+  - visible summary packet descriptor (visible_summary_packet)
+  - no-commit intent packet descriptor (no_commit_intent_packet)
+- **Files added**:
+  - src/astra_runtime/domain/transaction_preview_packet_bridge_skeleton.py
+  - tests/test_runtime_domain_pr_9e_transaction_preview_packet_bridge_skeleton.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (exports)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py (domain allowlist)
+  - tests/runtime/* guardrail test files (domain module allowlists)
+- **Packet roles supported**: single_event_context_packet, single_event_narration_packet, visible_summary_packet, no_commit_intent_packet
+- **Completions**:
+  - Completes the PR-9A–9E post-PR-8 generalization seam
+  - Enables a later decision on RT-001, RT-002, RT-009, persistence/replay, or further hardening
+- **Authoritative denials**:
+  - No packet delivery
+  - No prompt rendering or prompt execution
+  - No model authority or prose parsing
+  - No narration generation
+  - No legality resolution
+  - No validation rule execution
+  - No command execution or runtime action execution
+  - No state mutation or event append
+  - No persistence write or RNG/table/oracle execution
+  - No settlement authorization, PR-5 arithmetic execution, or consequence application
+  - No packet compilation execution
+  - No live-play/session authority, UI/client authority, conversion, sourcebook inclusion, or canon promotion
+- **tiny_vertical_slice.py**: not modified
+- **scene_command_execution_skeleton.py**: not modified
+- **command_kind_routing_skeleton.py**: not modified
+- **validation_integration_bridge_skeleton.py**: not modified

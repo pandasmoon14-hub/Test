@@ -166,6 +166,7 @@ class TestPR9BReviewHardeningOnly:
             "transaction_lifecycle.py",
             "validation_integration.py",
             "validation_integration_bridge_skeleton.py",
+            "transaction_preview_packet_bridge_skeleton.py",
         }
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
         assert actual == expected_modules
@@ -420,6 +421,7 @@ class TestGuardrailAllowlistNarrow:
             "tiny_vertical_slice.py", "transaction_lifecycle.py",
             "validation_integration.py",
             "validation_integration_bridge_skeleton.py",
+            "transaction_preview_packet_bridge_skeleton.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual_files = {p.name for p in domain_dir.iterdir() if p.is_file()}

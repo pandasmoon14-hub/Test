@@ -241,7 +241,8 @@ class TestNoUnauthorizedModules:
         )
         assert os.path.isdir(path), "Domain package should exist after PR-1A"
         allowed = {"__init__.py", "command_lifecycle.py", "action_legality.py", "state_store.py", "state_projection.py", "transaction_lifecycle.py", "event_commitment.py", "validation_integration.py",
-            "validation_integration_bridge_skeleton.py", "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py", "__pycache__"}
+            "validation_integration_bridge_skeleton.py",
+            "transaction_preview_packet_bridge_skeleton.py", "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py", "__pycache__"}
         actual = set(os.listdir(path))
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized domain modules: {unauthorized}"
