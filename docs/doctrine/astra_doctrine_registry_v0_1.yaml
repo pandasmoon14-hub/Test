@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-15'
+  version: 0.1.98
+  action: runtime_domain_rt_001a_action_legality_service_plan
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-001A action legality service plan and execution boundary review. Planning/review only — no runtime behavior, no legality engine implementation. Defines action legality boundary, legality status vocabulary (legal, illegal, blocked, deferred, quarantined, unknown, escalated), blocker class taxonomy (18 classes), player-visible versus backend-only separation, hidden-information containment rules, source-local/donor-specific handling, corpus-scale command-family pressure review, non-authority boundary matrix, upstream and downstream surface identification, and future implementation sequence. Follows completed PR-9A through PR-9E command-path reference seam. Next allowed step: RT-001B action legality skeleton dataclasses/constants/validators/serializers."
+- date: '2026-06-15'
   version: 0.1.97
   action: runtime_domain_pr_9c_command_kind_routing_skeleton
   actor: Astra Doctrine Council / synthesis assistant
@@ -13451,3 +13456,106 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-PR-9B review/hardening gate; audits and validates PR-9A skeleton; adds review artifact, focused hardening tests, registry and decision-log entries; updates guardrail allowlists narrowly; no new runtime behavior; blocks PR-9C until reviewed.
+
+- file_id: RUNTIME-DOMAIN-RT-001A-ACTION-LEGALITY-SERVICE-PLAN-001
+  title: 'RUNTIME-DOMAIN-RT-001A: Action Legality Service Plan and Execution Boundary Review'
+  file_path: docs/doctrine/reviews/runtime_domain_rt_001a_action_legality_service_plan.md
+  status: review
+  authority_level: planning
+  authority_note: Planning/review only. No runtime behavior authorized. No legality engine implementation authorized.
+  layer: 6_runtime_backend
+  phase: 'RT-001A'
+  last_reviewed: '2026-06-15'
+  next_review_due: '2026-06-22'
+  maintained_by: Astra Doctrine Council
+  purpose: Define the backend-owned action legality boundary, blocker taxonomy, legality status vocabulary, hidden-information containment, and future implementation sequence before any execution behavior is implemented.
+  pr_context: Follows completed PR-9A through PR-9E command-path reference seam (PR #305 through PR #310). Next allowed step is RT-001B.
+  artifact_type: action_legality_service_plan_and_execution_boundary_review
+  artifact_subtype: planning_and_execution_boundary_review
+  batch: runtime-domain
+  implementation_status: non_executable_plan
+  derives_from:
+  - RUNTIME-DOMAIN-PR-9-POST-PR8-RUNTIME-GENERALIZATION-PLANNING-001
+  - RUNTIME-DOMAIN-PR-9A-SCENE-COMMAND-EXECUTION-SKELETON-001
+  - RUNTIME-DOMAIN-PR-9B-SCENE-COMMAND-EXECUTION-HARDENING-REVIEW-001
+  - RUNTIME-DOMAIN-PR-9C-COMMAND-KIND-ROUTING-SKELETON-001
+  - RUNTIME-DOMAIN-PR-9D-VALIDATION-INTEGRATION-BRIDGE-SKELETON-001
+  - RUNTIME-DOMAIN-PR-9E-TRANSACTION-PREVIEW-PACKET-BRIDGE-SKELETON-001
+  - RUNTIME-DOMAIN-PR-1-COMMAND-LIFECYCLE-ACTION-LEGALITY-SERVICE-PLAN-001
+  - RT-001
+  - RT-002
+  - RT-005
+  - RT-009
+  - RT-011
+  - RT-012
+  authorized_new_runtime_behavior: false
+  authorized_action_legality_engine: false
+  authorized_command_execution: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_persistence_writes: false
+  authorized_rng_execution: false
+  authorized_resource_math_execution: false
+  authorized_affordability_calculation: false
+  authorized_settlement: false
+  authorized_consequence_application: false
+  authorized_model_calls: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  does_not_authorize:
+  - action legality engine implementation
+  - command execution
+  - state mutation
+  - event append or commitment
+  - persistence or replay writes
+  - RNG/table/oracle execution
+  - resource/consequence math execution
+  - affordability calculation
+  - reservation or settlement
+  - consequence application
+  - combat resolution
+  - ability/effect/skill resolution
+  - inventory mutation
+  - mission/clue/reward routing
+  - social/faction mutation
+  - generated-content provenance
+  - context packet compilation
+  - model calls or prompt rendering
+  - prompt execution or prose parsing
+  - narration generation
+  - live-play adapter or UI/client
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  depends_on:
+  - RUNTIME-DOMAIN-PR-9A-SCENE-COMMAND-EXECUTION-SKELETON-001
+  - RUNTIME-DOMAIN-PR-9B-SCENE-COMMAND-EXECUTION-HARDENING-REVIEW-001
+  - RUNTIME-DOMAIN-PR-9C-COMMAND-KIND-ROUTING-SKELETON-001
+  - RUNTIME-DOMAIN-PR-9D-VALIDATION-INTEGRATION-BRIDGE-SKELETON-001
+  - RUNTIME-DOMAIN-PR-9E-TRANSACTION-PREVIEW-PACKET-BRIDGE-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - review artifact exists test
+  - artifact registered in doctrine registry test
+  - artifact registered in decision log test
+  - no new domain module added test
+  - no runtime behavior added test
+  - classification block present test
+  - all authorization flags false test
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before merge
+  recommends_next_step: RT-001B action legality skeleton dataclasses/constants/validators/serializers
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-RT-001A planning/review artifact; defines action legality boundary, legality status vocabulary (legal, illegal, blocked, deferred, quarantined, unknown, escalated), blocker class taxonomy (18 classes), player-visible versus backend-only separation, hidden-information containment, source-local/donor-specific handling, corpus-scale command-family pressure review, non-authority boundary matrix, upstream/downstream surfaces, and later implementation sequence; authorizes no execution behavior; next step RT-001B.
