@@ -209,6 +209,32 @@ def _validate_optional_str(
     return _validate_non_empty_str(value, name, error_cls)
 
 
+def _validate_json_safe(value: Any, path: str, error_cls: type[Exception]) -> None:
+    if value is None or isinstance(value, (str, int, float, bool)):
+        if isinstance(value, bool):
+            return
+        if isinstance(value, int) and not isinstance(value, bool):
+            return
+        if isinstance(value, (str, float, type(None))):
+            return
+    elif isinstance(value, (list, tuple)):
+        for i, item in enumerate(value):
+            _validate_json_safe(item, f"{path}[{i}]", error_cls)
+    elif isinstance(value, (dict, Mapping)):
+        for k, v in value.items():
+            if not isinstance(k, str):
+                raise error_cls(
+                    f"metadata key at {path} must be a string, "
+                    f"got {type(k).__name__}"
+                )
+            _validate_json_safe(v, f"{path}.{k}", error_cls)
+    else:
+        raise error_cls(
+            f"metadata value at {path} is not JSON-safe: "
+            f"{type(value).__name__}"
+        )
+
+
 def _safe_metadata(
     metadata: Mapping[str, Any] | None, error_cls: type[Exception],
 ) -> Mapping[str, Any]:
@@ -216,6 +242,7 @@ def _safe_metadata(
         return MappingProxyType({})
     if not isinstance(metadata, Mapping):
         raise error_cls("metadata must be a mapping")
+    _validate_json_safe(metadata, "metadata", error_cls)
     return MappingProxyType(copy.deepcopy(dict(metadata)))
 
 

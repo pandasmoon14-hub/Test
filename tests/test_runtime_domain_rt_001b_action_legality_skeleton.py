@@ -704,6 +704,247 @@ class TestBackendOnlyNotInPlayerVisible:
 
 
 # ---------------------------------------------------------------------------
+# 15b. Metadata JSON-safety enforcement
+# ---------------------------------------------------------------------------
+
+
+class TestMetadataJsonSafety:
+    """Metadata must contain only JSON-safe primitives, lists, dicts with
+    string keys. Arbitrary objects, sets, bytes, non-string keys, functions,
+    and dataclasses must be rejected."""
+
+    NESTED_SAFE_METADATA: dict = {
+        "source": "test",
+        "count": 1,
+        "flags": [True, False],
+        "nested": {"kind": "safe"},
+    }
+
+    def test_reference_rejects_object_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityReference(
+                reference_kind="command",
+                reference_id="cmd-001",
+                owner_surface="test",
+                metadata={"bad": object()},
+            )
+
+    def test_reference_accepts_nested_safe_metadata(self):
+        ref = ActionLegalityReference(
+            reference_kind="command",
+            reference_id="cmd-001",
+            owner_surface="test",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        d = ref.to_dict()
+        assert d["metadata"]["source"] == "test"
+        assert d["metadata"]["count"] == 1
+        assert d["metadata"]["flags"] == [True, False]
+        assert d["metadata"]["nested"] == {"kind": "safe"}
+
+    def test_subject_rejects_set_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalitySubjectReference(
+                subject_id="actor-001",
+                subject_label="Hero",
+                metadata={"tags": {"a", "b"}},
+            )
+
+    def test_subject_accepts_nested_safe_metadata(self):
+        sub = ActionLegalitySubjectReference(
+            subject_id="actor-001",
+            subject_label="Hero",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert sub.to_dict()["metadata"]["nested"] == {"kind": "safe"}
+
+    def test_target_rejects_bytes_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityTargetReference(
+                target_id="target-001",
+                target_label="Enemy",
+                metadata={"raw": b"bytes"},
+            )
+
+    def test_target_accepts_nested_safe_metadata(self):
+        tgt = ActionLegalityTargetReference(
+            target_id="target-001",
+            target_label="Enemy",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert tgt.to_dict()["metadata"]["count"] == 1
+
+    def test_dependency_rejects_function_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityDependencyReference(
+                dependency_id="dep-001",
+                dependency_owner="validation",
+                metadata={"fn": lambda: None},
+            )
+
+    def test_dependency_accepts_nested_safe_metadata(self):
+        dep = ActionLegalityDependencyReference(
+            dependency_id="dep-001",
+            dependency_owner="validation",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert dep.to_dict()["metadata"]["flags"] == [True, False]
+
+    def test_blocker_rejects_non_string_key_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityBlocker(
+                blocker_id="blk-001",
+                blocker_class="hidden_information",
+                legality_status="blocked",
+                player_visible_message="Not enough information to attempt this action.",
+                metadata={42: "bad key"},
+            )
+
+    def test_blocker_accepts_nested_safe_metadata(self):
+        blk = ActionLegalityBlocker(
+            blocker_id="blk-001",
+            blocker_class="hidden_information",
+            legality_status="blocked",
+            player_visible_message="Not enough information to attempt this action.",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert blk.to_dict()["metadata"]["source"] == "test"
+
+    def test_backend_detail_rejects_dataclass_in_metadata(self):
+        inner = ActionLegalityReference(
+            reference_kind="command",
+            reference_id="cmd-001",
+            owner_surface="test",
+        )
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityBackendDetail(
+                detail_id="det-001",
+                blocker_class="hidden_information",
+                owner_route="rt-001",
+                metadata={"ref": inner},
+            )
+
+    def test_backend_detail_accepts_nested_safe_metadata(self):
+        bd = ActionLegalityBackendDetail(
+            detail_id="det-001",
+            blocker_class="hidden_information",
+            owner_route="rt-001",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert bd.to_dict()["metadata"]["nested"]["kind"] == "safe"
+
+    def test_visibility_envelope_rejects_object_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityVisibilityEnvelope(
+                player_visible_message="Action accepted.",
+                metadata={"bad": object()},
+            )
+
+    def test_visibility_envelope_accepts_nested_safe_metadata(self):
+        env = ActionLegalityVisibilityEnvelope(
+            player_visible_message="Action accepted.",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert env.to_dict()["metadata"]["count"] == 1
+
+    def test_request_rejects_object_in_metadata(self):
+        cmd_ref = ActionLegalityReference(
+            reference_kind="command",
+            reference_id="cmd-001",
+            owner_surface="test",
+        )
+        sub_ref = ActionLegalitySubjectReference(
+            subject_id="actor-001",
+            subject_label="Hero",
+        )
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityRequest(
+                request_id="req-001",
+                command_ref=cmd_ref,
+                subject_ref=sub_ref,
+                metadata={"bad": object()},
+            )
+
+    def test_request_accepts_nested_safe_metadata(self):
+        cmd_ref = ActionLegalityReference(
+            reference_kind="command",
+            reference_id="cmd-001",
+            owner_surface="test",
+        )
+        sub_ref = ActionLegalitySubjectReference(
+            subject_id="actor-001",
+            subject_label="Hero",
+        )
+        req = ActionLegalityRequest(
+            request_id="req-001",
+            command_ref=cmd_ref,
+            subject_ref=sub_ref,
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        assert req.to_dict()["metadata"]["nested"] == {"kind": "safe"}
+
+    def test_result_rejects_object_in_metadata(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityResult(
+                result_id="r-001",
+                request_id="req-001",
+                legality_status="legal",
+                metadata={"bad": object()},
+            )
+
+    def test_result_accepts_nested_safe_metadata(self):
+        res = ActionLegalityResult(
+            result_id="r-001",
+            request_id="req-001",
+            legality_status="legal",
+            metadata=self.NESTED_SAFE_METADATA,
+        )
+        d = res.to_dict()
+        assert d["metadata"]["source"] == "test"
+        assert d["metadata"]["count"] == 1
+        assert d["metadata"]["flags"] == [True, False]
+        assert d["metadata"]["nested"] == {"kind": "safe"}
+
+    def test_rejects_nested_object_deep(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityReference(
+                reference_kind="command",
+                reference_id="cmd-001",
+                owner_surface="test",
+                metadata={"level1": {"level2": [object()]}},
+            )
+
+    def test_rejects_list_containing_set(self):
+        with pytest.raises(ActionLegalitySkeletonError):
+            ActionLegalityReference(
+                reference_kind="command",
+                reference_id="cmd-001",
+                owner_surface="test",
+                metadata={"items": [1, 2, {3, 4}]},
+            )
+
+    def test_accepts_none_values(self):
+        ref = ActionLegalityReference(
+            reference_kind="command",
+            reference_id="cmd-001",
+            owner_surface="test",
+            metadata={"optional_field": None},
+        )
+        assert ref.to_dict()["metadata"]["optional_field"] is None
+
+    def test_accepts_empty_nested_structures(self):
+        ref = ActionLegalityReference(
+            reference_kind="command",
+            reference_id="cmd-001",
+            owner_surface="test",
+            metadata={"empty_list": [], "empty_dict": {}},
+        )
+        d = ref.to_dict()
+        assert d["metadata"]["empty_list"] == []
+        assert d["metadata"]["empty_dict"] == {}
+
+
+# ---------------------------------------------------------------------------
 # 16. Factory and direct constructor validation are equivalent
 # ---------------------------------------------------------------------------
 
