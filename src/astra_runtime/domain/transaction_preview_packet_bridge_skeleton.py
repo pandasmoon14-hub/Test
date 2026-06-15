@@ -388,20 +388,15 @@ class TransactionPreviewPacketBridgeAuthorityFlags:
     canon_promotion: bool = False
 
     def __post_init__(self) -> None:
-        denied = [
-            name for name in self.__dataclass_fields__
-            if getattr(self, name) is True
-        ]
-        if denied:
-            raise InvalidTransactionPreviewPacketBridgeAuthorityFlagsError(
-                f"authority flags must all be False; denied: {sorted(denied)}"
-            )
+        for field_name in self.__dataclass_fields__:
+            value = getattr(self, field_name)
+            if value is not False:
+                raise InvalidTransactionPreviewPacketBridgeAuthorityFlagsError(
+                    f"authority flag '{field_name}' must be False in PR-9E bridge skeleton, got {value!r}"
+                )
 
     def to_dict(self) -> dict[str, Any]:
-        return {
-            name: getattr(self, name)
-            for name in self.__dataclass_fields__
-        }
+        return {name: False for name in self.__dataclass_fields__}
 
 
 # ---------------------------------------------------------------------------
