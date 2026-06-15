@@ -154,17 +154,18 @@ class TestPR9BReviewHardeningOnly:
             "__init__.py",
             "action_legality.py",
             "command_lifecycle.py",
+            "command_kind_routing_skeleton.py",
             "context_packet_compiler.py",
             "event_commitment.py",
             "model_boundary_evaluation.py",
             "resource_consequence_math.py",
             "scene_command_execution_skeleton.py",
-            "command_kind_routing_skeleton.py",
             "state_projection.py",
             "state_store.py",
             "tiny_vertical_slice.py",
             "transaction_lifecycle.py",
             "validation_integration.py",
+            "validation_integration_bridge_skeleton.py",
         }
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
         assert actual == expected_modules
@@ -410,12 +411,15 @@ class TestGuardrailAllowlistNarrow:
         source = path.read_text(encoding="utf-8")
         expected_domain_files = {
             "__init__.py", "action_legality.py", "command_lifecycle.py",
-            "event_commitment.py", "resource_consequence_math.py",
-            "context_packet_compiler.py", "model_boundary_evaluation.py",
-            "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
             "command_kind_routing_skeleton.py",
-            "state_projection.py", "state_store.py", "transaction_lifecycle.py",
+            "context_packet_compiler.py", "event_commitment.py",
+            "model_boundary_evaluation.py",
+            "resource_consequence_math.py",
+            "scene_command_execution_skeleton.py",
+            "state_projection.py", "state_store.py",
+            "tiny_vertical_slice.py", "transaction_lifecycle.py",
             "validation_integration.py",
+            "validation_integration_bridge_skeleton.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual_files = {p.name for p in domain_dir.iterdir() if p.is_file()}
