@@ -3816,3 +3816,46 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No narration generation
   - No live-play/session authority, UI/client authority
   - No conversion, sourcebook inclusion, or canon promotion
+
+## 2026-06-15 decision — RUNTIME-DOMAIN-RT-001B Action Legality Skeleton Dataclasses, Constants, Validators, and Serializers
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001B-ACTION-LEGALITY-SKELETON-001
+- **Date**: 2026-06-15
+- **PR**: RUNTIME-DOMAIN-RT-001B
+- **Purpose**: Implements the RT-001A action legality vocabulary as frozen, keyword-only, reference-only dataclasses, controlled constants, validators, and deterministic serializers. Skeleton only — no legality evaluation engine.
+- **Follows**: RT-001A (action legality service plan and execution boundary review, merged as PR #311).
+- **Files added**:
+  - src/astra_runtime/domain/action_legality_skeleton.py
+  - tests/test_runtime_domain_rt_001b_action_legality_skeleton.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (new skeleton exports)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Constants defined**: LEGALITY_STATUSES (7), BLOCKER_CLASSES (19), SAFE_PLAYER_MESSAGES (21), REFERENCE_KINDS, DEPENDENCY_OWNERS
+- **Dataclasses defined**: ActionLegalityReference, ActionLegalitySubjectReference, ActionLegalityTargetReference, ActionLegalityDependencyReference, ActionLegalityBlocker, ActionLegalityBackendDetail, ActionLegalityVisibilityEnvelope, ActionLegalityRequest, ActionLegalityResult, ActionLegalityAuthorityFlags (30 false-only flags)
+- **Factories defined**: make_action_legality_reference, make_action_legality_subject_reference, make_action_legality_target_reference, make_action_legality_dependency_reference, make_action_legality_blocker, make_action_legality_backend_detail, make_action_legality_visibility_envelope, make_action_legality_request, make_action_legality_result
+- **Validators defined**: validate_action_legality_reference, validate_action_legality_subject_reference, validate_action_legality_target_reference, validate_action_legality_dependency_reference, validate_action_legality_blocker, validate_action_legality_backend_detail, validate_action_legality_visibility_envelope, validate_action_legality_request, validate_action_legality_result
+- **Hidden-information containment enforced**: hidden_information blockers restricted to safe generic messages only
+- **Authority flags**: all 30 flags false-only; to_dict() hardcodes False, does not return user-supplied values
+- **Next recommended step**: RT-001C — action legality gate integration skeleton
+- **Authoritative denials**:
+  - No legality evaluation engine
+  - No command execution
+  - No state reads beyond inert references
+  - No state mutation or event append
+  - No event commitment
+  - No persistence or replay writes
+  - No RNG/table/oracle execution
+  - No resource/consequence math execution
+  - No affordability calculation, reservation, or settlement
+  - No consequence application
+  - No combat resolution
+  - No ability/effect/skill resolution
+  - No inventory mutation
+  - No mission/clue/reward mutation
+  - No social/faction mutation
+  - No context packet compilation
+  - No model calls, prompt rendering, prompt execution, or prose parsing
+  - No narration generation
+  - No live-play adapter, UI/client behavior
+  - No conversion, sourcebook inclusion, or canon promotion
