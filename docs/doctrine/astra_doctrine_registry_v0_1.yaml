@@ -13885,3 +13885,112 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-RT-001D action legality integration hardening review; review-only, no runtime behavior; confirms 14 invariants over merged RT-001B and RT-001C; 13 risk ledger entries; verifies legal-approval gate, hidden-information containment, player-visible messaging, JSON-safe serialization, false-only authority flags, reference-only dependency plans; follows merged RT-001C / PR #313; next step RT-001E.
+- file_id: RUNTIME-DOMAIN-RT-001E-ACTION-LEGALITY-SERVICE-INTERFACE-CONTRACT-SKELETON-001
+  title: 'RUNTIME-DOMAIN-RT-001E: Action Legality Service Interface Contract Skeleton'
+  file_path: src/astra_runtime/domain/action_legality_service_interface_contract_skeleton.py
+  type: skeleton
+  authority_level: skeleton
+  status: draft
+  created: '2026-06-16'
+  modified: '2026-06-16'
+  phase: runtime-gate-b
+  pr_context: 'RT-001E follows merged RT-001D / PR #314'
+  authorized_legality_engine: false
+  authorized_real_legality_evaluation: false
+  authorized_command_execution: false
+  authorized_state_read: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_event_commitment: false
+  authorized_persistence_write: false
+  authorized_replay: false
+  authorized_rng_execution: false
+  authorized_table_oracle_execution: false
+  authorized_resource_math_execution: false
+  authorized_affordability_calculation: false
+  authorized_reservation: false
+  authorized_settlement: false
+  authorized_consequence_application: false
+  authorized_combat_resolution: false
+  authorized_ability_resolution: false
+  authorized_skill_resolution: false
+  authorized_effect_resolution: false
+  authorized_inventory_mutation: false
+  authorized_mission_mutation: false
+  authorized_social_faction_mutation: false
+  authorized_context_packet_compilation: false
+  authorized_model_call: false
+  authorized_prompt_rendering: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  does_not_authorize:
+  - legality evaluation engine
+  - real legality evaluation
+  - command execution
+  - state reads
+  - state mutation
+  - event append or commitment
+  - persistence or replay writes
+  - RNG/table/oracle execution
+  - resource/consequence math execution
+  - affordability calculation
+  - reservation or settlement
+  - consequence application
+  - combat resolution
+  - ability/effect/skill resolution
+  - inventory mutation
+  - mission/clue/reward mutation
+  - social/faction mutation
+  - context packet compilation
+  - model calls or prompt rendering
+  - prompt execution or prose parsing
+  - narration generation
+  - live-play adapter or UI/client
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  depends_on:
+  - RUNTIME-DOMAIN-RT-001B-ACTION-LEGALITY-SKELETON-001
+  - RUNTIME-DOMAIN-RT-001C-ACTION-LEGALITY-GATE-INTEGRATION-SKELETON-001
+  - RUNTIME-DOMAIN-RT-001D-ACTION-LEGALITY-INTEGRATION-HARDENING-REVIEW-001
+  blocked_by: []
+  required_tests:
+  - module imports
+  - constants contain expected stages, dependency kinds, statuses, owner routes
+  - dataclasses are frozen and keyword-only
+  - authority flags reject True, 1, 0, None, and truthy strings
+  - authority flag to_dict hardcodes all values as False
+  - dependency manifest accepts only ActionLegalityDependencyReference
+  - dependency manifest does not call owner services
+  - request requires RT-001B ActionLegalityRequest
+  - result requires RT-001B ActionLegalityResult
+  - result rejects legality_status legal
+  - deferred builder produces deferred not legal
+  - unknown builder produces unknown not legal
+  - result includes dependency manifest or blocker
+  - backend serializer is deterministic and JSON-safe
+  - visible serializer excludes backend-only internal dependency route details
+  - visible serializer uses only SAFE_PLAYER_MESSAGES
+  - metadata rejects non-JSON-safe values
+  - public names contain no forbidden execution mutation model prompt narration patterns
+  - module imports no forbidden downstream runtime implementation modules
+  - domain package exports include new RT-001E public surface
+  - guardrail allowlists updated narrowly
+  - RT-001B RT-001C RT-001D tests still pass
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before merge
+  recommends_next_step: RT-001F action legality service interface contract hardening review
+  scale_gate_relevance: critical
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-RT-001E action legality service interface contract skeleton; interface contract only, does not authorize implementation; 5 frozen dataclasses (AuthorityFlags with 34 false-only fields, DependencyManifest, Request, Result, ContractSummary); 5 constants; 5 factory functions; 3 builder functions; 2 serializers (backend and player-visible); 5 validators; defaults to deferred/unknown, rejects legal approval; follows merged RT-001D / PR #314; next step RT-001F.

@@ -169,6 +169,7 @@ class TestPR9BReviewHardeningOnly:
             "transaction_preview_packet_bridge_skeleton.py",
             "action_legality_skeleton.py",
             "action_legality_gate_integration_skeleton.py",
+            "action_legality_service_interface_contract_skeleton.py",
         }
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
         assert actual == expected_modules
@@ -426,6 +427,7 @@ class TestGuardrailAllowlistNarrow:
             "transaction_preview_packet_bridge_skeleton.py",
             "action_legality_skeleton.py",
             "action_legality_gate_integration_skeleton.py",
+            "action_legality_service_interface_contract_skeleton.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual_files = {p.name for p in domain_dir.iterdir() if p.is_file()}
