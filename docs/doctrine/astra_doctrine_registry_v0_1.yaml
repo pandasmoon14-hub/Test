@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-16'
+  version: 0.1.102
+  action: runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-001F action legality service interface contract hardening review. Review-only — no runtime behavior, no implementation authority. Confirms 15 invariants over merged RT-001E surface. Documents 15 risk ledger entries. Verifies skeleton-only status containment (deferred/unknown only), false-only authority flags, dependency-reference-only manifests, player-visible serializer containment, import boundaries, package export intent, corpus-scale donor neutrality, and no implementation authority. No legality evaluation, no command execution, no state access, no mutation, no event commitment, no persistence, no RNG/table/oracle, no resource math, no model/prompt/narration, no live play, no conversion, no sourcebook inclusion, no canon promotion. Follows merged RT-001E / PR #315. Next recommended step: RT-001G — State Owner Interface Prerequisite Review."
+- date: '2026-06-16'
   version: 0.1.101
   action: runtime_domain_rt_001d_action_legality_integration_hardening_review
   actor: Astra Doctrine Council / synthesis assistant
@@ -13994,3 +13999,79 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-RT-001E action legality service interface contract skeleton; interface contract only, does not authorize implementation; 5 frozen dataclasses (AuthorityFlags with 34 false-only fields, DependencyManifest, Request, Result, ContractSummary); 5 constants; 5 factory functions; 3 builder functions; 2 serializers (backend and player-visible); 5 validators; defaults to deferred/unknown, rejects legal approval; follows merged RT-001D / PR #314; next step RT-001F.
+
+- file_id: RUNTIME-DOMAIN-RT-001F-ACTION-LEGALITY-SERVICE-INTERFACE-CONTRACT-HARDENING-REVIEW-001
+  title: 'RUNTIME-DOMAIN-RT-001F: Action Legality Service Interface Contract Hardening Review'
+  file_path: docs/doctrine/reviews/runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.md
+  type: review
+  authority_level: review
+  status: draft
+  created: '2026-06-16'
+  modified: '2026-06-16'
+  phase: 'RT-001F'
+  pr_context: Follows merged RT-001E / PR #315. Hardening review over RT-001E surface. Review-only — no runtime behavior, no implementation authority. Confirms 15 invariants, 15 risk ledger entries. State explicitly that RT-001F is review-only and does not authorize implementation.
+  authorized_legality_engine: false
+  authorized_real_legality_evaluation: false
+  authorized_command_execution: false
+  authorized_state_read: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_event_commitment: false
+  authorized_persistence_write: false
+  authorized_replay: false
+  authorized_rng_execution: false
+  authorized_table_oracle_execution: false
+  authorized_resource_math_execution: false
+  authorized_affordability_calculation: false
+  authorized_reservation: false
+  authorized_settlement: false
+  authorized_consequence_application: false
+  authorized_combat_resolution: false
+  authorized_ability_resolution: false
+  authorized_skill_resolution: false
+  authorized_effect_resolution: false
+  authorized_inventory_mutation: false
+  authorized_mission_mutation: false
+  authorized_social_faction_mutation: false
+  authorized_context_packet_compilation: false
+  authorized_model_call: false
+  authorized_prompt_rendering: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  does_not_authorize:
+  - legality evaluation engine
+  - real legality evaluation
+  - command execution
+  - state reads
+  - state mutation
+  - event append or commitment
+  - persistence or replay writes
+  - RNG/table/oracle execution
+  - resource/consequence math execution
+  - affordability calculation
+  - reservation or settlement
+  - consequence application
+  - combat resolution
+  - ability/effect/skill resolution
+  - inventory mutation
+  - mission/clue/reward mutation
+  - social/faction mutation
+  - context packet compilation
+  - model calls or prompt rendering
+  - prompt execution or prose parsing
+  - narration generation
+  - live-play adapter or UI/client
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-RT-001F action legality service interface contract hardening review; review-only, no runtime behavior, no implementation authority; confirms 15 invariants over merged RT-001E surface; 15 risk ledger entries; verifies skeleton-only status containment (deferred/unknown only), false-only authority flags, dependency-reference-only manifests, player-visible serializer containment, import boundaries, package export intent, corpus-scale donor neutrality, and no implementation authority; follows merged RT-001E / PR #315; next step RT-001G — State Owner Interface Prerequisite Review.
