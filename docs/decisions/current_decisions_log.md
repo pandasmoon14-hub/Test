@@ -3859,3 +3859,50 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No narration generation
   - No live-play adapter, UI/client behavior
   - No conversion, sourcebook inclusion, or canon promotion
+
+## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001C Action Legality Gate Integration Skeleton
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001C-ACTION-LEGALITY-GATE-INTEGRATION-SKELETON-001
+- **Date**: 2026-06-16
+- **PR**: RUNTIME-DOMAIN-RT-001C
+- **Purpose**: Integrates the RT-001B action legality skeleton into the PR-9A through PR-9E command-path reference seam. Builds reference-only legality requests/results from already-typed PR-9A/9C/9D/9E references. Defaults to `deferred`/`unknown`, not real `legal` approval.
+- **Follows**: RT-001B (action legality skeleton dataclasses/constants/validators/serializers, merged as PR #312).
+- **Files added**:
+  - src/astra_runtime/domain/action_legality_gate_integration_skeleton.py
+  - tests/test_runtime_domain_rt_001c_action_legality_gate_integration_skeleton.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (new RT-001C exports)
+  - tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py (domain module allowlists)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Constants defined**: ACTION_LEGALITY_GATE_INTEGRATION_STAGES (8), ACTION_LEGALITY_GATE_ROUTES (13), ACTION_LEGALITY_GATE_DEFAULT_STATUSES (2), ACTION_LEGALITY_GATE_NON_AUTHORITY_NOTE
+- **Dataclasses defined**: ActionLegalityGateInputRefs, ActionLegalityGateDependencyPlan, ActionLegalityGateIntegrationAuthorityFlags (32 false-only flags), ActionLegalityGateIntegrationRequest, ActionLegalityGateIntegrationResult
+- **Factories defined**: create_action_legality_gate_input_refs, create_action_legality_gate_dependency_plan, create_action_legality_gate_integration_authority_flags, create_action_legality_gate_integration_request, create_action_legality_gate_integration_result
+- **Builders defined**: build_action_legality_request_from_gate_integration, build_deferred_action_legality_result_from_gate_integration, build_unknown_action_legality_result_from_gate_integration, build_action_legality_gate_integration_result
+- **Serializers defined**: serialize_action_legality_gate_integration_result (backend), serialize_action_legality_gate_integration_result_visible (player-visible)
+- **Validators defined**: validate_action_legality_gate_input_refs, validate_action_legality_gate_dependency_plan, validate_action_legality_gate_integration_request, validate_action_legality_gate_integration_result, validate_action_legality_gate_integration_authority_flags
+- **Integration surfaces**: carries typed references from PR-9A scene command execution assembly, PR-9C command-kind routing result, PR-9D validation integration bridge result, PR-9E transaction preview packet bridge, and RT-001B action legality request/result
+- **Default behavior**: deferred (not legal); unknown when integration skeleton cannot classify missing owner/handoff
+- **Authority flags**: all 32 flags false-only; to_dict() hardcodes False
+- **Next recommended step**: RT-001D — action legality integration hardening review
+- **Authoritative denials**:
+  - No real legality evaluation engine
+  - No command execution
+  - No state reads beyond inert references
+  - No state mutation or event append
+  - No event commitment
+  - No persistence or replay writes
+  - No RNG/table/oracle execution
+  - No resource/consequence math execution
+  - No affordability calculation, reservation, or settlement
+  - No consequence application
+  - No combat resolution
+  - No ability/effect/skill resolution
+  - No inventory mutation
+  - No mission/clue/reward mutation
+  - No social/faction mutation
+  - No context packet compilation
+  - No model calls, prompt rendering, prompt execution, or prose parsing
+  - No narration generation
+  - No live-play adapter, UI/client behavior
+  - No conversion, sourcebook inclusion, or canon promotion

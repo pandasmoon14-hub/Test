@@ -53,6 +53,10 @@ AUTHORIZED_FILES = {
     "tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py",
     "tests/test_runtime_impl_pr_8_post_kernel_skeleton_review_domain_service_readiness_gate.py",
     "docs/doctrine/reviews/runtime_domain_pr_9b_scene_command_execution_hardening_review.md",
+    "src/astra_runtime/domain/action_legality_skeleton.py",
+    "src/astra_runtime/domain/action_legality_gate_integration_skeleton.py",
+    "tests/test_runtime_domain_rt_001b_action_legality_skeleton.py",
+    "tests/test_runtime_domain_rt_001c_action_legality_gate_integration_skeleton.py",
 }
 EXPECTED_SHAPES = {'ConsequenceTerm': [{'aggregate_owner': 'local aggregate identity',
                       'annotation': 'str',

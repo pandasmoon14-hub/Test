@@ -257,13 +257,13 @@ class TestRuntimeGuardrailsDomainPackage:
         authorized = {
             "__init__.py",
             "command_lifecycle.py",
-            "action_legality.py",
+            "action_legality.py", "action_legality_skeleton.py", "action_legality_gate_integration_skeleton.py",
             "state_store.py",
             "state_projection.py",
             "transaction_lifecycle.py",
             "event_commitment.py",
             "validation_integration.py",
-            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py",
+            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py", "validation_integration_bridge_skeleton.py", "transaction_preview_packet_bridge_skeleton.py",
             "__pycache__",
         }
         entries = set(os.listdir(domain_dir))
