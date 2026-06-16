@@ -612,6 +612,13 @@ class ActionLegalityGateIntegrationResult:
                 f"legality_result must be an ActionLegalityResult, "
                 f"got {type(self.legality_result).__name__}"
             )
+        if self.legality_result.legality_status not in ACTION_LEGALITY_GATE_DEFAULT_STATUSES:
+            raise InvalidActionLegalityGateIntegrationResultError(
+                f"legality_result.legality_status must be one of "
+                f"{sorted(ACTION_LEGALITY_GATE_DEFAULT_STATUSES)}, "
+                f"got {self.legality_result.legality_status!r}; "
+                f"RT-001C skeleton never approves real legality"
+            )
         if not isinstance(self.input_refs, ActionLegalityGateInputRefs):
             raise InvalidActionLegalityGateIntegrationResultError(
                 f"input_refs must be an ActionLegalityGateInputRefs, "
@@ -1092,6 +1099,8 @@ def validate_action_legality_gate_integration_result(obj: Any) -> bool:
     if not validate_action_legality_request(obj.legality_request):
         return False
     if not validate_action_legality_result(obj.legality_result):
+        return False
+    if obj.legality_result.legality_status not in ACTION_LEGALITY_GATE_DEFAULT_STATUSES:
         return False
     if not validate_action_legality_gate_input_refs(obj.input_refs):
         return False

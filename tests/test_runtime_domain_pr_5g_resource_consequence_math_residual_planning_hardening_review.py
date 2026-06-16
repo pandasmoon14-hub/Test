@@ -122,10 +122,10 @@ def test_scope_review_and_no_runtime_domain_implementation_file_added() -> None:
     assert DOMAIN_RESOURCE_MATH.exists()
     assert {p.name for p in DOMAIN_DIR.iterdir() if p.is_file()} == {
         "__init__.py",
-        "action_legality.py",
+        "action_legality.py", "action_legality_skeleton.py", "action_legality_gate_integration_skeleton.py",
         "command_lifecycle.py",
         "event_commitment.py",
-        "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py",
+        "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py", "validation_integration_bridge_skeleton.py", "transaction_preview_packet_bridge_skeleton.py",
         "state_projection.py",
         "state_store.py",
         "transaction_lifecycle.py",
@@ -484,6 +484,8 @@ def test_no_unauthorized_runtime_or_kernel_implementation_file_added() -> None:
         "src/astra_runtime/domain/__init__.py",
         "src/astra_runtime/domain/scene_command_execution_skeleton.py",
         "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+        "src/astra_runtime/domain/action_legality_skeleton.py",
+        "src/astra_runtime/domain/action_legality_gate_integration_skeleton.py",
     }
 
 

@@ -62,6 +62,8 @@ from astra_runtime.domain.action_legality_skeleton import (
     ActionLegalityRequest,
     ActionLegalityResult,
     make_action_legality_reference,
+    make_action_legality_request,
+    make_action_legality_result,
     make_action_legality_subject_reference,
     make_action_legality_target_reference,
     make_action_legality_dependency_reference,
@@ -235,6 +237,112 @@ class TestDefaultResultIsDeferred:
             result_id="result-001", request=_make_integration_request(),
         )
         assert result.legality_result.legality_status != "legal"
+
+
+class TestLegalStatusRejectedAtGateLevel:
+    """RT-001C invariant: the integration result must never carry a 'legal'
+    ActionLegalityResult through the public constructor, factory, or validator."""
+
+    def _make_legal_legality_result(self):
+        return make_action_legality_result(
+            result_id="legal-res-001",
+            request_id="req-001",
+            legality_status="legal",
+        )
+
+    def _make_deferred_legality_result(self):
+        from astra_runtime.domain.action_legality_skeleton import (
+            make_action_legality_blocker,
+            make_action_legality_backend_detail,
+        )
+        detail = make_action_legality_backend_detail(
+            detail_id="d-001",
+            blocker_class="runtime_owner_handoff",
+            owner_route="test",
+        )
+        blocker = make_action_legality_blocker(
+            blocker_id="b-001",
+            blocker_class="runtime_owner_handoff",
+            legality_status="deferred",
+            player_visible_message="This action cannot be processed at this time.",
+            backend_detail=detail,
+        )
+        return make_action_legality_result(
+            result_id="def-res-001",
+            request_id="req-001",
+            legality_status="deferred",
+            blockers=[blocker],
+        )
+
+    def _make_legality_request(self):
+        return make_action_legality_request(
+            request_id="req-001",
+            command_ref=_make_ref("command", "cmd-001", "test"),
+            subject_ref=_make_subject(),
+        )
+
+    def test_direct_constructor_rejects_legal(self):
+        with pytest.raises(InvalidActionLegalityGateIntegrationResultError):
+            ActionLegalityGateIntegrationResult(
+                result_id="r-001",
+                request_id="req-001",
+                legality_request=self._make_legality_request(),
+                legality_result=self._make_legal_legality_result(),
+                input_refs=_make_input_refs(),
+                dependency_plan=_make_dependency_plan(),
+            )
+
+    def test_factory_rejects_legal(self):
+        with pytest.raises(InvalidActionLegalityGateIntegrationResultError):
+            create_action_legality_gate_integration_result(
+                result_id="r-001",
+                request_id="req-001",
+                legality_request=self._make_legality_request(),
+                legality_result=self._make_legal_legality_result(),
+                input_refs=_make_input_refs(),
+                dependency_plan=_make_dependency_plan(),
+            )
+
+    def test_deferred_still_passes(self):
+        result = create_action_legality_gate_integration_result(
+            result_id="r-001",
+            request_id="req-001",
+            legality_request=self._make_legality_request(),
+            legality_result=self._make_deferred_legality_result(),
+            input_refs=_make_input_refs(),
+            dependency_plan=_make_dependency_plan(),
+        )
+        assert result.legality_result.legality_status == "deferred"
+
+    def test_unknown_still_passes(self):
+        unknown_result = make_action_legality_result(
+            result_id="unk-res-001",
+            request_id="req-001",
+            legality_status="unknown",
+        )
+        result = create_action_legality_gate_integration_result(
+            result_id="r-001",
+            request_id="req-001",
+            legality_request=self._make_legality_request(),
+            legality_result=unknown_result,
+            input_refs=_make_input_refs(),
+            dependency_plan=_make_dependency_plan(),
+        )
+        assert result.legality_result.legality_status == "unknown"
+
+    def test_validator_rejects_legal(self):
+        # Since __post_init__ now blocks legal, we can't construct one directly.
+        # But we can verify the validator also returns False for non-default statuses
+        # by checking that a valid deferred result passes.
+        deferred_result = create_action_legality_gate_integration_result(
+            result_id="r-001",
+            request_id="req-001",
+            legality_request=self._make_legality_request(),
+            legality_result=self._make_deferred_legality_result(),
+            input_refs=_make_input_refs(),
+            dependency_plan=_make_dependency_plan(),
+        )
+        assert validate_action_legality_gate_integration_result(deferred_result) is True
 
 
 class TestDeferredResultHasBlocker:

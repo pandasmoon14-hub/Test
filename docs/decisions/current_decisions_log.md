@@ -3906,4 +3906,3 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No narration generation
   - No live-play adapter, UI/client behavior
   - No conversion, sourcebook inclusion, or canon promotion
-  - No conversion, sourcebook inclusion, or canon promotion
