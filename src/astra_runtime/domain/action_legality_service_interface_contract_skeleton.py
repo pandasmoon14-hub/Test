@@ -455,10 +455,10 @@ class ActionLegalityServiceInterfaceResult:
                 f"legality_result must be an ActionLegalityResult, "
                 f"got {type(self.legality_result).__name__}"
             )
-        if self.legality_result.legality_status == "legal":
+        if self.legality_result.legality_status not in ACTION_LEGALITY_SERVICE_INTERFACE_RESULT_STATUSES:
             raise InvalidActionLegalityServiceInterfaceResultError(
-                "RT-001E skeleton must not approve real legality; "
-                f"got legality_status='legal'"
+                "RT-001E skeleton only permits deferred/unknown legality results; "
+                f"got legality_status={self.legality_result.legality_status!r}"
             )
         if self.dependency_manifest is not None and not isinstance(
             self.dependency_manifest,
@@ -908,7 +908,7 @@ def validate_action_legality_service_interface_result(obj: Any) -> bool:
         return False
     if not isinstance(obj.legality_result, ActionLegalityResult):
         return False
-    if obj.legality_result.legality_status == "legal":
+    if obj.legality_result.legality_status not in ACTION_LEGALITY_SERVICE_INTERFACE_RESULT_STATUSES:
         return False
     if not isinstance(
         obj.authority_flags,
