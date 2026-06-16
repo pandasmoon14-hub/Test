@@ -3817,6 +3817,24 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No live-play/session authority, UI/client authority
   - No conversion, sourcebook inclusion, or canon promotion
 
+## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001F Action Legality Service Interface Contract Hardening Review
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001F-ACTION-LEGALITY-SERVICE-INTERFACE-CONTRACT-HARDENING-REVIEW-001
+- **Date**: 2026-06-16
+- **PR**: RUNTIME-DOMAIN-RT-001F
+- **Purpose**: Hardening review over the action legality service interface contract skeleton (merged RT-001E / PR #315). Confirms skeleton-only status containment, false-only authority flags, dependency-reference-only manifests, player-visible serializer containment, import boundaries, package export intent, and no implementation authority.
+- **Follows**: RT-001E (action legality service interface contract skeleton, merged as PR #315).
+- **Files added**:
+  - docs/doctrine/reviews/runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.md
+  - tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py
+- **Files modified**:
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Confirmed invariants**: 15 invariants over RT-001E surface, including skeleton-only, deferred/unknown containment, false-only authority flags, reference-only manifests, visible serializer containment, import boundaries, package export intent, donor neutrality, and no implementation authority.
+- **Risk ledger**: 15 entries including premature adjudication, inner status bypass, constructor/factory divergence, dependency manifest drift, authority flag bypass, visible serializer leakage, hidden-information leakage, package alias confusion, registry drift, guardrail drift, import-boundary erosion, donor-specific leakage, state read sequencing, model/live-play shortcut, and incremental drift.
+- **Authorizes no implementation**: RT-001F is review-only and does not authorize legality evaluation, command execution, state read, state mutation, event commitment, persistence/replay, RNG/table/oracle, resource math, model/narration/live-play, UI, conversion, sourcebook inclusion, or canon promotion.
+- **Next recommended step**: RT-001G — State Owner Interface Prerequisite Review (not legality evaluation implementation).
+
 ## 2026-06-15 decision — RUNTIME-DOMAIN-RT-001B Action Legality Skeleton Dataclasses, Constants, Validators, and Serializers
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001B-ACTION-LEGALITY-SKELETON-001
