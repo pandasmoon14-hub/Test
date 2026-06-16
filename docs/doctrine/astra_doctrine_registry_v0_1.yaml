@@ -19,6 +19,16 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-16'
+  version: 0.1.101
+  action: runtime_domain_rt_001d_action_legality_integration_hardening_review
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-001D action legality integration hardening review. Review-only — no runtime behavior, no implementation authority. Confirms 14 invariants over merged RT-001B and RT-001C surfaces. Documents 13 risk ledger entries. Verifies no-real-legal-approval gate, hidden-information containment, safe player-visible messaging, JSON-safe serialization, false-only authority flags, reference-only dependency plans. No legality engine, no command execution, no state mutation, no RNG, no resource math, no persistence, no model/prompt/narration, no live play, no conversion, no sourcebook inclusion, no canon promotion. Follows merged RT-001C / PR #313. Next recommended step: RT-001E action legality service interface contract skeleton."
+- date: '2026-06-16'
+  version: 0.1.100
+  action: runtime_domain_rt_001c_action_legality_gate_integration_skeleton
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-001C action legality gate integration skeleton. Integrates RT-001B action legality skeleton into the PR-9A through PR-9E command-path reference seam. 5 frozen dataclasses (InputRefs, DependencyPlan, AuthorityFlags with 32 false-only fields, IntegrationRequest, IntegrationResult), 4 constants, 5 factory functions, 4 builder functions, 2 serializers (backend and player-visible), 5 validators. Defaults to deferred/unknown, never produces real legal approval. No legality engine, no command execution, no state mutation, no RNG, no resource math, no persistence, no model/prompt/narration, no live play, no conversion, no sourcebook inclusion, no canon promotion. Follows merged RT-001B / PR #312. Next recommended step: RT-001D action legality integration hardening review."
 - date: '2026-06-15'
   version: 0.1.99
   action: runtime_domain_rt_001b_action_legality_skeleton
@@ -13780,3 +13790,98 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-RT-001C action legality gate integration skeleton; integrates RT-001B into PR-9A through PR-9E command-path reference seam; 5 frozen dataclasses (InputRefs, DependencyPlan, AuthorityFlags with 32 false-only fields, IntegrationRequest, IntegrationResult); 4 constants; 5 factory functions; 4 builder functions; 2 serializers (backend and player-visible); 5 validators; defaults to deferred/unknown, never produces real legal approval; follows merged RT-001B / PR #312; next step RT-001D.
+- file_id: RUNTIME-DOMAIN-RT-001D-ACTION-LEGALITY-INTEGRATION-HARDENING-REVIEW-001
+  title: 'RUNTIME-DOMAIN-RT-001D: Action Legality Integration Hardening Review'
+  file_path: docs/doctrine/reviews/runtime_domain_rt_001d_action_legality_integration_hardening_review.md
+  type: review
+  authority_level: review
+  status: draft
+  created: '2026-06-16'
+  modified: '2026-06-16'
+  phase: 'RT-001D'
+  pr_context: Follows merged RT-001C / PR #313. Hardening review over RT-001B and RT-001C surfaces. Confirms no-real-legal-approval gate, hidden-information containment, safe player-visible messaging, JSON-safe serialization, false-only authority flags, and reference-only dependency plans. Authorizes no runtime implementation, sourcebook inclusion, canon promotion, or live-play behavior. Next recommended step is RT-001E action legality service interface contract skeleton.
+  authorized_legality_engine: false
+  authorized_command_execution: false
+  authorized_state_mutation: false
+  authorized_event_commitment: false
+  authorized_persistence_replay: false
+  authorized_rng_table_oracle: false
+  authorized_resource_math_execution: false
+  authorized_affordability_calculation: false
+  authorized_reservation: false
+  authorized_settlement: false
+  authorized_consequence_application: false
+  authorized_combat_resolution: false
+  authorized_ability_resolution: false
+  authorized_inventory_mutation: false
+  authorized_mission_mutation: false
+  authorized_social_faction_mutation: false
+  authorized_context_packet_compilation: false
+  authorized_model_calls: false
+  authorized_prompt_rendering: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  does_not_authorize:
+  - legality evaluation engine
+  - command execution
+  - state reads beyond inert references
+  - state mutation
+  - event append or commitment
+  - persistence or replay writes
+  - RNG/table/oracle execution
+  - resource/consequence math execution
+  - affordability calculation
+  - reservation or settlement
+  - consequence application
+  - combat resolution
+  - ability/effect/skill resolution
+  - inventory mutation
+  - mission/clue/reward mutation
+  - social/faction mutation
+  - context packet compilation
+  - model calls or prompt rendering
+  - prompt execution or prose parsing
+  - narration generation
+  - live-play adapter or UI/client
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  depends_on:
+  - RUNTIME-DOMAIN-RT-001B-ACTION-LEGALITY-SKELETON-001
+  - RUNTIME-DOMAIN-RT-001C-ACTION-LEGALITY-GATE-INTEGRATION-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - review document exists
+  - review document names RT-001A RT-001B RT-001C
+  - review document states review-only
+  - review document contains risk ledger categories
+  - RT-001C builder default is deferred
+  - RT-001C builder rejects legal status override
+  - RT-001C direct constructor rejects legal result
+  - RT-001C factory rejects legal result
+  - RT-001C authority flags reject truthy values
+  - RT-001C authority flag to_dict hardcodes False
+  - RT-001B authority flags reject non-False
+  - player-visible serializer excludes backend-only detail
+  - player-visible messages from SAFE_PLAYER_MESSAGES
+  - hidden-information blockers use generic messages
+  - public RT-001C names no execution patterns
+  - RT-001C does not import forbidden modules
+  - RT-001D does not modify implementation modules
+  test_status: pending
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before merge
+  recommends_next_step: RT-001E action legality service interface contract skeleton
+  scale_gate_relevance: critical
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-RT-001D action legality integration hardening review; review-only, no runtime behavior; confirms 14 invariants over merged RT-001B and RT-001C; 13 risk ledger entries; verifies legal-approval gate, hidden-information containment, player-visible messaging, JSON-safe serialization, false-only authority flags, reference-only dependency plans; follows merged RT-001C / PR #313; next step RT-001E.
