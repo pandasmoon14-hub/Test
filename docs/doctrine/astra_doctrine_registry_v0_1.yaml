@@ -13670,3 +13670,113 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-RT-001B action legality skeleton; implements RT-001A vocabulary as frozen, keyword-only, reference-only dataclasses (10), controlled constants (LEGALITY_STATUSES, BLOCKER_CLASSES, SAFE_PLAYER_MESSAGES), factory functions, validators, and deterministic serializers; 30 authority flags all false-only; hidden-information containment enforced; follows merged RT-001A / PR #311; next step RT-001C.
+- file_id: RUNTIME-DOMAIN-RT-001C-ACTION-LEGALITY-GATE-INTEGRATION-SKELETON-001
+  title: 'RUNTIME-DOMAIN-RT-001C: Action Legality Gate Integration Skeleton'
+  file_path: src/astra_runtime/domain/action_legality_gate_integration_skeleton.py
+  status: review
+  authority_level: skeleton
+  authority_note: Skeleton only. Integrates RT-001B into PR-9A through PR-9E command-path reference seam. No real legality engine, no command execution, no state mutation, no RNG, no resource math, no persistence, no model/prompt/narration, no live play, no conversion, no sourcebook inclusion, no canon promotion.
+  layer: 6_runtime_backend
+  phase: 'RT-001C'
+  last_reviewed: '2026-06-16'
+  next_review_due: '2026-06-23'
+  maintained_by: Astra Doctrine Council
+  purpose: Integrate the RT-001B action legality skeleton into the PR-9A through PR-9E command-path reference seam as a reference-only bridge that builds ActionLegalityRequest and ActionLegalityResult from already-typed PR-9A/9C/9D/9E references.
+  pr_context: Follows merged RT-001B / PR #312. Next recommended step is RT-001D action legality integration hardening review.
+  artifact_type: runtime_domain_skeleton_module
+  artifact_subtype: action_legality_gate_integration_skeleton
+  batch: runtime-domain
+  implementation_status: skeleton_complete
+  derives_from:
+  - RUNTIME-DOMAIN-RT-001B-ACTION-LEGALITY-SKELETON-001
+  authorized_action_legality_engine: false
+  authorized_real_legality_evaluation: false
+  authorized_command_execution: false
+  authorized_state_read_beyond_inert_refs: false
+  authorized_state_mutation: false
+  authorized_event_append: false
+  authorized_event_commitment: false
+  authorized_persistence_write: false
+  authorized_replay: false
+  authorized_rng_execution: false
+  authorized_table_oracle_execution: false
+  authorized_resource_math_execution: false
+  authorized_affordability_calculation: false
+  authorized_reservation: false
+  authorized_settlement: false
+  authorized_consequence_application: false
+  authorized_combat_resolution: false
+  authorized_ability_resolution: false
+  authorized_inventory_mutation: false
+  authorized_mission_mutation: false
+  authorized_social_faction_mutation: false
+  authorized_context_packet_compilation: false
+  authorized_model_calls: false
+  authorized_prompt_rendering: false
+  authorized_prompt_execution: false
+  authorized_prose_parsing: false
+  authorized_narration_generation: false
+  authorized_live_play: false
+  authorized_ui_client: false
+  authorized_conversion: false
+  authorized_sourcebook_inclusion: false
+  authorized_canon_promotion: false
+  does_not_authorize:
+  - real legality evaluation engine
+  - command execution
+  - state reads beyond inert references
+  - state mutation
+  - event append or commitment
+  - persistence or replay writes
+  - RNG/table/oracle execution
+  - resource/consequence math execution
+  - affordability calculation
+  - reservation or settlement
+  - consequence application
+  - combat resolution
+  - ability/effect/skill resolution
+  - inventory mutation
+  - mission/clue/reward mutation
+  - social/faction mutation
+  - context packet compilation
+  - model calls or prompt rendering
+  - prompt execution or prose parsing
+  - narration generation
+  - live-play adapter or UI/client
+  - conversion
+  - sourcebook inclusion
+  - canon promotion
+  depends_on:
+  - RUNTIME-DOMAIN-RT-001B-ACTION-LEGALITY-SKELETON-001
+  blocked_by: []
+  required_tests:
+  - module imports successfully
+  - constants expose expected integration stages/routes/statuses
+  - dataclasses frozen and keyword-only
+  - input refs validate only inert RT-001B references
+  - dependency plan uses RT-001B dependency references
+  - integration request builds RT-001B ActionLegalityRequest
+  - default integration result is deferred not legal
+  - deferred result includes at least one blocker
+  - unknown result path is skeleton-safe
+  - player-visible serializer excludes backend-only detail
+  - player-visible serializer uses only SAFE_PLAYER_MESSAGES
+  - backend serializer includes backend-only detail and authority flags
+  - authority flags reject non-False values
+  - authority flag to_dict all False
+  - to_dict outputs deterministic and JSON-safe
+  - hidden-information blockers use generic safe messages
+  - no public function names contain execution/mutation/model/prompt/narration patterns
+  - domain package exports include new public surface
+  - guardrail allowlists updated narrowly
+  test_status: passing
+  review_status: draft
+  promotion_requirements:
+  - reviewer approval before merge
+  recommends_next_step: RT-001D action legality integration hardening review
+  scale_gate_relevance: critical
+  broad_conversion_relevance: low
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: blocking
+  notes: RUNTIME-DOMAIN-RT-001C action legality gate integration skeleton; integrates RT-001B into PR-9A through PR-9E command-path reference seam; 5 frozen dataclasses (InputRefs, DependencyPlan, AuthorityFlags with 32 false-only fields, IntegrationRequest, IntegrationResult); 4 constants; 5 factory functions; 4 builder functions; 2 serializers (backend and player-visible); 5 validators; defaults to deferred/unknown, never produces real legal approval; follows merged RT-001B / PR #312; next step RT-001D.
