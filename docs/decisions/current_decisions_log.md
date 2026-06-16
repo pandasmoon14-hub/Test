@@ -3817,6 +3817,24 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No live-play/session authority, UI/client authority
   - No conversion, sourcebook inclusion, or canon promotion
 
+## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001G State Owner Interface Prerequisite Review
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001G-STATE-OWNER-INTERFACE-PREREQUISITE-REVIEW-001
+- **Date**: 2026-06-16
+- **PR**: RUNTIME-DOMAIN-RT-001G
+- **Purpose**: Prerequisite review over state owner and dependency owner interface requirements required before a real action legality evaluation service may read state, inspect projections, call owner services, or emit real legality results.
+- **Follows**: RT-001F (action legality service interface contract hardening review, merged as PR #316).
+- **Files added**:
+  - docs/doctrine/reviews/runtime_domain_rt_001g_state_owner_interface_prerequisite_review.md
+  - tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py
+- **Files modified**:
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **State owner interface families identified**: actor existence and identity owner; actor capability/authority owner; scene/location boundary owner; target existence and reachability owner; object/lever/interactable owner; hazard/clock/environment owner; inventory/custody/burden owner; resource pool/state owner; condition/injury/status owner; faction/social/relationship owner; mission/clue/reward/discovery owner; hidden information visibility owner; state projection owner; transaction preview owner; event commitment owner; persistence/replay owner.
+- **Dependency owner interface families identified**: validation owner; resource math owner; RNG/table/oracle owner; state delta owner; transaction lifecycle owner; event commitment owner; context packet owner; persistence/replay owner; doctrine/schema/source-local escalation owner; combat/ability/skill/effect resolution owner (future prerequisite only).
+- **Authorizes no runtime behavior**: RT-001G is review-only. It does not implement a state owner service, state reads, state mutation, action legality evaluation, command execution, event append or event commitment, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, model calls, prompt rendering, narration, live-play, UI behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Next recommended step**: RT-001H — State Owner Interface Contract Skeleton (not action legality evaluation implementation).
+
 ## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001F Action Legality Service Interface Contract Hardening Review
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001F-ACTION-LEGALITY-SERVICE-INTERFACE-CONTRACT-HARDENING-REVIEW-001
