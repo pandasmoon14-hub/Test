@@ -3945,3 +3945,51 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No narration generation
   - No live-play adapter, UI/client behavior
   - No conversion, sourcebook inclusion, or canon promotion
+
+## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001E Action Legality Service Interface Contract Skeleton
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001E-ACTION-LEGALITY-SERVICE-INTERFACE-CONTRACT-SKELETON-001
+- **Date**: 2026-06-16
+- **PR**: RUNTIME-DOMAIN-RT-001E
+- **Purpose**: Defines the service-facing contract boundary between the action legality gate (RT-001C) and a future action legality evaluation service. Frozen, keyword-only dataclasses, controlled constants, validators, factory/builder functions, and deterministic serializers. Does not implement legality evaluation.
+- **Follows**: RT-001D (action legality integration hardening review, merged as PR #314).
+- **Files added**:
+  - src/astra_runtime/domain/action_legality_service_interface_contract_skeleton.py
+  - tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (new RT-001E exports)
+  - tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py (domain module allowlists)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Constants defined**: ACTION_LEGALITY_SERVICE_INTERFACE_STAGES (5), ACTION_LEGALITY_SERVICE_INTERFACE_DEPENDENCY_KINDS (15), ACTION_LEGALITY_SERVICE_INTERFACE_RESULT_STATUSES (2: deferred, unknown), ACTION_LEGALITY_SERVICE_INTERFACE_OWNER_ROUTES (15), ACTION_LEGALITY_SERVICE_INTERFACE_NON_AUTHORITY_NOTE
+- **Dataclasses defined**: ActionLegalityServiceInterfaceAuthorityFlags (34 false-only fields), ActionLegalityServiceInterfaceDependencyManifest, ActionLegalityServiceInterfaceRequest, ActionLegalityServiceInterfaceResult, ActionLegalityServiceInterfaceContractSummary
+- **Factories defined**: create_action_legality_service_interface_authority_flags, create_action_legality_service_interface_dependency_manifest, create_action_legality_service_interface_request, create_action_legality_service_interface_result, create_action_legality_service_interface_contract_summary
+- **Builders defined**: build_action_legality_service_interface_dependency_manifest, build_deferred_action_legality_service_interface_result, build_unknown_action_legality_service_interface_result
+- **Serializers defined**: serialize_action_legality_service_interface_result (backend), serialize_action_legality_service_interface_result_visible (player-visible)
+- **Validators defined**: validate_action_legality_service_interface_authority_flags, validate_action_legality_service_interface_dependency_manifest, validate_action_legality_service_interface_request, validate_action_legality_service_interface_result, validate_action_legality_service_interface_contract_summary
+- **Preserves non-authority boundaries**: RT-001B, RT-001C, RT-001D all unmodified
+- **Default behavior**: deferred or unknown (not legal); result rejects legality_status="legal"
+- **Authority flags**: all 34 flags false-only; to_dict() hardcodes False
+- **Next recommended step**: RT-001F — Action Legality Service Interface Contract Hardening Review
+- **Authoritative denials**:
+  - No legality evaluation engine
+  - No real legality evaluation
+  - No command execution
+  - No state reads
+  - No state mutation or event append
+  - No event commitment
+  - No persistence or replay writes
+  - No RNG/table/oracle execution
+  - No resource/consequence math execution
+  - No affordability calculation, reservation, or settlement
+  - No consequence application
+  - No combat resolution
+  - No ability/effect/skill resolution
+  - No inventory mutation
+  - No mission/clue/reward mutation
+  - No social/faction mutation
+  - No context packet compilation
+  - No model calls, prompt rendering, prompt execution, or prose parsing
+  - No narration generation
+  - No live-play adapter, UI/client behavior
+  - No conversion, sourcebook inclusion, or canon promotion
