@@ -3906,3 +3906,42 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No narration generation
   - No live-play adapter, UI/client behavior
   - No conversion, sourcebook inclusion, or canon promotion
+
+## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001D Action Legality Integration Hardening Review
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001D-ACTION-LEGALITY-INTEGRATION-HARDENING-REVIEW-001
+- **Date**: 2026-06-16
+- **PR**: RUNTIME-DOMAIN-RT-001D
+- **Purpose**: Hardening review over merged RT-001B (PR #312) and RT-001C (PR #313) surfaces. Confirms no-real-legal-approval gate, hidden-information containment, safe player-visible messaging, JSON-safe serialization, false-only authority flags, and reference-only dependency plans. Does not implement any runtime behavior.
+- **Follows**: RT-001C (action legality gate integration skeleton, merged as PR #313).
+- **Files added**:
+  - docs/doctrine/reviews/runtime_domain_rt_001d_action_legality_integration_hardening_review.md
+  - tests/test_runtime_domain_rt_001d_action_legality_integration_hardening_review.py
+- **Files modified**:
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Confirmed invariants**: 14 (reference-only vocabulary, inert bridge references, deferred/unknown defaults, no legal approval bypass, constructor/factory bypass closed, player-visible serializer leak-free, hidden-information containment intact, false-only authority flags, deterministic JSON-safe to_dict, reference-only dependency plans, guardrail expansion recognized, no donor-family law, no conversion/canon authority, no live-play/model authority)
+- **Risk ledger entries**: 13 (legal approval bypass, backend detail leakage, hidden-information specificity, dependency-ref-to-call, guardrail drift, metadata serialization, authority flag bypass, constructor/factory divergence, validator-weaker-than-constructor, PR-9 seam overreach, state-before-owner, donor assumptions, live-play/model adapter misuse)
+- **Authorizes no implementation behavior**
+- **Next recommended step**: RT-001E — Action Legality Service Interface Contract Skeleton, unless review findings indicate a narrower remediation PR is required first
+- **Authoritative denials**:
+  - No legality evaluation engine
+  - No command execution
+  - No state reads beyond inert references
+  - No state mutation or event append
+  - No event commitment
+  - No persistence or replay writes
+  - No RNG/table/oracle execution
+  - No resource/consequence math execution
+  - No affordability calculation, reservation, or settlement
+  - No consequence application
+  - No combat resolution
+  - No ability/effect/skill resolution
+  - No inventory mutation
+  - No mission/clue/reward mutation
+  - No social/faction mutation
+  - No context packet compilation
+  - No model calls, prompt rendering, prompt execution, or prose parsing
+  - No narration generation
+  - No live-play adapter, UI/client behavior
+  - No conversion, sourcebook inclusion, or canon promotion
