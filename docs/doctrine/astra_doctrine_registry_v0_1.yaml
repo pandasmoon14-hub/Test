@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-21'
+  version: 0.1.104
+  action: runtime_domain_rt_001h_state_owner_interface_contract_skeleton
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-001H state owner interface contract skeleton. Reference-only skeleton implementation with frozen keyword-only dataclasses, controlled constants, factory/builder functions, deterministic serializers, and validators. Defines typed references, request/result envelopes, visibility descriptors, dependency declarations, and read-only authority flags for the 16 state owner families and 10 dependency owner families identified in RT-001G. StateVisibilityDescriptor enforces a controlled hidden_information_policy set and rejects metadata keys that could carry hidden or backend-only facts (hidden_fact, hidden_facts, secret, secrets, backend_only_fact, backend_only_facts, state_payload, projection_payload, actual_state) recursively. No state owner service behavior, no state reads, no raw state access, no state projection materialization, no state mutation, no action legality evaluation, no command execution, no event commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource math, no combat/ability/skill/effect resolution, no model calls, no prompt rendering, no narration generation, no live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion. Follows merged RT-001G / PR #317. Next recommended step: RT-001I \u2014 State Owner Interface Contract Hardening Review."
 - date: '2026-06-16'
   version: 0.1.103
   action: runtime_domain_rt_001g_state_owner_interface_prerequisite_review
@@ -14157,3 +14162,92 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: blocking
   notes: RUNTIME-DOMAIN-RT-001G state owner interface prerequisite review; review-only, no runtime behavior, no implementation authority; identifies 16 state owner interface families and 10 dependency owner interface families required before real action legality evaluation; documents minimum state read contracts, projection/visibility contracts, hidden-information containment, ownership boundaries, transaction preview/event commitment prerequisites, resource/consequence math prerequisites, RNG/table/oracle prerequisites, persistence/replay prerequisites, import/authority boundaries, corpus-scale donor pressure audit, and 15 risk ledger entries; forbids raw state reads, missing-data-as-truth inference, mutation/event commitment shortcuts, and donor-action-economy baseline leakage; follows merged RT-001F / PR #316; next step RT-001H — State Owner Interface Contract Skeleton.
+
+- file_id: RUNTIME-DOMAIN-RT-001H-STATE-OWNER-INTERFACE-CONTRACT-SKELETON-001
+  title: 'RUNTIME-DOMAIN-RT-001H: State Owner Interface Contract Skeleton'
+  filename: state_owner_interface_contract_skeleton.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-001
+  purpose: Reference-only state owner interface contract skeleton defining typed references, request/result envelopes, visibility descriptors, dependency declarations, read-only authority flags, and deterministic serializers for future state-owner and dependency-owner interfaces.
+  batch: runtime-domain
+  series: runtime-domain-rt-001h
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Skeleton implementation tracking only; reference-only contract shapes; no state owner service behavior, no state reads, no raw state access, no state projection materialization, no state mutation, no action legality evaluation, no command execution, no event commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource math, no combat/ability/skill/effect resolution, no model calls, no prompt rendering, no narration generation, no live-play or UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
+  runtime_domain_rt_001h:
+    implementation_id: RUNTIME-DOMAIN-RT-001H-STATE-OWNER-INTERFACE-CONTRACT-SKELETON-001
+    artifact_type: executable_domain_skeleton
+    implementation_status: narrow_reference_only_skeleton
+    derives_from:
+    - RUNTIME-DOMAIN-RT-001G state owner interface prerequisite review / PR #317
+    - RUNTIME-DOMAIN-RT-001F action legality service interface contract hardening review / PR #316
+    - RUNTIME-DOMAIN-RT-001E action legality service interface contract skeleton / PR #315
+    implements_state_owner_interface_contract_skeleton: true
+    implements_typed_references: true
+    implements_request_result_envelopes: true
+    implements_visibility_descriptors: true
+    implements_dependency_declarations: true
+    implements_read_only_authority_flags: true
+    implements_deterministic_serializers: true
+    implements_factory_validator_parity: true
+    implements_domain_exports: true
+    implements_focused_skeleton_tests: true
+    authorizes_state_owner_service_behavior: false
+    authorizes_state_reads: false
+    authorizes_raw_state_access: false
+    authorizes_state_projection_materialization: false
+    authorizes_state_mutation: false
+    authorizes_event_append: false
+    authorizes_event_commitment: false
+    authorizes_persistence_write: false
+    authorizes_replay_write: false
+    authorizes_rng_execution: false
+    authorizes_table_oracle_execution: false
+    authorizes_resource_math_execution: false
+    authorizes_affordability_execution: false
+    authorizes_reservation: false
+    authorizes_settlement: false
+    authorizes_consequence_application: false
+    authorizes_action_legality_evaluation: false
+    authorizes_command_execution: false
+    authorizes_combat_resolution: false
+    authorizes_ability_resolution: false
+    authorizes_skill_resolution: false
+    authorizes_effect_resolution: false
+    authorizes_context_packet_compilation: false
+    authorizes_model_call: false
+    authorizes_prompt_rendering: false
+    authorizes_narration_generation: false
+    authorizes_live_play: false
+    authorizes_ui: false
+    authorizes_conversion: false
+    authorizes_sourcebook_inclusion: false
+    authorizes_canon_promotion: false
+  implementation_files:
+  - src/astra_runtime/domain/state_owner_interface_contract_skeleton.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-001G state owner interface prerequisite review / PR #317
+  - RT-001 command lifecycle and action legality owner specification
+  blocked_by:
+  - RUNTIME-DOMAIN-RT-001G state owner interface prerequisite review / PR #317
+  unlocks:
+  - review/merge RT-001H before starting RT-001I State Owner Interface Contract Hardening Review
+  downstream_consumers:
+  - RUNTIME-DOMAIN-RT-001I (pending authorization)
+  owns:
+  - Reference-only state owner interface contract skeleton shapes, constants, factories, builders, serializers, validators, domain exports, and focused tests.
+  must_not_own:
+  - State owner service behavior, state reads, raw state access, state projection materialization, state mutation, action legality evaluation, command execution, event append/commitment, persistence/replay writes, RNG/table/oracle execution, resource/consequence math, affordability/reservation/settlement/consequence application, combat/ability/skill/effect resolution, context packet compilation, model calls, prompt rendering, narration generation, live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: none
+  notes: RUNTIME-DOMAIN-RT-001H state owner interface contract skeleton; reference-only executable skeleton; defines typed references, request/result envelopes, visibility descriptors, dependency declarations, read-only authority flags, and deterministic serializers for 16 state owner families and 10 dependency owner families; StateVisibilityDescriptor enforces controlled hidden_information_policy values and recursively rejects metadata keys that could carry hidden/backend-only facts; preserves RT-001G prerequisite boundary and keeps real action legality evaluation blocked; follows merged RT-001G / PR #317; next step RT-001I — State Owner Interface Contract Hardening Review.

@@ -3817,6 +3817,28 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No live-play/session authority, UI/client authority
   - No conversion, sourcebook inclusion, or canon promotion
 
+## 2026-06-21 decision \u2014 RUNTIME-DOMAIN-RT-001H State Owner Interface Contract Skeleton
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001H-STATE-OWNER-INTERFACE-CONTRACT-SKELETON-001
+- **Date**: 2026-06-21
+- **PR**: RUNTIME-DOMAIN-RT-001H
+- **Purpose**: Define a reference-only state owner interface contract skeleton for the state owner families and dependency owner families identified in RT-001G. Creates typed references, request/result envelopes, visibility descriptors, dependency declarations, read-only authority flags, and deterministic serializers for future state-owner and dependency-owner interfaces.
+- **Follows**: RT-001G (state owner interface prerequisite review, merged as PR #317).
+- **Files added**:
+  - src/astra_runtime/domain/state_owner_interface_contract_skeleton.py
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (exports)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **State owner interface families covered**: actor_identity_owner; actor_capability_owner; scene_location_owner; target_reachability_owner; object_interactable_owner; hazard_environment_owner; inventory_custody_owner; resource_pool_owner; condition_status_owner; faction_social_owner; mission_discovery_owner; hidden_information_visibility_owner; state_projection_owner; transaction_preview_owner; event_commitment_owner; persistence_replay_owner.
+- **Dependency owner families covered**: validation_owner; resource_math_owner; rng_table_oracle_owner; state_delta_owner; transaction_lifecycle_owner; event_commitment_owner; context_packet_owner; persistence_replay_owner; doctrine_schema_escalation_owner; combat_ability_skill_effect_owner.
+- **Explicit non-authority boundaries**: RT-001H is skeleton-only. It does not implement state owner service behavior, state reads, raw state access, state projection materialization, state mutation, action legality evaluation, command execution, event append or event commitment, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, model calls, prompt rendering, narration generation, live-play or UI behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Typed reference-only contract shapes**: Defines StateOwnerInterfaceReference, StateVisibilityDescriptor, StateProjectionRequestReference, StateOwnerDependencyDeclaration, StateOwnerInterfaceRequest, StateOwnerInterfaceResult, and StateOwnerInterfaceContractSummary as frozen, keyword-only dataclasses with reference-only validation.
+- **Hidden-information containment**: StateVisibilityDescriptor uses a controlled `STATE_OWNER_HIDDEN_INFORMATION_POLICIES` set and recursively rejects metadata keys that could carry hidden or backend-only facts (`hidden_fact`, `hidden_facts`, `secret`, `secrets`, `backend_only_fact`, `backend_only_facts`, `state_payload`, `projection_payload`, `actual_state`). Visibility descriptors cannot be constructed with arbitrary hidden-information policies or smuggled hidden truth.
+- **Preserves RT-001G prerequisite boundary**: Real action legality evaluation remains blocked until reviewed owner interfaces and downstream dependency interfaces exist and are hardening-reviewed.
+- **Next recommended step**: RT-001I \u2014 State Owner Interface Contract Hardening Review (not action legality evaluation implementation).
+
 ## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001G State Owner Interface Prerequisite Review
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001G-STATE-OWNER-INTERFACE-PREREQUISITE-REVIEW-001
