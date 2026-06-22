@@ -33,6 +33,7 @@ __all__ = [
     "STATE_OWNER_PROJECTION_KINDS",
     "STATE_OWNER_REFERENCE_KINDS",
     "STATE_OWNER_DENIAL_REASONS",
+    "STATE_OWNER_HIDDEN_INFORMATION_POLICIES",
     "STATE_OWNER_NON_AUTHORITY_NOTE",
     # Error hierarchy
     "StateOwnerInterfaceContractSkeletonError",
@@ -184,6 +185,25 @@ STATE_OWNER_DENIAL_REASONS = frozenset({
     "schema_gap",
 })
 
+STATE_OWNER_HIDDEN_INFORMATION_POLICIES = frozenset({
+    "generic_safe_message",
+    "redact",
+    "route_to_hidden_information_visibility_owner",
+    "deny_visible_detail",
+})
+
+_FORBIDDEN_VISIBILITY_METADATA_KEYS = frozenset({
+    "hidden_fact",
+    "hidden_facts",
+    "secret",
+    "secrets",
+    "backend_only_fact",
+    "backend_only_facts",
+    "state_payload",
+    "projection_payload",
+    "actual_state",
+})
+
 STATE_OWNER_NON_AUTHORITY_NOTE = (
     "This state owner interface contract is skeleton-only and authorizes no "
     "state owner service behavior, no state reads, no raw state access, no "
@@ -307,6 +327,32 @@ def _safe_metadata(
         raise error_cls("metadata must be a mapping")
     _validate_json_safe(metadata, "metadata", error_cls)
     return MappingProxyType(copy.deepcopy(dict(metadata)))
+
+
+def _validate_no_forbidden_visibility_metadata_keys(
+    value: Any, path: str, error_cls: type[Exception],
+) -> None:
+    """Recursively reject metadata keys that could carry hidden/backend state."""
+    if isinstance(value, (dict, Mapping)):
+        for k, v in value.items():
+            if not isinstance(k, str):
+                raise error_cls(
+                    f"metadata key at {path} must be a string, "
+                    f"got {type(k).__name__}"
+                )
+            if k in _FORBIDDEN_VISIBILITY_METADATA_KEYS:
+                raise error_cls(
+                    f"metadata key {k!r} at {path} is forbidden: "
+                    f"visibility descriptors must not carry hidden or backend-only data"
+                )
+            _validate_no_forbidden_visibility_metadata_keys(
+                v, f"{path}.{k}", error_cls,
+            )
+    elif isinstance(value, (list, tuple)):
+        for i, item in enumerate(value):
+            _validate_no_forbidden_visibility_metadata_keys(
+                item, f"{path}[{i}]", error_cls,
+            )
 
 
 def _safe_str_tuple(
@@ -494,6 +540,16 @@ class StateVisibilityDescriptor:
             self.hidden_information_policy, "hidden_information_policy",
             InvalidStateVisibilityDescriptorError,
         )
+        if self.hidden_information_policy not in STATE_OWNER_HIDDEN_INFORMATION_POLICIES:
+            raise InvalidStateVisibilityDescriptorError(
+                f"hidden_information_policy must be one of "
+                f"{sorted(STATE_OWNER_HIDDEN_INFORMATION_POLICIES)}, "
+                f"got {self.hidden_information_policy!r}"
+            )
+        if self.metadata:
+            _validate_no_forbidden_visibility_metadata_keys(
+                self.metadata, "metadata", InvalidStateVisibilityDescriptorError,
+            )
         object.__setattr__(
             self, "metadata",
             _safe_metadata(self.metadata, InvalidStateVisibilityDescriptorError),
@@ -1307,7 +1363,17 @@ def validate_state_visibility_descriptor(obj: Any) -> bool:
         return False
     if obj.visibility_tier not in STATE_OWNER_VISIBILITY_TIERS:
         return False
-    return isinstance(obj.metadata, Mapping)
+    if obj.hidden_information_policy not in STATE_OWNER_HIDDEN_INFORMATION_POLICIES:
+        return False
+    if not isinstance(obj.metadata, Mapping):
+        return False
+    try:
+        _validate_no_forbidden_visibility_metadata_keys(
+            obj.metadata, "metadata", InvalidStateVisibilityDescriptorError,
+        )
+    except InvalidStateVisibilityDescriptorError:
+        return False
+    return True
 
 
 def validate_state_projection_request_reference(obj: Any) -> bool:

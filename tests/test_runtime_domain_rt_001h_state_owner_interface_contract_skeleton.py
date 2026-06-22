@@ -177,6 +177,25 @@ class TestDependencyOwnerFamilies:
 
 
 # ---------------------------------------------------------------------------
+# T3b — Constants include all hidden information policies
+# ---------------------------------------------------------------------------
+
+class TestHiddenInformationPolicies:
+    _EXPECTED_POLICIES = {
+        "generic_safe_message",
+        "redact",
+        "route_to_hidden_information_visibility_owner",
+        "deny_visible_detail",
+    }
+
+    def test_hidden_information_policies_complete(self):
+        from astra_runtime.domain.state_owner_interface_contract_skeleton import (
+            STATE_OWNER_HIDDEN_INFORMATION_POLICIES,
+        )
+        assert STATE_OWNER_HIDDEN_INFORMATION_POLICIES == self._EXPECTED_POLICIES
+
+
+# ---------------------------------------------------------------------------
 # T4 — Result statuses exclude execution/final/adjudicative statuses
 # ---------------------------------------------------------------------------
 
@@ -494,6 +513,74 @@ class TestVisibilityDescriptorNoHiddenFacts:
         assert "hidden_facts" not in d
         assert "backend_only_facts" not in d
         assert "state_payload" not in d
+
+    def test_rejects_arbitrary_hidden_information_policy(self):
+        from astra_runtime.domain.state_owner_interface_contract_skeleton import (
+            InvalidStateVisibilityDescriptorError,
+            StateVisibilityDescriptor,
+        )
+        with pytest.raises(InvalidStateVisibilityDescriptorError):
+            StateVisibilityDescriptor(
+                visibility_id="vis1",
+                visibility_tier="player_visible",
+                hidden_information_policy="secret_door_exists",
+            )
+
+    def test_rejects_forbidden_hidden_fact_metadata_keys(self):
+        from astra_runtime.domain.state_owner_interface_contract_skeleton import (
+            InvalidStateVisibilityDescriptorError,
+            StateVisibilityDescriptor,
+        )
+        for forbidden_key in (
+            "hidden_fact",
+            "hidden_facts",
+            "secret",
+            "secrets",
+            "backend_only_fact",
+            "backend_only_facts",
+            "state_payload",
+            "projection_payload",
+            "actual_state",
+        ):
+            with pytest.raises(InvalidStateVisibilityDescriptorError):
+                StateVisibilityDescriptor(
+                    visibility_id="vis1",
+                    visibility_tier="player_visible",
+                    metadata={forbidden_key: "the assassin is behind the door"},
+                )
+
+    def test_rejects_nested_forbidden_hidden_fact_metadata_keys(self):
+        from astra_runtime.domain.state_owner_interface_contract_skeleton import (
+            InvalidStateVisibilityDescriptorError,
+            StateVisibilityDescriptor,
+        )
+        with pytest.raises(InvalidStateVisibilityDescriptorError):
+            StateVisibilityDescriptor(
+                visibility_id="vis1",
+                visibility_tier="player_visible",
+                metadata={
+                    "outer": {
+                        "inner": {
+                            "hidden_facts": "the assassin is behind the door",
+                        },
+                    },
+                },
+            )
+
+    def test_validator_rejects_descriptor_with_forbidden_metadata(self):
+        from astra_runtime.domain.state_owner_interface_contract_skeleton import (
+            InvalidStateVisibilityDescriptorError,
+            StateVisibilityDescriptor,
+            validate_state_visibility_descriptor,
+        )
+        # Construction itself must raise; if it somehow did not, validator returns False.
+        with pytest.raises(InvalidStateVisibilityDescriptorError):
+            vis = StateVisibilityDescriptor(
+                visibility_id="vis1",
+                visibility_tier="player_visible",
+                metadata={"hidden_facts": "the assassin is behind the door"},
+            )
+            assert not validate_state_visibility_descriptor(vis)
 
 
 # ---------------------------------------------------------------------------
@@ -1161,11 +1248,17 @@ class TestExistingTestsStillPass:
         )
 
     def test_rt001d_tests_pass(self):
+        # RT-001D's TestImplementationModuleSafety asserts that no files under
+        # src/astra_runtime/domain/ differ from origin/main...HEAD. That guardrail
+        # is correct for the review-only RT-001D branch but legitimately fails on
+        # the RT-001H branch because RT-001H adds a new runtime module. Run the
+        # functional tests only.
         result = subprocess.run(
             [
                 "python", "-m", "pytest",
                 "tests/test_runtime_domain_rt_001d_action_legality_integration_hardening_review.py",
                 "-q", "--tb=short",
+                "-k", "not TestImplementationModuleSafety",
             ],
             capture_output=True, text=True, cwd=REPO_ROOT,
         )
@@ -1187,11 +1280,16 @@ class TestExistingTestsStillPass:
         )
 
     def test_rt001f_tests_pass(self):
+        # RT-001F's TestExistingTestsStillPass runs RT-001D recursively, which
+        # includes RT-001D's branch-specific TestImplementationModuleSafety
+        # guardrail. That guardrail fails on the RT-001H branch because RT-001H
+        # adds a new runtime module. Run RT-001F's own functional tests only.
         result = subprocess.run(
             [
                 "python", "-m", "pytest",
                 "tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py",
                 "-q", "--tb=short",
+                "-k", "not TestExistingTestsStillPass",
             ],
             capture_output=True, text=True, cwd=REPO_ROOT,
         )
@@ -1204,13 +1302,15 @@ class TestExistingTestsStillPass:
         # no files under src/astra_runtime/ differ from origin/main. That guardrail
         # is correct for the review-only RT-001G branch but will legitimately fail
         # on the RT-001H branch because RT-001H adds a new runtime module and
-        # updates __init__.py exports. We run the RT-001G functional tests only.
+        # updates __init__.py exports. RT-001G's TestExistingTestsStillPass also
+        # runs RT-001D/RT-001F recursively and therefore hits the same branch-
+        # specific guardrails. Run RT-001G's own functional tests only.
         result = subprocess.run(
             [
                 "python", "-m", "pytest",
                 "tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py",
                 "-q", "--tb=short",
-                "-k", "not TestNoModificationOfRuntimeModules",
+                "-k", "not TestNoModificationOfRuntimeModules and not TestExistingTestsStillPass",
             ],
             capture_output=True, text=True, cwd=REPO_ROOT,
         )
