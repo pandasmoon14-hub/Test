@@ -3839,6 +3839,26 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Preserves RT-001G prerequisite boundary**: Real action legality evaluation remains blocked until reviewed owner interfaces and downstream dependency interfaces exist and are hardening-reviewed.
 - **Next recommended step**: RT-001I \u2014 State Owner Interface Contract Hardening Review (not action legality evaluation implementation).
 
+## 2026-06-21 decision \u2014 RUNTIME-DOMAIN-RT-001I State Owner Interface Contract Hardening Review
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-001I-STATE-OWNER-INTERFACE-CONTRACT-HARDENING-REVIEW-001
+- **Date**: 2026-06-21
+- **PR**: RUNTIME-DOMAIN-RT-001I
+- **Purpose**: Hardening review over the merged RT-001H (PR #318) state owner interface contract skeleton before beginning RT-002 runtime implementation.
+- **Follows**: RT-001H (state owner interface contract skeleton, merged as PR #318).
+- **Files added**:
+  - docs/doctrine/reviews/runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.md
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py
+- **Files modified**:
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Review-only hardening review**: RT-001I is review-only. It authorizes no runtime behavior, no state owner service behavior, no state reads, no raw state access, no state projection materialization, no state mutation, no action legality evaluation, no command execution, no event append or event commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource/consequence math execution, no combat/ability/skill/effect resolution, no model calls, no prompt rendering, no narration generation, no live-play or UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
+- **Hardening focus**: Constructor/factory/validator parity, authority flag false-only enforcement, hidden-information containment, visibility descriptor metadata containment, projection reference containment, request/result envelope status containment, serializer containment, import/export boundaries, registry/decision-log consistency, and RT-002 readiness.
+- **RT-002A readiness conclusion**: `READY_WITH_CONSTRAINTS_FOR_RT_002A` — RT-001H is safe enough to build a read-only vertical-slice state owner facade if RT-002A follows the constraints documented in the review.
+- **Required RT-002A constraints**: RT-002A may implement only read-only owner-mediated state access; must not implement broad state service behavior; must not read raw state outside a narrow owned facade; must support only the smallest vertical slice (one scene, one actor, one NPC/target, one object/lever, one hazard clock, one visible condition/injury, one hidden fact reference); must not implement mutation, legality evaluation, transaction preview, or event commitment; must preserve hidden-information containment; and must produce owner-mediated references/projections, not model-facing prose.
+- **Remaining deferred risks**: constructor/factory/validator divergence risk; hidden-information policy drift risk; forbidden metadata key bypass risk; visible serializer leakage risk; backend serializer overexposure risk; authority flag bypass risk; raw state access temptation risk; projection materialization drift risk; request/result status adjudication drift risk; import boundary erosion risk; export surface creep risk; registry/decision-log drift risk; branch-specific guardrail masking risk; donor action-economy leakage risk; RT-002A scope creep risk.
+- **Next recommended step**: RT-002A \u2014 Read-Only Vertical Slice State Owner Facade. No RT-001J is required unless RT-001I finds a concrete blocker.
+
 ## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001G State Owner Interface Prerequisite Review
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001G-STATE-OWNER-INTERFACE-PREREQUISITE-REVIEW-001
