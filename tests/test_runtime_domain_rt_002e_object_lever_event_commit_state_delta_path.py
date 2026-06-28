@@ -160,8 +160,11 @@ def _base_elig(status="commit_ready"):
 def _base_delta(kind="object_lever_interaction_state_delta_receipt", affected=("scene:1","actor:1","object_lever:1"), label="object_lever_interaction_recorded"):
     return e.ObjectLeverStateDeltaReceipt(state_delta_receipt_id="sd", state_delta_kind=kind, command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference_ids={"bridge_result_id":"br","preview_candidate_id":"pc"}, affected_safe_reference_ids=affected, state_delta_label=label)
 
-def _base_record(kind="object_lever_interaction_committed_event", delta=None):
-    src=_base_src(); elig=_base_elig(); delta=delta or _base_delta()
+def _base_record(kind="object_lever_interaction_committed_event", delta=None, elig=None):
+    src=_base_src(); delta=delta or _base_delta()
+    if elig is None:
+        elig_status={"object_lever_interaction_committed_event":"commit_ready","object_lever_interaction_blocked_event":"commit_blocked","object_lever_interaction_deferred_event":"commit_deferred","object_lever_interaction_unknown_event":"commit_unknown","object_lever_interaction_insufficient_preview_event":"commit_insufficient_preview"}[kind]
+        elig=_base_elig(elig_status)
     return e.ObjectLeverCommittedEventRecord(committed_event_id="ev", event_record_kind=kind, command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference=src, eligibility=elig, state_delta_receipt=delta, safe_reference_ids=("scene:1","actor:1","object_lever:1"))
 
 def test_eligibility_rejects_committed_status():
@@ -206,3 +209,31 @@ def test_commit_result_coherence_rejected():
 def test_commit_result_valid_variants():
     record=_base_record(); delta=_base_delta()
     assert e.validate_object_lever_event_commit_result(e.ObjectLeverEventCommitResult(result_id="r", commit_status="committed", commit_decision="object_lever_event_committed", committed_event_record=record, state_delta_receipt=delta)) is True
+
+
+def test_event_record_eligibility_coherence_rejected():
+    src=e.ObjectLeverCommitSourceRef(bridge_result_id="br", preview_candidate_id="pc", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, bridge_decision="blocked", bridge_status="preview_bridge_blocked")
+    ready_elig=e.ObjectLeverCommitEligibility(command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, eligibility_status="commit_ready", bridge_decision="blocked", bridge_status="preview_bridge_blocked")
+    block_elig=e.ObjectLeverCommitEligibility(command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, eligibility_status="commit_blocked", bridge_decision="blocked", bridge_status="preview_bridge_blocked")
+    block_delta=e.ObjectLeverStateDeltaReceipt(state_delta_receipt_id="sd", state_delta_kind="no_state_delta_due_to_block", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference_ids={"bridge_result_id":"br"}, affected_safe_reference_ids=(), state_delta_label="no state delta due to block")
+    with pytest.raises(e.InvalidObjectLeverCommittedEventRecordError):
+        e.ObjectLeverCommittedEventRecord(committed_event_id="ev", event_record_kind="object_lever_interaction_blocked_event", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference=src, eligibility=ready_elig, state_delta_receipt=block_delta)
+    deferred_elig=e.ObjectLeverCommitEligibility(command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, eligibility_status="commit_ready", bridge_decision="deferred", bridge_status="preview_bridge_deferred")
+    deferred_delta=e.ObjectLeverStateDeltaReceipt(state_delta_receipt_id="sd", state_delta_kind="no_state_delta_due_to_deferred", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference_ids={"bridge_result_id":"br"}, affected_safe_reference_ids=(), state_delta_label="no state delta due to deferred")
+    with pytest.raises(e.InvalidObjectLeverCommittedEventRecordError):
+        e.ObjectLeverCommittedEventRecord(committed_event_id="ev", event_record_kind="object_lever_interaction_deferred_event", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference=src, eligibility=deferred_elig, state_delta_receipt=deferred_delta)
+    committed_src=e.ObjectLeverCommitSourceRef(bridge_result_id="br", preview_candidate_id="pc", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, bridge_decision="preview_candidate_prepared", bridge_status="preview_bridge_available", safe_reference_ids=("scene:1","actor:1","object_lever:1"))
+    committed_delta=e.ObjectLeverStateDeltaReceipt(state_delta_receipt_id="sd", state_delta_kind="object_lever_interaction_state_delta_receipt", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference_ids={"bridge_result_id":"br","preview_candidate_id":"pc"}, affected_safe_reference_ids=("scene:1","actor:1","object_lever:1"), state_delta_label="object_lever_interaction_recorded")
+    with pytest.raises(e.InvalidObjectLeverCommittedEventRecordError):
+        e.ObjectLeverCommittedEventRecord(committed_event_id="ev", event_record_kind="object_lever_interaction_committed_event", command_family=e.OBJECT_LEVER_COMMIT_COMMAND_FAMILY, source_reference=committed_src, eligibility=block_elig, state_delta_receipt=committed_delta)
+
+def test_helper_outputs_remain_valid():
+    for decision,status,expected_status,expected_decision in [("permitted_for_preview","legality_read_available","committed","object_lever_event_committed"),("blocked","legality_read_available","commit_blocked","blocked"),("deferred","deferred","commit_deferred","deferred"),("unknown","unknown","commit_unknown","unknown"),("insufficient_projection","insufficient_projection","commit_insufficient_preview","insufficient_preview")]:
+        result=e.commit_object_lever_preview_to_event_and_state_delta(preview(decision,status))
+        assert result.commit_status == expected_status
+        assert result.commit_decision == expected_decision
+        assert e.validate_object_lever_event_commit_result(result) is True
+        if expected_status == "committed":
+            assert result.committed_event_record.eligibility.eligibility_status == "commit_ready"
+        else:
+            assert result.committed_event_record.eligibility.eligibility_status == expected_status

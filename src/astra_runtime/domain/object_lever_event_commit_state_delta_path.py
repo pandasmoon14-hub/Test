@@ -207,6 +207,10 @@ class ObjectLeverCommittedEventRecord:
         event_status=_EVENT_KIND_TO_STATUS.get(self.event_record_kind)
         delta_status=_DELTA_KIND_TO_STATUS.get(self.state_delta_receipt.state_delta_kind)
         if event_status != delta_status: raise e("event_record_kind and state_delta_receipt kind are not coherent")
+        if event_status == "committed":
+            if self.eligibility.eligibility_status != "commit_ready": raise e("committed event record requires eligibility_status commit_ready")
+        else:
+            if self.eligibility.eligibility_status != event_status: raise e("event_record_kind and eligibility_status are not coherent")
         object.__setattr__(self,"safe_reference_ids",_tuple(self.safe_reference_ids,"safe_reference_ids",e))
         _nonempty(self.non_authority_note,"non_authority_note",e)
         if not isinstance(self.authority_flags,ObjectLeverEventCommitAuthorityFlags): raise e("invalid authority_flags")
