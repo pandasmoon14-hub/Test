@@ -4152,3 +4152,18 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Candidate rule**: May prepare a non-mutating transaction preview candidate only when RT-002C reports `permitted_for_preview` and `legality_read_available` with required safe references.
 - **Authoritative denials**: Authorizes no command execution, state mutation, state delta application, event append, event commitment, persistence/replay writes, RNG/table/oracle execution, resource/consequence settlement, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
 - **Next recommended step**: RT-002E — First Event Commit and State Delta Path for Object/Lever Interaction
+
+## 2026-06-28 decision — RUNTIME-DOMAIN-RT-002E First Event Commit and State Delta Path for Object/Lever Interaction
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-002E-OBJECT-LEVER-EVENT-COMMIT-STATE-DELTA-PATH-001
+- **Date**: 2026-06-28
+- **PR**: RUNTIME-DOMAIN-RT-002E
+- **Follows**: merged RT-002D / PR #323.
+- **Purpose**: Implements the first narrow event commit and bounded state-delta receipt path for object/lever interaction.
+- **Dependency boundary**: Consumes RT-002D preview bridge results only.
+- **Command family**: Supports only `interact_with_object_lever`.
+- **Commit rule**: May produce a committed event record and bounded state-delta commit receipt only when RT-002D reports `preview_candidate_prepared` and `preview_bridge_available` with required safe references and no preview block reasons.
+- **Authoritative denials**: Authorizes no general command execution, general state mutation engine, general event engine, persistence/replay writes, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Hidden-information and mutation containment**: Metadata recursively rejects forbidden hidden/raw/execution/event/mutation/resource/model keys. State-delta receipts are label-based and contain no arbitrary mutation instructions, hidden state values, state before/after values, or durable persistence markers. Committed event records are in-memory serializable envelopes only and do not append to an event store or write to persistence.
+- **Serializer containment**: Backend serializer is deterministic and JSON-safe. Visible serializer excludes metadata, authority flags, backend-only fields, raw state, hidden fact payloads, RT-002A/RT-002B/RT-002C/RT-002D internal payloads, arbitrary mutation instructions, generalized state-delta fields, persistence/replay fields, resource/consequence settlement fields, RNG/oracle result fields, and model prompt/narration fields.
+- **Next recommended step**: RT-002F — Tiny Slice Replay and Audit Check for Object/Lever Interaction
