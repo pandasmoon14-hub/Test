@@ -3859,6 +3859,28 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Remaining deferred risks**: constructor/factory/validator divergence risk; hidden-information policy drift risk; forbidden metadata key bypass risk; visible serializer leakage risk; backend serializer overexposure risk; authority flag bypass risk; raw state access temptation risk; projection materialization drift risk; request/result status adjudication drift risk; import boundary erosion risk; export surface creep risk; registry/decision-log drift risk; branch-specific guardrail masking risk; donor action-economy leakage risk; RT-002A scope creep risk.
 - **Next recommended step**: RT-002A \u2014 Read-Only Vertical Slice State Owner Facade. No RT-001J is required unless RT-001I finds a concrete blocker.
 
+## 2026-06-21 decision — RUNTIME-DOMAIN-RT-002A Read-Only Vertical Slice State Owner Facade
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-002A-READ-ONLY-VERTICAL-SLICE-STATE-OWNER-FACADE-001
+- **Date**: 2026-06-21
+- **PR**: RUNTIME-DOMAIN-RT-002A
+- **Purpose**: First owner-mediated runtime implementation step after the RT-001 boundary and interface series. Implements a narrow, read-only, owner-mediated facade for the smallest vertical slice.
+- **Follows**: RT-001I (state owner interface contract hardening review, merged as PR #319).
+- **Files added**:
+  - src/astra_runtime/domain/read_only_vertical_slice_state_owner_facade.py
+  - tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (RT-002A public surface exports)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Vertical slice entities covered**: exactly one scene, one actor, one NPC/target, one object/lever, one hazard clock, one visible condition/injury, and one hidden fact reference.
+- **Public surface**: frozen keyword-only dataclasses (VerticalSliceStateOwnerAuthorityFlags, VerticalSliceStateRecordRef, VerticalSliceSceneRecord, VerticalSliceActorRecord, VerticalSliceNpcTargetRecord, VerticalSliceObjectLeverRecord, VerticalSliceHazardClockRecord, VerticalSliceVisibleConditionRecord, VerticalSliceHiddenFactReference, VerticalSliceReadOnlyStateBundle, VerticalSliceOwnerProjection, VerticalSliceOwnerFacadeResult); factory functions; facade helpers; deterministic serializers; validators.
+- **Read-only boundaries**: The facade only returns references/projections from an already-provided frozen VerticalSliceReadOnlyStateBundle. It does not read from disk, a database, a global store, or a generalized state service. It does not mutate the bundle or any record.
+- **Hidden-information containment**: VerticalSliceHiddenFactReference carries only a reference ID, owner family, visibility tier, redacted safe label, routing policy, and safe metadata. It does not contain a hidden fact payload, secret text, backend-only fact content, raw state, actual state, or truth payload. Metadata recursively rejects forbidden hidden keys.
+- **Serializer containment**: The backend serializer is deterministic and JSON-safe. The visible serializer excludes metadata, raw state, hidden fact payload, backend-only fields, authority flags, internal dependency declarations, implementation details, source-local donor assumptions, and narration/prompt text.
+- **Explicit non-authority boundaries**: RT-002A does not implement broad state owner service behavior, general state store, raw state access outside the narrow owned facade, state mutation, event append, event commitment, persistence/replay writes, action legality evaluation, command execution, transaction preview materialization, state projection materialization, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, model calls, prompt rendering, narration generation, live-play behavior, UI/client behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Next recommended step**: RT-002B — Projection and Visibility Adapter v0.1.
+
 ## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001G State Owner Interface Prerequisite Review
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001G-STATE-OWNER-INTERFACE-PREREQUISITE-REVIEW-001
