@@ -19,6 +19,12 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-28'
+  version: 0.1.109
+  action: runtime_domain_rt_002f_object_lever_replay_audit_check
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-002F tiny slice replay and audit check for object/lever interaction. Follows merged RT-002E / PR #324. Implements a narrow deterministic in-memory replay/audit-check envelope for RT-002E object/lever event commit and state-delta results. Consumes RT-002E commit results only. Supports only command family interact_with_object_lever. May produce an in-memory audit snapshot and replay-check receipt only when RT-002E reports a coherent committed object/lever event/state-delta result. Authorizes no durable persistence writes, replay index writes, event-store append/read, command re-execution, state reconstruction, general replay engine, state mutation, state-delta application, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion. Next recommended step: RT-002G — Context Packet Output from Committed Object/Lever Event."
+
 - date: '2026-06-27'
   version: 0.1.108
   action: runtime_domain_rt_002c_object_lever_interaction_legality_reader
@@ -14813,6 +14819,60 @@ file_records:
   implementation_files: []
   test_files:
   - tests/test_runtime_domain_rt_002e_object_lever_event_commit_state_delta_path.py
+  runtime_relevance: blocking
+  live_play_relevance: none
+  canon_relevance: none
+  broad_conversion_relevance: none
+
+- file_id: RUNTIME-DOMAIN-RT-002F-OBJECT-LEVER-REPLAY-AUDIT-CHECK-001
+  title: 'RUNTIME-DOMAIN-RT-002F: Tiny Slice Replay and Audit Check for Object/Lever Interaction'
+  filename: object_lever_replay_audit_check.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002F
+  purpose: Narrow deterministic replay/audit-check envelope consuming RT-002E commit results for interact_with_object_lever only.
+  batch: runtime-domain
+  series: runtime-domain-rt-002f
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Runtime-relevant and replay/audit-check-relevant, but narrow, object/lever-only, non-persistent, non-replay-writing, non-event-store, non-RNG, non-resource-settling, non-model-facing, and non-generalized; no persistence/replay writes, event-store append/read, command re-execution, state reconstruction, state mutation, state-delta application, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  implementation_files:
+  - src/astra_runtime/domain/object_lever_replay_audit_check.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002E object lever event commit state delta path / PR #324
+  unlocks:
+  - RT-002G — Context Packet Output from Committed Object/Lever Event
+  runtime_relevance: blocking
+  live_play_relevance: none
+  canon_relevance: none
+  broad_conversion_relevance: none
+  notes: RT-002F replay/audit-check path; produces narrow in-memory audit snapshot and replay-check receipt only from coherent committed RT-002E results.
+
+- file_id: RUNTIME-DOMAIN-RT-002F-OBJECT-LEVER-REPLAY-AUDIT-CHECK-TESTS-001
+  title: 'RUNTIME-DOMAIN-RT-002F: Tiny Slice Replay and Audit Check for Object/Lever Interaction Tests'
+  filename: test_runtime_domain_rt_002f_object_lever_replay_audit_check.py
+  proposed_path: tests/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002F
+  purpose: Focused tests for RT-002F object lever replay and audit check containment, serialization, and deterministic identity.
+  batch: runtime-domain
+  series: runtime-domain-rt-002f
+  content_type: test
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Test tracking only; authorizes no durable persistence writes, replay index writes, event-store append/read, command re-execution, state reconstruction, general replay engine, state mutation, state-delta application, RNG/oracle, resource/consequence settlement, damage/condition application, model/narration/live-play/UI, conversion, sourcebook inclusion, or canon promotion.
+  implementation_files: []
+  test_files:
+  - tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py
   runtime_relevance: blocking
   live_play_relevance: none
   canon_relevance: none

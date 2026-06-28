@@ -176,6 +176,7 @@ class TestPR9BReviewHardeningOnly:
             "object_lever_interaction_legality_reader.py",
             "object_lever_transaction_preview_bridge.py",
             "object_lever_event_commit_state_delta_path.py",
+            "object_lever_replay_audit_check.py",
         }
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
         assert actual == expected_modules
@@ -440,6 +441,7 @@ class TestGuardrailAllowlistNarrow:
             "object_lever_interaction_legality_reader.py",
             "object_lever_transaction_preview_bridge.py",
             "object_lever_event_commit_state_delta_path.py",
+            "object_lever_replay_audit_check.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual_files = {p.name for p in domain_dir.iterdir() if p.is_file()}
