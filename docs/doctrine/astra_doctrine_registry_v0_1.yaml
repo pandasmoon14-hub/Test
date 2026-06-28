@@ -19,6 +19,12 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-06-27'
+  version: 0.1.107
+  action: runtime_domain_rt_002b_projection_and_visibility_adapter_v0_1
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1. Follows merged RT-002A / PR #320. Implements a projection and visibility adapter over RT-002A owner facade outputs. Formalizes backend-safe, visible-safe, redacted, unavailable, deferred, and unknown projection packets. Provides frozen keyword-only dataclasses, false-only authority flags, ID-only source references, visibility descriptors without hidden truth, adapter packets/results with JSON-safe forbidden-key-safe metadata, deterministic backend and visible serializers with strict redaction, and factory/validator/adapter parity. Authorizes no action legality evaluation, no command execution, no transaction preview, no state mutation, no event append or commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource/consequence math execution, no combat/ability/skill/effect resolution, no model calls, no prompt rendering, no narration generation, no live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion. It is the bridge required before RT-002C. Next recommended step: RT-002C — Action Legality Reads Vertical-Slice Projections for Object/Lever Interaction."
+
 - date: '2026-06-21'
   version: 0.1.105
   action: runtime_domain_rt_001i_state_owner_interface_contract_hardening_review
@@ -14471,3 +14477,115 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: none
   notes: RUNTIME-DOMAIN-RT-002A test file; validates the read-only vertical slice state owner facade stays within its narrow scope.
+
+- file_id: RUNTIME-DOMAIN-RT-002B-PROJECTION-AND-VISIBILITY-ADAPTER-V0-1-001
+  title: 'RUNTIME-DOMAIN-RT-002B: Projection and Visibility Adapter v0.1'
+  filename: projection_visibility_adapter_v0_1.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002B
+  purpose: Projection and visibility adapter over RT-002A owner facade outputs. Classifies RT-002A facade results into visibility-classified packets for downstream runtime consumers.
+  batch: runtime-domain
+  series: runtime-domain-rt-002b
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Skeleton implementation tracking only; projection/visibility adapter; no action legality evaluation, no command execution, no state mutation, no event append/commitment, no transaction preview, no persistence/replay writes, no RNG/table/oracle execution, no resource math, no model/narration/live-play/UI, no conversion, no sourcebook inclusion, and no canon promotion.
+  runtime_domain_rt_002b:
+    implementation_id: RUNTIME-DOMAIN-RT-002B-PROJECTION-AND-VISIBILITY-ADAPTER-V0-1-001
+    artifact_type: executable_domain_skeleton
+    implementation_status: narrow_reference_only_skeleton
+    derives_from:
+    - RUNTIME-DOMAIN-RT-002A read-only vertical slice state owner facade / PR #320
+    implements_projection_visibility_adapter: true
+    implements_backend_safe_projection_packet: true
+    implements_visible_safe_projection_packet: true
+    implements_redacted_projection_packet: true
+    implements_unavailable_deferred_unknown_packets: true
+    implements_deterministic_serializers: true
+    implements_visible_redaction: true
+    implements_hidden_information_containment: true
+    implements_factory_validator_adapter_parity: true
+    implements_domain_exports: true
+    implements_focused_skeleton_tests: true
+    authorizes_action_legality_evaluation: false
+    authorizes_command_execution: false
+    authorizes_state_mutation: false
+    authorizes_event_append: false
+    authorizes_event_commitment: false
+    authorizes_transaction_preview: false
+    authorizes_persistence_write: false
+    authorizes_replay_write: false
+    authorizes_rng_execution: false
+    authorizes_table_oracle_execution: false
+    authorizes_resource_math_execution: false
+    authorizes_combat_ability_skill_effect_resolution: false
+    authorizes_model_call: false
+    authorizes_prompt_rendering: false
+    authorizes_narration_generation: false
+    authorizes_live_play: false
+    authorizes_ui: false
+    authorizes_conversion: false
+    authorizes_sourcebook_inclusion: false
+    authorizes_canon_promotion: false
+    next_allowed_step: RT-002C — Action Legality Reads Vertical-Slice Projections for Object/Lever Interaction
+  implementation_files:
+  - src/astra_runtime/domain/projection_visibility_adapter_v0_1.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002A read-only vertical slice state owner facade / PR #320
+  blocked_by:
+  - RUNTIME-DOMAIN-RT-002A read-only vertical slice state owner facade / PR #320
+  unlocks:
+  - review/merge RT-002B before starting RT-002C action legality reads vertical-slice projections
+  downstream_consumers:
+  - RUNTIME-DOMAIN-RT-002C (pending authorization)
+  owns:
+  - Projection and visibility adapter shapes, constants, factories, validators, backend and visible adapters, deterministic serializers, domain exports, and focused tests.
+  must_not_own:
+  - Action legality evaluation, command execution, state mutation, event append/commitment, transaction preview materialization, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, model calls, prompt rendering, narration generation, live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: none
+  notes: RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1; bridge between RT-002A owner facade outputs and future RT-002C legality reads; frozen keyword-only dataclasses; false-only authority flags; ID-only source references; visibility descriptors without hidden truth; forbidden-key-safe metadata; deterministic backend and visible serializers with strict redaction; follows merged RT-002A / PR #320; next step RT-002C — Action Legality Reads Vertical-Slice Projections for Object/Lever Interaction.
+
+- file_id: RUNTIME-DOMAIN-RT-002B-PROJECTION-AND-VISIBILITY-ADAPTER-V0-1-TESTS-001
+  title: 'RUNTIME-DOMAIN-RT-002B: Projection and Visibility Adapter v0.1 Tests'
+  filename: test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py
+  proposed_path: tests/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002B
+  purpose: Focused tests for the RT-002B projection and visibility adapter.
+  batch: runtime-domain
+  series: runtime-domain-rt-002b
+  content_type: test
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Test tracking only; projection/visibility adapter tests; authorizes no runtime behavior, no state reads, no raw state access, no state mutation, no action legality evaluation, no command execution, no event commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource math, no model calls, no narration generation, no live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
+  implementation_files: []
+  package_export_files: []
+  test_files:
+  - tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1 / PR pending
+  blocked_by:
+  - RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1 / PR pending
+  unlocks: []
+  downstream_consumers: []
+  owns:
+  - RT-002B focused tests covering module imports, constants, dataclass invariants, authority flags, source-reference containment, descriptor validation, packet/result metadata safety, backend and visible adapters, hidden-fact containment, deterministic serializers, import boundaries, domain exports, registry/decision-log records, and upstream test pass-through.
+  must_not_own:
+  - Runtime behavior execution, state mutation, legality evaluation, command execution, transaction preview, event commitment, persistence/replay, RNG/table/oracle, resource math, model/narration/live-play, conversion, sourcebook inclusion, or canon promotion.
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: none
+  notes: RUNTIME-DOMAIN-RT-002B test file; validates the projection and visibility adapter stays within its narrow scope.

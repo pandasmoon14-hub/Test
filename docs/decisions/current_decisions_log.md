@@ -3881,6 +3881,27 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Explicit non-authority boundaries**: RT-002A does not implement broad state owner service behavior, general state store, raw state access outside the narrow owned facade, state mutation, event append, event commitment, persistence/replay writes, action legality evaluation, command execution, transaction preview materialization, state projection materialization, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, model calls, prompt rendering, narration generation, live-play behavior, UI/client behavior, conversion, sourcebook inclusion, or canon promotion.
 - **Next recommended step**: RT-002B — Projection and Visibility Adapter v0.1.
 
+## 2026-06-27 decision — RUNTIME-DOMAIN-RT-002B Projection and Visibility Adapter v0.1
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-002B-PROJECTION-AND-VISIBILITY-ADAPTER-V0-1-001
+- **Date**: 2026-06-27
+- **PR**: RUNTIME-DOMAIN-RT-002B
+- **Purpose**: Bridge between RT-002A owner facade outputs and future RT-002C action legality reads. Proves that downstream runtime components can receive visibility-classified projection packets without reading raw state, receiving hidden truth, inferring hidden truth from absence, or depending directly on RT-002A internal record structure.
+- **Follows**: RT-002A (read-only vertical slice state owner facade, merged as PR #320).
+- **Files added**:
+  - src/astra_runtime/domain/projection_visibility_adapter_v0_1.py
+  - tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (RT-002B public surface exports)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+- **Projection packet kinds formalized**: `backend_safe_projection`, `visible_safe_projection`, `redacted_projection`, `unavailable_projection`, `deferred_projection`, `unknown_projection`.
+- **Visibility/redaction behavior**: Backend adapter preserves safe reference IDs, owner family, entity kind, visibility tier, result status, and redaction flags. Visible adapter is stricter and excludes metadata, authority flags, source scope, internal source reference structure, backend-only fields, raw state, hidden facts, and implementation details. Hidden fact references expose only redaction status, safe reference ID, owner family, entity kind, and redacted safe label if already present from RT-002A; the field name `hidden_fact_reference_id` never appears in visible output.
+- **Hidden-information containment**: Metadata recursively rejects forbidden keys (`hidden_fact`, `hidden_facts`, `secret`, `secrets`, `backend_only_fact`, `backend_only_facts`, `state_payload`, `raw_state`, `actual_state`, `truth_payload`, `projection_payload`, `record_payload`, `world_state`).
+- **Serializer containment**: Backend serializer is deterministic and JSON-safe. Visible serializer is deterministic, JSON-safe, and applies strict redaction.
+- **Explicit non-authority boundaries**: RT-002B does not implement action legality evaluation, command execution, state mutation, event append or event commitment, transaction preview materialization, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, model calls, prompt rendering, narration generation, live-play behavior, UI/client behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Next recommended step**: RT-002C — Action Legality Reads Vertical-Slice Projections for Object/Lever Interaction.
+
 ## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001G State Owner Interface Prerequisite Review
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001G-STATE-OWNER-INTERFACE-PREREQUISITE-REVIEW-001
