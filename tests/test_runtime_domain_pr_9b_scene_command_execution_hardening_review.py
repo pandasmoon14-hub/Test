@@ -173,6 +173,7 @@ class TestPR9BReviewHardeningOnly:
             "state_owner_interface_contract_skeleton.py",
             "read_only_vertical_slice_state_owner_facade.py",
             "projection_visibility_adapter_v0_1.py",
+            "object_lever_interaction_legality_reader.py",
         }
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
         assert actual == expected_modules
@@ -434,6 +435,7 @@ class TestGuardrailAllowlistNarrow:
             "state_owner_interface_contract_skeleton.py",
             "read_only_vertical_slice_state_owner_facade.py",
             "projection_visibility_adapter_v0_1.py",
+            "object_lever_interaction_legality_reader.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual_files = {p.name for p in domain_dir.iterdir() if p.is_file()}
