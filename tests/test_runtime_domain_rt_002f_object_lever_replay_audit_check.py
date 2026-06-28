@@ -227,12 +227,24 @@ def test_audit_identity_excludes_authority_flags():
     assert r1.audit_snapshot.audit_identity == r2.audit_snapshot.audit_identity
 
 
-def test_replay_check_receipt_rejects_identity_mismatch():
+def _verified_snapshot():
+    src=f.build_object_lever_replay_audit_source_ref(commit_result())
+    elig=f.evaluate_object_lever_replay_audit_eligibility(src)
+    return f.build_object_lever_audit_snapshot(elig, src, event_record_kind="object_lever_interaction_committed_event", state_delta_kind="object_lever_interaction_state_delta_receipt")
+
+
+def test_audit_path_blocks_identity_mismatch():
     result=f.audit_object_lever_event_commit_result(commit_result(), expected_audit_identity="sha256:wrong")
     assert result.audit_status == "audit_blocked"
     assert result.audit_decision == "blocked"
     assert "audit_identity_mismatch" in result.block_reasons
-    assert result.replay_check_receipt.identity_matches is False
+    assert result.audit_snapshot is None
+    assert result.replay_check_receipt is None
+
+
+def test_replay_check_receipt_rejects_identity_mismatch():
+    with pytest.raises(f.InvalidObjectLeverReplayCheckReceiptError):
+        f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_committed_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id="s", replay_check_status="audit_verified", audit_identity="sha256:a", expected_audit_identity="sha256:b", identity_matches=False)
 
 
 def test_audit_path_does_not_reinterpret_or_infer():
@@ -264,6 +276,51 @@ def test_serializers_are_deterministic_and_json_safe():
     assert json.loads(json.dumps(backend, sort_keys=True)) == backend
     visible=f.serialize_object_lever_replay_audit_result_visible(result)
     assert json.loads(json.dumps(visible, sort_keys=True)) == visible
+
+
+def test_replay_check_receipt_kind_status_mismatch_rejected():
+    with pytest.raises(f.InvalidObjectLeverReplayCheckReceiptError):
+        f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_committed_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id="s", replay_check_status="audit_blocked", audit_identity="sha256:a", expected_audit_identity="sha256:a", identity_matches=True)
+
+
+def test_replay_check_receipt_verified_requires_identity_match():
+    with pytest.raises(f.InvalidObjectLeverReplayCheckReceiptError):
+        f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_committed_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id="s", replay_check_status="audit_verified", audit_identity="sha256:a", expected_audit_identity="sha256:a", identity_matches=False)
+
+
+def test_replay_check_receipt_identity_match_requires_equal_non_empty_identities():
+    with pytest.raises(f.InvalidObjectLeverReplayCheckReceiptError):
+        f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_committed_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id="s", replay_check_status="audit_verified", audit_identity="sha256:a", expected_audit_identity="sha256:b", identity_matches=True)
+    with pytest.raises(f.InvalidObjectLeverReplayCheckReceiptError):
+        f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_committed_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id="s", replay_check_status="audit_verified", audit_identity=None, expected_audit_identity=None, identity_matches=True)
+
+
+def test_audit_verified_result_rejects_snapshot_identity_receipt_identity_mismatch():
+    snapshot=_verified_snapshot()
+    receipt=f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_committed_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id=snapshot.snapshot_id, replay_check_status="audit_verified", audit_identity="sha256:not-the-same", expected_audit_identity="sha256:not-the-same", identity_matches=True)
+    with pytest.raises(f.InvalidObjectLeverReplayAuditResultError):
+        f.ObjectLeverReplayAuditResult(result_id="res", audit_status="audit_verified", audit_decision="object_lever_audit_verified", audit_snapshot=snapshot, replay_check_receipt=receipt)
+
+
+def test_audit_verified_result_rejects_non_verified_receipt_status():
+    snapshot=_verified_snapshot()
+    receipt=f.ObjectLeverReplayCheckReceipt(receipt_id="r", replay_check_kind="object_lever_blocked_event_replay_check", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id=snapshot.snapshot_id, replay_check_status="audit_blocked", audit_identity=None, expected_audit_identity=None, identity_matches=False)
+    with pytest.raises(f.InvalidObjectLeverReplayAuditResultError):
+        f.ObjectLeverReplayAuditResult(result_id="res", audit_status="audit_verified", audit_decision="object_lever_audit_verified", audit_snapshot=snapshot, replay_check_receipt=receipt)
+
+
+def test_duck_typed_committed_input_with_non_rt002e_record_receipt_does_not_verify():
+    fake=SimpleNamespace(result_id="x", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, commit_status="committed", commit_decision="object_lever_event_committed", committed_event_record=object(), state_delta_receipt=object(), block_reasons=(), safe_reference_ids=("scene:1","actor:1","object_lever:1"), metadata={})
+    result=f.audit_object_lever_event_commit_result(fake)
+    assert result.audit_status == "audit_blocked"
+    assert result.audit_decision == "blocked"
+    assert ("missing_committed_event_record" in result.block_reasons) or ("missing_state_delta_receipt" in result.block_reasons)
+
+
+def test_helper_outputs_for_all_statuses_still_validate():
+    for status in ["committed","commit_blocked","commit_deferred","commit_unknown","commit_insufficient_preview"]:
+        result=f.audit_object_lever_event_commit_result(commit_result(status=status))
+        assert f.validate_object_lever_replay_audit_result(result) is True
 
 
 def test_import_boundaries_and_domain_exports_and_docs():

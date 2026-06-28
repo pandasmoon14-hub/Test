@@ -87,6 +87,8 @@ OBJECT_LEVER_AUDIT_SNAPSHOT_KINDS = frozenset({"object_lever_committed_event_aud
 OBJECT_LEVER_REPLAY_CHECK_KINDS = frozenset({"object_lever_committed_event_replay_check", "object_lever_blocked_event_replay_check", "object_lever_deferred_event_replay_check", "object_lever_unknown_event_replay_check", "object_lever_insufficient_commit_replay_check"})
 _AUDIT_STATUS_TO_SNAPSHOT_KIND = {"audit_ready":"object_lever_committed_event_audit_snapshot","audit_verified":"object_lever_committed_event_audit_snapshot","audit_blocked":"object_lever_blocked_event_audit_snapshot","audit_deferred":"object_lever_deferred_event_audit_snapshot","audit_unknown":"object_lever_unknown_event_audit_snapshot","audit_insufficient_commit":"object_lever_insufficient_commit_audit_snapshot"}
 _AUDIT_STATUS_TO_REPLAY_CHECK_KIND = {"audit_ready":"object_lever_committed_event_replay_check","audit_verified":"object_lever_committed_event_replay_check","audit_blocked":"object_lever_blocked_event_replay_check","audit_deferred":"object_lever_deferred_event_replay_check","audit_unknown":"object_lever_unknown_event_replay_check","audit_insufficient_commit":"object_lever_insufficient_commit_replay_check"}
+_REPLAY_CHECK_KIND_TO_STATUS = {"object_lever_committed_event_replay_check":"audit_verified","object_lever_blocked_event_replay_check":"audit_blocked","object_lever_deferred_event_replay_check":"audit_deferred","object_lever_unknown_event_replay_check":"audit_unknown","object_lever_insufficient_commit_replay_check":"audit_insufficient_commit"}
+_ELIGIBILITY_STATUS_TO_AUDIT_STATUS = {"audit_ready":"audit_verified","audit_blocked":"audit_blocked","audit_deferred":"audit_deferred","audit_unknown":"audit_unknown","audit_insufficient_commit":"audit_insufficient_commit"}
 OBJECT_LEVER_REPLAY_AUDIT_BLOCK_REASONS = frozenset({"commit_not_auditable", "commit_blocked", "commit_deferred", "commit_unknown", "commit_insufficient", "missing_committed_event_record", "missing_state_delta_receipt", "invalid_command_family", "missing_safe_references", "audit_snapshot_not_constructible", "replay_check_not_constructible", "hidden_information_not_available", "non_deterministic_serialization_detected", "audit_identity_mismatch"})
 OBJECT_LEVER_REPLAY_AUDIT_NON_AUTHORITY_NOTE = ("RT-002F produces only a narrow deterministic in-memory replay/audit-check receipt for an already-committed RT-002E object/lever event/state-delta result; it authorizes no durable persistence writes, replay index writes, event-store append/read, command re-execution, state reconstruction, general replay engine, state mutation, state-delta application, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.")
 FORBIDDEN_OBJECT_LEVER_REPLAY_AUDIT_METADATA_KEYS = frozenset({"hidden_fact", "hidden_facts", "secret", "secrets", "backend_only_fact", "backend_only_facts", "state_payload", "raw_state", "actual_state", "truth_payload", "projection_payload", "record_payload", "world_state", "legality_payload", "preview_payload", "commit_payload", "event_payload", "event_store_append", "event_store_read", "event_log", "persistence_write", "persistent_record", "replay_write", "replay_index", "replay_store", "state_reconstruction", "command_reexecution", "transaction_execution", "command_execution", "execution_result", "arbitrary_mutation", "mutation_payload", "state_before", "state_after", "state_delta_payload", "resource_settlement", "consequence_application", "damage_application", "condition_application", "rng_result", "oracle_result", "model_prompt", "narration", "event_append", "event_commitment_payload"})
@@ -223,6 +225,12 @@ class ObjectLeverReplayCheckReceipt:
         _nonempty(self.audit_snapshot_id,"audit_snapshot_id",e)
         object.__setattr__(self,"source_reference_ids",_mapping_str_str(self.source_reference_ids,"source_reference_ids",e))
         if self.replay_check_status not in OBJECT_LEVER_REPLAY_AUDIT_STATUSES: raise e("invalid replay_check_status")
+        expected_status=_REPLAY_CHECK_KIND_TO_STATUS.get(self.replay_check_kind)
+        if expected_status is None or self.replay_check_status != expected_status: raise e("replay_check_kind and replay_check_status are not coherent")
+        if self.replay_check_status == "audit_verified" and not self.identity_matches: raise e("verified replay_check_status requires identity_matches")
+        if self.identity_matches:
+            if self.audit_identity is None or self.expected_audit_identity is None: raise e("identity_matches requires non-empty audit_identity and expected_audit_identity")
+            if self.audit_identity != self.expected_audit_identity: raise e("audit_identity and expected_audit_identity do not match")
         if self.audit_identity is not None and (not isinstance(self.audit_identity,str) or not self.audit_identity): raise e("audit_identity must be a non-empty string or None")
         if self.expected_audit_identity is not None and (not isinstance(self.expected_audit_identity,str) or not self.expected_audit_identity): raise e("expected_audit_identity must be a non-empty string or None")
         if not isinstance(self.identity_matches, bool): raise e("identity_matches must be a boolean")
@@ -243,8 +251,19 @@ class ObjectLeverReplayAuditResult:
         if self.audit_status == "audit_verified":
             if self.audit_snapshot is None: raise e("verified audit_status requires audit_snapshot")
             if self.replay_check_receipt is None: raise e("verified audit_status requires replay_check_receipt")
+            if self.replay_check_receipt.replay_check_status != "audit_verified": raise e("verified audit_status requires replay_check_status audit_verified")
+            if not self.replay_check_receipt.identity_matches: raise e("verified audit_status requires identity_matches")
+            if self.audit_snapshot.audit_identity is None: raise e("verified audit_status requires snapshot audit_identity")
+            if self.replay_check_receipt.audit_identity != self.audit_snapshot.audit_identity: raise e("snapshot audit_identity does not match receipt audit_identity")
+            if self.replay_check_receipt.expected_audit_identity != self.replay_check_receipt.audit_identity: raise e("receipt audit_identity does not match expected_audit_identity")
+        if self.audit_status != "audit_verified" and self.audit_decision == "object_lever_audit_verified": raise e("non-verified audit_status must not use object_lever_audit_verified decision")
         if self.audit_snapshot is not None and not isinstance(self.audit_snapshot,ObjectLeverAuditSnapshot): raise e("invalid audit_snapshot")
         if self.replay_check_receipt is not None and not isinstance(self.replay_check_receipt,ObjectLeverReplayCheckReceipt): raise e("invalid replay_check_receipt")
+        if self.audit_snapshot is not None:
+            expected_from_eligibility=_ELIGIBILITY_STATUS_TO_AUDIT_STATUS.get(self.audit_snapshot.eligibility.eligibility_status)
+            if expected_from_eligibility is not None and expected_from_eligibility != self.audit_status: raise e("audit_status is not coherent with snapshot eligibility_status")
+        if self.replay_check_receipt is not None:
+            if self.replay_check_receipt.replay_check_status != self.audit_status: raise e("audit_status is not coherent with replay_check_status")
         object.__setattr__(self,"block_reasons",_tuple(self.block_reasons,"block_reasons",e))
         for r in self.block_reasons:
             if r not in OBJECT_LEVER_REPLAY_AUDIT_BLOCK_REASONS: raise e(f"invalid block_reason {r!r}")
@@ -297,6 +316,12 @@ def validate_object_lever_replay_check_receipt(v) -> bool:
     if v.replay_check_kind not in OBJECT_LEVER_REPLAY_CHECK_KINDS: return False
     if v.command_family != OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY: return False
     if v.replay_check_status not in OBJECT_LEVER_REPLAY_AUDIT_STATUSES: return False
+    expected_status=_REPLAY_CHECK_KIND_TO_STATUS.get(v.replay_check_kind)
+    if expected_status is None or v.replay_check_status != expected_status: return False
+    if v.replay_check_status == "audit_verified" and not v.identity_matches: return False
+    if v.identity_matches:
+        if v.audit_identity is None or v.expected_audit_identity is None: return False
+        if v.audit_identity != v.expected_audit_identity: return False
     if not validate_object_lever_replay_audit_authority_flags(v.authority_flags): return False
     try: _no_forbidden(v.metadata,"metadata",InvalidObjectLeverReplayCheckReceiptError); _json(v.metadata,"metadata",InvalidObjectLeverReplayCheckReceiptError)
     except InvalidObjectLeverReplayCheckReceiptError: return False
@@ -309,7 +334,18 @@ def validate_object_lever_replay_audit_result(v) -> bool:
     if expected is None or v.audit_decision != expected: return False
     if v.audit_snapshot is not None and not validate_object_lever_audit_snapshot(v.audit_snapshot): return False
     if v.replay_check_receipt is not None and not validate_object_lever_replay_check_receipt(v.replay_check_receipt): return False
-    if v.audit_status == "audit_verified" and (v.audit_snapshot is None or v.replay_check_receipt is None): return False
+    if v.audit_status == "audit_verified":
+        if v.audit_snapshot is None or v.replay_check_receipt is None: return False
+        if v.replay_check_receipt.replay_check_status != "audit_verified": return False
+        if not v.replay_check_receipt.identity_matches: return False
+        if v.audit_snapshot.audit_identity is None: return False
+        if v.replay_check_receipt.audit_identity != v.audit_snapshot.audit_identity: return False
+        if v.replay_check_receipt.expected_audit_identity != v.replay_check_receipt.audit_identity: return False
+    if v.audit_status != "audit_verified" and v.audit_decision == "object_lever_audit_verified": return False
+    if v.audit_snapshot is not None:
+        expected_from_eligibility=_ELIGIBILITY_STATUS_TO_AUDIT_STATUS.get(v.audit_snapshot.eligibility.eligibility_status)
+        if expected_from_eligibility is not None and expected_from_eligibility != v.audit_status: return False
+    if v.replay_check_receipt is not None and v.replay_check_receipt.replay_check_status != v.audit_status: return False
     if not isinstance(v.block_reasons, tuple) or not isinstance(v.safe_reference_ids, tuple): return False
     if not all(r in OBJECT_LEVER_REPLAY_AUDIT_BLOCK_REASONS for r in v.block_reasons): return False
     if not validate_object_lever_replay_audit_authority_flags(v.authority_flags): return False
@@ -389,7 +425,8 @@ def build_object_lever_replay_check_receipt(snapshot: ObjectLeverAuditSnapshot, 
     if snapshot.source_reference.state_delta_receipt_id: source_ids["state_delta_receipt_id"]=snapshot.source_reference.state_delta_receipt_id
     expected = expected_audit_identity if expected_audit_identity is not None else snapshot.audit_identity
     identity_matches = snapshot.audit_identity is not None and snapshot.audit_identity == expected
-    return ObjectLeverReplayCheckReceipt(receipt_id=rid, replay_check_kind=replay_check_kind, command_family=OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id=snapshot.snapshot_id, source_reference_ids=source_ids, replay_check_status=snapshot.eligibility.eligibility_status, audit_identity=snapshot.audit_identity, expected_audit_identity=expected, identity_matches=identity_matches, metadata=metadata)
+    replay_check_status=_REPLAY_CHECK_KIND_TO_STATUS.get(replay_check_kind, snapshot.eligibility.eligibility_status)
+    return ObjectLeverReplayCheckReceipt(receipt_id=rid, replay_check_kind=replay_check_kind, command_family=OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snapshot_id=snapshot.snapshot_id, source_reference_ids=source_ids, replay_check_status=replay_check_status, audit_identity=snapshot.audit_identity, expected_audit_identity=expected, identity_matches=identity_matches, metadata=metadata)
 
 def audit_object_lever_event_commit_result(commit_result: object, *, result_id: str | None=None, expected_audit_identity: str | None=None, metadata: Mapping[str,Any] | None=None) -> ObjectLeverReplayAuditResult:
     if not hasattr(commit_result,"result_id") or not hasattr(commit_result,"commit_status") or not hasattr(commit_result,"commit_decision"): raise InvalidObjectLeverReplayAuditResultError("commit_result must expose result_id, commit_status, commit_decision")
@@ -409,16 +446,21 @@ def audit_object_lever_event_commit_result(commit_result: object, *, result_id: 
             status="audit_blocked"; decision="blocked"; reasons.append("missing_committed_event_record")
         elif receipt_obj is None:
             status="audit_blocked"; decision="blocked"; reasons.append("missing_state_delta_receipt")
+        elif not isinstance(record,ObjectLeverCommittedEventRecord):
+            status="audit_blocked"; decision="blocked"; reasons.append("missing_committed_event_record")
+        elif not isinstance(receipt_obj,ObjectLeverStateDeltaReceipt):
+            status="audit_blocked"; decision="blocked"; reasons.append("missing_state_delta_receipt")
         elif getattr(commit_result,"block_reasons",()):
             status="audit_blocked"; decision="blocked"; reasons.append("commit_blocked")
         else:
-            event_kind=getattr(record,"event_record_kind",None)
-            delta_kind=getattr(receipt_obj,"state_delta_kind",None)
+            event_kind=record.event_record_kind
+            delta_kind=receipt_obj.state_delta_kind
             snapshot=build_object_lever_audit_snapshot(elig, source, event_record_kind=event_kind, state_delta_kind=delta_kind, metadata=metadata)
-            receipt=build_object_lever_replay_check_receipt(snapshot, expected_audit_identity=expected_audit_identity or snapshot.audit_identity, metadata=metadata)
-            if expected_audit_identity is not None and snapshot.audit_identity != expected_audit_identity:
-                status="audit_blocked"; decision="blocked"; reasons.append("audit_identity_mismatch")
+            expected = expected_audit_identity if expected_audit_identity is not None else snapshot.audit_identity
+            if snapshot.audit_identity != expected:
+                snapshot=None; status="audit_blocked"; decision="blocked"; reasons.append("audit_identity_mismatch")
             else:
+                receipt=build_object_lever_replay_check_receipt(snapshot, expected_audit_identity=expected, metadata=metadata)
                 status="audit_verified"; decision="object_lever_audit_verified"
     reasons=tuple(dict.fromkeys(reasons))
     safe=tuple(source.safe_reference_ids)
