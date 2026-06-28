@@ -903,6 +903,132 @@ class TestOptionalPackets:
 
 
 # ---------------------------------------------------------------------------
+# Owner-family mismatch checks
+# ---------------------------------------------------------------------------
+
+
+class TestOwnerFamilyMismatch:
+    def _make_packet_with_owner(
+        self, entity_kind: str, owner_family: str, packet_kind: str,
+    ) -> Any:
+        from astra_runtime.domain.projection_visibility_adapter_v0_1 import (
+            ProjectionVisibilityAdapterPacket,
+            ProjectionVisibilityDescriptor,
+            ProjectionVisibilitySourceRef,
+        )
+        ref_id = f"{entity_kind}_1"
+        source_ref = ProjectionVisibilitySourceRef(source_ref_id=ref_id)
+        descriptor = ProjectionVisibilityDescriptor(
+            visibility_tier=_visibility_tier_for_packet_kind(packet_kind),
+            packet_kind=packet_kind,
+            redaction_required=packet_kind != "visible_safe_projection",
+            redaction_reason=_redaction_reason_for_packet_kind(packet_kind),
+            safe_reference_ids=[ref_id],
+        )
+        adapter_status = {
+            "visible_safe_projection": "visible_projection_available",
+            "backend_safe_projection": "backend_projection_available",
+            "redacted_projection": "redacted_projection_available",
+            "unavailable_projection": "unavailable",
+            "deferred_projection": "deferred",
+            "unknown_projection": "unknown",
+        }.get(packet_kind, "unknown")
+        return ProjectionVisibilityAdapterPacket(
+            packet_id=f"pkt_{entity_kind}",
+            adapter_status=adapter_status,
+            owner_family=owner_family,
+            entity_kind=entity_kind,
+            packet_kind=packet_kind,
+            source_reference=source_ref,
+            visibility_descriptor=descriptor,
+        )
+
+    def test_object_lever_with_actor_owner_does_not_permit(self):
+        result = _read_legality([
+            _make_packet("scene", "visible_safe_projection"),
+            _make_packet("actor", "visible_safe_projection"),
+            self._make_packet_with_owner(
+                "object_lever", "actor_identity_owner", "visible_safe_projection",
+            ),
+        ])
+        assert result.legality_decision == "blocked"
+        assert result.reader_status == "blocked_by_projection"
+        reasons = result.legality_reading.block_reasons
+        assert any("owner_family_mismatch" in r for r in reasons)
+
+    def test_scene_with_object_owner_does_not_satisfy_scene(self):
+        result = _read_legality([
+            self._make_packet_with_owner(
+                "scene", "object_interactable_owner", "visible_safe_projection",
+            ),
+            _make_packet("actor", "visible_safe_projection"),
+            _make_packet("object_lever", "visible_safe_projection"),
+        ])
+        assert result.legality_decision == "blocked"
+        assert "scene_owner_family_mismatch" in result.legality_reading.block_reasons
+
+    def test_actor_with_scene_owner_does_not_satisfy_actor(self):
+        result = _read_legality([
+            _make_packet("scene", "visible_safe_projection"),
+            self._make_packet_with_owner(
+                "actor", "scene_location_owner", "visible_safe_projection",
+            ),
+            _make_packet("object_lever", "visible_safe_projection"),
+        ])
+        assert result.legality_decision == "blocked"
+        assert "actor_owner_family_mismatch" in result.legality_reading.block_reasons
+
+    def test_optional_packet_owner_mismatch_does_not_block_required(self):
+        result = _read_legality([
+            _make_packet("scene", "visible_safe_projection"),
+            _make_packet("actor", "visible_safe_projection"),
+            _make_packet("object_lever", "visible_safe_projection"),
+            self._make_packet_with_owner(
+                "npc_target", "scene_location_owner", "visible_safe_projection",
+            ),
+        ])
+        assert result.legality_decision == "permitted_for_preview"
+        # Optional mismatch is recorded but does not block.
+        npc_req = [
+            r for r in result.legality_reading.requirement_readings
+            if r.entity_kind == "npc_target"
+        ][0]
+        assert npc_req.requirement_status == "unknown"
+        assert npc_req.block_reason is None
+
+    def test_owner_mismatch_does_not_expose_hidden_or_execution_data(self):
+        result = _read_legality([
+            _make_packet("scene", "visible_safe_projection"),
+            _make_packet("actor", "visible_safe_projection"),
+            self._make_packet_with_owner(
+                "object_lever", "actor_identity_owner", "visible_safe_projection",
+            ),
+        ])
+        d = result.to_dict()
+        text = json.dumps(d)
+        # No hidden facts, execution outcomes, previews, events, or mutations.
+        keys = set()
+        def _walk(obj: Any) -> None:
+            if isinstance(obj, dict):
+                for k, v in obj.items():
+                    keys.add(k)
+                    _walk(v)
+            elif isinstance(obj, (list, tuple)):
+                for item in obj:
+                    _walk(item)
+        _walk(d)
+        assert "hidden_fact" not in keys
+        assert "execution_result" not in keys
+        assert "transaction_preview" not in keys
+        assert "event_commitment" not in keys
+        assert "state_delta" not in keys
+        assert "mutation_payload" not in keys
+        assert "executed" not in text
+        assert "success" not in text
+        assert "failure" not in text
+
+
+# ---------------------------------------------------------------------------
 # T27 — Reader never exposes hidden fact payloads
 # ---------------------------------------------------------------------------
 

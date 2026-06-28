@@ -173,6 +173,10 @@ OBJECT_LEVER_BLOCK_REASONS = frozenset({
     "unavailable_object_lever_projection",
     "redacted_required_projection",
     "backend_only_required_projection",
+    "owner_family_mismatch_projection",
+    "scene_owner_family_mismatch",
+    "actor_owner_family_mismatch",
+    "object_lever_owner_family_mismatch",
     "invalid_command_family",
     "hidden_information_not_available",
     "insufficient_projection",
@@ -967,6 +971,10 @@ def build_object_lever_projection_requirements(
 
     Required entity kinds (scene, actor, object_lever) are classified strictly.
     Optional entity kinds are recorded but never block.
+
+    Owner mediation is enforced: a packet's owner_family must match the
+    expected owner family for its entity_kind. Mismatches are treated as
+    structurally invalid for an owner-mediated legality read.
     """
     packets_by_entity: dict[str, ProjectionVisibilityAdapterPacket] = {}
     for packet in projection_packets:
@@ -981,6 +989,12 @@ def build_object_lever_projection_requirements(
         OBJECT_LEVER_REQUIRED_ENTITY_KINDS | OBJECT_LEVER_OPTIONAL_ENTITY_KINDS
     )
 
+    _OWNER_FAMILY_MISMATCH_REASON = {
+        "scene": "scene_owner_family_mismatch",
+        "actor": "actor_owner_family_mismatch",
+        "object_lever": "object_lever_owner_family_mismatch",
+    }
+
     for entity_kind in sorted(all_entity_kinds):
         required = entity_kind in OBJECT_LEVER_REQUIRED_ENTITY_KINDS
         owner_family = _ENTITY_TO_OWNER_FAMILY[entity_kind]
@@ -993,6 +1007,19 @@ def build_object_lever_projection_requirements(
                 required=required,
                 requirement_status="missing",
                 block_reason=(_BLOCK_REASON_FOR_MISSING.get(entity_kind) if required else None),
+            )
+        elif packet.owner_family != owner_family:
+            safe_ids = list(packet.visibility_descriptor.safe_reference_ids)
+            mismatch_reason = _OWNER_FAMILY_MISMATCH_REASON.get(
+                entity_kind, "owner_family_mismatch_projection",
+            )
+            req = create_object_lever_projection_requirement(
+                entity_kind=entity_kind,
+                owner_family=owner_family,
+                required=required,
+                requirement_status="unknown",
+                safe_reference_ids=safe_ids,
+                block_reason=(mismatch_reason if required else None),
             )
         else:
             safe_ids = list(packet.visibility_descriptor.safe_reference_ids)
@@ -1076,7 +1103,18 @@ def _derive_decision_and_status(
     Precedence (most conservative first):
         blocked_by_visibility > blocked_by_projection > insufficient_projection
         > unknown > deferred > legality_read_available
+
+    Owner-family mismatches on required packets are treated as
+    blocked_by_projection because the packet is structurally invalid for the
+    required owner-mediated read.
     """
+    _OWNER_FAMILY_MISMATCH_REASONS = {
+        "owner_family_mismatch_projection",
+        "scene_owner_family_mismatch",
+        "actor_owner_family_mismatch",
+        "object_lever_owner_family_mismatch",
+    }
+
     has_redacted_required = False
     has_blocked_required = False
     has_insufficient_required = False
@@ -1101,6 +1139,8 @@ def _derive_decision_and_status(
             has_redacted_required = True
         elif status == "deferred":
             has_deferred_required = True
+        elif status == "unknown" and reason in _OWNER_FAMILY_MISMATCH_REASONS:
+            has_blocked_required = True
         elif status == "unknown":
             has_unknown_required = True
         # Unknown statuses fall through conservatively.
