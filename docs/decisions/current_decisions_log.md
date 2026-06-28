@@ -4167,3 +4167,18 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Hidden-information and mutation containment**: Metadata recursively rejects forbidden hidden/raw/execution/event/mutation/resource/model keys. State-delta receipts are label-based and contain no arbitrary mutation instructions, hidden state values, state before/after values, or durable persistence markers. Committed event records are in-memory serializable envelopes only and do not append to an event store or write to persistence.
 - **Serializer containment**: Backend serializer is deterministic and JSON-safe. Visible serializer excludes metadata, authority flags, backend-only fields, raw state, hidden fact payloads, RT-002A/RT-002B/RT-002C/RT-002D internal payloads, arbitrary mutation instructions, generalized state-delta fields, persistence/replay fields, resource/consequence settlement fields, RNG/oracle result fields, and model prompt/narration fields.
 - **Next recommended step**: RT-002F — Tiny Slice Replay and Audit Check for Object/Lever Interaction
+
+## 2026-06-28 decision — RUNTIME-DOMAIN-RT-002F Tiny Slice Replay and Audit Check for Object/Lever Interaction
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-002F-OBJECT-LEVER-REPLAY-AUDIT-CHECK-001
+- **Date**: 2026-06-28
+- **PR**: RUNTIME-DOMAIN-RT-002F
+- **Follows**: merged RT-002E / PR #324.
+- **Purpose**: Implements a tiny deterministic replay/audit check for object/lever event/state-delta commit results.
+- **Dependency boundary**: Consumes RT-002E commit results only.
+- **Command family**: Supports only `interact_with_object_lever`.
+- **Audit rule**: May produce an in-memory audit snapshot and replay-check receipt only when RT-002E reports a coherent committed object/lever event/state-delta result.
+- **Authoritative denials**: Authorizes no durable persistence writes, replay index writes, event-store append/read, command re-execution, state reconstruction, general replay engine, state mutation, state-delta application, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Hidden-information and mutation containment**: Metadata recursively rejects forbidden hidden/raw/execution/event/mutation/resource/model keys. Audit snapshots and replay-check receipts are reference-only envelopes and carry no arbitrary mutation instructions, hidden state values, state before/after values, or durable persistence markers.
+- **Serializer containment**: Backend serializer is deterministic and JSON-safe. Visible serializer excludes metadata, authority flags, backend-only fields, raw state, hidden fact payloads, RT-002A/RT-002B/RT-002C/RT-002D/RT-002E internal payloads, arbitrary mutation instructions, generalized state-delta fields, persistence/replay fields, resource/consequence settlement fields, RNG/oracle result fields, and model prompt/narration fields.
+- **Next recommended step**: RT-002G — Context Packet Output from Committed Object/Lever Event
