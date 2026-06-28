@@ -919,6 +919,7 @@ class TestGuardrailAllowlists:
             "action_legality_service_interface_contract_skeleton.py",
             "state_owner_interface_contract_skeleton.py",
             "read_only_vertical_slice_state_owner_facade.py",
+            "projection_visibility_adapter_v0_1.py",
         }
         domain_dir = REPO_ROOT / "src" / "astra_runtime" / "domain"
         actual = {p.name for p in domain_dir.iterdir() if p.is_file()}
