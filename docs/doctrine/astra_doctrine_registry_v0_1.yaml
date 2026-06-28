@@ -14763,3 +14763,57 @@ file_records:
   live_play_relevance: none
   canon_relevance: none
   broad_conversion_relevance: none
+
+- file_id: RUNTIME-DOMAIN-RT-002E-OBJECT-LEVER-EVENT-COMMIT-STATE-DELTA-PATH-001
+  title: 'RUNTIME-DOMAIN-RT-002E: Object Lever Event Commit and State Delta Path'
+  filename: object_lever_event_commit_state_delta_path.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002E
+  purpose: Narrow event commit and bounded state-delta receipt path consuming RT-002D preview bridge results for interact_with_object_lever only.
+  batch: runtime-domain
+  series: runtime-domain-rt-002e
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Runtime-relevant and event/state-delta-path-relevant, but narrow, object/lever-only, non-persistent, non-replay-writing, non-RNG, non-resource-settling, non-model-facing, and non-generalized; no persistence/replay writes, RNG/table/oracle execution, resource/consequence settlement, damage/condition application, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  implementation_files:
+  - src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_rt_002e_object_lever_event_commit_state_delta_path.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002D object lever transaction preview bridge / PR #323
+  unlocks:
+  - RT-002F — Tiny Slice Replay and Audit Check for Object/Lever Interaction
+  runtime_relevance: blocking
+  live_play_relevance: none
+  canon_relevance: none
+  broad_conversion_relevance: none
+  notes: RT-002E commit path; produces narrow committed event record and bounded state-delta commit receipt only from preview_candidate_prepared plus preview_bridge_available RT-002D results.
+
+- file_id: RUNTIME-DOMAIN-RT-002E-OBJECT-LEVER-EVENT-COMMIT-STATE-DELTA-PATH-TESTS-001
+  title: 'RUNTIME-DOMAIN-RT-002E: Object Lever Event Commit and State Delta Path Tests'
+  filename: test_runtime_domain_rt_002e_object_lever_event_commit_state_delta_path.py
+  proposed_path: tests/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002E
+  purpose: Focused tests for RT-002E object lever event commit and state delta path containment and serialization.
+  batch: runtime-domain
+  series: runtime-domain-rt-002e
+  content_type: test
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Test tracking only; authorizes no runtime execution, general mutation engine, event store append, persistence, replay, RNG/oracle, resource/consequence settlement, damage/condition application, model/narration/live-play/UI, conversion, sourcebook inclusion, or canon promotion.
+  implementation_files: []
+  test_files:
+  - tests/test_runtime_domain_rt_002e_object_lever_event_commit_state_delta_path.py
+  runtime_relevance: blocking
+  live_play_relevance: none
+  canon_relevance: none
+  broad_conversion_relevance: none
