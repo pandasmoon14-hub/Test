@@ -1363,6 +1363,8 @@ class TestBranchDiff:
             # guardrail allowlist updates required by the new module
             "tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py",
             "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py",
+            # RT-002B branch-diff guardrail must tolerate RT-002C downstream files.
+            "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
         }
         unexpected = changed - allowed
         assert not unexpected, (
