@@ -1152,6 +1152,10 @@ class TestBranchDiff:
             # downstream RT-002C additions because RT-002C depends on RT-002B.
             "src/astra_runtime/domain/object_lever_interaction_legality_reader.py",
             "tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py",
+            # RT-002E follow-on files; RT-002B branch-diff guardrail must tolerate
+            # downstream RT-002E additions because RT-002E depends on RT-002D/RT-002C/RT-002B.
+            "src/astra_runtime/domain/object_lever_event_commit_state_delta_path.py",
+            "tests/test_runtime_domain_rt_002e_object_lever_event_commit_state_delta_path.py",
         }
         unexpected = changed - allowed
         assert not unexpected, (

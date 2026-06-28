@@ -28,6 +28,7 @@ from astra_runtime.domain.object_lever_transaction_preview_bridge import (
 __all__ = [
     "OBJECT_LEVER_COMMIT_COMMAND_FAMILY",
     "OBJECT_LEVER_COMMIT_STATUSES",
+    "OBJECT_LEVER_COMMIT_ELIGIBILITY_STATUSES",
     "OBJECT_LEVER_COMMIT_DECISIONS",
     "OBJECT_LEVER_EVENT_RECORD_KINDS",
     "OBJECT_LEVER_STATE_DELTA_KINDS",
@@ -72,7 +73,11 @@ __all__ = [
 
 OBJECT_LEVER_COMMIT_COMMAND_FAMILY = OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY
 OBJECT_LEVER_COMMIT_STATUSES = frozenset({"commit_ready", "commit_blocked", "commit_deferred", "commit_unknown", "commit_insufficient_preview", "committed"})
+OBJECT_LEVER_COMMIT_ELIGIBILITY_STATUSES = frozenset({"commit_ready", "commit_blocked", "commit_deferred", "commit_unknown", "commit_insufficient_preview"})
 OBJECT_LEVER_COMMIT_DECISIONS = frozenset({"object_lever_event_committed", "blocked", "deferred", "unknown", "insufficient_preview"})
+_COMMIT_STATUS_TO_DECISION = {"committed":"object_lever_event_committed","commit_blocked":"blocked","commit_deferred":"deferred","commit_unknown":"unknown","commit_insufficient_preview":"insufficient_preview"}
+_EVENT_KIND_TO_STATUS = {"object_lever_interaction_committed_event":"committed","object_lever_interaction_blocked_event":"commit_blocked","object_lever_interaction_deferred_event":"commit_deferred","object_lever_interaction_unknown_event":"commit_unknown","object_lever_interaction_insufficient_preview_event":"commit_insufficient_preview"}
+_DELTA_KIND_TO_STATUS = {"object_lever_interaction_state_delta_receipt":"committed","no_state_delta_due_to_block":"commit_blocked","no_state_delta_due_to_deferred":"commit_deferred","no_state_delta_due_to_unknown":"commit_unknown","no_state_delta_due_to_insufficient_preview":"commit_insufficient_preview"}
 OBJECT_LEVER_EVENT_RECORD_KINDS = frozenset({"object_lever_interaction_committed_event", "object_lever_interaction_blocked_event", "object_lever_interaction_deferred_event", "object_lever_interaction_unknown_event", "object_lever_interaction_insufficient_preview_event"})
 OBJECT_LEVER_STATE_DELTA_KINDS = frozenset({"object_lever_interaction_state_delta_receipt", "no_state_delta_due_to_block", "no_state_delta_due_to_deferred", "no_state_delta_due_to_unknown", "no_state_delta_due_to_insufficient_preview"})
 OBJECT_LEVER_COMMIT_BLOCK_REASONS = frozenset({"preview_not_prepared", "preview_blocked", "preview_deferred", "preview_unknown", "preview_insufficient", "missing_preview_candidate", "invalid_command_family", "missing_safe_references", "hidden_information_not_available", "event_commit_not_constructible", "state_delta_not_constructible"})
@@ -155,7 +160,7 @@ class ObjectLeverCommitEligibility:
     def __post_init__(self)->None:
         e=InvalidObjectLeverCommitEligibilityError
         if self.command_family != OBJECT_LEVER_COMMIT_COMMAND_FAMILY: raise e("invalid command_family")
-        if self.eligibility_status not in OBJECT_LEVER_COMMIT_STATUSES: raise e("invalid eligibility_status")
+        if self.eligibility_status not in OBJECT_LEVER_COMMIT_ELIGIBILITY_STATUSES: raise e("invalid eligibility_status")
         if self.bridge_decision not in OBJECT_LEVER_PREVIEW_BRIDGE_DECISIONS: raise e("invalid bridge_decision")
         if self.bridge_status not in OBJECT_LEVER_PREVIEW_BRIDGE_STATUSES: raise e("invalid bridge_status")
         object.__setattr__(self,"block_reasons",_tuple(self.block_reasons,"block_reasons",e))
@@ -180,6 +185,12 @@ class ObjectLeverStateDeltaReceipt:
         _nonempty(self.state_delta_label,"state_delta_label",e)
         _nonempty(self.non_authority_note,"non_authority_note",e)
         if not isinstance(self.authority_flags,ObjectLeverEventCommitAuthorityFlags): raise e("invalid authority_flags")
+        if self.state_delta_kind == "object_lever_interaction_state_delta_receipt":
+            if not self.affected_safe_reference_ids: raise e("positive state delta receipt requires affected_safe_reference_ids")
+            if self.state_delta_label != "object_lever_interaction_recorded": raise e("positive state delta receipt requires label 'object_lever_interaction_recorded'")
+        else:
+            if self.affected_safe_reference_ids: raise e("no-delta receipt must not carry affected_safe_reference_ids")
+            if self.state_delta_label == "object_lever_interaction_recorded": raise e("no-delta receipt must not use positive delta label")
         object.__setattr__(self,"metadata",_meta(self.metadata,e))
     def to_dict(self)->dict[str,Any]: return {"state_delta_receipt_id":self.state_delta_receipt_id,"state_delta_kind":self.state_delta_kind,"command_family":self.command_family,"source_reference_ids":dict(self.source_reference_ids),"affected_safe_reference_ids":list(self.affected_safe_reference_ids),"state_delta_label":self.state_delta_label,"non_authority_note":self.non_authority_note,"authority_flags":self.authority_flags.to_dict(),"metadata":copy.deepcopy(dict(self.metadata))}
 
@@ -193,6 +204,9 @@ class ObjectLeverCommittedEventRecord:
         if not isinstance(self.source_reference,ObjectLeverCommitSourceRef): raise e("invalid source_reference")
         if not isinstance(self.eligibility,ObjectLeverCommitEligibility): raise e("invalid eligibility")
         if not isinstance(self.state_delta_receipt,ObjectLeverStateDeltaReceipt): raise e("invalid state_delta_receipt")
+        event_status=_EVENT_KIND_TO_STATUS.get(self.event_record_kind)
+        delta_status=_DELTA_KIND_TO_STATUS.get(self.state_delta_receipt.state_delta_kind)
+        if event_status != delta_status: raise e("event_record_kind and state_delta_receipt kind are not coherent")
         object.__setattr__(self,"safe_reference_ids",_tuple(self.safe_reference_ids,"safe_reference_ids",e))
         _nonempty(self.non_authority_note,"non_authority_note",e)
         if not isinstance(self.authority_flags,ObjectLeverEventCommitAuthorityFlags): raise e("invalid authority_flags")
@@ -206,8 +220,23 @@ class ObjectLeverEventCommitResult:
         e=InvalidObjectLeverEventCommitResultError; _nonempty(self.result_id,"result_id",e)
         if self.commit_status not in OBJECT_LEVER_COMMIT_STATUSES: raise e("invalid commit_status")
         if self.commit_decision not in OBJECT_LEVER_COMMIT_DECISIONS: raise e("invalid commit_decision")
+        expected_decision=_COMMIT_STATUS_TO_DECISION.get(self.commit_status)
+        if expected_decision is None or self.commit_decision != expected_decision: raise e("commit_status and commit_decision are not coherent")
+        if self.commit_status == "committed":
+            if self.committed_event_record is None: raise e("committed status requires committed_event_record")
+            if self.state_delta_receipt is None: raise e("committed status requires state_delta_receipt")
+            if self.committed_event_record.event_record_kind != "object_lever_interaction_committed_event": raise e("committed status requires committed event record kind")
+            if self.state_delta_receipt.state_delta_kind != "object_lever_interaction_state_delta_receipt": raise e("committed status requires positive state delta receipt kind")
+        else:
+            if self.commit_decision == "object_lever_event_committed": raise e("non-committed status must not use object_lever_event_committed decision")
         if self.committed_event_record is not None and not isinstance(self.committed_event_record,ObjectLeverCommittedEventRecord): raise e("invalid committed_event_record")
         if self.state_delta_receipt is not None and not isinstance(self.state_delta_receipt,ObjectLeverStateDeltaReceipt): raise e("invalid state_delta_receipt")
+        if self.committed_event_record is not None:
+            record_status=_EVENT_KIND_TO_STATUS.get(self.committed_event_record.event_record_kind)
+            if record_status != self.commit_status: raise e("committed_event_record kind is not coherent with commit_status")
+        if self.state_delta_receipt is not None:
+            receipt_status=_DELTA_KIND_TO_STATUS.get(self.state_delta_receipt.state_delta_kind)
+            if receipt_status != self.commit_status: raise e("state_delta_receipt kind is not coherent with commit_status")
         object.__setattr__(self,"block_reasons",_tuple(self.block_reasons,"block_reasons",e))
         for r in self.block_reasons:
             if r not in OBJECT_LEVER_COMMIT_BLOCK_REASONS: raise e(f"invalid block_reason {r!r}")
@@ -236,7 +265,7 @@ def validate_object_lever_commit_source_ref(v) -> bool:
 def validate_object_lever_commit_eligibility(v) -> bool:
     if not isinstance(v,ObjectLeverCommitEligibility): return False
     if v.command_family != OBJECT_LEVER_COMMIT_COMMAND_FAMILY: return False
-    if v.eligibility_status not in OBJECT_LEVER_COMMIT_STATUSES: return False
+    if v.eligibility_status not in OBJECT_LEVER_COMMIT_ELIGIBILITY_STATUSES: return False
     if v.bridge_decision not in OBJECT_LEVER_PREVIEW_BRIDGE_DECISIONS: return False
     if v.bridge_status not in OBJECT_LEVER_PREVIEW_BRIDGE_STATUSES: return False
     if not isinstance(v.block_reasons, tuple) or not isinstance(v.safe_reference_ids, tuple): return False
