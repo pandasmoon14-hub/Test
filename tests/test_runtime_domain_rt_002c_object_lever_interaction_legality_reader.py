@@ -1360,6 +1360,9 @@ class TestBranchDiff:
             "src/astra_runtime/domain/__init__.py",
             "docs/decisions/current_decisions_log.md",
             "docs/doctrine/astra_doctrine_registry_v0_1.yaml",
+            # guardrail allowlist updates required by the new module
+            "tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py",
+            "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py",
         }
         unexpected = changed - allowed
         assert not unexpected, (
