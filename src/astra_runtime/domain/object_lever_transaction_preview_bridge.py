@@ -127,7 +127,7 @@ class ObjectLeverTransactionPreviewBridgeAuthorityFlags:
 
 @dataclass(frozen=True, kw_only=True)
 class ObjectLeverPreviewBridgeSourceRef:
-    legality_result_id: str; legality_reading_id: str; command_family: str; legality_decision: str; reader_status: str; safe_reference_ids: tuple[str,...]=()
+    legality_result_id: str; legality_reading_id: str; command_family: str; legality_decision: str; reader_status: str; safe_reference_ids: tuple[str,...]=(); legality_block_reasons: tuple[str,...]=()
     def __post_init__(self) -> None:
         e=InvalidObjectLeverPreviewBridgeSourceRefError
         for n in ("legality_result_id","legality_reading_id","command_family","legality_decision","reader_status"): _nonempty(getattr(self,n),n,e)
@@ -135,7 +135,8 @@ class ObjectLeverPreviewBridgeSourceRef:
         if self.legality_decision not in OBJECT_LEVER_LEGALITY_DECISIONS: raise e("invalid legality_decision")
         if self.reader_status not in OBJECT_LEVER_LEGALITY_READER_STATUSES: raise e("invalid reader_status")
         object.__setattr__(self,"safe_reference_ids",_tuple(self.safe_reference_ids,"safe_reference_ids",e))
-    def to_dict(self)->dict[str,Any]: return {"legality_result_id":self.legality_result_id,"legality_reading_id":self.legality_reading_id,"command_family":self.command_family,"legality_decision":self.legality_decision,"reader_status":self.reader_status,"safe_reference_ids":list(self.safe_reference_ids)}
+        object.__setattr__(self,"legality_block_reasons",_tuple(self.legality_block_reasons,"legality_block_reasons",e))
+    def to_dict(self)->dict[str,Any]: return {"legality_result_id":self.legality_result_id,"legality_reading_id":self.legality_reading_id,"command_family":self.command_family,"legality_decision":self.legality_decision,"reader_status":self.reader_status,"safe_reference_ids":list(self.safe_reference_ids),"legality_block_reasons":list(self.legality_block_reasons)}
 
 @dataclass(frozen=True, kw_only=True)
 class ObjectLeverPreviewEligibility:
@@ -185,26 +186,56 @@ def create_object_lever_preview_bridge_source_ref(**kw): return ObjectLeverPrevi
 def create_object_lever_preview_eligibility(**kw): return ObjectLeverPreviewEligibility(**kw)
 def create_object_lever_transaction_preview_candidate(**kw): return ObjectLeverTransactionPreviewCandidate(**kw)
 def create_object_lever_transaction_preview_bridge_result(**kw): return ObjectLeverTransactionPreviewBridgeResult(**kw)
-def validate_object_lever_transaction_preview_bridge_authority_flags(v):
-    if not isinstance(v,ObjectLeverTransactionPreviewBridgeAuthorityFlags): raise InvalidObjectLeverTransactionPreviewBridgeAuthorityFlagsError("invalid authority_flags")
-    return v
-def validate_object_lever_preview_bridge_source_ref(v):
-    if not isinstance(v,ObjectLeverPreviewBridgeSourceRef): raise InvalidObjectLeverPreviewBridgeSourceRefError("invalid source_ref")
-    return v
-def validate_object_lever_preview_eligibility(v):
-    if not isinstance(v,ObjectLeverPreviewEligibility): raise InvalidObjectLeverPreviewEligibilityError("invalid eligibility")
-    return v
-def validate_object_lever_transaction_preview_candidate(v):
-    if not isinstance(v,ObjectLeverTransactionPreviewCandidate): raise InvalidObjectLeverTransactionPreviewCandidateError("invalid candidate")
-    return v
-def validate_object_lever_transaction_preview_bridge_result(v):
-    if not isinstance(v,ObjectLeverTransactionPreviewBridgeResult): raise InvalidObjectLeverTransactionPreviewBridgeResultError("invalid result")
-    return v
+def validate_object_lever_transaction_preview_bridge_authority_flags(v) -> bool:
+    if not isinstance(v,ObjectLeverTransactionPreviewBridgeAuthorityFlags): return False
+    return all(getattr(v,f) is False for f in v.__dataclass_fields__)
+def validate_object_lever_preview_bridge_source_ref(v) -> bool:
+    if not isinstance(v,ObjectLeverPreviewBridgeSourceRef): return False
+    if v.command_family != OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY: return False
+    if v.legality_decision not in OBJECT_LEVER_LEGALITY_DECISIONS: return False
+    if v.reader_status not in OBJECT_LEVER_LEGALITY_READER_STATUSES: return False
+    return isinstance(v.safe_reference_ids, tuple) and isinstance(v.legality_block_reasons, tuple)
+def validate_object_lever_preview_eligibility(v) -> bool:
+    if not isinstance(v,ObjectLeverPreviewEligibility): return False
+    if v.command_family != OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY: return False
+    if v.eligibility_status not in OBJECT_LEVER_PREVIEW_ELIGIBILITY_STATUSES: return False
+    if v.legality_decision not in OBJECT_LEVER_LEGALITY_DECISIONS: return False
+    if v.reader_status not in OBJECT_LEVER_LEGALITY_READER_STATUSES: return False
+    if not isinstance(v.block_reasons, tuple) or not isinstance(v.safe_reference_ids, tuple): return False
+    return all(reason in OBJECT_LEVER_PREVIEW_BLOCK_REASONS for reason in v.block_reasons)
+def validate_object_lever_transaction_preview_candidate(v) -> bool:
+    if not isinstance(v,ObjectLeverTransactionPreviewCandidate): return False
+    if v.preview_candidate_kind not in OBJECT_LEVER_PREVIEW_CANDIDATE_KINDS: return False
+    if v.command_family != OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY: return False
+    if not validate_object_lever_preview_bridge_source_ref(v.source_reference): return False
+    if not validate_object_lever_preview_eligibility(v.eligibility): return False
+    if not validate_object_lever_transaction_preview_bridge_authority_flags(v.authority_flags): return False
+    try: _no_forbidden(v.metadata,"metadata",InvalidObjectLeverTransactionPreviewCandidateError); _json(v.metadata,"metadata",InvalidObjectLeverTransactionPreviewCandidateError)
+    except InvalidObjectLeverTransactionPreviewCandidateError: return False
+    return True
+def validate_object_lever_transaction_preview_bridge_result(v) -> bool:
+    if not isinstance(v,ObjectLeverTransactionPreviewBridgeResult): return False
+    if v.bridge_status not in OBJECT_LEVER_PREVIEW_BRIDGE_STATUSES: return False
+    if v.bridge_decision not in OBJECT_LEVER_PREVIEW_BRIDGE_DECISIONS: return False
+    if v.preview_candidate is not None and not validate_object_lever_transaction_preview_candidate(v.preview_candidate): return False
+    if not validate_object_lever_transaction_preview_bridge_authority_flags(v.authority_flags): return False
+    try: _no_forbidden(v.metadata,"metadata",InvalidObjectLeverTransactionPreviewBridgeResultError); _json(v.metadata,"metadata",InvalidObjectLeverTransactionPreviewBridgeResultError)
+    except InvalidObjectLeverTransactionPreviewBridgeResultError: return False
+    return True
 
 def build_object_lever_preview_bridge_source_ref(legality_result: ObjectLeverLegalityReaderResult) -> ObjectLeverPreviewBridgeSourceRef:
     if not isinstance(legality_result,ObjectLeverLegalityReaderResult): raise InvalidObjectLeverPreviewBridgeSourceRefError("legality_result must be ObjectLeverLegalityReaderResult")
     r=legality_result.legality_reading
-    return ObjectLeverPreviewBridgeSourceRef(legality_result_id=legality_result.result_id, legality_reading_id=r.reading_id, command_family=r.command_family, legality_decision=legality_result.legality_decision, reader_status=legality_result.reader_status, safe_reference_ids=r.safe_reference_ids)
+    return ObjectLeverPreviewBridgeSourceRef(legality_result_id=legality_result.result_id, legality_reading_id=r.reading_id, command_family=r.command_family, legality_decision=legality_result.legality_decision, reader_status=legality_result.reader_status, safe_reference_ids=r.safe_reference_ids, legality_block_reasons=r.block_reasons)
+
+def _has_required_object_lever_safe_references(safe_reference_ids: Sequence[str]) -> bool:
+    if len(safe_reference_ids) < 3:
+        return False
+    lowered = tuple(ref.lower() for ref in safe_reference_ids)
+    has_scene = any(ref.startswith("scene") or ":scene" in ref for ref in lowered)
+    has_actor = any(ref.startswith("actor") or ":actor" in ref for ref in lowered)
+    has_object_lever = any(ref.startswith("object_lever") or ref.startswith("lever") or ":object_lever" in ref or ":lever" in ref for ref in lowered)
+    return has_scene and has_actor and has_object_lever
 
 def evaluate_object_lever_preview_eligibility(source_reference: ObjectLeverPreviewBridgeSourceRef) -> ObjectLeverPreviewEligibility:
     reasons=[]; status="eligible_for_preview"
@@ -215,7 +246,10 @@ def evaluate_object_lever_preview_eligibility(source_reference: ObjectLeverPrevi
     elif source_reference.legality_decision == "insufficient_projection": status="insufficient_legality"; reasons.append("legality_insufficient_projection")
     elif source_reference.legality_decision != "permitted_for_preview": status="blocked"; reasons.append("legality_not_permitted_for_preview")
     if source_reference.reader_status != "legality_read_available" and status == "eligible_for_preview": status="insufficient_legality"; reasons.append("preview_not_constructible")
-    if not source_reference.safe_reference_ids: status="blocked" if status=="eligible_for_preview" else status; reasons.append("missing_safe_references")
+    if source_reference.legality_block_reasons:
+        status="blocked" if status=="eligible_for_preview" else status; reasons.append("preview_not_constructible")
+    if not _has_required_object_lever_safe_references(source_reference.safe_reference_ids):
+        status="blocked" if status=="eligible_for_preview" else status; reasons.append("missing_safe_references")
     return ObjectLeverPreviewEligibility(command_family=source_reference.command_family, eligibility_status=status, legality_decision=source_reference.legality_decision, reader_status=source_reference.reader_status, block_reasons=tuple(dict.fromkeys(reasons)), safe_reference_ids=source_reference.safe_reference_ids)
 
 def _kind(status: str) -> str:
@@ -230,12 +264,16 @@ def bridge_object_lever_legality_to_transaction_preview(legality_result: ObjectL
     cand=ObjectLeverTransactionPreviewCandidate(preview_candidate_id=preview_candidate_id or f"preview-candidate:{source.legality_result_id}", preview_candidate_kind=_kind(elig.eligibility_status), command_family=source.command_family, source_reference=source, eligibility=elig, safe_reference_ids=source.safe_reference_ids, metadata=metadata)
     return ObjectLeverTransactionPreviewBridgeResult(result_id=result_id or f"preview-bridge:{source.legality_result_id}", bridge_status=bs, bridge_decision=bd, preview_candidate=cand, metadata=metadata)
 
-def serialize_object_lever_transaction_preview_candidate(c): validate_object_lever_transaction_preview_candidate(c); return c.to_dict()
-def serialize_object_lever_transaction_preview_bridge_result(r): validate_object_lever_transaction_preview_bridge_result(r); return r.to_dict()
+def serialize_object_lever_transaction_preview_candidate(c):
+    if not validate_object_lever_transaction_preview_candidate(c): raise InvalidObjectLeverTransactionPreviewCandidateError("invalid candidate")
+    return c.to_dict()
+def serialize_object_lever_transaction_preview_bridge_result(r):
+    if not validate_object_lever_transaction_preview_bridge_result(r): raise InvalidObjectLeverTransactionPreviewBridgeResultError("invalid result")
+    return r.to_dict()
 def serialize_object_lever_transaction_preview_candidate_visible(c):
-    validate_object_lever_transaction_preview_candidate(c)
+    if not validate_object_lever_transaction_preview_candidate(c): raise InvalidObjectLeverTransactionPreviewCandidateError("invalid candidate")
     return {"preview_candidate_kind":c.preview_candidate_kind,"command_family":c.command_family,"safe_reference_ids":list(c.safe_reference_ids),"block_reasons":list(c.eligibility.block_reasons),"non_authority_note":c.non_authority_note}
 def serialize_object_lever_transaction_preview_bridge_result_visible(r):
-    validate_object_lever_transaction_preview_bridge_result(r)
+    if not validate_object_lever_transaction_preview_bridge_result(r): raise InvalidObjectLeverTransactionPreviewBridgeResultError("invalid result")
     c=r.preview_candidate
     return {"result_id":r.result_id,"bridge_status":r.bridge_status,"bridge_decision":r.bridge_decision,"preview_candidate_kind":None if c is None else c.preview_candidate_kind,"command_family":None if c is None else c.command_family,"safe_reference_ids":[] if c is None else list(c.safe_reference_ids),"block_reasons":[] if c is None else list(c.eligibility.block_reasons),"non_authority_note":r.non_authority_note}

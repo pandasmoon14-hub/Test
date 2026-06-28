@@ -7,8 +7,8 @@ from astra_runtime.domain.object_lever_interaction_legality_reader import create
 
 FORBIDDEN={"executed","resolved","committed","mutated","applied","settled","event_appended","event_committed","state_delta_applied","persistence_written","success","failure"}
 
-def legality(decision="permitted_for_preview", status="legality_read_available", safe=("scene:1","actor:1","lever:1")):
-    r=create_object_lever_legality_reading(reading_id="read-1", reader_status=status, legality_decision=decision, command_family=b.OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY, requirement_readings=(), safe_reference_ids=safe)
+def legality(decision="permitted_for_preview", status="legality_read_available", safe=("scene:1","actor:1","object_lever:1"), block_reasons=()):
+    r=create_object_lever_legality_reading(reading_id="read-1", reader_status=status, legality_decision=decision, command_family=b.OBJECT_LEVER_PREVIEW_BRIDGE_COMMAND_FAMILY, requirement_readings=(), block_reasons=block_reasons, safe_reference_ids=safe)
     return create_object_lever_legality_reader_result(result_id="res-1", reader_status=status, legality_decision=decision, legality_reading=r)
 
 def test_module_imports_and_constants_are_frozen():
@@ -29,14 +29,18 @@ def test_dataclasses_frozen_keyword_only_and_authority_false_only():
     for f in flags.__dataclass_fields__:
         with pytest.raises(b.InvalidObjectLeverTransactionPreviewBridgeAuthorityFlagsError):
             b.ObjectLeverTransactionPreviewBridgeAuthorityFlags(**{f: True})
+    assert b.validate_object_lever_transaction_preview_bridge_authority_flags(flags) is True
+    assert b.validate_object_lever_transaction_preview_bridge_authority_flags(object()) is False
 
 def test_source_ref_and_eligibility_contain_ids_only():
     src=b.build_object_lever_preview_bridge_source_ref(legality())
-    d=src.to_dict(); assert set(d)=={"legality_result_id","legality_reading_id","command_family","legality_decision","reader_status","safe_reference_ids"}
+    d=src.to_dict(); assert set(d)=={"legality_result_id","legality_reading_id","command_family","legality_decision","reader_status","safe_reference_ids","legality_block_reasons"}
     assert "legality_reading" not in d and "projection_payload" not in json.dumps(d)
     e=b.evaluate_object_lever_preview_eligibility(src)
     assert e.eligibility_status == "eligible_for_preview"
     assert e.block_reasons == ()
+    assert b.validate_object_lever_preview_bridge_source_ref(src) is True
+    assert b.validate_object_lever_preview_eligibility(e) is True
 
 def test_bridge_permitted_prepares_candidate_and_is_json_safe():
     result=b.bridge_object_lever_legality_to_transaction_preview(legality(), metadata={"audit":["rt-002d"]})
@@ -57,6 +61,27 @@ def test_blocked_deferred_unknown_insufficient_and_missing_refs():
     missing=b.bridge_object_lever_legality_to_transaction_preview(legality(safe=()))
     assert missing.bridge_decision == "blocked"
     assert "missing_safe_references" in missing.preview_candidate.eligibility.block_reasons
+
+    one_ref=b.bridge_object_lever_legality_to_transaction_preview(legality(safe=("scene:1",)))
+    assert one_ref.bridge_decision == "blocked"
+    assert "missing_safe_references" in one_ref.preview_candidate.eligibility.block_reasons
+
+    two_refs=b.bridge_object_lever_legality_to_transaction_preview(legality(safe=("scene:1","actor:1")))
+    assert two_refs.bridge_decision == "blocked"
+    assert "missing_safe_references" in two_refs.preview_candidate.eligibility.block_reasons
+
+    three_refs=b.bridge_object_lever_legality_to_transaction_preview(legality(safe=("scene_1","actor_1","object_lever_1")))
+    assert three_refs.bridge_decision == "preview_candidate_prepared"
+
+def test_permitted_with_rt002c_block_reasons_is_not_prepared():
+    result=b.bridge_object_lever_legality_to_transaction_preview(legality(block_reasons=("object_lever_owner_family_mismatch",)))
+    assert result.bridge_decision == "blocked"
+    assert result.bridge_status == "preview_bridge_blocked"
+    assert "preview_not_constructible" in result.preview_candidate.eligibility.block_reasons
+
+def test_wrong_command_family_source_ref_prevents_preparation():
+    with pytest.raises(b.InvalidObjectLeverPreviewBridgeSourceRefError):
+        b.ObjectLeverPreviewBridgeSourceRef(legality_result_id="r", legality_reading_id="read", command_family="wrong", legality_decision="permitted_for_preview", reader_status="legality_read_available", safe_reference_ids=("scene:1","actor:1","object_lever:1"))
 
 def test_metadata_forbidden_keys_rejected_recursively_all_metadata_dataclasses():
     src=b.build_object_lever_preview_bridge_source_ref(legality())
