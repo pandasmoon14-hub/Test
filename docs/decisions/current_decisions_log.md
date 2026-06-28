@@ -3902,6 +3902,31 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Explicit non-authority boundaries**: RT-002B does not implement action legality evaluation, command execution, state mutation, event append or event commitment, transaction preview materialization, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, model calls, prompt rendering, narration generation, live-play behavior, UI/client behavior, conversion, sourcebook inclusion, or canon promotion.
 - **Next recommended step**: RT-002C — Action Legality Reads Vertical-Slice Projections for Object/Lever Interaction.
 
+## 2026-06-27 decision — RUNTIME-DOMAIN-RT-002C Object Lever Interaction Legality Reader
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-002C-OBJECT-LEVER-INTERACTION-LEGALITY-READER-001
+- **Date**: 2026-06-27
+- **PR**: RUNTIME-DOMAIN-RT-002C
+- **Purpose**: Implement a narrow, non-executing action legality reader for exactly one command family: `interact_with_object_lever`. Proves that one legality reader can make a bounded legality classification from owner-mediated, visibility-classified RT-002B projection packets without reading raw state, receiving hidden truth, inferring hidden truth from absence, executing the command, generating a transaction preview, mutating state, or committing an event.
+- **Follows**: RT-002B (projection and visibility adapter v0.1, merged as PR #321).
+- **Files added**:
+  - src/astra_runtime/domain/object_lever_interaction_legality_reader.py
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py
+- **Files modified**:
+  - src/astra_runtime/domain/__init__.py (RT-002C public surface exports)
+  - docs/decisions/current_decisions_log.md (this entry)
+  - docs/doctrine/astra_doctrine_registry_v0_1.yaml (changelog and file record)
+  - tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py (domain module allowlists)
+  - tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py (domain module allowlist)
+- **Command family**: `interact_with_object_lever` only.
+- **Required projection packets**: `scene` (owner `scene_location_owner`), `actor` (owner `actor_identity_owner`), `object_lever` (owner `object_interactable_owner`).
+- **Optional projection packets**: `npc_target`, `hazard_clock`, `visible_condition`, `hidden_fact_reference`.
+- **Legality decisions**: `permitted_for_preview`, `blocked`, `deferred`, `unknown`, `insufficient_projection`. `permitted_for_preview` means only that the command may proceed to RT-002D transaction preview construction; it does not execute the command, authorize mutation, or commit an event.
+- **Hidden-information containment**: Metadata recursively rejects forbidden hidden/raw/execution/preview/event keys (`hidden_fact`, `hidden_facts`, `secret`, `secrets`, `backend_only_fact`, `backend_only_facts`, `state_payload`, `raw_state`, `actual_state`, `truth_payload`, `projection_payload`, `record_payload`, `world_state`, `transaction_preview`, `event_commitment`, `state_delta`, `mutation_payload`, `execution_result`). Redacted hidden fact packets do not block by themselves; hidden fact absence does not block by itself.
+- **Serializer containment**: Backend serializer is deterministic and JSON-safe. Visible serializer excludes metadata, authority flags, backend-only fields, raw state, hidden fact payloads, packet internals, implementation details, transaction preview fields, event commitment fields, mutation/state-delta fields, and model prompt/narration fields.
+- **Explicit non-authority boundaries**: RT-002C does not implement command execution, action resolution, state mutation, event append, event commitment, transaction preview materialization, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, general action legality service behavior, general command parser, general object interaction engine, model calls, prompt rendering, narration generation, live-play behavior, UI/client behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Next recommended step**: RT-002D — Legality-to-Transaction Preview Bridge for Object/Lever Interaction.
+
 ## 2026-06-16 decision — RUNTIME-DOMAIN-RT-001G State Owner Interface Prerequisite Review
 
 - **Decision ID**: RUNTIME-DOMAIN-RT-001G-STATE-OWNER-INTERFACE-PREREQUISITE-REVIEW-001

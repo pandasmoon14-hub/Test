@@ -20,6 +20,12 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-06-27'
+  version: 0.1.108
+  action: runtime_domain_rt_002c_object_lever_interaction_legality_reader
+  actor: Astra Doctrine Council / synthesis assistant
+  note: "Added RUNTIME-DOMAIN-RT-002C object lever interaction legality reader. Follows merged RT-002B / PR #321. Implements a narrow non-executing object/lever interaction legality reader. Consumes RT-002B projection visibility packets only. Does not read RT-002A raw records directly. Supports only command family interact_with_object_lever. May classify the command as permitted for future preview, blocked, deferred, unknown, or insufficient projection. Authorizes no command execution, transaction preview, state mutation, event append, event commitment, persistence/replay writes, RNG/table/oracle execution, resource math, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion. Next recommended step: RT-002D — Legality-to-Transaction Preview Bridge for Object/Lever Interaction."
+
+- date: '2026-06-27'
   version: 0.1.107
   action: runtime_domain_rt_002b_projection_and_visibility_adapter_v0_1
   actor: Astra Doctrine Council / synthesis assistant
@@ -14589,3 +14595,117 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: none
   notes: RUNTIME-DOMAIN-RT-002B test file; validates the projection and visibility adapter stays within its narrow scope.
+
+
+- file_id: RUNTIME-DOMAIN-RT-002C-OBJECT-LEVER-INTERACTION-LEGALITY-READER-001
+  title: 'RUNTIME-DOMAIN-RT-002C: Object Lever Interaction Legality Reader'
+  filename: object_lever_interaction_legality_reader.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002C
+  purpose: Narrow non-executing object/lever interaction legality reader. Consumes RT-002B projection visibility packets and produces a bounded legality classification for the interact_with_object_lever command family only.
+  batch: runtime-domain
+  series: runtime-domain-rt-002c
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Skeleton implementation tracking only; narrow legality reader; no command execution, no transaction preview materialization, no state mutation, no event append/commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource math, no combat/ability/skill/effect resolution, no model/narration/live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
+  runtime_domain_rt_002c:
+    implementation_id: RUNTIME-DOMAIN-RT-002C-OBJECT-LEVER-INTERACTION-LEGALITY-READER-001
+    artifact_type: executable_domain_skeleton
+    implementation_status: narrow_reference_only_skeleton
+    derives_from:
+    - RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1 / PR #321
+    command_family: interact_with_object_lever
+    implements_object_lever_legality_reader: true
+    implements_command_declaration: true
+    implements_projection_requirement_readings: true
+    implements_legality_input_packet_set: true
+    implements_legality_reading: true
+    implements_legality_reader_result: true
+    implements_deterministic_serializers: true
+    implements_visible_redaction: true
+    implements_hidden_information_containment: true
+    implements_factory_validator_reader_parity: true
+    implements_domain_exports: true
+    implements_focused_skeleton_tests: true
+    authorizes_command_execution: false
+    authorizes_transaction_preview: false
+    authorizes_state_mutation: false
+    authorizes_event_append: false
+    authorizes_event_commitment: false
+    authorizes_persistence_write: false
+    authorizes_replay_write: false
+    authorizes_rng_execution: false
+    authorizes_table_oracle_execution: false
+    authorizes_resource_math_execution: false
+    authorizes_combat_ability_skill_effect_resolution: false
+    authorizes_model_call: false
+    authorizes_prompt_rendering: false
+    authorizes_narration_generation: false
+    authorizes_live_play: false
+    authorizes_ui: false
+    authorizes_conversion: false
+    authorizes_sourcebook_inclusion: false
+    authorizes_canon_promotion: false
+    next_allowed_step: RT-002D — Legality-to-Transaction Preview Bridge for Object/Lever Interaction
+  implementation_files:
+  - src/astra_runtime/domain/object_lever_interaction_legality_reader.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1 / PR #321
+  blocked_by:
+  - RUNTIME-DOMAIN-RT-002B projection and visibility adapter v0.1 / PR #321
+  unlocks:
+  - review/merge RT-002C before starting RT-002D legality-to-transaction preview bridge
+  downstream_consumers:
+  - RUNTIME-DOMAIN-RT-002D (pending authorization)
+  owns:
+  - Object lever interaction legality reader shapes, constants, factories, validators, projection requirement builder, legality reader, deterministic serializers, domain exports, and focused tests.
+  must_not_own:
+  - Command execution, action resolution, state mutation, event append/commitment, transaction preview materialization, persistence/replay writes, RNG/table/oracle execution, resource/consequence math execution, combat/ability/skill/effect resolution, general action legality service behavior, general command parser, general object interaction engine, model calls, prompt rendering, narration generation, live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: none
+  notes: RUNTIME-DOMAIN-RT-002C object lever interaction legality reader; narrow non-executing legality reader for command family interact_with_object_lever; consumes RT-002B projection visibility packets only; frozen keyword-only dataclasses; false-only authority flags; forbidden-key-safe metadata; deterministic backend and visible serializers with strict redaction; follows merged RT-002B / PR #321; next step RT-002D — Legality-to-Transaction Preview Bridge for Object/Lever Interaction.
+
+- file_id: RUNTIME-DOMAIN-RT-002C-OBJECT-LEVER-INTERACTION-LEGALITY-READER-TESTS-001
+  title: 'RUNTIME-DOMAIN-RT-002C: Object Lever Interaction Legality Reader Tests'
+  filename: test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py
+  proposed_path: tests/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002C
+  purpose: Focused tests for the RT-002C object lever interaction legality reader.
+  batch: runtime-domain
+  series: runtime-domain-rt-002c
+  content_type: test
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Test tracking only; object lever interaction legality reader tests; authorizes no runtime behavior, no state reads, no raw state access, no state mutation, no command execution, no event commitment, no persistence/replay writes, no RNG/table/oracle execution, no resource math, no model calls, no narration generation, no live-play/UI behavior, no conversion, no sourcebook inclusion, and no canon promotion.
+  implementation_files: []
+  package_export_files: []
+  test_files:
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002C object lever interaction legality reader / PR pending
+  blocked_by:
+  - RUNTIME-DOMAIN-RT-002C object lever interaction legality reader / PR pending
+  unlocks: []
+  downstream_consumers: []
+  owns:
+  - RT-002C focused tests covering module imports, constants, dataclass invariants, authority flags, command declaration containment, projection requirement validation, input packet set containment, legality classification over RT-002B packets, hidden-information containment, deterministic serializers, import boundaries, domain exports, registry/decision-log records, and upstream test pass-through.
+  must_not_own:
+  - Runtime behavior execution, state mutation, legality evaluation engine, command execution, transaction preview, event commitment, persistence/replay, RNG/table/oracle, resource math, model/narration/live-play, conversion, sourcebook inclusion, or canon promotion.
+  broad_conversion_relevance: none
+  canon_relevance: none
+  runtime_relevance: blocking
+  live_play_relevance: none
+  notes: RUNTIME-DOMAIN-RT-002C test file; validates the object lever interaction legality reader stays within its narrow scope.

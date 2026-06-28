@@ -1148,6 +1148,10 @@ class TestBranchDiff:
             # guardrail allowlist updates required by the new module
             "tests/test_runtime_domain_pr_9b_scene_command_execution_hardening_review.py",
             "tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py",
+            # RT-002C follow-on files; RT-002B branch-diff guardrail must tolerate
+            # downstream RT-002C additions because RT-002C depends on RT-002B.
+            "src/astra_runtime/domain/object_lever_interaction_legality_reader.py",
+            "tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py",
         }
         unexpected = changed - allowed
         assert not unexpected, (
