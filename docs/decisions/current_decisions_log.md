@@ -4139,3 +4139,16 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
   - No narration generation
   - No live-play adapter, UI/client behavior
   - No conversion, sourcebook inclusion, or canon promotion
+
+## 2026-06-28 decision — RUNTIME-DOMAIN-RT-002D Legality-to-Transaction Preview Bridge for Object/Lever Interaction
+
+- **Decision ID**: RUNTIME-DOMAIN-RT-002D-OBJECT-LEVER-LEGALITY-TO-PREVIEW-BRIDGE-001
+- **Date**: 2026-06-28
+- **PR**: RUNTIME-DOMAIN-RT-002D
+- **Follows**: merged RT-002C / PR #322.
+- **Purpose**: Implements a narrow non-mutating legality-to-transaction-preview bridge for object/lever interaction.
+- **Dependency boundary**: Consumes RT-002C legality-reader results only.
+- **Command family**: Supports only `interact_with_object_lever`.
+- **Candidate rule**: May prepare a non-mutating transaction preview candidate only when RT-002C reports `permitted_for_preview` and `legality_read_available` with required safe references.
+- **Authoritative denials**: Authorizes no command execution, state mutation, state delta application, event append, event commitment, persistence/replay writes, RNG/table/oracle execution, resource/consequence settlement, combat/ability/skill/effect resolution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+- **Next recommended step**: RT-002E — First Event Commit and State Delta Path for Object/Lever Interaction

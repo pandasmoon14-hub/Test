@@ -14709,3 +14709,57 @@ file_records:
   runtime_relevance: blocking
   live_play_relevance: none
   notes: RUNTIME-DOMAIN-RT-002C test file; validates the object lever interaction legality reader stays within its narrow scope.
+
+- file_id: RUNTIME-DOMAIN-RT-002D-OBJECT-LEVER-TRANSACTION-PREVIEW-BRIDGE-001
+  title: 'RUNTIME-DOMAIN-RT-002D: Object Lever Transaction Preview Bridge'
+  filename: object_lever_transaction_preview_bridge.py
+  proposed_path: src/astra_runtime/domain/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002D
+  purpose: Narrow non-mutating legality-to-transaction-preview bridge consuming RT-002C legality-reader results for interact_with_object_lever only.
+  batch: runtime-domain
+  series: runtime-domain-rt-002d
+  content_type: executable_domain_skeleton
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Runtime-relevant and transaction-preview-bridge-relevant, but non-executing, non-mutating, non-settling, and non-committing; no persistence/replay writes, RNG/table/oracle execution, model/narration/live-play/UI behavior, conversion, sourcebook inclusion, or canon promotion.
+  implementation_files:
+  - src/astra_runtime/domain/object_lever_transaction_preview_bridge.py
+  package_export_files:
+  - src/astra_runtime/domain/__init__.py
+  test_files:
+  - tests/test_runtime_domain_rt_002d_object_lever_transaction_preview_bridge.py
+  dependencies:
+  - RUNTIME-DOMAIN-RT-002C object lever interaction legality reader / PR #322
+  unlocks:
+  - RT-002E — First Event Commit and State Delta Path for Object/Lever Interaction
+  runtime_relevance: blocking
+  live_play_relevance: none
+  canon_relevance: none
+  broad_conversion_relevance: none
+  notes: RT-002D bridge; prepares non-mutating preview candidates only from permitted_for_preview plus legality_read_available RT-002C results.
+
+- file_id: RUNTIME-DOMAIN-RT-002D-OBJECT-LEVER-TRANSACTION-PREVIEW-BRIDGE-TESTS-001
+  title: 'RUNTIME-DOMAIN-RT-002D: Object Lever Transaction Preview Bridge Tests'
+  filename: test_runtime_domain_rt_002d_object_lever_transaction_preview_bridge.py
+  proposed_path: tests/
+  status: draft
+  layer: 6_runtime_backend
+  phase: runtime-domain
+  owner: RT-002D
+  purpose: Focused tests for RT-002D object lever transaction preview bridge containment and serialization.
+  batch: runtime-domain
+  series: runtime-domain-rt-002d
+  content_type: test
+  implementation_status: narrow_reference_only_skeleton
+  authority_level: skeleton
+  authority_note: Test tracking only; authorizes no runtime execution, mutation, event commitment, persistence, RNG/oracle, resource/consequence settlement, model/narration/live-play/UI, conversion, sourcebook inclusion, or canon promotion.
+  implementation_files: []
+  test_files:
+  - tests/test_runtime_domain_rt_002d_object_lever_transaction_preview_bridge.py
+  runtime_relevance: blocking
+  live_play_relevance: none
+  canon_relevance: none
+  broad_conversion_relevance: none
