@@ -1,0 +1,164 @@
+inventory_id: RUNTIME-BASELINE-FAILURE-INVENTORY-2026-07-20
+status: initial_inventory_pending_node_level_reproduction
+repository: pandasmoon14-hub/Test
+baseline:
+  branch: main
+  commit_sha: 928bb79ce00a2de749d127dcc5cb8299de788a15
+  source: merged_PR_325_RT_002F
+  recorded_command: python -m pytest tests/runtime -q
+  recorded_result:
+    failed: 47
+    passed: 1443
+  evidence_scope: merged_pull_request_description
+
+phase_boundaries:
+  extraction_conversion_runtime_firewall_required: true
+  modifies_extraction_or_conversion: false
+  modifies_runtime_behavior: false
+  consolidates_AFQR_01_20: false
+  authorizes_RT_002G: false
+
+confidence_vocabulary:
+  - confirmed
+  - strongly_indicated
+  - pending_reproduction
+  - not_a_runtime_baseline_failure
+
+failure_clusters:
+  - cluster_id: RB-FAIL-001
+    title: stale_runtime_domain_package_allowlists
+    confidence: confirmed
+    primary_classification: stale_allowlist_or_manifest
+    recorded_symptom: tests_runtime_reject_current_astra_runtime_domain_surface
+    remediation_direction:
+      - enumerate_all_duplicated_domain_module_allowlists
+      - create_one_authoritative_runtime_domain_manifest
+      - classify_module_status_and_authority
+      - route_guardrail_tests_through_shared_manifest
+      - preserve_strict_undeclared_module_rejection
+    prohibited_shortcuts:
+      - remove_package_surface_guardrails
+      - use_unbounded_wildcard_allowlist
+      - mark_all_domain_modules_authoritative
+    node_ids: pending_reproduction
+
+  - cluster_id: RB-FAIL-002
+    title: state_store_hidden_info_safe_signature_drift
+    confidence: confirmed
+    primary_classification: signature_drift
+    recorded_symptom: state_store_signature_mismatch_involving_hidden_info_safe
+    remediation_direction:
+      - capture_expected_and_actual_signatures
+      - determine_authoritative_hidden_information_contract
+      - update_implementation_and_tests_together
+      - add_positive_negative_and_misuse_tests
+      - prohibit_caller_self_certification_of_hidden_information_safety
+    prohibited_shortcuts:
+      - accept_hidden_info_safe_true_as_proof
+      - weaken_projection_or_state_owner_guards
+      - bypass_owner_evidence
+    node_ids: pending_reproduction
+
+  - cluster_id: RB-FAIL-003
+    title: exact_node_level_distribution_unknown
+    confidence: pending_reproduction
+    primary_classification: unknown_pending_investigation
+    required_fields_per_failure:
+      - test_node_id
+      - first_relevant_traceback_frame
+      - implicated_production_file
+      - implicated_test_file
+      - primary_classification
+      - secondary_risk_tags
+      - reproduces_on_clean_main
+      - fixed_by_branch
+      - change_kind
+
+allowed_primary_classifications:
+  - implementation_defect
+  - stale_allowlist_or_manifest
+  - signature_drift
+  - obsolete_test_expectation
+  - test_environment_defect
+  - test_infrastructure_fragility
+  - documentation_contract_drift
+  - known_unsupported_behavior
+  - unknown_pending_investigation
+
+allowed_secondary_risk_tags:
+  - hidden_information
+  - runtime_authority
+  - state_ownership
+  - serialization
+  - import_boundary
+  - idempotency
+  - replay
+  - conversion_runtime_firewall
+  - donor_law_leakage
+  - AFQR_conformance
+
+reproduction_records: []
+
+related_open_issues:
+  - issue_number: 128
+    title: consolidate_test_helpers_and_harden_subprocess_paths
+    disposition: separately_scoped_maintenance_with_overlap_only_when_directly_failing
+  - issue_number: 130
+    title: xfail_known_extraction_and_lorebook_gaps
+    disposition: not_runtime_baseline_failure_keep_conversion_side_only
+  - issue_number: 132
+    title: clarify_end_to_end_fixture_test_scope
+    disposition: separate_test_hygiene_reinforce_phase_firewall
+  - issue_number: 134
+    title: sync_handoff_contract_packet_shape
+    disposition: conversion_handoff_documentation_only
+  - issue_number: 151
+    title: audit_A06_A15_closeout_before_schema
+    disposition: supersede_with_AFQR_01_20_and_Batch_A_B_C_conformance_audit
+
+remediation_phases:
+  - phase: capture
+    exit:
+      - exact_failure_node_inventory_recorded
+      - all_failures_classified
+  - phase: shared_test_infrastructure
+    exit:
+      - one_authoritative_runtime_domain_manifest
+      - strict_undeclared_module_rejection_preserved
+  - phase: state_store_contract
+    exit:
+      - hidden_info_safe_semantics_explicit
+      - misuse_tests_present
+  - phase: verification
+    exit:
+      - runtime_suite_zero_unexpected_failures
+      - full_suite_zero_unexpected_failures
+
+R0_exit_criteria:
+  exact_node_inventory_captured: false
+  every_failure_classified: false
+  authoritative_domain_manifest_present: false
+  duplicated_allowlists_removed_or_delegated: false
+  state_store_hidden_info_contract_explicit: false
+  runtime_suite_zero_unexpected_failures: false
+  full_suite_zero_unexpected_failures: false
+  guardrails_weakened: false
+  conversion_runtime_dependency_introduced: false
+  RT_002G_implemented: false
+
+next_PR:
+  title: "MAINTENANCE: Restore green runtime baseline"
+  permitted_scope:
+    - centralize_runtime_domain_manifest
+    - repair_RB_FAIL_001
+    - repair_RB_FAIL_002
+    - add_focused_regression_tests
+    - record_before_after_node_inventory
+  prohibited_scope:
+    - AFQR_01_20_consolidation
+    - Batch_doctrine_rewrite
+    - new_RT_functionality
+    - RT_002G
+    - extraction_or_conversion_changes
+    - canon_promotion
+    - model_facing_behavior
