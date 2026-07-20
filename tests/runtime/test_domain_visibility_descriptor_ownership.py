@@ -42,13 +42,13 @@ def test_state_owner_visibility_contract_uses_policy_not_safety_self_certificati
     parameters = inspect.signature(create_state_owner_visibility_descriptor).parameters
     assert "hidden_info_safe" not in parameters
     descriptor = create_state_owner_visibility_descriptor(
-        descriptor_id="vis-state-owner",
-        visibility_tier="backend_hidden",
-        discoverability="not_discoverable",
-        hidden_information_policy="deny_hidden_values",
-        revelation_constraints=("explicit_projection_only",),
-        redaction_rule="opaque_reference_only",
-        serialization_policy="backend_reference_only",
+        visibility_id="vis-state-owner",
+        visibility_tier="hidden",
+        hidden_information_policy="deny_visible_detail",
+        player_visible_allowed=False,
+        actor_visible_allowed=False,
+        backend_visible_allowed=False,
+        redaction_required=True,
     )
     assert validate_state_owner_visibility_descriptor(descriptor) is True
     assert not hasattr(descriptor, "hidden_info_safe")
