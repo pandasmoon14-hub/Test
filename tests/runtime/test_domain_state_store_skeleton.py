@@ -3,11 +3,12 @@
 from __future__ import annotations
 
 import os
+from pathlib import Path
 from typing import Mapping
 
 import pytest
 
-from astra_runtime.domain import (
+from astra_runtime.domain.state_store import (
     STATE_AUTHORITY_LEVELS,
     STATE_RECORD_CATEGORIES,
     InvalidStateRecordRefError,
@@ -25,7 +26,13 @@ from astra_runtime.domain import (
     validate_state_snapshot_ref,
     validate_state_visibility_descriptor,
 )
+from tests.runtime_domain_package_manifest import (
+    missing_runtime_domain_files,
+    unauthorized_runtime_domain_files,
+)
 
+
+REPO_ROOT = Path(__file__).resolve().parents[2]
 
 _VALID_VIS_TIERS = [
     "backend_hidden", "gm_visible", "actor_visible",
@@ -282,27 +289,10 @@ class TestStateStoreService:
 
 class TestGuardrailsDomainPackage:
     def test_domain_package_contains_only_authorized_files(self):
-        domain_dir = "src/astra_runtime/domain"
-        authorized = {
-            "__init__.py",
-            "command_lifecycle.py",
-            "action_legality.py",
-            "state_store.py",
-            "state_projection.py",
-            "transaction_lifecycle.py",
-            "event_commitment.py",
-            "validation_integration.py",
-            "validation_integration_bridge_skeleton.py",
-            "transaction_preview_packet_bridge_skeleton.py",
-            "resource_consequence_math.py",
-            "context_packet_compiler.py",
-            "model_boundary_evaluation.py",
-            "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
-            "command_kind_routing_skeleton.py", "action_legality_skeleton.py", "action_legality_gate_integration_skeleton.py", "__pycache__",
-        }
-        entries = set(os.listdir(domain_dir))
-        unauthorized = entries - authorized
+        unauthorized = unauthorized_runtime_domain_files(REPO_ROOT)
+        missing = missing_runtime_domain_files(REPO_ROOT)
         assert not unauthorized, f"Unauthorized domain files found: {unauthorized}"
+        assert not missing, f"Authorized domain files missing: {missing}"
 
     def test_no_resource_math_module(self):
         assert not os.path.exists("src/astra_runtime/domain/resource_math.py")
