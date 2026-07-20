@@ -1,164 +1,257 @@
 inventory_id: RUNTIME-BASELINE-FAILURE-INVENTORY-2026-07-20
-status: initial_inventory_pending_node_level_reproduction
+status: reproduced_and_classified_repair_pending
 repository: pandasmoon14-hub/Test
 baseline:
   branch: main
   commit_sha: 928bb79ce00a2de749d127dcc5cb8299de788a15
   source: merged_PR_325_RT_002F
-  recorded_command: python -m pytest tests/runtime -q
-  recorded_result:
+  environment:
+    operating_system: Windows
+    python: 3.12.10
+    pip: 26.1.2
+    pytest: 9.1.1
+    PyYAML: 6.0.3
+    astra_runtime_install: editable
+  runtime_suite:
+    command: python -m pytest tests/runtime -q --tb=short -ra
     failed: 47
     passed: 1443
-  evidence_scope: merged_pull_request_description
-
+  full_suite:
+    command: python -m pytest -q --tb=short -ra
+    failed: 94
+    passed: 8428
+    skipped: 12
+    xfailed: 2
+    warnings: 1
 phase_boundaries:
   extraction_conversion_runtime_firewall_required: true
   modifies_extraction_or_conversion: false
   modifies_runtime_behavior: false
   consolidates_AFQR_01_20: false
   authorizes_RT_002G: false
-
-confidence_vocabulary:
-  - confirmed
-  - strongly_indicated
-  - pending_reproduction
-  - not_a_runtime_baseline_failure
-
+failure_distribution:
+  runtime_suite:
+    stale_allowlist_or_manifest: 15
+    visibility_contract_namespace_collision: 32
+    total: 47
+  full_suite:
+    direct_runtime_failures: 47
+    additional_direct_stale_guardrails: 15
+    nested_upstream_pass_through_failures: 32
+    total: 94
 failure_clusters:
-  - cluster_id: RB-FAIL-001
-    title: stale_runtime_domain_package_allowlists
-    confidence: confirmed
-    primary_classification: stale_allowlist_or_manifest
-    recorded_symptom: tests_runtime_reject_current_astra_runtime_domain_surface
-    remediation_direction:
-      - enumerate_all_duplicated_domain_module_allowlists
-      - create_one_authoritative_runtime_domain_manifest
-      - classify_module_status_and_authority
-      - route_guardrail_tests_through_shared_manifest
-      - preserve_strict_undeclared_module_rejection
-    prohibited_shortcuts:
-      - remove_package_surface_guardrails
-      - use_unbounded_wildcard_allowlist
-      - mark_all_domain_modules_authoritative
-    node_ids: pending_reproduction
-
-  - cluster_id: RB-FAIL-002
-    title: state_store_hidden_info_safe_signature_drift
-    confidence: confirmed
-    primary_classification: signature_drift
-    recorded_symptom: state_store_signature_mismatch_involving_hidden_info_safe
-    remediation_direction:
-      - capture_expected_and_actual_signatures
-      - determine_authoritative_hidden_information_contract
-      - update_implementation_and_tests_together
-      - add_positive_negative_and_misuse_tests
-      - prohibit_caller_self_certification_of_hidden_information_safety
-    prohibited_shortcuts:
-      - accept_hidden_info_safe_true_as_proof
-      - weaken_projection_or_state_owner_guards
-      - bypass_owner_evidence
-    node_ids: pending_reproduction
-
-  - cluster_id: RB-FAIL-003
-    title: exact_node_level_distribution_unknown
-    confidence: pending_reproduction
-    primary_classification: unknown_pending_investigation
-    required_fields_per_failure:
-      - test_node_id
-      - first_relevant_traceback_frame
-      - implicated_production_file
-      - implicated_test_file
-      - primary_classification
-      - secondary_risk_tags
-      - reproduces_on_clean_main
-      - fixed_by_branch
-      - change_kind
-
-allowed_primary_classifications:
-  - implementation_defect
-  - stale_allowlist_or_manifest
-  - signature_drift
-  - obsolete_test_expectation
-  - test_environment_defect
-  - test_infrastructure_fragility
-  - documentation_contract_drift
-  - known_unsupported_behavior
-  - unknown_pending_investigation
-
-allowed_secondary_risk_tags:
-  - hidden_information
+- cluster_id: RB-FAIL-001
+  title: stale_runtime_domain_package_allowlists
+  confidence: reproduced
+  primary_classification: stale_allowlist_or_manifest
+  secondary_risk_tags:
   - runtime_authority
-  - state_ownership
-  - serialization
   - import_boundary
-  - idempotency
-  - replay
-  - conversion_runtime_firewall
-  - donor_law_leakage
   - AFQR_conformance
-
-reproduction_records: []
-
-related_open_issues:
-  - issue_number: 128
-    title: consolidate_test_helpers_and_harden_subprocess_paths
-    disposition: separately_scoped_maintenance_with_overlap_only_when_directly_failing
-  - issue_number: 130
-    title: xfail_known_extraction_and_lorebook_gaps
-    disposition: not_runtime_baseline_failure_keep_conversion_side_only
-  - issue_number: 132
-    title: clarify_end_to_end_fixture_test_scope
-    disposition: separate_test_hygiene_reinforce_phase_firewall
-  - issue_number: 134
-    title: sync_handoff_contract_packet_shape
-    disposition: conversion_handoff_documentation_only
-  - issue_number: 151
-    title: audit_A06_A15_closeout_before_schema
-    disposition: supersede_with_AFQR_01_20_and_Batch_A_B_C_conformance_audit
-
-remediation_phases:
-  - phase: capture
-    exit:
-      - exact_failure_node_inventory_recorded
-      - all_failures_classified
-  - phase: shared_test_infrastructure
-    exit:
-      - one_authoritative_runtime_domain_manifest
-      - strict_undeclared_module_rejection_preserved
-  - phase: state_store_contract
-    exit:
-      - hidden_info_safe_semantics_explicit
-      - misuse_tests_present
-  - phase: verification
-    exit:
-      - runtime_suite_zero_unexpected_failures
-      - full_suite_zero_unexpected_failures
-
+  unauthorized_file_set:
+  - action_legality_service_interface_contract_skeleton.py
+  - object_lever_event_commit_state_delta_path.py
+  - object_lever_interaction_legality_reader.py
+  - object_lever_replay_audit_check.py
+  - object_lever_transaction_preview_bridge.py
+  - projection_visibility_adapter_v0_1.py
+  - read_only_vertical_slice_state_owner_facade.py
+  - state_owner_interface_contract_skeleton.py
+  runtime_node_ids:
+  - tests/runtime/test_command_envelope_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_context_projection_skeleton.py::TestGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_domain_event_commitment_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files
+  - tests/runtime/test_domain_state_store_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files
+  - tests/runtime/test_domain_transaction_lifecycle_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files
+  - tests/runtime/test_domain_validation_integration_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files
+  - tests/runtime/test_event_ledger_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_hidden_information_skeleton.py::TestGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_persistence_boundary_skeleton.py::TestPersistenceBoundaryGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_replay_audit_skeleton.py::TestReplayAuditGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_rng_interface_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_runtime_trace_skeleton.py::TestRuntimeTraceGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_state_delta_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_table_oracle_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules
+  - tests/runtime/test_validation_pipeline_skeleton.py::TestGuardrails::test_domain_package_contains_only_authorized_modules
+  full_suite_additional_direct_node_ids:
+  - tests/test_runtime_domain_pr_0_domain_service_implementation_sequencing_plan.py::TestRuntimeGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/test_runtime_domain_pr_1_command_lifecycle_action_legality_service_plan.py::TestRuntimeGuardrails::test_domain_package_contains_only_authorized_modules
+  - tests/test_runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.py::TestRuntimeGuardrails::test_domain_package_authorized_files_only
+  - tests/test_runtime_domain_pr_2_state_store_state_projection_service_plan.py::TestDomainPackageGuardrails::test_domain_package_authorized_files_only
+  - tests/test_runtime_domain_pr_2b_state_store_state_projection_skeleton_review.py::TestRuntimeGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files
+  - tests/test_runtime_domain_pr_3_transaction_lifecycle_event_commitment_service_plan.py::TestDomainPackageGuardrails::test_domain_package_authorized_files_only
+  - tests/test_runtime_domain_pr_3b_transaction_lifecycle_event_commitment_skeleton_review.py::TestDomainPackageGuardrails::test_domain_package_contains_only_authorized_files
+  - tests/test_runtime_domain_pr_4_validation_integration_invariant_enforcement_service_plan.py::TestDomainPackageGuardrails::test_domain_package_authorized_files_only
+  - tests/test_runtime_domain_pr_4b_validation_integration_invariant_enforcement_skeleton_hardening_review.py::test_current_authorized_domain_files_remain_narrow
+  - tests/test_runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review.py::test_current_authorized_domain_files_remain_narrow
+  - tests/test_runtime_domain_pr_4f_validation_integration_residual_hardening_review.py::test_authorized_domain_files_remain_exactly_expected
+  - tests/test_runtime_domain_pr_5_resource_consequence_math_service_plan.py::test_authorized_domain_files_remain_exactly_expected
+  - tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py::test_scope_review_and_no_runtime_domain_file_added
+  - tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py::test_scope_review_and_no_runtime_domain_implementation_file_added
+  - tests/test_runtime_impl_pr_8_post_kernel_skeleton_review_domain_service_readiness_gate.py::TestRuntimeGuardrails::test_domain_package_contains_only_authorized_modules
+  remediation_direction:
+  - create_one_test_only_authoritative_runtime_domain_manifest
+  - classify_each_module_status_and_permitted_authority
+  - route_all_current_package_surface_guardrails_through_shared_manifest
+  - preserve_strict_undeclared_file_rejection
+  - prohibit_runtime_import_or_authority_use_of_test_manifest
+  prohibited_shortcuts:
+  - remove_package_surface_guardrails
+  - use_unbounded_wildcard_allowlist
+  - mark_all_domain_modules_authoritative
+- cluster_id: RB-FAIL-002
+  title: visibility_contract_namespace_collision
+  confidence: reproduced
+  primary_classification: signature_drift
+  secondary_risk_tags:
+  - hidden_information
+  - state_ownership
+  - import_boundary
+  - AFQR_conformance
+  expected_contract: astra_runtime.domain.state_store.StateVisibilityDescriptor
+  shadowing_contract: astra_runtime.domain.state_owner_interface_contract_skeleton.StateVisibilityDescriptor
+  observed_error: create_state_visibility_descriptor got an unexpected keyword argument hidden_info_safe
+  runtime_node_ids:
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordCategories::test_unsupported_category_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateAuthorityLevels::test_unsupported_level_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[backend_hidden]
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[gm_visible]
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[actor_visible]
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[player_visible]
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[public]
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[redacted]
+  - tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_unsupported_visibility_tier_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_valid_creation
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_invalid_id_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_non_bool_hidden_info_safe_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_non_bool_player_visible_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_metadata_defaults_empty
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_metadata_deep_copy_safe
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_to_dict_returns_copy
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_frozen
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_validate_accepts_valid
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_valid_creation
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_optional_ids_accept_none
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_optional_ids_reject_empty_string
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_invalid_visibility_type_rejected
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_metadata_defaults_empty
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_metadata_deep_copy_safe
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_to_dict_returns_copy
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_frozen
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_validate_accepts_valid
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateStoreService::test_service_create_record_ref
+  - tests/runtime/test_domain_state_store_skeleton.py::TestStateStoreService::test_service_validate_record_ref
+  - tests/runtime/test_domain_state_store_skeleton.py::TestValidatorParityStateStore::test_validate_record_ref_rejects_empty_schema_id
+  - tests/runtime/test_domain_state_store_skeleton.py::TestValidatorParityStateStore::test_validate_record_ref_rejects_empty_source_event_id
+  - tests/runtime/test_domain_state_store_skeleton.py::TestValidatorParityStateStore::test_validate_record_ref_accepts_all_none_optionals
+  remediation_direction:
+  - import_contracts_from_their_owning_modules
+  - preserve_distinct_visibility_semantics
+  - add_non_interchangeability_regression
+  - do_not_add_hidden_info_safe_to_RT_001H_contract
+  - do_not_treat_caller_boolean_as_universal_safety_proof
+- cluster_id: RB-FAIL-003
+  title: historical_pass_through_amplification
+  confidence: reproduced
+  primary_classification: test_infrastructure_fragility
+  secondary_risk_tags:
+  - runtime_authority
+  - import_boundary
+  full_suite_node_ids:
+  - tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001b_tests_pass
+  - tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001c_tests_pass
+  - tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001d_tests_pass
+  - tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001e_tests_pass
+  - tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001b_tests_pass
+  - tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001c_tests_pass
+  - tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001d_tests_pass
+  - tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001e_tests_pass
+  - tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001f_tests_pass
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001b_tests_pass
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001c_tests_pass
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001d_tests_pass
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001e_tests_pass
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001f_tests_pass
+  - tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001g_tests_pass
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestRt001hTestsPass::test_rt001h_tests_pass
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001b_tests_pass
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001c_tests_pass
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001d_tests_pass_excluding_branch_guardrail
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001e_tests_pass
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001f_tests_pass_excluding_branch_guardrail
+  - tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001g_tests_pass_excluding_branch_guardrail
+  - tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py::TestRt001hTestsPass::test_rt001h_tests_pass
+  - tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py::TestRt001iTestsPass::test_rt001i_tests_pass
+  - tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py::TestPr9SeamTestsPass::test_pr9a_through_pr9e_tests_pass
+  - tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py::TestUpstreamPassThrough::test_rt002a_tests_pass
+  - tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py::TestUpstreamPassThrough::test_rt001h_tests_pass
+  - tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py::TestUpstreamPassThrough::test_rt001i_tests_pass
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt002b_tests_pass
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt002a_tests_pass
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt001h_tests_pass
+  - tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt001i_tests_pass
+  independent_production_defect: false
+  remediation_direction:
+  - repair_root_clusters_before_pass_through_tests
+  - rerun_full_suite
+  - retain_only_current_nonduplicative_pass_through_invariants
+  - address_remaining_helper_and_subprocess_fragility_under_issue_128
+maintenance_debt:
+- debt_id: RB-DEBT-001
+  title: pytest_missing_from_requirements_dev
+  classification: test_environment_defect
+  runtime_failure_contribution: none_after_manual_installation
+  observed_error: 'ModuleNotFoundError: No module named pytest'
+  required_repair:
+  - declare_pytest_in_development_dependency_source
+  - add_clean_environment_setup_smoke_check
+reproduction_records:
+- record_id: RB-REPRO-001
+  commit_sha: 928bb79ce00a2de749d127dcc5cb8299de788a15
+  environment: Windows_Python_3_12_10
+  runtime_result:
+    failed: 47
+    passed: 1443
+  full_result:
+    failed: 94
+    passed: 8428
+    skipped: 12
+    xfailed: 2
+    warnings: 1
+  all_runtime_nodes_classified: true
+  all_full_nodes_classified: true
+  new_root_cluster_found: false
 R0_exit_criteria:
-  exact_node_inventory_captured: false
-  every_failure_classified: false
-  authoritative_domain_manifest_present: false
+  exact_node_inventory_captured: true
+  every_failure_classified: true
+  full_suite_amplification_inventory_captured: true
+  authoritative_domain_manifest_fully_adopted: false
   duplicated_allowlists_removed_or_delegated: false
   state_store_hidden_info_contract_explicit: false
+  pytest_declared_in_dev_dependencies: false
   runtime_suite_zero_unexpected_failures: false
   full_suite_zero_unexpected_failures: false
   guardrails_weakened: false
   conversion_runtime_dependency_introduced: false
   RT_002G_implemented: false
-
+pull_request_disposition:
+  PR_327: merge_after_review_inventory_complete
+  PR_328: do_not_merge_current_scope_incomplete_revise_or_replace
 next_PR:
-  title: "MAINTENANCE: Restore green runtime baseline"
+  title: 'MAINTENANCE: Restore green runtime baseline'
   permitted_scope:
-    - centralize_runtime_domain_manifest
-    - repair_RB_FAIL_001
-    - repair_RB_FAIL_002
-    - add_focused_regression_tests
-    - record_before_after_node_inventory
+  - centralize_runtime_domain_manifest
+  - migrate_all_15_runtime_package_guardrails
+  - migrate_all_15_direct_top_level_package_guardrails
+  - repair_visibility_contract_import_collision
+  - add_descriptor_ownership_regressions
+  - declare_pytest_development_dependency
+  - record_before_after_runtime_and_full_suite_results
   prohibited_scope:
-    - AFQR_01_20_consolidation
-    - Batch_doctrine_rewrite
-    - new_RT_functionality
-    - RT_002G
-    - extraction_or_conversion_changes
-    - canon_promotion
-    - model_facing_behavior
+  - AFQR_01_20_consolidation
+  - Batch_doctrine_rewrite
+  - new_RT_functionality
+  - RT_002G
+  - extraction_or_conversion_changes
+  - canon_promotion
+  - model_facing_behavior
