@@ -10,285 +10,394 @@
 - **Document type:** maintenance and rehabilitation audit
 - **Runtime authority:** none
 - **AFQR authority:** none; this inventory records repository condition only
+- **Reproduction status:** complete for the runtime and full repository suites
+- **Gate R0 status:** repair and post-repair verification still open
 
 ## Purpose
 
-This document freezes the known failing runtime-test baseline before AFQR-01–20 consolidation or further RT-series implementation.
+This document freezes the failing repository baseline before AFQR-01–20 consolidation or further RT-series implementation.
 
-Its purpose is to prevent three failure modes:
+It prevents:
 
-1. treating pre-existing failures as regressions introduced by AFQR consolidation;
+1. treating pre-existing failures as regressions introduced by later consolidation;
 2. repairing tests by weakening guardrails or broadening runtime authority;
-3. resuming RT-002G before the current repository baseline is understood and green.
+3. resuming RT-002G before the repository is green;
+4. confusing extraction/conversion maintenance with runtime repair.
 
-This inventory is deliberately separate from:
+The extraction/conversion subsystem remains disconnected from runtime. Baseline repair must not create imports, provenance links, donor identifiers, conversion metadata, or other origin-bearing paths into `astra_runtime`.
 
-- AFQR doctrine consolidation;
-- extraction or conversion work;
-- canon promotion;
-- runtime behavior implementation;
-- live-play or model-adapter work.
+## Exact reproduction
 
-The extraction/conversion subsystem remains disconnected from runtime. Runtime-baseline repair must not create imports, provenance links, donor identifiers, conversion metadata, or other origin-bearing paths into `astra_runtime`.
-
-## Confirmed baseline evidence
-
-The merged RT-002F PR records the following result for the same branch state as `main`:
+The baseline was reproduced from a clean detached checkout of:
 
 ```text
-pytest tests/runtime -q
+928bb79ce00a2de749d127dcc5cb8299de788a15
+```
+
+Environment:
+
+```yaml
+operating_system: Windows
+python: 3.12.10
+pip: 26.1.2
+pytest: 9.1.1
+PyYAML: 6.0.3
+installation:
+  astra_runtime: editable
+```
+
+The documented setup exposed an additional maintenance gap: `requirements-dev.txt` installed PyYAML but did not install pytest. Pytest was installed separately in the isolated baseline environment. This did not cause the 47 runtime failures, but the dependency declaration must be corrected before the repository can claim a reproducible developer setup.
+
+### Runtime suite
+
+```text
+python -m pytest tests/runtime -q --tb=short -ra
 47 failed, 1443 passed
 ```
 
-The same PR identifies two confirmed failure clusters:
+### Full repository suite
 
-1. stale `tests/runtime` domain-package allowlists;
-2. a `state_store` signature mismatch involving `hidden_info_safe`.
+```text
+python -m pytest -q --tb=short -ra
+94 failed, 8428 passed, 12 skipped, 2 xfailed, 1 warning
+```
 
-Targeted RT-002F and upstream slice tests passed in that PR. Therefore, the 47 failures are recorded as **pre-existing/mainborne at the RT-002F merge baseline**, not as RT-002F-specific failures.
+The full-suite total is not evidence of 94 independent defects. It contains:
 
-## Evidence confidence classes
+```yaml
+direct_runtime_failures: 47
+additional_top_level_failures: 47
+additional_direct_stale_guardrails: 15
+additional_nested_upstream_pass_through_failures: 32
+```
 
-This inventory uses the following confidence labels:
+All observed failures reduce to the same two root clusters:
 
-- **confirmed:** stated in merged repository evidence or directly inspectable repository content;
-- **strongly indicated:** supported by issue records or repeated repository patterns, but not reproduced in the current audit environment;
-- **pending reproduction:** requires a normal local checkout or CI runner to capture exact test node IDs and tracebacks;
-- **not a runtime-baseline failure:** maintenance debt that should be scheduled separately and must not be mixed into the baseline repair PR.
+1. stale and duplicated runtime-domain package allowlists;
+2. a package-export namespace collision between two owner-scoped `StateVisibilityDescriptor` contracts.
+
+No third runtime root-cause cluster was observed.
 
 ## Failure-cluster inventory
 
-### RB-FAIL-001 — Stale runtime domain-package allowlists
+### RB-FAIL-001 — Stale runtime-domain package allowlists
 
-- **Confidence:** confirmed
-- **Observed symptom:** runtime tests reject the current `astra_runtime.domain` package surface because individual tests maintain stale expected-module or allowed-export lists.
-- **Probable cause:** the allowlist model is duplicated across test files and must be manually expanded whenever a narrow RT module is added.
-- **Risk:** repair by adding names independently to every test would recreate the same failure after the next module addition.
-- **Correct remediation direction:**
-  1. identify every duplicated domain-module allowlist;
-  2. create one authoritative runtime-domain manifest or shared fixture;
-  3. classify each module by status and authority rather than recording only its name;
-  4. make all guardrail tests consume that shared source;
-  5. preserve strict rejection of undeclared modules.
-- **Prohibited shortcut:** remove or broadly weaken package-surface tests.
-- **AFQR relevance:** the replacement manifest should later support AFQR conformance metadata, including `fixture_only`, implemented authority, prohibited authority, and applicable AFQR decisions.
+- **Confidence:** reproduced
+- **Runtime-suite nodes:** 15
+- **Full-suite additional direct guardrail nodes:** 15
+- **Affected unauthorized file set:** eight legitimate RT-001H through RT-002F modules
+- **Primary classification:** `stale_allowlist_or_manifest`
+- **Secondary risks:** `runtime_authority`, `import_boundary`, `AFQR_conformance`
 
-### RB-FAIL-002 — `state_store` / `hidden_info_safe` signature drift
-
-- **Confidence:** confirmed
-- **Observed symptom:** one or more runtime tests call or inspect a `state_store` interface whose expected signature no longer matches the implementation around `hidden_info_safe`.
-- **Probable cause:** interface and test expectations evolved independently.
-- **Required reproduction:** capture the exact callable, expected signature, actual signature, and all affected node IDs before changing code.
-- **Correct remediation direction:**
-  1. determine whether `hidden_info_safe` is an input assertion, returned capability, stored property, or obsolete field;
-  2. resolve the authoritative contract from current state-owner and hidden-information doctrine;
-  3. update implementation and tests together;
-  4. add explicit compatibility or rejection tests;
-  5. avoid representing hidden-information safety as a caller-controlled boolean when it must be proven by the owner/projection boundary.
-- **Prohibited shortcut:** accept arbitrary caller-supplied `hidden_info_safe=True` as proof that state or a projection is safe.
-- **AFQR relevance:** AFQR-10 and the AFQR-01–20 projection amendments require safety to be established by typed owner and projection evidence, not model or caller assertion.
-
-### RB-FAIL-003 — Exact node-level distribution unknown
-
-- **Confidence:** pending reproduction
-- **Observed symptom:** the merged PR records aggregate counts but not the complete 47-node inventory in repository documentation.
-- **Required output:** a captured list containing, for every failure:
-  - test node ID;
-  - failure class;
-  - first relevant traceback frame;
-  - implicated production file;
-  - implicated test file;
-  - whether it reproduces on clean `main`;
-  - whether it is fixed by the baseline-repair branch;
-  - whether the fix changes production behavior, test infrastructure, or only expectations.
-- **Disposition:** no baseline-green claim may be made until this output exists.
-
-## Reproduction protocol
-
-Run from a clean checkout of the recorded baseline commit.
-
-```bash
-git switch main
-git pull --ff-only
-git rev-parse HEAD
-python --version
-python -m pip freeze > runtime-baseline-pip-freeze.txt
-python -m pytest tests/runtime -q --tb=short -ra \
-  > runtime-baseline-tests.txt 2>&1
-```
-
-Then run a node-oriented pass:
-
-```bash
-python -m pytest tests/runtime --collect-only -q \
-  > runtime-baseline-collected-nodes.txt
-python -m pytest tests/runtime -q --tb=line -ra \
-  > runtime-baseline-failures-line.txt 2>&1
-```
-
-Record the environment and result in the companion YAML inventory.
-
-If the result differs from `47 failed, 1443 passed`, do not overwrite the historical baseline. Add a new reproduction record with:
-
-- exact commit;
-- environment;
-- dependency versions;
-- new counts;
-- explanation of any difference.
-
-## Failure classification rules
-
-Every failing node must receive exactly one primary classification:
+Every failing guardrail reported the same current files as unauthorized:
 
 ```text
-implementation_defect
-stale_allowlist_or_manifest
-signature_drift
-obsolete_test_expectation
-test_environment_defect
-test_infrastructure_fragility
-documentation_contract_drift
-known_unsupported_behavior
-unknown_pending_investigation
+action_legality_service_interface_contract_skeleton.py
+object_lever_event_commit_state_delta_path.py
+object_lever_interaction_legality_reader.py
+object_lever_replay_audit_check.py
+object_lever_transaction_preview_bridge.py
+projection_visibility_adapter_v0_1.py
+read_only_vertical_slice_state_owner_facade.py
+state_owner_interface_contract_skeleton.py
 ```
 
-A node may also receive secondary risk tags:
+These files are present intentionally. The tests are stale because each historical test embeds its own snapshot of the package surface.
+
+Correct remediation:
+
+1. create one test-only authoritative runtime-domain manifest;
+2. record each module's status and permitted authority;
+3. route every current package-surface guardrail through that manifest;
+4. preserve strict rejection of undeclared files;
+5. remove or delegate duplicated historical allowlists;
+6. ensure runtime code cannot import or use the test manifest as authority.
+
+Prohibited remediation:
+
+- deleting package-surface guardrails;
+- using wildcard acceptance;
+- marking every domain module authoritative;
+- treating historical branch-specific package snapshots as permanent law.
+
+#### Runtime-suite RB-FAIL-001 nodes
+
+- `tests/runtime/test_command_envelope_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_context_projection_skeleton.py::TestGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_domain_event_commitment_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files`
+- `tests/runtime/test_domain_transaction_lifecycle_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files`
+- `tests/runtime/test_domain_validation_integration_skeleton.py::TestGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files`
+- `tests/runtime/test_event_ledger_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_hidden_information_skeleton.py::TestGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_persistence_boundary_skeleton.py::TestPersistenceBoundaryGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_replay_audit_skeleton.py::TestReplayAuditGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_rng_interface_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_runtime_trace_skeleton.py::TestRuntimeTraceGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_state_delta_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_table_oracle_skeleton.py::TestNoUnauthorizedModules::test_domain_package_contains_only_authorized_modules`
+- `tests/runtime/test_validation_pipeline_skeleton.py::TestGuardrails::test_domain_package_contains_only_authorized_modules`
+
+#### Full-suite additional direct RB-FAIL-001 nodes
+
+- `tests/test_runtime_domain_pr_0_domain_service_implementation_sequencing_plan.py::TestRuntimeGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/test_runtime_domain_pr_1_command_lifecycle_action_legality_service_plan.py::TestRuntimeGuardrails::test_domain_package_contains_only_authorized_modules`
+- `tests/test_runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.py::TestRuntimeGuardrails::test_domain_package_authorized_files_only`
+- `tests/test_runtime_domain_pr_2_state_store_state_projection_service_plan.py::TestDomainPackageGuardrails::test_domain_package_authorized_files_only`
+- `tests/test_runtime_domain_pr_2b_state_store_state_projection_skeleton_review.py::TestRuntimeGuardrailsDomainPackage::test_domain_package_contains_only_authorized_files`
+- `tests/test_runtime_domain_pr_3_transaction_lifecycle_event_commitment_service_plan.py::TestDomainPackageGuardrails::test_domain_package_authorized_files_only`
+- `tests/test_runtime_domain_pr_3b_transaction_lifecycle_event_commitment_skeleton_review.py::TestDomainPackageGuardrails::test_domain_package_contains_only_authorized_files`
+- `tests/test_runtime_domain_pr_4_validation_integration_invariant_enforcement_service_plan.py::TestDomainPackageGuardrails::test_domain_package_authorized_files_only`
+- `tests/test_runtime_domain_pr_4b_validation_integration_invariant_enforcement_skeleton_hardening_review.py::test_current_authorized_domain_files_remain_narrow`
+- `tests/test_runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review.py::test_current_authorized_domain_files_remain_narrow`
+- `tests/test_runtime_domain_pr_4f_validation_integration_residual_hardening_review.py::test_authorized_domain_files_remain_exactly_expected`
+- `tests/test_runtime_domain_pr_5_resource_consequence_math_service_plan.py::test_authorized_domain_files_remain_exactly_expected`
+- `tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py::test_scope_review_and_no_runtime_domain_file_added`
+- `tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py::test_scope_review_and_no_runtime_domain_implementation_file_added`
+- `tests/test_runtime_impl_pr_8_post_kernel_skeleton_review_domain_service_readiness_gate.py::TestRuntimeGuardrails::test_domain_package_contains_only_authorized_modules`
+
+### RB-FAIL-002 — Visibility-contract namespace collision
+
+- **Confidence:** reproduced
+- **Runtime-suite nodes:** 32
+- **Primary classification:** `signature_drift`
+- **Secondary risks:** `hidden_information`, `state_ownership`, `import_boundary`, `AFQR_conformance`
+
+The failing tests call:
 
 ```text
-hidden_information
-runtime_authority
-state_ownership
-serialization
-import_boundary
-idempotency
-replay
-conversion_runtime_firewall
-donor_law_leakage
-AFQR_conformance
+create_state_visibility_descriptor(..., hidden_info_safe=...)
 ```
 
-## Related open maintenance issues
+but receive the package-level factory exported for the later RT-001H owner-interface contract, whose signature does not include `hidden_info_safe`.
 
-These issues are relevant to repository rehabilitation but must remain separately scoped.
+The repository contains two intentionally distinct contracts:
 
-### Issue #128 — test-helper and subprocess-path maintenance
+```text
+astra_runtime.domain.state_store.StateVisibilityDescriptor
+astra_runtime.domain.state_owner_interface_contract_skeleton.StateVisibilityDescriptor
+```
 
-Relevant findings:
+The state-store contract includes `hidden_info_safe`. The RT-001H owner-interface contract uses policy and redaction fields instead. Package-level wildcard exports allow the later identically named symbols to shadow the state-store symbols expected by the older test.
 
-- duplicated pytest helper functions;
-- repo-relative subprocess paths that depend on current working directory;
-- hard-coded doctrine-registry record count.
+Correct remediation:
 
-Disposition: schedule after or alongside baseline repair only where the same infrastructure directly causes a failing node. Do not expand the runtime-baseline repair into a full test-suite cleanup.
+1. import both contracts from their defining modules;
+2. preserve their distinct semantics;
+3. add a regression proving they are not interchangeable;
+4. avoid adding `hidden_info_safe` to the RT-001H contract;
+5. avoid treating a caller-provided boolean as universal proof of hidden-information safety;
+6. later replace ambiguous package-level names with explicit aliases or a controlled compatibility/deprecation policy.
 
-### Issue #130 — expected-failure coverage for extraction gaps
+#### Runtime-suite RB-FAIL-002 nodes
 
-Relevant findings:
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordCategories::test_unsupported_category_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateAuthorityLevels::test_unsupported_level_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[backend_hidden]`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[gm_visible]`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[actor_visible]`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[player_visible]`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[public]`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_all_visibility_tiers_accepted[redacted]`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestVisibilityTiers::test_unsupported_visibility_tier_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_valid_creation`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_invalid_id_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_non_bool_hidden_info_safe_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_non_bool_player_visible_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_metadata_defaults_empty`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_metadata_deep_copy_safe`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_to_dict_returns_copy`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_frozen`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateVisibilityDescriptor::test_validate_accepts_valid`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_valid_creation`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_optional_ids_accept_none`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_optional_ids_reject_empty_string`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_invalid_visibility_type_rejected`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_metadata_defaults_empty`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_metadata_deep_copy_safe`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_to_dict_returns_copy`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_frozen`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateRecordRef::test_validate_accepts_valid`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateStoreService::test_service_create_record_ref`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestStateStoreService::test_service_validate_record_ref`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestValidatorParityStateStore::test_validate_record_ref_rejects_empty_schema_id`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestValidatorParityStateStore::test_validate_record_ref_rejects_empty_source_event_id`
+- `tests/runtime/test_domain_state_store_skeleton.py::TestValidatorParityStateStore::test_validate_record_ref_accepts_all_none_optionals`
 
-- Lane A multi-column/table reconstruction remains a known gap;
-- lorebook splitting remains fantasy-biased.
+### RB-FAIL-003 — Historical pass-through amplification
 
-Disposition: not a runtime-baseline failure. Keep separate from runtime rehabilitation. Extraction/conversion remains disconnected from runtime.
+- **Confidence:** reproduced
+- **Full-suite nodes:** 32
+- **Primary classification:** `test_infrastructure_fragility`
+- **Secondary risks:** `runtime_authority`, `import_boundary`
 
-### Issue #132 — misleading end-to-end fixture test name
+Many later review tests execute earlier test files as subprocess or pass-through checks. Once an earlier package-surface or state-store test fails, the same root failure is counted again in several historical review layers.
 
-Relevant finding:
+These 32 nodes are not new production defects. They are an amplification mechanism that makes the full-suite failure count appear larger and couples current repository health to stale branch-specific snapshots.
 
-- the test verifies fixture generation and required files, not an end-to-end extraction/conversion/runtime path.
+Correct remediation:
 
-Disposition: documentation/test-hygiene follow-up. Its correction should reinforce, not blur, the extraction/conversion–runtime firewall.
+1. repair the two root clusters first;
+2. rerun the full suite;
+3. retain pass-through tests only where they protect a current invariant not already covered by direct tests;
+4. migrate repeated current-state package assertions to shared infrastructure;
+5. address remaining helper and subprocess fragility under issue #128.
 
-### Issue #134 — handoff contract documentation drift
+#### Full-suite RB-FAIL-003 nodes
 
-Relevant finding:
+- `tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001b_tests_pass`
+- `tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001c_tests_pass`
+- `tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001d_tests_pass`
+- `tests/test_runtime_domain_rt_001f_action_legality_service_interface_contract_hardening_review.py::TestExistingTestsStillPass::test_rt001e_tests_pass`
+- `tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001b_tests_pass`
+- `tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001c_tests_pass`
+- `tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001d_tests_pass`
+- `tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001e_tests_pass`
+- `tests/test_runtime_domain_rt_001g_state_owner_interface_prerequisite_review.py::TestExistingTestsStillPass::test_rt001f_tests_pass`
+- `tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001b_tests_pass`
+- `tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001c_tests_pass`
+- `tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001d_tests_pass`
+- `tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001e_tests_pass`
+- `tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001f_tests_pass`
+- `tests/test_runtime_domain_rt_001h_state_owner_interface_contract_skeleton.py::TestExistingTestsStillPass::test_rt001g_tests_pass`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestRt001hTestsPass::test_rt001h_tests_pass`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001b_tests_pass`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001c_tests_pass`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001d_tests_pass_excluding_branch_guardrail`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001e_tests_pass`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001f_tests_pass_excluding_branch_guardrail`
+- `tests/test_runtime_domain_rt_001i_state_owner_interface_contract_hardening_review.py::TestEarlierRtTestsPass::test_rt001g_tests_pass_excluding_branch_guardrail`
+- `tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py::TestRt001hTestsPass::test_rt001h_tests_pass`
+- `tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py::TestRt001iTestsPass::test_rt001i_tests_pass`
+- `tests/test_runtime_domain_rt_002a_read_only_vertical_slice_state_owner_facade.py::TestPr9SeamTestsPass::test_pr9a_through_pr9e_tests_pass`
+- `tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py::TestUpstreamPassThrough::test_rt002a_tests_pass`
+- `tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py::TestUpstreamPassThrough::test_rt001h_tests_pass`
+- `tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py::TestUpstreamPassThrough::test_rt001i_tests_pass`
+- `tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt002b_tests_pass`
+- `tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt002a_tests_pass`
+- `tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt001h_tests_pass`
+- `tests/test_runtime_domain_rt_002c_object_lever_interaction_legality_reader.py::TestUpstreamPassThrough::test_rt001i_tests_pass`
 
-- documented packet layout differs from the packet shape currently produced and tested.
+## Dependency declaration gap
 
-Disposition: conversion/handoff documentation repair only. It must not modify runtime packages or runtime contracts.
+### RB-DEBT-001 — Pytest absent from `requirements-dev.txt`
 
-### Issue #151 — obsolete A06–A15 closeout scope
+- **Classification:** `test_environment_defect`
+- **Runtime failure contribution:** none after manual pytest installation
+- **Observed behavior:** following the documented development install produced `ModuleNotFoundError: No module named 'pytest'`
+- **Required repair:** declare pytest in the development/test dependency source and add a setup smoke check
+- **Scope:** permitted in the green-baseline repair PR because it is necessary for reproducible verification
 
-The issue predates Batch A/B/C completion and AFQR-01–20 ratification.
+## Failure distribution
 
-Disposition: supersede or broaden into an `AFQR-01–20 and Batch A/B/C Doctrine Conformance Audit`. Do not execute its original narrow transition premise unchanged.
+```yaml
+runtime_suite:
+  stale_allowlist_or_manifest: 15
+  visibility_contract_namespace_collision: 32
+  total: 47
+
+full_suite:
+  direct_runtime_failures: 47
+  additional_direct_stale_guardrails: 15
+  nested_upstream_pass_through_failures: 32
+  total: 94
+```
 
 ## Remediation order
 
 ### Phase 1 — Capture
 
-1. reproduce the runtime suite at the exact baseline;
-2. record all 47 node IDs and tracebacks;
-3. group failures without modifying code;
-4. verify whether all failures belong to RB-FAIL-001 or RB-FAIL-002;
-5. create additional cluster records when required.
+Complete.
 
-### Phase 2 — Repair shared test infrastructure
+- exact baseline reproduced;
+- all 47 runtime node IDs captured;
+- full suite reproduced;
+- all 94 full-suite node IDs classified;
+- no third root cluster observed.
 
-1. centralize the runtime-domain module manifest;
-2. retain strict undeclared-module rejection;
-3. eliminate duplicated allowlists;
-4. add a manifest-consistency test;
-5. confirm that narrow RT modules remain `fixture_only` or `narrow_reference_only_skeleton` where applicable.
+### Phase 2 — Repair shared package-surface infrastructure
 
-### Phase 3 — Resolve `state_store` contract drift
+1. centralize the exact current runtime-domain file manifest;
+2. classify fixture-only and narrow-reference modules;
+3. update all 15 runtime guardrails;
+4. update all 15 direct top-level guardrails;
+5. preserve strict undeclared-file rejection;
+6. add manifest consistency and runtime-import prohibition tests.
 
-1. freeze the current expected and actual signatures;
-2. determine the authoritative hidden-information contract;
-3. implement the smallest compatible correction;
-4. add positive, negative, and misuse tests;
-5. ensure callers cannot self-certify hidden-information safety.
+### Phase 3 — Resolve visibility-contract ownership
 
-### Phase 4 — Verify
+1. use owner-module imports in state-store tests;
+2. add explicit aliases for tests where both descriptors are needed;
+3. add positive, negative, and misuse tests;
+4. preserve the RT-001H policy/redaction contract;
+5. do not widen either production contract solely to make imports convenient.
+
+### Phase 4 — Reproducible test setup
+
+1. add pytest to the development dependency declaration;
+2. verify a clean Python 3.12 environment can install and collect tests;
+3. document the exact commands.
+
+### Phase 5 — Verify
 
 Run:
 
-```bash
-python -m pytest tests/runtime -q
+```text
+python -m pytest -q tests/runtime
 python -m pytest -q
 ```
 
 The target is:
 
 ```text
-0 unexpected failures
+runtime: 0 unexpected failures
+full: 0 unexpected failures
 ```
 
-Expected failures are permitted only when they are narrow, documented, and unrelated to runtime-baseline regressions.
+Expected failures remain permitted only when narrow, documented, and unrelated to the runtime-baseline repair.
 
-## Exit criteria
+## Gate R0 exit criteria
 
-Gate R0 is complete only when all of the following are true:
+- [x] exact runtime failure inventory captured;
+- [x] every runtime failure classified;
+- [x] full-suite amplification inventory captured;
+- [x] environment and dependency versions captured;
+- [ ] authoritative test-only domain manifest fully adopted;
+- [ ] duplicated allowlists removed or delegated;
+- [ ] visibility contract ownership explicit in all affected tests;
+- [ ] pytest declared by repository development dependencies;
+- [ ] runtime suite has zero unexpected failures;
+- [ ] full suite has zero unexpected failures;
+- [ ] no guardrail weakened;
+- [ ] no extraction/conversion dependency introduced into runtime;
+- [ ] no RT-002G behavior implemented.
 
-- the exact failing-node inventory has been captured;
-- each failure has a primary classification;
-- the runtime-domain manifest has one authoritative source;
-- duplicated module allowlists have been removed or delegated to that source;
-- the `state_store`/`hidden_info_safe` contract is explicit and tested;
-- `python -m pytest tests/runtime -q` has zero unexpected failures;
-- the full suite has zero unexpected failures;
-- no guardrail was weakened to obtain green status;
-- no extraction or conversion dependency was introduced into runtime;
-- no RT-002G behavior was implemented;
-- no AFQR decision was marked implemented merely because tests pass.
+## Current PR disposition
 
-## Next PR boundary
+### PR #327
 
-The next implementation PR after this inventory should be:
+This inventory is now complete enough to merge after review. It changes documentation only and freezes the exact pre-repair baseline.
 
-```text
-MAINTENANCE: Restore green runtime baseline
-```
+### PR #328
 
-It should contain only:
+PR #328 must not merge in its current form. It repairs the state-store import collision and introduces a shared manifest, but it updates only one of the 15 failing runtime allowlists and does not address the 15 direct top-level stale guardrails, 32 pass-through failures, or missing pytest development dependency.
 
-- the centralized runtime-domain manifest and test-fixture changes required by RB-FAIL-001;
-- the smallest contract correction required by RB-FAIL-002;
-- focused regression tests;
-- the reproduced node-level before/after inventory.
+PR #328 should be revised or replaced so its scope matches this reproduced inventory, then validated locally before merge.
+
+## Next implementation PR boundary
+
+The green-baseline repair may include only:
+
+- the shared test-only runtime-domain manifest;
+- migration of all current package-surface guardrails;
+- the state-store visibility-contract import correction;
+- explicit descriptor-ownership regression tests;
+- pytest development dependency correction;
+- before/after test evidence.
 
 It must not include:
 
-- AFQR-01–20 import or consolidation;
+- AFQR-01–20 consolidation;
 - Batch doctrine rewrites;
 - new RT functionality;
 - RT-002G;
