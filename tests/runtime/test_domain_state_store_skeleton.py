@@ -2,12 +2,17 @@
 
 from __future__ import annotations
 
+from tests.runtime_domain_package_manifest import (
+    AUTHORIZED_RUNTIME_DOMAIN_ENTRIES,
+    AUTHORIZED_RUNTIME_DOMAIN_FILES,
+)
+
 import os
 from typing import Mapping
 
 import pytest
 
-from astra_runtime.domain import (
+from astra_runtime.domain.state_store import (
     STATE_AUTHORITY_LEVELS,
     STATE_RECORD_CATEGORIES,
     InvalidStateRecordRefError,
@@ -283,23 +288,7 @@ class TestStateStoreService:
 class TestGuardrailsDomainPackage:
     def test_domain_package_contains_only_authorized_files(self):
         domain_dir = "src/astra_runtime/domain"
-        authorized = {
-            "__init__.py",
-            "command_lifecycle.py",
-            "action_legality.py",
-            "state_store.py",
-            "state_projection.py",
-            "transaction_lifecycle.py",
-            "event_commitment.py",
-            "validation_integration.py",
-            "validation_integration_bridge_skeleton.py",
-            "transaction_preview_packet_bridge_skeleton.py",
-            "resource_consequence_math.py",
-            "context_packet_compiler.py",
-            "model_boundary_evaluation.py",
-            "tiny_vertical_slice.py", "scene_command_execution_skeleton.py",
-            "command_kind_routing_skeleton.py", "action_legality_skeleton.py", "action_legality_gate_integration_skeleton.py", "__pycache__",
-        }
+        authorized = set(AUTHORIZED_RUNTIME_DOMAIN_ENTRIES)
         entries = set(os.listdir(domain_dir))
         unauthorized = entries - authorized
         assert not unauthorized, f"Unauthorized domain files found: {unauthorized}"

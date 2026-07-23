@@ -6,6 +6,7 @@ import subprocess
 from pathlib import Path
 
 import yaml
+from tests.historical_branch_diff_guard import require_owning_historical_branch
 
 ROOT = Path(__file__).resolve().parents[1]
 DOC = ROOT / "docs/doctrine/reviews/runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.md"
@@ -3727,6 +3728,7 @@ def test_resource_math_result_has_no_resource_math_result_ref_self_binding() -> 
 
 
 def test_git_footprint_when_base_ref_available_and_implementation_module_present() -> None:
+    require_owning_historical_branch(ROOT, "pr-5h")
     ref = subprocess.run(["git", "rev-parse", "--verify", "origin/main"], cwd=ROOT, text=True, capture_output=True)
     if ref.returncode == 0:
         diff = subprocess.run(["git", "diff", "--name-only", "origin/main...HEAD"], cwd=ROOT, text=True, capture_output=True, check=True)

@@ -1,5 +1,10 @@
 """Tests for RUNTIME-DOMAIN-PR-4 validation integration and invariant enforcement service plan."""
 
+from tests.runtime_domain_package_manifest import (
+    AUTHORIZED_RUNTIME_DOMAIN_ENTRIES,
+    AUTHORIZED_RUNTIME_DOMAIN_FILES,
+)
+
 import pathlib
 
 import pytest
@@ -792,14 +797,7 @@ class TestDomainPackageGuardrails:
         assert DOMAIN_PACKAGE_DIR.exists(), "Domain package must exist"
 
     def test_domain_package_authorized_files_only(self):
-        allowed = {
-            "__init__.py", "command_lifecycle.py", "action_legality.py", "action_legality_skeleton.py", "action_legality_gate_integration_skeleton.py",
-            "state_store.py", "state_projection.py",
-            "transaction_lifecycle.py", "event_commitment.py",
-            "validation_integration.py",
-            "resource_consequence_math.py", "context_packet_compiler.py", "model_boundary_evaluation.py", "tiny_vertical_slice.py", "scene_command_execution_skeleton.py", "command_kind_routing_skeleton.py", "validation_integration_bridge_skeleton.py", "transaction_preview_packet_bridge_skeleton.py",
-            "__pycache__",
-        }
+        allowed = set(AUTHORIZED_RUNTIME_DOMAIN_ENTRIES)
         actual = {p.name for p in DOMAIN_PACKAGE_DIR.iterdir()}
         unauthorized = actual - allowed
         assert not unauthorized, f"Unauthorized files in domain package: {unauthorized}"

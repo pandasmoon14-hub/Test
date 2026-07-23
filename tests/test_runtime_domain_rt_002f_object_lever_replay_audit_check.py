@@ -5,6 +5,7 @@ import pytest
 
 import astra_runtime.domain.object_lever_replay_audit_check as f
 import astra_runtime.domain.object_lever_event_commit_state_delta_path as e
+from tests.historical_branch_diff_guard import require_owning_historical_branch
 
 FORBIDDEN={"rng_resolved","oracle_resolved","resource_settled","consequence_settled","damage_applied","condition_applied","persistent_write_complete","replay_indexed","narrated","model_generated","success","failure","persisted","persistence_written","event_store_appended","event_store_read","state_reconstructed","command_reexecuted","mutation_applied","state_delta_applied"}
 
@@ -351,6 +352,7 @@ class TestBranchDiff:
         import subprocess
         from pathlib import Path
         REPO_ROOT=Path(__file__).resolve().parent.parent
+        require_owning_historical_branch(REPO_ROOT, "rt-002f")
         result=subprocess.run(["git","diff","--name-only","origin/main...HEAD"], cwd=REPO_ROOT, capture_output=True, text=True)
         changed={line.strip() for line in result.stdout.splitlines() if line.strip()}
         allowed={
