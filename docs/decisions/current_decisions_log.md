@@ -4188,6 +4188,6 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Decision ID:** `AFQR-01-20-R1A-SOURCE-INTAKE-001`
 - **Received HEAD:** `43a50c3756c4f1ba335956d8224f22b34fc32ab5`
 - **Decision:** Accept the twelve checksum-verified archives and 277 safely extracted members as temporary non-authoritative evidence; track exactly one physical-source-backed primary record for AFQR-01 through AFQR-20.
-- **Correction:** Select AFQR-14's corrected normative baseline as directed by the AFQR-15 correction note; do not rely on the stale AFQR-14 manifest.
+- **Correction:** Select the AFQR-14 normative architecture directly from the AFQR-14 package. A validation note packaged in the AFQR-15 archive confirms those normative files and supersedes reliance only on AFQR-14’s stale artifact manifest; AFQR-14 ownership remains unchanged, AFQR-15 remains institutional/jurisdictional doctrine, and no cross-AFQR architectural replacement occurs.
 - **Authority boundary:** Architectural-decision tracking only. No canon, runtime, conversion, implementation, sourcebook, model, or live-play authority. RT-001/RT-002 similarity is narrow-fixture evidence only.
 - **Gate:** R1 is incomplete; R1B is next. R2–R6 and RT-002G remain blocked. Temporary evidence deletion requires later explicit R1E approval, and production code may not import it.

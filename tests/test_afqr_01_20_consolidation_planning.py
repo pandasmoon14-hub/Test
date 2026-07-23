@@ -45,10 +45,28 @@ def test_exact_afqr_coverage_and_committed_primary_evidence():
  for x in a:
   assert x['selected_architecture']
   for rid in x['source_evidence_records']: assert by_id[rid]['selected_as_primary'] and by_id[rid]['materialization_status']=='committed_text_copy'
-def test_corrected_afqr14_is_explicit_and_materialized():
- m=load(WORK/'manifest.yaml'); recs=m['contained_file_records']; a=load(REV/'afqr_01_20_authority_status_index.yaml')['afqr_records'][13]
- assert 'corrected' in a['corrected_baseline_note'].lower(); assert sum(r['package_kind']=='corrected_answer' for r in recs)==1
- assert any(r['original_archive_path'].endswith('afqr_14_corrected_baseline_note.yaml') and r['materialization_status']=='committed_text_copy' for r in recs)
+def test_full_titles_are_source_backed_not_packaging_labels():
+ m=load(WORK/'manifest.yaml'); by_id={r['source_record_id']:r for r in m['contained_file_records']}; archives={a['archive_record_id']:a for a in m['archive_records']}
+ packaging=re.compile(r"^(?:AFQR-\d{2}|ADR(?: —)? AFQR-\d{2}|AFQR-\d{2} Architectural Decision Record|Astra Foundational Question Resolution \d{1,2}|Astra AFQR-\d{2} Master Ratification(?: v[\d.]+)?)$")
+ for a in load(REV/'afqr_01_20_authority_status_index.yaml')['afqr_records']:
+  assert a['full_title'].strip() and not packaging.fullmatch(a['full_title'].strip())
+  assert a['title_evidence_records']
+  for rid in a['title_evidence_records']:
+   evidence=by_id[rid]; assert evidence['detected_afqr_id']==a['afqr_id']
+   archive=ROOT/archives[evidence['parent_archive_record_id']]['current_path']
+   with zipfile.ZipFile(archive) as z: source=z.read(evidence['original_archive_path']).decode('utf-8')
+   normalize=lambda value: re.sub(r'[^a-z0-9]+',' ',value.lower()).strip()
+   assert normalize(a['full_title']) in normalize(source)
+def test_afqr14_validation_note_supersedes_only_stale_manifest():
+ m=load(WORK/'manifest.yaml'); by_id={r['source_record_id']:r for r in m['contained_file_records']}; records=load(REV/'afqr_01_20_authority_status_index.yaml')['afqr_records']; af14=records[13]; af15=records[14]
+ assert af14['corrected_baseline_evidence_records']==['SRC-0103','SRC-0139','SRC-0121']
+ assert af14['source_evidence_records']==['SRC-0103'] and by_id['SRC-0103']['parent_archive_record_id']=='ARCH-06'
+ assert by_id['SRC-0103']['package_kind']=='answer' and by_id['SRC-0103']['detected_afqr_id']=='AFQR-14'
+ assert by_id['SRC-0121']['package_kind']=='superseded' and by_id['SRC-0121']['superseded_by']=='SRC-0139'
+ assert by_id['SRC-0139']['supersedes']==['SRC-0121'] and by_id['SRC-0139']['parent_archive_record_id']=='ARCH-07'
+ note=(ROOT/by_id['SRC-0139']['normalized_path']).read_text(); assert 'Do not rely on the superseded AFQR-14 stale manifest' in note and 'Validate normative files directly' in note
+ wording=af14['corrected_baseline_note']; assert 'selected directly from the AFQR-14 package' in wording and 'supersedes reliance only on the stale AFQR-14 artifact manifest' in wording and 'does not alter AFQR-14’s architectural decision' in wording
+ assert af15['afqr_id']=='AFQR-15' and 'Institutional–Jurisdictional Architecture' in af15['selected_architecture'] and not af15['corrected_baseline_evidence_records']
 def test_dependency_edges_and_collision_references_are_valid():
  d=load(REV/'afqr_01_20_dependency_matrix.yaml'); valid={f'AFQR-{n:02d}' for n in range(1,21)}
  for e in d['dependency_edges']: assert e['from_afqr'] in valid and e['to_afqr'] in valid and e['source_evidence']

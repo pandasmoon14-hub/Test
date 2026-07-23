@@ -10,6 +10,6 @@ Only 22 UTF-8, NUL-free source members with a defined R1 consolidation purpose a
 
 Everything here is **temporary, non-authoritative working evidence**. It grants no canon, runtime, conversion, implementation, sourcebook, model, or live-play authority. Production code must not import this tree. The `incoming/` archives must remain byte-identical to the base. Analysis rejected absolute paths, traversal, symlinks, duplicates, encryption, unreadable members, and overwrite. `superseded/` and `unresolved/` are reserved ledgers, not deletion queues.
 
-AFQR-14 uses the corrected normative package: AFQR-15's physical correction note says not to rely on the stale AFQR-14 manifest and validates the normative files directly. No competing package was silently combined.
+The AFQR-14 normative architecture is selected directly from the AFQR-14 package. A validation note packaged in the AFQR-15 ratification archive confirms the normative AFQR-14 files and supersedes reliance only on the stale AFQR-14 artifact manifest; it does not alter AFQR-14’s architectural decision, transfer AFQR-14 ownership, or replace it with AFQR-15 doctrine. AFQR-15 remains the institutional and jurisdictional decision.
 
 R1A is complete only as intake/planning. R1 remains incomplete. Deletion requires an explicit later R1E exit gate proving durable provenance retention and reviewer approval. R2–R6 and RT-002G remain blocked and unauthorized.
