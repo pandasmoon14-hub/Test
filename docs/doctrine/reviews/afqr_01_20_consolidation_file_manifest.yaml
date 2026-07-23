@@ -42,7 +42,10 @@
         "current repository authority"
       ],
       "outputs": [
-        "bounded reviewed consolidation artifact"
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/reviews/afqr_r1b_vocabulary_resolution_report.md",
+        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml",
+        "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py"
       ],
       "must_not_own": [
         "runtime implementation",
@@ -55,7 +58,7 @@
         "R1A"
       ],
       "downstream_handoffs": [
-        "R2 only after R1E approval"
+        "R1C only; R2 only after R1E approval"
       ],
       "completion_tests": [
         "YAML/Markdown structure",
@@ -63,7 +66,7 @@
         "owner/nonowner explicitness"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "blocked_pending_predecessor"
+      "status": "complete"
     },
     {
       "file_id": "R1C",
@@ -96,13 +99,13 @@
         "owner/nonowner explicitness"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "blocked_pending_predecessor"
+      "status": "ready"
     },
     {
       "file_id": "R1D-CORE",
       "proposed_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "owner": "Domain-family consolidation owner",
-      "scope": "AFQR-01–09 modular core family",
+      "scope": "AFQR-01\u201309 modular core family",
       "inputs": [
         "R1A physical-source manifest",
         "current repository authority"
@@ -135,7 +138,7 @@
       "file_id": "R1D-AGENCY",
       "proposed_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
       "owner": "Domain-family consolidation owner",
-      "scope": "AFQR-10–15 modular social/epistemic family",
+      "scope": "AFQR-10\u201315 modular social/epistemic family",
       "inputs": [
         "R1A physical-source manifest",
         "current repository authority"
@@ -168,7 +171,7 @@
       "file_id": "R1D-WORLD",
       "proposed_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "owner": "Domain-family consolidation owner",
-      "scope": "AFQR-16–20 modular world/action family",
+      "scope": "AFQR-16\u201320 modular world/action family",
       "inputs": [
         "R1A physical-source manifest",
         "current repository authority"

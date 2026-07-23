@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-07-23'
+  version: 0.1.111
+  action: afqr_r1b_shared_vocabulary_and_type_owner_resolution
+  actor: Astra Doctrine Council / consolidation assistant
+  note: 'R1B vocabulary-only contract: 41 root terms, ten collision outcomes, no accepted aliases, qualified families, and preserved COLL-03/COLL-08/COLL-10 escalation. R1C next; R1 incomplete; R2-R6 and RT-002G blocked; no runtime/conversion/canon/sourcebook/model/live-play authority.'
+- date: '2026-07-23'
   version: 0.1.110
   action: afqr_01_20_source_backed_r1a_intake_index
   actor: Astra Doctrine Council / consolidation assistant
