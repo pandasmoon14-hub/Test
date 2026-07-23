@@ -1,0 +1,80 @@
+schema_version: 0.1.0
+artifact_id: AFQR-CONSOLIDATION-R1A-MANIFEST-001
+milestone_id: MILESTONE-AFQR-CONSOLIDATION-AND-RUNTIME-REENTRY
+r1_status: active_incomplete
+current_artifacts:
+  - path: docs/doctrine/reviews/afqr_01_20_consolidation_r1a_plan.md
+    artifact_type: consolidation_plan
+    owner: R1A
+    authority: planning
+  - path: docs/doctrine/reviews/afqr_01_20_authority_index.yaml
+    artifact_type: accepted_selection_authority_index
+    owner: R1A
+    authority: tracking
+  - path: docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml
+    artifact_type: dependency_collision_matrix
+    owner: R1A
+    authority: planning
+  - path: docs/doctrine/reviews/afqr_01_20_consolidation_manifest.yaml
+    artifact_type: consolidation_manifest
+    owner: R1A
+    authority: tracking
+  - path: tests/test_afqr_01_20_consolidation_r1a.py
+    artifact_type: guardrail_tests
+    owner: R1A
+    authority: validation
+planned_artifact_families:
+  R1B:
+    purpose: repository-resident source-dossier import or reconstruction
+    batching_rule: bounded_reviewable_batches
+    required_count: 20
+    required_pattern: docs/doctrine/foundational/afqr_XX_*.md
+    may_declare_r1_complete: false
+  R1C:
+    purpose: shared vocabulary, type ownership, and invariant consolidation
+    required_artifacts:
+      - shared_typed_vocabulary
+      - cross_cutting_invariant_register
+      - authority_and_phase_boundary_register
+      - conflict_and_ambiguity_ledger
+    may_declare_r1_complete: false
+  R1D:
+    purpose: cross-AFQR typed handoffs and downstream maps
+    required_artifacts:
+      - cross_afqr_handoff_contracts
+      - doctrine_to_runtime_handoff_map
+      - doctrine_to_conversion_handoff_map
+      - canon_and_play_facing_reserved_boundaries
+      - fixture_generalization_ledger
+    may_declare_r1_complete: false
+  R1E:
+    purpose: formal R1 completion review
+    required_outputs:
+      - R1_COMPLETE
+      - R1_BLOCKED
+    exactly_one_output_required: true
+    may_declare_r1_complete: true
+r1_completion_requirements:
+  repository_resident_afqr_dossiers: 20
+  accepted_selection_match_required: true
+  shared_vocabulary_owner_for_every_cross_term: true
+  dependency_cycle_breaker_required: true
+  unresolved_conflict_without_owner_or_quarantine_allowed: false
+  invariant_register_required: true
+  runtime_handoff_map_required: true
+  conversion_handoff_map_required: true
+  phase_separation_required: true
+  donor_origin_firewall_required: true
+  corpus_scale_pressure_review_required: true
+  automated_guardrails_required: true
+  formal_r1e_review_required: true
+forbidden_shortcuts:
+  - treating_selected_titles_as_complete_dossiers
+  - one_megafile_for_all_twenty_architectures
+  - generic_universal_graph_or_state_object
+  - runtime_changes_during_R1A
+  - conversion_changes_during_R1A
+  - canon_promotion_during_R1
+  - model_or_live_play_authority_during_R1
+  - direct_RT-002G_reentry_before_R6
+next_allowed_step: R1B_first_bounded_dossier_batch
