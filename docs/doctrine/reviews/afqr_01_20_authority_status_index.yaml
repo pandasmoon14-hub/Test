@@ -1,0 +1,860 @@
+{
+  "index_version": "1.0.0",
+  "authority": "tracking_only_no_implementation_or_canon_authority",
+  "afqr_records": [
+    {
+      "afqr_id": "AFQR-01",
+      "full_title": "Atomic State Transition, Ownership, Commitment, Recovery, and Replay",
+      "selected_architecture": "Atomic Typed Transition Journal with Owner-Specific Reducers and Declared Saga Escape Hatches",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0004"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Atomic Typed Transition Journal with Owner-Specific Reducers and Declared Saga Escape Hatches; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-02",
+      "full_title": "Command Identity, Attempts, Retries, Suspension, Escalation, and Durable Progress",
+      "selected_architecture": "Synchronous Command Fast Path with Durable Attempt Escalation",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0005"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Synchronous Command Fast Path with Durable Attempt Escalation; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-03",
+      "full_title": "Action Representation, Capability, Affordance, Method Selection, and Bounded Plans",
+      "selected_architecture": "Typed Action Gateway with Registered Semantics, Capability-Affordance Composition, and Bounded Plan Verification",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0006"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Typed Action Gateway with Registered Semantics, Capability-Affordance Composition, and Bounded Plan Verification; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-04",
+      "full_title": "Logical Time, Simultaneity, Causal Ordering, Scheduled Effects, and Bounded Cascades",
+      "selected_architecture": "Profiled Logical-Time Causal Scheduler with Deterministic Resolution Groups and Bounded Cascade Microsteps",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0007"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Profiled Logical-Time Causal Scheduler with Deterministic Resolution Groups and Bounded Cascade Microsteps; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-05",
+      "full_title": "Cross-System Interfaces, Adapters, Bridges, Hyperedges, and Compatibility",
+      "selected_architecture": "Registered Typed Interface-and-Bridge Hypergraph",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0008"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Typed Interface-and-Bridge Hypergraph; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-06",
+      "full_title": "Claim Discovery, Admissibility, Conflict, Arbitration, Choice, and Hidden Evidence",
+      "selected_architecture": "Invariant-Gated Typed Claim Arbitration",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0009"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Invariant-Gated Typed Claim Arbitration; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-07",
+      "full_title": "Cross-Domain Conservation, Conversion Validity, Reservation, Settlement, and Arbitrage Prevention",
+      "selected_architecture": "Typed Balance-Domain Flow Ledger with Proof-Carrying Conversion and Atomic Settlement",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-07/ARCH-01/adrs/AFQR-07_Cross_Domain_Conservation_Conversion_Validity_Reservation_Settlement_and_Arbitrage_Prevention.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0010"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Typed Balance-Domain Flow Ledger with Proof-Carrying Conversion and Atomic Settlement; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-08",
+      "full_title": "Identity, Continuity, Copying, Transformation, Proxyhood, Reinstantiation, Fusion, Fission, and Contextual Equivalence",
+      "selected_architecture": "Typed Faceted Identity, Continuity, and Lineage Graph with Purpose-Scoped Equivalence",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0011"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Typed Faceted Identity, Continuity, and Lineage Graph with Purpose-Scoped Equivalence; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-09",
+      "full_title": "Dependency, Revocation, Inheritance, Termination, Migration, Orphaning, and Cascading Consequence",
+      "selected_architecture": "Registered Typed Dependency-and-Obligation Hypergraph with Version-Pinned Lifecycle Policies and Bounded Causal Propagation",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0012"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Typed Dependency-and-Obligation Hypergraph with Version-Pinned Lifecycle Policies and Bounded Causal Propagation; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-10",
+      "full_title": "AFQR-10 Architectural Decision Record",
+      "selected_architecture": "Typed Bitemporal Truth–Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0022"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Typed Bitemporal Truth–Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-11",
+      "full_title": "Agency, Personhood, Consent, Control, and Responsibility",
+      "selected_architecture": "Registered Purpose-Scoped Agency and Personhood Architecture with Orthogonal Consent-Control Planes, Bitemporal Action-Origin Graphs, and Profiled Responsibility (RPSAP-OCC-BAOG-PR)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0041"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Purpose-Scoped Agency and Personhood Architecture with Orthogonal Consent-Control Planes, Bitemporal Action-Origin Graphs, and Profiled Responsibility (RPSAP-OCC-BAOG-PR); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-12",
+      "full_title": "Astra Foundational Question Resolution 12",
+      "selected_architecture": "Registered Typed Motivational–Behavioral State Architecture with Bounded Deliberation, Pluggable Plan Interfaces, Profiled Learning, and Bitemporal Continuity (RTMBS-BD-PPI-PL-BTC)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0072"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Typed Motivational–Behavioral State Architecture with Bounded Deliberation, Pluggable Plan Interfaces, Profiled Learning, and Bitemporal Continuity (RTMBS-BD-PPI-PL-BTC); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-13",
+      "full_title": "Social Relationships, Trust, Reputation, Status, Culture, Affiliation, and Group Dynamics",
+      "selected_architecture": "Registered Multiplex Social-State Architecture with Domain-Scoped Trust, Audience-Relative Reputation, Modular Culture–Norm Profiles, and Bitemporal Network Continuity (RMSSA-DT-ARR-MCNP-BNC)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0082"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Multiplex Social-State Architecture with Domain-Scoped Trust, Audience-Relative Reputation, Modular Culture–Norm Profiles, and Bitemporal Network Continuity (RMSSA-DT-ARR-MCNP-BNC); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-14",
+      "full_title": "ADR AFQR-14",
+      "selected_architecture": "Registered Bitemporal Communication–Interpretation Architecture with Segmented Signal–Expression–Interpretation Pipelines, Multidimensional Dialogue Acts, Protocol-Governed Conversation State, and Validated Model Realization (RBCIA-SEIP-MDA-PGCS-VMR)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0103"
+      ],
+      "corrected_baseline_note": "Selected corrected normative AFQR-14 baseline; AFQR-15 correction note rejects reliance on its stale manifest.",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Bitemporal Communication–Interpretation Architecture with Segmented Signal–Expression–Interpretation Pipelines, Multidimensional Dialogue Acts, Protocol-Governed Conversation State, and Validated Model Realization (RBCIA-SEIP-MDA-PGCS-VMR); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-15",
+      "full_title": "AFQR-15",
+      "selected_architecture": "Registered Federated Institutional–Jurisdictional Architecture with Relational Normative Positions, Versioned Rule Materials, Protocol-Governed Adjudication, Profiled Legitimacy, and Separated Enforcement Authorization and Execution (RFIJA-RNP-VRM-PGA-PL-SEA)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0125"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Federated Institutional–Jurisdictional Architecture with Relational Normative Positions, Versioned Rule Materials, Protocol-Governed Adjudication, Profiled Legitimacy, and Separated Enforcement Authorization and Execution (RFIJA-RNP-VRM-PGA-PL-SEA); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-16",
+      "full_title": "AFQR-16",
+      "selected_architecture": "Registered Federated Embodiment–Integrity Architecture with Typed Component–Function–Dependency Graphs, Staged Exposure–Transfer–Effect Pipelines, Profile-Scoped Injury–Condition–Death Families, and Bitemporal Recovery–Transformation Continuity (RFEIA-CFDG-SETE-ICD-BRTC)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0152"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Federated Embodiment–Integrity Architecture with Typed Component–Function–Dependency Graphs, Staged Exposure–Transfer–Effect Pipelines, Profile-Scoped Injury–Condition–Death Families, and Bitemporal Recovery–Transformation Continuity (RFEIA-CFDG-SETE-ICD-BRTC); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-17",
+      "full_title": "Environment Processes Hazards and Ecology",
+      "selected_architecture": "Registered Federated Environment–Process Architecture with Typed Region–Medium–Field Ownership, Bounded Source–Transport–Hazard Graphs, Profile-Scoped Terrain–Weather–Ecology Families, and Bitemporal Observation–Materialization Continuity (RFEPA-RMF-STHG-TWE-OMC)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0180"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Federated Environment–Process Architecture with Typed Region–Medium–Field Ownership, Bounded Source–Transport–Hazard Graphs, Profile-Scoped Terrain–Weather–Ecology Families, and Bitemporal Observation–Materialization Continuity (RFEPA-RMF-STHG-TWE-OMC); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-18",
+      "full_title": "Federated Spatiotemporal Topology",
+      "selected_architecture": "Registered Federated Spatiotemporal Topology Architecture with Typed Domain–Frame–Support Ownership, Plural Metric–Reachability Profiles, Atomic Movement–Occupancy Transitions, and Bitemporal Map–Materialization Continuity (RFSTA-DFS-PMR-AMO-MMC)",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0207"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Federated Spatiotemporal Topology Architecture with Typed Domain–Frame–Support Ownership, Plural Metric–Reachability Profiles, Atomic Movement–Occupancy Transitions, and Bitemporal Map–Materialization Continuity (RFSTA-DFS-PMR-AMO-MMC); detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-19",
+      "full_title": "Capability, Targeting, Contest, Reaction, and Multi-Actor Resolution",
+      "selected_architecture": "Registered Federated Capability–Opportunity–Targeting–Resolution Architecture with Typed Readiness–Eligibility Closure, Pluggable Deterministic/Stochastic Resolvers, Bounded Trigger–Reaction Partial Orders, and Owner-Prepared Multi-Domain Effect Commitments",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0231"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "partially_represented_by_narrow_fixture",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [
+        "src/astra_runtime/ (narrow RT-001/RT-002 fixtures only; not general proof)"
+      ],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Federated Capability–Opportunity–Targeting–Resolution Architecture with Typed Readiness–Eligibility Closure, Pluggable Deterministic/Stochastic Resolvers, Bounded Trigger–Reaction Partial Orders, and Owner-Prepared Multi-Domain Effect Commitments; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    },
+    {
+      "afqr_id": "AFQR-20",
+      "full_title": "Signal, Sensing, Detection, Search, Concealment, and Tracking",
+      "selected_architecture": "Registered Federated Signal–Sensing–Acquisition Architecture with Typed Source–Modality–Propagation Ownership, Staged Exposure–Acquisition–Detection–Recognition Pipelines, Observer-Relative Concealment–Countermeasure Profiles, and Bitemporal Contact–Track–Evidence Continuity",
+      "decision_status": "accepted_architectural_decision",
+      "authority_layer": "architectural_decision_tracking_only",
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "source_evidence_records": [
+        "SRC-0255"
+      ],
+      "corrected_baseline_note": "not_applicable",
+      "repository_implementation_status": "accepted_architectural_decision_not_implemented",
+      "implementation_evidence_paths": [],
+      "narrow_fixture_evidence_paths": [],
+      "doctrine_dependencies": [
+        "docs/doctrine/astra_doctrine_roadmap_v0_1.md",
+        "docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md"
+      ],
+      "runtime_handoffs": [
+        "future owner contract; R2-R6 blocked"
+      ],
+      "conversion_handoffs": [
+        "conversion IR pressure only; no conversion authority"
+      ],
+      "canon_handoffs": [
+        "none in R1A"
+      ],
+      "live_play_boundary": "No live-play or model authority.",
+      "owned_concepts_summary": "Owns the bounded architectural question expressed by Registered Federated Signal–Sensing–Acquisition Architecture with Typed Source–Modality–Propagation Ownership, Staged Exposure–Acquisition–Detection–Recognition Pipelines, Observer-Relative Concealment–Countermeasure Profiles, and Bitemporal Contact–Track–Evidence Continuity; detailed consolidation deferred.",
+      "explicit_nonownership_summary": "Does not own donor defaults, canon, conversion, runtime implementation, sourcebooks, models, or live play.",
+      "unresolved_questions": [
+        "R1B vocabulary/type-owner resolution",
+        "R1C invariant and dependency reconciliation"
+      ],
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "next_consolidation_action": "R1B shared vocabulary and type-owner resolution",
+      "corpus_scale_pressure_summary": "Must preserve heterogeneous fantasy, science-fiction, hybrid, cultivation, class, profession, point-buy, narrative/tag/aspect, cyberware/biotech, psionic, horror/investigation, platform, companion, crafting, bestiary, table, supplement, and adventure-path semantics without donor-law defaulting."
+    }
+  ]
+}

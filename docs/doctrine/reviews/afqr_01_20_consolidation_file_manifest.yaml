@@ -1,0 +1,236 @@
+{
+  "manifest_version": "1.0.0",
+  "planned_files": [
+    {
+      "file_id": "R1A",
+      "proposed_path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "owner": "Doctrine consolidation intake owner",
+      "scope": "Physical evidence, indexing, dependencies, collisions, and gates",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "complete"
+    },
+    {
+      "file_id": "R1B",
+      "proposed_path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "owner": "Doctrine vocabulary owner",
+      "scope": "Shared terms, aliases, and type owners",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [
+        "R1A"
+      ],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "blocked_pending_predecessor"
+    },
+    {
+      "file_id": "R1C",
+      "proposed_path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "owner": "Cross-AFQR invariant owner",
+      "scope": "Directed dependencies, invariants, and handoffs",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [
+        "R1B"
+      ],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "blocked_pending_predecessor"
+    },
+    {
+      "file_id": "R1D-CORE",
+      "proposed_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "owner": "Domain-family consolidation owner",
+      "scope": "AFQR-01–09 modular core family",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [
+        "R1C"
+      ],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "blocked_pending_predecessor"
+    },
+    {
+      "file_id": "R1D-AGENCY",
+      "proposed_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "owner": "Domain-family consolidation owner",
+      "scope": "AFQR-10–15 modular social/epistemic family",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [
+        "R1C"
+      ],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "blocked_pending_predecessor"
+    },
+    {
+      "file_id": "R1D-WORLD",
+      "proposed_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "owner": "Domain-family consolidation owner",
+      "scope": "AFQR-16–20 modular world/action family",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [
+        "R1C"
+      ],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "blocked_pending_predecessor"
+    },
+    {
+      "file_id": "R1E",
+      "proposed_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "owner": "Independent doctrine review owner",
+      "scope": "Formal R1 completion gate",
+      "inputs": [
+        "R1A physical-source manifest",
+        "current repository authority"
+      ],
+      "outputs": [
+        "bounded reviewed consolidation artifact"
+      ],
+      "must_not_own": [
+        "runtime implementation",
+        "conversion execution",
+        "canon/sourcebook",
+        "model/live play",
+        "donor defaults"
+      ],
+      "prerequisites": [
+        "R1D-CORE",
+        "R1D-AGENCY",
+        "R1D-WORLD"
+      ],
+      "downstream_handoffs": [
+        "R2 only after R1E approval"
+      ],
+      "completion_tests": [
+        "YAML/Markdown structure",
+        "source traceability",
+        "owner/nonowner explicitness"
+      ],
+      "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
+      "status": "blocked_pending_predecessor"
+    }
+  ]
+}

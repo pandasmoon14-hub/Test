@@ -1,0 +1,17 @@
+question_id: AFQR-15
+dependency: AFQR-14
+status: accepted_corrected_baseline
+validation:
+  package_exists: true
+  stale_manifest_relied_upon: false
+  normative_files:
+    master/Astra_AFQR_14_Master_Ratification_v1_0.md: true
+    registries/afqr_14_decision_registry.yaml: true
+    contracts/afqr_14_typed_contract_catalog.yaml: true
+    operations/afqr_14_operation_grammar.yaml: true
+    evaluation/afqr_14_adversarial_scenarios_COM_001_200.yaml: true
+    fixtures/afqr_14_non_mutating_dry_run.yaml: true
+  zip_error: null
+  zip_members: 21
+manifest_rule: Do not rely on the superseded AFQR-14 stale manifest. Validate normative files directly. AFQR-15 writes
+  payload manifest, then artifact manifest, then SHA256SUMS last.

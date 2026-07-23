@@ -1,0 +1,1654 @@
+{
+  "matrix_version": "1.0.0",
+  "roots": [
+    "AFQR-05",
+    "AFQR-10"
+  ],
+  "hubs": [
+    "AFQR-01",
+    "AFQR-05",
+    "AFQR-08",
+    "AFQR-09",
+    "AFQR-10"
+  ],
+  "leaves": [
+    "AFQR-12",
+    "AFQR-16",
+    "AFQR-19"
+  ],
+  "cycle_risk_groups": [
+    [
+      "AFQR-01",
+      "AFQR-09"
+    ],
+    [
+      "AFQR-02",
+      "AFQR-04"
+    ],
+    [
+      "AFQR-06",
+      "AFQR-08"
+    ],
+    [
+      "AFQR-17",
+      "AFQR-18"
+    ]
+  ],
+  "dependencies_missing_from_repository": [
+    "generalized governed-relation registry",
+    "generalized bitemporal truth/evidence store",
+    "generalized owner-reducer transaction journal",
+    "registered interface/bridge hypergraph",
+    "generalized spatial, signal, embodiment, institution, and social owner contracts"
+  ],
+  "fixture_only_dependencies": [
+    "RT-001 action-legality skeleton family",
+    "RT-002A–F object/lever vertical slice"
+  ],
+  "cross_phase_handoffs_at_risk": [
+    "architectural decision to runtime implementation",
+    "conversion pressure IR to conversion execution",
+    "runtime record to canon/sourcebook",
+    "hidden truth to model-visible projection"
+  ],
+  "dependency_edges": [
+    {
+      "edge_id": "DEP-001",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-02",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-02 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0005"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-002",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-03",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-03 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0006"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-003",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-04",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-04 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0007"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-004",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-05",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-05 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0008"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-005",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-06",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-06 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0009"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-006",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-07",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-07 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0010"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-007",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-08",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-08 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0011"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-008",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-09",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-09 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0012"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-009",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-10",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-10 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0022"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-010",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-11",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-11 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0041"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-011",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-12",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-12 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0072"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-012",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-013",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-14",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-14 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0103"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-014",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-015",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-16",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-16 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0152"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-016",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-17",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-17 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0180"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-017",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-18",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-18 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0207"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-018",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-019",
+      "from_afqr": "AFQR-01",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "commit",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded commit output from AFQR-01; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0004",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "commit"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-020",
+      "from_afqr": "AFQR-02",
+      "to_afqr": "AFQR-03",
+      "relation_kind": "command_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-03 consumes bounded command_lifecycle output from AFQR-02; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0005",
+        "SRC-0006"
+      ],
+      "shared_types_or_handoffs": [
+        "command_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-021",
+      "from_afqr": "AFQR-02",
+      "to_afqr": "AFQR-04",
+      "relation_kind": "command_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-04 consumes bounded command_lifecycle output from AFQR-02; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0005",
+        "SRC-0007"
+      ],
+      "shared_types_or_handoffs": [
+        "command_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-022",
+      "from_afqr": "AFQR-02",
+      "to_afqr": "AFQR-09",
+      "relation_kind": "command_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-09 consumes bounded command_lifecycle output from AFQR-02; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0005",
+        "SRC-0012"
+      ],
+      "shared_types_or_handoffs": [
+        "command_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-023",
+      "from_afqr": "AFQR-02",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "command_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded command_lifecycle output from AFQR-02; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0005",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "command_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-024",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-02",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-02 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0005"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-025",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-06",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-06 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0009"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-026",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-07",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-07 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0010"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-027",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-08",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-08 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0011"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-028",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-09",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-09 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0012"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-029",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-18",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-18 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0207"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-030",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-031",
+      "from_afqr": "AFQR-04",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "time_causality",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded time_causality output from AFQR-04; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0007",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "time_causality"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-032",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-03",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-03 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0006"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-033",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-06",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-06 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0009"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-034",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-07",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-07 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0010"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-035",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-08",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-08 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0011"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-036",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-09",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-09 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0012"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-037",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-10",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-10 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0022"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-038",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-11",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-11 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0041"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-039",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-040",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-14",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-14 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0103"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-041",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-042",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-16",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-16 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0152"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-043",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-17",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-17 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0180"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-044",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-18",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-18 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0207"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-045",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-046",
+      "from_afqr": "AFQR-05",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "interface_bridge",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded interface_bridge output from AFQR-05; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0008",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "interface_bridge"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-047",
+      "from_afqr": "AFQR-06",
+      "to_afqr": "AFQR-07",
+      "relation_kind": "claim_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-07 consumes bounded claim_evidence output from AFQR-06; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0009",
+        "SRC-0010"
+      ],
+      "shared_types_or_handoffs": [
+        "claim_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-048",
+      "from_afqr": "AFQR-06",
+      "to_afqr": "AFQR-08",
+      "relation_kind": "claim_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-08 consumes bounded claim_evidence output from AFQR-06; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0009",
+        "SRC-0011"
+      ],
+      "shared_types_or_handoffs": [
+        "claim_evidence"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-049",
+      "from_afqr": "AFQR-06",
+      "to_afqr": "AFQR-09",
+      "relation_kind": "claim_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-09 consumes bounded claim_evidence output from AFQR-06; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0009",
+        "SRC-0012"
+      ],
+      "shared_types_or_handoffs": [
+        "claim_evidence"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-050",
+      "from_afqr": "AFQR-06",
+      "to_afqr": "AFQR-10",
+      "relation_kind": "claim_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-10 consumes bounded claim_evidence output from AFQR-06; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0009",
+        "SRC-0022"
+      ],
+      "shared_types_or_handoffs": [
+        "claim_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-051",
+      "from_afqr": "AFQR-06",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "claim_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded claim_evidence output from AFQR-06; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0009",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "claim_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-052",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-06",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-06 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0009"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-053",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-07",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-07 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0010"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-054",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-09",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-09 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0012"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-055",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-10",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-10 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0022"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-056",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-11",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-11 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0041"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-057",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-12",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-12 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0072"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-058",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-059",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-060",
+      "from_afqr": "AFQR-08",
+      "to_afqr": "AFQR-16",
+      "relation_kind": "identity_evidence",
+      "required_or_optional": "required",
+      "rationale": "AFQR-16 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0011",
+        "SRC-0152"
+      ],
+      "shared_types_or_handoffs": [
+        "identity_evidence"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-061",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-01",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-01 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0004"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-062",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-02",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-02 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0005"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-063",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-04",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-04 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0007"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-064",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-06",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-06 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0009"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-065",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-07",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-07 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0010"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-066",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-08",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-08 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0011"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-067",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-11",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-11 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0041"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-068",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-069",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-070",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-16",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-16 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0152"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-071",
+      "from_afqr": "AFQR-09",
+      "to_afqr": "AFQR-17",
+      "relation_kind": "relation_lifecycle",
+      "required_or_optional": "required",
+      "rationale": "AFQR-17 consumes bounded relation_lifecycle output from AFQR-09; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0012",
+        "SRC-0180"
+      ],
+      "shared_types_or_handoffs": [
+        "relation_lifecycle"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-072",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-11",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-11 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0041"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-073",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-12",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-12 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0072"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-074",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-075",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-14",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-14 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0103"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-076",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-077",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-17",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-17 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0180"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-078",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-079",
+      "from_afqr": "AFQR-10",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "epistemic_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded epistemic_handoff output from AFQR-10; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0022",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "epistemic_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-080",
+      "from_afqr": "AFQR-11",
+      "to_afqr": "AFQR-12",
+      "relation_kind": "agency_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-12 consumes bounded agency_handoff output from AFQR-11; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0041",
+        "SRC-0072"
+      ],
+      "shared_types_or_handoffs": [
+        "agency_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-081",
+      "from_afqr": "AFQR-11",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "agency_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded agency_handoff output from AFQR-11; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0041",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "agency_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-082",
+      "from_afqr": "AFQR-11",
+      "to_afqr": "AFQR-14",
+      "relation_kind": "agency_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-14 consumes bounded agency_handoff output from AFQR-11; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0041",
+        "SRC-0103"
+      ],
+      "shared_types_or_handoffs": [
+        "agency_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-083",
+      "from_afqr": "AFQR-11",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "agency_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded agency_handoff output from AFQR-11; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0041",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "agency_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-084",
+      "from_afqr": "AFQR-11",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "agency_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded agency_handoff output from AFQR-11; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0041",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "agency_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-085",
+      "from_afqr": "AFQR-14",
+      "to_afqr": "AFQR-13",
+      "relation_kind": "communication_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-13 consumes bounded communication_handoff output from AFQR-14; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0103",
+        "SRC-0082"
+      ],
+      "shared_types_or_handoffs": [
+        "communication_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-086",
+      "from_afqr": "AFQR-14",
+      "to_afqr": "AFQR-15",
+      "relation_kind": "communication_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-15 consumes bounded communication_handoff output from AFQR-14; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0103",
+        "SRC-0125"
+      ],
+      "shared_types_or_handoffs": [
+        "communication_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-087",
+      "from_afqr": "AFQR-14",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "communication_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded communication_handoff output from AFQR-14; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0103",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "communication_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-088",
+      "from_afqr": "AFQR-17",
+      "to_afqr": "AFQR-16",
+      "relation_kind": "environment_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-16 consumes bounded environment_handoff output from AFQR-17; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0180",
+        "SRC-0152"
+      ],
+      "shared_types_or_handoffs": [
+        "environment_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-089",
+      "from_afqr": "AFQR-17",
+      "to_afqr": "AFQR-18",
+      "relation_kind": "environment_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-18 consumes bounded environment_handoff output from AFQR-17; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0180",
+        "SRC-0207"
+      ],
+      "shared_types_or_handoffs": [
+        "environment_handoff"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-090",
+      "from_afqr": "AFQR-17",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "environment_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded environment_handoff output from AFQR-17; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0180",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "environment_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-091",
+      "from_afqr": "AFQR-18",
+      "to_afqr": "AFQR-17",
+      "relation_kind": "space_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-17 consumes bounded space_handoff output from AFQR-18; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0207",
+        "SRC-0180"
+      ],
+      "shared_types_or_handoffs": [
+        "space_handoff"
+      ],
+      "cycle_risk": "review_required",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-092",
+      "from_afqr": "AFQR-18",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "space_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded space_handoff output from AFQR-18; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0207",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "space_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-093",
+      "from_afqr": "AFQR-18",
+      "to_afqr": "AFQR-20",
+      "relation_kind": "space_handoff",
+      "required_or_optional": "required",
+      "rationale": "AFQR-20 consumes bounded space_handoff output from AFQR-18; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0207",
+        "SRC-0255"
+      ],
+      "shared_types_or_handoffs": [
+        "space_handoff"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    },
+    {
+      "edge_id": "DEP-094",
+      "from_afqr": "AFQR-20",
+      "to_afqr": "AFQR-19",
+      "relation_kind": "contact_targeting",
+      "required_or_optional": "required",
+      "rationale": "AFQR-19 consumes bounded contact_targeting output from AFQR-20; ownership does not transfer.",
+      "source_evidence": [
+        "SRC-0255",
+        "SRC-0231"
+      ],
+      "shared_types_or_handoffs": [
+        "contact_targeting"
+      ],
+      "cycle_risk": "low",
+      "consolidation_action": "Reconcile owner and invariant in R1C; do not infer dependency from mention alone."
+    }
+  ]
+}

@@ -4182,3 +4182,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Hidden-information and mutation containment**: Metadata recursively rejects forbidden hidden/raw/execution/event/mutation/resource/model keys. Audit snapshots and replay-check receipts are reference-only envelopes and carry no arbitrary mutation instructions, hidden state values, state before/after values, or durable persistence markers.
 - **Serializer containment**: Backend serializer is deterministic and JSON-safe. Visible serializer excludes metadata, authority flags, backend-only fields, raw state, hidden fact payloads, RT-002A/RT-002B/RT-002C/RT-002D/RT-002E internal payloads, arbitrary mutation instructions, generalized state-delta fields, persistence/replay fields, resource/consequence settlement fields, RNG/oracle result fields, and model prompt/narration fields.
 - **Next recommended step**: RT-002G — Context Packet Output from Committed Object/Lever Event
+
+## 2026-07-23 decision — Source-backed AFQR-01–20 R1A intake and authority index
+
+- **Decision ID:** `AFQR-01-20-R1A-SOURCE-INTAKE-001`
+- **Received HEAD:** `43a50c3756c4f1ba335956d8224f22b34fc32ab5`
+- **Decision:** Accept the twelve checksum-verified archives and 277 safely extracted members as temporary non-authoritative evidence; track exactly one physical-source-backed primary record for AFQR-01 through AFQR-20.
+- **Correction:** Select AFQR-14's corrected normative baseline as directed by the AFQR-15 correction note; do not rely on the stale AFQR-14 manifest.
+- **Authority boundary:** Architectural-decision tracking only. No canon, runtime, conversion, implementation, sourcebook, model, or live-play authority. RT-001/RT-002 similarity is narrow-fixture evidence only.
+- **Gate:** R1 is incomplete; R1B is next. R2–R6 and RT-002G remain blocked. Temporary evidence deletion requires later explicit R1E approval, and production code may not import it.
