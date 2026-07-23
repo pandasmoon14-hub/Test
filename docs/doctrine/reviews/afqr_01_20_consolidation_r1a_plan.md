@@ -91,6 +91,8 @@ These architectures must survive fantasy, science-fiction, hybrid, cultivation, 
 
 ## Corpus-scale donor pressures
 
+Astra must remain coherent while absorbing roughly 200–400 donor sources across mixed genres and mechanical families.
+
 R1 consolidation must test every ownership boundary against at least these donor families:
 
 - class, archetype, profession, occupation, point-buy, tag, aspect, and freeform character systems;
