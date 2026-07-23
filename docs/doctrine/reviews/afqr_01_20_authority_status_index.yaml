@@ -1,6 +1,8 @@
 {
   "index_version": "1.0.0",
   "authority": "tracking_only_no_implementation_or_canon_authority",
+  "title_selection_policy": "Use the fullest explicit foundational-question title or subtitle in cited physical source evidence; packaging, ADR, and master-document labels are not titles.",
+  "afqr_14_validation_provenance_policy": "AFQR-14 owns and supplies its selected architecture. The validation note packaged in the AFQR-15 archive supersedes reliance only on AFQR-14’s stale artifact manifest; it transfers no ownership and performs no architectural replacement.",
   "afqr_records": [
     {
       "afqr_id": "AFQR-01",

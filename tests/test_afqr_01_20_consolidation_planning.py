@@ -46,9 +46,11 @@ def test_exact_afqr_coverage_and_committed_primary_evidence():
   assert x['selected_architecture']
   for rid in x['source_evidence_records']: assert by_id[rid]['selected_as_primary'] and by_id[rid]['materialization_status']=='committed_text_copy'
 def test_full_titles_are_source_backed_not_packaging_labels():
+ index=load(REV/'afqr_01_20_authority_status_index.yaml')
+ assert 'packaging, ADR, and master-document labels are not titles' in index['title_selection_policy']
  m=load(WORK/'manifest.yaml'); by_id={r['source_record_id']:r for r in m['contained_file_records']}; archives={a['archive_record_id']:a for a in m['archive_records']}
  packaging=re.compile(r"^(?:AFQR-\d{2}|ADR(?: —)? AFQR-\d{2}|AFQR-\d{2} Architectural Decision Record|Astra Foundational Question Resolution \d{1,2}|Astra AFQR-\d{2} Master Ratification(?: v[\d.]+)?)$")
- for a in load(REV/'afqr_01_20_authority_status_index.yaml')['afqr_records']:
+ for a in index['afqr_records']:
   assert a['full_title'].strip() and not packaging.fullmatch(a['full_title'].strip())
   assert a['title_evidence_records']
   for rid in a['title_evidence_records']:
@@ -58,6 +60,7 @@ def test_full_titles_are_source_backed_not_packaging_labels():
    normalize=lambda value: re.sub(r'[^a-z0-9]+',' ',value.lower()).strip()
    assert normalize(a['full_title']) in normalize(source)
 def test_afqr14_validation_note_supersedes_only_stale_manifest():
+ index=load(REV/'afqr_01_20_authority_status_index.yaml'); assert 'transfers no ownership and performs no architectural replacement' in index['afqr_14_validation_provenance_policy']
  m=load(WORK/'manifest.yaml'); by_id={r['source_record_id']:r for r in m['contained_file_records']}; records=load(REV/'afqr_01_20_authority_status_index.yaml')['afqr_records']; af14=records[13]; af15=records[14]
  assert af14['corrected_baseline_evidence_records']==['SRC-0103','SRC-0139','SRC-0121']
  assert af14['source_evidence_records']==['SRC-0103'] and by_id['SRC-0103']['parent_archive_record_id']=='ARCH-06'
