@@ -1,0 +1,2 @@
+# Preserve source bytes, including source-authored Markdown hard-break spaces, while retaining normal text diffs.
+extracted/** whitespace=-trailing-space
