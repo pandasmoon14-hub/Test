@@ -21,6 +21,7 @@ from typing import Any
 
 import pytest
 import yaml
+from tests.historical_branch_diff_guard import require_owning_historical_branch
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 
@@ -1473,6 +1474,7 @@ class TestUpstreamPassThrough:
 
 class TestBranchDiff:
     def test_branch_diff_limited_to_rt002c(self):
+        require_owning_historical_branch(REPO_ROOT, "rt-002c")
         result = subprocess.run(
             ["git", "diff", "--name-only", "origin/main...HEAD"],
             cwd=REPO_ROOT,

@@ -14,6 +14,7 @@ from typing import Any
 
 import pytest
 import yaml
+from tests.historical_branch_diff_guard import require_owning_historical_branch
 
 REPO_ROOT = pathlib.Path(__file__).resolve().parent.parent
 REVIEW_ARTIFACT_PATH = (
@@ -654,6 +655,7 @@ class TestBranchDiffContained:
     )
 
     def test_branch_diff_is_limited_to_allowed_files(self):
+        require_owning_historical_branch(REPO_ROOT, "rt-001i")
         result = subprocess.run(
             ["git", "diff", "--name-only", "origin/main...HEAD"],
             capture_output=True, text=True, check=True, cwd=REPO_ROOT,
