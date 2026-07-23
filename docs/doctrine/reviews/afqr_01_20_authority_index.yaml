@@ -1,0 +1,160 @@
+schema_version: 0.1.0
+artifact_id: AFQR-CONSOLIDATION-R1A-AUTHORITY-INDEX-001
+milestone_id: MILESTONE-AFQR-CONSOLIDATION-AND-RUNTIME-REENTRY
+step: R1A
+status: planning-current
+authority_level: tracking_and_consolidation_planning
+implementation_authority: false
+conversion_authority: false
+canon_authority: false
+model_authority: false
+live_play_authority: false
+r1_complete: false
+baseline:
+  r0_status: complete
+  main_merge_commit: ff4de6d8c68e4251a110ac0c6c0b2c2495ad2ab0
+  source_pr: 329
+phase_gates:
+  R0: complete
+  R1: active_incomplete
+  R2: blocked_by_R1
+  R3: blocked_by_R2
+  R4: blocked_by_R3
+  R5: blocked_by_R4
+  R6: blocked_by_R5
+  RT-002G: unauthorized
+source_status_rule: >-
+  An accepted selection title is architectural direction, not a substitute for
+  its repository-resident decision dossier. Each dossier remains pending R1B
+  import or reconstruction and later R1C/R1D consolidation.
+entries:
+  - id: AFQR-01
+    selected_architecture: Atomic Typed Transition Journal with owner reducers and saga escape hatches
+    cluster: transition_and_invariant
+    status: accepted_selection_pending_dossier
+    owns: typed state transitions, owner reducers, invariant gates, compensation and saga escape boundaries, transition evidence
+    must_not_own: command intake, domain-specific resource law, model narration, live-play behavior
+  - id: AFQR-02
+    selected_architecture: Synchronous Command Fast Path with durable attempt escalation
+    cluster: command_attempt
+    status: accepted_selection_pending_dossier
+    owns: command-attempt lifecycle, synchronous admissible fast path, durable escalation when immediate completion is unlawful or unsafe
+    must_not_own: action semantics, state truth, resolution outcomes, persistence implementation, model authority
+  - id: AFQR-03
+    selected_architecture: Typed Action Gateway with registered semantics
+    cluster: action_gateway
+    status: accepted_selection_pending_dossier
+    owns: typed action entry semantics, registered action families, gateway validation, lawful routing
+    must_not_own: capability computation, world-state mutation, outcome resolution, donor-specific action economies
+  - id: AFQR-04
+    selected_architecture: Profiled Logical-Time Causal Scheduler
+    cluster: logical_time
+    status: accepted_selection_pending_dossier
+    owns: logical time, causal ordering, scheduling profiles, deadlines, deterministic temporal coordination
+    must_not_own: physical topology, social chronology, command legality, persistence technology
+  - id: AFQR-05
+    selected_architecture: Registered Typed Interface-and-Bridge Hypergraph
+    cluster: interface_bridge
+    status: accepted_selection_pending_dossier
+    owns: registered interfaces, typed bridges, handoff validity, bridge provenance
+    must_not_own: domain semantics, adapter authority, a universal generic graph
+  - id: AFQR-06
+    selected_architecture: Invariant-Gated Typed Claim Arbitration
+    cluster: claim_arbitration
+    status: accepted_selection_pending_dossier
+    owns: competing claims, authority-weighted arbitration, invariant gates, dispute evidence
+    must_not_own: institutional jurisdiction, epistemic belief, state mutation, narrative adjudication
+  - id: AFQR-07
+    selected_architecture: Typed Balance-Domain Flow Ledger with proof-carrying conversion and atomic settlement
+    cluster: conservation_settlement
+    status: accepted_selection_pending_dossier
+    owns: quantity domains, sources, sinks, transformations, reservations, proof-carrying conversion, atomic settlement, arbitrage prevention
+    must_not_own: universal currency, numeric-field commensurability, event commitment
+  - id: AFQR-08
+    selected_architecture: Typed Faceted Identity, Continuity, and Lineage Graph
+    cluster: identity_continuity
+    status: accepted_selection_pending_dossier
+    owns: entity and facet identity, continuity, lineage, replacement, derivation, identity evidence
+    must_not_own: capability, personhood, ownership, social relation, metaphysical truth by implication
+  - id: AFQR-09
+    selected_architecture: Registered Typed Dependency-and-Obligation Hypergraph
+    cluster: dependency_obligation
+    status: accepted_selection_pending_dossier
+    owns: dependency, support, obligation, revocation, inheritance, termination, orphaning, cascade relations
+    must_not_own: every domain consequence, an untyped universal relation bag
+  - id: AFQR-10
+    selected_architecture: Typed Bitemporal Truth–Epistemic Provenance Architecture
+    cluster: epistemic_provenance
+    status: accepted_selection_pending_dossier
+    owns: truth time, observation time, evidence, testimony, belief, knowledge, memory, rumor, public record, projection provenance
+    must_not_own: model context as truth, discovery as truth, testimony as backend fact
+  - id: AFQR-11
+    selected_architecture: Registered purpose-scoped agency/personhood architecture
+    cluster: agency_personhood
+    status: accepted_selection_pending_dossier
+    owns: purpose-scoped agency, personhood, standing, consent relevance, authority-sensitive actor classification
+    must_not_own: intelligence, capability, body, legal standing, or player control as automatic personhood
+  - id: AFQR-12
+    selected_architecture: Registered typed motivational–behavioral state architecture
+    cluster: motivation_behavior
+    status: accepted_selection_pending_dossier
+    owns: motives, drives, goals, commitments, stress, habits, dispositions, behavior-selection state
+    must_not_own: deterministic psychology, agency replacement, model-generated characterization as authority
+  - id: AFQR-13
+    selected_architecture: Registered multiplex social-state architecture
+    cluster: social_state
+    status: accepted_selection_pending_dossier
+    owns: multiplex relationships, reputation, trust, obligation, affiliation, status, group social state
+    must_not_own: a single universal social score, communication content, institutional law
+  - id: AFQR-14
+    selected_architecture: Bitemporal Communication–Interpretation Architecture
+    cluster: communication_interpretation
+    status: accepted_selection_pending_dossier
+    owns: messages, channels, transmission, receipt, interpretation, misunderstanding, records, communication timing
+    must_not_own: truth of transmitted content, social relation, signal acquisition, model narration
+  - id: AFQR-15
+    selected_architecture: Federated institutional–jurisdictional architecture
+    cluster: institution_jurisdiction
+    status: accepted_selection_pending_dossier
+    owns: institutions, offices, jurisdiction, authority, rules, procedure, enforcement scope, conflict of law
+    must_not_own: automatic truth of institutional claims, one universal legal or political model
+  - id: AFQR-16
+    selected_architecture: Federated embodiment–integrity architecture
+    cluster: embodiment_integrity
+    status: accepted_selection_pending_dossier
+    owns: bodies, forms, components, integrity, injury, transformation, occupancy, embodiment interfaces
+    must_not_own: identity, personhood, environment, capability, damage economy, recovery economy by default
+  - id: AFQR-17
+    selected_architecture: Federated environment–process architecture
+    cluster: environment_process
+    status: accepted_selection_pending_dossier
+    owns: environmental state, hazards, processes, media, fields, local conditions, evolving non-actor systems
+    must_not_own: combat terrain as universal environment, topology, embodiment, sensing, universal hazard mechanics
+  - id: AFQR-18
+    selected_architecture: Federated spatiotemporal topology architecture
+    cluster: spatiotemporal_topology
+    status: accepted_selection_pending_dossier
+    owns: places, regions, frames, paths, adjacency, reachability, containment, scale, topology change over time
+    must_not_own: Euclidean space as default, one travel model, one cosmology
+  - id: AFQR-19
+    selected_architecture: Federated capability–opportunity–targeting–resolution architecture
+    cluster: capability_resolution
+    status: accepted_selection_pending_dossier
+    owns: capabilities, access, opportunities, targets, contests, reactions, interrupts, multi-actor resolution contracts
+    must_not_own: command intake, universal combat, universal initiative, donor action economies
+  - id: AFQR-20
+    selected_architecture: Federated signal–sensing–acquisition architecture
+    cluster: signal_sensing
+    status: accepted_selection_pending_dossier
+    owns: signals, sensors, acquisition, detection, measurement, confidence, interference, evidence handoff
+    must_not_own: sensing as truth, belief updates, one universal sensory modality
+required_r1_outputs:
+  - twenty_repository_resident_decision_dossiers
+  - shared_typed_vocabulary
+  - cross_afqr_dependency_graph
+  - cross_cutting_invariant_register
+  - conflict_and_ambiguity_ledger
+  - doctrine_to_runtime_handoff_map
+  - doctrine_to_conversion_handoff_map
+  - r1_completion_review
+next_allowed_step: R1B_repository_resident_source_dossier_reconstruction_or_import
