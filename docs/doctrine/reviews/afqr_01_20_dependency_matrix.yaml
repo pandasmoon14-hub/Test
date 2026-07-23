@@ -1,0 +1,123 @@
+schema_version: 0.1.0
+artifact_id: AFQR-CONSOLIDATION-R1A-DEPENDENCY-MATRIX-001
+status: planning-current
+matrix_type: consolidation_integration_inputs_not_implementation_dag
+authority_note: >-
+  This matrix identifies architectural inputs and collision seams for R1
+  consolidation. It does not prescribe final runtime call order, package
+  structure, persistence order, or implementation sequencing.
+valid_ids:
+  - AFQR-01
+  - AFQR-02
+  - AFQR-03
+  - AFQR-04
+  - AFQR-05
+  - AFQR-06
+  - AFQR-07
+  - AFQR-08
+  - AFQR-09
+  - AFQR-10
+  - AFQR-11
+  - AFQR-12
+  - AFQR-13
+  - AFQR-14
+  - AFQR-15
+  - AFQR-16
+  - AFQR-17
+  - AFQR-18
+  - AFQR-19
+  - AFQR-20
+dependencies:
+  AFQR-01: [AFQR-04, AFQR-08, AFQR-09]
+  AFQR-02: [AFQR-01, AFQR-03, AFQR-04, AFQR-05, AFQR-06, AFQR-09, AFQR-19]
+  AFQR-03: [AFQR-05, AFQR-06, AFQR-08, AFQR-09, AFQR-19]
+  AFQR-04: [AFQR-08]
+  AFQR-05: [AFQR-08, AFQR-09]
+  AFQR-06: [AFQR-01, AFQR-04, AFQR-05, AFQR-08, AFQR-09, AFQR-10, AFQR-15]
+  AFQR-07: [AFQR-01, AFQR-04, AFQR-05, AFQR-06, AFQR-08, AFQR-09]
+  AFQR-08: []
+  AFQR-09: [AFQR-08]
+  AFQR-10: [AFQR-01, AFQR-04, AFQR-05, AFQR-08, AFQR-09, AFQR-20]
+  AFQR-11: [AFQR-06, AFQR-08, AFQR-09, AFQR-10, AFQR-16]
+  AFQR-12: [AFQR-01, AFQR-04, AFQR-08, AFQR-10, AFQR-11, AFQR-16, AFQR-17]
+  AFQR-13: [AFQR-01, AFQR-04, AFQR-08, AFQR-09, AFQR-10, AFQR-11, AFQR-12, AFQR-14, AFQR-15]
+  AFQR-14: [AFQR-01, AFQR-04, AFQR-05, AFQR-08, AFQR-09, AFQR-10, AFQR-13, AFQR-20]
+  AFQR-15: [AFQR-01, AFQR-04, AFQR-06, AFQR-08, AFQR-09, AFQR-10, AFQR-11, AFQR-13, AFQR-14, AFQR-18]
+  AFQR-16: [AFQR-01, AFQR-04, AFQR-05, AFQR-06, AFQR-08, AFQR-09, AFQR-11, AFQR-17, AFQR-18, AFQR-19]
+  AFQR-17: [AFQR-01, AFQR-04, AFQR-05, AFQR-08, AFQR-09, AFQR-18, AFQR-20]
+  AFQR-18: [AFQR-01, AFQR-04, AFQR-05, AFQR-08, AFQR-09]
+  AFQR-19: [AFQR-01, AFQR-03, AFQR-04, AFQR-05, AFQR-06, AFQR-08, AFQR-09, AFQR-10, AFQR-11, AFQR-15, AFQR-16, AFQR-17, AFQR-18, AFQR-20]
+  AFQR-20: [AFQR-01, AFQR-04, AFQR-05, AFQR-08, AFQR-09, AFQR-10, AFQR-16, AFQR-17, AFQR-18]
+shared_type_owners:
+  identity_and_continuity: AFQR-08
+  logical_time_and_causal_order: AFQR-04
+  transition_and_invariant_evidence: AFQR-01
+  interface_and_bridge_registration: AFQR-05
+  dependency_and_obligation_relation: AFQR-09
+  truth_and_epistemic_provenance: AFQR-10
+  claim_and_arbitration: AFQR-06
+  quantity_flow_and_settlement: AFQR-07
+  agency_and_personhood: AFQR-11
+  capability_opportunity_targeting_resolution: AFQR-19
+  signal_sensing_acquisition: AFQR-20
+collision_inventory:
+  - seam_id: command_attempt_vs_action_gateway
+    participants: [AFQR-02, AFQR-03]
+    controlling_owner: AFQR-02
+    boundary: AFQR-02 owns attempt lifecycle; AFQR-03 owns registered action-entry semantics and routing.
+  - seam_id: action_gateway_vs_capability_resolution
+    participants: [AFQR-03, AFQR-19]
+    controlling_owner: AFQR-19
+    boundary: AFQR-03 validates and routes typed action requests; AFQR-19 determines capability, opportunity, targeting, contest, reaction, interrupt, and resolution contracts.
+  - seam_id: transition_vs_settlement
+    participants: [AFQR-01, AFQR-07]
+    controlling_owner: AFQR-07
+    boundary: AFQR-07 proves and proposes balance-domain settlement; AFQR-01 owns lawful transition evidence and invariant-gated state change.
+  - seam_id: interface_graph_vs_dependency_graph
+    participants: [AFQR-05, AFQR-09]
+    controlling_owner: AFQR-05
+    boundary: AFQR-05 owns registered interface and bridge topology; AFQR-09 owns semantic dependency and obligation relations. Neither graph may absorb the other.
+  - seam_id: signal_vs_epistemic_state
+    participants: [AFQR-20, AFQR-10]
+    controlling_owner: AFQR-20
+    boundary: AFQR-20 owns signal acquisition and confidence; AFQR-10 owns evidence status, belief, knowledge, memory, rumor, and truth provenance.
+  - seam_id: communication_vs_social_state
+    participants: [AFQR-14, AFQR-13]
+    controlling_owner: AFQR-14
+    boundary: AFQR-14 owns transmission, receipt, and interpretation events; AFQR-13 owns resulting multiplex relationship state.
+  - seam_id: identity_vs_personhood_vs_embodiment
+    participants: [AFQR-08, AFQR-11, AFQR-16]
+    controlling_owner: AFQR-08
+    boundary: AFQR-08 owns continuity identity; AFQR-11 owns purpose-scoped agency/personhood; AFQR-16 owns embodied form and integrity. None implies the others automatically.
+  - seam_id: topology_vs_environment_vs_embodiment
+    participants: [AFQR-18, AFQR-17, AFQR-16]
+    controlling_owner: AFQR-18
+    boundary: AFQR-18 owns reachability and containment; AFQR-17 owns environmental processes; AFQR-16 owns embodied occupancy and integrity.
+  - seam_id: claim_arbitration_vs_jurisdiction
+    participants: [AFQR-06, AFQR-15]
+    controlling_owner: AFQR-15
+    boundary: AFQR-15 determines institutional jurisdiction and procedural authority; AFQR-06 arbitrates typed claims within the applicable authority context.
+  - seam_id: model_context_vs_truth
+    participants: [AFQR-10]
+    controlling_owner: AFQR-10
+    boundary: Model context is a purpose-scoped projection only and never backend truth, observation, evidence, belief, knowledge, or memory authority.
+cycle_breakers:
+  - cycle: [AFQR-03, AFQR-19]
+    breaker: Distinguish gateway admission and routing from capability/opportunity/resolution ownership.
+  - cycle: [AFQR-10, AFQR-20]
+    breaker: Signal acquisition emits evidence candidates; epistemic provenance decides evidence and belief status without rewriting acquisition history.
+  - cycle: [AFQR-13, AFQR-14]
+    breaker: Communication emits interpretation events; social state consumes those events through AFQR-01 transitions rather than mutating communication records.
+  - cycle: [AFQR-16, AFQR-17, AFQR-18]
+    breaker: Identity and logical-time substrate come from AFQR-08 and AFQR-04; topology, environment, and embodiment keep separate state owners and exchange typed references through AFQR-05.
+  - cycle: [AFQR-06, AFQR-15]
+    breaker: Jurisdiction is resolved before claim arbitration; arbitration results cannot create jurisdiction retroactively.
+  - cycle: [AFQR-01, AFQR-07]
+    breaker: Settlement is proof and proposal before commitment; transition journal owns committed state change and records settlement evidence.
+blocked_outputs:
+  R2: true
+  R3: true
+  R4: true
+  R5: true
+  R6: true
+  RT-002G: true
