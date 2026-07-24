@@ -76,3 +76,36 @@ def test_no_production_zip_or_binary_diff():
  assert git('diff','--name-only',BASE,'--','*.zip').strip()==''
  assert git('diff','--name-only',BASE,'--','src/**').strip()==''
  assert all('-\t-' not in line for line in git('diff','--numstat',BASE).splitlines())
+
+def test_state_qualified_semantic_owners_are_not_afqr01_commitment_ownership():
+ state=terms()['state']; forms={q['qualified_form']:q for q in state['qualified_forms']}
+ assert state['vocabulary_disposition']=='qualified_canonical_family'
+ assert state['unqualified_usage']=='qualified_only'
+ assert {name:q['owner_id'] for name,q in forms.items()}=={
+  'epistemic state':'AFQR-10','social state':'AFQR-13','environmental state':'AFQR-17'}
+ assert not {'AFQR-10','AFQR-17'} & set(state['explicit_nonowners'])
+ assert 'domain state' not in forms
+ assert all(q['owner_evidence_records'] and q['owner_evidence_paths'] and q['owner_evidence_rationale'] for q in forms.values())
+ assert 'does not transfer semantic ownership to AFQR-01' in state['definition']
+
+def test_all_definitions_match_dispositions_and_escalations():
+ d=load(VOC); ledger_terms={term for e in load(REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml')['escalations'] for term in e['terms']}
+ for term in d['term_records']:
+  if term['vocabulary_disposition']=='qualified_canonical_family':
+   assert term['unqualified_usage']=='qualified_only' and term['qualified_forms']
+  elif term['vocabulary_disposition']=='canonical_distinct_type':
+   assert term['unqualified_usage']=='allowed' and not term['qualified_forms']
+   assert 'a qualified family' not in term['definition'].lower()
+  elif term['vocabulary_disposition']=='escalated_unresolved':
+   assert term['root_term'] in ledger_terms
+
+def test_integrity_time_and_report_metadata_are_consistent():
+ t=terms(); report=(REV/'afqr_r1b_vocabulary_resolution_report.md').read_text(encoding='utf8')
+ assert t['integrity']['vocabulary_disposition']=='canonical_distinct_type'
+ assert t['integrity']['type_owner']['owner_id']=='AFQR-16' and not t['integrity']['qualified_forms']
+ assert 'structural-integrity concern' in t['integrity']['definition'] and 'qualified family' not in t['integrity']['definition'].lower()
+ assert t['time']['vocabulary_disposition']=='canonical_distinct_type'
+ assert t['time']['type_owner']['owner_id']=='AFQR-04' and not t['time']['qualified_forms']
+ assert 'semantic/logical-time framework' in t['time']['definition'] and 'qualified family' not in t['time']['definition'].lower()
+ for phrase in ('epistemic state','social state','environmental state','AFQR-16 `integrity`','AFQR-04 `time`'):
+  assert phrase in report

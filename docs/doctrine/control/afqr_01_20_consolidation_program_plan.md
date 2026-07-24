@@ -29,3 +29,7 @@ R1B records all 41 normalized root terms, resolves all ten collisions for vocabu
 ## R1B source-owner correction audit (2026-07-24)
 
 Completion was revalidated by direct review of every selected AFQR primary source and all 41 terms. The audit distinguishes ownership from consumption, candidate production, handoff, scheduling, arbitration, compatibility, and commitment. Corrected semantic tests pass; R1C remains the only next gate, and all prior downstream blocks remain.
+
+## R1B final state-owner and definition consistency correction (2026-07-24)
+
+The remaining state issue is corrected: AFQR-10, AFQR-13, and AFQR-17 own epistemic, social, and environmental state semantics, while AFQR-01 retains transition, routing, and commitment ownership only. All 41 definitions now align with their dispositions. R1C remains the only next gate.

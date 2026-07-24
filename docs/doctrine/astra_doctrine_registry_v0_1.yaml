@@ -20,6 +20,11 @@ source_inputs_fused:
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
 - date: '2026-07-24'
+  version: 0.1.113
+  action: afqr_r1b_state_owner_and_definition_consistency_completion
+  actor: Astra Doctrine Council / consolidation assistant
+  note: 'Completes R1B owner audit: state semantics qualify to AFQR-10 epistemic, AFQR-13 social, and AFQR-17 environmental owners; AFQR-01 remains transition/routing/commitment only. Aligns integrity and time definitions with bounded AFQR-16 and AFQR-04 distinct types and validates all 41 definition/disposition pairs. R1C only next; no downstream authority.'
+- date: '2026-07-24'
   version: 0.1.112
   action: afqr_r1b_direct_source_owner_correction_audit
   actor: Astra Doctrine Council / consolidation assistant

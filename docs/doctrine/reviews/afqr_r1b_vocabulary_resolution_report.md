@@ -1,15 +1,15 @@
 # AFQR R1B vocabulary resolution report
 
 **Received HEAD:** `1855cb2460542c0f912a0830276c9cdea90f1b07`
-**Corrected source-owner audit:** 2026-07-24. **Gate:** R1B complete; R1 remains incomplete. **Next:** R1C only.
+**Final source-owner and definition-consistency audit:** 2026-07-24. **Gate:** R1B complete; R1 remains incomplete. **Next:** R1C only.
 
 ## Scope and corrected method
-R1B governs vocabulary, qualification, aliases, non-equivalence, and type-owner posture only. The correction directly inspected every selected AFQR-01–20 primary source contract and all 41 root terms. Ownership was awarded only where a source explicitly owns a question or contract. Mention, consumption, candidate production, handoff, scheduler placement, arbitration output, bridge compatibility, and final commitment were distinguished rather than conflated. R1B decides no invariant, sequencing, runtime, conversion, canon, sourcebook, model, or live-play behavior. K01 remains the existing lexicon-governance owner.
+R1B governs vocabulary, qualification, aliases, non-equivalence, and type-owner posture only. The final correction directly inspected every selected AFQR-01–20 primary source contract and all 41 root terms, including the remaining state semantic-owner issue and definition/disposition consistency. Ownership was awarded only where a source explicitly owns a question or contract. Mention, consumption, candidate production, handoff, scheduler placement, arbitration output, bridge compatibility, and final commitment were distinguished rather than conflated. R1B decides no invariant, sequencing, runtime, conversion, canon, sourcebook, model, or live-play behavior. K01 remains the existing lexicon-governance owner.
 
 ## All 41 audited owner assignments
 | ID | Root term | Disposition | Unqualified use | Owner posture | Direct owner evidence |
 |---|---|---|---|---|---|
-| TERM-001 | state | qualified_canonical_family | qualified_only | shared_qualified_family / R1B shared vocabulary | SRC-0004, SRC-0082 |
+| TERM-001 | state | qualified_canonical_family | qualified_only | shared_qualified_family / R1B shared vocabulary | SRC-0022, SRC-0082, SRC-0180 |
 | TERM-002 | truth | qualified_canonical_family | qualified_only | shared_qualified_family / R1B shared vocabulary | SRC-0022 |
 | TERM-003 | transition | canonical_distinct_type | allowed | afqr / AFQR-01 | SRC-0004 |
 | TERM-004 | transaction | canonical_distinct_type | allowed | afqr / AFQR-01 | SRC-0004 |
@@ -54,8 +54,9 @@ R1B governs vocabulary, qualification, aliases, non-equivalence, and type-owner 
 ## Qualified canonical families and reserved-root forms
 | Root | Qualified form | Owner | Direct owner evidence |
 |---|---|---|---|
-| state | domain state | afqr / AFQR-01 | SRC-0004 |
+| state | epistemic state | afqr / AFQR-10 | SRC-0022 |
 | state | social state | afqr / AFQR-13 | SRC-0082 |
+| state | environmental state | afqr / AFQR-17 | SRC-0180 |
 | truth | authoritative world truth | afqr / AFQR-10 | SRC-0022 |
 | truth | observer-relative truth | afqr / AFQR-10 | SRC-0022 |
 | event | committed event receipt | afqr / AFQR-01 | SRC-0004 |
@@ -78,6 +79,7 @@ R1B governs vocabulary, qualification, aliases, non-equivalence, and type-owner 
 `asset owner` and `identity owner` were removed: AFQR-09 does not establish universal property law, and AFQR-08 identity doctrine does not establish an identity-owner type. Every retained qualified form has a direct owner-evidence path and rationale in the primary artifact.
 
 ## Corrected high-risk assignments
+- `state` is qualified across AFQR-10 epistemic, AFQR-13 social, and AFQR-17 environmental semantics; AFQR-01 owns transition/routing/commitment rather than generic state semantics.
 - `transaction` is AFQR-01-owned authoritative atomic state coordination; AFQR-04 scheduling is not ownership.
 - `event` is qualified between AFQR-01 `committed event receipt` and AFQR-04 `scheduled effect`; temporal placement does not own committed events.
 - `opportunity` is AFQR-19-owned relational action opportunity; AFQR-03 consumes it for route composition.
@@ -108,4 +110,4 @@ Accepted aliases remain **none**. Cross-type equalities within every collision r
 COLL-03, COLL-08, and COLL-10 remain partially resolved with escalation. Bounded term owners do not resolve substantive attribution among ownership, authority, agency, responsibility, jurisdiction, institution, social state, motivation, and behavior. R1C receives only cross-owner dependency and invariant questions; it may not settle mechanics, ordering, propagation, algorithms, or runtime representation.
 
 ## Gate posture
-The corrected audit and focused tests support R1B completion. R1C alone is ready. R1 remains incomplete; R1D, R1E, R2–R6, and RT-002G remain blocked or unauthorized. Temporary evidence deletion remains unauthorized, and no production import or new authority is created.
+The final state-owner and definition/disposition consistency audit, including bounded singular definitions for AFQR-16 `integrity` and AFQR-04 `time`, and focused tests support R1B completion. R1C alone is ready. R1 remains incomplete; R1D, R1E, R2–R6, and RT-002G remain blocked or unauthorized. Temporary evidence deletion remains unauthorized, and no production import or new authority is created.

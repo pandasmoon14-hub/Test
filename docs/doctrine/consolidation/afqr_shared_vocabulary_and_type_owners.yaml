@@ -20,7 +20,7 @@
       "term_id": "TERM-001",
       "root_term": "state",
       "canonical_form": "state",
-      "definition": "A typed condition held by its declared domain owner, not truth or an instruction to mutate.",
+      "definition": "State semantics belong to the declared domain owner; AFQR-01 governs lawful transition, owner routing, and commitment, and transition or commitment does not transfer semantic ownership to AFQR-01.",
       "lexicon_term_class": "canonical_term",
       "lexicon_status": "accepted",
       "vocabulary_disposition": "qualified_canonical_family",
@@ -32,27 +32,25 @@
         "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
       },
       "explicit_nonowners": [
-        "AFQR-04",
-        "AFQR-10",
-        "AFQR-17"
+        "AFQR-04"
       ],
       "qualified_forms": [
         {
-          "qualified_form": "domain state",
-          "definition": "Authoritative mutable domain state terminates at AFQR-01 owner-prepared commitment.",
+          "qualified_form": "epistemic state",
+          "definition": "Observer-relative epistemic state governed as separately owned, versioned, append-only epistemic posture.",
           "owner_kind": "afqr",
-          "owner_id": "AFQR-01",
+          "owner_id": "AFQR-10",
           "owner_evidence_records": [
-            "SRC-0004"
+            "SRC-0022"
           ],
           "owner_evidence_paths": [
-            "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+            "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
           ],
-          "owner_evidence_rationale": "Authoritative mutable domain state terminates at AFQR-01 owner-prepared commitment."
+          "owner_evidence_rationale": "AFQR-10 explicitly owns observer-relative epistemic state and its provenance; AFQR-01 commitment does not own those semantics."
         },
         {
           "qualified_form": "social state",
-          "definition": "AFQR-13 explicitly defines federated, profile-scoped social state.",
+          "definition": "Federated, purpose- and profile-scoped social state.",
           "owner_kind": "afqr",
           "owner_id": "AFQR-13",
           "owner_evidence_records": [
@@ -61,7 +59,20 @@
           "owner_evidence_paths": [
             "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
           ],
-          "owner_evidence_rationale": "AFQR-13 explicitly defines federated, profile-scoped social state."
+          "owner_evidence_rationale": "AFQR-13 explicitly defines social state as federated and profile-scoped."
+        },
+        {
+          "qualified_form": "environmental state",
+          "definition": "Federated environmental state governed by declared environmental state owners.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-17",
+          "owner_evidence_records": [
+            "SRC-0180"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+          ],
+          "owner_evidence_rationale": "AFQR-17 explicitly introduces federated environmental state owners and environmental state mutation boundaries."
         }
       ],
       "allowed_aliases": [],
@@ -105,14 +116,16 @@
       ],
       "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
       "owner_evidence_records": [
-        "SRC-0004",
-        "SRC-0082"
+        "SRC-0022",
+        "SRC-0082",
+        "SRC-0180"
       ],
       "owner_evidence_paths": [
-        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
-        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
       ],
-      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+      "owner_evidence_rationale": "The unqualified root has no generic AFQR-01 semantic owner. AFQR-10, AFQR-13, and AFQR-17 explicitly own distinct state semantics; AFQR-01 supplies transition, routing, and commitment boundaries only."
     },
     {
       "term_id": "TERM-002",
@@ -2052,7 +2065,7 @@
       "term_id": "TERM-026",
       "root_term": "integrity",
       "canonical_form": "integrity",
-      "definition": "A qualified family whose structural and doctrinal senses have different owners.",
+      "definition": "The AFQR-16 embodiment and structural-integrity concern, distinct from doctrinal correctness, dependency, obligation, environment, space, and topology.",
       "lexicon_term_class": "canonical_term",
       "lexicon_status": "accepted",
       "vocabulary_disposition": "canonical_distinct_type",
@@ -2129,7 +2142,7 @@
       "term_id": "TERM-027",
       "root_term": "time",
       "canonical_form": "time",
-      "definition": "A qualified family of temporal frames; no donor cadence is universal.",
+      "definition": "The AFQR-04 backend-owned semantic/logical-time framework governed through registered scheduler profiles; donor rounds, turns, ticks, travel intervals, recovery periods, and narrative beats do not become universal Astra cadence.",
       "lexicon_term_class": "canonical_term",
       "lexicon_status": "accepted",
       "vocabulary_disposition": "canonical_distinct_type",
@@ -3759,8 +3772,9 @@
       "root_term": "state",
       "unqualified_usage": "qualified_only",
       "qualified_forms": [
-        "domain state",
-        "social state"
+        "epistemic state",
+        "social state",
+        "environmental state"
       ]
     },
     {
@@ -3900,6 +3914,6 @@
     "escalated_collisions": 3,
     "r1c_handoff_terms": 41
   },
-  "audit_revision": "source_owner_audit_2026-07-24",
-  "audit_method": "Direct review of every selected AFQR primary source contract; ownership distinguished from consumption, candidate production, scheduling, arbitration, handoff, and commitment."
+  "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",
+  "audit_method": "Direct primary-source ownership review of all 41 terms, completed with state semantic-owner correction and definition/disposition consistency validation; commitment, scheduling, candidate production, consumption, and handoff remain nonownership postures."
 }

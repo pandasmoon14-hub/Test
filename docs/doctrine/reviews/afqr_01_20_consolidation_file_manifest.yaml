@@ -66,7 +66,9 @@
         "qualified forms have source-backed owners",
         "candidate/consumer/handoff/scheduler/bridge nonownership checks",
         "alias graph and escalation semantics",
-        "source traceability and prohibited diff scope"
+        "source traceability and prohibited diff scope",
+        "state semantic-owner separation from AFQR-01 commitment",
+        "definition/disposition consistency across all 41 terms"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
       "status": "complete"

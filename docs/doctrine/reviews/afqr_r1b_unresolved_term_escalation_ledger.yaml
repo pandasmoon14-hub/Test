@@ -120,6 +120,6 @@
       "status": "open"
     }
   ],
-  "audit_revision": "source_owner_audit_2026-07-24",
-  "audit_note": "Direct owners were corrected where explicit; these records preserve only remaining substantive cross-term doctrine questions."
+  "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",
+  "audit_note": "State semantic ownership and all definition/disposition consistency checks are complete; this ledger continues to preserve only COLL-03, COLL-08, and COLL-10 substantive questions."
 }
