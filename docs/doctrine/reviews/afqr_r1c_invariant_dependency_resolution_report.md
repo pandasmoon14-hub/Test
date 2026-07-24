@@ -20,13 +20,18 @@ R1C uses current repository doctrine first, then the R1B vocabulary artifact, R1
 ## Cycle-risk resolution summary
 
 - `AFQR-01 / AFQR-09`: bounded feedback; transition commitment and relation/dependency ownership remain separate.
-- `AFQR-02 / AFQR-04`: phase ordering; truth/evidence posture and logical time remain separate.
-- `AFQR-06 / AFQR-08`: bounded feedback; capability constraints do not author opportunity/action/target ownership.
-- `AFQR-17 / AFQR-18`: bounded feedback; environmental process and spatial topology constrain each other without recursive ownership.
+- `AFQR-02 / AFQR-04`: exact edges `DEP-021` (`command_lifecycle`) and `DEP-024` (`time_causality`) use phase ordering. AFQR-02 retains command identity/lifecycle ownership and AFQR-04 retains logical-time/causal-order ownership; scheduling neither creates command identity nor transfers time ownership.
+- `AFQR-06 / AFQR-08`: exact edges `DEP-048` (`claim_evidence`) and `DEP-052` (`identity_evidence`) use bounded feedback. AFQR-06 retains claim/admissibility/arbitration ownership and AFQR-08 retains identity/continuity ownership; identity assertions cannot self-certify and claim admission cannot create identity.
+- `AFQR-17 / AFQR-18`: exact edges `DEP-089` and `DEP-091` use bounded feedback; environmental process and spatial topology constrain each other without recursive ownership.
+- Additional R1A `review_required` pairs involving AFQR-09 (`DEP-022/062`, `DEP-028/063`, `DEP-049/064`, and `DEP-054/066`) are explicitly classified as dependency risks outside the four recorded reciprocal cycle groups; each has one bounded non-recursion treatment.
 
 ## Missing substrate summary
 
-R1C classifies the five recorded missing substrates as required future doctrine or implementation substrates, but does not implement schemas, runtime services, persistence, conversion behavior, bridge code, or production imports.
+R1C classifies each missing substrate independently: governed relations preserve dependency/obligation/revocation/jurisdiction/social boundaries; bitemporal truth/evidence preserves observation, epistemic, time, and hidden-truth boundaries; the owner-reducer journal preserves commitment/recovery/replay/command/causal boundaries; the AFQR-05 bridge hypergraph preserves typed compatibility; and five separate domain-owner contract requirements preserve spatial, signal, embodiment, institutional, and social ownership. None authorizes schemas, runtime services, persistence, conversion behavior, bridge code, or production imports.
+
+## Ownership correction
+
+`DEP-094` now carries an AFQR-20 detected-contact/observation reference into AFQR-19 target construction: AFQR-20 retains sensing/contact semantics, AFQR-19 retains `TERM-011 target`, and detection alone is not a valid target. Every edge now includes R1B term bindings; qualified-family references name the exact qualified form and owner.
 
 ## Preserved escalations
 

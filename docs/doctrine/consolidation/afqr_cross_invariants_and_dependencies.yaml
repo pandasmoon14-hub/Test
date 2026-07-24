@@ -318,7 +318,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-001; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -359,7 +372,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-002; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -400,7 +426,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-003; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -441,7 +480,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-004; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -482,7 +534,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-005; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -523,7 +588,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-006; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -564,7 +642,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-007; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -605,7 +696,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-008; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -646,7 +750,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-009; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -687,7 +804,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-010; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -728,7 +858,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-011; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -769,7 +912,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-012; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -810,7 +966,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-013; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -851,7 +1020,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-014; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -892,7 +1074,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-015; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -933,7 +1128,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-016; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -974,7 +1182,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-017; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1015,7 +1236,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-018; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1056,7 +1290,20 @@
         "r1b_terms": [
           "TERM-003",
           "TERM-004"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded commit output identified by DEP-019; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1092,13 +1339,19 @@
       "relation_or_handoff_kind": "command_lifecycle",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded command_lifecycle output identified by DEP-020; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1134,13 +1387,19 @@
       "relation_or_handoff_kind": "command_lifecycle",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded command_lifecycle output identified by DEP-021; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1176,13 +1435,19 @@
       "relation_or_handoff_kind": "command_lifecycle",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded command_lifecycle output identified by DEP-022; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1218,13 +1483,19 @@
       "relation_or_handoff_kind": "command_lifecycle",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded command_lifecycle output identified by DEP-023; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1260,13 +1531,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-024; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1302,13 +1585,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-025; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1344,13 +1639,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-026; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1386,13 +1693,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-027; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1428,13 +1747,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-028; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1470,13 +1801,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-029; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1512,13 +1855,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-030; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1554,13 +1909,25 @@
       "relation_or_handoff_kind": "time_causality",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
         "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded time_causality output identified by DEP-031; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1596,13 +1963,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-032; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1638,13 +2003,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-033; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1680,13 +2043,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-034; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1722,13 +2083,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-035; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1764,13 +2123,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-036; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1806,13 +2163,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-037; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1848,13 +2203,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-038; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1890,13 +2243,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-039; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1932,13 +2283,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-040; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -1974,13 +2323,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-041; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2016,13 +2363,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-042; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2058,13 +2403,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-043; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2100,13 +2443,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-044; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2142,13 +2483,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-045; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2184,13 +2523,11 @@
       "relation_or_handoff_kind": "interface_bridge",
       "r1c_status": "required",
       "semantic_type_owner": {
-        "owner_kind": "shared_qualified_family",
-        "owner_id": "R1B shared vocabulary",
-        "r1b_terms": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-003"
-        ]
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
       },
       "producer_supplies": "Bounded interface_bridge output identified by DEP-046; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2227,10 +2564,25 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-06",
         "r1b_terms": [
+          "TERM-018",
           "TERM-019"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded claim_evidence output identified by DEP-047; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2267,10 +2619,25 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-06",
         "r1b_terms": [
+          "TERM-018",
           "TERM-019"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded claim_evidence output identified by DEP-048; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2307,10 +2674,25 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-06",
         "r1b_terms": [
+          "TERM-018",
           "TERM-019"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded claim_evidence output identified by DEP-049; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2347,10 +2729,25 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-06",
         "r1b_terms": [
+          "TERM-018",
           "TERM-019"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded claim_evidence output identified by DEP-050; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2387,10 +2784,25 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-06",
         "r1b_terms": [
+          "TERM-018",
           "TERM-019"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded claim_evidence output identified by DEP-051; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2427,10 +2839,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-052; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2467,10 +2887,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-053; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2507,10 +2935,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-054; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2547,10 +2983,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-055; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2587,10 +3031,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-056; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2627,10 +3079,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-057; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2667,10 +3127,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-058; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2707,10 +3175,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-059; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2747,10 +3223,18 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-10",
+        "owner_id": "AFQR-08",
         "r1b_terms": [
-          "TERM-019"
-        ]
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded identity_evidence output identified by DEP-060; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2790,7 +3274,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-061; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2830,7 +3322,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-062; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2870,7 +3370,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-063; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2910,7 +3418,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-064; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2950,7 +3466,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-065; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -2990,7 +3514,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-066; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3030,7 +3562,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-067; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3070,7 +3610,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-068; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3110,7 +3658,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-069; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3150,7 +3706,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-070; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3190,7 +3754,15 @@
         "owner_id": "AFQR-09",
         "r1b_terms": [
           "TERM-023"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded relation_lifecycle output identified by DEP-071; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3230,7 +3802,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-072; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3270,7 +3851,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-073; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3310,7 +3900,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-074; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3350,7 +3949,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-075; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3390,7 +3998,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-076; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3430,7 +4047,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-077; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3470,7 +4096,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-078; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3510,7 +4145,16 @@
         "owner_id": "AFQR-10",
         "r1b_terms": [
           "TERM-001"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-001",
+            "qualified_form": "epistemic state",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-10"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded epistemic_handoff output identified by DEP-079; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3550,7 +4194,15 @@
         "owner_id": "AFQR-11",
         "r1b_terms": [
           "TERM-016"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-016",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-11"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded agency_handoff output identified by DEP-080; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3590,7 +4242,15 @@
         "owner_id": "AFQR-11",
         "r1b_terms": [
           "TERM-016"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-016",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-11"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded agency_handoff output identified by DEP-081; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3630,7 +4290,15 @@
         "owner_id": "AFQR-11",
         "r1b_terms": [
           "TERM-016"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-016",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-11"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded agency_handoff output identified by DEP-082; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3670,7 +4338,15 @@
         "owner_id": "AFQR-11",
         "r1b_terms": [
           "TERM-016"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-016",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-11"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded agency_handoff output identified by DEP-083; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3710,7 +4386,15 @@
         "owner_id": "AFQR-11",
         "r1b_terms": [
           "TERM-016"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-016",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-11"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded agency_handoff output identified by DEP-084; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3750,7 +4434,15 @@
         "owner_id": "AFQR-14",
         "r1b_terms": [
           "TERM-031"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-031",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-14"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded communication_handoff output identified by DEP-085; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3790,7 +4482,15 @@
         "owner_id": "AFQR-14",
         "r1b_terms": [
           "TERM-031"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-031",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-14"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded communication_handoff output identified by DEP-086; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3830,7 +4530,15 @@
         "owner_id": "AFQR-14",
         "r1b_terms": [
           "TERM-031"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-031",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-14"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded communication_handoff output identified by DEP-087; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3870,7 +4578,15 @@
         "owner_id": "AFQR-17",
         "r1b_terms": [
           "TERM-037"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-037",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-17"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded environment_handoff output identified by DEP-088; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3910,7 +4626,15 @@
         "owner_id": "AFQR-17",
         "r1b_terms": [
           "TERM-037"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-037",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-17"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded environment_handoff output identified by DEP-089; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3950,7 +4674,15 @@
         "owner_id": "AFQR-17",
         "r1b_terms": [
           "TERM-037"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-037",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-17"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded environment_handoff output identified by DEP-090; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -3990,7 +4722,15 @@
         "owner_id": "AFQR-18",
         "r1b_terms": [
           "TERM-038"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-038",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-18"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded space_handoff output identified by DEP-091; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -4030,7 +4770,15 @@
         "owner_id": "AFQR-18",
         "r1b_terms": [
           "TERM-038"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-038",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-18"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded space_handoff output identified by DEP-092; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -4070,7 +4818,15 @@
         "owner_id": "AFQR-18",
         "r1b_terms": [
           "TERM-038"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-038",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-18"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
       "producer_supplies": "Bounded space_handoff output identified by DEP-093; scope remains limited to the producing AFQR source contract.",
       "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
@@ -4107,13 +4863,21 @@
       "r1c_status": "required",
       "semantic_type_owner": {
         "owner_kind": "afqr",
-        "owner_id": "AFQR-20",
+        "owner_id": "AFQR-19",
         "r1b_terms": [
           "TERM-011"
-        ]
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-011",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-19"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
       },
-      "producer_supplies": "Bounded contact_targeting output identified by DEP-094; scope remains limited to the producing AFQR source contract.",
-      "consumer_may_use": "May consume the handoff as typed input only after declared preconditions; consumption grants no ownership of the producer domain.",
+      "producer_supplies": "AFQR-20 supplies a detected-contact or sensing-observation reference; AFQR-20 retains sensing, signal, detection, recognition, contact, and observation-side ownership.",
+      "consumer_may_use": "AFQR-19 may use the detected-contact or observation reference when constructing or validating a target under AFQR-19 target semantics.",
       "ownership_does_not_transfer": true,
       "consumer_not_semantic_owner_by_consumption": true,
       "preconditions": [
@@ -4122,9 +4886,11 @@
         "R1B qualified vocabulary is used where applicable"
       ],
       "postconditions": [
-        "consumer may reference handoff without reauthoring producer semantics"
+        "AFQR-20 retains sensing/contact ownership",
+        "AFQR-19 retains target ownership",
+        "detection does not itself establish a valid target"
       ],
-      "unavailable_input_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "unavailable_input_behavior": "AFQR-19 may not fabricate a detected contact or treat missing detection as a valid target.",
       "revocation_invalidation_or_cascade": "not_defined_at_r1c",
       "hidden_information_or_projection_constraints": "hidden truth and backend-only source facts may not be promoted to visible observation, model context, narration, belief, knowledge, or evidence without the proper owning contract.",
       "source_evidence_records": [
@@ -4155,12 +4921,16 @@
         "AFQR-09"
       ],
       "actual_dependency_directions": [
-        "AFQR-01 -> AFQR-09",
-        "AFQR-09 -> AFQR-01 where relation constraints feed transition routing"
+        "AFQR-01 -> AFQR-09 (DEP-008 commit)",
+        "AFQR-09 -> AFQR-01 (DEP-061 relation_lifecycle)"
       ],
       "valid_edges_preserved": true,
       "resolution": "bounded_feedback_rule",
-      "breaker": "AFQR-01 owns transition commitment; AFQR-09 owns dependency/relation semantics. Relation feedback may constrain a later transition but cannot self-validate commitment ownership."
+      "breaker": "AFQR-01 owns transition routing and commitment; AFQR-09 owns governed relation and dependency lifecycle. A committed transition may update a relation, and a relation constraint may govern a later transition, but neither output self-validates or transfers authority.",
+      "edge_ids": [
+        "DEP-008",
+        "DEP-061"
+      ]
     },
     {
       "cycle_id": "CYCLE-002",
@@ -4169,12 +4939,16 @@
         "AFQR-04"
       ],
       "actual_dependency_directions": [
-        "AFQR-02 -> AFQR-04",
-        "AFQR-04 -> AFQR-02 where logical time orders truth/evidence events"
+        "AFQR-02 -> AFQR-04 (DEP-021 command_lifecycle)",
+        "AFQR-04 -> AFQR-02 (DEP-024 time_causality)"
       ],
       "valid_edges_preserved": true,
       "resolution": "phase_ordering",
-      "breaker": "Truth/evidence posture is evaluated under AFQR-02/10 semantics; AFQR-04 orders logical time and does not author truth."
+      "breaker": "AFQR-02 owns command identity, attempts, retries, suspension, escalation, and durable command progress. AFQR-04 owns logical time, causal ordering, simultaneity, scheduling, and bounded cascades. Logical time may order command-lifecycle events but cannot create or redefine command identity; command lifecycle may request or consume scheduling but cannot author logical time.",
+      "edge_ids": [
+        "DEP-021",
+        "DEP-024"
+      ]
     },
     {
       "cycle_id": "CYCLE-003",
@@ -4183,12 +4957,16 @@
         "AFQR-08"
       ],
       "actual_dependency_directions": [
-        "AFQR-06 -> AFQR-08",
-        "AFQR-08 -> AFQR-06 where capability constraints inform opportunity/action surfaces"
+        "AFQR-06 -> AFQR-08 (DEP-048 claim_evidence)",
+        "AFQR-08 -> AFQR-06 (DEP-052 identity_evidence)"
       ],
       "valid_edges_preserved": true,
       "resolution": "bounded_feedback_rule",
-      "breaker": "Capability constraints may bound possible affordances; they do not create action/opportunity/target ownership."
+      "breaker": "AFQR-06 owns claims, evidence admissibility, conflict, and arbitration; AFQR-08 owns identity and continuity semantics. Identity records may be offered as evidence to AFQR-06. AFQR-06 may accept, reject, qualify, or dispute that evidence but cannot create identity merely by admitting a claim; AFQR-08 identity assertions cannot self-certify admissibility or truth.",
+      "edge_ids": [
+        "DEP-048",
+        "DEP-052"
+      ]
     },
     {
       "cycle_id": "CYCLE-004",
@@ -4197,144 +4975,206 @@
         "AFQR-18"
       ],
       "actual_dependency_directions": [
-        "AFQR-17 -> AFQR-18",
-        "AFQR-18 -> AFQR-17"
+        "AFQR-17 -> AFQR-18 (DEP-089 environment_handoff)",
+        "AFQR-18 -> AFQR-17 (DEP-091 space_handoff)"
       ],
       "valid_edges_preserved": true,
       "resolution": "bounded_feedback_rule",
-      "breaker": "Environmental process and spatial topology exchange constraints without recursive ownership; unresolved substrate is escalated if a generic contract is required."
+      "breaker": "AFQR-17 environmental process constraints and AFQR-18 spatial/topology constraints may inform later owner-qualified evaluation. Neither handoff recursively authors the other domain or validates itself; unresolved generic owner-contract needs remain escalated.",
+      "edge_ids": [
+        "DEP-089",
+        "DEP-091"
+      ]
     }
   ],
   "missing_substrate_classifications": [
     {
       "substrate_id": "SUB-001",
       "name": "generalized governed-relation registry",
-      "why_required": "Needed to preserve typed cross-AFQR handoffs at corpus scale without collapsing owner-qualified domains.",
+      "why_required": "Dependency, obligation, revocation, jurisdiction, and social/institutional relation pressure requires owner-qualified relation references without turning reachability or storage into legal or social authority.",
       "requiring_afqrs": [
-        "AFQR-01",
         "AFQR-09",
-        "AFQR-10",
         "AFQR-13",
-        "AFQR-17",
-        "AFQR-18"
+        "AFQR-15"
       ],
       "source_evidence_records": [
-        "SRC-0004",
         "SRC-0012",
-        "SRC-0022",
-        "SRC-0110",
-        "SRC-0180"
+        "SRC-0082",
+        "SRC-0125"
       ],
-      "future_doctrine_owner": "unresolved_doctrine_council_or_R1D_domain_family",
-      "later_gate": "R1D/R2/R3/R4 as applicable; not R1C implementation",
-      "r1c_may_define": "need, boundary, nonownership invariant, escalation route",
-      "r1c_must_not_implement": "must_not_implement schemas, runtime services, persistence, conversion behavior, bridge code, production imports",
-      "failure_or_collapse_risk": "owner collapse, hidden-truth leakage, donor defaults, or runtime/canon authorization by implication",
+      "source_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "future_doctrine_owner": "unresolved: AFQR-09 owns governed relation/dependency semantics while COLL-08 prevents a universal jurisdiction, institution, authority, dependency, or social-state owner",
+      "later_gate": "R1D doctrine-family contracts; any implementation is deferred beyond R1",
+      "r1c_may_define": "R1C defines typed relation handoff and non-transfer boundaries and preserves COLL-08; it does not define a registry schema.",
+      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
+      "failure_or_collapse_risk": "Omission collapses dependency into obligation, reachability into jurisdiction, or relation records into institutional authority/social standing.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-002",
       "name": "generalized bitemporal truth/evidence store",
-      "why_required": "Needed to preserve typed cross-AFQR handoffs at corpus scale without collapsing owner-qualified domains.",
+      "why_required": "Claim evidence, epistemic state, observation, logical time, and hidden-truth pressure require distinct owner-qualified valid-time and record-time handoffs without equating observation, evidence, or schedule with truth.",
       "requiring_afqrs": [
-        "AFQR-01",
-        "AFQR-09",
+        "AFQR-04",
+        "AFQR-06",
         "AFQR-10",
-        "AFQR-13",
-        "AFQR-17",
-        "AFQR-18"
+        "AFQR-20"
       ],
       "source_evidence_records": [
-        "SRC-0004",
-        "SRC-0012",
+        "SRC-0007",
+        "SRC-0009",
         "SRC-0022",
-        "SRC-0110",
-        "SRC-0180"
+        "SRC-0255"
       ],
-      "future_doctrine_owner": "unresolved_doctrine_council_or_R1D_domain_family",
-      "later_gate": "R1D/R2/R3/R4 as applicable; not R1C implementation",
-      "r1c_may_define": "need, boundary, nonownership invariant, escalation route",
-      "r1c_must_not_implement": "must_not_implement schemas, runtime services, persistence, conversion behavior, bridge code, production imports",
-      "failure_or_collapse_risk": "owner collapse, hidden-truth leakage, donor defaults, or runtime/canon authorization by implication",
+      "source_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "future_doctrine_owner": "unresolved cross-owner substrate: AFQR-04 time, AFQR-06 arbitration evidence, AFQR-10 epistemic/truth, and AFQR-20 sensing retain their own semantics",
+      "later_gate": "R1D doctrine-family contracts; persistence and runtime realization require a later authorized gate",
+      "r1c_may_define": "R1C defines ordering, provenance, visibility, and non-promotion invariants only.",
+      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
+      "failure_or_collapse_risk": "Omission permits hidden-truth leakage, retroactive evidence overwrite, or logical time to manufacture truth/admissibility.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-003",
       "name": "generalized owner-reducer transaction journal",
-      "why_required": "Needed to preserve typed cross-AFQR handoffs at corpus scale without collapsing owner-qualified domains.",
+      "why_required": "State ownership, commitment, recovery, replay, command lifecycle, causal order, and dependency consequences require durable receipts that preserve each domain owner and bounded cascade ordering.",
       "requiring_afqrs": [
         "AFQR-01",
-        "AFQR-09",
-        "AFQR-10",
-        "AFQR-13",
-        "AFQR-17",
-        "AFQR-18"
+        "AFQR-02",
+        "AFQR-04",
+        "AFQR-09"
       ],
       "source_evidence_records": [
         "SRC-0004",
-        "SRC-0012",
-        "SRC-0022",
-        "SRC-0110",
-        "SRC-0180"
+        "SRC-0005",
+        "SRC-0007",
+        "SRC-0012"
       ],
-      "future_doctrine_owner": "unresolved_doctrine_council_or_R1D_domain_family",
-      "later_gate": "R1D/R2/R3/R4 as applicable; not R1C implementation",
-      "r1c_may_define": "need, boundary, nonownership invariant, escalation route",
-      "r1c_must_not_implement": "must_not_implement schemas, runtime services, persistence, conversion behavior, bridge code, production imports",
-      "failure_or_collapse_risk": "owner collapse, hidden-truth leakage, donor defaults, or runtime/canon authorization by implication",
+      "source_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "future_doctrine_owner": "AFQR-01 for transition/commitment journal doctrine; participating domain semantics remain with AFQR-02, AFQR-04, and AFQR-09",
+      "later_gate": "R1D transition/lifecycle doctrine; runtime journal implementation remains blocked for later runtime gates",
+      "r1c_may_define": "R1C defines owner-preserving lifecycle and cascade handoff constraints, not journal fields or reducers.",
+      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
+      "failure_or_collapse_risk": "Omission allows replay to duplicate commitment, recovery to rewrite command identity, or causal/dependency consequences to recurse without bounds.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-004",
       "name": "registered interface/bridge hypergraph",
-      "why_required": "Needed to preserve typed cross-AFQR handoffs at corpus scale without collapsing owner-qualified domains.",
+      "why_required": "AFQR-05 interface, adapter, and bridge ownership requires registered typed cross-system compatibility without allowing bridge compatibility to transfer semantic ownership.",
       "requiring_afqrs": [
-        "AFQR-01",
-        "AFQR-09",
-        "AFQR-10",
-        "AFQR-13",
-        "AFQR-17",
-        "AFQR-18"
+        "AFQR-05"
       ],
       "source_evidence_records": [
-        "SRC-0004",
-        "SRC-0012",
-        "SRC-0022",
-        "SRC-0110",
-        "SRC-0180"
+        "SRC-0008"
       ],
-      "future_doctrine_owner": "unresolved_doctrine_council_or_R1D_domain_family",
-      "later_gate": "R1D/R2/R3/R4 as applicable; not R1C implementation",
-      "r1c_may_define": "need, boundary, nonownership invariant, escalation route",
-      "r1c_must_not_implement": "must_not_implement schemas, runtime services, persistence, conversion behavior, bridge code, production imports",
-      "failure_or_collapse_risk": "owner collapse, hidden-truth leakage, donor defaults, or runtime/canon authorization by implication",
+      "source_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md"
+      ],
+      "future_doctrine_owner": "AFQR-05",
+      "later_gate": "R1D interface/bridge doctrine; registration services and adapters require a later authorized implementation gate",
+      "r1c_may_define": "R1C defines bridge nonownership, typed endpoint, and compatibility handoff constraints only.",
+      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
+      "failure_or_collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Astra law.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-005",
       "name": "generalized spatial, signal, embodiment, institution, and social owner contracts",
-      "why_required": "Needed to preserve typed cross-AFQR handoffs at corpus scale without collapsing owner-qualified domains.",
+      "why_required": "Distinct spatial, signal, embodiment, institution, and social handoffs need explicit domain contracts so one substrate or consumer cannot absorb all five semantic domains.",
       "requiring_afqrs": [
-        "AFQR-01",
-        "AFQR-09",
-        "AFQR-10",
         "AFQR-13",
-        "AFQR-17",
-        "AFQR-18"
+        "AFQR-15",
+        "AFQR-16",
+        "AFQR-18",
+        "AFQR-20"
       ],
       "source_evidence_records": [
-        "SRC-0004",
-        "SRC-0012",
-        "SRC-0022",
-        "SRC-0110",
-        "SRC-0180"
+        "SRC-0082",
+        "SRC-0125",
+        "SRC-0152",
+        "SRC-0207",
+        "SRC-0255"
       ],
-      "future_doctrine_owner": "unresolved_doctrine_council_or_R1D_domain_family",
-      "later_gate": "R1D/R2/R3/R4 as applicable; not R1C implementation",
-      "r1c_may_define": "need, boundary, nonownership invariant, escalation route",
-      "r1c_must_not_implement": "must_not_implement schemas, runtime services, persistence, conversion behavior, bridge code, production imports",
-      "failure_or_collapse_risk": "owner collapse, hidden-truth leakage, donor defaults, or runtime/canon authorization by implication",
-      "status": "classified_unimplemented"
+      "source_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "future_doctrine_owner": "separate source-backed owners: AFQR-18 spatial/topology; AFQR-20 signal/sensing; AFQR-16 embodiment; AFQR-15 institution/jurisdiction; AFQR-13 social state, subject to preserved COLL-03 and COLL-08 seams",
+      "later_gate": "R1D separate domain-family doctrine files; no combined runtime substrate is authorized",
+      "r1c_may_define": "R1C records separate owner-qualified handoffs and forbids collapsing them into a generic state or relation owner.",
+      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
+      "failure_or_collapse_risk": "Omission conflates topology with embodiment, sensing with truth, institution with jurisdiction, or social state with identity/authority.",
+      "status": "classified_unimplemented",
+      "domain_owner_requirements": [
+        {
+          "domain": "spatial/topology",
+          "owner": "AFQR-18",
+          "requiring_afqrs": [
+            "AFQR-17",
+            "AFQR-18"
+          ]
+        },
+        {
+          "domain": "signal/sensing",
+          "owner": "AFQR-20",
+          "requiring_afqrs": [
+            "AFQR-14",
+            "AFQR-19",
+            "AFQR-20"
+          ]
+        },
+        {
+          "domain": "embodiment",
+          "owner": "AFQR-16",
+          "requiring_afqrs": [
+            "AFQR-08",
+            "AFQR-16",
+            "AFQR-17"
+          ]
+        },
+        {
+          "domain": "institution/jurisdiction",
+          "owner": "AFQR-15",
+          "requiring_afqrs": [
+            "AFQR-09",
+            "AFQR-13",
+            "AFQR-15"
+          ],
+          "escalation": "COLL-08"
+        },
+        {
+          "domain": "social state",
+          "owner": "AFQR-13",
+          "requiring_afqrs": [
+            "AFQR-08",
+            "AFQR-11",
+            "AFQR-12",
+            "AFQR-13"
+          ],
+          "escalations": [
+            "COLL-03",
+            "COLL-10"
+          ]
+        }
+      ]
     }
   ],
   "cross_phase_prohibitions": [
@@ -4429,5 +5269,59 @@
     "r1c_complete_when_tests_pass": true,
     "r1_remains_incomplete_until": "R1E",
     "grants_no_downstream_implementation_authority": true
-  }
+  },
+  "cycle_risk_reclassifications": [
+    {
+      "reclassification_id": "CYCLE-RISK-001",
+      "edge_ids": [
+        "DEP-022",
+        "DEP-062"
+      ],
+      "afqrs": [
+        "AFQR-02",
+        "AFQR-09"
+      ],
+      "classification": "dependency_risk_not_recorded_cycle_group",
+      "reason": "Command lifecycle and governed-relation lifecycle can constrain later processing, but R1A names only AFQR-02/AFQR-04 as the command reciprocal cycle group. AFQR-02 and AFQR-09 retain separate owners; no recursive authority is authorized."
+    },
+    {
+      "reclassification_id": "CYCLE-RISK-002",
+      "edge_ids": [
+        "DEP-028",
+        "DEP-063"
+      ],
+      "afqrs": [
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "classification": "dependency_risk_not_recorded_cycle_group",
+      "reason": "Logical/causal ordering and relation lifecycle exchange bounded inputs, but R1A does not designate this pair as one of its four reciprocal cycle groups. Scheduling cannot author relations and relations cannot author logical time."
+    },
+    {
+      "reclassification_id": "CYCLE-RISK-003",
+      "edge_ids": [
+        "DEP-049",
+        "DEP-064"
+      ],
+      "afqrs": [
+        "AFQR-06",
+        "AFQR-09"
+      ],
+      "classification": "dependency_risk_not_recorded_cycle_group",
+      "reason": "Claims may concern governed relations and relation records may be offered in arbitration, but AFQR-06 and AFQR-09 retain separate adjudication and relation ownership. Neither handoff self-certifies the other."
+    },
+    {
+      "reclassification_id": "CYCLE-RISK-004",
+      "edge_ids": [
+        "DEP-054",
+        "DEP-066"
+      ],
+      "afqrs": [
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "classification": "dependency_risk_not_recorded_cycle_group",
+      "reason": "Identity evidence and relation lifecycle can refer to each other, but identity does not create a governed relation and a relation does not create identity. R1A does not list this pair among the four recorded reciprocal groups."
+    }
+  ]
 }
