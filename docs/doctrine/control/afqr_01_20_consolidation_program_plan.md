@@ -33,3 +33,7 @@ Completion was revalidated by direct review of every selected AFQR primary sourc
 ## R1B final state-owner and definition consistency correction (2026-07-24)
 
 The remaining state issue is corrected: AFQR-10, AFQR-13, and AFQR-17 own epistemic, social, and environmental state semantics, while AFQR-01 retains transition, routing, and commitment ownership only. All 41 definitions now align with their dispositions. R1C remains the only next gate.
+
+## R1C completion update (2026-07-24)
+
+R1C records the bounded cross-AFQR invariant and dependency contract. It preserves all 94 R1A dependency edges with exactly one R1C disposition each, resolves the four recorded cycle-risk groups through bounded feedback or phase-ordering rules, classifies all five missing substrates as unimplemented future doctrine/implementation needs, preserves COLL-03, COLL-08, and COLL-10 as open escalations, and formalizes the four cross-phase handoff prohibitions as governed and nonautomatic. R1D is ready but not started or complete. R1E, R2–R6, and RT-002G remain blocked or unauthorized. Temporary AFQR evidence deletion remains unauthorized. R1C grants no runtime, conversion, canon, sourcebook, model-facing, narration, or live-play authority.

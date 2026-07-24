@@ -83,7 +83,10 @@
         "current repository authority"
       ],
       "outputs": [
-        "bounded reviewed consolidation artifact"
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/reviews/afqr_r1c_invariant_dependency_resolution_report.md",
+        "docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml",
+        "tests/test_afqr_r1c_cross_invariants_and_dependencies.py"
       ],
       "must_not_own": [
         "runtime implementation",
@@ -100,11 +103,14 @@
       ],
       "completion_tests": [
         "YAML/Markdown structure",
-        "source traceability",
-        "owner/nonowner explicitness"
+        "all R1A dependency edges disposed exactly once",
+        "cycle-risk groups resolved or escalated",
+        "missing substrates classified",
+        "cross-phase prohibitions preserved",
+        "corpus pressure and no donor default promotion"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "ready"
+      "status": "complete"
     },
     {
       "file_id": "R1D-CORE",
@@ -137,7 +143,7 @@
         "owner/nonowner explicitness"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "blocked_pending_predecessor"
+      "status": "ready"
     },
     {
       "file_id": "R1D-AGENCY",
@@ -170,7 +176,7 @@
         "owner/nonowner explicitness"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "blocked_pending_predecessor"
+      "status": "ready"
     },
     {
       "file_id": "R1D-WORLD",
@@ -203,7 +209,7 @@
         "owner/nonowner explicitness"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "blocked_pending_predecessor"
+      "status": "ready"
     },
     {
       "file_id": "R1E",

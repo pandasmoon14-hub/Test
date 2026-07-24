@@ -1,0 +1,69 @@
+{
+  "artifact_version": "1.0.0",
+  "authority": "R1C unresolved dependency escalation tracking only",
+  "escalations": [
+    {
+      "escalation_id": "R1C-ESC-COLL-03",
+      "collision_id": "COLL-03",
+      "status": "open",
+      "r1c_safe_interim": "no inference of identity, ownership, authority, agency, or responsibility from adjacent handoffs"
+    },
+    {
+      "escalation_id": "R1C-ESC-COLL-08",
+      "collision_id": "COLL-08",
+      "status": "open",
+      "r1c_safe_interim": "no inference of jurisdiction, institution, authority, dependency, or social state from graph reachability"
+    },
+    {
+      "escalation_id": "R1C-ESC-COLL-10",
+      "collision_id": "COLL-10",
+      "status": "open",
+      "r1c_safe_interim": "no behavior/motivation prediction replaces agency or responsibility"
+    },
+    {
+      "escalation_id": "SUB-001-ESC",
+      "substrate": "generalized governed-relation registry",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C",
+      "owner_disposition": "unresolved: AFQR-09 owns governed relation/dependency semantics while COLL-08 prevents a universal jurisdiction, institution, authority, dependency, or social-state owner",
+      "later_gate": "R1D doctrine-family contracts; any implementation is deferred beyond R1",
+      "omission_risk": "Omission collapses dependency into obligation, reachability into jurisdiction, or relation records into institutional authority/social standing."
+    },
+    {
+      "escalation_id": "SUB-002-ESC",
+      "substrate": "generalized bitemporal truth/evidence store",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C",
+      "owner_disposition": "unresolved cross-owner substrate: AFQR-04 time, AFQR-06 arbitration evidence, AFQR-10 epistemic/truth, and AFQR-20 sensing retain their own semantics",
+      "later_gate": "R1D doctrine-family contracts; persistence and runtime realization require a later authorized gate",
+      "omission_risk": "Omission permits hidden-truth leakage, retroactive evidence overwrite, or logical time to manufacture truth/admissibility."
+    },
+    {
+      "escalation_id": "SUB-003-ESC",
+      "substrate": "generalized owner-reducer transaction journal",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C",
+      "owner_disposition": "AFQR-01 for transition/commitment journal doctrine; participating domain semantics remain with AFQR-02, AFQR-04, and AFQR-09",
+      "later_gate": "R1D transition/lifecycle doctrine; runtime journal implementation remains blocked for later runtime gates",
+      "omission_risk": "Omission allows replay to duplicate commitment, recovery to rewrite command identity, or causal/dependency consequences to recurse without bounds."
+    },
+    {
+      "escalation_id": "SUB-004-ESC",
+      "substrate": "registered interface/bridge hypergraph",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C",
+      "owner_disposition": "AFQR-05",
+      "later_gate": "R1D interface/bridge doctrine; registration services and adapters require a later authorized implementation gate",
+      "omission_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Astra law."
+    },
+    {
+      "escalation_id": "SUB-005-ESC",
+      "substrate": "generalized spatial, signal, embodiment, institution, and social owner contracts",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C",
+      "owner_disposition": "separate source-backed owners: AFQR-18 spatial/topology; AFQR-20 signal/sensing; AFQR-16 embodiment; AFQR-15 institution/jurisdiction; AFQR-13 social state, subject to preserved COLL-03 and COLL-08 seams",
+      "later_gate": "R1D separate domain-family doctrine files; no combined runtime substrate is authorized",
+      "omission_risk": "Omission conflates topology with embodiment, sensing with truth, institution with jurisdiction, or social state with identity/authority."
+    }
+  ]
+}
