@@ -1,0 +1,54 @@
+{
+  "artifact_version": "1.0.0",
+  "authority": "R1C unresolved dependency escalation tracking only",
+  "escalations": [
+    {
+      "escalation_id": "R1C-ESC-COLL-03",
+      "collision_id": "COLL-03",
+      "status": "open",
+      "r1c_safe_interim": "no inference of identity, ownership, authority, agency, or responsibility from adjacent handoffs"
+    },
+    {
+      "escalation_id": "R1C-ESC-COLL-08",
+      "collision_id": "COLL-08",
+      "status": "open",
+      "r1c_safe_interim": "no inference of jurisdiction, institution, authority, dependency, or social state from graph reachability"
+    },
+    {
+      "escalation_id": "R1C-ESC-COLL-10",
+      "collision_id": "COLL-10",
+      "status": "open",
+      "r1c_safe_interim": "no behavior/motivation prediction replaces agency or responsibility"
+    },
+    {
+      "escalation_id": "SUB-001-ESC",
+      "substrate": "generalized governed-relation registry",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C"
+    },
+    {
+      "escalation_id": "SUB-002-ESC",
+      "substrate": "generalized bitemporal truth/evidence store",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C"
+    },
+    {
+      "escalation_id": "SUB-003-ESC",
+      "substrate": "generalized owner-reducer transaction journal",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C"
+    },
+    {
+      "escalation_id": "SUB-004-ESC",
+      "substrate": "registered interface/bridge hypergraph",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C"
+    },
+    {
+      "escalation_id": "SUB-005-ESC",
+      "substrate": "generalized spatial, signal, embodiment, institution, and social owner contracts",
+      "status": "open",
+      "blocking_effect": "blocks final R1/R2-R6/RT-002G implementation decisions, not bounded R1C"
+    }
+  ]
+}

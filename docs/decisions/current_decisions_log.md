@@ -4217,3 +4217,13 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Correction:** Replace unsupported AFQR-01 generic `domain state` semantic ownership with source-backed AFQR-10 epistemic state, AFQR-13 social state, and AFQR-17 environmental state forms. AFQR-01 retains lawful transition, owner routing, and commitment only.
 - **Consistency:** Bound AFQR-16 `integrity` and AFQR-04 semantic/logical `time` as singular canonical types and verify every disposition against definition and qualified-form metadata.
 - **Gate:** R1B complete; R1C alone ready. COLL-03, COLL-08, and COLL-10 remain escalated; all later gates remain blocked or unauthorized. No runtime, conversion, canon, sourcebook, model, or live-play authority.
+
+## 2026-07-24 decision — AFQR-01–20 R1C cross-invariant and dependency contract
+
+- **Decision ID:** `AFQR-01-20-R1C-CROSS-INVARIANTS-DEPENDENCIES-001`
+- **Verified base SHA:** `12ec32803f93ca5d0a70a8f245545932387be9e6`
+- **Decision:** Record the bounded cross-AFQR invariant and dependency contract. Every R1A dependency edge receives exactly one disposition; semantic ownership does not transfer through consumption, handoff, commitment, scheduling, arbitration, bridge compatibility, storage, or mention.
+- **Cycle handling:** Resolve the AFQR-01/09, AFQR-02/04, AFQR-06/08, and AFQR-17/18 cycle-risk groups through bounded feedback or phase-order rules without deleting valid edges or authorizing recursive ownership.
+- **Substrates and escalations:** Classify the five missing substrates as future unimplemented doctrine/implementation needs. Preserve COLL-03, COLL-08, and COLL-10 as open escalations.
+- **Authority boundary:** R1C grants no runtime implementation, conversion execution, canon/sourcebook, model-facing, narration, live-play, RT-002G, or temporary-evidence deletion authority.
+- **Gate:** R1C complete after tests; R1D ready but not begun or complete. R1E, R2–R6, and RT-002G remain blocked or unauthorized.
