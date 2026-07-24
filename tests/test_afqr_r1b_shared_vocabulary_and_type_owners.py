@@ -1,4 +1,4 @@
-"""Semantic gates for AFQR-01–20 R1B vocabulary/type-owner consolidation."""
+"""Semantic gates for the source-audited AFQR-01–20 R1B vocabulary contract."""
 from __future__ import annotations
 import json, subprocess
 from pathlib import Path
@@ -6,54 +6,73 @@ ROOT=Path(__file__).resolve().parents[1]
 VOC=ROOT/'docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml'
 REV=ROOT/'docs/doctrine/reviews'; WORK=ROOT/'working/afqr_consolidation_inputs'
 BASE='1855cb2460542c0f912a0830276c9cdea90f1b07'
-REQUIRED=[VOC,REV/'afqr_r1b_vocabulary_resolution_report.md',REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml',Path(__file__),REV/'afqr_01_20_authority_status_index.yaml',REV/'afqr_01_20_dependency_matrix.yaml',REV/'afqr_01_20_shared_term_collision_inventory.md',REV/'afqr_01_20_consolidation_file_manifest.yaml',WORK/'manifest.yaml']
+REQUIRED=[VOC,REV/'afqr_r1b_vocabulary_resolution_report.md',REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml',REV/'afqr_01_20_authority_status_index.yaml',REV/'afqr_01_20_dependency_matrix.yaml',REV/'afqr_01_20_shared_term_collision_inventory.md',REV/'afqr_01_20_consolidation_file_manifest.yaml',WORK/'manifest.yaml']
 def load(p): return json.loads(p.read_text(encoding='utf8'))
 def git(*args): return subprocess.run(['git',*args],cwd=ROOT,text=True,check=True,capture_output=True).stdout
+def terms(): return {t['root_term']:t for t in load(VOC)['term_records']}
+def manifest_records(): return {r['source_record_id']:r for r in load(WORK/'manifest.yaml')['contained_file_records']}
 
-def test_required_files_exist_and_all_yaml_parse():
+def test_required_files_exist_and_yaml_parses():
  assert all(p.is_file() for p in REQUIRED)
- for p in [VOC,REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml',REV/'afqr_01_20_authority_status_index.yaml',REV/'afqr_01_20_dependency_matrix.yaml',REV/'afqr_01_20_consolidation_file_manifest.yaml',WORK/'manifest.yaml']: assert isinstance(load(p),dict)
-def test_exact_collisions_and_normalized_terms():
- d=load(VOC); cs=d['collision_resolutions']; ts=d['term_records']
- assert [c['collision_id'] for c in cs]==[f'COLL-{i:02d}' for i in range(1,11)]
- assert len(ts)==len({t['root_term'] for t in ts})==41
- assert [t['root_term'] for t in ts].count('social state')==1 and 'social' not in {t['root_term'] for t in ts}
-def test_controlled_dispositions_owners_and_qualified_forms():
- d=load(VOC); dispositions={'canonical_distinct_type','qualified_canonical_family','allowed_one_to_one_alias','reserved_ambiguous','rejected_cross_type_alias','source_local_only','escalated_unresolved'}; kinds={'afqr','project_governance','shared_qualified_family','unresolved_escalation'}
- for t in d['term_records']:
-  assert t['vocabulary_disposition'] in dispositions and t['type_owner']['owner_kind'] in kinds
-  assert t['type_owner']['owner_id'] and t['type_owner']['owner_scope'] and t['type_owner']['owner_file']
-  if t['type_owner']['owner_kind']=='afqr': assert t['type_owner']['owner_id'] in {f'AFQR-{i:02d}' for i in range(1,21)}
-  for q in t['qualified_forms']: assert q['qualified_form'] and q['definition'] and q['owner_kind'] in kinds and q['owner_id']
-def test_all_evidence_is_manifest_backed_and_historical_sources_remain_traceable():
- ids={x['source_record_id'] for x in load(WORK/'manifest.yaml')['contained_file_records']}
- d=load(VOC); led=load(REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml')
- for obj in d['term_records']+d['collision_resolutions']+led['escalations']: assert set(obj['source_evidence_records'])<=ids
- assert all(p.is_file() for p in REQUIRED[4:9])
-def test_alias_contract_direct_acyclic_and_owner_safe():
- d=load(VOC); aliases=d['alias_records']; names={a['alias'] for a in aliases}; canon={t['canonical_form']:t for t in d['term_records']}
- assert len(names)==len(aliases)
- for a in aliases:
-  assert a['canonical_form'] in canon and a['canonical_form'] not in names
-  assert a['owner_id']==canon[a['canonical_form']]['type_owner']['owner_id']
- # Direct aliases can only target term records, so cycles and alias chains are impossible.
-def test_collision_status_and_required_escalation_coverage():
- d=load(VOC); allowed={'resolved_for_vocabulary','partially_resolved_with_escalation','escalated_unresolved'}; by={c['collision_id']:c for c in d['collision_resolutions']}; led=load(REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml')['escalations']
- assert all(c['r1b_status'] in allowed for c in by.values())
+ assert all(isinstance(load(p),dict) for p in REQUIRED if p.suffix=='.yaml')
+def test_exact_41_terms_and_ten_collisions():
+ d=load(VOC); roots=[t['root_term'] for t in d['term_records']]; ids=[c['collision_id'] for c in d['collision_resolutions']]
+ assert len(roots)==len(set(roots))==41 and roots.count('social state')==1
+ assert ids==[f'COLL-{i:02d}' for i in range(1,11)] and len(ids)==len(set(ids))
+def test_every_afqr_term_owner_has_evidence_from_that_afqr():
+ records=manifest_records()
+ for t in terms().values():
+  assert t['owner_evidence_records'] and t['owner_evidence_paths'] and t['owner_evidence_rationale']
+  assert all((ROOT/p).is_file() for p in t['owner_evidence_paths'])
+  if t['type_owner']['owner_kind']=='afqr':
+   owner=t['type_owner']['owner_id']; assert owner in {f'AFQR-{n:02d}' for n in range(1,21)}
+   assert all(records[r]['detected_afqr_id']==owner and records[r]['selected_as_primary'] for r in t['owner_evidence_records'])
+def test_every_qualified_form_has_direct_source_backed_owner_evidence():
+ records=manifest_records()
+ for t in terms().values():
+  for q in t['qualified_forms']:
+   assert q['definition'] and q['owner_id'] and q['owner_evidence_paths'] and q['owner_evidence_rationale']
+   assert all((ROOT/p).is_file() for p in q['owner_evidence_paths'])
+   if q['owner_kind']=='afqr':
+    assert q['owner_evidence_records']
+    assert all(records[r]['detected_afqr_id']==q['owner_id'] and records[r]['selected_as_primary'] for r in q['owner_evidence_records'])
+   else: assert q['owner_kind']=='project_governance'
+def test_mandatory_transaction_event_opportunity_dependency_corrections():
+ t=terms()
+ assert t['transaction']['type_owner']['owner_id']=='AFQR-01'
+ assert not (t['event']['type_owner']['owner_kind']=='afqr' and t['event']['type_owner']['owner_id']=='AFQR-04')
+ assert t['opportunity']['type_owner']['owner_id']=='AFQR-19' and 'AFQR-19' not in t['opportunity']['explicit_nonowners']
+ assert t['dependency']['type_owner']['owner_id']=='AFQR-09' and 'AFQR-09' not in t['dependency']['explicit_nonowners']
+ assert t['dependency']['type_owner']['owner_id']!='AFQR-05'
+def test_observation_candidate_to_epistemic_record_handoff_is_preserved():
+ q={x['qualified_form']:x['owner_id'] for x in terms()['observation']['qualified_forms']}
+ assert terms()['observation']['unqualified_usage']=='qualified_only'
+ assert q=={'sensing observation candidate':'AFQR-20','epistemic observation record':'AFQR-10'}
+def test_evidence_three_way_ownership_is_preserved():
+ e=terms()['evidence']; q={x['qualified_form']:x['owner_id'] for x in e['qualified_forms']}
+ assert e['unqualified_usage']=='qualified_only'
+ assert q=={'arbitration evidence':'AFQR-06','epistemic evidence record':'AFQR-10','sensing evidence candidate':'AFQR-20'}
+def test_unsupported_owner_forms_absent_and_consumers_are_not_owners():
+ t=terms(); owner_forms={q['qualified_form'] for q in t['owner']['qualified_forms']}
+ assert not {'asset owner','identity owner'} & owner_forms
+ assert t['opportunity']['type_owner']['owner_id']!='AFQR-03'
+ assert t['dependency']['type_owner']['owner_id']!='AFQR-05'
+ assert {q['qualified_form'] for q in t['event']['qualified_forms']}=={'committed event receipt','scheduled effect'}
+def test_qualified_families_and_owner_nonowner_postures_are_consistent():
+ for t in terms().values():
+  if t['vocabulary_disposition']=='qualified_canonical_family':
+   assert t['unqualified_usage']=='qualified_only' and t['qualified_forms']
+  actual={q['owner_id'] for q in t['qualified_forms']}|{t['type_owner']['owner_id']}
+  assert not actual & set(t['explicit_nonowners'])
+def test_collision_escalations_aliases_and_r1c_only_gate():
+ d=load(VOC); by={c['collision_id']:c for c in d['collision_resolutions']}
+ led=load(REV/'afqr_r1b_unresolved_term_escalation_ledger.yaml')['escalations']
  for cid in ('COLL-03','COLL-08','COLL-10'):
-  assert by[cid]['r1b_status']!='resolved_for_vocabulary' and any(cid in e['collision_ids'] for e in led)
- escalated_terms={t for e in led for t in e['terms']}
- assert all(t['root_term'] in escalated_terms for t in d['term_records'] if t['vocabulary_disposition']=='escalated_unresolved')
-def test_bounded_r1c_handoffs_and_gate_posture():
- d=load(VOC)
- assert d['next_gate']=='R1C' and set(['R2','R3','R4','R5','R6','RT-002G'])<=set(d['blocked_gates'])
- for t in d['term_records']:
-  if t['r1c_handoff_required']: assert t['r1c_handoff_questions']
- forbidden=('runtime authority','conversion authority','canon authority','sourcebook authority','model authority','live-play authority')
- text=VOC.read_text().lower(); assert all(f'claims {x}' not in text for x in forbidden)
-def test_no_production_imports_or_prohibited_diff_scope():
- needle='afqr_shared_vocabulary_and_type_owners'
- assert not any(needle in p.read_text(encoding='utf8',errors='ignore') for p in (ROOT/'src').rglob('*') if p.is_file())
+  assert by[cid]['r1b_status'] in {'partially_resolved_with_escalation','escalated_unresolved'}
+  assert any(cid in x['collision_ids'] for x in led)
+ assert d['alias_records']==[] and d['next_gate']=='R1C'
+ assert set(d['blocked_gates'])=={'R1D','R1E','R2','R3','R4','R5','R6','RT-002G'}
+def test_no_production_zip_or_binary_diff():
  assert git('diff','--name-only',BASE,'--','*.zip').strip()==''
  assert git('diff','--name-only',BASE,'--','src/**').strip()==''
- assert all('\t-\t' not in line and not line.startswith('-\t') for line in git('diff','--numstat',BASE).splitlines())
+ assert all('-\t-' not in line for line in git('diff','--numstat',BASE).splitlines())

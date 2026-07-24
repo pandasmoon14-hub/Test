@@ -62,8 +62,11 @@
       ],
       "completion_tests": [
         "YAML/Markdown structure",
-        "source traceability",
-        "owner/nonowner explicitness"
+        "all 41 terms have direct owner evidence",
+        "qualified forms have source-backed owners",
+        "candidate/consumer/handoff/scheduler/bridge nonownership checks",
+        "alias graph and escalation semantics",
+        "source traceability and prohibited diff scope"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
       "status": "complete"

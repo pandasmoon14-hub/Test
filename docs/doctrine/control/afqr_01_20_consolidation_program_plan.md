@@ -25,3 +25,7 @@ R1A requires all semantic tests to pass and all 12 unchanged incoming archives a
 ## R1B completion update (2026-07-23)
 
 R1B records all 41 normalized root terms, resolves all ten collisions for vocabulary purposes, accepts no unsupported aliases, and preserves three doctrine escalations. R1C is ready and is the only newly unblocked gate. R1D, R1E, R2–R6, and RT-002G remain blocked or unauthorized. No temporary-source deletion is authorized. Received R1B HEAD: `1855cb2460542c0f912a0830276c9cdea90f1b07`.
+
+## R1B source-owner correction audit (2026-07-24)
+
+Completion was revalidated by direct review of every selected AFQR primary source and all 41 terms. The audit distinguishes ownership from consumption, candidate production, handoff, scheduling, arbitration, compatibility, and commitment. Corrected semantic tests pass; R1C remains the only next gate, and all prior downstream blocks remain.

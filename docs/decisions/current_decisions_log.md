@@ -4200,3 +4200,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Decision:** Record exactly 41 root-term dispositions and ten collision statuses; accept no unsupported aliases; require qualified use for overloaded families; retain COLL-03, COLL-08, and COLL-10 escalation.
 - **Authority boundary:** Vocabulary and type ownership only. No invariant, sequencing, runtime, conversion, canon, sourcebook, model, or live-play authority.
 - **Gate:** R1B complete; R1C ready and next. R1 remains incomplete; R1D/R1E, R2–R6, and RT-002G remain blocked or unauthorized. Temporary evidence deletion remains unauthorized.
+
+
+## 2026-07-24 correction — AFQR R1B direct source-owner audit
+
+- **Decision ID:** `AFQR-01-20-R1B-SOURCE-OWNER-CORRECTION-002`
+- **Corrects:** The initial R1B ownership selection while preserving its historical commit.
+- **Decision:** Directly audit all 41 roots and retained qualified forms against selected primary AFQR sources. Correct transaction to AFQR-01, opportunity and dependency to AFQR-19 and AFQR-09 respectively, and qualify event, capability, evidence, and observation by their explicit source contracts. Remove unsupported `asset owner` and `identity owner`.
+- **Method boundary:** Mention, consumption, candidate production, handoff, scheduling, arbitration, compatibility, and commitment do not establish generic ownership.
+- **Gate:** Corrected R1B complete; R1C alone ready. COLL-03, COLL-08, and COLL-10 remain escalated; R1D/R1E, R2–R6, and RT-002G remain blocked or unauthorized. No runtime, conversion, canon, sourcebook, model, or live-play authority.
