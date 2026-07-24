@@ -4191,3 +4191,29 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Correction:** Select the AFQR-14 normative architecture directly from the AFQR-14 package. A validation note packaged in the AFQR-15 archive confirms those normative files and supersedes reliance only on AFQR-14’s stale artifact manifest; AFQR-14 ownership remains unchanged, AFQR-15 remains institutional/jurisdictional doctrine, and no cross-AFQR architectural replacement occurs.
 - **Authority boundary:** Architectural-decision tracking only. No canon, runtime, conversion, implementation, sourcebook, model, or live-play authority. RT-001/RT-002 similarity is narrow-fixture evidence only.
 - **Gate:** R1 is incomplete; R1B is next. R2–R6 and RT-002G remain blocked. Temporary evidence deletion requires later explicit R1E approval, and production code may not import it.
+
+
+## 2026-07-23 decision — AFQR-01–20 R1B shared vocabulary and type owners
+
+- **Decision ID:** `AFQR-01-20-R1B-VOCABULARY-TYPE-OWNERS-001`
+- **Received HEAD:** `1855cb2460542c0f912a0830276c9cdea90f1b07`
+- **Decision:** Record exactly 41 root-term dispositions and ten collision statuses; accept no unsupported aliases; require qualified use for overloaded families; retain COLL-03, COLL-08, and COLL-10 escalation.
+- **Authority boundary:** Vocabulary and type ownership only. No invariant, sequencing, runtime, conversion, canon, sourcebook, model, or live-play authority.
+- **Gate:** R1B complete; R1C ready and next. R1 remains incomplete; R1D/R1E, R2–R6, and RT-002G remain blocked or unauthorized. Temporary evidence deletion remains unauthorized.
+
+
+## 2026-07-24 correction — AFQR R1B direct source-owner audit
+
+- **Decision ID:** `AFQR-01-20-R1B-SOURCE-OWNER-CORRECTION-002`
+- **Corrects:** The initial R1B ownership selection while preserving its historical commit.
+- **Decision:** Directly audit all 41 roots and retained qualified forms against selected primary AFQR sources. Correct transaction to AFQR-01, opportunity and dependency to AFQR-19 and AFQR-09 respectively, and qualify event, capability, evidence, and observation by their explicit source contracts. Remove unsupported `asset owner` and `identity owner`.
+- **Method boundary:** Mention, consumption, candidate production, handoff, scheduling, arbitration, compatibility, and commitment do not establish generic ownership.
+- **Gate:** Corrected R1B complete; R1C alone ready. COLL-03, COLL-08, and COLL-10 remain escalated; R1D/R1E, R2–R6, and RT-002G remain blocked or unauthorized. No runtime, conversion, canon, sourcebook, model, or live-play authority.
+
+
+## 2026-07-24 completion correction — AFQR R1B state owner and definition consistency
+
+- **Decision ID:** `AFQR-01-20-R1B-STATE-OWNER-CONSISTENCY-003`
+- **Correction:** Replace unsupported AFQR-01 generic `domain state` semantic ownership with source-backed AFQR-10 epistemic state, AFQR-13 social state, and AFQR-17 environmental state forms. AFQR-01 retains lawful transition, owner routing, and commitment only.
+- **Consistency:** Bound AFQR-16 `integrity` and AFQR-04 semantic/logical `time` as singular canonical types and verify every disposition against definition and qualified-form metadata.
+- **Gate:** R1B complete; R1C alone ready. COLL-03, COLL-08, and COLL-10 remain escalated; all later gates remain blocked or unauthorized. No runtime, conversion, canon, sourcebook, model, or live-play authority.

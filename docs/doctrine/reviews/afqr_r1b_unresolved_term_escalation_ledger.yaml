@@ -1,0 +1,125 @@
+{
+  "artifact_version": "1.0.0",
+  "authority": "R1B escalation tracking only",
+  "received_head": "1855cb2460542c0f912a0830276c9cdea90f1b07",
+  "escalations": [
+    {
+      "escalation_id": "R1B-ESC-001",
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "terms": [
+        "identity",
+        "owner",
+        "authority",
+        "agency",
+        "responsibility"
+      ],
+      "question": "Which substantive attribution rules govern identity, owner, authority, agency, responsibility?",
+      "why_r1b_cannot_resolve": "Direct source owners are now cited, but vocabulary ownership cannot resolve the remaining substantive cross-term attribution or institutional doctrine.",
+      "current_owner_candidates": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15",
+        "Astra Doctrine Council"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "affected_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "corpus_scale_failure_risk": "Donor ownership, reputation, prediction, or control semantics could be universalized.",
+      "required_future_doctrine": "Doctrine Council adjudication after R1C records relevant cross-owner invariants.",
+      "r1c_relevance": "R1C must specify dependency handoffs without deciding the escalated doctrine question.",
+      "blocking_effect": "Does not block bounded R1C; blocks final R1 completion and downstream R2-R6/RT-002G.",
+      "lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "status": "open"
+    },
+    {
+      "escalation_id": "R1B-ESC-002",
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "terms": [
+        "jurisdiction",
+        "institution",
+        "authority",
+        "social state"
+      ],
+      "question": "Which substantive attribution rules govern jurisdiction, institution, authority, social state?",
+      "why_r1b_cannot_resolve": "Direct source owners are now cited, but vocabulary ownership cannot resolve the remaining substantive cross-term attribution or institutional doctrine.",
+      "current_owner_candidates": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15",
+        "Astra Doctrine Council"
+      ],
+      "source_evidence_records": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "affected_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "corpus_scale_failure_risk": "Donor ownership, reputation, prediction, or control semantics could be universalized.",
+      "required_future_doctrine": "Doctrine Council adjudication after R1C records relevant cross-owner invariants.",
+      "r1c_relevance": "R1C must specify dependency handoffs without deciding the escalated doctrine question.",
+      "blocking_effect": "Does not block bounded R1C; blocks final R1 completion and downstream R2-R6/RT-002G.",
+      "lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "status": "open"
+    },
+    {
+      "escalation_id": "R1B-ESC-003",
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "terms": [
+        "motivation",
+        "behavior",
+        "agency",
+        "responsibility",
+        "social state"
+      ],
+      "question": "Which substantive attribution rules govern motivation, behavior, agency, responsibility, social state?",
+      "why_r1b_cannot_resolve": "Direct source owners are now cited, but vocabulary ownership cannot resolve the remaining substantive cross-term attribution or institutional doctrine.",
+      "current_owner_candidates": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13",
+        "Astra Doctrine Council"
+      ],
+      "source_evidence_records": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "affected_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "corpus_scale_failure_risk": "Donor ownership, reputation, prediction, or control semantics could be universalized.",
+      "required_future_doctrine": "Doctrine Council adjudication after R1C records relevant cross-owner invariants.",
+      "r1c_relevance": "R1C must specify dependency handoffs without deciding the escalated doctrine question.",
+      "blocking_effect": "Does not block bounded R1C; blocks final R1 completion and downstream R2-R6/RT-002G.",
+      "lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "status": "open"
+    }
+  ],
+  "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",
+  "audit_note": "State semantic ownership and all definition/disposition consistency checks are complete; this ledger continues to preserve only COLL-03, COLL-08, and COLL-10 substantive questions."
+}

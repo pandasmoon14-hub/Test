@@ -1,0 +1,3919 @@
+{
+  "artifact_version": "1.0.0",
+  "authority": "doctrine_vocabulary_contract_only_no_runtime_conversion_canon_sourcebook_model_or_live_play_authority",
+  "received_head": "1855cb2460542c0f912a0830276c9cdea90f1b07",
+  "source_manifest": "working/afqr_consolidation_inputs/manifest.yaml",
+  "r1_gate": "R1B_complete",
+  "next_gate": "R1C",
+  "blocked_gates": [
+    "R1D",
+    "R1E",
+    "R2",
+    "R3",
+    "R4",
+    "R5",
+    "R6",
+    "RT-002G"
+  ],
+  "term_records": [
+    {
+      "term_id": "TERM-001",
+      "root_term": "state",
+      "canonical_form": "state",
+      "definition": "State semantics belong to the declared domain owner; AFQR-01 governs lawful transition, owner routing, and commitment, and transition or commitment does not transfer semantic ownership to AFQR-01.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-04"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "epistemic state",
+          "definition": "Observer-relative epistemic state governed as separately owned, versioned, append-only epistemic posture.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-10",
+          "owner_evidence_records": [
+            "SRC-0022"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+          ],
+          "owner_evidence_rationale": "AFQR-10 explicitly owns observer-relative epistemic state and its provenance; AFQR-01 commitment does not own those semantics."
+        },
+        {
+          "qualified_form": "social state",
+          "definition": "Federated, purpose- and profile-scoped social state.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-13",
+          "owner_evidence_records": [
+            "SRC-0082"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+          ],
+          "owner_evidence_rationale": "AFQR-13 explicitly defines social state as federated and profile-scoped."
+        },
+        {
+          "qualified_form": "environmental state",
+          "definition": "Federated environmental state governed by declared environmental state owners.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-17",
+          "owner_evidence_records": [
+            "SRC-0180"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+          ],
+          "owner_evidence_rationale": "AFQR-17 explicitly introduces federated environmental state owners and environmental state mutation boundaries."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "state as synonym for truth",
+        "state as synonym for transition",
+        "state as synonym for transaction",
+        "state as synonym for event"
+      ],
+      "explicit_non_equivalences": [
+        "event",
+        "transaction",
+        "transition",
+        "truth"
+      ],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0035",
+        "SRC-0149"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs state handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0022",
+        "SRC-0082",
+        "SRC-0180"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root has no generic AFQR-01 semantic owner. AFQR-10, AFQR-13, and AFQR-17 explicitly own distinct state semantics; AFQR-01 supplies transition, routing, and commitment boundaries only."
+    },
+    {
+      "term_id": "TERM-002",
+      "root_term": "truth",
+      "canonical_form": "truth",
+      "definition": "An authoritative or observer-relative truth posture whose qualification determines scope.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-17"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "authoritative world truth",
+          "definition": "AFQR-10 explicitly separates and owns authoritative world truth.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-10",
+          "owner_evidence_records": [
+            "SRC-0022"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+          ],
+          "owner_evidence_rationale": "AFQR-10 explicitly separates and owns authoritative world truth."
+        },
+        {
+          "qualified_form": "observer-relative truth",
+          "definition": "AFQR-10 explicitly governs observer-relative epistemic truth posture.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-10",
+          "owner_evidence_records": [
+            "SRC-0022"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+          ],
+          "owner_evidence_rationale": "AFQR-10 explicitly governs observer-relative epistemic truth posture."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "truth as synonym for state",
+        "truth as synonym for transition",
+        "truth as synonym for transaction",
+        "truth as synonym for event"
+      ],
+      "explicit_non_equivalences": [
+        "event",
+        "state",
+        "transaction",
+        "transition"
+      ],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0035",
+        "SRC-0149"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs truth handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0022"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-003",
+      "root_term": "transition",
+      "canonical_form": "transition",
+      "definition": "A typed change boundary; ordering and mutation semantics are deferred to R1C.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "owner_scope": "AFQR-01 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "transition as synonym for state",
+        "transition as synonym for truth",
+        "transition as synonym for transaction",
+        "transition as synonym for event"
+      ],
+      "explicit_non_equivalences": [
+        "causality",
+        "event",
+        "process",
+        "state",
+        "time",
+        "transaction",
+        "truth"
+      ],
+      "collision_ids": [
+        "COLL-01",
+        "COLL-06"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0007",
+        "SRC-0035",
+        "SRC-0092",
+        "SRC-0149",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs transition handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0004"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+      ],
+      "owner_evidence_rationale": "AFQR-01 explicitly owns the bounded transition contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-004",
+      "root_term": "transaction",
+      "canonical_form": "transaction",
+      "definition": "Authoritative atomic state coordination committed through AFQR-01; scheduler placement is not transaction ownership.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "owner_scope": "AFQR-01 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "transaction as synonym for state",
+        "transaction as synonym for truth",
+        "transaction as synonym for transition",
+        "transaction as synonym for event"
+      ],
+      "explicit_non_equivalences": [
+        "event",
+        "state",
+        "transition",
+        "truth"
+      ],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0035",
+        "SRC-0149"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs transaction handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0004"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+      ],
+      "owner_evidence_rationale": "AFQR-01 explicitly owns the bounded transaction contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-005",
+      "root_term": "event",
+      "canonical_form": "event",
+      "definition": "A qualified family separating AFQR-01 committed event receipts from AFQR-04 scheduled effects.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "committed event receipt",
+          "definition": "AFQR-01 explicitly owns append-only committed transition and event receipts.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-01",
+          "owner_evidence_records": [
+            "SRC-0004"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+          ],
+          "owner_evidence_rationale": "AFQR-01 explicitly owns append-only committed transition and event receipts."
+        },
+        {
+          "qualified_form": "scheduled effect",
+          "definition": "AFQR-04 explicitly owns scheduled effects and their logical-time placement; this does not own committed events.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-04",
+          "owner_evidence_records": [
+            "SRC-0007"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+          ],
+          "owner_evidence_rationale": "AFQR-04 explicitly owns scheduled effects and their logical-time placement; this does not own committed events."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "event as synonym for state",
+        "event as synonym for truth",
+        "event as synonym for transition",
+        "event as synonym for transaction"
+      ],
+      "explicit_non_equivalences": [
+        "state",
+        "transaction",
+        "transition",
+        "truth"
+      ],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0035",
+        "SRC-0149"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs event handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0004",
+        "SRC-0007"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-006",
+      "root_term": "command",
+      "canonical_form": "command",
+      "definition": "The identity of a requested operation, distinct from its attempt or action representation.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "owner_scope": "AFQR-02 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "command as synonym for attempt",
+        "command as synonym for action",
+        "command as synonym for capability",
+        "command as synonym for opportunity"
+      ],
+      "explicit_non_equivalences": [
+        "action",
+        "attempt",
+        "capability",
+        "opportunity",
+        "resolution",
+        "target"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs command handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0005"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md"
+      ],
+      "owner_evidence_rationale": "AFQR-02 explicitly owns the bounded command contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-007",
+      "root_term": "attempt",
+      "canonical_form": "attempt",
+      "definition": "The lifecycle identity of trying a command, without implying execution.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "owner_scope": "AFQR-02 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "attempt as synonym for command",
+        "attempt as synonym for action",
+        "attempt as synonym for capability",
+        "attempt as synonym for opportunity"
+      ],
+      "explicit_non_equivalences": [
+        "action",
+        "capability",
+        "command",
+        "opportunity",
+        "resolution",
+        "target"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs attempt handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0005"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md"
+      ],
+      "owner_evidence_rationale": "AFQR-02 explicitly owns the bounded attempt contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-008",
+      "root_term": "action",
+      "canonical_form": "action",
+      "definition": "A representation of actor-directed activity, not a universal donor action economy.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-03",
+        "owner_scope": "AFQR-03 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "action as synonym for command",
+        "action as synonym for attempt",
+        "action as synonym for capability",
+        "action as synonym for opportunity"
+      ],
+      "explicit_non_equivalences": [
+        "attempt",
+        "capability",
+        "command",
+        "opportunity",
+        "resolution",
+        "target"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs action handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0006"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md"
+      ],
+      "owner_evidence_rationale": "AFQR-03 explicitly owns the bounded action contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-009",
+      "root_term": "capability",
+      "canonical_form": "capability",
+      "definition": "A qualified family separating AFQR-03 route requirements from AFQR-19 readiness determinations.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-02"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "action-route capability requirement",
+          "definition": "AFQR-03 explicitly owns CapabilityRequirement in registered action-route composition.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-03",
+          "owner_evidence_records": [
+            "SRC-0006"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md"
+          ],
+          "owner_evidence_rationale": "AFQR-03 explicitly owns CapabilityRequirement in registered action-route composition."
+        },
+        {
+          "qualified_form": "capability readiness determination",
+          "definition": "AFQR-19 explicitly owns capability readiness determinations.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-19",
+          "owner_evidence_records": [
+            "SRC-0231"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+          ],
+          "owner_evidence_rationale": "AFQR-19 explicitly owns capability readiness determinations."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "capability as synonym for command",
+        "capability as synonym for attempt",
+        "capability as synonym for action",
+        "capability as synonym for opportunity"
+      ],
+      "explicit_non_equivalences": [
+        "action",
+        "attempt",
+        "command",
+        "opportunity",
+        "resolution",
+        "target"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs capability handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-010",
+      "root_term": "opportunity",
+      "canonical_form": "opportunity",
+      "definition": "An AFQR-19 relational action opportunity; AFQR-03 may consume it during route composition.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-19",
+        "owner_scope": "AFQR-19 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-02"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "opportunity as synonym for command",
+        "opportunity as synonym for attempt",
+        "opportunity as synonym for action",
+        "opportunity as synonym for capability"
+      ],
+      "explicit_non_equivalences": [
+        "action",
+        "attempt",
+        "capability",
+        "command",
+        "resolution",
+        "target"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs opportunity handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0231"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+      ],
+      "owner_evidence_rationale": "AFQR-19 explicitly owns the bounded opportunity contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-011",
+      "root_term": "target",
+      "canonical_form": "target",
+      "definition": "A typed subject or object reference for resolution, not resolution itself.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-19",
+        "owner_scope": "AFQR-19 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-02",
+        "AFQR-03"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "target as synonym for command",
+        "target as synonym for attempt",
+        "target as synonym for action",
+        "target as synonym for capability"
+      ],
+      "explicit_non_equivalences": [
+        "action",
+        "attempt",
+        "capability",
+        "command",
+        "opportunity",
+        "resolution"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs target handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0231"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+      ],
+      "owner_evidence_rationale": "AFQR-19 explicitly owns the bounded target contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-012",
+      "root_term": "resolution",
+      "canonical_form": "resolution",
+      "definition": "A qualified family for concluding a declared subject such as an action or claim.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-02",
+        "AFQR-03"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "action resolution",
+          "definition": "AFQR-19 explicitly owns resolver selection, execution receipts, and action resolution candidates.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-19",
+          "owner_evidence_records": [
+            "SRC-0231"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+          ],
+          "owner_evidence_rationale": "AFQR-19 explicitly owns resolver selection, execution receipts, and action resolution candidates."
+        },
+        {
+          "qualified_form": "claim arbitration result",
+          "definition": "AFQR-06 explicitly owns claim arbitration and its typed result/evidence.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-06",
+          "owner_evidence_records": [
+            "SRC-0009"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+          ],
+          "owner_evidence_rationale": "AFQR-06 explicitly owns claim arbitration and its typed result/evidence."
+        },
+        {
+          "qualified_form": "resolution group",
+          "definition": "AFQR-04 explicitly owns deterministic resolution groups; a group is not an action result.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-04",
+          "owner_evidence_records": [
+            "SRC-0007"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+          ],
+          "owner_evidence_rationale": "AFQR-04 explicitly owns deterministic resolution groups; a group is not an action result."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "resolution as synonym for command",
+        "resolution as synonym for attempt",
+        "resolution as synonym for action",
+        "resolution as synonym for capability"
+      ],
+      "explicit_non_equivalences": [
+        "action",
+        "attempt",
+        "capability",
+        "command",
+        "opportunity",
+        "target"
+      ],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs resolution handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0007",
+        "SRC-0009",
+        "SRC-0231"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-013",
+      "root_term": "identity",
+      "canonical_form": "identity",
+      "definition": "A persistent identification concern owned by AFQR-08, not ownership or agency.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-08",
+        "owner_scope": "AFQR-08 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "identity as synonym for owner",
+        "identity as synonym for authority",
+        "identity as synonym for agency",
+        "identity as synonym for responsibility"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "authority",
+        "owner",
+        "responsibility"
+      ],
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs identity handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0011"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
+      ],
+      "owner_evidence_rationale": "AFQR-08 explicitly owns the bounded identity contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-014",
+      "root_term": "owner",
+      "canonical_form": "owner",
+      "definition": "An ambiguous role requiring qualification; possession, state custody, identity, and authorship remain distinct.",
+      "lexicon_term_class": "reserved_term",
+      "lexicon_status": "reserved",
+      "vocabulary_disposition": "escalated_unresolved",
+      "unqualified_usage": "reserved",
+      "type_owner": {
+        "owner_kind": "unresolved_escalation",
+        "owner_id": "Doctrine Council",
+        "owner_scope": "substantive ownership vocabulary remains escalated",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "state owner",
+          "definition": "AFQR-01 explicitly defines exclusive state/write owners and owner-specific reducers.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-01",
+          "owner_evidence_records": [
+            "SRC-0004"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+          ],
+          "owner_evidence_rationale": "AFQR-01 explicitly defines exclusive state/write owners and owner-specific reducers."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "owner as synonym for identity",
+        "owner as synonym for authority",
+        "owner as synonym for agency",
+        "owner as synonym for responsibility"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "authority",
+        "identity",
+        "responsibility"
+      ],
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs owner handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0004"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+      ],
+      "owner_evidence_rationale": "AFQR-01 supports state owner only; it does not establish universal asset, identity, or action authorship ownership, so the root remains escalated."
+    },
+    {
+      "term_id": "TERM-015",
+      "root_term": "authority",
+      "canonical_form": "authority",
+      "definition": "An ambiguous power or governance relation requiring qualification and escalation.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-13"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "project authority",
+          "definition": "Current project governance controls phase and doctrine authority; this is not domain authority.",
+          "owner_kind": "project_governance",
+          "owner_id": "Astra Doctrine Council",
+          "owner_evidence_records": [],
+          "owner_evidence_paths": [
+            "docs/doctrine/control/afqr_01_20_consolidation_program_plan.md"
+          ],
+          "owner_evidence_rationale": "Current project governance controls phase and doctrine authority; this is not domain authority."
+        },
+        {
+          "qualified_form": "institutional authority",
+          "definition": "AFQR-15 explicitly governs institutional authority and jurisdiction.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-15",
+          "owner_evidence_records": [
+            "SRC-0125"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+          ],
+          "owner_evidence_rationale": "AFQR-15 explicitly governs institutional authority and jurisdiction."
+        },
+        {
+          "qualified_form": "governed-relation authority record",
+          "definition": "AFQR-09 explicitly owns authority records on governed persistent relations.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-09",
+          "owner_evidence_records": [
+            "SRC-0012"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+          ],
+          "owner_evidence_rationale": "AFQR-09 explicitly owns authority records on governed persistent relations."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "authority as synonym for identity",
+        "authority as synonym for owner",
+        "authority as synonym for agency",
+        "authority as synonym for responsibility"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "identity",
+        "institution",
+        "jurisdiction",
+        "owner",
+        "responsibility",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-03",
+        "COLL-08"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0012",
+        "SRC-0059",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-09",
+        "AFQR-11",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs authority handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0012",
+        "SRC-0125"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-016",
+      "root_term": "agency",
+      "canonical_form": "agency",
+      "definition": "Capacity or standing for authored choice under AFQR-11; motivation and control do not imply it.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-11",
+        "owner_scope": "AFQR-11 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "agency as synonym for identity",
+        "agency as synonym for owner",
+        "agency as synonym for authority",
+        "agency as synonym for responsibility"
+      ],
+      "explicit_non_equivalences": [
+        "authority",
+        "behavior",
+        "identity",
+        "motivation",
+        "owner",
+        "responsibility",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-03",
+        "COLL-10"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs agency handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0041"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
+      ],
+      "owner_evidence_rationale": "AFQR-11 explicitly owns the bounded agency contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-017",
+      "root_term": "responsibility",
+      "canonical_form": "responsibility",
+      "definition": "An AFQR-11 profiled attribution type; its cross-collision implications remain escalated.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-11",
+        "owner_scope": "AFQR-11 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "responsibility as synonym for identity",
+        "responsibility as synonym for owner",
+        "responsibility as synonym for authority",
+        "responsibility as synonym for agency"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "authority",
+        "behavior",
+        "identity",
+        "motivation",
+        "owner",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-03",
+        "COLL-10"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs responsibility handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0041"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
+      ],
+      "owner_evidence_rationale": "AFQR-11 explicitly owns the bounded responsibility contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-018",
+      "root_term": "claim",
+      "canonical_form": "claim",
+      "definition": "A proposition advanced for adjudication, distinct from evidence and epistemic state.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-06",
+        "owner_scope": "AFQR-06 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "claim as synonym for evidence",
+        "claim as synonym for belief",
+        "claim as synonym for knowledge",
+        "claim as synonym for observation"
+      ],
+      "explicit_non_equivalences": [
+        "belief",
+        "evidence",
+        "knowledge",
+        "observation"
+      ],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "source_evidence_records": [
+        "SRC-0009",
+        "SRC-0035",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs claim handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0009"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+      ],
+      "owner_evidence_rationale": "AFQR-06 explicitly owns the bounded claim contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-019",
+      "root_term": "evidence",
+      "canonical_form": "evidence",
+      "definition": "A qualified family separating AFQR-06 arbitration evidence, AFQR-10 epistemic records, and AFQR-20 candidates.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [],
+      "qualified_forms": [
+        {
+          "qualified_form": "arbitration evidence",
+          "definition": "AFQR-06 explicitly produces evidence from claim arbitration.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-06",
+          "owner_evidence_records": [
+            "SRC-0009"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+          ],
+          "owner_evidence_rationale": "AFQR-06 explicitly produces evidence from claim arbitration."
+        },
+        {
+          "qualified_form": "epistemic evidence record",
+          "definition": "AFQR-10 explicitly owns immutable typed epistemic evidence records.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-10",
+          "owner_evidence_records": [
+            "SRC-0022"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+          ],
+          "owner_evidence_rationale": "AFQR-10 explicitly owns immutable typed epistemic evidence records."
+        },
+        {
+          "qualified_form": "sensing evidence candidate",
+          "definition": "AFQR-20 explicitly produces evidence candidates only for AFQR-10/19 acceptance.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-20",
+          "owner_evidence_records": [
+            "SRC-0255"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+          ],
+          "owner_evidence_rationale": "AFQR-20 explicitly produces evidence candidates only for AFQR-10/19 acceptance."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "evidence as synonym for claim",
+        "evidence as synonym for belief",
+        "evidence as synonym for knowledge",
+        "evidence as synonym for observation"
+      ],
+      "explicit_non_equivalences": [
+        "belief",
+        "claim",
+        "knowledge",
+        "observation"
+      ],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "source_evidence_records": [
+        "SRC-0009",
+        "SRC-0035",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs evidence handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0009",
+        "SRC-0022",
+        "SRC-0255"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-020",
+      "root_term": "belief",
+      "canonical_form": "belief",
+      "definition": "An observer-relative epistemic posture, distinct from knowledge and world truth.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-10",
+        "owner_scope": "AFQR-10 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-06",
+        "AFQR-20"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "belief as synonym for claim",
+        "belief as synonym for evidence",
+        "belief as synonym for knowledge",
+        "belief as synonym for observation"
+      ],
+      "explicit_non_equivalences": [
+        "claim",
+        "evidence",
+        "knowledge",
+        "observation"
+      ],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "source_evidence_records": [
+        "SRC-0009",
+        "SRC-0035",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs belief handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0022"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "owner_evidence_rationale": "AFQR-10 explicitly owns the bounded belief contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-021",
+      "root_term": "knowledge",
+      "canonical_form": "knowledge",
+      "definition": "A governed epistemic status, not implied by detection, delivery, or belief.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-10",
+        "owner_scope": "AFQR-10 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-06",
+        "AFQR-20"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "knowledge as synonym for claim",
+        "knowledge as synonym for evidence",
+        "knowledge as synonym for belief",
+        "knowledge as synonym for observation"
+      ],
+      "explicit_non_equivalences": [
+        "belief",
+        "claim",
+        "evidence",
+        "observation"
+      ],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "source_evidence_records": [
+        "SRC-0009",
+        "SRC-0035",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs knowledge handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0022"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "owner_evidence_rationale": "AFQR-10 explicitly owns the bounded knowledge contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-022",
+      "root_term": "observation",
+      "canonical_form": "observation",
+      "definition": "A qualified candidate-to-record family separating AFQR-20 sensing production from AFQR-10 epistemic ownership.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "qualified_canonical_family",
+      "unqualified_usage": "qualified_only",
+      "type_owner": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-06",
+        "AFQR-14"
+      ],
+      "qualified_forms": [
+        {
+          "qualified_form": "sensing observation candidate",
+          "definition": "AFQR-20 explicitly produces observation candidates only.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-20",
+          "owner_evidence_records": [
+            "SRC-0255"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+          ],
+          "owner_evidence_rationale": "AFQR-20 explicitly produces observation candidates only."
+        },
+        {
+          "qualified_form": "epistemic observation record",
+          "definition": "AFQR-10 explicitly owns immutable observation records and epistemic provenance.",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-10",
+          "owner_evidence_records": [
+            "SRC-0022"
+          ],
+          "owner_evidence_paths": [
+            "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+          ],
+          "owner_evidence_rationale": "AFQR-10 explicitly owns immutable observation records and epistemic provenance."
+        }
+      ],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "observation as synonym for claim",
+        "observation as synonym for evidence",
+        "observation as synonym for belief",
+        "observation as synonym for knowledge"
+      ],
+      "explicit_non_equivalences": [
+        "belief",
+        "claim",
+        "communication",
+        "evidence",
+        "interpretation",
+        "knowledge",
+        "signal"
+      ],
+      "collision_ids": [
+        "COLL-04",
+        "COLL-07"
+      ],
+      "source_evidence_records": [
+        "SRC-0009",
+        "SRC-0035",
+        "SRC-0130",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-14",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs observation handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0022",
+        "SRC-0255"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "owner_evidence_rationale": "The unqualified root spans explicitly distinct source-owned forms; ownership attaches to each qualified form, not to a consumer or producer mention."
+    },
+    {
+      "term_id": "TERM-023",
+      "root_term": "relation",
+      "canonical_form": "relation",
+      "definition": "A governed association, not dependency, obligation, compatibility, or reachability.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "owner_scope": "AFQR-09 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-05",
+        "AFQR-16"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "relation as synonym for dependency",
+        "relation as synonym for obligation",
+        "relation as synonym for integrity"
+      ],
+      "explicit_non_equivalences": [
+        "dependency",
+        "integrity",
+        "obligation"
+      ],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "source_evidence_records": [
+        "SRC-0008",
+        "SRC-0012",
+        "SRC-0184"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-16"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs relation handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0012"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "owner_evidence_rationale": "AFQR-09 explicitly owns the bounded relation contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-024",
+      "root_term": "dependency",
+      "canonical_form": "dependency",
+      "definition": "An AFQR-09 governed dependency with typed conditions and lifecycle; compatibility bridges do not own its consequences.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "owner_scope": "AFQR-09 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-16"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "dependency as synonym for relation",
+        "dependency as synonym for obligation",
+        "dependency as synonym for integrity"
+      ],
+      "explicit_non_equivalences": [
+        "integrity",
+        "obligation",
+        "relation"
+      ],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "source_evidence_records": [
+        "SRC-0008",
+        "SRC-0012",
+        "SRC-0184"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-16"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs dependency handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0012"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "owner_evidence_rationale": "AFQR-09 explicitly owns the bounded dependency contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-025",
+      "root_term": "obligation",
+      "canonical_form": "obligation",
+      "definition": "A normative duty relation, not graph adjacency or ownership.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "owner_scope": "AFQR-09 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-05",
+        "AFQR-16"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "obligation as synonym for relation",
+        "obligation as synonym for dependency",
+        "obligation as synonym for integrity"
+      ],
+      "explicit_non_equivalences": [
+        "dependency",
+        "integrity",
+        "relation"
+      ],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "source_evidence_records": [
+        "SRC-0008",
+        "SRC-0012",
+        "SRC-0184"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-16"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs obligation handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0012"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "owner_evidence_rationale": "AFQR-09 explicitly owns the bounded obligation contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-026",
+      "root_term": "integrity",
+      "canonical_form": "integrity",
+      "definition": "The AFQR-16 embodiment and structural-integrity concern, distinct from doctrinal correctness, dependency, obligation, environment, space, and topology.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-16",
+        "owner_scope": "AFQR-16 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "integrity as synonym for relation",
+        "integrity as synonym for dependency",
+        "integrity as synonym for obligation",
+        "integrity as synonym for embodiment"
+      ],
+      "explicit_non_equivalences": [
+        "dependency",
+        "embodiment",
+        "environment",
+        "obligation",
+        "relation",
+        "space",
+        "topology"
+      ],
+      "collision_ids": [
+        "COLL-05",
+        "COLL-09"
+      ],
+      "source_evidence_records": [
+        "SRC-0008",
+        "SRC-0012",
+        "SRC-0184",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs integrity handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0152"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+      ],
+      "owner_evidence_rationale": "AFQR-16 explicitly owns the bounded integrity contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-027",
+      "root_term": "time",
+      "canonical_form": "time",
+      "definition": "The AFQR-04 backend-owned semantic/logical-time framework governed through registered scheduler profiles; donor rounds, turns, ticks, travel intervals, recovery periods, and narrative beats do not become universal Astra cadence.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "owner_scope": "AFQR-04 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "time as synonym for transition",
+        "time as synonym for causality",
+        "time as synonym for process"
+      ],
+      "explicit_non_equivalences": [
+        "causality",
+        "process",
+        "transition"
+      ],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0007",
+        "SRC-0092",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs time handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0007"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+      ],
+      "owner_evidence_rationale": "AFQR-04 explicitly owns the bounded time contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-028",
+      "root_term": "causality",
+      "canonical_form": "causality",
+      "definition": "A causal-order concern distinct from clock time and process.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "owner_scope": "AFQR-04 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "causality as synonym for transition",
+        "causality as synonym for time",
+        "causality as synonym for process"
+      ],
+      "explicit_non_equivalences": [
+        "process",
+        "time",
+        "transition"
+      ],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0007",
+        "SRC-0092",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs causality handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0007"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+      ],
+      "owner_evidence_rationale": "AFQR-04 explicitly owns the bounded causality contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-029",
+      "root_term": "process",
+      "canonical_form": "process",
+      "definition": "A domain progression concept, not universal time or transition ordering.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-17",
+        "owner_scope": "AFQR-17 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-12",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "process as synonym for transition",
+        "process as synonym for time",
+        "process as synonym for causality"
+      ],
+      "explicit_non_equivalences": [
+        "causality",
+        "time",
+        "transition"
+      ],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0007",
+        "SRC-0092",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs process handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0180"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+      ],
+      "owner_evidence_rationale": "AFQR-17 explicitly owns the bounded process contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-030",
+      "root_term": "signal",
+      "canonical_form": "signal",
+      "definition": "A transmissible physical or abstract carrier, not meaning or knowledge.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-20",
+        "owner_scope": "AFQR-20 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-14"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "signal as synonym for observation",
+        "signal as synonym for communication",
+        "signal as synonym for interpretation"
+      ],
+      "explicit_non_equivalences": [
+        "communication",
+        "interpretation",
+        "observation"
+      ],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "source_evidence_records": [
+        "SRC-0035",
+        "SRC-0130",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-10",
+        "AFQR-14",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs signal handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0255"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "owner_evidence_rationale": "AFQR-20 explicitly owns the bounded signal contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-031",
+      "root_term": "communication",
+      "canonical_form": "communication",
+      "definition": "A communicative exchange envelope, distinct from signal delivery and interpretation.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-14",
+        "owner_scope": "AFQR-14 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "communication as synonym for observation",
+        "communication as synonym for signal",
+        "communication as synonym for interpretation"
+      ],
+      "explicit_non_equivalences": [
+        "interpretation",
+        "observation",
+        "signal"
+      ],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "source_evidence_records": [
+        "SRC-0035",
+        "SRC-0130",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-10",
+        "AFQR-14",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs communication handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0103"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+      ],
+      "owner_evidence_rationale": "AFQR-14 explicitly owns the bounded communication contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-032",
+      "root_term": "interpretation",
+      "canonical_form": "interpretation",
+      "definition": "A meaning-assignment result, not delivery, observation, belief, or knowledge.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-14",
+        "owner_scope": "AFQR-14 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "interpretation as synonym for observation",
+        "interpretation as synonym for signal",
+        "interpretation as synonym for communication"
+      ],
+      "explicit_non_equivalences": [
+        "communication",
+        "observation",
+        "signal"
+      ],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "source_evidence_records": [
+        "SRC-0035",
+        "SRC-0130",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-10",
+        "AFQR-14",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs interpretation handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0103"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+      ],
+      "owner_evidence_rationale": "AFQR-14 explicitly owns the bounded interpretation contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-033",
+      "root_term": "jurisdiction",
+      "canonical_form": "jurisdiction",
+      "definition": "The bounded scope of institutional competence, not reputation or social state.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-15",
+        "owner_scope": "AFQR-15 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-09",
+        "AFQR-13"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "jurisdiction as synonym for authority",
+        "jurisdiction as synonym for institution",
+        "jurisdiction as synonym for social state"
+      ],
+      "explicit_non_equivalences": [
+        "authority",
+        "institution",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "source_evidence_records": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs jurisdiction handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0125"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "owner_evidence_rationale": "AFQR-15 explicitly owns the bounded jurisdiction contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-034",
+      "root_term": "institution",
+      "canonical_form": "institution",
+      "definition": "A governed social organization, not authority itself.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-15",
+        "owner_scope": "AFQR-15 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-09",
+        "AFQR-13"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "institution as synonym for authority",
+        "institution as synonym for jurisdiction",
+        "institution as synonym for social state"
+      ],
+      "explicit_non_equivalences": [
+        "authority",
+        "jurisdiction",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "source_evidence_records": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs institution handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0125"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "owner_evidence_rationale": "AFQR-15 explicitly owns the bounded institution contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-035",
+      "root_term": "social state",
+      "canonical_form": "social state",
+      "definition": "A social-domain condition owned by AFQR-13, not jurisdiction, agency, or responsibility.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-13",
+        "owner_scope": "AFQR-13 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-09",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-15"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "social state as synonym for authority",
+        "social state as synonym for agency",
+        "social state as synonym for responsibility",
+        "social state as synonym for jurisdiction"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "authority",
+        "behavior",
+        "institution",
+        "jurisdiction",
+        "motivation",
+        "responsibility"
+      ],
+      "collision_ids": [
+        "COLL-08",
+        "COLL-10"
+      ],
+      "source_evidence_records": [
+        "SRC-0012",
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-09",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs social state handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0082"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+      ],
+      "owner_evidence_rationale": "AFQR-13 explicitly owns the bounded social state contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-036",
+      "root_term": "embodiment",
+      "canonical_form": "embodiment",
+      "definition": "The typed manner in which an entity is physically or otherwise instantiated.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-16",
+        "owner_scope": "AFQR-16 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "embodiment as synonym for integrity",
+        "embodiment as synonym for environment",
+        "embodiment as synonym for space",
+        "embodiment as synonym for topology"
+      ],
+      "explicit_non_equivalences": [
+        "environment",
+        "integrity",
+        "space",
+        "topology"
+      ],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "source_evidence_records": [
+        "SRC-0184",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs embodiment handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0152"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+      ],
+      "owner_evidence_rationale": "AFQR-16 explicitly owns the bounded embodiment contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-037",
+      "root_term": "environment",
+      "canonical_form": "environment",
+      "definition": "A domain context of exposures and processes, not space or topology.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-17",
+        "owner_scope": "AFQR-17 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-16",
+        "AFQR-18"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "environment as synonym for integrity",
+        "environment as synonym for embodiment",
+        "environment as synonym for space",
+        "environment as synonym for topology"
+      ],
+      "explicit_non_equivalences": [
+        "embodiment",
+        "integrity",
+        "space",
+        "topology"
+      ],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "source_evidence_records": [
+        "SRC-0184",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs environment handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0180"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+      ],
+      "owner_evidence_rationale": "AFQR-17 explicitly owns the bounded environment contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-038",
+      "root_term": "space",
+      "canonical_form": "space",
+      "definition": "A spatiotemporal frame concept, not a grid default.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-18",
+        "owner_scope": "AFQR-18 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-16",
+        "AFQR-17"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "space as synonym for integrity",
+        "space as synonym for embodiment",
+        "space as synonym for environment",
+        "space as synonym for topology"
+      ],
+      "explicit_non_equivalences": [
+        "embodiment",
+        "environment",
+        "integrity",
+        "topology"
+      ],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "source_evidence_records": [
+        "SRC-0184",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs space handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0207"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
+      ],
+      "owner_evidence_rationale": "AFQR-18 explicitly owns the bounded space contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-039",
+      "root_term": "topology",
+      "canonical_form": "topology",
+      "definition": "Connectivity and adjacency structure, without legal, causal, or ownership implication.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-18",
+        "owner_scope": "AFQR-18 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-16",
+        "AFQR-17"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "topology as synonym for integrity",
+        "topology as synonym for embodiment",
+        "topology as synonym for environment",
+        "topology as synonym for space"
+      ],
+      "explicit_non_equivalences": [
+        "embodiment",
+        "environment",
+        "integrity",
+        "space"
+      ],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "source_evidence_records": [
+        "SRC-0184",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": false,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs topology handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0207"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
+      ],
+      "owner_evidence_rationale": "AFQR-18 explicitly owns the bounded topology contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-040",
+      "root_term": "motivation",
+      "canonical_form": "motivation",
+      "definition": "A proposed or represented reason, not agency, consent, or authorship.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-12",
+        "owner_scope": "AFQR-12 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-11",
+        "AFQR-13"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "motivation as synonym for agency",
+        "motivation as synonym for responsibility",
+        "motivation as synonym for social state",
+        "motivation as synonym for behavior"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "behavior",
+        "responsibility",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "source_evidence_records": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs motivation handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0072"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
+      ],
+      "owner_evidence_rationale": "AFQR-12 explicitly owns the bounded motivation contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    },
+    {
+      "term_id": "TERM-041",
+      "root_term": "behavior",
+      "canonical_form": "behavior",
+      "definition": "Observed or predicted conduct, not agency, responsibility, or consent.",
+      "lexicon_term_class": "canonical_term",
+      "lexicon_status": "accepted",
+      "vocabulary_disposition": "canonical_distinct_type",
+      "unqualified_usage": "allowed",
+      "type_owner": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-12",
+        "owner_scope": "AFQR-12 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "explicit_nonowners": [
+        "AFQR-11",
+        "AFQR-13"
+      ],
+      "qualified_forms": [],
+      "allowed_aliases": [],
+      "disallowed_aliases": [
+        "behavior as synonym for agency",
+        "behavior as synonym for responsibility",
+        "behavior as synonym for social state",
+        "behavior as synonym for motivation"
+      ],
+      "explicit_non_equivalences": [
+        "agency",
+        "motivation",
+        "responsibility",
+        "social state"
+      ],
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "source_evidence_records": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+      ],
+      "consumer_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "donor_leakage_risk": "high: familiar donor usage must remain source-local unless separately accepted",
+      "corpus_scale_pressure": "Must remain distinct across 200\u2013400 heterogeneous donor sources.",
+      "doctrine_escalation_required": true,
+      "r1c_handoff_required": true,
+      "r1c_handoff_questions": [
+        "What cross-owner invariant governs behavior handoffs without defining runtime behavior?"
+      ],
+      "notes": "Vocabulary ownership only; grants no runtime, conversion, canon, sourcebook, model, or live-play authority.",
+      "owner_evidence_records": [
+        "SRC-0072"
+      ],
+      "owner_evidence_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
+      ],
+      "owner_evidence_rationale": "AFQR-12 explicitly owns the bounded behavior contract; mentions, candidates, scheduler placement, bridge consumption, and handoffs were excluded from ownership."
+    }
+  ],
+  "collision_resolutions": [
+    {
+      "collision_id": "COLL-01",
+      "source_terms": [
+        "state",
+        "truth",
+        "transition",
+        "transaction",
+        "event"
+      ],
+      "source_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "r1a_classification": "overloaded",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "state": "R1B shared vocabulary",
+        "truth": "R1B shared vocabulary",
+        "transition": "AFQR-01",
+        "transaction": "AFQR-01",
+        "event": "R1B shared vocabulary"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "state = truth",
+        "truth = transition",
+        "transition = transaction",
+        "transaction = event"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for state.",
+        "Use a qualified form for truth."
+      ],
+      "explicit_non_equivalences": [
+        "state != truth",
+        "state != transition",
+        "state != transaction",
+        "state != event",
+        "truth != transition",
+        "truth != transaction",
+        "truth != event",
+        "transition != transaction",
+        "transition != event",
+        "transaction != event"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-01; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0035",
+        "SRC-0149"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-02",
+      "source_terms": [
+        "command",
+        "attempt",
+        "action",
+        "capability",
+        "opportunity",
+        "target",
+        "resolution"
+      ],
+      "source_afqrs": [
+        "AFQR-02",
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "r1a_classification": "nested",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "command": "AFQR-02",
+        "attempt": "AFQR-02",
+        "action": "AFQR-03",
+        "capability": "R1B shared vocabulary",
+        "opportunity": "AFQR-19",
+        "target": "AFQR-19",
+        "resolution": "R1B shared vocabulary"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "command = attempt",
+        "attempt = action",
+        "action = capability",
+        "capability = opportunity",
+        "opportunity = target",
+        "target = resolution"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for resolution."
+      ],
+      "explicit_non_equivalences": [
+        "command != attempt",
+        "command != action",
+        "command != capability",
+        "command != opportunity",
+        "command != target",
+        "command != resolution",
+        "attempt != action",
+        "attempt != capability",
+        "attempt != opportunity",
+        "attempt != target",
+        "attempt != resolution",
+        "action != capability",
+        "action != opportunity",
+        "action != target",
+        "action != resolution",
+        "capability != opportunity",
+        "capability != target",
+        "capability != resolution",
+        "opportunity != target",
+        "opportunity != resolution",
+        "target != resolution"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-02; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0005",
+        "SRC-0006",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-03",
+      "source_terms": [
+        "identity",
+        "owner",
+        "authority",
+        "agency",
+        "responsibility"
+      ],
+      "source_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "r1a_classification": "overloaded",
+      "r1b_status": "partially_resolved_with_escalation",
+      "term_owner_assignments": {
+        "identity": "AFQR-08",
+        "owner": "Doctrine Council",
+        "authority": "R1B shared vocabulary",
+        "agency": "AFQR-11",
+        "responsibility": "AFQR-11"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "identity = owner",
+        "owner = authority",
+        "authority = agency",
+        "agency = responsibility"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for owner.",
+        "Use a qualified form for authority."
+      ],
+      "explicit_non_equivalences": [
+        "identity != owner",
+        "identity != authority",
+        "identity != agency",
+        "identity != responsibility",
+        "owner != authority",
+        "owner != agency",
+        "owner != responsibility",
+        "authority != agency",
+        "authority != responsibility",
+        "agency != responsibility"
+      ],
+      "remaining_doctrine_questions": [
+        "Which substantive attribution rules govern identity, owner, authority, agency, responsibility?"
+      ],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-03; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-04",
+      "source_terms": [
+        "claim",
+        "evidence",
+        "belief",
+        "knowledge",
+        "observation"
+      ],
+      "source_afqrs": [
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1a_classification": "nested",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "claim": "AFQR-06",
+        "evidence": "R1B shared vocabulary",
+        "belief": "AFQR-10",
+        "knowledge": "AFQR-10",
+        "observation": "R1B shared vocabulary"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "claim = evidence",
+        "evidence = belief",
+        "belief = knowledge",
+        "knowledge = observation"
+      ],
+      "qualification_rules": [],
+      "explicit_non_equivalences": [
+        "claim != evidence",
+        "claim != belief",
+        "claim != knowledge",
+        "claim != observation",
+        "evidence != belief",
+        "evidence != knowledge",
+        "evidence != observation",
+        "belief != knowledge",
+        "belief != observation",
+        "knowledge != observation"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-04; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0009",
+        "SRC-0035",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-05",
+      "source_terms": [
+        "relation",
+        "dependency",
+        "obligation",
+        "integrity"
+      ],
+      "source_afqrs": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-16"
+      ],
+      "r1a_classification": "adjacent",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "relation": "AFQR-09",
+        "dependency": "AFQR-09",
+        "obligation": "AFQR-09",
+        "integrity": "AFQR-16"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "relation = dependency",
+        "dependency = obligation",
+        "obligation = integrity"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for integrity."
+      ],
+      "explicit_non_equivalences": [
+        "relation != dependency",
+        "relation != obligation",
+        "relation != integrity",
+        "dependency != obligation",
+        "dependency != integrity",
+        "obligation != integrity"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-05; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0008",
+        "SRC-0012",
+        "SRC-0184"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-06",
+      "source_terms": [
+        "time",
+        "causality",
+        "process",
+        "transition"
+      ],
+      "source_afqrs": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "r1a_classification": "overloaded",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "time": "AFQR-04",
+        "causality": "AFQR-04",
+        "process": "AFQR-17",
+        "transition": "AFQR-01"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "time = causality",
+        "causality = process",
+        "process = transition"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for time."
+      ],
+      "explicit_non_equivalences": [
+        "time != causality",
+        "time != process",
+        "time != transition",
+        "causality != process",
+        "causality != transition",
+        "process != transition"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-06; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0004",
+        "SRC-0007",
+        "SRC-0092",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-07",
+      "source_terms": [
+        "signal",
+        "communication",
+        "interpretation",
+        "observation"
+      ],
+      "source_afqrs": [
+        "AFQR-10",
+        "AFQR-14",
+        "AFQR-20"
+      ],
+      "r1a_classification": "nested",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "signal": "AFQR-20",
+        "communication": "AFQR-14",
+        "interpretation": "AFQR-14",
+        "observation": "R1B shared vocabulary"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "signal = communication",
+        "communication = interpretation",
+        "interpretation = observation"
+      ],
+      "qualification_rules": [],
+      "explicit_non_equivalences": [
+        "signal != communication",
+        "signal != interpretation",
+        "signal != observation",
+        "communication != interpretation",
+        "communication != observation",
+        "interpretation != observation"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-07; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0035",
+        "SRC-0130",
+        "SRC-0255"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-08",
+      "source_terms": [
+        "jurisdiction",
+        "institution",
+        "authority",
+        "social state"
+      ],
+      "source_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "r1a_classification": "adjacent",
+      "r1b_status": "partially_resolved_with_escalation",
+      "term_owner_assignments": {
+        "jurisdiction": "AFQR-15",
+        "institution": "AFQR-15",
+        "authority": "R1B shared vocabulary",
+        "social state": "AFQR-13"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "jurisdiction = institution",
+        "institution = authority",
+        "authority = social state"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for authority."
+      ],
+      "explicit_non_equivalences": [
+        "jurisdiction != institution",
+        "jurisdiction != authority",
+        "jurisdiction != social state",
+        "institution != authority",
+        "institution != social state",
+        "authority != social state"
+      ],
+      "remaining_doctrine_questions": [
+        "Which substantive attribution rules govern jurisdiction, institution, authority, social state?"
+      ],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-08; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-09",
+      "source_terms": [
+        "embodiment",
+        "integrity",
+        "environment",
+        "space",
+        "topology"
+      ],
+      "source_afqrs": [
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "r1a_classification": "adjacent",
+      "r1b_status": "resolved_for_vocabulary",
+      "term_owner_assignments": {
+        "embodiment": "AFQR-16",
+        "integrity": "AFQR-16",
+        "environment": "AFQR-17",
+        "space": "AFQR-18",
+        "topology": "AFQR-18"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "embodiment = integrity",
+        "integrity = environment",
+        "environment = space",
+        "space = topology"
+      ],
+      "qualification_rules": [
+        "Use a qualified form for integrity."
+      ],
+      "explicit_non_equivalences": [
+        "embodiment != integrity",
+        "embodiment != environment",
+        "embodiment != space",
+        "embodiment != topology",
+        "integrity != environment",
+        "integrity != space",
+        "integrity != topology",
+        "environment != space",
+        "environment != topology",
+        "space != topology"
+      ],
+      "remaining_doctrine_questions": [],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-09; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0184",
+        "SRC-0209",
+        "SRC-0231"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    },
+    {
+      "collision_id": "COLL-10",
+      "source_terms": [
+        "motivation",
+        "behavior",
+        "agency",
+        "responsibility",
+        "social state"
+      ],
+      "source_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "r1a_classification": "contradictory-risk",
+      "r1b_status": "partially_resolved_with_escalation",
+      "term_owner_assignments": {
+        "motivation": "AFQR-12",
+        "behavior": "AFQR-12",
+        "agency": "AFQR-11",
+        "responsibility": "AFQR-11",
+        "social state": "AFQR-13"
+      },
+      "accepted_aliases": [],
+      "rejected_aliases": [
+        "motivation = behavior",
+        "behavior = agency",
+        "agency = responsibility",
+        "responsibility = social state"
+      ],
+      "qualification_rules": [],
+      "explicit_non_equivalences": [
+        "motivation != behavior",
+        "motivation != agency",
+        "motivation != responsibility",
+        "motivation != social state",
+        "behavior != agency",
+        "behavior != responsibility",
+        "behavior != social state",
+        "agency != responsibility",
+        "agency != social state",
+        "responsibility != social state"
+      ],
+      "remaining_doctrine_questions": [
+        "Which substantive attribution rules govern motivation, behavior, agency, responsibility, social state?"
+      ],
+      "r1c_handoffs": [
+        "Define cross-owner dependency and invariant boundaries for COLL-10; do not define runtime behavior."
+      ],
+      "source_evidence_records": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "repository_evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md",
+        "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml"
+      ],
+      "corpus_collapse_risk": "high to critical if donor homonyms are treated as one Astra type",
+      "resolution_rationale": "Distinct owner postures and non-equivalences prevent vocabulary collapse; substantive mechanics remain outside R1B."
+    }
+  ],
+  "alias_records": [],
+  "qualification_rules": [
+    {
+      "root_term": "state",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "epistemic state",
+        "social state",
+        "environmental state"
+      ]
+    },
+    {
+      "root_term": "truth",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "authoritative world truth",
+        "observer-relative truth"
+      ]
+    },
+    {
+      "root_term": "event",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "committed event receipt",
+        "scheduled effect"
+      ]
+    },
+    {
+      "root_term": "capability",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "action-route capability requirement",
+        "capability readiness determination"
+      ]
+    },
+    {
+      "root_term": "resolution",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "action resolution",
+        "claim arbitration result",
+        "resolution group"
+      ]
+    },
+    {
+      "root_term": "owner",
+      "unqualified_usage": "reserved",
+      "qualified_forms": [
+        "state owner"
+      ]
+    },
+    {
+      "root_term": "authority",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "project authority",
+        "institutional authority",
+        "governed-relation authority record"
+      ]
+    },
+    {
+      "root_term": "evidence",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "arbitration evidence",
+        "epistemic evidence record",
+        "sensing evidence candidate"
+      ]
+    },
+    {
+      "root_term": "observation",
+      "unqualified_usage": "qualified_only",
+      "qualified_forms": [
+        "sensing observation candidate",
+        "epistemic observation record"
+      ]
+    }
+  ],
+  "r1c_handoffs": [
+    {
+      "collision_id": "COLL-01",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-01; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-02",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-02; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-03",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-03; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-04",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-04; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-05",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-05; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-06",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-06; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-07",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-07; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-08",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-08; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-09",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-09; do not define runtime behavior."
+      ]
+    },
+    {
+      "collision_id": "COLL-10",
+      "questions": [
+        "Define cross-owner dependency and invariant boundaries for COLL-10; do not define runtime behavior."
+      ]
+    }
+  ],
+  "aggregate_counts": {
+    "root_terms": 41,
+    "collisions": 10,
+    "accepted_aliases": 0,
+    "qualified_only_terms": 8,
+    "escalated_collisions": 3,
+    "r1c_handoff_terms": 41
+  },
+  "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",
+  "audit_method": "Direct primary-source ownership review of all 41 terms, completed with state semantic-owner correction and definition/disposition consistency validation; commitment, scheduling, candidate production, consumption, and handoff remain nonownership postures."
+}
