@@ -34,7 +34,7 @@ The R1C substrate records are consumed, not implemented. The generalized governe
 
 ## 9. Escalations
 
-COLL-03, COLL-08, and COLL-10 remain open. Their safe interim handoffs and prohibited inferences are explicit below; no universal owner is invented.
+COLL-03, COLL-08, and COLL-10 remain open exactly as recorded by R1B. COLL-03 joins AFQR-01 qualified state/write-owner and AFQR-08 identity boundaries to AFQR-11/15 doctrine; capability readiness is instead a governed AFQR-03/19 qualified-family handoff. COLL-08 joins AFQR-09 governed-relation lifecycle to AFQR-13/15 doctrine without manufacturing jurisdiction or legitimacy. COLL-10 is primarily external AFQR-11/12/13 motivation, behavior, agency, responsibility, and social-state doctrine; bounded AFQR-06/08/09 outputs cannot author it. Every escalation goes only to R1D-AGENCY, and no universal owner is invented.
 
 ## 10. Corpus-scale pressure test
 
@@ -174,7 +174,7 @@ Every required pressure has a landing, external handoff, source-local retention,
         "DEP-019"
       ],
       "unresolved_seams": [
-        "none beyond preserved R1B/R1C boundaries"
+        "COLL-03: qualified state/write-owner semantics establish neither substantive ownership, authority, agency, consent, control, nor responsibility"
       ],
       "later_implementation_handoff": "future owner contract after R1E and later explicit authorization; no schema, service, persistence, or runtime work here"
     },
@@ -252,7 +252,7 @@ Every required pressure has a landing, external handoff, source-local retention,
       "cross_family_inputs": [],
       "cross_family_outputs": [],
       "unresolved_seams": [
-        "COLL-03 capability/readiness seam remains escalated"
+        "governed R1D-WORLD boundary: action-route capability requirement remains AFQR-03; capability readiness determination remains AFQR-19; neither owns unqualified capability"
       ],
       "later_implementation_handoff": "future owner contract after R1E and later explicit authorization; no schema, service, persistence, or runtime work here"
     },
@@ -470,7 +470,7 @@ Every required pressure has a landing, external handoff, source-local retention,
         "DEP-060"
       ],
       "unresolved_seams": [
-        "COLL-03 identity cannot resolve capability/agency; COLL-08 remains escalated"
+        "COLL-03: AFQR-01 qualified state/write-owner semantics and AFQR-08 identity semantics establish neither substantive ownership, authority, agency, nor responsibility"
       ],
       "later_implementation_handoff": "future owner contract after R1E and later explicit authorization; no schema, service, persistence, or runtime work here"
     },
@@ -532,7 +532,7 @@ Every required pressure has a landing, external handoff, source-local retention,
         "DEP-071"
       ],
       "unresolved_seams": [
-        "COLL-08 relation/jurisdiction seam remains escalated"
+        "COLL-08: governed relation/dependency lifecycle does not create jurisdiction, institutional legitimacy, authority, or social state"
       ],
       "later_implementation_handoff": "future owner contract after R1E and later explicit authorization; no schema, service, persistence, or runtime work here"
     }
@@ -588,7 +588,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-002",
@@ -640,7 +661,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-003",
@@ -692,7 +734,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-004",
@@ -744,7 +807,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-005",
@@ -796,7 +880,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-006",
@@ -848,7 +953,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-007",
@@ -901,7 +1027,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-008",
@@ -953,7 +1100,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "r1b_terms": [
+          "TERM-003",
+          "TERM-004"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-003",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          },
+          {
+            "term_id": "TERM-004",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-01"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-020",
@@ -999,7 +1167,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "r1b_terms": [
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-021",
@@ -1045,7 +1228,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "r1b_terms": [
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-022",
@@ -1091,7 +1289,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "r1b_terms": [
+          "TERM-006"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-006",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-02"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-024",
@@ -1143,7 +1356,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "r1b_terms": [
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-025",
@@ -1195,7 +1429,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "r1b_terms": [
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-026",
@@ -1247,7 +1502,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "r1b_terms": [
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-027",
@@ -1300,7 +1576,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "r1b_terms": [
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-028",
@@ -1352,7 +1649,28 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "r1b_terms": [
+          "TERM-027",
+          "TERM-028"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-027",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          },
+          {
+            "term_id": "TERM-028",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-04"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-032",
@@ -1390,7 +1708,14 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-033",
@@ -1428,7 +1753,14 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-034",
@@ -1466,7 +1798,14 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-035",
@@ -1505,7 +1844,14 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-036",
@@ -1543,7 +1889,14 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-05",
+        "r1b_terms": [],
+        "r1b_term_bindings": [],
+        "ownership_basis": "direct_source_contract_not_producer_status"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-047",
@@ -1596,7 +1949,29 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-06",
+        "r1b_terms": [
+          "TERM-018",
+          "TERM-019"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-048",
@@ -1650,7 +2025,29 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-06",
+        "r1b_terms": [
+          "TERM-018",
+          "TERM-019"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-049",
@@ -1703,7 +2100,29 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-06",
+        "r1b_terms": [
+          "TERM-018",
+          "TERM-019"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-018",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          },
+          {
+            "term_id": "TERM-019",
+            "qualified_form": "arbitration evidence",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-06"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-052",
@@ -1750,7 +2169,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-08",
+        "r1b_terms": [
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-053",
@@ -1797,7 +2231,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-08",
+        "r1b_terms": [
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-054",
@@ -1844,7 +2293,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-08",
+        "r1b_terms": [
+          "TERM-013"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-013",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-08"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-061",
@@ -1890,7 +2354,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "r1b_terms": [
+          "TERM-023"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-062",
@@ -1936,7 +2415,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "r1b_terms": [
+          "TERM-023"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-063",
@@ -1982,7 +2476,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "r1b_terms": [
+          "TERM-023"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-064",
@@ -2028,7 +2537,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "r1b_terms": [
+          "TERM-023"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-065",
@@ -2074,7 +2598,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-001"
       ],
       "cycle_or_dependency_risk_treatment": false,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "r1b_terms": [
+          "TERM-023"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     },
     {
       "disposition_id": "CORE-INT-DEP-066",
@@ -2121,7 +2660,22 @@ Every required pressure has a landing, external handoff, source-local retention,
         "INV-005"
       ],
       "cycle_or_dependency_risk_treatment": true,
-      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only"
+      "downstream_implementation_status": "unimplemented and unauthorized; doctrine handoff only",
+      "r1b_semantic_binding": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "r1b_terms": [
+          "TERM-023"
+        ],
+        "r1b_term_bindings": [
+          {
+            "term_id": "TERM-023",
+            "owner_kind": "afqr",
+            "owner_id": "AFQR-09"
+          }
+        ],
+        "ownership_basis": "merged_r1b_term_owner"
+      }
     }
   ],
   "boundary_dispositions": [
@@ -2169,7 +2723,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-10",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-009; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-010",
@@ -2215,7 +2774,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-11",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-010; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-011",
@@ -2261,7 +2825,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-12",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-011; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-012",
@@ -2307,7 +2876,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-13",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-012; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-013",
@@ -2353,7 +2927,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-14",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-013; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-014",
@@ -2399,7 +2978,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-15",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-014; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-015",
@@ -2445,7 +3029,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-16",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-015; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-016",
@@ -2491,7 +3080,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-17",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-016; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-017",
@@ -2537,7 +3131,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-18",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-017; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-018",
@@ -2583,7 +3182,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-19",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-018; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-019",
@@ -2629,7 +3233,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-01",
+      "consumer": "AFQR-20",
+      "handoff_kind": "commit",
+      "typed_producer_output": "Bounded commit output identified by DEP-019; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-023",
@@ -2669,7 +3278,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-02",
+      "consumer": "AFQR-19",
+      "handoff_kind": "command_lifecycle",
+      "typed_producer_output": "Bounded command_lifecycle output identified by DEP-023; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-029",
@@ -2715,7 +3329,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-04",
+      "consumer": "AFQR-18",
+      "handoff_kind": "time_causality",
+      "typed_producer_output": "Bounded time_causality output identified by DEP-029; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-030",
@@ -2761,7 +3380,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-04",
+      "consumer": "AFQR-19",
+      "handoff_kind": "time_causality",
+      "typed_producer_output": "Bounded time_causality output identified by DEP-030; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-031",
@@ -2807,7 +3431,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-04",
+      "consumer": "AFQR-20",
+      "handoff_kind": "time_causality",
+      "typed_producer_output": "Bounded time_causality output identified by DEP-031; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-037",
@@ -2839,7 +3468,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-10",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-037; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-038",
@@ -2871,7 +3505,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-11",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-038; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-039",
@@ -2903,7 +3542,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-13",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-039; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-040",
@@ -2935,7 +3579,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-14",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-040; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-041",
@@ -2967,7 +3616,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-15",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-041; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-042",
@@ -2999,7 +3653,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-16",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-042; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-043",
@@ -3031,7 +3690,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-17",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-043; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-044",
@@ -3063,7 +3727,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-18",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-044; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-045",
@@ -3095,7 +3764,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-19",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-045; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-046",
@@ -3127,7 +3801,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-05",
+      "consumer": "AFQR-20",
+      "handoff_kind": "interface_bridge",
+      "typed_producer_output": "Bounded interface_bridge output identified by DEP-046; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-050",
@@ -3174,7 +3853,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-06",
+      "consumer": "AFQR-10",
+      "handoff_kind": "claim_evidence",
+      "typed_producer_output": "Bounded claim_evidence output identified by DEP-050; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-051",
@@ -3221,7 +3905,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-06",
+      "consumer": "AFQR-15",
+      "handoff_kind": "claim_evidence",
+      "typed_producer_output": "Bounded claim_evidence output identified by DEP-051; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-055",
@@ -3261,7 +3950,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-08",
+      "consumer": "AFQR-10",
+      "handoff_kind": "identity_evidence",
+      "typed_producer_output": "Bounded identity_evidence output identified by DEP-055; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-056",
@@ -3301,7 +3995,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-08",
+      "consumer": "AFQR-11",
+      "handoff_kind": "identity_evidence",
+      "typed_producer_output": "Bounded identity_evidence output identified by DEP-056; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-057",
@@ -3341,7 +4040,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-08",
+      "consumer": "AFQR-12",
+      "handoff_kind": "identity_evidence",
+      "typed_producer_output": "Bounded identity_evidence output identified by DEP-057; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-058",
@@ -3381,7 +4085,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-08",
+      "consumer": "AFQR-13",
+      "handoff_kind": "identity_evidence",
+      "typed_producer_output": "Bounded identity_evidence output identified by DEP-058; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-059",
@@ -3421,7 +4130,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-08",
+      "consumer": "AFQR-15",
+      "handoff_kind": "identity_evidence",
+      "typed_producer_output": "Bounded identity_evidence output identified by DEP-059; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-060",
@@ -3461,7 +4175,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-08",
+      "consumer": "AFQR-16",
+      "handoff_kind": "identity_evidence",
+      "typed_producer_output": "Bounded identity_evidence output identified by DEP-060; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-067",
@@ -3501,7 +4220,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-09",
+      "consumer": "AFQR-11",
+      "handoff_kind": "relation_lifecycle",
+      "typed_producer_output": "Bounded relation_lifecycle output identified by DEP-067; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-068",
@@ -3541,7 +4265,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-09",
+      "consumer": "AFQR-13",
+      "handoff_kind": "relation_lifecycle",
+      "typed_producer_output": "Bounded relation_lifecycle output identified by DEP-068; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-069",
@@ -3581,7 +4310,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-09",
+      "consumer": "AFQR-15",
+      "handoff_kind": "relation_lifecycle",
+      "typed_producer_output": "Bounded relation_lifecycle output identified by DEP-069; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-AGENCY"
     },
     {
       "disposition_id": "CORE-BND-DEP-070",
@@ -3621,7 +4355,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-09",
+      "consumer": "AFQR-16",
+      "handoff_kind": "relation_lifecycle",
+      "typed_producer_output": "Bounded relation_lifecycle output identified by DEP-070; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     },
     {
       "disposition_id": "CORE-BND-DEP-071",
@@ -3661,7 +4400,12 @@ Every required pressure has a landing, external handoff, source-local retention,
           "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
         ]
       },
-      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner"
+      "failure_behavior": "defer_or_escalate_without_fabricating_truth_or_owner",
+      "producer": "AFQR-09",
+      "consumer": "AFQR-17",
+      "handoff_kind": "relation_lifecycle",
+      "typed_producer_output": "Bounded relation_lifecycle output identified by DEP-071; scope remains limited to the producing AFQR source contract.",
+      "external_family": "R1D-WORLD"
     }
   ],
   "cycle_resolutions": [
@@ -3778,105 +4522,85 @@ Every required pressure has a landing, external handoff, source-local retention,
     {
       "substrate_id": "SUB-001",
       "name": "generalized governed-relation registry",
-      "why_required": "Dependency, obligation, revocation, jurisdiction, and social/institutional relation pressure requires owner-qualified relation references without turning reachability or storage into legal or social authority.",
-      "requiring_afqrs": [
-        "AFQR-09",
-        "AFQR-13",
-        "AFQR-15"
-      ],
-      "source_evidence_records": [
+      "core_family_scope": "AFQR-09 governed-relation and dependency lifecycle",
+      "external_family_scope": "AFQR-13 social state and AFQR-15 jurisdiction/institution/authority",
+      "r1d_core_may_consolidate": "relation lifecycle, revocation, migration, orphaning, cascade boundaries, and reachability non-equivalence",
+      "r1d_core_must_not_implement": "schemas, fields, graph registry, persistence, APIs, or inference of obligation/jurisdiction",
+      "later_owner_or_gate": "R1D-AGENCY, then R1E and a later explicit implementation gate",
+      "collapse_risk": "Omission collapses dependency into obligation, reachability into jurisdiction, or relation records into institutional authority/social standing.",
+      "source_evidence_identifiers": [
         "SRC-0012",
         "SRC-0082",
         "SRC-0125"
       ],
-      "source_evidence_paths": [
+      "source_paths": [
         "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
       ],
-      "future_doctrine_owner": "unresolved: AFQR-09 owns governed relation/dependency semantics while COLL-08 prevents a universal jurisdiction, institution, authority, dependency, or social-state owner",
-      "later_gate": "R1D doctrine-family contracts; any implementation is deferred beyond R1",
-      "r1c_may_define": "R1C defines typed relation handoff and non-transfer boundaries and preserves COLL-08; it does not define a registry schema.",
-      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
-      "failure_or_collapse_risk": "Omission collapses dependency into obligation, reachability into jurisdiction, or relation records into institutional authority/social standing.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-002",
       "name": "generalized bitemporal truth/evidence store",
-      "why_required": "Claim evidence, epistemic state, observation, logical time, and hidden-truth pressure require distinct owner-qualified valid-time and record-time handoffs without equating observation, evidence, or schedule with truth.",
-      "requiring_afqrs": [
-        "AFQR-04",
-        "AFQR-06",
-        "AFQR-10",
-        "AFQR-20"
-      ],
-      "source_evidence_records": [
+      "core_family_scope": "AFQR-04 logical ordering and AFQR-06 claim/evidence provenance, admissibility history, and non-overwrite constraints",
+      "external_family_scope": "AFQR-10 epistemic truth and AFQR-20 sensing",
+      "r1d_core_may_consolidate": "core-side ordering, provenance, admissibility history, and non-overwrite doctrine",
+      "r1d_core_must_not_implement": "truth store, evidence database, sensing service, schemas, fields, persistence, or APIs",
+      "later_owner_or_gate": "R1D-AGENCY and R1D-WORLD, then R1E and a later explicit implementation gate",
+      "collapse_risk": "Omission permits hidden-truth leakage, retroactive evidence overwrite, or logical time to manufacture truth/admissibility.",
+      "source_evidence_identifiers": [
         "SRC-0007",
         "SRC-0009",
         "SRC-0022",
         "SRC-0255"
       ],
-      "source_evidence_paths": [
+      "source_paths": [
         "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
       ],
-      "future_doctrine_owner": "unresolved cross-owner substrate: AFQR-04 time, AFQR-06 arbitration evidence, AFQR-10 epistemic/truth, and AFQR-20 sensing retain their own semantics",
-      "later_gate": "R1D doctrine-family contracts; persistence and runtime realization require a later authorized gate",
-      "r1c_may_define": "R1C defines ordering, provenance, visibility, and non-promotion invariants only.",
-      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
-      "failure_or_collapse_risk": "Omission permits hidden-truth leakage, retroactive evidence overwrite, or logical time to manufacture truth/admissibility.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-003",
       "name": "generalized owner-reducer transaction journal",
-      "why_required": "State ownership, commitment, recovery, replay, command lifecycle, causal order, and dependency consequences require durable receipts that preserve each domain owner and bounded cascade ordering.",
-      "requiring_afqrs": [
-        "AFQR-01",
-        "AFQR-02",
-        "AFQR-04",
-        "AFQR-09"
-      ],
-      "source_evidence_records": [
+      "core_family_scope": "AFQR-01, AFQR-02, AFQR-04, and AFQR-09 transition, command lifecycle, logical order, and dependency-consequence doctrine only",
+      "external_family_scope": "none inside R1D-AGENCY/WORLD; later implementation ownership remains undecided",
+      "r1d_core_may_consolidate": "commitment, recovery, replay, command identity, causal ordering, and dependency-consequence doctrine",
+      "r1d_core_must_not_implement": "journal schemas, fields, reducers, databases, persistence, APIs, or runtime services",
+      "later_owner_or_gate": "R1E and a later explicit implementation gate",
+      "collapse_risk": "Omission allows replay to duplicate commitment, recovery to rewrite command identity, or causal/dependency consequences to recurse without bounds.",
+      "source_evidence_identifiers": [
         "SRC-0004",
         "SRC-0005",
         "SRC-0007",
         "SRC-0012"
       ],
-      "source_evidence_paths": [
+      "source_paths": [
         "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
       ],
-      "future_doctrine_owner": "AFQR-01 for transition/commitment journal doctrine; participating domain semantics remain with AFQR-02, AFQR-04, and AFQR-09",
-      "later_gate": "R1D transition/lifecycle doctrine; runtime journal implementation remains blocked for later runtime gates",
-      "r1c_may_define": "R1C defines owner-preserving lifecycle and cascade handoff constraints, not journal fields or reducers.",
-      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
-      "failure_or_collapse_risk": "Omission allows replay to duplicate commitment, recovery to rewrite command identity, or causal/dependency consequences to recurse without bounds.",
       "status": "classified_unimplemented"
     },
     {
       "substrate_id": "SUB-004",
       "name": "registered interface/bridge hypergraph",
-      "why_required": "AFQR-05 interface, adapter, and bridge ownership requires registered typed cross-system compatibility without allowing bridge compatibility to transfer semantic ownership.",
-      "requiring_afqrs": [
-        "AFQR-05"
-      ],
-      "source_evidence_records": [
+      "core_family_scope": "AFQR-05 registered-interface, bridge, hyperedge, typed-compatibility, and endpoint-nontransfer doctrine only",
+      "external_family_scope": "typed external endpoints retain their R1D-AGENCY or R1D-WORLD semantics",
+      "r1d_core_may_consolidate": "typed compatibility and semantic nontransfer boundaries",
+      "r1d_core_must_not_implement": "registry schema, bridge code, adapters, runtime hypergraph, persistence, or APIs",
+      "later_owner_or_gate": "R1E and a later explicit implementation gate",
+      "collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Astra law.",
+      "source_evidence_identifiers": [
         "SRC-0008"
       ],
-      "source_evidence_paths": [
+      "source_paths": [
         "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md"
       ],
-      "future_doctrine_owner": "AFQR-05",
-      "later_gate": "R1D interface/bridge doctrine; registration services and adapters require a later authorized implementation gate",
-      "r1c_may_define": "R1C defines bridge nonownership, typed endpoint, and compatibility handoff constraints only.",
-      "r1c_must_not_implement": "must_not_implement production schemas, runtime services, persistence, conversion behavior, bridge code, or production imports",
-      "failure_or_collapse_risk": "Omission encourages pairwise ad hoc adapters, package-symbol ownership inference, and donor-specific compatibility becoming Astra law.",
       "status": "classified_unimplemented"
     }
   ],
@@ -3884,44 +4608,149 @@ Every required pressure has a landing, external handoff, source-local retention,
     {
       "record_id": "CORE-ESC-COLL-03",
       "collision_identifier": "COLL-03",
-      "core_family_seam": "AFQR-03 capability requirements and AFQR-08 identity references cannot decide capability-readiness, agency, or responsibility",
-      "prohibited_inference": "No universal owner and no semantic ownership by handoff, admission, identity, relation, or compatibility.",
-      "safe_interim_handoff": "no inference of identity, ownership, authority, agency, or responsibility from adjacent handoffs",
-      "external_family_dependency": "R1D-AGENCY and/or R1D-WORLD owner-qualified doctrine",
-      "blocked_downstream_decision": "R1E and all implementation/conversion gates",
-      "source_evidence": [
-        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml",
-        "docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml"
+      "exact_collision_terms": [
+        "identity",
+        "owner",
+        "authority",
+        "agency",
+        "responsibility"
       ],
-      "escalation_destination": "R1E formal review after all separate R1D families"
+      "affected_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "core_family_afqrs": [
+        "AFQR-01",
+        "AFQR-08"
+      ],
+      "external_family_afqrs": [
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "core_family_seam": "AFQR-01 owns qualified state/write-owner semantics only; AFQR-08 owns identity and continuity only; neither state ownership nor identity establishes substantive ownership, authority, agency, consent, control, or responsibility.",
+      "prohibited_inference": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "safe_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "source_evidence_identifiers": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "downstream_family": "R1D-AGENCY",
+      "blocked_gates": [
+        "R1E",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RT-002G"
+      ],
+      "ledger_escalation_id": "R1B-ESC-001"
     },
     {
       "record_id": "CORE-ESC-COLL-08",
       "collision_identifier": "COLL-08",
-      "core_family_seam": "AFQR-09 governed relations cannot decide jurisdiction, institution, authority, obligation, legal effect, or social standing",
-      "prohibited_inference": "No universal owner and no semantic ownership by handoff, admission, identity, relation, or compatibility.",
-      "safe_interim_handoff": "no inference of jurisdiction, institution, authority, dependency, or social state from graph reachability",
-      "external_family_dependency": "R1D-AGENCY and/or R1D-WORLD owner-qualified doctrine",
-      "blocked_downstream_decision": "R1E and all implementation/conversion gates",
-      "source_evidence": [
-        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml",
-        "docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml"
+      "exact_collision_terms": [
+        "jurisdiction",
+        "institution",
+        "authority",
+        "social state"
       ],
-      "escalation_destination": "R1E formal review after all separate R1D families"
+      "affected_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "core_family_afqrs": [
+        "AFQR-09"
+      ],
+      "external_family_afqrs": [
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "core_family_seam": "AFQR-09 owns governed relation and dependency lifecycle; a relation or dependency does not itself create jurisdiction, institutional legitimacy, authority, or social state. Obligation remains distinct: an accepted qualified obligation form does not make relation existence automatically generate obligation or legal effect.",
+      "prohibited_inference": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "safe_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "source_evidence_identifiers": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "downstream_family": "R1D-AGENCY",
+      "blocked_gates": [
+        "R1E",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RT-002G"
+      ],
+      "ledger_escalation_id": "R1B-ESC-002"
     },
     {
       "record_id": "CORE-ESC-COLL-10",
       "collision_identifier": "COLL-10",
-      "core_family_seam": "AFQR-06 claims, AFQR-08 identity, and AFQR-09 relations must not collapse signal, observation, evidence, interpretation, or knowledge",
-      "prohibited_inference": "No universal owner and no semantic ownership by handoff, admission, identity, relation, or compatibility.",
-      "safe_interim_handoff": "no behavior/motivation prediction replaces agency or responsibility",
-      "external_family_dependency": "R1D-AGENCY and/or R1D-WORLD owner-qualified doctrine",
-      "blocked_downstream_decision": "R1E and all implementation/conversion gates",
-      "source_evidence": [
-        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml",
-        "docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml"
+      "exact_collision_terms": [
+        "motivation",
+        "behavior",
+        "agency",
+        "responsibility",
+        "social state"
       ],
-      "escalation_destination": "R1E formal review after all separate R1D families"
+      "affected_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "core_family_afqrs": [
+        "AFQR-06",
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "external_family_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "core_family_seam": "Primarily external to R1D-CORE: AFQR-06 claim or evidence results do not author motivation or behavior; AFQR-08 identity records do not author agency or responsibility; AFQR-09 governed relations do not author behavior, agency, responsibility, or social state; core-family outputs may be consumed as bounded evidence or references only.",
+      "prohibited_inference": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "safe_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "source_evidence_identifiers": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+      ],
+      "downstream_family": "R1D-AGENCY",
+      "blocked_gates": [
+        "R1E",
+        "R2",
+        "R3",
+        "R4",
+        "R5",
+        "R6",
+        "RT-002G"
+      ],
+      "ledger_escalation_id": "R1B-ESC-003"
     }
   ],
   "corpus_pressure_records": [

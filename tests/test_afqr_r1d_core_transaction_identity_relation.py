@@ -10,6 +10,7 @@ DOC = ROOT / "docs/doctrine/consolidation/afqr_core_transaction_identity_relatio
 R1B = ROOT / "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
 R1C = ROOT / "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"
 AUTH = ROOT / "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
+ESCALATIONS = ROOT / "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"
 CORE = {f"AFQR-{n:02}" for n in range(1, 10)}
 
 
@@ -81,17 +82,45 @@ def test_exact_r1c_internal_and_boundary_coverage_without_duplicates():
 
 def test_dispositions_preserve_r1c_semantics_not_just_ids():
     c, r1c = contract(), load_json(R1C)
+    vocabulary = {term["term_id"]: term for term in load_json(R1B)["term_records"]}
     source = {e["edge_id"]: e for e in r1c["dependency_edge_dispositions"]}
     for d in c["internal_edge_dispositions"]:
         e = source[d["edge_id"]]
         assert (d["producer"], d["consumer"], d["handoff_kind"]) == (e["producer_afqr"], e["consumer_afqr"], e["relation_or_handoff_kind"])
         assert d["semantic_owner"] == e["semantic_type_owner"]
+        assert d["r1b_semantic_binding"] == e["semantic_type_owner"]
+        for binding in d["r1b_semantic_binding"]["r1b_term_bindings"]:
+            term = vocabulary[binding["term_id"]]
+            if "qualified_form" in binding:
+                owners = {(q["qualified_form"], q["owner_kind"], q["owner_id"]) for q in term["qualified_forms"]}
+                assert (binding["qualified_form"], binding["owner_kind"], binding["owner_id"]) in owners
+            else:
+                assert binding["owner_kind"] == term["type_owner"]["owner_kind"]
+                assert binding["owner_id"] == term["type_owner"]["owner_id"]
+        assert d["producer_output"] == e["producer_supplies"]
+        assert d["permitted_consumer_use"] == e["consumer_may_use"]
         assert d["ownership_nontransfer"] == e["ownership_does_not_transfer"]
+        assert d["ordering_or_phase_constraint"] == e["preconditions"]
         assert d["failure_or_unavailable_input_behavior"] == e["unavailable_input_behavior"]
+        assert d["source_evidence"] == {"identifiers": e["source_evidence_records"], "paths": e["source_evidence_paths"]}
+        assert d["cycle_or_dependency_risk_treatment"] == e["cycle_participation"]
     for d in c["boundary_dispositions"]:
+        assert len(d["r1c_edge_ids_covered"]) == 1
         e = source[d["r1c_edge_ids_covered"][0]]
+        core = e["producer_afqr"] if e["producer_afqr"] in CORE else e["consumer_afqr"]
+        external = e["consumer_afqr"] if core == e["producer_afqr"] else e["producer_afqr"]
+        expected_family = "R1D-AGENCY" if 10 <= int(external[-2:]) <= 15 else "R1D-WORLD"
+        assert d["core_family_endpoint"] == core
+        assert d["external_endpoint"] == external
+        assert (d["producer"], d["consumer"]) == (e["producer_afqr"], e["consumer_afqr"])
+        assert d["direction"] == ("export" if e["producer_afqr"] in CORE else "import")
+        assert d["handoff_kind"] == e["relation_or_handoff_kind"]
+        assert d["typed_handoff"] == d["typed_producer_output"] == e["producer_supplies"]
         assert d["semantic_owner"] == e["semantic_type_owner"]
         assert d["ownership_nontransfer"] == e["ownership_does_not_transfer"]
+        assert d["failure_behavior"] == e["unavailable_input_behavior"]
+        assert d["source_evidence"] == {"identifiers": e["source_evidence_records"], "paths": e["source_evidence_paths"]}
+        assert d["external_family"] == expected_family
 
 
 def test_exact_cycle_and_dependency_risk_treatments():
@@ -112,7 +141,48 @@ def test_nonownership_invariants_and_escalations():
     assert all(x in records["AFQR-02"]["explicit_nonowned_concerns"] for x in ("action representation", "opportunity", "target", "resolution"))
     assert all(x in records["AFQR-08"]["explicit_nonowned_concerns"] for x in ("ownership", "agency", "authority", "responsibility"))
     assert all(x in records["AFQR-09"]["explicit_nonowned_concerns"] for x in ("obligation", "jurisdiction", "legal effect", "social standing"))
-    assert {x["collision_identifier"] for x in contract()["escalations"]} == {"COLL-03", "COLL-08", "COLL-10"}
+    actual = {x["collision_identifier"]: x for x in contract()["escalations"]}
+    ledger = {x["collision_ids"][0]: x for x in load_json(ESCALATIONS)["escalations"]}
+    assert set(actual) == set(ledger) == {"COLL-03", "COLL-08", "COLL-10"}
+    expected_external = {"COLL-03": {"AFQR-11", "AFQR-15"}, "COLL-08": {"AFQR-13", "AFQR-15"}, "COLL-10": {"AFQR-11", "AFQR-12", "AFQR-13"}}
+    for collision, record in actual.items():
+        source = ledger[collision]
+        assert set(record["exact_collision_terms"]) == set(source["terms"])
+        assert set(record["affected_afqrs"]) == set(source["affected_afqrs"])
+        assert set(record["source_evidence_identifiers"]) == set(source["source_evidence_records"])
+        assert record["safe_interim_usage"] == source["lawful_interim_usage"]
+        assert record["prohibited_inference"] == source["prohibited_interim_usage"]
+        assert set(record["external_family_afqrs"]) == expected_external[collision]
+        assert record["downstream_family"] == "R1D-AGENCY"
+        assert all((ROOT / path).is_file() for path in record["source_paths"])
+
+
+def test_responsibility_collision_references_match_ledger_taxonomy():
+    records = {x["afqr_id"]: x for x in contract()["responsibility_records"]}
+    ledger = load_json(ESCALATIONS)["escalations"]
+    affected = {collision: set(e["affected_afqrs"]) for e in ledger for collision in e["collision_ids"]}
+    for afqr, record in records.items():
+        collisions = set(re.findall(r"COLL-\d+", " ".join(record["unresolved_seams"])))
+        assert all(afqr in affected[collision] for collision in collisions)
+    assert "COLL-03" not in " ".join(records["AFQR-03"]["unresolved_seams"])
+    assert "capability readiness" not in " ".join(records["AFQR-08"]["unresolved_seams"]).lower()
+    assert "COLL-03" in " ".join(records["AFQR-08"]["unresolved_seams"])
+    assert "COLL-08" in " ".join(records["AFQR-09"]["unresolved_seams"])
+    coll10 = next(x for x in contract()["escalations"] if x["collision_identifier"] == "COLL-10")
+    assert not ({"signal", "observation", "evidence", "interpretation", "knowledge"} & set(coll10["exact_collision_terms"]))
+
+
+def test_substrate_dispositions_have_bounded_core_and_external_scopes():
+    records = {x["substrate_id"]: x for x in contract()["missing_substrates"]}
+    assert set(records) == {"SUB-001", "SUB-002", "SUB-003", "SUB-004"}
+    required = {"core_family_scope", "external_family_scope", "r1d_core_may_consolidate", "r1d_core_must_not_implement", "later_owner_or_gate", "collapse_risk"}
+    assert all(required <= set(record) for record in records.values())
+    assert "AFQR-09" in records["SUB-001"]["core_family_scope"] and all(x in records["SUB-001"]["external_family_scope"] for x in ("AFQR-13", "AFQR-15"))
+    assert all(x in records["SUB-002"]["core_family_scope"] for x in ("AFQR-04", "AFQR-06"))
+    assert all(x in records["SUB-002"]["external_family_scope"] for x in ("AFQR-10", "AFQR-20"))
+    assert all(x in records["SUB-003"]["core_family_scope"] for x in ("AFQR-01", "AFQR-02", "AFQR-04", "AFQR-09"))
+    assert "AFQR-05" in records["SUB-004"]["core_family_scope"]
+    assert all(any(word in record["r1d_core_must_not_implement"] for word in ("schema", "registry", "journal")) for record in records.values())
 
 
 def test_no_external_domain_ownership_or_forbidden_authority():
@@ -143,10 +213,13 @@ def test_all_corpus_pressures_have_bounded_dispositions():
 
 def test_committed_diff_is_bounded_and_preserves_evidence():
     changed = subprocess.check_output(["git", "diff", "--name-only", f"{BASE}...HEAD"], cwd=ROOT, text=True).splitlines()
+    numstat = subprocess.check_output(["git", "diff", "--numstat", f"{BASE}...HEAD"], cwd=ROOT, text=True).splitlines()
+    deleted = subprocess.check_output(["git", "diff", "--name-status", "--diff-filter=D", f"{BASE}...HEAD"], cwd=ROOT, text=True).splitlines()
     # This test intentionally evaluates committed diff, never working-tree diff.
     assert not any(p.startswith("src/") for p in changed)
     assert not any(p.lower().endswith(".zip") for p in changed)
-    assert not any(p.startswith("working/afqr_consolidation_inputs/") for p in changed)
+    assert not any(row.startswith("-\t-\t") for row in numstat)
+    assert not any("working/afqr_consolidation_inputs/" in row for row in deleted)
     forbidden = ("afqr_epistemic_agency_social_communication", "afqr_world_action_sensing", "afqr_01_20_formal_completion_review")
     assert not any(any(x in p for x in forbidden) for p in changed)
 

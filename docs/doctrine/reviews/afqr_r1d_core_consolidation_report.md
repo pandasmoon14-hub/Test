@@ -20,7 +20,7 @@ Programmatic classification of merged R1C produced **33 internal edges** and **3
 
 ## Escalations and substrates
 
-COLL-03, COLL-08, and COLL-10 remain open. In particular, identity cannot decide agency/readiness, governed-relation reachability cannot become jurisdiction or obligation, and claim/evidence handoffs cannot collapse signal, observation, interpretation, truth, or knowledge. The generalized governed-relation registry, bitemporal truth/evidence store, owner-reducer transaction journal, and registered interface/bridge hypergraph remain unimplemented future substrates. R1D-CORE records only owner-qualified doctrine handoffs and defines no schema, reducer, database, API, service, or bridge implementation.
+COLL-03, COLL-08, and COLL-10 remain open under the exact R1B taxonomy detailed below. Qualified state/write ownership and identity do not create substantive agency or authority; governed relations do not create jurisdiction or institutional legitimacy; and core claims, identity references, or relation references do not author motivation, behavior, responsibility, or social state. The generalized governed-relation registry, bitemporal truth/evidence store, owner-reducer transaction journal, and registered interface/bridge hypergraph remain unimplemented future substrates. R1D-CORE records only owner-qualified doctrine handoffs and defines no schema, reducer, database, API, service, or bridge implementation.
 
 ## Corpus pressure finding
 
@@ -29,3 +29,9 @@ Sixteen records cover all required donor pressures. Each lands at a core owner, 
 ## Gate finding
 
 R1D-CORE is complete as doctrine consolidation. Overall R1D remains incomplete. R1D-AGENCY and R1D-WORLD remain ready and unstarted. R1E and R2–R6 remain blocked; RT-002G remains unauthorized. Temporary AFQR evidence remains present, non-authoritative, and deletion-protected. This report grants no runtime, persistence, conversion, canon/sourcebook, model-facing, narration, or live-play authority.
+
+## Collision-taxonomy correction
+
+The reviewed correction realigns all three escalation records exactly with the merged R1B ledger. `COLL-03` now concerns AFQR-01 qualified state/write-owner semantics, AFQR-08 identity/continuity, and the AFQR-11/15 substantive agency/institution seam; capability readiness is separately recorded as the governed AFQR-03/19 qualified-family boundary. `COLL-08` keeps AFQR-09 governed relations distinct from AFQR-13/15 social state, jurisdiction, institutional legitimacy, and authority, while retaining qualified obligation without making it an automatic consequence of relation existence. `COLL-10` is primarily the external AFQR-11/12/13 motivation, behavior, agency, responsibility, and social-state seam: AFQR-06/08/09 outputs are evidence or references only. All three downstream family destinations are `R1D-AGENCY`, never `R1D-WORLD`.
+
+Semantic regression coverage now loads the R1B escalation ledger and compares exact collision terms, affected AFQRs, evidence identifiers, interim rule, prohibited inference, and family destination. It also compares every internal and boundary disposition field against merged R1C, checks structured external-family mapping, validates four R1D-CORE substrate dispositions, and inspects committed name, numstat, and deletion diffs for prohibited changes.
