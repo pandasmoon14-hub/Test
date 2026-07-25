@@ -4227,3 +4227,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Substrates and escalations:** Classify the five missing substrates as future unimplemented doctrine/implementation needs. Preserve COLL-03, COLL-08, and COLL-10 as open escalations.
 - **Authority boundary:** R1C grants no runtime implementation, conversion execution, canon/sourcebook, model-facing, narration, live-play, RT-002G, or temporary-evidence deletion authority.
 - **Gate:** R1C complete after tests; R1D ready but not begun or complete. R1E, R2–R6, and RT-002G remain blocked or unauthorized.
+
+## 2026-07-24 decision — AFQR-01–09 R1D-CORE modular family consolidation
+
+- **Decision ID:** `AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001`
+- **Verified base:** external GitHub main-ref verification plus exact local SHA match at `179bfdda605f45d26ffb018da12805780710bdb3`; shell fetch unavailable due environment network policy only.
+- **Decision:** Accept the modular AFQR-01–09 family contract with exactly 33 internal-edge and 38 cross-family-boundary dispositions, direct primary-source traceability, exact R1B owners/forms, exact R1C cycle treatments, and bounded donor-pressure landings.
+- **Escalations/substrates:** Preserve COLL-03, COLL-08, and COLL-10. No generalized relation registry, truth/evidence store, owner-reducer journal, or bridge hypergraph is implemented.
+- **Authority boundary:** Doctrine consolidation only; no runtime, persistence, conversion, canon/sourcebook, model-facing, narration, live-play, RT-002G, or evidence-deletion authority.
+- **Gate:** R1D-CORE complete; overall R1D incomplete; R1D-AGENCY and R1D-WORLD ready and unstarted; R1E and R2–R6 blocked; RT-002G unauthorized.

@@ -122,7 +122,9 @@
         "current repository authority"
       ],
       "outputs": [
-        "bounded reviewed consolidation artifact"
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/reviews/afqr_r1d_core_consolidation_report.md",
+        "tests/test_afqr_r1d_core_transaction_identity_relation.py"
       ],
       "must_not_own": [
         "runtime implementation",
@@ -138,12 +140,14 @@
         "R2 only after R1E approval"
       ],
       "completion_tests": [
-        "YAML/Markdown structure",
-        "source traceability",
-        "owner/nonowner explicitness"
+        "exact R1B term/form owner comparison",
+        "exact R1C 33 internal-edge and 38 boundary-edge coverage",
+        "cycle and dependency-risk equality",
+        "source/path traceability",
+        "corpus-pressure and committed-diff containment"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "ready"
+      "status": "complete"
     },
     {
       "file_id": "R1D-AGENCY",

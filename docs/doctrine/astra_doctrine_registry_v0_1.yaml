@@ -14902,3 +14902,32 @@ file_records:
   live_play_relevance: none
   canon_relevance: none
   broad_conversion_relevance: none
+
+- file_id: AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001
+  title: AFQR-01–09 R1D-CORE Transaction, Identity, and Relation Doctrine
+  filename: afqr_core_transaction_identity_relation.md
+  proposed_path: docs/doctrine/consolidation/
+  status: complete
+  layer: doctrine_consolidation
+  phase: R1D-CORE
+  owner: R1D-CORE
+  purpose: Modular source-backed consolidation of AFQR-01 through AFQR-09 responsibilities, handoffs, boundaries, invariants, escalations, and donor pressures.
+  authority_level: doctrine_family_consolidation_only
+  authority_note: No runtime, persistence, conversion, canon/sourcebook, model-facing, narration, live-play, RT-002G, or temporary-evidence-deletion authority.
+  dependencies:
+  - AFQR-01-20-R1B shared vocabulary/type-owner contract
+  - AFQR-01-20-R1C cross-invariant/dependency contract
+  unlocks: []
+  notes: Overall R1D remains incomplete; R1D-AGENCY and R1D-WORLD remain ready; R1E and R2–R6 blocked; RT-002G unauthorized.
+
+- file_id: AFQR-01-09-R1D-CORE-REPORT-001
+  title: AFQR R1D-CORE Consolidation Report
+  filename: afqr_r1d_core_consolidation_report.md
+  proposed_path: docs/doctrine/reviews/
+  status: complete
+  layer: doctrine_review
+  phase: R1D-CORE
+  owner: R1D-CORE review
+  purpose: Reviews exact R1B/R1C alignment, source traceability, edge coverage, cycles, escalations, substrate boundaries, pressure findings, and gates.
+  authority_level: tracking_review_only
+  authority_note: Review evidence only; grants no implementation or downstream authority.
