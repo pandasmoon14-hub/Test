@@ -4236,3 +4236,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Escalations/substrates:** Preserve COLL-03, COLL-08, and COLL-10. No generalized relation registry, truth/evidence store, owner-reducer journal, or bridge hypergraph is implemented.
 - **Authority boundary:** Doctrine consolidation only; no runtime, persistence, conversion, canon/sourcebook, model-facing, narration, live-play, RT-002G, or evidence-deletion authority.
 - **Gate:** R1D-CORE complete; overall R1D incomplete; R1D-AGENCY and R1D-WORLD ready and unstarted; R1E and R2–R6 blocked; RT-002G unauthorized.
+
+## 2026-07-26 decision — AFQR-10–15 R1D-AGENCY modular family consolidation
+
+- **Decision ID:** `AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001`
+- **Verified base:** exact external-main and local SHA match at `5c346a0ebd192879abaed0099f5644589df97884`; fetch unavailable because this checkout has no configured `origin`, not because of a doctrine defect.
+- **Decision:** Accept the bounded AFQR-10–15 family contract with 11 internal, 21 core-boundary, and five world-boundary dispositions, direct primary evidence, exact R1B ownership, and exact R1D-CORE parity.
+- **Candidates/substrates:** COLL-03, COLL-08, and COLL-10 remain `candidate_pending_R1E`; SUB-001, SUB-002, and SUB-005 remain unimplemented and domain-separated. AFQR-14 ownership is unchanged by AFQR-15-packaged validation.
+- **Authority boundary:** Doctrine consolidation only; no runtime, persistence, conversion, canon/sourcebook, model, narration, live-play, RT-002G, production-schema, or evidence-deletion authority.
+- **Gate:** R1D-AGENCY complete; overall R1D incomplete; R1D-WORLD ready, unstarted, and next; R1E and R2–R6 blocked; RT-002G unauthorized.
