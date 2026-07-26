@@ -2523,13 +2523,25 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
   "afqr14_validation_provenance": {
     "record_id": "AGENCY-PROV-14",
     "architecture_owner": "AFQR-14",
-    "primary_evidence_identifier": "SRC-0103",
-    "primary_source_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md",
+    "primary_source_evidence": "SRC-0103",
+    "title_evidence": "SRC-0114",
+    "corrected_baseline_evidence": [
+      "SRC-0103",
+      "SRC-0139",
+      "SRC-0121"
+    ],
     "validation_packaging": "AFQR-15 archive",
-    "rule": "AFQR-15-packaged validation may confirm AFQR-14 normative files and supersede stale manifest reliance; it neither transfers ownership nor replaces doctrine",
-    "prohibitions": [
-      "AFQR-15 does not own communication or interpretation",
-      "no model realization, narration, or live-play behavior is authorized"
+    "primary_architecture_source_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md",
+    "validation_note_source_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-07/registries/afqr_14_corrected_baseline_note.yaml",
+    "stale_manifest_source_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/tests/artifact_manifest.yaml",
+    "title_evidence_source_path": "working/afqr_consolidation_inputs/manifest.yaml",
+    "rules": [
+      "AFQR-14 owns communication and interpretation",
+      "AFQR-15-packaged validation only confirms the normative AFQR-14 files",
+      "validation supersedes reliance on the stale artifact manifest only",
+      "validation does not transfer ownership",
+      "AFQR-15 does not become the communication owner",
+      "no model realization, prose generation, narration, or live-play behavior is authorized"
     ]
   },
   "family_invariants": [
@@ -2537,211 +2549,483 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
       "record_id": "AGENCY-RULE-001",
       "rule": "truth is not evidence",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-002"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0022"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-002",
       "rule": "evidence admission is not truth",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-002"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0022"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-003",
       "rule": "sensing is not knowledge",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-002",
+        "INV-003"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0022",
+        "SRC-0149"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-004",
       "rule": "memory is not authoritative truth",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-002"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0022"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-005",
       "rule": "deception does not mutate world truth",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-002"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0022"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-006",
       "rule": "identity is not personhood",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-005"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-007",
       "rule": "personhood is not agency",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-005"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-008",
       "rule": "agency is not control",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-005"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-009",
       "rule": "control is not consent",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0041"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
+      ],
+      "rationale": "AFQR-11 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-010",
       "rule": "motivation is not agency",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-008"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0092"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-011",
       "rule": "behavior is not responsibility",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-008"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0092"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-012",
       "rule": "prediction is not authorization",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-008"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0092"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-013",
       "rule": "social association is not governed dependency",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-006"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0012",
+        "SRC-0110"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-014",
       "rule": "trust is domain-scoped",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0082"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+      ],
+      "rationale": "AFQR-13 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-015",
       "rule": "reputation is audience-relative",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0082"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+      ],
+      "rationale": "AFQR-13 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-016",
       "rule": "culture does not determine individual behavior",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-008"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0092"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-017",
       "rule": "social status is not institutional authority",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-006"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0012",
+        "SRC-0110"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-018",
       "rule": "institution is not jurisdiction",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-006"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0012",
+        "SRC-0110"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-019",
       "rule": "jurisdiction is not reachability",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-006"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0012",
+        "SRC-0110"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-020",
       "rule": "legitimacy is not truth",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0125"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "rationale": "AFQR-15 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-021",
       "rule": "adjudication is not enforcement execution",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0125"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "rationale": "AFQR-15 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-022",
       "rule": "expression is not reception",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-003"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0149"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-023",
       "rule": "reception is not interpretation",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-003"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0149"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-024",
       "rule": "interpretation is not speaker intent",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-003"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0149"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-025",
       "rule": "communication is not truth",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-002",
+        "INV-003"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0022",
+        "SRC-0149"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-026",
       "rule": "persuasion is not consent",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0103"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+      ],
+      "rationale": "AFQR-14 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-027",
       "rule": "negotiation is not automatic obligation",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-006"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0012",
+        "SRC-0110"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-028",
       "rule": "conversation state is not social state",
-      "r1c_invariant_ids": [
-        "INV-001"
-      ]
+      "r1c_invariant_ids": [],
+      "provenance_kind": "family_local",
+      "source_evidence_identifiers": [
+        "SRC-0103"
+      ],
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+      ],
+      "rationale": "AFQR-14 primary doctrine directly supplies this family-local separation; no R1C invariant claims the narrower rule."
     },
     {
       "record_id": "AGENCY-RULE-029",
       "rule": "compatibility does not transfer ownership",
       "r1c_invariant_ids": [
         "INV-001"
-      ]
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0012"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     },
     {
       "record_id": "AGENCY-RULE-030",
       "rule": "no donor psychology, alignment, morality, reputation, faction, language, law, or social subsystem becomes universal Astra law",
       "r1c_invariant_ids": [
-        "INV-001"
-      ]
+        "INV-009"
+      ],
+      "provenance_kind": "r1c_derived",
+      "source_evidence_identifiers": [
+        "SRC-0004"
+      ],
+      "source_paths": [
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+      ],
+      "rationale": "The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
     }
   ],
   "collision_resolution_candidates": [
@@ -2761,11 +3045,22 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "AFQR-11",
         "AFQR-15"
       ],
-      "exact_r1b_evidence": [
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"
+      "exact_r1b_owner_candidates": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15",
+        "Astra Doctrine Council"
       ],
-      "participating_family_owners": [
+      "exact_r1b_evidence_record_identifiers": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "exact_r1b_lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "exact_r1b_prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "participating_agency_family_owners": [
         "AFQR-11",
         "AFQR-15"
       ],
@@ -2773,14 +3068,36 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "AFQR-01",
         "AFQR-08"
       ],
-      "prohibited_inferences": "none of motive, behavior, identity, personhood, control, relation, status, membership, reachability, or qualified authority automatically creates another concept",
-      "safe_interim_handoffs": "typed R1B/R1C handoffs only; no semantic ownership transfer",
-      "corpus_scale_donor_risks": "donor psychology, ownership, faction, morality, or law assumptions may not become Astra defaults",
-      "r1e_review_questions": [
-        "verify direct source attribution",
-        "verify nonownership and no universal root owner",
-        "decide global escalation closure independently"
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
       ],
+      "candidate_attribution_rule": "AFQR-08 owns identity and continuity; AFQR-01 owns only accepted qualified transition/write-owner semantics; AFQR-11 owns purpose-scoped agency, personhood, consent, control, and responsibility doctrine; AFQR-15 owns qualified institutional authority and institutional attribution. None automatically creates another, and no universal substantive owner is invented.",
+      "candidate_specific_prohibited_inferences": [
+        "identity or continuity proving personhood, agency, control, consent, responsibility, or institutional authority",
+        "state transition or write routing proving substantive ownership, personhood, agency, responsibility, or authority",
+        "control proving consent; agency proving responsibility; institutional authority proving generic ownership"
+      ],
+      "candidate_specific_safe_handoffs": [
+        "AFQR-08 identity/continuity records to AFQR-11 without personhood or agency inference",
+        "AFQR-01 qualified transition/write-owner routing without substantive owner inference",
+        "AFQR-11 purpose-scoped action-origin/responsibility output to AFQR-15 without creating institutional authority"
+      ],
+      "candidate_specific_corpus_scale_risks": [
+        "donor property ownership becoming universal personhood or control law",
+        "identity-copy or proxy rules silently transferring agency/responsibility",
+        "institutional office being treated as universal authority or ownership"
+      ],
+      "candidate_specific_r1e_review_questions": [
+        "Are AFQR-01 qualified write-owner semantics sufficiently separated from substantive owner?",
+        "Are identity/personhood/agency/control/consent/responsibility boundaries source-complete?",
+        "Does institutional attribution remain qualified without manufacturing a universal owner?"
+      ],
+      "upstream_r1b_status": "open",
+      "upstream_r1c_status": "open",
       "status": "candidate_pending_R1E"
     },
     {
@@ -2797,25 +3114,55 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "AFQR-13",
         "AFQR-15"
       ],
-      "exact_r1b_evidence": [
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"
+      "exact_r1b_owner_candidates": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15",
+        "Astra Doctrine Council"
       ],
-      "participating_family_owners": [
+      "exact_r1b_evidence_record_identifiers": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "exact_r1b_lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "exact_r1b_prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "participating_agency_family_owners": [
         "AFQR-13",
         "AFQR-15"
       ],
       "external_core_family_owners": [
         "AFQR-09"
       ],
-      "prohibited_inferences": "none of motive, behavior, identity, personhood, control, relation, status, membership, reachability, or qualified authority automatically creates another concept",
-      "safe_interim_handoffs": "typed R1B/R1C handoffs only; no semantic ownership transfer",
-      "corpus_scale_donor_risks": "donor psychology, ownership, faction, morality, or law assumptions may not become Astra defaults",
-      "r1e_review_questions": [
-        "verify direct source attribution",
-        "verify nonownership and no universal root owner",
-        "decide global escalation closure independently"
+      "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+        "working/afqr_consolidation_inputs/manifest.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
       ],
+      "candidate_attribution_rule": "AFQR-09 owns governed-relation and dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institution, jurisdiction, and qualified institutional authority. Relation existence does not establish jurisdiction; social status does not establish authority; membership does not establish every jurisdiction, right, duty, or obligation; reachability has no automatic legal effect.",
+      "candidate_specific_prohibited_inferences": [
+        "governed relation or dependency proving jurisdiction, institution, social status, or authority",
+        "social status, reputation, or affiliation proving institutional office or authority",
+        "institutional membership or graph reachability proving every jurisdiction, right, duty, obligation, or legal effect"
+      ],
+      "candidate_specific_safe_handoffs": [
+        "AFQR-09 typed relation lifecycle handoff to AFQR-13 without social standing inference",
+        "AFQR-09 typed governed relation handoff to AFQR-15 for separately adjudicated jurisdiction",
+        "AFQR-13 social context handoff to AFQR-15 without institutional authority transfer"
+      ],
+      "candidate_specific_corpus_scale_risks": [
+        "faction graphs becoming universal legal jurisdiction",
+        "reputation scores becoming offices, rights, or obligations",
+        "membership tags importing donor law or political assumptions"
+      ],
+      "candidate_specific_r1e_review_questions": [
+        "Are relation lifecycle and social association still distinct?",
+        "Are membership, jurisdiction, rights, duties, and authority independently typed?",
+        "Can reachability ever be consumed without creating legal effect?"
+      ],
+      "upstream_r1b_status": "open",
+      "upstream_r1c_status": "open",
       "status": "candidate_pending_R1E"
     },
     {
@@ -2833,24 +3180,54 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "AFQR-12",
         "AFQR-13"
       ],
-      "exact_r1b_evidence": [
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"
+      "exact_r1b_owner_candidates": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13",
+        "Astra Doctrine Council"
       ],
-      "participating_family_owners": [
+      "exact_r1b_evidence_record_identifiers": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "exact_r1b_lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
+      "exact_r1b_prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
+      "participating_agency_family_owners": [
         "AFQR-11",
         "AFQR-12",
         "AFQR-13"
       ],
       "external_core_family_owners": [],
-      "prohibited_inferences": "none of motive, behavior, identity, personhood, control, relation, status, membership, reachability, or qualified authority automatically creates another concept",
-      "safe_interim_handoffs": "typed R1B/R1C handoffs only; no semantic ownership transfer",
-      "corpus_scale_donor_risks": "donor psychology, ownership, faction, morality, or law assumptions may not become Astra defaults",
-      "r1e_review_questions": [
-        "verify direct source attribution",
-        "verify nonownership and no universal root owner",
-        "decide global escalation closure independently"
+      "source_paths": [
+        "working/afqr_consolidation_inputs/manifest.yaml",
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
       ],
+      "candidate_attribution_rule": "AFQR-12 owns motivation and behavioral-state doctrine; AFQR-11 owns agency and responsibility doctrine; AFQR-13 owns social state. Motive, emotion, personality, predicted or observed behavior, reputation, and social classification do not establish agency or responsibility; prediction is neither authorization nor adjudication.",
+      "candidate_specific_prohibited_inferences": [
+        "motive, emotion, personality, drive, or predicted behavior proving agency, consent, choice, or responsibility",
+        "observed behavior proving motive, authorization, culpability, or responsibility",
+        "reputation or social classification proving agency, incapacity, responsibility, or adjudicated status"
+      ],
+      "candidate_specific_safe_handoffs": [
+        "AFQR-12 bounded predictions to AFQR-11 as nonauthoritative decision inputs",
+        "AFQR-11 provenance/responsibility outputs to AFQR-13 without generating reputation automatically",
+        "AFQR-13 audience-relative social records to AFQR-12 without determining behavior"
+      ],
+      "candidate_specific_corpus_scale_risks": [
+        "alignment or personality models becoming deterministic responsibility rules",
+        "predictive AI authoring actor choice or authorization",
+        "reputation, sanity, corruption, caste, or faction labels becoming culpability"
+      ],
+      "candidate_specific_r1e_review_questions": [
+        "Do all behavioral predictions remain nonauthoritative?",
+        "Are agency and responsibility evaluated independently from motive and observed behavior?",
+        "Can social classification influence without determining agency or culpability?"
+      ],
+      "upstream_r1b_status": "open",
+      "upstream_r1c_status": "open",
       "status": "candidate_pending_R1E"
     }
   ],
@@ -2858,6 +3235,13 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
     {
       "record_id": "AGENCY-SUB-001",
       "substrate_id": "SUB-001",
+      "exact_substrate_name": "generalized governed-relation registry",
+      "exact_owner_disposition": "unresolved: AFQR-09 owns governed relation/dependency semantics while COLL-08 prevents a universal jurisdiction, institution, authority, dependency, or social-state owner",
+      "exact_requiring_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
       "core_family_scope": [
         "AFQR-09"
       ],
@@ -2866,11 +3250,11 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "AFQR-15"
       ],
       "world_family_scope": [],
-      "r1d_agency_may_consolidate": "social-state and institution/jurisdiction sides of typed AFQR-09 handoffs",
-      "r1d_agency_must_not_implement": "registry schema, database, graph service, inference engine, or legal-effect engine",
-      "later_owner_or_gate": "R1E then separately authorized doctrine/implementation owner",
-      "collapse_risk": "social association, governed relation, and jurisdiction collapse",
-      "exact_evidence_records": [
+      "r1d_agency_may_consolidate": "Consolidate only AFQR-13 social-state and AFQR-15 institution/jurisdiction sides of typed AFQR-09 handoffs.",
+      "r1d_agency_prohibited_implementation": "No registry schema, database, graph service, inference engine, or legal-effect engine.",
+      "later_owner_or_gate": "R1D doctrine-family contracts; any implementation is deferred beyond R1",
+      "collapse_risk": "Omission collapses dependency into obligation, reachability into jurisdiction, or relation records into institutional authority/social standing.",
+      "exact_evidence_identifiers": [
         "SRC-0012",
         "SRC-0082",
         "SRC-0125"
@@ -2879,11 +3263,21 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
-      ]
+      ],
+      "upstream_status": "classified_unimplemented",
+      "combined_owner_invented": false
     },
     {
       "record_id": "AGENCY-SUB-002",
       "substrate_id": "SUB-002",
+      "exact_substrate_name": "generalized bitemporal truth/evidence store",
+      "exact_owner_disposition": "unresolved cross-owner substrate: AFQR-04 time, AFQR-06 arbitration evidence, AFQR-10 epistemic/truth, and AFQR-20 sensing retain their own semantics",
+      "exact_requiring_afqrs": [
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
       "core_family_scope": [
         "AFQR-04",
         "AFQR-06"
@@ -2894,11 +3288,11 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
       "world_family_scope": [
         "AFQR-20"
       ],
-      "r1d_agency_may_consolidate": "truth/epistemic revision, projection boundaries, and typed handoffs",
-      "r1d_agency_must_not_implement": "fields, storage APIs, persistence, truth resolver, evidence database, sensing service, or redaction code",
-      "later_owner_or_gate": "R1E then separately authorized doctrine/implementation owner",
-      "collapse_risk": "truth, evidence, sensing, knowledge, and visibility collapse",
-      "exact_evidence_records": [
+      "r1d_agency_may_consolidate": "Consolidate AFQR-10 truth/epistemic revision and projection boundaries with typed AFQR-04/06/20 handoffs.",
+      "r1d_agency_prohibited_implementation": "No database fields, storage API, persistence, truth resolver, evidence database, sensing service, or redaction code.",
+      "later_owner_or_gate": "R1D doctrine-family contracts; persistence and runtime realization require a later authorized gate",
+      "collapse_risk": "Omission permits hidden-truth leakage, retroactive evidence overwrite, or logical time to manufacture truth/admissibility.",
+      "exact_evidence_identifiers": [
         "SRC-0007",
         "SRC-0009",
         "SRC-0022",
@@ -2909,11 +3303,22 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
-      ]
+      ],
+      "upstream_status": "classified_unimplemented",
+      "combined_owner_invented": false
     },
     {
       "record_id": "AGENCY-SUB-005",
       "substrate_id": "SUB-005",
+      "exact_substrate_name": "generalized spatial, signal, embodiment, institution, and social owner contracts",
+      "exact_owner_disposition": "separate source-backed owners: AFQR-18 spatial/topology; AFQR-20 signal/sensing; AFQR-16 embodiment; AFQR-15 institution/jurisdiction; AFQR-13 social state, subject to preserved COLL-03 and COLL-08 seams",
+      "exact_requiring_afqrs": [
+        "AFQR-13",
+        "AFQR-15",
+        "AFQR-16",
+        "AFQR-18",
+        "AFQR-20"
+      ],
       "core_family_scope": [],
       "agency_family_scope": [
         "AFQR-13",
@@ -2924,11 +3329,11 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "AFQR-18",
         "AFQR-20"
       ],
-      "r1d_agency_may_consolidate": "separate social and institution/jurisdiction owner requirements",
-      "r1d_agency_must_not_implement": "combined world/social actor state owner, schema, or service",
-      "later_owner_or_gate": "R1E then separately authorized doctrine/implementation owner",
-      "collapse_risk": "domain-owner collapse across embodiment, spatial, signal, social, and institution semantics",
-      "exact_evidence_records": [
+      "r1d_agency_may_consolidate": "Consolidate separate AFQR-13 social and AFQR-15 institution/jurisdiction owner requirements while preserving world owners.",
+      "r1d_agency_prohibited_implementation": "No combined world/social actor-state owner, schema, service, or cross-domain reducer.",
+      "later_owner_or_gate": "R1D separate domain-family doctrine files; no combined runtime substrate is authorized",
+      "collapse_risk": "Omission conflates topology with embodiment, sensing with truth, institution with jurisdiction, or social state with identity/authority.",
+      "exact_evidence_identifiers": [
         "SRC-0082",
         "SRC-0125",
         "SRC-0152",
@@ -2941,7 +3346,9 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
         "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
-      ]
+      ],
+      "upstream_status": "classified_unimplemented",
+      "combined_owner_invented": false
     }
   ],
   "cross_phase_prohibitions": [
@@ -2956,253 +3363,550 @@ All eighteen donor pressure classes receive lawful landings, typed handoffs, sou
     {
       "record_id": "AGENCY-PRESSURE-01",
       "pressure_class": "fantasy alignment, ideals, bonds, flaws, and reaction systems",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [],
+      "source_local_constructs": [
+        "alignment grids",
+        "setting-specific morality axes",
+        "reaction tables"
+      ],
+      "quarantine_triggers": [
+        "alignment determines agency or responsibility"
+      ],
+      "escalation_triggers": [
+        "incompatible morality or universal culpability claim"
+      ],
+      "prohibited_universalizations": [
+        "one alignment, morality, or reaction model"
+      ],
+      "rationale": "Route motives to behavior and social perceptions separately; only typed bonds become governed relations.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-02",
       "pressure_class": "science-fiction AI, synthetic personhood, distributed agents, and machine memory",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-16",
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "synthetic-personhood criteria",
+        "machine-memory architectures"
+      ],
+      "quarantine_triggers": [
+        "unresolved synthetic personhood or copy responsibility"
+      ],
+      "escalation_triggers": [
+        "distributed identity/agency seam lacks source-backed attribution"
+      ],
+      "prohibited_universalizations": [
+        "one sentience, personhood, or machine-memory test"
+      ],
+      "rationale": "Memory, identity, embodiment, agency, control, behavior, and action resolution require separate owners.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-03",
       "pressure_class": "cultivation heart demons, intent, dao conviction, sect relations, oaths, and karmic reputation",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [],
+      "source_local_constructs": [
+        "dao conviction scales",
+        "heart-demon models",
+        "karmic reputation systems"
+      ],
+      "quarantine_triggers": [
+        "karma treated as truth or responsibility"
+      ],
+      "escalation_triggers": [
+        "oath legal effect or sect jurisdiction is unspecified"
+      ],
+      "prohibited_universalizations": [
+        "one cultivation psychology, oath, or karma law"
+      ],
+      "rationale": "Conviction and drives remain behavioral; oaths require governed-relation handoff and reputation stays audience-relative.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-04",
       "pressure_class": "profession, class, archetype, and background social assumptions",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [],
+      "source_local_constructs": [
+        "class personality packages",
+        "background status tables"
+      ],
+      "quarantine_triggers": [
+        "class or profession determines behavior/personhood"
+      ],
+      "escalation_triggers": [
+        "background obligation lacks typed relation"
+      ],
+      "prohibited_universalizations": [
+        "one class, profession, caste, or status model"
+      ],
+      "rationale": "Archetype tendencies remain source-local while identity and governed ties use core owners.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-05",
       "pressure_class": "point-buy personality, social, knowledge, and influence traits",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [],
+      "world_handoff_afqrs": [
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "point costs",
+        "trait scales",
+        "influence currencies"
+      ],
+      "quarantine_triggers": [
+        "trait score proves knowledge, consent, or authority"
+      ],
+      "escalation_triggers": [
+        "cross-domain trait has no declared semantic owner"
+      ],
+      "prohibited_universalizations": [
+        "one personality, knowledge, or influence scale"
+      ],
+      "rationale": "Trait values land only in their declared domain and mechanical resolution remains world-owned.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-06",
       "pressure_class": "narrative aspects, tags, drives, beliefs, instincts, and relationship clocks",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [],
+      "source_local_constructs": [
+        "aspect invocation rules",
+        "relationship clocks",
+        "instinct triggers"
+      ],
+      "quarantine_triggers": [
+        "tag or clock silently establishes truth/obligation"
+      ],
+      "escalation_triggers": [
+        "aspect spans identity, relation, and behavior without typing"
+      ],
+      "prohibited_universalizations": [
+        "one narrative tag or clock semantics"
+      ],
+      "rationale": "Beliefs and drives separate from timed governed relations; narrative mechanics remain source-local.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-07",
       "pressure_class": "cyberware, biotech, neural modification, personality editing, and memory replacement",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-16",
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "editing procedures",
+        "augmentation psychology"
+      ],
+      "quarantine_triggers": [
+        "modification automatically removes personhood/consent"
+      ],
+      "escalation_triggers": [
+        "memory replacement identity or responsibility seam unresolved"
+      ],
+      "prohibited_universalizations": [
+        "one impairment, personality, or memory-continuity rule"
+      ],
+      "rationale": "Edits route through memory, behavior, identity, embodiment, and resolution without collapsing personhood.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-08",
       "pressure_class": "psionics, telepathy, possession, domination, mind control, and shared consciousness",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-14"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-19",
+        "AFQR-20"
+      ],
+      "source_local_constructs": [
+        "psionic disciplines",
+        "shared-mind metaphysics"
+      ],
+      "quarantine_triggers": [
+        "telepathy treated as automatic truth, consent, control, or communication success"
+      ],
+      "escalation_triggers": [
+        "possessor/host identity or responsibility unresolved"
+      ],
+      "prohibited_universalizations": [
+        "one telepathy, possession, or domination model"
+      ],
+      "rationale": "Signal, interpretation, knowledge, identity, coercion, behavior, and resolution remain typed.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-09",
       "pressure_class": "horror sanity, trauma, fear, corruption, secrecy, unreliable perception, and forbidden knowledge",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [],
+      "world_handoff_afqrs": [
+        "AFQR-16",
+        "AFQR-20"
+      ],
+      "source_local_constructs": [
+        "sanity tracks",
+        "corruption ladders",
+        "forbidden-knowledge effects"
+      ],
+      "quarantine_triggers": [
+        "fear or trauma proves incapacity or nonpersonhood"
+      ],
+      "escalation_triggers": [
+        "unreliable perception cannot preserve hidden truth"
+      ],
+      "prohibited_universalizations": [
+        "one sanity, corruption, secrecy, or capacity rule"
+      ],
+      "rationale": "Epistemic uncertainty and behavioral effects remain distinct from consent, personhood, embodiment, and sensing.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-10",
       "pressure_class": "investigation clues, evidence, witnesses, deception, rumors, and hidden facts",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-14"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-06"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-20"
+      ],
+      "source_local_constructs": [
+        "clue-distribution procedures",
+        "rumor tables"
+      ],
+      "quarantine_triggers": [
+        "clue admission or witness statement treated as truth"
+      ],
+      "escalation_triggers": [
+        "hidden-information projection leaks authoritative truth"
+      ],
+      "prohibited_universalizations": [
+        "one clue, evidence, or discovery procedure"
+      ],
+      "rationale": "Admissibility, truth, interpretation, sensing, belief, and deception use separate handoffs.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-11",
       "pressure_class": "vehicles, ships, mechs, operator agency, delegated control, and autonomous platforms",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-11",
+        "AFQR-12"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-16",
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "crew-role systems",
+        "autopilot behavior profiles"
+      ],
+      "quarantine_triggers": [
+        "capability or execution proves operator consent/agency"
+      ],
+      "escalation_triggers": [
+        "delegated control or platform responsibility unresolved"
+      ],
+      "prohibited_universalizations": [
+        "one vehicle actor, control, or responsibility model"
+      ],
+      "rationale": "Operator identity, delegation, autonomous planning, embodiment, and action resolution remain orthogonal.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-12",
       "pressure_class": "companions, summons, familiars, copies, proxies, swarms, and collective minds",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-16",
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "summoning bonds",
+        "swarm cognition rules"
+      ],
+      "quarantine_triggers": [
+        "membership or copying proves shared agency/responsibility"
+      ],
+      "escalation_triggers": [
+        "collective identity, consent, or control attribution unresolved"
+      ],
+      "prohibited_universalizations": [
+        "one companion, proxy, swarm, or collective-personhood model"
+      ],
+      "rationale": "Identity, governed bonds, social membership, agency, cognition, embodiment, and action remain separate.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-13",
       "pressure_class": "faction reputation, status, trust, influence, obligations, and institutional membership",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-13",
+        "AFQR-15"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-18"
+      ],
+      "source_local_constructs": [
+        "faction score tracks",
+        "influence currencies"
+      ],
+      "quarantine_triggers": [
+        "reputation/status/membership proves jurisdiction or authority"
+      ],
+      "escalation_triggers": [
+        "obligation lacks governed relation or jurisdiction"
+      ],
+      "prohibited_universalizations": [
+        "one faction, trust, reputation, or influence score"
+      ],
+      "rationale": "Audience-relative social records hand off to governed relations and institutions without legal inference.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-14",
       "pressure_class": "laws, rights, policies, jurisdiction, legitimacy, adjudication, and enforcement",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-11",
+        "AFQR-15"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-18",
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "setting legal codes",
+        "rights packages",
+        "penalty schedules"
+      ],
+      "quarantine_triggers": [
+        "authorization treated as physical enforcement"
+      ],
+      "escalation_triggers": [
+        "conflicting jurisdiction or legitimacy has no adjudication profile"
+      ],
+      "prohibited_universalizations": [
+        "one legal, rights, legitimacy, or enforcement system"
+      ],
+      "rationale": "Institutional normative positions remain separate from relations, spatial scope, agency, and execution.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-15",
       "pressure_class": "language barriers, translation, codes, signals, dialogue acts, persuasion, negotiation, and protocol",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-14"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [],
+      "world_handoff_afqrs": [
+        "AFQR-20"
+      ],
+      "source_local_constructs": [
+        "languages",
+        "cipher systems",
+        "dialogue mechanics"
+      ],
+      "quarantine_triggers": [
+        "reception/translation/persuasion proves interpretation, truth, or consent"
+      ],
+      "escalation_triggers": [
+        "protocol lacks typed expression/signal/interpretation boundary"
+      ],
+      "prohibited_universalizations": [
+        "one language, persuasion, negotiation, or protocol model"
+      ],
+      "rationale": "Expression, signal delivery, interpretation, belief, and consent each require distinct success.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-16",
       "pressure_class": "culture, norms, customs, taboos, affiliations, and group identity",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [],
+      "source_local_constructs": [
+        "culture packages",
+        "taboo lists",
+        "custom tables"
+      ],
+      "quarantine_triggers": [
+        "culture determines individual behavior or law"
+      ],
+      "escalation_triggers": [
+        "group identity, affiliation, obligation, and jurisdiction collapse"
+      ],
+      "prohibited_universalizations": [
+        "one culture, norm, custom, or group-identity package"
+      ],
+      "rationale": "Culture may shape context but cannot determine behavior, identity, governed ties, or institutional law.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-17",
       "pressure_class": "missions, quests, contracts, oaths, diplomacy, trials, investigations, and social encounters",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-13",
+        "AFQR-14",
+        "AFQR-15"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-02",
+        "AFQR-06",
+        "AFQR-09"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-19"
+      ],
+      "source_local_constructs": [
+        "quest structures",
+        "social encounter procedures",
+        "trial scripts"
+      ],
+      "quarantine_triggers": [
+        "negotiation creates obligation or adjudication performs execution"
+      ],
+      "escalation_triggers": [
+        "contract/oath lifecycle or evidence standard unspecified"
+      ],
+      "prohibited_universalizations": [
+        "one mission, contract, diplomacy, trial, or encounter procedure"
+      ],
+      "rationale": "Epistemics, consent, communication, social state, institutions, commands, evidence, relations, and resolution remain typed.",
       "conversion_performed": false
     },
     {
       "record_id": "AGENCY-PRESSURE-18",
       "pressure_class": "nonhuman cognition, alien emotion, hive minds, spirits, undead, constructs, ecosystems, and source-local actor models",
-      "lawful_outcomes": [
-        "agency-family landing point when owned",
-        "typed core-family handoff when required",
-        "typed world-family handoff when required",
-        "source-local retention",
-        "quarantine",
-        "doctrine escalation"
+      "agency_landing_afqrs": [
+        "AFQR-10",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
       ],
-      "universalization": "prohibited",
+      "core_handoff_afqrs": [
+        "AFQR-08"
+      ],
+      "world_handoff_afqrs": [
+        "AFQR-16",
+        "AFQR-19",
+        "AFQR-20"
+      ],
+      "source_local_constructs": [
+        "alien psychologies",
+        "spirit metaphysics",
+        "ecosystem actor models"
+      ],
+      "quarantine_triggers": [
+        "human psychology universalized as personhood or agency"
+      ],
+      "escalation_triggers": [
+        "nonhuman identity, cognition, consent, or responsibility lacks doctrine"
+      ],
+      "prohibited_universalizations": [
+        "one cognition, emotion, personhood, agency, or actor model"
+      ],
+      "rationale": "Plural cognition and emotion profiles remain bounded across identity, embodiment, sensing, agency, and action.",
       "conversion_performed": false
     }
   ],
