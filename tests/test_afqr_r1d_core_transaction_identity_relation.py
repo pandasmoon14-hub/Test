@@ -11,6 +11,8 @@ R1B = ROOT / "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners
 R1C = ROOT / "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"
 AUTH = ROOT / "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"
 ESCALATIONS = ROOT / "docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"
+REGISTRY = ROOT / "docs/doctrine/astra_doctrine_registry_v0_1.yaml"
+FILE_MANIFEST = ROOT / "docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml"
 CORE = {f"AFQR-{n:02}" for n in range(1, 10)}
 
 
@@ -229,3 +231,44 @@ def test_production_does_not_import_temporary_or_review_artifacts():
         text = path.read_text(encoding="utf-8")
         assert "working.afqr_consolidation_inputs" not in text
         assert "afqr_r1d_core_consolidation_report" not in text
+
+
+def test_r1d_core_registry_records_use_controlled_status_and_layer_values():
+    # Keep parsing aligned with the authoritative general registry tests rather
+    # than reimplementing or extending the repository's YAML vocabulary.
+    import pytest
+
+    yaml = pytest.importorskip("yaml", reason="PyYAML is required for registry validation")
+    registry = yaml.safe_load(REGISTRY.read_text(encoding="utf-8"))
+    records = registry.get("file_records", registry.get("files"))
+    target_ids = {
+        "AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001",
+        "AFQR-01-09-R1D-CORE-REPORT-001",
+    }
+    selected = [record for record in records if record.get("file_id") in target_ids]
+    assert len(selected) == len(target_ids)
+    assert {record["file_id"] for record in selected} == target_ids
+
+    statuses = set(registry["global_status_values"]) | {"roadmap-current", "registry-current", "active"}
+    layers = set(registry["global_layer_values"]) | {"3_runtime"}
+    by_id = {record["file_id"]: record for record in selected}
+    primary = by_id["AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001"]
+    report = by_id["AFQR-01-09-R1D-CORE-REPORT-001"]
+    assert primary["status"] == "pressure-tested"
+    assert report["status"] == "review"
+    assert primary["layer"] == report["layer"] == "0_control"
+    assert all(record["status"] in statuses and record["layer"] in layers for record in selected)
+    invalid = {"current", "complete", "doctrine_consolidation", "doctrine_review"}
+    assert all(record["status"] not in invalid and record["layer"] not in invalid for record in selected)
+
+    gates = contract()["downstream_gates"]
+    assert gates["overall_R1D"] == "incomplete"
+    assert gates["R1D-AGENCY"] == gates["R1D-WORLD"] == "ready_not_started"
+    assert gates["R1E"] == "blocked"
+    manifest = load_json(FILE_MANIFEST)
+    manifest_records = {record["file_id"]: record for record in manifest["planned_files"]}
+    assert manifest_records["R1D-AGENCY"]["status"] == "ready"
+    assert manifest_records["R1D-WORLD"]["status"] == "ready"
+    assert manifest_records["R1E"]["status"] == "blocked_pending_predecessor"
+    assert not (ROOT / manifest_records["R1D-AGENCY"]["proposed_path"]).exists()
+    assert not (ROOT / manifest_records["R1D-WORLD"]["proposed_path"]).exists()

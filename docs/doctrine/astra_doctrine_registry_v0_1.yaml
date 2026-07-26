@@ -14907,8 +14907,8 @@ file_records:
   title: AFQR-01–09 R1D-CORE Transaction, Identity, and Relation Doctrine
   filename: afqr_core_transaction_identity_relation.md
   proposed_path: docs/doctrine/consolidation/
-  status: complete
-  layer: doctrine_consolidation
+  status: pressure-tested
+  layer: 0_control
   phase: R1D-CORE
   owner: R1D-CORE
   purpose: Modular source-backed consolidation of AFQR-01 through AFQR-09 responsibilities, handoffs, boundaries, invariants, escalations, and donor pressures.
@@ -14924,8 +14924,8 @@ file_records:
   title: AFQR R1D-CORE Consolidation Report
   filename: afqr_r1d_core_consolidation_report.md
   proposed_path: docs/doctrine/reviews/
-  status: complete
-  layer: doctrine_review
+  status: review
+  layer: 0_control
   phase: R1D-CORE
   owner: R1D-CORE review
   purpose: Reviews exact R1B/R1C alignment, source traceability, edge coverage, cycles, escalations, substrate boundaries, pressure findings, and gates.
