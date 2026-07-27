@@ -4245,3 +4245,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Candidates/substrates:** COLL-03, COLL-08, and COLL-10 remain `candidate_pending_R1E`; SUB-001, SUB-002, and SUB-005 remain unimplemented and domain-separated. AFQR-14 ownership is unchanged by AFQR-15-packaged validation.
 - **Authority boundary:** Doctrine consolidation only; no runtime, persistence, conversion, canon/sourcebook, model, narration, live-play, RT-002G, production-schema, or evidence-deletion authority.
 - **Gate:** R1D-AGENCY complete; overall R1D incomplete; R1D-WORLD ready, unstarted, and next; R1E and R2–R6 blocked; RT-002G unauthorized.
+
+## 2026-07-27 decision — AFQR-16–20 R1D-WORLD modular family consolidation
+
+- **Decision ID:** `AFQR-16-20-R1D-WORLD-ACTION-SENSING-001`
+- **Verified base:** fetch attempted but unavailable because this checkout has no configured `origin`; fallback verified exact clean local HEAD, local commit existence, and ancestry at externally verified `9cb7d36f6405fdf12a7b9bbe7edcf5839cdebc78`. This is an environment limitation, not a doctrine defect.
+- **Decision:** Accept the bounded AFQR-16–20 contract with seven internal, seventeen core-boundary, and five agency-boundary dispositions; exact R1D-CORE/R1D-AGENCY parity; exact CYCLE-004 and DEP-094 preservation; and differentiated donor-pressure routing.
+- **Escalations/substrates:** COLL-03, COLL-08, and COLL-10 remain globally open. SUB-002 and SUB-005 remain unimplemented and owner-separated.
+- **Authority boundary:** Doctrine consolidation only; no runtime, persistence, environment/map/combat/sensing execution, conversion, canon/sourcebook, model, narration, live-play, UI, RT-002G, production-schema, or evidence-deletion authority.
+- **Gate:** All R1D families and overall R1D are complete. Overall R1 remains incomplete pending R1E; R1E is ready and next. R2–R6 remain blocked; RT-002G unauthorized.

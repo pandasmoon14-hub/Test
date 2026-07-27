@@ -116,7 +116,7 @@
       "file_id": "R1D-CORE",
       "proposed_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "owner": "Domain-family consolidation owner",
-      "scope": "AFQR-01\u201309 modular core family",
+      "scope": "AFQR-01–09 modular core family",
       "inputs": [
         "R1A physical-source manifest",
         "current repository authority"
@@ -153,7 +153,7 @@
       "file_id": "R1D-AGENCY",
       "proposed_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
       "owner": "Domain-family consolidation owner",
-      "scope": "AFQR-10\u201315 modular social/epistemic family",
+      "scope": "AFQR-10–15 modular social/epistemic family",
       "inputs": [
         "R1A physical-source manifest",
         "current repository authority"
@@ -190,13 +190,15 @@
       "file_id": "R1D-WORLD",
       "proposed_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "owner": "Domain-family consolidation owner",
-      "scope": "AFQR-16\u201320 modular world/action family",
+      "scope": "AFQR-16–20 modular world/action family",
       "inputs": [
         "R1A physical-source manifest",
         "current repository authority"
       ],
       "outputs": [
-        "bounded reviewed consolidation artifact"
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+        "docs/doctrine/reviews/afqr_r1d_world_consolidation_report.md",
+        "tests/test_afqr_r1d_world_action_sensing.py"
       ],
       "must_not_own": [
         "runtime implementation",
@@ -212,12 +214,14 @@
         "R2 only after R1E approval"
       ],
       "completion_tests": [
-        "YAML/Markdown structure",
-        "source traceability",
-        "owner/nonowner explicitness"
+        "exact R1B owner/form validation",
+        "exact 7 internal, 17 core-boundary, and 5 agency-boundary R1C edges",
+        "R1D-CORE and R1D-AGENCY parity",
+        "CYCLE-004 and DEP-094 exactness",
+        "collision, substrate, pressure, and committed-diff containment"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "ready"
+      "status": "complete"
     },
     {
       "file_id": "R1E",
@@ -252,7 +256,7 @@
         "owner/nonowner explicitness"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "blocked_pending_predecessor"
+      "status": "ready"
     }
   ]
 }

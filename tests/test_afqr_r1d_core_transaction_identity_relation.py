@@ -222,7 +222,7 @@ def test_committed_diff_is_bounded_and_preserves_evidence():
     assert not any(p.lower().endswith(".zip") for p in changed)
     assert not any(row.startswith("-\t-\t") for row in numstat)
     assert not any("working/afqr_consolidation_inputs/" in row for row in deleted)
-    forbidden = ("afqr_world_action_sensing", "afqr_01_20_formal_completion_review")
+    forbidden = ("afqr_01_20_formal_completion_review",)
     assert not any(any(x in p for x in forbidden) for p in changed)
 
 
@@ -275,6 +275,6 @@ def test_r1d_core_registry_records_use_controlled_status_and_layer_values():
     manifest_records = {record["file_id"]: record for record in manifest["planned_files"]}
     assert manifest_records["R1D-CORE"]["status"] == "complete"
     assert manifest_records["R1D-AGENCY"]["status"] == "complete"
-    assert manifest_records["R1D-WORLD"]["status"] == "ready"
-    assert manifest_records["R1E"]["status"] == "blocked_pending_predecessor"
-    assert not (ROOT / manifest_records["R1D-WORLD"]["proposed_path"]).exists()
+    assert manifest_records["R1D-WORLD"]["status"] == "complete"
+    assert manifest_records["R1E"]["status"] == "ready"
+    assert (ROOT / manifest_records["R1D-WORLD"]["proposed_path"]).exists()

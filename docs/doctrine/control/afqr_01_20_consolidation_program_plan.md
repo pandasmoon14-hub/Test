@@ -45,3 +45,7 @@ R1D-CORE consolidates the directly reviewed AFQR-01–09 primary records into a 
 ## R1D-AGENCY completion update (2026-07-26)
 
 R1D-AGENCY consolidates AFQR-10–15 with 11 internal, 21 core-boundary, and five world-boundary R1C dispositions. R1D-CORE parity is exact and AFQR-14 ownership survives AFQR-15-packaged validation. COLL-03, COLL-08, and COLL-10 remain candidates pending R1E; no global escalation closes. Overall R1D remains incomplete. R1D-WORLD remains ready and unstarted and is the next lawful gate. R1E and R2–R6 remain blocked; RT-002G and temporary evidence deletion remain unauthorized. No implementation, conversion, canon/sourcebook, model, narration, or live-play authority is granted.
+
+## R1D-WORLD completion update (2026-07-27)
+
+R1D-WORLD consolidates AFQR-16–20 with seven internal, seventeen core-boundary, and five agency-boundary R1C dispositions. R1D-CORE and R1D-AGENCY parity are exact; CYCLE-004 remains bounded and DEP-094 preserves AFQR-19 target ownership. COLL-03, COLL-08, and COLL-10 remain globally open; SUB-002 and SUB-005 remain unimplemented. All three R1D families and overall R1D are complete. Overall R1 remains incomplete pending R1E, which is now ready and the next lawful gate. R2–R6 remain blocked; RT-002G and temporary evidence deletion remain unauthorized. No implementation, conversion, canon/sourcebook, model, narration, or live-play authority is granted.
