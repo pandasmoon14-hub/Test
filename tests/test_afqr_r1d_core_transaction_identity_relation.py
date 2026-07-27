@@ -263,12 +263,18 @@ def test_r1d_core_registry_records_use_controlled_status_and_layer_values():
 
     gates = contract()["downstream_gates"]
     assert gates["overall_R1D"] == "incomplete"
-    assert gates["R1D-AGENCY"] == gates["R1D-WORLD"] == "ready_not_started"
+    assert gates["R1D-AGENCY"] == "ready_not_started"
+    assert gates["R1D-WORLD"] == "ready_not_started"
     assert gates["R1E"] == "blocked"
+
+    # The R1D-CORE contract records its historical completion-time gate
+    # snapshot. The consolidation manifest records the repository's current
+    # monotonic progress. Later family completion must not rewrite predecessor
+    # doctrine history.
     manifest = load_json(FILE_MANIFEST)
     manifest_records = {record["file_id"]: record for record in manifest["planned_files"]}
-    assert manifest_records["R1D-AGENCY"]["status"] == "ready"
+    assert manifest_records["R1D-CORE"]["status"] == "complete"
+    assert manifest_records["R1D-AGENCY"]["status"] == "complete"
     assert manifest_records["R1D-WORLD"]["status"] == "ready"
     assert manifest_records["R1E"]["status"] == "blocked_pending_predecessor"
-    assert not (ROOT / manifest_records["R1D-AGENCY"]["proposed_path"]).exists()
     assert not (ROOT / manifest_records["R1D-WORLD"]["proposed_path"]).exists()
