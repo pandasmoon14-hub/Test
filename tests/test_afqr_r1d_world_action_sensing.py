@@ -21,7 +21,10 @@ def test_r1b_exact_forms_and_owners():
    if t['type_owner']['owner_kind']=='afqr': valid.add((t['canonical_form'],t['type_owner']['owner_id']))
    valid|={(q['qualified_form'],q['owner_id']) for q in t.get('qualified_forms',[]) if q['owner_kind']=='afqr'}
    assert (x['form'],x['owner']) in valid and x['owner']==r['afqr_id']
-   assert x['owner'] not in t['type_owner'].get('explicit_nonowners',[])
+   assert x['owner'] not in t.get('explicit_nonowners',[])
+   if t['unqualified_usage']=='qualified_only':
+    qualified={q['qualified_form'] for q in t.get('qualified_forms',[])}
+    assert x['form'] in qualified and x['form']!=t['canonical_form']
 def test_all_exact_r1c_edges_and_fields():
  c=contract(); es=load(R1C)['dependency_edge_dispositions'];by={e['edge_id']:e for e in es}
  sets=[({e['edge_id'] for e in es if e['producer_afqr'] in W and e['consumer_afqr'] in W},c['internal_edge_dispositions'],7),({e['edge_id'] for e in es if ((e['producer_afqr'] in W)^(e['consumer_afqr'] in W)) and {e['producer_afqr'],e['consumer_afqr']}&C},c['core_boundary_dispositions'],17),({e['edge_id'] for e in es if ((e['producer_afqr'] in W)^(e['consumer_afqr'] in W)) and {e['producer_afqr'],e['consumer_afqr']}&A},c['agency_boundary_dispositions'],5)]
@@ -44,18 +47,43 @@ def test_predecessor_parity_field_by_field():
 def test_cycle_004_and_dep_094_are_exact():
  c=contract();r=load(R1C);cy=next(x for x in r['cycle_risk_resolutions'] if x['cycle_id']=='CYCLE-004');assert c['cycle_004_treatment']==cy;assert cy['edge_ids']==['DEP-089','DEP-091']
  e=next(x for x in r['dependency_edge_dispositions'] if x['edge_id']=='DEP-094');d=c['dep_094_special_treatment'];assert d['producer']=='AFQR-20' and d['consumer']=='AFQR-19' and d['handoff_kind']=='contact_targeting';assert d['semantic_owner']==e['semantic_type_owner'];assert d['producer_output']==e['producer_supplies'];assert d['postconditions']==e['postconditions'];assert d['unavailable_input_behavior']==e['unavailable_input_behavior'];assert e['semantic_type_owner']['owner_id']=='AFQR-19'
-def test_invariants_collisions_escalations_and_substrates():
- c=contract(); inv={x['invariant_id'] for x in load(R1C)['cross_afqr_invariants']};rules={x['rule'] for x in c['family_invariants']};required={'embodiment is not identity','environment is not topology','environmental process is not logical time','reachability is not jurisdiction, opportunity, or target','capability is not opportunity and target is not resolution','detection is not target and observation candidate is not epistemic observation record','signal is not communication or interpretation','exposure is not harm','resolution is not transition commitment'};assert required<=rules
- assert len({tuple(x['r1c_invariant_ids']) for x in c['family_invariants']})>1
- for x in c['family_invariants']: assert x['provenance_kind']=='r1c_derived' and x['r1c_invariant_ids'] and set(x['r1c_invariant_ids'])<=inv and x['source_evidence_identifiers']
- rb={x['collision_id']:x for x in load(R1B)['collision_resolutions']};assert {x['collision_id'] for x in c['resolved_collision_boundary_records']}=={'COLL-01','COLL-02','COLL-04','COLL-05','COLL-06','COLL-07','COLL-08','COLL-09'}
- for x in c['resolved_collision_boundary_records']: assert x['r1b_status']==rb[x['collision_id']]['r1b_status'] and x['exact_owner_assignments']==rb[x['collision_id']]['term_owner_assignments'] and x['qualification_rules']==rb[x['collision_id']]['qualification_rules']
- assert c['preserved_open_escalations']=={'collision_ids':['COLL-03','COLL-08','COLL-10'],'status':'globally open pending independent R1E','new_world_candidates':[],'coll_08_affected_afqrs_not_modified':True}
- ups={x['substrate_id']:x for x in load(R1C)['missing_substrate_classifications']};subs={x['substrate_id']:x for x in c['missing_substrate_dispositions']};assert set(subs)=={'SUB-002','SUB-005'}
- for sid,x in subs.items(): assert x['exact_substrate_name']==ups[sid]['name'] and x['exact_requiring_afqrs']==ups[sid]['requiring_afqrs'] and x['exact_future_owner_posture']==ups[sid]['future_doctrine_owner'] and 'no combined' in x['combined_owner_prohibition']
+def test_invariants_have_exact_provenance_and_semantic_mappings():
+ c=contract(); upstream={x['invariant_id']:x for x in load(R1C)['cross_afqr_invariants']}
+ manifest=load(ROOT/'working/afqr_consolidation_inputs/manifest.yaml'); archives={x['archive_record_id']:x['current_path'] for x in manifest['archive_records']}; paths={x['source_record_id']:(x['normalized_path'] or archives[x['parent_archive_record_id']]) for x in manifest['contained_file_records']}
+ expectations={'environment is not topology':['INV-007'],'environmental process is not logical time':['INV-007'],'reachability is not jurisdiction':['INV-006'],'reachability is not opportunity':['INV-004'],'reachability is not target':['INV-004'],'capability is not opportunity':['INV-004'],'target is not resolution':['INV-004'],'detection is not target':['INV-004'],'observation candidate is not epistemic observation record':['INV-002'],'signal is not communication':['INV-003'],'signal is not interpretation':['INV-003'],'exposure is not harm':['INV-007'],'donor anatomy, grid, damage, action-economy, cosmology, and sensing assumptions are not Astra law':['INV-009']}
+ records={x['rule']:x for x in c['family_invariants']};assert set(expectations)|{'embodiment is not identity','resolution is not transition commitment'}==set(records)
+ for rule,ids in expectations.items():
+  x=records[rule];assert x['provenance_kind']=='r1c_derived' and x['r1c_invariant_ids']==ids
+  evidence=sorted({e for i in ids for e in upstream[i]['source_evidence_records']});assert x['source_evidence_identifiers']==evidence
+  assert x['evidence_path_bindings']==[{'evidence_id':e,'source_path':paths[e]} for e in evidence]
+ for x in records.values():
+  assert x['source_paths'] and all((ROOT/q).is_file() for q in x['source_paths']);assert {z['evidence_id'] for z in x['evidence_path_bindings']}==set(x['source_evidence_identifiers']);assert {z['source_path'] for z in x['evidence_path_bindings']}==set(x['source_paths']);assert x['rationale']
+  if x['provenance_kind']=='family_local':
+   assert x['r1c_invariant_ids']==[] and any(e in {'SRC-0152','SRC-0180','SRC-0207','SRC-0231','SRC-0255'} for e in x['source_evidence_identifiers'])
+ assert records['embodiment is not identity']['provenance_kind']=='family_local' and records['embodiment is not identity']['r1c_invariant_ids']==[]
+def test_collision_specific_records_match_every_r1b_field():
+ c=contract();rb={x['collision_id']:x for x in load(R1B)['collision_resolutions']};rows=c['resolved_collision_boundary_records'];assert {x['collision_id'] for x in rows}=={'COLL-01','COLL-02','COLL-04','COLL-05','COLL-06','COLL-07','COLL-08','COLL-09'}
+ mapping={'exact_terms':'source_terms','source_afqrs':'source_afqrs','r1b_status':'r1b_status','exact_owner_assignments':'term_owner_assignments','qualification_rules':'qualification_rules','rejected_aliases':'rejected_aliases','explicit_non_equivalences':'explicit_non_equivalences','exact_evidence_records':'source_evidence_records','corpus_collapse_risk':'corpus_collapse_risk'}
+ for x in rows:
+  assert all(x[a]==rb[x['collision_id']][b] for a,b in mapping.items());assert x['world_family_relevance'] and x['prohibited_inferences']
+ assert len({x['world_family_relevance'] for x in rows})==len(rows);assert len({tuple(x['prohibited_inferences']) for x in rows})==len(rows)
+ coll8=next(x for x in rows if x['collision_id']=='COLL-08');assert coll8['source_afqrs']==rb['COLL-08']['source_afqrs'];assert 'AFQR-18 appears only as prohibited-inference pressure' in coll8['world_family_relevance']
+def test_open_escalations_match_both_ledgers_and_agency_unchanged():
+ c=contract();b=load(ROOT/'docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml');r=load(ROOT/'docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml')
+ rb={x['collision_ids'][0]:x for x in b['escalations']};rc={x['collision_id']:x for x in r['escalations'] if 'collision_id' in x};assert set(rb)==set(rc)=={'COLL-03','COLL-08','COLL-10'};assert all(rb[i]['status']=='open' and rc[i]['status']=='open' for i in rb)
+ assert c['preserved_open_escalations']['new_world_candidates']==[] and c['preserved_open_escalations']['collision_ids']==['COLL-03','COLL-08','COLL-10'];assert c['r1e_handoff']['next_lawful_gate'].startswith('R1E')
+ agency=fenced(ROOT/'docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md');assert {x['collision_id'] for x in agency['collision_resolution_candidates']}==set(rb);assert rb['COLL-08']['affected_afqrs']==['AFQR-09','AFQR-13','AFQR-15']
+def test_substrates_are_exact_and_specific():
+ c=contract();up={x['substrate_id']:x for x in load(R1C)['missing_substrate_classifications']};rows={x['substrate_id']:x for x in c['missing_substrate_dispositions']};assert set(rows)=={'SUB-002','SUB-005'}
+ for sid,x in rows.items():
+  u=up[sid];assert x['exact_substrate_name']==u['name'];assert x['exact_requiring_afqrs']==u['requiring_afqrs'];assert x['exact_evidence_identifiers']==u['source_evidence_records'];assert x['exact_evidence_paths']==u['source_evidence_paths'];assert x['exact_future_owner_posture']==u['future_doctrine_owner'];assert x['upstream_status']==u['status'];assert x['collapse_risk']==u['failure_or_collapse_risk'];assert set(x['core_family_scope']+x['agency_family_scope']+x['world_family_scope'])==set(u['requiring_afqrs'])
+ assert rows['SUB-002']['r1d_world_may_consolidate']!=rows['SUB-005']['r1d_world_may_consolidate'];assert rows['SUB-002']['r1d_world_must_not_implement']!=rows['SUB-005']['r1d_world_must_not_implement'];assert set(rows['SUB-002']['separate_owner_requirements'])=={'AFQR-04','AFQR-06','AFQR-10','AFQR-20'};assert 'truth/evidence/sensing' in rows['SUB-002']['combined_owner_prohibition']
 def test_pressure_gates_registry_manifest_and_scope():
- c=contract();ps=c['corpus_pressure_records'];assert len(ps)==18==len({x['pressure_class'] for x in ps});assert len({json.dumps({k:v for k,v in x.items() if k!='record_id'},sort_keys=True) for x in ps})==18
- for x in ps: assert set(x['world_landing_afqrs'])<=W and set(x['core_family_handoff_afqrs'])<=C and set(x['agency_family_handoff_afqrs'])<=A and x['source_local_constructs'] and x['quarantine_triggers'] and x['escalation_triggers'] and x['prohibited_universalizations']
+ c=contract();ps=c['corpus_pressure_records'];assert len(ps)==18==len({x['pressure_class'] for x in ps});by={x['pressure_class']:x for x in ps}
+ for x in ps:
+  assert set(x['world_landing_afqrs'])==set(x['world_landing_reasons'])<=W;assert set(x['core_family_handoff_afqrs'])==set(x['core_handoff_reasons'])<=C;assert set(x['agency_family_handoff_afqrs'])==set(x['agency_handoff_reasons'])<=A
+  assert x['source_local_constructs'] and x['quarantine_triggers'] and x['escalation_triggers'] and x['prohibited_universalizations'] and x['rationale'];blob=json.dumps(x).lower();assert not re.search(r'\b\d+(?:th|st|nd|rd) donor construct\b|pressure class \d+',blob)
+ assert {'AFQR-18','AFQR-19','AFQR-20'}<=set(by['fantasy anatomy, damage, conditions, grids, initiative, combat, stealth, terrain, and weather']['world_landing_afqrs']);assert 'AFQR-19' in by['class and archetype capability and combat packages']['world_landing_afqrs'];assert {'AFQR-16','AFQR-17','AFQR-18'}<=set(by['cultivation meridians, cores, body refinement, tribulations, domains, movement arts, perception, and conflict']['world_landing_afqrs']);assert {'AFQR-16','AFQR-19','AFQR-20'}<=set(by['point-buy physical, sensory, movement, combat, and resilience traits']['world_landing_afqrs']);assert 'AFQR-16' in by['narrative tags, aspects, harm tracks, consequences, clocks, zones, and fictional positioning']['world_landing_afqrs']
  assert c['completion_boundary']=={'R1D-CORE':'complete','R1D-AGENCY':'complete','R1D-WORLD':'complete','overall_R1D':'complete','overall_R1':'incomplete_pending_R1E','R1E':'ready','R2-R6':'blocked','RT-002G':'unauthorized','temporary_evidence_deletion':'unauthorized'}
  man={x['file_id']:x['status'] for x in load(ROOT/'docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml')['planned_files']};assert man['R1D-CORE']==man['R1D-AGENCY']==man['R1D-WORLD']=='complete' and man['R1E']=='ready'
  reg=(ROOT/'docs/doctrine/astra_doctrine_registry_v0_1.yaml').read_text();assert 'AFQR-16-20-R1D-WORLD-ACTION-SENSING-001' in reg and 'status: pressure-tested\n  layer: 0_control\n  phase: R1D-WORLD' in reg
