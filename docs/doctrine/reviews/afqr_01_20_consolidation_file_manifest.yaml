@@ -159,7 +159,9 @@
         "current repository authority"
       ],
       "outputs": [
-        "bounded reviewed consolidation artifact"
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/reviews/afqr_r1d_agency_consolidation_report.md",
+        "tests/test_afqr_r1d_agency_epistemic_social_communication.py"
       ],
       "must_not_own": [
         "runtime implementation",
@@ -175,12 +177,14 @@
         "R2 only after R1E approval"
       ],
       "completion_tests": [
-        "YAML/Markdown structure",
-        "source traceability",
-        "owner/nonowner explicitness"
+        "exact R1B term/form owner comparison",
+        "exact R1C 11 internal, 21 core-boundary, and 5 world-boundary edge coverage",
+        "R1D-CORE parity",
+        "AFQR-14 provenance",
+        "collision/substrate/corpus-pressure and committed-diff containment"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
-      "status": "ready"
+      "status": "complete"
     },
     {
       "file_id": "R1D-WORLD",

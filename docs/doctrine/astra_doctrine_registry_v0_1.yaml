@@ -14931,3 +14931,34 @@ file_records:
   purpose: Reviews exact R1B/R1C alignment, source traceability, edge coverage, cycles, escalations, substrate boundaries, pressure findings, and gates.
   authority_level: tracking_review_only
   authority_note: Review evidence only; grants no implementation or downstream authority.
+
+- file_id: AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001
+  title: AFQR-10–15 R1D-AGENCY Epistemic, Agency, Social, Communication, and Institution Doctrine
+  filename: afqr_epistemic_agency_social_communication.md
+  proposed_path: docs/doctrine/consolidation/
+  status: pressure-tested
+  layer: 0_control
+  phase: R1D-AGENCY
+  owner: R1D-AGENCY
+  purpose: Modular source-backed consolidation of AFQR-10 through AFQR-15 responsibilities, boundaries, invariants, candidate resolutions, substrates, and donor pressures.
+  authority_level: doctrine_family_consolidation_only
+  authority_note: No runtime, persistence, conversion, canon/sourcebook, model, narration, live-play, RT-002G, production-schema, or evidence-deletion authority.
+  dependencies:
+  - AFQR-01-20-R1B shared vocabulary/type-owner contract
+  - AFQR-01-20-R1C cross-invariant/dependency contract
+  - AFQR-01-09-R1D-CORE transaction/identity/relation contract
+  unlocks:
+  - R1D-WORLD remains the next lawful gate
+  notes: Overall R1D incomplete; R1D-WORLD ready and unstarted; R1E and R2–R6 blocked; RT-002G unauthorized; global escalations remain open.
+
+- file_id: AFQR-10-15-R1D-AGENCY-REPORT-001
+  title: AFQR R1D-AGENCY Consolidation Report
+  filename: afqr_r1d_agency_consolidation_report.md
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1D-AGENCY
+  owner: R1D-AGENCY review
+  purpose: Reviews exact source, vocabulary, dependency, parity, provenance, collision, substrate, pressure, and gate results.
+  authority_level: tracking_review_only
+  authority_note: Review evidence only; grants no implementation or downstream authority.
