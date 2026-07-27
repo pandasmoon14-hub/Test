@@ -2973,18 +2973,24 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
       "provenance_kind": "family_local",
       "r1c_invariant_ids": [],
       "source_evidence_identifiers": [
-        "SRC-0152"
+        "SRC-0152",
+        "SRC-0011"
       ],
       "source_paths": [
-        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
       ],
       "evidence_path_bindings": [
         {
           "evidence_id": "SRC-0152",
           "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+        },
+        {
+          "evidence_id": "SRC-0011",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
         }
       ],
-      "rationale": "AFQR-16 directly makes embodiment profile semantics distinct from continuity identity, which remains an AFQR-08 boundary. No exact R1C invariant states this narrower separation."
+      "rationale": "AFQR-16 owns embodiment profiles while AFQR-08 owns identity continuity; evidence from both endpoints proves that transformation or replacement does not rewrite identity automatically."
     },
     {
       "record_id": "WORLD-INV-002",
@@ -3058,56 +3064,52 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
     {
       "record_id": "WORLD-INV-005",
       "rule": "reachability is not opportunity",
-      "provenance_kind": "r1c_derived",
-      "r1c_invariant_ids": [
-        "INV-004"
-      ],
+      "provenance_kind": "family_local",
+      "r1c_invariant_ids": [],
       "source_evidence_identifiers": [
-        "SRC-0188",
-        "SRC-0195"
+        "SRC-0207",
+        "SRC-0231"
       ],
       "source_paths": [
-        "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip",
-        "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
       ],
       "evidence_path_bindings": [
         {
-          "evidence_id": "SRC-0188",
-          "source_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+          "evidence_id": "SRC-0207",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
         },
         {
-          "evidence_id": "SRC-0195",
-          "source_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+          "evidence_id": "SRC-0231",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         }
       ],
-      "rationale": "INV-004 prevents capability-side or enabling inputs from collapsing into opportunity; spatial reachability is only a bounded input."
+      "rationale": "AFQR-18 defines spatial reachability and AFQR-19 defines opportunity. Reachability can be an eligibility input but cannot author opportunity."
     },
     {
       "record_id": "WORLD-INV-006",
       "rule": "reachability is not target",
-      "provenance_kind": "r1c_derived",
-      "r1c_invariant_ids": [
-        "INV-004"
-      ],
+      "provenance_kind": "family_local",
+      "r1c_invariant_ids": [],
       "source_evidence_identifiers": [
-        "SRC-0188",
-        "SRC-0195"
+        "SRC-0207",
+        "SRC-0231"
       ],
       "source_paths": [
-        "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip",
-        "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
       ],
       "evidence_path_bindings": [
         {
-          "evidence_id": "SRC-0188",
-          "source_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+          "evidence_id": "SRC-0207",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
         },
         {
-          "evidence_id": "SRC-0195",
-          "source_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+          "evidence_id": "SRC-0231",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         }
       ],
-      "rationale": "INV-004 keeps target distinct from capability/opportunity inputs, so reachability cannot establish target semantics."
+      "rationale": "AFQR-18 defines reachability while AFQR-19 owns target validity. Spatial access may inform targeting but cannot establish a lawful target."
     },
     {
       "record_id": "WORLD-INV-007",
@@ -3166,50 +3168,53 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
     {
       "record_id": "WORLD-INV-009",
       "rule": "detection is not target",
-      "provenance_kind": "r1c_derived",
-      "r1c_invariant_ids": [
-        "INV-004"
-      ],
+      "provenance_kind": "family_local",
+      "r1c_invariant_ids": [],
       "source_evidence_identifiers": [
-        "SRC-0188",
-        "SRC-0195"
+        "SRC-0255",
+        "SRC-0231"
       ],
       "source_paths": [
-        "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip",
-        "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
       ],
       "evidence_path_bindings": [
         {
-          "evidence_id": "SRC-0188",
-          "source_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+          "evidence_id": "SRC-0255",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
         },
         {
-          "evidence_id": "SRC-0195",
-          "source_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_17_Ratification_Pack_v1_0.zip"
+          "evidence_id": "SRC-0231",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
         }
       ],
-      "rationale": "INV-004 reserves target semantics from upstream enabling inputs; DEP-094 supplies the concrete sensing-to-target boundary."
+      "rationale": "AFQR-20 owns sensing, detection, and contact production; AFQR-19 owns target validity. DEP-094 requires the contact handoff and states detection does not establish a valid target.",
+      "exact_boundary_evidence": "DEP-094"
     },
     {
       "record_id": "WORLD-INV-010",
       "rule": "observation candidate is not epistemic observation record",
-      "provenance_kind": "r1c_derived",
-      "r1c_invariant_ids": [
-        "INV-002"
-      ],
+      "provenance_kind": "family_local",
+      "r1c_invariant_ids": [],
       "source_evidence_identifiers": [
+        "SRC-0255",
         "SRC-0022"
       ],
       "source_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md",
         "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
       ],
       "evidence_path_bindings": [
+        {
+          "evidence_id": "SRC-0255",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+        },
         {
           "evidence_id": "SRC-0022",
           "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
         }
       ],
-      "rationale": "INV-002 explicitly prevents observation from automatically becoming truth, belief, knowledge, or evidence; the candidate-to-record distinction is its typed world/agency application."
+      "rationale": "AFQR-20 owns sensing observation candidates while AFQR-10 owns epistemic observation records; typed promotion requires the boundary and is not automatic."
     },
     {
       "record_id": "WORLD-INV-011",
@@ -3280,18 +3285,24 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
       "provenance_kind": "family_local",
       "r1c_invariant_ids": [],
       "source_evidence_identifiers": [
-        "SRC-0231"
+        "SRC-0231",
+        "SRC-0004"
       ],
       "source_paths": [
-        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md",
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
       ],
       "evidence_path_bindings": [
         {
           "evidence_id": "SRC-0231",
           "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+        },
+        {
+          "evidence_id": "SRC-0004",
+          "source_path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
         }
       ],
-      "rationale": "AFQR-19 directly limits resolution to owner-prepared effects that require the AFQR-01 commitment boundary. No exact R1C invariant states this narrower separation."
+      "rationale": "AFQR-19 resolution may prepare owner-qualified effects but does not commit them; AFQR-01 retains transition and commitment authority."
     },
     {
       "record_id": "WORLD-INV-015",
@@ -3925,17 +3936,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "vision rules"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "untyped hit-point loss is applied as universal AFQR-16 harm",
+        "grid adjacency silently establishes AFQR-19 opportunity or target validity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a donor condition has no typed AFQR-16 profile",
+        "initiative needs a new AFQR-04/AFQR-19 reaction-order contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one armor-class, hit-point, initiative, grid, condition, or vision procedure becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Fantasy anatomy and harm land in AFQR-16, terrain/weather in AFQR-17, grids and movement in AFQR-18, combat in AFQR-19, and stealth/search in AFQR-20; donor mechanics remain profiled."
     },
     {
       "record_id": "WORLD-PRESS-02",
@@ -3977,17 +3988,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "mech hit-location tables"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "vacuum or radiation is applied directly as injury without AFQR-17 exposure and AFQR-16 harm stages",
+        "sensor lock is treated as AFQR-19 target validity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a cybernetic platform cannot preserve AFQR-08 identity and AFQR-09 operator dependency boundaries",
+        "electronic warfare requires an unsupported reaction or signal propagation contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one vacuum model, radiation track, vehicle scale, sensor suite, or electronic-warfare economy becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Cybernetics and platform integrity land in AFQR-16, hazardous media in AFQR-17, platform geometry in AFQR-18, resolution in AFQR-19, and sensors/countermeasures in AFQR-20."
     },
     {
       "record_id": "WORLD-PRESS-03",
@@ -4026,17 +4037,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "layer-specific sensor ranges"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "mana and radiation are collapsed into one universal field",
+        "astral layer reach is treated as target validity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a hybrid weapon effect has no owner-qualified AFQR-16/17/18 settlement",
+        "transformation cannot preserve AFQR-08 continuity"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one mana-technology equivalence, astral topology, weapon procedure, or sensing model becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Each hybrid construct lands by semantics across AFQR-16–20; no AFQR-13 handoff is invented because the pressure names no social-state construct."
     },
     {
       "record_id": "WORLD-PRESS-04",
@@ -4076,17 +4087,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "sect combat cadence"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "one meridian or core anatomy is treated as universal embodiment",
+        "spiritual perception is promoted directly to truth or knowledge"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "domain reach requires a new AFQR-18/19 targeting boundary",
+        "tribulation effects cannot be represented through AFQR-17 exposure and AFQR-16 harm"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one meridian/core anatomy, tribulation schedule, domain jurisdiction, cultivation cadence, or perception truth model becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Refinement uses AFQR-16, tribulations AFQR-17, domains/movement AFQR-18, conflict AFQR-19, and perception AFQR-20, with AFQR-07 conservation and AFQR-08 continuity handoffs."
     },
     {
       "record_id": "WORLD-PRESS-05",
@@ -4105,29 +4116,25 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "AFQR-03": "action-route capability requirements",
         "AFQR-07": "resource costs when present"
       },
-      "agency_family_handoff_afqrs": [
-        "AFQR-12"
-      ],
-      "agency_handoff_reasons": {
-        "AFQR-12": "motivation is not class capability"
-      },
+      "agency_family_handoff_afqrs": [],
+      "agency_handoff_reasons": {},
       "source_local_constructs": [
         "class action economies",
         "level tables",
         "fixed recharge schedules"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "class possession is silently treated as capability readiness",
+        "capability, opportunity, target, and resolution are merged into one package"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a capability category has no lawful AFQR-03 requirement/AFQR-19 readiness split",
+        "a package needs a new resource or reaction contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one class progression, action economy, recharge schedule, or combat package becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "AFQR-19 is the sole necessary world landing for readiness and combat; AFQR-03 receives action requirements, and no motivation handoff is invented."
     },
     {
       "record_id": "WORLD-PRESS-06",
@@ -4164,17 +4171,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "shift exposure schedules"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "tool proficiency is treated as physical reach or successful search",
+        "workplace exposure is applied directly as injury"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a tool action lacks an AFQR-03 requirement contract",
+        "an employment relation needs an actual governed AFQR-09 dependency"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one profession list, tool range, hazard schedule, or sensory assumption becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Occupational injury, hazards, movement, and sensing land in AFQR-16/17/18/20; command requirements and genuine governed employment dependencies cross to core owners."
     },
     {
       "record_id": "WORLD-PRESS-07",
@@ -4212,17 +4219,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "vision-distance purchases"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "purchased perception is treated as knowledge",
+        "combat points merge readiness and resolution"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a point pool creates or destroys a conserved quantity without AFQR-07 settlement",
+        "a trait cannot be separated among embodiment, movement, combat, and sensing owners"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one point cost, attribute cap, defense formula, or sensory range becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Physical resilience lands in AFQR-16, movement in AFQR-18, combat in AFQR-19, and sensory traits in AFQR-20; point settlement uses AFQR-07 only when a quantity is conserved."
     },
     {
       "record_id": "WORLD-PRESS-08",
@@ -4258,17 +4265,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "zone adjacency rules"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "a narrative clock is treated as AFQR-04 logical time by naming alone",
+        "a zone tag establishes target validity without AFQR-19"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a consequence cannot be typed as AFQR-16 harm or retained source-locally",
+        "a clock needs a new ordering contract beyond AFQR-04"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one stress track, consequence ladder, scene clock, zone system, or fictional-positioning rule becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Harm tracks land in AFQR-16, zones in AFQR-18, and contests in AFQR-19; clocks hand off to AFQR-04 without transferring time ownership."
     },
     {
       "record_id": "WORLD-PRESS-09",
@@ -4301,17 +4308,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "brand-specific neural ranges"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "replacement-body installation rewrites identity automatically",
+        "neural contact becomes knowledge or target validity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "augmentation dependencies require a new governed AFQR-09 contract",
+        "replacement cannot preserve AFQR-08 continuity"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one implant-slot, humanity-loss, replacement-body, or neural-range model becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "AFQR-16 owns augmentation embodiment and replacement; AFQR-20 owns neural sensing; AFQR-08 preserves identity and AFQR-09 applies only to actual governed implant dependencies."
     },
     {
       "record_id": "WORLD-PRESS-10",
@@ -4346,17 +4353,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "possession save procedures"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "telepathic detection is treated as interpreted communication",
+        "possession is treated as consent or identity transfer"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "mental targeting lacks an AFQR-19 validity contract",
+        "telepathy needs a new AFQR-14 communication modality contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one mind-point economy, telepathy range, possession procedure, or mental-conflict resolver becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "AFQR-20 owns psionic acquisition and AFQR-19 targeting/conflict, while identity, consent, and communication cross to AFQR-08/11/14."
     },
     {
       "record_id": "WORLD-PRESS-11",
@@ -4394,17 +4401,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "false-perception procedures"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "unreliable sensing rewrites hidden world truth",
+        "contamination automatically becomes injury or transformation"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "trauma cannot preserve agency and epistemic uncertainty boundaries",
+        "a mutation lacks an AFQR-08 continuity disposition"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one sanity track, mutation table, contamination clock, or unreliable-perception procedure becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Injury/transformation land in AFQR-16, contamination in AFQR-17, and unreliable sensing in AFQR-20, with identity, evidence, epistemic, and agency handoffs."
     },
     {
       "record_id": "WORLD-PRESS-12",
@@ -4437,17 +4444,19 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "surveillance range tables"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "detection becomes admitted evidence",
+        "clues become truth or knowledge automatically",
+        "surveillance contacts become valid targets",
+        "search failure erases authoritative world truth"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a clue cannot receive an AFQR-06 evidence disposition",
+        "surveillance requires a new AFQR-20/19 contact-target contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one automatic-clue rule, search-turn procedure, surveillance range, or detection-success model becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "AFQR-20 owns search, contacts, and tracking and AFQR-18 location; AFQR-06 admits evidence, AFQR-10 records knowledge, and AFQR-14 interprets communicated clues."
     },
     {
       "record_id": "WORLD-PRESS-13",
@@ -4487,17 +4496,19 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "crew-station initiative"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "operator agency becomes platform identity",
+        "component damage becomes operator injury",
+        "sensor contact becomes target validity",
+        "movement reach becomes jurisdiction or opportunity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a platform cannot separate operator, component, and identity dependencies",
+        "multi-scale combat needs a new movement/target/reaction contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one vehicle action economy, facing system, hit-location table, sensor lock, or crew initiative becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Platform integrity, topology, resolution, and sensing land in AFQR-16/18/19/20; identity, governed dependencies, settlement, and operator agency retain separate owners."
     },
     {
       "record_id": "WORLD-PRESS-14",
@@ -4534,17 +4545,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "swarm-square rules"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "summoner identity is copied onto a companion",
+        "shared sensing automatically becomes shared knowledge"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a distributed body cannot distinguish AFQR-08 identity from AFQR-16 components",
+        "control requires a new AFQR-11 agency contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one summon action tax, shared hit-point pool, swarm grid, or familiar-sensing rule becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Distributed embodiment and position land in AFQR-16/18, multi-actor resolution in AFQR-19, and sensing in AFQR-20; identity, dependency, and agency remain separate."
     },
     {
       "record_id": "WORLD-PRESS-15",
@@ -4567,7 +4578,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
       "core_handoff_reasons": {
         "AFQR-07": "material conservation and settlement",
         "AFQR-08": "replacement continuity where identity-bearing",
-        "AFQR-09": "ownership dependencies only when governed"
+        "AFQR-09": "governed component, operator, contract, or support dependencies only when the donor construct creates an actual typed dependency"
       },
       "agency_family_handoff_afqrs": [
         "AFQR-11"
@@ -4581,17 +4592,18 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "repair-time formulas"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "salvage creates matter or value without AFQR-07 settlement",
+        "repair rewrites identity without AFQR-08",
+        "platform construction collapses embodiment, topology, and operator control"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a constructed platform needs a new operator/component support contract",
+        "a recipe transforms a typed quantity without a conservation owner"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one recipe list, salvage yield, repair formula, crafting clock, or platform schema becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Repair and constructed integrity use AFQR-16, modification AFQR-17, and platform topology AFQR-18; AFQR-09 receives governed component, operator, contract, or support dependencies only when an actual typed dependency exists."
     },
     {
       "record_id": "WORLD-PRESS-16",
@@ -4629,17 +4641,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "species vision defaults"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "species anatomy is treated as the universal AFQR-16 profile",
+        "creature reach or sense establishes opportunity or target validity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a transformation lacks AFQR-08 continuity",
+        "a creature hazard cannot separate AFQR-17 exposure from AFQR-16 harm"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one stat block, challenge rating, anatomy, reach grid, species sense, or attack cadence becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Plural anatomy, ecology, movement, conflict, and senses route across AFQR-16–20; identity and personhood are never inferred from species anatomy."
     },
     {
       "record_id": "WORLD-PRESS-17",
@@ -4647,6 +4659,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
       "world_landing_afqrs": [
         "AFQR-16",
         "AFQR-17",
+        "AFQR-18",
         "AFQR-19",
         "AFQR-20"
       ],
@@ -4654,7 +4667,8 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "AFQR-16": "damage-result profiles",
         "AFQR-17": "weather and terrain outputs",
         "AFQR-19": "targeting/resolution oracle inputs",
-        "AFQR-20": "sensing outputs"
+        "AFQR-20": "sensing outputs",
+        "AFQR-18": "distance, position, and encounter-topology outputs"
       },
       "core_family_handoff_afqrs": [
         "AFQR-04",
@@ -4662,7 +4676,7 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
       ],
       "core_handoff_reasons": {
         "AFQR-04": "table timing inputs",
-        "AFQR-07": "random outcome conservation where applicable"
+        "AFQR-07": "conservation or settlement only when an oracle creates, destroys, reserves, transforms, or settles a typed quantity"
       },
       "agency_family_handoff_afqrs": [
         "AFQR-10"
@@ -4677,17 +4691,18 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "detection matrices"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "oracle output is treated as committed truth",
+        "a random table silently overrides its domain owner",
+        "untyped results apply directly as damage, target, weather, position, or sensing state"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a table result lacks a typed domain disposition",
+        "a quantity-changing result needs an AFQR-07 conservation or settlement contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one random weather table, critical chart, encounter-distance table, targeting matrix, or sensing oracle becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Timing uses AFQR-04; injury AFQR-16; weather AFQR-17; distance/topology AFQR-18; targeting AFQR-19; sensing AFQR-20; AFQR-07 applies only when a typed quantity is created, destroyed, reserved, transformed, or settled."
     },
     {
       "record_id": "WORLD-PRESS-18",
@@ -4727,17 +4742,17 @@ CYCLE-004 remains bounded without a combined environment/topology owner. DEP-094
         "supplement combat variants"
       ],
       "quarantine_triggers": [
-        "construct lacks a typed owner or collapses two listed domains",
-        "donor procedure contradicts Astra ownership or nonpromotion boundaries"
+        "boxed text is treated as authoritative sensed truth",
+        "scenario map reach establishes target validity"
       ],
       "escalation_triggers": [
-        "construct requires a new cross-owner semantic contract not present in R1B/R1C",
-        "no lawful direct, normalized, or source-local representation preserves the named distinction"
+        "a scenario-only combat rule cannot remain source-local without breaking AFQR-19",
+        "a scripted sequence requires a new AFQR-04 ordering contract"
       ],
       "prohibited_universalizations": [
-        "the listed donor procedures, numeric scales, taxonomies, and profiles do not become Astra defaults"
+        "one adventure map, scripted encounter cadence, hazard shortcut, or boxed-text sensory outcome becoming Astra law"
       ],
-      "rationale": "Each named construct lands with its semantic owner; mechanics remain source-local, and cross-family meaning moves only through the stated typed handoffs."
+      "rationale": "Scenario hazards, maps, combat, and sensing land in AFQR-17–20; actions and scheduling cross to AFQR-03/04 while participant agency and briefing interpretation remain AFQR-11/14."
     }
   ],
   "r1e_handoff": {

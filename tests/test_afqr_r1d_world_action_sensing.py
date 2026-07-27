@@ -50,8 +50,8 @@ def test_cycle_004_and_dep_094_are_exact():
 def test_invariants_have_exact_provenance_and_semantic_mappings():
  c=contract(); upstream={x['invariant_id']:x for x in load(R1C)['cross_afqr_invariants']}
  manifest=load(ROOT/'working/afqr_consolidation_inputs/manifest.yaml'); archives={x['archive_record_id']:x['current_path'] for x in manifest['archive_records']}; paths={x['source_record_id']:(x['normalized_path'] or archives[x['parent_archive_record_id']]) for x in manifest['contained_file_records']}
- expectations={'environment is not topology':['INV-007'],'environmental process is not logical time':['INV-007'],'reachability is not jurisdiction':['INV-006'],'reachability is not opportunity':['INV-004'],'reachability is not target':['INV-004'],'capability is not opportunity':['INV-004'],'target is not resolution':['INV-004'],'detection is not target':['INV-004'],'observation candidate is not epistemic observation record':['INV-002'],'signal is not communication':['INV-003'],'signal is not interpretation':['INV-003'],'exposure is not harm':['INV-007'],'donor anatomy, grid, damage, action-economy, cosmology, and sensing assumptions are not Astra law':['INV-009']}
- records={x['rule']:x for x in c['family_invariants']};assert set(expectations)|{'embodiment is not identity','resolution is not transition commitment'}==set(records)
+ expectations={'environment is not topology':['INV-007'],'environmental process is not logical time':['INV-007'],'reachability is not jurisdiction':['INV-006'],'capability is not opportunity':['INV-004'],'target is not resolution':['INV-004'],'signal is not communication':['INV-003'],'signal is not interpretation':['INV-003'],'exposure is not harm':['INV-007'],'donor anatomy, grid, damage, action-economy, cosmology, and sensing assumptions are not Astra law':['INV-009']}
+ records={x['rule']:x for x in c['family_invariants']};assert set(expectations)|{'embodiment is not identity','reachability is not opportunity','reachability is not target','detection is not target','observation candidate is not epistemic observation record','resolution is not transition commitment'}==set(records)
  for rule,ids in expectations.items():
   x=records[rule];assert x['provenance_kind']=='r1c_derived' and x['r1c_invariant_ids']==ids
   evidence=sorted({e for i in ids for e in upstream[i]['source_evidence_records']});assert x['source_evidence_identifiers']==evidence
@@ -61,6 +61,9 @@ def test_invariants_have_exact_provenance_and_semantic_mappings():
   if x['provenance_kind']=='family_local':
    assert x['r1c_invariant_ids']==[] and any(e in {'SRC-0152','SRC-0180','SRC-0207','SRC-0231','SRC-0255'} for e in x['source_evidence_identifiers'])
  assert records['embodiment is not identity']['provenance_kind']=='family_local' and records['embodiment is not identity']['r1c_invariant_ids']==[]
+ endpoints={'embodiment is not identity':{'SRC-0152','SRC-0011'},'reachability is not opportunity':{'SRC-0207','SRC-0231'},'reachability is not target':{'SRC-0207','SRC-0231'},'detection is not target':{'SRC-0255','SRC-0231'},'observation candidate is not epistemic observation record':{'SRC-0255','SRC-0022'},'resolution is not transition commitment':{'SRC-0231','SRC-0004'}}
+ for rule,evidence in endpoints.items(): assert records[rule]['provenance_kind']=='family_local' and records[rule]['r1c_invariant_ids']==[] and set(records[rule]['source_evidence_identifiers'])==evidence
+ assert records['detection is not target']['exact_boundary_evidence']=='DEP-094'
 def test_collision_specific_records_match_every_r1b_field():
  c=contract();rb={x['collision_id']:x for x in load(R1B)['collision_resolutions']};rows=c['resolved_collision_boundary_records'];assert {x['collision_id'] for x in rows}=={'COLL-01','COLL-02','COLL-04','COLL-05','COLL-06','COLL-07','COLL-08','COLL-09'}
  mapping={'exact_terms':'source_terms','source_afqrs':'source_afqrs','r1b_status':'r1b_status','exact_owner_assignments':'term_owner_assignments','qualification_rules':'qualification_rules','rejected_aliases':'rejected_aliases','explicit_non_equivalences':'explicit_non_equivalences','exact_evidence_records':'source_evidence_records','corpus_collapse_risk':'corpus_collapse_risk'}
@@ -80,9 +83,35 @@ def test_substrates_are_exact_and_specific():
  assert rows['SUB-002']['r1d_world_may_consolidate']!=rows['SUB-005']['r1d_world_may_consolidate'];assert rows['SUB-002']['r1d_world_must_not_implement']!=rows['SUB-005']['r1d_world_must_not_implement'];assert set(rows['SUB-002']['separate_owner_requirements'])=={'AFQR-04','AFQR-06','AFQR-10','AFQR-20'};assert 'truth/evidence/sensing' in rows['SUB-002']['combined_owner_prohibition']
 def test_pressure_gates_registry_manifest_and_scope():
  c=contract();ps=c['corpus_pressure_records'];assert len(ps)==18==len({x['pressure_class'] for x in ps});by={x['pressure_class']:x for x in ps}
+ expected={
+ 'fantasy anatomy, damage, conditions, grids, initiative, combat, stealth, terrain, and weather':({'AFQR-16','AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'grid adjacency','armor-class'}),
+ 'science-fiction vacuum, radiation, cybernetics, vehicles, mechs, ships, sensors, and electronic warfare':({'AFQR-16','AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'sensor lock','radiation'}),
+ 'hybrid science-fantasy embodiment, environments, spatial layers, weapons, and sensing':({'AFQR-16','AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'astral layer','mana'}),
+ 'cultivation meridians, cores, body refinement, tribulations, domains, movement arts, perception, and conflict':({'AFQR-16','AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'meridian','spiritual perception'}),
+ 'class and archetype capability and combat packages':({'AFQR-19'},{'class possession','action economy'}),
+ 'profession and occupation hazard, tool, movement, and sensing assumptions':({'AFQR-16','AFQR-17','AFQR-18','AFQR-20'},{'tool proficiency','workplace exposure'}),
+ 'point-buy physical, sensory, movement, combat, and resilience traits':({'AFQR-16','AFQR-18','AFQR-19','AFQR-20'},{'purchased perception','point cost'}),
+ 'narrative tags, aspects, harm tracks, consequences, clocks, zones, and fictional positioning':({'AFQR-16','AFQR-18','AFQR-19'},{'narrative clock','stress track'}),
+ 'cyberware, biotech, prosthetics, replacement bodies, neural sensing, and transformation':({'AFQR-16','AFQR-20'},{'replacement-body','neural contact'}),
+ 'psionic perception, telepathy, concealment, possession, targeting, and mental conflict':({'AFQR-19','AFQR-20'},{'telepathic detection','possession'}),
+ 'horror injury, trauma, contamination, transformation, unreliable sensing, and environmental threat':({'AFQR-16','AFQR-17','AFQR-20'},{'unreliable sensing','contamination'}),
+ 'investigation searches, clues, surveillance, tracking, concealment, and evidence acquisition':({'AFQR-18','AFQR-20'},{'admitted evidence','valid targets'}),
+ 'vehicles, ships, mechs, platforms, operators, components, scale, movement, damage, targeting, and sensors':({'AFQR-16','AFQR-18','AFQR-19','AFQR-20'},{'operator agency','sensor contact'}),
+ 'companions, summons, familiars, proxies, swarms, and distributed bodies':({'AFQR-16','AFQR-18','AFQR-19','AFQR-20'},{'summoner identity','shared sensing'}),
+ 'crafting, salvage, repair, replacement, environmental modification, and constructed platforms':({'AFQR-16','AFQR-17','AFQR-18'},{'salvage creates','repair rewrites'}),
+ 'bestiary anatomy, scales, movement forms, senses, hazards, attacks, defenses, and transformations':({'AFQR-16','AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'species anatomy','creature reach'}),
+ 'tables and oracles for weather, terrain, encounters, damage, targeting, and sensing':({'AFQR-16','AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'committed truth','typed quantity'}),
+ 'missions, scenarios, supplements, and adventure paths with local combat, map, hazard, and sensory assumptions':({'AFQR-17','AFQR-18','AFQR-19','AFQR-20'},{'boxed text','scenario map'})}
+ assert set(expected)==set(by)
+ for name,(owners,phrases) in expected.items():
+  x=by[name];assert owners<=set(x['world_landing_afqrs']);blob=json.dumps(x).lower();assert all(q in blob for q in phrases)
  for x in ps:
   assert set(x['world_landing_afqrs'])==set(x['world_landing_reasons'])<=W;assert set(x['core_family_handoff_afqrs'])==set(x['core_handoff_reasons'])<=C;assert set(x['agency_family_handoff_afqrs'])==set(x['agency_handoff_reasons'])<=A
   assert x['source_local_constructs'] and x['quarantine_triggers'] and x['escalation_triggers'] and x['prohibited_universalizations'] and x['rationale'];blob=json.dumps(x).lower();assert not re.search(r'\b\d+(?:th|st|nd|rd) donor construct\b|pressure class \d+',blob)
+ assert len({tuple(x['quarantine_triggers']) for x in ps})==18;assert len({tuple(x['escalation_triggers']) for x in ps})==18;assert len({tuple(x['prohibited_universalizations']) for x in ps})==18;assert len({x['rationale'] for x in ps})==18
+ assert by['class and archetype capability and combat packages']['agency_family_handoff_afqrs']==[] and 'AFQR-12' not in by['class and archetype capability and combat packages']['agency_handoff_reasons']
+ tables=by['tables and oracles for weather, terrain, encounters, damage, targeting, and sensing'];assert 'AFQR-07' in tables['core_handoff_reasons'] and 'typed quantity' in tables['core_handoff_reasons']['AFQR-07']
+ craft=by['crafting, salvage, repair, replacement, environmental modification, and constructed platforms'];assert 'actual typed dependency' in craft['core_handoff_reasons']['AFQR-09']
  assert {'AFQR-18','AFQR-19','AFQR-20'}<=set(by['fantasy anatomy, damage, conditions, grids, initiative, combat, stealth, terrain, and weather']['world_landing_afqrs']);assert 'AFQR-19' in by['class and archetype capability and combat packages']['world_landing_afqrs'];assert {'AFQR-16','AFQR-17','AFQR-18'}<=set(by['cultivation meridians, cores, body refinement, tribulations, domains, movement arts, perception, and conflict']['world_landing_afqrs']);assert {'AFQR-16','AFQR-19','AFQR-20'}<=set(by['point-buy physical, sensory, movement, combat, and resilience traits']['world_landing_afqrs']);assert 'AFQR-16' in by['narrative tags, aspects, harm tracks, consequences, clocks, zones, and fictional positioning']['world_landing_afqrs']
  assert c['completion_boundary']=={'R1D-CORE':'complete','R1D-AGENCY':'complete','R1D-WORLD':'complete','overall_R1D':'complete','overall_R1':'incomplete_pending_R1E','R1E':'ready','R2-R6':'blocked','RT-002G':'unauthorized','temporary_evidence_deletion':'unauthorized'}
  man={x['file_id']:x['status'] for x in load(ROOT/'docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml')['planned_files']};assert man['R1D-CORE']==man['R1D-AGENCY']==man['R1D-WORLD']=='complete' and man['R1E']=='ready'
