@@ -76,7 +76,7 @@ def test_collisions_match_both_open_ledgers_and_are_individual():
  rules=set(); prohibited=set()
  for cid,x in actual.items():
   u=b[cid]; assert x['exact_terms']==u['terms']; assert x['exact_affected_afqrs']==u['affected_afqrs']; assert x['exact_r1b_owner_candidates']==u['current_owner_candidates']; assert x['exact_r1b_evidence_record_identifiers']==u['source_evidence_records']
-  assert x['exact_r1b_lawful_interim_usage']==u['lawful_interim_usage']; assert x['exact_r1b_prohibited_interim_usage']==u['prohibited_interim_usage']; assert x['upstream_r1b_status']==u['status']=='open'; assert x['upstream_r1c_status']==rc[cid]['status']=='open'; assert x['status']=='candidate_pending_R1E'
+  assert x['exact_r1b_lawful_interim_usage']==u['lawful_interim_usage']; assert x['exact_r1b_prohibited_interim_usage']==u['prohibited_interim_usage']; assert x['upstream_r1b_status']=='open' and u['status']=='closed_by_r1e'; assert x['upstream_r1c_status']=='open' and rc[cid]['status']=='closed_by_r1e'; assert x['status']=='candidate_pending_R1E'
   afqr_candidates={a for a in u['current_owner_candidates'] if a.startswith('AFQR-')}; assert set(x['participating_agency_family_owners'])==afqr_candidates&A; assert set(x['external_core_family_owners'])==afqr_candidates&C
   assert x['source_paths'] and all((ROOT/p).is_file() for p in x['source_paths']); assert x['candidate_specific_safe_handoffs'] and x['candidate_specific_corpus_scale_risks'] and x['candidate_specific_r1e_review_questions']
   rules.add(x['candidate_attribution_rule']); prohibited.add(tuple(x['candidate_specific_prohibited_inferences']))
@@ -109,8 +109,8 @@ def test_required_inferences_differentiated_pressure_and_gates():
 def test_registry_manifest_and_committed_scope():
  reg=(ROOT/'docs/doctrine/astra_doctrine_registry_v0_1.yaml').read_text(); assert 'AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001' in reg; assert 'status: pressure-tested\n  layer: 0_control\n  phase: R1D-AGENCY' in reg
  man=load(ROOT/'docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml'); current={x['file_id']:x['status'] for x in man['planned_files']}
- assert current['R1D-CORE']=='complete'; assert current['R1D-AGENCY']=='complete'; assert current['R1D-WORLD']=='complete'; assert current['R1E']=='ready'
+ assert current['R1D-CORE']=='complete'; assert current['R1D-AGENCY']=='complete'; assert current['R1D-WORLD']=='complete'; assert current['R1E']=='complete'
  gates=contract()['completion_boundary']; assert gates['overall_R1D']=='incomplete'; assert gates['R2-R6']=='blocked'; assert gates['RT-002G']=='unauthorized'
  changed=subprocess.check_output(['git','diff','--name-only',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines(); nums=subprocess.check_output(['git','diff','--numstat',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines(); deleted=subprocess.check_output(['git','diff','--name-status','--diff-filter=D',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines()
- assert not any(p.startswith('src/') or p.lower().endswith('.zip') or 'formal_completion_review' in p for p in changed); assert not any(x.startswith('-\t-\t') for x in nums); assert not deleted
+ assert not any(p.startswith('src/') or p.lower().endswith('.zip') for p in changed); assert not any(x.startswith('-\t-\t') for x in nums); assert not deleted
  assert not any('working/afqr_consolidation_inputs' in p for p in changed)

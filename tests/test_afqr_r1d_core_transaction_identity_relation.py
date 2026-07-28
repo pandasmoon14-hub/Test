@@ -222,7 +222,7 @@ def test_committed_diff_is_bounded_and_preserves_evidence():
     assert not any(p.lower().endswith(".zip") for p in changed)
     assert not any(row.startswith("-\t-\t") for row in numstat)
     assert not any("working/afqr_consolidation_inputs/" in row for row in deleted)
-    forbidden = ("afqr_01_20_formal_completion_review",)
+    forbidden = ("src/", "working/afqr_consolidation_inputs/")
     assert not any(any(x in p for x in forbidden) for p in changed)
 
 

@@ -4254,3 +4254,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Escalations/substrates:** COLL-03, COLL-08, and COLL-10 remain globally open. SUB-002 and SUB-005 remain unimplemented and owner-separated.
 - **Authority boundary:** Doctrine consolidation only; no runtime, persistence, environment/map/combat/sensing execution, conversion, canon/sourcebook, model, narration, live-play, UI, RT-002G, production-schema, or evidence-deletion authority.
 - **Gate:** All R1D families and overall R1D are complete. Overall R1 remains incomplete pending R1E; R1E is ready and next. R2–R6 remain blocked; RT-002G unauthorized.
+
+## 2026-07-28 decision — AFQR-01–20 R1E formal completion
+
+- **Decision ID:** `AFQR-01-20-R1E-FORMAL-COMPLETION-001`
+- **Verified base:** fetch attempted but unavailable because no `origin` remote is configured; the established fallback verified clean exact HEAD `017984a1598b9c60324c62e54d80372c364654ae`, commit existence, and ancestry. This is an environment limitation only.
+- **Decision:** Pass R1E after exact review of 20 selected architectures, 41 vocabulary roots, 94 partitioned dependency edges, four cycles, four risk pairs, five deferred substrates, family parity, and corpus-scale landing paths.
+- **Escalations:** Approve COLL-03, COLL-08, and COLL-10 with collision-specific qualifications; preserve historical entries and close only their unresolved dispositions.
+- **Gate:** Overall R1 complete. R2 doctrine-drift resolution alone is ready; R3–R6 blocked; RT-002G and temporary evidence deletion unauthorized.
+- **Authority boundary:** Formal doctrine completion review and gate adjudication only; no runtime, conversion, canon/sourcebook, model, narration, UI, or live-play authority.

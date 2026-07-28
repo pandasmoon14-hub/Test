@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-07-28'
+  version: 0.1.115
+  action: afqr_r1e_formal_completion_review
+  actor: Astra Doctrine Council / independent review assistant
+  note: 'R1E passes: R1 is complete, three global escalations close with qualification, five substrates remain lawfully deferred, R2 alone becomes ready, and no implementation or evidence-deletion authority is granted.'
 - date: '2026-07-24'
   version: 0.1.114
   action: afqr_r1c_cross_invariant_dependency_contract
@@ -14994,3 +14999,20 @@ file_records:
   purpose: Reviews source, vocabulary, dependency, parity, cycle, collision, substrate, pressure, and gate results.
   authority_level: tracking_review_only
   authority_note: Review evidence only; grants no implementation or downstream authority.
+
+- file_id: AFQR-01-20-R1E-FORMAL-COMPLETION-001
+  title: AFQR-01–20 R1E Formal Completion Review
+  filename: afqr_01_20_formal_completion_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: Independent doctrine review owner
+  purpose: Independent formal R1 completion review and global escalation adjudication.
+  authority_level: tracking_review_only
+  authority_note: Formal doctrine completion review and gate adjudication only; no runtime, conversion, canon, model, narration, live-play, UI, RT-002G, or evidence-deletion authority.
+  dependencies:
+  - AFQR-01–20 R1A through R1D completed evidence chain
+  unlocks:
+  - R2 doctrine-drift resolution becomes ready
+  notes: Overall R1 complete; R3–R6 blocked; RT-002G and temporary evidence deletion unauthorized.
