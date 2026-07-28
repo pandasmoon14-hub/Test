@@ -109,8 +109,8 @@ def test_required_inferences_differentiated_pressure_and_gates():
 def test_registry_manifest_and_committed_scope():
  reg=(ROOT/'docs/doctrine/astra_doctrine_registry_v0_1.yaml').read_text(); assert 'AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001' in reg; assert 'status: pressure-tested\n  layer: 0_control\n  phase: R1D-AGENCY' in reg
  man=load(ROOT/'docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml'); current={x['file_id']:x['status'] for x in man['planned_files']}
- assert current['R1D-CORE']=='complete'; assert current['R1D-AGENCY']=='complete'; assert current['R1D-WORLD']=='ready'; assert current['R1E']=='blocked_pending_predecessor'
+ assert current['R1D-CORE']=='complete'; assert current['R1D-AGENCY']=='complete'; assert current['R1D-WORLD']=='complete'; assert current['R1E']=='ready'
  gates=contract()['completion_boundary']; assert gates['overall_R1D']=='incomplete'; assert gates['R2-R6']=='blocked'; assert gates['RT-002G']=='unauthorized'
  changed=subprocess.check_output(['git','diff','--name-only',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines(); nums=subprocess.check_output(['git','diff','--numstat',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines(); deleted=subprocess.check_output(['git','diff','--name-status','--diff-filter=D',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines()
- assert not any(p.startswith('src/') or p.lower().endswith('.zip') or 'afqr_world_action_sensing' in p or 'formal_completion_review' in p for p in changed); assert not any(x.startswith('-\t-\t') for x in nums); assert not deleted
+ assert not any(p.startswith('src/') or p.lower().endswith('.zip') or 'formal_completion_review' in p for p in changed); assert not any(x.startswith('-\t-\t') for x in nums); assert not deleted
  assert not any('working/afqr_consolidation_inputs' in p for p in changed)

@@ -14962,3 +14962,35 @@ file_records:
   purpose: Reviews exact source, vocabulary, dependency, parity, provenance, collision, substrate, pressure, and gate results.
   authority_level: tracking_review_only
   authority_note: Review evidence only; grants no implementation or downstream authority.
+
+- file_id: AFQR-16-20-R1D-WORLD-ACTION-SENSING-001
+  title: AFQR-16–20 R1D-WORLD Modular World, Action, and Sensing Doctrine
+  filename: afqr_world_action_sensing.md
+  proposed_path: docs/doctrine/consolidation/
+  status: pressure-tested
+  layer: 0_control
+  phase: R1D-WORLD
+  owner: R1D-WORLD
+  purpose: Modular source-backed consolidation of AFQR-16 through AFQR-20 responsibilities, boundaries, invariants, collisions, substrates, and donor pressures.
+  authority_level: doctrine_family_consolidation_only
+  authority_note: No runtime, persistence, conversion, canon/sourcebook, model, narration, live-play, UI, RT-002G, production-schema, or evidence-deletion authority.
+  dependencies:
+  - AFQR-01-20-R1B shared vocabulary/type-owner contract
+  - AFQR-01-20-R1C cross-invariant/dependency contract
+  - AFQR-01-09-R1D-CORE transaction/identity/relation contract
+  - AFQR-10-15-R1D-AGENCY epistemic/social/communication contract
+  unlocks:
+  - R1E becomes ready as the next lawful gate
+  notes: Overall R1D complete; overall R1 incomplete pending R1E; R2–R6 blocked; RT-002G unauthorized; global escalations remain open.
+
+- file_id: AFQR-16-20-R1D-WORLD-REPORT-001
+  title: AFQR R1D-WORLD Consolidation Report
+  filename: afqr_r1d_world_consolidation_report.md
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1D-WORLD
+  owner: R1D-WORLD review
+  purpose: Reviews source, vocabulary, dependency, parity, cycle, collision, substrate, pressure, and gate results.
+  authority_level: tracking_review_only
+  authority_note: Review evidence only; grants no implementation or downstream authority.
