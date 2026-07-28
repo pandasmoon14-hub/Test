@@ -1,6 +1,6 @@
 # AFQR-01–20 modular consolidation program plan
 
-**Status:** R1B vocabulary/type-owner resolution complete; R1 incomplete. **Authority:** planning/tracking only.
+**Status:** R1A–R1E and overall R1 complete. R2 doctrine-drift resolution ready. R3–R6 blocked. RT-002G unauthorized. Temporary evidence deletion unauthorized. **Authority:** planning/tracking only.
 
 ## Boundaries and corpus pressure
 

@@ -252,9 +252,13 @@
         "R2 only after R1E approval"
       ],
       "completion_tests": [
-        "YAML/Markdown structure",
-        "source traceability",
-        "owner/nonowner explicitness"
+        "exact 20-record R1A authority/provenance comparison",
+        "exact 41-record R1B owner/nonowner/qualification comparison",
+        "normalized SHA-256 review of all 94 R1C edges and all R1D projections",
+        "exact cycle, dependency-risk, substrate, and both-ledger reconciliation",
+        "thirteen calculated cross-artifact consistency comparisons",
+        "eighteen differentiated corpus-pressure dispositions",
+        "committed-diff containment and phase-authority isolation"
       ],
       "outlier_escalation_path": "Doctrine Council unresolved ledger; no invented winner",
       "status": "complete"

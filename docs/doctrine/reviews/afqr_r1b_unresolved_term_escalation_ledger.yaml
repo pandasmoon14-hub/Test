@@ -45,14 +45,135 @@
       "status": "closed_by_r1e",
       "r1e_decision_id": "R1E-COLL-03-DECISION-001",
       "formal_review_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
-      "resolution_summary": "Approved with qualification; distinct semantic owners and prohibited cross-domain inferences are binding.",
-      "resolution_evidence": [
-        "SRC-0004",
-        "SRC-0011",
-        "SRC-0059",
-        "SRC-0157"
+      "resolution_summary": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
+      "resolution_evidence": {
+        "r1b_evidence_identifiers": [
+          "SRC-0004",
+          "SRC-0011",
+          "SRC-0059",
+          "SRC-0157"
+        ],
+        "r1b_evidence_locators": [
+          {
+            "evidence_id": "SRC-0004",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0011",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0059",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip::AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml",
+            "path_kind": "manifest_archive_member"
+          },
+          {
+            "evidence_id": "SRC-0157",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip::AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml",
+            "path_kind": "manifest_archive_member"
+          }
+        ],
+        "r1c_escalation_record": "R1C-ESC-COLL-03",
+        "r1c_invariant_ids": [
+          "INV-001",
+          "INV-005",
+          "INV-009"
+        ],
+        "r1c_dependency_edge_ids": [
+          "DEP-001",
+          "DEP-002",
+          "DEP-003",
+          "DEP-004",
+          "DEP-005",
+          "DEP-006",
+          "DEP-007",
+          "DEP-008",
+          "DEP-009",
+          "DEP-010",
+          "DEP-011",
+          "DEP-012",
+          "DEP-013",
+          "DEP-014",
+          "DEP-015",
+          "DEP-016",
+          "DEP-017",
+          "DEP-018",
+          "DEP-019",
+          "DEP-027",
+          "DEP-035",
+          "DEP-038",
+          "DEP-041",
+          "DEP-048",
+          "DEP-051",
+          "DEP-052",
+          "DEP-053",
+          "DEP-054",
+          "DEP-055",
+          "DEP-056",
+          "DEP-057",
+          "DEP-058",
+          "DEP-059",
+          "DEP-060",
+          "DEP-061",
+          "DEP-066",
+          "DEP-067",
+          "DEP-069",
+          "DEP-072",
+          "DEP-076",
+          "DEP-080",
+          "DEP-081",
+          "DEP-082",
+          "DEP-083",
+          "DEP-084",
+          "DEP-086"
+        ],
+        "r1d_candidate_record_id": "AGENCY-CAND-03",
+        "r1d_candidate_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "r1d_candidate_sha256": "f2521486c8b1648766c10efde9b50984291ff6b760fdab9f7e3c89c4c55f395a",
+        "primary_evidence_identifiers": [
+          "SRC-0004",
+          "SRC-0011",
+          "SRC-0041",
+          "SRC-0125"
+        ],
+        "primary_evidence_locators": [
+          {
+            "evidence_id": "SRC-0004",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0011",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0041",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0125",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md",
+            "path_kind": "materialized_normalized_file"
+          }
+        ]
+      },
+      "closure_state": "2026-07-28 R1E review",
+      "collision_specific_prohibited_inferences": [
+        "identity does not create agency or responsibility",
+        "write or transition ownership does not create personhood or property ownership",
+        "agency does not create institutional authority",
+        "institutional authority does not create identity"
       ],
-      "closure_state": "2026-07-28 R1E review"
+      "supersession_scope": "supersedes only the historical unresolved disposition; R1B/R1C evidence remains historical",
+      "ledger_disposition": "closed_by_r1e"
     },
     {
       "escalation_id": "R1B-ESC-002",
@@ -92,13 +213,106 @@
       "status": "closed_by_r1e",
       "r1e_decision_id": "R1E-COLL-08-DECISION-001",
       "formal_review_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
-      "resolution_summary": "Approved with qualification; distinct semantic owners and prohibited cross-domain inferences are binding.",
-      "resolution_evidence": [
-        "SRC-0012",
-        "SRC-0110",
-        "SRC-0157"
+      "resolution_summary": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
+      "resolution_evidence": {
+        "r1b_evidence_identifiers": [
+          "SRC-0012",
+          "SRC-0110",
+          "SRC-0157"
+        ],
+        "r1b_evidence_locators": [
+          {
+            "evidence_id": "SRC-0012",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0110",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip::AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml",
+            "path_kind": "manifest_archive_member"
+          },
+          {
+            "evidence_id": "SRC-0157",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip::AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml",
+            "path_kind": "manifest_archive_member"
+          }
+        ],
+        "r1c_escalation_record": "R1C-ESC-COLL-08",
+        "r1c_invariant_ids": [
+          "INV-001",
+          "INV-005",
+          "INV-006"
+        ],
+        "r1c_dependency_edge_ids": [
+          "DEP-008",
+          "DEP-012",
+          "DEP-014",
+          "DEP-022",
+          "DEP-028",
+          "DEP-036",
+          "DEP-039",
+          "DEP-041",
+          "DEP-049",
+          "DEP-051",
+          "DEP-054",
+          "DEP-058",
+          "DEP-059",
+          "DEP-061",
+          "DEP-062",
+          "DEP-063",
+          "DEP-064",
+          "DEP-065",
+          "DEP-066",
+          "DEP-067",
+          "DEP-068",
+          "DEP-069",
+          "DEP-070",
+          "DEP-071",
+          "DEP-074",
+          "DEP-076",
+          "DEP-081",
+          "DEP-083",
+          "DEP-085",
+          "DEP-086"
+        ],
+        "r1d_candidate_record_id": "AGENCY-CAND-08",
+        "r1d_candidate_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "r1d_candidate_sha256": "48906ee7221b3f1db5211e0b123b5bd1905f630577f76588c68e223a66573c15",
+        "primary_evidence_identifiers": [
+          "SRC-0012",
+          "SRC-0082",
+          "SRC-0125"
+        ],
+        "primary_evidence_locators": [
+          {
+            "evidence_id": "SRC-0012",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0082",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0125",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md",
+            "path_kind": "materialized_normalized_file"
+          }
+        ]
+      },
+      "closure_state": "2026-07-28 R1E review",
+      "collision_specific_prohibited_inferences": [
+        "relation existence, graph reachability, or spatial proximity does not establish jurisdiction",
+        "social status or institutional membership does not establish every authority, right, duty, obligation, or jurisdiction",
+        "institutional authority does not create general agency or identity"
       ],
-      "closure_state": "2026-07-28 R1E review"
+      "supersession_scope": "supersedes only the historical unresolved disposition; R1B/R1C evidence remains historical",
+      "ledger_disposition": "closed_by_r1e"
     },
     {
       "escalation_id": "R1B-ESC-003",
@@ -139,13 +353,97 @@
       "status": "closed_by_r1e",
       "r1e_decision_id": "R1E-COLL-10-DECISION-001",
       "formal_review_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
-      "resolution_summary": "Approved with qualification; distinct semantic owners and prohibited cross-domain inferences are binding.",
-      "resolution_evidence": [
-        "SRC-0059",
-        "SRC-0092",
-        "SRC-0110"
+      "resolution_summary": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
+      "resolution_evidence": {
+        "r1b_evidence_identifiers": [
+          "SRC-0059",
+          "SRC-0092",
+          "SRC-0110"
+        ],
+        "r1b_evidence_locators": [
+          {
+            "evidence_id": "SRC-0059",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip::AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml",
+            "path_kind": "manifest_archive_member"
+          },
+          {
+            "evidence_id": "SRC-0092",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_13_Ratification_Pack_v1_0.zip::AFQR_13_Ratification_Pack_v1_0/manifest/artifact_manifest.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_13_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_13_Ratification_Pack_v1_0/manifest/artifact_manifest.yaml",
+            "path_kind": "manifest_archive_member"
+          },
+          {
+            "evidence_id": "SRC-0110",
+            "path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip::AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml",
+            "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip",
+            "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml",
+            "path_kind": "manifest_archive_member"
+          }
+        ],
+        "r1c_escalation_record": "R1C-ESC-COLL-10",
+        "r1c_invariant_ids": [
+          "INV-005",
+          "INV-006",
+          "INV-008"
+        ],
+        "r1c_dependency_edge_ids": [
+          "DEP-010",
+          "DEP-011",
+          "DEP-012",
+          "DEP-038",
+          "DEP-039",
+          "DEP-056",
+          "DEP-057",
+          "DEP-058",
+          "DEP-067",
+          "DEP-068",
+          "DEP-072",
+          "DEP-073",
+          "DEP-074",
+          "DEP-080",
+          "DEP-081",
+          "DEP-082",
+          "DEP-083",
+          "DEP-084",
+          "DEP-085"
+        ],
+        "r1d_candidate_record_id": "AGENCY-CAND-10",
+        "r1d_candidate_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "r1d_candidate_sha256": "d299ac2bb145c0e8ec3d4a617aaa68285992043e01a95f6d3887b511a2e69d8e",
+        "primary_evidence_identifiers": [
+          "SRC-0041",
+          "SRC-0072",
+          "SRC-0082"
+        ],
+        "primary_evidence_locators": [
+          {
+            "evidence_id": "SRC-0041",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0072",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+            "path_kind": "materialized_normalized_file"
+          },
+          {
+            "evidence_id": "SRC-0082",
+            "path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+            "path_kind": "materialized_normalized_file"
+          }
+        ]
+      },
+      "closure_state": "2026-07-28 R1E review",
+      "collision_specific_prohibited_inferences": [
+        "motive, predicted behavior, emotion, reputation, or social classification does not establish agency or responsibility",
+        "observed behavior alone does not establish responsibility",
+        "behavioral prediction is neither authorization nor adjudication"
       ],
-      "closure_state": "2026-07-28 R1E review"
+      "supersession_scope": "supersedes only the historical unresolved disposition; R1B/R1C evidence remains historical",
+      "ledger_disposition": "closed_by_r1e"
     }
   ],
   "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",
