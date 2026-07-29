@@ -4254,3 +4254,12 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Escalations/substrates:** COLL-03, COLL-08, and COLL-10 remain globally open. SUB-002 and SUB-005 remain unimplemented and owner-separated.
 - **Authority boundary:** Doctrine consolidation only; no runtime, persistence, environment/map/combat/sensing execution, conversion, canon/sourcebook, model, narration, live-play, UI, RT-002G, production-schema, or evidence-deletion authority.
 - **Gate:** All R1D families and overall R1D are complete. Overall R1 remains incomplete pending R1E; R1E is ready and next. R2–R6 remain blocked; RT-002G unauthorized.
+
+## 2026-07-29 decision — AFQR-01–20 R1E formal completion review
+
+- **Decision ID:** `AFQR-01-20-R1E-FORMAL-COMPLETION-001`
+- **Verified base:** independent external GitHub comparison established remote `main` at `017984a1598b9c60324c62e54d80372c364654ae`; clean local HEAD matched exactly. Proxy HTTP 403 and direct DNS prevented fetch. PR #338 was closed unmerged and its abandoned head was absent and not reused.
+- **Decision:** PASS after modular recomputation of 20 source authorities, 41 vocabulary roots, 94 dependency edges, three R1D family projections, four cycles, four dependency risks, thirteen consistency relationships, and eighteen donor families.
+- **Escalations:** COLL-03, COLL-08, and COLL-10 close with qualification while their historical open records remain. SUB-001–SUB-005 are accepted as classified deferred substrates and remain unimplemented.
+- **Authority boundary:** Formal review and gate transition only. No runtime, persistence, reducer, schema, conversion, canon/sourcebook, model, narration, UI, live-play, R2-work, RT-002G, or evidence-deletion authority.
+- **Gate:** R1E and overall R1 complete. R2 doctrine-drift resolution alone is ready and next; R3–R6 blocked; RT-002G and temporary evidence deletion unauthorized.

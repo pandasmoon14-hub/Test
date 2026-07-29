@@ -1,0 +1,2234 @@
+{
+  "artifact_id": "AFQR-R1E-SOURCE-VOCAB-AUDIT-001",
+  "authority": "audit_only_upstream_records_remain_authoritative",
+  "hashing_rule": "sha256 canonical JSON sort_keys compact separators ensure_ascii_false",
+  "source_authority_audit": [
+    {
+      "afqr_id": "AFQR-01",
+      "authoritative_title": "Atomic State Transition, Ownership, Commitment, Recovery, and Replay",
+      "selected_architecture": "Atomic Typed Transition Journal with Owner-Specific Reducers and Declared Saga Escape Hatches",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0004"
+      ],
+      "title_evidence_ids": [
+        "SRC-0004"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0004",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "6bb27208f716fe7e7398b2aa53d4316fd5bd5034197f2bf858ab2be361186f7d",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-02",
+      "authoritative_title": "Command Identity, Attempts, Retries, Suspension, Escalation, and Durable Progress",
+      "selected_architecture": "Synchronous Command Fast Path with Durable Attempt Escalation",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0005"
+      ],
+      "title_evidence_ids": [
+        "SRC-0005"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0005",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "a099443e3e21d7b9a87d883aaf306ab1d63b319d06da4f58307de0f88494e377",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-03",
+      "authoritative_title": "Action Representation, Capability, Affordance, Method Selection, and Bounded Plans",
+      "selected_architecture": "Typed Action Gateway with Registered Semantics, Capability-Affordance Composition, and Bounded Plan Verification",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0006"
+      ],
+      "title_evidence_ids": [
+        "SRC-0006"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0006",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "e744d5fc03462cc968df7d03938791456935a18f852d2e321b11c949fd8c3f53",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-04",
+      "authoritative_title": "Logical Time, Simultaneity, Causal Ordering, Scheduled Effects, and Bounded Cascades",
+      "selected_architecture": "Profiled Logical-Time Causal Scheduler with Deterministic Resolution Groups and Bounded Cascade Microsteps",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0007"
+      ],
+      "title_evidence_ids": [
+        "SRC-0007"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0007",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "f06c8f4b5cf0c846957d4742f6b818ee7fed8801901b94284e4bb6baec51cd14",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-05",
+      "authoritative_title": "Cross-System Interfaces, Adapters, Bridges, Hyperedges, and Compatibility",
+      "selected_architecture": "Registered Typed Interface-and-Bridge Hypergraph",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0008"
+      ],
+      "title_evidence_ids": [
+        "SRC-0008"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0008",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "a30ebeb6870887f3aa1c19b809768a98d0b1df0fba26a9f185cb581d9afd8923",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-06",
+      "authoritative_title": "Claim Discovery, Admissibility, Conflict, Arbitration, Choice, and Hidden Evidence",
+      "selected_architecture": "Invariant-Gated Typed Claim Arbitration",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0009"
+      ],
+      "title_evidence_ids": [
+        "SRC-0009"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0009",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "af6f1acad963cfadf260515d8659c19770973e1065f0f3222eb90d5723023c1a",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-07",
+      "authoritative_title": "Cross-Domain Conservation, Conversion Validity, Reservation, Settlement, and Arbitrage Prevention",
+      "selected_architecture": "Typed Balance-Domain Flow Ledger with Proof-Carrying Conversion and Atomic Settlement",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0010"
+      ],
+      "title_evidence_ids": [
+        "SRC-0010"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-07/ARCH-01/adrs/AFQR-07_Cross_Domain_Conservation_Conversion_Validity_Reservation_Settlement_and_Arbitrage_Prevention.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0010",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-07/ARCH-01/adrs/AFQR-07_Cross_Domain_Conservation_Conversion_Validity_Reservation_Settlement_and_Arbitrage_Prevention.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "4495528ae4218455ddf1343d8af42e184584287cc68a444951b1cced3aa141e6",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-08",
+      "authoritative_title": "Identity, Continuity, Copying, Transformation, Proxyhood, Reinstantiation, Fusion, Fission, and Contextual Equivalence",
+      "selected_architecture": "Typed Faceted Identity, Continuity, and Lineage Graph with Purpose-Scoped Equivalence",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0011"
+      ],
+      "title_evidence_ids": [
+        "SRC-0011"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0011",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "b65410dd4ea3584a3e631d911ff6b43ac4bbf069a075c3525207fe4e0a85eced",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-09",
+      "authoritative_title": "Dependency, Revocation, Inheritance, Termination, Migration, Orphaning, and Cascading Consequence",
+      "selected_architecture": "Registered Typed Dependency-and-Obligation Hypergraph with Version-Pinned Lifecycle Policies and Bounded Causal Propagation",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0012"
+      ],
+      "title_evidence_ids": [
+        "SRC-0012"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0012",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "2cfae9b5618adcd0fcc5b7534e55f89d71a7fe60e8f28489c791b0fb556112e6",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-10",
+      "authoritative_title": "Epistemic State, Perception, Evidence, Knowledge, Belief, Uncertainty, Secrecy, Deception, Memory, Discovery, and Observer-Relative Truth",
+      "selected_architecture": "Typed Bitemporal Truth–Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0022"
+      ],
+      "title_evidence_ids": [
+        "SRC-0021"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0022",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+        },
+        {
+          "evidence_id": "SRC-0021",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "857ef5fe7290673b10dee5da2c089dee9fbd2b66770b86167f5c7178ce6600c2",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-11",
+      "authoritative_title": "Agency, Personhood, Consent, Control, Responsibility, Decision Authority, Delegation, Coercion, and Autonomous Action",
+      "selected_architecture": "Registered Purpose-Scoped Agency and Personhood Architecture with Orthogonal Consent-Control Planes, Bitemporal Action-Origin Graphs, and Profiled Responsibility (RPSAP-OCC-BAOG-PR)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0041"
+      ],
+      "title_evidence_ids": [
+        "SRC-0051"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0041",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md"
+        },
+        {
+          "evidence_id": "SRC-0051",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "ded5511e38aa07cd9e80de5847a0392632bef4072b8903fd90194b7062c153b0",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-12",
+      "authoritative_title": "Goals, Values, Needs, Drives, Emotion, Personality, Deliberation, Planning, Learning, and Behavioral Continuity",
+      "selected_architecture": "Registered Typed Motivational–Behavioral State Architecture with Bounded Deliberation, Pluggable Plan Interfaces, Profiled Learning, and Bitemporal Continuity (RTMBS-BD-PPI-PL-BTC)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0072"
+      ],
+      "title_evidence_ids": [
+        "SRC-0072"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0072",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "09f65dfd2189f2547c5e21dd01db0c823337842162e763014aed28c1e14da730",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-13",
+      "authoritative_title": "Social Relationships, Trust, Reputation, Status, Norms, Culture, Affiliation, and Group Dynamics",
+      "selected_architecture": "Registered Multiplex Social-State Architecture with Domain-Scoped Trust, Audience-Relative Reputation, Modular Culture–Norm Profiles, and Bitemporal Network Continuity (RMSSA-DT-ARR-MCNP-BNC)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0082"
+      ],
+      "title_evidence_ids": [
+        "SRC-0093"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0082",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+        },
+        {
+          "evidence_id": "SRC-0093",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "6b8caba1f68288b182055d34456ad56d33dba7773e12a81221070c8ace2eee39",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-14",
+      "authoritative_title": "Communication Language Meaning Dialogue Acts Conversation State Interpretation Argumentation Persuasion Negotiation and Interaction Protocols",
+      "selected_architecture": "Registered Bitemporal Communication–Interpretation Architecture with Segmented Signal–Expression–Interpretation Pipelines, Multidimensional Dialogue Acts, Protocol-Governed Conversation State, and Validated Model Realization (RBCIA-SEIP-MDA-PGCS-VMR)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0103"
+      ],
+      "title_evidence_ids": [
+        "SRC-0114"
+      ],
+      "corrected_baseline_evidence_ids": [
+        "SRC-0103",
+        "SRC-0139",
+        "SRC-0121"
+      ],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0103",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md"
+        },
+        {
+          "evidence_id": "SRC-0114",
+          "normalized_path": null
+        },
+        {
+          "evidence_id": "SRC-0139",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-07/registries/afqr_14_corrected_baseline_note.yaml"
+        },
+        {
+          "evidence_id": "SRC-0121",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/tests/artifact_manifest.yaml"
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "16bf4b116a01cb5a92351883d728e34f14628dad00245f545663b4dc8ec709e7",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-15",
+      "authoritative_title": "Institutions Governance Jurisdiction Rights Law Policy Adjudication Legitimacy and Enforcement",
+      "selected_architecture": "Registered Federated Institutional–Jurisdictional Architecture with Relational Normative Positions, Versioned Rule Materials, Protocol-Governed Adjudication, Profiled Legitimacy, and Separated Enforcement Authorization and Execution (RFIJA-RNP-VRM-PGA-PL-SEA)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0125"
+      ],
+      "title_evidence_ids": [
+        "SRC-0140"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0125",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+        },
+        {
+          "evidence_id": "SRC-0140",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "9352e47810d579cd7df18860acef1746bc8e568741828f5d68c4cc58565ce8f6",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-16",
+      "authoritative_title": "Bodies Structures Integrity Harm Damage Injury Conditions Impairment Death Recovery Repair Replacement and Transformation",
+      "selected_architecture": "Registered Federated Embodiment–Integrity Architecture with Typed Component–Function–Dependency Graphs, Staged Exposure–Transfer–Effect Pipelines, Profile-Scoped Injury–Condition–Death Families, and Bitemporal Recovery–Transformation Continuity (RFEIA-CFDG-SETE-ICD-BRTC)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0152"
+      ],
+      "title_evidence_ids": [
+        "SRC-0166"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0152",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+        },
+        {
+          "evidence_id": "SRC-0166",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "206fdbda4e4a7fd0adb31a21d4e89cf38d9021d52989b8ab7a6c8350c48865c7",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-17",
+      "authoritative_title": "Environment, Media, Atmosphere, Weather, Terrain, Hazards, Contamination, Exposure, Ecological Processes, and Environmental Change",
+      "selected_architecture": "Registered Federated Environment–Process Architecture with Typed Region–Medium–Field Ownership, Bounded Source–Transport–Hazard Graphs, Profile-Scoped Terrain–Weather–Ecology Families, and Bitemporal Observation–Materialization Continuity (RFEPA-RMF-STHG-TWE-OMC)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0180"
+      ],
+      "title_evidence_ids": [
+        "SRC-0192"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0180",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md"
+        },
+        {
+          "evidence_id": "SRC-0192",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "2c4e306726349db484deff21aa4a581a57aa15511ddb1e62520106203ba54494",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-18",
+      "authoritative_title": "Space, Location, Position, Scale, Boundaries, Distance, Proximity, Reachability, Movement, Navigation, and Spatial Topology",
+      "selected_architecture": "Registered Federated Spatiotemporal Topology Architecture with Typed Domain–Frame–Support Ownership, Plural Metric–Reachability Profiles, Atomic Movement–Occupancy Transitions, and Bitemporal Map–Materialization Continuity (RFSTA-DFS-PMR-AMO-MMC)",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0207"
+      ],
+      "title_evidence_ids": [
+        "SRC-0220"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0207",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
+        },
+        {
+          "evidence_id": "SRC-0220",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "57d4d437be33301c56417d7d2117d27eb9bc818560fcc98944e5109a665541dd",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-19",
+      "authoritative_title": "Capabilities, Opportunities, Targeting, Contests, Reactions, Interrupts, Conflict, Combat, and Multi-Actor Action Resolution",
+      "selected_architecture": "Registered Federated Capability–Opportunity–Targeting–Resolution Architecture with Typed Readiness–Eligibility Closure, Pluggable Deterministic/Stochastic Resolvers, Bounded Trigger–Reaction Partial Orders, and Owner-Prepared Multi-Domain Effect Commitments",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0231"
+      ],
+      "title_evidence_ids": [
+        "SRC-0244"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0231",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md"
+        },
+        {
+          "evidence_id": "SRC-0244",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "c2af40794cec9e65fb2061c9965049e8dd618ea6f17cee88cf3b970eb6de98ed",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "afqr_id": "AFQR-20",
+      "authoritative_title": "Signals Sensing Attention Perception Detection Recognition Search Concealment Stealth Tracking Surveillance and Information Acquisition",
+      "selected_architecture": "Registered Federated Signal–Sensing–Acquisition Architecture with Typed Source–Modality–Propagation Ownership, Staged Exposure–Acquisition–Detection–Recognition Pipelines, Observer-Relative Concealment–Countermeasure Profiles, and Bitemporal Contact–Track–Evidence Continuity",
+      "decision_status": "accepted_architectural_decision",
+      "primary_source_evidence_ids": [
+        "SRC-0255"
+      ],
+      "title_evidence_ids": [
+        "SRC-0270"
+      ],
+      "corrected_baseline_evidence_ids": [],
+      "source_packet_paths": [
+        "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+      ],
+      "manifest_locator_references": [
+        {
+          "evidence_id": "SRC-0255",
+          "normalized_path": "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+        },
+        {
+          "evidence_id": "SRC-0270",
+          "normalized_path": null
+        }
+      ],
+      "authoritative_authority_index_record_sha256": "31b84f8c36d5119772fd035b7c71db536562cbd3bb952c2ad0ebb4cc4752f97e",
+      "stale_superseded_handling_result": "pass",
+      "duplicate_authority_result": "pass",
+      "mismatches": [],
+      "result": "pass"
+    }
+  ],
+  "vocabulary_audit": [
+    {
+      "term_id": "TERM-001",
+      "normalized_root": "state",
+      "canonical_form": "state",
+      "authoritative_record_sha256": "6d942e48eed16c0d9e0f325f9c0460793bc2da5878e73d7858e21157429c4821",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "epistemic state",
+        "social state",
+        "environmental state"
+      ],
+      "explicit_nonowners": [
+        "AFQR-04"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-002",
+      "normalized_root": "truth",
+      "canonical_form": "truth",
+      "authoritative_record_sha256": "3c7ea5469aa3be25679b56314d6985fe84f959bd1b99b084f2834027c7c18760",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "authoritative world truth",
+        "observer-relative truth"
+      ],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-003",
+      "normalized_root": "transition",
+      "canonical_form": "transition",
+      "authoritative_record_sha256": "f2f1d677329507baa7b3838aa13cd9511b5f03a5496d7203b6365ed9183502a1",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "owner_scope": "AFQR-01 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-04",
+        "AFQR-10",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-01",
+        "COLL-06"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-004",
+      "normalized_root": "transaction",
+      "canonical_form": "transaction",
+      "authoritative_record_sha256": "e6bdc784cdcca78719d2cda9336914563b526fd92a2c5ce79677044ea9eacc7d",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-01",
+        "owner_scope": "AFQR-01 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-005",
+      "normalized_root": "event",
+      "canonical_form": "event",
+      "authoritative_record_sha256": "8016ac29ea1e5b1c7c6417b8aa05a0bd5c7a292e03a67a362843e2a87d36912c",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "committed event receipt",
+        "scheduled effect"
+      ],
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-01"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-006",
+      "normalized_root": "command",
+      "canonical_form": "command",
+      "authoritative_record_sha256": "a990718615d1dca67063daa61fa069d56372718261005edb659486bab0d14b84",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "owner_scope": "AFQR-02 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-007",
+      "normalized_root": "attempt",
+      "canonical_form": "attempt",
+      "authoritative_record_sha256": "0c2882c40f7338bcc635275874c8622c820021b283992bd7995b0ebc618c0239",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-02",
+        "owner_scope": "AFQR-02 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-03",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-008",
+      "normalized_root": "action",
+      "canonical_form": "action",
+      "authoritative_record_sha256": "5e9a67a403e0e48164f6686239f0072a3d712bac4268958235fcdd8ec691d86c",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-03",
+        "owner_scope": "AFQR-03 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-009",
+      "normalized_root": "capability",
+      "canonical_form": "capability",
+      "authoritative_record_sha256": "cc008c64b2ded81eb63067b1e03d5bba52d34a0a324af30a7e477f931a2dee1f",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "action-route capability requirement",
+        "capability readiness determination"
+      ],
+      "explicit_nonowners": [
+        "AFQR-02"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-010",
+      "normalized_root": "opportunity",
+      "canonical_form": "opportunity",
+      "authoritative_record_sha256": "00d1dc0fe8af7a489681dd9c52f49bf914bbcd20e7397c7473893644a4dd9ef6",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-19",
+        "owner_scope": "AFQR-19 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-02"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-011",
+      "normalized_root": "target",
+      "canonical_form": "target",
+      "authoritative_record_sha256": "fe9f03d67e156da5ce166dc6d4e9c28ae26cfb9cc7ba470b68ebffb54123057b",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-19",
+        "owner_scope": "AFQR-19 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-02",
+        "AFQR-03"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-012",
+      "normalized_root": "resolution",
+      "canonical_form": "resolution",
+      "authoritative_record_sha256": "606cc933b383ae99d9a237938d9381a1c8a98a7e65b5fef2a152123ebf93d84d",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "action resolution",
+        "claim arbitration result",
+        "resolution group"
+      ],
+      "explicit_nonowners": [
+        "AFQR-02",
+        "AFQR-03"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-02"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-013",
+      "normalized_root": "identity",
+      "canonical_form": "identity",
+      "authoritative_record_sha256": "a5c8ad459f21b621853aff2403fdb06f5f675cdd27dfe434fef67f0c6bb6bc87",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-08",
+        "owner_scope": "AFQR-08 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-014",
+      "normalized_root": "owner",
+      "canonical_form": "owner",
+      "authoritative_record_sha256": "7ca24a030d57c05a7924696fae3ebe7be2809b8b3427376db528eb918fd78780",
+      "owner_kind": "unresolved_escalation",
+      "owner_id": {
+        "owner_kind": "unresolved_escalation",
+        "owner_id": "Doctrine Council",
+        "owner_scope": "substantive ownership vocabulary remains escalated",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "reserved",
+      "qualified_form_ids_or_names": [
+        "state owner"
+      ],
+      "explicit_nonowners": [
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-03"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-015",
+      "normalized_root": "authority",
+      "canonical_form": "authority",
+      "authoritative_record_sha256": "87fbc6965b35b5cb4b67a294f8fddc939890ca2309b229eae1076d3c3c3abd7f",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "project authority",
+        "institutional authority",
+        "governed-relation authority record"
+      ],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-03",
+        "COLL-08"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-016",
+      "normalized_root": "agency",
+      "canonical_form": "agency",
+      "authoritative_record_sha256": "d327fc19db0ec4d2fce43719415fe292811cd23336efea7c086a26151c272735",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-11",
+        "owner_scope": "AFQR-11 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-03",
+        "COLL-10"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-017",
+      "normalized_root": "responsibility",
+      "canonical_form": "responsibility",
+      "authoritative_record_sha256": "9683832e8efa7be99ad28e7957a8a56cfc93adec889370f9191ed93fcd3fa01e",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-11",
+        "owner_scope": "AFQR-11 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-12",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-03",
+        "COLL-10"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-018",
+      "normalized_root": "claim",
+      "canonical_form": "claim",
+      "authoritative_record_sha256": "defaba2b668edc283b4a9411d08f0fbe7c23068e2683dd775fc270ff55ff0f42",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-06",
+        "owner_scope": "AFQR-06 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-019",
+      "normalized_root": "evidence",
+      "canonical_form": "evidence",
+      "authoritative_record_sha256": "6faf7204c29828fa396dacdeac884946f7bbb199e6cc007d50667837c3bf2df9",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "arbitration evidence",
+        "epistemic evidence record",
+        "sensing evidence candidate"
+      ],
+      "explicit_nonowners": [],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-020",
+      "normalized_root": "belief",
+      "canonical_form": "belief",
+      "authoritative_record_sha256": "c85c88a4210c9dcc38bc4fa09268a4e6c55e24f97f0250b88f3dbd073e944e4f",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-10",
+        "owner_scope": "AFQR-10 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-06",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-021",
+      "normalized_root": "knowledge",
+      "canonical_form": "knowledge",
+      "authoritative_record_sha256": "b9be8620783826f788aee40b63718a192d7e52eb4d30dcfa654f5b9122a4c516",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-10",
+        "owner_scope": "AFQR-10 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-06",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-04"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-022",
+      "normalized_root": "observation",
+      "canonical_form": "observation",
+      "authoritative_record_sha256": "208d407816e5c0ebc581c04efb895b50724663b1dac4ed035dc049a7125a7c17",
+      "owner_kind": "shared_qualified_family",
+      "owner_id": {
+        "owner_kind": "shared_qualified_family",
+        "owner_id": "R1B shared vocabulary",
+        "owner_scope": "qualification-dependent ownership; the unqualified root owns no cross-family mechanics",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "qualified_only",
+      "qualified_form_ids_or_names": [
+        "sensing observation candidate",
+        "epistemic observation record"
+      ],
+      "explicit_nonowners": [
+        "AFQR-06",
+        "AFQR-14"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-04",
+        "COLL-07"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-023",
+      "normalized_root": "relation",
+      "canonical_form": "relation",
+      "authoritative_record_sha256": "9e16f1af70fbb31f911d741839a21300fd7f524d5fef47cd08c43768c4883bfb",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "owner_scope": "AFQR-09 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-05",
+        "AFQR-16"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-024",
+      "normalized_root": "dependency",
+      "canonical_form": "dependency",
+      "authoritative_record_sha256": "4d74a14f911f6ddc38407f4a8da0476ac62987d1243afdfc08c8a2653231075f",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "owner_scope": "AFQR-09 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-16"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-025",
+      "normalized_root": "obligation",
+      "canonical_form": "obligation",
+      "authoritative_record_sha256": "75586cd97f14d111b32d007bed467edab0bf755f8f2a46c57c7589d2b7f42b02",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-09",
+        "owner_scope": "AFQR-09 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-05",
+        "AFQR-16"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-05"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-026",
+      "normalized_root": "integrity",
+      "canonical_form": "integrity",
+      "authoritative_record_sha256": "3440b8bdf3cfcae2b4dea71cdbdf0e9bbdbff88a5ffcbea5a6b988ff4cccd2d3",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-16",
+        "owner_scope": "AFQR-16 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-05",
+        "AFQR-09",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-05",
+        "COLL-09"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-027",
+      "normalized_root": "time",
+      "canonical_form": "time",
+      "authoritative_record_sha256": "3b1b092d9c6f031023e72314da03f71a796267c9fdb194f7476b33cc23195b91",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "owner_scope": "AFQR-04 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-028",
+      "normalized_root": "causality",
+      "canonical_form": "causality",
+      "authoritative_record_sha256": "79341b22925356d55e62a36e0d0fe4bfb94158a7baef902564939ebb8e3a4c10",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-04",
+        "owner_scope": "AFQR-04 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-12",
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-029",
+      "normalized_root": "process",
+      "canonical_form": "process",
+      "authoritative_record_sha256": "f5237a3ec21b9849c725f9c11e12cb970a71eaadeeb049aa8bfb4e6c2bb099ac",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-17",
+        "owner_scope": "AFQR-17 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-12",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-06"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-030",
+      "normalized_root": "signal",
+      "canonical_form": "signal",
+      "authoritative_record_sha256": "6803f9d4cfa08264d62eb5c21a6c79b2cda3bd40b021d28833ee3178d1fd1b9b",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-20",
+        "owner_scope": "AFQR-20 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-14"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-031",
+      "normalized_root": "communication",
+      "canonical_form": "communication",
+      "authoritative_record_sha256": "df0c27ccaa676f873350316e3e2d9a82d9beec30d14e869d273f61fd799d0a97",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-14",
+        "owner_scope": "AFQR-14 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-032",
+      "normalized_root": "interpretation",
+      "canonical_form": "interpretation",
+      "authoritative_record_sha256": "27033cf262f022aee61afc5c98e752833a5d13c2dd4ba7aa3dbb0cd681a460f0",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-14",
+        "owner_scope": "AFQR-14 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-07"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-033",
+      "normalized_root": "jurisdiction",
+      "canonical_form": "jurisdiction",
+      "authoritative_record_sha256": "99aa1d6d5b9dd7b445d5b1330f9b86f30b476ad0bfc6ce4d8cb55a30dd60e802",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-15",
+        "owner_scope": "AFQR-15 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-09",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-034",
+      "normalized_root": "institution",
+      "canonical_form": "institution",
+      "authoritative_record_sha256": "c5e7d8e87566f7fe07b2c673dd756bc336accfdec86ed493b645e03c5433f36c",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-15",
+        "owner_scope": "AFQR-15 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-09",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-08"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-035",
+      "normalized_root": "social state",
+      "canonical_form": "social state",
+      "authoritative_record_sha256": "0b2377d80524a37b3a9e0be385313dade6fa233712414f6921e728f24421c558",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-13",
+        "owner_scope": "AFQR-13 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-09",
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-15"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-08",
+        "COLL-10"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-036",
+      "normalized_root": "embodiment",
+      "canonical_form": "embodiment",
+      "authoritative_record_sha256": "1555d24ebf43696902997de8970e18dc40842334f0e3d8bcdddea5accba95577",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-16",
+        "owner_scope": "AFQR-16 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-17",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-037",
+      "normalized_root": "environment",
+      "canonical_form": "environment",
+      "authoritative_record_sha256": "5044de0eb92bee4a647a0ae63fdc618abc17de44a856953ff9bb1beeafa127f7",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-17",
+        "owner_scope": "AFQR-17 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-16",
+        "AFQR-18"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-038",
+      "normalized_root": "space",
+      "canonical_form": "space",
+      "authoritative_record_sha256": "4b43c25f1c7fd85e8127f808e6cf3b3e97ac723c3e3495c6ed1b6c013a6af630",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-18",
+        "owner_scope": "AFQR-18 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-16",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-039",
+      "normalized_root": "topology",
+      "canonical_form": "topology",
+      "authoritative_record_sha256": "437c5d7cdae940713450d4280409e7113b68077f77a5790c950dd2587cf93671",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-18",
+        "owner_scope": "AFQR-18 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-16",
+        "AFQR-17"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-09"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-040",
+      "normalized_root": "motivation",
+      "canonical_form": "motivation",
+      "authoritative_record_sha256": "1d934e98a7c74e5f7601ae3533040ccc2802ac3f66198b09f6727440499d38d1",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-12",
+        "owner_scope": "AFQR-12 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-11",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    },
+    {
+      "term_id": "TERM-041",
+      "normalized_root": "behavior",
+      "canonical_form": "behavior",
+      "authoritative_record_sha256": "852df1dee823612bab24cd956ca9882db43c40a3c151fc101186444ca9e797cc",
+      "owner_kind": "afqr",
+      "owner_id": {
+        "owner_kind": "afqr",
+        "owner_id": "AFQR-12",
+        "owner_scope": "AFQR-12 explicit source contract",
+        "owner_file": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
+      },
+      "qualified_only_status": "allowed",
+      "qualified_form_ids_or_names": [],
+      "explicit_nonowners": [
+        "AFQR-11",
+        "AFQR-13"
+      ],
+      "handoff_only_consumers": [],
+      "collision_ids": [
+        "COLL-10"
+      ],
+      "compared_fields": [
+        "canonical_form",
+        "vocabulary_disposition",
+        "unqualified_usage",
+        "type_owner",
+        "qualified_forms",
+        "explicit_nonowners",
+        "handoff_only_consumers",
+        "disallowed_aliases",
+        "explicit_non_equivalences",
+        "source_evidence_records",
+        "collision_ids"
+      ],
+      "mismatches": [],
+      "result": "pass"
+    }
+  ],
+  "afqr_14_provenance_review": {
+    "semantic_owner": "AFQR-14",
+    "architecture": "communication and interpretation architecture",
+    "primary_source": "SRC-0103",
+    "title_evidence": [
+      "SRC-0114"
+    ],
+    "corrected_baseline_evidence": [
+      "SRC-0103",
+      "SRC-0139",
+      "SRC-0121"
+    ],
+    "packaging_validator": "AFQR-15",
+    "ownership_transfer": false,
+    "result": "pass"
+  },
+  "counts": {
+    "sources": 20,
+    "terms": 41
+  },
+  "result": "pass"
+}

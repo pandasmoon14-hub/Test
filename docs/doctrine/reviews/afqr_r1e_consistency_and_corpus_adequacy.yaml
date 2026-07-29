@@ -1,0 +1,1755 @@
+{
+  "artifact_id": "AFQR-R1E-CONSISTENCY-CORPUS-ADEQUACY-001",
+  "authority": "audit and adequacy finding only; no donor rule promotion",
+  "relational_consistency_rows": [
+    {
+      "comparator_id": "REL-01",
+      "relationship": "R1A -> R1B",
+      "compared_record_ids": [
+        "R1A",
+        "R1B"
+      ],
+      "producer_hash": "8f1b370476aff74af96b1475294e243bbeea7e9a23d5c99712b5e3d7bea777ee",
+      "consumer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "0c811a8b622e7bf30a50a8dd730fb158a112a543b1a921edc507f8e4941c840b",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-02",
+      "relationship": "R1A -> R1C",
+      "compared_record_ids": [
+        "R1A",
+        "R1C"
+      ],
+      "producer_hash": "8f1b370476aff74af96b1475294e243bbeea7e9a23d5c99712b5e3d7bea777ee",
+      "consumer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "e38b4c99de00ab113e37a4ef15511e1c0d68a5562dc91095628210f072753f4a",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-03",
+      "relationship": "R1B -> R1C",
+      "compared_record_ids": [
+        "R1B",
+        "R1C"
+      ],
+      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
+      "consumer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "0dd50780fbd858cf5e28c9d3b981117bd32ec9b939ac3add7f98ac7c3d46783c",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-04",
+      "relationship": "R1B -> R1D-CORE",
+      "compared_record_ids": [
+        "R1B",
+        "R1D-CORE"
+      ],
+      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
+      "consumer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "a4eededd8f19559f3f46c7525f82559fa4eff62b2b1c51a2c3c6c03b108bd453",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-05",
+      "relationship": "R1B -> R1D-AGENCY",
+      "compared_record_ids": [
+        "R1B",
+        "R1D-AGENCY"
+      ],
+      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
+      "consumer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "384b1dadfe577498f7bf43dddf0e02d61339294646690c594598646bfd56af02",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-06",
+      "relationship": "R1B -> R1D-WORLD",
+      "compared_record_ids": [
+        "R1B",
+        "R1D-WORLD"
+      ],
+      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
+      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "c46d12ca0ee25245b85f0a7a869c4662e6e8c98c8f992a7128c11789217dbbbe",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-07",
+      "relationship": "R1C -> R1D-CORE",
+      "compared_record_ids": [
+        "R1C",
+        "R1D-CORE"
+      ],
+      "producer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
+      "consumer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "3a901b9fae72a854e7335b3344bb75728e047988429de6a227b35efa2eb71d2c",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-08",
+      "relationship": "R1C -> R1D-AGENCY",
+      "compared_record_ids": [
+        "R1C",
+        "R1D-AGENCY"
+      ],
+      "producer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
+      "consumer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "f0066fd94157504ba154fc576a4a93a3176a6d9e6b1ff66141c52e6a83eb0cc6",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-09",
+      "relationship": "R1C -> R1D-WORLD",
+      "compared_record_ids": [
+        "R1C",
+        "R1D-WORLD"
+      ],
+      "producer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
+      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "4e64f538aac92784ebacafee5c71e49138a2995b507ffabf0fe5d883dee11a26",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-10",
+      "relationship": "R1D-CORE <-> R1D-AGENCY",
+      "compared_record_ids": [
+        "R1D-CORE",
+        "R1D-AGENCY"
+      ],
+      "producer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
+      "consumer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "d6d864076d51e3a009f5a26c181f477fbabe3224272642ec3ecaa24751a39278",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-11",
+      "relationship": "R1D-CORE <-> R1D-WORLD",
+      "compared_record_ids": [
+        "R1D-CORE",
+        "R1D-WORLD"
+      ],
+      "producer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
+      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "b60a9d12d20e5fcac7baa8b6a990cf5ade2de320ea7aa203b7d3e8928aa4a43b",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-12",
+      "relationship": "R1D-AGENCY <-> R1D-WORLD",
+      "compared_record_ids": [
+        "R1D-AGENCY",
+        "R1D-WORLD"
+      ],
+      "producer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
+      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "f85119dbccdf8049322acbcdbfd4b12e4a7468c3a79058276cc65d29cfd18728",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    },
+    {
+      "comparator_id": "REL-13",
+      "relationship": "R1D -> R1E",
+      "compared_record_ids": [
+        "R1D",
+        "R1E"
+      ],
+      "producer_hash": "3c923f2ed257eead528bf30fe2f35fddd8ba90b05414019d69e67e059d28e5d5",
+      "consumer_hash": "c80f1c795c6f57596e15a710325ec339c3d606fdb4e21b136b0c3c3b17fe3b61",
+      "comparison_rules": [
+        "identifier coverage",
+        "canonical hash recomputation",
+        "owner/qualification preservation",
+        "evidence resolution",
+        "no authority transfer"
+      ],
+      "missing_ids": [],
+      "surplus_ids": [],
+      "mismatched_ids_and_fields": [],
+      "authority_transfer_violations": [],
+      "evidence_paths": [
+        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+      ],
+      "calculated_result_hash": "9f4c74b8c5ee8913db788fc738ae9ad7b2f6ca2f2533562ac6dbda8848da4e76",
+      "blocking_status": "nonblocking",
+      "result": "pass"
+    }
+  ],
+  "phase_separation_review": {
+    "R1_complete": true,
+    "R2_ready_only": true,
+    "R3_through_R6_blocked": true,
+    "implementation_authorized": false,
+    "runtime_is_separate_later_layer": true,
+    "result": "pass"
+  },
+  "donor_family_adequacy_rows": [
+    {
+      "donor_family_id": "DONOR-01",
+      "donor_family": "fantasy",
+      "representative_construct_pressures": [
+        "spell schools",
+        "ancestry anatomy"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-01",
+        "AGENCY-PRESSURE-03"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "240ef0f6c69712adc358c1e997419cbcde82682d0e12ed090f7766c8943c55c2",
+        "e39b816ff1410800723702c08497b3164a6998b887e3e8aabc25c7b766047c28"
+      ],
+      "expected_owners_by_construct": {
+        "spell schools": [],
+        "ancestry anatomy": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "spell schools",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "ancestry anatomy",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "spell schools",
+          "retained_rule": "exact donor spell schools procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "ancestry anatomy",
+          "retained_rule": "exact donor ancestry anatomy procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine spell schools when ownership, evidence, or phase cannot be resolved",
+        "quarantine ancestry anatomy when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate spell schools when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate ancestry anatomy when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor spell schools is not an Astra default",
+        "donor ancestry anatomy is not an Astra default"
+      ],
+      "rationale": "fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-02",
+      "donor_family": "science fiction",
+      "representative_construct_pressures": [
+        "radiation exposure",
+        "starship sensors"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-02",
+        "AGENCY-PRESSURE-04"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "8437a6b0ab2ccf085fa81b5e2275b5ca6ab2be36bc96617f8405b49d6d0a8822",
+        "1b38995190b6a64f3c1ab8ab8f1f2438a7fd09cbca62a284eca6ea70ff2a04c2"
+      ],
+      "expected_owners_by_construct": {
+        "radiation exposure": [
+          "AFQR-17"
+        ],
+        "starship sensors": [
+          "AFQR-20"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "radiation exposure",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "starship sensors",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "radiation exposure",
+          "astra_owner": "AFQR-17",
+          "astra_landing": "source-profiled radiation exposure",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "radiation exposure",
+          "normalization": "source-profiled radiation exposure constraints",
+          "receiving_owners": [
+            "AFQR-17"
+          ],
+          "source_local_retention": [
+            "exact donor radiation exposure procedure"
+          ],
+          "prohibited_inferences": [
+            "radiation exposure does not create unlisted ownership or universal Astra law"
+          ]
+        },
+        {
+          "donor_construct": "starship sensors",
+          "normalization": "source-profiled starship sensors constraints",
+          "receiving_owners": [
+            "AFQR-20"
+          ],
+          "source_local_retention": [
+            "exact donor starship sensors procedure"
+          ],
+          "prohibited_inferences": [
+            "starship sensors does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [],
+      "quarantine_triggers": [
+        "quarantine radiation exposure when ownership, evidence, or phase cannot be resolved",
+        "quarantine starship sensors when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate radiation exposure when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate starship sensors when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor radiation exposure is not an Astra default",
+        "donor starship sensors is not an Astra default"
+      ],
+      "rationale": "science fiction constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-03",
+      "donor_family": "hybrid science-fantasy",
+      "representative_construct_pressures": [
+        "mana reactor",
+        "technomagic portal"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-03",
+        "AGENCY-PRESSURE-05"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "34d6fce56614861975e4fe35af0fc77ee2d03606eb7a4f9a2a6042d861a358e4",
+        "55778ccb6a564dc589734f7690a5fb84fe1014cff3ae269a566405e078d0a90a"
+      ],
+      "expected_owners_by_construct": {
+        "mana reactor": [],
+        "technomagic portal": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "mana reactor",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "technomagic portal",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "mana reactor",
+          "retained_rule": "exact donor mana reactor procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "technomagic portal",
+          "retained_rule": "exact donor technomagic portal procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine mana reactor when ownership, evidence, or phase cannot be resolved",
+        "quarantine technomagic portal when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate mana reactor when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate technomagic portal when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor mana reactor is not an Astra default",
+        "donor technomagic portal is not an Astra default"
+      ],
+      "rationale": "hybrid science-fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-04",
+      "donor_family": "cultivation",
+      "representative_construct_pressures": [
+        "qi reserve",
+        "realm advancement"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-04",
+        "AGENCY-PRESSURE-06"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "f37ddcfe535e9b354a19a49febe8c8992e96b60976c18b66b5f14423e656a4ba",
+        "ed4681c823a87bb44abda8d9b02e4663a1601408670cd7144ba010aaf43bdb8d"
+      ],
+      "expected_owners_by_construct": {
+        "qi reserve": [],
+        "realm advancement": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "qi reserve",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "realm advancement",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "qi reserve",
+          "retained_rule": "exact donor qi reserve procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "realm advancement",
+          "retained_rule": "exact donor realm advancement procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine qi reserve when ownership, evidence, or phase cannot be resolved",
+        "quarantine realm advancement when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate qi reserve when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate realm advancement when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor qi reserve is not an Astra default",
+        "donor realm advancement is not an Astra default"
+      ],
+      "rationale": "cultivation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-05",
+      "donor_family": "class and archetype",
+      "representative_construct_pressures": [
+        "class feature",
+        "archetype prerequisite"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-05",
+        "AGENCY-PRESSURE-07"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "00b158a1cb71ba5a2e8cea1bf7548daa321e729bc33d6c9631a9829dd4a3b326",
+        "79086b4e408f37593ce5604b807a4fc248fc08e55100ed98b7ff35e4157caeb5"
+      ],
+      "expected_owners_by_construct": {
+        "class feature": [],
+        "archetype prerequisite": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "class feature",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "archetype prerequisite",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "class feature",
+          "retained_rule": "exact donor class feature procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "archetype prerequisite",
+          "retained_rule": "exact donor archetype prerequisite procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine class feature when ownership, evidence, or phase cannot be resolved",
+        "quarantine archetype prerequisite when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate class feature when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate archetype prerequisite when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor class feature is not an Astra default",
+        "donor archetype prerequisite is not an Astra default"
+      ],
+      "rationale": "class and archetype constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-06",
+      "donor_family": "profession and occupation",
+      "representative_construct_pressures": [
+        "professional license",
+        "trade skill"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-06",
+        "AGENCY-PRESSURE-08"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "a829faceecd0766b22e55303fb2138928ed91dc7bb9918aa5b0f238837af2a9b",
+        "d92b08978bb12f30a35dca1394e2e2b4339812853ba4a2b522f6fd17673584b2"
+      ],
+      "expected_owners_by_construct": {
+        "professional license": [
+          "AFQR-15"
+        ],
+        "trade skill": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "professional license",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "trade skill",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "professional license",
+          "astra_owner": "AFQR-15",
+          "astra_landing": "source-profiled professional license",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "professional license",
+          "normalization": "source-profiled professional license constraints",
+          "receiving_owners": [
+            "AFQR-15"
+          ],
+          "source_local_retention": [
+            "exact donor professional license procedure"
+          ],
+          "prohibited_inferences": [
+            "professional license does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [
+        {
+          "donor_construct": "trade skill",
+          "retained_rule": "exact donor trade skill procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine professional license when ownership, evidence, or phase cannot be resolved",
+        "quarantine trade skill when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate professional license when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate trade skill when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor professional license is not an Astra default",
+        "donor trade skill is not an Astra default"
+      ],
+      "rationale": "profession and occupation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-07",
+      "donor_family": "point-buy",
+      "representative_construct_pressures": [
+        "character points",
+        "purchase limit"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-07",
+        "AGENCY-PRESSURE-09"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "966e9200c2dafffb4b83d9230afbfe91dd78530f5def65c3e61a9129091147e1",
+        "88f9d006fc2758c8c3df59dcfeccfd97db54564232bbb19757a4166785da60a5"
+      ],
+      "expected_owners_by_construct": {
+        "character points": [],
+        "purchase limit": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "character points",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "purchase limit",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "character points",
+          "retained_rule": "exact donor character points procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "purchase limit",
+          "retained_rule": "exact donor purchase limit procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine character points when ownership, evidence, or phase cannot be resolved",
+        "quarantine purchase limit when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate character points when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate purchase limit when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor character points is not an Astra default",
+        "donor purchase limit is not an Astra default"
+      ],
+      "rationale": "point-buy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-08",
+      "donor_family": "narrative tag/aspect",
+      "representative_construct_pressures": [
+        "invoked aspect",
+        "story compel"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-08",
+        "AGENCY-PRESSURE-10"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "7566a5e5021a3f43cdae4d82ee57698e585aa8bc0f37eb226362f1ba8c7bbf82",
+        "155694e814523f80d1a0534fc6c9fedc5c18bc910443eae7c5f5853706a060da"
+      ],
+      "expected_owners_by_construct": {
+        "invoked aspect": [],
+        "story compel": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "invoked aspect",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "story compel",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "invoked aspect",
+          "retained_rule": "exact donor invoked aspect procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "story compel",
+          "retained_rule": "exact donor story compel procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine invoked aspect when ownership, evidence, or phase cannot be resolved",
+        "quarantine story compel when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate invoked aspect when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate story compel when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor invoked aspect is not an Astra default",
+        "donor story compel is not an Astra default"
+      ],
+      "rationale": "narrative tag/aspect constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-09",
+      "donor_family": "cyberware and biotech",
+      "representative_construct_pressures": [
+        "implant integrity",
+        "biotech mutation"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-09",
+        "AGENCY-PRESSURE-11"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "ab3c4e0b9869ad522fc91ba3c80a61d6fd510dc8b7307b7e1c267f70e1db2e53",
+        "70079ed09a9a3f5d4f52f8c727e75dd86ad1df529aa47db31c944afa3f0c4e23"
+      ],
+      "expected_owners_by_construct": {
+        "implant integrity": [
+          "AFQR-16"
+        ],
+        "biotech mutation": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "implant integrity",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "biotech mutation",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "implant integrity",
+          "astra_owner": "AFQR-16",
+          "astra_landing": "source-profiled implant integrity",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "implant integrity",
+          "normalization": "source-profiled implant integrity constraints",
+          "receiving_owners": [
+            "AFQR-16"
+          ],
+          "source_local_retention": [
+            "exact donor implant integrity procedure"
+          ],
+          "prohibited_inferences": [
+            "implant integrity does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [
+        {
+          "donor_construct": "biotech mutation",
+          "retained_rule": "exact donor biotech mutation procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine implant integrity when ownership, evidence, or phase cannot be resolved",
+        "quarantine biotech mutation when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate implant integrity when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate biotech mutation when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor implant integrity is not an Astra default",
+        "donor biotech mutation is not an Astra default"
+      ],
+      "rationale": "cyberware and biotech constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-10",
+      "donor_family": "psionic",
+      "representative_construct_pressures": [
+        "telepathic signal",
+        "mind control"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-10",
+        "AGENCY-PRESSURE-12"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "7234edb916295ff2427f91619a77ffc95a7e6ef920c04c97ccebab736a1906b9",
+        "b63bae5459cacd461f260f5d7b41fa25d81046999a3072b476520d51673014f8"
+      ],
+      "expected_owners_by_construct": {
+        "telepathic signal": [],
+        "mind control": [
+          "AFQR-11"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "telepathic signal",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "mind control",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [
+        {
+          "donor_construct": "mind control",
+          "normalization": "source-profiled mind control constraints",
+          "receiving_owners": [
+            "AFQR-11"
+          ],
+          "source_local_retention": [
+            "exact donor mind control procedure"
+          ],
+          "prohibited_inferences": [
+            "mind control does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [
+        {
+          "donor_construct": "telepathic signal",
+          "retained_rule": "exact donor telepathic signal procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine telepathic signal when ownership, evidence, or phase cannot be resolved",
+        "quarantine mind control when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate telepathic signal when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate mind control when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor telepathic signal is not an Astra default",
+        "donor mind control is not an Astra default"
+      ],
+      "rationale": "psionic constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-11",
+      "donor_family": "horror",
+      "representative_construct_pressures": [
+        "sanity pressure",
+        "corruption track"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-11",
+        "AGENCY-PRESSURE-13"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "b5227f15e85f6949958aa1d064b75219e0d525329a3e2fb783efac4807475ee3",
+        "b889d4bf6de1a2ea511e84f4610f8bc607a0660f4137a0299c9b7b1e18019a0f"
+      ],
+      "expected_owners_by_construct": {
+        "sanity pressure": [],
+        "corruption track": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "sanity pressure",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "corruption track",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "sanity pressure",
+          "retained_rule": "exact donor sanity pressure procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "corruption track",
+          "retained_rule": "exact donor corruption track procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine sanity pressure when ownership, evidence, or phase cannot be resolved",
+        "quarantine corruption track when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate sanity pressure when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate corruption track when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor sanity pressure is not an Astra default",
+        "donor corruption track is not an Astra default"
+      ],
+      "rationale": "horror constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-12",
+      "donor_family": "investigation",
+      "representative_construct_pressures": [
+        "clue evidence",
+        "hidden truth"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-12",
+        "AGENCY-PRESSURE-14"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "e8ce582ffe6696f858f9214c6e062ac14c0eb1def6278b3c12f95ebdb22d65a4",
+        "ecf2764e93da52b5be97244ae7218cf8a31e2e0790d5c633ad3a6e34c34ae5d0"
+      ],
+      "expected_owners_by_construct": {
+        "clue evidence": [
+          "AFQR-10"
+        ],
+        "hidden truth": [
+          "AFQR-10"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "clue evidence",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "hidden truth",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "clue evidence",
+          "astra_owner": "AFQR-10",
+          "astra_landing": "source-profiled clue evidence",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "clue evidence",
+          "normalization": "source-profiled clue evidence constraints",
+          "receiving_owners": [
+            "AFQR-10"
+          ],
+          "source_local_retention": [
+            "exact donor clue evidence procedure"
+          ],
+          "prohibited_inferences": [
+            "clue evidence does not create unlisted ownership or universal Astra law"
+          ]
+        },
+        {
+          "donor_construct": "hidden truth",
+          "normalization": "source-profiled hidden truth constraints",
+          "receiving_owners": [
+            "AFQR-10"
+          ],
+          "source_local_retention": [
+            "exact donor hidden truth procedure"
+          ],
+          "prohibited_inferences": [
+            "hidden truth does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [],
+      "quarantine_triggers": [
+        "quarantine clue evidence when ownership, evidence, or phase cannot be resolved",
+        "quarantine hidden truth when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate clue evidence when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate hidden truth when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor clue evidence is not an Astra default",
+        "donor hidden truth is not an Astra default"
+      ],
+      "rationale": "investigation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-13",
+      "donor_family": "vehicles, mechs, ships, and platforms",
+      "representative_construct_pressures": [
+        "ship facing rule",
+        "vehicle operation"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-13",
+        "AGENCY-PRESSURE-15"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "38dae0c176b6f34ac53720637eca814e27d0a67bb3b5f05a1c96c47efdaa41f0",
+        "1d6e38aead90c09a3aa4231e96c2a1ec5b93118abcea19ccfd47e3ad27364f9e"
+      ],
+      "expected_owners_by_construct": {
+        "ship facing rule": [
+          "AFQR-18"
+        ],
+        "vehicle operation": [
+          "AFQR-11",
+          "AFQR-19"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "ship facing rule",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "vehicle operation",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "ship facing rule",
+          "astra_owner": "AFQR-18",
+          "astra_landing": "source-profiled ship facing rule",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "ship facing rule",
+          "normalization": "source-profiled ship facing rule constraints",
+          "receiving_owners": [
+            "AFQR-18"
+          ],
+          "source_local_retention": [
+            "exact donor ship facing rule procedure"
+          ],
+          "prohibited_inferences": [
+            "ship facing rule does not create unlisted ownership or universal Astra law"
+          ]
+        },
+        {
+          "donor_construct": "vehicle operation",
+          "normalization": "source-profiled vehicle operation constraints",
+          "receiving_owners": [
+            "AFQR-11",
+            "AFQR-19"
+          ],
+          "source_local_retention": [
+            "exact donor vehicle operation procedure"
+          ],
+          "prohibited_inferences": [
+            "vehicle operation does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [],
+      "quarantine_triggers": [
+        "quarantine ship facing rule when ownership, evidence, or phase cannot be resolved",
+        "quarantine vehicle operation when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate ship facing rule when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate vehicle operation when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor ship facing rule is not an Astra default",
+        "donor vehicle operation is not an Astra default"
+      ],
+      "rationale": "vehicles, mechs, ships, and platforms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-14",
+      "donor_family": "companions, summons, familiars, proxies, and swarms",
+      "representative_construct_pressures": [
+        "companion control",
+        "swarm agency"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-14",
+        "AGENCY-PRESSURE-16"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "75afedfcc2330b44f14efaa1d57ecd23cd4c2d2cdea58b88f807d32957581987",
+        "1a3725a823540595f2ea475022353f43a27113ed13534cf64b967bdfb4957511"
+      ],
+      "expected_owners_by_construct": {
+        "companion control": [
+          "AFQR-11"
+        ],
+        "swarm agency": [
+          "AFQR-11"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "companion control",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "swarm agency",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "companion control",
+          "astra_owner": "AFQR-11",
+          "astra_landing": "source-profiled companion control",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "companion control",
+          "normalization": "source-profiled companion control constraints",
+          "receiving_owners": [
+            "AFQR-11"
+          ],
+          "source_local_retention": [
+            "exact donor companion control procedure"
+          ],
+          "prohibited_inferences": [
+            "companion control does not create unlisted ownership or universal Astra law"
+          ]
+        },
+        {
+          "donor_construct": "swarm agency",
+          "normalization": "source-profiled swarm agency constraints",
+          "receiving_owners": [
+            "AFQR-11"
+          ],
+          "source_local_retention": [
+            "exact donor swarm agency procedure"
+          ],
+          "prohibited_inferences": [
+            "swarm agency does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [],
+      "quarantine_triggers": [
+        "quarantine companion control when ownership, evidence, or phase cannot be resolved",
+        "quarantine swarm agency when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate companion control when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate swarm agency when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor companion control is not an Astra default",
+        "donor swarm agency is not an Astra default"
+      ],
+      "rationale": "companions, summons, familiars, proxies, and swarms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-15",
+      "donor_family": "crafting, salvage, repair, and requisition",
+      "representative_construct_pressures": [
+        "material reserve",
+        "repair transition"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-15",
+        "AGENCY-PRESSURE-17"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "ffe9fabaa529de1ee4f61f6984eecf138ed0a2733d1248e18cdf15e75a99b409",
+        "7855d1df2867be66da943b0dc4de132cfd638ab66f2c0ede41fd3de84c65aef3"
+      ],
+      "expected_owners_by_construct": {
+        "material reserve": [
+          "AFQR-07"
+        ],
+        "repair transition": [
+          "AFQR-01"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "material reserve",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "repair transition",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "material reserve",
+          "astra_owner": "AFQR-07",
+          "astra_landing": "source-profiled material reserve",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "material reserve",
+          "normalization": "source-profiled material reserve constraints",
+          "receiving_owners": [
+            "AFQR-07"
+          ],
+          "source_local_retention": [
+            "exact donor material reserve procedure"
+          ],
+          "prohibited_inferences": [
+            "material reserve does not create unlisted ownership or universal Astra law"
+          ]
+        },
+        {
+          "donor_construct": "repair transition",
+          "normalization": "source-profiled repair transition constraints",
+          "receiving_owners": [
+            "AFQR-01"
+          ],
+          "source_local_retention": [
+            "exact donor repair transition procedure"
+          ],
+          "prohibited_inferences": [
+            "repair transition does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [],
+      "quarantine_triggers": [
+        "quarantine material reserve when ownership, evidence, or phase cannot be resolved",
+        "quarantine repair transition when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate material reserve when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate repair transition when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor material reserve is not an Astra default",
+        "donor repair transition is not an Astra default"
+      ],
+      "rationale": "crafting, salvage, repair, and requisition constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-16",
+      "donor_family": "bestiary",
+      "representative_construct_pressures": [
+        "creature anatomy",
+        "instinct routine"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "PRESS-16",
+        "AGENCY-PRESSURE-18"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "3d957f21c1658222fa033ca74f9c802857d4f1e73d17f8dffaaa84f1342a3de6",
+        "21e622cc309ef6fb95ff0672580bc5641531cb783661f980ae5c61bde44567b7"
+      ],
+      "expected_owners_by_construct": {
+        "creature anatomy": [],
+        "instinct routine": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "creature anatomy",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "instinct routine",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [],
+      "normalized_mappings": [],
+      "source_local_examples": [
+        {
+          "donor_construct": "creature anatomy",
+          "retained_rule": "exact donor creature anatomy procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        },
+        {
+          "donor_construct": "instinct routine",
+          "retained_rule": "exact donor instinct routine procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine creature anatomy when ownership, evidence, or phase cannot be resolved",
+        "quarantine instinct routine when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate creature anatomy when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate instinct routine when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor creature anatomy is not an Astra default",
+        "donor instinct routine is not an Astra default"
+      ],
+      "rationale": "bestiary constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-17",
+      "donor_family": "random tables and oracles",
+      "representative_construct_pressures": [
+        "random encounter result",
+        "oracle prompt"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "AGENCY-PRESSURE-01",
+        "WORLD-PRESS-01"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "21f27483b514d5e2f0f8e05034ffff1aa3c1d577027cc9fb6e41ff637119418d",
+        "58f3f508756ebf1500854fcb4a4431ec15a138874bb21dc68376def7443117b1"
+      ],
+      "expected_owners_by_construct": {
+        "random encounter result": [
+          "AFQR-06"
+        ],
+        "oracle prompt": [
+          "AFQR-10"
+        ]
+      },
+      "required_handoffs": [
+        {
+          "construct": "random encounter result",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "oracle prompt",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "random encounter result",
+          "astra_owner": "AFQR-06",
+          "astra_landing": "source-profiled random encounter result",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "random encounter result",
+          "normalization": "source-profiled random encounter result constraints",
+          "receiving_owners": [
+            "AFQR-06"
+          ],
+          "source_local_retention": [
+            "exact donor random encounter result procedure"
+          ],
+          "prohibited_inferences": [
+            "random encounter result does not create unlisted ownership or universal Astra law"
+          ]
+        },
+        {
+          "donor_construct": "oracle prompt",
+          "normalization": "source-profiled oracle prompt constraints",
+          "receiving_owners": [
+            "AFQR-10"
+          ],
+          "source_local_retention": [
+            "exact donor oracle prompt procedure"
+          ],
+          "prohibited_inferences": [
+            "oracle prompt does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [],
+      "quarantine_triggers": [
+        "quarantine random encounter result when ownership, evidence, or phase cannot be resolved",
+        "quarantine oracle prompt when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate random encounter result when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate oracle prompt when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor random encounter result is not an Astra default",
+        "donor oracle prompt is not an Astra default"
+      ],
+      "rationale": "random tables and oracles constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    },
+    {
+      "donor_family_id": "DONOR-18",
+      "donor_family": "supplements, adventures, and campaign paths",
+      "representative_construct_pressures": [
+        "adventure faction",
+        "campaign cosmology"
+      ],
+      "source_r1d_pressure_record_ids": [
+        "AGENCY-PRESSURE-02",
+        "WORLD-PRESS-02"
+      ],
+      "source_r1d_pressure_record_hashes": [
+        "496598b1775da80983a0f081dc8593ec9751ef6dc40dfd59e0421581ee5475f1",
+        "6819f8559867052b68232446ca37a2009ffaddc977e0764a47f1f8431cab3180"
+      ],
+      "expected_owners_by_construct": {
+        "adventure faction": [
+          "AFQR-13"
+        ],
+        "campaign cosmology": []
+      },
+      "required_handoffs": [
+        {
+          "construct": "adventure faction",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        },
+        {
+          "construct": "campaign cosmology",
+          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+        }
+      ],
+      "direct_mappings": [
+        {
+          "donor_construct": "adventure faction",
+          "astra_owner": "AFQR-13",
+          "astra_landing": "source-profiled adventure faction",
+          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
+          "source_local_retention": []
+        }
+      ],
+      "normalized_mappings": [
+        {
+          "donor_construct": "adventure faction",
+          "normalization": "source-profiled adventure faction constraints",
+          "receiving_owners": [
+            "AFQR-13"
+          ],
+          "source_local_retention": [
+            "exact donor adventure faction procedure"
+          ],
+          "prohibited_inferences": [
+            "adventure faction does not create unlisted ownership or universal Astra law"
+          ]
+        }
+      ],
+      "source_local_examples": [
+        {
+          "donor_construct": "campaign cosmology",
+          "retained_rule": "exact donor campaign cosmology procedure",
+          "reason": "no Astra owner is inferred from donor terminology"
+        }
+      ],
+      "quarantine_triggers": [
+        "quarantine adventure faction when ownership, evidence, or phase cannot be resolved",
+        "quarantine campaign cosmology when ownership, evidence, or phase cannot be resolved"
+      ],
+      "doctrine_escalation_triggers": [
+        "escalate adventure faction when it requires a new universal owner or contradicts a nonownership rule",
+        "escalate campaign cosmology when it requires a new universal owner or contradicts a nonownership rule"
+      ],
+      "prohibited_universalizations": [
+        "donor adventure faction is not an Astra default",
+        "donor campaign cosmology is not an Astra default"
+      ],
+      "rationale": "supplements, adventures, and campaign paths constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass"
+    }
+  ],
+  "owner_discipline": {
+    "AFQR-07": "only conserved/created/destroyed/reserved/converted/settled quantities",
+    "AFQR-09": "only governed relations/dependencies",
+    "AFQR-11": "only agency/control/consent/coercion/delegation/responsibility",
+    "AFQR-12": "only motivation/behavior/emotion/personality/planning/learning",
+    "AFQR-13": "only social state",
+    "donor_defaults_prohibited": [
+      "anatomy",
+      "action economy",
+      "damage model",
+      "grid",
+      "cosmology",
+      "morality",
+      "class structure",
+      "perception system",
+      "institutional model",
+      "resource economy",
+      "progression model",
+      "RHBF"
+    ]
+  },
+  "corpus_scale_blockers": [],
+  "result": "pass"
+}

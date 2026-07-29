@@ -1,6 +1,6 @@
 # AFQR-01–20 modular consolidation program plan
 
-**Status:** R1B vocabulary/type-owner resolution complete; R1 incomplete. **Authority:** planning/tracking only.
+**Status:** R1A–R1E and overall R1 complete; R2 doctrine-drift resolution ready and next. **Authority:** planning/tracking only.
 
 ## Boundaries and corpus pressure
 
@@ -8,19 +8,19 @@ The physical packets are evidence for architectural-decision tracking, never can
 
 ## Work packages
 
-1. **R1A — source intake and indexing (this change):** immutable provenance, safe extraction, primary-slot index, source-backed dependency/collision inventories, modular plan, and tests.
+1. **R1A — source intake and indexing (complete):** immutable provenance, safe extraction, primary-slot index, source-backed dependency/collision inventories, modular plan, and tests.
 2. **R1B — vocabulary and type-owner resolution (complete):** aliases and ownership adjudicated; COLL-03, COLL-08, and COLL-10 retain substantive escalation.
-3. **R1C — invariant/dependency consolidation (next authorized gate):** reconcile cycles, required handoffs, and missing substrate after R1B.
-4. **R1D — modular domain families:** separate core transaction/identity/relation, epistemic/agency/social/institution, and world/action/sensing files; no megafile.
-5. **R1E — formal completion review:** independent source-traceability, nonownership, corpus-pressure, and exit-gate review.
+3. **R1C — invariant/dependency consolidation (complete):** reconcile cycles, required handoffs, and missing substrate after R1B.
+4. **R1D — modular domain families (complete):** separate core transaction/identity/relation, epistemic/agency/social/institution, and world/action/sensing files; no megafile.
+5. **R1E — formal completion review (complete):** independent source-traceability, nonownership, corpus-pressure, and exit-gate review.
 
 The machine-readable proposed-file contracts are in `afqr_01_20_consolidation_file_manifest.yaml`. Outliers escalate to the Doctrine Council unresolved ledger; they never receive invented winners.
 
 ## Completion and blocking gates
 
-R1A requires all semantic tests to pass and all 12 unchanged incoming archives and all 277 physical members to remain manifest-backed, with only purpose-selected UTF-8 text copies materialized. R1 remains incomplete until R1E. R2 doctrine-drift resolution, R3 conformance audit, R4 runtime substrate, R5 RT-002A–F retrofit, R6 re-entry review, and RT-002G authorization/implementation remain blocked. Temporary-source deletion requires a later explicit R1E exit decision preserving checksum provenance. No runtime, conversion, canon, sourcebook, model-facing, or live-play work is authorized here.
+R1A through R1E and overall R1 are complete. R2 doctrine-drift resolution is ready and is the single next lawful gate. R3 conformance audit, R4 runtime substrate, R5 RT-002A–F retrofit, R6 re-entry review, and RT-002G authorization/implementation remain blocked. Temporary-source deletion requires a separate explicit evidence-disposition gate and remains unauthorized. No runtime, conversion, canon, sourcebook, model-facing, or live-play work is authorized here.
 
-**Explicit block:** R2–R6 and RT-002G remain blocked.
+**Explicit block:** R3–R6 and RT-002G remain blocked; R2 alone is ready.
 
 ## R1B completion update (2026-07-23)
 
@@ -49,3 +49,8 @@ R1D-AGENCY consolidates AFQR-10–15 with 11 internal, 21 core-boundary, and fiv
 ## R1D-WORLD completion update (2026-07-27)
 
 R1D-WORLD consolidates AFQR-16–20 with seven internal, seventeen core-boundary, and five agency-boundary R1C dispositions. R1D-CORE and R1D-AGENCY parity are exact; CYCLE-004 remains bounded and DEP-094 preserves AFQR-19 target ownership. COLL-03, COLL-08, and COLL-10 remain globally open; SUB-002 and SUB-005 remain unimplemented. All three R1D families and overall R1D are complete. Overall R1 remains incomplete pending R1E, which is now ready and the next lawful gate. R2–R6 remain blocked; RT-002G and temporary evidence deletion remain unauthorized. No implementation, conversion, canon/sourcebook, model, narration, or live-play authority is granted.
+
+
+## R1E formal completion update (2026-07-29)
+
+Independent external GitHub comparison verified remote `main` at `017984a1598b9c60324c62e54d80372c364654ae`; clean local fallback matched exactly after proxy HTTP 403 and direct DNS prevented fetch. The abandoned PR #338 head was absent and not reused. Modular audits reverified 20 authorities, 41 terms, 94 edges in the 33/11/7/21/17/5 partition, all three R1D projections, four cycles, four dependency risks, thirteen consistency relationships, and eighteen donor families. COLL-03, COLL-08, and COLL-10 close with qualification. SUB-001–SUB-005 are accepted as classified deferred substrates and remain unimplemented. R1E and overall R1 are complete; R2 doctrine-drift resolution alone is ready and next. R3–R6 remain blocked; RT-002G and temporary evidence deletion remain unauthorized. No runtime, persistence, reducer, production-schema, conversion, canon/sourcebook, model, narration, UI, or live-play authority is granted.
