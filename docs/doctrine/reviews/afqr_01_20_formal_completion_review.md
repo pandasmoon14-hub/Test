@@ -3458,7 +3458,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-001",
             "record_sha256": "8205093416b4ba6cdc359a0c6e430c8d5c7e529086ce1e3f5962f1d237f96577",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "32b6a20bf504c533a10132225fafff7500f3e797e57c309f0784cb3ce8d00f04"
           }
         ],
         "projection_count_expected": 1
@@ -3495,7 +3510,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-002",
             "record_sha256": "9292753358973cc4d0549ed8a6724bd3f131b1a84fbc6f64fce007c220e42f62",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ee699cf8866a57d195a36f903d50e66edc12e4bbeee35126f6b52e2752cb0f59"
           }
         ],
         "projection_count_expected": 1
@@ -3532,7 +3562,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-003",
             "record_sha256": "1c212e245d366ad1c1830ec5586c5341a983ae7b9cec9642d2e7aabba2599c73",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c7242aa26307e5642b96fcca843139283ebb59c921d6b02a268227e365b24f6b"
           }
         ],
         "projection_count_expected": 1
@@ -3569,7 +3614,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-004",
             "record_sha256": "15c192b182b1ce57ae0bc7c8de64c41069600e93a130b364ca39c5526f5b974e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "9571872fcb36926b16a3dd45f75b3f483058f6416f11df183150fd5e7cec7eff"
           }
         ],
         "projection_count_expected": 1
@@ -3606,7 +3666,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-005",
             "record_sha256": "72b6d0074319fff6f2778318ec24ef2e74e06f4be732fd207770c4ff0249e3d6",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c6cfeea9a28f0e064f7c051e5822ab041db9e3de06e8ab73c2c4944431226458"
           }
         ],
         "projection_count_expected": 1
@@ -3643,7 +3718,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-006",
             "record_sha256": "061d8a8483d96d596d0dc01def113bfd6df52812e452f8f82f1b3f60d574c067",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "7509e38975875cacdeba7995c750d39a687f6e4340627c652eeee443a39522d9"
           }
         ],
         "projection_count_expected": 1
@@ -3680,7 +3770,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-007",
             "record_sha256": "91ce84a76162c4480b95c2730e9cbabd045ba23be45ce038a937d802ef5a1b5e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "54abd78fdc662de503353ed7fe3961809c8d3f96938ec1aec373177ad60d3b99"
           }
         ],
         "projection_count_expected": 1
@@ -3717,7 +3822,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-008",
             "record_sha256": "ea991f1569229bd91f8f9fd1079dec9d8a1e0bd8e7d7910c3957165777c2e553",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ce3120fd15393878d85b8079072100037d82ee9dec1e98560b9c1b0665189705"
           }
         ],
         "projection_count_expected": 1
@@ -3754,13 +3874,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-009",
             "record_sha256": "e5889b54e8879281bcc9ac9312617838e00f483c447d510426bef0f039ce3855",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "be8136e547c766f04456e434bb4c7f952ef1d292f544a19fb9f13a9ce92e4816"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-009",
             "record_sha256": "86479284f062caa5a2232192113fb114aa850223c1d6988908c1e71d1341ab13",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "694fab3daea07804a1946eeefde5fe33321e028aa1b09f5bfe56a384a10eef3a"
           }
         ],
         "projection_count_expected": 2
@@ -3797,13 +3945,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-010",
             "record_sha256": "175b3bcb872f65554f4c2d88900628a9a7c9b4b447ed9786255980ab16d14b12",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e1e0bfcfa683bdb61fed352067c6699f69a633655070fe583b28e57861f1e9df"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-010",
             "record_sha256": "9919ccf9f0cd000006080b64d2077846d24685eb3c7b8f4d6d265bb784bf70d8",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "100d834b204a29fa49fa34a99bdd6055725a19fa6b59112e413f3ebab3520379"
           }
         ],
         "projection_count_expected": 2
@@ -3840,13 +4016,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-011",
             "record_sha256": "a140c5747fcd907dc8f659e1839d219d2392f2a602ebc4a7a0072e7d94f84f6b",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "7eecdaefb4a34802c47c35bcec6de0798202a9cd825af60cc699e13a98b403af"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-011",
             "record_sha256": "8400c424a3c7f7787d18f5a94dd634b1308b093bd993b6b53a4fa1977f28a36c",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b3fcb0dacfef3b4728db5cf3e5ee5a28b20d8e2d58d5239d319005b092d1ffc5"
           }
         ],
         "projection_count_expected": 2
@@ -3883,13 +4087,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-012",
             "record_sha256": "d69425c1186400deae87f8b3f69376c9cabe735341f892d97e2523c8c47b352c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0b834020aafbaabccfb8a797d394e2e9a2ff3ede4168548b4711058aa9b3c1fd"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-012",
             "record_sha256": "144bd22d29af9501181b2a53dd75b0ec54044827b89e79af9ea9399f77608162",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "48f63b5c75ce6c54c3988401b5a90e30789de2a328c4016f19922a71939525c6"
           }
         ],
         "projection_count_expected": 2
@@ -3926,13 +4158,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-013",
             "record_sha256": "3c69262603574a5ee7c711500ea5d4f602ecbf331551276b5b9462f8eb7268ee",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "977d40e708e484c4b78ccd8b106fd954ba77120650cd2fc2e1ed794a01203f6c"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-013",
             "record_sha256": "1e10e74ceea0136a53f6efc43e0e28b5935425b271c6467804fa9737b7e2ce39",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "738f5683a210bde6b21cc6bf039311642c9975a3dfabfdcfb9550430dfa693c0"
           }
         ],
         "projection_count_expected": 2
@@ -3969,13 +4229,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-014",
             "record_sha256": "0e7ebd788beaeff995db8ae56fa410264cef4ccda710de8d0a969d91cbd06f8c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "eefdff6900b05d24971bd219d5355fc22f209ac0b89e717116c468258f66af74"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-014",
             "record_sha256": "78357516fa3c96e8eee04a5b342157660810f26ec597826ea0f421dfc1155e64",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "79cd81da723786cf5a32cb6767ea4032515db2b6b4f2f67fcca9461b5872ef3f"
           }
         ],
         "projection_count_expected": 2
@@ -4012,13 +4300,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-015",
             "record_sha256": "b60c6cc3c4671993628a1a83853ab6b4699e07432a47fb5a32a442ddcd4b7079",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "64ebbf18fc0ce76f78c76dc6fc8607eb2cf833f70dfcfa012b0c055ac60d6640"
           },
           {
             "family": "world",
             "record_id": "DEP-015",
             "record_sha256": "255a128fc445b27f57eca21df9f437510c341540affbd953347434d2b22b55ff",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5a06c071ee5a97c8b3534c1b8a8eb3af6c5be852f555e350157691084d944514"
           }
         ],
         "projection_count_expected": 2
@@ -4055,13 +4371,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-016",
             "record_sha256": "29ef11711557461f23d552e0d21e3e9d721a4bed4492dab88ce8690bbbc4ab16",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2a065523bec3e08258bb51b7a132639a86d319d6285a52d7af751509c06f02ab"
           },
           {
             "family": "world",
             "record_id": "DEP-016",
             "record_sha256": "a4f282cf2d0e551ef3feaf656ce3499cd5fa550dc3f60f655047e4223c811702",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "a82805daf912e698ec9ba6d2a6b35ae33ad68df2e7b4f0687483ddde3cb33d7e"
           }
         ],
         "projection_count_expected": 2
@@ -4098,13 +4442,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-017",
             "record_sha256": "a3be3e1ccfc6467fd85851b7f540a5365c4b27accf1b5e0247e57af98357dcb2",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "95c7d48042fc7788c10b38d672c82af0ad7aec2ed528bafd0b7e4010e5125aa3"
           },
           {
             "family": "world",
             "record_id": "DEP-017",
             "record_sha256": "760985fdc44997d56a4de5f870480df32a4c25d092546e8d304235cfbcf02103",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1bb388a1006f1d5a17c1d97bf8aa2d2b1cbfabb36f227ed0fb40bbbf425dbf66"
           }
         ],
         "projection_count_expected": 2
@@ -4141,13 +4513,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-018",
             "record_sha256": "ac2ce057ec792aa9c4c50660f1e74b69fe7bfee6f11a3a3c580f98d37b0036cf",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "23a767ade4c76b70b82a9caae4578db17d8f5a071d0bc9a01189b4617c6a9264"
           },
           {
             "family": "world",
             "record_id": "DEP-018",
             "record_sha256": "075137d679d9c7bdd72e2ec571d6db9ab2a57b9269db58a350c0272fc1505758",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "86318f1b054555c93add3b4f672dfb3517d4eb2001a76487b71e0cfc573e78f6"
           }
         ],
         "projection_count_expected": 2
@@ -4184,13 +4584,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-019",
             "record_sha256": "fe44752d31a12df615f6ea01f3e4a9e2ba4387e421fa0189b799b96d56afd95e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "abe9d7439abc6ee25b4b793410e89eda41b4dfc05110ab24bb272496f442f184"
           },
           {
             "family": "world",
             "record_id": "DEP-019",
             "record_sha256": "d8dccb25a1393ec3ea8ba82e2b92f40bf03e0e62123c4dd39a088355d73b79ca",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "f845c30c1de552954006a8426db5f7899d33aa583513429e5f1ef6cf47b47d6d"
           }
         ],
         "projection_count_expected": 2
@@ -4227,7 +4655,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-020",
             "record_sha256": "328fa36f80180bd11dca9f7280a964abc6bd5b13a09c1152c75db5d425fdacfc",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "adc9c3869ef6078b342151117f6149b5f388623b483980e382d4302fae7d2a36"
           }
         ],
         "projection_count_expected": 1
@@ -4264,7 +4707,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-021",
             "record_sha256": "f1738f6fc74695de5174816e078bfebdfa2913bf1d0096c77f6f1082ea06dffa",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e449b4de1ed7415183801787cced99f5235c9c9ab13a24f52cd5cc5ab508cfea"
           }
         ],
         "projection_count_expected": 1
@@ -4301,7 +4759,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-022",
             "record_sha256": "62508e541f0f4245d1013118c1b7a26edde8f0c737887dcacd1e0d2dfa719a3f",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2d21f374a7f1e7d86ed4783b06f82940066acc8538663d3b2666919afce2fd4c"
           }
         ],
         "projection_count_expected": 1
@@ -4338,13 +4811,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-023",
             "record_sha256": "b65066ff1443326e890babeb212d8db6e1ac7ebbdc6281b91d01f4df61fb9f67",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e53cb460f04c62caa17821b6cb074f7154e15c3ba876c3aac72ca9008848d313"
           },
           {
             "family": "world",
             "record_id": "DEP-023",
             "record_sha256": "5b3d44b13d849e6e8671d1a057d75c62e654c2758dcb1628297ad72aa80c14eb",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "18d5fbe44ffec05e8cf8ba859ea5cc9510ed5bf7b46e89b241d00965b5601ecb"
           }
         ],
         "projection_count_expected": 2
@@ -4381,7 +4882,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-024",
             "record_sha256": "d290bda577984b9097542e3ae33d9c4f57cd9b6a5bac590c83008470374d4aef",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "73b6f6a84275607f7703c1422d2dd37ab3983e51bc067ffc382f112c5fb9106b"
           }
         ],
         "projection_count_expected": 1
@@ -4418,7 +4934,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-025",
             "record_sha256": "9cd9f25c3de5cbb6c85b88633b5def15510a9c3e296f40677c4600f23b8db9f3",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3e5227d9d04e1a5eacdab2b1edec26b1f1ff97a66ac0221a022597229d53e303"
           }
         ],
         "projection_count_expected": 1
@@ -4455,7 +4986,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-026",
             "record_sha256": "a1bb3a1f4d36fea9d84761d42619c6ac04d012663ab63205509529e8831e46cc",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "7e6a37876747127ae28184739dc023b3bcf7786eeb1e4b8d8714d23924bcedf5"
           }
         ],
         "projection_count_expected": 1
@@ -4492,7 +5038,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-027",
             "record_sha256": "192c6fcc63551f68b677f85e7f250497a0eae4f006a088f5c6b00ae4827b15f7",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "87b8d7e91aa52586d3513ac37beb8e85e2087dddb55ceb40deeae26b528042a0"
           }
         ],
         "projection_count_expected": 1
@@ -4529,7 +5090,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-028",
             "record_sha256": "f202c2ebc3dc4d96543c4fb387e56c633734f0dcc8da887ca65be6d47573083c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3d994a1ebb45115a483a7d9d1a359b1127ed43b397ed0007d233b9a0c9e8f41c"
           }
         ],
         "projection_count_expected": 1
@@ -4566,13 +5142,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-029",
             "record_sha256": "b70ecb6d11052e350af9e481ddd36bc9089d8566612a811d3aa854383508e243",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b826303c15deeb8e9a51e3ec1ac868eb865af6261262d54908bea19fac0618b0"
           },
           {
             "family": "world",
             "record_id": "DEP-029",
             "record_sha256": "f6bd52feb4a0edbf7371a0d541ae050d57f5f05a49add595dcdcda9caf72a9bb",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "cff6f67a0cd7dbf1b22687c41b6bc957144422fb7728ef378eed985d4363c3d7"
           }
         ],
         "projection_count_expected": 2
@@ -4609,13 +5213,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-030",
             "record_sha256": "0b0d91deeb49f677bad275ea3116fb378f643f3c949d037aaa74860fb40f6fc2",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d66a3dd38b55d3f4f4269902bb3e090172dac3e01c6f0c7c7025318795570685"
           },
           {
             "family": "world",
             "record_id": "DEP-030",
             "record_sha256": "cd24a6e95991644b7a78eb88c99c1c75fd3c8c35b8aae9e3d5043ca8ac8fe204",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "09407c2d7c50c536c780402787542f1494e93038150ba18a179ddef4dfc591af"
           }
         ],
         "projection_count_expected": 2
@@ -4652,13 +5284,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-031",
             "record_sha256": "59cf4f2a51bee8e1b47c3402f551bf3c812b2d081d4265ed13c9343066fa6097",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "209647b5239baee6d8da3911e8d2709abb16d4830ee3204abb300fab49241bd3"
           },
           {
             "family": "world",
             "record_id": "DEP-031",
             "record_sha256": "a693d64d92c8c019108a983457a510fb5d1d3c2ec24407e03256e3284d54fb7e",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "777a285c293ef74c990c82e8dd84372eb1b3aad74941a6300a7f4ed4004bc2e3"
           }
         ],
         "projection_count_expected": 2
@@ -4695,7 +5355,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-032",
             "record_sha256": "da5e08858c7b0a17b180f680b4d59a91da7528aa37abea7e37e18a14a9436c30",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "86863fc572b2aeb5df3a45c0340de3b6305b603f7a8e2ac0c4795a821e77ccd4"
           }
         ],
         "projection_count_expected": 1
@@ -4732,7 +5407,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-033",
             "record_sha256": "580e9c52bd12392b04263d736989a48d926dedd8fa6dde85a8820b143bb9013e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ea3490c266ad140957fa820d5ce2151544ee1cfeba24103643ad6a2e2b16de3d"
           }
         ],
         "projection_count_expected": 1
@@ -4769,7 +5459,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-034",
             "record_sha256": "4d73b3be740ed85b4aa1d8406a61308cc0f0f1391eb1f88e2158b479c84daf43",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "93234f5bd175071e963b6ff7bcc571d62840856bc06b935310eb9dcd6c1c4330"
           }
         ],
         "projection_count_expected": 1
@@ -4806,7 +5511,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-035",
             "record_sha256": "142bb353c379b6bbbff1b448e673b85230327b644b3171d99e69395876395d6f",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4c6db76c51a79d05127198bad53646c9afff9c65d8f179cc7e07f914bcfb1678"
           }
         ],
         "projection_count_expected": 1
@@ -4843,7 +5563,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-036",
             "record_sha256": "918cd1d4f1c700d33d99fb7855890301b03735bc1b6fd7b945ea7bc930a63535",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "905738f7b4147bd5857a10e204acd7ac4096c0221574dddbd9cf6f93635a8b6b"
           }
         ],
         "projection_count_expected": 1
@@ -4880,13 +5615,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-037",
             "record_sha256": "ce01ddbb0e963ea218fc150a57177f7bed40154b8c025461984ca4e70dfeb428",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2231bd5445a84b4c2be435ddd5cb0c47964252f07e044a4aaff076bff94e3bd4"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-037",
             "record_sha256": "a8ef5843454941c7c5cfb2d67adb1ef2738c469611b6041705fb76e4eb11209a",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "804fecca85bd53902fa9f888e8b4ebaa0cedea396302e5b071d2b82e09664841"
           }
         ],
         "projection_count_expected": 2
@@ -4923,13 +5686,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-038",
             "record_sha256": "e2ec083d8a1fe0b3733f2e3fbf45b6774f8114132ff173a0ab7abc7d9a32ed4c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3f71d2f2dfa46d9dc901039948e2294eb424c1730106bb3865f4406858a66f16"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-038",
             "record_sha256": "290fd1e0ac9958e0fcf8ff081360318209d8880dc3e99cee99d815b763108b07",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d16492d3fc3f2168c90508c64c3320aacd43f953fc0de710ba49af6e6826cf85"
           }
         ],
         "projection_count_expected": 2
@@ -4966,13 +5757,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-039",
             "record_sha256": "8e40a563e33da1700eba7b3b6d04a5846caa42edf0b2b7ec83d800a734ed42d9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ad727697202ca5e76fca53601f15dfa21987fded7406679fd57b70c23b281654"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-039",
             "record_sha256": "76651ecd1313df9e6a7caa7bfefad3726d93f2d5a60a5afbe0251e8cd81959e8",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "247c2f66327731a91e02fb0fd896c59240a182870a8a96848e694ee3ce51e371"
           }
         ],
         "projection_count_expected": 2
@@ -5009,13 +5828,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-040",
             "record_sha256": "b83a182c379a802c9cc8975b7556cb352a2cdad43aa4d131cb81eb89a68b5c95",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "80d8aca9710bfea17f4f5e78867d4071be7c02a58793b04983cbbc739f5fc2c8"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-040",
             "record_sha256": "e338dcc6449190ebc689d4ba0e34ec7838bafa85af9166207c97946a6c468d19",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "159332dbaefb317818b99cb0c2d026052b053a7756d686e50b05e14fc83edbaf"
           }
         ],
         "projection_count_expected": 2
@@ -5052,13 +5899,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-041",
             "record_sha256": "04f48e9a6bd9d07aed90e59f5a2a85936640db9a40f3b751333554b134b632c3",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c4f0a7324ea32b4ca736a31cabdecbbcf1bbaf39283a0abc6b26c40864f9e266"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-041",
             "record_sha256": "7014b6404560d20dbaf1af4b2e059c83e0808bf56b2977607d224df2123282e1",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "457943717f3dfab4b910b8d027bc0bcdfa1a1776d229bbc2320707f3512c8cf4"
           }
         ],
         "projection_count_expected": 2
@@ -5095,13 +5970,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-042",
             "record_sha256": "e72f47ea281e1a967e72dc20fdb87aa001101dbd56cc537b962cb909f92332e9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3bed6cded6e921281a065aaaf97182638c98d924c41d3155bb7f8aaff6adeadc"
           },
           {
             "family": "world",
             "record_id": "DEP-042",
             "record_sha256": "a4ffa29d6c3fded8e0dd6bf42316b53e6f6f3b1e6a45810ab9b87ab2e44bc5a3",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2abcbb48d2f8188ad4b7c164c359a3d5b7d8a14f0999b5e00256aa3bf8c86dfe"
           }
         ],
         "projection_count_expected": 2
@@ -5138,13 +6041,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-043",
             "record_sha256": "ff7931bb2ee9e9f8d0a53eabcca13eca42f8b699c93c3ffe895dc61546e94cde",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1e4bca9b5796945da9fa34d73aad966c2116f34280d87dc3b50b862494d03b12"
           },
           {
             "family": "world",
             "record_id": "DEP-043",
             "record_sha256": "f537611c7e3fd2fa809dfd510e6b6b5336cb6fe9862190f7ad9ccbb72a1fbd34",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "55ddfac2ccdb25ee81fdb9dac3db6435e05fccc31dc6bf9f070fb1fd0fea3895"
           }
         ],
         "projection_count_expected": 2
@@ -5181,13 +6112,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-044",
             "record_sha256": "991c9938cfff222b12c737862629ba79d50995449a525451bb4ac1da4fb6b433",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "cff58e15e57286dfd2f41b7a5a33fd36d6439230b36280cfcdad0b3843a8c3e4"
           },
           {
             "family": "world",
             "record_id": "DEP-044",
             "record_sha256": "de8996caf01180c35df43b776b7008aa4a6630e1107c02d80591bcccb120eed7",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "a228a6fe794e11e5ed676acf69a19e073b566179a3b72e05b15383aa73fd7829"
           }
         ],
         "projection_count_expected": 2
@@ -5224,13 +6183,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-045",
             "record_sha256": "2419157809b152b4f315e8404284852603b7d27b0b1e41df11283ad515edaf16",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8c3d274452927ed16d9a1d1aedba38dbeaa6aa3acaddf369b5262ef8cbe9fe86"
           },
           {
             "family": "world",
             "record_id": "DEP-045",
             "record_sha256": "2954f4bbf2a8a7f3e5dc025543d6a39d25659d58c2dccf98eff1d66e71d0a58d",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0ea60fd35c369f4c9b75a9227eee1b488cd315b0ec2274f198b314621cbe7f07"
           }
         ],
         "projection_count_expected": 2
@@ -5267,13 +6254,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-046",
             "record_sha256": "9fa361d21596b0868ff98a78cad04be5a872892f5c2eb620148038e549fc8eae",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "206e050855d70eb2cc590d38a527ef8122bd88fa63f5570a87cd20efcf120139"
           },
           {
             "family": "world",
             "record_id": "DEP-046",
             "record_sha256": "925e311529e4ee8ecc83c38dec063185c488a8da40be1959a2bf981f0682a638",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "10ced88605fd9b99b63577edcd4d400d76eeb427f0fb343b20fa19de0c453e70"
           }
         ],
         "projection_count_expected": 2
@@ -5310,7 +6325,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-047",
             "record_sha256": "d1f98ba1820ccbe474ab968900477c056cfe3e59d8b750bcc043f535500fb31c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ffacc004095f397a1238c70bb7fca9f74d1c95a14dba159ee3fa436996656b38"
           }
         ],
         "projection_count_expected": 1
@@ -5347,7 +6377,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-048",
             "record_sha256": "cfefc698e2598172a14e3391f040c846ae4bc088eb81efe1c527aeae3d896b68",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "9af222321f475c83afd6e35e082c3966a0043e5a3de5b0a47e4336e8bda6562f"
           }
         ],
         "projection_count_expected": 1
@@ -5384,7 +6429,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-049",
             "record_sha256": "1b1aa0658c7b64ae250fcf7788c3ed6811b58d67434fb2c927e36becb8a6633b",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "be2df48dcc88560d8413e47c95491b348b9433117de53d80a442d68471ba610e"
           }
         ],
         "projection_count_expected": 1
@@ -5421,13 +6481,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-050",
             "record_sha256": "f0d7fd760594856bc4ddd978c7036d652b09886277773eb94fbd69e446757cf0",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1751f06c3a607a085e11c412a220b2234170342fc7c8bd88c48acf631c91bb0f"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-050",
             "record_sha256": "c4d63bd1c49370f1d5b99da281527befee015e413d555a3ab6bfe647fee5bd8c",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "670ab3dd8594178a7ae3a167930a67788efff8afc46e518c30eb287a994f1e1f"
           }
         ],
         "projection_count_expected": 2
@@ -5464,13 +6552,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-051",
             "record_sha256": "4ff0339ff3bb9551538ac56f9d24c8bff90f08b5f09f08ee476521961bd2e54d",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8ba3c7081ab56d44e50f9350fb49cf8d7b9b51c8fcc014086d645aa615f25fc0"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-051",
             "record_sha256": "87bd246f2cc4624831098d8356502c9df51cc3e762d7f0d0ea91ca23e1fed697",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "fa5dec3492644f2a34ea824e4690150bf790b4211997a545aa4391a8a78363dc"
           }
         ],
         "projection_count_expected": 2
@@ -5507,7 +6623,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-052",
             "record_sha256": "5aa6886c63461e4a6b4b18194dc8527a79746acd49348eba0fc1039392a8635a",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8e0c7f0689194ee4c475d0e50bbb6e8eb4413751881528a790f63d4e472dfc53"
           }
         ],
         "projection_count_expected": 1
@@ -5544,7 +6675,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-053",
             "record_sha256": "4e27f746e2c84abb64dd0e4536e3951642c962b6fc1b4c23dcee43140844833a",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "a99277903193c8bfdd29870ca81e061aa8c0f501422f8e7e53754c5574da4288"
           }
         ],
         "projection_count_expected": 1
@@ -5581,7 +6727,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-054",
             "record_sha256": "f0b7d9773b0dac4515fd5c385888eab696ea1966d0ae225aa25981c0a4733360",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "6cfa8b5a07878f7f9288e614218ffd49e509a83245617f45817a34387f1aa420"
           }
         ],
         "projection_count_expected": 1
@@ -5618,13 +6779,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-055",
             "record_sha256": "597a526fe2362c34db7138085a3d2453a28c30c8e1c815e68d4663d373f42619",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ecabe0b17993dc02faadfcdca2964520ff5ad7b86c5b42fa8ba20032ef46634c"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-055",
             "record_sha256": "f22112f472a51767d511eb9c66bab71ad72f3ab3ec26c675906d959a5ddff2ac",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3ea4c682c4af446310d95aa91358c4ad5e0e45f117e23b058724aa37e4f14371"
           }
         ],
         "projection_count_expected": 2
@@ -5661,13 +6850,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-056",
             "record_sha256": "7430810a0b3d9e10787e0dbeffc8099b81aed2aa8da509f2c4b73c7eb48f71ab",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8495f610d097a53275d730a04cb6435cdbc0b8c8ba918610346c632b60a7beac"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-056",
             "record_sha256": "98f67ff6726b232ddf7627a8da70599e112b69b3093a61d540fc70eeb0250f14",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "6b9b6994218ad6ae653a569f05115ef8ae8b167d9ebfca8d46d14b5b59490479"
           }
         ],
         "projection_count_expected": 2
@@ -5704,13 +6921,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-057",
             "record_sha256": "7ade0513b74c1b744baba6832f717c5670f059f5f32f3fb99ceb1d357b3dfae9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "039aa025b0b8847b5a9610fc43edb564ed6d5a72aff7224efbf634e258447072"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-057",
             "record_sha256": "8985773221205cff55938a7b3ad8f9d02d4ff72a99eb170d525964f7ab287673",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "53615d87f9b9ee3d015f0ba83b20edb937fb25723a2bcd42863775ebc994a3ca"
           }
         ],
         "projection_count_expected": 2
@@ -5747,13 +6992,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-058",
             "record_sha256": "b1012dfb2f5362e368a63961efd527dc75ddf96fab1cdbfb1a18f59c5651bce6",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4c20ac31b5920c4cc08ff1fc2497d327ffc9ca18fd45b1eda50b6e048b47c4af"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-058",
             "record_sha256": "c0007d361d069f34dd7445001d0dfdfd87e4a90492247ff0e5768476a07ac4d3",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "735522c6c2b4ecdc7a5c2a9dee728eeb8d48f88457d44f175e1aecb0517c369b"
           }
         ],
         "projection_count_expected": 2
@@ -5790,13 +7063,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-059",
             "record_sha256": "b2b6628183219a68759f10702e3c3efd62c537e9a30fa21f1d2be6bb81dca2e9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3fb8950b2b0f644f9db556ac385763f6d730ded2f4473af5c7a7a83b5f61c3ac"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-059",
             "record_sha256": "0a57bf8b3b0de74b3dc74890d1415ba730dfdad0ea4796d8372c417acbfb8cbb",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "286047f2fb6288f0d179a96ff1a3dc4ad231f2f07d82901ac4d2b7ebf14716ff"
           }
         ],
         "projection_count_expected": 2
@@ -5833,13 +7134,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-060",
             "record_sha256": "d44ed0534f7d62e605c63b397750ef2437d6e1b0d2b8d6b2fa8aa2e3b020c2e4",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4d90f4dd6bd4bf52f0182d009291b3fbaa23480dbdc2f46b9b59a54630100e95"
           },
           {
             "family": "world",
             "record_id": "DEP-060",
             "record_sha256": "465ced7e91a95db900456bb430b5fa01bfcc1f93c2301d97c69759797b18dc23",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5ab7bcb98b496d4a9c892345a4df90e264a3f895fbe3c3b400d1787d86ef5a0c"
           }
         ],
         "projection_count_expected": 2
@@ -5876,7 +7205,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-061",
             "record_sha256": "ad26602015ab9881afdf90c4934caec67bbe438bda10cf18e65dc56144d6c7f4",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0c519a7becd0bc2e4f13357798a992e38647e97198fcc28cea7f65a4da132c2d"
           }
         ],
         "projection_count_expected": 1
@@ -5913,7 +7257,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-062",
             "record_sha256": "8d061f5d29b5bae8c6a9c35afc13802e914194d2e689487f6264be73cab14912",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "35703b025fb68692e0603172fe2225f1adc8c7869e7f2c34ad251b333590090c"
           }
         ],
         "projection_count_expected": 1
@@ -5950,7 +7309,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-063",
             "record_sha256": "0793bf3a63d112468b3129f0f9bc40de6ecaaef4432e6b7ff99513f3edc055b5",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c7631ef606b741fb7011df4d76dd49ceb46ec6af56533d16d7a3c8e216e345a6"
           }
         ],
         "projection_count_expected": 1
@@ -5987,7 +7361,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-064",
             "record_sha256": "792714ff7f8fb789898c437870028a09d38ba7b45fb5c0c592ec9e8b63094c27",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "43410c4bfc0d36621ce95fc2ab1ce6ca7bb7213dc45af61b8027d2a6714eec36"
           }
         ],
         "projection_count_expected": 1
@@ -6024,7 +7413,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-065",
             "record_sha256": "6237a59503e10be7f1d4b62ccb2e5ff68e26c6a251aeb355d731b3ec3c52ae55",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "19187f91f5be01daee6fd15814d319590e140cd03776371948aad66e565672b1"
           }
         ],
         "projection_count_expected": 1
@@ -6061,7 +7465,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-066",
             "record_sha256": "9e190f2326644cf561eccd90ab30b2174c6b52e98fa0d9d5a1c1ffff99e5732f",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4924ae83786d5513c9f530faa289e35ecce901c2dcad6703b9940103d21d88ee"
           }
         ],
         "projection_count_expected": 1
@@ -6098,13 +7517,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-067",
             "record_sha256": "baf74457a5bcd39a44763585a95de40206b984de16bd9fa221ef939c60410b52",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "87c8477b141822f05a0cda165c8c5e4154afa0a0a132b6e7ae6697ec3589028d"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-067",
             "record_sha256": "ae878ebeaa30d4043a8c317a35485699afb2beb8aa590d501f89e7eaf573eb69",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "881b2c0be98c731b9b7765c3bc59c3d01e1f37e8be0ee83ea27b9a5c9f406101"
           }
         ],
         "projection_count_expected": 2
@@ -6141,13 +7588,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-068",
             "record_sha256": "f2a9d64bb0bbd36660582ab198174fc9fe26041826ce6d0aa5963b8e7e2225f2",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "70cb407cd032740e92f49c521edea720808a799e5b17152727eb58a88f802811"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-068",
             "record_sha256": "a712a6c4219453f8da3c50e1a790f60204403f9a2d6d5ef872eba0fb9374ef64",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d9aa70c9a982035afb0763436670027365513b896bc9daf86379a2c403da64dc"
           }
         ],
         "projection_count_expected": 2
@@ -6184,13 +7659,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-069",
             "record_sha256": "a09c7eda1919256a8a625ea399d2f30706c7022a686b713319e8661cc0ff6586",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "eeb6d85d1d6fad8d3fdae76381954108279c0a787d52c3d0c4a100df52fd0093"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-069",
             "record_sha256": "af82d3fbac8c1fc2144ed4502cab972622e182551eb87b986a1d018d4ab3e505",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b99ecd7916bf464e5559d4e370cd38752cf5d6e25d7c3f25440f4dc85da1dac0"
           }
         ],
         "projection_count_expected": 2
@@ -6227,13 +7730,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-070",
             "record_sha256": "2b2da07bd688ea2c947f00e91ccef3300693e621a17e73e41df3589e0677b7ec",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "017a68e139935170984ffc38eba34d42a9bed4f048ed19585ece0b48edf36282"
           },
           {
             "family": "world",
             "record_id": "DEP-070",
             "record_sha256": "4960603a293b0ecde15f779be8f7e629003a41b176a1e5981fd2fa69358e8c8a",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d8588a88627316c5b70376c9cd222b1cdfc96b884a22631d5e9ba5d9f9e290bc"
           }
         ],
         "projection_count_expected": 2
@@ -6270,13 +7801,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-071",
             "record_sha256": "b1d3bdbb9194ca63c5b9d7d379a7c3688b07b393fd253d0bebcaca4050fc6fa9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "108ebcd292241dbfeefa6ce266fdf5284990257981eaffcb0f6bca32a5a62bbc"
           },
           {
             "family": "world",
             "record_id": "DEP-071",
             "record_sha256": "4786db5fe11409ad0677791e4c6fd3935e3faf1761a6ca0486cbf9e1e9725c4e",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "9b3de1fda2c50a55010b7ce3abb03bf111c71db1bcfaa8ad5fbb8c53bc23af98"
           }
         ],
         "projection_count_expected": 2
@@ -6313,7 +7872,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-072",
             "record_sha256": "fe8fa21d8f77c3828645c73287d3cc159941f565598496b64e177ec3ccaa97e4",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b67a3c60488061ea8465542263ca08f258ad67eb377ccd9dce07d7e559d67fc5"
           }
         ],
         "projection_count_expected": 1
@@ -6350,7 +7924,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-073",
             "record_sha256": "baa10304f75b9f520046746ed603682c4a8c068d42352db7d12248338ca60dec",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b0ae6bb0964fb95e90160051cbeb77dd7cf13f2ec663c7827e05dde57a055c76"
           }
         ],
         "projection_count_expected": 1
@@ -6387,7 +7976,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-074",
             "record_sha256": "57d52c90486c343f7768bce163330662702dab2dbe03ede66bc3c4f3d5842f9e",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0a7f5d49c82ac23bd6304d5c7562f041e093d6201d3efecd5e54732c7ad9562f"
           }
         ],
         "projection_count_expected": 1
@@ -6424,7 +8028,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-075",
             "record_sha256": "7d75b0c61a3407ec48a2c1881fcc7adc56b9363aa1216cd8ce04fafd5afe6d0d",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "f572f655121008898003d46365d76228bdeba2746b0fd73fc5b2e5b1452cce91"
           }
         ],
         "projection_count_expected": 1
@@ -6461,7 +8080,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-076",
             "record_sha256": "1b5fab05f2ae0ae199fab00ccb292aecd39817c6a771892d17b515b35e225673",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "62a9ccc9860a6d9dead6cfca6d3599f2299cd910386fd806162553848458707a"
           }
         ],
         "projection_count_expected": 1
@@ -6498,13 +8132,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-077",
             "record_sha256": "2708a45d049b384a78d8cf694961a6790eda028c5c12040a312f66b65cb64565",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c117e9c8e30b0486677636144116f550c50a5ac38d7bc9a2e18cbf95e416c7ea"
           },
           {
             "family": "world",
             "record_id": "DEP-077",
             "record_sha256": "91d9e9ee1796e2ac5e05184fd32b3609d88bd390f5c96afe85d81f4ea8e1d329",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "6aecf20ed4c2b5f1e2f9c89bd0c132640cffdb8b8acc7a3a9056ffefe41cf617"
           }
         ],
         "projection_count_expected": 2
@@ -6541,13 +8207,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-078",
             "record_sha256": "3203498f359d7003b77034ead8e801693f7fc60705499e4d059547f0f5a38ceb",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1057839b6f1f9fef7577b56301684f81d34897fd82dd7a5c248cc14e511d33ed"
           },
           {
             "family": "world",
             "record_id": "DEP-078",
             "record_sha256": "ca77f70409e7a2135e6c783ce302532a4e1615bb9fa5e982c1bd39624642b7ca",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c659331ef1735eb1b00b7883efcbe7d4a1a896f8aae1994459d8dc410ca4b503"
           }
         ],
         "projection_count_expected": 2
@@ -6584,13 +8282,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-079",
             "record_sha256": "0e756aaf7be1a7fc8c767ed44970ae4d1784d50f9bb27a21ecfd6ba803244bbe",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b21e4735c2bdc51b9c65966906451fcdab2ae82dcf1fddf2d7920ef57a129b28"
           },
           {
             "family": "world",
             "record_id": "DEP-079",
             "record_sha256": "ae03f27cad95714b7567105cc5ef071163d279250e68fd72a2dc8e1ea7f6bb41",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "beb2d45285fd1b269281d2e3ac00a32ce0b4cb3e29efc4195428ef8ecf625126"
           }
         ],
         "projection_count_expected": 2
@@ -6627,7 +8357,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-080",
             "record_sha256": "3860935b7b1c4fea548524dfc6285be9a8afb940f9c7f2f6c4a5537338d23494",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0ebfd2083a278834f2e6276299f22bfd07b5efa45fe696ad05d449a7fc6130da"
           }
         ],
         "projection_count_expected": 1
@@ -6664,7 +8409,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-081",
             "record_sha256": "5b943f2e5351a20a2179e90afa0934dfbf2da97a3feddb772fe33299829914b7",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5a7166eb2b0c967b191eebb75c5bb12a5e2e4f4289a70b887bc8d57d2d2e8874"
           }
         ],
         "projection_count_expected": 1
@@ -6701,7 +8461,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-082",
             "record_sha256": "9d256e7fdbf3ad0a43dd6918db7fdfd373d60e0d198961753948294d61ef6b36",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "271e5bc64fdc169fade0e398793666103a3cdee24bd3571ec73f9ad8478664df"
           }
         ],
         "projection_count_expected": 1
@@ -6738,7 +8513,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-083",
             "record_sha256": "fdba1929dcf4d5016e6055b76ec0cee7cfe3ec33d6308cfcb49b0a11a2ee6b10",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c514681e8d37f9ad6c96c10b2cf34cd10bac59146877e4b23a8c4a36b222b68b"
           }
         ],
         "projection_count_expected": 1
@@ -6775,13 +8565,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-084",
             "record_sha256": "6a75a58642ddaba721fc3bd028df9faeeea4b62c36056cb948cee1ed8704ac13",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4f1913f86ba65d8065abe466e732f33bc953fc05b11c6e4c091298a8007887db"
           },
           {
             "family": "world",
             "record_id": "DEP-084",
             "record_sha256": "2d9a5a293b4962b83c6c12910000d92a1078034c36aa0cd7900088cc5b00bc16",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3998dcaaaed49df8b9cf091f8d1dc2898649c9a0c00bc847ad3ec45220ff0ef4"
           }
         ],
         "projection_count_expected": 2
@@ -6818,7 +8640,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-085",
             "record_sha256": "b4fd96261d1abfc64416a0bd589bf41eed3de5bd2df2e7fe93f9910ab347d7a5",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e6b1ba033e92e0e3072c36988fb636c4ba992ffe5a09e8f757fc077094826774"
           }
         ],
         "projection_count_expected": 1
@@ -6855,7 +8692,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-086",
             "record_sha256": "d4d07f86e71ee611c7321867169552cd07cbea263fc452a43733e12060c8095d",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c4196c79893874c707fd5f4544e97b6afd2f452aa955fe0f17d72a93c9fe1925"
           }
         ],
         "projection_count_expected": 1
@@ -6892,13 +8744,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-087",
             "record_sha256": "755c61723390c3eea616bfd502c3c2fa6271c85298ead1e6cec1f05ed996ef08",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c8387230f079cbafeb8367f1505b0502684d7592f25bc6b082543562c7e29e59"
           },
           {
             "family": "world",
             "record_id": "DEP-087",
             "record_sha256": "9ca78200c06526780d349a6f4080ac14cbfd222de8dd0b3d2fe1f9be60b6fb2d",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ec631662dce6ffd8dc32912c8144654e87383bf2e09ee2ab11e97dfbe633d3a9"
           }
         ],
         "projection_count_expected": 2
@@ -6935,7 +8819,23 @@
             "family": "world",
             "record_id": "DEP-088",
             "record_sha256": "270da795c22f7434071e340c4505878fbb3b4fbfbdb12224d77e5aca6f010dc3",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ed6baa1e48c54f67dae4ab14d3b99bd850a606f02a084d805d9d4dd6b16f920c"
           }
         ],
         "projection_count_expected": 1
@@ -6972,7 +8872,23 @@
             "family": "world",
             "record_id": "DEP-089",
             "record_sha256": "2bee02b4fdd18914ec1806223a6fc5b9f7715e57630fc71c102c6964f4572186",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ce3abddebcc2bd699edda5bf5440c8dffdb1c2b3662679bfc40c679d1f4a1cd4"
           }
         ],
         "projection_count_expected": 1
@@ -7009,7 +8925,23 @@
             "family": "world",
             "record_id": "DEP-090",
             "record_sha256": "0bda16d6d71e7ab67f90cf4049df5a8ba56ef226a3cdd340a80c5eaabc36b3cc",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5f2f1931d6b351376a809ff25ba84e28131a12ee6b149783b10a022d22fc6788"
           }
         ],
         "projection_count_expected": 1
@@ -7046,7 +8978,23 @@
             "family": "world",
             "record_id": "DEP-091",
             "record_sha256": "d01d3a2eee05e33d4768d33ce68f4633c8bfb7fe48cbe0b177e47f3a274ee333",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "03eb33b53ce733e4e25757eb79d4eb69099a9a689d84bd9e7778068d781a4d63"
           }
         ],
         "projection_count_expected": 1
@@ -7083,7 +9031,23 @@
             "family": "world",
             "record_id": "DEP-092",
             "record_sha256": "1064a6d4f1cf853811f659fe16e066eb426d619c6d0ff6c3db70ac2cd213180b",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "286d78a3c4e5e35287a0ac9b66b10c0026828b202b8458e237912e183bc33ddc"
           }
         ],
         "projection_count_expected": 1
@@ -7120,7 +9084,23 @@
             "family": "world",
             "record_id": "DEP-093",
             "record_sha256": "87e0eddbb73f29138db1ed2630bc9091632592b6c64bfa755bf54026ecd7372d",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e1d0323887913d13f2233525ffd2ecf7551d62dc84c10913842e5a9b70cb044b"
           }
         ],
         "projection_count_expected": 1
@@ -7157,7 +9137,23 @@
             "family": "world",
             "record_id": "DEP-094",
             "record_sha256": "c0ae527fc9b27d49be99189fb7ff1ad51d618e7fc7fd4359d4f535d2d46ca8c6",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "717cd35921c01390edc465489696b72ca09556c76da50d5ab52456668dc29823"
           }
         ],
         "projection_count_expected": 1
@@ -7177,7 +9173,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-001",
             "record_sha256": "8205093416b4ba6cdc359a0c6e430c8d5c7e529086ce1e3f5962f1d237f96577",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "32b6a20bf504c533a10132225fafff7500f3e797e57c309f0784cb3ce8d00f04"
           }
         ],
         "mismatch_list": [],
@@ -7192,7 +9203,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-002",
             "record_sha256": "9292753358973cc4d0549ed8a6724bd3f131b1a84fbc6f64fce007c220e42f62",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ee699cf8866a57d195a36f903d50e66edc12e4bbeee35126f6b52e2752cb0f59"
           }
         ],
         "mismatch_list": [],
@@ -7207,7 +9233,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-003",
             "record_sha256": "1c212e245d366ad1c1830ec5586c5341a983ae7b9cec9642d2e7aabba2599c73",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c7242aa26307e5642b96fcca843139283ebb59c921d6b02a268227e365b24f6b"
           }
         ],
         "mismatch_list": [],
@@ -7222,7 +9263,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-004",
             "record_sha256": "15c192b182b1ce57ae0bc7c8de64c41069600e93a130b364ca39c5526f5b974e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "9571872fcb36926b16a3dd45f75b3f483058f6416f11df183150fd5e7cec7eff"
           }
         ],
         "mismatch_list": [],
@@ -7237,7 +9293,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-005",
             "record_sha256": "72b6d0074319fff6f2778318ec24ef2e74e06f4be732fd207770c4ff0249e3d6",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c6cfeea9a28f0e064f7c051e5822ab041db9e3de06e8ab73c2c4944431226458"
           }
         ],
         "mismatch_list": [],
@@ -7252,7 +9323,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-006",
             "record_sha256": "061d8a8483d96d596d0dc01def113bfd6df52812e452f8f82f1b3f60d574c067",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "7509e38975875cacdeba7995c750d39a687f6e4340627c652eeee443a39522d9"
           }
         ],
         "mismatch_list": [],
@@ -7267,7 +9353,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-007",
             "record_sha256": "91ce84a76162c4480b95c2730e9cbabd045ba23be45ce038a937d802ef5a1b5e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "54abd78fdc662de503353ed7fe3961809c8d3f96938ec1aec373177ad60d3b99"
           }
         ],
         "mismatch_list": [],
@@ -7282,7 +9383,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-008",
             "record_sha256": "ea991f1569229bd91f8f9fd1079dec9d8a1e0bd8e7d7910c3957165777c2e553",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ce3120fd15393878d85b8079072100037d82ee9dec1e98560b9c1b0665189705"
           }
         ],
         "mismatch_list": [],
@@ -7297,13 +9413,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-009",
             "record_sha256": "e5889b54e8879281bcc9ac9312617838e00f483c447d510426bef0f039ce3855",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "be8136e547c766f04456e434bb4c7f952ef1d292f544a19fb9f13a9ce92e4816"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-009",
             "record_sha256": "86479284f062caa5a2232192113fb114aa850223c1d6988908c1e71d1341ab13",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "694fab3daea07804a1946eeefde5fe33321e028aa1b09f5bfe56a384a10eef3a"
           }
         ],
         "mismatch_list": [],
@@ -7318,13 +9462,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-010",
             "record_sha256": "175b3bcb872f65554f4c2d88900628a9a7c9b4b447ed9786255980ab16d14b12",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e1e0bfcfa683bdb61fed352067c6699f69a633655070fe583b28e57861f1e9df"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-010",
             "record_sha256": "9919ccf9f0cd000006080b64d2077846d24685eb3c7b8f4d6d265bb784bf70d8",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "100d834b204a29fa49fa34a99bdd6055725a19fa6b59112e413f3ebab3520379"
           }
         ],
         "mismatch_list": [],
@@ -7339,13 +9511,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-011",
             "record_sha256": "a140c5747fcd907dc8f659e1839d219d2392f2a602ebc4a7a0072e7d94f84f6b",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "7eecdaefb4a34802c47c35bcec6de0798202a9cd825af60cc699e13a98b403af"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-011",
             "record_sha256": "8400c424a3c7f7787d18f5a94dd634b1308b093bd993b6b53a4fa1977f28a36c",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b3fcb0dacfef3b4728db5cf3e5ee5a28b20d8e2d58d5239d319005b092d1ffc5"
           }
         ],
         "mismatch_list": [],
@@ -7360,13 +9560,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-012",
             "record_sha256": "d69425c1186400deae87f8b3f69376c9cabe735341f892d97e2523c8c47b352c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0b834020aafbaabccfb8a797d394e2e9a2ff3ede4168548b4711058aa9b3c1fd"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-012",
             "record_sha256": "144bd22d29af9501181b2a53dd75b0ec54044827b89e79af9ea9399f77608162",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "48f63b5c75ce6c54c3988401b5a90e30789de2a328c4016f19922a71939525c6"
           }
         ],
         "mismatch_list": [],
@@ -7381,13 +9609,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-013",
             "record_sha256": "3c69262603574a5ee7c711500ea5d4f602ecbf331551276b5b9462f8eb7268ee",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "977d40e708e484c4b78ccd8b106fd954ba77120650cd2fc2e1ed794a01203f6c"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-013",
             "record_sha256": "1e10e74ceea0136a53f6efc43e0e28b5935425b271c6467804fa9737b7e2ce39",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "738f5683a210bde6b21cc6bf039311642c9975a3dfabfdcfb9550430dfa693c0"
           }
         ],
         "mismatch_list": [],
@@ -7402,13 +9658,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-014",
             "record_sha256": "0e7ebd788beaeff995db8ae56fa410264cef4ccda710de8d0a969d91cbd06f8c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "eefdff6900b05d24971bd219d5355fc22f209ac0b89e717116c468258f66af74"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-014",
             "record_sha256": "78357516fa3c96e8eee04a5b342157660810f26ec597826ea0f421dfc1155e64",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "79cd81da723786cf5a32cb6767ea4032515db2b6b4f2f67fcca9461b5872ef3f"
           }
         ],
         "mismatch_list": [],
@@ -7423,13 +9707,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-015",
             "record_sha256": "b60c6cc3c4671993628a1a83853ab6b4699e07432a47fb5a32a442ddcd4b7079",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "64ebbf18fc0ce76f78c76dc6fc8607eb2cf833f70dfcfa012b0c055ac60d6640"
           },
           {
             "family": "world",
             "record_id": "DEP-015",
             "record_sha256": "255a128fc445b27f57eca21df9f437510c341540affbd953347434d2b22b55ff",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5a06c071ee5a97c8b3534c1b8a8eb3af6c5be852f555e350157691084d944514"
           }
         ],
         "mismatch_list": [],
@@ -7444,13 +9756,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-016",
             "record_sha256": "29ef11711557461f23d552e0d21e3e9d721a4bed4492dab88ce8690bbbc4ab16",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2a065523bec3e08258bb51b7a132639a86d319d6285a52d7af751509c06f02ab"
           },
           {
             "family": "world",
             "record_id": "DEP-016",
             "record_sha256": "a4f282cf2d0e551ef3feaf656ce3499cd5fa550dc3f60f655047e4223c811702",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "a82805daf912e698ec9ba6d2a6b35ae33ad68df2e7b4f0687483ddde3cb33d7e"
           }
         ],
         "mismatch_list": [],
@@ -7465,13 +9805,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-017",
             "record_sha256": "a3be3e1ccfc6467fd85851b7f540a5365c4b27accf1b5e0247e57af98357dcb2",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "95c7d48042fc7788c10b38d672c82af0ad7aec2ed528bafd0b7e4010e5125aa3"
           },
           {
             "family": "world",
             "record_id": "DEP-017",
             "record_sha256": "760985fdc44997d56a4de5f870480df32a4c25d092546e8d304235cfbcf02103",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1bb388a1006f1d5a17c1d97bf8aa2d2b1cbfabb36f227ed0fb40bbbf425dbf66"
           }
         ],
         "mismatch_list": [],
@@ -7486,13 +9854,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-018",
             "record_sha256": "ac2ce057ec792aa9c4c50660f1e74b69fe7bfee6f11a3a3c580f98d37b0036cf",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "23a767ade4c76b70b82a9caae4578db17d8f5a071d0bc9a01189b4617c6a9264"
           },
           {
             "family": "world",
             "record_id": "DEP-018",
             "record_sha256": "075137d679d9c7bdd72e2ec571d6db9ab2a57b9269db58a350c0272fc1505758",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "86318f1b054555c93add3b4f672dfb3517d4eb2001a76487b71e0cfc573e78f6"
           }
         ],
         "mismatch_list": [],
@@ -7507,13 +9903,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-019",
             "record_sha256": "fe44752d31a12df615f6ea01f3e4a9e2ba4387e421fa0189b799b96d56afd95e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "abe9d7439abc6ee25b4b793410e89eda41b4dfc05110ab24bb272496f442f184"
           },
           {
             "family": "world",
             "record_id": "DEP-019",
             "record_sha256": "d8dccb25a1393ec3ea8ba82e2b92f40bf03e0e62123c4dd39a088355d73b79ca",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "f845c30c1de552954006a8426db5f7899d33aa583513429e5f1ef6cf47b47d6d"
           }
         ],
         "mismatch_list": [],
@@ -7528,7 +9952,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-020",
             "record_sha256": "328fa36f80180bd11dca9f7280a964abc6bd5b13a09c1152c75db5d425fdacfc",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "adc9c3869ef6078b342151117f6149b5f388623b483980e382d4302fae7d2a36"
           }
         ],
         "mismatch_list": [],
@@ -7543,7 +9982,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-021",
             "record_sha256": "f1738f6fc74695de5174816e078bfebdfa2913bf1d0096c77f6f1082ea06dffa",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e449b4de1ed7415183801787cced99f5235c9c9ab13a24f52cd5cc5ab508cfea"
           }
         ],
         "mismatch_list": [],
@@ -7558,7 +10012,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-022",
             "record_sha256": "62508e541f0f4245d1013118c1b7a26edde8f0c737887dcacd1e0d2dfa719a3f",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2d21f374a7f1e7d86ed4783b06f82940066acc8538663d3b2666919afce2fd4c"
           }
         ],
         "mismatch_list": [],
@@ -7573,13 +10042,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-023",
             "record_sha256": "b65066ff1443326e890babeb212d8db6e1ac7ebbdc6281b91d01f4df61fb9f67",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e53cb460f04c62caa17821b6cb074f7154e15c3ba876c3aac72ca9008848d313"
           },
           {
             "family": "world",
             "record_id": "DEP-023",
             "record_sha256": "5b3d44b13d849e6e8671d1a057d75c62e654c2758dcb1628297ad72aa80c14eb",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "18d5fbe44ffec05e8cf8ba859ea5cc9510ed5bf7b46e89b241d00965b5601ecb"
           }
         ],
         "mismatch_list": [],
@@ -7594,7 +10091,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-024",
             "record_sha256": "d290bda577984b9097542e3ae33d9c4f57cd9b6a5bac590c83008470374d4aef",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "73b6f6a84275607f7703c1422d2dd37ab3983e51bc067ffc382f112c5fb9106b"
           }
         ],
         "mismatch_list": [],
@@ -7609,7 +10121,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-025",
             "record_sha256": "9cd9f25c3de5cbb6c85b88633b5def15510a9c3e296f40677c4600f23b8db9f3",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3e5227d9d04e1a5eacdab2b1edec26b1f1ff97a66ac0221a022597229d53e303"
           }
         ],
         "mismatch_list": [],
@@ -7624,7 +10151,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-026",
             "record_sha256": "a1bb3a1f4d36fea9d84761d42619c6ac04d012663ab63205509529e8831e46cc",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "7e6a37876747127ae28184739dc023b3bcf7786eeb1e4b8d8714d23924bcedf5"
           }
         ],
         "mismatch_list": [],
@@ -7639,7 +10181,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-027",
             "record_sha256": "192c6fcc63551f68b677f85e7f250497a0eae4f006a088f5c6b00ae4827b15f7",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "87b8d7e91aa52586d3513ac37beb8e85e2087dddb55ceb40deeae26b528042a0"
           }
         ],
         "mismatch_list": [],
@@ -7654,7 +10211,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-028",
             "record_sha256": "f202c2ebc3dc4d96543c4fb387e56c633734f0dcc8da887ca65be6d47573083c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3d994a1ebb45115a483a7d9d1a359b1127ed43b397ed0007d233b9a0c9e8f41c"
           }
         ],
         "mismatch_list": [],
@@ -7669,13 +10241,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-029",
             "record_sha256": "b70ecb6d11052e350af9e481ddd36bc9089d8566612a811d3aa854383508e243",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b826303c15deeb8e9a51e3ec1ac868eb865af6261262d54908bea19fac0618b0"
           },
           {
             "family": "world",
             "record_id": "DEP-029",
             "record_sha256": "f6bd52feb4a0edbf7371a0d541ae050d57f5f05a49add595dcdcda9caf72a9bb",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "cff6f67a0cd7dbf1b22687c41b6bc957144422fb7728ef378eed985d4363c3d7"
           }
         ],
         "mismatch_list": [],
@@ -7690,13 +10290,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-030",
             "record_sha256": "0b0d91deeb49f677bad275ea3116fb378f643f3c949d037aaa74860fb40f6fc2",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d66a3dd38b55d3f4f4269902bb3e090172dac3e01c6f0c7c7025318795570685"
           },
           {
             "family": "world",
             "record_id": "DEP-030",
             "record_sha256": "cd24a6e95991644b7a78eb88c99c1c75fd3c8c35b8aae9e3d5043ca8ac8fe204",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "09407c2d7c50c536c780402787542f1494e93038150ba18a179ddef4dfc591af"
           }
         ],
         "mismatch_list": [],
@@ -7711,13 +10339,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-031",
             "record_sha256": "59cf4f2a51bee8e1b47c3402f551bf3c812b2d081d4265ed13c9343066fa6097",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "209647b5239baee6d8da3911e8d2709abb16d4830ee3204abb300fab49241bd3"
           },
           {
             "family": "world",
             "record_id": "DEP-031",
             "record_sha256": "a693d64d92c8c019108a983457a510fb5d1d3c2ec24407e03256e3284d54fb7e",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "777a285c293ef74c990c82e8dd84372eb1b3aad74941a6300a7f4ed4004bc2e3"
           }
         ],
         "mismatch_list": [],
@@ -7732,7 +10388,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-032",
             "record_sha256": "da5e08858c7b0a17b180f680b4d59a91da7528aa37abea7e37e18a14a9436c30",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "86863fc572b2aeb5df3a45c0340de3b6305b603f7a8e2ac0c4795a821e77ccd4"
           }
         ],
         "mismatch_list": [],
@@ -7747,7 +10418,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-033",
             "record_sha256": "580e9c52bd12392b04263d736989a48d926dedd8fa6dde85a8820b143bb9013e",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ea3490c266ad140957fa820d5ce2151544ee1cfeba24103643ad6a2e2b16de3d"
           }
         ],
         "mismatch_list": [],
@@ -7762,7 +10448,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-034",
             "record_sha256": "4d73b3be740ed85b4aa1d8406a61308cc0f0f1391eb1f88e2158b479c84daf43",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "93234f5bd175071e963b6ff7bcc571d62840856bc06b935310eb9dcd6c1c4330"
           }
         ],
         "mismatch_list": [],
@@ -7777,7 +10478,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-035",
             "record_sha256": "142bb353c379b6bbbff1b448e673b85230327b644b3171d99e69395876395d6f",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4c6db76c51a79d05127198bad53646c9afff9c65d8f179cc7e07f914bcfb1678"
           }
         ],
         "mismatch_list": [],
@@ -7792,7 +10508,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-036",
             "record_sha256": "918cd1d4f1c700d33d99fb7855890301b03735bc1b6fd7b945ea7bc930a63535",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "905738f7b4147bd5857a10e204acd7ac4096c0221574dddbd9cf6f93635a8b6b"
           }
         ],
         "mismatch_list": [],
@@ -7807,13 +10538,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-037",
             "record_sha256": "ce01ddbb0e963ea218fc150a57177f7bed40154b8c025461984ca4e70dfeb428",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2231bd5445a84b4c2be435ddd5cb0c47964252f07e044a4aaff076bff94e3bd4"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-037",
             "record_sha256": "a8ef5843454941c7c5cfb2d67adb1ef2738c469611b6041705fb76e4eb11209a",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "804fecca85bd53902fa9f888e8b4ebaa0cedea396302e5b071d2b82e09664841"
           }
         ],
         "mismatch_list": [],
@@ -7828,13 +10587,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-038",
             "record_sha256": "e2ec083d8a1fe0b3733f2e3fbf45b6774f8114132ff173a0ab7abc7d9a32ed4c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3f71d2f2dfa46d9dc901039948e2294eb424c1730106bb3865f4406858a66f16"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-038",
             "record_sha256": "290fd1e0ac9958e0fcf8ff081360318209d8880dc3e99cee99d815b763108b07",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d16492d3fc3f2168c90508c64c3320aacd43f953fc0de710ba49af6e6826cf85"
           }
         ],
         "mismatch_list": [],
@@ -7849,13 +10636,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-039",
             "record_sha256": "8e40a563e33da1700eba7b3b6d04a5846caa42edf0b2b7ec83d800a734ed42d9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ad727697202ca5e76fca53601f15dfa21987fded7406679fd57b70c23b281654"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-039",
             "record_sha256": "76651ecd1313df9e6a7caa7bfefad3726d93f2d5a60a5afbe0251e8cd81959e8",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "247c2f66327731a91e02fb0fd896c59240a182870a8a96848e694ee3ce51e371"
           }
         ],
         "mismatch_list": [],
@@ -7870,13 +10685,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-040",
             "record_sha256": "b83a182c379a802c9cc8975b7556cb352a2cdad43aa4d131cb81eb89a68b5c95",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "80d8aca9710bfea17f4f5e78867d4071be7c02a58793b04983cbbc739f5fc2c8"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-040",
             "record_sha256": "e338dcc6449190ebc689d4ba0e34ec7838bafa85af9166207c97946a6c468d19",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "159332dbaefb317818b99cb0c2d026052b053a7756d686e50b05e14fc83edbaf"
           }
         ],
         "mismatch_list": [],
@@ -7891,13 +10734,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-041",
             "record_sha256": "04f48e9a6bd9d07aed90e59f5a2a85936640db9a40f3b751333554b134b632c3",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c4f0a7324ea32b4ca736a31cabdecbbcf1bbaf39283a0abc6b26c40864f9e266"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-041",
             "record_sha256": "7014b6404560d20dbaf1af4b2e059c83e0808bf56b2977607d224df2123282e1",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "457943717f3dfab4b910b8d027bc0bcdfa1a1776d229bbc2320707f3512c8cf4"
           }
         ],
         "mismatch_list": [],
@@ -7912,13 +10783,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-042",
             "record_sha256": "e72f47ea281e1a967e72dc20fdb87aa001101dbd56cc537b962cb909f92332e9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3bed6cded6e921281a065aaaf97182638c98d924c41d3155bb7f8aaff6adeadc"
           },
           {
             "family": "world",
             "record_id": "DEP-042",
             "record_sha256": "a4ffa29d6c3fded8e0dd6bf42316b53e6f6f3b1e6a45810ab9b87ab2e44bc5a3",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "2abcbb48d2f8188ad4b7c164c359a3d5b7d8a14f0999b5e00256aa3bf8c86dfe"
           }
         ],
         "mismatch_list": [],
@@ -7933,13 +10832,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-043",
             "record_sha256": "ff7931bb2ee9e9f8d0a53eabcca13eca42f8b699c93c3ffe895dc61546e94cde",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1e4bca9b5796945da9fa34d73aad966c2116f34280d87dc3b50b862494d03b12"
           },
           {
             "family": "world",
             "record_id": "DEP-043",
             "record_sha256": "f537611c7e3fd2fa809dfd510e6b6b5336cb6fe9862190f7ad9ccbb72a1fbd34",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "55ddfac2ccdb25ee81fdb9dac3db6435e05fccc31dc6bf9f070fb1fd0fea3895"
           }
         ],
         "mismatch_list": [],
@@ -7954,13 +10881,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-044",
             "record_sha256": "991c9938cfff222b12c737862629ba79d50995449a525451bb4ac1da4fb6b433",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "cff58e15e57286dfd2f41b7a5a33fd36d6439230b36280cfcdad0b3843a8c3e4"
           },
           {
             "family": "world",
             "record_id": "DEP-044",
             "record_sha256": "de8996caf01180c35df43b776b7008aa4a6630e1107c02d80591bcccb120eed7",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "a228a6fe794e11e5ed676acf69a19e073b566179a3b72e05b15383aa73fd7829"
           }
         ],
         "mismatch_list": [],
@@ -7975,13 +10930,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-045",
             "record_sha256": "2419157809b152b4f315e8404284852603b7d27b0b1e41df11283ad515edaf16",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8c3d274452927ed16d9a1d1aedba38dbeaa6aa3acaddf369b5262ef8cbe9fe86"
           },
           {
             "family": "world",
             "record_id": "DEP-045",
             "record_sha256": "2954f4bbf2a8a7f3e5dc025543d6a39d25659d58c2dccf98eff1d66e71d0a58d",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0ea60fd35c369f4c9b75a9227eee1b488cd315b0ec2274f198b314621cbe7f07"
           }
         ],
         "mismatch_list": [],
@@ -7996,13 +10979,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-046",
             "record_sha256": "9fa361d21596b0868ff98a78cad04be5a872892f5c2eb620148038e549fc8eae",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "206e050855d70eb2cc590d38a527ef8122bd88fa63f5570a87cd20efcf120139"
           },
           {
             "family": "world",
             "record_id": "DEP-046",
             "record_sha256": "925e311529e4ee8ecc83c38dec063185c488a8da40be1959a2bf981f0682a638",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "10ced88605fd9b99b63577edcd4d400d76eeb427f0fb343b20fa19de0c453e70"
           }
         ],
         "mismatch_list": [],
@@ -8017,7 +11028,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-047",
             "record_sha256": "d1f98ba1820ccbe474ab968900477c056cfe3e59d8b750bcc043f535500fb31c",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ffacc004095f397a1238c70bb7fca9f74d1c95a14dba159ee3fa436996656b38"
           }
         ],
         "mismatch_list": [],
@@ -8032,7 +11058,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-048",
             "record_sha256": "cfefc698e2598172a14e3391f040c846ae4bc088eb81efe1c527aeae3d896b68",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "9af222321f475c83afd6e35e082c3966a0043e5a3de5b0a47e4336e8bda6562f"
           }
         ],
         "mismatch_list": [],
@@ -8047,7 +11088,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-049",
             "record_sha256": "1b1aa0658c7b64ae250fcf7788c3ed6811b58d67434fb2c927e36becb8a6633b",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "be2df48dcc88560d8413e47c95491b348b9433117de53d80a442d68471ba610e"
           }
         ],
         "mismatch_list": [],
@@ -8062,13 +11118,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-050",
             "record_sha256": "f0d7fd760594856bc4ddd978c7036d652b09886277773eb94fbd69e446757cf0",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1751f06c3a607a085e11c412a220b2234170342fc7c8bd88c48acf631c91bb0f"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-050",
             "record_sha256": "c4d63bd1c49370f1d5b99da281527befee015e413d555a3ab6bfe647fee5bd8c",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "670ab3dd8594178a7ae3a167930a67788efff8afc46e518c30eb287a994f1e1f"
           }
         ],
         "mismatch_list": [],
@@ -8083,13 +11167,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-051",
             "record_sha256": "4ff0339ff3bb9551538ac56f9d24c8bff90f08b5f09f08ee476521961bd2e54d",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8ba3c7081ab56d44e50f9350fb49cf8d7b9b51c8fcc014086d645aa615f25fc0"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-051",
             "record_sha256": "87bd246f2cc4624831098d8356502c9df51cc3e762d7f0d0ea91ca23e1fed697",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "fa5dec3492644f2a34ea824e4690150bf790b4211997a545aa4391a8a78363dc"
           }
         ],
         "mismatch_list": [],
@@ -8104,7 +11216,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-052",
             "record_sha256": "5aa6886c63461e4a6b4b18194dc8527a79746acd49348eba0fc1039392a8635a",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8e0c7f0689194ee4c475d0e50bbb6e8eb4413751881528a790f63d4e472dfc53"
           }
         ],
         "mismatch_list": [],
@@ -8119,7 +11246,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-053",
             "record_sha256": "4e27f746e2c84abb64dd0e4536e3951642c962b6fc1b4c23dcee43140844833a",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "a99277903193c8bfdd29870ca81e061aa8c0f501422f8e7e53754c5574da4288"
           }
         ],
         "mismatch_list": [],
@@ -8134,7 +11276,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-054",
             "record_sha256": "f0b7d9773b0dac4515fd5c385888eab696ea1966d0ae225aa25981c0a4733360",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "6cfa8b5a07878f7f9288e614218ffd49e509a83245617f45817a34387f1aa420"
           }
         ],
         "mismatch_list": [],
@@ -8149,13 +11306,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-055",
             "record_sha256": "597a526fe2362c34db7138085a3d2453a28c30c8e1c815e68d4663d373f42619",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ecabe0b17993dc02faadfcdca2964520ff5ad7b86c5b42fa8ba20032ef46634c"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-055",
             "record_sha256": "f22112f472a51767d511eb9c66bab71ad72f3ab3ec26c675906d959a5ddff2ac",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3ea4c682c4af446310d95aa91358c4ad5e0e45f117e23b058724aa37e4f14371"
           }
         ],
         "mismatch_list": [],
@@ -8170,13 +11355,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-056",
             "record_sha256": "7430810a0b3d9e10787e0dbeffc8099b81aed2aa8da509f2c4b73c7eb48f71ab",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "8495f610d097a53275d730a04cb6435cdbc0b8c8ba918610346c632b60a7beac"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-056",
             "record_sha256": "98f67ff6726b232ddf7627a8da70599e112b69b3093a61d540fc70eeb0250f14",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "6b9b6994218ad6ae653a569f05115ef8ae8b167d9ebfca8d46d14b5b59490479"
           }
         ],
         "mismatch_list": [],
@@ -8191,13 +11404,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-057",
             "record_sha256": "7ade0513b74c1b744baba6832f717c5670f059f5f32f3fb99ceb1d357b3dfae9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "039aa025b0b8847b5a9610fc43edb564ed6d5a72aff7224efbf634e258447072"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-057",
             "record_sha256": "8985773221205cff55938a7b3ad8f9d02d4ff72a99eb170d525964f7ab287673",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "53615d87f9b9ee3d015f0ba83b20edb937fb25723a2bcd42863775ebc994a3ca"
           }
         ],
         "mismatch_list": [],
@@ -8212,13 +11453,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-058",
             "record_sha256": "b1012dfb2f5362e368a63961efd527dc75ddf96fab1cdbfb1a18f59c5651bce6",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4c20ac31b5920c4cc08ff1fc2497d327ffc9ca18fd45b1eda50b6e048b47c4af"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-058",
             "record_sha256": "c0007d361d069f34dd7445001d0dfdfd87e4a90492247ff0e5768476a07ac4d3",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "735522c6c2b4ecdc7a5c2a9dee728eeb8d48f88457d44f175e1aecb0517c369b"
           }
         ],
         "mismatch_list": [],
@@ -8233,13 +11502,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-059",
             "record_sha256": "b2b6628183219a68759f10702e3c3efd62c537e9a30fa21f1d2be6bb81dca2e9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3fb8950b2b0f644f9db556ac385763f6d730ded2f4473af5c7a7a83b5f61c3ac"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-059",
             "record_sha256": "0a57bf8b3b0de74b3dc74890d1415ba730dfdad0ea4796d8372c417acbfb8cbb",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "286047f2fb6288f0d179a96ff1a3dc4ad231f2f07d82901ac4d2b7ebf14716ff"
           }
         ],
         "mismatch_list": [],
@@ -8254,13 +11551,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-060",
             "record_sha256": "d44ed0534f7d62e605c63b397750ef2437d6e1b0d2b8d6b2fa8aa2e3b020c2e4",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4d90f4dd6bd4bf52f0182d009291b3fbaa23480dbdc2f46b9b59a54630100e95"
           },
           {
             "family": "world",
             "record_id": "DEP-060",
             "record_sha256": "465ced7e91a95db900456bb430b5fa01bfcc1f93c2301d97c69759797b18dc23",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5ab7bcb98b496d4a9c892345a4df90e264a3f895fbe3c3b400d1787d86ef5a0c"
           }
         ],
         "mismatch_list": [],
@@ -8275,7 +11600,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-061",
             "record_sha256": "ad26602015ab9881afdf90c4934caec67bbe438bda10cf18e65dc56144d6c7f4",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0c519a7becd0bc2e4f13357798a992e38647e97198fcc28cea7f65a4da132c2d"
           }
         ],
         "mismatch_list": [],
@@ -8290,7 +11630,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-062",
             "record_sha256": "8d061f5d29b5bae8c6a9c35afc13802e914194d2e689487f6264be73cab14912",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "35703b025fb68692e0603172fe2225f1adc8c7869e7f2c34ad251b333590090c"
           }
         ],
         "mismatch_list": [],
@@ -8305,7 +11660,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-063",
             "record_sha256": "0793bf3a63d112468b3129f0f9bc40de6ecaaef4432e6b7ff99513f3edc055b5",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c7631ef606b741fb7011df4d76dd49ceb46ec6af56533d16d7a3c8e216e345a6"
           }
         ],
         "mismatch_list": [],
@@ -8320,7 +11690,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-064",
             "record_sha256": "792714ff7f8fb789898c437870028a09d38ba7b45fb5c0c592ec9e8b63094c27",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "43410c4bfc0d36621ce95fc2ab1ce6ca7bb7213dc45af61b8027d2a6714eec36"
           }
         ],
         "mismatch_list": [],
@@ -8335,7 +11720,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-065",
             "record_sha256": "6237a59503e10be7f1d4b62ccb2e5ff68e26c6a251aeb355d731b3ec3c52ae55",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "19187f91f5be01daee6fd15814d319590e140cd03776371948aad66e565672b1"
           }
         ],
         "mismatch_list": [],
@@ -8350,7 +11750,22 @@
             "family": "core",
             "record_id": "CORE-INT-DEP-066",
             "record_sha256": "9e190f2326644cf561eccd90ab30b2174c6b52e98fa0d9d5a1c1ffff99e5732f",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "failure_or_unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4924ae83786d5513c9f530faa289e35ecce901c2dcad6703b9940103d21d88ee"
           }
         ],
         "mismatch_list": [],
@@ -8365,13 +11780,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-067",
             "record_sha256": "baf74457a5bcd39a44763585a95de40206b984de16bd9fa221ef939c60410b52",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "87c8477b141822f05a0cda165c8c5e4154afa0a0a132b6e7ae6697ec3589028d"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-067",
             "record_sha256": "ae878ebeaa30d4043a8c317a35485699afb2beb8aa590d501f89e7eaf573eb69",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "881b2c0be98c731b9b7765c3bc59c3d01e1f37e8be0ee83ea27b9a5c9f406101"
           }
         ],
         "mismatch_list": [],
@@ -8386,13 +11829,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-068",
             "record_sha256": "f2a9d64bb0bbd36660582ab198174fc9fe26041826ce6d0aa5963b8e7e2225f2",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "70cb407cd032740e92f49c521edea720808a799e5b17152727eb58a88f802811"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-068",
             "record_sha256": "a712a6c4219453f8da3c50e1a790f60204403f9a2d6d5ef872eba0fb9374ef64",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d9aa70c9a982035afb0763436670027365513b896bc9daf86379a2c403da64dc"
           }
         ],
         "mismatch_list": [],
@@ -8407,13 +11878,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-069",
             "record_sha256": "a09c7eda1919256a8a625ea399d2f30706c7022a686b713319e8661cc0ff6586",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "eeb6d85d1d6fad8d3fdae76381954108279c0a787d52c3d0c4a100df52fd0093"
           },
           {
             "family": "agency",
             "record_id": "AGENCY-DEP-069",
             "record_sha256": "af82d3fbac8c1fc2144ed4502cab972622e182551eb87b986a1d018d4ab3e505",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b99ecd7916bf464e5559d4e370cd38752cf5d6e25d7c3f25440f4dc85da1dac0"
           }
         ],
         "mismatch_list": [],
@@ -8428,13 +11927,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-070",
             "record_sha256": "2b2da07bd688ea2c947f00e91ccef3300693e621a17e73e41df3589e0677b7ec",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "017a68e139935170984ffc38eba34d42a9bed4f048ed19585ece0b48edf36282"
           },
           {
             "family": "world",
             "record_id": "DEP-070",
             "record_sha256": "4960603a293b0ecde15f779be8f7e629003a41b176a1e5981fd2fa69358e8c8a",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "d8588a88627316c5b70376c9cd222b1cdfc96b884a22631d5e9ba5d9f9e290bc"
           }
         ],
         "mismatch_list": [],
@@ -8449,13 +11976,41 @@
             "family": "core",
             "record_id": "CORE-BND-DEP-071",
             "record_sha256": "b1d3bdbb9194ca63c5b9d7d379a7c3688b07b393fd253d0bebcaca4050fc6fa9",
-            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
+            "source_path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "ownership_nontransfer",
+              "failure_behavior",
+              "source_evidence"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "108ebcd292241dbfeefa6ce266fdf5284990257981eaffcb0f6bca32a5a62bbc"
           },
           {
             "family": "world",
             "record_id": "DEP-071",
             "record_sha256": "4786db5fe11409ad0677791e4c6fd3935e3faf1761a6ca0486cbf9e1e9725c4e",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "9b3de1fda2c50a55010b7ce3abb03bf111c71db1bcfaa8ad5fbb8c53bc23af98"
           }
         ],
         "mismatch_list": [],
@@ -8470,7 +12025,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-072",
             "record_sha256": "fe8fa21d8f77c3828645c73287d3cc159941f565598496b64e177ec3ccaa97e4",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b67a3c60488061ea8465542263ca08f258ad67eb377ccd9dce07d7e559d67fc5"
           }
         ],
         "mismatch_list": [],
@@ -8485,7 +12055,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-073",
             "record_sha256": "baa10304f75b9f520046746ed603682c4a8c068d42352db7d12248338ca60dec",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b0ae6bb0964fb95e90160051cbeb77dd7cf13f2ec663c7827e05dde57a055c76"
           }
         ],
         "mismatch_list": [],
@@ -8500,7 +12085,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-074",
             "record_sha256": "57d52c90486c343f7768bce163330662702dab2dbe03ede66bc3c4f3d5842f9e",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0a7f5d49c82ac23bd6304d5c7562f041e093d6201d3efecd5e54732c7ad9562f"
           }
         ],
         "mismatch_list": [],
@@ -8515,7 +12115,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-075",
             "record_sha256": "7d75b0c61a3407ec48a2c1881fcc7adc56b9363aa1216cd8ce04fafd5afe6d0d",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "f572f655121008898003d46365d76228bdeba2746b0fd73fc5b2e5b1452cce91"
           }
         ],
         "mismatch_list": [],
@@ -8530,7 +12145,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-076",
             "record_sha256": "1b5fab05f2ae0ae199fab00ccb292aecd39817c6a771892d17b515b35e225673",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "62a9ccc9860a6d9dead6cfca6d3599f2299cd910386fd806162553848458707a"
           }
         ],
         "mismatch_list": [],
@@ -8545,13 +12175,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-077",
             "record_sha256": "2708a45d049b384a78d8cf694961a6790eda028c5c12040a312f66b65cb64565",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c117e9c8e30b0486677636144116f550c50a5ac38d7bc9a2e18cbf95e416c7ea"
           },
           {
             "family": "world",
             "record_id": "DEP-077",
             "record_sha256": "91d9e9ee1796e2ac5e05184fd32b3609d88bd390f5c96afe85d81f4ea8e1d329",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "6aecf20ed4c2b5f1e2f9c89bd0c132640cffdb8b8acc7a3a9056ffefe41cf617"
           }
         ],
         "mismatch_list": [],
@@ -8566,13 +12228,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-078",
             "record_sha256": "3203498f359d7003b77034ead8e801693f7fc60705499e4d059547f0f5a38ceb",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "1057839b6f1f9fef7577b56301684f81d34897fd82dd7a5c248cc14e511d33ed"
           },
           {
             "family": "world",
             "record_id": "DEP-078",
             "record_sha256": "ca77f70409e7a2135e6c783ce302532a4e1615bb9fa5e982c1bd39624642b7ca",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c659331ef1735eb1b00b7883efcbe7d4a1a896f8aae1994459d8dc410ca4b503"
           }
         ],
         "mismatch_list": [],
@@ -8587,13 +12281,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-079",
             "record_sha256": "0e756aaf7be1a7fc8c767ed44970ae4d1784d50f9bb27a21ecfd6ba803244bbe",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "b21e4735c2bdc51b9c65966906451fcdab2ae82dcf1fddf2d7920ef57a129b28"
           },
           {
             "family": "world",
             "record_id": "DEP-079",
             "record_sha256": "ae03f27cad95714b7567105cc5ef071163d279250e68fd72a2dc8e1ea7f6bb41",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "beb2d45285fd1b269281d2e3ac00a32ce0b4cb3e29efc4195428ef8ecf625126"
           }
         ],
         "mismatch_list": [],
@@ -8608,7 +12334,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-080",
             "record_sha256": "3860935b7b1c4fea548524dfc6285be9a8afb940f9c7f2f6c4a5537338d23494",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "0ebfd2083a278834f2e6276299f22bfd07b5efa45fe696ad05d449a7fc6130da"
           }
         ],
         "mismatch_list": [],
@@ -8623,7 +12364,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-081",
             "record_sha256": "5b943f2e5351a20a2179e90afa0934dfbf2da97a3feddb772fe33299829914b7",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5a7166eb2b0c967b191eebb75c5bb12a5e2e4f4289a70b887bc8d57d2d2e8874"
           }
         ],
         "mismatch_list": [],
@@ -8638,7 +12394,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-082",
             "record_sha256": "9d256e7fdbf3ad0a43dd6918db7fdfd373d60e0d198961753948294d61ef6b36",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "271e5bc64fdc169fade0e398793666103a3cdee24bd3571ec73f9ad8478664df"
           }
         ],
         "mismatch_list": [],
@@ -8653,7 +12424,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-083",
             "record_sha256": "fdba1929dcf4d5016e6055b76ec0cee7cfe3ec33d6308cfcb49b0a11a2ee6b10",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c514681e8d37f9ad6c96c10b2cf34cd10bac59146877e4b23a8c4a36b222b68b"
           }
         ],
         "mismatch_list": [],
@@ -8668,13 +12454,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-084",
             "record_sha256": "6a75a58642ddaba721fc3bd028df9faeeea4b62c36056cb948cee1ed8704ac13",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "4f1913f86ba65d8065abe466e732f33bc953fc05b11c6e4c091298a8007887db"
           },
           {
             "family": "world",
             "record_id": "DEP-084",
             "record_sha256": "2d9a5a293b4962b83c6c12910000d92a1078034c36aa0cd7900088cc5b00bc16",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "3998dcaaaed49df8b9cf091f8d1dc2898649c9a0c00bc847ad3ec45220ff0ef4"
           }
         ],
         "mismatch_list": [],
@@ -8689,7 +12507,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-085",
             "record_sha256": "b4fd96261d1abfc64416a0bd589bf41eed3de5bd2df2e7fe93f9910ab347d7a5",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e6b1ba033e92e0e3072c36988fb636c4ba992ffe5a09e8f757fc077094826774"
           }
         ],
         "mismatch_list": [],
@@ -8704,7 +12537,22 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-086",
             "record_sha256": "d4d07f86e71ee611c7321867169552cd07cbea263fc452a43733e12060c8095d",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c4196c79893874c707fd5f4544e97b6afd2f452aa955fe0f17d72a93c9fe1925"
           }
         ],
         "mismatch_list": [],
@@ -8719,13 +12567,45 @@
             "family": "agency",
             "record_id": "AGENCY-DEP-087",
             "record_sha256": "755c61723390c3eea616bfd502c3c2fa6271c85298ead1e6cec1f05ed996ef08",
-            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
+            "source_path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "c8387230f079cbafeb8367f1505b0502684d7592f25bc6b082543562c7e29e59"
           },
           {
             "family": "world",
             "record_id": "DEP-087",
             "record_sha256": "9ca78200c06526780d349a6f4080ac14cbfd222de8dd0b3d2fe1f9be60b6fb2d",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ec631662dce6ffd8dc32912c8144654e87383bf2e09ee2ab11e97dfbe633d3a9"
           }
         ],
         "mismatch_list": [],
@@ -8740,7 +12620,23 @@
             "family": "world",
             "record_id": "DEP-088",
             "record_sha256": "270da795c22f7434071e340c4505878fbb3b4fbfbdb12224d77e5aca6f010dc3",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ed6baa1e48c54f67dae4ab14d3b99bd850a606f02a084d805d9d4dd6b16f920c"
           }
         ],
         "mismatch_list": [],
@@ -8755,7 +12651,23 @@
             "family": "world",
             "record_id": "DEP-089",
             "record_sha256": "2bee02b4fdd18914ec1806223a6fc5b9f7715e57630fc71c102c6964f4572186",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "ce3abddebcc2bd699edda5bf5440c8dffdb1c2b3662679bfc40c679d1f4a1cd4"
           }
         ],
         "mismatch_list": [],
@@ -8770,7 +12682,23 @@
             "family": "world",
             "record_id": "DEP-090",
             "record_sha256": "0bda16d6d71e7ab67f90cf4049df5a8ba56ef226a3cdd340a80c5eaabc36b3cc",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "5f2f1931d6b351376a809ff25ba84e28131a12ee6b149783b10a022d22fc6788"
           }
         ],
         "mismatch_list": [],
@@ -8785,7 +12713,23 @@
             "family": "world",
             "record_id": "DEP-091",
             "record_sha256": "d01d3a2eee05e33d4768d33ce68f4633c8bfb7fe48cbe0b177e47f3a274ee333",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "03eb33b53ce733e4e25757eb79d4eb69099a9a689d84bd9e7778068d781a4d63"
           }
         ],
         "mismatch_list": [],
@@ -8800,7 +12744,23 @@
             "family": "world",
             "record_id": "DEP-092",
             "record_sha256": "1064a6d4f1cf853811f659fe16e066eb426d619c6d0ff6c3db70ac2cd213180b",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "286d78a3c4e5e35287a0ac9b66b10c0026828b202b8458e237912e183bc33ddc"
           }
         ],
         "mismatch_list": [],
@@ -8815,7 +12775,23 @@
             "family": "world",
             "record_id": "DEP-093",
             "record_sha256": "87e0eddbb73f29138db1ed2630bc9091632592b6c64bfa755bf54026ecd7372d",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "e1d0323887913d13f2233525ffd2ecf7551d62dc84c10913842e5a9b70cb044b"
           }
         ],
         "mismatch_list": [],
@@ -8830,7 +12806,23 @@
             "family": "world",
             "record_id": "DEP-094",
             "record_sha256": "c0ae527fc9b27d49be99189fb7ff1ad51d618e7fc7fd4359d4f535d2d46ca8c6",
-            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md"
+            "source_path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+            "established_compared_fields": [
+              "producer",
+              "consumer",
+              "handoff_kind",
+              "semantic_owner",
+              "producer_output",
+              "permitted_consumer_use",
+              "ownership_nontransfer",
+              "unavailable_input_behavior",
+              "failure_behavior",
+              "source_evidence",
+              "downstream_implementation_status"
+            ],
+            "field_mismatch_list": [],
+            "field_comparison_result": "pass",
+            "established_field_comparison_sha256": "717cd35921c01390edc465489696b72ca09556c76da50d5ab52456668dc29823"
           }
         ],
         "mismatch_list": [],
@@ -9846,16 +13838,16 @@
       "candidate_under_review": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
       "alternatives_considered": [
         {
-          "alternative": "universal root owner",
-          "rejection_reason": "collapses distinct source-backed semantics"
+          "alternative": "AFQR-08 universal identity-owner",
+          "rejection_reason": "rejected because identity continuity does not confer write, property, agency, or institutional authority"
         },
         {
-          "alternative": "consumer ownership",
-          "rejection_reason": "handoff consumption never transfers ownership"
+          "alternative": "AFQR-01 universal transaction owner",
+          "rejection_reason": "rejected because commitment routing does not confer substantive ownership or personhood"
         },
         {
-          "alternative": "defer blocking",
-          "rejection_reason": "existing evidence supports bounded attribution"
+          "alternative": "AFQR-11 universal actor owner",
+          "rejection_reason": "rejected because purpose-scoped agency does not confer institutional office or identity"
         }
       ],
       "rejected_alternatives": [
@@ -9882,68 +13874,68 @@
       "corpus_scale_pressure_test": [
         {
           "case": "state/write ownership",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-01 qualified transition/write ownership only",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "resource and property ownership",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "source-local pending lawful donor mapping; never inferred from identity",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "contractual ownership",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 institutional contract plus typed parties; not generic owner",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "delegated control",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 control/consent attribution without identity transfer",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "institutional office",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 qualified institutional authority",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "proxyhood and possession",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-08 continuity/proxy relation; possession does not confer agency",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "cloning and replacement bodies",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-08 identity/continuity; embodiment remains AFQR-16",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "synthetic personhood",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 purpose-scoped personhood; identity record alone is insufficient",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "companion control",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 consent/control with separate companion identity",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "vehicle operation",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 control/agency; vehicle embodiment and action owners remain separate",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "legal responsibility",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 responsibility profile with AFQR-15 adjudication handoff",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "moral responsibility",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 purpose-scoped responsibility, source-local morality retained",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "causal responsibility",
-          "disposition": "AFQR-08 owns identity/continuity; AFQR-01 owns qualified transition/write and commitment ownership; AFQR-11 owns purpose-scoped agency, consent, control and responsibility; AFQR-15 owns qualified institutional authority. No universal substantive owner root.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "typed causal contribution, explicitly non-equivalent to legal or moral responsibility",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         }
       ],
       "decision": "approved_with_qualification",
@@ -10084,11 +14076,48 @@
         }
       ],
       "lawful_qualified_forms": [
-        "identity",
-        "owner",
-        "authority",
-        "agency",
-        "responsibility"
+        {
+          "root_term": "identity",
+          "qualified_form": "identity",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-08"
+        },
+        {
+          "root_term": "owner",
+          "qualified_form": "state owner",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-01"
+        },
+        {
+          "root_term": "authority",
+          "qualified_form": "project authority",
+          "owner_kind": "project_governance",
+          "owner_id": "Astra Doctrine Council"
+        },
+        {
+          "root_term": "authority",
+          "qualified_form": "institutional authority",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-15"
+        },
+        {
+          "root_term": "authority",
+          "qualified_form": "governed-relation authority record",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-09"
+        },
+        {
+          "root_term": "agency",
+          "qualified_form": "agency",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-11"
+        },
+        {
+          "root_term": "responsibility",
+          "qualified_form": "responsibility",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-11"
+        }
       ],
       "residual_r2_questions": [
         "Map donor-specific constructs without promoting donor defaults."
@@ -10208,16 +14237,16 @@
       "candidate_under_review": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
       "alternatives_considered": [
         {
-          "alternative": "universal root owner",
-          "rejection_reason": "collapses distinct source-backed semantics"
+          "alternative": "AFQR-09 graph-derived jurisdiction",
+          "rejection_reason": "rejected because relation existence and reachability do not create legal effect"
         },
         {
-          "alternative": "consumer ownership",
-          "rejection_reason": "handoff consumption never transfers ownership"
+          "alternative": "AFQR-13 reputation-derived authority",
+          "rejection_reason": "rejected because social standing does not create institutional power"
         },
         {
-          "alternative": "defer blocking",
-          "rejection_reason": "existing evidence supports bounded attribution"
+          "alternative": "AFQR-15 universal authority",
+          "rejection_reason": "rejected because institutional authority remains qualified and does not create agency or identity"
         }
       ],
       "rejected_alternatives": [
@@ -10243,53 +14272,53 @@
       "corpus_scale_pressure_test": [
         {
           "case": "citizenship",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 institutional membership and jurisdiction profile",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "faction and guild membership",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 membership; AFQR-13 may retain associated social standing",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "employment and military command",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 office/delegation; command does not create general agency",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "religious and corporate office",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 qualified institutional authority",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "territory and extradimensional jurisdiction",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 jurisdiction with AFQR-18 topology only as input",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "network and shipboard jurisdiction",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 rule scope; reachability and location are insufficient",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "emergency powers",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 versioned, bounded institutional authorization",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "contracts",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 rights/duties with AFQR-09 relation lifecycle handoff",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "reputation and informal leadership",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-13 social state; no institutional authority inferred",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "cross-border enforcement",
-          "disposition": "AFQR-09 owns governed-relation/dependency lifecycle; AFQR-13 owns social state; AFQR-15 owns institutions, jurisdiction, rights, law, adjudication and qualified institutional authority.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-15 jurisdiction and enforcement authorization remain distinct from execution",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         }
       ],
       "decision": "approved_with_qualification",
@@ -10413,10 +14442,42 @@
         }
       ],
       "lawful_qualified_forms": [
-        "jurisdiction",
-        "institution",
-        "authority",
-        "social state"
+        {
+          "root_term": "jurisdiction",
+          "qualified_form": "jurisdiction",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-15"
+        },
+        {
+          "root_term": "institution",
+          "qualified_form": "institution",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-15"
+        },
+        {
+          "root_term": "authority",
+          "qualified_form": "project authority",
+          "owner_kind": "project_governance",
+          "owner_id": "Astra Doctrine Council"
+        },
+        {
+          "root_term": "authority",
+          "qualified_form": "institutional authority",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-15"
+        },
+        {
+          "root_term": "authority",
+          "qualified_form": "governed-relation authority record",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-09"
+        },
+        {
+          "root_term": "social state",
+          "qualified_form": "social state",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-13"
+        }
       ],
       "residual_r2_questions": [
         "Map donor-specific constructs without promoting donor defaults."
@@ -10534,16 +14595,16 @@
       "candidate_under_review": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
       "alternatives_considered": [
         {
-          "alternative": "universal root owner",
-          "rejection_reason": "collapses distinct source-backed semantics"
+          "alternative": "AFQR-12 behavior-authored choice",
+          "rejection_reason": "rejected because prediction and motivation do not authorize actor choice"
         },
         {
-          "alternative": "consumer ownership",
-          "rejection_reason": "handoff consumption never transfers ownership"
+          "alternative": "AFQR-13 reputation-authored responsibility",
+          "rejection_reason": "rejected because social classification cannot adjudicate responsibility"
         },
         {
-          "alternative": "defer blocking",
-          "rejection_reason": "existing evidence supports bounded attribution"
+          "alternative": "automatic incapacity from emotion or compulsion",
+          "rejection_reason": "rejected because AFQR-11 requires purpose-scoped attribution rather than automatic inference"
         }
       ],
       "rejected_alternatives": [
@@ -10569,73 +14630,73 @@
       "corpus_scale_pressure_test": [
         {
           "case": "compulsion and mind control",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 coercion/control attribution informed by AFQR-12 state",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "possession",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 control and action-origin attribution; AFQR-08 identity remains separate",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "addiction and trauma",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-12 state evidence handed to AFQR-11 capacity attribution",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "fear and morale",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-12 emotion/motivation; no automatic agency change",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "ideology and conditioning",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-12 learned values; choice authority remains AFQR-11",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "programmed behavior and AI",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-12 behavior model plus AFQR-11 purpose-scoped agency test",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "swarms and collective agents",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 purpose-scoped collective agency; AFQR-13 group state remains separate",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "coercion and misinformation",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 coercion/consent; AFQR-10 epistemic input does not decide responsibility",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "diminished capacity",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 profiled responsibility using typed evidence",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "instinct and habit",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-12 behavioral continuity; not authorization",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "reputation",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-13 social state; not responsibility",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "legal culpability",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 responsibility with AFQR-15 adjudication",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "moral blame",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "AFQR-11 purpose-scoped responsibility; donor morality stays source-local",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         },
         {
           "case": "causal contribution",
-          "disposition": "AFQR-12 owns motivational/behavioral state; AFQR-11 owns agency, consent, control, coercion, decision authority and responsibility; AFQR-13 owns social state.",
-          "result": "bounded_to_distinct_owner_or_source_local"
+          "disposition": "causal input remains non-equivalent to blame or culpability",
+          "result": "bounded_to_lawful_owner_handoff_or_source_local"
         }
       ],
       "decision": "approved_with_qualification",
@@ -10761,11 +14822,36 @@
         }
       ],
       "lawful_qualified_forms": [
-        "motivation",
-        "behavior",
-        "agency",
-        "responsibility",
-        "social state"
+        {
+          "root_term": "motivation",
+          "qualified_form": "motivation",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-12"
+        },
+        {
+          "root_term": "behavior",
+          "qualified_form": "behavior",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-12"
+        },
+        {
+          "root_term": "agency",
+          "qualified_form": "agency",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-11"
+        },
+        {
+          "root_term": "responsibility",
+          "qualified_form": "responsibility",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-11"
+        },
+        {
+          "root_term": "social state",
+          "qualified_form": "social state",
+          "owner_kind": "afqr",
+          "owner_id": "AFQR-13"
+        }
       ],
       "residual_r2_questions": [
         "Map donor-specific constructs without promoting donor defaults."
@@ -10882,7 +14968,9 @@
         "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-002",
@@ -11036,7 +15124,9 @@
         "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-003",
@@ -11210,7 +15300,9 @@
         "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-004",
@@ -11361,7 +15453,9 @@
         "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-005",
@@ -11478,7 +15572,9 @@
         "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-006",
@@ -11587,7 +15683,9 @@
         "docs/doctrine/consolidation/afqr_world_action_sensing.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-007",
@@ -11791,7 +15889,9 @@
         "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-008",
@@ -11961,7 +16061,9 @@
         "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-009",
@@ -12123,7 +16225,9 @@
         "docs/doctrine/consolidation/afqr_world_action_sensing.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-010",
@@ -12270,7 +16374,9 @@
         "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-011",
@@ -12409,7 +16515,9 @@
         "docs/doctrine/consolidation/afqr_world_action_sensing.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-012",
@@ -12514,7 +16622,9 @@
         "docs/doctrine/consolidation/afqr_world_action_sensing.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     },
     {
       "matrix_id": "CONS-013",
@@ -12743,7 +16853,9 @@
         "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md"
       ],
       "result": "pass",
-      "blocking_status": "nonblocking"
+      "blocking_status": "nonblocking",
+      "calculation_posture": "recompute both normalized record-set hashes and relationship-specific ID/authority rules from evidence_paths",
+      "failure_rule": "any missing, surplus, mismatched, or authority-transfer failure makes R1E fail"
     }
   ],
   "corpus_scale_adequacy_matrix": [
@@ -14410,6 +18522,11 @@
     "record_source": "missing_substrate_decisions",
     "count": 5,
     "record_set_sha256": "88444bd8cb4fb349015c510b24b4233cda724868976bb8347692e04427a96e6a"
-  }
+  },
+  "machine_failure_rules": [
+    "any term, edge, cycle, risk, substrate, collision, R1D projection, consistency row, or corpus record mismatch forces result fail",
+    "any substrate still open with a current R1/R2 blocking effect forces result fail",
+    "any blocking defect forces result fail"
+  ]
 }
 ```
