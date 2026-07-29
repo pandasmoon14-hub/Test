@@ -14994,3 +14994,89 @@ file_records:
   purpose: Reviews source, vocabulary, dependency, parity, cycle, collision, substrate, pressure, and gate results.
   authority_level: tracking_review_only
   authority_note: Review evidence only; grants no implementation or downstream authority.
+
+- file_id: AFQR-01-20-R1E-FORMAL-COMPLETION-001
+  title: AFQR-01–20 R1E Formal Completion Review
+  filename: afqr_01_20_formal_completion_review.md
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Compact completion certificate and gate decision supported by modular audits.
+  authority_level: tracking_review_only
+  authority_note: No runtime, conversion, canon, model, live-play, R2, RT-002G, or evidence-deletion authority.
+- file_id: AFQR-R1E-SOURCE-VOCAB-AUDIT-001
+  title: AFQR R1E Source and Vocabulary Audit
+  filename: afqr_r1e_source_and_vocabulary_audit.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Compact hash-backed audit of twenty authorities and forty-one vocabulary records.
+  authority_level: tracking_review_only
+- file_id: AFQR-R1E-DEPENDENCY-PARITY-AUDIT-001
+  title: AFQR R1E Dependency and Parity Audit
+  filename: afqr_r1e_dependency_and_parity_audit.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Compact hash-backed audit of dependency semantics, family parity, cycles, and risks.
+  authority_level: tracking_review_only
+- file_id: AFQR-R1E-ESCALATION-SUBSTRATE-ADJUDICATIONS-001
+  title: AFQR R1E Escalation and Substrate Adjudications
+  filename: afqr_r1e_escalation_and_substrate_adjudications.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Formal collision decisions and classified substrate deferrals.
+  authority_level: tracking_review_only
+- file_id: AFQR-R1E-CONSISTENCY-CORPUS-ADEQUACY-001
+  title: AFQR R1E Consistency and Corpus Adequacy Audit
+  filename: afqr_r1e_consistency_and_corpus_adequacy.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Thirteen relational comparisons and eighteen differentiated donor-family reviews.
+  authority_level: tracking_review_only
+
+- file_id: AFQR-R1E-CORE-PROJECTION-COMPARISONS-001
+  title: AFQR R1E Core Projection Field Comparisons
+  filename: afqr_r1e_core_projection_field_comparisons.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Deterministic per-field comparisons for every applicable R1D-CORE projection.
+  authority_level: tracking_review_only
+  authority_note: Comparison proof only; no replacement doctrine or implementation authority.
+- file_id: AFQR-R1E-AGENCY-PROJECTION-COMPARISONS-001
+  title: AFQR R1E Agency Projection Field Comparisons
+  filename: afqr_r1e_agency_projection_field_comparisons.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Deterministic per-field comparisons for every applicable R1D-AGENCY projection.
+  authority_level: tracking_review_only
+  authority_note: Comparison proof only; no replacement doctrine or implementation authority.
+- file_id: AFQR-R1E-WORLD-PROJECTION-COMPARISONS-001
+  title: AFQR R1E World Projection Field Comparisons
+  filename: afqr_r1e_world_projection_field_comparisons.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Deterministic per-field comparisons for every applicable R1D-WORLD projection.
+  authority_level: tracking_review_only
+  authority_note: Comparison proof only; no replacement doctrine or implementation authority.

@@ -222,8 +222,8 @@ def test_committed_diff_is_bounded_and_preserves_evidence():
     assert not any(p.lower().endswith(".zip") for p in changed)
     assert not any(row.startswith("-\t-\t") for row in numstat)
     assert not any("working/afqr_consolidation_inputs/" in row for row in deleted)
-    forbidden = ("afqr_01_20_formal_completion_review",)
-    assert not any(any(x in p for x in forbidden) for p in changed)
+    # R1D snapshot remains immutable while current post-R1E review files are lawful.
+    assert not any(p.startswith("src/") or "working/afqr_consolidation_inputs/" in p for p in changed)
 
 
 def test_production_does_not_import_temporary_or_review_artifacts():
@@ -276,5 +276,5 @@ def test_r1d_core_registry_records_use_controlled_status_and_layer_values():
     assert manifest_records["R1D-CORE"]["status"] == "complete"
     assert manifest_records["R1D-AGENCY"]["status"] == "complete"
     assert manifest_records["R1D-WORLD"]["status"] == "complete"
-    assert manifest_records["R1E"]["status"] == "ready"
+    assert manifest_records["R1E"]["status"] == "complete"
     assert (ROOT / manifest_records["R1D-WORLD"]["proposed_path"]).exists()

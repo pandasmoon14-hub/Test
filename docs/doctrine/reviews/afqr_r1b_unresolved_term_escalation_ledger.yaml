@@ -42,7 +42,67 @@
       "blocking_effect": "Does not block bounded R1C; blocks final R1 completion and downstream R2-R6/RT-002G.",
       "lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
       "prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
-      "status": "open"
+      "status": "closed_by_r1e",
+      "r1e_decision_id": "R1E-DEC-COLL-03",
+      "formal_review_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "adjudication_path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "resolution_evidence": [
+        "SRC-0004",
+        "SRC-0011",
+        "SRC-0059",
+        "SRC-0157"
+      ],
+      "resolution_summary": "COLL-03 separated source-backed owners and qualified handoffs; adjacency transfers no ownership.",
+      "prohibited_inferences": [
+        "identity or continuity proving personhood, agency, control, consent, responsibility, or institutional authority",
+        "state transition or write routing proving substantive ownership, personhood, agency, responsibility, or authority",
+        "control proving consent; agency proving responsibility; institutional authority proving generic ownership"
+      ],
+      "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
+      "exact_affected_afqrs": [
+        "AFQR-01",
+        "AFQR-08",
+        "AFQR-11",
+        "AFQR-15"
+      ],
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0004",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+        },
+        {
+          "evidence_id": "SRC-0011",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
+        },
+        {
+          "evidence_id": "SRC-0059",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml"
+        },
+        {
+          "evidence_id": "SRC-0157",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml"
+        }
+      ],
+      "final_attribution_rule": "AFQR-08 owns identity/continuity; AFQR-01 only qualified transition/write-owner and commitment-owner; AFQR-11 owns purpose-scoped agency/control/consent/coercion/personhood/responsibility; AFQR-15 owns institutional authority/attribution; no universal substantive owner.",
+      "r1c_invariants": [
+        "INV-001",
+        "INV-005"
+      ],
+      "r1c_invariant_disposition": "direct_applicable_invariants",
+      "r1c_edge_grounding": [
+        "DEP-007",
+        "DEP-010",
+        "DEP-014",
+        "DEP-056",
+        "DEP-059",
+        "DEP-083"
+      ]
     },
     {
       "escalation_id": "R1B-ESC-002",
@@ -79,7 +139,56 @@
       "blocking_effect": "Does not block bounded R1C; blocks final R1 completion and downstream R2-R6/RT-002G.",
       "lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
       "prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
-      "status": "open"
+      "status": "closed_by_r1e",
+      "r1e_decision_id": "R1E-DEC-COLL-08",
+      "formal_review_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "adjudication_path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "resolution_evidence": [
+        "SRC-0012",
+        "SRC-0110",
+        "SRC-0157"
+      ],
+      "resolution_summary": "COLL-08 separated source-backed owners and qualified handoffs; adjacency transfers no ownership.",
+      "prohibited_inferences": [
+        "governed relation or dependency proving jurisdiction, institution, social status, or authority",
+        "social status, reputation, or affiliation proving institutional office or authority",
+        "institutional membership or graph reachability proving every jurisdiction, right, duty, obligation, or legal effect"
+      ],
+      "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
+      "exact_affected_afqrs": [
+        "AFQR-09",
+        "AFQR-13",
+        "AFQR-15"
+      ],
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0012",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+        },
+        {
+          "evidence_id": "SRC-0110",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml"
+        },
+        {
+          "evidence_id": "SRC-0157",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml"
+        }
+      ],
+      "final_attribution_rule": "AFQR-09 owns governed-relation lifecycle; AFQR-13 social state; AFQR-15 institution/jurisdiction/rights/law/adjudication/institutional authority. Relation, status, reachability, and proximity create no jurisdiction.",
+      "r1c_invariants": [
+        "INV-001",
+        "INV-006"
+      ],
+      "r1c_invariant_disposition": "direct_applicable_invariants",
+      "r1c_edge_grounding": [
+        "DEP-068",
+        "DEP-069"
+      ]
     },
     {
       "escalation_id": "R1B-ESC-003",
@@ -117,9 +226,59 @@
       "blocking_effect": "Does not block bounded R1C; blocks final R1 completion and downstream R2-R6/RT-002G.",
       "lawful_interim_usage": "Use accepted qualified forms and explicit AFQR owner scopes only.",
       "prohibited_interim_usage": "No inference of agency, consent, responsibility, jurisdiction, ownership, or authority from adjacent terms.",
-      "status": "open"
+      "status": "closed_by_r1e",
+      "r1e_decision_id": "R1E-DEC-COLL-10",
+      "formal_review_path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "adjudication_path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "resolution_evidence": [
+        "SRC-0059",
+        "SRC-0092",
+        "SRC-0110"
+      ],
+      "resolution_summary": "COLL-10 separated source-backed owners and qualified handoffs; adjacency transfers no ownership.",
+      "prohibited_inferences": [
+        "motive, emotion, personality, drive, or predicted behavior proving agency, consent, choice, or responsibility",
+        "observed behavior proving motive, authorization, culpability, or responsibility",
+        "reputation or social classification proving agency, incapacity, responsibility, or adjudicated status"
+      ],
+      "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
+      "exact_affected_afqrs": [
+        "AFQR-11",
+        "AFQR-12",
+        "AFQR-13"
+      ],
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0059",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml"
+        },
+        {
+          "evidence_id": "SRC-0092",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_13_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_13_Ratification_Pack_v1_0/manifest/artifact_manifest.yaml"
+        },
+        {
+          "evidence_id": "SRC-0110",
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml"
+        }
+      ],
+      "final_attribution_rule": "AFQR-12 owns motivation/behavior/emotion/personality/planning/learning; AFQR-11 agency/consent/control/coercion/decision authority/responsibility; AFQR-13 social state. Prediction authors no choice and reputation determines no agency.",
+      "r1c_invariants": [],
+      "r1c_invariant_disposition": "no_direct_applicable_invariant",
+      "r1c_edge_grounding": [
+        "DEP-080",
+        "DEP-081"
+      ]
     }
   ],
   "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",
-  "audit_note": "State semantic ownership and all definition/disposition consistency checks are complete; this ledger continues to preserve only COLL-03, COLL-08, and COLL-10 substantive questions."
+  "audit_note": "State semantic ownership and all definition/disposition consistency checks are complete; this ledger continues to preserve only COLL-03, COLL-08, and COLL-10 substantive questions.",
+  "status_definitions": {
+    "closed_by_r1e": "Historical escalation remains recorded; current disposition was closed by a complete R1E decision."
+  }
 }
