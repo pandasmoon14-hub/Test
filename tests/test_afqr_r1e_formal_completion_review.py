@@ -87,18 +87,33 @@ def test_projection_audits_recompute_and_account_for_every_required_field():
         groups=[calculated[k] for k in ("compared_fields","upstream_only_preserved_fields","not_applicable_fields","missing_fields")];flat=sum(groups,[]);assert set(flat)==set(REQUIRED_R1C_FIELDS) and len(flat)==len(REQUIRED_R1C_FIELDS) and not calculated["missing_fields"]
         dispositions.update(x["disposition"] for x in calculated["field_comparisons"])
     assert dispositions["exact"] and dispositions["bounded_projection"] and dispositions["upstream_only_preserved"] and dispositions["not_applicable"] and not dispositions["missing_blocking"]
-    assert DP["projection_coverage_summary"]=={"projection_count":137,"required_fields_per_projection":18,"field_disposition_count":2466,"disposition_counts":dict(dispositions),"missing_blocking_count":0,"result":"pass"}
+    assert DP["projection_coverage_summary"]=={"projection_count":137,"required_fields_per_projection":18,"field_disposition_count":2466,"disposition_counts":dict(dispositions),"preservation_rule_count":18,"missing_blocking_count":0,"result":"pass"}
+    assert len(CA["preservation_rule_catalog"])==18 and {x["preservation_rule_id"] for x in CA["preservation_rule_catalog"]}==APPROVED_PRESERVATION_RULES
     dep1=next(x for x in ALL_PROJECTIONS if x["edge_id"]=="DEP-001"); assert {"postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints","consumer_not_semantic_owner_by_consumption"}<=set(dep1["upstream_only_preserved_fields"]) and "source_evidence_paths" in dep1["compared_fields"]
 
-def test_destination_deletions_are_explicitly_preserved_or_blocking():
-    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}
-    samples=[("core",FAMILIES["core"],"DEP-001"),("agency",FAMILIES["agency"],"DEP-072"),("world",FAMILIES["world"],"DEP-088")]
+def test_destination_deletions_target_the_corresponding_source_field():
+    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]};samples=[("core",FAMILIES["core"],"DEP-001"),("agency",FAMILIES["agency"],"DEP-072"),("world",FAMILIES["world"],"DEP-088")]
     for family_name,doc,eid in samples:
-        _,section,_,projection=next(x for x in projection_records(doc) if x[0]==eid);contract=projection_contract(family_name,section,doc)
-        baseline=compare_projection(edges[eid],projection,contract); destinations={x["r1d_field"].split(".")[0] for x in baseline["field_comparisons"] if x["r1d_field"] and x["r1c_field"]!="cycle_participation" and x["r1d_field"].split(".")[0] in projection}
-        for field in destinations:
-            changed=copy.deepcopy(projection);changed.pop(field);result=compare_projection(edges[eid],changed,contract)
-            assert result["result"]=="fail" or result["upstream_only_preserved_fields"],f"{family_name}:{field} silently skipped"
+        _,section,_,projection=next(x for x in projection_records(doc) if x[0]==eid);contract=projection_contract(family_name,section,doc);baseline=compare_projection(edges[eid],projection,contract)
+        seen=set()
+        for comparison in baseline["field_comparisons"]:
+            if not comparison["r1d_field"] or comparison["r1c_field"]=="cycle_participation":continue
+            destination=comparison["r1d_field"].split(".")[0];key=(destination,comparison["r1c_field"])
+            if destination not in projection or key in seen:continue
+            seen.add(key);changed=copy.deepcopy(projection);changed.pop(destination);result=compare_projection(edges[eid],changed,contract);source_field=comparison["r1c_field"]
+            if source_field in contract["explicit_fields"]:
+                assert result["result"]=="fail" and source_field in result["missing_fields"],f"{family_name}:{destination}->{source_field}"
+            else:
+                assert source_field in result["upstream_only_preserved_fields"]
+                preserved=next(x for x in result["field_comparisons"] if x["r1c_field"]==source_field);assert preserved["preservation_rule_id"] in APPROVED_PRESERVATION_RULES
+
+def test_upstream_preservation_requires_exact_allowlist_clause_and_nontransfer():
+    edge=next(x for x in R1C["dependency_edge_dispositions"] if x["edge_id"]=="DEP-001");_,section,_,projection=next(x for x in projection_records(FAMILIES["core"]) if x[0]=="DEP-001");contract=projection_contract("core",section,FAMILIES["core"]);baseline=compare_projection(edge,projection,contract);assert baseline["result"]=="pass"
+    for item in baseline["field_comparisons"]:
+        if item["disposition"]=="upstream_only_preserved":assert item["preservation_rule_id"] in APPROVED_PRESERVATION_RULES and item["authority_clause_hash"] and item["contradiction_scan_result"]=="pass"
+    no_clause=projection_contract("core",section,{});assert compare_projection(edge,projection,no_clause)["result"]=="fail"
+    no_rule=copy.deepcopy(contract);no_rule["upstream_only_rules"].pop("postconditions");assert compare_projection(edge,projection,no_rule)["result"]=="fail"
+    transfer=copy.deepcopy(projection);transfer["ownership_nontransfer"]=False;assert compare_projection(edge,transfer,contract)["result"]=="fail"
 
 def test_real_mutations_fail_for_core_agency_world_and_boundary():
     edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}
@@ -117,10 +132,12 @@ def test_cycles_risks_and_all_stored_hashes_recompute():
 
 def test_collision_adjudications_and_both_ledgers_reconcile_semantically():
     b=load_json("docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"); c=load_json("docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml"); bm={x["collision_ids"][0]:x for x in b["escalations"]}; cm={x["collision_id"]:x for x in c["escalations"] if "collision_id" in x}; invariants={x["invariant_id"] for x in R1C["cross_afqr_invariants"]}; edges={x["edge_id"] for x in R1C["dependency_edge_dispositions"]}
-    expected_invariants={"COLL-03":["INV-001","INV-005"],"COLL-08":["INV-001","INV-006"],"COLL-10":["INV-008"]}
+    expected_invariants={"COLL-03":["INV-001","INV-005"],"COLL-08":["INV-001","INV-006"],"COLL-10":[]}
     for decision in ADJ["collision_adjudications"]:
-        cid=decision["collision_id"]; assert decision["decision"]=="approved_with_qualification" and decision["r1c_invariants"]==expected_invariants[cid] and set(decision["r1c_invariants"])<=invariants and set(decision["r1c_edges"])<=edges and set(decision["r1c_invariant_applicability"])==set(expected_invariants[cid])
+        cid=decision["collision_id"]; assert decision["decision"]=="approved_with_qualification" and decision["r1c_invariants"]==expected_invariants[cid] and set(decision["r1c_invariants"])<=invariants and set(decision["r1c_edges"])<=edges and set(decision["r1c_invariant_applicability"])==set(expected_invariants[cid]);
+        if cid=="COLL-10": assert decision["r1c_invariant_disposition"]=="no_direct_applicable_invariant" and decision["dependency_grounding"]["edge_ids"]==["DEP-080","DEP-081"] and decision["dependency_grounding"]["primary_evidence_ids"]==["SRC-0059","SRC-0092","SRC-0110"]
         for ledger in (bm[cid],cm[cid]):
+            assert ledger["r1c_invariants"]==expected_invariants[cid] and ledger["r1c_invariant_disposition"]==decision.get("r1c_invariant_disposition","direct_applicable_invariants") and ledger["r1c_edge_grounding"]==decision["r1c_edges"]
             assert ledger["r1e_decision_id"]==decision["decision_id"] and ledger["status"]=="closed_by_r1e" and ledger["resolution_evidence"]==decision["primary_evidence_ids"] and ledger["exact_evidence_locators"]==decision["exact_evidence_locators"] and ledger["exact_affected_afqrs"]==decision["exact_affected_afqrs"] and ledger["final_attribution_rule"]==decision["final_attribution_rule"] and ledger["prohibited_inferences"]==decision["prohibited_inferences"] and ledger["formal_review_path"].endswith("afqr_01_20_formal_completion_review.md") and ledger["supersession_scope"]==decision["supersession_scope"]
         [assert_locator(x) for x in decision["exact_evidence_locators"]]
 

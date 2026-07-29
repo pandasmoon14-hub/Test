@@ -89,7 +89,20 @@
           "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml"
         }
       ],
-      "final_attribution_rule": "AFQR-08 owns identity/continuity; AFQR-01 only qualified transition/write-owner and commitment-owner; AFQR-11 owns purpose-scoped agency/control/consent/coercion/personhood/responsibility; AFQR-15 owns institutional authority/attribution; no universal substantive owner."
+      "final_attribution_rule": "AFQR-08 owns identity/continuity; AFQR-01 only qualified transition/write-owner and commitment-owner; AFQR-11 owns purpose-scoped agency/control/consent/coercion/personhood/responsibility; AFQR-15 owns institutional authority/attribution; no universal substantive owner.",
+      "r1c_invariants": [
+        "INV-001",
+        "INV-005"
+      ],
+      "r1c_invariant_disposition": "direct_applicable_invariants",
+      "r1c_edge_grounding": [
+        "DEP-007",
+        "DEP-010",
+        "DEP-014",
+        "DEP-056",
+        "DEP-059",
+        "DEP-083"
+      ]
     },
     {
       "escalation_id": "R1B-ESC-002",
@@ -166,7 +179,16 @@
           "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml"
         }
       ],
-      "final_attribution_rule": "AFQR-09 owns governed-relation lifecycle; AFQR-13 social state; AFQR-15 institution/jurisdiction/rights/law/adjudication/institutional authority. Relation, status, reachability, and proximity create no jurisdiction."
+      "final_attribution_rule": "AFQR-09 owns governed-relation lifecycle; AFQR-13 social state; AFQR-15 institution/jurisdiction/rights/law/adjudication/institutional authority. Relation, status, reachability, and proximity create no jurisdiction.",
+      "r1c_invariants": [
+        "INV-001",
+        "INV-006"
+      ],
+      "r1c_invariant_disposition": "direct_applicable_invariants",
+      "r1c_edge_grounding": [
+        "DEP-068",
+        "DEP-069"
+      ]
     },
     {
       "escalation_id": "R1B-ESC-003",
@@ -245,7 +267,13 @@
           "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml"
         }
       ],
-      "final_attribution_rule": "AFQR-12 owns motivation/behavior/emotion/personality/planning/learning; AFQR-11 agency/consent/control/coercion/decision authority/responsibility; AFQR-13 social state. Prediction authors no choice and reputation determines no agency."
+      "final_attribution_rule": "AFQR-12 owns motivation/behavior/emotion/personality/planning/learning; AFQR-11 agency/consent/control/coercion/decision authority/responsibility; AFQR-13 social state. Prediction authors no choice and reputation determines no agency.",
+      "r1c_invariants": [],
+      "r1c_invariant_disposition": "no_direct_applicable_invariant",
+      "r1c_edge_grounding": [
+        "DEP-080",
+        "DEP-081"
+      ]
     }
   ],
   "audit_revision": "source_owner_and_definition_consistency_audit_2026-07-24",

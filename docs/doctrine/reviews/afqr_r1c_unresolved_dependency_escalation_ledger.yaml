@@ -53,6 +53,19 @@
         "identity or continuity proving personhood, agency, control, consent, responsibility, or institutional authority",
         "state transition or write routing proving substantive ownership, personhood, agency, responsibility, or authority",
         "control proving consent; agency proving responsibility; institutional authority proving generic ownership"
+      ],
+      "r1c_invariants": [
+        "INV-001",
+        "INV-005"
+      ],
+      "r1c_invariant_disposition": "direct_applicable_invariants",
+      "r1c_edge_grounding": [
+        "DEP-007",
+        "DEP-010",
+        "DEP-014",
+        "DEP-056",
+        "DEP-059",
+        "DEP-083"
       ]
     },
     {
@@ -99,6 +112,15 @@
         "governed relation or dependency proving jurisdiction, institution, social status, or authority",
         "social status, reputation, or affiliation proving institutional office or authority",
         "institutional membership or graph reachability proving every jurisdiction, right, duty, obligation, or legal effect"
+      ],
+      "r1c_invariants": [
+        "INV-001",
+        "INV-006"
+      ],
+      "r1c_invariant_disposition": "direct_applicable_invariants",
+      "r1c_edge_grounding": [
+        "DEP-068",
+        "DEP-069"
       ]
     },
     {
@@ -146,6 +168,12 @@
         "motive, emotion, personality, drive, or predicted behavior proving agency, consent, choice, or responsibility",
         "observed behavior proving motive, authorization, culpability, or responsibility",
         "reputation or social classification proving agency, incapacity, responsibility, or adjudicated status"
+      ],
+      "r1c_invariants": [],
+      "r1c_invariant_disposition": "no_direct_applicable_invariant",
+      "r1c_edge_grounding": [
+        "DEP-080",
+        "DEP-081"
       ]
     },
     {

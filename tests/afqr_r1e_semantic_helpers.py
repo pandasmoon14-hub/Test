@@ -57,14 +57,34 @@ REQUIRED_R1C_FIELDS = [
     "cycle_participation","r1d_destination_family_or_escalation",
 ]
 
-def projection_contract(family_name, section, artifact):
+CORE_CLAUSE="preservation of R1B ownership and R1C invariants"
+AGENCY_CLAUSE="The cited R1C invariant directly governs this rule’s semantic separation; the family record narrows it without transferring ownership."
+def _rules(family_name,section,fields,clause):
+    rules={}
+    for field in fields:
+        rid=f"P-{family_name[0].upper()}-{section[0].upper()}-{len(rules)+1:02}-001"
+        alternatives={
+            "consumer_not_semantic_owner_by_consumption":["consumer_nonownership"],"preconditions":["preconditions","ordering_or_phase_constraint"],"postconditions":["postconditions"],
+            "revocation_invalidation_or_cascade":["revocation_invalidation_or_cascade"],"hidden_information_or_projection_constraints":["hidden_information_and_projection_constraints"],"r1d_destination_family_or_escalation":["downstream_implementation_status"],
+        }.get(field,[])
+        rules[field]={"preservation_rule_id":rid,"authority_clause":clause,"omission_rationale":f"{family_name} {section} intentionally leaves {field} at authoritative R1C rather than restating or broadening it.","contradiction_fields":alternatives,"ownership_nontransfer_rule":"ownership_nontransfer must remain true; omission grants no semantic ownership"}
+    return rules
+UPSTREAM_ONLY_ALLOWLIST={
+ ("core","internal_edge_dispositions"):_rules("core","internal_edge_dispositions",["consumer_not_semantic_owner_by_consumption","postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints"],CORE_CLAUSE),
+ ("core","boundary_dispositions"):_rules("core","boundary_dispositions",["consumer_not_semantic_owner_by_consumption","preconditions","postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints","r1d_destination_family_or_escalation"],CORE_CLAUSE),
+ ("agency","internal_edge_dispositions"):_rules("agency","internal_edge_dispositions",["consumer_not_semantic_owner_by_consumption","postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints"],AGENCY_CLAUSE),
+ ("agency","boundary_dispositions"):_rules("agency","boundary_dispositions",["consumer_not_semantic_owner_by_consumption","postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints"],AGENCY_CLAUSE),
+ ("world","internal_edge_dispositions"):{},("world","core_boundary_dispositions"):{},("world","agency_boundary_dispositions"):{},
+}
+APPROVED_PRESERVATION_RULES={r["preservation_rule_id"] for rules in UPSTREAM_ONLY_ALLOWLIST.values() for r in rules.values()}
+
+def projection_contract(family_name,section,artifact):
     explicit={"producer_afqr","consumer_afqr","relation_or_handoff_kind","semantic_type_owner","semantic_type_owner.r1b_term_bindings","producer_supplies","consumer_may_use","ownership_does_not_transfer","unavailable_input_behavior","source_evidence_records","source_evidence_paths"}
     if section!="boundary_dispositions": explicit.add("preconditions")
     if family_name=="world": explicit|={"consumer_not_semantic_owner_by_consumption","postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints","r1d_destination_family_or_escalation"}
     elif family_name=="agency": explicit.add("r1d_destination_family_or_escalation")
     elif family_name=="core" and section=="internal_edge_dispositions": explicit.add("r1d_destination_family_or_escalation")
-    blob=json.dumps(artifact,sort_keys=True).lower(); preserved="r1c" in blob and "consolidation only" in artifact.get("authority_boundary","").lower()
-    return {"family":family_name,"section":section,"explicit_fields":sorted(explicit),"preserves_r1c_authority":preserved}
+    return {"family":family_name,"section":section,"explicit_fields":sorted(explicit),"upstream_only_rules":UPSTREAM_ONLY_ALLOWLIST[(family_name,section)],"artifact":artifact}
 
 def _disposition(field,dest,mode,source,destination,ok=True,reason=None,rationale=None,details=None):
     record={"r1c_field":field,"r1d_field":dest,"disposition":mode,"comparison_mode":mode if mode in ("exact","bounded_projection") else mode,"normalization_rule":"N2","source_hash":normalized_hash(source),"destination_hash":normalized_hash(destination) if destination is not None else None,"result":"pass" if ok else "fail","mismatch_reason":None if ok else reason}
@@ -74,9 +94,18 @@ def _disposition(field,dest,mode,source,destination,ok=True,reason=None,rational
 def _exact_disposition(field,dest,source,destination):
     ok=_norm(source)==_norm(destination);return _disposition(field,dest,"exact",source,destination,ok,"normalized values differ")
 def _missing(field,source,reason):return _disposition(field,None,"missing_blocking",source,None,False,reason)
-def _upstream(field,source,contract):
-    ok=contract["preserves_r1c_authority"]
-    return _disposition(field,None,"upstream_only_preserved",source,None,ok,"family does not preserve R1C authority","R1C authority preserved; omission adds no contradiction or ownership transfer.")
+def _upstream(field,source,contract,projection):
+    rule=contract["upstream_only_rules"].get(field)
+    if not rule:return _missing(field,source,"field is not explicitly allowlisted for upstream-only preservation")
+    artifact_blob=json.dumps(contract["artifact"],sort_keys=True,ensure_ascii=False)
+    clause_present=rule["authority_clause"] in artifact_blob
+    contradictions=[name for name in rule["contradiction_fields"] if name in projection]
+    nontransfer=projection.get("ownership_nontransfer") is True
+    ok=clause_present and not contradictions and nontransfer
+    record=_disposition(field,None,"upstream_only_preserved",source,None,ok,"preservation clause absent, contradictory field present, or nontransfer weakened")
+    record.update({"preservation_rule_id":rule["preservation_rule_id"],"authority_clause_hash":normalized_hash(rule["authority_clause"]),"contradiction_scan_result":"pass" if not contradictions else "fail"})
+    return record
+
 def _not_applicable(field,source,why):return _disposition(field,None,"not_applicable",source,None,True,rationale=why)
 def _condition_compare(field,dest,source,destination):
     s=[_norm(x) for x in source];d=[_norm(x) for x in destination] if isinstance(destination,list) else []
@@ -93,7 +122,8 @@ def compare_projection(edge,projection,contract):
     explicit=set(contract["explicit_fields"]); out=[]
     def exact(field,dest,value=None):
         source=edge[field] if value is None else value
-        if dest not in projection:return _missing(field,source,f"required destination {dest} absent") if field in explicit else _upstream(field,source,contract)
+        if dest not in projection:
+            out.append(_missing(field,source,f"required destination {dest} absent") if field in explicit else _upstream(field,source,contract,projection)); return
         out.append(_exact_disposition(field,dest,source,projection[dest]))
     exact("producer_afqr","producer");exact("consumer_afqr","consumer");exact("relation_or_handoff_kind","handoff_kind")
     owner=compact_owner(edge["semantic_type_owner"])
@@ -101,7 +131,7 @@ def compare_projection(edge,projection,contract):
     else:out.append(_exact_disposition("semantic_type_owner","semantic_owner",owner,compact_owner(projection["semantic_owner"])))
     binding_field=("exact_r1b_term_bindings" if contract["family"]=="world" and "exact_r1b_term_bindings" in projection else "r1b_semantic_binding" if contract["family"]=="core" and contract["section"]=="internal_edge_dispositions" and "r1b_semantic_binding" in projection else None); bindings=_term_ids(edge["semantic_type_owner"].get("r1b_term_bindings",[]))
     if binding_field: destination_bindings=_term_ids(projection[binding_field]); binding_dest=binding_field
-    elif contract["family"]!="world" and isinstance(projection.get("semantic_owner"),dict) and "r1b_term_bindings" in projection["semantic_owner"]: destination_bindings=_term_ids(projection["semantic_owner"]["r1b_term_bindings"]); binding_dest="semantic_owner.r1b_term_bindings"
+    elif contract["family"]!="world" and not (contract["family"]=="core" and contract["section"]=="internal_edge_dispositions") and isinstance(projection.get("semantic_owner"),dict) and "r1b_term_bindings" in projection["semantic_owner"]: destination_bindings=_term_ids(projection["semantic_owner"]["r1b_term_bindings"]); binding_dest="semantic_owner.r1b_term_bindings"
     else: destination_bindings=None; binding_dest=None
     if destination_bindings is None:out.append(_missing("semantic_type_owner.r1b_term_bindings",bindings,"R1B binding destination absent"))
     else:out.append(_exact_disposition("semantic_type_owner.r1b_term_bindings",binding_dest,bindings,destination_bindings))
@@ -115,32 +145,32 @@ def compare_projection(edge,projection,contract):
     exact("ownership_does_not_transfer","ownership_nontransfer")
     if "consumer_nonownership" in projection:out.append(_exact_disposition("consumer_not_semantic_owner_by_consumption","consumer_nonownership",edge["consumer_not_semantic_owner_by_consumption"],projection["consumer_nonownership"]))
     elif "consumer_not_semantic_owner_by_consumption" in explicit:out.append(_missing("consumer_not_semantic_owner_by_consumption",edge["consumer_not_semantic_owner_by_consumption"],"consumer nonownership destination absent"))
-    else:out.append(_upstream("consumer_not_semantic_owner_by_consumption",edge["consumer_not_semantic_owner_by_consumption"],contract))
+    else:out.append(_upstream("consumer_not_semantic_owner_by_consumption",edge["consumer_not_semantic_owner_by_consumption"],contract,projection))
     pre=next((x for x in ("preconditions","ordering_or_phase_constraint") if x in projection),None)
-    if not pre:out.append(_missing("preconditions",edge["preconditions"],"precondition destination absent") if "preconditions" in explicit else _upstream("preconditions",edge["preconditions"],contract))
+    if not pre:out.append(_missing("preconditions",edge["preconditions"],"precondition destination absent") if "preconditions" in explicit else _upstream("preconditions",edge["preconditions"],contract,projection))
     else:out.append(_condition_compare("preconditions",pre,edge["preconditions"],projection[pre]))
     if "postconditions" in projection:out.append(_condition_compare("postconditions","postconditions",edge["postconditions"],projection["postconditions"]))
     elif "postconditions" in explicit:out.append(_missing("postconditions",edge["postconditions"],"postconditions absent"))
-    else:out.append(_upstream("postconditions",edge["postconditions"],contract))
+    else:out.append(_upstream("postconditions",edge["postconditions"],contract,projection))
     unavailable=("failure_behavior" if contract["family"]=="core" and contract["section"]=="boundary_dispositions" and "failure_behavior" in projection else "failure_or_unavailable_input_behavior" if contract["family"]=="core" and "failure_or_unavailable_input_behavior" in projection else "unavailable_input_behavior" if "unavailable_input_behavior" in projection else None)
     if not unavailable:out.append(_missing("unavailable_input_behavior",edge["unavailable_input_behavior"],"unavailable-input outcome absent"))
     else:out.append(_exact_disposition("unavailable_input_behavior",unavailable,edge["unavailable_input_behavior"],projection[unavailable]))
     for field,dest in (("revocation_invalidation_or_cascade","revocation_invalidation_or_cascade"),("hidden_information_or_projection_constraints","hidden_information_and_projection_constraints")):
         if dest in projection:out.append(_exact_disposition(field,dest,edge[field],projection[dest]))
         elif field in explicit:out.append(_missing(field,edge[field],f"{dest} absent"))
-        else:out.append(_upstream(field,edge[field],contract))
+        else:out.append(_upstream(field,edge[field],contract,projection))
     evidence=projection.get("source_evidence");ids=evidence.get("identifiers") if isinstance(evidence,dict) else evidence;paths=evidence.get("paths") if isinstance(evidence,dict) else None
     if ids is None:out.append(_missing("source_evidence_records",edge["source_evidence_records"],"evidence identifiers absent"))
     else:out.append(_exact_disposition("source_evidence_records","source_evidence.identifiers",sorted(edge["source_evidence_records"]),sorted(ids)))
-    if paths is None:out.append(_missing("source_evidence_paths",edge["source_evidence_paths"],"evidence paths absent") if "source_evidence_paths" in explicit else _upstream("source_evidence_paths",edge["source_evidence_paths"],contract))
+    if paths is None:out.append(_missing("source_evidence_paths",edge["source_evidence_paths"],"evidence paths absent") if "source_evidence_paths" in explicit else _upstream("source_evidence_paths",edge["source_evidence_paths"],contract,projection))
     else:out.append(_exact_disposition("source_evidence_paths","source_evidence.paths",sorted(edge["source_evidence_paths"]),sorted(paths)))
     cycle_dest=next((x for x in ("cycle_participation","cycle_or_dependency_risk_treatment","cycle_or_dependency_risk_status") if x in projection and isinstance(projection[x],type(edge["cycle_participation"]))),None)
     if cycle_dest:out.append(_exact_disposition("cycle_participation",cycle_dest,edge["cycle_participation"],projection[cycle_dest]))
     elif not edge["cycle_participation"]:out.append(_not_applicable("cycle_participation",False,"edge has no authoritative cycle participation"))
-    else:out.append(_upstream("cycle_participation",edge["cycle_participation"],contract))
+    else:out.append(_upstream("cycle_participation",edge["cycle_participation"],contract,projection))
     if "downstream_implementation_status" in projection:out.append(_downstream_compare(edge["r1d_destination_family_or_escalation"],projection["downstream_implementation_status"],contract["family"]))
     elif "r1d_destination_family_or_escalation" in explicit:out.append(_missing("r1d_destination_family_or_escalation",edge["r1d_destination_family_or_escalation"],"downstream status absent"))
-    else:out.append(_upstream("r1d_destination_family_or_escalation",edge["r1d_destination_family_or_escalation"],contract))
+    else:out.append(_upstream("r1d_destination_family_or_escalation",edge["r1d_destination_family_or_escalation"],contract,projection))
     categories={"compared_fields":[x["r1c_field"] for x in out if x["disposition"] in ("exact","bounded_projection")],"upstream_only_preserved_fields":[x["r1c_field"] for x in out if x["disposition"]=="upstream_only_preserved"],"not_applicable_fields":[x["r1c_field"] for x in out if x["disposition"]=="not_applicable"],"missing_fields":[x["r1c_field"] for x in out if x["disposition"]=="missing_blocking"]}
     mismatched=[x["r1c_field"] for x in out if x["result"]=="fail" and x["disposition"]!="missing_blocking"]
     return {"required_r1c_fields":REQUIRED_R1C_FIELDS,"field_comparisons":out,**categories,"mismatched_fields":mismatched,"result":"pass" if len(out)==len(REQUIRED_R1C_FIELDS) and all(x["result"]=="pass" for x in out) else "fail"}

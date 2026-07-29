@@ -281,9 +281,7 @@
         "SRC-0092",
         "SRC-0110"
       ],
-      "r1c_invariants": [
-        "INV-008"
-      ],
+      "r1c_invariants": [],
       "r1c_edges": [
         "DEP-080",
         "DEP-081"
@@ -375,8 +373,27 @@
         "invariants_exist": true,
         "edges_exist": true
       },
-      "r1c_invariant_applicability": {
-        "INV-008": "motivation or behavior prediction does not author choice or replace agency or responsibility"
+      "r1c_invariant_applicability": {},
+      "r1c_invariant_disposition": "no_direct_applicable_invariant",
+      "dependency_grounding": {
+        "edge_ids": [
+          "DEP-080",
+          "DEP-081"
+        ],
+        "r1d_candidate_record_id": "AGENCY-CAND-10",
+        "r1b_terms": [
+          "motivation",
+          "behavior",
+          "agency",
+          "responsibility",
+          "social state"
+        ],
+        "primary_evidence_ids": [
+          "SRC-0059",
+          "SRC-0092",
+          "SRC-0110"
+        ],
+        "rationale": "No direct R1C invariant is used; typed AFQR-11/12/13 dependency edges, the exact R1D-AGENCY candidate, R1B ownership, and primary evidence support the attribution."
       }
     }
   ],
