@@ -5,11 +5,7 @@
     {
       "comparator_id": "REL-01",
       "relationship": "R1A -> R1B",
-      "comparison_rules": [
-        "evidence resolution",
-        "owner authority",
-        "packaging is not ownership"
-      ],
+      "comparison_rules": ["evidence resolution", "owner authority", "packaging is not ownership"],
       "calculated_details": {
         "unresolved_evidence_ids": [],
         "invalid_owner_afqrs": [],
@@ -27,10 +23,7 @@
     {
       "comparator_id": "REL-02",
       "relationship": "R1A -> R1C",
-      "comparison_rules": [
-        "edge evidence/path resolution",
-        "endpoint authority"
-      ],
+      "comparison_rules": ["edge evidence/path resolution", "endpoint authority"],
       "calculated_details": {
         "unresolved_evidence_ids": [],
         "unresolved_paths": [],
@@ -48,12 +41,7 @@
     {
       "comparator_id": "REL-03",
       "relationship": "R1B -> R1C",
-      "comparison_rules": [
-        "binding existence",
-        "binding owner",
-        "qualification",
-        "explicit nonowner"
-      ],
+      "comparison_rules": ["binding existence", "binding owner", "qualification", "explicit nonowner"],
       "calculated_details": {
         "missing_term_bindings": [],
         "owner_mismatches": [],
@@ -72,38 +60,37 @@
     {
       "comparator_id": "REL-04",
       "relationship": "R1B -> R1D-CORE",
-      "comparison_rules": [
-        "core family owner coverage",
-        "qualified form",
-        "handoff-only",
-        "nonowner prohibition"
-      ],
+      "comparison_rules": ["core responsibility term classification", "exact qualified-form ownership", "handoff/nonowner prohibition"],
       "calculated_details": {
-        "owned_term_ids": [
-          "TERM-003",
-          "TERM-004",
-          "TERM-005",
-          "TERM-006",
-          "TERM-007",
-          "TERM-008",
-          "TERM-009",
-          "TERM-012",
-          "TERM-013",
-          "TERM-014",
-          "TERM-015",
-          "TERM-018",
-          "TERM-019",
-          "TERM-023",
-          "TERM-024",
-          "TERM-025",
-          "TERM-027",
-          "TERM-028"
+        "term_claim_dispositions": [
+          {"responsibility_record_id": "CORE-RESP-01", "afqr_id": "AFQR-01", "term_id": "TERM-003", "exact_form": "transition", "declared_owner": "AFQR-01", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-01", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-04", "AFQR-10", "AFQR-12", "AFQR-17", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-01", "afqr_id": "AFQR-01", "term_id": "TERM-004", "exact_form": "transaction", "declared_owner": "AFQR-01", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-01", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-10", "AFQR-17"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-01", "afqr_id": "AFQR-01", "term_id": "TERM-005", "exact_form": "committed event receipt", "declared_owner": "AFQR-01", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "committed event receipt", "explicit_nonowners": ["AFQR-10", "AFQR-17"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-01", "afqr_id": "AFQR-01", "term_id": "TERM-014", "exact_form": "state owner", "declared_owner": "AFQR-01", "r1b_owner_kind": "unresolved_escalation", "r1b_owner_id": "Doctrine Council", "allowed_qualified_form": "state owner", "explicit_nonowners": ["AFQR-08", "AFQR-11", "AFQR-15"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-02", "afqr_id": "AFQR-02", "term_id": "TERM-006", "exact_form": "command", "declared_owner": "AFQR-02", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-02", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-03", "AFQR-19"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-02", "afqr_id": "AFQR-02", "term_id": "TERM-007", "exact_form": "attempt", "declared_owner": "AFQR-02", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-02", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-03", "AFQR-19"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-03", "afqr_id": "AFQR-03", "term_id": "TERM-008", "exact_form": "action", "declared_owner": "AFQR-03", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-03", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-02", "AFQR-19"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-03", "afqr_id": "AFQR-03", "term_id": "TERM-009", "exact_form": "action-route capability requirement", "declared_owner": "AFQR-03", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "action-route capability requirement", "explicit_nonowners": ["AFQR-02"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-04", "afqr_id": "AFQR-04", "term_id": "TERM-005", "exact_form": "scheduled effect", "declared_owner": "AFQR-04", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "scheduled effect", "explicit_nonowners": ["AFQR-10", "AFQR-17"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-04", "afqr_id": "AFQR-04", "term_id": "TERM-012", "exact_form": "resolution group", "declared_owner": "AFQR-04", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "resolution group", "explicit_nonowners": ["AFQR-02", "AFQR-03"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-04", "afqr_id": "AFQR-04", "term_id": "TERM-027", "exact_form": "time", "declared_owner": "AFQR-04", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-04", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-01", "AFQR-12", "AFQR-17", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-04", "afqr_id": "AFQR-04", "term_id": "TERM-028", "exact_form": "causality", "declared_owner": "AFQR-04", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-04", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-01", "AFQR-12", "AFQR-17", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-06", "afqr_id": "AFQR-06", "term_id": "TERM-012", "exact_form": "claim arbitration result", "declared_owner": "AFQR-06", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "claim arbitration result", "explicit_nonowners": ["AFQR-02", "AFQR-03"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-06", "afqr_id": "AFQR-06", "term_id": "TERM-018", "exact_form": "claim", "declared_owner": "AFQR-06", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-06", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-10", "AFQR-20"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-06", "afqr_id": "AFQR-06", "term_id": "TERM-019", "exact_form": "arbitration evidence", "declared_owner": "AFQR-06", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "arbitration evidence", "explicit_nonowners": [], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-08", "afqr_id": "AFQR-08", "term_id": "TERM-013", "exact_form": "identity", "declared_owner": "AFQR-08", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-08", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-01", "AFQR-11", "AFQR-15"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-09", "afqr_id": "AFQR-09", "term_id": "TERM-015", "exact_form": "governed-relation authority record", "declared_owner": "AFQR-09", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "governed-relation authority record", "explicit_nonowners": ["AFQR-01", "AFQR-08", "AFQR-11", "AFQR-13"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "CORE-RESP-09", "afqr_id": "AFQR-09", "term_id": "TERM-023", "exact_form": "relation", "declared_owner": "AFQR-09", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-09", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-05", "AFQR-16"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-09", "afqr_id": "AFQR-09", "term_id": "TERM-024", "exact_form": "dependency", "declared_owner": "AFQR-09", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-09", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-16"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "CORE-RESP-09", "afqr_id": "AFQR-09", "term_id": "TERM-025", "exact_form": "obligation", "declared_owner": "AFQR-09", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-09", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-05", "AFQR-16"], "handoff_only": false, "disposition": "owned"}
         ],
+        "owned_term_ids": ["TERM-003", "TERM-004", "TERM-005", "TERM-006", "TERM-007", "TERM-008", "TERM-009", "TERM-012", "TERM-013", "TERM-014", "TERM-015", "TERM-018", "TERM-019", "TERM-023", "TERM-024", "TERM-025", "TERM-027", "TERM-028"],
         "missing_ids": [],
         "qualification_violations": [],
         "handoff_only_violations": [],
         "prohibited_ownership_claims": [],
-        "surplus_ids": []
+        "surplus_ownership_claims": [],
+        "missing_required_qualified_forms": []
       },
       "missing_ids": [],
       "surplus_ids": [],
@@ -111,41 +98,40 @@
       "authority_transfer_violations": [],
       "blocking_status": "nonblocking",
       "result": "pass",
-      "calculated_result_hash": "0ccf2f8865f8b90edbe6dea31d2d772774771c256fcfa28ada2e49f9932932ac"
+      "calculated_result_hash": "7fc2b0484956243e8205ee66f8b1f2b59dfb6c690fb1eaafbfac478d9a536396"
     },
     {
       "comparator_id": "REL-05",
       "relationship": "R1B -> R1D-AGENCY",
-      "comparison_rules": [
-        "agency family owner coverage",
-        "qualified form",
-        "handoff-only",
-        "nonowner prohibition"
-      ],
+      "comparison_rules": ["agency responsibility term classification", "exact qualified-form ownership", "handoff/nonowner prohibition"],
       "calculated_details": {
-        "owned_term_ids": [
-          "TERM-001",
-          "TERM-002",
-          "TERM-015",
-          "TERM-016",
-          "TERM-017",
-          "TERM-019",
-          "TERM-020",
-          "TERM-021",
-          "TERM-022",
-          "TERM-031",
-          "TERM-032",
-          "TERM-033",
-          "TERM-034",
-          "TERM-035",
-          "TERM-040",
-          "TERM-041"
+        "term_claim_dispositions": [
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-001", "exact_form": "epistemic state", "declared_owner": "AFQR-10", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "epistemic state", "explicit_nonowners": ["AFQR-04"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-002", "exact_form": "authoritative world truth", "declared_owner": "AFQR-10", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "authoritative world truth", "explicit_nonowners": ["AFQR-01", "AFQR-04", "AFQR-17"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-002", "exact_form": "observer-relative truth", "declared_owner": "AFQR-10", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "observer-relative truth", "explicit_nonowners": ["AFQR-01", "AFQR-04", "AFQR-17"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-019", "exact_form": "epistemic evidence record", "declared_owner": "AFQR-10", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "epistemic evidence record", "explicit_nonowners": [], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-020", "exact_form": "belief", "declared_owner": "AFQR-10", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-10", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-06", "AFQR-20"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-021", "exact_form": "knowledge", "declared_owner": "AFQR-10", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-10", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-06", "AFQR-20"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-10", "afqr_id": "AFQR-10", "term_id": "TERM-022", "exact_form": "epistemic observation record", "declared_owner": "AFQR-10", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "epistemic observation record", "explicit_nonowners": ["AFQR-06", "AFQR-14"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-11", "afqr_id": "AFQR-11", "term_id": "TERM-016", "exact_form": "agency", "declared_owner": "AFQR-11", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-11", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-01", "AFQR-08", "AFQR-12", "AFQR-13", "AFQR-15"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-11", "afqr_id": "AFQR-11", "term_id": "TERM-017", "exact_form": "responsibility", "declared_owner": "AFQR-11", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-11", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-01", "AFQR-08", "AFQR-12", "AFQR-13", "AFQR-15"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-12", "afqr_id": "AFQR-12", "term_id": "TERM-040", "exact_form": "motivation", "declared_owner": "AFQR-12", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-12", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-11", "AFQR-13"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-12", "afqr_id": "AFQR-12", "term_id": "TERM-041", "exact_form": "behavior", "declared_owner": "AFQR-12", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-12", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-11", "AFQR-13"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-13", "afqr_id": "AFQR-13", "term_id": "TERM-001", "exact_form": "social state", "declared_owner": "AFQR-13", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "social state", "explicit_nonowners": ["AFQR-04"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-13", "afqr_id": "AFQR-13", "term_id": "TERM-035", "exact_form": "social state", "declared_owner": "AFQR-13", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-13", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-09", "AFQR-11", "AFQR-12", "AFQR-15"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-14", "afqr_id": "AFQR-14", "term_id": "TERM-031", "exact_form": "communication", "declared_owner": "AFQR-14", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-14", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-10", "AFQR-20"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-14", "afqr_id": "AFQR-14", "term_id": "TERM-032", "exact_form": "interpretation", "declared_owner": "AFQR-14", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-14", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-10", "AFQR-20"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-15", "afqr_id": "AFQR-15", "term_id": "TERM-015", "exact_form": "institutional authority", "declared_owner": "AFQR-15", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "institutional authority", "explicit_nonowners": ["AFQR-01", "AFQR-08", "AFQR-11", "AFQR-13"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "AGENCY-RESP-15", "afqr_id": "AFQR-15", "term_id": "TERM-033", "exact_form": "jurisdiction", "declared_owner": "AFQR-15", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-15", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-09", "AFQR-13"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "AGENCY-RESP-15", "afqr_id": "AFQR-15", "term_id": "TERM-034", "exact_form": "institution", "declared_owner": "AFQR-15", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-15", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-09", "AFQR-13"], "handoff_only": false, "disposition": "owned"}
         ],
+        "owned_term_ids": ["TERM-001", "TERM-002", "TERM-015", "TERM-016", "TERM-017", "TERM-019", "TERM-020", "TERM-021", "TERM-022", "TERM-031", "TERM-032", "TERM-033", "TERM-034", "TERM-035", "TERM-040", "TERM-041"],
         "missing_ids": [],
         "qualification_violations": [],
         "handoff_only_violations": [],
         "prohibited_ownership_claims": [],
-        "surplus_ids": []
+        "surplus_ownership_claims": [],
+        "missing_required_qualified_forms": []
       },
       "missing_ids": [],
       "surplus_ids": [],
@@ -153,39 +139,36 @@
       "authority_transfer_violations": [],
       "blocking_status": "nonblocking",
       "result": "pass",
-      "calculated_result_hash": "d382062951d9a776c65c68780dabb42d69c83c289de73cc57e1ac73c53261410"
+      "calculated_result_hash": "1f04fa35ddc15b08cc2da621f424e54ed2f5027afbd238f926d49ba5ecbd76a9"
     },
     {
       "comparator_id": "REL-06",
       "relationship": "R1B -> R1D-WORLD",
-      "comparison_rules": [
-        "world family owner coverage",
-        "qualified form",
-        "handoff-only",
-        "nonowner prohibition"
-      ],
+      "comparison_rules": ["world responsibility term classification", "exact qualified-form ownership", "handoff/nonowner prohibition"],
       "calculated_details": {
-        "owned_term_ids": [
-          "TERM-001",
-          "TERM-009",
-          "TERM-010",
-          "TERM-011",
-          "TERM-012",
-          "TERM-019",
-          "TERM-022",
-          "TERM-026",
-          "TERM-029",
-          "TERM-030",
-          "TERM-036",
-          "TERM-037",
-          "TERM-038",
-          "TERM-039"
+        "term_claim_dispositions": [
+          {"responsibility_record_id": "WORLD-RESP-16", "afqr_id": "AFQR-16", "term_id": "TERM-026", "exact_form": "integrity", "declared_owner": "AFQR-16", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-16", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-05", "AFQR-09", "AFQR-17", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-16", "afqr_id": "AFQR-16", "term_id": "TERM-036", "exact_form": "embodiment", "declared_owner": "AFQR-16", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-16", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-17", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-17", "afqr_id": "AFQR-17", "term_id": "TERM-001", "exact_form": "environmental state", "declared_owner": "AFQR-17", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "environmental state", "explicit_nonowners": ["AFQR-04"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "WORLD-RESP-17", "afqr_id": "AFQR-17", "term_id": "TERM-029", "exact_form": "process", "declared_owner": "AFQR-17", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-17", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-01", "AFQR-04", "AFQR-12", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-17", "afqr_id": "AFQR-17", "term_id": "TERM-037", "exact_form": "environment", "declared_owner": "AFQR-17", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-17", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-16", "AFQR-18"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-18", "afqr_id": "AFQR-18", "term_id": "TERM-038", "exact_form": "space", "declared_owner": "AFQR-18", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-18", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-16", "AFQR-17"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-18", "afqr_id": "AFQR-18", "term_id": "TERM-039", "exact_form": "topology", "declared_owner": "AFQR-18", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-18", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-16", "AFQR-17"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-19", "afqr_id": "AFQR-19", "term_id": "TERM-009", "exact_form": "capability readiness determination", "declared_owner": "AFQR-19", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "capability readiness determination", "explicit_nonowners": ["AFQR-02"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "WORLD-RESP-19", "afqr_id": "AFQR-19", "term_id": "TERM-010", "exact_form": "opportunity", "declared_owner": "AFQR-19", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-19", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-02"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-19", "afqr_id": "AFQR-19", "term_id": "TERM-011", "exact_form": "target", "declared_owner": "AFQR-19", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-19", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-02", "AFQR-03"], "handoff_only": false, "disposition": "owned"},
+          {"responsibility_record_id": "WORLD-RESP-19", "afqr_id": "AFQR-19", "term_id": "TERM-012", "exact_form": "action resolution", "declared_owner": "AFQR-19", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "action resolution", "explicit_nonowners": ["AFQR-02", "AFQR-03"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "WORLD-RESP-20", "afqr_id": "AFQR-20", "term_id": "TERM-019", "exact_form": "sensing evidence candidate", "declared_owner": "AFQR-20", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "sensing evidence candidate", "explicit_nonowners": [], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "WORLD-RESP-20", "afqr_id": "AFQR-20", "term_id": "TERM-022", "exact_form": "sensing observation candidate", "declared_owner": "AFQR-20", "r1b_owner_kind": "shared_qualified_family", "r1b_owner_id": "R1B shared vocabulary", "allowed_qualified_form": "sensing observation candidate", "explicit_nonowners": ["AFQR-06", "AFQR-14"], "handoff_only": false, "disposition": "qualified_owned"},
+          {"responsibility_record_id": "WORLD-RESP-20", "afqr_id": "AFQR-20", "term_id": "TERM-030", "exact_form": "signal", "declared_owner": "AFQR-20", "r1b_owner_kind": "afqr", "r1b_owner_id": "AFQR-20", "allowed_qualified_form": null, "explicit_nonowners": ["AFQR-10", "AFQR-14"], "handoff_only": false, "disposition": "owned"}
         ],
+        "owned_term_ids": ["TERM-001", "TERM-009", "TERM-010", "TERM-011", "TERM-012", "TERM-019", "TERM-022", "TERM-026", "TERM-029", "TERM-030", "TERM-036", "TERM-037", "TERM-038", "TERM-039"],
         "missing_ids": [],
         "qualification_violations": [],
         "handoff_only_violations": [],
         "prohibited_ownership_claims": [],
-        "surplus_ids": []
+        "surplus_ownership_claims": [],
+        "missing_required_qualified_forms": []
       },
       "missing_ids": [],
       "surplus_ids": [],
@@ -193,88 +176,14 @@
       "authority_transfer_violations": [],
       "blocking_status": "nonblocking",
       "result": "pass",
-      "calculated_result_hash": "f9e244bc6818b15d4492befbf3aa42b6d40e7bb9e82c9a329a93104246ca4f9b"
+      "calculated_result_hash": "984d11b6c6cbe6c4a896d14bc50dac3e36cbf01276617740d9e8ee8663f761ea"
     },
     {
       "comparator_id": "REL-07",
       "relationship": "R1C -> R1D-CORE",
-      "comparison_rules": [
-        "core real projection field comparator pipeline"
-      ],
+      "comparison_rules": ["core real projection field comparator pipeline"],
       "calculated_details": {
-        "projection_ids": [
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/0",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/1",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/2",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/3",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/4",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/5",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/6",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/7",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/0",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/1",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/2",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/3",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/4",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/5",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/6",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/7",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/8",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/9",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/10",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/8",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/9",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/10",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/11",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/11",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/12",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/13",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/14",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/15",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/12",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/13",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/14",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/16",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/17",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/18",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/19",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/20",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/15",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/16",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/17",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/18",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/19",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/20",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/21",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/22",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/23",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/24",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/21",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/22",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/23",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/25",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/26",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/24",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/25",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/26",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/27",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/28",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/29",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/30",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/31",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/32",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/27",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/28",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/29",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/30",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/31",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/32",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/33",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/34",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/35",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/36",
-          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/37"
-        ],
+        "projection_ids": ["docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/6", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/7", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/0", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/1", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/2", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/3", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/4", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/5", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/6", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/7", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/8", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/9", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/10", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/8", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/9", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/10", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/11", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/11", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/12", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/13", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/14", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/15", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/12", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/13", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/14", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/16", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/17", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/18", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/19", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/20", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/15", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/16", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/17", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/18", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/19", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/20", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/21", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/22", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/23", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/24", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/21", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/22", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/23", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/25", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/26", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/24", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/25", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/26", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/27", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/28", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/29", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/30", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/31", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/32", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/27", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/28", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/29", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/30", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/31", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/32", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/33", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/34", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/35", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/36", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/37"],
         "missing_ids": [],
         "mismatches": [],
         "surplus_ids": []
@@ -290,49 +199,9 @@
     {
       "comparator_id": "REL-08",
       "relationship": "R1C -> R1D-AGENCY",
-      "comparison_rules": [
-        "agency real projection field comparator pipeline"
-      ],
+      "comparison_rules": ["agency real projection field comparator pipeline"],
       "calculated_details": {
-        "projection_ids": [
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/0",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/1",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/2",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/3",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/4",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/5",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/6",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/7",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/8",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/9",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/10",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/11",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/12",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/13",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/14",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/15",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/16",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/17",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/18",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/19",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/20",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/0",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/1",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/2",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/3",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/4",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/21",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/22",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/23",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/5",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/6",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/7",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/8",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/24",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/9",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/10",
-          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/25"
-        ],
+        "projection_ids": ["docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/0", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/1", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/2", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/3", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/4", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/5", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/6", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/7", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/8", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/9", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/10", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/11", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/12", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/13", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/14", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/15", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/16", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/17", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/18", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/19", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/20", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/21", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/22", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/23", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/6", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/7", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/8", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/24", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/9", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/10", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/25"],
         "missing_ids": [],
         "mismatches": [],
         "surplus_ids": []
@@ -348,41 +217,9 @@
     {
       "comparator_id": "REL-09",
       "relationship": "R1C -> R1D-WORLD",
-      "comparison_rules": [
-        "world real projection field comparator pipeline"
-      ],
+      "comparison_rules": ["world real projection field comparator pipeline"],
       "calculated_details": {
-        "projection_ids": [
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/0",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/1",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/2",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/3",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/4",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/5",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/6",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/7",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/8",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/9",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/10",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/11",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/12",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/13",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/14",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/15",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/16",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/0",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/1",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/2",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/3",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/4",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/0",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/1",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/2",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/3",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/4",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/5",
-          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/6"
-        ],
+        "projection_ids": ["docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/5", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/6", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/7", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/8", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/9", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/10", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/11", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/12", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/13", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/14", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/15", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/16", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/6"],
         "missing_ids": [],
         "mismatches": [],
         "surplus_ids": []
@@ -398,34 +235,9 @@
     {
       "comparator_id": "REL-10",
       "relationship": "R1D-CORE <-> R1D-AGENCY",
-      "comparison_rules": [
-        "core-agency two-sided boundary identity",
-        "semantic owner/nontransfer parity"
-      ],
+      "comparison_rules": ["core-agency two-sided boundary identity", "semantic owner/nontransfer parity"],
       "calculated_details": {
-        "expected_boundary_ids": [
-          "DEP-009",
-          "DEP-010",
-          "DEP-011",
-          "DEP-012",
-          "DEP-013",
-          "DEP-014",
-          "DEP-037",
-          "DEP-038",
-          "DEP-039",
-          "DEP-040",
-          "DEP-041",
-          "DEP-050",
-          "DEP-051",
-          "DEP-055",
-          "DEP-056",
-          "DEP-057",
-          "DEP-058",
-          "DEP-059",
-          "DEP-067",
-          "DEP-068",
-          "DEP-069"
-        ],
+        "expected_boundary_ids": ["DEP-009", "DEP-010", "DEP-011", "DEP-012", "DEP-013", "DEP-014", "DEP-037", "DEP-038", "DEP-039", "DEP-040", "DEP-041", "DEP-050", "DEP-051", "DEP-055", "DEP-056", "DEP-057", "DEP-058", "DEP-059", "DEP-067", "DEP-068", "DEP-069"],
         "missing_ids": [],
         "mismatches": [],
         "surplus_ids": []
@@ -441,30 +253,9 @@
     {
       "comparator_id": "REL-11",
       "relationship": "R1D-CORE <-> R1D-WORLD",
-      "comparison_rules": [
-        "core-world two-sided boundary identity",
-        "semantic owner/nontransfer parity"
-      ],
+      "comparison_rules": ["core-world two-sided boundary identity", "semantic owner/nontransfer parity"],
       "calculated_details": {
-        "expected_boundary_ids": [
-          "DEP-015",
-          "DEP-016",
-          "DEP-017",
-          "DEP-018",
-          "DEP-019",
-          "DEP-023",
-          "DEP-029",
-          "DEP-030",
-          "DEP-031",
-          "DEP-042",
-          "DEP-043",
-          "DEP-044",
-          "DEP-045",
-          "DEP-046",
-          "DEP-060",
-          "DEP-070",
-          "DEP-071"
-        ],
+        "expected_boundary_ids": ["DEP-015", "DEP-016", "DEP-017", "DEP-018", "DEP-019", "DEP-023", "DEP-029", "DEP-030", "DEP-031", "DEP-042", "DEP-043", "DEP-044", "DEP-045", "DEP-046", "DEP-060", "DEP-070", "DEP-071"],
         "missing_ids": [],
         "mismatches": [],
         "surplus_ids": []
@@ -480,18 +271,9 @@
     {
       "comparator_id": "REL-12",
       "relationship": "R1D-AGENCY <-> R1D-WORLD",
-      "comparison_rules": [
-        "agency-world two-sided boundary identity",
-        "semantic owner/nontransfer parity"
-      ],
+      "comparison_rules": ["agency-world two-sided boundary identity", "semantic owner/nontransfer parity"],
       "calculated_details": {
-        "expected_boundary_ids": [
-          "DEP-077",
-          "DEP-078",
-          "DEP-079",
-          "DEP-084",
-          "DEP-087"
-        ],
+        "expected_boundary_ids": ["DEP-077", "DEP-078", "DEP-079", "DEP-084", "DEP-087"],
         "missing_ids": [],
         "mismatches": [],
         "surplus_ids": []
@@ -507,22 +289,35 @@
     {
       "comparator_id": "REL-13",
       "relationship": "R1D -> R1E",
-      "comparison_rules": [
-        "family finding coverage",
-        "no surplus authority",
-        "no implementation claim"
-      ],
+      "comparison_rules": ["complete family-record coverage", "candidate and pressure coverage", "historical boundary preservation", "no implementation authority"],
       "calculated_details": {
         "expected_r1d_record_counts": {
           "core": 96,
           "agency": 61,
           "world": 52
         },
+        "covered_family_artifact_ids": ["AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001", "AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001", "AFQR-16-20-R1D-WORLD-ACTION-SENSING-001"],
+        "covered_responsibility_record_ids": ["CORE-RESP-01", "CORE-RESP-02", "CORE-RESP-03", "CORE-RESP-04", "CORE-RESP-05", "CORE-RESP-06", "CORE-RESP-07", "CORE-RESP-08", "CORE-RESP-09", "AGENCY-RESP-10", "AGENCY-RESP-11", "AGENCY-RESP-12", "AGENCY-RESP-13", "AGENCY-RESP-14", "AGENCY-RESP-15", "WORLD-RESP-16", "WORLD-RESP-17", "WORLD-RESP-18", "WORLD-RESP-19", "WORLD-RESP-20"],
+        "covered_projection_refs": ["docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/0", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/1", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/10", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/11", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/12", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/13", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/14", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/15", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/16", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/17", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/18", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/19", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/2", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/20", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/21", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/22", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/23", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/24", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/25", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/26", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/27", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/28", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/29", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/3", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/30", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/31", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/32", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/33", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/34", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/35", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/36", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/37", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/4", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/5", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/6", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/7", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/8", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/9", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/10", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/11", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/12", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/13", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/14", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/15", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/16", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/17", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/18", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/19", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/20", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/21", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/22", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/23", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/24", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/25", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/26", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/27", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/28", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/29", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/30", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/31", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/32", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/6", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/7", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/8", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/9", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/0", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/1", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/10", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/11", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/12", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/13", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/14", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/15", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/16", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/17", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/18", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/19", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/2", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/20", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/21", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/22", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/23", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/24", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/25", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/3", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/4", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/5", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/6", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/7", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/8", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/9", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/10", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/6", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/7", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/8", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/9", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/10", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/11", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/12", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/13", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/14", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/15", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/16", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/5", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/6", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/7", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/8", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/9", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/6"],
+        "covered_cycle_record_ids": ["CYCLE-001", "CYCLE-002", "CYCLE-003", "CYCLE-004"],
+        "covered_risk_record_ids": ["CYCLE-RISK-001", "CYCLE-RISK-002", "CYCLE-RISK-003", "CYCLE-RISK-004"],
+        "covered_collision_candidate_ids": ["AGENCY-CAND-03", "AGENCY-CAND-08", "AGENCY-CAND-10"],
+        "covered_substrate_record_ids": ["SUB-001", "SUB-002", "SUB-003", "SUB-004", "SUB-005"],
+        "covered_pressure_record_ids": ["AGENCY-PRESSURE-01", "AGENCY-PRESSURE-02", "AGENCY-PRESSURE-03", "AGENCY-PRESSURE-04", "AGENCY-PRESSURE-05", "AGENCY-PRESSURE-06", "AGENCY-PRESSURE-07", "AGENCY-PRESSURE-08", "AGENCY-PRESSURE-09", "AGENCY-PRESSURE-10", "AGENCY-PRESSURE-11", "AGENCY-PRESSURE-12", "AGENCY-PRESSURE-13", "AGENCY-PRESSURE-14", "AGENCY-PRESSURE-15", "AGENCY-PRESSURE-16", "AGENCY-PRESSURE-17", "AGENCY-PRESSURE-18", "PRESS-01", "PRESS-02", "PRESS-03", "PRESS-04", "PRESS-05", "PRESS-06", "PRESS-07", "PRESS-08", "PRESS-09", "PRESS-10", "PRESS-11", "PRESS-12", "PRESS-13", "PRESS-14", "PRESS-15", "PRESS-16", "WORLD-PRESS-01", "WORLD-PRESS-02", "WORLD-PRESS-03", "WORLD-PRESS-04", "WORLD-PRESS-05", "WORLD-PRESS-06", "WORLD-PRESS-07", "WORLD-PRESS-08", "WORLD-PRESS-09", "WORLD-PRESS-10", "WORLD-PRESS-11", "WORLD-PRESS-12", "WORLD-PRESS-13", "WORLD-PRESS-14", "WORLD-PRESS-15", "WORLD-PRESS-16", "WORLD-PRESS-17", "WORLD-PRESS-18"],
+        "covered_completion_boundary_hashes": ["75e2d8cee00df22eb6e3756979a1daa110c51964ff3359d31fa113c45bd968fe", "8ba1460ec40883ae430fdccb5d5bd8fa0ba2532aa41436064ceb45175fb9b52f"],
+        "covered_authority_not_granted": ["runtime implementation", "persistence", "reducers", "production schemas", "conversion execution", "canon promotion", "sourcebook drafting", "live-play behavior", "narration", "model training", "UI behavior", "R2 work", "RT-002G implementation", "temporary evidence deletion"],
         "missing_family_findings": [],
-        "surplus_authority_claims": [],
+        "unrepresented_projection_records": [],
+        "unrepresented_cycle_records": [],
+        "unrepresented_risk_records": [],
+        "unrepresented_candidate_records": [],
+        "unrepresented_substrate_records": [],
+        "unrepresented_pressure_records": [],
+        "unrepresented_completion_boundaries": [],
+        "surplus_r1e_claims": [],
         "unauthorized_implementation_claims": [],
-        "missing_ids": [],
-        "violations": []
+        "missing_authority_not_granted": [],
+        "missing_ids": []
       },
       "missing_ids": [],
       "surplus_ids": [],
@@ -530,7 +325,7 @@
       "authority_transfer_violations": [],
       "blocking_status": "nonblocking",
       "result": "pass",
-      "calculated_result_hash": "693d8989527a18dca1b0f42c8542c503f8be19dbdde744e0a8b6f1140fc9d2c4"
+      "calculated_result_hash": "6a46c632504aaa1b9ce9e206fddea68f1bfc6e5480238837e98ecae30857efce"
     }
   ],
   "phase_separation_review": {
@@ -545,18 +340,9 @@
     {
       "donor_family_id": "DONOR-01",
       "donor_family": "fantasy",
-      "representative_construct_pressures": [
-        "spell schools",
-        "ancestry anatomy"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-01",
-        "AGENCY-PRESSURE-03"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "240ef0f6c69712adc358c1e997419cbcde82682d0e12ed090f7766c8943c55c2",
-        "e39b816ff1410800723702c08497b3164a6998b887e3e8aabc25c7b766047c28"
-      ],
+      "representative_construct_pressures": ["spell schools", "ancestry anatomy"],
+      "source_r1d_pressure_record_ids": ["PRESS-01", "AGENCY-PRESSURE-03"],
+      "source_r1d_pressure_record_hashes": ["240ef0f6c69712adc358c1e997419cbcde82682d0e12ed090f7766c8943c55c2", "e39b816ff1410800723702c08497b3164a6998b887e3e8aabc25c7b766047c28"],
       "rationale": "fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -566,14 +352,10 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for spell schools"
-          ],
+          "source_local_retention": ["exact donor procedure for spell schools"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "spell schools does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["spell schools does not become Astra doctrine by repetition"],
           "rationale": "spell schools is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
@@ -581,67 +363,20 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for ancestry anatomy"
-          ],
+          "source_local_retention": ["exact donor procedure for ancestry anatomy"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "ancestry anatomy does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["ancestry anatomy does not become Astra doctrine by repetition"],
           "rationale": "ancestry anatomy is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
-      ],
-      "expected_owner_fixture": {
-        "spell schools": [],
-        "ancestry anatomy": []
-      },
-      "forbidden_owner_fixture": {
-        "spell schools": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "ancestry anatomy": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-02",
       "donor_family": "science fiction",
-      "representative_construct_pressures": [
-        "radiation exposure",
-        "starship sensors"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-02",
-        "AGENCY-PRESSURE-04"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "8437a6b0ab2ccf085fa81b5e2275b5ca6ab2be36bc96617f8405b49d6d0a8822",
-        "1b38995190b6a64f3c1ab8ab8f1f2438a7fd09cbca62a284eca6ea70ff2a04c2"
-      ],
+      "representative_construct_pressures": ["radiation exposure", "resulting radiation harm", "starship sensors", "sensor contact"],
+      "source_r1d_pressure_record_ids": ["PRESS-02", "AGENCY-PRESSURE-04"],
+      "source_r1d_pressure_record_hashes": ["8437a6b0ab2ccf085fa81b5e2275b5ca6ab2be36bc96617f8405b49d6d0a8822", "1b38995190b6a64f3c1ab8ab8f1f2438a7fd09cbca62a284eca6ea70ff2a04c2"],
       "rationale": "science fiction constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -649,92 +384,61 @@
         {
           "construct": "radiation exposure",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-17"
-          ],
+          "owners": ["AFQR-17"],
           "handoffs": [
             {
               "from": "AFQR-17",
               "to": "AFQR-16",
-              "payload": "actual injury or embodiment harm after environmental exposure"
+              "payload": "actual radiation injury or embodiment harm after exposure"
             }
           ],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "radiation exposure does not establish any owner outside ['AFQR-17']"
-          ],
-          "rationale": "radiation exposure is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["exposure is not itself embodiment harm"],
+          "rationale": "AFQR-17 owns environmental exposure; AFQR-16 receives only resulting harm."
         },
         {
-          "construct": "starship sensors",
+          "construct": "resulting radiation harm",
           "outcome": "direct_mapping",
-          "owners": [
-            "AFQR-20"
-          ],
+          "owners": ["AFQR-16"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "sensor contact or track does not establish AFQR-19 target validity"
-          ],
-          "rationale": "starship sensors is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["harm does not transfer environmental-process ownership"],
+          "rationale": "AFQR-16 owns actual integrity and harm consequences."
+        },
+        {
+          "construct": "starship sensors",
+          "outcome": "normalized_mapping",
+          "owners": ["AFQR-20"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["sensor capability does not establish target validity"],
+          "rationale": "AFQR-20 owns sensing architecture."
+        },
+        {
+          "construct": "sensor contact",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-20"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["contact is not AFQR-19 target validity", "detection is not evidence or truth"],
+          "rationale": "AFQR-20 owns contacts and tracks."
         }
-      ],
-      "expected_owner_fixture": {
-        "radiation exposure": [
-          "AFQR-17"
-        ],
-        "starship sensors": [
-          "AFQR-20"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "radiation exposure": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "starship sensors": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-03",
       "donor_family": "hybrid science-fantasy",
-      "representative_construct_pressures": [
-        "mana reactor",
-        "technomagic portal"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-03",
-        "AGENCY-PRESSURE-05"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "34d6fce56614861975e4fe35af0fc77ee2d03606eb7a4f9a2a6042d861a358e4",
-        "55778ccb6a564dc589734f7690a5fb84fe1014cff3ae269a566405e078d0a90a"
-      ],
+      "representative_construct_pressures": ["mana reactor", "technomagic portal"],
+      "source_r1d_pressure_record_ids": ["PRESS-03", "AGENCY-PRESSURE-05"],
+      "source_r1d_pressure_record_hashes": ["34d6fce56614861975e4fe35af0fc77ee2d03606eb7a4f9a2a6042d861a358e4", "55778ccb6a564dc589734f7690a5fb84fe1014cff3ae269a566405e078d0a90a"],
       "rationale": "hybrid science-fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -747,78 +451,28 @@
           "source_local_retention": [],
           "quarantine_condition": "no source-backed Astra owner can receive mana reactor without importing donor doctrine",
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "mana reactor does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["mana reactor does not become Astra doctrine by repetition"],
           "rationale": "mana reactor is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "technomagic portal",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-18"
-          ],
+          "owners": ["AFQR-18"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "technomagic portal does not establish any owner outside ['AFQR-18']"
-          ],
+          "prohibited_inferences": ["technomagic portal does not establish any owner outside ['AFQR-18']"],
           "rationale": "technomagic portal is routed to its source-backed semantic owner."
         }
-      ],
-      "expected_owner_fixture": {
-        "mana reactor": [],
-        "technomagic portal": [
-          "AFQR-18"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "mana reactor": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "technomagic portal": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-04",
       "donor_family": "cultivation",
-      "representative_construct_pressures": [
-        "qi reserve",
-        "realm advancement"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-04",
-        "AGENCY-PRESSURE-06"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "f37ddcfe535e9b354a19a49febe8c8992e96b60976c18b66b5f14423e656a4ba",
-        "ed4681c823a87bb44abda8d9b02e4663a1601408670cd7144ba010aaf43bdb8d"
-      ],
+      "representative_construct_pressures": ["qi reserve", "realm advancement"],
+      "source_r1d_pressure_record_ids": ["PRESS-04", "AGENCY-PRESSURE-06"],
+      "source_r1d_pressure_record_hashes": ["f37ddcfe535e9b354a19a49febe8c8992e96b60976c18b66b5f14423e656a4ba", "ed4681c823a87bb44abda8d9b02e4663a1601408670cd7144ba010aaf43bdb8d"],
       "rationale": "cultivation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -826,16 +480,12 @@
         {
           "construct": "qi reserve",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-07"
-          ],
+          "owners": ["AFQR-07"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "qi reserve does not establish any owner outside ['AFQR-07']"
-          ],
+          "prohibited_inferences": ["qi reserve does not establish any owner outside ['AFQR-07']"],
           "rationale": "AFQR-07 receives qi only when the donor defines a real conserved, reserved, converted, or settled quantity."
         },
         {
@@ -843,68 +493,20 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for realm advancement"
-          ],
+          "source_local_retention": ["exact donor procedure for realm advancement"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "realm advancement does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["realm advancement does not become Astra doctrine by repetition"],
           "rationale": "realm advancement is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
-      ],
-      "expected_owner_fixture": {
-        "qi reserve": [
-          "AFQR-07"
-        ],
-        "realm advancement": []
-      },
-      "forbidden_owner_fixture": {
-        "qi reserve": [
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "realm advancement": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-05",
       "donor_family": "class and archetype",
-      "representative_construct_pressures": [
-        "class feature",
-        "archetype prerequisite"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-05",
-        "AGENCY-PRESSURE-07"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "00b158a1cb71ba5a2e8cea1bf7548daa321e729bc33d6c9631a9829dd4a3b326",
-        "79086b4e408f37593ce5604b807a4fc248fc08e55100ed98b7ff35e4157caeb5"
-      ],
+      "representative_construct_pressures": ["class feature", "archetype prerequisite"],
+      "source_r1d_pressure_record_ids": ["PRESS-05", "AGENCY-PRESSURE-07"],
+      "source_r1d_pressure_record_hashes": ["00b158a1cb71ba5a2e8cea1bf7548daa321e729bc33d6c9631a9829dd4a3b326", "79086b4e408f37593ce5604b807a4fc248fc08e55100ed98b7ff35e4157caeb5"],
       "rationale": "class and archetype constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -914,83 +516,31 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for class feature"
-          ],
+          "source_local_retention": ["exact donor procedure for class feature"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "class feature does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["class feature does not become Astra doctrine by repetition"],
           "rationale": "class feature is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "archetype prerequisite",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-09"
-          ],
+          "owners": ["AFQR-09"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "archetype prerequisite does not establish any owner outside ['AFQR-09']"
-          ],
+          "prohibited_inferences": ["archetype prerequisite does not establish any owner outside ['AFQR-09']"],
           "rationale": "AFQR-09 receives the prerequisite only as a typed governed dependency; class packaging creates no relation."
         }
-      ],
-      "expected_owner_fixture": {
-        "class feature": [],
-        "archetype prerequisite": [
-          "AFQR-09"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "class feature": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "archetype prerequisite": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-06",
       "donor_family": "profession and occupation",
-      "representative_construct_pressures": [
-        "professional license",
-        "trade skill"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-06",
-        "AGENCY-PRESSURE-08"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "a829faceecd0766b22e55303fb2138928ed91dc7bb9918aa5b0f238837af2a9b",
-        "d92b08978bb12f30a35dca1394e2e2b4339812853ba4a2b522f6fd17673584b2"
-      ],
+      "representative_construct_pressures": ["professional license", "trade skill"],
+      "source_r1d_pressure_record_ids": ["PRESS-06", "AGENCY-PRESSURE-08"],
+      "source_r1d_pressure_record_hashes": ["a829faceecd0766b22e55303fb2138928ed91dc7bb9918aa5b0f238837af2a9b", "d92b08978bb12f30a35dca1394e2e2b4339812853ba4a2b522f6fd17673584b2"],
       "rationale": "profession and occupation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -998,16 +548,12 @@
         {
           "construct": "professional license",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-15"
-          ],
+          "owners": ["AFQR-15"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "institutional license does not transfer AFQR-11 agency or AFQR-09 dependency ownership"
-          ],
+          "prohibited_inferences": ["institutional license does not transfer AFQR-11 agency or AFQR-09 dependency ownership"],
           "rationale": "professional license is routed to its source-backed semantic owner."
         },
         {
@@ -1015,68 +561,20 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for trade skill"
-          ],
+          "source_local_retention": ["exact donor procedure for trade skill"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "trade skill does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["trade skill does not become Astra doctrine by repetition"],
           "rationale": "trade skill is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
-      ],
-      "expected_owner_fixture": {
-        "professional license": [
-          "AFQR-15"
-        ],
-        "trade skill": []
-      },
-      "forbidden_owner_fixture": {
-        "professional license": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "trade skill": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-07",
       "donor_family": "point-buy",
-      "representative_construct_pressures": [
-        "character points",
-        "purchase limit"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-07",
-        "AGENCY-PRESSURE-09"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "966e9200c2dafffb4b83d9230afbfe91dd78530f5def65c3e61a9129091147e1",
-        "88f9d006fc2758c8c3df59dcfeccfd97db54564232bbb19757a4166785da60a5"
-      ],
+      "representative_construct_pressures": ["character points", "purchase limit"],
+      "source_r1d_pressure_record_ids": ["PRESS-07", "AGENCY-PRESSURE-09"],
+      "source_r1d_pressure_record_hashes": ["966e9200c2dafffb4b83d9230afbfe91dd78530f5def65c3e61a9129091147e1", "88f9d006fc2758c8c3df59dcfeccfd97db54564232bbb19757a4166785da60a5"],
       "rationale": "point-buy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -1086,14 +584,10 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for character points"
-          ],
+          "source_local_retention": ["exact donor procedure for character points"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "character points does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["character points does not become Astra doctrine by repetition"],
           "rationale": "character points is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
@@ -1101,67 +595,20 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for purchase limit"
-          ],
+          "source_local_retention": ["exact donor procedure for purchase limit"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "purchase limit does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["purchase limit does not become Astra doctrine by repetition"],
           "rationale": "purchase limit is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
-      ],
-      "expected_owner_fixture": {
-        "character points": [],
-        "purchase limit": []
-      },
-      "forbidden_owner_fixture": {
-        "character points": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "purchase limit": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-08",
       "donor_family": "narrative tag/aspect",
-      "representative_construct_pressures": [
-        "invoked aspect",
-        "story compel"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-08",
-        "AGENCY-PRESSURE-10"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "7566a5e5021a3f43cdae4d82ee57698e585aa8bc0f37eb226362f1ba8c7bbf82",
-        "155694e814523f80d1a0534fc6c9fedc5c18bc910443eae7c5f5853706a060da"
-      ],
+      "representative_construct_pressures": ["invoked aspect", "story compel"],
+      "source_r1d_pressure_record_ids": ["PRESS-08", "AGENCY-PRESSURE-10"],
+      "source_r1d_pressure_record_hashes": ["7566a5e5021a3f43cdae4d82ee57698e585aa8bc0f37eb226362f1ba8c7bbf82", "155694e814523f80d1a0534fc6c9fedc5c18bc910443eae7c5f5853706a060da"],
       "rationale": "narrative tag/aspect constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -1171,14 +618,10 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for invoked aspect"
-          ],
+          "source_local_retention": ["exact donor procedure for invoked aspect"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "invoked aspect does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["invoked aspect does not become Astra doctrine by repetition"],
           "rationale": "invoked aspect is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
@@ -1189,62 +632,17 @@
           "source_local_retention": [],
           "quarantine_condition": "no source-backed Astra owner can receive story compel without importing donor doctrine",
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "story compel does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["story compel does not become Astra doctrine by repetition"],
           "rationale": "story compel is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
-      ],
-      "expected_owner_fixture": {
-        "invoked aspect": [],
-        "story compel": []
-      },
-      "forbidden_owner_fixture": {
-        "invoked aspect": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "story compel": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-09",
       "donor_family": "cyberware and biotech",
-      "representative_construct_pressures": [
-        "implant integrity",
-        "biotech mutation"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-09",
-        "AGENCY-PRESSURE-11"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "ab3c4e0b9869ad522fc91ba3c80a61d6fd510dc8b7307b7e1c267f70e1db2e53",
-        "70079ed09a9a3f5d4f52f8c727e75dd86ad1df529aa47db31c944afa3f0c4e23"
-      ],
+      "representative_construct_pressures": ["implant integrity", "biotech mutation"],
+      "source_r1d_pressure_record_ids": ["PRESS-09", "AGENCY-PRESSURE-11"],
+      "source_r1d_pressure_record_hashes": ["ab3c4e0b9869ad522fc91ba3c80a61d6fd510dc8b7307b7e1c267f70e1db2e53", "70079ed09a9a3f5d4f52f8c727e75dd86ad1df529aa47db31c944afa3f0c4e23"],
       "rationale": "cyberware and biotech constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -1252,179 +650,79 @@
         {
           "construct": "implant integrity",
           "outcome": "direct_mapping",
-          "owners": [
-            "AFQR-16"
-          ],
+          "owners": ["AFQR-16"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "AFQR-16 component integrity does not determine AFQR-08 identity or continuity"
-          ],
+          "prohibited_inferences": ["AFQR-16 component integrity does not determine AFQR-08 identity or continuity"],
           "rationale": "implant integrity is routed to its source-backed semantic owner."
         },
         {
           "construct": "biotech mutation",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-16"
-          ],
+          "owners": ["AFQR-16"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "biotech mutation does not establish any owner outside ['AFQR-16']"
-          ],
+          "prohibited_inferences": ["biotech mutation does not establish any owner outside ['AFQR-16']"],
           "rationale": "biotech mutation is routed to its source-backed semantic owner."
         }
-      ],
-      "expected_owner_fixture": {
-        "implant integrity": [
-          "AFQR-16"
-        ],
-        "biotech mutation": [
-          "AFQR-16"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "implant integrity": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "biotech mutation": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-10",
       "donor_family": "psionic",
-      "representative_construct_pressures": [
-        "telepathic signal",
-        "mind control"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-10",
-        "AGENCY-PRESSURE-12"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "7234edb916295ff2427f91619a77ffc95a7e6ef920c04c97ccebab736a1906b9",
-        "b63bae5459cacd461f260f5d7b41fa25d81046999a3072b476520d51673014f8"
-      ],
+      "representative_construct_pressures": ["mind control", "motivation pressure"],
+      "source_r1d_pressure_record_ids": ["PRESS-10", "AGENCY-PRESSURE-12"],
+      "source_r1d_pressure_record_hashes": ["7234edb916295ff2427f91619a77ffc95a7e6ef920c04c97ccebab736a1906b9", "b63bae5459cacd461f260f5d7b41fa25d81046999a3072b476520d51673014f8"],
       "rationale": "psionic constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
       "construct_dispositions": [
         {
-          "construct": "telepathic signal",
-          "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-20"
-          ],
-          "handoffs": [],
-          "source_local_retention": [],
-          "quarantine_condition": null,
-          "escalation_condition": null,
-          "prohibited_inferences": [
-            "telepathic signal does not establish any owner outside ['AFQR-20']"
-          ],
-          "rationale": "telepathic signal is routed to its source-backed semantic owner."
-        },
-        {
           "construct": "mind control",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-11"
-          ],
+          "owners": ["AFQR-11"],
           "handoffs": [
             {
               "from": "AFQR-12",
               "to": "AFQR-11",
-              "payload": "behavioral pressure without choice or responsibility attribution"
+              "payload": "motivation or behavior pressure without choice attribution"
             }
           ],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "mind control does not establish any owner outside ['AFQR-11']"
+          "prohibited_inferences": ["behavior prediction does not author choice or responsibility"],
+          "rationale": "AFQR-11 owns control, coercion, consent, and responsibility."
+        },
+        {
+          "construct": "motivation pressure",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-12"],
+          "handoffs": [
+            {
+              "from": "AFQR-12",
+              "to": "AFQR-11",
+              "payload": "behavioral pressure requiring agency and coercion adjudication"
+            }
           ],
-          "rationale": "mind control is routed to its source-backed semantic owner."
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["motivation does not determine agency or responsibility"],
+          "rationale": "AFQR-12 owns motivation, emotion, behavior, and planning."
         }
-      ],
-      "expected_owner_fixture": {
-        "telepathic signal": [
-          "AFQR-20"
-        ],
-        "mind control": [
-          "AFQR-11"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "telepathic signal": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19"
-        ],
-        "mind control": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-11",
       "donor_family": "horror",
-      "representative_construct_pressures": [
-        "sanity pressure",
-        "corruption track"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-11",
-        "AGENCY-PRESSURE-13"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "b5227f15e85f6949958aa1d064b75219e0d525329a3e2fb783efac4807475ee3",
-        "b889d4bf6de1a2ea511e84f4610f8bc607a0660f4137a0299c9b7b1e18019a0f"
-      ],
+      "representative_construct_pressures": ["sanity pressure", "corruption track"],
+      "source_r1d_pressure_record_ids": ["PRESS-11", "AGENCY-PRESSURE-13"],
+      "source_r1d_pressure_record_hashes": ["b5227f15e85f6949958aa1d064b75219e0d525329a3e2fb783efac4807475ee3", "b889d4bf6de1a2ea511e84f4610f8bc607a0660f4137a0299c9b7b1e18019a0f"],
       "rationale": "horror constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -1434,14 +732,10 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for sanity pressure"
-          ],
+          "source_local_retention": ["exact donor procedure for sanity pressure"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "sanity pressure does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["sanity pressure does not become Astra doctrine by repetition"],
           "rationale": "sanity pressure is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
@@ -1452,177 +746,131 @@
           "source_local_retention": [],
           "quarantine_condition": "no source-backed Astra owner can receive corruption track without importing donor doctrine",
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "corruption track does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["corruption track does not become Astra doctrine by repetition"],
           "rationale": "corruption track is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
-      ],
-      "expected_owner_fixture": {
-        "sanity pressure": [],
-        "corruption track": []
-      },
-      "forbidden_owner_fixture": {
-        "sanity pressure": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "corruption track": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-12",
       "donor_family": "investigation",
-      "representative_construct_pressures": [
-        "clue evidence",
-        "hidden truth"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-12",
-        "AGENCY-PRESSURE-14"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "e8ce582ffe6696f858f9214c6e062ac14c0eb1def6278b3c12f95ebdb22d65a4",
-        "ecf2764e93da52b5be97244ae7218cf8a31e2e0790d5c633ad3a6e34c34ae5d0"
-      ],
+      "representative_construct_pressures": ["clue observation", "clue evidence", "epistemic belief/knowledge", "hidden truth"],
+      "source_r1d_pressure_record_ids": ["PRESS-12", "AGENCY-PRESSURE-14"],
+      "source_r1d_pressure_record_hashes": ["e8ce582ffe6696f858f9214c6e062ac14c0eb1def6278b3c12f95ebdb22d65a4", "ecf2764e93da52b5be97244ae7218cf8a31e2e0790d5c633ad3a6e34c34ae5d0"],
       "rationale": "investigation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
       "construct_dispositions": [
         {
+          "construct": "clue observation",
+          "outcome": "normalized_mapping",
+          "owners": ["AFQR-20"],
+          "handoffs": [
+            {
+              "from": "AFQR-20",
+              "to": "AFQR-06",
+              "payload": "source-backed observation candidate, contact, track, or search result"
+            }
+          ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["detection is not admissible evidence"],
+          "rationale": "AFQR-20 owns search/detection; candidate observation is handed to admissibility."
+        },
+        {
           "construct": "clue evidence",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-10"
+          "owners": ["AFQR-06"],
+          "handoffs": [
+            {
+              "from": "AFQR-20",
+              "to": "AFQR-06",
+              "payload": "source-backed observation candidate, contact, track, or search result"
+            },
+            {
+              "from": "AFQR-06",
+              "to": "AFQR-10",
+              "payload": "admitted, rejected, qualified, or disputed evidence result"
+            }
           ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["detection is not admissible evidence", "admitted evidence is not automatically truth", "evidence is not automatically belief or knowledge", "search failure does not delete authoritative truth"],
+          "rationale": "AFQR-06 owns admissibility and arbitration; AFQR-10 receives only owner-qualified epistemic consequences."
+        },
+        {
+          "construct": "epistemic belief/knowledge",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-10"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "clue evidence does not establish any owner outside ['AFQR-10']"
-          ],
-          "rationale": "clue evidence is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["belief or knowledge is observer-relative and does not rewrite authoritative world truth"],
+          "rationale": "AFQR-10 owns epistemic, belief, knowledge, uncertainty, and memory records."
         },
         {
           "construct": "hidden truth",
-          "outcome": "direct_mapping",
-          "owners": [
-            "AFQR-10"
-          ],
+          "outcome": "source_local",
+          "owners": [],
           "handoffs": [],
-          "source_local_retention": [],
+          "source_local_retention": ["exact donor hidden-world fact and disclosure procedure"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "hidden truth does not establish any owner outside ['AFQR-10']"
-          ],
-          "rationale": "hidden truth is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["hidden donor truth is not automatically AFQR-10 epistemic state", "search failure does not delete authoritative truth"],
+          "rationale": "Authoritative world truth remains with its domain owner; observer-relative truth alone routes to AFQR-10."
         }
-      ],
-      "expected_owner_fixture": {
-        "clue evidence": [
-          "AFQR-10"
-        ],
-        "hidden truth": [
-          "AFQR-10"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "clue evidence": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "hidden truth": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-13",
       "donor_family": "vehicles, mechs, ships, and platforms",
-      "representative_construct_pressures": [
-        "ship facing rule",
-        "vehicle operation"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-13",
-        "AGENCY-PRESSURE-15"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "38dae0c176b6f34ac53720637eca814e27d0a67bb3b5f05a1c96c47efdaa41f0",
-        "1d6e38aead90c09a3aa4231e96c2a1ec5b93118abcea19ccfd47e3ad27364f9e"
-      ],
+      "representative_construct_pressures": ["ship facing", "spatial reachability", "target validity", "vehicle operation"],
+      "source_r1d_pressure_record_ids": ["PRESS-13", "AGENCY-PRESSURE-15"],
+      "source_r1d_pressure_record_hashes": ["38dae0c176b6f34ac53720637eca814e27d0a67bb3b5f05a1c96c47efdaa41f0", "1d6e38aead90c09a3aa4231e96c2a1ec5b93118abcea19ccfd47e3ad27364f9e"],
       "rationale": "vehicles, mechs, ships, and platforms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
       "construct_dispositions": [
         {
-          "construct": "ship facing rule",
+          "construct": "ship facing",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-18"
-          ],
+          "owners": ["AFQR-18"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "orientation and reachability do not establish AFQR-19 opportunity or AFQR-15 jurisdiction"
-          ],
-          "rationale": "ship facing rule is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["orientation does not establish opportunity, target validity, or jurisdiction"],
+          "rationale": "AFQR-18 owns orientation and topology."
+        },
+        {
+          "construct": "spatial reachability",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-18"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["reachability does not establish AFQR-19 opportunity or AFQR-15 jurisdiction"],
+          "rationale": "AFQR-18 owns spatial reachability."
+        },
+        {
+          "construct": "target validity",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-19"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["spatial orientation and sensor contact do not independently establish a valid target"],
+          "rationale": "AFQR-19 owns target and resolution validity."
         },
         {
           "construct": "vehicle operation",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-11",
-            "AFQR-19"
-          ],
+          "owners": ["AFQR-11", "AFQR-19"],
           "handoffs": [
             {
               "from": "AFQR-11",
@@ -1633,64 +881,17 @@
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "vehicle operation does not establish any owner outside ['AFQR-11', 'AFQR-19']"
-          ],
-          "rationale": "vehicle operation is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["operation does not transfer vehicle identity or embodiment"],
+          "rationale": "AFQR-11 owns control/agency; AFQR-19 owns action resolution."
         }
-      ],
-      "expected_owner_fixture": {
-        "ship facing rule": [
-          "AFQR-18"
-        ],
-        "vehicle operation": [
-          "AFQR-11",
-          "AFQR-19"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "ship facing rule": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "vehicle operation": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-14",
       "donor_family": "companions, summons, familiars, proxies, and swarms",
-      "representative_construct_pressures": [
-        "companion control",
-        "swarm agency"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-14",
-        "AGENCY-PRESSURE-16"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "75afedfcc2330b44f14efaa1d57ecd23cd4c2d2cdea58b88f807d32957581987",
-        "1a3725a823540595f2ea475022353f43a27113ed13534cf64b967bdfb4957511"
-      ],
+      "representative_construct_pressures": ["companion control", "identity/proxy continuity", "swarm agency"],
+      "source_r1d_pressure_record_ids": ["PRESS-14", "AGENCY-PRESSURE-16"],
+      "source_r1d_pressure_record_hashes": ["75afedfcc2330b44f14efaa1d57ecd23cd4c2d2cdea58b88f807d32957581987", "1a3725a823540595f2ea475022353f43a27113ed13534cf64b967bdfb4957511"],
       "rationale": "companions, summons, familiars, proxies, and swarms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -1698,17 +899,24 @@
         {
           "construct": "companion control",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-11"
-          ],
+          "owners": ["AFQR-11"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "control does not transfer AFQR-08 identity or establish consent, personhood, or responsibility"
-          ],
-          "rationale": "companion control is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["control does not transfer identity or continuity"],
+          "rationale": "AFQR-11 owns delegated control and responsibility."
+        },
+        {
+          "construct": "identity/proxy continuity",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-08"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["proxy control does not determine identity"],
+          "rationale": "AFQR-08 owns identity, continuity, and proxyhood."
         },
         {
           "construct": "swarm agency",
@@ -1717,158 +925,69 @@
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
-          "escalation_condition": "swarm agency requires a new cross-owner doctrine decision before mapping",
-          "prohibited_inferences": [
-            "swarm agency does not become Astra doctrine by repetition"
-          ],
-          "rationale": "swarm agency is retained or withheld because no current AFQR owner lawfully owns the donor rule."
+          "escalation_condition": "collective choice or responsibility cannot be resolved to a source-backed agent",
+          "prohibited_inferences": ["distributed behavior does not prove collective agency"],
+          "rationale": "No existing record may assume a swarm is one agent."
         }
-      ],
-      "expected_owner_fixture": {
-        "companion control": [
-          "AFQR-11"
-        ],
-        "swarm agency": []
-      },
-      "forbidden_owner_fixture": {
-        "companion control": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "swarm agency": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-15",
       "donor_family": "crafting, salvage, repair, and requisition",
-      "representative_construct_pressures": [
-        "material reserve",
-        "repair transition"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-15",
-        "AGENCY-PRESSURE-17"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "ffe9fabaa529de1ee4f61f6984eecf138ed0a2733d1248e18cdf15e75a99b409",
-        "7855d1df2867be66da943b0dc4de132cfd638ab66f2c0ede41fd3de84c65aef3"
-      ],
+      "representative_construct_pressures": ["repair semantics", "repair commitment", "material reservation"],
+      "source_r1d_pressure_record_ids": ["PRESS-15", "AGENCY-PRESSURE-17"],
+      "source_r1d_pressure_record_hashes": ["ffe9fabaa529de1ee4f61f6984eecf138ed0a2733d1248e18cdf15e75a99b409", "7855d1df2867be66da943b0dc4de132cfd638ab66f2c0ede41fd3de84c65aef3"],
       "rationale": "crafting, salvage, repair, and requisition constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
       "construct_dispositions": [
         {
-          "construct": "material reserve",
-          "outcome": "direct_mapping",
-          "owners": [
-            "AFQR-07"
-          ],
-          "handoffs": [],
-          "source_local_retention": [],
-          "quarantine_condition": null,
-          "escalation_condition": null,
-          "prohibited_inferences": [
-            "material reserve does not establish any owner outside ['AFQR-07']"
-          ],
-          "rationale": "material reserve is routed to its source-backed semantic owner."
-        },
-        {
-          "construct": "repair transition",
+          "construct": "repair semantics",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-01"
-          ],
+          "owners": ["AFQR-16"],
           "handoffs": [
             {
               "from": "AFQR-16",
               "to": "AFQR-01",
-              "payload": "owner-approved integrity delta for atomic commitment"
+              "payload": "owner-prepared integrity, condition, recovery, repair, or replacement delta for atomic commitment"
             }
           ],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "repair transition does not establish any owner outside ['AFQR-01']"
-          ],
-          "rationale": "repair transition is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["AFQR-01 commitment does not own repair semantics", "committing an integrity delta does not transfer AFQR-16 ownership"],
+          "rationale": "AFQR-16 owns integrity, harm, conditions, recovery, repair, and replacement."
+        },
+        {
+          "construct": "repair commitment",
+          "outcome": "normalized_mapping",
+          "owners": ["AFQR-01"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["commitment owns routing and atomicity, not repair semantics"],
+          "rationale": "AFQR-01 commits an AFQR-16-prepared repair delta."
+        },
+        {
+          "construct": "material reservation",
+          "outcome": "normalized_mapping",
+          "owners": ["AFQR-07"],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["a donor material label does not prove a conserved quantity"],
+          "rationale": "AFQR-07 applies only when repair reserves, consumes, converts, or settles an actual typed quantity."
         }
-      ],
-      "expected_owner_fixture": {
-        "material reserve": [
-          "AFQR-07"
-        ],
-        "repair transition": [
-          "AFQR-01"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "material reserve": [
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "repair transition": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-16",
       "donor_family": "bestiary",
-      "representative_construct_pressures": [
-        "creature anatomy",
-        "instinct routine"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "PRESS-16",
-        "AGENCY-PRESSURE-18"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "3d957f21c1658222fa033ca74f9c802857d4f1e73d17f8dffaaa84f1342a3de6",
-        "21e622cc309ef6fb95ff0672580bc5641531cb783661f980ae5c61bde44567b7"
-      ],
+      "representative_construct_pressures": ["creature anatomy", "instinct routine"],
+      "source_r1d_pressure_record_ids": ["PRESS-16", "AGENCY-PRESSURE-18"],
+      "source_r1d_pressure_record_hashes": ["3d957f21c1658222fa033ca74f9c802857d4f1e73d17f8dffaaa84f1342a3de6", "21e622cc309ef6fb95ff0672580bc5641531cb783661f980ae5c61bde44567b7"],
       "rationale": "bestiary constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -1878,172 +997,87 @@
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for creature anatomy"
-          ],
+          "source_local_retention": ["exact donor procedure for creature anatomy"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "creature anatomy does not become Astra doctrine by repetition"
-          ],
+          "prohibited_inferences": ["creature anatomy does not become Astra doctrine by repetition"],
           "rationale": "creature anatomy is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "instinct routine",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-12"
-          ],
+          "owners": ["AFQR-12"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "AFQR-12 behavior prediction does not author AFQR-11 choice or responsibility"
-          ],
+          "prohibited_inferences": ["AFQR-12 behavior prediction does not author AFQR-11 choice or responsibility"],
           "rationale": "instinct routine is routed to its source-backed semantic owner."
         }
-      ],
-      "expected_owner_fixture": {
-        "creature anatomy": [],
-        "instinct routine": [
-          "AFQR-12"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "creature anatomy": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "instinct routine": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-17",
       "donor_family": "random tables and oracles",
-      "representative_construct_pressures": [
-        "random encounter result",
-        "oracle prompt"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "AGENCY-PRESSURE-01",
-        "WORLD-PRESS-01"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "21f27483b514d5e2f0f8e05034ffff1aa3c1d577027cc9fb6e41ff637119418d",
-        "58f3f508756ebf1500854fcb4a4431ec15a138874bb21dc68376def7443117b1"
-      ],
+      "representative_construct_pressures": ["random-table procedure", "generated encounter result", "oracle prompt", "oracle output"],
+      "source_r1d_pressure_record_ids": ["AGENCY-PRESSURE-01", "WORLD-PRESS-01"],
+      "source_r1d_pressure_record_hashes": ["21f27483b514d5e2f0f8e05034ffff1aa3c1d577027cc9fb6e41ff637119418d", "58f3f508756ebf1500854fcb4a4431ec15a138874bb21dc68376def7443117b1"],
       "rationale": "random tables and oracles constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
       "construct_dispositions": [
         {
-          "construct": "random encounter result",
+          "construct": "random-table procedure",
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": ["exact donor roll and lookup procedure"],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["random selection does not create Astra oracle doctrine"],
+          "rationale": "The donor randomization procedure remains source-local."
+        },
+        {
+          "construct": "generated encounter result",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-06"
-          ],
+          "owners": [],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
-          "escalation_condition": null,
-          "prohibited_inferences": [
-            "random encounter result does not establish any owner outside ['AFQR-06']"
-          ],
-          "rationale": "random encounter result is routed to its source-backed semantic owner."
+          "escalation_condition": "generated payload has no source-backed semantic owner",
+          "prohibited_inferences": ["generation does not manufacture authoritative world truth"],
+          "rationale": "Each generated payload routes to its semantic owner: environment AFQR-17, social AFQR-13, institution AFQR-15, embodiment AFQR-16, space AFQR-18, resolution AFQR-19, or sensing AFQR-20."
         },
         {
           "construct": "oracle prompt",
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": ["exact donor oracle prompting procedure"],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["prompting does not grant AFQR-10 ownership"],
+          "rationale": "Prompt procedure remains donor-local unless generalized oracle doctrine is adopted."
+        },
+        {
+          "construct": "oracle output",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-10"
-          ],
+          "owners": [],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
-          "escalation_condition": null,
-          "prohibited_inferences": [
-            "oracle prompt does not establish any owner outside ['AFQR-10']"
-          ],
-          "rationale": "oracle prompt is routed to its source-backed semantic owner."
+          "escalation_condition": "output semantics cannot be routed without inventing truth or ownership",
+          "prohibited_inferences": ["oracle output does not manufacture authoritative world truth", "AFQR-06 applies only to a claim offered for admissibility", "AFQR-10 applies only to owner-qualified epistemic records"],
+          "rationale": "Output routes by semantic payload; no universal oracle owner exists."
         }
-      ],
-      "expected_owner_fixture": {
-        "random encounter result": [
-          "AFQR-06"
-        ],
-        "oracle prompt": [
-          "AFQR-10"
-        ]
-      },
-      "forbidden_owner_fixture": {
-        "random encounter result": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "oracle prompt": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     },
     {
       "donor_family_id": "DONOR-18",
       "donor_family": "supplements, adventures, and campaign paths",
-      "representative_construct_pressures": [
-        "adventure faction",
-        "campaign cosmology"
-      ],
-      "source_r1d_pressure_record_ids": [
-        "AGENCY-PRESSURE-02",
-        "WORLD-PRESS-02"
-      ],
-      "source_r1d_pressure_record_hashes": [
-        "496598b1775da80983a0f081dc8593ec9751ef6dc40dfd59e0421581ee5475f1",
-        "6819f8559867052b68232446ca37a2009ffaddc977e0764a47f1f8431cab3180"
-      ],
+      "representative_construct_pressures": ["adventure faction", "institutional jurisdiction", "campaign cosmology"],
+      "source_r1d_pressure_record_ids": ["AGENCY-PRESSURE-02", "WORLD-PRESS-02"],
+      "source_r1d_pressure_record_hashes": ["496598b1775da80983a0f081dc8593ec9751ef6dc40dfd59e0421581ee5475f1", "6819f8559867052b68232446ca37a2009ffaddc977e0764a47f1f8431cab3180"],
       "rationale": "supplements, adventures, and campaign paths constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
       "blocking_defects": [],
       "result": "pass",
@@ -2051,69 +1085,43 @@
         {
           "construct": "adventure faction",
           "outcome": "normalized_mapping",
-          "owners": [
-            "AFQR-13"
+          "owners": ["AFQR-13"],
+          "handoffs": [
+            {
+              "from": "AFQR-13",
+              "to": "AFQR-15",
+              "payload": "social affiliation requiring institutional adjudication"
+            }
           ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": ["affiliation or reputation does not create jurisdiction"],
+          "rationale": "AFQR-13 owns social affiliation and standing."
+        },
+        {
+          "construct": "institutional jurisdiction",
+          "outcome": "direct_mapping",
+          "owners": ["AFQR-15"],
           "handoffs": [],
           "source_local_retention": [],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "AFQR-13 reputation or affiliation does not create AFQR-15 jurisdiction or authority"
-          ],
-          "rationale": "adventure faction is routed to its source-backed semantic owner."
+          "prohibited_inferences": ["relation, reputation, proximity, and reachability do not create jurisdiction"],
+          "rationale": "AFQR-15 owns institution, jurisdiction, law, and adjudication."
         },
         {
           "construct": "campaign cosmology",
           "outcome": "source_local",
           "owners": [],
           "handoffs": [],
-          "source_local_retention": [
-            "exact donor procedure for campaign cosmology"
-          ],
+          "source_local_retention": ["exact campaign cosmology and setting procedure"],
           "quarantine_condition": null,
           "escalation_condition": null,
-          "prohibited_inferences": [
-            "campaign cosmology does not become Astra doctrine by repetition"
-          ],
-          "rationale": "campaign cosmology is retained or withheld because no current AFQR owner lawfully owns the donor rule."
+          "prohibited_inferences": ["campaign cosmology does not become Astra law"],
+          "rationale": "Campaign metaphysics remain source-local."
         }
-      ],
-      "expected_owner_fixture": {
-        "adventure faction": [
-          "AFQR-13"
-        ],
-        "campaign cosmology": []
-      },
-      "forbidden_owner_fixture": {
-        "adventure faction": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ],
-        "campaign cosmology": [
-          "AFQR-07",
-          "AFQR-08",
-          "AFQR-09",
-          "AFQR-11",
-          "AFQR-12",
-          "AFQR-13",
-          "AFQR-15",
-          "AFQR-16",
-          "AFQR-17",
-          "AFQR-18",
-          "AFQR-19",
-          "AFQR-20"
-        ]
-      }
+      ]
     }
   ],
   "owner_discipline": {
@@ -2122,21 +1130,22 @@
     "AFQR-11": "only agency/control/consent/coercion/delegation/responsibility",
     "AFQR-12": "only motivation/behavior/emotion/personality/planning/learning",
     "AFQR-13": "only social state",
-    "donor_defaults_prohibited": [
-      "anatomy",
-      "action economy",
-      "damage model",
-      "grid",
-      "cosmology",
-      "morality",
-      "class structure",
-      "perception system",
-      "institutional model",
-      "resource economy",
-      "progression model",
-      "RHBF"
-    ]
+    "donor_defaults_prohibited": ["anatomy", "action economy", "damage model", "grid", "cosmology", "morality", "class structure", "perception system", "institutional model", "resource economy", "progression model", "RHBF"]
   },
   "corpus_scale_blockers": [],
-  "result": "pass"
+  "result": "pass",
+  "r1d_family_artifact_ids": ["AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001", "AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001", "AFQR-16-20-R1D-WORLD-ACTION-SENSING-001"],
+  "r1d_to_r1e_coverage": {
+    "family_artifact_ids": ["AFQR-01-09-R1D-CORE-TRANSACTION-IDENTITY-RELATION-001", "AFQR-10-15-R1D-AGENCY-EPISTEMIC-SOCIAL-COMMUNICATION-001", "AFQR-16-20-R1D-WORLD-ACTION-SENSING-001"],
+    "responsibility_record_ids": ["CORE-RESP-01", "CORE-RESP-02", "CORE-RESP-03", "CORE-RESP-04", "CORE-RESP-05", "CORE-RESP-06", "CORE-RESP-07", "CORE-RESP-08", "CORE-RESP-09", "AGENCY-RESP-10", "AGENCY-RESP-11", "AGENCY-RESP-12", "AGENCY-RESP-13", "AGENCY-RESP-14", "AGENCY-RESP-15", "WORLD-RESP-16", "WORLD-RESP-17", "WORLD-RESP-18", "WORLD-RESP-19", "WORLD-RESP-20"],
+    "projection_refs": ["docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/0", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/1", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/10", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/11", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/12", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/13", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/14", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/15", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/16", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/17", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/18", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/19", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/2", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/20", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/21", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/22", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/23", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/24", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/25", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/26", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/27", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/28", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/29", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/3", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/30", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/31", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/32", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/33", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/34", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/35", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/36", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/37", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/4", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/5", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/6", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/7", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/8", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/9", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/10", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/11", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/12", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/13", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/14", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/15", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/16", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/17", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/18", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/19", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/20", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/21", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/22", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/23", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/24", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/25", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/26", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/27", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/28", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/29", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/30", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/31", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/32", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/6", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/7", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/8", "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/9", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/0", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/1", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/10", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/11", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/12", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/13", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/14", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/15", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/16", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/17", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/18", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/19", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/2", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/20", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/21", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/22", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/23", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/24", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/25", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/3", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/4", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/5", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/6", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/7", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/8", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/9", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/10", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/6", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/7", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/8", "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/9", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/10", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/11", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/12", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/13", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/14", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/15", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/16", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/5", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/6", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/7", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/8", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/9", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/0", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/1", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/2", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/3", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/4", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/5", "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/6"],
+    "cycle_record_ids": ["CYCLE-001", "CYCLE-002", "CYCLE-003", "CYCLE-004"],
+    "risk_record_ids": ["CYCLE-RISK-001", "CYCLE-RISK-002", "CYCLE-RISK-003", "CYCLE-RISK-004"],
+    "collision_candidate_ids": ["AGENCY-CAND-03", "AGENCY-CAND-08", "AGENCY-CAND-10"],
+    "substrate_record_ids": ["SUB-001", "SUB-002", "SUB-003", "SUB-004", "SUB-005"],
+    "pressure_record_ids": ["AGENCY-PRESSURE-01", "AGENCY-PRESSURE-02", "AGENCY-PRESSURE-03", "AGENCY-PRESSURE-04", "AGENCY-PRESSURE-05", "AGENCY-PRESSURE-06", "AGENCY-PRESSURE-07", "AGENCY-PRESSURE-08", "AGENCY-PRESSURE-09", "AGENCY-PRESSURE-10", "AGENCY-PRESSURE-11", "AGENCY-PRESSURE-12", "AGENCY-PRESSURE-13", "AGENCY-PRESSURE-14", "AGENCY-PRESSURE-15", "AGENCY-PRESSURE-16", "AGENCY-PRESSURE-17", "AGENCY-PRESSURE-18", "PRESS-01", "PRESS-02", "PRESS-03", "PRESS-04", "PRESS-05", "PRESS-06", "PRESS-07", "PRESS-08", "PRESS-09", "PRESS-10", "PRESS-11", "PRESS-12", "PRESS-13", "PRESS-14", "PRESS-15", "PRESS-16", "WORLD-PRESS-01", "WORLD-PRESS-02", "WORLD-PRESS-03", "WORLD-PRESS-04", "WORLD-PRESS-05", "WORLD-PRESS-06", "WORLD-PRESS-07", "WORLD-PRESS-08", "WORLD-PRESS-09", "WORLD-PRESS-10", "WORLD-PRESS-11", "WORLD-PRESS-12", "WORLD-PRESS-13", "WORLD-PRESS-14", "WORLD-PRESS-15", "WORLD-PRESS-16", "WORLD-PRESS-17", "WORLD-PRESS-18"],
+    "completion_boundary_hashes": ["75e2d8cee00df22eb6e3756979a1daa110c51964ff3359d31fa113c45bd968fe", "8ba1460ec40883ae430fdccb5d5bd8fa0ba2532aa41436064ceb45175fb9b52f"],
+    "authority_granted": ["R1 formal completion decision"],
+    "authority_not_granted": ["runtime implementation", "persistence", "reducers", "production schemas", "conversion execution", "canon promotion", "sourcebook drafting", "live-play behavior", "narration", "model training", "UI behavior", "R2 work", "RT-002G implementation", "temporary evidence deletion"]
+  }
 }

@@ -36,7 +36,8 @@
         "SRC-0157"
       ],
       "r1c_invariants": [
-        "INV-001"
+        "INV-001",
+        "INV-005"
       ],
       "r1c_edges": [
         "DEP-007",
@@ -129,10 +130,13 @@
       "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
       "ledger_disposition": "closed_by_r1e",
       "result": "pass",
-      "r1c_invariant_justification": "INV-001 prevents adjacency, handoff, or consumption from transferring semantic ownership.",
       "r1c_reference_validation": {
         "invariants_exist": true,
         "edges_exist": true
+      },
+      "r1c_invariant_applicability": {
+        "INV-001": "handoff and consumption transfer no semantic ownership",
+        "INV-005": "identity confers no control, agency, authority, ownership, or responsibility"
       }
     },
     {
@@ -161,7 +165,8 @@
         "SRC-0157"
       ],
       "r1c_invariants": [
-        "INV-001"
+        "INV-001",
+        "INV-006"
       ],
       "r1c_edges": [
         "DEP-068",
@@ -241,10 +246,13 @@
       "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
       "ledger_disposition": "closed_by_r1e",
       "result": "pass",
-      "r1c_invariant_justification": "INV-001 prevents adjacency, handoff, or consumption from transferring semantic ownership.",
       "r1c_reference_validation": {
         "invariants_exist": true,
         "edges_exist": true
+      },
+      "r1c_invariant_applicability": {
+        "INV-001": "handoff and graph consumption transfer no semantic ownership",
+        "INV-006": "relation or reachability creates no obligation, jurisdiction, legal effect, or social standing"
       }
     },
     {
@@ -274,7 +282,7 @@
         "SRC-0110"
       ],
       "r1c_invariants": [
-        "INV-001"
+        "INV-008"
       ],
       "r1c_edges": [
         "DEP-080",
@@ -363,10 +371,12 @@
       "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
       "ledger_disposition": "closed_by_r1e",
       "result": "pass",
-      "r1c_invariant_justification": "INV-001 prevents adjacency, handoff, or consumption from transferring semantic ownership.",
       "r1c_reference_validation": {
         "invariants_exist": true,
         "edges_exist": true
+      },
+      "r1c_invariant_applicability": {
+        "INV-008": "motivation or behavior prediction does not author choice or replace agency or responsibility"
       }
     }
   ],

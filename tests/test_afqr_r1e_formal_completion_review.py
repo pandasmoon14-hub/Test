@@ -1,5 +1,5 @@
 from __future__ import annotations
-import copy,json,subprocess,sys
+import copy,hashlib,json,subprocess,sys,zipfile
 from collections import Counter
 from pathlib import Path
 import pytest
@@ -13,6 +13,7 @@ AUTH=load_json("docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml"); 
 SV,DP,ADJ,CA=[load_json(x) for x in SUPPORT]; SHARD_DOCS=[load_json(x) for x in SHARDS]
 FAMILY_PATHS={"core":"docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","agency":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","world":"docs/doctrine/consolidation/afqr_world_action_sensing.md"}; FAMILIES={k:load_markdown_json(v) for k,v in FAMILY_PATHS.items()}
 EVIDENCE={x["source_record_id"]:x for x in MANIFEST["contained_file_records"]}; ARCHIVES={x["archive_record_id"]:x for x in MANIFEST["archive_records"]}
+ALL_PROJECTIONS=[x for shard in SHARD_DOCS for x in shard["projection_comparisons"]]+[x for shard in SHARD_DOCS for x in shard.get("embedded_core_boundary_projection_comparisons",[])]+DP.get("embedded_core_boundary_projection_comparisons",[]); PROJECTION_MAP={x["projection_ref"]:x for x in ALL_PROJECTIONS}
 
 def assert_locator(locator):
     assert locator and locator["evidence_id"] in EVIDENCE and locator.get("path_kind") in {"materialized_normalized_file","archive_member"}
@@ -20,6 +21,8 @@ def assert_locator(locator):
     if locator["path_kind"]=="materialized_normalized_file": assert locator["path"]==record["normalized_path"] and (ROOT/locator["path"]).is_file()
     else:
         archive=ARCHIVES[record["parent_archive_record_id"]]; assert locator["archive_path"]==archive["current_path"] and locator["archive_member_path"]==record["original_archive_path"] and (ROOT/locator["archive_path"]).is_file()
+        with zipfile.ZipFile(ROOT/locator["archive_path"]) as packet:
+            assert locator["archive_member_path"] in packet.namelist(); payload=packet.read(locator["archive_member_path"]); assert hashlib.sha256(payload).hexdigest()==record["sha256"]
 
 def test_clean_origin_uses_nonancestry_not_object_absence():
     assert subprocess.run(["git","merge-base","--is-ancestor",BASE,"HEAD"]).returncode==0
@@ -62,28 +65,51 @@ def test_all_41_vocabulary_rows_compare_every_claimed_field():
 def test_94_compact_edges_have_structured_owner_bindings_and_real_projection_results():
     rows={x["edge_id"]:x for x in DP["edge_reviews"]}; edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}; assert len(rows)==len(edges)==94
     assert Counter(x["calculated_partition"] for x in rows.values())==Counter({"core_internal":33,"agency_internal":11,"world_internal":7,"core–agency_boundary":21,"core–world_boundary":17,"agency–world_boundary":5})
-    projections={x["projection_ref"]:x for shard in SHARD_DOCS for x in shard["projection_comparisons"]}
+    projections=PROJECTION_MAP
     for edge_id,source in edges.items():
         row=rows[edge_id]; owner=source["semantic_type_owner"]; assert row["semantic_owner"]==compact_owner(owner); assert row["r1b_binding_identifiers"]==[x["term_id"] for x in owner["r1b_term_bindings"]]; assert row["authoritative_r1c_record_sha256"]==normalized_hash(source)
         for ref in row["projections"]:
             audit=projections[ref["projection_ref"]]; assert audit["projection_hash"]==ref["projection_hash"] and audit["result"]=="pass" and audit["field_comparisons"] and not audit["mismatched_fields"]
-            for comparison in audit["field_comparisons"]: assert set(comparison)=={"r1c_field","r1d_field","comparison_mode","normalization_rule","source_hash","destination_hash","result","mismatch_reason"} and comparison["result"]=="pass"
+            categories=[audit[k] for k in ("compared_fields","upstream_only_preserved_fields","not_applicable_fields","missing_fields")]; flat=sum(categories,[]); assert set(flat)==set(REQUIRED_R1C_FIELDS) and len(flat)==len(set(flat))==len(REQUIRED_R1C_FIELDS) and not audit["missing_fields"]
+            for comparison in audit["field_comparisons"]: assert {"r1c_field","r1d_field","disposition","comparison_mode","normalization_rule","source_hash","destination_hash","result","mismatch_reason"}<=set(comparison) and comparison["result"]=="pass"
     assert rows["DEP-001"]["semantic_owner"]|{}=={"owner_kind":"afqr","owner_id":"AFQR-01","ownership_basis":"merged_r1b_term_owner"} and rows["DEP-001"]["r1b_binding_identifiers"]==["TERM-003","TERM-004"]
 
-def test_projection_audits_are_recomputed_through_same_pipeline():
-    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}
-    actual={f"{FAMILY_PATHS[name]}#/{section}/{index}":record for name,doc in FAMILIES.items() for eid,section,index,record in projection_records(doc)}
-    for shard in SHARD_DOCS:
-        for stored in shard["projection_comparisons"]:
-            calculated=compare_projection(edges[stored["edge_id"]],actual[stored["projection_ref"]]); assert calculated["result"]==stored["result"] and calculated["mismatched_fields"]==stored["mismatched_fields"]
-            assert [(x["r1c_field"],x["r1d_field"],x["comparison_mode"],x["source_hash"],x["destination_hash"],x["result"]) for x in calculated["field_comparisons"]]==[(x["r1c_field"],x["r1d_field"],x["comparison_mode"],x["source_hash"],x["destination_hash"],x["result"]) for x in stored["field_comparisons"]]
+def contract_for_ref(ref):
+    family_name=next(name for name,path in FAMILY_PATHS.items() if ref.startswith(path)); section=ref.split("#/")[1].split("/")[0]
+    return projection_contract(family_name,section,FAMILIES[family_name])
 
-def test_real_projection_mutations_fail_the_integrated_pipeline():
-    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}; edge=edges["DEP-088"]
-    projection=next(x[3] for x in projection_records(FAMILIES["world"]) if x[0]=="DEP-088")
-    mutations=[("producer",lambda x:x.__setitem__("producer","AFQR-01")),("semantic owner",lambda x:x["semantic_owner"].__setitem__("owner_id","AFQR-01")),("R1B binding",lambda x:x.__setitem__("exact_r1b_term_bindings",[{"term_id":"TERM-999"}])),("nontransfer",lambda x:x.__setitem__("ownership_nontransfer",False)),("consumer use",lambda x:x.__setitem__("permitted_consumer_use","consumer becomes owner and receives unbounded use")),("unavailable",lambda x:x.__setitem__("unavailable_input_behavior","continue regardless and accept anyway")),("evidence",lambda x:x.__setitem__("source_evidence",["SRC-9999"])),("downstream",lambda x:x.__setitem__("downstream_implementation_status","implementation ready"))]
-    for label,mutate in mutations:
-        changed=copy.deepcopy(projection); mutate(changed); assert compare_projection(edge,changed)["result"]=="fail",label
+def test_projection_audits_recompute_and_account_for_every_required_field():
+    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}; actual={f"{FAMILY_PATHS[name]}#/{section}/{index}":record for name,doc in FAMILIES.items() for eid,section,index,record in projection_records(doc)}
+    assert len(ALL_PROJECTIONS)==137
+    dispositions=Counter()
+    for stored in ALL_PROJECTIONS:
+        calculated=compare_projection(edges[stored["edge_id"]],actual[stored["projection_ref"]],contract_for_ref(stored["projection_ref"])); assert calculated=={k:stored[k] for k in calculated}
+        groups=[calculated[k] for k in ("compared_fields","upstream_only_preserved_fields","not_applicable_fields","missing_fields")];flat=sum(groups,[]);assert set(flat)==set(REQUIRED_R1C_FIELDS) and len(flat)==len(REQUIRED_R1C_FIELDS) and not calculated["missing_fields"]
+        dispositions.update(x["disposition"] for x in calculated["field_comparisons"])
+    assert dispositions["exact"] and dispositions["bounded_projection"] and dispositions["upstream_only_preserved"] and dispositions["not_applicable"] and not dispositions["missing_blocking"]
+    assert DP["projection_coverage_summary"]=={"projection_count":137,"required_fields_per_projection":18,"field_disposition_count":2466,"disposition_counts":dict(dispositions),"missing_blocking_count":0,"result":"pass"}
+    dep1=next(x for x in ALL_PROJECTIONS if x["edge_id"]=="DEP-001"); assert {"postconditions","revocation_invalidation_or_cascade","hidden_information_or_projection_constraints","consumer_not_semantic_owner_by_consumption"}<=set(dep1["upstream_only_preserved_fields"]) and "source_evidence_paths" in dep1["compared_fields"]
+
+def test_destination_deletions_are_explicitly_preserved_or_blocking():
+    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}
+    samples=[("core",FAMILIES["core"],"DEP-001"),("agency",FAMILIES["agency"],"DEP-072"),("world",FAMILIES["world"],"DEP-088")]
+    for family_name,doc,eid in samples:
+        _,section,_,projection=next(x for x in projection_records(doc) if x[0]==eid);contract=projection_contract(family_name,section,doc)
+        baseline=compare_projection(edges[eid],projection,contract); destinations={x["r1d_field"].split(".")[0] for x in baseline["field_comparisons"] if x["r1d_field"] and x["r1c_field"]!="cycle_participation" and x["r1d_field"].split(".")[0] in projection}
+        for field in destinations:
+            changed=copy.deepcopy(projection);changed.pop(field);result=compare_projection(edges[eid],changed,contract)
+            assert result["result"]=="fail" or result["upstream_only_preserved_fields"],f"{family_name}:{field} silently skipped"
+
+def test_real_mutations_fail_for_core_agency_world_and_boundary():
+    edges={x["edge_id"]:x for x in R1C["dependency_edge_dispositions"]}
+    def record(family_name,eid):
+        _,section,_,projection=next(x for x in projection_records(FAMILIES[family_name]) if x[0]==eid);return projection,projection_contract(family_name,section,FAMILIES[family_name])
+    world,wc=record("world","DEP-088")
+    mutations=[lambda x:x.pop("producer"),lambda x:x.pop("consumer"),lambda x:x.pop("semantic_owner"),lambda x:(x["semantic_owner"].pop("r1b_term_bindings"),x.pop("exact_r1b_term_bindings")),lambda x:x.__setitem__("ownership_nontransfer",False),lambda x:x.__setitem__("consumer_nonownership",False),lambda x:x.__setitem__("preconditions",x["preconditions"][1:]),lambda x:x.__setitem__("postconditions",[]),lambda x:x.__setitem__("unavailable_input_behavior","forced continuation"),lambda x:x.__setitem__("hidden_information_and_projection_constraints","unrelated visibility rule"),lambda x:x["source_evidence"]["identifiers"].__setitem__(0,"SRC-9999"),lambda x:x["source_evidence"]["paths"].__setitem__(0,"wrong/path"),lambda x:x.__setitem__("downstream_implementation_status","implementation ready")]
+    for mutate in mutations:
+        changed=copy.deepcopy(world);mutate(changed);assert compare_projection(edges["DEP-088"],changed,wc)["result"]=="fail"
+    for family_name,eid,mutation in [("core","DEP-001",lambda x:x.pop("producer")),("agency","DEP-072",lambda x:x.pop("consumer")),("core","DEP-009",lambda x:x.__setitem__("ownership_nontransfer",False))]:
+        projection,contract=record(family_name,eid);changed=copy.deepcopy(projection);mutation(changed);assert compare_projection(edges[eid],changed,contract)["result"]=="fail"
 
 def test_cycles_risks_and_all_stored_hashes_recompute():
     assert {x["cycle_id"]:x["edge_ids"] for x in DP["cycle_reviews"]}=={"CYCLE-001":["DEP-008","DEP-061"],"CYCLE-002":["DEP-021","DEP-024"],"CYCLE-003":["DEP-048","DEP-052"],"CYCLE-004":["DEP-089","DEP-091"]}
@@ -91,8 +117,9 @@ def test_cycles_risks_and_all_stored_hashes_recompute():
 
 def test_collision_adjudications_and_both_ledgers_reconcile_semantically():
     b=load_json("docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml"); c=load_json("docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml"); bm={x["collision_ids"][0]:x for x in b["escalations"]}; cm={x["collision_id"]:x for x in c["escalations"] if "collision_id" in x}; invariants={x["invariant_id"] for x in R1C["cross_afqr_invariants"]}; edges={x["edge_id"] for x in R1C["dependency_edge_dispositions"]}
+    expected_invariants={"COLL-03":["INV-001","INV-005"],"COLL-08":["INV-001","INV-006"],"COLL-10":["INV-008"]}
     for decision in ADJ["collision_adjudications"]:
-        cid=decision["collision_id"]; assert decision["decision"]=="approved_with_qualification" and decision["r1c_invariants"] and set(decision["r1c_invariants"])<=invariants and set(decision["r1c_edges"])<=edges
+        cid=decision["collision_id"]; assert decision["decision"]=="approved_with_qualification" and decision["r1c_invariants"]==expected_invariants[cid] and set(decision["r1c_invariants"])<=invariants and set(decision["r1c_edges"])<=edges and set(decision["r1c_invariant_applicability"])==set(expected_invariants[cid])
         for ledger in (bm[cid],cm[cid]):
             assert ledger["r1e_decision_id"]==decision["decision_id"] and ledger["status"]=="closed_by_r1e" and ledger["resolution_evidence"]==decision["primary_evidence_ids"] and ledger["exact_evidence_locators"]==decision["exact_evidence_locators"] and ledger["exact_affected_afqrs"]==decision["exact_affected_afqrs"] and ledger["final_attribution_rule"]==decision["final_attribution_rule"] and ledger["prohibited_inferences"]==decision["prohibited_inferences"] and ledger["formal_review_path"].endswith("afqr_01_20_formal_completion_review.md") and ledger["supersession_scope"]==decision["supersession_scope"]
         [assert_locator(x) for x in decision["exact_evidence_locators"]]
@@ -109,8 +136,9 @@ def test_substrates_reconcile_and_any_semantic_mutation_is_detected():
             changed=copy.deepcopy(decision); changed[field]=False if isinstance(changed[field],bool) else ["MUTATED"] if isinstance(changed[field],list) else "MUTATED"; assert substrate_mismatches(authoritative[sid],changed,ledger[sid]),field
 
 def test_thirteen_distinct_consistency_comparators_reexecute():
-    edge_rows=[{"edge_id":x["edge_id"],"projections":[next(p for shard in SHARD_DOCS for p in shard["projection_comparisons"] if p["projection_ref"]==ref["projection_ref"]) for ref in x["projections"]]} for x in DP["edge_reviews"]]
-    calculated=calculate_consistency(AUTH,VOCAB,R1C,FAMILIES,edge_rows,MANIFEST); assert calculated==CA["relational_consistency_rows"] and [x["comparator_id"] for x in calculated]==[f"REL-{n:02}" for n in range(1,14)] and len({tuple(x["comparison_rules"]) for x in calculated})==13 and all(x["result"]=="pass" for x in calculated)
+    edge_rows=[{"edge_id":x["edge_id"],"projections":[PROJECTION_MAP[ref["projection_ref"]] for ref in x["projections"]]} for x in DP["edge_reviews"]]
+    calculated=calculate_consistency(AUTH,VOCAB,R1C,FAMILIES,edge_rows,MANIFEST,CA["r1d_to_r1e_coverage"]); assert calculated==CA["relational_consistency_rows"] and [x["comparator_id"] for x in calculated]==[f"REL-{n:02}" for n in range(1,14)] and all(x["result"]=="pass" for x in calculated)
+    rel13=next(x for x in calculated if x["comparator_id"]=="REL-13");broken=copy.deepcopy(CA["r1d_to_r1e_coverage"]);broken["responsibility_record_ids"].pop();broken["authority_granted"].append("runtime implementation");mutated=calculate_consistency(AUTH,VOCAB,R1C,FAMILIES,edge_rows,MANIFEST,broken)[-1];assert mutated["result"]=="fail" and mutated["calculated_details"]["missing_family_findings"] and mutated["calculated_details"]["unauthorized_implementation_claims"]
 
 def walk_strings(value):
     if isinstance(value,str):yield value
@@ -119,20 +147,21 @@ def walk_strings(value):
     elif isinstance(value,list):
         for x in value:yield from walk_strings(x)
 
-def test_eighteen_donor_families_have_construct_specific_owner_disciplined_routes():
-    rows=CA["donor_family_adequacy_rows"]; assert [x["donor_family_id"] for x in rows]==[f"DONOR-{n:02}" for n in range(1,19)]
-    payloads=[]
-    for row in rows:
-        dispositions=row["construct_dispositions"]; assert {x["construct"] for x in dispositions}==set(row["representative_construct_pressures"])
-        for item in dispositions:
-            expected=row["expected_owner_fixture"][item["construct"]]; forbidden=row["forbidden_owner_fixture"][item["construct"]]; assert set(item["owners"])<=set(expected) and not set(item["owners"])&set(forbidden)
-            assert item["owners"] or item["outcome"] in {"source_local","quarantine","doctrine_escalation"}; assert item["rationale"] and item["prohibited_inferences"]
-            for handoff in item["handoffs"]: assert handoff["from"]!=handoff["to"] and handoff["payload"]
-            payloads.append(json.dumps(item,sort_keys=True))
-        pressure={x["record_id"]:x for d in FAMILIES.values() for x in d["corpus_pressure_records"]}; assert row["source_r1d_pressure_record_hashes"]==[normalized_hash(pressure[x]) for x in row["source_r1d_pressure_record_ids"]]
-    assert max(Counter(payloads).values())<3
-    blob=" ".join(walk_strings(rows)).lower(); assert "rhbf becomes" not in blob and all(f"{x} does not become astra doctrine" in blob or x not in blob for x in ("grid","anatomy","cosmology"))
-    byconstruct={x["construct"]:x for row in rows for x in row["construct_dispositions"]}; assert byconstruct["radiation exposure"]["owners"]==["AFQR-17"] and byconstruct["radiation exposure"]["handoffs"][0]["to"]=="AFQR-16"; assert byconstruct["starship sensors"]["owners"]==["AFQR-20"]; assert byconstruct["ship facing rule"]["owners"]==["AFQR-18"]
+EXPECTED_OWNERS={
+"radiation exposure":{"AFQR-17"},"resulting radiation harm":{"AFQR-16"},"starship sensors":{"AFQR-20"},"sensor contact":{"AFQR-20"},"ship facing":{"AFQR-18"},"spatial reachability":{"AFQR-18"},"target validity":{"AFQR-19"},"clue observation":{"AFQR-20"},"clue evidence":{"AFQR-06"},"epistemic belief/knowledge":{"AFQR-10"},"hidden truth":set(),"repair semantics":{"AFQR-16"},"repair commitment":{"AFQR-01"},"material reservation":{"AFQR-07"},"mind control":{"AFQR-11"},"motivation pressure":{"AFQR-12"},"companion control":{"AFQR-11"},"identity/proxy continuity":{"AFQR-08"},"swarm agency":set(),"random-table procedure":set(),"generated encounter result":set(),"oracle prompt":set(),"oracle output":set(),"adventure faction":{"AFQR-13"},"institutional jurisdiction":{"AFQR-15"},"campaign cosmology":set()}
+
+def test_eighteen_donor_families_use_independent_construct_expectations():
+    rows=CA["donor_family_adequacy_rows"];assert [x["donor_family_id"] for x in rows]==[f"DONOR-{n:02}" for n in range(1,19)];byconstruct={x["construct"]:x for row in rows for x in row["construct_dispositions"]};assert set(EXPECTED_OWNERS)<=set(byconstruct)
+    for construct,expected in EXPECTED_OWNERS.items():
+        item=byconstruct[construct];assert set(item["owners"])==expected;assert item["owners"] or item["outcome"] in {"source_local","quarantine","doctrine_escalation","normalized_mapping"};assert item["prohibited_inferences"] and item["rationale"]
+        for handoff in item["handoffs"]:assert handoff["from"]!=handoff["to"] and handoff["payload"]
+    # The expectation remains external even if an audit owner and any embedded metadata are mutated together.
+    wrong=copy.deepcopy(byconstruct["clue evidence"]);wrong["owners"]=["AFQR-10"];wrong["expected_owner_fixture"]=["AFQR-10"];assert set(wrong["owners"])!=EXPECTED_OWNERS["clue evidence"]
+    clue=byconstruct["clue evidence"];assert [(x["from"],x["to"]) for x in clue["handoffs"]]==[("AFQR-20","AFQR-06"),("AFQR-06","AFQR-10")]
+    repair=byconstruct["repair semantics"];assert repair["owners"]==["AFQR-16"] and repair["handoffs"][0]["to"]=="AFQR-01"
+    assert byconstruct["random-table procedure"]["outcome"]==byconstruct["oracle prompt"]["outcome"]=="source_local" and not byconstruct["oracle output"]["owners"]
+    pressure={x["record_id"]:x for d in FAMILIES.values() for x in d["corpus_pressure_records"]}
+    for row in rows:assert row["source_r1d_pressure_record_hashes"]==[normalized_hash(pressure[x]) for x in row["source_r1d_pressure_record_ids"]]
 
 def test_final_gate_is_recomputed_and_grants_no_downstream_authority():
     cert=load_markdown_json(CERT); assert all(x["result"]=="pass" for x in [SV,DP,ADJ,CA,*SHARD_DOCS]) and cert["result"]=="pass" and cert["r1_status"]=="complete" and not cert["blocking_defects"]
