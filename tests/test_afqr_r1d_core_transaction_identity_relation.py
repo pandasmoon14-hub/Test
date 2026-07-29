@@ -276,5 +276,5 @@ def test_r1d_core_registry_records_use_controlled_status_and_layer_values():
     assert manifest_records["R1D-CORE"]["status"] == "complete"
     assert manifest_records["R1D-AGENCY"]["status"] == "complete"
     assert manifest_records["R1D-WORLD"]["status"] == "complete"
-    assert manifest_records["R1E"]["status"] == "ready"
+    assert manifest_records["R1E"]["status"] == "complete"
     assert (ROOT / manifest_records["R1D-WORLD"]["proposed_path"]).exists()
