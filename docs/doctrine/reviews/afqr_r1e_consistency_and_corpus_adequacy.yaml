@@ -5,418 +5,532 @@
     {
       "comparator_id": "REL-01",
       "relationship": "R1A -> R1B",
-      "compared_record_ids": [
-        "R1A",
-        "R1B"
-      ],
-      "producer_hash": "8f1b370476aff74af96b1475294e243bbeea7e9a23d5c99712b5e3d7bea777ee",
-      "consumer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
         "evidence resolution",
-        "no authority transfer"
+        "owner authority",
+        "packaging is not ownership"
       ],
+      "calculated_details": {
+        "unresolved_evidence_ids": [],
+        "invalid_owner_afqrs": [],
+        "packaging_ownership_violations": [],
+        "missing_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "0c811a8b622e7bf30a50a8dd730fb158a112a543b1a921edc507f8e4941c840b",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "4490ab29d8cb53af71e8a534826b1c824e19071e9e2631cbd438c82086945056"
     },
     {
       "comparator_id": "REL-02",
       "relationship": "R1A -> R1C",
-      "compared_record_ids": [
-        "R1A",
-        "R1C"
-      ],
-      "producer_hash": "8f1b370476aff74af96b1475294e243bbeea7e9a23d5c99712b5e3d7bea777ee",
-      "consumer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "edge evidence/path resolution",
+        "endpoint authority"
       ],
+      "calculated_details": {
+        "unresolved_evidence_ids": [],
+        "unresolved_paths": [],
+        "missing_endpoint_authorities": [],
+        "missing_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "e38b4c99de00ab113e37a4ef15511e1c0d68a5562dc91095628210f072753f4a",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "16cf132d634ac63b111337574faa7068ab1bb68a57f7c614ee329a23d62badb1"
     },
     {
       "comparator_id": "REL-03",
       "relationship": "R1B -> R1C",
-      "compared_record_ids": [
-        "R1B",
-        "R1C"
-      ],
-      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
-      "consumer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "binding existence",
+        "binding owner",
+        "qualification",
+        "explicit nonowner"
       ],
+      "calculated_details": {
+        "missing_term_bindings": [],
+        "owner_mismatches": [],
+        "qualification_violations": [],
+        "explicit_nonowner_violations": [],
+        "missing_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "0dd50780fbd858cf5e28c9d3b981117bd32ec9b939ac3add7f98ac7c3d46783c",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "5e19dd4430fb9fe4a7eac212e189033619d0e0a534730e17ef12a983e41a260f"
     },
     {
       "comparator_id": "REL-04",
       "relationship": "R1B -> R1D-CORE",
-      "compared_record_ids": [
-        "R1B",
-        "R1D-CORE"
-      ],
-      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
-      "consumer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "core family owner coverage",
+        "qualified form",
+        "handoff-only",
+        "nonowner prohibition"
       ],
+      "calculated_details": {
+        "owned_term_ids": [
+          "TERM-003",
+          "TERM-004",
+          "TERM-005",
+          "TERM-006",
+          "TERM-007",
+          "TERM-008",
+          "TERM-009",
+          "TERM-012",
+          "TERM-013",
+          "TERM-014",
+          "TERM-015",
+          "TERM-018",
+          "TERM-019",
+          "TERM-023",
+          "TERM-024",
+          "TERM-025",
+          "TERM-027",
+          "TERM-028"
+        ],
+        "missing_ids": [],
+        "qualification_violations": [],
+        "handoff_only_violations": [],
+        "prohibited_ownership_claims": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "a4eededd8f19559f3f46c7525f82559fa4eff62b2b1c51a2c3c6c03b108bd453",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "0ccf2f8865f8b90edbe6dea31d2d772774771c256fcfa28ada2e49f9932932ac"
     },
     {
       "comparator_id": "REL-05",
       "relationship": "R1B -> R1D-AGENCY",
-      "compared_record_ids": [
-        "R1B",
-        "R1D-AGENCY"
-      ],
-      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
-      "consumer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "agency family owner coverage",
+        "qualified form",
+        "handoff-only",
+        "nonowner prohibition"
       ],
+      "calculated_details": {
+        "owned_term_ids": [
+          "TERM-001",
+          "TERM-002",
+          "TERM-015",
+          "TERM-016",
+          "TERM-017",
+          "TERM-019",
+          "TERM-020",
+          "TERM-021",
+          "TERM-022",
+          "TERM-031",
+          "TERM-032",
+          "TERM-033",
+          "TERM-034",
+          "TERM-035",
+          "TERM-040",
+          "TERM-041"
+        ],
+        "missing_ids": [],
+        "qualification_violations": [],
+        "handoff_only_violations": [],
+        "prohibited_ownership_claims": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "384b1dadfe577498f7bf43dddf0e02d61339294646690c594598646bfd56af02",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "d382062951d9a776c65c68780dabb42d69c83c289de73cc57e1ac73c53261410"
     },
     {
       "comparator_id": "REL-06",
       "relationship": "R1B -> R1D-WORLD",
-      "compared_record_ids": [
-        "R1B",
-        "R1D-WORLD"
-      ],
-      "producer_hash": "7c09ca95b6b44a8a5e1f1ed5afb5064e191881e63908432da8ec4fb86f828f86",
-      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "world family owner coverage",
+        "qualified form",
+        "handoff-only",
+        "nonowner prohibition"
       ],
+      "calculated_details": {
+        "owned_term_ids": [
+          "TERM-001",
+          "TERM-009",
+          "TERM-010",
+          "TERM-011",
+          "TERM-012",
+          "TERM-019",
+          "TERM-022",
+          "TERM-026",
+          "TERM-029",
+          "TERM-030",
+          "TERM-036",
+          "TERM-037",
+          "TERM-038",
+          "TERM-039"
+        ],
+        "missing_ids": [],
+        "qualification_violations": [],
+        "handoff_only_violations": [],
+        "prohibited_ownership_claims": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "c46d12ca0ee25245b85f0a7a869c4662e6e8c98c8f992a7128c11789217dbbbe",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "f9e244bc6818b15d4492befbf3aa42b6d40e7bb9e82c9a329a93104246ca4f9b"
     },
     {
       "comparator_id": "REL-07",
       "relationship": "R1C -> R1D-CORE",
-      "compared_record_ids": [
-        "R1C",
-        "R1D-CORE"
-      ],
-      "producer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
-      "consumer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "core real projection field comparator pipeline"
       ],
+      "calculated_details": {
+        "projection_ids": [
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/0",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/1",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/2",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/3",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/4",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/5",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/6",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/7",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/0",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/1",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/2",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/3",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/4",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/5",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/6",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/7",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/8",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/9",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/10",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/8",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/9",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/10",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/11",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/11",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/12",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/13",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/14",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/15",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/12",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/13",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/14",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/16",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/17",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/18",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/19",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/20",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/15",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/16",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/17",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/18",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/19",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/20",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/21",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/22",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/23",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/24",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/21",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/22",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/23",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/25",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/26",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/24",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/25",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/26",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/27",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/28",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/29",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/30",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/31",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/32",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/27",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/28",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/29",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/30",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/31",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/internal_edge_dispositions/32",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/33",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/34",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/35",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/36",
+          "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md#/boundary_dispositions/37"
+        ],
+        "missing_ids": [],
+        "mismatches": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "3a901b9fae72a854e7335b3344bb75728e047988429de6a227b35efa2eb71d2c",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "3ac44f892c88a57aadfc32ae7264a7491098968e03e438a3f88d62da1fe8591e"
     },
     {
       "comparator_id": "REL-08",
       "relationship": "R1C -> R1D-AGENCY",
-      "compared_record_ids": [
-        "R1C",
-        "R1D-AGENCY"
-      ],
-      "producer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
-      "consumer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "agency real projection field comparator pipeline"
       ],
+      "calculated_details": {
+        "projection_ids": [
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/0",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/1",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/2",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/3",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/4",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/5",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/6",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/7",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/8",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/9",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/10",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/11",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/12",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/13",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/14",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/15",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/16",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/17",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/18",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/19",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/20",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/0",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/1",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/2",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/3",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/4",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/21",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/22",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/23",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/5",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/6",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/7",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/8",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/24",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/9",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/internal_edge_dispositions/10",
+          "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md#/boundary_dispositions/25"
+        ],
+        "missing_ids": [],
+        "mismatches": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "f0066fd94157504ba154fc576a4a93a3176a6d9e6b1ff66141c52e6a83eb0cc6",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "7f668bebd85450277ebff37944356833944b8c2f506a3a1d474df6b498fe65ad"
     },
     {
       "comparator_id": "REL-09",
       "relationship": "R1C -> R1D-WORLD",
-      "compared_record_ids": [
-        "R1C",
-        "R1D-WORLD"
-      ],
-      "producer_hash": "d90a263f1536efbfbe9c2ec43617b460e86f315247ad5f3959e52cf08f8ee938",
-      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "world real projection field comparator pipeline"
       ],
+      "calculated_details": {
+        "projection_ids": [
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/0",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/1",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/2",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/3",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/4",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/5",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/6",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/7",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/8",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/9",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/10",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/11",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/12",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/13",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/14",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/15",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/core_boundary_dispositions/16",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/0",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/1",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/2",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/3",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/agency_boundary_dispositions/4",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/0",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/1",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/2",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/3",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/4",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/5",
+          "docs/doctrine/consolidation/afqr_world_action_sensing.md#/internal_edge_dispositions/6"
+        ],
+        "missing_ids": [],
+        "mismatches": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "4e64f538aac92784ebacafee5c71e49138a2995b507ffabf0fe5d883dee11a26",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "d475d5221b8325c12b847bf141b4419948a7202851c6eb8de4e8a523a3e67a14"
     },
     {
       "comparator_id": "REL-10",
       "relationship": "R1D-CORE <-> R1D-AGENCY",
-      "compared_record_ids": [
-        "R1D-CORE",
-        "R1D-AGENCY"
-      ],
-      "producer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
-      "consumer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "core-agency two-sided boundary identity",
+        "semantic owner/nontransfer parity"
       ],
+      "calculated_details": {
+        "expected_boundary_ids": [
+          "DEP-009",
+          "DEP-010",
+          "DEP-011",
+          "DEP-012",
+          "DEP-013",
+          "DEP-014",
+          "DEP-037",
+          "DEP-038",
+          "DEP-039",
+          "DEP-040",
+          "DEP-041",
+          "DEP-050",
+          "DEP-051",
+          "DEP-055",
+          "DEP-056",
+          "DEP-057",
+          "DEP-058",
+          "DEP-059",
+          "DEP-067",
+          "DEP-068",
+          "DEP-069"
+        ],
+        "missing_ids": [],
+        "mismatches": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "d6d864076d51e3a009f5a26c181f477fbabe3224272642ec3ecaa24751a39278",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "6930f0dcf8d026787ae2363dce6ade3edc56106a085964a4dd37ac33dba33dd2"
     },
     {
       "comparator_id": "REL-11",
       "relationship": "R1D-CORE <-> R1D-WORLD",
-      "compared_record_ids": [
-        "R1D-CORE",
-        "R1D-WORLD"
-      ],
-      "producer_hash": "cf04ed8b9271359531ef67ea06e0af05642bd8d1c5626463079d5b6c22be0986",
-      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "core-world two-sided boundary identity",
+        "semantic owner/nontransfer parity"
       ],
+      "calculated_details": {
+        "expected_boundary_ids": [
+          "DEP-015",
+          "DEP-016",
+          "DEP-017",
+          "DEP-018",
+          "DEP-019",
+          "DEP-023",
+          "DEP-029",
+          "DEP-030",
+          "DEP-031",
+          "DEP-042",
+          "DEP-043",
+          "DEP-044",
+          "DEP-045",
+          "DEP-046",
+          "DEP-060",
+          "DEP-070",
+          "DEP-071"
+        ],
+        "missing_ids": [],
+        "mismatches": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "b60a9d12d20e5fcac7baa8b6a990cf5ade2de320ea7aa203b7d3e8928aa4a43b",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "b220a572ba3393c4efd14a30764a17c4a4c7c7c2d29562c71c897011758debb3"
     },
     {
       "comparator_id": "REL-12",
       "relationship": "R1D-AGENCY <-> R1D-WORLD",
-      "compared_record_ids": [
-        "R1D-AGENCY",
-        "R1D-WORLD"
-      ],
-      "producer_hash": "078e5bb80f6ecb9a49e77f3f2c793221e9b724d5bc36371e54503b144e83b493",
-      "consumer_hash": "cce917bdd813d97099bc19bad030f052e696486db3979d17509c0d6d1bc8b450",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "agency-world two-sided boundary identity",
+        "semantic owner/nontransfer parity"
       ],
+      "calculated_details": {
+        "expected_boundary_ids": [
+          "DEP-077",
+          "DEP-078",
+          "DEP-079",
+          "DEP-084",
+          "DEP-087"
+        ],
+        "missing_ids": [],
+        "mismatches": [],
+        "surplus_ids": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "f85119dbccdf8049322acbcdbfd4b12e4a7468c3a79058276cc65d29cfd18728",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "3f72cbbb09f6200942a4b6add461fc72f8761a69ad3953fe42b8b9fb28e58d89"
     },
     {
       "comparator_id": "REL-13",
       "relationship": "R1D -> R1E",
-      "compared_record_ids": [
-        "R1D",
-        "R1E"
-      ],
-      "producer_hash": "3c923f2ed257eead528bf30fe2f35fddd8ba90b05414019d69e67e059d28e5d5",
-      "consumer_hash": "c80f1c795c6f57596e15a710325ec339c3d606fdb4e21b136b0c3c3b17fe3b61",
       "comparison_rules": [
-        "identifier coverage",
-        "canonical hash recomputation",
-        "owner/qualification preservation",
-        "evidence resolution",
-        "no authority transfer"
+        "family finding coverage",
+        "no surplus authority",
+        "no implementation claim"
       ],
+      "calculated_details": {
+        "expected_r1d_record_counts": {
+          "core": 96,
+          "agency": 61,
+          "world": 52
+        },
+        "missing_family_findings": [],
+        "surplus_authority_claims": [],
+        "unauthorized_implementation_claims": [],
+        "missing_ids": [],
+        "violations": []
+      },
       "missing_ids": [],
       "surplus_ids": [],
       "mismatched_ids_and_fields": [],
       "authority_transfer_violations": [],
-      "evidence_paths": [
-        "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
-        "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-        "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-        "docs/doctrine/consolidation/afqr_world_action_sensing.md"
-      ],
-      "calculated_result_hash": "9f4c74b8c5ee8913db788fc738ae9ad7b2f6ca2f2533562ac6dbda8848da4e76",
       "blocking_status": "nonblocking",
-      "result": "pass"
+      "result": "pass",
+      "calculated_result_hash": "693d8989527a18dca1b0f42c8542c503f8be19dbdde744e0a8b6f1140fc9d2c4"
     }
   ],
   "phase_separation_review": {
@@ -443,49 +557,75 @@
         "240ef0f6c69712adc358c1e997419cbcde82682d0e12ed090f7766c8943c55c2",
         "e39b816ff1410800723702c08497b3164a6998b887e3e8aabc25c7b766047c28"
       ],
-      "expected_owners_by_construct": {
-        "spell schools": [],
-        "ancestry anatomy": []
-      },
-      "required_handoffs": [
+      "rationale": "fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "spell schools",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for spell schools"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "spell schools does not become Astra doctrine by repetition"
+          ],
+          "rationale": "spell schools is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "ancestry anatomy",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for ancestry anatomy"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "ancestry anatomy does not become Astra doctrine by repetition"
+          ],
+          "rationale": "ancestry anatomy is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "spell schools",
-          "retained_rule": "exact donor spell schools procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "ancestry anatomy",
-          "retained_rule": "exact donor ancestry anatomy procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine spell schools when ownership, evidence, or phase cannot be resolved",
-        "quarantine ancestry anatomy when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate spell schools when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate ancestry anatomy when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor spell schools is not an Astra default",
-        "donor ancestry anatomy is not an Astra default"
-      ],
-      "rationale": "fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "spell schools": [],
+        "ancestry anatomy": []
+      },
+      "forbidden_owner_fixture": {
+        "spell schools": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "ancestry anatomy": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-02",
@@ -502,7 +642,48 @@
         "8437a6b0ab2ccf085fa81b5e2275b5ca6ab2be36bc96617f8405b49d6d0a8822",
         "1b38995190b6a64f3c1ab8ab8f1f2438a7fd09cbca62a284eca6ea70ff2a04c2"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "science fiction constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "radiation exposure",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-17"
+          ],
+          "handoffs": [
+            {
+              "from": "AFQR-17",
+              "to": "AFQR-16",
+              "payload": "actual injury or embodiment harm after environmental exposure"
+            }
+          ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "radiation exposure does not establish any owner outside ['AFQR-17']"
+          ],
+          "rationale": "radiation exposure is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "starship sensors",
+          "outcome": "direct_mapping",
+          "owners": [
+            "AFQR-20"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "sensor contact or track does not establish AFQR-19 target validity"
+          ],
+          "rationale": "starship sensors is routed to its source-backed semantic owner."
+        }
+      ],
+      "expected_owner_fixture": {
         "radiation exposure": [
           "AFQR-17"
         ],
@@ -510,69 +691,34 @@
           "AFQR-20"
         ]
       },
-      "required_handoffs": [
-        {
-          "construct": "radiation exposure",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "starship sensors",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "radiation exposure",
-          "astra_owner": "AFQR-17",
-          "astra_landing": "source-profiled radiation exposure",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "radiation exposure",
-          "normalization": "source-profiled radiation exposure constraints",
-          "receiving_owners": [
-            "AFQR-17"
-          ],
-          "source_local_retention": [
-            "exact donor radiation exposure procedure"
-          ],
-          "prohibited_inferences": [
-            "radiation exposure does not create unlisted ownership or universal Astra law"
-          ]
-        },
-        {
-          "donor_construct": "starship sensors",
-          "normalization": "source-profiled starship sensors constraints",
-          "receiving_owners": [
-            "AFQR-20"
-          ],
-          "source_local_retention": [
-            "exact donor starship sensors procedure"
-          ],
-          "prohibited_inferences": [
-            "starship sensors does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [],
-      "quarantine_triggers": [
-        "quarantine radiation exposure when ownership, evidence, or phase cannot be resolved",
-        "quarantine starship sensors when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate radiation exposure when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate starship sensors when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor radiation exposure is not an Astra default",
-        "donor starship sensors is not an Astra default"
-      ],
-      "rationale": "science fiction constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "radiation exposure": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "starship sensors": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-03",
@@ -589,49 +735,74 @@
         "34d6fce56614861975e4fe35af0fc77ee2d03606eb7a4f9a2a6042d861a358e4",
         "55778ccb6a564dc589734f7690a5fb84fe1014cff3ae269a566405e078d0a90a"
       ],
-      "expected_owners_by_construct": {
-        "mana reactor": [],
-        "technomagic portal": []
-      },
-      "required_handoffs": [
+      "rationale": "hybrid science-fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "mana reactor",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "quarantine",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": "no source-backed Astra owner can receive mana reactor without importing donor doctrine",
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "mana reactor does not become Astra doctrine by repetition"
+          ],
+          "rationale": "mana reactor is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "technomagic portal",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-18"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "technomagic portal does not establish any owner outside ['AFQR-18']"
+          ],
+          "rationale": "technomagic portal is routed to its source-backed semantic owner."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "mana reactor",
-          "retained_rule": "exact donor mana reactor procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "technomagic portal",
-          "retained_rule": "exact donor technomagic portal procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine mana reactor when ownership, evidence, or phase cannot be resolved",
-        "quarantine technomagic portal when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate mana reactor when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate technomagic portal when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor mana reactor is not an Astra default",
-        "donor technomagic portal is not an Astra default"
-      ],
-      "rationale": "hybrid science-fantasy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "mana reactor": [],
+        "technomagic portal": [
+          "AFQR-18"
+        ]
+      },
+      "forbidden_owner_fixture": {
+        "mana reactor": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "technomagic portal": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-04",
@@ -648,49 +819,76 @@
         "f37ddcfe535e9b354a19a49febe8c8992e96b60976c18b66b5f14423e656a4ba",
         "ed4681c823a87bb44abda8d9b02e4663a1601408670cd7144ba010aaf43bdb8d"
       ],
-      "expected_owners_by_construct": {
-        "qi reserve": [],
-        "realm advancement": []
-      },
-      "required_handoffs": [
+      "rationale": "cultivation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "qi reserve",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-07"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "qi reserve does not establish any owner outside ['AFQR-07']"
+          ],
+          "rationale": "AFQR-07 receives qi only when the donor defines a real conserved, reserved, converted, or settled quantity."
         },
         {
           "construct": "realm advancement",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for realm advancement"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "realm advancement does not become Astra doctrine by repetition"
+          ],
+          "rationale": "realm advancement is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "qi reserve",
-          "retained_rule": "exact donor qi reserve procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "realm advancement",
-          "retained_rule": "exact donor realm advancement procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine qi reserve when ownership, evidence, or phase cannot be resolved",
-        "quarantine realm advancement when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate qi reserve when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate realm advancement when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor qi reserve is not an Astra default",
-        "donor realm advancement is not an Astra default"
-      ],
-      "rationale": "cultivation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "qi reserve": [
+          "AFQR-07"
+        ],
+        "realm advancement": []
+      },
+      "forbidden_owner_fixture": {
+        "qi reserve": [
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "realm advancement": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-05",
@@ -707,49 +905,76 @@
         "00b158a1cb71ba5a2e8cea1bf7548daa321e729bc33d6c9631a9829dd4a3b326",
         "79086b4e408f37593ce5604b807a4fc248fc08e55100ed98b7ff35e4157caeb5"
       ],
-      "expected_owners_by_construct": {
-        "class feature": [],
-        "archetype prerequisite": []
-      },
-      "required_handoffs": [
+      "rationale": "class and archetype constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "class feature",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for class feature"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "class feature does not become Astra doctrine by repetition"
+          ],
+          "rationale": "class feature is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "archetype prerequisite",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-09"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "archetype prerequisite does not establish any owner outside ['AFQR-09']"
+          ],
+          "rationale": "AFQR-09 receives the prerequisite only as a typed governed dependency; class packaging creates no relation."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "class feature",
-          "retained_rule": "exact donor class feature procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "archetype prerequisite",
-          "retained_rule": "exact donor archetype prerequisite procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine class feature when ownership, evidence, or phase cannot be resolved",
-        "quarantine archetype prerequisite when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate class feature when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate archetype prerequisite when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor class feature is not an Astra default",
-        "donor archetype prerequisite is not an Astra default"
-      ],
-      "rationale": "class and archetype constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "class feature": [],
+        "archetype prerequisite": [
+          "AFQR-09"
+        ]
+      },
+      "forbidden_owner_fixture": {
+        "class feature": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "archetype prerequisite": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-06",
@@ -766,68 +991,76 @@
         "a829faceecd0766b22e55303fb2138928ed91dc7bb9918aa5b0f238837af2a9b",
         "d92b08978bb12f30a35dca1394e2e2b4339812853ba4a2b522f6fd17673584b2"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "profession and occupation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "professional license",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-15"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "institutional license does not transfer AFQR-11 agency or AFQR-09 dependency ownership"
+          ],
+          "rationale": "professional license is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "trade skill",
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for trade skill"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "trade skill does not become Astra doctrine by repetition"
+          ],
+          "rationale": "trade skill is retained or withheld because no current AFQR owner lawfully owns the donor rule."
+        }
+      ],
+      "expected_owner_fixture": {
         "professional license": [
           "AFQR-15"
         ],
         "trade skill": []
       },
-      "required_handoffs": [
-        {
-          "construct": "professional license",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "trade skill",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "professional license",
-          "astra_owner": "AFQR-15",
-          "astra_landing": "source-profiled professional license",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "professional license",
-          "normalization": "source-profiled professional license constraints",
-          "receiving_owners": [
-            "AFQR-15"
-          ],
-          "source_local_retention": [
-            "exact donor professional license procedure"
-          ],
-          "prohibited_inferences": [
-            "professional license does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [
-        {
-          "donor_construct": "trade skill",
-          "retained_rule": "exact donor trade skill procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine professional license when ownership, evidence, or phase cannot be resolved",
-        "quarantine trade skill when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate professional license when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate trade skill when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor professional license is not an Astra default",
-        "donor trade skill is not an Astra default"
-      ],
-      "rationale": "profession and occupation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "professional license": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "trade skill": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-07",
@@ -844,49 +1077,75 @@
         "966e9200c2dafffb4b83d9230afbfe91dd78530f5def65c3e61a9129091147e1",
         "88f9d006fc2758c8c3df59dcfeccfd97db54564232bbb19757a4166785da60a5"
       ],
-      "expected_owners_by_construct": {
-        "character points": [],
-        "purchase limit": []
-      },
-      "required_handoffs": [
+      "rationale": "point-buy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "character points",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for character points"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "character points does not become Astra doctrine by repetition"
+          ],
+          "rationale": "character points is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "purchase limit",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for purchase limit"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "purchase limit does not become Astra doctrine by repetition"
+          ],
+          "rationale": "purchase limit is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "character points",
-          "retained_rule": "exact donor character points procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "purchase limit",
-          "retained_rule": "exact donor purchase limit procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine character points when ownership, evidence, or phase cannot be resolved",
-        "quarantine purchase limit when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate character points when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate purchase limit when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor character points is not an Astra default",
-        "donor purchase limit is not an Astra default"
-      ],
-      "rationale": "point-buy constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "character points": [],
+        "purchase limit": []
+      },
+      "forbidden_owner_fixture": {
+        "character points": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "purchase limit": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-08",
@@ -903,49 +1162,73 @@
         "7566a5e5021a3f43cdae4d82ee57698e585aa8bc0f37eb226362f1ba8c7bbf82",
         "155694e814523f80d1a0534fc6c9fedc5c18bc910443eae7c5f5853706a060da"
       ],
-      "expected_owners_by_construct": {
-        "invoked aspect": [],
-        "story compel": []
-      },
-      "required_handoffs": [
+      "rationale": "narrative tag/aspect constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "invoked aspect",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for invoked aspect"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "invoked aspect does not become Astra doctrine by repetition"
+          ],
+          "rationale": "invoked aspect is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "story compel",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "quarantine",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": "no source-backed Astra owner can receive story compel without importing donor doctrine",
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "story compel does not become Astra doctrine by repetition"
+          ],
+          "rationale": "story compel is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "invoked aspect",
-          "retained_rule": "exact donor invoked aspect procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "story compel",
-          "retained_rule": "exact donor story compel procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine invoked aspect when ownership, evidence, or phase cannot be resolved",
-        "quarantine story compel when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate invoked aspect when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate story compel when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor invoked aspect is not an Astra default",
-        "donor story compel is not an Astra default"
-      ],
-      "rationale": "narrative tag/aspect constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "invoked aspect": [],
+        "story compel": []
+      },
+      "forbidden_owner_fixture": {
+        "invoked aspect": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "story compel": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-09",
@@ -962,68 +1245,77 @@
         "ab3c4e0b9869ad522fc91ba3c80a61d6fd510dc8b7307b7e1c267f70e1db2e53",
         "70079ed09a9a3f5d4f52f8c727e75dd86ad1df529aa47db31c944afa3f0c4e23"
       ],
-      "expected_owners_by_construct": {
-        "implant integrity": [
-          "AFQR-16"
-        ],
-        "biotech mutation": []
-      },
-      "required_handoffs": [
+      "rationale": "cyberware and biotech constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "implant integrity",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "direct_mapping",
+          "owners": [
+            "AFQR-16"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "AFQR-16 component integrity does not determine AFQR-08 identity or continuity"
+          ],
+          "rationale": "implant integrity is routed to its source-backed semantic owner."
         },
         {
           "construct": "biotech mutation",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "implant integrity",
-          "astra_owner": "AFQR-16",
-          "astra_landing": "source-profiled implant integrity",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "implant integrity",
-          "normalization": "source-profiled implant integrity constraints",
-          "receiving_owners": [
+          "outcome": "normalized_mapping",
+          "owners": [
             "AFQR-16"
           ],
-          "source_local_retention": [
-            "exact donor implant integrity procedure"
-          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
           "prohibited_inferences": [
-            "implant integrity does not create unlisted ownership or universal Astra law"
-          ]
+            "biotech mutation does not establish any owner outside ['AFQR-16']"
+          ],
+          "rationale": "biotech mutation is routed to its source-backed semantic owner."
         }
       ],
-      "source_local_examples": [
-        {
-          "donor_construct": "biotech mutation",
-          "retained_rule": "exact donor biotech mutation procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine implant integrity when ownership, evidence, or phase cannot be resolved",
-        "quarantine biotech mutation when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate implant integrity when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate biotech mutation when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor implant integrity is not an Astra default",
-        "donor biotech mutation is not an Astra default"
-      ],
-      "rationale": "cyberware and biotech constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "implant integrity": [
+          "AFQR-16"
+        ],
+        "biotech mutation": [
+          "AFQR-16"
+        ]
+      },
+      "forbidden_owner_fixture": {
+        "implant integrity": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "biotech mutation": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-10",
@@ -1040,60 +1332,83 @@
         "7234edb916295ff2427f91619a77ffc95a7e6ef920c04c97ccebab736a1906b9",
         "b63bae5459cacd461f260f5d7b41fa25d81046999a3072b476520d51673014f8"
       ],
-      "expected_owners_by_construct": {
-        "telepathic signal": [],
+      "rationale": "psionic constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "telepathic signal",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-20"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "telepathic signal does not establish any owner outside ['AFQR-20']"
+          ],
+          "rationale": "telepathic signal is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "mind control",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-11"
+          ],
+          "handoffs": [
+            {
+              "from": "AFQR-12",
+              "to": "AFQR-11",
+              "payload": "behavioral pressure without choice or responsibility attribution"
+            }
+          ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "mind control does not establish any owner outside ['AFQR-11']"
+          ],
+          "rationale": "mind control is routed to its source-backed semantic owner."
+        }
+      ],
+      "expected_owner_fixture": {
+        "telepathic signal": [
+          "AFQR-20"
+        ],
         "mind control": [
           "AFQR-11"
         ]
       },
-      "required_handoffs": [
-        {
-          "construct": "telepathic signal",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "mind control",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [],
-      "normalized_mappings": [
-        {
-          "donor_construct": "mind control",
-          "normalization": "source-profiled mind control constraints",
-          "receiving_owners": [
-            "AFQR-11"
-          ],
-          "source_local_retention": [
-            "exact donor mind control procedure"
-          ],
-          "prohibited_inferences": [
-            "mind control does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [
-        {
-          "donor_construct": "telepathic signal",
-          "retained_rule": "exact donor telepathic signal procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine telepathic signal when ownership, evidence, or phase cannot be resolved",
-        "quarantine mind control when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate telepathic signal when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate mind control when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor telepathic signal is not an Astra default",
-        "donor mind control is not an Astra default"
-      ],
-      "rationale": "psionic constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "telepathic signal": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19"
+        ],
+        "mind control": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-11",
@@ -1110,49 +1425,73 @@
         "b5227f15e85f6949958aa1d064b75219e0d525329a3e2fb783efac4807475ee3",
         "b889d4bf6de1a2ea511e84f4610f8bc607a0660f4137a0299c9b7b1e18019a0f"
       ],
-      "expected_owners_by_construct": {
-        "sanity pressure": [],
-        "corruption track": []
-      },
-      "required_handoffs": [
+      "rationale": "horror constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "sanity pressure",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for sanity pressure"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "sanity pressure does not become Astra doctrine by repetition"
+          ],
+          "rationale": "sanity pressure is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "corruption track",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "quarantine",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": "no source-backed Astra owner can receive corruption track without importing donor doctrine",
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "corruption track does not become Astra doctrine by repetition"
+          ],
+          "rationale": "corruption track is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "sanity pressure",
-          "retained_rule": "exact donor sanity pressure procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "corruption track",
-          "retained_rule": "exact donor corruption track procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine sanity pressure when ownership, evidence, or phase cannot be resolved",
-        "quarantine corruption track when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate sanity pressure when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate corruption track when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor sanity pressure is not an Astra default",
-        "donor corruption track is not an Astra default"
-      ],
-      "rationale": "horror constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "sanity pressure": [],
+        "corruption track": []
+      },
+      "forbidden_owner_fixture": {
+        "sanity pressure": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "corruption track": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-12",
@@ -1169,7 +1508,42 @@
         "e8ce582ffe6696f858f9214c6e062ac14c0eb1def6278b3c12f95ebdb22d65a4",
         "ecf2764e93da52b5be97244ae7218cf8a31e2e0790d5c633ad3a6e34c34ae5d0"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "investigation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "clue evidence",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-10"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "clue evidence does not establish any owner outside ['AFQR-10']"
+          ],
+          "rationale": "clue evidence is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "hidden truth",
+          "outcome": "direct_mapping",
+          "owners": [
+            "AFQR-10"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "hidden truth does not establish any owner outside ['AFQR-10']"
+          ],
+          "rationale": "hidden truth is routed to its source-backed semantic owner."
+        }
+      ],
+      "expected_owner_fixture": {
         "clue evidence": [
           "AFQR-10"
         ],
@@ -1177,69 +1551,36 @@
           "AFQR-10"
         ]
       },
-      "required_handoffs": [
-        {
-          "construct": "clue evidence",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "hidden truth",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "clue evidence",
-          "astra_owner": "AFQR-10",
-          "astra_landing": "source-profiled clue evidence",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "clue evidence",
-          "normalization": "source-profiled clue evidence constraints",
-          "receiving_owners": [
-            "AFQR-10"
-          ],
-          "source_local_retention": [
-            "exact donor clue evidence procedure"
-          ],
-          "prohibited_inferences": [
-            "clue evidence does not create unlisted ownership or universal Astra law"
-          ]
-        },
-        {
-          "donor_construct": "hidden truth",
-          "normalization": "source-profiled hidden truth constraints",
-          "receiving_owners": [
-            "AFQR-10"
-          ],
-          "source_local_retention": [
-            "exact donor hidden truth procedure"
-          ],
-          "prohibited_inferences": [
-            "hidden truth does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [],
-      "quarantine_triggers": [
-        "quarantine clue evidence when ownership, evidence, or phase cannot be resolved",
-        "quarantine hidden truth when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate clue evidence when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate hidden truth when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor clue evidence is not an Astra default",
-        "donor hidden truth is not an Astra default"
-      ],
-      "rationale": "investigation constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "clue evidence": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "hidden truth": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-13",
@@ -1256,7 +1597,49 @@
         "38dae0c176b6f34ac53720637eca814e27d0a67bb3b5f05a1c96c47efdaa41f0",
         "1d6e38aead90c09a3aa4231e96c2a1ec5b93118abcea19ccfd47e3ad27364f9e"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "vehicles, mechs, ships, and platforms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "ship facing rule",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-18"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "orientation and reachability do not establish AFQR-19 opportunity or AFQR-15 jurisdiction"
+          ],
+          "rationale": "ship facing rule is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "vehicle operation",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-11",
+            "AFQR-19"
+          ],
+          "handoffs": [
+            {
+              "from": "AFQR-11",
+              "to": "AFQR-19",
+              "payload": "authorized actor choice submitted for target and action resolution"
+            }
+          ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "vehicle operation does not establish any owner outside ['AFQR-11', 'AFQR-19']"
+          ],
+          "rationale": "vehicle operation is routed to its source-backed semantic owner."
+        }
+      ],
+      "expected_owner_fixture": {
         "ship facing rule": [
           "AFQR-18"
         ],
@@ -1265,70 +1648,33 @@
           "AFQR-19"
         ]
       },
-      "required_handoffs": [
-        {
-          "construct": "ship facing rule",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "vehicle operation",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "ship facing rule",
-          "astra_owner": "AFQR-18",
-          "astra_landing": "source-profiled ship facing rule",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "ship facing rule",
-          "normalization": "source-profiled ship facing rule constraints",
-          "receiving_owners": [
-            "AFQR-18"
-          ],
-          "source_local_retention": [
-            "exact donor ship facing rule procedure"
-          ],
-          "prohibited_inferences": [
-            "ship facing rule does not create unlisted ownership or universal Astra law"
-          ]
-        },
-        {
-          "donor_construct": "vehicle operation",
-          "normalization": "source-profiled vehicle operation constraints",
-          "receiving_owners": [
-            "AFQR-11",
-            "AFQR-19"
-          ],
-          "source_local_retention": [
-            "exact donor vehicle operation procedure"
-          ],
-          "prohibited_inferences": [
-            "vehicle operation does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [],
-      "quarantine_triggers": [
-        "quarantine ship facing rule when ownership, evidence, or phase cannot be resolved",
-        "quarantine vehicle operation when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate ship facing rule when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate vehicle operation when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor ship facing rule is not an Astra default",
-        "donor vehicle operation is not an Astra default"
-      ],
-      "rationale": "vehicles, mechs, ships, and platforms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "ship facing rule": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "vehicle operation": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-14",
@@ -1345,77 +1691,74 @@
         "75afedfcc2330b44f14efaa1d57ecd23cd4c2d2cdea58b88f807d32957581987",
         "1a3725a823540595f2ea475022353f43a27113ed13534cf64b967bdfb4957511"
       ],
-      "expected_owners_by_construct": {
-        "companion control": [
-          "AFQR-11"
-        ],
-        "swarm agency": [
-          "AFQR-11"
-        ]
-      },
-      "required_handoffs": [
+      "rationale": "companions, summons, familiars, proxies, and swarms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "companion control",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-11"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "control does not transfer AFQR-08 identity or establish consent, personhood, or responsibility"
+          ],
+          "rationale": "companion control is routed to its source-backed semantic owner."
         },
         {
           "construct": "swarm agency",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "companion control",
-          "astra_owner": "AFQR-11",
-          "astra_landing": "source-profiled companion control",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "companion control",
-          "normalization": "source-profiled companion control constraints",
-          "receiving_owners": [
-            "AFQR-11"
-          ],
-          "source_local_retention": [
-            "exact donor companion control procedure"
-          ],
+          "outcome": "doctrine_escalation",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": "swarm agency requires a new cross-owner doctrine decision before mapping",
           "prohibited_inferences": [
-            "companion control does not create unlisted ownership or universal Astra law"
-          ]
-        },
-        {
-          "donor_construct": "swarm agency",
-          "normalization": "source-profiled swarm agency constraints",
-          "receiving_owners": [
-            "AFQR-11"
+            "swarm agency does not become Astra doctrine by repetition"
           ],
-          "source_local_retention": [
-            "exact donor swarm agency procedure"
-          ],
-          "prohibited_inferences": [
-            "swarm agency does not create unlisted ownership or universal Astra law"
-          ]
+          "rationale": "swarm agency is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         }
       ],
-      "source_local_examples": [],
-      "quarantine_triggers": [
-        "quarantine companion control when ownership, evidence, or phase cannot be resolved",
-        "quarantine swarm agency when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate companion control when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate swarm agency when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor companion control is not an Astra default",
-        "donor swarm agency is not an Astra default"
-      ],
-      "rationale": "companions, summons, familiars, proxies, and swarms constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "companion control": [
+          "AFQR-11"
+        ],
+        "swarm agency": []
+      },
+      "forbidden_owner_fixture": {
+        "companion control": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "swarm agency": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-15",
@@ -1432,7 +1775,48 @@
         "ffe9fabaa529de1ee4f61f6984eecf138ed0a2733d1248e18cdf15e75a99b409",
         "7855d1df2867be66da943b0dc4de132cfd638ab66f2c0ede41fd3de84c65aef3"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "crafting, salvage, repair, and requisition constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "material reserve",
+          "outcome": "direct_mapping",
+          "owners": [
+            "AFQR-07"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "material reserve does not establish any owner outside ['AFQR-07']"
+          ],
+          "rationale": "material reserve is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "repair transition",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-01"
+          ],
+          "handoffs": [
+            {
+              "from": "AFQR-16",
+              "to": "AFQR-01",
+              "payload": "owner-approved integrity delta for atomic commitment"
+            }
+          ],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "repair transition does not establish any owner outside ['AFQR-01']"
+          ],
+          "rationale": "repair transition is routed to its source-backed semantic owner."
+        }
+      ],
+      "expected_owner_fixture": {
         "material reserve": [
           "AFQR-07"
         ],
@@ -1440,69 +1824,35 @@
           "AFQR-01"
         ]
       },
-      "required_handoffs": [
-        {
-          "construct": "material reserve",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "repair transition",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "material reserve",
-          "astra_owner": "AFQR-07",
-          "astra_landing": "source-profiled material reserve",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "material reserve",
-          "normalization": "source-profiled material reserve constraints",
-          "receiving_owners": [
-            "AFQR-07"
-          ],
-          "source_local_retention": [
-            "exact donor material reserve procedure"
-          ],
-          "prohibited_inferences": [
-            "material reserve does not create unlisted ownership or universal Astra law"
-          ]
-        },
-        {
-          "donor_construct": "repair transition",
-          "normalization": "source-profiled repair transition constraints",
-          "receiving_owners": [
-            "AFQR-01"
-          ],
-          "source_local_retention": [
-            "exact donor repair transition procedure"
-          ],
-          "prohibited_inferences": [
-            "repair transition does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [],
-      "quarantine_triggers": [
-        "quarantine material reserve when ownership, evidence, or phase cannot be resolved",
-        "quarantine repair transition when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate material reserve when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate repair transition when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor material reserve is not an Astra default",
-        "donor repair transition is not an Astra default"
-      ],
-      "rationale": "crafting, salvage, repair, and requisition constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "material reserve": [
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "repair transition": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-16",
@@ -1519,49 +1869,76 @@
         "3d957f21c1658222fa033ca74f9c802857d4f1e73d17f8dffaaa84f1342a3de6",
         "21e622cc309ef6fb95ff0672580bc5641531cb783661f980ae5c61bde44567b7"
       ],
-      "expected_owners_by_construct": {
-        "creature anatomy": [],
-        "instinct routine": []
-      },
-      "required_handoffs": [
+      "rationale": "bestiary constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
         {
           "construct": "creature anatomy",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for creature anatomy"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "creature anatomy does not become Astra doctrine by repetition"
+          ],
+          "rationale": "creature anatomy is retained or withheld because no current AFQR owner lawfully owns the donor rule."
         },
         {
           "construct": "instinct routine",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-12"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "AFQR-12 behavior prediction does not author AFQR-11 choice or responsibility"
+          ],
+          "rationale": "instinct routine is routed to its source-backed semantic owner."
         }
       ],
-      "direct_mappings": [],
-      "normalized_mappings": [],
-      "source_local_examples": [
-        {
-          "donor_construct": "creature anatomy",
-          "retained_rule": "exact donor creature anatomy procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        },
-        {
-          "donor_construct": "instinct routine",
-          "retained_rule": "exact donor instinct routine procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine creature anatomy when ownership, evidence, or phase cannot be resolved",
-        "quarantine instinct routine when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate creature anatomy when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate instinct routine when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor creature anatomy is not an Astra default",
-        "donor instinct routine is not an Astra default"
-      ],
-      "rationale": "bestiary constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "expected_owner_fixture": {
+        "creature anatomy": [],
+        "instinct routine": [
+          "AFQR-12"
+        ]
+      },
+      "forbidden_owner_fixture": {
+        "creature anatomy": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "instinct routine": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-17",
@@ -1578,7 +1955,42 @@
         "21f27483b514d5e2f0f8e05034ffff1aa3c1d577027cc9fb6e41ff637119418d",
         "58f3f508756ebf1500854fcb4a4431ec15a138874bb21dc68376def7443117b1"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "random tables and oracles constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "random encounter result",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-06"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "random encounter result does not establish any owner outside ['AFQR-06']"
+          ],
+          "rationale": "random encounter result is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "oracle prompt",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-10"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "oracle prompt does not establish any owner outside ['AFQR-10']"
+          ],
+          "rationale": "oracle prompt is routed to its source-backed semantic owner."
+        }
+      ],
+      "expected_owner_fixture": {
         "random encounter result": [
           "AFQR-06"
         ],
@@ -1586,69 +1998,36 @@
           "AFQR-10"
         ]
       },
-      "required_handoffs": [
-        {
-          "construct": "random encounter result",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "oracle prompt",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "random encounter result",
-          "astra_owner": "AFQR-06",
-          "astra_landing": "source-profiled random encounter result",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "random encounter result",
-          "normalization": "source-profiled random encounter result constraints",
-          "receiving_owners": [
-            "AFQR-06"
-          ],
-          "source_local_retention": [
-            "exact donor random encounter result procedure"
-          ],
-          "prohibited_inferences": [
-            "random encounter result does not create unlisted ownership or universal Astra law"
-          ]
-        },
-        {
-          "donor_construct": "oracle prompt",
-          "normalization": "source-profiled oracle prompt constraints",
-          "receiving_owners": [
-            "AFQR-10"
-          ],
-          "source_local_retention": [
-            "exact donor oracle prompt procedure"
-          ],
-          "prohibited_inferences": [
-            "oracle prompt does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [],
-      "quarantine_triggers": [
-        "quarantine random encounter result when ownership, evidence, or phase cannot be resolved",
-        "quarantine oracle prompt when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate random encounter result when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate oracle prompt when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor random encounter result is not an Astra default",
-        "donor oracle prompt is not an Astra default"
-      ],
-      "rationale": "random tables and oracles constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "random encounter result": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "oracle prompt": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     },
     {
       "donor_family_id": "DONOR-18",
@@ -1665,68 +2044,76 @@
         "496598b1775da80983a0f081dc8593ec9751ef6dc40dfd59e0421581ee5475f1",
         "6819f8559867052b68232446ca37a2009ffaddc977e0764a47f1f8431cab3180"
       ],
-      "expected_owners_by_construct": {
+      "rationale": "supplements, adventures, and campaign paths constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
+      "blocking_defects": [],
+      "result": "pass",
+      "construct_dispositions": [
+        {
+          "construct": "adventure faction",
+          "outcome": "normalized_mapping",
+          "owners": [
+            "AFQR-13"
+          ],
+          "handoffs": [],
+          "source_local_retention": [],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "AFQR-13 reputation or affiliation does not create AFQR-15 jurisdiction or authority"
+          ],
+          "rationale": "adventure faction is routed to its source-backed semantic owner."
+        },
+        {
+          "construct": "campaign cosmology",
+          "outcome": "source_local",
+          "owners": [],
+          "handoffs": [],
+          "source_local_retention": [
+            "exact donor procedure for campaign cosmology"
+          ],
+          "quarantine_condition": null,
+          "escalation_condition": null,
+          "prohibited_inferences": [
+            "campaign cosmology does not become Astra doctrine by repetition"
+          ],
+          "rationale": "campaign cosmology is retained or withheld because no current AFQR owner lawfully owns the donor rule."
+        }
+      ],
+      "expected_owner_fixture": {
         "adventure faction": [
           "AFQR-13"
         ],
         "campaign cosmology": []
       },
-      "required_handoffs": [
-        {
-          "construct": "adventure faction",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        },
-        {
-          "construct": "campaign cosmology",
-          "route": "typed handoff among listed owners; otherwise source-local or quarantine"
-        }
-      ],
-      "direct_mappings": [
-        {
-          "donor_construct": "adventure faction",
-          "astra_owner": "AFQR-13",
-          "astra_landing": "source-profiled adventure faction",
-          "lawful_basis": "direct only when donor semantics preserve the receiving owner boundary",
-          "source_local_retention": []
-        }
-      ],
-      "normalized_mappings": [
-        {
-          "donor_construct": "adventure faction",
-          "normalization": "source-profiled adventure faction constraints",
-          "receiving_owners": [
-            "AFQR-13"
-          ],
-          "source_local_retention": [
-            "exact donor adventure faction procedure"
-          ],
-          "prohibited_inferences": [
-            "adventure faction does not create unlisted ownership or universal Astra law"
-          ]
-        }
-      ],
-      "source_local_examples": [
-        {
-          "donor_construct": "campaign cosmology",
-          "retained_rule": "exact donor campaign cosmology procedure",
-          "reason": "no Astra owner is inferred from donor terminology"
-        }
-      ],
-      "quarantine_triggers": [
-        "quarantine adventure faction when ownership, evidence, or phase cannot be resolved",
-        "quarantine campaign cosmology when ownership, evidence, or phase cannot be resolved"
-      ],
-      "doctrine_escalation_triggers": [
-        "escalate adventure faction when it requires a new universal owner or contradicts a nonownership rule",
-        "escalate campaign cosmology when it requires a new universal owner or contradicts a nonownership rule"
-      ],
-      "prohibited_universalizations": [
-        "donor adventure faction is not an Astra default",
-        "donor campaign cosmology is not an Astra default"
-      ],
-      "rationale": "supplements, adventures, and campaign paths constructs are routed by semantics rather than donor packaging; RHBF is not hidden law.",
-      "blocking_defects": [],
-      "result": "pass"
+      "forbidden_owner_fixture": {
+        "adventure faction": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ],
+        "campaign cosmology": [
+          "AFQR-07",
+          "AFQR-08",
+          "AFQR-09",
+          "AFQR-11",
+          "AFQR-12",
+          "AFQR-13",
+          "AFQR-15",
+          "AFQR-16",
+          "AFQR-17",
+          "AFQR-18",
+          "AFQR-19",
+          "AFQR-20"
+        ]
+      }
     }
   ],
   "owner_discipline": {

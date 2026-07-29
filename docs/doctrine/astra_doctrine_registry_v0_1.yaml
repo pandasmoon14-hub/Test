@@ -15046,3 +15046,37 @@ file_records:
   owner: R1E formal review
   purpose: Thirteen relational comparisons and eighteen differentiated donor-family reviews.
   authority_level: tracking_review_only
+
+- file_id: AFQR-R1E-CORE-PROJECTION-COMPARISONS-001
+  title: AFQR R1E Core Projection Field Comparisons
+  filename: afqr_r1e_core_projection_field_comparisons.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Deterministic per-field comparisons for every applicable R1D-CORE projection.
+  authority_level: tracking_review_only
+  authority_note: Comparison proof only; no replacement doctrine or implementation authority.
+- file_id: AFQR-R1E-AGENCY-PROJECTION-COMPARISONS-001
+  title: AFQR R1E Agency Projection Field Comparisons
+  filename: afqr_r1e_agency_projection_field_comparisons.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Deterministic per-field comparisons for every applicable R1D-AGENCY projection.
+  authority_level: tracking_review_only
+  authority_note: Comparison proof only; no replacement doctrine or implementation authority.
+- file_id: AFQR-R1E-WORLD-PROJECTION-COMPARISONS-001
+  title: AFQR R1E World Projection Field Comparisons
+  filename: afqr_r1e_world_projection_field_comparisons.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R1E
+  owner: R1E formal review
+  purpose: Deterministic per-field comparisons for every applicable R1D-WORLD projection.
+  authority_level: tracking_review_only
+  authority_note: Comparison proof only; no replacement doctrine or implementation authority.

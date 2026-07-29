@@ -237,7 +237,10 @@
         "source and vocabulary audit",
         "dependency and parity audit",
         "escalation and substrate adjudications",
-        "consistency and corpus adequacy audit"
+        "consistency and corpus adequacy audit",
+        "core projection field-comparison shard",
+        "agency projection field-comparison shard",
+        "world projection field-comparison shard"
       ],
       "must_not_own": [
         "runtime implementation",

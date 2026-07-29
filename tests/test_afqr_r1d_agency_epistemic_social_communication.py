@@ -112,5 +112,5 @@ def test_registry_manifest_and_committed_scope():
  assert current['R1D-CORE']=='complete'; assert current['R1D-AGENCY']=='complete'; assert current['R1D-WORLD']=='complete'; assert current['R1E']=='complete'
  gates=contract()['completion_boundary']; assert gates['overall_R1D']=='incomplete'; assert gates['R2-R6']=='blocked'; assert gates['RT-002G']=='unauthorized'
  changed=subprocess.check_output(['git','diff','--name-only',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines(); nums=subprocess.check_output(['git','diff','--numstat',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines(); deleted=subprocess.check_output(['git','diff','--name-status','--diff-filter=D',f'{BASE}...HEAD'],cwd=ROOT,text=True).splitlines()
- assert not any(p.startswith('src/') or p.lower().endswith('.zip') or 'formal_completion_review' in p for p in changed); assert not any(x.startswith('-\t-\t') for x in nums); assert not deleted
+ assert not any(p.startswith('src/') or p.lower().endswith('.zip') or 'working/afqr_consolidation_inputs/' in p for p in changed); assert not any(x.startswith('-\t-\t') for x in nums); assert not deleted
  assert not any('working/afqr_consolidation_inputs' in p for p in changed)

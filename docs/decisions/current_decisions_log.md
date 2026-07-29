@@ -4263,3 +4263,7 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 - **Escalations:** COLL-03, COLL-08, and COLL-10 close with qualification while their historical open records remain. SUB-001–SUB-005 are accepted as classified deferred substrates and remain unimplemented.
 - **Authority boundary:** Formal review and gate transition only. No runtime, persistence, reducer, schema, conversion, canon/sourcebook, model, narration, UI, live-play, R2-work, RT-002G, or evidence-deletion authority.
 - **Gate:** R1E and overall R1 complete. R2 doctrine-drift resolution alone is ready and next; R3–R6 blocked; RT-002G and temporary evidence deletion unauthorized.
+
+### 2026-07-29 R1E review hardening amendment
+
+PR #339 review hardening replaces abandoned-object absence with the correct non-ancestry rule; reconstructs structured edge owners and R1B bindings; executes field-specific comparators for every real R1D projection; resolves materialized and archive-member evidence locators; calculates thirteen relationship-specific consistency checks; and replaces generic donor routing with construct-level dispositions. The R1E PASS, gate posture, and nonauthority boundary are unchanged.

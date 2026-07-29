@@ -35,7 +35,9 @@
         "SRC-0059",
         "SRC-0157"
       ],
-      "r1c_invariants": [],
+      "r1c_invariants": [
+        "INV-001"
+      ],
       "r1c_edges": [
         "DEP-007",
         "DEP-010",
@@ -55,19 +57,25 @@
       "exact_evidence_locators": [
         {
           "evidence_id": "SRC-0004",
+          "path_kind": "materialized_normalized_file",
           "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
         },
         {
           "evidence_id": "SRC-0011",
+          "path_kind": "materialized_normalized_file",
           "path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md"
         },
         {
           "evidence_id": "SRC-0059",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml"
         },
         {
           "evidence_id": "SRC-0157",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml"
         }
       ],
       "alternatives_considered": [
@@ -120,7 +128,12 @@
       "decision": "approved_with_qualification",
       "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
       "ledger_disposition": "closed_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "r1c_invariant_justification": "INV-001 prevents adjacency, handoff, or consumption from transferring semantic ownership.",
+      "r1c_reference_validation": {
+        "invariants_exist": true,
+        "edges_exist": true
+      }
     },
     {
       "decision_id": "R1E-DEC-COLL-08",
@@ -147,7 +160,9 @@
         "SRC-0110",
         "SRC-0157"
       ],
-      "r1c_invariants": [],
+      "r1c_invariants": [
+        "INV-001"
+      ],
       "r1c_edges": [
         "DEP-068",
         "DEP-069"
@@ -162,15 +177,20 @@
       "exact_evidence_locators": [
         {
           "evidence_id": "SRC-0012",
+          "path_kind": "materialized_normalized_file",
           "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
         },
         {
           "evidence_id": "SRC-0110",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml"
         },
         {
           "evidence_id": "SRC-0157",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_16_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_16_Ratification_Pack_v1_0/fixtures/afqr_16_non_mutating_dry_run.yaml"
         }
       ],
       "alternatives_considered": [
@@ -220,7 +240,12 @@
       "decision": "approved_with_qualification",
       "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
       "ledger_disposition": "closed_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "r1c_invariant_justification": "INV-001 prevents adjacency, handoff, or consumption from transferring semantic ownership.",
+      "r1c_reference_validation": {
+        "invariants_exist": true,
+        "edges_exist": true
+      }
     },
     {
       "decision_id": "R1E-DEC-COLL-10",
@@ -248,7 +273,9 @@
         "SRC-0092",
         "SRC-0110"
       ],
-      "r1c_invariants": [],
+      "r1c_invariants": [
+        "INV-001"
+      ],
       "r1c_edges": [
         "DEP-080",
         "DEP-081"
@@ -263,15 +290,21 @@
       "exact_evidence_locators": [
         {
           "evidence_id": "SRC-0059",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_11_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_11_Ratification_Pack_v1_0/sources/external_research_synthesis.yaml"
         },
         {
           "evidence_id": "SRC-0092",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_13_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_13_Ratification_Pack_v1_0/manifest/artifact_manifest.yaml"
         },
         {
           "evidence_id": "SRC-0110",
-          "path": null
+          "path_kind": "archive_member",
+          "archive_path": "working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip",
+          "archive_member_path": "AFQR_14_Ratification_Pack_v1_0/fixtures/persistent_rival_negotiation_typed_graph.yaml"
         }
       ],
       "alternatives_considered": [
@@ -329,7 +362,12 @@
       "decision": "approved_with_qualification",
       "supersession_scope": "current disposition only; historical R1B/R1C open records preserved",
       "ledger_disposition": "closed_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "r1c_invariant_justification": "INV-001 prevents adjacency, handoff, or consumption from transferring semantic ownership.",
+      "r1c_reference_validation": {
+        "invariants_exist": true,
+        "edges_exist": true
+      }
     }
   ],
   "substrate_adjudications": [
@@ -363,7 +401,24 @@
       "current_post_r1e_blocking_effect": "does not block R1 completion or R2 doctrine-drift review; blocks implementation until explicit later gate",
       "decision": "accepted_as_classified_deferred_substrate",
       "ledger_disposition": "accepted_deferred_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0012",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+        },
+        {
+          "evidence_id": "SRC-0082",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+        },
+        {
+          "evidence_id": "SRC-0125",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+        }
+      ]
     },
     {
       "decision_id": "R1E-DEC-SUB-002",
@@ -398,7 +453,29 @@
       "current_post_r1e_blocking_effect": "does not block R1 completion or R2 doctrine-drift review; blocks implementation until explicit later gate",
       "decision": "accepted_as_classified_deferred_substrate",
       "ledger_disposition": "accepted_deferred_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0007",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+        },
+        {
+          "evidence_id": "SRC-0009",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md"
+        },
+        {
+          "evidence_id": "SRC-0022",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md"
+        },
+        {
+          "evidence_id": "SRC-0255",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+        }
+      ]
     },
     {
       "decision_id": "R1E-DEC-SUB-003",
@@ -433,7 +510,29 @@
       "current_post_r1e_blocking_effect": "does not block R1 completion or R2 doctrine-drift review; blocks implementation until explicit later gate",
       "decision": "accepted_as_classified_deferred_substrate",
       "ledger_disposition": "accepted_deferred_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0004",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md"
+        },
+        {
+          "evidence_id": "SRC-0005",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md"
+        },
+        {
+          "evidence_id": "SRC-0007",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md"
+        },
+        {
+          "evidence_id": "SRC-0012",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md"
+        }
+      ]
     },
     {
       "decision_id": "R1E-DEC-SUB-004",
@@ -459,7 +558,14 @@
       "current_post_r1e_blocking_effect": "does not block R1 completion or R2 doctrine-drift review; blocks implementation until explicit later gate",
       "decision": "accepted_as_classified_deferred_substrate",
       "ledger_disposition": "accepted_deferred_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0008",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md"
+        }
+      ]
     },
     {
       "decision_id": "R1E-DEC-SUB-005",
@@ -497,7 +603,34 @@
       "current_post_r1e_blocking_effect": "does not block R1 completion or R2 doctrine-drift review; blocks implementation until explicit later gate",
       "decision": "accepted_as_classified_deferred_substrate",
       "ledger_disposition": "accepted_deferred_by_r1e",
-      "result": "pass"
+      "result": "pass",
+      "exact_evidence_locators": [
+        {
+          "evidence_id": "SRC-0082",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md"
+        },
+        {
+          "evidence_id": "SRC-0125",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md"
+        },
+        {
+          "evidence_id": "SRC-0152",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md"
+        },
+        {
+          "evidence_id": "SRC-0207",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md"
+        },
+        {
+          "evidence_id": "SRC-0255",
+          "path_kind": "materialized_normalized_file",
+          "path": "working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md"
+        }
+      ]
     }
   ],
   "result": "pass"
