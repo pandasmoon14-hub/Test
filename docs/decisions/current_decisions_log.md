@@ -4267,3 +4267,13 @@ Unblocks later PR-9E transaction preview packet bridge but does not implement PR
 ### 2026-07-29 R1E review hardening amendment
 
 PR #339 review hardening replaces abandoned-object absence with the correct non-ancestry rule; reconstructs structured edge owners and R1B bindings; executes field-specific comparators for every real R1D projection; resolves materialized and archive-member evidence locators; calculates thirteen relationship-specific consistency checks; and replaces generic donor routing with construct-level dispositions. The R1E PASS, gate posture, and nonauthority boundary are unchanged.
+
+## 2026-07-30 decision — AFQR R2-0 continuity research assimilation
+
+- **Decision ID:** `AFQR-R2-0-CONTINUITY-RESEARCH-ASSIMILATION-001`
+- **Received baseline:** `dbecb91cb42c665f586b644b3f359f29bcef91a3`; this is the local receipt containing merged PR #340 and descending from accepted R1 baseline `bbc9d58cb23f1616327f73294def6ec42055a324`. No `origin` remote was configured, so a network fetch was not possible; abandoned PR #338 history was not used.
+- **Sources and claims:** Exactly five external raw-source identities are registered through the retained compact intake packet; exactly thirty normalized claims cover CF-01–CF-13. The raw reports remain outside the repository.
+- **Primary routing counts:** 3 already governed by R1; 5 partial R2 qualifications; 7 new R2 candidates; 1 R3 obligation; 2 R4 obligations; 1 R5 obligation; 3 evaluations; 2 later GM-adapter inputs; 3 deferred frontiers; and 3 rejected-overengineering claims.
+- **Decision:** `PASS`. Every material intake claim has one primary route and lawful owner analysis; ten owner/representation questions remain explicit for later adjudication.
+- **Gate:** R1 remains complete. R2 is active and incomplete. R2-0 is complete. R2A is ready and next. R2B and R2C remain blocked. R3–R6 remain blocked. RT-002G and temporary evidence deletion remain unauthorized.
+- **Nonauthority:** Research consensus is pressure, not doctrine. No continuity doctrine, canon, conversion, production schema, runtime substrate or retrofit, model/narration/UI/live-play behavior, training use, GM-adapter work, RT-002G work, or evidence deletion is authorized.

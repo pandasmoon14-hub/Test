@@ -1,0 +1,2904 @@
+{
+  "artifact_id": "AFQR-R2-CLAIM-OWNER-ROUTING-LEDGER-001",
+  "status": "review",
+  "phase": "R2-0",
+  "authority": "tracking_review_only; no claim is current doctrine",
+  "controlled_claim_families": [
+    "CF-01",
+    "CF-02",
+    "CF-03",
+    "CF-04",
+    "CF-05",
+    "CF-06",
+    "CF-07",
+    "CF-08",
+    "CF-09",
+    "CF-10",
+    "CF-11",
+    "CF-12",
+    "CF-13"
+  ],
+  "controlled_primary_outcomes": [
+    "already_governed_by_r1",
+    "partially_governed_r2_qualification_needed",
+    "r2_new_doctrine_candidate",
+    "r2_drift_audit_input",
+    "r3_conformance_obligation",
+    "r4_runtime_substrate_obligation",
+    "r5_runtime_retrofit_obligation",
+    "later_conversion_or_canon_review",
+    "later_gm_adapter_input",
+    "evaluation_or_benchmark_input",
+    "deferred_frontier",
+    "rejected_as_overengineered",
+    "rejected_as_donor_specific",
+    "rejected_as_unsupported",
+    "escalated_owner_question"
+  ],
+  "controlled_target_work_packages": [
+    "R2A",
+    "R2B-CORE",
+    "R2B-AGENCY",
+    "R2B-WORLD",
+    "R2B-CONTINUITY",
+    "R2B-CROSS-PHASE",
+    "R2C",
+    "R3",
+    "R4",
+    "R5",
+    "later",
+    "none"
+  ],
+  "claims": [
+    {
+      "claim_id": "R2-CLAIM-0001",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "An authoritative world history needs stable timeline identity.",
+      "claim_kind": "architecture",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-001",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-001",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-001",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-001",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-08"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-08"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0002",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "A timeline may have at most one active canonical branch; canon selection is not mechanical merging.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-002",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-002",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-002",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-002",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-04"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0003",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "Canonical, replay, correction, migration, hypothetical, debug, archived, quarantined, and alternate histories require governed branch classes and ancestry.",
+      "claim_kind": "architecture",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-003",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-003",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-003",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-003",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-08",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0004",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "An uncommitted preview remains a proposal unless explicitly persisted as a governed branch.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-004",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-004",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-004",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-004",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CORE",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0005",
+      "claim_family_id": "CF-02",
+      "normalized_claim": "World-valid time and record or commitment time are distinct semantics.",
+      "claim_kind": "architecture",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-005",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-005",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-005",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-005",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-04"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0006",
+      "claim_family_id": "CF-03",
+      "normalized_claim": "Causal parentage, enabling conditions, scheduling, cancellation, and downstream revalidation cannot be inferred from timestamps alone.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-006",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-006",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-006",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-006",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "already_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "already_governed_by_r1",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0007",
+      "claim_family_id": "CF-04",
+      "normalized_claim": "Committed history is audit-preserving; correction uses explicit compensation, supersession, or retcon records rather than silent mutation.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-007",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-007",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-007",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-007",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0008",
+      "claim_family_id": "CF-04",
+      "normalized_claim": "Metadata repair, provenance repair, arithmetic correction, compensation, supersession, soft retcon, hard retcon, canon revision, and alternate-timeline creation require distinct authority rules.",
+      "claim_kind": "architecture",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-008",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-008",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-008",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-008",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0009",
+      "claim_family_id": "CF-04",
+      "normalized_claim": "A correction cannot silently reroll a committed RNG result; replacement resolution has distinct identity and preserves original audit.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-009",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-009",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-009",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-009",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-009",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CORE",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0010",
+      "claim_family_id": "CF-05",
+      "normalized_claim": "Historical resolution pins ruleset, content-package, campaign-override, and schema versions and does not silently replay under latest versions.",
+      "claim_kind": "architecture",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-010",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-010",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-010",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-010",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-010",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CROSS-PHASE",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0011",
+      "claim_family_id": "CF-08",
+      "normalized_claim": "Session closure identifies committed ranges, hashes, versions, valid intervals, pending work, knowledge deltas, recap inputs, and replay frontier.",
+      "claim_kind": "schema_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-011",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-011",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-011",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-011",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-011",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-10"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-10"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0012",
+      "claim_family_id": "CF-07",
+      "normalized_claim": "Branch identity and disclosure frontier constrain projections, recaps, and context packets; noncanonical facts are excluded by default.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-012",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-012",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-012",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-012",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-012",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-10",
+        "supporting_owners": [
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0013",
+      "claim_family_id": "CF-07",
+      "normalized_claim": "World truth, evidence, observation, knowledge, belief, player discovery, and model-visible context remain distinct through correction and replay.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-013",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-013",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-013",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-013",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "already_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-06",
+          "AFQR-10",
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "already_governed_by_r1",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0014",
+      "claim_family_id": "CF-06",
+      "normalized_claim": "Stale commands require expected-version arbitration and scarce unique resources require bounded reservations with expiry and settlement.",
+      "claim_kind": "runtime_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-014",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-014",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-014",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-014",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-07",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-07",
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r5_runtime_retrofit_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R5",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0015",
+      "claim_family_id": "CF-06",
+      "normalized_claim": "Durable command status, idempotency, duplicate suppression, reservation state, and publication receipts prevent duplicate commitment after crashes.",
+      "claim_kind": "runtime_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-015",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-015",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-015",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-015",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "r4_runtime_substrate_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R4",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0016",
+      "claim_family_id": "CF-09",
+      "normalized_claim": "Offline progression uses scheduled events, bounded aggregate ticks, region scope, or lazy catch-up rather than continuous inactive-entity simulation.",
+      "claim_kind": "staging",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-016",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-016",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-016",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-016",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-17"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-17"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "deferred_frontier",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0017",
+      "claim_family_id": "CF-10",
+      "normalized_claim": "Replay mismatch, corruption, missing packages, invalid causal parents, incomplete migration, or branch-pointer corruption quarantines affected canonical mutation and preserves forensic evidence.",
+      "claim_kind": "runtime_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-017",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-017",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-017",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-017",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-04",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "r4_runtime_substrate_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R4",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0018",
+      "claim_family_id": "CF-11",
+      "normalized_claim": "Deterministic play evaluation must exercise explicit entry into combat, contest, downtime, travel, research, and recovery procedures.",
+      "claim_kind": "evaluation_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-018",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-02",
+        "supporting_owners": [
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "evaluation_or_benchmark_input",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0019",
+      "claim_family_id": "CF-11",
+      "normalized_claim": "Evaluation must represent binary, opposed, banded, success-with-cost, question, follow-up-choice, and source-local procedures without universalizing donor grammar.",
+      "claim_kind": "evaluation_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-019",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-19",
+        "supporting_owners": [],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "evaluation_or_benchmark_input",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0020",
+      "claim_family_id": "CF-11",
+      "normalized_claim": "Persistent-play conformance must preserve typed and provenance-aware resource, condition, injury, recovery, and defeat transitions under their domain owners.",
+      "claim_kind": "evaluation_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-020",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-07",
+        "AFQR-16",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-07",
+          "AFQR-16",
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "r3_conformance_obligation",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "R3",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0021",
+      "claim_family_id": "CF-05",
+      "normalized_claim": "House rules and source-local procedures need identifiers, authority, effective intervals, and historical replay behavior.",
+      "claim_kind": "architecture",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-021",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-021",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-021",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-021",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-021",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-09",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-09",
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CROSS-PHASE",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0022",
+      "claim_family_id": "CF-12",
+      "normalized_claim": "Recap and restart adapters consume session closure and safe projections, never raw truth or transcript as authority.",
+      "claim_kind": "play_adapter_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-022",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-022",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-022",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-022",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-022",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-10",
+        "supporting_owners": [
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "later_gm_adapter_input",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0023",
+      "claim_family_id": "CF-10",
+      "normalized_claim": "Benchmarks hard-fail silent mutation, wrong-version replay, branch leakage, duplicate scarcity, unauthorized retcon, stale commitment, preview contamination, incomplete closure, and unquarantined divergence.",
+      "claim_kind": "evaluation_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-023",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-023",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-023",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-023",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-04"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "evaluation_or_benchmark_input",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0024",
+      "claim_family_id": "CF-12",
+      "normalized_claim": "Storage, journaling, replay, branching, commitment, and handoff preserve but never acquire substantive semantic ownership.",
+      "claim_kind": "doctrine_boundary",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-024",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-024",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-024",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-024",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "already_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-06",
+          "AFQR-10"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "already_governed_by_r1",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0025",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "CRDT-first canon, multi-master world truth, and automatic canonical branch merging are rejected for the single-authority model.",
+      "claim_kind": "rejection",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-025",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-025",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-025",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-025",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-01"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "rejected_as_overengineered",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Retain the explicit rejection rationale and test the prohibited architecture.",
+      "rejection_rationale": "Rejected because it adds infrastructure or donor law without current Astra need or authority.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0026",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "Continuous universal simulation of every inactive entity is rejected as unnecessary and poorly auditable.",
+      "claim_kind": "rejection",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-026",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-026",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-026",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-026",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-026",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-17"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-17"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "rejected_as_overengineered",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Retain the explicit rejection rationale and test the prohibited architecture.",
+      "rejection_rationale": "Rejected because it adds infrastructure or donor law without current Astra need or authority.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0027",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "Graph-shaped causality does not justify a mandatory graph database absent demonstrated query pressure.",
+      "claim_kind": "rejection",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-027",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-027",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-027",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-027",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "rejected_as_overengineered",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Retain the explicit rejection rationale and test the prohibited architecture.",
+      "rejection_rationale": "Rejected because it adds infrastructure or donor law without current Astra need or authority.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0028",
+      "claim_family_id": "CF-02",
+      "normalized_claim": "Actor-local time, regional or planar transforms, cryosleep, and dilation remain compatibility frontiers rather than current implementation scope.",
+      "claim_kind": "staging",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-028",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-028",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-028",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-028",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "deferred_frontier",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0029",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "Alternate-world gameplay, cross-reality identity, and time travel remain deferred until explicitly authorized need.",
+      "claim_kind": "staging",
+      "source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-029",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-029",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-029",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-029",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-08"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [
+          "AFQR-08"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "primary_outcome": "deferred_frontier",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    },
+    {
+      "claim_id": "R2-CLAIM-0030",
+      "claim_family_id": "CF-12",
+      "normalized_claim": "Actual-play evidence is retained for a later GM adapter covering arbitration, clarification, pacing, interruption, recap, and observability after doctrine and runtime authority settle.",
+      "claim_kind": "play_adapter_pressure",
+      "source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "locator": {
+            "heading": "Normalized claim candidates",
+            "subheading": "R2-INTAKE-CLAIM-030",
+            "line_start": null,
+            "line_end": null
+          },
+          "support_kind": "direct"
+        }
+      ],
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Compared against accepted R1 owner and invariant boundaries; research adds pressure only and does not amend R1."
+      },
+      "afqr_ids": [
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-02",
+        "supporting_owners": [
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null
+      },
+      "primary_outcome": "later_gm_adapter_input",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Consume this routed pressure in the named work package without adopting doctrine or implementation in R2-0.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed"
+    }
+  ]
+}

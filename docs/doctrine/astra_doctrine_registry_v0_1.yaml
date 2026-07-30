@@ -19,6 +19,11 @@ source_inputs_fused:
 - Pasted text (5).txt
 - astra_doctrine_master_roadmap_v0_1.md
 changelog:
+- date: '2026-07-30'
+  version: 0.1.115
+  action: afqr_r2_0_continuity_research_assimilation
+  actor: Astra Doctrine Council / consolidation assistant
+  note: 'Registers five external research-source identities and routes thirty normalized claims without doctrine adoption or implementation. R2-0 complete; R2 active/incomplete; R2A ready/next; R2B–R6 blocked; RT-002G and temporary evidence deletion unauthorized.'
 - date: '2026-07-24'
   version: 0.1.114
   action: afqr_r1c_cross_invariant_dependency_contract
@@ -15080,3 +15085,54 @@ file_records:
   purpose: Deterministic per-field comparisons for every applicable R1D-WORLD projection.
   authority_level: tracking_review_only
   authority_note: Comparison proof only; no replacement doctrine or implementation authority.
+- file_id: AFQR-R2-RESEARCH-SOURCE-MANIFEST-001
+  title: AFQR R2 Continuity Research Source Manifest
+  filename: afqr_r2_continuity_research_source_manifest.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R2-0
+  owner: R2-0 research assimilation
+  purpose: Track five external nonauthoritative research sources without retaining raw reports.
+  authority_level: tracking_review_only
+  authority_note: Research identification only; no doctrine, canon, schema, runtime, model, or live-play authority.
+- file_id: AFQR-R2-CLAIM-OWNER-ROUTING-LEDGER-001
+  title: AFQR R2 Continuity Claim and Owner Routing Ledger
+  filename: afqr_r2_continuity_claim_and_owner_routing_ledger.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R2-0
+  owner: R2-0 research assimilation
+  purpose: Normalize and route research pressure against accepted R1 ownership.
+  authority_level: tracking_review_only
+- file_id: AFQR-R2-RESEARCH-ASSIMILATION-REPORT-001
+  title: AFQR R2 Continuity Research Assimilation Report
+  filename: afqr_r2_continuity_research_assimilation_report.md
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R2-0
+  owner: R2-0 research assimilation
+  purpose: Record the compact R2-0 PASS and exact gate effect.
+  authority_level: tracking_review_only
+- file_id: AFQR-R2-DRIFT-RESOLUTION-PLAN-001
+  title: AFQR R2 Doctrine-Drift Resolution Control Plan
+  filename: afqr_r2_doctrine_drift_resolution_plan.md
+  proposed_path: docs/doctrine/control/
+  status: review
+  layer: 0_control
+  phase: R2-0
+  owner: Astra Doctrine Council
+  purpose: Bound R2A, candidate modular R2B packages, and R2C sequencing.
+  authority_level: tracking_review_only
+- file_id: AFQR-R2-DRIFT-FILE-MANIFEST-001
+  title: AFQR R2 Doctrine-Drift File Manifest
+  filename: afqr_r2_doctrine_drift_file_manifest.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review
+  layer: 0_control
+  phase: R2-0
+  owner: R2-0 research assimilation
+  purpose: Register completed R2-0 outputs and planned R2A/R2B/R2C families.
+  authority_level: tracking_review_only

@@ -1,0 +1,335 @@
+{
+  "artifact_id": "AFQR-R2-DRIFT-FILE-MANIFEST-001",
+  "status": "review",
+  "layer": "0_control",
+  "phase": "R2-0",
+  "authority": "tracking_review_only",
+  "artifacts": [
+    {
+      "phase": "R2-0",
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml",
+      "owner": "R2-0",
+      "purpose": "Register five external research sources",
+      "inputs": [
+        "intake packet"
+      ],
+      "outputs": [
+        "source metadata and claim links"
+      ],
+      "must_not_own": [
+        "raw research",
+        "doctrine",
+        "runtime"
+      ],
+      "dependencies": [
+        "accepted R1 and intake packet"
+      ],
+      "gate_prerequisites": [
+        "received intake packet"
+      ],
+      "corpus_scale_pressure": [
+        "five-source coverage"
+      ],
+      "outlier_escalation_path": "R2A owner review",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2-0",
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "owner": "R2-0",
+      "purpose": "Normalize and route claims",
+      "inputs": [
+        "source manifest and accepted R1"
+      ],
+      "outputs": [
+        "thirty owner-routed claims"
+      ],
+      "must_not_own": [
+        "doctrine adoption",
+        "implementation"
+      ],
+      "dependencies": [
+        "source manifest and R1 contracts"
+      ],
+      "gate_prerequisites": [
+        "all sources routed"
+      ],
+      "corpus_scale_pressure": [
+        "mandatory CF-01\u2013CF-13"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2-0",
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md",
+      "owner": "R2-0",
+      "purpose": "Summarize evidence and gate effect",
+      "inputs": [
+        "source manifest and ledger"
+      ],
+      "outputs": [
+        "R2-0 PASS decision"
+      ],
+      "must_not_own": [
+        "full report reproduction",
+        "doctrine"
+      ],
+      "dependencies": [
+        "complete ledger"
+      ],
+      "gate_prerequisites": [
+        "tests pass"
+      ],
+      "corpus_scale_pressure": [
+        "consensus and disagreements"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2-0",
+      "path": "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+      "owner": "Astra Doctrine Council",
+      "purpose": "Control bounded R2 sequence",
+      "inputs": [
+        "R1E gate and R2-0 ledger"
+      ],
+      "outputs": [
+        "R2A/R2B/R2C boundaries"
+      ],
+      "must_not_own": [
+        "substantive doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R1 complete and R2 ready"
+      ],
+      "gate_prerequisites": [
+        "R2-0 PASS"
+      ],
+      "corpus_scale_pressure": [
+        "corpus-scale drift inventory"
+      ],
+      "outlier_escalation_path": "Council adjudication",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory.yaml",
+      "owner": "R2A",
+      "purpose": "Inventory current authority surfaces",
+      "inputs": [
+        "R2-0 ledger and repository"
+      ],
+      "outputs": [
+        "authority-surface records"
+      ],
+      "must_not_own": [
+        "doctrine adoption",
+        "conformance",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 PASS"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "whole repository plus narrow fixtures"
+      ],
+      "outlier_escalation_path": "route owner conflicts to R2B/Council",
+      "current_status": "planned"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_doctrine_drift_routing.yaml",
+      "owner": "R2A",
+      "purpose": "Classify and route drift findings",
+      "inputs": [
+        "authority-surface inventory"
+      ],
+      "outputs": [
+        "exact R2B/R3/R4/R5/later routes"
+      ],
+      "must_not_own": [
+        "doctrine adoption",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2A inventory"
+      ],
+      "gate_prerequisites": [
+        "complete inventory"
+      ],
+      "corpus_scale_pressure": [
+        "all authority surfaces"
+      ],
+      "outlier_escalation_path": "Council for unresolved owner",
+      "current_status": "planned"
+    },
+    {
+      "phase": "R2B",
+      "path": "docs/doctrine/consolidation/afqr_r2b_core_resolution.md",
+      "owner": "R2B-CORE",
+      "purpose": "Resolve required core drift only",
+      "inputs": [
+        "R2A routed findings"
+      ],
+      "outputs": [
+        "modular doctrine decisions"
+      ],
+      "must_not_own": [
+        "runtime",
+        "other family semantics"
+      ],
+      "dependencies": [
+        "R2A complete"
+      ],
+      "gate_prerequisites": [
+        "package proven necessary"
+      ],
+      "corpus_scale_pressure": [
+        "transaction and identity outliers"
+      ],
+      "outlier_escalation_path": "R2C or Council",
+      "current_status": "candidate"
+    },
+    {
+      "phase": "R2B",
+      "path": "docs/doctrine/consolidation/afqr_r2b_agency_resolution.md",
+      "owner": "R2B-AGENCY",
+      "purpose": "Resolve required agency drift only",
+      "inputs": [
+        "R2A routed findings"
+      ],
+      "outputs": [
+        "modular doctrine decisions"
+      ],
+      "must_not_own": [
+        "world/core semantics",
+        "runtime"
+      ],
+      "dependencies": [
+        "R2A complete"
+      ],
+      "gate_prerequisites": [
+        "package proven necessary"
+      ],
+      "corpus_scale_pressure": [
+        "epistemic/social outliers"
+      ],
+      "outlier_escalation_path": "R2C or Council",
+      "current_status": "candidate"
+    },
+    {
+      "phase": "R2B",
+      "path": "docs/doctrine/consolidation/afqr_r2b_world_resolution.md",
+      "owner": "R2B-WORLD",
+      "purpose": "Resolve required world drift only",
+      "inputs": [
+        "R2A routed findings"
+      ],
+      "outputs": [
+        "modular doctrine decisions"
+      ],
+      "must_not_own": [
+        "core/agency semantics",
+        "runtime"
+      ],
+      "dependencies": [
+        "R2A complete"
+      ],
+      "gate_prerequisites": [
+        "package proven necessary"
+      ],
+      "corpus_scale_pressure": [
+        "world/action/sensing outliers"
+      ],
+      "outlier_escalation_path": "R2C or Council",
+      "current_status": "candidate"
+    },
+    {
+      "phase": "R2B",
+      "path": "docs/doctrine/consolidation/afqr_r2b_continuity_resolution_index.md",
+      "owner": "R2B-CONTINUITY",
+      "purpose": "Index only necessary continuity modules",
+      "inputs": [
+        "R2A routed findings"
+      ],
+      "outputs": [
+        "separate temporal, branch, correction, version, closure, projection decisions"
+      ],
+      "must_not_own": [
+        "combined owner",
+        "runtime schema"
+      ],
+      "dependencies": [
+        "R2A complete"
+      ],
+      "gate_prerequisites": [
+        "package and modules proven necessary"
+      ],
+      "corpus_scale_pressure": [
+        "split-party, retcon, replay, recap"
+      ],
+      "outlier_escalation_path": "Council owner adjudication",
+      "current_status": "candidate"
+    },
+    {
+      "phase": "R2B",
+      "path": "docs/doctrine/consolidation/afqr_r2b_cross_phase_resolution.md",
+      "owner": "R2B-CROSS-PHASE",
+      "purpose": "Resolve cross-phase drift only",
+      "inputs": [
+        "R2A routed findings"
+      ],
+      "outputs": [
+        "bounded handoff decisions"
+      ],
+      "must_not_own": [
+        "implementation",
+        "conversion/canon promotion"
+      ],
+      "dependencies": [
+        "R2A complete"
+      ],
+      "gate_prerequisites": [
+        "package proven necessary"
+      ],
+      "corpus_scale_pressure": [
+        "version and handoff outliers"
+      ],
+      "outlier_escalation_path": "R2C or Council",
+      "current_status": "candidate"
+    },
+    {
+      "phase": "R2C",
+      "path": "docs/doctrine/reviews/afqr_r2c_formal_completion_review.md",
+      "owner": "R2C",
+      "purpose": "Verify R2 closure",
+      "inputs": [
+        "R2A and required R2B outputs"
+      ],
+      "outputs": [
+        "completion decision and R3 target"
+      ],
+      "must_not_own": [
+        "runtime authority",
+        "historical rewrite"
+      ],
+      "dependencies": [
+        "R2A and required R2B complete"
+      ],
+      "gate_prerequisites": [
+        "all findings resolved/deferred"
+      ],
+      "corpus_scale_pressure": [
+        "all routed claims and corpus cases"
+      ],
+      "outlier_escalation_path": "Council blocks completion",
+      "current_status": "planned"
+    }
+  ]
+}
