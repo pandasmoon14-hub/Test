@@ -5,7 +5,7 @@ from pathlib import Path
 import pytest
 sys.path.insert(0,str(Path(__file__).parent))
 from afqr_r1e_semantic_helpers import *
-BASE="017984a1598b9c60324c62e54d80372c364654ae"; ABANDONED="50c0320acd1a9a075cba18e1309dd3d15ac5c44d"
+BASE="017984a1598b9c60324c62e54d80372c364654ae"; ACCEPTED_R1_HEAD="bbc9d58cb23f1616327f73294def6ec42055a324"; ABANDONED="50c0320acd1a9a075cba18e1309dd3d15ac5c44d"
 CERT="docs/doctrine/reviews/afqr_01_20_formal_completion_review.md"
 SUPPORT=["docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml","docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml","docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml","docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml"]
 SHARDS=["docs/doctrine/reviews/afqr_r1e_core_projection_field_comparisons.yaml","docs/doctrine/reviews/afqr_r1e_agency_projection_field_comparisons.yaml","docs/doctrine/reviews/afqr_r1e_world_projection_field_comparisons.yaml"]
@@ -32,10 +32,10 @@ def test_clean_origin_uses_nonancestry_not_object_absence():
 
 def test_committed_diff_is_exact_text_only_nondeleting_scope():
     expected={CERT,*SUPPORT,*SHARDS,"tests/afqr_r1e_semantic_helpers.py","tests/test_afqr_r1e_formal_completion_review.py","tests/test_afqr_r1d_core_transaction_identity_relation.py","tests/test_afqr_r1d_agency_epistemic_social_communication.py","tests/test_afqr_r1d_world_action_sensing.py","docs/decisions/current_decisions_log.md","docs/doctrine/astra_doctrine_registry_v0_1.yaml","docs/doctrine/control/afqr_01_20_consolidation_program_plan.md","docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml","docs/doctrine/reviews/afqr_r1b_unresolved_term_escalation_ledger.yaml","docs/doctrine/reviews/afqr_r1c_unresolved_dependency_escalation_ledger.yaml"}
-    changed=set(subprocess.check_output(["git","diff","--name-only",BASE],text=True).splitlines())|{x[3:] for x in subprocess.check_output(["git","status","--porcelain"],text=True).splitlines() if x.startswith("?? ")}; assert changed==expected
-    assert subprocess.run(["git","diff","--check",f"{BASE}...HEAD"],capture_output=True).returncode==0
-    numstat=subprocess.check_output(["git","diff","--numstat",BASE],text=True); assert "-\t-\t" not in numstat
-    assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",BASE],text=True).strip()
+    changed=set(subprocess.check_output(["git","diff","--name-only",f"{BASE}...{ACCEPTED_R1_HEAD}"],text=True).splitlines()); assert changed==expected
+    assert subprocess.run(["git","diff","--check",f"{BASE}...{ACCEPTED_R1_HEAD}"],capture_output=True).returncode==0
+    numstat=subprocess.check_output(["git","diff","--numstat",f"{BASE}...{ACCEPTED_R1_HEAD}"],text=True); assert "-\t-\t" not in numstat
+    assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",f"{BASE}...{ACCEPTED_R1_HEAD}"],text=True).strip()
     forbidden=("working/afqr_consolidation_inputs/","src/","schemas/","conversion/","canon/","/r2","rt_002g")
     assert not [x for x in changed if any(token in x.lower() for token in forbidden) or x.lower().endswith((".zip",".pdf",".png",".jpg"))]
 

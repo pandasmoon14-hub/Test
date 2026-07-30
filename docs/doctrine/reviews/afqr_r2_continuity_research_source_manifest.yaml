@@ -1,0 +1,304 @@
+{
+  "artifact_id": "AFQR-R2-RESEARCH-SOURCE-MANIFEST-001",
+  "status": "review",
+  "phase": "R2-0",
+  "authority": "nonauthoritative_research_evidence",
+  "intake_packet": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+  "sources": [
+    {
+      "source_id": "R2-RES-ACTUALPLAY-001",
+      "original_filename": "dont lose KEEP1.md",
+      "document_title": "Deterministic Backend Patterns in Long-Form Actual-Play Transcript Corpora",
+      "sha256": "323ac599df66c5d0db649299fcb68c6f0bbd54ee0cd4166f37e9ab05b1bcc1ea",
+      "byte_size": 34007,
+      "line_count": 140,
+      "research_family": "actual_play_deterministic_patterns",
+      "authority_posture": "nonauthoritative_research_evidence",
+      "repository_resident_raw_source": false,
+      "session_repository_access_status": {
+        "repository_inspected": false,
+        "current_relevance": "historical_limitation_only"
+      },
+      "primary_contribution": "Explicit procedure, ledger, serialization, projection, and live-play evaluation pressure.",
+      "unique_contributions": [
+        "explicit scene and procedure-mode transitions",
+        "multiple donor-neutral resolution grammars",
+        "resource, condition, injury, and defeat ledgers",
+        "session serialization and visible-safe recap pressure",
+        "later GM-adapter observations about arbitration, pacing, and interruption"
+      ],
+      "overlap_clusters": [
+        "deterministic_state_and_serialization"
+      ],
+      "known_limitations": [
+        "Raw report is external; intake packet is the compact source-identification transfer.",
+        "Session-local citation tokens are provenance clues only."
+      ],
+      "embedded_external_citations": {
+        "status": "provenance_clues_not_repository_authority"
+      },
+      "claim_ids": [
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0018",
+        "R2-CLAIM-0019",
+        "R2-CLAIM-0020",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0026",
+        "R2-CLAIM-0030"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
+    },
+    {
+      "source_id": "R2-RES-CONTINUITY-001",
+      "original_filename": "dont lose KEEP2md.md",
+      "document_title": "Astra Ascension Branch-Aware Continuity, Retcon Governance, and Parallel World-State Synchronization",
+      "sha256": "f009f74e0ffe128dbf0e5cbee4ca11140175ec8c7927f8242358851e05d32a96",
+      "byte_size": 113738,
+      "line_count": 942,
+      "research_family": "branch_aware_continuity",
+      "authority_posture": "nonauthoritative_research_evidence",
+      "repository_resident_raw_source": false,
+      "session_repository_access_status": {
+        "repository_inspected": false,
+        "current_relevance": "historical_limitation_only"
+      },
+      "primary_contribution": "Engineering-heavy concurrency, reservations, recovery, and local-first continuity architecture.",
+      "unique_contributions": [
+        "optimistic concurrency and expected-version checks",
+        "short-lived reservations for unique resources",
+        "idempotency, duplicate suppression, and crash recovery",
+        "local-first rejection of CRDT-first canon and multi-master truth"
+      ],
+      "overlap_clusters": [
+        "branch_time_correction_replay"
+      ],
+      "known_limitations": [
+        "Raw report is external; intake packet is the compact source-identification transfer.",
+        "Session-local citation tokens are provenance clues only."
+      ],
+      "embedded_external_citations": {
+        "status": "provenance_clues_not_repository_authority"
+      },
+      "claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0006",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0025",
+        "R2-CLAIM-0026",
+        "R2-CLAIM-0027",
+        "R2-CLAIM-0028",
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
+    },
+    {
+      "source_id": "R2-RES-CONTINUITY-002",
+      "original_filename": "dont lose KEEP3 (1).md",
+      "document_title": "Astra Ascension Branch-Aware Continuity and Retcon Governance",
+      "sha256": "789f1da10fa8d3f9e562b82f049236df17a2006931f26d7bd7a4779ba818e9ac",
+      "byte_size": 98886,
+      "line_count": 891,
+      "research_family": "branch_aware_continuity",
+      "authority_posture": "nonauthoritative_research_evidence",
+      "repository_resident_raw_source": false,
+      "session_repository_access_status": {
+        "repository_inspected": false,
+        "current_relevance": "historical_limitation_only"
+      },
+      "primary_contribution": "Branch and retcon governance, state-machine sketches, adversarial cases, and roadmap.",
+      "unique_contributions": [
+        "branch and retcon severity taxonomies",
+        "adversarial continuity and hard-fail benchmark cases",
+        "state-machine sketches for branches, corrections, migrations, and stale commands",
+        "decisions-now versus decisions-later roadmap staging"
+      ],
+      "overlap_clusters": [
+        "branch_time_correction_replay"
+      ],
+      "known_limitations": [
+        "Raw report is external; intake packet is the compact source-identification transfer.",
+        "Session-local citation tokens are provenance clues only."
+      ],
+      "embedded_external_citations": {
+        "status": "provenance_clues_not_repository_authority"
+      },
+      "claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0006",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0025",
+        "R2-CLAIM-0026",
+        "R2-CLAIM-0027",
+        "R2-CLAIM-0028",
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
+    },
+    {
+      "source_id": "R2-RES-CONTINUITY-003",
+      "original_filename": "dont lose KEEP4.md",
+      "document_title": "Astra Ascension Branch-Aware Continuity, Retcon Governance, and Parallel World-State Synchronization",
+      "sha256": "714274a74d63532f268a8e39f7496fc395f2335351c3d70efdc0ba3ddcb56d6b",
+      "byte_size": 81818,
+      "line_count": 492,
+      "research_family": "branch_aware_continuity",
+      "authority_posture": "nonauthoritative_research_evidence",
+      "repository_resident_raw_source": false,
+      "session_repository_access_status": {
+        "repository_inspected": false,
+        "current_relevance": "historical_limitation_only"
+      },
+      "primary_contribution": "Epistemic, projection-security, disclosure-time, session, and organized-play integration.",
+      "unique_contributions": [
+        "epistemic and disclosure-time integration",
+        "branch-safe projection and context-packet security",
+        "session closure as spoiler-safe recap input",
+        "organized-play and troupe-play continuity pressure"
+      ],
+      "overlap_clusters": [
+        "branch_time_correction_replay"
+      ],
+      "known_limitations": [
+        "Raw report is external; intake packet is the compact source-identification transfer.",
+        "Session-local citation tokens are provenance clues only."
+      ],
+      "embedded_external_citations": {
+        "status": "provenance_clues_not_repository_authority"
+      },
+      "claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0006",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0025",
+        "R2-CLAIM-0026",
+        "R2-CLAIM-0027",
+        "R2-CLAIM-0028",
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
+    },
+    {
+      "source_id": "R2-RES-CONTINUITY-004",
+      "original_filename": "dont lose KEEP5.md",
+      "document_title": "Astra Ascension Branch-Aware World Continuity Report",
+      "sha256": "ca6d60bcfb605da437d737d341e47a73ebdaef00ece4627a813f09e0e2a3ce3a",
+      "byte_size": 72000,
+      "line_count": 593,
+      "research_family": "branch_aware_continuity",
+      "authority_posture": "nonauthoritative_research_evidence",
+      "repository_resident_raw_source": false,
+      "session_repository_access_status": {
+        "repository_inspected": false,
+        "current_relevance": "historical_limitation_only"
+      },
+      "primary_contribution": "Minimal architectural spine, ownership modularity, and staged alternate-world support.",
+      "unique_contributions": [
+        "minimal durable continuity architecture",
+        "modular doctrine and file-ownership recommendations",
+        "core-now versus later staging",
+        "alternate-world and multiverse deferral"
+      ],
+      "overlap_clusters": [
+        "branch_time_correction_replay"
+      ],
+      "known_limitations": [
+        "Raw report is external; intake packet is the compact source-identification transfer.",
+        "Session-local citation tokens are provenance clues only."
+      ],
+      "embedded_external_citations": {
+        "status": "provenance_clues_not_repository_authority"
+      },
+      "claim_ids": [
+        "R2-CLAIM-0001",
+        "R2-CLAIM-0002",
+        "R2-CLAIM-0003",
+        "R2-CLAIM-0004",
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0006",
+        "R2-CLAIM-0007",
+        "R2-CLAIM-0008",
+        "R2-CLAIM-0009",
+        "R2-CLAIM-0010",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0014",
+        "R2-CLAIM-0015",
+        "R2-CLAIM-0016",
+        "R2-CLAIM-0017",
+        "R2-CLAIM-0021",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0023",
+        "R2-CLAIM-0024",
+        "R2-CLAIM-0025",
+        "R2-CLAIM-0026",
+        "R2-CLAIM-0027",
+        "R2-CLAIM-0028",
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
+    }
+  ]
+}

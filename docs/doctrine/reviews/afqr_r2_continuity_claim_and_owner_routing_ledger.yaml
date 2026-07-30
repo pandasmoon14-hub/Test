@@ -1,0 +1,3080 @@
+{
+  "artifact_id": "AFQR-R2-CLAIM-OWNER-ROUTING-LEDGER-001",
+  "status": "review",
+  "phase": "R2-0",
+  "authority": "tracking_review_only; no claim is current doctrine",
+  "controlled_claim_families": [
+    "CF-01",
+    "CF-02",
+    "CF-03",
+    "CF-04",
+    "CF-05",
+    "CF-06",
+    "CF-07",
+    "CF-08",
+    "CF-09",
+    "CF-10",
+    "CF-11",
+    "CF-12",
+    "CF-13"
+  ],
+  "controlled_primary_outcomes": [
+    "already_governed_by_r1",
+    "partially_governed_r2_qualification_needed",
+    "r2_new_doctrine_candidate",
+    "r2_drift_audit_input",
+    "r3_conformance_obligation",
+    "r4_runtime_substrate_obligation",
+    "r5_runtime_retrofit_obligation",
+    "later_conversion_or_canon_review",
+    "later_gm_adapter_input",
+    "evaluation_or_benchmark_input",
+    "deferred_frontier",
+    "rejected_as_overengineered",
+    "rejected_as_donor_specific",
+    "rejected_as_unsupported",
+    "escalated_owner_question"
+  ],
+  "controlled_target_work_packages": [
+    "R2A",
+    "R2B-CORE",
+    "R2B-AGENCY",
+    "R2B-WORLD",
+    "R2B-CONTINUITY",
+    "R2B-CROSS-PHASE",
+    "R2C",
+    "R3",
+    "R4",
+    "R5",
+    "later",
+    "none"
+  ],
+  "claims": [
+    {
+      "claim_id": "R2-CLAIM-0001",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "An authoritative world history needs stable timeline identity.",
+      "claim_kind": "architecture",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04, AFQR-08 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-08"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-08"
+      ],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-08"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-08"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-001",
+          "line_start": 257,
+          "line_end": 273
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0002",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "A timeline may have at most one active canonical branch; canon selection is not mechanical merging.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-01, AFQR-04 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-04"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-04"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-04"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-002",
+          "line_start": 274,
+          "line_end": 284
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0003",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "Canonical, replay, correction, migration, hypothetical, debug, archived, quarantined, and alternate histories require governed branch classes and ancestry.",
+      "claim_kind": "architecture",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04, AFQR-08, AFQR-09 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-08",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-08",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-08",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-08",
+          "component_3": "AFQR-09"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-003",
+          "line_start": 285,
+          "line_end": 295
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0004",
+      "claim_family_id": "CF-01",
+      "normalized_claim": "An uncommitted preview remains a proposal unless explicitly persisted as a governed branch.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-01, AFQR-02 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-02"
+        }
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CORE",
+      "proposed_next_action": "R2A must verify current authority and route a proven gap to R2B-CORE; that package may decide doctrine only and must preserve donor neutrality and cross-owner seams.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-004",
+          "line_start": 296,
+          "line_end": 304
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0005",
+      "claim_family_id": "CF-02",
+      "normalized_claim": "World-valid time and record or commitment time are distinct semantics.",
+      "claim_kind": "architecture",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: TERM-005/027/028, INV-001/007, DEP-003/005/009/025, CORE-RESP-01, CORE-RESP-04, CORE-RESP-06, and AGENCY-RESP-10 preserve AFQR-04 world-valid time, AFQR-01 receipt timing, AFQR-06 claims/evidence admission/conflict/arbitration consequences where applicable, and AFQR-10 epistemic consequences. Research adds no authority. R2A must determine whether continuity doctrine needs an explicit cross-owner bitemporal qualification."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10"
+      ],
+      "r1b_term_ids": [
+        "TERM-005",
+        "TERM-027",
+        "TERM-028"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-007"
+      ],
+      "r1c_edge_ids": [
+        "DEP-003",
+        "DEP-005",
+        "DEP-009",
+        "DEP-025"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-04",
+        "CORE-RESP-06",
+        "AGENCY-RESP-10"
+      ],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-06",
+          "AFQR-10"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "world_valid_time": "AFQR-04",
+          "commitment_record_time": "AFQR-01",
+          "correction_evidence_consequences": "AFQR-06",
+          "epistemic_consequences": "AFQR-10"
+        }
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-005",
+          "line_start": 305,
+          "line_end": 319
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0006",
+      "claim_family_id": "CF-03",
+      "normalized_claim": "Causal parentage, enabling conditions, scheduling, cancellation, and downstream revalidation cannot be inferred from timestamps alone.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "already_governed",
+        "summary": "Claim-specific comparison: TERM-024/027/028, INV-001/007, DEP-028/063, and CORE-RESP-04/09 already give AFQR-04 causal order/scheduling and AFQR-09 dependency/revalidation their separate responsibilities. Research adds no authority. R2A must audit whether current surfaces drift by deriving causality from timestamps."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [
+        "TERM-024",
+        "TERM-027",
+        "TERM-028"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-007"
+      ],
+      "r1c_edge_ids": [
+        "DEP-028",
+        "DEP-063"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-09"
+        }
+      },
+      "primary_outcome": "already_governed_by_r1",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "R2A must check for drift against the cited accepted R1 records; do not restate or replace the governing R1 rule.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-006",
+          "line_start": 320,
+          "line_end": 333
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0007",
+      "claim_family_id": "CF-04",
+      "normalized_claim": "Committed history is audit-preserving; correction uses explicit compensation, supersession, or retcon records rather than silent mutation.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: TERM-003/005/024/027, INV-001/007, DEP-008/028/061, and CORE-RESP-01/04/09 govern committed receipts, temporal placement, and dependency consequences. Research adds no authority. Correction severity, supersession, and retcon authority remain continuity-specific gaps for R2A classification."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [
+        "TERM-003",
+        "TERM-005",
+        "TERM-024",
+        "TERM-027"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-007"
+      ],
+      "r1c_edge_ids": [
+        "DEP-008",
+        "DEP-028",
+        "DEP-061"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-04",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-04",
+          "component_3": "AFQR-09"
+        }
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-007",
+          "line_start": 334,
+          "line_end": 348
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0008",
+      "claim_family_id": "CF-04",
+      "normalized_claim": "Metadata repair, provenance repair, arithmetic correction, compensation, supersession, soft retcon, hard retcon, canon revision, and alternate-timeline creation require distinct authority rules.",
+      "claim_kind": "architecture",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-01, AFQR-04, AFQR-09 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-04",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-04",
+          "component_3": "AFQR-09"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-008",
+          "line_start": 349,
+          "line_end": 357
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0009",
+      "claim_family_id": "CF-04",
+      "normalized_claim": "A correction cannot silently reroll a committed RNG result; replacement resolution has distinct identity and preserves original audit.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: TERM-005/006/007, INV-001, DEP-001/021/024, CORE-RESP-01/02/04 preserve committed receipt, command identity, attempt, and replay ordering. Research adds no authority and cannot change RNG doctrine. R2A must inspect replay/correction text for silent reroll drift."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02"
+      ],
+      "r1b_term_ids": [
+        "TERM-005",
+        "TERM-006",
+        "TERM-007"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [
+        "DEP-001",
+        "DEP-021",
+        "DEP-024"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-02"
+        }
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CORE",
+      "proposed_next_action": "R2A must verify current authority and route a proven gap to R2B-CORE; that package may decide doctrine only and must preserve donor neutrality and cross-owner seams.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-009",
+          "line_start": 358,
+          "line_end": 372
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0010",
+      "claim_family_id": "CF-05",
+      "normalized_claim": "Historical resolution pins ruleset, content-package, campaign-override, and schema versions and does not silently replay under latest versions.",
+      "claim_kind": "architecture",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-01, AFQR-02, AFQR-09 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-02",
+          "component_3": "AFQR-09"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CROSS-PHASE",
+      "proposed_next_action": "R2A must verify current authority and route a proven gap to R2B-CROSS-PHASE; that package may decide doctrine only and must preserve donor neutrality and cross-owner seams.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-010",
+          "line_start": 373,
+          "line_end": 383
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0011",
+      "claim_family_id": "CF-08",
+      "normalized_claim": "Session closure identifies committed ranges, hashes, versions, valid intervals, pending work, knowledge deltas, recap inputs, and replay frontier.",
+      "claim_kind": "schema_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: CORE-RESP-01 limits AFQR-01 to the commit/closure envelope; CORE-RESP-04 gives AFQR-04 world-valid intervals and scheduled effects; CORE-RESP-07 gives AFQR-07 typed reservation and settlement where applicable; AGENCY-RESP-10 gives AFQR-10 knowledge and belief deltas; and WORLD-RESP-20 gives AFQR-20 sensing/contact deltas where applicable. Domain-state deltas remain with declared domain owners. Research adds no authority. R2A must determine closure representation without creating a combined owner."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-07",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-04",
+        "CORE-RESP-07",
+        "AGENCY-RESP-10",
+        "WORLD-RESP-20"
+      ],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-07",
+          "AFQR-10",
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership",
+          "A session-closure record is an envelope and cannot become a combined semantic owner."
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "commit_and_closure_envelope": "AFQR-01",
+          "world_valid_interval_and_scheduled_effects": "AFQR-04",
+          "typed_reservations_and_settlement_where_applicable": "AFQR-07",
+          "knowledge_and_belief_deltas": "AFQR-10",
+          "sensing_and_contact_deltas_where_applicable": "AFQR-20",
+          "domain_state_deltas": "declared domain owners"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-011",
+          "line_start": 384,
+          "line_end": 392
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0012",
+      "claim_family_id": "CF-07",
+      "normalized_claim": "Branch identity and disclosure frontier constrain projections, recaps, and context packets; noncanonical facts are excluded by default.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: TERM-001/002/021/022, INV-001/002/003, DEP-009/019/079, CORE-RESP-01, AGENCY-RESP-10, and WORLD-RESP-20 preserve commitment, epistemic projection, and sensing/contact handoffs. Research adds no authority. Branch/disclosure filtering remains a continuity qualification to inventory."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [
+        "TERM-001",
+        "TERM-002",
+        "TERM-021",
+        "TERM-022"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-002",
+        "INV-003"
+      ],
+      "r1c_edge_ids": [
+        "DEP-009",
+        "DEP-019",
+        "DEP-079"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "AGENCY-RESP-10",
+        "WORLD-RESP-20"
+      ],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-10",
+          "component_2": "AFQR-20",
+          "commitment_reference_only": "AFQR-01"
+        }
+      },
+      "primary_outcome": "partially_governed_r2_qualification_needed",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CONTINUITY",
+      "proposed_next_action": "R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must decide only the stated doctrine boundary without schema adoption.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-012",
+          "line_start": 393,
+          "line_end": 407
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0013",
+      "claim_family_id": "CF-07",
+      "normalized_claim": "World truth, evidence, observation, knowledge, belief, player discovery, and model-visible context remain distinct through correction and replay.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "already_governed",
+        "summary": "Claim-specific comparison: TERM-002/018/019/020/021/022/027/030, INV-001/002/003/007, DEP-025/050/079, CORE-RESP-04/06, AGENCY-RESP-10, and WORLD-RESP-20 already separate time, evidence, truth/knowledge/belief, and sensing. Research adds no authority. Only correction-history and branch-local integration remain unresolved."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [
+        "TERM-002",
+        "TERM-018",
+        "TERM-019",
+        "TERM-020",
+        "TERM-021",
+        "TERM-022",
+        "TERM-027",
+        "TERM-030"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-002",
+        "INV-003",
+        "INV-007"
+      ],
+      "r1c_edge_ids": [
+        "DEP-025",
+        "DEP-050",
+        "DEP-079"
+      ],
+      "r1d_family_ids": [
+        "AGENCY-RESP-10",
+        "CORE-RESP-04",
+        "CORE-RESP-06",
+        "WORLD-RESP-20"
+      ],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-06",
+          "AFQR-10",
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership",
+          "No combined truth/evidence/knowledge/sensing owner may be created."
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "temporal_relationships_only": "AFQR-04",
+          "claims_evidence_admission_conflict_arbitration": "AFQR-06",
+          "truth_epistemic_state_knowledge_belief_memory_safe_projection": "AFQR-10",
+          "signals_sensing_detection_contacts_tracks": "AFQR-20"
+        }
+      },
+      "primary_outcome": "already_governed_by_r1",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "R2A must check for drift against the cited accepted R1 records; do not restate or replace the governing R1 rule.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-013",
+          "line_start": 408,
+          "line_end": 425
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0014",
+      "claim_family_id": "CF-06",
+      "normalized_claim": "Commands compiled from stale state require expected-version detection and fail or re-enter deterministic arbitration before commitment.",
+      "claim_kind": "runtime_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Claim-specific comparison: TERM-003/004/006/007/008, INV-001/004, DEP-001/018/023, CORE-RESP-01/02, and WORLD-RESP-19 separate command lifecycle, commit preconditions, and action arbitration. Research adds no authority. R5 may inspect RT-002A\u2013F only after later authorization and cannot absorb those owners."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [
+        "TERM-003",
+        "TERM-004",
+        "TERM-006",
+        "TERM-007",
+        "TERM-008"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-004"
+      ],
+      "r1c_edge_ids": [
+        "DEP-001",
+        "DEP-018",
+        "DEP-023"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02",
+        "WORLD-RESP-19"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "command_identity_retry_suspension_durable_progress": "AFQR-02",
+          "commit_preconditions_and_transition_commitment": "AFQR-01",
+          "scene_action_conflict_ordering_and_arbitration": "AFQR-19"
+        }
+      },
+      "primary_outcome": "r5_runtime_retrofit_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R5",
+      "proposed_next_action": "R5 may inspect and retrofit RT-002A\u2013F only after R4 and explicit authorization; no retrofit is authorized here.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-014",
+          "line_start": 426,
+          "line_end": 441
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0015",
+      "claim_family_id": "CF-06",
+      "normalized_claim": "Durable command status, idempotency, duplicate suppression, and publication receipts prevent duplicate commitment after crashes.",
+      "claim_kind": "runtime_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Claim-specific comparison: CORE-RESP-01 and CORE-RESP-02 preserve commitment and durable command progress while INV-001 prohibits journal ownership transfer. Research adds no authority. R4 may later inspect crash-safe duplicate-commit prevention without introducing reservation semantics."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-02"
+        }
+      },
+      "primary_outcome": "r4_runtime_substrate_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R4",
+      "proposed_next_action": "R4 may design the separately authorized generalized substrate only after its gate opens; preserve every contributing AFQR semantic owner.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-015",
+          "line_start": 442,
+          "line_end": 450
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0016",
+      "claim_family_id": "CF-09",
+      "normalized_claim": "Offline progression uses scheduled events, bounded aggregate ticks, region scope, or lazy catch-up rather than continuous inactive-entity simulation.",
+      "claim_kind": "staging",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04, AFQR-17 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-17"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "WORLD-RESP-17"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-17"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-17"
+        }
+      },
+      "primary_outcome": "deferred_frontier",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Retain this bounded frontier for the named later gate and require new authorization before doctrine or implementation.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-016",
+          "line_start": 451,
+          "line_end": 465
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0017",
+      "claim_family_id": "CF-10",
+      "normalized_claim": "Replay mismatch, corruption, missing packages, invalid causal parents, incomplete migration, or branch-pointer corruption quarantines affected canonical mutation and preserves forensic evidence.",
+      "claim_kind": "runtime_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Claim-specific comparison: AFQR-01, AFQR-02, AFQR-04, AFQR-09 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02",
+        "CORE-RESP-04",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-04",
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-02",
+          "component_3": "AFQR-04",
+          "component_4": "AFQR-09"
+        }
+      },
+      "primary_outcome": "r4_runtime_substrate_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R4",
+      "proposed_next_action": "R4 may design the separately authorized generalized substrate only after its gate opens; preserve every contributing AFQR semantic owner.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-017",
+          "line_start": 466,
+          "line_end": 474
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0018",
+      "claim_family_id": "CF-11",
+      "normalized_claim": "Deterministic play evaluation must exercise explicit entry into combat, contest, downtime, travel, research, and recovery procedures.",
+      "claim_kind": "evaluation_pressure",
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Claim-specific comparison: AFQR-02, AFQR-19 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-02",
+        "WORLD-RESP-19"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-02",
+          "component_2": "AFQR-19"
+        }
+      },
+      "primary_outcome": "evaluation_or_benchmark_input",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "later",
+      "proposed_next_action": "Add a donor-neutral evaluation case at the later evaluation gate; do not adopt the illustrated donor procedure.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-018",
+          "line_start": 475,
+          "line_end": 489
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "source_contribution"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0019",
+      "claim_family_id": "CF-11",
+      "normalized_claim": "Evaluation must represent binary, opposed, banded, success-with-cost, question, follow-up-choice, and source-local procedures without universalizing donor grammar.",
+      "claim_kind": "evaluation_pressure",
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Claim-specific comparison: AFQR-19 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "WORLD-RESP-19"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-19",
+        "supporting_owners": [],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {}
+      },
+      "primary_outcome": "evaluation_or_benchmark_input",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "later",
+      "proposed_next_action": "Add a donor-neutral evaluation case at the later evaluation gate; do not adopt the illustrated donor procedure.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-019",
+          "line_start": 490,
+          "line_end": 500
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "source_contribution"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0020",
+      "claim_family_id": "CF-11",
+      "normalized_claim": "Persistent-play conformance must preserve typed and provenance-aware resource, condition, injury, recovery, and defeat transitions under their domain owners.",
+      "claim_kind": "evaluation_pressure",
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: TERM-001/003/008/012/026/036, INV-001/004/007/009, DEP-006/015/018/088, CORE-RESP-01/07, and WORLD-RESP-16/19 separate quantity settlement, harm/recovery, procedure, and commitment. Research adds no authority. R3 must later audit whether existing ledgers conform without transferring semantics to continuity records."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-07",
+        "AFQR-16",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [
+        "TERM-001",
+        "TERM-003",
+        "TERM-008",
+        "TERM-012",
+        "TERM-026",
+        "TERM-036"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-004",
+        "INV-007",
+        "INV-009"
+      ],
+      "r1c_edge_ids": [
+        "DEP-006",
+        "DEP-015",
+        "DEP-018",
+        "DEP-088"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-07",
+        "WORLD-RESP-16",
+        "WORLD-RESP-19"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-07",
+          "AFQR-16",
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership",
+          "Event, journal, continuity, and closure surfaces acquire no resource, harm, recovery, condition, or defeat semantics."
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "typed_quantities_and_resource_settlement": "AFQR-07",
+          "embodiment_integrity_injury_harm_recovery": "AFQR-16",
+          "action_conflict_and_defeat_procedure": "AFQR-19",
+          "commitment_of_owner_prepared_transitions_only": "AFQR-01"
+        }
+      },
+      "primary_outcome": "r3_conformance_obligation",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "R3",
+      "proposed_next_action": "R3 must audit existing runtime and schema surfaces for conformance to accepted owner-prepared transitions; R2-0 makes no conformance finding.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-020",
+          "line_start": 501,
+          "line_end": 511
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "source_contribution"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0021",
+      "claim_family_id": "CF-05",
+      "normalized_claim": "House rules and source-local procedures need identifiers, authority, effective intervals, and historical replay behavior.",
+      "claim_kind": "architecture",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: TERM-012/027, INV-001/009, DEP-030/092, CORE-RESP-04, and WORLD-RESP-19 govern only temporal relationships and procedure resolution; they do not establish package, override, or canon governance. Research adds no authority. The cross-phase package/version owner remains explicitly unresolved."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-09",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [
+        "TERM-012",
+        "TERM-027"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001",
+        "INV-009"
+      ],
+      "r1c_edge_ids": [
+        "DEP-030",
+        "DEP-092"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-09",
+        "WORLD-RESP-19"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-09",
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "Which accepted cross-phase authority governs ruleset, package, and override identity/effective intervals without transferring procedure or canon authority?",
+        "component_owners": {
+          "procedure_resolution_semantics": "AFQR-19",
+          "ruleset_package_override_governance": "unresolved cross-phase owner",
+          "effective_time_relationships_only": "AFQR-04"
+        }
+      },
+      "primary_outcome": "r2_new_doctrine_candidate",
+      "secondary_destinations": [
+        "r3_conformance_obligation"
+      ],
+      "target_work_package": "R2B-CROSS-PHASE",
+      "proposed_next_action": "R2A must verify current authority and route a proven gap to R2B-CROSS-PHASE; that package may decide doctrine only and must preserve donor neutrality and cross-owner seams.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": true,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-021",
+          "line_start": 512,
+          "line_end": 520
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0022",
+      "claim_family_id": "CF-12",
+      "normalized_claim": "Recap and restart adapters consume session closure and safe projections, never raw truth or transcript as authority.",
+      "claim_kind": "play_adapter_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Claim-specific comparison: AFQR-10, AFQR-20 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-10",
+        "AFQR-20"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "AGENCY-RESP-10",
+        "WORLD-RESP-20"
+      ],
+      "substrate_ids": [
+        "SUB-002"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-20"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-10",
+          "component_2": "AFQR-20"
+        }
+      },
+      "primary_outcome": "later_gm_adapter_input",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Retain as later GM-adapter evaluation evidence only; the adapter is a consumer and receives no truth, canon, or AFQR ownership.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-022",
+          "line_start": 521,
+          "line_end": 529
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0023",
+      "claim_family_id": "CF-10",
+      "normalized_claim": "Benchmarks hard-fail silent mutation, wrong-version replay, branch leakage, duplicate scarcity, unauthorized retcon, stale commitment, preview contamination, incomplete closure, and unquarantined divergence.",
+      "claim_kind": "evaluation_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Claim-specific comparison: AFQR-01, AFQR-02, AFQR-04 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-02",
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-02",
+        "CORE-RESP-04"
+      ],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-02",
+          "AFQR-04"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-02",
+          "component_3": "AFQR-04"
+        }
+      },
+      "primary_outcome": "evaluation_or_benchmark_input",
+      "secondary_destinations": [
+        "later_gm_adapter_input"
+      ],
+      "target_work_package": "later",
+      "proposed_next_action": "Add a donor-neutral evaluation case at the later evaluation gate; do not adopt the illustrated donor procedure.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-023",
+          "line_start": 530,
+          "line_end": 538
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0024",
+      "claim_family_id": "CF-12",
+      "normalized_claim": "Storage, journaling, replay, branching, commitment, and handoff preserve but never acquire substantive semantic ownership.",
+      "claim_kind": "doctrine_boundary",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "already_governed",
+        "summary": "Claim-specific comparison: TERM-001/003/004/005/014, INV-001, DEP-003/008/009, CORE-RESP-01/04/09, and AGENCY-RESP-10 already prohibit ownership transfer through storage, commitment, or handoff. Research adds no authority. R2A must audit continuity surfaces for violations rather than restating R1."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10"
+      ],
+      "r1b_term_ids": [
+        "TERM-001",
+        "TERM-003",
+        "TERM-004",
+        "TERM-005",
+        "TERM-014"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [
+        "DEP-003",
+        "DEP-008",
+        "DEP-009"
+      ],
+      "r1d_family_ids": [
+        "AGENCY-RESP-10",
+        "CORE-RESP-01",
+        "CORE-RESP-04",
+        "CORE-RESP-06"
+      ],
+      "substrate_ids": [
+        "SUB-002",
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-04",
+          "AFQR-06",
+          "AFQR-10"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-01",
+          "component_2": "AFQR-04",
+          "component_3": "AFQR-06",
+          "component_4": "AFQR-10"
+        }
+      },
+      "primary_outcome": "already_governed_by_r1",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "R2A must check for drift against the cited accepted R1 records; do not restate or replace the governing R1 rule.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-024",
+          "line_start": 539,
+          "line_end": 549
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0025",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "CRDT-first canon, multi-master world truth, and automatic canonical branch merging are rejected for the single-authority model.",
+      "claim_kind": "rejection",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-01 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-01"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-01"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-01",
+        "supporting_owners": [],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {}
+      },
+      "primary_outcome": "rejected_as_overengineered",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Retain the rejection rationale as an architectural guardrail and test that later designs do not introduce the rejected mechanism.",
+      "rejection_rationale": "Rejected because it adds infrastructure or donor law without current Astra need or authority.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-025",
+          "line_start": 550,
+          "line_end": 558
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0026",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "Continuous universal simulation of every inactive entity is rejected as unnecessary and poorly auditable.",
+      "claim_kind": "rejection",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 5,
+        "applicable_source_count": 5,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04, AFQR-17 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-17"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "WORLD-RESP-17"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-17"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-17"
+        }
+      },
+      "primary_outcome": "rejected_as_overengineered",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Retain the rejection rationale as an architectural guardrail and test that later designs do not introduce the rejected mechanism.",
+      "rejection_rationale": "Rejected because it adds infrastructure or donor law without current Astra need or authority.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-026",
+          "line_start": 559,
+          "line_end": 567
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0027",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "Graph-shaped causality does not justify a mandatory graph database absent demonstrated query pressure.",
+      "claim_kind": "rejection",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04, AFQR-09 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-09"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-09"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-09"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-09"
+        }
+      },
+      "primary_outcome": "rejected_as_overengineered",
+      "secondary_destinations": [],
+      "target_work_package": "none",
+      "proposed_next_action": "Retain the rejection rationale as an architectural guardrail and test that later designs do not introduce the rejected mechanism.",
+      "rejection_rationale": "Rejected because it adds infrastructure or donor law without current Astra need or authority.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-027",
+          "line_start": 568,
+          "line_end": 575
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0028",
+      "claim_family_id": "CF-02",
+      "normalized_claim": "Actor-local time, regional or planar transforms, cryosleep, and dilation remain compatibility frontiers rather than current implementation scope.",
+      "claim_kind": "staging",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-04"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": "AFQR-04",
+        "supporting_owners": [],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {}
+      },
+      "primary_outcome": "deferred_frontier",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Retain this bounded frontier for the named later gate and require new authorization before doctrine or implementation.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-028",
+          "line_start": 576,
+          "line_end": 583
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0029",
+      "claim_family_id": "CF-13",
+      "normalized_claim": "Alternate-world gameplay, cross-reality identity, and time travel remain deferred until explicitly authorized need.",
+      "claim_kind": "staging",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "partially_governed",
+        "summary": "Claim-specific comparison: AFQR-04, AFQR-08 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+      },
+      "afqr_ids": [
+        "AFQR-04",
+        "AFQR-08"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-08"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-08"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "component_1": "AFQR-04",
+          "component_2": "AFQR-08"
+        }
+      },
+      "primary_outcome": "deferred_frontier",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Retain this bounded frontier for the named later gate and require new authorization before doctrine or implementation.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-029",
+          "line_start": 584,
+          "line_end": 591
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0030",
+      "claim_family_id": "CF-12",
+      "normalized_claim": "Actual-play evidence is retained for a later GM adapter covering arbitration, clarification, pacing, interruption, recap, and observability after doctrine and runtime authority settle.",
+      "claim_kind": "play_adapter_pressure",
+      "consensus": {
+        "level": "unique_source",
+        "supporting_source_count": 1,
+        "applicable_source_count": 1,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "medium",
+      "current_astra_comparison": {
+        "r1_status": "evaluation_only",
+        "summary": "Claim-specific comparison: AFQR-02, AFQR-19 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+      },
+      "afqr_ids": [
+        "AFQR-02",
+        "AFQR-19"
+      ],
+      "r1b_term_ids": [],
+      "r1c_invariant_ids": [],
+      "r1c_edge_ids": [],
+      "r1d_family_ids": [
+        "CORE-RESP-02",
+        "WORLD-RESP-19"
+      ],
+      "substrate_ids": [],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-19"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": null,
+        "component_owners": {}
+      },
+      "primary_outcome": "later_gm_adapter_input",
+      "secondary_destinations": [],
+      "target_work_package": "later",
+      "proposed_next_action": "Retain as later GM-adapter evaluation evidence only; the adapter is a consumer and receives no truth, canon, or AFQR ownership.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-030",
+          "line_start": 592,
+          "line_end": 600
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-ACTUALPLAY-001",
+          "support_kind": "source_contribution"
+        }
+      ]
+    },
+    {
+      "claim_id": "R2-CLAIM-0031",
+      "claim_family_id": "CF-06",
+      "normalized_claim": "Reservations for scarce typed quantities require explicit identity, bounded expiry, release, and owner-governed settlement.",
+      "claim_kind": "runtime_pressure",
+      "consensus": {
+        "level": "unanimous",
+        "supporting_source_count": 4,
+        "applicable_source_count": 4,
+        "dissent_summary": null,
+        "method": "Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence."
+      },
+      "confidence": "high",
+      "current_astra_comparison": {
+        "r1_status": "implementation_only",
+        "summary": "Claim-specific comparison: TERM-003/004, INV-001, DEP-006, CORE-RESP-01, and CORE-RESP-07 preserve AFQR-07 typed-quantity reservation, expiry, release, and settlement while limiting AFQR-01 to commitment preconditions and commitment. Research adds no authority. R4 must not design reservation storage until authorized and must not turn its journal into the quantity owner."
+      },
+      "afqr_ids": [
+        "AFQR-01",
+        "AFQR-07"
+      ],
+      "r1b_term_ids": [
+        "TERM-003",
+        "TERM-004"
+      ],
+      "r1c_invariant_ids": [
+        "INV-001"
+      ],
+      "r1c_edge_ids": [
+        "DEP-006"
+      ],
+      "r1d_family_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-07"
+      ],
+      "substrate_ids": [
+        "SUB-003"
+      ],
+      "owner_analysis": {
+        "semantic_owner": null,
+        "supporting_owners": [
+          "AFQR-07"
+        ],
+        "consumers": [
+          "R2A authority-surface inventory"
+        ],
+        "prohibited_owner_transfers": [
+          "storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership"
+        ],
+        "unresolved_owner_question": "R2A must determine the narrow semantic owner and whether the representation is inline or standalone.",
+        "component_owners": {
+          "typed_quantity_reservation_expiry_release_settlement": "AFQR-07",
+          "commit_preconditions_and_commitment_only": "AFQR-01"
+        }
+      },
+      "primary_outcome": "r4_runtime_substrate_obligation",
+      "secondary_destinations": [],
+      "target_work_package": "R4",
+      "proposed_next_action": "R4 may design the separately authorized generalized substrate only after its gate opens; preserve every contributing AFQR semantic owner.",
+      "rejection_rationale": "Not applicable.",
+      "prohibited_shortcuts": [
+        "Do not treat research consensus as doctrine.",
+        "Do not implement SUB-001 through SUB-005 in R2."
+      ],
+      "blocking_r2a": false,
+      "blocking_r2_completion": false,
+      "review_status": "routed",
+      "repository_evidence": {
+        "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+        "locator": {
+          "heading": "Normalized claim candidates",
+          "subheading": "R2-INTAKE-CLAIM-014",
+          "line_start": 426,
+          "line_end": 441
+        },
+        "evidence_basis": "intake_packet_synthesis"
+      },
+      "upstream_source_support": [
+        {
+          "source_id": "R2-RES-CONTINUITY-001",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-002",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-003",
+          "support_kind": "packet_attributed"
+        },
+        {
+          "source_id": "R2-RES-CONTINUITY-004",
+          "support_kind": "packet_attributed"
+        }
+      ]
+    }
+  ],
+  "claim_count": 31,
+  "count_summary": {
+    "by_family": {
+      "CF-01": 4,
+      "CF-02": 2,
+      "CF-03": 1,
+      "CF-04": 3,
+      "CF-05": 2,
+      "CF-06": 3,
+      "CF-07": 2,
+      "CF-08": 1,
+      "CF-09": 1,
+      "CF-10": 2,
+      "CF-11": 3,
+      "CF-12": 3,
+      "CF-13": 4
+    },
+    "by_primary_outcome": {
+      "already_governed_by_r1": 3,
+      "deferred_frontier": 3,
+      "evaluation_or_benchmark_input": 3,
+      "later_gm_adapter_input": 2,
+      "partially_governed_r2_qualification_needed": 5,
+      "r2_new_doctrine_candidate": 7,
+      "r3_conformance_obligation": 1,
+      "r4_runtime_substrate_obligation": 3,
+      "r5_runtime_retrofit_obligation": 1,
+      "rejected_as_overengineered": 3
+    },
+    "by_target_work_package": {
+      "R2B-CONTINUITY": 8,
+      "R2B-CORE": 2,
+      "R2B-CROSS-PHASE": 2,
+      "R3": 1,
+      "R4": 3,
+      "R5": 1,
+      "later": 8,
+      "none": 6
+    },
+    "by_consensus_level": {
+      "unanimous": 27,
+      "unique_source": 4
+    },
+    "unresolved_owner_questions": 11,
+    "rejected_overengineering": 3
+  }
+}
