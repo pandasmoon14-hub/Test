@@ -442,11 +442,13 @@
       "confidence": "high",
       "current_astra_comparison": {
         "r1_status": "partially_governed",
-        "summary": "Claim-specific comparison: TERM-005/027/028, INV-001/007, DEP-003/005/009/025, CORE-RESP-01/04, and AGENCY-RESP-06/10 preserve AFQR-04 world-valid time, AFQR-01 receipt timing, AFQR-06 correction evidence, and AFQR-10 epistemic consequences. Research adds no authority. R2A must determine whether continuity doctrine needs an explicit cross-owner bitemporal qualification."
+        "summary": "Claim-specific comparison: TERM-005/027/028, INV-001/007, DEP-003/005/009/025, CORE-RESP-01, CORE-RESP-04, CORE-RESP-06, and AGENCY-RESP-10 preserve AFQR-04 world-valid time, AFQR-01 receipt timing, AFQR-06 claims/evidence admission/conflict/arbitration consequences where applicable, and AFQR-10 epistemic consequences. Research adds no authority. R2A must determine whether continuity doctrine needs an explicit cross-owner bitemporal qualification."
       },
       "afqr_ids": [
         "AFQR-01",
-        "AFQR-04"
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-10"
       ],
       "r1b_term_ids": [
         "TERM-005",
@@ -465,7 +467,9 @@
       ],
       "r1d_family_ids": [
         "CORE-RESP-01",
-        "CORE-RESP-04"
+        "CORE-RESP-04",
+        "CORE-RESP-06",
+        "AGENCY-RESP-10"
       ],
       "substrate_ids": [
         "SUB-002",
@@ -474,7 +478,9 @@
       "owner_analysis": {
         "semantic_owner": null,
         "supporting_owners": [
-          "AFQR-04"
+          "AFQR-04",
+          "AFQR-06",
+          "AFQR-10"
         ],
         "consumers": [
           "R2A authority-surface inventory"
@@ -1057,12 +1063,14 @@
       "confidence": "high",
       "current_astra_comparison": {
         "r1_status": "partially_governed",
-        "summary": "Claim-specific comparison: AFQR-01, AFQR-04, AFQR-10 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: R2A must determine the narrow semantic owner and whether the representation is inline or standalone."
+        "summary": "Claim-specific comparison: CORE-RESP-01 limits AFQR-01 to the commit/closure envelope; CORE-RESP-04 gives AFQR-04 world-valid intervals and scheduled effects; CORE-RESP-07 gives AFQR-07 typed reservation and settlement where applicable; AGENCY-RESP-10 gives AFQR-10 knowledge and belief deltas; and WORLD-RESP-20 gives AFQR-20 sensing/contact deltas where applicable. Domain-state deltas remain with declared domain owners. Research adds no authority. R2A must determine closure representation without creating a combined owner."
       },
       "afqr_ids": [
         "AFQR-01",
         "AFQR-04",
-        "AFQR-10"
+        "AFQR-07",
+        "AFQR-10",
+        "AFQR-20"
       ],
       "r1b_term_ids": [],
       "r1c_invariant_ids": [
@@ -1070,9 +1078,11 @@
       ],
       "r1c_edge_ids": [],
       "r1d_family_ids": [
-        "AGENCY-RESP-10",
         "CORE-RESP-01",
-        "CORE-RESP-04"
+        "CORE-RESP-04",
+        "CORE-RESP-07",
+        "AGENCY-RESP-10",
+        "WORLD-RESP-20"
       ],
       "substrate_ids": [
         "SUB-002",
@@ -1082,7 +1092,9 @@
         "semantic_owner": null,
         "supporting_owners": [
           "AFQR-04",
-          "AFQR-10"
+          "AFQR-07",
+          "AFQR-10",
+          "AFQR-20"
         ],
         "consumers": [
           "R2A authority-surface inventory"
@@ -1166,6 +1178,7 @@
         "summary": "Claim-specific comparison: TERM-001/002/021/022, INV-001/002/003, DEP-009/019/079, CORE-RESP-01, AGENCY-RESP-10, and WORLD-RESP-20 preserve commitment, epistemic projection, and sensing/contact handoffs. Research adds no authority. Branch/disclosure filtering remains a continuity qualification to inventory."
       },
       "afqr_ids": [
+        "AFQR-01",
         "AFQR-10",
         "AFQR-20"
       ],
@@ -1186,6 +1199,7 @@
         "DEP-079"
       ],
       "r1d_family_ids": [
+        "CORE-RESP-01",
         "AGENCY-RESP-10",
         "WORLD-RESP-20"
       ],
@@ -1206,7 +1220,8 @@
         "unresolved_owner_question": null,
         "component_owners": {
           "component_1": "AFQR-10",
-          "component_2": "AFQR-20"
+          "component_2": "AFQR-20",
+          "commitment_reference_only": "AFQR-01"
         }
       },
       "primary_outcome": "partially_governed_r2_qualification_needed",
@@ -1422,7 +1437,6 @@
         "semantic_owner": null,
         "supporting_owners": [
           "AFQR-02",
-          "AFQR-07",
           "AFQR-19"
         ],
         "consumers": [
@@ -1482,7 +1496,7 @@
     {
       "claim_id": "R2-CLAIM-0015",
       "claim_family_id": "CF-06",
-      "normalized_claim": "Durable command status, idempotency, duplicate suppression, reservation state, and publication receipts prevent duplicate commitment after crashes.",
+      "normalized_claim": "Durable command status, idempotency, duplicate suppression, and publication receipts prevent duplicate commitment after crashes.",
       "claim_kind": "runtime_pressure",
       "consensus": {
         "level": "unanimous",
@@ -1494,7 +1508,7 @@
       "confidence": "high",
       "current_astra_comparison": {
         "r1_status": "implementation_only",
-        "summary": "Claim-specific comparison: AFQR-01, AFQR-02 retains only its accepted responsibility; cited TERM/INV/DEP/R1D records govern the listed seam. The intake packet supplies research pressure, not authority. Remaining issue: receiving work must inspect current surfaces and preserve owner boundaries."
+        "summary": "Claim-specific comparison: CORE-RESP-01 and CORE-RESP-02 preserve commitment and durable command progress while INV-001 prohibits journal ownership transfer. Research adds no authority. R4 may later inspect crash-safe duplicate-commit prevention without introducing reservation semantics."
       },
       "afqr_ids": [
         "AFQR-01",
@@ -2935,7 +2949,7 @@
       "confidence": "high",
       "current_astra_comparison": {
         "r1_status": "implementation_only",
-        "summary": "Claim-specific comparison: TERM-003/004, INV-001, DEP-006, and CORE-RESP-01/07 preserve AFQR-07 typed reservation/settlement and AFQR-01 commit preconditions. Research adds no authority. R4 must not design reservation storage until authorized and must not turn its journal into the quantity owner."
+        "summary": "Claim-specific comparison: TERM-003/004, INV-001, DEP-006, CORE-RESP-01, and CORE-RESP-07 preserve AFQR-07 typed-quantity reservation, expiry, release, and settlement while limiting AFQR-01 to commitment preconditions and commitment. Research adds no authority. R4 must not design reservation storage until authorized and must not turn its journal into the quantity owner."
       },
       "afqr_ids": [
         "AFQR-01",
@@ -2961,9 +2975,7 @@
       "owner_analysis": {
         "semantic_owner": null,
         "supporting_owners": [
-          "AFQR-02",
-          "AFQR-07",
-          "AFQR-19"
+          "AFQR-07"
         ],
         "consumers": [
           "R2A authority-surface inventory"

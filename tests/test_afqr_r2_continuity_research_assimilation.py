@@ -73,6 +73,20 @@ def test_compound_owner_safety():
  assert claim(21)["owner_analysis"]["semantic_owner"] is None and "unresolved cross-phase owner" in claim(21)["owner_analysis"]["component_owners"].values()
  assert claim(30)["owner_analysis"]["semantic_owner"] is None
  for c in load(LEDGER)["claims"]: assert any("storage, journaling, replay, branching, commitment, and handoff" in x for x in c["owner_analysis"]["prohibited_owner_transfers"])
+def test_ledger_wide_afqr_responsibility_and_residual_owner_consistency():
+ def responsibility(afqr):
+  n=int(afqr[-2:]); return f"CORE-RESP-{n:02d}" if n<=9 else f"AGENCY-RESP-{n:02d}" if n<=15 else f"WORLD-RESP-{n:02d}"
+ r1d="\n".join((ROOT/p).read_text() for p in ["docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","docs/doctrine/consolidation/afqr_world_action_sensing.md"])
+ for c in load(LEDGER)["claims"]:
+  afqrs=set(c["afqr_ids"]); component_afqrs={v for v in c["owner_analysis"]["component_owners"].values() if re.fullmatch(r"AFQR-\d{2}",v)}
+  assert component_afqrs<=afqrs and {responsibility(v) for v in component_afqrs}<=set(c["r1d_family_ids"])
+  assert {v for v in c["owner_analysis"]["supporting_owners"] if re.fullmatch(r"AFQR-\d{2}",v)}<=afqrs
+  summary_ids=set(re.findall(r"(?:CORE|AGENCY|WORLD)-RESP-\d{2}",c["current_astra_comparison"]["summary"])); assert summary_ids<=set(c["r1d_family_ids"]) and all(v in r1d for v in summary_ids)
+ c5=claim(5); assert {"CORE-RESP-06","AGENCY-RESP-10"}<=set(c5["r1d_family_ids"]) and "AGENCY-RESP-06" not in json.dumps(c5)
+ c11=claim(11); assert {"AFQR-07","AFQR-20"}<=set(c11["afqr_ids"]) and {"CORE-RESP-07","WORLD-RESP-20"}<=set(c11["r1d_family_ids"])
+ assert "AFQR-07" not in claim(14)["owner_analysis"]["supporting_owners"] and "reservation state" not in claim(15)["normalized_claim"].lower()
+ assert not {"AFQR-02","AFQR-19"}&set(claim(31)["owner_analysis"]["supporting_owners"])
+ report=REPORT.read_text(); assert "R4 receives typed-reservation substrate pressure" in report and "R5 receives stale-command and expected-version retrofit pressure" in report and "R4 and R5 remain blocked" in report
 def test_counts_actions_limits_and_gate():
  expected=metrics(); doc=load(LEDGER); assert doc["claim_count"]==31 and doc["count_summary"]=={k:v for k,v in expected.items() if k!="total_claims"}
  assert load(FILES)["r2_0_metrics"]==expected
