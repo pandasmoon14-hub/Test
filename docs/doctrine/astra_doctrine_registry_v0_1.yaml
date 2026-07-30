@@ -23,7 +23,7 @@ changelog:
   version: 0.1.115
   action: afqr_r2_0_continuity_research_assimilation
   actor: Astra Doctrine Council / consolidation assistant
-  note: 'Registers five external research-source identities and routes thirty normalized claims without doctrine adoption or implementation. R2-0 complete; R2 active/incomplete; R2A ready/next; R2B–R6 blocked; RT-002G and temporary evidence deletion unauthorized.'
+  note: 'Registers five external research-source identities and routes thirty-one normalized claims without doctrine adoption or implementation. R2-0 complete; R2 active/incomplete; R2A ready/next; R2B–R6 blocked; RT-002G and temporary evidence deletion unauthorized.'
 - date: '2026-07-24'
   version: 0.1.114
   action: afqr_r1c_cross_invariant_dependency_contract

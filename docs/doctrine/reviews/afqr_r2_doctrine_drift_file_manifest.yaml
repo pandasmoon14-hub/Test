@@ -331,5 +331,51 @@
       "outlier_escalation_path": "Council blocks completion",
       "current_status": "planned"
     }
-  ]
+  ],
+  "r2_0_metrics": {
+    "by_family": {
+      "CF-01": 4,
+      "CF-02": 2,
+      "CF-03": 1,
+      "CF-04": 3,
+      "CF-05": 2,
+      "CF-06": 3,
+      "CF-07": 2,
+      "CF-08": 1,
+      "CF-09": 1,
+      "CF-10": 2,
+      "CF-11": 3,
+      "CF-12": 3,
+      "CF-13": 4
+    },
+    "by_primary_outcome": {
+      "already_governed_by_r1": 3,
+      "deferred_frontier": 3,
+      "evaluation_or_benchmark_input": 3,
+      "later_gm_adapter_input": 2,
+      "partially_governed_r2_qualification_needed": 5,
+      "r2_new_doctrine_candidate": 7,
+      "r3_conformance_obligation": 1,
+      "r4_runtime_substrate_obligation": 3,
+      "r5_runtime_retrofit_obligation": 1,
+      "rejected_as_overengineered": 3
+    },
+    "by_target_work_package": {
+      "R2B-CONTINUITY": 8,
+      "R2B-CORE": 2,
+      "R2B-CROSS-PHASE": 2,
+      "R3": 1,
+      "R4": 3,
+      "R5": 1,
+      "later": 8,
+      "none": 6
+    },
+    "by_consensus_level": {
+      "unanimous": 27,
+      "unique_source": 4
+    },
+    "unresolved_owner_questions": 11,
+    "rejected_overengineering": 3,
+    "total_claims": 31
+  }
 }

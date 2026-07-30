@@ -24,7 +24,7 @@ R1A through R1E and overall R1 are complete. R2 doctrine-drift resolution is rea
 
 ## R2-0 research assimilation update (2026-07-30)
 
-R2-0 registers five external raw-report identities through the retained nonauthoritative intake packet and routes thirty normalized claims across CF-01–CF-13. It adopts no research claim as doctrine and implements no substrate, schema, or runtime behavior. R2 is active and incomplete; R2A authority-surface and doctrine-drift inventory is ready and next. R2B and R2C remain blocked. R3–R6 remain blocked; RT-002G and temporary evidence deletion remain unauthorized.
+R2-0 registers five external raw-report identities through the retained nonauthoritative intake packet and routes thirty-one normalized claims across CF-01–CF-13. It adopts no research claim as doctrine and implements no substrate, schema, or runtime behavior. R2 is active and incomplete; R2A authority-surface and doctrine-drift inventory is ready and next. R2B and R2C remain blocked. R3–R6 remain blocked; RT-002G and temporary evidence deletion remain unauthorized.
 
 ## R1B completion update (2026-07-23)
 

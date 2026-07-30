@@ -21,7 +21,11 @@
       },
       "primary_contribution": "Explicit procedure, ledger, serialization, projection, and live-play evaluation pressure.",
       "unique_contributions": [
-        "Explicit procedure, ledger, serialization, projection, and live-play evaluation pressure."
+        "explicit scene and procedure-mode transitions",
+        "multiple donor-neutral resolution grammars",
+        "resource, condition, injury, and defeat ledgers",
+        "session serialization and visible-safe recap pressure",
+        "later GM-adapter observations about arbitration, pacing, and interruption"
       ],
       "overlap_clusters": [
         "deterministic_state_and_serialization"
@@ -45,7 +49,8 @@
         "R2-CLAIM-0022",
         "R2-CLAIM-0026",
         "R2-CLAIM-0030"
-      ]
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
     },
     {
       "source_id": "R2-RES-CONTINUITY-001",
@@ -63,7 +68,10 @@
       },
       "primary_contribution": "Engineering-heavy concurrency, reservations, recovery, and local-first continuity architecture.",
       "unique_contributions": [
-        "Engineering-heavy concurrency, reservations, recovery, and local-first continuity architecture."
+        "optimistic concurrency and expected-version checks",
+        "short-lived reservations for unique resources",
+        "idempotency, duplicate suppression, and crash recovery",
+        "local-first rejection of CRDT-first canon and multi-master truth"
       ],
       "overlap_clusters": [
         "branch_time_correction_replay"
@@ -101,8 +109,10 @@
         "R2-CLAIM-0026",
         "R2-CLAIM-0027",
         "R2-CLAIM-0028",
-        "R2-CLAIM-0029"
-      ]
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
     },
     {
       "source_id": "R2-RES-CONTINUITY-002",
@@ -120,7 +130,10 @@
       },
       "primary_contribution": "Branch and retcon governance, state-machine sketches, adversarial cases, and roadmap.",
       "unique_contributions": [
-        "Branch and retcon governance, state-machine sketches, adversarial cases, and roadmap."
+        "branch and retcon severity taxonomies",
+        "adversarial continuity and hard-fail benchmark cases",
+        "state-machine sketches for branches, corrections, migrations, and stale commands",
+        "decisions-now versus decisions-later roadmap staging"
       ],
       "overlap_clusters": [
         "branch_time_correction_replay"
@@ -158,8 +171,10 @@
         "R2-CLAIM-0026",
         "R2-CLAIM-0027",
         "R2-CLAIM-0028",
-        "R2-CLAIM-0029"
-      ]
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
     },
     {
       "source_id": "R2-RES-CONTINUITY-003",
@@ -177,7 +192,10 @@
       },
       "primary_contribution": "Epistemic, projection-security, disclosure-time, session, and organized-play integration.",
       "unique_contributions": [
-        "Epistemic, projection-security, disclosure-time, session, and organized-play integration."
+        "epistemic and disclosure-time integration",
+        "branch-safe projection and context-packet security",
+        "session closure as spoiler-safe recap input",
+        "organized-play and troupe-play continuity pressure"
       ],
       "overlap_clusters": [
         "branch_time_correction_replay"
@@ -215,8 +233,10 @@
         "R2-CLAIM-0026",
         "R2-CLAIM-0027",
         "R2-CLAIM-0028",
-        "R2-CLAIM-0029"
-      ]
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
     },
     {
       "source_id": "R2-RES-CONTINUITY-004",
@@ -234,7 +254,10 @@
       },
       "primary_contribution": "Minimal architectural spine, ownership modularity, and staged alternate-world support.",
       "unique_contributions": [
-        "Minimal architectural spine, ownership modularity, and staged alternate-world support."
+        "minimal durable continuity architecture",
+        "modular doctrine and file-ownership recommendations",
+        "core-now versus later staging",
+        "alternate-world and multiverse deferral"
       ],
       "overlap_clusters": [
         "branch_time_correction_replay"
@@ -272,8 +295,10 @@
         "R2-CLAIM-0026",
         "R2-CLAIM-0027",
         "R2-CLAIM-0028",
-        "R2-CLAIM-0029"
-      ]
+        "R2-CLAIM-0029",
+        "R2-CLAIM-0031"
+      ],
+      "inspection_posture": "Codex did not independently inspect the external raw report; source identity and attribution derive from the repository intake packet."
     }
   ]
 }

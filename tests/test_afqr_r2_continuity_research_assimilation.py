@@ -1,134 +1,87 @@
-"""Deterministic R2-0 research-assimilation gate."""
+"""Deterministic R2-0 provenance, ownership, scope, and gate validation."""
 from __future__ import annotations
-
-import hashlib
-import json
-import re
+import hashlib,json,re,subprocess
+from collections import Counter
 from pathlib import Path
-
-ROOT = Path(__file__).resolve().parents[1]
-REVIEWS = ROOT / "docs/doctrine/reviews"
-MANIFEST = REVIEWS / "afqr_r2_continuity_research_source_manifest.yaml"
-LEDGER = REVIEWS / "afqr_r2_continuity_claim_and_owner_routing_ledger.yaml"
-REPORT = REVIEWS / "afqr_r2_continuity_research_assimilation_report.md"
-PLAN = ROOT / "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md"
-FILE_MANIFEST = REVIEWS / "afqr_r2_doctrine_drift_file_manifest.yaml"
-INTAKE = REVIEWS / "afqr_r2_continuity_research_intake_packet.md"
-
-FAMILIES = {f"CF-{n:02d}" for n in range(1, 14)}
-OUTCOMES = {
-    "already_governed_by_r1", "partially_governed_r2_qualification_needed",
-    "r2_new_doctrine_candidate", "r2_drift_audit_input",
-    "r3_conformance_obligation", "r4_runtime_substrate_obligation",
-    "r5_runtime_retrofit_obligation", "later_conversion_or_canon_review",
-    "later_gm_adapter_input", "evaluation_or_benchmark_input", "deferred_frontier",
-    "rejected_as_overengineered", "rejected_as_donor_specific",
-    "rejected_as_unsupported", "escalated_owner_question",
-}
-TARGETS = {"R2A", "R2B-CORE", "R2B-AGENCY", "R2B-WORLD", "R2B-CONTINUITY",
-           "R2B-CROSS-PHASE", "R2C", "R3", "R4", "R5", "later", "none"}
-R1_FILES = [
-    "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
-    "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
-    "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
-    "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
-    "docs/doctrine/consolidation/afqr_world_action_sensing.md",
-    "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
-    "docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml",
-    "docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml",
-    "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
-    "docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml",
-]
-
-def load(path: Path) -> dict:
-    return json.loads(path.read_text())
-
-def all_values(value, key: str) -> set[str]:
-    found: set[str] = set()
-    if isinstance(value, dict):
-        for k, child in value.items():
-            if k == key and isinstance(child, str): found.add(child)
-            found |= all_values(child, key)
-    elif isinstance(value, list):
-        for child in value: found |= all_values(child, key)
-    return found
-
-def test_source_integrity_and_external_posture():
-    data = load(MANIFEST); sources = data["sources"]
-    assert len(sources) == 5
-    assert len({s["source_id"] for s in sources}) == 5
-    assert [s["research_family"] for s in sources].count("actual_play_deterministic_patterns") == 1
-    assert [s["research_family"] for s in sources].count("branch_aware_continuity") == 4
-    for source in sources:
-        assert re.fullmatch(r"[0-9a-f]{64}", source["sha256"])
-        assert source["byte_size"] > 0 and source["line_count"] > 0
-        assert source["authority_posture"] == "nonauthoritative_research_evidence"
-        assert source["repository_resident_raw_source"] is False
-        assert source["claim_ids"] and source["unique_contributions"]
-    repo_names = {p.name for p in ROOT.rglob("*") if p.is_file()}
-    assert not {s["original_filename"] for s in sources} & repo_names
-    assert INTAKE.exists()
-
-def test_claim_coverage_routes_references_and_owner_analysis():
-    data = load(LEDGER); claims = data["claims"]
-    assert len(claims) == 30 and len({c["claim_id"] for c in claims}) == 30
-    assert {c["claim_family_id"] for c in claims} == FAMILIES
-    sources = {s["source_id"] for s in load(MANIFEST)["sources"]}
-    vocab = load(ROOT / R1_FILES[0]); deps = load(ROOT / R1_FILES[1])
-    terms = all_values(vocab, "term_id"); invs = all_values(deps, "invariant_id")
-    edges = all_values(deps, "edge_id"); subs = all_values(deps, "substrate_id")
-    for claim in claims:
-        assert claim["primary_outcome"] in OUTCOMES
-        assert claim["target_work_package"] in TARGETS
-        assert claim["proposed_next_action"].strip()
-        assert claim["review_status"] == "routed"
-        assert {s["source_id"] for s in claim["source_support"]} <= sources
-        assert set(claim["afqr_ids"]) <= {f"AFQR-{n:02d}" for n in range(1, 21)}
-        assert set(claim["r1b_term_ids"]) <= terms
-        assert set(claim["r1c_invariant_ids"]) <= invs
-        assert set(claim["r1c_edge_ids"]) <= edges
-        assert set(claim["substrate_ids"]) <= subs
-        assert claim["owner_analysis"]["prohibited_owner_transfers"]
-        if claim["primary_outcome"].startswith("rejected_"):
-            assert claim["rejection_rationale"] != "Not applicable."
-        if claim["primary_outcome"] == "escalated_owner_question":
-            assert claim["owner_analysis"]["unresolved_owner_question"]
-
-def test_consensus_is_computed_without_dissent_inflation():
-    for claim in load(LEDGER)["claims"]:
-        direct = [s for s in claim["source_support"] if s["support_kind"] != "dissenting"]
-        consensus = claim["consensus"]
-        assert consensus["supporting_source_count"] == len(direct)
-        if consensus["level"] == "unique_source": assert len(direct) == 1
-        if consensus["level"] == "unanimous":
-            assert len(direct) == consensus["applicable_source_count"]
-    normalized = [c["normalized_claim"].casefold() for c in load(LEDGER)["claims"]]
-    assert len(normalized) == len(set(normalized))
-
-def test_authority_scope_and_gate_safety():
-    text = "\n".join(p.read_text() for p in (MANIFEST, LEDGER, REPORT, PLAN, FILE_MANIFEST))
-    assert "nonauthoritative" in text and "tracking_review_only" in text
-    assert "SUB-001–SUB-005 remain unimplemented" in text
-    for forbidden in ("research_current", "doctrine_consolidation", "doctrine_review"):
-        assert forbidden not in text
-    report = REPORT.read_text(); plan = PLAN.read_text()
-    for phrase in ("R1 remains complete", "R2 is active and incomplete", "R2A is ready and next",
-                   "R2B and R2C remain blocked", "RT-002G", "temporary evidence deletion"):
-        assert phrase in report
-    assert "R2-0 — research assimilation" in plan and "**Status:** `complete`" in plan
-    assert "No universal time/truth/evidence/sensing owner" in report
-
-def test_r1_authority_files_match_accepted_baseline():
-    # Immutable accepted R1 artifacts are compared to the independently verified R1 commit.
-    import subprocess
-    for rel in R1_FILES:
-        current = hashlib.sha256((ROOT / rel).read_bytes()).hexdigest()
-        prior = subprocess.check_output(["git", "show", f"bbc9d58:{rel}"], cwd=ROOT)
-        assert current == hashlib.sha256(prior).hexdigest(), rel
-
-def test_bounded_files_and_no_raw_or_binary_payloads():
-    limits = {MANIFEST:(600,100*1024), LEDGER:(3500,400*1024), REPORT:(800,120*1024),
-              PLAN:(1000,150*1024), FILE_MANIFEST:(800,120*1024)}
-    for path,(lines,size) in limits.items():
-        raw=path.read_bytes(); assert b"\x00" not in raw
-        assert len(raw) <= size and len(raw.splitlines()) <= lines
+ROOT=Path(__file__).resolve().parents[1]
+BASE="dbecb91cb42c665f586b644b3f359f29bcef91a3"
+R1="bbc9d58cb23f1616327f73294def6ec42055a324"
+ABANDONED="50c0320acd1a9a075cba18e1309dd3d15ac5c44d"
+REV=ROOT/"docs/doctrine/reviews"; INTAKE=REV/"afqr_r2_continuity_research_intake_packet.md"
+MANIFEST=REV/"afqr_r2_continuity_research_source_manifest.yaml"; LEDGER=REV/"afqr_r2_continuity_claim_and_owner_routing_ledger.yaml"
+REPORT=REV/"afqr_r2_continuity_research_assimilation_report.md"; FILES=REV/"afqr_r2_doctrine_drift_file_manifest.yaml"
+PLAN=ROOT/"docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md"; DECISIONS=ROOT/"docs/decisions/current_decisions_log.md"
+ALLOW={"docs/decisions/current_decisions_log.md","docs/doctrine/astra_doctrine_registry_v0_1.yaml","docs/doctrine/control/afqr_01_20_consolidation_program_plan.md","docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md","docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml","docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md","docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml","docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","tests/test_afqr_r1e_formal_completion_review.py","tests/test_afqr_r2_continuity_research_assimilation.py"}
+FAMILIES={f"CF-{i:02d}" for i in range(1,14)}
+def load(p): return json.loads(p.read_text())
+def values(x,key):
+ out=set()
+ if isinstance(x,dict):
+  for k,v in x.items():
+   if k==key and isinstance(v,str): out.add(v)
+   out|=values(v,key)
+ elif isinstance(x,list):
+  for v in x: out|=values(v,key)
+ return out
+def claim(n): return next(x for x in load(LEDGER)["claims"] if x["claim_id"]==f"R2-CLAIM-{n:04d}")
+def metrics():
+ cs=load(LEDGER)["claims"]
+ return {"by_consensus_level":dict(sorted(Counter(c["consensus"]["level"] for c in cs).items())),"by_family":dict(sorted(Counter(c["claim_family_id"] for c in cs).items())),"by_primary_outcome":dict(sorted(Counter(c["primary_outcome"] for c in cs).items())),"by_target_work_package":dict(sorted(Counter(c["target_work_package"] for c in cs).items())),"rejected_overengineering":sum(c["primary_outcome"]=="rejected_as_overengineered" for c in cs),"total_claims":len(cs),"unresolved_owner_questions":sum(bool(c["owner_analysis"]["unresolved_owner_question"]) for c in cs)}
+def test_exact_committed_scope_and_ancestry():
+ assert subprocess.run(["git","merge-base","--is-ancestor",BASE,"HEAD"]).returncode==0
+ assert subprocess.run(["git","merge-base","--is-ancestor",R1,"HEAD"]).returncode==0
+ if subprocess.run(["git","cat-file","-e",f"{ABANDONED}^{{commit}}"],capture_output=True).returncode==0: assert subprocess.run(["git","merge-base","--is-ancestor",ABANDONED,"HEAD"],capture_output=True).returncode!=0
+ changed=set(subprocess.check_output(["git","diff","--name-only",f"{BASE}...HEAD"],text=True).splitlines())|{x[3:] for x in subprocess.check_output(["git","status","--porcelain"],text=True).splitlines() if x.startswith("?? ")}
+ assert changed==ALLOW
+ assert subprocess.run(["git","diff","--check",f"{BASE}...HEAD"],capture_output=True).returncode==0
+ num=subprocess.check_output(["git","diff","--numstat",f"{BASE}...HEAD"],text=True); assert "-\t-\t" not in num
+ assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",f"{BASE}...HEAD"],text=True).strip()
+ forbidden=("src/","schemas/","conversion/","canon/","model/","narration/","ui/","live_play","rt_002g","working/afqr_consolidation_inputs/")
+ assert not [p for p in changed if any(x in p.lower() for x in forbidden) or p.endswith((".zip",".pdf",".png",".jpg"))]
+def test_manifest_exactly_matches_intake_inventory():
+ rows={m.group(1):m.groups()[1:] for m in re.finditer(r"\| `(R2-RES-[^`]+)` \| `([^`]+)` \| [^|]+ \| `([0-9a-f]{64})` \| ([0-9]+) \| ([0-9]+) \|",INTAKE.read_text())}
+ ss=load(MANIFEST)["sources"]; assert len(rows)==len(ss)==5
+ for s in ss:
+  fn,sha,lines,size=rows[s["source_id"]]; assert (s["original_filename"],s["sha256"],s["line_count"],s["byte_size"])==(fn,sha,int(lines),int(size))
+  assert len(s["unique_contributions"])>=3 and s["primary_contribution"] not in s["unique_contributions"]
+  assert "did not independently inspect" in s["inspection_posture"]
+ assert [s["research_family"] for s in ss].count("actual_play_deterministic_patterns")==1 and [s["research_family"] for s in ss].count("branch_aware_continuity")==4
+def test_repository_provenance_and_consensus():
+ packet=INTAKE.read_text().splitlines(); controlled={"packet_attributed","source_contribution","dissenting","uncertain"}
+ for c in load(LEDGER)["claims"]:
+  e=c["repository_evidence"]; assert e["path"]==str(INTAKE.relative_to(ROOT)) and e["evidence_basis"]=="intake_packet_synthesis"
+  loc=e["locator"]; assert 1<=loc["line_start"]<=loc["line_end"]<=len(packet); assert loc["subheading"] in packet[loc["line_start"]-1]
+  kinds=[u["support_kind"] for u in c["upstream_source_support"]]; assert set(kinds)<=controlled and "direct" not in kinds
+  supporting=sum(k not in {"dissenting","uncertain"} for k in kinds); assert c["consensus"]["supporting_source_count"]==supporting
+  if "uncertain" in kinds: assert c["consensus"]["level"]!="unanimous"
+def test_source_claim_parity_and_exact_references():
+ doc=load(LEDGER); cs=doc["claims"]; ss=load(MANIFEST)["sources"]
+ for s in ss: assert set(s["claim_ids"])=={c["claim_id"] for c in cs if s["source_id"] in {u["source_id"] for u in c["upstream_source_support"]}}
+ vocab=load(ROOT/"docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"); r1c=load(ROOT/"docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml")
+ r1d="\n".join((ROOT/p).read_text() for p in ["docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","docs/doctrine/consolidation/afqr_world_action_sensing.md"])
+ for c in cs:
+  assert set(c["afqr_ids"])<={f"AFQR-{i:02d}" for i in range(1,21)}; assert set(c["r1b_term_ids"])<=values(vocab,"term_id"); assert set(c["r1c_invariant_ids"])<=values(r1c,"invariant_id"); assert set(c["r1c_edge_ids"])<=values(r1c,"edge_id"); assert set(c["substrate_ids"])<=values(r1c,"substrate_id"); assert all(x in r1d for x in c["r1d_family_ids"])
+  if c["current_astra_comparison"]["r1_status"] in {"already_governed","partially_governed","apparent_conflict"}: assert c["r1d_family_ids"] and (c["r1b_term_ids"] or c["r1c_invariant_ids"] or c["r1c_edge_ids"])
+  summary=c["current_astra_comparison"]["summary"]; assert "Claim-specific comparison:" in summary and ("not authority" in summary or "no authority" in summary)
+def test_compound_owner_safety():
+ assert claim(5)["owner_analysis"]["semantic_owner"] is None and claim(5)["owner_analysis"]["component_owners"]["world_valid_time"]=="AFQR-04"
+ c13=claim(13); assert c13["owner_analysis"]["semantic_owner"] is None and {"AFQR-04","AFQR-06","AFQR-10","AFQR-20"}<=set(c13["owner_analysis"]["component_owners"].values())
+ assert "combined truth/evidence/knowledge/sensing owner" in " ".join(c13["owner_analysis"]["prohibited_owner_transfers"])
+ assert "reservations" not in claim(14)["normalized_claim"].lower() and "reservation" in claim(31)["normalized_claim"].lower()
+ assert claim(11)["owner_analysis"]["semantic_owner"] is None and "combined semantic owner" in " ".join(claim(11)["owner_analysis"]["prohibited_owner_transfers"])
+ assert claim(20)["owner_analysis"]["semantic_owner"] is None and claim(20)["owner_analysis"]["component_owners"]["commitment_of_owner_prepared_transitions_only"]=="AFQR-01"
+ assert claim(21)["owner_analysis"]["semantic_owner"] is None and "unresolved cross-phase owner" in claim(21)["owner_analysis"]["component_owners"].values()
+ assert claim(30)["owner_analysis"]["semantic_owner"] is None
+ for c in load(LEDGER)["claims"]: assert any("storage, journaling, replay, branching, commitment, and handoff" in x for x in c["owner_analysis"]["prohibited_owner_transfers"])
+def test_counts_actions_limits_and_gate():
+ expected=metrics(); doc=load(LEDGER); assert doc["claim_count"]==31 and doc["count_summary"]=={k:v for k,v in expected.items() if k!="total_claims"}
+ assert load(FILES)["r2_0_metrics"]==expected
+ for p in (REPORT,DECISIONS):
+  blob=re.search(r"Machine-checkable R2-0 metrics:\*\* `([^`]+)`",p.read_text()); assert blob and json.loads(blob.group(1))==expected
+ assert all(c["proposed_next_action"] and "named work package" not in c["proposed_next_action"] for c in doc["claims"])
+ limits={MANIFEST:(600,100*1024),LEDGER:(3500,400*1024),REPORT:(800,120*1024),PLAN:(1000,150*1024),FILES:(800,120*1024)}
+ for p,(lines,size) in limits.items(): raw=p.read_bytes(); assert len(raw.splitlines())<=lines and len(raw)<=size and b"\0" not in raw
+ gate=PLAN.read_text(); assert all(x in gate for x in ("`R1=complete`","`R2=active_incomplete`","`R2-0=complete`","`R2A=ready`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`","`RT-002G=unauthorized`","`temporary_evidence_deletion=unauthorized`"))
+def test_accepted_r1_authority_files_unchanged():
+ paths=["docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml","docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml","docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","docs/doctrine/consolidation/afqr_world_action_sensing.md","docs/doctrine/reviews/afqr_01_20_formal_completion_review.md","docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml","docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml","docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml","docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml"]
+ for p in paths: assert hashlib.sha256((ROOT/p).read_bytes()).digest()==hashlib.sha256(subprocess.check_output(["git","show",f"{R1}:{p}"],cwd=ROOT)).digest()

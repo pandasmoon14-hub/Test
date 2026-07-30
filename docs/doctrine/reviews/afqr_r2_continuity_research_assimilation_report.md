@@ -8,7 +8,7 @@
 
 ## Source inventory
 
-The raw reports remain external. The retained intake packet is a nonauthoritative source-identification record, not a replacement authority.
+The raw reports remain external. Codex did not independently inspect them. The retained intake packet is the sole repository evidence and source-attribution synthesis, not a replacement authority. Claim locators resolve only to that packet; upstream source support records packet attribution without pretending that packet headings are raw-report locators.
 
 | Source | File | SHA-256 | Bytes | Lines |
 |---|---|---|---:|---:|
@@ -22,7 +22,7 @@ KEEP1 is a separate deterministic-procedure and evaluation track: it supplies ac
 
 ## Assimilated findings
 
-Thirty candidate entries normalize to exactly thirty semantically distinct routed claims across CF-01–CF-13. Strong continuity consensus supports stable history identity; a single active canonical branch; valid-time/record-time and causality distinctions; immutable audit; explicit correction classes; original-version replay; branch-safe projection; session closure; bounded concurrency and offline progression; quarantine; and rejection of multi-master canon. Consensus is pressure, never authority.
+Thirty candidate entries split into exactly thirty-one semantically distinct routed claims across CF-01–CF-13. Strong continuity consensus supports stable history identity; a single active canonical branch; valid-time/record-time and causality distinctions; immutable audit; explicit correction classes; original-version replay; branch-safe projection; session closure; bounded concurrency and offline progression; quarantine; and rejection of multi-master canon. Consensus is pressure, never authority.
 
 Material disagreements remain explicit: inline versus standalone logical time; immediate versus staged branch records; materialized versus derived knowledge history; campaign versus world timeline scope; disclosure-time representation; direct correction versus correction branch; timing of local-time support; tick implementation; and the breadth of human-arbitration UI. Unique contributions are preserved in the source manifest: engineering/recovery (CONTINUITY-001), governance and adversarial cases (-002), epistemic/projection integration (-003), minimal architecture and staging (-004), and actual-play procedure evidence (ACTUALPLAY-001).
 
@@ -36,7 +36,9 @@ R3 receives conformance pressure for owned resource/condition/defeat transitions
 
 CRDT/multi-master canon, automatic canonical merging, continuous universal simulation, and mandatory graph storage are rejected as overengineered. Donor-specific mechanics remain evaluation examples, not baseline doctrine. Actor-local temporal physics, full alternate-world play, cross-reality identity, and time travel are deferred.
 
-Ten representation or ownership questions remain explicit in the ledger. R2A must inventory actual current authority surfaces before R2B determines any doctrine package. No universal time/truth/evidence/sensing owner, journal owner, branch owner, `owner`, `authority`, or `control` type is created. SUB-001–SUB-005 remain classified and unimplemented.
+Eleven representation or ownership questions remain explicit in the ledger. R2A must inventory actual current authority surfaces before R2B determines any doctrine package. No universal time/truth/evidence/sensing owner, journal owner, branch owner, `owner`, `authority`, or `control` type is created. SUB-001–SUB-005 remain classified and unimplemented.
+
+**Machine-checkable R2-0 metrics:** `{"by_consensus_level":{"unanimous":27,"unique_source":4},"by_family":{"CF-01":4,"CF-02":2,"CF-03":1,"CF-04":3,"CF-05":2,"CF-06":3,"CF-07":2,"CF-08":1,"CF-09":1,"CF-10":2,"CF-11":3,"CF-12":3,"CF-13":4},"by_primary_outcome":{"already_governed_by_r1":3,"deferred_frontier":3,"evaluation_or_benchmark_input":3,"later_gm_adapter_input":2,"partially_governed_r2_qualification_needed":5,"r2_new_doctrine_candidate":7,"r3_conformance_obligation":1,"r4_runtime_substrate_obligation":3,"r5_runtime_retrofit_obligation":1,"rejected_as_overengineered":3},"by_target_work_package":{"R2B-CONTINUITY":8,"R2B-CORE":2,"R2B-CROSS-PHASE":2,"R3":1,"R4":3,"R5":1,"later":8,"none":6},"rejected_overengineering":3,"total_claims":31,"unresolved_owner_questions":11}`
 
 ## Gate decision
 
