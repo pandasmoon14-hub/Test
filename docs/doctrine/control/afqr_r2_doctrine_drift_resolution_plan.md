@@ -16,13 +16,13 @@ Owns source registration, normalized claim extraction, routing, owner-pressure i
 
 ## R2A — authority-surface and drift inventory
 
-**Status:** `complete`
+**Status:** `active_incomplete`
 
 R2A consumes the R2-0 ledger and inventories repository-wide authority surfaces. It distinguishes current authority from historical text, narrow fixtures from general doctrine, doctrine drift from implementation absence, and real owner conflict from mere keyword overlap. Every finding routes to a candidate R2B package, R3 conformance, R4 substrate, R5 retrofit, or later gate. It must not adopt doctrine or implement anything.
 
 ## R2B — modular doctrine resolution
 
-**Status:** `not_required_by_R2A`
+**Status:** `blocked_pending_R2A_owner_adjudication`
 
 Initial candidates are `R2B-CORE`, `R2B-AGENCY`, `R2B-WORLD`, `R2B-CONTINUITY`, and `R2B-CROSS-PHASE`; R2A determines which are actually needed.
 
@@ -30,7 +30,7 @@ Potential R2B-CONTINUITY modules are: timeline and temporal order; branch/canoni
 
 ## R2C — formal completion review
 
-**Status:** `ready_no_R2B_package_proven_necessary`
+**Status:** `blocked_pending_R2A_and_R2B`
 
 R2C verifies that every finding is resolved or lawfully deferred; research is routed; R1 authority and historical records are preserved; no combined owner is invented; implementation obligations are handed forward; and R3 receives an exact target. It grants no runtime authority.
 
@@ -40,6 +40,6 @@ R2A and any required R2B package must test actual-play, split-party, inserted ch
 
 ## Gate posture
 
-`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=complete`; `R2B=not_required`; `R2C=ready`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
+`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=active_incomplete`; `R2B=blocked`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
 
-R2A inspected baseline `9382958197c9d5dee9d29cb5f9d051147237c64d`: 821 tracked text files, 749 candidate files, 26 mapped authority surfaces, 723 dismissed candidates, and zero unaccounted candidates. No current-evidence finding proved an R2B doctrine change; every candidate package and continuity module is `not_required`. This tracking result adopts no doctrine and implements nothing.
+R2A inspected baseline `9382958197c9d5dee9d29cb5f9d051147237c64d`: 821 tracked text files, 749 candidate files, 26 mapped authority surfaces, 723 dismissed candidates, and zero unaccounted candidates. The corrected bounded inventory records 132 surfaces, 2,553 bounded dismissals, eleven unresolved-question adjudications, and zero unaccounted controlled occurrences. R2B-CONTINUITY and R2B-CROSS-PHASE remain owner-blocked; no package is prematurely required. This tracking result adopts no doctrine and implements nothing.

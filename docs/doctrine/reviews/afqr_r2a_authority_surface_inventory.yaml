@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-AUTHORITY-SURFACE-INVENTORY-001",
-  "status": "PASS",
+  "status": "review",
   "phase": "R2A",
   "authority": "tracking_review_only",
   "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
@@ -143,82 +143,123 @@
       "graph database"
     ]
   },
+  "coverage_unit": "bounded semantic occurrence blocks",
+  "tracked_text_file_count": 821,
+  "candidate_file_count": 749,
+  "candidate_occurrence_block_count": 2684,
+  "mapped_candidate_file_count": 31,
+  "dismissed_candidate_file_count": 719,
+  "mapped_surface_count": 132,
+  "dismissed_occurrence_block_count": 2553,
+  "unaccounted_candidate_file_count": 0,
+  "unaccounted_occurrence_count": 0,
   "shards": [
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core.yaml",
-      "surface_count": 10,
-      "dismissed_candidate_file_count": 476
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 321
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_02.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 296
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_03.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 287
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_04.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 359
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_05.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 340
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_06.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 61
     },
     {
       "shard": "AGENCY",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_agency.yaml",
-      "surface_count": 6,
-      "dismissed_candidate_file_count": 17
+      "surface_count": 12,
+      "dismissed_occurrence_block_count": 82
     },
     {
       "shard": "WORLD",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world.yaml",
-      "surface_count": 3,
-      "dismissed_candidate_file_count": 114
+      "surface_count": 112,
+      "dismissed_occurrence_block_count": 16
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_02.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 305
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_03.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 49
     },
     {
       "shard": "CONTINUITY_CROSS_PHASE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase.yaml",
-      "surface_count": 7,
-      "dismissed_candidate_file_count": 116
+      "surface_count": 8,
+      "dismissed_occurrence_block_count": 260
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_02.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 177
     }
   ],
-  "surface_count": 26,
-  "tracked_text_file_count": 821,
-  "candidate_file_count": 749,
-  "mapped_candidate_file_count": 26,
-  "dismissed_candidate_file_count": 723,
-  "unaccounted_candidate_file_count": 0,
+  "surface_count": 132,
   "counts_by_surface_kind": {
-    "accepted_decision": 2,
-    "control_or_gate": 1,
-    "historical_record": 2,
-    "normative_doctrine": 5,
-    "production_schema": 1,
-    "review_or_audit": 2,
-    "runtime_implementation": 8,
-    "test_contract": 5
+    "control_or_gate": 13,
+    "documentation": 15,
+    "normative_doctrine": 9,
+    "production_schema": 6,
+    "review_or_audit": 28,
+    "runtime_implementation": 61
   },
   "counts_by_authority_level": {
-    "accepted_decision": 2,
-    "current_normative": 5,
-    "historical_only": 1,
-    "implementation_contract_only": 8,
-    "review_evidence_only": 2,
-    "schema_contract_only": 1,
-    "source_local_only": 1,
-    "test_contract_only": 5,
-    "tracking_control_only": 1
+    "candidate_only": 15,
+    "current_normative": 9,
+    "implementation_contract_only": 61,
+    "review_evidence_only": 28,
+    "schema_contract_only": 6,
+    "tracking_control_only": 13
   },
   "counts_by_currentness": {
-    "current": 24,
-    "historical": 1,
-    "source_local": 1
+    "current": 132
   },
   "counts_by_generality": {
-    "historical_guard": 1,
-    "narrow_fixture": 5,
-    "repository_general": 10,
-    "source_local": 1,
-    "subsystem_scoped": 1,
-    "vertical_slice": 8
+    "family_scoped": 9,
+    "subsystem_scoped": 62,
+    "vertical_slice": 61
   },
   "counts_by_semantic_status": {
-    "consistent_with_r1": 7,
-    "historical_residue": 2,
-    "partial_but_not_conflicting": 3,
-    "runtime_presupposition": 8,
-    "schema_presupposition": 1,
-    "test_presupposition": 5
+    "consistent_with_r1": 9,
+    "partial_but_not_conflicting": 56,
+    "runtime_presupposition": 61,
+    "schema_presupposition": 6
   },
   "cross_shard_surface_links": [],
   "scan_limitations": [
-    "origin unavailable; inspected exact local merge receipt 9382958197c9d5dee9d29cb5f9d051147237c64d"
+    "No origin remote; exact local baseline commit inspected."
   ]
 }

@@ -15140,7 +15140,7 @@ file_records:
   title: AFQR R2A Authority-Surface Inventory Index
   filename: afqr_r2a_authority_surface_inventory.yaml
   proposed_path: docs/doctrine/reviews/
-  status: review-complete
+  status: review
   layer: 0_control
   phase: R2A
   owner: R2A inventory review
@@ -15151,7 +15151,7 @@ file_records:
   title: AFQR R2A Doctrine-Drift Routing
   filename: afqr_r2a_doctrine_drift_routing.yaml
   proposed_path: docs/doctrine/reviews/
-  status: review-complete
+  status: review
   layer: 0_control
   phase: R2A
   owner: R2A inventory review

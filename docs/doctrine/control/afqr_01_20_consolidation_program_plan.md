@@ -1,6 +1,6 @@
 # AFQR-01–20 modular consolidation program plan
 
-**Status:** R1A–R1E and overall R1 complete; R2 active and incomplete; R2-0 and R2A complete; R2C ready because no R2B package was proven necessary. **Authority:** planning/tracking only.
+**Status:** R1A–R1E and overall R1 complete; R2 active and incomplete; R2-0 complete; R2A active/incomplete; R2B and R2C blocked pending owner adjudication. **Authority:** planning/tracking only.
 
 ## Boundaries and corpus pressure
 
@@ -24,7 +24,7 @@ R1A through R1E and overall R1 are complete. R2 doctrine-drift resolution is rea
 
 ## R2A authority-surface inventory update (2026-07-31)
 
-R2A inspected the exact PR #341 merge receipt, accounted for all 749 controlled-search candidate files with 26 mapped surfaces and 723 bounded dismissals, and assessed all 31 R2-0 claims. No doctrine-changing finding met the proof rules, so all five candidate R2B packages and all six continuity modules are not required; R2C is ready. R2 remains active and incomplete. R3–R6 remain blocked, and RT-002G and temporary evidence deletion remain unauthorized. R2A is tracking review only and grants no doctrine or implementation authority.
+R2A correction inspected the exact PR #341 merge receipt, accounted for every controlled matching line with 132 semantic surfaces and 2,553 bounded dismissals, assessed all 31 claims, and adjudicated all eleven R2-0 owner questions. Six questions remain owner-blocked, so R2A is active/incomplete and R2B/R2C remain blocked. R2 remains active and incomplete. R3–R6 remain blocked, and RT-002G and temporary evidence deletion remain unauthorized. R2A is tracking review only and grants no doctrine or implementation authority.
 
 ## R2-0 research assimilation update (2026-07-30)
 

@@ -4284,6 +4284,11 @@ PR #339 review hardening replaces abandoned-object absence with the correct non-
 - **Decision ID:** `AFQR-R2A-AUTHORITY-SURFACE-INVENTORY-001`.
 - **Baseline and coverage:** Inspected `9382958197c9d5dee9d29cb5f9d051147237c64d`; 821 tracked text files, 749 candidate files, 26 mapped authority surfaces, 723 dismissed candidates, and zero unaccounted candidates.
 - **Claims and findings:** All 31 R2-0 claims were independently assessed. No doctrine gap, conflict, or owner collision met the current-authority proof threshold; preliminary R2B routes supported only by research pressure were downgraded.
-- **Packages:** R2B-CORE, R2B-AGENCY, R2B-WORLD, R2B-CONTINUITY, R2B-CROSS-PHASE, and all six proposed continuity modules are `not_required`.
-- **Gate:** R1 complete; R2 active/incomplete; R2-0 and R2A complete; R2C ready; R3–R6 blocked; RT-002G and temporary evidence deletion unauthorized.
+- **Packages (withdrawn by correction amendment below):** The initial package closure was not supported by bounded semantic evidence.
+- **Gate (corrected below):** The initial R2A completion and R2C readiness statements are withdrawn.
 - **Nonauthority:** R2A inventories and routes. It adopts no doctrine, resolves no doctrine conflict, defines no schema, approves no conformance, and implements nothing.
+
+
+### 2026-07-31 R2A semantic-inventory correction amendment
+
+The earlier R2A completion statement is withdrawn. Bounded occurrence evidence now records 132 surfaces, 2,553 dismissals, all 31 claim analyses, and exactly eleven unresolved-question adjudications. Six owner questions remain open; R2A is active/incomplete, R2B and R2C are blocked, and R3–R6 remain blocked. R2A adopts no doctrine and implements nothing.
