@@ -1,0 +1,1109 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-05",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/schema/Batch_C_schema_family_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 123,
+      "locator_heading_or_symbol": "This Batch C capstone is an audit/readiness/control file. It is not a C-family schema, not a new C15 family, not a runtime contract, not a canon-promotion decision, not sourcebook ",
+      "excerpt_sha256": "febc35efd5c2e9bf40ff8866339b6a15af8b6c493b31361bdddfee31152ee12d",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "reservation",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis Batch C capstone is an audit/readiness/control file. It is not a C-family schema, not a new C15 family, not a runtime contract, not a canon-promotion decision, not s\u201d. Distinguishing context: \u201c# Batch C Schema-Family Integration Conflict Audit and Readiness Gate ## 1. Purpose and status This Batch C capstone is an audit/readiness/control file. It is not a C-family schema, not a new C15 family, not a \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/Batch_C_schema_family_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 127,
+      "line_end": 228,
+      "locator_heading_or_symbol": "Donor leakage is prohibited. Donor field names, donor math, donor statblocks, donor spell structures, donor item formats, donor vehicle formats, donor crafting economies, donor fac",
+      "excerpt_sha256": "3017d0ca7fd13d0e22e698c2a426d2450da10b091cc771b64bf003ede2df7233",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cDonor leakage is prohibited. Donor field names, donor math, donor statblocks, donor spell structures, donor item formats, donor vehicle formats, donor crafting economies,\u201d. Distinguishing context: \u201cRejected donor elements may remain evidence, source-local containment, legal/IP review material, or rejected donor elements. They do not become family fields, final mechanics, baseline lore, accepted lexicon, r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/Batch_C_schema_family_unlock_index_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 31,
+      "line_end": 121,
+      "locator_heading_or_symbol": "- Missing schema coverage produces quarantine, escalation, human review, or `pending_schema`, not improvised family-specific fields.",
+      "excerpt_sha256": "3923bc4687f74ed437f78eef107af5678069267f6e125961029a475e52bf4ad2",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Missing schema coverage produces quarantine, escalation, human review, or `pending_schema`, not improvised family-specific fields. - C01-C14 may add family-owned doctri\u201d. Distinguishing context: \u201cC00 is binding on every later C-family file: - Every durable C-family record must inherit/include `AstraContentRecordBase`. - `pending_schema` is lawful only as named fallback routing and not as field invention\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/Batch_C_schema_family_unlock_index_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 156,
+      "line_end": 222,
+      "locator_heading_or_symbol": "- Verify canon/sourcebook/live-play/prose promotion is explicitly forbidden.",
+      "excerpt_sha256": "8bec20f0e62d8e06b391768fb9be1e93bc31ee6e02af0a8d32bb1818f704b3ef",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Verify canon/sourcebook/live-play/prose promotion is explicitly forbidden. - Verify donor field names, donor math, donor statblocks, donor currency/economy, donor class\u201d. Distinguishing context: \u201cTesting strategy for this unlock gate: - Verify this unlock/index/readiness file exists. - Verify required sections, C-family names, overlap pairs, risks, C00 constraints, Batch B boundary language, source-loca\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 12,
+      "line_end": 123,
+      "locator_heading_or_symbol": "- This file does not define runtime event schemas, command lifecycle, event-sourced state model, state delta validator, context packet compiler, hidden-information runtime state, l",
+      "excerpt_sha256": "ba60ee1b868de180830d8b132368cfcc960086a349aecc08e61fd2a863120bd7",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- This file does not define runtime event schemas, command lifecycle, event-sourced state model, state delta validator, context packet compiler, hidden-information runtim\u201d. Distinguishing context: \u201cStatus posture: - This file is schema-todo fulfillment drafted as schema-draft material. - This file is not marked current canon. - C00 records are conversion and canon-review artifacts; they are not sourcebook\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 147,
+      "line_end": 266,
+      "locator_heading_or_symbol": "revalidation_required: boolean",
+      "excerpt_sha256": "25f94aa16f92c0b14cfd2cdc4288bb5e40106057d7e82325ab59177a30ff016c",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "promotion",
+        "quarantine",
+        "revalidation",
+        "supersession",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201crevalidation_required: boolean composition_metadata: composition_id: string | null primary_record_ref: string | null satellite_record_refs: [string] composition_role: pri\u201d. Distinguishing context: \u201cbatch_id_at_creation: string | null referenced_by_records: [string] downstream_invalidation_risk: status: none | low | medium | high reason: string | null revalidation_required: boolean composition_metadata: co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 294,
+      "line_end": 399,
+      "locator_heading_or_symbol": "prohibited_promotions: [string]",
+      "excerpt_sha256": "eedfe83be69a62bb3644276927b9d6858601cc0ab6e8ca68a5dd1ba4a06cdc98",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "replay",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cprohibited_promotions: [string] canon_review_required_for_reuse: boolean ``` Rules: - Every `source_local` record must define a `source_local_boundary`. - Proper nouns mu\u201d. Distinguishing context: \u201csource_id: string packet_refs: [string] local_context_type: adventure | campaign | sourcebook | faction | location | setting | encounter | table | other preserved_elements: [string] non_generalized_elements: [s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C00_shared_content_record_base_and_schema_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 423,
+      "line_end": 510,
+      "locator_heading_or_symbol": "current_handling: pending_schema | quarantine | escalation | human_review | source_local",
+      "excerpt_sha256": "a2af7094c2299e03d62148149c5a02bc5c87389ca0a511bdc9ed9e2732e5a85e",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "migration",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ccurrent_handling: pending_schema | quarantine | escalation | human_review | source_local required_next_action: draft_schema | repair_extraction | doctrine_review | lexico\u201d. Distinguishing context: \u201cblocked_schema_family: C01 | C02 | C03 | C04 | C05 | C06 | C07 | C08 | C09 | C10 | C11 | C12 | C13 | C14 | unknown affected_construct_refs: [string] affected_packet_types: [string] affected_donor_families: [str\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C01_creature_npc_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 129,
+      "locator_heading_or_symbol": "- C01 is not a final creature system, combat math system, encounter system, runtime actor model, donor statblock import format, or canon promotion procedure.",
+      "excerpt_sha256": "679960a2a6b660440872ab6566d94c0743b7b3aa2290d3be3714c7a07de003ee",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C01 is not a final creature system, combat math system, encounter system, runtime actor model, donor statblock import format, or canon promotion procedure. - C01 record\u201d. Distinguishing context: \u201cC01 defines Batch C conversion-stage and canon-review record-family schema doctrine for creature/NPC records. It covers creature, NPC, adversary, monster, spirit, AI actor, swarm, non-player being, and similar \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C01_creature_npc_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 133,
+      "line_end": 221,
+      "locator_heading_or_symbol": "C01 may use parent, child, and satellite records to preserve lineage and composition without merging ownership. Parent records may represent a donor creature/NPC cluster or archety",
+      "excerpt_sha256": "49f6401902a09fd21f4e1c11840f0eae25bd3b8180c940f6d3483622d5cbb2be",
+      "matched_terms": [
+        "context packet",
+        "disclosure",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC01 may use parent, child, and satellite records to preserve lineage and composition without merging ownership. Parent records may represent a donor creature/NPC cluster \u201d. Distinguishing context: \u201cA composite record remains C01 only when the actor-like identity is the review subject. Embedded capability lists, loot lines, hazard clauses, map references, faction ranks, scenario scripts, and source-local o\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C02_item_gear_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 129,
+      "locator_heading_or_symbol": "- C02 is not final item mechanics, final equipment math, combat balance, economy balance, runtime inventory model, donor item-table import format, equipment table, shop system, loo",
+      "excerpt_sha256": "05c561c97bb9c7ef11b9b41dea0a644c384598f876dd18bd2c63ac507c2aa2e9",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C02 is not final item mechanics, final equipment math, combat balance, economy balance, runtime inventory model, donor item-table import format, equipment table, shop s\u201d. Distinguishing context: \u201cC02 defines Batch C conversion-stage and canon-review record-family schema doctrine for item/gear records. It covers practical item, gear, tool, weapon, armor, consumable, kit, equipment, portable object, carri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C02_item_gear_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 145,
+      "line_end": 238,
+      "locator_heading_or_symbol": "A composite record remains C02 only when the item/gear identity is the review subject. Embedded capability lists, attack modes, defensive effects, loot placement, shop entries, req",
+      "excerpt_sha256": "b617a85495f4ea0286956dbc742bce504bcef5a44f342d0b345a1656f0d05659",
+      "matched_terms": [
+        "context packet",
+        "disclosure",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cA composite record remains C02 only when the item/gear identity is the review subject. Embedded capability lists, attack modes, defensive effects, loot placement, shop en\u201d. Distinguishing context: \u201c## 11. Composite item/gear record handling Composite donor constructs often combine an item, granted abilities, activation effects, charges, ammo, custody terms, prices, rarity, crafting recipes, salvage yields\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C03_ability_power_technique_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 121,
+      "locator_heading_or_symbol": "- C03 is not final ability mechanics, final ability math, resource math, cost math, damage math, condition math, duration math, recharge/cooldown doctrine, backlash doctrine, spell",
+      "excerpt_sha256": "7ea21f2d5c88eaeeefd043e9721bbc79df9cc88ccfcb3015b57ac86cf26d575d",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C03 is not final ability mechanics, final ability math, resource math, cost math, damage math, condition math, duration math, recharge/cooldown doctrine, backlash doctr\u201d. Distinguishing context: \u201cC03 defines Batch C conversion-stage and canon-review record-family schema doctrine for ability/power/technique records. It covers ability, power, technique, spell-like effect, maneuver, routine, invocation, ps\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C03_ability_power_technique_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 144,
+      "line_end": 243,
+      "locator_heading_or_symbol": "A composite record remains C03 only when the ability/power/technique identity is the review subject. Embedded actors, item objects, relic/installable assets, faction schools, locat",
+      "excerpt_sha256": "16698133f526d4b093c88ea97034f1c4e97784024bf65f7d15f402c883c5b8ab",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "snapshot",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cA composite record remains C03 only when the ability/power/technique identity is the review subject. Embedded actors, item objects, relic/installable assets, faction scho\u201d. Distinguishing context: \u201c## 11. Composite ability/power/technique record handling Composite donor constructs often combine a capability, actor host, item focus, relic source, faction school, location limit, scenario script, vehicle pla\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 117,
+      "locator_heading_or_symbol": "- C04 is not final relic mechanics, final implant math, cyberware economy, biotech economy, essence systems, cyberpsychosis systems, attunement rules, license rules, pilot-license ",
+      "excerpt_sha256": "bc709ca721de089a6b0b7c1b28878516cdcc9004314f0d6f3a73466ac891bef8",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C04 is not final relic mechanics, final implant math, cyberware economy, biotech economy, essence systems, cyberpsychosis systems, attunement rules, license rules, pilo\u201d. Distinguishing context: \u201cC04 defines Batch C conversion-stage and canon-review record-family schema doctrine for relic/implant/installable asset records. It covers relics, implants, cyberware, biotech, attunement-like assets, bonded as\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 131,
+      "line_end": 238,
+      "locator_heading_or_symbol": "- C04 -> C02 for practical item/gear object evidence, carried or worn gear, mundane equipment component, consumable interface, object shell, or asset treated primarily as ordinary ",
+      "excerpt_sha256": "fbd4fd3739009f8b1f5d6dc6098a98f9e92782b1379714471de00ccb554cbe80",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C04 -> C02 for practical item/gear object evidence, carried or worn gear, mundane equipment component, consumable interface, object shell, or asset treated primarily as\u201d. Distinguishing context: \u201c- C04 may reference B02 when asset use affects action declaration, cost commitment, or resolution trigger pressure, but B02 is not C04 schema. - Batch B procedure terms must not become C04 schema fields, inheri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C04_relic_implant_installable_asset_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 261,
+      "line_end": 281,
+      "locator_heading_or_symbol": "- source-local/legal/IP handling, rejected donor elements, canon eligibility without promotion, hidden/protected-truth boundary, runtime boundary, and good/bad examples are present",
+      "excerpt_sha256": "f00650b369f627aee4e7f70b861aca72daadb3dcdec1be470046f706eb9c45bd",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- source-local/legal/IP handling, rejected donor elements, canon eligibility without promotion, hidden/protected-truth boundary, runtime boundary, and good/bad examples a\u201d. Distinguishing context: \u201c- C04 must inherit/include `AstraContentRecordBase` and preserve C00 provenance, source-local, rejected donor element, canon eligibility, confidence, validation, lineage, composition, cross-reference, legal/IP,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C06_location_site_region_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 125,
+      "locator_heading_or_symbol": "C06 defines Batch C conversion-stage and canon-review schema doctrine for location, site, region, world, plane, station, ruin, megastructure, settlement, biome, route context, keye",
+      "excerpt_sha256": "19096616fa127a134927969825ae4d0e28032c9eebb953c420c2211ab7bf1a7e",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "schedule",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC06 defines Batch C conversion-stage and canon-review schema doctrine for location, site, region, world, plane, station, ruin, megastructure, settlement, biome, route con\u201d. Distinguishing context: \u201c# C06 Location/Site/Region Record Schema Doctrine ## 1. Purpose and status C06 defines Batch C conversion-stage and canon-review schema doctrine for location, site, region, world, plane, station, ruin, megastru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C06_location_site_region_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 128,
+      "line_end": 244,
+      "locator_heading_or_symbol": "donor_location_field_handling: preserve_as_source_evidence | donor_tag_only | rejected_donor_element | source_local_boundary | legal_ip_review",
+      "excerpt_sha256": "10954f6c02789492317b5efb50bc05a72995b31988ee64dac57d7f917118a4fd",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdonor_location_field_handling: preserve_as_source_evidence | donor_tag_only | rejected_donor_element | source_local_boundary | legal_ip_review ``` The C06LocationSiteRegi\u201d. Distinguishing context: \u201csource_local_cosmology_reference_posture: none | c14_review_required | legal_ip_review_required | source_local_boundary_required | rejected_import_required | uncertain canon_review_posture: not_eligible | eligi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C06_location_site_region_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 249,
+      "line_end": 287,
+      "locator_heading_or_symbol": "- Preserve a donor ruin as a C06 location/site/region record with source evidence, boundary posture, C13 map/diagram refs, C01 guardian refs, C09 hazard refs, C02 cache refs, B08 s",
+      "excerpt_sha256": "c6077935303f57d63f14132854d6ce8d1c34b2ea0ef2d448b6f0153b19bfb11a",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Preserve a donor ruin as a C06 location/site/region record with source evidence, boundary posture, C13 map/diagram refs, C01 guardian refs, C09 hazard refs, C02 cache r\u201d. Distinguishing context: \u201cWhen a location-like donor construct includes material that lacks a stable C-family owner, C06 routes the unresolved portion to `pending_schema` with provenance, source evidence, rejected donor element posture \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C07_mission_scenario_adventure_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 124,
+      "locator_heading_or_symbol": "C07 defines Batch C schema-layer doctrine for conversion-stage mission, scenario, adventure, arc, hook, objective, scene-chain, encounter-chain, reward/consequence structure, branc",
+      "excerpt_sha256": "e03a974d1d45ef1095f414a19dfaab9ddae723fb28495cb180f2f5850aa52664",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "evidence",
+        "promotion",
+        "seed",
+        "settlement",
+        "timeline",
+        "truth",
+        "world time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC07 defines Batch C schema-layer doctrine for conversion-stage mission, scenario, adventure, arc, hook, objective, scene-chain, encounter-chain, reward/consequence struct\u201d. Distinguishing context: \u201c# C07 Mission/Scenario/Adventure Record Schema Doctrine ## 1. Purpose and status C07 defines Batch C schema-layer doctrine for conversion-stage mission, scenario, adventure, arc, hook, objective, scene-chain, e\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C07_mission_scenario_adventure_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 226,
+      "locator_heading_or_symbol": "Parent C07 records may collect scenario-family structure; child C07 records may represent objective structures, branch structures, hooks, episode fragments, or scene-chain evidence",
+      "excerpt_sha256": "935c353fe6f92c7109821e6454ad668d42cdb4f9590c17c64462802beda246da",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "evidence",
+        "promotion",
+        "timeline",
+        "truth",
+        "world history",
+        "world time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cParent C07 records may collect scenario-family structure; child C07 records may represent objective structures, branch structures, hooks, episode fragments, or scene-chai\u201d. Distinguishing context: \u201cComposite records must split or route child records when a component has a stable owner. A composite record may describe that a scenario contains a rescue target, locked site, hazard pressure, route complicatio\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C08_vehicle_ship_platform_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 130,
+      "locator_heading_or_symbol": "- C08 is not final vehicle mechanics, not final starship mechanics, not final mech mechanics, not final platform mechanics, not starship combat, not mech combat, not travel procedu",
+      "excerpt_sha256": "d6c970ca53cd74d7666b96223850eeadabd1441552a6a88070198535cd608d2e",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C08 is not final vehicle mechanics, not final starship mechanics, not final mech mechanics, not final platform mechanics, not starship combat, not mech combat, not trav\u201d. Distinguishing context: \u201cC08 defines Batch C conversion-stage and canon-review record-family schema doctrine for vehicle, ship, starship, mech, platform, station, drone platform, base, mobile base, modular platform, platform-scale syst\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C08_vehicle_ship_platform_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 141,
+      "line_end": 246,
+      "locator_heading_or_symbol": "- C08 vs C13: C08 owns platform identity. C13 owns deck plans, diagrams, layouts, and visual/spatial evidence.",
+      "excerpt_sha256": "41a7d09e783e48d48400bb02fed054d201b9d47ecfdc2c4da48f810bdea98b5a",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C08 vs C13: C08 owns platform identity. C13 owns deck plans, diagrams, layouts, and visual/spatial evidence. - C08 vs C05/B05: C08 owns the platform record. C05 owns fa\u201d. Distinguishing context: \u201c- C08 vs C06: C08 owns vehicle/ship/platform identity. C06 owns locations/sites/regions. Stations, bases, and shipboard spaces may require a C08 platform record plus C06 place records when used as sites. - C08 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C10_table_oracle_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 117,
+      "locator_heading_or_symbol": "C10 defines Batch C conversion-stage and canon-review schema doctrine for table, oracle, generator, random-roll list, weighted option list, result family, prompt list, keyed result",
+      "excerpt_sha256": "8deb1909910186c10f601e8a3ec296d53ad05dae237fcee177e6fdf1c69609e9",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "reroll",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC10 defines Batch C conversion-stage and canon-review schema doctrine for table, oracle, generator, random-roll list, weighted option list, result family, prompt list, ke\u201d. Distinguishing context: \u201c# C10 Table/Oracle Record Schema Doctrine ## 1. Purpose and status C10 defines Batch C conversion-stage and canon-review schema doctrine for table, oracle, generator, random-roll list, weighted option list, res\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C10_table_oracle_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 157,
+      "line_end": 258,
+      "locator_heading_or_symbol": "- C10 vs runtime/backend: C10 records conversion-stage table/oracle evidence and routing; runtime/backend owners decide later whether any generator becomes executable.",
+      "excerpt_sha256": "a2e78ecf29668046d902b91ac938385d04b99e3ecfd0fe69b59b8973ae36ef67",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "reroll",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C10 vs runtime/backend: C10 records conversion-stage table/oracle evidence and routing; runtime/backend owners decide later whether any generator becomes executable. - \u201d. Distinguishing context: \u201c- C10 vs C06/B08: C10 owns location/travel/discovery table structure; C06 owns location/site/region records and B08 owns travel/exploration/discovery procedure. - C10 vs C07: C10 owns random hook/event/scenario\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C11_companion_summon_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 122,
+      "locator_heading_or_symbol": "C11 defines Batch C conversion-stage and canon-review schema doctrine for companion, summon, bonded beast, drone companion, spirit ally, contract entity, familiar-like entity, pet,",
+      "excerpt_sha256": "0109472e7ea10fa6674987fcd1dbb4c18197a77246aa2b712f436cd90209dfc9",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC11 defines Batch C conversion-stage and canon-review schema doctrine for companion, summon, bonded beast, drone companion, spirit ally, contract entity, familiar-like en\u201d. Distinguishing context: \u201c# C11 Companion/Summon Record Schema Doctrine ## 1. Purpose and status C11 defines Batch C conversion-stage and canon-review schema doctrine for companion, summon, bonded beast, drone companion, spirit ally, co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C11_companion_summon_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 132,
+      "line_end": 243,
+      "locator_heading_or_symbol": "hidden_protected_truth_posture: public_evidence | hidden_evidence | protected_truth | player_unknown | reviewer_only",
+      "excerpt_sha256": "6850d241d60400aacccbfb539397336184e010403b11f0f3dcd0fceeb4ce493b",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201chidden_protected_truth_posture: public_evidence | hidden_evidence | protected_truth | player_unknown | reviewer_only legal_ip_posture: inherited_from_C00 | legal_review_r\u201d. Distinguishing context: \u201cvehicle_platform_reference_posture: C08_required | C08_reference_present | no_platform_record_required | pending_schema scenario_reference_posture: C07_required | C07_reference_present | no_scenario_record_requ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C11_companion_summon_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 253,
+      "line_end": 286,
+      "locator_heading_or_symbol": "- Preserve a spirit contract as C11 evidence while routing contract ritual/process pressure to C12, social obligation pressure to B09, and donor-world spirit law to C14.",
+      "excerpt_sha256": "0b83e5f29b9ea33ea08b4896f91841f3f5025bad42d262ad4de4583c136e6856",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Preserve a spirit contract as C11 evidence while routing contract ritual/process pressure to C12, social obligation pressure to B09, and donor-world spirit law to C14. \u201d. Distinguishing context: \u201cGood C11 usage: - Preserve a donor bonded beast as a C11 relationship/control record, route the beast body to C01, route a bonding technique to C03, and route source-local beast names to C14. - Preserve a tempo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C12_crafting_salvage_recipe_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 124,
+      "locator_heading_or_symbol": "C12 defines Batch C conversion-stage and canon-review schema doctrine for crafting records, salvage records, repair records, recipe records, installation-process records, modificat",
+      "excerpt_sha256": "7fbb99cddea732b91af519118807269f465cc5cb85e44ca151cee5dfc0e66499",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC12 defines Batch C conversion-stage and canon-review schema doctrine for crafting records, salvage records, repair records, recipe records, installation-process records,\u201d. Distinguishing context: \u201c# C12 Crafting/Salvage/Recipe Record Schema Doctrine ## 1. Purpose and status C12 defines Batch C conversion-stage and canon-review schema doctrine for crafting records, salvage records, repair records, recipe \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C12_crafting_salvage_recipe_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 126,
+      "line_end": 242,
+      "locator_heading_or_symbol": "hidden_protected_truth_posture: none | protected_truth_review | hidden_from_player_facing_outputs | human_review",
+      "excerpt_sha256": "465333b7af2daf2232b1f0a3aa17b46fe7b743a407f537fb602c75603e3dc052",
+      "matched_terms": [
+        "compensation",
+        "context packet",
+        "corruption",
+        "disclosure",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201chidden_protected_truth_posture: none | protected_truth_review | hidden_from_player_facing_outputs | human_review rejection_containment_posture: none | rejected_donor_elem\u201d. Distinguishing context: \u201cinstallation_modification_reference_posture: C04_reference | C08_reference | B06_pressure_only | source_evidence_only | rejected_import | pending_schema hazard_safety_reference_posture: C09_reference | B10_pres\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C12_crafting_salvage_recipe_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 249,
+      "line_end": 292,
+      "locator_heading_or_symbol": "- Preserve a donor crafting recipe as C12 process/recipe evidence, route its ordinary output to C02, route its special relic output to C04, route material names to C14, and reject ",
+      "excerpt_sha256": "e98a1b4a2031fe52c9cfc0155bb397fa2db7ecf860da7ad45429f4e7161a40ef",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Preserve a donor crafting recipe as C12 process/recipe evidence, route its ordinary output to C02, route its special relic output to C04, route material names to C14, a\u201d. Distinguishing context: \u201cMissing future crafting mechanics, salvage mechanics, repair procedures, installation procedures, requisition procedures, project procedures, material economy, recipe catalog, blueprint system, upgrade-slot sys\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C13_map_diagram_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 125,
+      "locator_heading_or_symbol": "C13 defines Batch C schema-layer doctrine for conversion-stage and canon-review map, diagram, annotation, keyed area, visual dependency, route diagram, ship/station layout, tactica",
+      "excerpt_sha256": "4bb50a981650035889266479403d2b12fba009836d3c1d7b6d58ccaacbd84c06",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC13 defines Batch C schema-layer doctrine for conversion-stage and canon-review map, diagram, annotation, keyed area, visual dependency, route diagram, ship/station layou\u201d. Distinguishing context: \u201c# C13 Map/Diagram Record Schema Doctrine ## 1. Purpose and status C13 defines Batch C schema-layer doctrine for conversion-stage and canon-review map, diagram, annotation, keyed area, visual dependency, route d\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C13_map_diagram_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 126,
+      "line_end": 241,
+      "locator_heading_or_symbol": "- C13 -> C07 for mission/scenario/adventure maps, keyed adventure sites, clue diagrams, tactical diagrams, puzzle diagrams, route overlays, scenario diagrams, and visual scenario e",
+      "excerpt_sha256": "c72773cf5e52b27bac577c120afc463b3200ae2bba8c3aec3d3ea957f8ec3509",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- C13 -> C07 for mission/scenario/adventure maps, keyed adventure sites, clue diagrams, tactical diagrams, puzzle diagrams, route overlays, scenario diagrams, and visual \u201d. Distinguishing context: \u201c- C13 -> C02 for item/gear/cache/treasure/object placement evidence, object diagrams, equipment diagrams, symbolized loot, tool diagrams, or visual item dependencies. - C13 -> C03 for area-of-effect diagrams, r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C14_source_local_setting_cosmology_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 127,
+      "locator_heading_or_symbol": "C14 is a containment and review-routing schema family. It is not canon promotion, not Astra-wide cosmology, not final setting law, not final metaphysics, not sourcebook lore, not r",
+      "excerpt_sha256": "c567f53641d5416c21b1748090fce62f1d3d88fb6bf39dde918b847a8e3bbf49",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cC14 is a containment and review-routing schema family. It is not canon promotion, not Astra-wide cosmology, not final setting law, not final metaphysics, not sourcebook l\u201d. Distinguishing context: \u201c## 1. Purpose and status C14 defines Batch C conversion-stage/canon-review schema doctrine for source-local setting, cosmology, metaphysics, proper noun, local law, local faction context, local culture, local h\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C14_source_local_setting_cosmology_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 128,
+      "line_end": 245,
+      "locator_heading_or_symbol": "setting_history_posture: none | evidence_only | source_local_only | timeline_handoff_required | rejected_import | canon_review_required",
+      "excerpt_sha256": "9e695c3329604fc0781170cf35a34e802945c09661aee3985da472e08c6fddfb",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "timeline",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201csetting_history_posture: none | evidence_only | source_local_only | timeline_handoff_required | rejected_import | canon_review_required culture_faction_context_posture: n\u201d. Distinguishing context: \u201csource_local_classification: setting_context | cosmology_context | metaphysics_context | proper_noun_context | local_law_context | local_history_context | culture_context | named_entity_context | named_world_co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema/C14_source_local_setting_cosmology_record_schema.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 252,
+      "line_end": 285,
+      "locator_heading_or_symbol": "- Preserve a donor named world as source evidence with legal/IP posture, mark its exact name source-local only, and route any reusable location pattern to C06.",
+      "excerpt_sha256": "5d7926df5029010d2db4ffd86f4bdfb7c3967404bb7740a634458c133074d6c6",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Preserve a donor named world as source evidence with legal/IP posture, mark its exact name source-local only, and route any reusable location pattern to C06. - Preserve\u201d. Distinguishing context: \u201cMissing-schema fallback must not cause C14 to absorb permanent ownership of unrelated construct grammar or import donor-world assumptions as Astra defaults. ## 21. Examples of good and bad C14 usage Good C14 us\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM00_schema_math_mechanics_master_scope_and_sequencing_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 91,
+      "locator_heading_or_symbol": "SM00 is the first post-Batch-C schema/math/mechanics planning, readiness, control, and scope file for Astra Ascension. It exists to sequence future work after the Batch C schema-fa",
+      "excerpt_sha256": "e15ed361d5bb9756c96cb715e2f54d7c598d8fc32d04739264da6ee0c10a6822",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM00 is the first post-Batch-C schema/math/mechanics planning, readiness, control, and scope file for Astra Ascension. It exists to sequence future work after the Batch C\u201d. Distinguishing context: \u201c# SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan ## 1. Purpose and status SM00 is the first post-Batch-C schema/math/mechanics planning, readiness, control, and scope file for Astra Ascension. It e\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM00_schema_math_mechanics_master_scope_and_sequencing_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 129,
+      "line_end": 245,
+      "locator_heading_or_symbol": "Minimum pilot conversion readiness is a narrow, evidence-gathering threshold. It requires enough validation-schema inventory, record instance schema planning, conversion packet sch",
+      "excerpt_sha256": "362e013478846c4e986cb23e466732e5b5be0240b42ae028f50ef3d21abde2b1",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cMinimum pilot conversion readiness is a narrow, evidence-gathering threshold. It requires enough validation-schema inventory, record instance schema planning, conversion \u201d. Distinguishing context: \u201c- hidden-state handling; - balance benchmarks. ## 8. Conversion-readiness checklist Minimum pilot conversion readiness is a narrow, evidence-gathering threshold. It requires enough validation-schema inventory, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM00_schema_math_mechanics_master_scope_and_sequencing_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 255,
+      "line_end": 275,
+      "locator_heading_or_symbol": "- D-series authority promotion.",
+      "excerpt_sha256": "41f9c2cd15c962f189041b122d1e578710aa0a76fd2a7070b278e1d289efbeee",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- D-series authority promotion. These refusals apply even if a donor source, D-series source pack, Batch B procedure, C-family record, or test fixture appears to imply a \u201d. Distinguishing context: \u201c- donor dice-system defaults; - donor cosmology defaults; - donor proper noun import; - donor defaults of any kind; - RHBF hidden law; - D-series authority promotion. These refusals apply even if a donor source\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 130,
+      "locator_heading_or_symbol": "- SM01 does not create JSON Schema files, Pydantic models, runtime schemas, backend schemas, database schemas, entity/component/event schemas, command lifecycle contracts, context ",
+      "excerpt_sha256": "b907fd3bb3ed1772c5defd2f1052baa5675546127fa9ef03fd357eba925ad68a",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- SM01 does not create JSON Schema files, Pydantic models, runtime schemas, backend schemas, database schemas, entity/component/event schemas, command lifecycle contracts\u201d. Distinguishing context: \u201cSM01 is a post-SM00 planning/control file for validation and schema readiness. It converts SM00's high-level schema gap inventory into a more detailed validation/schema inventory and readiness-control map. Stat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 253,
+      "locator_heading_or_symbol": "Missing coverage includes final instance validation rules, canonical fixture examples, versioning/migration checks, field-level implementation, family-specific requiredness, and cr",
+      "excerpt_sha256": "ebe594f4101ff02b141e36a6411dee5e99716486fa7729b1fcc2eb85a4120beb",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "migration",
+        "promotion",
+        "quarantine",
+        "revalidation",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cMissing coverage includes final instance validation rules, canonical fixture examples, versioning/migration checks, field-level implementation, family-specific requiredne\u201d. Distinguishing context: \u201c## 9. Record instance schema inventory Record instance schemas will eventually define how individual C00-C14 records are validated. Existing partial coverage includes C00's shared content record base posture an\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 260,
+      "line_end": 340,
+      "locator_heading_or_symbol": "- Cross-record reference validation routes to future SM03 or later schema-validation owner unless pilot evidence shows it must be pulled forward.",
+      "excerpt_sha256": "24965064d7f4a766ef94d649b0e32077f9bd20b8f63d4e387d23c02197a98a26",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Cross-record reference validation routes to future SM03 or later schema-validation owner unless pilot evidence shows it must be pulled forward. - Conversion packet vali\u201d. Distinguishing context: \u201c## 20. Owner map and lawful fallbacks Owner routing: - C00/C01-C14 validation inheritance and record family coverage routes to the future validation/schema implementation owner. - Cross-record reference validat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM02_minimum_pilot_conversion_readiness_and_packet_validation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 125,
+      "locator_heading_or_symbol": "SM02 is a pilot readiness and packet/output control file only. It defines the minimum controlled state required before Astra runs a small, bounded pilot conversion experiment on re",
+      "excerpt_sha256": "4b010529b34f5130cff14a1e08eae78aa76e637394d79a9f852e6154e7bef206",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM02 is a pilot readiness and packet/output control file only. It defines the minimum controlled state required before Astra runs a small, bounded pilot conversion experi\u201d. Distinguishing context: \u201c# SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls ## 1. Purpose and status SM02 is a pilot readiness and packet/output control file only. It defines the minimum controlled state required \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM02_minimum_pilot_conversion_readiness_and_packet_validation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 129,
+      "line_end": 248,
+      "locator_heading_or_symbol": "Unless later repository evidence justifies a narrower pressure test, the recommended initial pilot packet families to route are:",
+      "excerpt_sha256": "a4861d9355c660fe9868729d5d2be8868b8b1bd37c22be3974e0109e944b24c7",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cUnless later repository evidence justifies a narrower pressure test, the recommended initial pilot packet families to route are: - C01 creature/NPC; - C02 item/gear; - C0\u201d. Distinguishing context: \u201cThe pilot must not expand opportunistically into full corpus conversion. Pilot outputs remain evidence artifacts and review targets, not doctrine, canon, mechanics, runtime data, sourcebook prose, live-play beh\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

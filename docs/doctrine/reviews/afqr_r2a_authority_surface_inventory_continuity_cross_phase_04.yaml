@@ -1,0 +1,1356 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-04",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 91,
+      "line_end": 133,
+      "locator_heading_or_symbol": "\"timeline entries\",",
+      "excerpt_sha256": "3672dc012807349b597eddda709066de6288941081d8bf97662cb6839e538462",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"timeline entries\", \"territory and location state\", \"faction and institution state\", \"law and authority state\", \"economy and scarcity state\", \"reputation and relationship\u201d. Distinguishing context: \u201c\"D10_owns\": [ \"persistent world-facing state\", \"world-state facts\", \"event records\", \"consequence records\", \"timeline entries\", \"territory and location state\", \"faction and institution state\", \"law and authorit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 34,
+      "locator_heading_or_symbol": "D11 presents and inspects registered or lawfully provisional state. It may frame scenes, summarize visible state, surface consequences, present uncertainty, describe outcomes, and ",
+      "excerpt_sha256": "108e1370f59dd30404fec24ee175704e44aed7df3c189fa6056f28b8e88c6fbe",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD11 presents and inspects registered or lawfully provisional state. It may frame scenes, summarize visible state, surface consequences, present uncertainty, describe outc\u201d. Distinguishing context: \u201cD11 is **interface doctrine**. It is not the final live-play GM adapter, not a prose-style training pack, not autonomous encounter generation, not faction AI, not economy simulation, and not the final narrator \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 43,
+      "line_end": 75,
+      "locator_heading_or_symbol": "\"hidden truth leakage\",",
+      "excerpt_sha256": "2f95c2214e752b0f212b4acf9ec306ea3ae2a84d348cf89eac8375fbc308ed6e",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"hidden truth leakage\", \"raw register dump in player-facing mode\", \"source-local generalization\", \"owner-file override\", \"player agency violation\", \"Pneuma/cosmic backend\u201d. Distinguishing context: \u201c\"D11-AH\", \"D11-SLP\" ], \"hard_blocks\": [ \"unsupported canon invention\", \"hidden truth leakage\", \"raw register dump in player-facing mode\", \"source-local generalization\", \"owner-file override\", \"player agency vio\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 8,
+      "line_end": 8,
+      "locator_heading_or_symbol": "\"scope\": \"Physical evidence, indexing, dependencies, collisions, and gates\",",
+      "excerpt_sha256": "d77b99b86767ec0e1ec61de9349fad1d55d82bd2f0d1203cd2b122ccb94937a1",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"scope\": \"Physical evidence, indexing, dependencies, collisions, and gates\",\u201d. Distinguishing context: \u201c\"planned_files\": [ { \"file_id\": \"R1A\", \"proposed_path\": \"docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml\", \"owner\": \"Doctrine consolidation intake owner\", \"scope\": \"Physical evidence, indexing, dep\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 65,
+      "line_end": 110,
+      "locator_heading_or_symbol": "\"all 41 terms have direct owner evidence\",",
+      "excerpt_sha256": "73add960fa558bd524b4910fcc4a379ef17741a86eaf8d073906138e6aac4341",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"all 41 terms have direct owner evidence\", \"qualified forms have source-backed owners\", \"candidate/consumer/handoff/scheduler/bridge nonownership checks\", \"alias graph an\u201d. Distinguishing context: \u201c\"downstream_handoffs\": [ \"R1C only; R2 only after R1E approval\" ], \"completion_tests\": [ \"YAML/Markdown structure\", \"all 41 terms have direct owner evidence\", \"qualified forms have source-backed owners\", \"candi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_consolidation_file_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 191,
+      "line_end": 243,
+      "locator_heading_or_symbol": "\"proposed_path\": \"docs/doctrine/consolidation/afqr_world_action_sensing.md\",",
+      "excerpt_sha256": "5ffc4f738610b4b84abd332a57ea2594665d67cfbf4959c62dc99604f63380b3",
+      "matched_terms": [
+        "projection",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"proposed_path\": \"docs/doctrine/consolidation/afqr_world_action_sensing.md\", \"owner\": \"Domain-family consolidation owner\", \"scope\": \"AFQR-16\\u201320 modular world/action \u201d. Distinguishing context: \u201c\"outlier_escalation_path\": \"Doctrine Council unresolved ledger; no invented winner\", \"status\": \"complete\" }, { \"file_id\": \"R1D-WORLD\", \"proposed_path\": \"docs/doctrine/consolidation/afqr_world_action_sensing.md\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 56,
+      "line_end": 156,
+      "locator_heading_or_symbol": "\"normalized_claim\": \"An authoritative world history needs stable timeline identity.\",",
+      "excerpt_sha256": "ae62e72fa5f6fa8a50c02619e8c46d8598b6c801372bfc84bcdae30bb80aeae2",
+      "matched_terms": [
+        "branch",
+        "canon selection",
+        "canonical branch",
+        "correction",
+        "evidence",
+        "projection",
+        "replay",
+        "timeline",
+        "world history"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"normalized_claim\": \"An authoritative world history needs stable timeline identity.\", \"claim_kind\": \"architecture\", \"consensus\": { \"level\": \"unanimous\", \"supporting_sourc\u201d. Distinguishing context: \u201c], \"claims\": [ { \"claim_id\": \"R2-CLAIM-0001\", \"claim_family_id\": \"CF-01\", \"normalized_claim\": \"An authoritative world history needs stable timeline identity.\", \"claim_kind\": \"architecture\", \"consensus\": { \"leve\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 188,
+      "line_end": 308,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "5c96bb3873d080b1de713c58d2b0b59fad3aac411e4bc3285ce60b1db22a44e1",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "correction",
+        "evidence",
+        "hypothetical",
+        "migration",
+        "projection",
+        "quarantine",
+        "replay",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": null, \"component_owners\": { \"componen\u201d. Distinguishing context: \u201c], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 316,
+      "line_end": 433,
+      "locator_heading_or_symbol": "\"evidence_basis\": \"intake_packet_synthesis\"",
+      "excerpt_sha256": "d052f92cbcf1d24fe4c606fa452ba3d76a3b367df693113c7a9b9c46f6ea813e",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "preview",
+        "replay",
+        "valid time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence_basis\": \"intake_packet_synthesis\" }, \"upstream_source_support\": [ { \"source_id\": \"R2-RES-CONTINUITY-001\", \"support_kind\": \"packet_attributed\" }, { \"source_id\": \u201d. Distinguishing context: \u201c\"heading\": \"Normalized claim candidates\", \"subheading\": \"R2-INTAKE-CLAIM-003\", \"line_start\": 285, \"line_end\": 295 }, \"evidence_basis\": \"intake_packet_synthesis\" }, \"upstream_source_support\": [ { \"source_id\": \"R\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 440,
+      "line_end": 557,
+      "locator_heading_or_symbol": "\"method\": \"Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence.\"",
+      "excerpt_sha256": "80cff60a1757547d0381935aeb764b396fc53f58568718bd7f03649138202549",
+      "matched_terms": [
+        "branch",
+        "cancellation",
+        "causal order",
+        "causal parent",
+        "correction",
+        "evidence",
+        "projection",
+        "replay",
+        "revalidation",
+        "timeline",
+        "valid time",
+        "valid_time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"method\": \"Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence.\" }, \"confidence\": \"high\", \"cur\u201d. Distinguishing context: \u201c\"consensus\": { \"level\": \"unanimous\", \"supporting_source_count\": 4, \"applicable_source_count\": 4, \"dissent_summary\": null, \"method\": \"Counted from packet_attributed/source_contribution upstream support; no repos\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 592,
+      "line_end": 710,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "5632ae0cb2ee2f3faa8c456e2389514256b393bd42587e430d059efefc76e373",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "correction",
+        "evidence",
+        "projection",
+        "replay",
+        "retcon",
+        "supersession",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": null, \"component_owners\": { \"componen\u201d. Distinguishing context: \u201c], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 719,
+      "line_end": 824,
+      "locator_heading_or_symbol": "\"repository_evidence\": {",
+      "excerpt_sha256": "b913ec98b9b7f7b815f9cdcea891665f55a788b08dbd035dc91aea597286733d",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "correction",
+        "evidence",
+        "projection",
+        "replay",
+        "retcon",
+        "supersession",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"repository_evidence\": { \"path\": \"docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md\", \"locator\": { \"heading\": \"Normalized claim candidates\", \"subheading\"\u201d. Distinguishing context: \u201c\"Do not implement SUB-001 through SUB-005 in R2.\" ], \"blocking_r2a\": false, \"blocking_r2_completion\": true, \"review_status\": \"routed\", \"repository_evidence\": { \"path\": \"docs/doctrine/reviews/afqr_r2_continuity_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 848,
+      "line_end": 960,
+      "locator_heading_or_symbol": "\"normalized_claim\": \"A correction cannot silently reroll a committed RNG result; replacement resolution has distinct identity and preserves original audit.\",",
+      "excerpt_sha256": "d33d137a7742f04e9e771e7421698c520805edd08d81036b7f0790ddef6c5099",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "evidence",
+        "replay",
+        "reroll",
+        "rng",
+        "schema version"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-06_VERSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"normalized_claim\": \"A correction cannot silently reroll a committed RNG result; replacement resolution has distinct identity and preserves original audit.\", \"claim_kind\"\u201d. Distinguishing context: \u201c] }, { \"claim_id\": \"R2-CLAIM-0009\", \"claim_family_id\": \"CF-04\", \"normalized_claim\": \"A correction cannot silently reroll a committed RNG result; replacement resolution has distinct identity and preserves origin\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 995,
+      "line_end": 1112,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "8fb87003f54c40b960af54c2ab545d60010206efd96667a2fafbc12eea3eca66",
+      "matched_terms": [
+        "belief delta",
+        "branch",
+        "evidence",
+        "knowledge delta",
+        "recap",
+        "replay",
+        "reservation",
+        "schedule",
+        "sensing",
+        "session closure",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": \"R2A must determine the narrow semant\u201d. Distinguishing context: \u201c], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1121,
+      "line_end": 1241,
+      "locator_heading_or_symbol": "\"proposed_next_action\": \"R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUITY must dec",
+      "excerpt_sha256": "498bbacd34ff9708b5ad5b180da3e3a5d9ca5f4eec63c13e6c2992c97d38963e",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "correction",
+        "disclosure",
+        "evidence",
+        "projection",
+        "recap",
+        "replay",
+        "sensing",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"proposed_next_action\": \"R2A must first inspect current event, timeline, branch, correction, closure, and projection authority surfaces; if a gap is proven, R2B-CONTINUIT\u201d. Distinguishing context: \u201c\"primary_outcome\": \"r2_new_doctrine_candidate\", \"secondary_destinations\": [ \"r3_conformance_obligation\" ], \"target_work_package\": \"R2B-CONTINUITY\", \"proposed_next_action\": \"R2A must first inspect current event,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1249,
+      "line_end": 1369,
+      "locator_heading_or_symbol": "\"evidence_basis\": \"intake_packet_synthesis\"",
+      "excerpt_sha256": "b0dce6bd476e0f2425bb7de0f4845e6c6304f3c9d114746a26a5c685d0077044",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence_basis\": \"intake_packet_synthesis\" }, \"upstream_source_support\": [ { \"source_id\": \"R2-RES-ACTUALPLAY-001\", \"support_kind\": \"packet_attributed\" }, { \"source_id\": \u201d. Distinguishing context: \u201c\"heading\": \"Normalized claim candidates\", \"subheading\": \"R2-INTAKE-CLAIM-012\", \"line_start\": 393, \"line_end\": 407 }, \"evidence_basis\": \"intake_packet_synthesis\" }, \"upstream_source_support\": [ { \"source_id\": \"R\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1400,
+      "line_end": 1511,
+      "locator_heading_or_symbol": "\"method\": \"Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence.\"",
+      "excerpt_sha256": "7379afae28dd272f8cd03298e89c4de53a91176d669077962e38d0a8f22565b9",
+      "matched_terms": [
+        "branch",
+        "duplicate suppression",
+        "evidence",
+        "idempotency",
+        "publication receipt",
+        "replay",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-11_DELIVERY"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"method\": \"Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence.\" }, \"confidence\": \"high\", \"cur\u201d. Distinguishing context: \u201c\"consensus\": { \"level\": \"unanimous\", \"supporting_source_count\": 4, \"applicable_source_count\": 4, \"dissent_summary\": null, \"method\": \"Counted from packet_attributed/source_contribution upstream support; no repos\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1536,
+      "line_end": 1653,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "0fe80ab03ce22e261c3e6790483c418dd52e837877eb076abf79b6f15a0f4312",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "lazy catch-up",
+        "offline progression",
+        "replay",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-12_PROGRESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": null, \"component_owners\": { \"componen\u201d. Distinguishing context: \u201c], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1677,
+      "line_end": 1781,
+      "locator_heading_or_symbol": "\"normalized_claim\": \"Replay mismatch, corruption, missing packages, invalid causal parents, incomplete migration, or branch-pointer corruption quarantines affected canonical mutati",
+      "excerpt_sha256": "791bf5f66028d199c80075ef7f60f51ef55bc52e491d07a1a6cd49fc57dc390e",
+      "matched_terms": [
+        "branch",
+        "causal parent",
+        "corruption",
+        "evidence",
+        "migration",
+        "quarantine",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"normalized_claim\": \"Replay mismatch, corruption, missing packages, invalid causal parents, incomplete migration, or branch-pointer corruption quarantines affected canoni\u201d. Distinguishing context: \u201c] }, { \"claim_id\": \"R2-CLAIM-0017\", \"claim_family_id\": \"CF-10\", \"normalized_claim\": \"Replay mismatch, corruption, missing packages, invalid causal parents, incomplete migration, or branch-pointer corruption qua\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1809,
+      "line_end": 1928,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "928f447d77ddc6b7e7314054351e9bb1fbc78f351a281995034844edd64a1f78",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": null, \"component_owners\": { \"componen\u201d. Distinguishing context: \u201c], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1933,
+      "line_end": 2033,
+      "locator_heading_or_symbol": "\"summary\": \"Claim-specific comparison: TERM-001/003/008/012/026/036, INV-001/004/007/009, DEP-006/015/018/088, CORE-RESP-01/07, and WORLD-RESP-16/19 separate quantity settlement, h",
+      "excerpt_sha256": "c6928cd39f3833575924a612351b823806819ffc91c83df5fe886ddd79c317fd",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "replay",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"summary\": \"Claim-specific comparison: TERM-001/003/008/012/026/036, INV-001/004/007/009, DEP-006/015/018/088, CORE-RESP-01/07, and WORLD-RESP-16/19 separate quantity set\u201d. Distinguishing context: \u201c\"method\": \"Counted from packet_attributed/source_contribution upstream support; no repository locator is duplicated as raw-source evidence.\" }, \"confidence\": \"medium\", \"current_astra_comparison\": { \"r1_status\":\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2075,
+      "line_end": 2191,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "d3f7f76523fcb5ad18de2bfee2765cad3556f0cf174da9248ec93bf54cb86b14",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "projection",
+        "recap",
+        "replay",
+        "restart",
+        "session closure",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": \"Which accepted cross-phase authority\u201d. Distinguishing context: \u201c], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2199,
+      "line_end": 2299,
+      "locator_heading_or_symbol": "\"evidence_basis\": \"intake_packet_synthesis\"",
+      "excerpt_sha256": "73fe3eff2bcb6fddb34b4236392625d2274923bc63e789b1188a4e2f1f0387e2",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "preview",
+        "quarantine",
+        "replay",
+        "retcon"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence_basis\": \"intake_packet_synthesis\" }, \"upstream_source_support\": [ { \"source_id\": \"R2-RES-ACTUALPLAY-001\", \"support_kind\": \"packet_attributed\" }, { \"source_id\": \u201d. Distinguishing context: \u201c\"heading\": \"Normalized claim candidates\", \"subheading\": \"R2-INTAKE-CLAIM-022\", \"line_start\": 521, \"line_end\": 529 }, \"evidence_basis\": \"intake_packet_synthesis\" }, \"upstream_source_support\": [ { \"source_id\": \"R\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2323,
+      "line_end": 2440,
+      "locator_heading_or_symbol": "\"normalized_claim\": \"Storage, journaling, replay, branching, commitment, and handoff preserve but never acquire substantive semantic ownership.\",",
+      "excerpt_sha256": "19f1d0ae3f90b0bd8fc9213f7cef346b0a81464f502dd1906c06529371e4301a",
+      "matched_terms": [
+        "branch",
+        "canonical branch",
+        "crdt",
+        "evidence",
+        "multi-master",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"normalized_claim\": \"Storage, journaling, replay, branching, commitment, and handoff preserve but never acquire substantive semantic ownership.\", \"claim_kind\": \"doctrine_\u201d. Distinguishing context: \u201c] }, { \"claim_id\": \"R2-CLAIM-0024\", \"claim_family_id\": \"CF-12\", \"normalized_claim\": \"Storage, journaling, replay, branching, commitment, and handoff preserve but never acquire substantive semantic ownership.\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2466,
+      "line_end": 2580,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "fc60dce32238966a00f2d880ce5e9e333c2990ea96ea97e4bb0f9ee3e6409bb1",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": null, \"component_owners\": {} }, \"prim\u201d. Distinguishing context: \u201c\"supporting_owners\": [], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2608,
+      "line_end": 2704,
+      "locator_heading_or_symbol": "\"normalized_claim\": \"Graph-shaped causality does not justify a mandatory graph database absent demonstrated query pressure.\",",
+      "excerpt_sha256": "ababb49cf58ef760bda2ffe4c058324a5d66fd4f418435ff4471ed838d9f4b45",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "graph database",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"normalized_claim\": \"Graph-shaped causality does not justify a mandatory graph database absent demonstrated query pressure.\", \"claim_kind\": \"rejection\", \"consensus\": { \"l\u201d. Distinguishing context: \u201c] }, { \"claim_id\": \"R2-CLAIM-0027\", \"claim_family_id\": \"CF-13\", \"normalized_claim\": \"Graph-shaped causality does not justify a mandatory graph database absent demonstrated query pressure.\", \"claim_kind\": \"rejec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2730,
+      "line_end": 2844,
+      "locator_heading_or_symbol": "\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\"",
+      "excerpt_sha256": "cb03749d18c3131cb08987de2c0bcef36ff9c048e9539401351c3b24c0cecd11",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "replay",
+        "time travel"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" ], \"unresolved_owner_question\": \"R2A must determine the narrow semant\u201d. Distinguishing context: \u201c\"supporting_owners\": [], \"consumers\": [ \"R2A authority-surface inventory\" ], \"prohibited_owner_transfers\": [ \"storage, journaling, replay, branching, commitment, and handoff do not transfer semantic ownership\" \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2868,
+      "line_end": 2988,
+      "locator_heading_or_symbol": "\"normalized_claim\": \"Actual-play evidence is retained for a later GM adapter covering arbitration, clarification, pacing, interruption, recap, and observability after doctrine and ",
+      "excerpt_sha256": "032e0666633ee3e999e9de95b21d2b5f57bddad926200a38f6965bf02243f39c",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "expiry",
+        "recap",
+        "release",
+        "replay",
+        "reservation",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"normalized_claim\": \"Actual-play evidence is retained for a later GM adapter covering arbitration, clarification, pacing, interruption, recap, and observability after doc\u201d. Distinguishing context: \u201c] }, { \"claim_id\": \"R2-CLAIM-0030\", \"claim_family_id\": \"CF-12\", \"normalized_claim\": \"Actual-play evidence is retained for a later GM adapter covering arbitration, clarification, pacing, interruption, recap, and\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3004,
+      "line_end": 3012,
+      "locator_heading_or_symbol": "\"repository_evidence\": {",
+      "excerpt_sha256": "314711f860292bac99e8981db7c92c795141eb918c649fdf3bff7fdd99ce0656",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"repository_evidence\": { \"path\": \"docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md\", \"locator\": { \"heading\": \"Normalized claim candidates\", \"subheading\"\u201d. Distinguishing context: \u201c\"Do not implement SUB-001 through SUB-005 in R2.\" ], \"blocking_r2a\": false, \"blocking_r2_completion\": false, \"review_status\": \"routed\", \"repository_evidence\": { \"path\": \"docs/doctrine/reviews/afqr_r2_continuity\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 49,
+      "locator_heading_or_symbol": "The raw reports remain external. Codex did not independently inspect them. The retained intake packet is the sole repository evidence and source-attribution synthesis, not a replac",
+      "excerpt_sha256": "afcefd8258302431c34f942526eb0a8ade406f8efc320d7e10fd72461eaa3cd7",
+      "matched_terms": [
+        "branch",
+        "canonical branch",
+        "causal order",
+        "correction",
+        "crdt",
+        "disclosure",
+        "evidence",
+        "multi-master",
+        "offline progression",
+        "preview",
+        "projection",
+        "quarantine",
+        "recap",
+        "replay",
+        "reservation",
+        "retcon",
+        "rng",
+        "sensing",
+        "session closure",
+        "time travel",
+        "timeline",
+        "truth",
+        "world time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-12_PROGRESSION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe raw reports remain external. Codex did not independently inspect them. The retained intake packet is the sole repository evidence and source-attribution synthesis, no\u201d. Distinguishing context: \u201c**Stated R1 baseline:** `bbc9d58cb23f1616327f73294def6ec42055a324` **Difference:** the received baseline is the merge of the compact intake packet (PR #340) and descends from the stated R1 baseline and intake c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 122,
+      "locator_heading_or_symbol": "**Status:** nonauthoritative research intake evidence",
+      "excerpt_sha256": "64395f03ebb8514f003f1d860ec8ea6b7ec4540a191dd68c7bffd18c3b501b88",
+      "matched_terms": [
+        "branch",
+        "canonical branch",
+        "causal order",
+        "correction",
+        "crash recovery",
+        "crdt",
+        "disclosure",
+        "duplicate suppression",
+        "evidence",
+        "idempotency",
+        "migration",
+        "multi-master",
+        "outbox",
+        "preview",
+        "projection",
+        "promotion",
+        "recap",
+        "reservation",
+        "retcon",
+        "session closure",
+        "stale command",
+        "supersession",
+        "timeline",
+        "transaction time",
+        "truth",
+        "valid time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-09_CONCURRENCY",
+        "CF-10_RESERVATION",
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c**Status:** nonauthoritative research intake evidence **Layer:** R2 review input only **Authority:** none beyond source identification, compact restatement, and routing h\u201d. Distinguishing context: \u201c# AFQR R2 Continuity and Deterministic-Backend Research Intake Packet **Status:** nonauthoritative research intake evidence **Layer:** R2 review input only **Authority:** none beyond source identification, comp\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 132,
+      "line_end": 227,
+      "locator_heading_or_symbol": "1. One authoritative world history must not become several equally writable truths.",
+      "excerpt_sha256": "4fee80b77dbcf351904bc7d8f7b6d62619d332fcd56db90ac7ae81024643e561",
+      "matched_terms": [
+        "branch",
+        "campaign override",
+        "canonical branch",
+        "canonicality",
+        "causal order",
+        "commit time",
+        "content package",
+        "correction",
+        "corruption",
+        "crdt",
+        "disclosure",
+        "evidence",
+        "hypothetical",
+        "migration",
+        "observation",
+        "offline progression",
+        "preview",
+        "projection",
+        "quarantine",
+        "recap",
+        "replay",
+        "reroll",
+        "retcon",
+        "rng",
+        "schedule",
+        "session closure",
+        "stale command",
+        "supersession",
+        "timeline",
+        "truth",
+        "valid time",
+        "visibility",
+        "world history",
+        "world tick"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-06_VERSION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-09_CONCURRENCY",
+        "CF-12_PROGRESSION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c1. One authoritative world history must not become several equally writable truths. 2. A persistent world needs stable timeline identity. 3. At most one branch should be \u201d. Distinguishing context: \u201c## 4. High-confidence consensus The four continuity reports strongly converge on the following research findings. 1. One authoritative world history must not become several equally writable truths. 2. A persist\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 257,
+      "line_end": 375,
+      "locator_heading_or_symbol": "### `R2-INTAKE-CLAIM-001` \u2014 Authoritative timeline identity",
+      "excerpt_sha256": "a609eca3cd0d632fe64041394afa53490289144b2b7085b2b32f71c44b834561",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "campaign override",
+        "cancellation",
+        "canonical branch",
+        "causal order",
+        "causal parent",
+        "commit time",
+        "compensation",
+        "correction",
+        "hypothetical",
+        "migration",
+        "preview",
+        "quarantine",
+        "replay",
+        "reroll",
+        "reservation",
+        "retcon",
+        "revalidation",
+        "rng",
+        "schedule",
+        "supersession",
+        "timeline",
+        "transaction time",
+        "valid time",
+        "world history"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-06_VERSION",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c### `R2-INTAKE-CLAIM-001` \u2014 Authoritative timeline identity Claim: each authoritative world history needs stable timeline identity. Likely owners and seams: - AFQR-04 for\u201d. Distinguishing context: \u201c## 7. Normalized claim candidates The following are claim candidates for R2-0 routing. They are not pre-approved doctrine decisions. ### `R2-INTAKE-CLAIM-001` \u2014 Authoritative timeline identity Claim: each autho\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 384,
+      "line_end": 468,
+      "locator_heading_or_symbol": "### `R2-INTAKE-CLAIM-011` \u2014 Session closure contract",
+      "excerpt_sha256": "b8a9ec469a374ca1330a9f43607c6800283a852da5ba36233199659f1c4b2942",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "corruption",
+        "disclosure",
+        "evidence",
+        "expiry",
+        "idempotency",
+        "lazy catch-up",
+        "observation",
+        "offline progression",
+        "projection",
+        "publication receipt",
+        "quarantine",
+        "recap",
+        "replay",
+        "reservation",
+        "schedule",
+        "sensing",
+        "session closure",
+        "settlement",
+        "snapshot",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-11_DELIVERY",
+        "CF-12_PROGRESSION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c### `R2-INTAKE-CLAIM-011` \u2014 Session closure contract Claim: session or scene closure must serialize event range, hashes, versions, time span, unresolved reservations, sch\u201d. Distinguishing context: \u201c- primary: `r2_new_doctrine_candidate` or `r2_drift_audit_input`; - secondary: `r3_conformance_obligation`, `r4_runtime_substrate_obligation`. Prohibited shortcut: latest installed rules must not silently reint\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 514,
+      "line_end": 634,
+      "locator_heading_or_symbol": "Claim: house rules and source-local procedures require explicit identifiers, authority, effective intervals, and replay behavior rather than hidden code forks or informal notes.",
+      "excerpt_sha256": "60f9864ed2e6fa55522ad16ad687d69432acc87df16426c6c506508848c97e32",
+      "matched_terms": [
+        "branch",
+        "canonical branch",
+        "causal order",
+        "causal parent",
+        "correction",
+        "crdt",
+        "evidence",
+        "fork",
+        "graph database",
+        "multi-master",
+        "preview",
+        "projection",
+        "quarantine",
+        "recap",
+        "record time",
+        "replay",
+        "reservation",
+        "restart",
+        "retcon",
+        "schedule",
+        "sensing",
+        "session closure",
+        "snapshot",
+        "supersession",
+        "time travel",
+        "timeline",
+        "truth",
+        "valid time",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cClaim: house rules and source-local procedures require explicit identifiers, authority, effective intervals, and replay behavior rather than hidden code forks or informal\u201d. Distinguishing context: \u201cProhibited shortcut: the continuity or event subsystem must not own substantive resource, harm, recovery, or condition semantics. ### `R2-INTAKE-CLAIM-021` \u2014 Versioned custom rules Claim: house rules and source\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 635,
+      "line_end": 742,
+      "locator_heading_or_symbol": "- historical replay and migration provenance.",
+      "excerpt_sha256": "4de1b3cc00a8d369b1c724ae1e6ceab66493578a78ed661ea934b31dabecedcd",
+      "matched_terms": [
+        "branch",
+        "canonical branch",
+        "causal order",
+        "correction",
+        "crdt",
+        "evidence",
+        "migration",
+        "multi-master",
+        "offline progression",
+        "preview",
+        "projection",
+        "promotion",
+        "recap",
+        "replay",
+        "reroll",
+        "reservation",
+        "retcon",
+        "rng",
+        "settlement",
+        "snapshot",
+        "time travel",
+        "timeline",
+        "truth",
+        "world tick"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-12_PROGRESSION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- historical replay and migration provenance. Mandatory owner separation: - AFQR-01: transition, routing, commitment, recovery/replay doctrine; - AFQR-02: command identit\u201d. Distinguishing context: \u201c- supersession and correction records; - causal parents; - expected owner versions; - crash-safe reservations; - session closure; - historical replay and migration provenance. Mandatory owner separation: - AFQR\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 125,
+      "locator_heading_or_symbol": "\"authority\": \"nonauthoritative_research_evidence\",",
+      "excerpt_sha256": "2c967a2ef913d8b1e20299ec3124374cc756fdb6a34972c87c6f4b7bcfac93cf",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "crash recovery",
+        "crdt",
+        "duplicate suppression",
+        "evidence",
+        "idempotency",
+        "multi-master",
+        "observation",
+        "projection",
+        "recap",
+        "replay",
+        "reservation",
+        "retcon",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authority\": \"nonauthoritative_research_evidence\", \"intake_packet\": \"docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md\", \"sources\": [ { \"source_id\": \"R2-\u201d. Distinguishing context: \u201c{ \"artifact_id\": \"AFQR-R2-RESEARCH-SOURCE-MANIFEST-001\", \"status\": \"review\", \"phase\": \"R2-0\", \"authority\": \"nonauthoritative_research_evidence\", \"intake_packet\": \"docs/doctrine/reviews/afqr_r2_continuity_resear\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 131,
+      "line_end": 249,
+      "locator_heading_or_symbol": "\"primary_contribution\": \"Branch and retcon governance, state-machine sketches, adversarial cases, and roadmap.\",",
+      "excerpt_sha256": "05d49e76d19947ffc481b556993e18575caf7da7d286fc3edb18586c3753d352",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "disclosure",
+        "evidence",
+        "migration",
+        "projection",
+        "recap",
+        "replay",
+        "retcon",
+        "session closure",
+        "stale command"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-09_CONCURRENCY"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"primary_contribution\": \"Branch and retcon governance, state-machine sketches, adversarial cases, and roadmap.\", \"unique_contributions\": [ \"branch and retcon severity tax\u201d. Distinguishing context: \u201c\"repository_resident_raw_source\": false, \"session_repository_access_status\": { \"repository_inspected\": false, \"current_relevance\": \"historical_limitation_only\" }, \"primary_contribution\": \"Branch and retcon gove\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 263,
+      "line_end": 263,
+      "locator_heading_or_symbol": "\"branch_time_correction_replay\"",
+      "excerpt_sha256": "f666c7d4bfe65b30952013343577cee1e11b73f41cc802fb5acf69db49e63358",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"branch_time_correction_replay\"\u201d. Distinguishing context: \u201c\"modular doctrine and file-ownership recommendations\", \"core-now versus later staging\", \"alternate-world and multiverse deferral\" ], \"overlap_clusters\": [ \"branch_time_correction_replay\" ], \"known_limitations\":\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 67,
+      "line_end": 67,
+      "locator_heading_or_symbol": "\"purpose\": \"Summarize evidence and gate effect\",",
+      "excerpt_sha256": "b09cd2a54d2b72b2ff401335e8c641c5c7c0687dfdf305462d2d1db19dac702a",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"purpose\": \"Summarize evidence and gate effect\",\u201d. Distinguishing context: \u201c}, { \"phase\": \"R2-0\", \"path\": \"docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md\", \"owner\": \"R2-0\", \"purpose\": \"Summarize evidence and gate effect\", \"inputs\": [ \"source manifest and ledge\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 248,
+      "line_end": 293,
+      "locator_heading_or_symbol": "\"world/action/sensing outliers\"",
+      "excerpt_sha256": "f93f8aeb1a1536289eab8f9c31472d729642c406802037b401c2265c3db3661b",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "projection",
+        "promotion",
+        "recap",
+        "replay",
+        "retcon",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"world/action/sensing outliers\" ], \"outlier_escalation_path\": \"R2C or Council\", \"current_status\": \"candidate\" }, { \"phase\": \"R2B\", \"path\": \"docs/doctrine/consolidation/af\u201d. Distinguishing context: \u201c], \"gate_prerequisites\": [ \"package proven necessary\" ], \"corpus_scale_pressure\": [ \"world/action/sensing outliers\" ], \"outlier_escalation_path\": \"R2C or Council\", \"current_status\": \"candidate\" }, { \"phase\": \"R\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/runtime_schema_implementation_sequencing_review.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 69,
+      "locator_heading_or_symbol": "- RNG/table/oracle services;",
+      "excerpt_sha256": "f7d823c3dabec154249b95d2c723d5e2b448dd9783d8055776913a7b319d0de6",
+      "matched_terms": [
+        "promotion",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- RNG/table/oracle services; - event ledgers; - persistence writers; - retrieval indexes; - context-packet compilers; - live-play prompts; - training data; - donor-conten\u201d. Distinguishing context: \u201c- runtime code; - schema implementation; - command IR implementation; - validator implementation; - generator implementation; - RNG/table/oracle services; - event ledgers; - persistence writers; - retrieval ind\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/runtime_schema_implementation_sequencing_review.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 135,
+      "line_end": 254,
+      "locator_heading_or_symbol": "Astra Ascension must be model-interchangeable. The LLM is not the game engine. The LLM is only the player-facing narration and interpretation layer. The backend runtime kernel owns",
+      "excerpt_sha256": "c74fcbdfb308b472ca9228658d186928c035d8c821a944df6ddbecddf50e2a2e",
+      "matched_terms": [
+        "corruption",
+        "migration",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "rollback",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cAstra Ascension must be model-interchangeable. The LLM is not the game engine. The LLM is only the player-facing narration and interpretation layer. The backend runtime k\u201d. Distinguishing context: \u201c## 4. Backend-First Invariant Restatement ### Invariant Astra Ascension must be model-interchangeable. The LLM is not the game engine. The LLM is only the player-facing narration and interpretation layer. The b\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/runtime_schema_implementation_sequencing_review.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 267,
+      "line_end": 381,
+      "locator_heading_or_symbol": "- RNG/tables (RT-009);",
+      "excerpt_sha256": "5c21d47a97f4f9b370f0cdd54645d1706f63c9735e3959062fb6d8298bed019d",
+      "matched_terms": [
+        "corruption",
+        "migration",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "seed",
+        "snapshot",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- RNG/tables (RT-009); - inventory/assets (RT-010). **Status in this review:** Future implementation wave, not implemented here. ### Wave 8 \u2014 Persistence Writers, Migrati\u201d. Distinguishing context: \u201c- combat/hazards (RT-003); - abilities/effects (RT-004); - missions/clues/rewards (RT-006); - social/faction/knowledge (RT-007); - generated-content provenance (RT-008); - RNG/tables (RT-009); - inventory/asset\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/runtime_schema_implementation_sequencing_review.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 393,
+      "line_end": 478,
+      "locator_heading_or_symbol": "- **Command IR validation tests:** Verify command proposal shape, actor/action/target/cost field presence, legality envelope shape, rejection/quarantine state transitions.",
+      "excerpt_sha256": "f5053325555506164d38da5a3059026e9cca403362abba1cac98999254cacb21",
+      "matched_terms": [
+        "corruption",
+        "migration",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "rollback",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- **Command IR validation tests:** Verify command proposal shape, actor/action/target/cost field presence, legality envelope shape, rejection/quarantine state transitions\u201d. Distinguishing context: \u201c### Future test families - **Owner-spec coverage tests:** Verify that each RT track has an owner specification, that each specification references the correct audit/remediation lineage, and that each declares m\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

@@ -1,0 +1,996 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-AGENCY-02",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 12,
+      "line_end": 130,
+      "locator_heading_or_symbol": "This file is the Stage 2 owner specification for RT-005. It upgrades `docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md` into a specification-level pl",
+      "excerpt_sha256": "ee3a7a2a8ef1728ddf20d17d507b0cfafc1b6d1962ddca8d27a03e3a9fe99031",
+      "matched_terms": [
+        "context packet",
+        "correction",
+        "disclosure",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file is the Stage 2 owner specification for RT-005. It upgrades `docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md` into a specificatio\u201d. Distinguishing context: \u201cRemediation track: RT-005-scene-activity-context-packets Owner: Astra Doctrine Council / future context-packet and hidden-information control owner ## 1. Purpose and status This file is the Stage 2 owner specif\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 138,
+      "line_end": 254,
+      "locator_heading_or_symbol": "- Context packets are backend-produced projections, not model memory.",
+      "excerpt_sha256": "79e6b786517370124742c5266a361331f028a3bd4b98790cb45222488d2be43e",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "correction",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Context packets are backend-produced projections, not model memory. - Allowed fact sets must be distinguishable from hidden backend truth. - Narrator-facing packet cont\u201d. Distinguishing context: \u201c## 6. Context-packet handoff contract At planning level, RT-005 requires future context-packet work to obey these constraints: - Context packets are backend-produced projections, not model memory. - Allowed fac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 261,
+      "line_end": 309,
+      "locator_heading_or_symbol": "The LLM may propose phrasing, summarize backend-approved visible material, and ask clarification questions when backend context is insufficient. Those allowed interactions never be",
+      "excerpt_sha256": "9cf88a9adcaaac1c175921f935a9a31ece7830e5e5dcab0f40c628241cde82ad",
+      "matched_terms": [
+        "promotion",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe LLM may propose phrasing, summarize backend-approved visible material, and ask clarification questions when backend context is insufficient. Those allowed interaction\u201d. Distinguishing context: \u201c- bypassing redaction; - inferring hidden information from absence or pattern; - overriding backend validators; - authorizing canon/sourcebook/training/live-play use. The LLM may propose phrasing, summarize bac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 132,
+      "locator_heading_or_symbol": "This scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math i",
+      "excerpt_sha256": "6b69f9cfdf80e31e7b80d69c54bfdde3faa54da446e19dc1aecd5e9ca196203f",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation,\u201d. Distinguishing context: \u201c## 1. Purpose and scope This file creates the documentation/control owner scaffold for RT-007, the social, faction, relationship, actor knowledge, and institutional state track identified by `REMEDIATION-PRIORI\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 134,
+      "line_end": 144,
+      "locator_heading_or_symbol": "Recurring factions, NPCs, and contacts require RT-008 provenance/recurrence controls. Narration may describe only backend-approved social/faction facts, visible attitudes, known st",
+      "excerpt_sha256": "770f4ade854a2b865eeb39c835baab1717715c1ca3ec4864704990c30f962862",
+      "matched_terms": [
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cRecurring factions, NPCs, and contacts require RT-008 provenance/recurrence controls. Narration may describe only backend-approved social/faction facts, visible attitudes\u201d. Distinguishing context: \u201c## 12. Context-packet and narration handoff expectations Social/faction state must remain backend-owned, persistent, auditable, and redacted through RT-005. Future RT-007 context packets must be backend-produce\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-04_opposition_profiles_by_type_creatures_hazards_social_platforms_swarms_bosses_and_proxies.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 90,
+      "locator_heading_or_symbol": "Opposition Type Profiles are construction templates for recurring opposition families. They identify typical evidence, functions, pressure, handoffs, source-local risks, quarantine",
+      "excerpt_sha256": "697eee8bebad62c8f903f536ab944965808812b6635a145df6157774aadc8145",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cOpposition Type Profiles are construction templates for recurring opposition families. They identify typical evidence, functions, pressure, handoffs, source-local risks, \u201d. Distinguishing context: \u201cD16 is part of the D12\u2013D18 operational procedure layer. It assumes D00\u2013D15 are active doctrine dependencies and must preserve their owner boundaries. ## Purpose Opposition Type Profiles are construction templat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-06_reputation_relationship_social_memory_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 35,
+      "line_end": 150,
+      "locator_heading_or_symbol": "A social memory record includes memory reference, remembered event, subject, holder, interpretation, valence, intensity, visibility, truth status, decay/permanence, obligations, gr",
+      "excerpt_sha256": "ebbe6ef4c8f6f6d1be55b995362c756cbbe5cc42f9981c077096b7e48203c095",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA social memory record includes memory reference, remembered event, subject, holder, interpretation, valence, intensity, visibility, truth status, decay/permanence, oblig\u201d. Distinguishing context: \u201cStates may include unknown, recognized, friendly, trusted, allied, protected, patron/client, kin/oath-bonded, indebted, respected rival, suspicious, resentful, betrayed, grudge-bearing, feared, hostile, vendett\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-06_reputation_relationship_social_memory_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 156,
+      "line_end": 156,
+      "locator_heading_or_symbol": "lawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated]",
+      "excerpt_sha256": "1a764f1165d78fd4d3a310f8286f4f912b3e04f91be7d9861d32b5775d18447a",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201clawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated]\u201d. Distinguishing context: \u201cowner_handoffs: D07: [] D08: [] D09: [] source_local: [] lawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated] validation_state: [active, hidden, decay\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 120,
+      "locator_heading_or_symbol": "## Truth-state vs. knowledge-state",
+      "excerpt_sha256": "46fd4337f72d422ad3f71b9ab620333205d6dc9e1ec43921996a7d3c74f8b46b",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "evidence",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## Truth-state vs. knowledge-state Truth-state records whether information corresponds to underlying world-state. Knowledge-state records who knows, believes, suspects, r\u201d. Distinguishing context: \u201c## Core rule D10 records information-state: what is true, what is believed, who knows it, how reliable it is, how visible it is, where it is recorded, whether it is spreading, whether it is suppressed, and what\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 142,
+      "line_end": 156,
+      "locator_heading_or_symbol": "promotion_requirements: []",
+      "excerpt_sha256": "ddb135d9e1cd7e4fe3e300f0324b32a8858a51306fe317a0e73ad8a6e49123c6",
+      "matched_terms": [
+        "archive",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpromotion_requirements: [] owner_handoffs: D05: [] D06: [] D07: [] D08: [] D09: [] source_local: [] lawful_outcome: [direct_d10_mapping, normalized_register_mapping, sour\u201d. Distinguishing context: \u201cterritory_refs: [] economy_refs: [] source_local_boundary: retained_rules: [] prohibited_generalizations: [] promotion_requirements: [] owner_handoffs: D05: [] D06: [] D07: [] D08: [] D09: [] source_local: [] l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "\"\"\"Projection and Visibility Adapter \u2014 RT-002B.",
+      "excerpt_sha256": "92c90af8f7af06a1082da745c541a953468110ed6b14b7c6be608e5906d17281",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Projection and Visibility Adapter \u2014 RT-002B. RUNTIME-DOMAIN-RT-002B: implements a projection and visibility adapter that sits between RT-002A (read-only vertical slice\u201d. Distinguishing context: \u201c\"\"\"Projection and Visibility Adapter \u2014 RT-002B. RUNTIME-DOMAIN-RT-002B: implements a projection and visibility adapter that sits between RT-002A (read-only vertical slice state owner facade) and future RT-002C \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 122,
+      "line_end": 209,
+      "locator_heading_or_symbol": "\"visible_safe_projection\",",
+      "excerpt_sha256": "2b537b6efd0c99d9290735e657202d102f3ed0eab2e7f37004070239fd28a068",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"visible_safe_projection\", \"redacted_projection\", \"unavailable_projection\", \"deferred_projection\", \"unknown_projection\", }) PROJECTION_REDACTION_REASONS = frozenset({ \"no\u201d. Distinguishing context: \u201cPROJECTION_VISIBILITY_TIERS = VERTICAL_SLICE_VISIBILITY_TIERS PROJECTION_PACKET_KINDS = frozenset({ \"backend_safe_projection\", \"visible_safe_projection\", \"redacted_projection\", \"unavailable_projection\", \"deferr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 251,
+      "line_end": 371,
+      "locator_heading_or_symbol": "def _validate_no_forbidden_projection_visibility_metadata_keys(",
+      "excerpt_sha256": "2ea094f16065acf597f0c680bf2dab210b946e7a8a0a9a7ac73c9d0f9da29268",
+      "matched_terms": [
+        "disclosure",
+        "preview",
+        "projection",
+        "promotion",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef _validate_no_forbidden_projection_visibility_metadata_keys( value: Any, path: str, error_cls: type[Exception], ) -> None: \"\"\"Recursively reject metadata keys that cou\u201d. Distinguishing context: \u201cf\"metadata value at {path} is not JSON-safe: \" f\"{type(value).__name__}\" ) def _validate_no_forbidden_projection_visibility_metadata_keys( value: Any, path: str, error_cls: type[Exception], ) -> None: \"\"\"Recurs\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 373,
+      "line_end": 493,
+      "locator_heading_or_symbol": "self.source_projection_id, \"source_projection_id\",",
+      "excerpt_sha256": "e4b095337d0ed672c0abfd3b483caa2d033d1ed9ec0cb1a0d111b137830b379e",
+      "matched_terms": [
+        "projection",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cself.source_projection_id, \"source_projection_id\", InvalidProjectionVisibilitySourceRefError, ) object.__setattr__( self, \"metadata\", _safe_projection_visibility_metadata\u201d. Distinguishing context: \u201cself.source_facade_result_id, \"source_facade_result_id\", InvalidProjectionVisibilitySourceRefError, ) if self.source_projection_id is not None: _validate_non_empty_str( self.source_projection_id, \"source_projec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 494,
+      "line_end": 614,
+      "locator_heading_or_symbol": "f\"adapter_status must be one of {sorted(PROJECTION_VISIBILITY_ADAPTER_STATUSES)}, \"",
+      "excerpt_sha256": "7c9553f396d6ca82d5811b49e8c643d9830d812a5eb8b7d6db036ac5591d9205",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cf\"adapter_status must be one of {sorted(PROJECTION_VISIBILITY_ADAPTER_STATUSES)}, \" f\"got {self.adapter_status!r}\" ) _validate_non_empty_str( self.owner_family, \"owner_fa\u201d. Distinguishing context: \u201cself.adapter_status, \"adapter_status\", InvalidProjectionVisibilityAdapterPacketError, ) if self.adapter_status not in PROJECTION_VISIBILITY_ADAPTER_STATUSES: raise InvalidProjectionVisibilityAdapterPacketError(\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 619,
+      "line_end": 737,
+      "locator_heading_or_symbol": "InvalidProjectionVisibilityAdapterResultError,",
+      "excerpt_sha256": "7532ce96f0a7710cc5380d8c78413df414e6b16ab5394b014ac80f57659e7255",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cInvalidProjectionVisibilityAdapterResultError, ) if not isinstance(self.authority_flags, ProjectionVisibilityAuthorityFlags): raise InvalidProjectionVisibilityAdapterResu\u201d. Distinguishing context: \u201cf\"packets[{i}] must be a ProjectionVisibilityAdapterPacket, \" f\"got {type(packet).__name__}\" ) _validate_non_empty_str( self.non_authority_note, \"non_authority_note\", InvalidProjectionVisibilityAdapterResultErr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 751,
+      "line_end": 867,
+      "locator_heading_or_symbol": "\"\"\"Return (adapter_status, packet_kind, visibility_tier, redaction_required, safe_ids).\"\"\"",
+      "excerpt_sha256": "595a19594bf33ba73dabb53c6d0a376aff74aad0b448f702e70ce1c23462c1a7",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Return (adapter_status, packet_kind, visibility_tier, redaction_required, safe_ids).\"\"\" result_status = facade_result.result_status projection = facade_result.projecti\u201d. Distinguishing context: \u201cdef _classify_facade_result( facade_result: VerticalSliceOwnerFacadeResult, ) -> tuple[str, str, str, bool, list[str]]: \"\"\"Return (adapter_status, packet_kind, visibility_tier, redaction_required, safe_ids).\"\"\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 872,
+      "line_end": 976,
+      "locator_heading_or_symbol": "descriptor = create_projection_visibility_descriptor(",
+      "excerpt_sha256": "c0ca5582bb1ecf90545f82af68bb4f3fce8e57d6f10f3b4219cc5464c10aefe0",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdescriptor = create_projection_visibility_descriptor( visibility_tier=visibility_tier, packet_kind=packet_kind, redaction_required=redaction_required, redaction_reason=_r\u201d. Distinguishing context: \u201cadapter_status, packet_kind, visibility_tier, redaction_required, safe_ids = ( _classify_facade_result(facade_result) ) source_ref = _build_source_ref_from_facade_result(facade_result) descriptor = create_proje\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 998,
+      "line_end": 1117,
+      "locator_heading_or_symbol": "def serialize_projection_visibility_adapter_packet(",
+      "excerpt_sha256": "74271a43ccb655dab5cd1fafef9aaef8175cf15f288f0a93bdb68e465fd1b22b",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef serialize_projection_visibility_adapter_packet( packet: ProjectionVisibilityAdapterPacket, ) -> dict[str, Any]: \"\"\"Full backend serializer. Deterministic, JSON-safe.\"\u201d. Distinguishing context: \u201c# --------------------------------------------------------------------------- # Serializers # --------------------------------------------------------------------------- def serialize_projection_visibility_adap\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1119,
+      "line_end": 1164,
+      "locator_heading_or_symbol": "if obj.adapter_status not in PROJECTION_VISIBILITY_ADAPTER_STATUSES:",
+      "excerpt_sha256": "f6a84278351edea62b655268e6e3bd1e7f8c26b606920071857d7b8ac5d08433",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cif obj.adapter_status not in PROJECTION_VISIBILITY_ADAPTER_STATUSES: return False if obj.owner_family not in VERTICAL_SLICE_OWNER_FAMILIES: return False if obj.entity_kin\u201d. Distinguishing context: \u201cdef validate_projection_visibility_adapter_packet(obj: Any) -> bool: if not isinstance(obj, ProjectionVisibilityAdapterPacket): return False if obj.adapter_status not in PROJECTION_VISIBILITY_ADAPTER_STATUSES: \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_context_projection_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 120,
+      "locator_heading_or_symbol": "\"\"\"Focused tests for RUNTIME-IMPL-PR-6: context projection skeleton.\"\"\"",
+      "excerpt_sha256": "73e4a3f5e510bd96a4e61b0d9ecc29c5a88ae9f6f89d9f26503fe29a3683027e",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Focused tests for RUNTIME-IMPL-PR-6: context projection skeleton.\"\"\" from __future__ import annotations from tests.runtime_domain_package_manifest import ( AUTHORIZED_\u201d. Distinguishing context: \u201c\"\"\"Focused tests for RUNTIME-IMPL-PR-6: context projection skeleton.\"\"\" from __future__ import annotations from tests.runtime_domain_package_manifest import ( AUTHORIZED_RUNTIME_DOMAIN_ENTRIES, AUTHORIZED_RUNTI\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_context_projection_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 123,
+      "line_end": 240,
+      "locator_heading_or_symbol": "assert validate_context_projection_item(\"not an item\") is False",
+      "excerpt_sha256": "c41c2461f507b6c7d7f8acda992e50260714bebd5b21c59ac32baee3437e3945",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert validate_context_projection_item(\"not an item\") is False assert validate_context_projection_item(42) is False def test_frozen_immutability(self): item = create_con\u201d. Distinguishing context: \u201credacted=False, ) assert validate_context_projection_item(item) is True def test_validate_rejects_invalid_object(self): assert validate_context_projection_item(\"not an item\") is False assert validate_context_pr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_context_projection_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 249,
+      "line_end": 351,
+      "locator_heading_or_symbol": "projection_id=\"proj-001\",",
+      "excerpt_sha256": "0234d188d61a2a2863b52e9ee9d9dc0b54009fb182372927db643b08589e92fb",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cprojection_id=\"proj-001\", subject_ref=\"player-1\", records=[rec], allowed_visibility_tiers=[\"public\", \"player_visible\"], ) assert len(proj.items) == 1 assert proj.items[0]\u201d. Distinguishing context: \u201cassert dict(proj.items[0].payload) == {\"data\": \"visible\"} def test_redacts_payload_for_disallowed_tiers(self): rec = self._make_record(\"astra:secret:item-001\", \"backend_hidden\", {\"secret\": \"data\"}) proj = proje\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_domain_visibility_descriptor_ownership.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 53,
+      "locator_heading_or_symbol": "\"\"\"Regression tests for the two distinct state visibility contracts.",
+      "excerpt_sha256": "c86cef7e3cdbc3a7b61787fa9a71062b99da7b867eb0c1cdf81382ab7f927d86",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Regression tests for the two distinct state visibility contracts. The state-store descriptor and the RT-001H owner-interface descriptor are separate, owner-scoped cont\u201d. Distinguishing context: \u201c\"\"\"Regression tests for the two distinct state visibility contracts. The state-store descriptor and the RT-001H owner-interface descriptor are separate, owner-scoped contracts. Tests must import them from their\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_hidden_information_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 132,
+      "locator_heading_or_symbol": "ALLOWED_VISIBILITY_TIERS,",
+      "excerpt_sha256": "aec16de0615794fe5e15ef731eb531660e168ae992ea73a6cae50be76a3ca0c1",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cALLOWED_VISIBILITY_TIERS, HiddenInformationError, HiddenInformationRecord, InvalidHiddenInformationRecordError, VisibilityTierError, create_hidden_information_record, is_\u201d. Distinguishing context: \u201cfrom pathlib import Path import pytest from astra_runtime.kernel.hidden_information import ( ALLOWED_VISIBILITY_TIERS, HiddenInformationError, HiddenInformationRecord, InvalidHiddenInformationRecordError, Visib\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_hidden_information_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 140,
+      "line_end": 259,
+      "locator_heading_or_symbol": "visibility_tier=\"public\",",
+      "excerpt_sha256": "fabb015f379f41c347db0bee9d7e539a1641e227b0dff28d8fa43dde591bdce3",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvisibility_tier=\"public\", redaction_label=\"label\", ) assert dict(rec.payload) == {} def test_metadata_defaults_to_empty_mapping(self): rec = create_hidden_information_rec\u201d. Distinguishing context: \u201c) def test_payload_defaults_to_empty_mapping(self): rec = create_hidden_information_record( record_id=\"astra:secret:item-001\", visibility_tier=\"public\", redaction_label=\"label\", ) assert dict(rec.payload) == {}\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_hidden_information_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 262,
+      "line_end": 292,
+      "locator_heading_or_symbol": "visibility_tier=\"restricted\",",
+      "excerpt_sha256": "fb870bdf1c117b896a41e99b80be590d6770668f635b9dd5c0462e45ba5614ae",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvisibility_tier=\"restricted\", redaction_label=\"label\", ) redacted = redacted_copy(rec) assert redacted.visibility_tier == \"restricted\" def test_preserves_redaction_label(\u201d. Distinguishing context: \u201cassert redacted.record_id == \"astra:secret:item-001\" def test_preserves_visibility_tier(self): rec = create_hidden_information_record( record_id=\"astra:secret:item-001\", visibility_tier=\"restricted\", redaction_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_afqr_r1d_agency_epistemic_social_communication.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 107,
+      "locator_heading_or_symbol": "valid={i for r in load(AUTH)['afqr_records'] for i in r['source_evidence_records']}",
+      "excerpt_sha256": "025b55394510329034ccada09c2399802307b57dcf3035c7fd422950ff938a68",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "observation",
+        "quarantine",
+        "sensing",
+        "supersedes",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvalid={i for r in load(AUTH)['afqr_records'] for i in r['source_evidence_records']} for r in c['responsibility_records']: assert r['source_evidence_identifiers']==[expect\u201d. Distinguishing context: \u201cdef fenced(p): return json.loads(re.search(r'```json\\n(.*?)\\n```',p.read_text(encoding='utf8'),re.S).group(1)) def contract(): return fenced(DOC) def test_structure_responsibilities_and_direct_sources(): c=cont\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_b09_social_faction_contact_institutional_interaction_procedure.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 145,
+      "locator_heading_or_symbol": "\"## 11. Social intent, method, leverage, cost, risk, and visibility checkpoints\",",
+      "excerpt_sha256": "4116dec9dd125a3a5599cbec8b553fb16f84b1938ce002a13dc0a1f17a4d187e",
+      "matched_terms": [
+        "context packet",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 11. Social intent, method, leverage, cost, risk, and visibility checkpoints\", \"## 12. Negotiation, diplomacy, persuasion, intimidation, deception, mediation, petition\u201d. Distinguishing context: \u201c\"## 6. Social contact, organized actor, institution, standing, pressure, obligation, claim, and operation definitions\", \"## 7. Social/faction/contact intake procedure\", \"## 8. Contact type and organized-actor c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_b09_social_faction_contact_institutional_interaction_procedure.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 200,
+      "line_end": 286,
+      "locator_heading_or_symbol": "\"quarantined_unresolved_delta\", \"owner_file_escalation\", \"social_exposure\",",
+      "excerpt_sha256": "b63537c48a62216575138e1b43335032910849a940d68e24dfdfe6636263ec6c",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_unresolved_delta\", \"owner_file_escalation\", \"social_exposure\", \"legal_exposure\", \"reputational_exposure\", \"faction_attention\", \"public_attention\", \"hidden_ag\u201d. Distinguishing context: \u201c\"rumor_suppressed\", \"misinformation_routed\", \"propaganda_routed\", \"hidden_agenda_pressure_routed\", \"permit_granted\", \"permit_denied\", \"license_granted\", \"license_denied\", \"sanction_triggered\", \"enforcement_trig\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_b09_social_faction_contact_institutional_interaction_procedure.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 321,
+      "line_end": 321,
+      "locator_heading_or_symbol": "# Durable regression check: the B09 draft text explicitly avoids promotion, and the",
+      "excerpt_sha256": "8916f67a3727a1b4acaca7cd49d0d31adc07d6f16738002e0b30b935c8c29cab",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Durable regression check: the B09 draft text explicitly avoids promotion, and the\u201d. Distinguishing context: \u201cassert marker in text def test_registry_status_is_not_promoted_to_current() -> None: registry = read_utf8(REGISTRY_PATH) # Durable regression check: the B09 draft text explicitly avoids promotion, and the # exi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "\"\"\"Tests for RT-002B: Projection and Visibility Adapter v0.1.",
+      "excerpt_sha256": "da92fb246a0f863e2ae4436ae515357bad48867f9d5cec8aebf4e1c9f9f78676",
+      "matched_terms": [
+        "branch",
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for RT-002B: Projection and Visibility Adapter v0.1. Covers: module imports, constants, dataclass invariants, authority flag enforcement, source-reference contai\u201d. Distinguishing context: \u201c\"\"\"Tests for RT-002B: Projection and Visibility Adapter v0.1. Covers: module imports, constants, dataclass invariants, authority flag enforcement, source-reference containment, descriptor validation, packet/res\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 122,
+      "line_end": 242,
+      "locator_heading_or_symbol": "FORBIDDEN_PROJECTION_VISIBILITY_METADATA_KEYS,",
+      "excerpt_sha256": "1fc4b76c74f29f75f13ad14459ae724148e6c8f655e882f0d8e6af07ff8be535",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cFORBIDDEN_PROJECTION_VISIBILITY_METADATA_KEYS, PROJECTION_DOWNSTREAM_CONSUMER_TYPES, PROJECTION_PACKET_KINDS, PROJECTION_REDACTION_REASONS, PROJECTION_VISIBILITY_ADAPTER_\u201d. Distinguishing context: \u201cclass TestConstants: def test_constants_are_frozen(self): from astra_runtime.domain.projection_visibility_adapter_v0_1 import ( FORBIDDEN_PROJECTION_VISIBILITY_METADATA_KEYS, PROJECTION_DOWNSTREAM_CONSUMER_TYPE\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 245,
+      "line_end": 365,
+      "locator_heading_or_symbol": "ProjectionVisibilityAdapterPacket,",
+      "excerpt_sha256": "0ab8f23fea47076435a11828bbb0e10d92a9f54295dea5ac7a06b89803a475a3",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cProjectionVisibilityAdapterPacket, packet_id=\"pkt1\", adapter_status=\"visible_projection_available\", owner_family=\"actor_identity_owner\", entity_kind=\"actor\", packet_kind=\u201d. Distinguishing context: \u201cdescriptor = ProjectionVisibilityDescriptor( visibility_tier=\"player_visible\", packet_kind=\"visible_safe_projection\", ) self._assert_frozen_kw_only( ProjectionVisibilityAdapterPacket, packet_id=\"pkt1\", adapter_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 366,
+      "line_end": 486,
+      "locator_heading_or_symbol": "ProjectionVisibilityDescriptor,",
+      "excerpt_sha256": "49f5d970286ad596c6f1f5781486bc13ecba22f5e51220ac4a49565f90e7e891",
+      "matched_terms": [
+        "projection",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cProjectionVisibilityDescriptor, ) with pytest.raises(InvalidProjectionVisibilityDescriptorError): ProjectionVisibilityDescriptor( visibility_tier=\"player_visible\", packet\u201d. Distinguishing context: \u201cclass TestVisibilityDescriptor: def test_descriptor_rejects_invalid_packet_kind(self): from astra_runtime.domain.projection_visibility_adapter_v0_1 import ( InvalidProjectionVisibilityDescriptorError, Projectio\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 487,
+      "line_end": 605,
+      "locator_heading_or_symbol": "ProjectionVisibilityAdapterResult,",
+      "excerpt_sha256": "21ae2d2eb135a939a7cd23c9babfa6ebeb87a8edffed51197f9ad9e9c00815b7",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cProjectionVisibilityAdapterResult, ProjectionVisibilityAdapterPacket, ProjectionVisibilityDescriptor, ProjectionVisibilitySourceRef, ) source_ref = ProjectionVisibilitySo\u201d. Distinguishing context: \u201cclass TestResultMetadata: def test_result_rejects_forbidden_keys(self): from astra_runtime.domain.projection_visibility_adapter_v0_1 import ( InvalidProjectionVisibilityAdapterResultError, ProjectionVisibilityA\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 614,
+      "line_end": 734,
+      "locator_heading_or_symbol": "owner_family=\"hidden_information_visibility_owner\",",
+      "excerpt_sha256": "432e10dcedf23cd07d421330ca1175826fcd3fee8ebc22e1eb55789d02889254",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cowner_family=\"hidden_information_visibility_owner\", entity_kind=\"hidden_fact_reference\", requested_reference=ref, projection=projection, source_scope=\"rt002b_test\", ) def\u201d. Distinguishing context: \u201csource_scope=\"rt002b_test\", ) return create_vertical_slice_owner_facade_result( result_id=\"facade_hidden_1\", result_status=\"redacted\", owner_family=\"hidden_information_visibility_owner\", entity_kind=\"hidden_fac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 738,
+      "line_end": 847,
+      "locator_heading_or_symbol": "assert \"source_projection_id\" not in visible_packet",
+      "excerpt_sha256": "23fe6dac821e0827b5dfbd48ac90bfcef492f4e981438c28dbed8f9b65e68750",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"source_projection_id\" not in visible_packet assert \"metadata\" not in visible_packet assert \"authority_flags\" not in visible_packet assert visible_packet[\"packet_k\u201d. Distinguishing context: \u201cpacket = result.packets[0] visible_packet = serialize_projection_visibility_adapter_packet_visible(packet) assert \"hidden_fact_reference_id\" not in visible_packet assert \"hidden_fact\" not in visible_packet asse\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 863,
+      "line_end": 979,
+      "locator_heading_or_symbol": "from astra_runtime.domain.projection_visibility_adapter_v0_1 import (",
+      "excerpt_sha256": "63eff5d649800420392943e27bc4c985a14d39cfc76dce688f405daf8d4560aa",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfrom astra_runtime.domain.projection_visibility_adapter_v0_1 import ( adapt_vertical_slice_facade_result_for_backend, serialize_projection_visibility_adapter_result, ) fa\u201d. Distinguishing context: \u201c# --------------------------------------------------------------------------- class TestSerializers: def test_backend_serializer_deterministic_and_json_safe(self): from astra_runtime.domain.projection_visibilit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1001,
+      "line_end": 1116,
+      "locator_heading_or_symbol": "or \"projection_visibility_adapter_v0_1\" in str(r.get(\"filename\", \"\"))",
+      "excerpt_sha256": "a9f63c1e0e81df8ccbcd9bed00226374ac4dd21273927e5ef77164fd6f7e03f0",
+      "matched_terms": [
+        "branch",
+        "preview",
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cor \"projection_visibility_adapter_v0_1\" in str(r.get(\"filename\", \"\")) ] assert rt002b_records, \"Registry does not contain RT-002B module record\" def test_registry_contain\u201d. Distinguishing context: \u201cregistry_path = REPO_ROOT / \"docs\" / \"doctrine\" / \"astra_doctrine_registry_v0_1.yaml\" registry = yaml.safe_load(registry_path.read_text(encoding=\"utf-8\")) rt002b_records = [ r for r in registry.get(\"file_record\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1130,
+      "line_end": 1168,
+      "locator_heading_or_symbol": "# T31 \u2014 Branch diff does not modify unrelated runtime modules",
+      "excerpt_sha256": "f0f8dc976cb387f48aab3eca4714154681f61fb3b386c9b20854a5ddd3c84e23",
+      "matched_terms": [
+        "branch",
+        "projection",
+        "replay",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# T31 \u2014 Branch diff does not modify unrelated runtime modules # --------------------------------------------------------------------------- class TestBranchDiff: def test\u201d. Distinguishing context: \u201cf\"PR-9 seam tests failed:\\n{result.stdout}\\n{result.stderr}\" ) # --------------------------------------------------------------------------- # T31 \u2014 Branch diff does not modify unrelated runtime modules # -----\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt005_context_packet_hidden_information_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 120,
+      "locator_heading_or_symbol": "\"backend_truth_partition\",",
+      "excerpt_sha256": "c1d6266f2299fa1894b9504589046df3180efd7b3ec68fb655da71608685a79f",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "promotion",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"backend_truth_partition\", \"player_known_fact_partition\", \"character_known_fact_partition\", \"npc_known_fact_partition\", \"faction_known_fact_partition\", \"rumor_or_unverifi\u201d. Distinguishing context: \u201cRT002_OWNER_SPEC_FILE = \"docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md\" RT011_OWNER_SPEC_FILE = \"docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md\" A\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt005_context_packet_hidden_information_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 158,
+      "line_end": 268,
+      "locator_heading_or_symbol": "\"context-packet projection boundary requirements\",",
+      "excerpt_sha256": "82246e2de661901e0e0a2f33c800412711c33253d1e66f5335288c045b1c3078",
+      "matched_terms": [
+        "context packet",
+        "correction",
+        "projection",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context-packet projection boundary requirements\", \"visible/hidden/redacted/derived/reviewer-only information partition requirements\", \"player-known fact requirements\", \"\u201d. Distinguishing context: \u201ctext = read(SPEC_PATH) for heading in [\"## 2. Scope\", \"## 3. Must-not-own boundaries\"]: assert heading in text for phrase in [ \"hidden-information ownership boundaries\", \"context-packet projection boundary requ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt005_context_packet_hidden_information_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 284,
+      "line_end": 360,
+      "locator_heading_or_symbol": "\"RT-001: command lifecycle, event commitment, rejection/quarantine\",",
+      "excerpt_sha256": "99f991e0c7543a604400137dbfa587a723490981490663f95a7bc58b9bc3996f",
+      "matched_terms": [
+        "branch",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"RT-001: command lifecycle, event commitment, rejection/quarantine\", \"RT-002: hidden or visible resource, cost, consequence, reward, loss, recovery\", \"RT-003: hidden/visi\u201d. Distinguishing context: \u201ctext = read(SPEC_PATH) assert \"## 10. Downstream handoffs\" in text for rt in [f\"RT-{index:03d}\" for index in range(1, 13)]: assert rt in text for phrase in [ \"RT-001: command lifecycle, event commitment, reject\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 124,
+      "locator_heading_or_symbol": "\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\",",
+      "excerpt_sha256": "513877e8e551e1df77e06ce8ccfdca27864bcc17d108c79f867077d72770abd9",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\", \"docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md\", ] ROUTIN\u201d. Distinguishing context: \u201c\"docs/doctrine/control/RT003_combat_hazard_damage_recovery_owner_specification.md\", \"docs/doctrine/control/RT004_ability_effect_skill_binding_owner_specification.md\", \"docs/doctrine/control/RT005_context_packet\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

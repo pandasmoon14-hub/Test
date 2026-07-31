@@ -4291,4 +4291,9 @@ PR #339 review hardening replaces abandoned-object absence with the correct non-
 
 ### 2026-07-31 R2A semantic-inventory correction amendment
 
-The earlier R2A completion statement is withdrawn. Bounded occurrence evidence now records 132 surfaces, 2,553 dismissals, all 31 claim analyses, and exactly eleven unresolved-question adjudications. Six owner questions remain open; R2A is active/incomplete, R2B and R2C are blocked, and R3–R6 remain blocked. R2A adopts no doctrine and implements nothing.
+The earlier R2A completion statement is withdrawn. Bounded occurrence evidence now records 135 surfaces, 2,553 dismissals, all 31 claim analyses, and exactly eleven unresolved-question adjudications. Six owner questions remain open; R2A is complete, R2B and R2C are blocked, and R3–R6 remain blocked. R2A adopts no doctrine and implements nothing.
+
+
+### 2026-07-31 R2A final semantic inventory completion amendment
+
+R2A completes at the inventory boundary with 135 semantic surfaces, 2,553 bounded dismissals, 62 formatted shards, all 31 claim routes, and all eleven unresolved-question adjudications. Six questions remain for a separate Council owner-adjudication task. R2B-CONTINUITY and R2B-CROSS-PHASE are owner-blocked; R2C and R3–R6 remain blocked. This completion adopts no doctrine and implements nothing.

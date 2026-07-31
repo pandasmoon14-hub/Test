@@ -1,0 +1,1189 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-07",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3756,
+      "line_end": 3843,
+      "locator_heading_or_symbol": "\"source_evidence_records\": [",
+      "excerpt_sha256": "36bf63f917b9e7b598e7edc14c7f504c8b0d15a09faee7766d4860273d5b1db5",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "schedule",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_records\": [ \"SRC-0059\", \"SRC-0092\", \"SRC-0110\" ], \"repository_evidence_paths\": [ \"docs/doctrine/reviews/afqr_01_20_shared_term_collision_inventory.md\", \"\u201d. Distinguishing context: \u201c\"Which substantive attribution rules govern motivation, behavior, agency, responsibility, social state?\" ], \"r1c_handoffs\": [ \"Define cross-owner dependency and invariant boundaries for COLL-10; do not define r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3918,
+      "line_end": 3918,
+      "locator_heading_or_symbol": "\"audit_method\": \"Direct primary-source ownership review of all 41 terms, completed with state semantic-owner correction and definition/disposition consistency validation; commitmen",
+      "excerpt_sha256": "f71e8f51a11ec2af1040dc9a9293bc2bd766e2b30876a817705c453072bcf49e",
+      "matched_terms": [
+        "correction"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"audit_method\": \"Direct primary-source ownership review of all 41 terms, completed with state semantic-owner correction and definition/disposition consistency validation;\u201d. Distinguishing context: \u201c\"qualified_only_terms\": 8, \"escalated_collisions\": 3, \"r1c_handoff_terms\": 41 }, \"audit_revision\": \"source_owner_and_definition_consistency_audit_2026-07-24\", \"audit_method\": \"Direct primary-source ownership re\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/A00_mechanical_posture_and_ruleset_non_adoption.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 34,
+      "line_end": 69,
+      "locator_heading_or_symbol": "- Donor mechanics may map to: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct, or escalated doctrine problem.",
+      "excerpt_sha256": "f6615886d843f146de1209e2701f7dc63c5f35e6d5284f96eb38e4660bafe535",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Donor mechanics may map to: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct, or escalated doctrine problem. - Map\u201d. Distinguishing context: \u201c- Registry tracking records are work-order/control metadata and are not canon authority. - A01 remains `A01_cosmology_and_dimensional_architecture.md` and is not renamed by this file. - K01 remains `K01_lexicon\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT002_resource_consequence_math_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 128,
+      "locator_heading_or_symbol": "This file creates the documentation/control owner scaffold for RT-002, the resource, backlash, corruption, strain, and consequence math ownership track identified by `REMEDIATION-P",
+      "excerpt_sha256": "70a66b125ada538597df83ec496cd91a17cbd183baca1924d24f8f6fdef42fb4",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "preview",
+        "promotion",
+        "rollback",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file creates the documentation/control owner scaffold for RT-002, the resource, backlash, corruption, strain, and consequence math ownership track identified by `REM\u201d. Distinguishing context: \u201cRemediation track: RT-002-resource-backlash-consequence-math Owner: Astra Doctrine Council / future resource and consequence math control owner ## 1. Purpose and scope This file creates the documentation/contro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT002_resource_consequence_math_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 150,
+      "locator_heading_or_symbol": "The LLM may only propose phrasing, ask clarifying questions, or narrate backend-committed outcomes when a future authorized context packet supplies those outcomes. It cannot be the",
+      "excerpt_sha256": "73ff00a1253fb523c156cedc4b5cfa6ab520bce5b8084c1311c4aa020aa1a7a5",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe LLM may only propose phrasing, ask clarifying questions, or narrate backend-committed outcomes when a future authorized context packet supplies those outcomes. It can\u201d. Distinguishing context: \u201c- committing consequence events; - converting narration into state deltas; - inventing formulas; - overriding backend validators. The LLM may only propose phrasing, ask clarifying questions, or narrate backend-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 12,
+      "line_end": 113,
+      "locator_heading_or_symbol": "This file is the Stage 2 owner specification for RT-002. It upgrades `docs/doctrine/control/RT002_resource_consequence_math_owner_scaffold.md` into a specification-level planning a",
+      "excerpt_sha256": "1541debd93c63686231a66313e10c7f34fb7e662eef2d1e1b78d68272f3f084a",
+      "matched_terms": [
+        "corruption",
+        "disclosure",
+        "preview",
+        "promotion",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file is the Stage 2 owner specification for RT-002. It upgrades `docs/doctrine/control/RT002_resource_consequence_math_owner_scaffold.md` into a specification-level \u201d. Distinguishing context: \u201cRemediation track: RT-002-resource-backlash-consequence-math Owner: Astra Doctrine Council / future resource and consequence math control owner ## 1. Purpose and status This file is the Stage 2 owner specificat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 238,
+      "locator_heading_or_symbol": "- rejection, cancellation, interruption, rollback, partial success, success-at-cost, failure-at-cost, and overcommitment must each be routed to future RT-002 math decisions where c",
+      "excerpt_sha256": "2e8217e4f919c1778845e87a952df9f84272d4e14247bf1e530b3b1d58cb2194",
+      "matched_terms": [
+        "cancellation",
+        "context packet",
+        "corruption",
+        "preview",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "rollback",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- rejection, cancellation, interruption, rollback, partial success, success-at-cost, failure-at-cost, and overcommitment must each be routed to future RT-002 math decisio\u201d. Distinguishing context: \u201cFuture cost outcomes must satisfy the following planning-level requirements before runtime readiness can be claimed: - declared costs must be distinguishable from committed costs; - committed costs must be audi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 262,
+      "line_end": 300,
+      "locator_heading_or_symbol": "- RNG/dice/table implementation;",
+      "excerpt_sha256": "1c78c7944815811f260b3a3cb7a4aa89e278081a720df408e1d507bdc8be5b0d",
+      "matched_terms": [
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- RNG/dice/table implementation; - event ledger implementation; - database schema; - resource formula; - resource pool list; - cost table; - damage table; - consequence t\u201d. Distinguishing context: \u201c- validator implementation; - generator implementation; - persistence writer; - retrieval index; - context-packet compiler; - RNG/dice/table implementation; - event ledger implementation; - database schema; - r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT004_ability_effect_skill_binding_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 126,
+      "locator_heading_or_symbol": "This scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math i",
+      "excerpt_sha256": "cbfd2bca3afbaf0c2674e42fa62b572513a8b9005d78f8ca857a8999cdcebf2b",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "promotion",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation,\u201d. Distinguishing context: \u201c## 1. Purpose and scope This file creates the documentation/control owner scaffold for RT-004, the ability, effect, cost, cooldown, skill, and advancement binding track identified by `REMEDIATION-PRIORITY-LEDGE\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT004_ability_effect_skill_binding_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 134,
+      "line_end": 150,
+      "locator_heading_or_symbol": "The LLM may only propose non-authoritative phrasing, ask clarifying questions, or narrate backend-approved ability/effect outcomes supplied by a future authorized context packet. A",
+      "excerpt_sha256": "d60177a0fd8fef0e2a85b111d9486d1b001c57015ae117ba53e59a9e5cbefb05",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe LLM may only propose non-authoritative phrasing, ask clarifying questions, or narrate backend-approved ability/effect outcomes supplied by a future authorized context\u201d. Distinguishing context: \u201c- creating generated abilities or techniques; - granting player capability; - bypassing validation/reviewer approval; - treating ability narration as backend effect resolution. The LLM may only propose non-auth\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT004_ability_effect_skill_binding_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 115,
+      "locator_heading_or_symbol": "This file is the Stage 2 owner specification for RT-004 ability/effect/skill binding ownership. It upgrades the RT-004 owner scaffold into a specification-level planning artifact, ",
+      "excerpt_sha256": "18bd08f859ebdf15f3df4703f937e4a5dff95caccf118ac7d080ad9da9458eae",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "disclosure",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file is the Stage 2 owner specification for RT-004 ability/effect/skill binding ownership. It upgrades the RT-004 owner scaffold into a specification-level planning \u201d. Distinguishing context: \u201cTrack: RT-004 Owner: Astra Doctrine Council / future ability, effect, skill, prerequisite, access, capability, duration, cooldown, targeting, resistance, scaling, and advancement-binding boundary owner ## 1. Pu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT004_ability_effect_skill_binding_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 147,
+      "line_end": 263,
+      "locator_heading_or_symbol": "- `hidden_capability_visibility_required`;",
+      "excerpt_sha256": "6d3a3ae8ee2022f3967264b239176412ceeffc5f908dcc27e1ccaa23e352f071",
+      "matched_terms": [
+        "branch",
+        "cancellation",
+        "corruption",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `hidden_capability_visibility_required`; - `random_effect_dependency`; - `generated_effect_provenance_required`; - `effect_resolution_quarantined`. These binding terms \u201d. Distinguishing context: \u201c- `scaling_rank_tier_dependency`; - `advancement_unlock_dependency`; - `item_relic_implant_effect_dependency`; - `companion_or_summon_effect_dependency`; - `vehicle_or_platform_effect_dependency`; - `hidden_cap\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT004_ability_effect_skill_binding_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 275,
+      "line_end": 370,
+      "locator_heading_or_symbol": "- applying effects as mechanical truth;",
+      "excerpt_sha256": "cafbb67a7fe2ba7fab7a50680fdad26fbbd72f13c5060cc32dbb9a4ec246b8fc",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- applying effects as mechanical truth; - choosing effect outputs; - choosing scaling, rank, tier, duration, cooldown, recharge, sustain, interrupt, or resistance outcome\u201d. Distinguishing context: \u201c- deciding target legality; - validating prerequisites; - granting abilities; - granting skills; - granting techniques; - applying effects as mechanical truth; - choosing effect outputs; - choosing scaling, ran\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT006_mission_reward_clue_routing_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 105,
+      "locator_heading_or_symbol": "Owner: Astra Doctrine Council / future mission, reward, clue, hidden-truth, and consequence-routing boundary owner",
+      "excerpt_sha256": "e408bbe05677e954b4aa3f43aac5cdbad6245b37575b88ac655e183ec15c05f5",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "corruption",
+        "evidence",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cOwner: Astra Doctrine Council / future mission, reward, clue, hidden-truth, and consequence-routing boundary owner ## 1. Purpose and scope This file creates the documenta\u201d. Distinguishing context: \u201cDate prepared: 2026-06-05 Status: owner scaffold only Tracking ID: REMEDIATION-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SCAFFOLD-001 Remediation track: RT-006-mission-reward-clue-routing Owner: Astra Doctrine Co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT006_mission_reward_clue_routing_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 124,
+      "locator_heading_or_symbol": "Owner: Astra Doctrine Council / future mission, scenario, objective, branch, clue, hidden-truth, reward, penalty, success, failure, route, escalation, and consequence-routing bound",
+      "excerpt_sha256": "a58bc22d05babecf8fdda3be19d5156f9929ebc3d55680b34b0e7cdc13e63844",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "context packet",
+        "disclosure",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cOwner: Astra Doctrine Council / future mission, scenario, objective, branch, clue, hidden-truth, reward, penalty, success, failure, route, escalation, and consequence-rou\u201d. Distinguishing context: \u201cStatus: Stage 2 owner specification; non-executable planning artifact only Tracking ID: REMEDIATION-STAGE2-RT006-MISSION-REWARD-CLUE-ROUTING-OWNER-SPEC-001 Stage 2 PR ID: STAGE2-PR-G3 Parent Stage 2 PR ID: STAG\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT006_mission_reward_clue_routing_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 134,
+      "line_end": 247,
+      "locator_heading_or_symbol": "- branch_resolution_pending;",
+      "excerpt_sha256": "c573663a6d2e813b4a092427c3e7a9f1adfe018e9cfba75e7a9929b173ec1ba8",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "projection",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- branch_resolution_pending; - escalation_dependency_pending; - clue_route_required; - clue_visibility_required; - clue_cost_dependency; - hidden_truth_reveal_pending; - \u201d. Distinguishing context: \u201c- mission_route_required; - scenario_state_pending; - objective_state_pending; - objective_completion_pending; - branch_resolution_pending; - escalation_dependency_pending; - clue_route_required; - clue_visibil\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT006_mission_reward_clue_routing_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 263,
+      "line_end": 376,
+      "locator_heading_or_symbol": "- RT-001 for command lifecycle, action legality, objective action declarations, mission action timing, rejection/quarantine, and event/state commitment boundaries.",
+      "excerpt_sha256": "8d7a7283a6f27a61d4b6819d5676136cf72bda05873c2914be092b877b0ed2ae",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- RT-001 for command lifecycle, action legality, objective action declarations, mission action timing, rejection/quarantine, and event/state commitment boundaries. - RT-0\u201d. Distinguishing context: \u201c- LLM non-authority validation; - non-implementation guardrail validation. ## 12. Downstream handoffs - RT-001 for command lifecycle, action legality, objective action declarations, mission action timing, rejec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 125,
+      "locator_heading_or_symbol": "This file creates the documentation/control owner scaffold for RT-008, the generated-content provenance, recurrence, durable-record eligibility, and canon-separation track identifi",
+      "excerpt_sha256": "dabde167e8e0696194c8320ec3ba0781318bf77fbb6f8541d06bd792b0c1122b",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "corruption",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file creates the documentation/control owner scaffold for RT-008, the generated-content provenance, recurrence, durable-record eligibility, and canon-separation trac\u201d. Distinguishing context: \u201cRemediation track: RT-008-generated-content-provenance Owner: Astra Doctrine Council / future generated-content lifecycle, provenance, and recurrence boundary owner ## 1. Purpose and scope This file creates the\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 133,
+      "line_end": 133,
+      "locator_heading_or_symbol": "This RT-008 scaffold implements no remediation. It implements no generator, no generated record, no persistent ID assignment, no provenance database schema, no recurrence policy, n",
+      "excerpt_sha256": "b4d3e484ada7ec5cf7366968235695740a65e32ef18c9ac88625509a1990a15a",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis RT-008 scaffold implements no remediation. It implements no generator, no generated record, no persistent ID assignment, no provenance database schema, no recurrence\u201d. Distinguishing context: \u201cInitial tests for this scaffold should verify owner scaffold presence, remediation-ledger linkage, audit-source linkage, C01/C02/C05/C06/C07/C08/C09/C10 source pressure, roadmap backend-first/generated-content \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 12,
+      "line_end": 131,
+      "locator_heading_or_symbol": "This file is the Stage 2 owner specification for RT-008. It upgrades `docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_scaffold.md` into a specification-le",
+      "excerpt_sha256": "2e6a79e68be9fbe85e992227c3779ab3c541b3c5772a6864e4fd53081759b4fa",
+      "matched_terms": [
+        "branch",
+        "disclosure",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file is the Stage 2 owner specification for RT-008. It upgrades `docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_scaffold.md` into a specif\u201d. Distinguishing context: \u201cRemediation track: RT-008-generated-content-provenance Owner: Astra Doctrine Council / future generated-content lifecycle, provenance, and recurrence boundary owner ## 1. Purpose and status This file is the Sta\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 134,
+      "line_end": 250,
+      "locator_heading_or_symbol": "- source-local generated content must remain bounded and cannot become Astra-wide truth by reuse;",
+      "excerpt_sha256": "dea30b20ceb784126ea0f55fa2998aafee15c85279fe757da46308f3ea367d49",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "release",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- source-local generated content must remain bounded and cannot become Astra-wide truth by reuse; - generated content derived from donor conversion evidence must preserve\u201d. Distinguishing context: \u201c- generated content must preserve generation source, prompt/context basis, originating command/event if any, source-local boundary if any, dependency refs, reviewer notes, and validation status before durabilit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT008_generated_content_provenance_recurrence_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 271,
+      "line_end": 305,
+      "locator_heading_or_symbol": "- RNG/dice/table implementation;",
+      "excerpt_sha256": "a8860d70c6de99c686d8973f2bbedd0e7f12cdb3d4659ec20bc06bc78ab38ac0",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- RNG/dice/table implementation; - event ledger implementation; - database schema; - live-play prompt; - training data; - donor-content audit; - sourcebook inclusion auth\u201d. Distinguishing context: \u201c- content writer; - persistence writer; - retrieval index; - context-packet compiler; - redaction algorithm; - RNG/dice/table implementation; - event ledger implementation; - database schema; - live-play prompt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 102,
+      "locator_heading_or_symbol": "# RT-009 Runtime RNG / Table / Oracle Owner Scaffold",
+      "excerpt_sha256": "15f6c8a01e4c2a287e3d8c12d2a708860b891e76e5664d0e1caaccf4775b2972",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "corruption",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# RT-009 Runtime RNG / Table / Oracle Owner Scaffold Date prepared: 2026-06-05 Status: owner scaffold only Tracking ID: REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-S\u201d. Distinguishing context: \u201c# RT-009 Runtime RNG / Table / Oracle Owner Scaffold Date prepared: 2026-06-05 Status: owner scaffold only Tracking ID: REMEDIATION-RT009-RUNTIME-RNG-TABLE-ORACLE-OWNER-SCAFFOLD-001 Remediation track: RT-009-ru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "# RT-009 Runtime RNG / Table / Oracle Owner Specification",
+      "excerpt_sha256": "1c58f55fb70b3e5df116de216cd2a195ad556859199529074a8acabad55721ee",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "disclosure",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# RT-009 Runtime RNG / Table / Oracle Owner Specification Date prepared: 2026-06-06 Status: Stage 2 owner specification only Tracking ID: REMEDIATION-STAGE2-RT009-RNG-TAB\u201d. Distinguishing context: \u201c# RT-009 Runtime RNG / Table / Oracle Owner Specification Date prepared: 2026-06-06 Status: Stage 2 owner specification only Tracking ID: REMEDIATION-STAGE2-RT009-RNG-TABLE-ORACLE-OWNER-SPEC-001 Stage 2 PR ID: \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 122,
+      "line_end": 236,
+      "locator_heading_or_symbol": "| `visible_result_projection_pending` | A random outcome's visible portion is pending context-packet projection through RT-005. | No context-packet compiler implementation. Project",
+      "excerpt_sha256": "ded2647b53ed65343ed645584bd964893c7ab3f71de583c2ea2d90b26ec161d8",
+      "matched_terms": [
+        "branch",
+        "disclosure",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c| `visible_result_projection_pending` | A random outcome's visible portion is pending context-packet projection through RT-005. | No context-packet compiler implementatio\u201d. Distinguishing context: \u201c| `table_weight_validation_pending` | Table weights, ranges, and probability distributions require validation before invocation. | No table-weight validator implementation. Validation requirement only. | | `tab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 250,
+      "line_end": 322,
+      "locator_heading_or_symbol": "- inventing table rows as truth;",
+      "excerpt_sha256": "c8ec0e57f505b514fb7000e1c758baff5223a3e0427cabd5881c2e7129c8aa66",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- inventing table rows as truth; - using model randomness as RNG authority; - treating narrated chance as backend randomness; - committing random-result events; - creatin\u201d. Distinguishing context: \u201c- selecting oracle outcomes; - creating hidden random results; - revealing hidden random results; - setting table weights; - validating result domains; - inventing table rows as truth; - using model randomness \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 118,
+      "locator_heading_or_symbol": "This file creates the documentation/control owner scaffold for RT-010, the inventory, item, gear, vehicle, platform, and persistent asset state track identified by `REMEDIATION-PRI",
+      "excerpt_sha256": "685864f107645bfdc6f7451627810c08b25dfed641300ecc298d1dc43b131d68",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file creates the documentation/control owner scaffold for RT-010, the inventory, item, gear, vehicle, platform, and persistent asset state track identified by `REMED\u201d. Distinguishing context: \u201cRemediation track: RT-010-inventory-item-vehicle-assets Owner: Astra Doctrine Council / future inventory, item, gear, vehicle, platform, and persistent asset boundary owner ## 1. Purpose and scope This file cre\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 124,
+      "locator_heading_or_symbol": "This file is non-executable planning only. It is not runtime code, not schema implementation, not command IR, not validator implementation, not generator implementation, not persis",
+      "excerpt_sha256": "c1c6fbe5fd735efc950f913ad5738c80f57c9784bc52c171b1c2a52128d01cff",
+      "matched_terms": [
+        "migration",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file is non-executable planning only. It is not runtime code, not schema implementation, not command IR, not validator implementation, not generator implementation, \u201d. Distinguishing context: \u201c## 1. Purpose and status This document is STAGE2-PR-H1 owner-specification planning for RT-010 inventory/item/vehicle/asset ownership. It upgrades the RT-010 scaffold into owner-spec planning after the STAGE2-P\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 149,
+      "line_end": 267,
+      "locator_heading_or_symbol": "| AssetVisibilityRequirement | Define visible/redacted asset projection requirements. | RT-010 | May narrate only RT-005-approved visible facts. | RT-005, RT-011 | future_required_",
+      "excerpt_sha256": "00e2768f20735c7ee5af0a9daeca605a49bca6cd0d5f9a12d1a0aa6084b81246",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c| AssetVisibilityRequirement | Define visible/redacted asset projection requirements. | RT-010 | May narrate only RT-005-approved visible facts. | RT-005, RT-011 | future\u201d. Distinguishing context: \u201c| DurabilityDegradationRequirement | Define durability/degradation handoff requirements. | RT-010 | No damage/degradation mutation authority. | RT-003, RT-002, future backend runtime | future_required_not_imple\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT011_validation_readiness_tooling_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 117,
+      "locator_heading_or_symbol": "This scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no valida",
+      "excerpt_sha256": "cc5896b7c4cdd361d357a4fef10afd9c61c48f67a652086fcaaa4bfda3ff4c1d",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation,\u201d. Distinguishing context: \u201c## 1. Purpose and scope This file creates the documentation/control owner scaffold for RT-011, the validation/readiness tooling versus prose-only governance track identified by `REMEDIATION-PRIORITY-LEDGER-001`\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 120,
+      "locator_heading_or_symbol": "This artifact remains non-executable and non-implementation. It does not create validators, schemas, runtime code, command IR, database tables, persistence writers, retrieval index",
+      "excerpt_sha256": "b7c8e0fc843a9f149b07114e60ad68632263845a9422116b6a19ce8a9670d52a",
+      "matched_terms": [
+        "context packet",
+        "disclosure",
+        "evidence",
+        "promotion",
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis artifact remains non-executable and non-implementation. It does not create validators, schemas, runtime code, command IR, database tables, persistence writers, retri\u201d. Distinguishing context: \u201c## 1. Purpose and status This file is the Stage 2 owner specification for RT-011 validation/readiness tooling. It upgrades `docs/doctrine/control/RT011_validation_readiness_tooling_owner_scaffold.md` from owner\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 155,
+      "line_end": 265,
+      "locator_heading_or_symbol": "- RT-001: command lifecycle, action legality, cost-commitment timing, command/event boundary, rejection/quarantine, context/narration handoff, and command validator requirement rea",
+      "excerpt_sha256": "84899cc03af138737dfe3c51634b80ebf62316c79834a172c39268d19a5eb016",
+      "matched_terms": [
+        "corruption",
+        "disclosure",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- RT-001: command lifecycle, action legality, cost-commitment timing, command/event boundary, rejection/quarantine, context/narration handoff, and command validator requi\u201d. Distinguishing context: \u201c## 8. Validation and readiness handoffs RT-011 provides validation/readiness governance handoffs to every runtime-boundary track without taking over their domain authority: - RT-001: command lifecycle, action l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 280,
+      "line_end": 280,
+      "locator_heading_or_symbol": "authorizes_canon_promotion: false",
+      "excerpt_sha256": "1b1be1d50d09660ed251f046d38b88c270f076e78570e409ea6efb62fe651c87",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cauthorizes_canon_promotion: false\u201d. Distinguishing context: \u201cauthorizes_runtime_implementation: false authorizes_schema_implementation: false authorizes_validator_implementation: false authorizes_live_play: false authorizes_training: false authorizes_canon_promotion: fal\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 118,
+      "locator_heading_or_symbol": "# RT-012 D-Series / Native-Design Promotion-Boundary Owner Scaffold",
+      "excerpt_sha256": "78073b04858391348b626f92101ca824cc586d8f150c44dc9fa63b4bf160137a",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# RT-012 D-Series / Native-Design Promotion-Boundary Owner Scaffold Date prepared: 2026-06-05 Status: owner scaffold only Tracking ID: REMEDIATION-RT012-D-SERIES-PROMOTIO\u201d. Distinguishing context: \u201c# RT-012 D-Series / Native-Design Promotion-Boundary Owner Scaffold Date prepared: 2026-06-05 Status: owner scaffold only Tracking ID: REMEDIATION-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SCAFFOLD-001 Remediatio\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "# RT-012 D-Series / Native-Design Promotion-Boundary Owner Specification",
+      "excerpt_sha256": "5edfa51a06a66f0e97477b12ac5127e8a72b66a19ff920df309f5b732f4e4d6a",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# RT-012 D-Series / Native-Design Promotion-Boundary Owner Specification Tracking ID: REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001 Stage 2 PR ID: S\u201d. Distinguishing context: \u201c# RT-012 D-Series / Native-Design Promotion-Boundary Owner Specification Tracking ID: REMEDIATION-STAGE2-RT012-D-SERIES-PROMOTION-BOUNDARY-OWNER-SPEC-001 Stage 2 PR ID: STAGE2-PR-H2 Parent Stage 2 PR ID: STAGE2\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 227,
+      "locator_heading_or_symbol": "- Live-play narration and summaries are not authority, memory truth, promotion evidence, or canon.",
+      "excerpt_sha256": "2592e15e5d8d815a15b6f8bc981cbbcfd07e137af72550dd161526f25b4768fb",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Live-play narration and summaries are not authority, memory truth, promotion evidence, or canon. - Reviewer/backend governance must authorize promotion before any D-ser\u201d. Distinguishing context: \u201c- Authority hierarchy controls promotion. Current doctrine and future canon outrank D-series/native-design pressure. - D-series/native-design source packs are design pressure and evidence, not authority by defa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 248,
+      "line_end": 357,
+      "locator_heading_or_symbol": "- Downstream handoff: promotion review, conflict routing.",
+      "excerpt_sha256": "6e3b59f277c2d97721337acee63909f43ccdfd8698ab766065c5316d0b65a86d",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "release"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Downstream handoff: promotion review, conflict routing. - Implementation status: future_required_not_implemented. ### SourcePackPressureRecordRequirement - Purpose: rec\u201d. Distinguishing context: \u201c### SourcePackNonAuthorityRequirement - Purpose: enforce source-pack material as pressure, not authority. - Owner: RT-012. - LLM allowed interaction: may describe source-pack content as pressure only. - Downstr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 373,
+      "line_end": 482,
+      "locator_heading_or_symbol": "- Purpose: enforce live-play narration as non-authority, non-memory-truth, non-promotion-evidence.",
+      "excerpt_sha256": "ff7251861a3c76a96afed8845acbfcdc0df1b3a425447323ad9f57e8d3cb788e",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Purpose: enforce live-play narration as non-authority, non-memory-truth, non-promotion-evidence. - Owner: RT-012. - LLM allowed interaction: may narrate; may not treat \u201d. Distinguishing context: \u201c- Downstream handoff: RT-008 provenance handoff; future governance. - Implementation status: future_required_not_implemented. ### LivePlayNarrationNonAuthorityRequirement - Purpose: enforce live-play narration \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT012_d_series_promotion_boundary_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 497,
+      "line_end": 562,
+      "locator_heading_or_symbol": "- D-series promotion system;",
+      "excerpt_sha256": "c8809d4e79e27ef0302c3e49d05732656a56e55777b192fb57b3a15ac56bf0c2",
+      "matched_terms": [
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- D-series promotion system; - native-design promotion system; - canon promotion procedure; - sourcebook inclusion procedure; - training policy; - live-play policy; - doc\u201d. Distinguishing context: \u201c- runtime code; - schema implementation; - command IR implementation; - validator implementation; - generator implementation; - D-series promotion system; - native-design promotion system; - canon promotion pro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/afqr_01_20_consolidation_program_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 60,
+      "locator_heading_or_symbol": "The physical packets are evidence for architectural-decision tracking, never canon, runtime, conversion, implementation, sourcebook, model, or live-play authority. No production fi",
+      "excerpt_sha256": "027afa8638bf3156a8e852abf4301d40e31e713cecce43b3f5a1ef322e210dd2",
+      "matched_terms": [
+        "correction",
+        "evidence",
+        "projection",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe physical packets are evidence for architectural-decision tracking, never canon, runtime, conversion, implementation, sourcebook, model, or live-play authority. No pro\u201d. Distinguishing context: \u201c**Status:** R1A\u2013R1E and overall R1 complete; R2 active and incomplete; R2-0 complete; R2A complete; R2B and R2C blocked pending owner adjudication. **Authority:** planning/tracking only. ## Boundaries and corpu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 43,
+      "locator_heading_or_symbol": "Accepted R1 and R1E decisions outrank research. R2 changes doctrine only through an authorized modular R2B decision after R2A. Storage, commitment, replay, branching, and handoff t",
+      "excerpt_sha256": "d14fd2b7e1600fd0c4ed4fe6c07279d29adac9430356713638f6eb848c9ffdae",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "canonicality",
+        "compensation",
+        "correction",
+        "disclosure",
+        "evidence",
+        "fork",
+        "migration",
+        "promotion",
+        "recap",
+        "replay",
+        "retcon",
+        "session closure",
+        "snapshot",
+        "supersession",
+        "timeline",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cAccepted R1 and R1E decisions outrank research. R2 changes doctrine only through an authorized modular R2B decision after R2A. Storage, commitment, replay, branching, and\u201d. Distinguishing context: \u201c**Authority:** bounded R2 sequencing and routing only **Overall R2 status:** `active_incomplete` ## Invariants Accepted R1 and R1E decisions outrank research. R2 changes doctrine only through an authorized modu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/pre_a01_control_layer_patch_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 27,
+      "locator_heading_or_symbol": "- **Actor state ledger**: actor updates require ledger-backed committed events in runtime layers, not control-layer memo promotion.",
+      "excerpt_sha256": "9404e702e91ba862796290d9965a52c340b23f65ab5cc569126e3412bc95ad0b",
+      "matched_terms": [
+        "migration",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- **Actor state ledger**: actor updates require ledger-backed committed events in runtime layers, not control-layer memo promotion. - **Hidden-information boundary**: hid\u201d. Distinguishing context: \u201c- **Rejected import record**: explicitly capture donor constructs denied authority. - **Reserved term family**: reserved naming families remain K01-governed and cannot be silently promoted. - **Tag namespace se\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/runtime_boundary_generator_ownership_audit_protocol.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 22,
+      "locator_heading_or_symbol": "- Astra may use interchangeable local or cloud LLMs, but no subsystem may depend on a particular model as the holder of truth.",
+      "excerpt_sha256": "b3256e16a8169ea2cace05d759e097c1f496485e8747f40929a8f8c48b7918cd",
+      "matched_terms": [
+        "context packet",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Astra may use interchangeable local or cloud LLMs, but no subsystem may depend on a particular model as the holder of truth. - The backend owns authoritative truth, rul\u201d. Distinguishing context: \u201c## 2. Controlling invariant The future audit must preserve the backend-first model-interchangeability invariant: - Astra may use interchangeable local or cloud LLMs, but no subsystem may depend on a particular \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/runtime_boundary_generator_ownership_audit_protocol.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 88,
+      "line_end": 144,
+      "locator_heading_or_symbol": "- `blocked_pending_math`: required math, clocks, costs, scales, dice/RNG rules, or consequence mechanics are missing.",
+      "excerpt_sha256": "fd5cbd808cd86b2e00ec166b0bbe31db0eaa727917ad6c7c70e0d66e1f32ab44",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "projection",
+        "promotion",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `blocked_pending_math`: required math, clocks, costs, scales, dice/RNG rules, or consequence mechanics are missing. - `blocked_pending_runtime`: required backend comman\u201d. Distinguishing context: \u201c- `generator_ready`: backend-owned generators/templates can be specified from existing doctrine and schema without model improvisation. - `validator_ready`: deterministic validation rules can be specified from \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-00_downtime_projects_recovery_crafting_and_long_task_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 50,
+      "line_end": 168,
+      "locator_heading_or_symbol": "- Project interruption, pause, resume, abandonment, and archive;",
+      "excerpt_sha256": "5e2814d0eecc6a81c662832058666cb51b0faf07732631f434a11c95e9b0a8ca",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Project interruption, pause, resume, abandonment, and archive; - Project complication classification; - concurrent Project capacity through Project Load; - source-local\u201d. Distinguishing context: \u201c- preparation and maintenance Projects; - assistants and contributors as Project support; - facilities as Project support; - materials and support assets as Project requirements, commitments, risks, or outputs;\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    }
+  ]
+}

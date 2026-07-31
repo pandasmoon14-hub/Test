@@ -1,0 +1,98 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-AGENCY-03",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 209,
+      "line_end": 223,
+      "locator_heading_or_symbol": "\"dialogue transcripts are not durable truth\",",
+      "excerpt_sha256": "0f2a38343b847a3bb91951ecde69000816e66fda1508d3055bc0fbcb47ad203a",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"dialogue transcripts are not durable truth\", \"rumors, false claims, unverified claims, and verified facts must remain distinct\", \"Social consequence, reputation, and fac\u201d. Distinguishing context: \u201ctext = read(SPEC_PATH) for phrase in [ \"Actor-knowledge, rumor, and belief-state routing contract\", \"actor knowledge is not model memory\", \"faction knowledge is not narration\", \"dialogue transcripts are not dur\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 286,
+      "line_end": 373,
+      "locator_heading_or_symbol": "\"creating social state as backend truth\",",
+      "excerpt_sha256": "b2f9ab5ea60ad332d04ccb62292389145e423d6401ba0aaec9df5e40f84ab5f1",
+      "matched_terms": [
+        "promotion",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"creating social state as backend truth\", \"creating faction state as backend truth\", \"deciding what an actor knows\", \"deciding what a faction knows\", \"converting rumors i\u201d. Distinguishing context: \u201cdef test_llm_non_authority_prohibitions_are_explicit() -> None: text = read(SPEC_PATH) for phrase in [ \"creating social state as backend truth\", \"creating faction state as backend truth\", \"deciding what an acto\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4,
+      "line_end": 23,
+      "locator_heading_or_symbol": "**Decision:** Typed Bitemporal Truth\u2013Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV)",
+      "excerpt_sha256": "3079998897c67e1fd27f45625c8f214af428c8b6028ca51ad9824cb4bfb42c84",
+      "matched_terms": [
+        "context packet",
+        "correction",
+        "disclosure",
+        "evidence",
+        "observation",
+        "projection",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c**Decision:** Typed Bitemporal Truth\u2013Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV) **Repository basis:** `928bb79ce00\u201d. Distinguishing context: \u201c# AFQR-10 Architectural Decision Record **Status:** Ratification candidate **Decision:** Typed Bitemporal Truth\u2013Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV)\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 21,
+      "locator_heading_or_symbol": "No encounter, communication, repeated contact, governed relation, graph edge, public record, audience claim, social metric, donor descriptor, or model portrayal creates authoritati",
+      "excerpt_sha256": "f8bbadb37fdc06277cad91e68efa09e70e8e7a822cd0a3e750ee08187d269dcb",
+      "matched_terms": [
+        "correction",
+        "observation"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cNo encounter, communication, repeated contact, governed relation, graph edge, public record, audience claim, social metric, donor descriptor, or model portrayal creates a\u201d. Distinguishing context: \u201cAdopt **Registered Multiplex Social-State Architecture with Domain-Scoped Trust, Audience-Relative Reputation, Modular Culture\u2013Norm Profiles, and Bitemporal Network Continuity** (`RMSSA-DT-ARR-MCNP-BNC`). ## Ce\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

@@ -1,0 +1,890 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-08",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_batch_c_schema_family_integration_conflict_audit_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 93,
+      "line_end": 105,
+      "locator_heading_or_symbol": "\"context packet/save-state/database contracts\",",
+      "excerpt_sha256": "f84891f66626984bd6984cee13937e277896cc0c9d4ec5542117918430faee1f",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context packet/save-state/database contracts\", \"canon promotion\", \"sourcebook prose\", \"live-play/GM behavior\", \"training/evaluation packs\", \"accepted lexicon promotion\",\u201d. Distinguishing context: \u201cDEFERRED_GAPS = [ \"final mechanics and math\", \"runtime/backend schema\", \"entity/component/event/command lifecycle\", \"context packet/save-state/database contracts\", \"canon promotion\", \"sourcebook prose\", \"live-p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_batch_c_schema_family_integration_conflict_audit_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 183,
+      "line_end": 289,
+      "locator_heading_or_symbol": "\"source evidence\",",
+      "excerpt_sha256": "80997c21a0ab88f3e137031c5b826fb0bfc20d32c4b8cbb6e55ef868f2b9069b",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source evidence\", \"construct refs\", \"outcome refs\", \"source-local boundary\", \"rejected donor elements\", \"canon eligibility\", \"confidence/review/validation routing\", \"lin\u201d. Distinguishing context: \u201ctext = capstone_text() for marker in [ \"Every durable C-family record must inherit/include `AstraContentRecordBase`\", \"C00 bypass risk is prohibited\", \"provenance\", \"source evidence\", \"construct refs\", \"outcome\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_batch_c_schema_family_unlock_index_and_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 68,
+      "line_end": 79,
+      "locator_heading_or_symbol": "\"legal/IP evidence failure\",",
+      "excerpt_sha256": "2ec991fe028733b4897b63426e23e8b2082239f90fec7e229aa8f939b9b44df2",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"legal/IP evidence failure\", \"canon eligibility confusion\", \"runtime-state leakage\", \"sourcebook-prose leakage\", \"Batch B operational procedure being misread as schema fi\u201d. Distinguishing context: \u201c\"C-family overlap and duplicate ownership\", \"donor-field-name leakage\", \"donor-math/statblock leakage\", \"donor cosmology/proper-noun leakage\", \"source-local material becoming Astra baseline\", \"legal/IP evidence\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_batch_c_schema_family_unlock_index_and_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 156,
+      "line_end": 252,
+      "locator_heading_or_symbol": "\"Missing schema coverage produces quarantine, escalation, human review, or `pending_schema`, not improvised family-specific fields\",",
+      "excerpt_sha256": "2ab8b72e725ddbc97156e889f207baa74f6cdb5e1e932f4e0623d28f5b5c69ac",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Missing schema coverage produces quarantine, escalation, human review, or `pending_schema`, not improvised family-specific fields\", ] for marker in required_markers: ass\u201d. Distinguishing context: \u201ctext = _unlock_text() required_markers = [ \"Every durable C-family record must inherit/include `AstraContentRecordBase`\", \"`pending_schema` is lawful only as named fallback routing and not as field invention\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c00_shared_content_record_base_schema_registry.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 128,
+      "locator_heading_or_symbol": "\"## 7. Provenance chain and evidence lock posture\",",
+      "excerpt_sha256": "22738beb25098c54bf193a33da4b33a394fbd8bd818cdc0c381b0daafb1b3dcc",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 7. Provenance chain and evidence lock posture\", \"## 8. Inheritance and composition rules\", \"## 9. Source-local boundary object rules\", \"## 10. Rejected donor element \u201d. Distinguishing context: \u201c\"## 2. What this file owns\", \"## 3. What this file must not own\", \"## 4. AstraContentRecordBase\", \"## 5. Record-status rules\", \"## 6. Schema-family registry governance\", \"## 7. Provenance chain and evidence loc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c00_shared_content_record_base_schema_registry.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 148,
+      "line_end": 203,
+      "locator_heading_or_symbol": "\"prohibited_promotions\",",
+      "excerpt_sha256": "87faf3ce23006f8046a0b80d13d23b1eb0979502c679d05fba722fd3e2d7ff9b",
+      "matched_terms": [
+        "context packet",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"prohibited_promotions\", \"canon_review_required_for_reuse\", \"Proper nouns must be source-local, rejected, or routed to legal/IP review\", ] for marker in source_local_mark\u201d. Distinguishing context: \u201cassert marker in content source_local_markers = [ \"boundary_id\", \"local_context_type\", \"prohibited_promotions\", \"canon_review_required_for_reuse\", \"Proper nouns must be source-local, rejected, or routed to lega\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c01_creature_npc_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c01_creature_npc_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 96,
+      "line_end": 123,
+      "locator_heading_or_symbol": "\"donor-statblock containment as evidence\",",
+      "excerpt_sha256": "231c357c5d4b0d17ab89c360a565705c4556631782c0a49856bf95bc09481ad9",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"donor-statblock containment as evidence\", ]: assert phrase in lowered for phrase in [ \"final mechanics\", \"final math\", \"combat balance\", \"runtime actor state\", \"encounte\u201d. Distinguishing context: \u201cfor phrase in [ \"conversion-stage record-family grammar\", \"creatures, npcs, adversaries, monsters, spirits, ai actors, swarms\", \"non-player beings\", \"actor-like constructs\", \"donor-statblock containment as evid\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c01_creature_npc_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 219,
+      "line_end": 226,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "daf3db8e11444eaaba38a2460c8b1ff34a8c96097f55079799d0e01ccce13859",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runtime boundary\", \"runtime actor state\", \"entity/component schemas\", \"event schemas\", \"c\u201d. Distinguishing context: \u201cdef test_c01_preserves_runtime_canon_sourcebook_live_play_boundaries() -> None: lowered = c01_text().lower() for marker in [ \"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c02_item_gear_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c02_item_gear_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 107,
+      "line_end": 148,
+      "locator_heading_or_symbol": "\"donor item-table containment as evidence\",",
+      "excerpt_sha256": "17bf2aa37736c0c488a91d42a083014428d0ded0bec9ecb576bf27d6bbb0bbbe",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"donor item-table containment as evidence\", \"donor equipment-entry containment as evidence\", ]: assert phrase in lowered for phrase in [ \"final mechanics\", \"final equipme\u201d. Distinguishing context: \u201c\"conversion-stage record-family grammar\", \"practical item, gear, tool, weapon, armor, consumable, kit, equipment\", \"portable object\", \"carried object\", \"enhanced gear pending review\", \"donor item-table containm\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c02_item_gear_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 275,
+      "line_end": 282,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "393fda5d3d1e5513e46ad6a56d330bd212a6fc6abea77f855c82af7d21a015f3",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runtime boundary\", \"runtime inventory state\", \"entity/component schemas\", \"event schemas\"\u201d. Distinguishing context: \u201cdef test_c02_preserves_runtime_canon_sourcebook_live_play_boundaries() -> None: lowered = c02_text().lower() for marker in [ \"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c03_ability_power_technique_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c03_ability_power_technique_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 152,
+      "line_end": 152,
+      "locator_heading_or_symbol": "\"source_evidence_refs\",",
+      "excerpt_sha256": "293c4231524904329ddc9a7cf508db659ee67c52ebc2713c721fd3bab7fcf0c7",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_refs\",\u201d. Distinguishing context: \u201clowered = text.lower() assert \"inherit/include `AstraContentRecordBase`\" in text assert \"extends: AstraContentRecordBase\" in text for marker in [ \"packet_refs\", \"source_evidence_refs\", \"construct_refs\", \"outcom\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c03_ability_power_technique_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 290,
+      "line_end": 299,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "b91f3bb50407b43f3e65c123f5998dfdeb17ad8e8b0f28eab2f526bd5e24c024",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runtime boundary\", \"runtime ability instances\", \"runtime cooldown state\", \"runtime buff/d\u201d. Distinguishing context: \u201cdef test_c03_preserves_runtime_canon_sourcebook_live_play_boundaries() -> None: lowered = c03_text().lower() for marker in [ \"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c04_relic_implant_installable_asset_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c04_relic_implant_installable_asset_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 164,
+      "line_end": 177,
+      "locator_heading_or_symbol": "\"canon promotion\",",
+      "excerpt_sha256": "eee18a7120fc738816af0ac8d8670b5d70f19a4124639761dfe3e6597d88a934",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"canon promotion\", \"live-play behavior\", ]: assert phrase in lowered def test_c04_requires_c00_base_and_provenance_posture() -> None: text = c04_text() lowered = text.low\u201d. Distinguishing context: \u201c\"combat balance\", \"sourcebook relic prose\", \"sourcebook implant prose\", \"accepted lexicon\", \"canon acceptance\", \"canon promotion\", \"live-play behavior\", ]: assert phrase in lowered def test_c04_requires_c00_bas\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c04_relic_implant_installable_asset_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 315,
+      "line_end": 329,
+      "locator_heading_or_symbol": "\"canon promotion\",",
+      "excerpt_sha256": "d02bc4a7edaa29ae86356ad6af1bd0b40cf1cae2bcce611b7b1e58cbffa347c8",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"canon promotion\", \"hidden-state and protected-truth boundary\", \"runtime boundary\", \"runtime installation state\", \"runtime body-slot state\", \"runtime attunement state\", \"\u201d. Distinguishing context: \u201clowered = c04_text().lower() for marker in [ \"canon eligibility\", \"review routing\", \"does not grant canon acceptance\", \"canon promotion\", \"hidden-state and protected-truth boundary\", \"runtime boundary\", \"runtim\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c04_relic_implant_installable_asset_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 388,
+      "line_end": 388,
+      "locator_heading_or_symbol": "# only guards against accidental current/tested/stable/runtime/canon promotion.",
+      "excerpt_sha256": "37f88f5aeb2bdc6f2dcadacc22cd9e803f3f0b903c648ce57b761056ca38f501",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# only guards against accidental current/tested/stable/runtime/canon promotion.\u201d. Distinguishing context: \u201cassert _registry_scalar(file_id, \"authority_level\") == \"schema-draft\" assert _registry_scalar(file_id, \"test_status\") == \"designed\" assert _registry_scalar(file_id, \"review_status\") == \"not_reviewed\" # Future C\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c06_location_site_region_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c06_location_site_region_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 126,
+      "line_end": 178,
+      "locator_heading_or_symbol": "\"settlements\",",
+      "excerpt_sha256": "65b61858155434b2bfb491e47b6c212e888ed4f82052f0168464a2a3f8c4e1fa",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"settlements\", \"biomes\", \"route contexts\", \"keyed areas\", \"spatial containers\", \"place-like constructs\", \"classification and routing posture\", ]: assert phrase in lowered\u201d. Distinguishing context: \u201c\"worlds\", \"planes\", \"stations\", \"ruins\", \"megastructures\", \"settlements\", \"biomes\", \"route contexts\", \"keyed areas\", \"spatial containers\", \"place-like constructs\", \"classification and routing posture\", ]: asser\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c06_location_site_region_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 288,
+      "line_end": 319,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "c8f5a01c93dc62cd3f193629f53865822a8a70ff225f8b79266fd8c1562b6aef",
+      "matched_terms": [
+        "context packet",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime map state\", \"runtime navigation state\", \"runtime region state\", \"fog-of-war state\", \"location dat\u201d. Distinguishing context: \u201clowered = c06_text().lower() for marker in [ \"canon eligibility\", \"never promotes canon\", \"does not accept canon\", \"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime map state\", \"runtime n\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c07_mission_scenario_adventure_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c07_mission_scenario_adventure_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 129,
+      "line_end": 237,
+      "locator_heading_or_symbol": "\"branching paths\",",
+      "excerpt_sha256": "5f99d6441faac82db33fd016f682bc0ba16384f4fefd2fe6d479535d88387935",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "promotion",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"branching paths\", \"quest-like structures\", \"adventure-path fragments\", \"scripted scenario functions\", \"classification and routing posture\", ]: assert phrase in lowered f\u201d. Distinguishing context: \u201c\"hooks\", \"objectives\", \"scene-chains\", \"encounter-chains\", \"reward/consequence structures\", \"branching paths\", \"quest-like structures\", \"adventure-path fragments\", \"scripted scenario functions\", \"classification\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c07_mission_scenario_adventure_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 282,
+      "line_end": 308,
+      "locator_heading_or_symbol": "\"source-specific timeline\",",
+      "excerpt_sha256": "aeffa8596036f6ba00af698f8812dfaa42ed4a870bcbfc6279e6ff4e3e51caa4",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "timeline",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source-specific timeline\", \"rejected donor element handling\", \"rejected_import\", \"rejected donor elements include donor adventures\", \"donor source-specific prose\", ]: as\u201d. Distinguishing context: \u201c\"license-specific expressions\", \"verbatim-similar descriptions\", \"protected art/map references\", \"donor proper nouns\", \"source-specific scenario lore\", \"source-specific timeline\", \"rejected donor element handli\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c08_vehicle_ship_platform_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c08_vehicle_ship_platform_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 155,
+      "line_end": 168,
+      "locator_heading_or_symbol": "\"canon promotion\",",
+      "excerpt_sha256": "256628f665df4ecf11dcd7e4981694ea4405ba3de3f2b1a4fe970509281b118e",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"canon promotion\", \"live-play behavior\", ]: assert phrase in lowered def test_c08_requires_c00_base_and_provenance_posture() -> None: text = c08_text() lowered = text.low\u201d. Distinguishing context: \u201c\"platform inventory state\", \"runtime vehicle state\", \"sourcebook vehicle prose\", \"accepted lexicon\", \"canon acceptance\", \"canon promotion\", \"live-play behavior\", ]: assert phrase in lowered def test_c08_require\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c08_vehicle_ship_platform_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 322,
+      "line_end": 338,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "73af681fc15e670abe961cadf656386da288e8be9b2cd174d55cdcee492c2872",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"must not expose protected truth\", \"runtime boundary\", \"runtime vehicle state\", \"runtime crew state\", \"runtime fuel state\", \"\u201d. Distinguishing context: \u201clowered = c08_text().lower() for marker in [ \"canon eligibility and review routing\", \"c08 never promotes canon\", \"does not accept canon\", \"hidden-state and protected-truth boundary\", \"must not expose protected \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c10_table_oracle_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c10_table_oracle_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 158,
+      "locator_heading_or_symbol": "\"procedural-selection evidence\",",
+      "excerpt_sha256": "7966004d7978b9ec8dfafdc1530816b50cd1c2306bffb515e8cd535afcebab40",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"procedural-selection evidence\", \"classification and routing posture\", ]: assert phrase in lowered for phrase in [ \"final mechanics\", \"final random-generation procedure\",\u201d. Distinguishing context: \u201c\"weighted option lists\", \"prompt lists\", \"keyed result lists\", \"result families\", \"table-row provenance\", \"procedural-selection evidence\", \"classification and routing posture\", ]: assert phrase in lowered for p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c10_table_oracle_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 265,
+      "line_end": 274,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "b3b3b8ac3db3ea347b2a795cb6e31c4bdaabd7d91bdcb1730b73783abb02b66d",
+      "matched_terms": [
+        "context packet",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime random selection\", \"runtime generator state\", \"executable oracle behavior\", \"random seed behavior\u201d. Distinguishing context: \u201clowered = c10_text().lower() for marker in [ \"canon eligibility\", \"never promotes canon\", \"does not accept canon\", \"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime random selection\", \"ru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c11_companion_summon_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c11_companion_summon_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 169,
+      "line_end": 182,
+      "locator_heading_or_symbol": "\"canon promotion\",",
+      "excerpt_sha256": "70785fbbe71c74c8ef179f1156b1f80cbb9721db44d1e15e9e96f2b3e14c8f18",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"canon promotion\", \"live-play behavior\", ]: assert phrase in lowered def test_c11_requires_c00_base_and_provenance_posture() -> None: text = c11_text() lowered = text.low\u201d. Distinguishing context: \u201c\"runtime follower roster\", \"sourcebook companion prose\", \"sourcebook summon lists\", \"accepted lexicon\", \"canon acceptance\", \"canon promotion\", \"live-play behavior\", ]: assert phrase in lowered def test_c11_requ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c11_companion_summon_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 298,
+      "line_end": 314,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "afc892b0599144d35fae1b1951294990dceac2bc56c78c26e34e444ea989ad43",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime companion state\", \"runtime summon state\", \"runtime control state\", \"runtime bond state\", \"runtime\u201d. Distinguishing context: \u201clowered = c11_text().lower() for marker in [ \"canon eligibility\", \"never promotes canon\", \"does not accept canon\", \"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime companion state\", \"run\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c12_crafting_salvage_recipe_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c12_crafting_salvage_recipe_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 127,
+      "line_end": 189,
+      "locator_heading_or_symbol": "\"requisition-process evidence records\",",
+      "excerpt_sha256": "9365546f5ddc15d04e67cccd70a86d2e0c64d54116d2f746e943d8d87c0a3520",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"requisition-process evidence records\", \"blueprints\", \"schematics\", \"formulas\", \"upgrade processes\", \"refit processes\", \"recovery processes\", \"material-processing records\u201d. Distinguishing context: \u201c\"repair records\", \"recipe records\", \"installation-process records\", \"modification-process records\", \"extraction records\", \"requisition-process evidence records\", \"blueprints\", \"schematics\", \"formulas\", \"upgrade\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c12_crafting_salvage_recipe_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 311,
+      "line_end": 327,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "9176398683519b4c55683ff7432b06debe018065bc6163273d703149d8a4843e",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime crafting state\", \"runtime project state\", \"runtime recipe state\", \"runtime inventory state\", \"run\u201d. Distinguishing context: \u201clowered = c12_text().lower() for marker in [ \"canon eligibility\", \"never promotes canon\", \"does not accept canon\", \"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime crafting state\", \"runt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c13_map_diagram_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c13_map_diagram_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 195,
+      "locator_heading_or_symbol": "\"visual evidence records\",",
+      "excerpt_sha256": "8f34a0f067eb853c8156caf20c50d676dd4335331dcb4d38ad45926ddd5f401f",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"visual evidence records\", \"annotation-provenance records\", \"classification and routing posture\", ]: assert phrase in lowered for phrase in [ \"final mechanics\", \"final ge\u201d. Distinguishing context: \u201c\"ship/station layouts\", \"tactical diagrams\", \"symbolic diagrams\", \"image-review records\", \"spatial overlays\", \"visual evidence records\", \"annotation-provenance records\", \"classification and routing posture\", ]:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c13_map_diagram_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 286,
+      "line_end": 329,
+      "locator_heading_or_symbol": "\"hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "f25e70af771d7d19262671f83a093485860c522b4de71f38fc29b4ec3f1bedc1",
+      "matched_terms": [
+        "context packet",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime map state\", \"runtime navigation state\", \"runtime region state\", \"fog-of-war state\", \"player map s\u201d. Distinguishing context: \u201clowered = c13_text().lower() for marker in [ \"canon eligibility\", \"never promotes canon\", \"does not accept canon\", \"hidden-state and protected-truth boundary\", \"protected truth\", \"runtime map state\", \"runtime n\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c14_source_local_setting_cosmology_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "\"## 17. Hidden-state and protected-truth boundary\",",
+      "excerpt_sha256": "2059cac7d0f1250cb9cae23f6a2abb15ec7c7f4817a0c84c6c36e0e9070d1d7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 17. Hidden-state and protected-truth boundary\",\u201d. Distinguishing context: \u201c\"## 12. Parent, child, and satellite record handling\", \"## 13. Source-local and legal/IP handling\", \"## 14. Rejected donor element handling\", \"## 15. Canon eligibility and review routing\", \"## 16. Confidence, v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c14_source_local_setting_cosmology_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 139,
+      "line_end": 170,
+      "locator_heading_or_symbol": "\"canon promotion\",",
+      "excerpt_sha256": "4b8d7e8354602594c104fd2e456baecc9a54390dad706b56d01b9b4b1e668eb2",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"canon promotion\", \"astra-wide cosmology\", \"astra-wide metaphysics\", \"final setting law\", \"final sourcebook lore\", \"accepted canon history\", \"accepted canon geography\", \"\u201d. Distinguishing context: \u201cassert phrase in lowered for phrase in [ \"final mechanics\", \"canon acceptance\", \"canon promotion\", \"astra-wide cosmology\", \"astra-wide metaphysics\", \"final setting law\", \"final sourcebook lore\", \"accepted canon\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_c14_source_local_setting_cosmology_record_schema.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 252,
+      "line_end": 305,
+      "locator_heading_or_symbol": "\"rejected donor elements remain linked to source evidence\",",
+      "excerpt_sha256": "f7341a0dccc7213b343a382fafed5826f0abcbc64a682b0e82511935dd0c26f7",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"rejected donor elements remain linked to source evidence\", \"rejection is not deletion\", \"blocks donor leakage into astra defaults\", ]: assert phrase in lowered def test_\u201d. Distinguishing context: \u201c\"source-local boundaries\", \"legal/ip review notes\", \"legal/ip posture\", \"does not decide legal clearance\", \"rejected donor element handling\", \"rejected donor elements remain linked to source evidence\", \"rejecti\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_conversion_runtime_origin_firewall.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 60,
+      "line_end": 75,
+      "locator_heading_or_symbol": "def test_firewall_doctrine_requires_one_way_identity_breaking_promotion() -> None:",
+      "excerpt_sha256": "6f884f06a4d9154d10bd86904453872ae6eed92934091a5657c667cfa0652e46",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_firewall_doctrine_requires_one_way_identity_breaking_promotion() -> None: text = _read(DOCTRINE_PATH) assert \"The flow is one-way.\" in text assert \"Identity-brea\u201d. Distinguishing context: \u201cassert \"Runtime is origin-blind.\" in text assert \"Offline provenance is retained but isolated.\" in text assert \"conversion_runtime_origin_firewall_doctrine.md\" in text def test_firewall_doctrine_requires_one_wa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_handoff_contract_schemas.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 106,
+      "line_end": 170,
+      "locator_heading_or_symbol": "\"mapping_ledger_path\", \"lexicon_delta_path\", \"canon_candidates_path\", \"quarantine_notes_path\",",
+      "excerpt_sha256": "5f0a6c94dc48f34c90f77e34702a759617d46c4875f153ad07ebb1714c58efda",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"mapping_ledger_path\", \"lexicon_delta_path\", \"canon_candidates_path\", \"quarantine_notes_path\", \"doctrine_escalations_path\", \"rejected_imports_path\", \"confidence\", \"review\u201d. Distinguishing context: \u201cdef test_conversion_result_required_fields() -> None: s = _load_schema(\"schemas/handoff/conversion_result.schema.json\") req = set(s.get(\"required\", [])) must = { \"result_id\", \"source_packet_id\", \"result_type\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

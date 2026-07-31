@@ -1,0 +1,904 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-09",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 410,
+      "line_end": 506,
+      "locator_heading_or_symbol": "Before value-entry completes, D17 identifies transport burden, storage burden, legal visibility, faction trace, tax, tariff, salvage fee, broker/auction fee, claim dispute, decay/s",
+      "excerpt_sha256": "70af06a7e8943038c6d84b8c1b79a3d9cfbc1aa7d4ec82b7acabab4cedaedc55",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "reservation",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cBefore value-entry completes, D17 identifies transport burden, storage burden, legal visibility, faction trace, tax, tariff, salvage fee, broker/auction fee, claim disput\u201d. Distinguishing context: \u201cunknown_claim_present ``` Loot creates custody first. Salvage is claim-bearing. Reward may be ownership, access, custody, license, favor, information, or source-local entitlement. ## Burden, sink, and consequen\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 547,
+      "line_end": 663,
+      "locator_heading_or_symbol": "-> identify whether it is mandatory, optional, conditional, scheduled, event-driven, ambient, or source-local",
+      "excerpt_sha256": "80a2863362cb39549a98aacacd195f96684915f5d80f1757e4dd26bed3881912",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "reservation",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c-> identify whether it is mandatory, optional, conditional, scheduled, event-driven, ambient, or source-local -> identify what value form is removed, reserved, transforme\u201d. Distinguishing context: \u201c## Sink\u2013Obligation\u2013Pressure Model ```text value exists or enters play -> identify whether a sink, consumption, upkeep, requisition, tax, debt, decay, or obligation applies -> identify whether it is mandatory, o\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 693,
+      "line_end": 693,
+      "locator_heading_or_symbol": "A price list, shop table, loot table, wealth rating, slot count, fuel rule, requisition list, contribution chart, or reward schedule is evidence, not authority. Route by function t",
+      "excerpt_sha256": "a355784b3a4a4e3b4fdaa96dcd33248c8d9425e20e8aef6799a485257592747d",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA price list, shop table, loot table, wealth rating, slot count, fuel rule, requisition list, contribution chart, or reward schedule is evidence, not authority. Route by \u201d. Distinguishing context: \u201cdebt currencies as universal economy reward tables as progression pacing law ``` ## Routing rule A price list, shop table, loot table, wealth rating, slot count, fuel rule, requisition list, contribution chart,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 744,
+      "line_end": 864,
+      "locator_heading_or_symbol": "channel_type: purchase | sale | barter | trade | gift | reward | loot | salvage | resource_gathering | crafting_output | requisition | license_grant | faction_store | patron_grant ",
+      "excerpt_sha256": "7cbe79c19a30d7f0aa5a05edb70556d50bd9b2b5b388c8ee7d92065b4913e7f7",
+      "matched_terms": [
+        "quarantine",
+        "reservation",
+        "schedule",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cchannel_type: purchase | sale | barter | trade | gift | reward | loot | salvage | resource_gathering | crafting_output | requisition | license_grant | faction_store | pat\u201d. Distinguishing context: \u201c```yaml access_channel_record: record_type: access_channel access_channel_id: string value_ref: string channel_type: purchase | sale | barter | trade | gift | reward | loot | salvage | resource_gathering | craf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 874,
+      "line_end": 993,
+      "locator_heading_or_symbol": "donor_evidence_type: price_list | shop_inventory | loot_table | reward_table | treasure_parcel | currency | wealth_rating | inventory_rule | encumbrance_rule | requisition_list | c",
+      "excerpt_sha256": "0291ba1777559268e98c5b635928d67818f874ba61338db0d69127d6cba4fc1e",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "schedule",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cdonor_evidence_type: price_list | shop_inventory | loot_table | reward_table | treasure_parcel | currency | wealth_rating | inventory_rule | encumbrance_rule | requisitio\u201d. Distinguishing context: \u201c## Donor Value Mapping Record ```yaml donor_value_mapping_record: record_type: donor_value_mapping donor_label: string donor_evidence_type: price_list | shop_inventory | loot_table | reward_table | treasure_par\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1003,
+      "line_end": 1009,
+      "locator_heading_or_symbol": "Represent inventory as burden, access, storage, custody, visibility, maintenance, decay, and transport pressure.",
+      "excerpt_sha256": "c46d510a1f37b5402ae25cafd25d3d9e82446258e5fa4d0b2e90e125e3fc2400",
+      "matched_terms": [
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cRepresent inventory as burden, access, storage, custody, visibility, maintenance, decay, and transport pressure. Support multiple burden types without universal slots, we\u201d. Distinguishing context: \u201c```text Classify value by form, access channel, scarcity, legality, ownership/custody, and burden. Handle acquisition and exchange without assuming price equals access. Handle reward, loot, salvage, bounty, fac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-00_core_play_experience_contract.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 37,
+      "line_end": 37,
+      "locator_heading_or_symbol": "- a resource, pool, instability, corruption, charge, fuel, or reserve;",
+      "excerpt_sha256": "1e824139582813cdb34928f9cd4ace0644ffc2901afcd6066be416c52988c20e",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- a resource, pool, instability, corruption, charge, fuel, or reserve;\u201d. Distinguishing context: \u201c## What counts as meaningful An action is meaningful when it can alter: - a resource, pool, instability, corruption, charge, fuel, or reserve; - a condition, injury, threshold, form-state, or identity pressure;\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-02_power_context_register_and_assessment_baseline.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 60,
+      "line_end": 85,
+      "locator_heading_or_symbol": "Domain alignment is not only elemental. It may involve death, law, oath, machine, spirit, territory, corruption, scarcity, lineage, route, or faction context.",
+      "excerpt_sha256": "285f48c39b54c4a0578e8ce69a4692f0ebca876b3c7560293486e828c76035a2",
+      "matched_terms": [
+        "corruption",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDomain alignment is not only elemental. It may involve death, law, oath, machine, spirit, territory, corruption, scarcity, lineage, route, or faction context. ## Hidden c\u201d. Distinguishing context: \u201c## Domain alignment Domain alignment records whether the declared method aligns with, conflicts with, or is neutral to the location, opposition, route, Principle, object, faction law, or source-local context. D\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-03_state_delta_commit_protocol.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 17,
+      "line_end": 21,
+      "locator_heading_or_symbol": "| Resource, pool, charge, fuel, instability, corruption load | D03 |",
+      "excerpt_sha256": "d79291609b9276fb8e4ac295cac3e107b95fef324b919d7df8bd92aa672034b5",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Resource, pool, charge, fuel, instability, corruption load | D03 | | Advancement, proof, threshold, breakthrough, transformation progress | D04 | | Skill, method, resea\u201d. Distinguishing context: \u201c## Delta families | Delta family | Owner | |---|---| | Resource, pool, charge, fuel, instability, corruption load | D03 | | Advancement, proof, threshold, breakthrough, transformation progress | D04 | | Skill, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-04_campaign_loop_and_long_form_durability.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 24,
+      "line_end": 56,
+      "locator_heading_or_symbol": "| Discovery Loop | Hidden truth becomes known, misreported, suppressed, or weaponized. |",
+      "excerpt_sha256": "93ae9afe25fbf4e5f25c1138f8e3b2d6b0b69be6511f7257c0e5f5182d6d0afd",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Discovery Loop | Hidden truth becomes known, misreported, suppressed, or weaponized. | | Cost Loop | Short-term power produces long-term pressure. | | Recovery Loop | C\u201d. Distinguishing context: \u201c| Power Loop | Gain, spend, risk, stabilize, transform, and contextualize power. | | Identity Loop | Actor changes under pressure and must integrate or resist change. | | Competence Loop | Methods improve and c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-06_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 84,
+      "line_end": 84,
+      "locator_heading_or_symbol": "| Harm, injury, corruption, backlash | D07 |",
+      "excerpt_sha256": "7bbc38bf7c4110eca796aa56e28d5d5a026e190810a25525e15ccd543b2bc850",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Harm, injury, corruption, backlash | D07 |\u201d. Distinguishing context: \u201c|---|---| | Resource cost, instability, fuel, charges | D03 | | Advancement proof, thresholds, breakthroughs | D04 | | Assessment method, research, competence | D05 | | Route powers, Techniques, Principles | D0\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 108,
+      "line_end": 108,
+      "locator_heading_or_symbol": "- a resource, pool, instability, corruption, charge, fuel, or reserve;",
+      "excerpt_sha256": "1e824139582813cdb34928f9cd4ace0644ffc2901afcd6066be416c52988c20e",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- a resource, pool, instability, corruption, charge, fuel, or reserve;\u201d. Distinguishing context: \u201c## What counts as meaningful An action is meaningful when it can alter: - a resource, pool, instability, corruption, charge, fuel, or reserve; - a condition, injury, threshold, form-state, or identity pressure;\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 167,
+      "line_end": 211,
+      "locator_heading_or_symbol": "- instability or corruption load;",
+      "excerpt_sha256": "388a8a070bdf40931be86fdff7ea8fc7861785ad0b76d5d61460e2a417704a56",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- instability or corruption load; - injury or condition; - attention drawn; - faction consequence; - relationship strain; - object wear or depletion; - legal exposure; - \u201d. Distinguishing context: \u201cPower in Astra must carry cost, limit, risk, requirement, opportunity cost, exposure, debt, instability, depletion, consequence, or identity pressure. Cost may appear as: - spent resource; - instability or corr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 302,
+      "line_end": 327,
+      "locator_heading_or_symbol": "Domain alignment is not only elemental. It may involve death, law, oath, machine, spirit, territory, corruption, scarcity, lineage, route, or faction context.",
+      "excerpt_sha256": "285f48c39b54c4a0578e8ce69a4692f0ebca876b3c7560293486e828c76035a2",
+      "matched_terms": [
+        "corruption",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDomain alignment is not only elemental. It may involve death, law, oath, machine, spirit, territory, corruption, scarcity, lineage, route, or faction context. ## Hidden c\u201d. Distinguishing context: \u201c## Domain alignment Domain alignment records whether the declared method aligns with, conflicts with, or is neutral to the location, opposition, route, Principle, object, faction law, or source-local context. D\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 379,
+      "line_end": 383,
+      "locator_heading_or_symbol": "| Resource, pool, charge, fuel, instability, corruption load | D03 |",
+      "excerpt_sha256": "d79291609b9276fb8e4ac295cac3e107b95fef324b919d7df8bd92aa672034b5",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Resource, pool, charge, fuel, instability, corruption load | D03 | | Advancement, proof, threshold, breakthrough, transformation progress | D04 | | Skill, method, resea\u201d. Distinguishing context: \u201c## Delta families | Delta family | Owner | |---|---| | Resource, pool, charge, fuel, instability, corruption load | D03 | | Advancement, proof, threshold, breakthrough, transformation progress | D04 | | Skill, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 475,
+      "line_end": 579,
+      "locator_heading_or_symbol": "| Discovery Loop | Hidden truth becomes known, misreported, suppressed, or weaponized. |",
+      "excerpt_sha256": "dd4bd1270aa560ba25aa35d64820b68807360eac1c73dd6cfc3cbb8d0397c6e4",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Discovery Loop | Hidden truth becomes known, misreported, suppressed, or weaponized. | | Cost Loop | Short-term power produces long-term pressure. | | Recovery Loop | C\u201d. Distinguishing context: \u201c| Power Loop | Gain, spend, risk, stabilize, transform, and contextualize power. | | Identity Loop | Actor changes under pressure and must integrate or resist change. | | Competence Loop | Methods improve and c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 598,
+      "line_end": 598,
+      "locator_heading_or_symbol": "4. missing frameworks are quarantined or escalated;",
+      "excerpt_sha256": "bcb1cafea869a855fbd4ca5d3528bdcbbd4ae943ef094581ef967475b826b9df",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c4. missing frameworks are quarantined or escalated;\u201d. Distinguishing context: \u201cD00 conversion boundaries are satisfied when: 1. donor play contracts are identified; 2. donor assumptions are not imported silently; 3. source-local systems are bounded; 4. missing frameworks are quarantined o\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 689,
+      "line_end": 689,
+      "locator_heading_or_symbol": "| Harm, injury, corruption, backlash | D07 |",
+      "excerpt_sha256": "7bbc38bf7c4110eca796aa56e28d5d5a026e190810a25525e15ccd543b2bc850",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Harm, injury, corruption, backlash | D07 |\u201d. Distinguishing context: \u201c|---|---| | Resource cost, instability, fuel, charges | D03 | | Advancement proof, thresholds, breakthroughs | D04 | | Assessment method, research, competence | D05 | | Route powers, Techniques, Principles | D0\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 743,
+      "line_end": 743,
+      "locator_heading_or_symbol": "\"D07\": \"harm, injury, corruption, backlash\",",
+      "excerpt_sha256": "8d52c44314c3918a8fee191f36b05b66ed7bc84858d74a1003dbd890c3582e75",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D07\": \"harm, injury, corruption, backlash\",\u201d. Distinguishing context: \u201c\"D00_does_not_own\": { \"D03\": \"resource formulas and Power Economy\", \"D04\": \"advancement math and breakthrough mechanics\", \"D05\": \"skills, research, and assessment methods\", \"D06\": \"routes, techniques, and princ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01-01_visible_attribute_set.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 98,
+      "locator_heading_or_symbol": "- corruption resistance by physical substrate when owner files validate it;",
+      "excerpt_sha256": "d522f5f1ac18561587be513f114d65ccbe39b2f3c0684f42424121b51412ebeb",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "projection",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- corruption resistance by physical substrate when owner files validate it; - platform/body interface where D08 applies. Vessel is not donor Strength imported wholesale. \u201d. Distinguishing context: \u201cVessel may inform: - lifting, carrying, striking, grappling, physical exertion; - bodily capacity; - form-shift tolerance; - body cultivation; - corruption resistance by physical substrate when owner files vali\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01-02_animus_and_pneuma_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 80,
+      "locator_heading_or_symbol": "Animus is visible, character-facing, and build-relevant. It represents inner force, soul/spirit/will, self-projection, cultivation source, and power-bearing pressure.",
+      "excerpt_sha256": "9fc6fc660acb38bebe5744c6c1363df08fa6d8f80665da7303cf9d1cb4e3fe79",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAnimus is visible, character-facing, and build-relevant. It represents inner force, soul/spirit/will, self-projection, cultivation source, and power-bearing pressure. Ani\u201d. Distinguishing context: \u201cThis file distinguishes Animus from Pneuma and protects Pneuma from becoming a visible luck stat. ## Animus Animus is visible, character-facing, and build-relevant. It represents inner force, soul/spirit/will, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01-03_multi_axis_breakthrough_lattices.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 61,
+      "line_end": 61,
+      "locator_heading_or_symbol": "D07 owns corruption/harm outcomes. D08 owns actor/form changes. D04 owns advancement logic.",
+      "excerpt_sha256": "5b6f1e6b4f0e97ecb78d3b0bcbae27235e21e37a10009ec1011997b5cfdc82ab",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD07 owns corruption/harm outcomes. D08 owns actor/form changes. D04 owns advancement logic.\u201d. Distinguishing context: \u201c- divergent; - corrupted; - transformed; - source-local. D07 owns corruption/harm outcomes. D08 owns actor/form changes. D04 owns advancement logic. ## Breakthrough history Breakthrough history matters because \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01-04_pool_reserve_and_derived_pressure_handoffs.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 58,
+      "locator_heading_or_symbol": "| Glamour | influence pool, command reach, social projection pressure. |",
+      "excerpt_sha256": "b0810710a669647e681d71bd5f1145d26564d9cd9e5957b82b7d4ac3d4b88392",
+      "matched_terms": [
+        "corruption",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Glamour | influence pool, command reach, social projection pressure. | | Animus | power pool, spiritual reserve, corruption resistance signal, sustained focus. | | Pneu\u201d. Distinguishing context: \u201c| Vessel | physical capacity, load, body exertion, form-bearing capacity. | | Finesse | tempo, initiative pressure, precision reserve, movement control. | | Reason | focus pool, analysis reserve, planning capac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01-06_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 88,
+      "line_end": 88,
+      "locator_heading_or_symbol": "| injury, conditions, corruption, backlash | D07 |",
+      "excerpt_sha256": "01ae4607bdcd6d848141c42ce2bcaf321ee123d149eca6f241db8d1a443a52f8",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| injury, conditions, corruption, backlash | D07 |\u201d. Distinguishing context: \u201c|---|---| | pools, reserves, carriers, recharge, overdraw | D03 | | breakthrough gates, proof, advancement procedure | D04 | | skills, methods, assessment, research | D05 | | route powers, Techniques, Principle\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 140,
+      "line_end": 222,
+      "locator_heading_or_symbol": "- corruption resistance by physical substrate when owner files validate it;",
+      "excerpt_sha256": "d522f5f1ac18561587be513f114d65ccbe39b2f3c0684f42424121b51412ebeb",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "projection",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- corruption resistance by physical substrate when owner files validate it; - platform/body interface where D08 applies. Vessel is not donor Strength imported wholesale. \u201d. Distinguishing context: \u201cVessel may inform: - lifting, carrying, striking, grappling, physical exertion; - bodily capacity; - form-shift tolerance; - body cultivation; - corruption resistance by physical substrate when owner files vali\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 261,
+      "line_end": 332,
+      "locator_heading_or_symbol": "Animus is visible, character-facing, and build-relevant. It represents inner force, soul/spirit/will, self-projection, cultivation source, and power-bearing pressure.",
+      "excerpt_sha256": "9fc6fc660acb38bebe5744c6c1363df08fa6d8f80665da7303cf9d1cb4e3fe79",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAnimus is visible, character-facing, and build-relevant. It represents inner force, soul/spirit/will, self-projection, cultivation source, and power-bearing pressure. Ani\u201d. Distinguishing context: \u201cThis file distinguishes Animus from Pneuma and protects Pneuma from becoming a visible luck stat. ## Animus Animus is visible, character-facing, and build-relevant. It represents inner force, soul/spirit/will, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 410,
+      "line_end": 410,
+      "locator_heading_or_symbol": "D07 owns corruption/harm outcomes. D08 owns actor/form changes. D04 owns advancement logic.",
+      "excerpt_sha256": "5b6f1e6b4f0e97ecb78d3b0bcbae27235e21e37a10009ec1011997b5cfdc82ab",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD07 owns corruption/harm outcomes. D08 owns actor/form changes. D04 owns advancement logic.\u201d. Distinguishing context: \u201c- divergent; - corrupted; - transformed; - source-local. D07 owns corruption/harm outcomes. D08 owns actor/form changes. D04 owns advancement logic. ## Breakthrough history Breakthrough history matters because \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 489,
+      "line_end": 525,
+      "locator_heading_or_symbol": "| Glamour | influence pool, command reach, social projection pressure. |",
+      "excerpt_sha256": "b0810710a669647e681d71bd5f1145d26564d9cd9e5957b82b7d4ac3d4b88392",
+      "matched_terms": [
+        "corruption",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Glamour | influence pool, command reach, social projection pressure. | | Animus | power pool, spiritual reserve, corruption resistance signal, sustained focus. | | Pneu\u201d. Distinguishing context: \u201c| Vessel | physical capacity, load, body exertion, form-bearing capacity. | | Finesse | tempo, initiative pressure, precision reserve, movement control. | | Reason | focus pool, analysis reserve, planning capac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 577,
+      "line_end": 610,
+      "locator_heading_or_symbol": "- quarantine/escalation.",
+      "excerpt_sha256": "539cb5a2b6b4139faac1ef440fe39b0adbc3f4460beb9fe95a1a8c970cefcf27",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine/escalation. Do not map donor luck to Pneuma by default. ## Non-six-stat donors Donor systems may use: - body/mind/soul; - approaches; - attributes plus skill\u201d. Distinguishing context: \u201c- D03 spendable resource; - D06 fate/fortune Technique or Route feature; - D10 public myth/reputation/world-state; - hidden Pneuma pressure only if doctrine-authorized; - source-local retention; - quarantine/es\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 721,
+      "line_end": 721,
+      "locator_heading_or_symbol": "| injury, conditions, corruption, backlash | D07 |",
+      "excerpt_sha256": "01ae4607bdcd6d848141c42ce2bcaf321ee123d149eca6f241db8d1a443a52f8",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| injury, conditions, corruption, backlash | D07 |\u201d. Distinguishing context: \u201c|---|---| | pools, reserves, carriers, recharge, overdraw | D03 | | breakthrough gates, proof, advancement procedure | D04 | | skills, methods, assessment, research | D05 | | route powers, Techniques, Principle\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/astra_d01_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 788,
+      "line_end": 788,
+      "locator_heading_or_symbol": "\"D07\": \"harm and corruption mechanics\",",
+      "excerpt_sha256": "cd63c9168a6beb57e16550f113eeed052cc92d8ef4728419cafb2c4e6fd72ebc",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D07\": \"harm and corruption mechanics\",\u201d. Distinguishing context: \u201c\"D01_does_not_own\": { \"D03\": \"Power Economy and derived pool formulas\", \"D04\": \"advancement gates and breakthrough procedure\", \"D05\": \"skills and methods\", \"D06\": \"routes and techniques\", \"D07\": \"harm and corru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-00_resolution_architecture_and_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 83,
+      "line_end": 83,
+      "locator_heading_or_symbol": "| Harm, injury, corruption, backlash, death, conditions | D07 |",
+      "excerpt_sha256": "58a88293ea9d795279f39ea9c3f6ddda935a6715fe8920a5ed23627b5994f05c",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Harm, injury, corruption, backlash, death, conditions | D07 |\u201d. Distinguishing context: \u201c| Attribute meanings | D01 | | Power pools, fuel, charge, reserves, overdraw, resource behavior | D03 | | Advancement gates, proof, tier progression, breakthroughs | D04 | | Skills, methods, research, crafting \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-02_margin_outcome_ladder_natural_20_natural_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 110,
+      "line_end": 110,
+      "locator_heading_or_symbol": "- corruption;",
+      "excerpt_sha256": "362df1f01675d5471a03a72d9478db774b76575682d575e76d02be228072657a",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- corruption;\u201d. Distinguishing context: \u201cIt may produce: - full consequence; - backlash; - harm; - corruption; - object damage; - faction escalation; - false or dangerously incomplete assessment; - legal exposure; - route strain;\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-03_cost_commitment_overinvestment_and_success_at_cost.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 38,
+      "line_end": 123,
+      "locator_heading_or_symbol": "| harm, injury, corruption, curse, backlash, condition | D07 |",
+      "excerpt_sha256": "d0e079ed1999fc96d50d7955298bf672f591124cd45154d8e119ab3b6a7963c7",
+      "matched_terms": [
+        "corruption",
+        "reroll",
+        "reservation",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| harm, injury, corruption, curse, backlash, condition | D07 | | form-state pressure, identity strain, companion risk, AI/body consequence | D08 | | object wear, relic de\u201d. Distinguishing context: \u201c|---|---| | resource, pool, charge, fuel, reserve, overdraw, instability | D03 | | proof, threshold, advancement opportunity, transformation pressure | D04 | | time, tool use, research exposure, professional ri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-04_power_context_register_resolution_integration.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 90,
+      "line_end": 90,
+      "locator_heading_or_symbol": "Domain alignment may involve elements, death, law, machine, spirit, oath, route, faction, object, territory, corruption, scarcity, lineage, or source-local metaphysics.",
+      "excerpt_sha256": "4150d7acf00dae5ee9bff1ccfe227f939a1c9a018c0b1359d6cf507f597fe517",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDomain alignment may involve elements, death, law, machine, spirit, oath, route, faction, object, territory, corruption, scarcity, lineage, or source-local metaphysics.\u201d. Distinguishing context: \u201c- increase cost; - worsen consequence severity; - trigger D07/D08/D10 pressure; - produce source-local restriction. Domain alignment may involve elements, death, law, machine, spirit, oath, route, faction, obje\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-05_opposed_defense_resistance_and_contested_checks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 95,
+      "line_end": 95,
+      "locator_heading_or_symbol": "| corruption, curse, backlash | D07/D08 |",
+      "excerpt_sha256": "4ebb89cf27c22bef89b7db13d56700c31976040d046db1977af8ee3545dd0a55",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| corruption, curse, backlash | D07/D08 |\u201d. Distinguishing context: \u201c| Threat | Likely owner | |---|---| | physical harm | D07 | | poison, disease, biological hazard | D07 | | corruption, curse, backlash | D07/D08 | | mental pressure, fear, morale, social shock | D05/D07/D10 | |\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-06_group_extended_and_dramatic_tasks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 77,
+      "line_end": 79,
+      "locator_heading_or_symbol": "- fortifying a settlement;",
+      "excerpt_sha256": "49e6dea5d8fbc30d0f7f525f293fb47720a8b3f449cf0361a580d69e58783885",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- fortifying a settlement; - evacuating civilians; - containing corruption;\u201d. Distinguishing context: \u201cExamples: - repairing a platform; - researching a mystery; - fortifying a settlement; - evacuating civilians; - containing corruption; - negotiating a broad alliance; - salvaging a wreck. ## Extended tasks\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-07_assessment_reconnaissance_and_information_quality.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 11,
+      "locator_heading_or_symbol": "Assessment is not guaranteed full truth. It is resolved through the outcome ladder.",
+      "excerpt_sha256": "f8e4472db6ae5f54bbb24fe73f4bbfbf9f3b32a92c4ab5752f5721e9cc57f7be",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAssessment is not guaranteed full truth. It is resolved through the outcome ladder.\u201d. Distinguishing context: \u201c## Core rule Assessment allows an actor to spend time, focus, method, resource, risk, or opportunity to improve understanding before commitment. Assessment is not guaranteed full truth. It is resolved through t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-07_assessment_reconnaissance_and_information_quality.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 73,
+      "line_end": 111,
+      "locator_heading_or_symbol": "When a safeguard applies, Sundered may instead reveal that the reading feels wrong without revealing the truth.",
+      "excerpt_sha256": "7e6f7f529a5ee7e6efb68918c176bdaab0eb3dc1e589c8cc7ca2dd23739e27b1",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cWhen a safeguard applies, Sundered may instead reveal that the reading feels wrong without revealing the truth. ## Assessment cost Assessment may cost: - action/time; - D\u201d. Distinguishing context: \u201c- protective Technique; - source-local doctrine; - owner-file ability; - high-tier expertise. When a safeguard applies, Sundered may instead reveal that the reading feels wrong without revealing the truth. ## A\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-08_state_delta_routing_and_source_local_resolution_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 135,
+      "locator_heading_or_symbol": "| harm, injury, condition, curse, backlash, corruption injury, disaster | D07 |",
+      "excerpt_sha256": "238f166fcbf2fe2ebe8a4451ae114fcd94a01cd6271a5f0c1c33b29323bbc827",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| harm, injury, condition, curse, backlash, corruption injury, disaster | D07 | | actor, body, form, kinform, companion, AI, spirit, clone, personhood substrate | D08 | |\u201d. Distinguishing context: \u201c|---|---| | resource, pool, charge, fuel, reserve, overdraw, instability | D03 | | advancement, proof, threshold, breakthrough, transformation progress | D04 | | skill, method, research, crafting discovery, com\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-09_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 136,
+      "locator_heading_or_symbol": "| harm/injury/condition/curse/corruption/backlash/disaster | D07 |",
+      "excerpt_sha256": "d2e8a546a9509db3c70ffed5d2f61bdc934d0d55d0b39a6341a10b04dc632200",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| harm/injury/condition/curse/corruption/backlash/disaster | D07 |\u201d. Distinguishing context: \u201c|---|---| | pool/resource/fuel/charge/reserve/overdraw/instability | D03 | | proof/threshold/breakthrough/tier/transformation progress | D04 | | skill/method/research/crafting/investigation/competence | D05 | |\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/astra_d02_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 153,
+      "line_end": 153,
+      "locator_heading_or_symbol": "| Harm, injury, corruption, backlash, death, conditions | D07 |",
+      "excerpt_sha256": "58a88293ea9d795279f39ea9c3f6ddda935a6715fe8920a5ed23627b5994f05c",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Harm, injury, corruption, backlash, death, conditions | D07 |\u201d. Distinguishing context: \u201c| Attribute meanings | D01 | | Power pools, fuel, charge, reserves, overdraw, resource behavior | D03 | | Advancement gates, proof, tier progression, breakthroughs | D04 | | Skills, methods, research, crafting \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/astra_d02_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 260,
+      "line_end": 260,
+      "locator_heading_or_symbol": "| Injury, condition, corruption, backlash pressure | D07 |",
+      "excerpt_sha256": "0093957fd275488d08a152671868b009651b5d408798e4a710b7422d61a5a5d7",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Injury, condition, corruption, backlash pressure | D07 |\u201d. Distinguishing context: \u201c| Attribute contribution | D01 | | Skill, method, training, research, tool operation | D05 | | Power/resource investment, fuel, overdraw, charges | D03 | | Advancement/tier/proof relevance | D04 | | Route, Tech\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/astra_d02_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 453,
+      "line_end": 453,
+      "locator_heading_or_symbol": "- corruption;",
+      "excerpt_sha256": "362df1f01675d5471a03a72d9478db774b76575682d575e76d02be228072657a",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- corruption;\u201d. Distinguishing context: \u201cIt may produce: - full consequence; - backlash; - harm; - corruption; - object damage; - faction escalation; - false or dangerously incomplete assessment; - legal exposure; - route strain;\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/astra_d02_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 572,
+      "line_end": 657,
+      "locator_heading_or_symbol": "| harm, injury, corruption, curse, backlash, condition | D07 |",
+      "excerpt_sha256": "d0e079ed1999fc96d50d7955298bf672f591124cd45154d8e119ab3b6a7963c7",
+      "matched_terms": [
+        "corruption",
+        "reroll",
+        "reservation",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| harm, injury, corruption, curse, backlash, condition | D07 | | form-state pressure, identity strain, companion risk, AI/body consequence | D08 | | object wear, relic de\u201d. Distinguishing context: \u201c|---|---| | resource, pool, charge, fuel, reserve, overdraw, instability | D03 | | proof, threshold, advancement opportunity, transformation pressure | D04 | | time, tool use, research exposure, professional ri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

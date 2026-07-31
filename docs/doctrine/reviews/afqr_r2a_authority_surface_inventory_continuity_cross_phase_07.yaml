@@ -1,0 +1,858 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-07",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM14_metadata_only_real_packet_shell_validation_and_reviewer_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 135,
+      "line_end": 248,
+      "locator_heading_or_symbol": "The SM09 dry template is not a real packet, not a real donor packet, not authorization, not execution approval, and not conversion evidence.",
+      "excerpt_sha256": "83fee2f75f13eaa5cd45a04c3f659aa3cf7c29400e17c62e1c9aebc5ce0119ee",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe SM09 dry template is not a real packet, not a real donor packet, not authorization, not execution approval, and not conversion evidence. ## 21. SM10 reviewer validati\u201d. Distinguishing context: \u201c## 20. SM09 dry template validation requirement SM14 requires a visible SM09 dry template reference. Reviewers validate that the shell understands the SM09 dry authorization packet template as dry, placeholder/\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM14_metadata_only_real_packet_shell_validation_and_reviewer_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 256,
+      "line_end": 372,
+      "locator_heading_or_symbol": "## 31. Confidence, review-routing, repair, quarantine, and failure-report validation",
+      "excerpt_sha256": "ffeebf580c6f2beaa3ac59bcbcf9f56128cfdb81de941729997b2770005bb290",
+      "matched_terms": [
+        "context packet",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c## 31. Confidence, review-routing, repair, quarantine, and failure-report validation SM14 reviewers validate that confidence/review-routing notes, repair route, quarantin\u201d. Distinguishing context: \u201cSM14 reviewers validate that rejected-import route, source-local retention route, legal/IP route, and `pending_schema` route slots exist and are not collapsed into one another. Each route remains a lawful fallb\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM14_metadata_only_real_packet_shell_validation_and_reviewer_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 378,
+      "line_end": 410,
+      "locator_heading_or_symbol": "SM14 owner routing requires at minimum a legal/IP owner, future review owner, source access posture owner, C-family pressure owner, lawful outcome route owner, mapping ledger route",
+      "excerpt_sha256": "05cc3cf2d1da865a1cc398ae6c208765945d2f8229655de70d8aa64d99698675",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM14 owner routing requires at minimum a legal/IP owner, future review owner, source access posture owner, C-family pressure owner, lawful outcome route owner, mapping le\u201d. Distinguishing context: \u201cSM14 cannot promote C00-C14 registry statuses, cannot rewrite C00-C14, cannot add C15, cannot promote canon, cannot write sourcebook prose, and cannot create live-play behavior. ## 39. Owner map and lawful fall\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/conversion_handoff_contract_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 61,
+      "locator_heading_or_symbol": "This contract defines the formal boundary between extraction truth and Astra conversion intake.",
+      "excerpt_sha256": "002c384efcdaa54aa40544387cce7380d32ed6141de4e5cbb0acf56cdac1fae1",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis contract defines the formal boundary between extraction truth and Astra conversion intake. ## Non-goals and boundaries - A strict extraction audit pass is **not** ca\u201d. Distinguishing context: \u201c# Conversion Handoff Contract v0.1 This contract defines the formal boundary between extraction truth and Astra conversion intake. ## Non-goals and boundaries - A strict extraction audit pass is **not** canon r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/conversion_run_integrity_validator_guide.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "- Extraction truth is not conversion permission.",
+      "excerpt_sha256": "549ac89a2f18ab8e8fb1e1b31c8f735456c64c151a69a412031b41560830ab54",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Extraction truth is not conversion permission.\u201d. Distinguishing context: \u201c- report placeholder leakage, - aggregation summary consistency. ## Boundary principles - Extraction truth is not conversion permission. - Conversion permission is not canon permission. - Validator success does\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/content_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 76,
+      "line_end": 76,
+      "locator_heading_or_symbol": "\"quarantined\",",
+      "excerpt_sha256": "213d5b1626ce71d344616058097a282cd0b9b2759f96ef60a147f0121485d77e",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined\",\u201d. Distinguishing context: \u201c\"ready\", \"ready_with_warnings\", \"intake_only\", \"partial_conversion_allowed\", \"needs_repair\", \"quarantined\", \"failed_extraction\" ] }, \"conversion_permission\": { \"type\": \"string\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/content_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 134,
+      "line_end": 134,
+      "locator_heading_or_symbol": "\"quarantined_construct_pending_later_doctrine\",",
+      "excerpt_sha256": "0497acaf57806352b6764a11d2e24fab7e31aa93da8e6630c3efadb42839c9c7",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_construct_pending_later_doctrine\",\u201d. Distinguishing context: \u201c\"type\": \"string\", \"enum\": [ \"direct_astra_mapping\", \"normalized_astra_mapping\", \"source_local_retained_construct\", \"quarantined_construct_pending_later_doctrine\", \"escalated_doctrine_problem\" ] }, \"notes\": { \"t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/conversion_intake_result.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 51,
+      "line_end": 51,
+      "locator_heading_or_symbol": "\"lawful_outcome\":{\"type\":\"string\",\"enum\":[\"direct Astra mapping\",\"normalized Astra mapping\",\"source-local retained construct\",\"quarantined construct pending later doctrine\",\"escala",
+      "excerpt_sha256": "e493bb2cfe38d81b28887b07a2f9d5f527863365ca37d6dd949256c5f0349129",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"lawful_outcome\":{\"type\":\"string\",\"enum\":[\"direct Astra mapping\",\"normalized Astra mapping\",\"source-local retained construct\",\"quarantined construct pending later doctrin\u201d. Distinguishing context: \u201c\"properties\":{ \"donor_construct\":{\"type\":\"string\"}, \"source_pages\":{\"type\":\"array\",\"items\":{\"type\":\"integer\",\"minimum\":1}}, \"source_unit_ids\":{\"type\":\"array\",\"items\":{\"type\":\"string\"}}, \"astra_target_family\":{\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/conversion_result.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 62,
+      "locator_heading_or_symbol": "\"quarantine_notes_path\",",
+      "excerpt_sha256": "7ca8f489e7637d97e7b0e519ba1b513e5c7ce3fd61009336f1a0226be7d8fb3c",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_notes_path\", \"doctrine_escalations_path\", \"rejected_imports_path\", \"confidence\", \"reviewer_notes\" ], \"properties\": { \"result_id\": { \"type\": \"string\" }, \"sourc\u201d. Distinguishing context: \u201c\"readiness_assessment\", \"construct_inventory_path\", \"mapping_ledger_path\", \"lexicon_delta_path\", \"canon_candidates_path\", \"quarantine_notes_path\", \"doctrine_escalations_path\", \"rejected_imports_path\", \"confiden\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/map_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 74,
+      "line_end": 74,
+      "locator_heading_or_symbol": "\"quarantined\",",
+      "excerpt_sha256": "213d5b1626ce71d344616058097a282cd0b9b2759f96ef60a147f0121485d77e",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined\",\u201d. Distinguishing context: \u201c\"ready\", \"ready_with_warnings\", \"intake_only\", \"partial_conversion_allowed\", \"needs_repair\", \"quarantined\", \"failed_extraction\" ] }, \"conversion_permission\": { \"type\": \"string\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/map_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 132,
+      "line_end": 132,
+      "locator_heading_or_symbol": "\"quarantined_construct_pending_later_doctrine\",",
+      "excerpt_sha256": "0497acaf57806352b6764a11d2e24fab7e31aa93da8e6630c3efadb42839c9c7",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_construct_pending_later_doctrine\",\u201d. Distinguishing context: \u201c\"type\": \"string\", \"enum\": [ \"direct_astra_mapping\", \"normalized_astra_mapping\", \"source_local_retained_construct\", \"quarantined_construct_pending_later_doctrine\", \"escalated_doctrine_problem\" ] }, \"notes\": { \"t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/mapping_ledger.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 50,
+      "line_end": 50,
+      "locator_heading_or_symbol": "\"quarantined_construct_pending_later_doctrine\",",
+      "excerpt_sha256": "0497acaf57806352b6764a11d2e24fab7e31aa93da8e6630c3efadb42839c9c7",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_construct_pending_later_doctrine\",\u201d. Distinguishing context: \u201c\"type\": \"string\", \"enum\": [ \"direct_astra_mapping\", \"normalized_astra_mapping\", \"source_local_retained_construct\", \"quarantined_construct_pending_later_doctrine\", \"escalated_doctrine_problem\" ] }, \"rationale\": \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/packet_manifest.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 61,
+      "line_end": 61,
+      "locator_heading_or_symbol": "\"quarantined\",",
+      "excerpt_sha256": "213d5b1626ce71d344616058097a282cd0b9b2759f96ef60a147f0121485d77e",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined\",\u201d. Distinguishing context: \u201c\"ready\", \"ready_with_warnings\", \"intake_only\", \"partial_conversion_allowed\", \"needs_repair\", \"quarantined\", \"failed_extraction\" ] }, \"content_family_tags\": { \"type\": \"array\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/readiness_classes.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 56,
+      "locator_heading_or_symbol": "\"quarantined\",",
+      "excerpt_sha256": "c7233a788db28d8e4d3ba6e4f87e8161d7fbb404c462d11d65b2371ce4844111",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined\", \"failed_extraction\" ] }, \"uniqueItems\": true }, \"queue_names\": { \"type\": \"array\", \"items\": { \"type\": \"string\", \"enum\": [ \"repair_queue\", \"table_normalizati\u201d. Distinguishing context: \u201c\"ready\", \"ready_with_warnings\", \"intake_only\", \"partial_conversion_allowed\", \"needs_repair\", \"quarantined\", \"failed_extraction\" ] }, \"uniqueItems\": true }, \"queue_names\": { \"type\": \"array\", \"items\": { \"type\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/statblock_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 74,
+      "line_end": 74,
+      "locator_heading_or_symbol": "\"quarantined\",",
+      "excerpt_sha256": "213d5b1626ce71d344616058097a282cd0b9b2759f96ef60a147f0121485d77e",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined\",\u201d. Distinguishing context: \u201c\"ready\", \"ready_with_warnings\", \"intake_only\", \"partial_conversion_allowed\", \"needs_repair\", \"quarantined\", \"failed_extraction\" ] }, \"conversion_permission\": { \"type\": \"string\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/statblock_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 132,
+      "line_end": 132,
+      "locator_heading_or_symbol": "\"quarantined_construct_pending_later_doctrine\",",
+      "excerpt_sha256": "0497acaf57806352b6764a11d2e24fab7e31aa93da8e6630c3efadb42839c9c7",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_construct_pending_later_doctrine\",\u201d. Distinguishing context: \u201c\"type\": \"string\", \"enum\": [ \"direct_astra_mapping\", \"normalized_astra_mapping\", \"source_local_retained_construct\", \"quarantined_construct_pending_later_doctrine\", \"escalated_doctrine_problem\" ] }, \"notes\": { \"t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/table_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 75,
+      "line_end": 75,
+      "locator_heading_or_symbol": "\"quarantined\",",
+      "excerpt_sha256": "213d5b1626ce71d344616058097a282cd0b9b2759f96ef60a147f0121485d77e",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined\",\u201d. Distinguishing context: \u201c\"ready\", \"ready_with_warnings\", \"intake_only\", \"partial_conversion_allowed\", \"needs_repair\", \"quarantined\", \"failed_extraction\" ] }, \"conversion_permission\": { \"type\": \"string\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/handoff/table_unit.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 133,
+      "line_end": 133,
+      "locator_heading_or_symbol": "\"quarantined_construct_pending_later_doctrine\",",
+      "excerpt_sha256": "0497acaf57806352b6764a11d2e24fab7e31aa93da8e6630c3efadb42839c9c7",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_construct_pending_later_doctrine\",\u201d. Distinguishing context: \u201c\"type\": \"string\", \"enum\": [ \"direct_astra_mapping\", \"normalized_astra_mapping\", \"source_local_retained_construct\", \"quarantined_construct_pending_later_doctrine\", \"escalated_doctrine_problem\" ] }, \"notes\": { \"t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "schemas/page_metadata.schema.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 21,
+      "locator_heading_or_symbol": "\"trusted_page_truth\": {\"type\":\"boolean\"},",
+      "excerpt_sha256": "4d1dbb469841a402b2381c4c9b4210e831a4f6a742528b51d26e33f27af344db",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"trusted_page_truth\": {\"type\":\"boolean\"},\u201d. Distinguishing context: \u201c\"ocr_applied\": {\"type\":\"boolean\"}, \"source_page_hash\": {\"type\":\"string\"}, \"repair\": {\"type\":\"object\"}, \"lane\": {\"type\":\"string\"}, \"page_marker_mode\": {\"type\":\"string\"}, \"trusted_page_truth\": {\"type\":\"boolean\"},\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 20,
+      "locator_heading_or_symbol": "\"quarantined construct pending later doctrine\",",
+      "excerpt_sha256": "473e314bb12646afc7beefaada4f03351b8968f042786cc2075305962ab76964",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined construct pending later doctrine\", \"escalated doctrine problem\", ) CONSTRUCT_FAMILY_RULES: tuple[tuple[str, tuple[str, ...]], ...] = ( (\"extraction_provenanc\u201d. Distinguishing context: \u201cLAWFUL_OUTCOMES = ( \"direct Astra mapping\", \"normalized Astra mapping\", \"source-local retained construct\", \"quarantined construct pending later doctrine\", \"escalated doctrine problem\", ) CONSTRUCT_FAMILY_RULES:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 166,
+      "line_end": 166,
+      "locator_heading_or_symbol": "quarantined_mapping_entries: list[dict[str, Any]] = []",
+      "excerpt_sha256": "b97092771cd224504144e1179c6afaa9d4058c2131e103657e5eaa588584f210",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cquarantined_mapping_entries: list[dict[str, Any]] = []\u201d. Distinguishing context: \u201cdoctrine_escalations: list[dict[str, Any]] = [] source_local_retentions: list[dict[str, Any]] = [] rejected_imports: list[dict[str, Any]] = [] queue_actions: list[dict[str, Any]] = [] lexicon_delta: list[dict[s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 224,
+      "line_end": 276,
+      "locator_heading_or_symbol": "if outcome == \"quarantined construct pending later doctrine\":",
+      "excerpt_sha256": "81d1135f37726efd674561b36fb359bdb36005ae76b7c912eefdc1f70aad17f3",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cif outcome == \"quarantined construct pending later doctrine\": quarantined_mapping_entries.append(example | {\"rationale\": compact_example(mapping.get(\"rationale\"), 320)}) \u201d. Distinguishing context: \u201c\"confidence\": mapping.get(\"confidence\"), } append_limited(construct_family_examples[construct_family], example, max_examples) append_limited(target_family_examples[target_family], example, max_examples) if outc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 340,
+      "line_end": 340,
+      "locator_heading_or_symbol": "\"quarantined_mapping_entries\": quarantined_mapping_entries,",
+      "excerpt_sha256": "6f45eb5751622f78e9f1ffba8de6184c0bdc8def46ff9427850245b1553b449d",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_mapping_entries\": quarantined_mapping_entries,\u201d. Distinguishing context: \u201c\"construct_family_summary\": construct_family_summary, \"target_family_summary\": target_family_summary, \"doctrine_pressure\": { \"doctrine_escalation_notes\": doctrine_escalations, \"escalated_mapping_entries\": escal\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 403,
+      "line_end": 442,
+      "locator_heading_or_symbol": "lines.append(f\"- Quarantined mapping entries: {len(doctrine['quarantined_mapping_entries'])}\")",
+      "excerpt_sha256": "1ea5574cdf43c7c2ca7d0d4d446c4b606711c7f08d6049ee6200fe451929792d",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201clines.append(f\"- Quarantined mapping entries: {len(doctrine['quarantined_mapping_entries'])}\") lines.append(f\"- Human review queue packets: {len(aggregation['human_review\u201d. Distinguishing context: \u201cdoctrine = aggregation[\"doctrine_pressure\"] lines.append(\"## Doctrine Pressure Queue\") lines.append(\"\") lines.append(f\"- Doctrine escalation notes: {len(doctrine['doctrine_escalation_notes'])}\") lines.append(f\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 497,
+      "line_end": 501,
+      "locator_heading_or_symbol": "[\"packet_id\", \"book_id\", \"donor_family\", \"confidence\", \"review_reasons\", \"quarantined_count\", \"escalated_count\", \"doctrine_escalation_note_count\"],",
+      "excerpt_sha256": "4e02ebfb39bf06d8dd87439f1c6d1bb962574aac2546076505c75a91eba27c1a",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c[\"packet_id\", \"book_id\", \"donor_family\", \"confidence\", \"review_reasons\", \"quarantined_count\", \"escalated_count\", \"doctrine_escalation_note_count\"], ) write_rows( \"batch_0\u201d. Distinguishing context: \u201c[\"construct_family\", \"mapping_count\", \"outcome_counts\", \"top_target_families\", \"examples\"], ) write_rows( \"batch_001_human_review_queue.csv\", aggregation[\"human_review_queue\"], [\"packet_id\", \"book_id\", \"donor_f\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/audit_conversion_intake_quality.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 51,
+      "line_end": 51,
+      "locator_heading_or_symbol": "\"Queue and Quarantine Actions\",",
+      "excerpt_sha256": "e50a89246516cf187b53508a742c52da54d09b8aea0b553980390d98bdfad876",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Queue and Quarantine Actions\",\u201d. Distinguishing context: \u201cdef _plain_required_heading_count(markdown: str) -> int: required = [ \"Extraction Readiness Assessment\", \"Donor Construct Inventory\", \"Astra Mapping Ledger\", \"Queue and Quarantine Actions\", \"Lexicon Delta\", \"Do\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 8,
+      "line_end": 74,
+      "locator_heading_or_symbol": "\"Queue and Quarantine Actions\", \"Lexicon Delta\", \"Doctrine Escalations\",",
+      "excerpt_sha256": "61386b56a2483551c3e54be8d0126ab239db03d6a44e4a92ef8f3bcc5c5280e8",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Queue and Quarantine Actions\", \"Lexicon Delta\", \"Doctrine Escalations\", \"Source-Local Retentions\", \"Rejected Imports\", \"Canon Candidate Notes\", \"Conversion Notes\", \"Conf\u201d. Distinguishing context: \u201cfrom pathlib import Path import jsonschema HEADERS = [ \"Extraction Readiness Assessment\", \"Donor Construct Inventory\", \"Astra Mapping Ledger\", \"Queue and Quarantine Actions\", \"Lexicon Delta\", \"Doctrine Escalati\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 178,
+      "line_end": 178,
+      "locator_heading_or_symbol": "must_not = outcome in ('source-local retained construct', 'quarantined construct pending later doctrine', 'escalated doctrine problem')",
+      "excerpt_sha256": "982921f123474f97f814cd12603a02b63c28640f507fdd6074c8a59a51a8ea4b",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cmust_not = outcome in ('source-local retained construct', 'quarantined construct pending later doctrine', 'escalated doctrine problem')\u201d. Distinguishing context: \u201cif pages_text: nums = [int(x) for x in re.findall(r\"\\d+\", pages_text)] if nums: source_pages = nums source_unit_ids = [f\"{packet_id}_unit\"] if not unit_text else [u.strip() for u in re.split(r\"[,;|]\", unit_text\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 294,
+      "line_end": 311,
+      "locator_heading_or_symbol": "'astra_target_family': 'unknown', 'lawful_outcome': 'quarantined construct pending later doctrine',",
+      "excerpt_sha256": "f290175c6f86ee844711773e58985e9a3cb4bfba22716314b8abad5553ed80ae",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'astra_target_family': 'unknown', 'lawful_outcome': 'quarantined construct pending later doctrine', 'rationale': 'No parseable mapping table; conservative fallback', 'mus\u201d. Distinguishing context: \u201cmappings = parse_mapping_table(sections['Astra Mapping Ledger'], start_page, a.packet_id, parse_warnings) if not mappings: parse_warnings.append('no_mapping_table_fallback_row_created') mappings = [{ 'donor_con\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/validate_conversion_run_integrity.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 17,
+      "line_end": 33,
+      "locator_heading_or_symbol": "\"quarantined construct pending later doctrine\",",
+      "excerpt_sha256": "379e8e7a653104deb243f611e38445faaa119c261719d301157cabf8b539b887",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined construct pending later doctrine\", \"escalated doctrine problem\", } REQUIRED_RUN_DIRS = [\"prompts\", \"results\", \"validation\", \"reports\"] REQUIRED_AGGREGATION_F\u201d. Distinguishing context: \u201cVALID_RESULT_STATUSES = {\"placeholder\", \"drafted\", \"final\"} VALID_LAWFUL_OUTCOMES = { \"direct Astra mapping\", \"normalized Astra mapping\", \"source-local retained construct\", \"quarantined construct pending later \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/fixtures/pilot_conversion_scaffold/dry_authorization_packet_template.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 48,
+      "locator_heading_or_symbol": "This dry authorization packet template contains no real donor content, no protected source expression, no copied mechanical blocks, no copied tables, no copied maps, no copied sett",
+      "excerpt_sha256": "46203d85d06a902afaffdfcf3191e6672fd2471736f972d4312f3e710bb1f0f1",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis dry authorization packet template contains no real donor content, no protected source expression, no copied mechanical blocks, no copied tables, no copied maps, no c\u201d. Distinguishing context: \u201c# Dry Authorization Packet Template Fixture Placeholder, synthetic, non-donor scaffold only. This dry authorization packet template contains no real donor content, no protected source expression, no copied mech\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/fixtures/pilot_conversion_scaffold/placeholder_packet_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 30,
+      "locator_heading_or_symbol": "- page/range truth placeholder.",
+      "excerpt_sha256": "670c4253b4e70456b059e20a3fb7e9f9cc99ca407b374f2bf1e02c600ba436f7",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- page/range truth placeholder. - source hash or hash-later policy placeholder. - evidence references placeholder with no donor content. - construct inventory placeholder\u201d. Distinguishing context: \u201c- statement that SM04 rubric is ready for post-execution review placeholder. - packet identity placeholder. - donor source identity placeholder with no donor excerpt. - donor-family classification placeholder. \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/fixtures/pilot_conversion_scaffold/placeholder_review_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 13,
+      "locator_heading_or_symbol": "- quarantine queue status placeholder.",
+      "excerpt_sha256": "4d58dd3819717391fe725dcdce7eb2f3cfbb446ba763f18c7d842a42768667e0",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- quarantine queue status placeholder.\u201d. Distinguishing context: \u201c- mapping ledger placeholder. - rejected-import ledger placeholder. - source-local retention ledger placeholder. - pending_schema ledger placeholder. - repair queue status placeholder. - quarantine queue status\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/historical_branch_diff_guard.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 44,
+      "locator_heading_or_symbol": "\"\"\"Utilities for historical branch-scoped diff guardrails.",
+      "excerpt_sha256": "570174bfc1fac8ae0265a558340be4b571d1c3910e7c61b0856d1939bfd1a3c7",
+      "matched_terms": [
+        "branch"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Utilities for historical branch-scoped diff guardrails. Historical PR/RT footprint tests validate the branch that originally owned the review. They are not universal r\u201d. Distinguishing context: \u201c\"\"\"Utilities for historical branch-scoped diff guardrails. Historical PR/RT footprint tests validate the branch that originally owned the review. They are not universal restrictions on all later maintenance or \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_replay_audit_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "\"\"\"Focused tests for RUNTIME-IMPL-PR-7: replay/hash audit skeleton.\"\"\"",
+      "excerpt_sha256": "0b9fad6af5bc2413b9125d7ea8aff40d03d4d2701bca787a5e4019b0b3c2fc79",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Focused tests for RUNTIME-IMPL-PR-7: replay/hash audit skeleton.\"\"\" from __future__ import annotations from tests.runtime_domain_package_manifest import ( AUTHORIZED_R\u201d. Distinguishing context: \u201c\"\"\"Focused tests for RUNTIME-IMPL-PR-7: replay/hash audit skeleton.\"\"\" from __future__ import annotations from tests.runtime_domain_package_manifest import ( AUTHORIZED_RUNTIME_DOMAIN_ENTRIES, AUTHORIZED_RUNTIM\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_replay_audit_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 122,
+      "line_end": 154,
+      "locator_heading_or_symbol": "replay_id=\"replay-001\",",
+      "excerpt_sha256": "de71635fcc5917467099c2a35be0b4a56fce0098cbb5b66efd442a2db8e52f98",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201creplay_id=\"replay-001\", source_ref=\"astra:event:ev-001\", sequence=0, expected_hash=\"abc123\", metadata={\"nested\": {\"key\": \"value\"}}, ) d1 = rec.to_dict() d2 = rec.to_dict(\u201d. Distinguishing context: \u201coriginal[\"nested\"][\"key\"] = \"mutated\" assert dict(rec.metadata)[\"nested\"][\"key\"] == \"value\" def test_to_dict_returns_deep_copies(self): rec = create_replay_audit_record( replay_id=\"replay-001\", source_ref=\"astr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_replay_audit_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 275,
+      "line_end": 389,
+      "locator_heading_or_symbol": "with pytest.raises(ReplayAuditError):",
+      "excerpt_sha256": "2b9e6cdee5be6f0bbf73664d1aeaeb7b17a85b2c03f2da1455bcdf83f1c2e2bc",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cwith pytest.raises(ReplayAuditError): canonical_payload_hash({\"key\": \"value\"}, algorithm=\"md5\") def test_rejects_non_json_serializable(self): with pytest.raises(ReplayAud\u201d. Distinguishing context: \u201ch1 = canonical_payload_hash({\"key\": \"value1\"}) h2 = canonical_payload_hash({\"key\": \"value2\"}) assert h1 != h2 def test_rejects_unsupported_algorithm(self): with pytest.raises(ReplayAuditError): canonical_payloa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime/test_replay_audit_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 449,
+      "line_end": 458,
+      "locator_heading_or_symbol": "class TestReplayAuditGuardrails:",
+      "excerpt_sha256": "4b9f07614025f5fed1971504534f87e4444fd2156eff5c20f829748d08680c37",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cclass TestReplayAuditGuardrails: def test_no_replay_restore_rebuild_methods(self): rec = create_replay_audit_record( replay_id=\"replay-001\", source_ref=\"astra:event:ev-00\u201d. Distinguishing context: \u201cobject.__setattr__(obj, \"metadata\", [1, 2]) with pytest.raises(InvalidHashAuditRecordError): validate_hash_audit_record(obj) class TestReplayAuditGuardrails: def test_no_replay_restore_rebuild_methods(self): re\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/runtime_domain_package_manifest.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 38,
+      "locator_heading_or_symbol": "\"object_lever_replay_audit_check.py\",",
+      "excerpt_sha256": "2fcf1bc2b104b262ee9745ddc987e0733a20e37d9c1fc46b1581aecde80f5918",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"object_lever_replay_audit_check.py\", \"object_lever_transaction_preview_bridge.py\", \"projection_visibility_adapter_v0_1.py\", \"read_only_vertical_slice_state_owner_facade.\u201d. Distinguishing context: \u201c\"context_packet_compiler.py\", \"event_commitment.py\", \"model_boundary_evaluation.py\", \"object_lever_event_commit_state_delta_path.py\", \"object_lever_interaction_legality_reader.py\", \"object_lever_replay_audit_ch\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_afqr_r2_continuity_research_assimilation.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 48,
+      "line_end": 100,
+      "locator_heading_or_symbol": "assert [s[\"research_family\"] for s in ss].count(\"actual_play_deterministic_patterns\")==1 and [s[\"research_family\"] for s in ss].count(\"branch_aware_continuity\")==4",
+      "excerpt_sha256": "e603c62fe17d96e28e22dc130de957d3ea545580c54dd954692953341b7a80a7",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "replay",
+        "reservation",
+        "sensing",
+        "truth",
+        "valid_time"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert len(s[\"unique_contributions\"])>=3 and s[\"primary_contribution\"] not in s[\"unique_contributions\"] assert \"did not independently inspect\" in s[\"inspection_posture\"] \u201d. Distinguishing context: \u201cdef test_manifest_exactly_matches_intake_inventory(): rows={m.group(1):m.groups()[1:] for m in re.finditer(r\"\\| `(R2-RES-[^`]+)` \\| `([^`]+)` \\| [^|]+ \\| `([0-9a-f]{64})` \\| ([0-9]+) \\| ([0-9]+) \\|\",INTAKE.read\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_aggregate_conversion_intake_results.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 41,
+      "line_end": 86,
+      "locator_heading_or_symbol": "\"must_not_import\": outcome in {\"source-local retained construct\", \"quarantined construct pending later doctrine\", \"escalated doctrine problem\"},",
+      "excerpt_sha256": "3f8dacaa269f32e324de5144c0797bda434fe0becfebfc421685a0347e3d8d6f",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"must_not_import\": outcome in {\"source-local retained construct\", \"quarantined construct pending later doctrine\", \"escalated doctrine problem\"}, \"doctrine_owner\": \"batchA\u201d. Distinguishing context: \u201c\"source_pages\": [1], \"source_unit_ids\": [\"unit_1\"], \"astra_target_family\": target, \"lawful_outcome\": outcome, \"rationale\": \"test rationale\", \"must_not_import\": outcome in {\"source-local retained construct\", \"qu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_audit_conversion_intake_quality.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 64,
+      "line_end": 64,
+      "locator_heading_or_symbol": "4. Queue and Quarantine Actions",
+      "excerpt_sha256": "b9cc8ea824d3f5fc0b53b7d2cceaaeb9372201119a07fc59be1c79cca0a27687",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c4. Queue and Quarantine Actions\u201d. Distinguishing context: \u201c| Donor construct | Lawful outcome | |---|---| | One | normalized Astra mapping | | Two | source-local retained construct | 4. Queue and Quarantine Actions Text. 5. Lexicon Delta Text.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_audit_conversion_intake_quality.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 141,
+      "line_end": 141,
+      "locator_heading_or_symbol": "4. Queue and Quarantine Actions",
+      "excerpt_sha256": "b9cc8ea824d3f5fc0b53b7d2cceaaeb9372201119a07fc59be1c79cca0a27687",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c4. Queue and Quarantine Actions\u201d. Distinguishing context: \u201c3. Astra Mapping Ledger | Donor construct | Lawful outcome | |---|---| | Backer names | source-local retained construct | 4. Queue and Quarantine Actions False-positive table pressure. 5. Lexicon Delta None.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_audit_conversion_intake_quality.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 194,
+      "line_end": 194,
+      "locator_heading_or_symbol": "4\\\\. Queue and Quarantine Actions",
+      "excerpt_sha256": "3afe72af0a9575f746f74652e7128260ac6788259a8e01b0b319eac99d728deb",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c4\\\\. Queue and Quarantine Actions\u201d. Distinguishing context: \u201c3\\\\. Astra Mapping Ledger | Donor construct | Lawful outcome | |---|---| | One | normalized Astra mapping | 4\\\\. Queue and Quarantine Actions Text. 5\\\\. Lexicon Delta Text.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_batch_c_schema_family_integration_conflict_audit_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 24,
+      "line_end": 24,
+      "locator_heading_or_symbol": "\"## 16. Hidden-state and protected-truth audit\",",
+      "excerpt_sha256": "e69c14d799eaa46896c3d7dcb4b7ab064578601d3cf22d9b00ab804debc39fa5",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 16. Hidden-state and protected-truth audit\",\u201d. Distinguishing context: \u201c\"## 11. Source-local and legal/IP audit\", \"## 12. Rejected donor element audit\", \"## 13. Donor leakage audit\", \"## 14. pending_schema discipline audit\", \"## 15. Confidence, validation, and review-routing audit\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

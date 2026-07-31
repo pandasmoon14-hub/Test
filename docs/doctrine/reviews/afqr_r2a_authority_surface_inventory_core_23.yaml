@@ -1,0 +1,921 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-23",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "scripts/handoff/validate_full_corpus_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 128,
+      "line_end": 129,
+      "locator_heading_or_symbol": "\"Dry-run routing metadata is not extraction truth.\",",
+      "excerpt_sha256": "8e98dac3e22fffeaf77c5c6dc690ce31f371c02107d06e78d3b37a74587354fd",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Dry-run routing metadata is not extraction truth.\", \"Extraction truth is not conversion permission.\",\u201d. Distinguishing context: \u201cchecks.append(_check(\"routing_overlay_present\", routing_state, f\"overlay_exists={overlay_exists}\")) if args.require_routing_overlay and not overlay_exists: errors.append(\"required_routing_overlay_missing\") sep_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/validate_full_corpus_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 191,
+      "line_end": 225,
+      "locator_heading_or_symbol": "\"Dry-run routing metadata is not extraction truth.\",",
+      "excerpt_sha256": "b9591277d69caad7883a44b1b2ad07ebc23754fe20f108eef6896e06da5ae504",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Dry-run routing metadata is not extraction truth.\", \"Extraction truth is not conversion permission.\", \"Conversion permission is not canon permission.\", ]) + \"\\n\", encodi\u201d. Distinguishing context: \u201c\"## Recommended next actions\", \"- Proceed to extraction planning only after reviewing top unclassified clusters and overlay proposal.\", \"- Keep routing overlay refinement active while unclassified_count remains\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/validate_handoff_packet.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 7,
+      "locator_heading_or_symbol": "REQ_FILES=[\"packet_manifest.json\",\"source_manifest.json\",\"strict_audit.json\",\"page_truth.jsonl\",\"extracted.md\",\"content_units.jsonl\",\"extraction_defects.jsonl\",\"conversion_prompt.m",
+      "excerpt_sha256": "dfec998a483f780905bb194d123269b1e3084a9f3b309b7d4ad882f5aa8f7ad1",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cREQ_FILES=[\"packet_manifest.json\",\"source_manifest.json\",\"strict_audit.json\",\"page_truth.jsonl\",\"extracted.md\",\"content_units.jsonl\",\"extraction_defects.jsonl\",\"conversio\u201d. Distinguishing context: \u201cimport argparse, json, re, sys from pathlib import Path from collections import Counter QUEUE_FILES=[\"repair_queue.jsonl\",\"table_normalization_queue.jsonl\",\"map_diagram_queue.jsonl\",\"statblock_queue.jsonl\",\"ocr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/validate_handoff_packet.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 169,
+      "line_end": 225,
+      "locator_heading_or_symbol": "counts={\"page_truth_rows\":0,\"extracted_page_markers\":0,\"content_units\":0,\"extraction_defects\":0,\"queue_records_by_queue\":{},\"page_status_counts\":{},\"content_unit_type_counts\":{},\"r",
+      "excerpt_sha256": "f7e999c61e09266c90e2d836699aba9aeb23824679c7a35c3ef76479e5ffb64e",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ccounts={\"page_truth_rows\":0,\"extracted_page_markers\":0,\"content_units\":0,\"extraction_defects\":0,\"queue_records_by_queue\":{},\"page_status_counts\":{},\"content_unit_type_cou\u201d. Distinguishing context: \u201cfor q in QUEUE_FILES: if not (d/'queues'/q).exists(): errors.append(f\"missing_queue_file:{q}\") packet_id='unknown' risky_detection=[] counts={\"page_truth_rows\":0,\"extracted_page_markers\":0,\"content_units\":0,\"ex\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/validate_handoff_packet_batch.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 47,
+      "line_end": 73,
+      "locator_heading_or_symbol": "'page_truth_rows': 0,",
+      "excerpt_sha256": "5bdaa47b408a72133d6de3414189384bd57b432db060061764761e957b4ecd15",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'page_truth_rows': 0, 'extracted_page_markers': 0, 'content_units': 0, 'extraction_defects': 0, 'queue_records_by_queue': {}, 'page_status_counts': {}, 'content_unit_type\u201d. Distinguishing context: \u201cwarnings = [] if a.strict and not candidates: errors.append('no_packet_folders_found') agg = { 'page_truth_rows': 0, 'extracted_page_markers': 0, 'content_units': 0, 'extraction_defects': 0, 'queue_records_by_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 80,
+      "locator_heading_or_symbol": "\"\"\"Domain subsystem \u2014 command lifecycle, action legality, state store, state projection, transaction lifecycle, event commitment, validation integration, context packet compiler.\"\"",
+      "excerpt_sha256": "8a899c12cdaafc3ce5ea4a6b8cb4f06c9af10b150cbbd30b35caa304bed722b6",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "quarantine",
+        "snapshot",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Domain subsystem \u2014 command lifecycle, action legality, state store, state projection, transaction lifecycle, event commitment, validation integration, context packet c\u201d. Distinguishing context: \u201c\"\"\"Domain subsystem \u2014 command lifecycle, action legality, state store, state projection, transaction lifecycle, event commitment, validation integration, context packet compiler.\"\"\" from astra_runtime.domain.co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 218,
+      "line_end": 313,
+      "locator_heading_or_symbol": "ModelBoundaryCapturedFixtureAssertionReportSnapshot,",
+      "excerpt_sha256": "35eedb26eac40cba0dfb6dbe7e9aadec22e34227540c5afc38ed2879452ee28b",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cModelBoundaryCapturedFixtureAssertionReportSnapshot, ModelBoundaryCaseAssertionResult, ModelBoundaryCapturedOutputFixture, ModelBoundaryCapturedOutputFixtureError, ModelB\u201d. Distinguishing context: \u201cModelBoundaryCapturedFixtureAssertionSpec, ModelBoundaryCapturedFixtureAssertionSuite, ModelBoundaryCapturedFixtureAssertionSuiteError, ModelBoundaryCapturedFixtureAssertionSuiteResult, ModelBoundaryCapturedFix\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 339,
+      "line_end": 449,
+      "locator_heading_or_symbol": "InvalidSettlementProposalError,",
+      "excerpt_sha256": "b8a947827a7d03ff89e5e125183875675bfc67a3c3961679a3d926247e3e60b0",
+      "matched_terms": [
+        "preview",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cInvalidSettlementProposalError, ORDERING_POLICIES, PARTIAL_SETTLEMENT_POLICIES, QUANTITY_NEGATIVE_VALUE_POLICIES, QUANTITY_REPRESENTATION_KINDS, RESOURCE_FAMILIES, RESOUR\u201d. Distinguishing context: \u201cInvalidResourceMathDependencyError, InvalidResourceMathRequestError, InvalidResourceMathResultError, InvalidResourceMathSubjectReferenceError, InvalidResourceReferenceError, InvalidSettlementProposalError, ORDE\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 472,
+      "line_end": 481,
+      "locator_heading_or_symbol": "QUARANTINE_UNKNOWN_COMMAND_KIND,",
+      "excerpt_sha256": "33501875bc0ca3df2a485c3f49de24136bea45780efb871a27523ffbc72ba961",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cQUARANTINE_UNKNOWN_COMMAND_KIND, RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY, RT002_RESOURCE_CONSEQUENCE_MATH, RT003_STATE_STORE_STATE_PROJECTION, RT004_TRANSACTION_LIFECYCLE\u201d. Distinguishing context: \u201cInvalidCommandKindClassificationError, InvalidCommandKindDefinitionError, InvalidCommandKindFamilyError, InvalidCommandKindRoutingRequestError, InvalidCommandKindRoutingResultError, QUARANTINE_UNKNOWN_COMMAND_K\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 535,
+      "line_end": 612,
+      "locator_heading_or_symbol": "# transaction_preview_packet_bridge_skeleton \u2014 PR-9E",
+      "excerpt_sha256": "049d5a6b7c37cecd0e75bb6191fc1c4f61acc5ed944776b120e818ec3dd7ea00",
+      "matched_terms": [
+        "preview",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# transaction_preview_packet_bridge_skeleton \u2014 PR-9E from astra_runtime.domain.transaction_preview_packet_bridge_skeleton import ( NO_COMMIT_INTENT_PACKET, SINGLE_EVENT_C\u201d. Distinguishing context: \u201cvalidate_validation_integration_bridge_authority_flags, validate_validation_integration_bridge_request, validate_validation_integration_bridge_result, ) # transaction_preview_packet_bridge_skeleton \u2014 PR-9E from\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 691,
+      "line_end": 811,
+      "locator_heading_or_symbol": "STATE_OWNER_VISIBILITY_TIERS,",
+      "excerpt_sha256": "bf2ac6bf3a28cea017e463e089e7798aba75f2368e123b262543a43f81382f3e",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSTATE_OWNER_VISIBILITY_TIERS, STATE_OWNER_PROJECTION_KINDS, STATE_OWNER_REFERENCE_KINDS, STATE_OWNER_DENIAL_REASONS, STATE_OWNER_HIDDEN_INFORMATION_POLICIES, STATE_OWNER_\u201d. Distinguishing context: \u201cfrom astra_runtime.domain.state_owner_interface_contract_skeleton import ( STATE_OWNER_INTERFACE_FAMILIES, STATE_OWNER_DEPENDENCY_OWNER_FAMILIES, STATE_OWNER_INTERFACE_REQUEST_STATUSES, STATE_OWNER_INTERFACE_RE\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 812,
+      "line_end": 932,
+      "locator_heading_or_symbol": "PROJECTION_REDACTION_REASONS,",
+      "excerpt_sha256": "39b6270d7ef89c997b92fb508c861601495145f14c51f7f14c9b3ed5f808adcc",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cPROJECTION_REDACTION_REASONS, PROJECTION_VISIBILITY_ADAPTER_STATUSES, PROJECTION_VISIBILITY_NON_AUTHORITY_NOTE, PROJECTION_VISIBILITY_TIERS, ProjectionVisibilityAdapterEr\u201d. Distinguishing context: \u201cInvalidProjectionVisibilityAuthorityFlagsError, InvalidProjectionVisibilityDescriptorError, InvalidProjectionVisibilitySourceRefError, PROJECTION_DOWNSTREAM_CONSUMER_TYPES, PROJECTION_PACKET_KINDS, PROJECTION_R\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 933,
+      "line_end": 1053,
+      "locator_heading_or_symbol": "\"InvalidStateProjectionRejectionError\",",
+      "excerpt_sha256": "e6af5b13e0c8a4167df6dd260228e2a730d22a63f4437fc9d6e0b37e039c937d",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "snapshot",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"InvalidStateProjectionRejectionError\", \"InvalidStateProjectionRequestError\", \"InvalidStateProjectionResultError\", \"InvalidStateRecordRefError\", \"InvalidStateSnapshotRefE\u201d. Distinguishing context: \u201c\"InvalidEventCommitmentRejectionError\", \"InvalidEventCommitmentRequestError\", \"InvalidEventCommitmentResultError\", \"InvalidLegalityBlockReasonError\", \"InvalidStateProjectionDependencyError\", \"InvalidStateProjec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1055,
+      "line_end": 1056,
+      "locator_heading_or_symbol": "\"validate_state_snapshot_ref\",",
+      "excerpt_sha256": "4b5a059297fbdf12ecbb2352fde57d939042faa50b7e1e2b3de7bf020b443c3c",
+      "matched_terms": [
+        "snapshot",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"validate_state_snapshot_ref\", \"validate_state_visibility_descriptor\",\u201d. Distinguishing context: \u201c\"validate_state_projection_dependency\", \"validate_state_projection_rejection\", \"validate_state_projection_request\", \"validate_state_projection_result\", \"validate_state_record_ref\", \"validate_state_snapshot_ref\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1144,
+      "line_end": 1225,
+      "locator_heading_or_symbol": "\"PARTIAL_SETTLEMENT_POLICIES\",",
+      "excerpt_sha256": "1886c243a6d8139ca9e97bba94607505cf2d7d3b2159fb84d001ccde4f9fa68a",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "rng",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"PARTIAL_SETTLEMENT_POLICIES\", \"QUANTITY_NEGATIVE_VALUE_POLICIES\", \"QUANTITY_REPRESENTATION_KINDS\", \"RESOURCE_FAMILIES\", \"RESOURCE_MATH_DECISIONS\", \"RESOURCE_MATH_DEPENDE\u201d. Distinguishing context: \u201c\"CONVERSION_POLICIES\", \"COST_FAMILIES\", \"COST_OUTCOME_POLICIES\", \"COST_TIMING_POLICIES\", \"ORDERING_POLICIES\", \"PARTIAL_SETTLEMENT_POLICIES\", \"QUANTITY_NEGATIVE_VALUE_POLICIES\", \"QUANTITY_REPRESENTATION_KINDS\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1287,
+      "line_end": 1407,
+      "locator_heading_or_symbol": "\"InvalidSceneCommandExecutionResourcePreviewRefError\",",
+      "excerpt_sha256": "76a88e9682d3de49755644ef64abefbdb6d59a546f18bc3ad2a8d6473c2c9cd4",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"InvalidSceneCommandExecutionResourcePreviewRefError\", \"InvalidSceneCommandExecutionSceneContractError\", \"InvalidSceneCommandExecutionStateDeltaCandidateRefError\", \"Inval\u201d. Distinguishing context: \u201c\"InvalidSceneCommandExecutionEventLedgerCandidateRefError\", \"InvalidSceneCommandExecutionHiddenInfoContractError\", \"InvalidSceneCommandExecutionModelBoundaryFixtureRefError\", \"InvalidSceneCommandExecutionNarrat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1408,
+      "line_end": 1475,
+      "locator_heading_or_symbol": "\"InvalidTransactionPreviewPacketBridgePacketDescriptorError\",",
+      "excerpt_sha256": "ef14957becb4ad551224e6793e880a52ae71922b41265488a4ac05ff495942bb",
+      "matched_terms": [
+        "preview",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"InvalidTransactionPreviewPacketBridgePacketDescriptorError\", \"InvalidTransactionPreviewPacketBridgePacketRefError\", \"InvalidTransactionPreviewPacketBridgeRequestError\", \u201d. Distinguishing context: \u201c\"NO_COMMIT_INTENT_PACKET\", \"SINGLE_EVENT_CONTEXT_PACKET\", \"SINGLE_EVENT_NARRATION_PACKET\", \"VISIBLE_SUMMARY_PACKET\", \"InvalidTransactionPreviewPacketBridgeAuthorityFlagsError\", \"InvalidTransactionPreviewPacketB\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1545,
+      "line_end": 1665,
+      "locator_heading_or_symbol": "\"STATE_OWNER_VISIBILITY_TIERS\",",
+      "excerpt_sha256": "356d6a69fe5c341fbc9d3b99edf55e16f04bed2b6fbdfa38698a857b01660409",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"STATE_OWNER_VISIBILITY_TIERS\", \"STATE_OWNER_PROJECTION_KINDS\", \"STATE_OWNER_REFERENCE_KINDS\", \"STATE_OWNER_DENIAL_REASONS\", \"STATE_OWNER_HIDDEN_INFORMATION_POLICIES\", \"S\u201d. Distinguishing context: \u201c# state_owner_interface_contract_skeleton - RT-001H \"STATE_OWNER_INTERFACE_FAMILIES\", \"STATE_OWNER_DEPENDENCY_OWNER_FAMILIES\", \"STATE_OWNER_INTERFACE_REQUEST_STATUSES\", \"STATE_OWNER_INTERFACE_RESULT_STATUSES\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1666,
+      "line_end": 1786,
+      "locator_heading_or_symbol": "\"ProjectionVisibilitySourceRef\",",
+      "excerpt_sha256": "487eef4af358a10be8890b7aa52caf0754da3b10f9d3afb6274411599260630c",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay",
+        "snapshot",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"ProjectionVisibilitySourceRef\", \"ProjectionVisibilityDescriptor\", \"ProjectionVisibilityAdapterPacket\", \"ProjectionVisibilityAdapterResult\", \"create_projection_visibility\u201d. Distinguishing context: \u201c\"InvalidProjectionVisibilitySourceRefError\", \"InvalidProjectionVisibilityDescriptorError\", \"InvalidProjectionVisibilityAdapterPacketError\", \"InvalidProjectionVisibilityAdapterResultError\", \"ProjectionVisibility\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/__init__.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1787,
+      "line_end": 1821,
+      "locator_heading_or_symbol": "\"OBJECT_LEVER_REPLAY_CHECK_KINDS\",",
+      "excerpt_sha256": "0300b0cb3c5146a3ae2dd52d6d548bf5d19606cc38e9d575292d37401217ffab",
+      "matched_terms": [
+        "preview",
+        "replay",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"OBJECT_LEVER_REPLAY_CHECK_KINDS\", \"ObjectLeverAuditSnapshot\", \"ObjectLeverReplayAuditAuthorityFlags\", \"ObjectLeverReplayAuditCheckError\", \"ObjectLeverReplayAuditEligibil\u201d. Distinguishing context: \u201c\"OBJECT_LEVER_REPLAY_AUDIT_BLOCK_REASONS\", \"OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY\", \"OBJECT_LEVER_REPLAY_AUDIT_DECISIONS\", \"OBJECT_LEVER_REPLAY_AUDIT_NON_AUTHORITY_NOTE\", \"OBJECT_LEVER_REPLAY_AUDIT_STATUSES\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 6,
+      "line_end": 8,
+      "locator_heading_or_symbol": "no command execution, no runtime mutation, no persistence, no RNG, no settlement,",
+      "excerpt_sha256": "7ad007e4ca98e817d2185117251e186215f64c0e0e866e2631527d2003390086",
+      "matched_terms": [
+        "promotion",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cno command execution, no runtime mutation, no persistence, no RNG, no settlement, no consequence application, no model calls, no prompt execution, no narration generation\u201d. Distinguishing context: \u201c\"\"\"Command-kind routing skeleton \u2014 backend-owned classification and dispatch. RUNTIME-DOMAIN-PR-9C: defines a narrow command-kind routing layer that classifies command intent/envelope data into known backend-ow\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 170,
+      "line_end": 237,
+      "locator_heading_or_symbol": "RT003_STATE_STORE_STATE_PROJECTION = \"RT003_STATE_STORE_STATE_PROJECTION\"",
+      "excerpt_sha256": "3c2643588b9985238c18d77ab3b11542c2c1a94b0391b89f2dff6f5c0978e3dc",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cRT003_STATE_STORE_STATE_PROJECTION = \"RT003_STATE_STORE_STATE_PROJECTION\" RT004_TRANSACTION_LIFECYCLE_EVENT_COMMITMENT = \"RT004_TRANSACTION_LIFECYCLE_EVENT_COMMITMENT\" RT\u201d. Distinguishing context: \u201c# --------------------------------------------------------------------------- RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY = \"RT001_COMMAND_LIFECYCLE_ACTION_LEGALITY\" RT002_RESOURCE_CONSEQUENCE_MATH = \"RT002_RESOURC\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 476,
+      "line_end": 489,
+      "locator_heading_or_symbol": "rng_table_oracle_execution: bool = False",
+      "excerpt_sha256": "7230c3b40234f555eff88289c06878c9d2287f40170542158ebf7419183f17bd",
+      "matched_terms": [
+        "promotion",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201crng_table_oracle_execution: bool = False settlement_authorization: bool = False pr5_arithmetic_execution: bool = False consequence_application: bool = False model_authori\u201d. Distinguishing context: \u201ccommand_execution: bool = False runtime_action_execution: bool = False state_mutation: bool = False event_append: bool = False persistence_write: bool = False rng_table_oracle_execution: bool = False settlement\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 698,
+      "line_end": 698,
+      "locator_heading_or_symbol": "owner_route = _FAMILY_DEFAULT_OWNER_ROUTES.get(family, QUARANTINE_UNKNOWN_COMMAND_KIND)",
+      "excerpt_sha256": "4032f6f8e62a727d746bcf8334eb59f51b76d0b5d16f3d48538113f4ce55cbe2",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cowner_route = _FAMILY_DEFAULT_OWNER_ROUTES.get(family, QUARANTINE_UNKNOWN_COMMAND_KIND)\u201d. Distinguishing context: \u201cif not validate_command_envelope(command_envelope): raise InvalidCommandKindRoutingRequestError( \"command_envelope failed validation\" ) family = classify_command_type_to_family(command_envelope.command_type) ow\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/command_kind_routing_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 754,
+      "line_end": 754,
+      "locator_heading_or_symbol": "owner_route = _FAMILY_DEFAULT_OWNER_ROUTES.get(family, QUARANTINE_UNKNOWN_COMMAND_KIND)",
+      "excerpt_sha256": "4032f6f8e62a727d746bcf8334eb59f51b76d0b5d16f3d48538113f4ce55cbe2",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cowner_route = _FAMILY_DEFAULT_OWNER_ROUTES.get(family, QUARANTINE_UNKNOWN_COMMAND_KIND)\u201d. Distinguishing context: \u201c_validate_record_id(intent_ref, \"intent_ref\", InvalidCommandKindRoutingRequestError) _validate_non_empty_str(command_envelope_id, \"command_envelope_id\", InvalidCommandKindRoutingRequestError) _validate_non_empt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/command_lifecycle.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 42,
+      "locator_heading_or_symbol": "\"visibility_checked\",",
+      "excerpt_sha256": "a0f816cde3bd04b2d1b0b65596c7155b80456ec3a18a98f4def050ccc9e8ea87",
+      "matched_terms": [
+        "preview",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"visibility_checked\", \"legality_prechecked\", \"dependency_declared\", \"preview_requested\", \"confirmation_required\", \"accepted_for_transaction_planning\", \"rejected\", \"quaran\u201d. Distinguishing context: \u201cCOMMAND_LIFECYCLE_STAGES = frozenset({ \"received\", \"envelope_validated\", \"actor_bound\", \"visibility_checked\", \"legality_prechecked\", \"dependency_declared\", \"preview_requested\", \"confirmation_required\", \"accepte\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 48,
+      "locator_heading_or_symbol": "\"\"\"PR-6 context packet compiler skeleton \u2014 backend-owned visibility-safe packet contract.",
+      "excerpt_sha256": "d6114f82b563dd5bdb36b2826f22ebb303a50eea2ff661b4a7174c835cf0808c",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "release",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"PR-6 context packet compiler skeleton \u2014 backend-owned visibility-safe packet contract. This module provides the packet shape definitions and validation infrastructure \u201d. Distinguishing context: \u201c\"\"\"PR-6 context packet compiler skeleton \u2014 backend-owned visibility-safe packet contract. This module provides the packet shape definitions and validation infrastructure for the PR-6 context packet compiler. It\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 106,
+      "line_end": 109,
+      "locator_heading_or_symbol": "\"\"\"Immutable visibility-safe packet for a single committed event.",
+      "excerpt_sha256": "ed17a196b5d0cf70ee0b8ba6c134d81acf9f86f00e932ae6c6c28d3f57850d00",
+      "matched_terms": [
+        "projection",
+        "release",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Immutable visibility-safe packet for a single committed event. This packet carries the minimum projection needed for narration input. It is backend-owned and guarantee\u201d. Distinguishing context: \u201creturn MappingProxyType(copied) @dataclass(frozen=True, kw_only=True) class SingleEventNarrationPacket: \"\"\"Immutable visibility-safe packet for a single committed event. This packet carries the minimum projecti\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 216,
+      "line_end": 218,
+      "locator_heading_or_symbol": "This packet carries parsing/preview data for player intent. It must not",
+      "excerpt_sha256": "d1ca647b6ad58bd51d4cb787263c1c66d145d4be2b30177c2cd4cb6886414a51",
+      "matched_terms": [
+        "preview",
+        "release"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis packet carries parsing/preview data for player intent. It must not imply resolution, event commitment, state mutation, hidden-information release, or narration gener\u201d. Distinguishing context: \u201c@dataclass(frozen=True, kw_only=True) class NoCommitIntentPacket: \"\"\"Immutable packet representing uncommitted player intent input. This packet carries parsing/preview data for player intent. It must not imply \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 676,
+      "line_end": 678,
+      "locator_heading_or_symbol": "\"\"\"Immutable visibility-safe packet for a committed-state summary.",
+      "excerpt_sha256": "d7deba278d20b00a7cd3b579f46d69fb3d170b461b9199c15672de465b455587",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Immutable visibility-safe packet for a committed-state summary. This packet carries a visibility-safe summary of already-committed\u201d. Distinguishing context: \u201c@dataclass(frozen=True, kw_only=True) class VisibleSummaryPacket: \"\"\"Immutable visibility-safe packet for a committed-state summary. This packet carries a visibility-safe summary of already-committed visible fa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1005,
+      "line_end": 1122,
+      "locator_heading_or_symbol": "# Slice 4 \u2014 context packet selection and serialization helpers",
+      "excerpt_sha256": "4216a22b73f9c9e581e86dc82715b992bbbe57c9b1017abb4db9bb3358d5eb57",
+      "matched_terms": [
+        "context packet",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Slice 4 \u2014 context packet selection and serialization helpers # --------------------------------------------------------------------------- _KNOWN_PACKET_TYPES = frozens\u201d. Distinguishing context: \u201creturn True # --------------------------------------------------------------------------- # Slice 4 \u2014 context packet selection and serialization helpers # -------------------------------------------------------\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1135,
+      "line_end": 1135,
+      "locator_heading_or_symbol": "\"\"\"Frozen request to assemble exactly one context packet from an explicit payload mapping.",
+      "excerpt_sha256": "293bae7516f4f5b4318b5f735359539a8942145550be8571c811eaf865644d76",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Frozen request to assemble exactly one context packet from an explicit payload mapping.\u201d. Distinguishing context: \u201c\"\"\"Raised for assembly-request and assembly-dispatch failures.\"\"\" @dataclass(frozen=True, kw_only=True) class ContextPacketAssemblyRequest: \"\"\"Frozen request to assemble exactly one context packet from an expli\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1305,
+      "line_end": 1362,
+      "locator_heading_or_symbol": "\"\"\"Assemble exactly one context packet from an explicit assembly request.",
+      "excerpt_sha256": "22b118c10c06691c5988f193a7d61662d7d50ec55f0ad88c2dc42c95befbc096",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Assemble exactly one context packet from an explicit assembly request. Dispatches to the correct packet factory based on packet_kind. Validates the resulting packet be\u201d. Distinguishing context: \u201creturn ContextPacketAssemblyRequest(**kwargs) def assemble_context_packet(request: Any) -> Any: \"\"\"Assemble exactly one context packet from an explicit assembly request. Dispatches to the correct packet factory\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1466,
+      "line_end": 1499,
+      "locator_heading_or_symbol": "f\"unsupported context packet value: {exc}\"",
+      "excerpt_sha256": "16a8acb25639223d46840ee70df7acc09af54103e5882e5790d4c5911e75ae2e",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cf\"unsupported context packet value: {exc}\" ) from exc packet_kind = serialized.get(\"packet_kind\") if not isinstance(packet_kind, str) or packet_kind not in PACKET_KINDS: \u201d. Distinguishing context: \u201celse: try: serialized = serialize_context_packet(value) except ContextPacketSelectionError as exc: raise ContextPacketAuditError( f\"unsupported context packet value: {exc}\" ) from exc packet_kind = serialized.g\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1594,
+      "line_end": 1594,
+      "locator_heading_or_symbol": "\"\"\"Immutable result of compiling and auditing exactly one context packet.",
+      "excerpt_sha256": "14519d76eebb1424b13f693250f890af9f0c2a387d874a8a526b9a48340f15a1",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Immutable result of compiling and auditing exactly one context packet.\u201d. Distinguishing context: \u201c\"\"\"Raised for invalid compiler-result construction or invalid request dispatch.\"\"\" @dataclass(frozen=True, kw_only=True) class ContextPacketCompilerResult: \"\"\"Immutable result of compiling and auditing exactly \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/context_packet_compiler.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1689,
+      "line_end": 1689,
+      "locator_heading_or_symbol": "\"\"\"Compile and audit exactly one context packet from an explicit request.",
+      "excerpt_sha256": "73addc37698ab9aabb73fd8d8f4cb9ddcb7756e0aad825fb5912c227405e59c5",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Compile and audit exactly one context packet from an explicit request.\u201d. Distinguishing context: \u201cdef compile_context_packet_from_request( request: ContextPacketAssemblyRequest, ) -> ContextPacketCompilerResult: \"\"\"Compile and audit exactly one context packet from an explicit request. Accepts only a Context\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/event_commitment.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 62,
+      "locator_heading_or_symbol": "\"rejected_by_idempotency_conflict\",",
+      "excerpt_sha256": "bb04089ca5c7a7ac757889621d0d3dcdbe08f39027acf544d8d66bf4208dc80a",
+      "matched_terms": [
+        "idempotency",
+        "projection",
+        "quarantine",
+        "replay",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"rejected_by_idempotency_conflict\", \"rejected_by_persistence_boundary\", \"quarantined_for_audit\", \"cancelled_before_commit\", \"unsupported_event_type\", }) EVENT_COMMITMENT_\u201d. Distinguishing context: \u201c\"rejected_by_validation\", \"rejected_by_scope\", \"rejected_by_missing_state_reference\", \"rejected_by_missing_delta_reference\", \"rejected_by_hidden_information_risk\", \"rejected_by_idempotency_conflict\", \"rejected_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/event_commitment.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 174,
+      "line_end": 221,
+      "locator_heading_or_symbol": "idempotency_key: str | None = None",
+      "excerpt_sha256": "0da2f5401a01c9a4a0a7cf8c5b2e02abcd40753029a6e73a5d0eaa2188521910",
+      "matched_terms": [
+        "idempotency",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cidempotency_key: str | None = None dependencies: tuple[EventCommitmentDependency, ...] = () allow_event_ledger_append: bool = False metadata: Mapping[str, Any] = field(de\u201d. Distinguishing context: \u201cevent_type: str state_ref_ids: tuple[str, ...] proposed_delta_ref_ids: tuple[str, ...] validation_ref_id: str trace_id: str idempotency_key: str | None = None dependencies: tuple[EventCommitmentDependency, ...]\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/event_commitment.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 278,
+      "line_end": 396,
+      "locator_heading_or_symbol": "f\"decision must be a rejection/quarantine/cancel decision, got: {decision!r}\"",
+      "excerpt_sha256": "064b57cf8a6ea02ce3178760ecb2d79719de1fc4151ba69679ef60ad8c054d19",
+      "matched_terms": [
+        "idempotency",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cf\"decision must be a rejection/quarantine/cancel decision, got: {decision!r}\" ) _require_non_empty(reason, \"reason\", InvalidEventCommitmentRejectionError) if not isinstan\u201d. Distinguishing context: \u201craise InvalidEventCommitmentRejectionError( f\"decision must be one of {sorted(EVENT_COMMITMENT_DECISIONS)}, got: {decision!r}\" ) if decision not in _REJECTION_DECISIONS: raise InvalidEventCommitmentRejectionErr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/event_commitment.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 406,
+      "line_end": 420,
+      "locator_heading_or_symbol": "if cancelled and quarantined:",
+      "excerpt_sha256": "0621ec890c99774ee2edbc406f8e738bf62a8eff7a7e1e2fb52b8b29bb56a23f",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cif cancelled and quarantined: raise InvalidEventCommitmentResultError( \"cancelled and quarantined may not both be True\" ) safe_meta = _safe_meta(metadata, InvalidEventCom\u201d. Distinguishing context: \u201c_optional_non_empty(trace_id, \"trace_id\", InvalidEventCommitmentResultError) if decision == \"committed\" and rejection is not None: raise InvalidEventCommitmentResultError( \"rejection must be None when decision \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/event_commitment.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 495,
+      "line_end": 542,
+      "locator_heading_or_symbol": "if obj.idempotency_key is not None:",
+      "excerpt_sha256": "ad483df0ac6abf70050c02b632bf2c2afb70cea19119f4cf76769fcf1169e81d",
+      "matched_terms": [
+        "idempotency",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cif obj.idempotency_key is not None: if not isinstance(obj.idempotency_key, str) or not obj.idempotency_key.strip(): return False if not isinstance(obj.dependencies, tuple\u201d. Distinguishing context: \u201creturn False if not isinstance(obj.validation_ref_id, str) or not obj.validation_ref_id.strip(): return False if not isinstance(obj.trace_id, str) or not obj.trace_id.strip(): return False if obj.idempotency_ke\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/model_boundary_evaluation.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 45,
+      "line_end": 114,
+      "locator_heading_or_symbol": "\"durable_truth_claim_present\",",
+      "excerpt_sha256": "4fe3a4e5fe43cbd81e58499f7f0b732459ae668e657e21945ab193161eb69684",
+      "matched_terms": [
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"durable_truth_claim_present\", \"packet_warning_present\", }) _FORBIDDEN_AUTHORITY_OUTPUT_FIELDS = frozenset({ \"commit_event\", \"committed_event\", \"event_commit\", \"state_del\u201d. Distinguishing context: \u201c\"forbidden_authority_field_present\", \"hidden_information_claim_present\", \"state_mutation_claim_present\", \"event_commit_claim_present\", \"random_result_claim_present\", \"durable_truth_claim_present\", \"packet_warni\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/model_boundary_evaluation.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 394,
+      "line_end": 395,
+      "locator_heading_or_symbol": "if candidate_keys & _DURABLE_TRUTH_KEYS:",
+      "excerpt_sha256": "cdc0d6aaa786e28beb18d49fd69ba4c08adec0f592612c2521e31b648b62d5ec",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cif candidate_keys & _DURABLE_TRUTH_KEYS: violations.add(\"durable_truth_claim_present\")\u201d. Distinguishing context: \u201cviolations.add(\"event_commit_claim_present\") if candidate_keys & _RANDOM_RESULT_KEYS: violations.add(\"random_result_claim_present\") if candidate_keys & _DURABLE_TRUTH_KEYS: violations.add(\"durable_truth_claim_p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/model_boundary_evaluation.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1319,
+      "line_end": 1319,
+      "locator_heading_or_symbol": "The raw captured text is stored only as inert evidence and is never",
+      "excerpt_sha256": "72274947a36f229ee9288de179f744734862157c14bab4d22f935dd7a2ce10b6",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe raw captured text is stored only as inert evidence and is never\u201d. Distinguishing context: \u201cclass ModelBoundaryCapturedOutputFixture: \"\"\"Immutable captured-output fixture for model-boundary evaluation. Carries a pre-captured model output as an explicit candidate mapping, together with the packet resul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "src/astra_runtime/domain/model_boundary_evaluation.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1373,
+      "line_end": 1373,
+      "locator_heading_or_symbol": "# Validate raw captured text is inert evidence only",
+      "excerpt_sha256": "03d9f15dfd92c157b8a00c5e29816b171430ba132af7706125ffcb6ef8a2ae0e",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Validate raw captured text is inert evidence only\u201d. Distinguishing context: \u201c# Validate and freeze candidate output mapping safe_candidate_output = _safe_frozen_mapping( self.candidate_output, error_cls ) # Validate raw captured text is inert evidence only if self.raw_captured_text is n\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

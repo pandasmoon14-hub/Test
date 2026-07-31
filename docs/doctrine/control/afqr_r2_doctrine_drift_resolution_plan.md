@@ -16,7 +16,7 @@ Owns source registration, normalized claim extraction, routing, owner-pressure i
 
 ## R2A — authority-surface and drift inventory
 
-**Status:** `active_incomplete`
+**Status:** `complete`
 
 R2A consumes the R2-0 ledger and inventories repository-wide authority surfaces. It distinguishes current authority from historical text, narrow fixtures from general doctrine, doctrine drift from implementation absence, and real owner conflict from mere keyword overlap. Every finding routes to a candidate R2B package, R3 conformance, R4 substrate, R5 retrofit, or later gate. It must not adopt doctrine or implement anything.
 
@@ -40,6 +40,6 @@ R2A and any required R2B package must test actual-play, split-party, inserted ch
 
 ## Gate posture
 
-`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=active_incomplete`; `R2B=blocked`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
+`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=complete`; `R2B=blocked`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
 
-R2A inspected baseline `9382958197c9d5dee9d29cb5f9d051147237c64d`: 821 tracked text files, 749 candidate files, 26 mapped authority surfaces, 723 dismissed candidates, and zero unaccounted candidates. The corrected bounded inventory records 132 surfaces, 2,553 bounded dismissals, eleven unresolved-question adjudications, and zero unaccounted controlled occurrences. R2B-CONTINUITY and R2B-CROSS-PHASE remain owner-blocked; no package is prematurely required. This tracking result adopts no doctrine and implements nothing.
+R2A inspected baseline `9382958197c9d5dee9d29cb5f9d051147237c64d`: 821 tracked text files and 749 candidate files. The corrected bounded inventory records 135 surfaces, 2,553 bounded dismissals, eleven unresolved-question adjudications, and zero unaccounted controlled occurrences. R2B-CONTINUITY and R2B-CROSS-PHASE remain owner-blocked; no package is prematurely required. This tracking result adopts no doctrine and implements nothing.

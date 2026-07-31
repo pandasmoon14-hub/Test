@@ -2,7 +2,7 @@
 
 ## Result
 
-**REVIEW — correction inventory complete, owner adjudication outstanding.** R2A remains active and incomplete. It inventories and routes; it adopts no doctrine and implements nothing.
+**REVIEW — correction inventory complete, owner adjudication outstanding.** R2A is complete at the inventory boundary. It inventories and routes; it adopts no doctrine and implements nothing.
 
 ## Inspected baseline
 
@@ -10,7 +10,7 @@ Every locator was read from `9382958197c9d5dee9d29cb5f9d051147237c64d`. The chec
 
 ## Scan universe
 
-The scan covered 821 tracked textual files and 749 candidate files. Bounded occurrence accounting produced 132 semantic surfaces and 2,553 bounded dismissals; every controlled matching line is enclosed by a hashed record, and zero occurrences are unaccounted. Twelve physical shard files keep each shard below 300 KiB.
+The scan covered 821 tracked textual files and 749 candidate files. Bounded occurrence accounting produced 135 semantic surfaces and 2,553 bounded dismissals; every controlled matching line is enclosed by a hashed record, and zero occurrences are unaccounted. Sixty-two physical shard files keep each shard below 300 KiB.
 
 ## Authority hierarchy
 
@@ -18,11 +18,11 @@ Accepted R1 and R1E govern. Current control, operational, schema, runtime, and m
 
 ## Surface counts
 
-The index records counts by primary shard, surface kind, authority level, currentness, generality, and semantic status. Nine separate normative responsibility surfaces ground AFQR-01, 02, 04, 06, 07, 09, 10, 19, and 20 rather than treating family titles as evidence.
+The index records counts by primary shard, surface kind, authority level, currentness, generality, and semantic status. Twelve separate normative responsibility surfaces ground AFQR-01, 02, 04, 06, 07, 08, 09, 10, 16, 17, 19, and 20 rather than treating family titles as evidence.
 
 ## Current normative surfaces
 
-Exact bounded R1 responsibility records preserve commitment, command identity, time/causal order, evidence/admission, typed reservation/settlement, dependency/revalidation, epistemic projection, action/conflict, and sensing/contact ownership. Applicable AFQR and R1D responsibility identifiers are populated on every normative record.
+Exact bounded R1 responsibility records preserve commitment, command identity, time/causal order, evidence/admission, typed reservation/settlement, identity/continuity, dependency/revalidation, epistemic projection, embodiment/integrity, environmental process, action/conflict, and sensing/contact ownership. Applicable AFQR and R1D responsibility identifiers are populated on every normative record.
 
 ## Historical and tracking surfaces
 
@@ -54,7 +54,7 @@ R2B-CORE, R2B-AGENCY, and R2B-WORLD are `not_required` with explicit closure lis
 
 ## Continuity module necessity
 
-TIME, BRANCH-CANONICALITY, CORRECTION-RETCON, RULESET-PACKAGE-VERSION, and SESSION-CLOSURE are owner-blocked. BRANCH-SAFE-PROJECTION is `not_required` on current evidence. No module acquires AFQR domain semantics.
+TIME, BRANCH-CANONICALITY, CORRECTION-RETCON, RULESET-PACKAGE-VERSION, and SESSION-CLOSURE are owner-blocked. BRANCH-SAFE-PROJECTION is owner-blocked by unresolved branch identity/canonicality dependencies. No module acquires AFQR domain semantics.
 
 ## Unresolved owner escalations
 
@@ -66,10 +66,10 @@ Dismissals are bounded and hashed. Each names actual matched terms and the file-
 
 ## Gate effect
 
-R1 is complete; R2 is active/incomplete; R2-0 is complete; R2A is active/incomplete pending owner adjudication and independent validation. R2B and R2C are blocked. R3–R6 remain blocked. RT-002G and temporary evidence deletion remain unauthorized.
+R1 is complete; R2 is active/incomplete; R2-0 is complete; R2A is complete; six questions remain routed to later Council owner adjudication. R2B and R2C are blocked. R3–R6 remain blocked. RT-002G and temporary evidence deletion remain unauthorized.
 
 ## Explicit nonauthority
 
 These artifacts are tracking review only. They adopt no doctrine, resolve no owner question, define no schema, approve no conformance, and change no production behavior.
 
-Machine-checkable R2A metrics: `{"candidate_file_count":749,"candidate_occurrence_block_count":2684,"claim_count":31,"dismissed_candidate_file_count":719,"dismissed_occurrence_block_count":2553,"mapped_candidate_file_count":31,"surface_count":132,"tracked_text_file_count":821,"unaccounted_occurrence_count":0,"unresolved_question_count":11}`
+Machine-checkable R2A metrics: `{"candidate_file_count":749,"candidate_occurrence_block_count":2684,"claim_count":31,"dismissed_candidate_file_count":719,"dismissed_occurrence_block_count":2553,"mapped_candidate_file_count":31,"surface_count":135,"tracked_text_file_count":821,"unaccounted_occurrence_count":0,"unresolved_question_count":11}`

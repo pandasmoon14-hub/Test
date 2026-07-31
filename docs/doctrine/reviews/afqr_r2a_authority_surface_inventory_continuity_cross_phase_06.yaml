@@ -1,0 +1,1019 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-06",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM02_minimum_pilot_conversion_readiness_and_packet_validation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 256,
+      "line_end": 375,
+      "locator_heading_or_symbol": "- page/range truth status;",
+      "excerpt_sha256": "c88ce786e974f0129295f54ace7416026ca9afbc3936f1b536132aa6ede75008",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- page/range truth status; - failed readiness gate; - impacted evidence references; - impacted construct inventory entries; - lawful outcome ledger impact; - mapping ledg\u201d. Distinguishing context: \u201c- failure report shape; - packet identity; - donor source identity; - extraction run identity; - page/range truth status; - failed readiness gate; - impacted evidence references; - impacted construct inventory \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM02_minimum_pilot_conversion_readiness_and_packet_validation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 383,
+      "line_end": 410,
+      "locator_heading_or_symbol": "| Source-local/legal/IP leakage | Protected proper nouns or setting cosmology could enter Astra baseline. | Require C14/legal review, source-local retention, legal/IP flags, and qu",
+      "excerpt_sha256": "8662a4d6ac7b62bf7512eac90e737a1ebb51d398efee78508b1bce434f35d237",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c| Source-local/legal/IP leakage | Protected proper nouns or setting cosmology could enter Astra baseline. | Require C14/legal review, source-local retention, legal/IP fla\u201d. Distinguishing context: \u201c| Risk | Why it matters | SM02 control | | --- | --- | --- | | Pilot scope creep | A small experiment could become unreviewed broad conversion. | Predeclare packet list, donor list, C-family pressure plan, and \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 124,
+      "locator_heading_or_symbol": "SM03 is a pilot packet fixture and dry-run review planning/control file only. It defines how a future pilot owner will select a tiny non-converted packet set, verify packet metadat",
+      "excerpt_sha256": "c55106c64217d9c7b316dbae3efe7ba08d814932f72f97ea17a974a5f295d1bc",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM03 is a pilot packet fixture and dry-run review planning/control file only. It defines how a future pilot owner will select a tiny non-converted packet set, verify pack\u201d. Distinguishing context: \u201c# SM03 Pilot Packet Fixture and Dry-Run Review Plan ## 1. Purpose and status SM03 is a pilot packet fixture and dry-run review planning/control file only. It defines how a future pilot owner will select a tiny \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 162,
+      "line_end": 277,
+      "locator_heading_or_symbol": "- [ ] Page/range truth is declared and verifiable.",
+      "excerpt_sha256": "705594f8b5f7813e9a74d83492004d54db074c7fd860639a3dc56da414705f17",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- [ ] Page/range truth is declared and verifiable. - [ ] Source hash or hash-later policy is declared. - [ ] Packet metadata is internally consistent and non-contradictor\u201d. Distinguishing context: \u201c- [ ] Packet identity exists and is unique within the dry-run set. - [ ] Donor source identity is declared and traceable. - [ ] Donor-family classification is assigned. - [ ] Extraction run identity is recorded\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 283,
+      "line_end": 401,
+      "locator_heading_or_symbol": "9. Confirm repair/quarantine/failure-report path exists for each candidate.",
+      "excerpt_sha256": "388b85037c9310193b0a7df258302a3aa224a93911ed65e2113fbcd900fd6c35",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c9. Confirm repair/quarantine/failure-report path exists for each candidate. 10. Confirm benchmark/evaluation prerequisites are declared. 11. Record dry-run pass/fail resu\u201d. Distinguishing context: \u201c4. Confirm visible construct inventory can be identified for each candidate. 5. Confirm lawful outcome ledger can theoretically account for every construct. 6. Confirm C00-C14 or `pending_schema` owner routing \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 408,
+      "line_end": 445,
+      "locator_heading_or_symbol": "| Fixture treated as conversion output | Pilot packet fixtures could be mistaken for converted content. | Label fixtures as pilot evidence only. Refuse conversion output claims. |",
+      "excerpt_sha256": "6c55f2c3ddd634997ae59554b8bb27e32ee4ceecfa40ec23bd21b19dd34302bd",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c| Fixture treated as conversion output | Pilot packet fixtures could be mistaken for converted content. | Label fixtures as pilot evidence only. Refuse conversion output \u201d. Distinguishing context: \u201c## 24. Risk register | Risk | Why it matters | SM03 control | | --- | --- | --- | | Dry-run scope creep | A small dry-run review could expand into unreviewed broad conversion. | Predeclare tiny packet set (3-5 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 124,
+      "locator_heading_or_symbol": "SM04 is a pilot benchmark and evaluation rubric control file only. It defines how future pilot conversion outputs will be evaluated once an actual pilot conversion is later authori",
+      "excerpt_sha256": "442ecb8f6c8594fc0a27cd49c4f500af44083ca62d57fd067f8e657b2d499385",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "hypothetical",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM04 is a pilot benchmark and evaluation rubric control file only. It defines how future pilot conversion outputs will be evaluated once an actual pilot conversion is lat\u201d. Distinguishing context: \u201c# SM04 Pilot Benchmark and Evaluation Rubric Controls ## 1. Purpose and status SM04 is a pilot benchmark and evaluation rubric control file only. It defines how future pilot conversion outputs will be evaluated\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 129,
+      "line_end": 239,
+      "locator_heading_or_symbol": "## 7. Evaluable pilot evidence requirements",
+      "excerpt_sha256": "df3c27b276d6215c48e8e7a967ca1f234a473e5c292d3041ae4d13ba8d873001",
+      "matched_terms": [
+        "evidence",
+        "hypothetical",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c## 7. Evaluable pilot evidence requirements Future pilot outputs are evaluable only if they preserve or report: - packet identity - donor source identity - donor-family c\u201d. Distinguishing context: \u201c- repair/quarantine routes functioned; - the project can identify what owners need work before scaling. Pilot evaluation does not determine whether the project is ready for large-scale conversion, canon, source\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 252,
+      "line_end": 372,
+      "locator_heading_or_symbol": "Routing failures route to `blocked_by_routing_gap`, `repair_required`, or `quarantine_required`.",
+      "excerpt_sha256": "18d6422d7200fa8beef9e11d4c60739f509520394b0081b4092ba27a61167c7f",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cRouting failures route to `blocked_by_routing_gap`, `repair_required`, or `quarantine_required`. ## 14. Rejected-import, source-local, and legal/IP containment evaluation\u201d. Distinguishing context: \u201c- `pending_schema` is used only when no C-family owner is stable, not as a field invention license. - No C-family routing invents new fields, schema properties, or C15. - C00 base inheritance requirements are r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 380,
+      "line_end": 498,
+      "locator_heading_or_symbol": "11. Evaluate repair/quarantine/failure-report completeness (queues declared, failure reports shaped, no silent drops).",
+      "excerpt_sha256": "eee95ec4afc678d60c69f632af2cb7997ef6c74714e536b6fd666936b89c3e4b",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c11. Evaluate repair/quarantine/failure-report completeness (queues declared, failure reports shaped, no silent drops). 12. Assign document-local rubric labels (from the l\u201d. Distinguishing context: \u201c6. Evaluate mapping ledger clarity (construct-to-outcome mappings recorded with rationale). 7. Evaluate C00-C14 and `pending_schema` routing (every record routed, no field invention, no C15). 8. Evaluate reject\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 523,
+      "line_end": 528,
+      "locator_heading_or_symbol": "- it refuses benchmark corpora, evaluation corpora, training data, fine-tuning data, model behavior data, sourcebook-ready examples, final schemas, JSON Schema files, Pydantic mode",
+      "excerpt_sha256": "eea3e34174dff54e3ebc6f7ca8be91809c131fc96e50b68d877b0ddac5e26354",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- it refuses benchmark corpora, evaluation corpora, training data, fine-tuning data, model behavior data, sourcebook-ready examples, final schemas, JSON Schema files, Pyd\u201d. Distinguishing context: \u201cSM04 is accepted only if: - it exists as a post-SM03 pilot benchmark and evaluation rubric control file only; - it states that SM04 does not run conversion and does not create converted donor content; - it refu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM05_actual_pilot_conversion_authorization_and_preflight_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 95,
+      "locator_heading_or_symbol": "- SM05 may name required authorization gates, evidence requirements, and preflight steps, but it must not turn these into final JSON fields, JSON Schema, Pydantic models, database ",
+      "excerpt_sha256": "2c0bca2fb41889e03c6ff2ca31822b7a9868b90a91e92950bebac12fb5f825b9",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- SM05 may name required authorization gates, evidence requirements, and preflight steps, but it must not turn these into final JSON fields, JSON Schema, Pydantic models,\u201d. Distinguishing context: \u201cStatus posture: - SM05 is an actual pilot conversion authorization and preflight gate only. - SM05 may define authorization gates, preflight checklists, go/no-go decision workflow, and authorization labels, but\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM05_actual_pilot_conversion_authorization_and_preflight_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 149,
+      "line_end": 263,
+      "locator_heading_or_symbol": "## 8. Required upstream completion evidence",
+      "excerpt_sha256": "e0251d7d42080a4bc9a1df062d2c283ed9caaf4e4f1b95641b1f64109367328f",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "reservation",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c## 8. Required upstream completion evidence SM05 requires evidence that the following upstream conditions are satisfied or explicitly routed before authorization may proc\u201d. Distinguishing context: \u201cC05, C06, C07, C08, C11, C12, and C13 remain deferred unless selected for a specific pressure test. C04 and C09 may also remain deferred unless needed to disambiguate C01/C02/C03/C10 pressure. No authorized pil\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM05_actual_pilot_conversion_authorization_and_preflight_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 301,
+      "line_end": 421,
+      "locator_heading_or_symbol": "- runtime readiness, runtime schema creation, backend schema creation, database schema creation, entity/component/event schema creation, command lifecycle contract creation, contex",
+      "excerpt_sha256": "9d444b59a3cc8e952e95b4d2b51a6b7d56d3bc1951c7c20b2992839c4e0ae387",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "reservation",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- runtime readiness, runtime schema creation, backend schema creation, database schema creation, entity/component/event schema creation, command lifecycle contract creati\u201d. Distinguishing context: \u201c## 18. Runtime/canon/sourcebook/live-play/training non-readiness gate SM05 authorization does not confer and must not be mistaken for: - runtime readiness, runtime schema creation, backend schema creation, data\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM05_actual_pilot_conversion_authorization_and_preflight_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 461,
+      "line_end": 539,
+      "locator_heading_or_symbol": "Large-scale conversion requires later owner-controlled readiness gates after pilot evidence is reviewed and evaluation rubric results are assessed.",
+      "excerpt_sha256": "32346ecc10cb330de973d870d6fe2a5743e834b2311e93f7cf422eda7082f895",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cLarge-scale conversion requires later owner-controlled readiness gates after pilot evidence is reviewed and evaluation rubric results are assessed. ## 24. Runtime/canon/s\u201d. Distinguishing context: \u201c- canon/conflict ledger readiness; - broad evaluation readiness with established benchmark corpora; - training readiness; - production-scale infrastructure readiness. Large-scale conversion requires later owner\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 109,
+      "locator_heading_or_symbol": "SM06 is a controlled pilot conversion execution and output capture planning/control file only. It defines how a later, separately authorized controlled pilot conversion execution P",
+      "excerpt_sha256": "12385e8cabc777b08ee6200d3f8102f05d86961a685595c84ffc235b0973f50c",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM06 is a controlled pilot conversion execution and output capture planning/control file only. It defines how a later, separately authorized controlled pilot conversion e\u201d. Distinguishing context: \u201c# SM06 Controlled Pilot Conversion Execution and Output Capture Plan ## 1. Purpose and status SM06 is a controlled pilot conversion execution and output capture planning/control file only. It defines how a late\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 132,
+      "line_end": 137,
+      "locator_heading_or_symbol": "\"Controlled pilot execution\" is a later, separately authorized, tightly bounded conversion attempt whose purpose is to produce reviewable pilot evidence under SM02-SM05 controls. S",
+      "excerpt_sha256": "29c02d6f87cb2c47e65a514bbc557f00698e2594b209dce516425c7c43e445fc",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Controlled pilot execution\" is a later, separately authorized, tightly bounded conversion attempt whose purpose is to produce reviewable pilot evidence under SM02-SM05 c\u201d. Distinguishing context: \u201c- waive SM02 minimum pilot readiness gates; - bypass SM05 authorization. ## 6. Controlled pilot execution definition \"Controlled pilot execution\" is a later, separately authorized, tightly bounded conversion at\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 194,
+      "line_end": 311,
+      "locator_heading_or_symbol": "8. Evidence/provenance capture path is confirmed operational.",
+      "excerpt_sha256": "4829e3cedeec32fc634d15d0471e9fc8639119f853a6f61d40c9d193b42f8fe9",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c8. Evidence/provenance capture path is confirmed operational. 9. Lawful outcome ledger capture path is confirmed operational. 10. Mapping ledger capture path is confirmed\u201d. Distinguishing context: \u201c3. Authorized packet count matches SM05 authorization. 4. Authorized C-family pressure routes match SM05 authorization. 5. SM02 readiness gates are confirmed satisfied. 6. SM03 dry-run review is confirmed passe\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 316,
+      "line_end": 421,
+      "locator_heading_or_symbol": "## 18. Repair, quarantine, and failure-report capture",
+      "excerpt_sha256": "14d9c005dd0a9a9f5053662536074fddd37c04ed2cff02d480a11bc2edadf32e",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c## 18. Repair, quarantine, and failure-report capture A later execution PR must capture: - repair queue status for each packet with repair-needed constructs; - quarantine\u201d. Distinguishing context: \u201c- no automatic promotion of uncertain records without review; - review owner identified for each category of review. Missing confidence/review-routing capture triggers `execution_blocked_by_review_handoff_gap`.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM06_controlled_pilot_conversion_execution_and_output_capture_plan.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 455,
+      "line_end": 537,
+      "locator_heading_or_symbol": "Large-scale conversion requires later owner-controlled readiness gates after pilot evidence is reviewed and evaluation rubric results are assessed.",
+      "excerpt_sha256": "9d678af9e93b12054d4f2cc6928e04892e6e4aa26c8367aeb532c16cc5b88f5f",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cLarge-scale conversion requires later owner-controlled readiness gates after pilot evidence is reviewed and evaluation rubric results are assessed. ## 25. Runtime/canon/s\u201d. Distinguishing context: \u201c- canon/conflict ledger readiness; - broad evaluation readiness with established benchmark corpora; - training readiness; - production-scale infrastructure readiness. Large-scale conversion requires later owner\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 122,
+      "locator_heading_or_symbol": "SM07 does not create benchmark corpora, evaluation corpora, training data, fine-tuning data, model behavior data, sourcebook-ready examples, final schemas, executable JSON Schema, ",
+      "excerpt_sha256": "7d64d90e4f189eee41e763c70103020e940d1c8cb33d0297c299d21aeb8dda8d",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM07 does not create benchmark corpora, evaluation corpora, training data, fine-tuning data, model behavior data, sourcebook-ready examples, final schemas, executable JSO\u201d. Distinguishing context: \u201cSM07 is a controlled pilot conversion execution packet scaffold and review harness file only. It defines repo-local placeholder/test scaffold posture for a future controlled pilot execution packet and review fl\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 158,
+      "line_end": 267,
+      "locator_heading_or_symbol": "Placeholder fixture prose should use abstract terms such as synthetic packet, placeholder source, placeholder range, placeholder evidence reference, placeholder ledger slot, and pl",
+      "excerpt_sha256": "36378c2d23b3f57b4961bed2588ce166a72fc3302a81c76be715a5d62ef9e8d1",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cPlaceholder fixture prose should use abstract terms such as synthetic packet, placeholder source, placeholder range, placeholder evidence reference, placeholder ledger sl\u201d. Distinguishing context: \u201c- not function as training data; - not function as canon; - not function as sourcebook prose; - not function as runtime import data. Placeholder fixture prose should use abstract terms such as synthetic packet,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 283,
+      "line_end": 394,
+      "locator_heading_or_symbol": "Validation should remain future-safe. It should verify SM07 boundaries, scaffold coverage, no-donor policy, and review-harness posture without blocking later legitimate registry pr",
+      "excerpt_sha256": "49617480400dec68ecaf0dcc7f4f2ac4784a0098a797b0fdbab577b73bb22b17",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cValidation should remain future-safe. It should verify SM07 boundaries, scaffold coverage, no-donor policy, and review-harness posture without blocking later legitimate r\u201d. Distinguishing context: \u201c- scaffold blocks scope expansion; - scaffold blocks donor content leakage; - scaffold blocks runtime/canon/sourcebook/live-play/training/final-mechanics claims; - scaffold does not include implementation artif\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM08_controlled_pilot_packet_placeholder_validation_and_no_donor_safety_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 25,
+      "locator_heading_or_symbol": "SM08 does not create benchmark corpora, evaluation corpora, training data, fine-tuning data, model behavior data, sourcebook-ready examples, final schemas, executable JSON Schema, ",
+      "excerpt_sha256": "80b92203e24fb692d48d5feea76f36b1a27a3d3d521ba12cda2b688ceedfa60e",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM08 does not create benchmark corpora, evaluation corpora, training data, fine-tuning data, model behavior data, sourcebook-ready examples, final schemas, executable JSO\u201d. Distinguishing context: \u201cSM08 is a controlled pilot packet placeholder validation and no-donor safety harness file only. It defines repo-local placeholder validation and no-donor safety checks for the SM07 scaffold fixture files, ensur\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM08_controlled_pilot_packet_placeholder_validation_and_no_donor_safety_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 114,
+      "line_end": 161,
+      "locator_heading_or_symbol": "- create context packet contracts;",
+      "excerpt_sha256": "3fc884d685639ee43b091b52e5b61725d951e2a298e68dc96770c19842e008eb",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- create context packet contracts; - create save-state shapes; - create final mechanics; - create exact math; - create resolution dice; - create damage formulas; - create\u201d. Distinguishing context: \u201c- create backend schemas; - create database schemas; - create runtime/backend/database contracts; - create entity/component/event schemas; - create command lifecycle contracts; - create context packet contracts\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM08_controlled_pilot_packet_placeholder_validation_and_no_donor_safety_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 235,
+      "line_end": 292,
+      "locator_heading_or_symbol": "- page/range truth",
+      "excerpt_sha256": "7f7ed500e33eafbac286dd9db93e4095750512a2438b52b4f0555718de34252b",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- page/range truth - source hash or hash-later policy - evidence references - construct inventory - lawful outcome ledger - mapping ledger - rejected-import ledger - sour\u201d. Distinguishing context: \u201c- statement that SM04 rubric is ready for post-execution review - packet identity - donor source identity - donor-family classification - extraction run identity - page/range truth - source hash or hash-later p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM08_controlled_pilot_packet_placeholder_validation_and_no_donor_safety_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 358,
+      "line_end": 394,
+      "locator_heading_or_symbol": "- context packet contracts",
+      "excerpt_sha256": "d0b85a372536a565e839bfd750e90734b155b5634cdb9e36ea710d95580d0c11",
+      "matched_terms": [
+        "context packet",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- context packet contracts - save-state shapes - runtime/backend/database contracts - entity/component/event schemas - final validators Implementation artifacts result in\u201d. Distinguishing context: \u201c- JSON Schema object definitions - Pydantic class definitions - database table definitions - command lifecycle contracts - context packet contracts - save-state shapes - runtime/backend/database contracts - ent\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM08_controlled_pilot_packet_placeholder_validation_and_no_donor_safety_harness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 455,
+      "line_end": 542,
+      "locator_heading_or_symbol": "Canon readiness requires C00-C14 promotion through proper owner-controlled PRs, canon candidate/conflict ledger review, and canon acceptance procedures. SM08 does not promote canon",
+      "excerpt_sha256": "09084ed4c834a5e4d1abd9386d697d145987c4e9990f6b77ef922a6d91cdaa7f",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cCanon readiness requires C00-C14 promotion through proper owner-controlled PRs, canon candidate/conflict ledger review, and canon acceptance procedures. SM08 does not pro\u201d. Distinguishing context: \u201cSM08 does not prove runtime readiness, canon readiness, sourcebook readiness, live-play readiness, or training readiness. SM08 validates placeholder scaffold posture only. Runtime readiness requires Gate B vali\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM09_controlled_pilot_execution_dry_authorization_packet_template.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 124,
+      "locator_heading_or_symbol": "SM09 is a controlled pilot execution dry authorization packet template file only. It defines a dry, non-donor template for a future controlled pilot execution authorization packet,",
+      "excerpt_sha256": "91ced497d83e20513621866881e951aecd860d0c3c90d63b517cfbe303fdfacc",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM09 is a controlled pilot execution dry authorization packet template file only. It defines a dry, non-donor template for a future controlled pilot execution authorizati\u201d. Distinguishing context: \u201c# SM09 Controlled Pilot Execution Dry Authorization Packet Template ## 1. Purpose and status SM09 is a controlled pilot execution dry authorization packet template file only. It defines a dry, non-donor templat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM09_controlled_pilot_execution_dry_authorization_packet_template.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 148,
+      "line_end": 265,
+      "locator_heading_or_symbol": "## 18. Evidence and provenance representation",
+      "excerpt_sha256": "27687ed228a09cfb28c2775d15f3648ddee1a0e3f5546f84d47211d339590c9b",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c## 18. Evidence and provenance representation The dry template must represent placeholder slots for packet identity, donor source identity, donor-family classification, e\u201d. Distinguishing context: \u201cC05, C06, C07, C08, C11, C12, and C13 remain deferred unless selected by SM05 authorization for a specific pressure test. C04 and C09 may also remain deferred unless needed to disambiguate C01/C02/C03/C10 press\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM09_controlled_pilot_execution_dry_authorization_packet_template.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 272,
+      "line_end": 296,
+      "locator_heading_or_symbol": "| SM02 gates waived by implication | Require explicit no-waiver slot and block missing evidence with `dry_template_blocked_by_missing_sm02_gate_slot`. |",
+      "excerpt_sha256": "135e6de55294d9fe09cb8352c69425ff250599605af195181252cd2e193a3298",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c| SM02 gates waived by implication | Require explicit no-waiver slot and block missing evidence with `dry_template_blocked_by_missing_sm02_gate_slot`. | | No-donor check \u201d. Distinguishing context: \u201c## 30. Risk register | Risk | Control | | --- | --- | | Dry template mistaken for actual authorization | Label as `dry_template_not_authorization` and `dry_template_not_execution_approval`; require SM05 decisio\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM10_dry_authorization_packet_validation_and_reviewer_decision_gate_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 126,
+      "locator_heading_or_symbol": "SM10 is not an authorization decision, not execution approval, not conversion, not pilot evidence, and not legal/IP clearance. SM10 does not make an actual authorization decision. ",
+      "excerpt_sha256": "73904eff96cc55de8638d50184af58f11dea8ab80a311baff32d3ff27ede01ba",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM10 is not an authorization decision, not execution approval, not conversion, not pilot evidence, and not legal/IP clearance. SM10 does not make an actual authorization \u201d. Distinguishing context: \u201c## 1. Purpose and status SM10 is a dry authorization packet validation and reviewer decision-gate control file only. It defines how reviewers would validate a future completed dry authorization packet before an\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM10_dry_authorization_packet_validation_and_reviewer_decision_gate_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 128,
+      "line_end": 245,
+      "locator_heading_or_symbol": "The reviewer must confirm that evidence/provenance and construct-inventory slots are present and internally consistent. Required references include packet identity, donor source id",
+      "excerpt_sha256": "101c834a9f2b125b5c3e60b0f25ded6a89e652a6f0f07caf8b34665ef4ece3ca",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe reviewer must confirm that evidence/provenance and construct-inventory slots are present and internally consistent. Required references include packet identity, donor\u201d. Distinguishing context: \u201cScope expansion beyond the dry packet, broad conversion, final mechanics, runtime schemas, canon consolidation, sourcebook prose, live-play behavior, training corpus creation, evaluation corpus creation, benchm\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM10_dry_authorization_packet_validation_and_reviewer_decision_gate_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 257,
+      "line_end": 298,
+      "locator_heading_or_symbol": "Lawful fallbacks include rejected-import ledger, source-local retention ledger, `pending_schema` ledger, repair queue status, quarantine queue status, deferred gap ledger, legal/IP",
+      "excerpt_sha256": "8b86e4d7306c326f03d0895f1e1b9eb01293f409a52ee07c4cdb889d2d5792b6",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cLawful fallbacks include rejected-import ledger, source-local retention ledger, `pending_schema` ledger, repair queue status, quarantine queue status, deferred gap ledger\u201d. Distinguishing context: \u201c- SM09 owner verifies dry template compliance and required slot terms. - C00-C14 owners verify C-family routing targets and pressure boundaries. - Legal/IP owner reviews legal/IP flags, protected expression ris\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM11_real_pilot_authorization_packet_preparation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 129,
+      "locator_heading_or_symbol": "SM11 is not the real packet, not an authorization decision, not execution approval, not conversion, not pilot evidence, not legal/IP clearance, and not runtime/canon/sourcebook/fin",
+      "excerpt_sha256": "d11725472d31655157397f9fdae792078e39473841f1ce4742a316c147593805",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM11 is not the real packet, not an authorization decision, not execution approval, not conversion, not pilot evidence, not legal/IP clearance, and not runtime/canon/sour\u201d. Distinguishing context: \u201cSM11 is a real pilot authorization packet preparation-control file only. It defines controls for preparing a future real pilot authorization packet through metadata, external-reference posture, owner routing, l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM11_real_pilot_authorization_packet_preparation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 160,
+      "line_end": 276,
+      "locator_heading_or_symbol": "- Repair/quarantine/failure-report paths are named.",
+      "excerpt_sha256": "86afa5908dc73a735beb7b8844f179fa3a86e70964b267c880ac4dbb47cdcf95",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Repair/quarantine/failure-report paths are named. If any prerequisite is missing, preparation must receive a blocked, repair, quarantine, legal/IP, pending_schema, or d\u201d. Distinguishing context: \u201c- SM08 no-donor safety posture is represented. - SM09 dry template slot structure is available. - SM10 reviewer validation posture is available. - Legal/IP owner is named. - Future review owner is named. - Repa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM11_real_pilot_authorization_packet_preparation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 282,
+      "line_end": 394,
+      "locator_heading_or_symbol": "A hard fail must stop preparation, prevent packet drafting, prevent execution proposal, route the material to quarantine and legal/IP review, and record a failure report.",
+      "excerpt_sha256": "a086cd5b630cdaa5634bbf2f661dd9563a01d01b6354c5f1d13e8452ec446a1b",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cA hard fail must stop preparation, prevent packet drafting, prevent execution proposal, route the material to quarantine and legal/IP review, and record a failure report.\u201d. Distinguishing context: \u201c## 26. Donor leakage hard-fail preparation Any donor leakage is a hard fail. Hard-fail triggers include real donor excerpts, donor statblocks, donor tables, donor maps, donor setting prose, protected expression\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM11_real_pilot_authorization_packet_preparation_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 410,
+      "line_end": 459,
+      "locator_heading_or_symbol": "Lawful fallbacks include repair, quarantine, deferred gap ledger, `pending_schema`, legal/IP review, source-local retention, rejected import, escalated doctrine problem, and future",
+      "excerpt_sha256": "0774fe8d12c590fe36e6449ab3457aa697d4f22746e41097c32ac247aa63684d",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cLawful fallbacks include repair, quarantine, deferred gap ledger, `pending_schema`, legal/IP review, source-local retention, rejected import, escalated doctrine problem, \u201d. Distinguishing context: \u201c- C-family owner: confirms C01/C02/C03/C10/conditional C14 routing and deferred-family boundaries. - Handoff owner: confirms conversion intake, extraction readiness, Conversion IR, and lawful outcome taxonomy p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM12_real_pilot_authorization_packet_external_reference_review_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 129,
+      "locator_heading_or_symbol": "SM12 is not a real authorization packet, not an authorization decision, not execution approval, not conversion, not pilot evidence, not legal/IP clearance, and not runtime/canon/so",
+      "excerpt_sha256": "e39da7db82b7265297748037d3eef2d1b2c7770877a1723de7a4e86ad0adac2d",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM12 is not a real authorization packet, not an authorization decision, not execution approval, not conversion, not pilot evidence, not legal/IP clearance, and not runtim\u201d. Distinguishing context: \u201cSM12 is a real pilot authorization packet external-reference review gate only. It defines how reviewers check a future real pilot authorization packet that identifies candidate source material through metadata-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM12_real_pilot_authorization_packet_external_reference_review_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 201,
+      "line_end": 321,
+      "locator_heading_or_symbol": "- source-local / rejected-import / quarantine route;",
+      "excerpt_sha256": "eedcdde229d31ad7fcd362110106839354e7703c5ec9f7015823ff0992fc1f4d",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- source-local / rejected-import / quarantine route; - failure-report route. These are descriptive categories only. They are not final schema fields, not database fields,\u201d. Distinguishing context: \u201c- extraction-readiness route; - review owner; - legal/IP owner; - C-family pressure target; - lawful outcome route; - source-local / rejected-import / quarantine route; - failure-report route. These are descrip\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM12_real_pilot_authorization_packet_external_reference_review_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 325,
+      "line_end": 372,
+      "locator_heading_or_symbol": "Owner routing must name, at minimum, a legal/IP owner and a future review owner. Optional future owners may include conversion intake owner, extraction readiness owner, donor famil",
+      "excerpt_sha256": "a0977215a9c1fae36776c6ba14e6098881a080bea6c5d9123ab2152194a2bb72",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cOwner routing must name, at minimum, a legal/IP owner and a future review owner. Optional future owners may include conversion intake owner, extraction readiness owner, d\u201d. Distinguishing context: \u201cSM12 does not establish runtime readiness, canon readiness, sourcebook readiness, live-play readiness, training readiness, final mechanics readiness, benchmark corpus readiness, model adapter readiness, or data\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM13_real_pilot_authorization_packet_metadata_only_assembly_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 83,
+      "locator_heading_or_symbol": "SM13 does not create a completed real authorization packet. SM13 does not make an actual authorization decision. SM13 does not authorize actual execution. SM13 does not approve exe",
+      "excerpt_sha256": "6a03a72aa5971f807c85c009786a308108f37c6f28d10bc0d70b9c37deb3d218",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM13 does not create a completed real authorization packet. SM13 does not make an actual authorization decision. SM13 does not authorize actual execution. SM13 does not a\u201d. Distinguishing context: \u201c## 1. Purpose and status SM13 is a real pilot authorization packet metadata-only assembly-control file only. It defines how a future metadata-only real pilot authorization packet shell may arrange required sect\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM13_real_pilot_authorization_packet_metadata_only_assembly_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 152,
+      "line_end": 272,
+      "locator_heading_or_symbol": "- quarantine route;",
+      "excerpt_sha256": "63cf92a63681921b0c92c0ffa40f77500c80ecf07c3704410df2d05f2ec43dac",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- quarantine route; - failure-report route; - donor leakage hard-fail criteria; - final non-readiness statement. These are section/slot requirements only. Do not turn the\u201d. Distinguishing context: \u201c- source-local retention route; - legal/IP route; - `pending_schema` route; - confidence/review-routing notes; - repair route; - quarantine route; - failure-report route; - donor leakage hard-fail criteria; - f\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM13_real_pilot_authorization_packet_metadata_only_assembly_controls.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 283,
+      "line_end": 299,
+      "locator_heading_or_symbol": "| Embedded donor content | Use `metadata_assembly_blocked_by_embedded_donor_content`; hard-fail to quarantine, rejected import, or legal/IP review. |",
+      "excerpt_sha256": "253039ce854896fc63355a3c54877d12a88d1c515d61e9442d53a36e0bdc64dc",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c| Embedded donor content | Use `metadata_assembly_blocked_by_embedded_donor_content`; hard-fail to quarantine, rejected import, or legal/IP review. | | Scope expansion | \u201d. Distinguishing context: \u201c| Missing SM02 gate | Use `metadata_assembly_blocked_by_missing_sm02_gate`; route to SM02 owner. | | Missing SM05 slot | Use `metadata_assembly_blocked_by_missing_sm05_slot`; route to SM05 owner. | | Missing SM\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/schema_math_mechanics/SM14_metadata_only_real_packet_shell_validation_and_reviewer_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 123,
+      "locator_heading_or_symbol": "SM14 does not create a completed real authorization packet. SM14 does not make an actual authorization decision. SM14 does not authorize actual execution. SM14 does not approve exe",
+      "excerpt_sha256": "1b5c0b6fd19961b2bbd96c798693ef3cd4eba2476d2a3e12d82ae6e0fa369cf6",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSM14 does not create a completed real authorization packet. SM14 does not make an actual authorization decision. SM14 does not authorize actual execution. SM14 does not a\u201d. Distinguishing context: \u201c## 1. Purpose and status SM14 is a metadata-only real packet shell validation and reviewer-gate control file only. It defines how reviewers validate that a future metadata-only real pilot authorization packet s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

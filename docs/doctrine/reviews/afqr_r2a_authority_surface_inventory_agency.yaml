@@ -1,1 +1,1323 @@
-{"artifact_id":"AFQR-R2A-INVENTORY-AGENCY","status":"review","phase":"R2A","authority":"tracking_review_only","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","surface_records":[{"surface_id":"R2A-SURFACE-00007","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC"],"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":72,"line_end":95,"locator_heading_or_symbol":"AGENCY-RESP-10","excerpt_sha256":"931c08c5f3f93dcc6bc7965bee5a9ecb90cc89b0d87663e951b1e9f4cf26d18d","matched_terms":["evidence","projection","sensing","truth","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"surface_kind":"normative_doctrine","authority_level":"current_normative","currentness":"current","generality":"family_scoped","phase_or_gate":"accepted R1","declared_owner":"AFQR-10","applicable_afqr_ids":["AFQR-10"],"applicable_r1d_responsibility_ids":["AGENCY-RESP-10"],"applicable_term_ids":[],"applicable_invariant_ids":["INV-001"],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0012","R2-CLAIM-0013","R2-CLAIM-0022"],"claim_link_reasons":{"R2-CLAIM-0012":"Bounded text at docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md:72-95 materially addresses evidence, projection, sensing, truth, visibility for R2-CLAIM-0012.","R2-CLAIM-0013":"Bounded text at docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md:72-95 materially addresses evidence, projection, sensing, truth, visibility for R2-CLAIM-0013.","R2-CLAIM-0022":"Bounded text at docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md:72-95 materially addresses evidence, projection, sensing, truth, visibility for R2-CLAIM-0022."},"semantic_summary":"AGENCY-RESP-10 preserves the bounded semantic ownership of AFQR-10.","semantic_status":"consistent_with_r1","reason_this_is_or_is_not_authoritative":"Accepted R1 bounded responsibility record.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00019","primary_shard":"AGENCY","secondary_family_links":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"path":"docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":13,"line_end":130,"locator_heading_or_symbol":"This file is the Stage 2 owner specification for RT-007 social/faction/actor-knowledge ownership. It upgrades the RT-007 owner scaffold into a specification-level planning artifact","excerpt_sha256":"dc05fb85424a49b59b9607241514c20ab3712382f4e3c9510e40ddff943cb610","matched_terms":["compensation","disclosure","projection","promotion","quarantine","rng","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"surface_kind":"control_or_gate","authority_level":"tracking_control_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0002","R2-CLAIM-0003","R2-CLAIM-0007"],"claim_link_reasons":{"R2-CLAIM-0002":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:13-130 materially addresses compensation, disclosure, projection, promotion, quarantine, rng, visibility for R2-CLAIM-0002.","R2-CLAIM-0003":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:13-130 materially addresses compensation, disclosure, projection, promotion, quarantine, rng, visibility for R2-CLAIM-0003.","R2-CLAIM-0007":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:13-130 materially addresses compensation, disclosure, projection, promotion, quarantine, rng, visibility for R2-CLAIM-0007."},"semantic_summary":"The bounded control or gate block uses compensation, disclosure, projection, promotion, quarantine, rng, visibility to describe sequencing, ownership, or data-shape constraints local to RT007_social_faction_actor_knowledge_owner_specification.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00020","primary_shard":"AGENCY","secondary_family_links":["CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"path":"docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":156,"line_end":256,"locator_heading_or_symbol":"- hidden_motive_visibility_required","excerpt_sha256":"a2b8d7d109d69d36d8cbbfeb9cff4fab0b349aa06845731271c133fa70a013d9","matched_terms":["compensation","projection","quarantine","rng","truth","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"surface_kind":"control_or_gate","authority_level":"tracking_control_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0003","R2-CLAIM-0007","R2-CLAIM-0009"],"claim_link_reasons":{"R2-CLAIM-0003":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:156-256 materially addresses compensation, projection, quarantine, rng, truth, visibility for R2-CLAIM-0003.","R2-CLAIM-0007":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:156-256 materially addresses compensation, projection, quarantine, rng, truth, visibility for R2-CLAIM-0007.","R2-CLAIM-0009":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:156-256 materially addresses compensation, projection, quarantine, rng, truth, visibility for R2-CLAIM-0009."},"semantic_summary":"The bounded control or gate block uses compensation, projection, quarantine, rng, truth, visibility to describe sequencing, ownership, or data-shape constraints local to RT007_social_faction_actor_knowledge_owner_specification.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00021","primary_shard":"AGENCY","secondary_family_links":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"path":"docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":287,"line_end":407,"locator_heading_or_symbol":"- RT-001 for command lifecycle, action legality, social action declarations, faction action timing, rejection/quarantine, and event/state commitment boundaries;","excerpt_sha256":"9f25196c8fec54376c13c50028bee948a9646d8ffe9a3c6fca48639597d87417","matched_terms":["compensation","projection","promotion","quarantine","rng","seed","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"surface_kind":"control_or_gate","authority_level":"tracking_control_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0002","R2-CLAIM-0003","R2-CLAIM-0007"],"claim_link_reasons":{"R2-CLAIM-0002":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:287-407 materially addresses compensation, projection, promotion, quarantine, rng, seed, truth for R2-CLAIM-0002.","R2-CLAIM-0003":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:287-407 materially addresses compensation, projection, promotion, quarantine, rng, seed, truth for R2-CLAIM-0003.","R2-CLAIM-0007":"Bounded text at docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md:287-407 materially addresses compensation, projection, promotion, quarantine, rng, seed, truth for R2-CLAIM-0007."},"semantic_summary":"The bounded control or gate block uses compensation, projection, promotion, quarantine, rng, seed, truth to describe sequencing, ownership, or data-shape constraints local to RT007_social_faction_actor_knowledge_owner_specification.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00033","primary_shard":"AGENCY","secondary_family_links":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"path":"docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":7,"line_end":110,"locator_heading_or_symbol":"B09 defines how operational attention is routed when social, factional, legal, institutional, standing, access, claim, obligation, authority, or relationship pressure appears after","excerpt_sha256":"906c9e9f568714b0830c5c425c3d1ee956a71c4c103a40a57389cd93df8bc705","matched_terms":["context packet","promotion","quarantine","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"surface_kind":"documentation","authority_level":"candidate_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0002","R2-CLAIM-0003","R2-CLAIM-0012"],"claim_link_reasons":{"R2-CLAIM-0002":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:7-110 materially addresses context packet, promotion, quarantine, truth, visibility for R2-CLAIM-0002.","R2-CLAIM-0003":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:7-110 materially addresses context packet, promotion, quarantine, truth, visibility for R2-CLAIM-0003.","R2-CLAIM-0012":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:7-110 materially addresses context packet, promotion, quarantine, truth, visibility for R2-CLAIM-0012."},"semantic_summary":"The bounded documentation block uses context packet, promotion, quarantine, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00034","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC","CF-10_RESERVATION","CF-13_FRONTIER"],"path":"docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":136,"line_end":243,"locator_heading_or_symbol":"4. **Identify social intent and method**: classify whether the event is a request, negotiation, diplomacy, persuasion, intimidation, deception, mediation, petition, bargain, threat","excerpt_sha256":"e1f8b66e992fb1de0d92b05895f8ccfba2981ead98895a946b310c7533396977","matched_terms":["evidence","quarantine","settlement","truth","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-10_RESERVATION","CF-13_FRONTIER"],"surface_kind":"documentation","authority_level":"candidate_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0003","R2-CLAIM-0012","R2-CLAIM-0013"],"claim_link_reasons":{"R2-CLAIM-0003":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:136-243 materially addresses evidence, quarantine, settlement, truth, visibility for R2-CLAIM-0003.","R2-CLAIM-0012":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:136-243 materially addresses evidence, quarantine, settlement, truth, visibility for R2-CLAIM-0012.","R2-CLAIM-0013":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:136-243 materially addresses evidence, quarantine, settlement, truth, visibility for R2-CLAIM-0013."},"semantic_summary":"The bounded documentation block uses evidence, quarantine, settlement, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00035","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"path":"docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":261,"line_end":377,"locator_heading_or_symbol":"B09 may identify rumor, propaganda, misinformation, secrecy, hidden agenda, public claim, private standing, hidden standing, and social pressure, but it must not decide actual hidd","excerpt_sha256":"168a3d606b5709f8a9a065a1c70494a4cd4a2399a17facb376d56b34df71d27a","matched_terms":["context packet","evidence","quarantine","truth","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"surface_kind":"documentation","authority_level":"candidate_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0002","R2-CLAIM-0003","R2-CLAIM-0012"],"claim_link_reasons":{"R2-CLAIM-0002":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:261-377 materially addresses context packet, evidence, quarantine, truth, visibility for R2-CLAIM-0002.","R2-CLAIM-0003":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:261-377 materially addresses context packet, evidence, quarantine, truth, visibility for R2-CLAIM-0003.","R2-CLAIM-0012":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:261-377 materially addresses context packet, evidence, quarantine, truth, visibility for R2-CLAIM-0012."},"semantic_summary":"The bounded documentation block uses context packet, evidence, quarantine, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00036","primary_shard":"AGENCY","secondary_family_links":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"path":"docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":392,"line_end":481,"locator_heading_or_symbol":"delta_routing_status: no_delta_required | owner_routed | transition_note | source_local_retained_effect | quarantined_unresolved_delta | owner_file_escalation","excerpt_sha256":"55367134ba22af191ffb41e73a0b800e42c1c941d5183eaea77b672b5d58fe2e","matched_terms":["context packet","evidence","promotion","quarantine","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"surface_kind":"documentation","authority_level":"candidate_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0002","R2-CLAIM-0003","R2-CLAIM-0012"],"claim_link_reasons":{"R2-CLAIM-0002":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:392-481 materially addresses context packet, evidence, promotion, quarantine, truth, visibility for R2-CLAIM-0002.","R2-CLAIM-0003":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:392-481 materially addresses context packet, evidence, promotion, quarantine, truth, visibility for R2-CLAIM-0003.","R2-CLAIM-0012":"Bounded text at docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md:392-481 materially addresses context packet, evidence, promotion, quarantine, truth, visibility for R2-CLAIM-0012."},"semantic_summary":"The bounded documentation block uses context packet, evidence, promotion, quarantine, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00125","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC"],"path":"src/astra_runtime/kernel/context_projection.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1,"line_end":121,"locator_heading_or_symbol":"\"\"\"Context projection skeleton \u2014 backend-owned, no context-packet compiler.\"\"\"","excerpt_sha256":"8a3d359333bd159616a32dab2cece587e765d550f902cb8509fa246e9d939294","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"surface_kind":"runtime_implementation","authority_level":"implementation_contract_only","currentness":"current","generality":"vertical_slice","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0012","R2-CLAIM-0022"],"claim_link_reasons":{"R2-CLAIM-0012":"Bounded text at src/astra_runtime/kernel/context_projection.py:1-121 materially addresses projection, visibility for R2-CLAIM-0012.","R2-CLAIM-0022":"Bounded text at src/astra_runtime/kernel/context_projection.py:1-121 materially addresses projection, visibility for R2-CLAIM-0022."},"semantic_summary":"The bounded runtime implementation block uses projection, visibility to describe a mandatory executable contract local to context_projection.py; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"runtime_presupposition","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":"Narrow evidence; do not generalize.","conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00126","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC"],"path":"src/astra_runtime/kernel/context_projection.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":122,"line_end":225,"locator_heading_or_symbol":"if tier not in ALLOWED_VISIBILITY_TIERS:","excerpt_sha256":"f01ad251aedccba0ceb618d36b60a0809b89b15111dd5556fbec90a3125b8729","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"surface_kind":"runtime_implementation","authority_level":"implementation_contract_only","currentness":"current","generality":"vertical_slice","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0012","R2-CLAIM-0022"],"claim_link_reasons":{"R2-CLAIM-0012":"Bounded text at src/astra_runtime/kernel/context_projection.py:122-225 materially addresses projection, visibility for R2-CLAIM-0012.","R2-CLAIM-0022":"Bounded text at src/astra_runtime/kernel/context_projection.py:122-225 materially addresses projection, visibility for R2-CLAIM-0022."},"semantic_summary":"The bounded runtime implementation block uses projection, visibility to describe a mandatory executable contract local to context_projection.py; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"runtime_presupposition","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":"Narrow evidence; do not generalize.","conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00127","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC"],"path":"src/astra_runtime/kernel/hidden_information.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":21,"line_end":122,"locator_heading_or_symbol":"class VisibilityTierError(HiddenInformationError):","excerpt_sha256":"69c14fd89d1bf1d0e7e7dcf22869999805c703a49676975099ce92edb8cfbfbb","matched_terms":["visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"surface_kind":"runtime_implementation","authority_level":"implementation_contract_only","currentness":"current","generality":"vertical_slice","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":[],"applicable_r1d_responsibility_ids":[],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0012"],"claim_link_reasons":{"R2-CLAIM-0012":"Bounded text at src/astra_runtime/kernel/hidden_information.py:21-122 materially addresses visibility for R2-CLAIM-0012."},"semantic_summary":"The bounded runtime implementation block uses visibility to describe a mandatory executable contract local to hidden_information.py; it is evidence, not a transfer of R1 semantic ownership.","semantic_status":"runtime_presupposition","reason_this_is_or_is_not_authoritative":"Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.","narrow_fixture_warning":"Narrow evidence; do not generalize.","conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Exact bounded baseline evidence."},{"surface_id":"R2A-SURFACE-00132","primary_shard":"AGENCY","secondary_family_links":["CF-08_EPISTEMIC"],"path":"docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1,"line_end":8,"locator_heading_or_symbol":"# RT-007 Social / Faction / Knowledge-State Owner Scaffold","excerpt_sha256":"000c756ed891fb39f8742a51cc24f1b22b5123c5352579fc52beb78d7b3c8935","matched_terms":[],"matched_search_clusters":[],"surface_kind":"control_or_gate","authority_level":"tracking_control_only","currentness":"current","generality":"subsystem_scoped","phase_or_gate":"received baseline","declared_owner":"surface-local; no ownership transfer","applicable_afqr_ids":["AFQR-10"],"applicable_r1d_responsibility_ids":["AGENCY-RESP-10"],"applicable_term_ids":[],"applicable_invariant_ids":[],"applicable_dependency_ids":[],"applicable_substrate_ids":[],"linked_r2_claim_ids":["R2-CLAIM-0013"],"claim_link_reasons":{"R2-CLAIM-0013":"The bounded scaffold separates actor knowledge responsibilities from runtime realization."},"semantic_summary":"RT007 scaffold records a bounded actor-knowledge owner handoff and does not itself become epistemic doctrine.","semantic_status":"partial_but_not_conflicting","reason_this_is_or_is_not_authoritative":"Control scaffold only; accepted AFQR-10 authority remains superior.","narrow_fixture_warning":null,"conflicting_surface_ids":[],"superseded_by":null,"inventory_notes":"Explicit priority-set inspection despite no controlled lexical match."}],"dismissed_hit_records":[{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":7,"line_end":118,"locator_heading_or_symbol":"The family keeps truth, epistemic state, agency, personhood, motivation, behavior, social state, communication, interpretation, and institutional doctrine distinct. It owns none of","excerpt_sha256":"214766589ef1f65ac0b899f95b18fa2af90f7161da478732bc55b9ccd5689308","matched_terms":["evidence","projection","quarantine","sensing","supersedes","truth","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, projection, quarantine, sensing, supersedes, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 7-118.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":133,"line_end":235,"locator_heading_or_symbol":"\"form\": \"epistemic observation record\",","excerpt_sha256":"4fe1e841c5433bc5bfd086d1e38767cf134d276d1cf4da72487ed26636f4140e","matched_terms":["evidence","observation","quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, observation, quarantine, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 133-235.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":260,"line_end":368,"locator_heading_or_symbol":"\"epistemic truth\",","excerpt_sha256":"96b874d137e187057ffa4f021c9c8b31a8a22270936ed8080e9df13559f43cf6","matched_terms":["evidence","quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, quarantine, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 260-368.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":389,"line_end":485,"locator_heading_or_symbol":"\"epistemic truth\",","excerpt_sha256":"6112c11d8deb65ab8ca10ee785a77e92337b835c840b96e049d2ef752c05ce3a","matched_terms":["evidence","quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, quarantine, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 389-485.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":512,"line_end":600,"locator_heading_or_symbol":"\"donor_pressure_risks\": \"donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default\"","excerpt_sha256":"ed14069eb7314d85ad4be63fc42b62296bc67aa4937a7f00936e4e5c30848275","matched_terms":["evidence","quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, quarantine, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 512-600.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":640,"line_end":741,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"574b60bccf29b95f8f157d600a6fadf5a4e1a67be3947def689d344093da9c6c","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 640-741.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":780,"line_end":873,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"8607f4bda64adee22e75295539ec90b4c1cc7227c26f08993b206eed1cd68b82","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 780-873.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":918,"line_end":1011,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"1f10a0337d48adae3f9dcab2c43f9f26675d88b8ae9335c8318ce84761f58e1b","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 918-1011.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1064,"line_end":1181,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"a239ab25b3d1e85a54952dcc22bef24f4efc3b2a8d8108d9ad70c3460a75e4d0","matched_terms":["evidence","replay","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, replay, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1064-1181.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1187,"line_end":1303,"locator_heading_or_symbol":"\"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md\",","excerpt_sha256":"9a315cf9f1feea982be2cf4ae33cf726256720a93c47f1b996bf0dee1d642351","matched_terms":["evidence","replay","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, replay, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1187-1303.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1317,"line_end":1419,"locator_heading_or_symbol":"\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\"","excerpt_sha256":"85c24c36ec7a2425e4427dd2d89ce82b0d3e6c09ca073e9e4889af88a0ca2bc7","matched_terms":["evidence","replay","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, replay, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1317-1419.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1442,"line_end":1551,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"d659c9deae43e93d2aae66618e32da3e6e60d8c55f103c8864b2f52a8c4b6826","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1442-1551.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1574,"line_end":1693,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"eb4cb3a97ce43ac565aa10cf8d5f3601d751f2642eab58355ae3377c000f4076","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1574-1693.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1699,"line_end":1817,"locator_heading_or_symbol":"\"working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md\",","excerpt_sha256":"8fd3b7953bbf99d48a9b90d5b4a19394a4d5440be3a76aa21a8a610eaf1a826d","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1699-1817.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1824,"line_end":1944,"locator_heading_or_symbol":"\"handoff_kind\": \"identity_evidence\",","excerpt_sha256":"044edd2101106ee5d85ca8845762bd2e8dca69bc5bda32b0a93ade6f7acaf5f5","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1824-1944.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1952,"line_end":2063,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"6f9b42026b8c83af638a05d2d12d1a5bc71a990ee50b8282450abe6c021ba00f","matched_terms":["evidence","migration","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, migration, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1952-2063.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2077,"line_end":2182,"locator_heading_or_symbol":"\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\"","excerpt_sha256":"cdcff46bfd71761bdff4f79d357e3fc433eff5f406b59a09e50b1786e092cd03","matched_terms":["evidence","migration","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, migration, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2077-2182.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2214,"line_end":2320,"locator_heading_or_symbol":"\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",","excerpt_sha256":"dc29fc2486fa07a012b963d6eefc4d2173792ac401c5aba5b8f0b5d9ef485184","matched_terms":["evidence","sensing","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, sensing, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2214-2320.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2340,"line_end":2460,"locator_heading_or_symbol":"\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\"","excerpt_sha256":"698c850874335fe5ee9f757aadace2a97a05b5948058bda9666be36ac517dc11","matched_terms":["evidence","sensing","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, sensing, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2340-2460.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2466,"line_end":2582,"locator_heading_or_symbol":"\"result\": \"exact parity confirmed for direction, endpoints, handoff kind, producer output, semantic owner, nontransfer, failure behavior, and evidence\"","excerpt_sha256":"6a5391f821a3be47dee2fe1a4f7ae049dd622cba7b829bce1d669bb08e52d9ed","matched_terms":["archive","evidence","sensing","supersedes","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, archive, evidence, sensing, supersedes, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2466-2582.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2588,"line_end":2702,"locator_heading_or_symbol":"\"source_evidence_identifiers\": [","excerpt_sha256":"89648b321ec4cb6e251d9f8d62da227a25e6fe494e4c0bb3e5c1c9d1243d62bb","matched_terms":["evidence","truth"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2588-2702.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2718,"line_end":2834,"locator_heading_or_symbol":"\"source_evidence_identifiers\": [","excerpt_sha256":"58d8fcbaa76f4af6681cc6930f51853f20f4cd8cb0f3138b48b738a90d8e083e","matched_terms":["evidence","migration"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, migration names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2718-2834.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2846,"line_end":2955,"locator_heading_or_symbol":"\"source_evidence_identifiers\": [","excerpt_sha256":"fa8984b370505fa09e9fb66a6f00f8f8a9688556e96ed849fc4c55ea36d66b8b","matched_terms":["evidence","migration","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, migration, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2846-2955.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":2970,"line_end":3072,"locator_heading_or_symbol":"\"source_evidence_identifiers\": [","excerpt_sha256":"59b16e64f9876176b3c0b8a8fedb7448f772aff79e97db5951f9757727abba41","matched_terms":["evidence","migration","replay"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, migration, replay names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 2970-3072.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3123,"line_end":3138,"locator_heading_or_symbol":"\"exact_r1b_evidence_record_identifiers\": [","excerpt_sha256":"1ee6ea1f66c859d58843ebb5fc6dd16e64cc43f5a57845baec088b3ed60cd57f","matched_terms":["evidence","migration"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, migration names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3123-3138.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3189,"line_end":3305,"locator_heading_or_symbol":"\"exact_r1b_evidence_record_identifiers\": [","excerpt_sha256":"f233709305efad3219f6cf76852a72ff87b8b44561ea1decce4396cf7552313a","matched_terms":["corruption","evidence","migration","projection","schedule","sensing","truth"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-04_SCHEDULE","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, corruption, evidence, migration, projection, schedule, sensing, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3189-3305.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3314,"line_end":3410,"locator_heading_or_symbol":"\"exact_owner_disposition\": \"separate source-backed owners: AFQR-18 spatial/topology; AFQR-20 signal/sensing; AFQR-16 embodiment; AFQR-15 institution/jurisdiction; AFQR-13 social st","excerpt_sha256":"3287c1f842436db170a7ea8effa2f744bba9c51e3d1d6a5f8094af5c0ec10db2","matched_terms":["evidence","promotion","quarantine","sensing","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, promotion, quarantine, sensing, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3314-3410.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3440,"line_end":3558,"locator_heading_or_symbol":"\"quarantine_triggers\": [","excerpt_sha256":"185ff5b6b9f9b2b0e7bbe1cddaa69fec4795fd7713aaf318eb5198805e19cb9b","matched_terms":["quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, quarantine, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3440-3558.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3590,"line_end":3679,"locator_heading_or_symbol":"\"quarantine_triggers\": [","excerpt_sha256":"1d4242cc6fd7b21a1064692d9852ac5606e351c2223168c15ab1154e9a6c0e90","matched_terms":["corruption","evidence","projection","quarantine","sensing","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, corruption, evidence, projection, quarantine, sensing, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3590-3679.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3712,"line_end":3831,"locator_heading_or_symbol":"\"quarantine_triggers\": [","excerpt_sha256":"b593f0fdc1bc7742c6ebcc5abbccc855d413531dedcd932865a272c7769f80cc","matched_terms":["quarantine","schedule","truth"],"matched_search_clusters":["CF-04_SCHEDULE","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, quarantine, schedule, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3712-3831.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":3866,"line_end":3940,"locator_heading_or_symbol":"\"quarantine_triggers\": [","excerpt_sha256":"0bd23666c955189fffa57cd0b9143babd6c05759c62c37837458c816773ac2f8","matched_terms":["evidence","quarantine","sensing"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In afqr_epistemic_agency_social_communication.md, evidence, quarantine, sensing names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 3866-3940.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":11,"line_end":131,"locator_heading_or_symbol":"This file creates the documentation/control owner scaffold for RT-005, the scene/activity orchestration and hidden-information/context-packet boundary track identified by `REMEDIAT","excerpt_sha256":"d2ac50ff4bd9c9109da6a784c18dc90a847b6b0822189e03ed5536377fb79e5c","matched_terms":["branch","context packet","corruption","projection","promotion","replay","rng","seed","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT005_context_packet_hidden_information_owner_scaffold.md, branch, context packet, corruption, projection, promotion, replay, rng, seed, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 11-131.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":136,"line_end":172,"locator_heading_or_symbol":"RT-005 consumes RT-001 command lifecycle boundaries for scene transitions, action availability, event commitment, and narration handoff. RT-005 consumes RT-002 for resource/consequ","excerpt_sha256":"b19f46a99a3906d31d43b5be8cbf16b23bdfbb3e9c7b5173f09469f218f9e7d8","matched_terms":["context packet","projection","promotion","rng","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT005_context_packet_hidden_information_owner_scaffold.md, context packet, projection, promotion, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 136-172.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":12,"line_end":130,"locator_heading_or_symbol":"This file is the Stage 2 owner specification for RT-005. It upgrades `docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md` into a specification-level pl","excerpt_sha256":"ee3a7a2a8ef1728ddf20d17d507b0cfafc1b6d1962ddca8d27a03e3a9fe99031","matched_terms":["context packet","correction","disclosure","projection","promotion","quarantine","replay","rng","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT005_context_packet_hidden_information_owner_specification.md, context packet, correction, disclosure, projection, promotion, quarantine, replay, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 12-130.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":138,"line_end":254,"locator_heading_or_symbol":"- Context packets are backend-produced projections, not model memory.","excerpt_sha256":"79e6b786517370124742c5266a361331f028a3bd4b98790cb45222488d2be43e","matched_terms":["branch","context packet","correction","projection","promotion","quarantine","replay","reservation","rng","seed","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-10_RESERVATION","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT005_context_packet_hidden_information_owner_specification.md, branch, context packet, correction, projection, promotion, quarantine, replay, reservation, rng, seed, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 138-254.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":261,"line_end":309,"locator_heading_or_symbol":"The LLM may propose phrasing, summarize backend-approved visible material, and ask clarification questions when backend context is insufficient. Those allowed interactions never be","excerpt_sha256":"9cf88a9adcaaac1c175921f935a9a31ece7830e5e5dcab0f40c628241cde82ad","matched_terms":["promotion","rng","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT005_context_packet_hidden_information_owner_specification.md, promotion, rng, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 261-309.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":13,"line_end":132,"locator_heading_or_symbol":"This scaffold is planning/control only. It is owner scaffold only: no doctrine rewrite, no runtime implementation, no schema implementation, no command IR implementation, no math i","excerpt_sha256":"6b69f9cfdf80e31e7b80d69c54bfdde3faa54da446e19dc1aecd5e9ca196203f","matched_terms":["context packet","corruption","promotion","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT007_social_faction_knowledge_state_owner_scaffold.md, context packet, corruption, promotion, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 13-132.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":134,"line_end":144,"locator_heading_or_symbol":"Recurring factions, NPCs, and contacts require RT-008 provenance/recurrence controls. Narration may describe only backend-approved social/faction facts, visible attitudes, known st","excerpt_sha256":"770f4ade854a2b865eeb39c835baab1717715c1ca3ec4864704990c30f962862","matched_terms":["promotion","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In RT007_social_faction_knowledge_state_owner_scaffold.md, promotion, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 134-144.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-04_opposition_profiles_by_type_creatures_hazards_social_platforms_swarms_bosses_and_proxies.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":14,"line_end":90,"locator_heading_or_symbol":"Opposition Type Profiles are construction templates for recurring opposition families. They identify typical evidence, functions, pressure, handoffs, source-local risks, quarantine","excerpt_sha256":"697eee8bebad62c8f903f536ab944965808812b6635a145df6157774aadc8145","matched_terms":["corruption","evidence","quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"source_local_or_donor_example","semantic_review_summary":"In D16-04_opposition_profiles_by_type_creatures_hazards_social_platforms_swarms_bosses_and_proxies.md, corruption, evidence, quarantine, truth names a source-pack/donor construct; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 14-90.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-06_reputation_relationship_social_memory_register.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":35,"line_end":150,"locator_heading_or_symbol":"A social memory record includes memory reference, remembered event, subject, holder, interpretation, valence, intensity, visibility, truth status, decay/permanence, obligations, gr","excerpt_sha256":"ebbe6ef4c8f6f6d1be55b995362c756cbbe5cc42f9981c077096b7e48203c095","matched_terms":["corruption","promotion","settlement","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-10_RESERVATION","CF-13_FRONTIER"],"dismissal_reason":"source_local_or_donor_example","semantic_review_summary":"In D10-06_reputation_relationship_social_memory_register.md, corruption, promotion, settlement, truth, visibility names a source-pack/donor construct; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 35-150.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-06_reputation_relationship_social_memory_register.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":156,"line_end":156,"locator_heading_or_symbol":"lawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated]","excerpt_sha256":"1a764f1165d78fd4d3a310f8286f4f912b3e04f91be7d9861d32b5775d18447a","matched_terms":["quarantine"],"matched_search_clusters":["CF-13_FRONTIER"],"dismissal_reason":"source_local_or_donor_example","semantic_review_summary":"In D10-06_reputation_relationship_social_memory_register.md, quarantine names a source-pack/donor construct; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 156-156.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":11,"line_end":120,"locator_heading_or_symbol":"## Truth-state vs. knowledge-state","excerpt_sha256":"46fd4337f72d422ad3f71b9ab620333205d6dc9e1ec43921996a7d3c74f8b46b","matched_terms":["archive","corruption","evidence","settlement","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-10_RESERVATION","CF-13_FRONTIER"],"dismissal_reason":"source_local_or_donor_example","semantic_review_summary":"In D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md, archive, corruption, evidence, settlement, truth, visibility names a source-pack/donor construct; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 11-120.","related_surface_id_if_duplicate":null},{"path":"docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":142,"line_end":156,"locator_heading_or_symbol":"promotion_requirements: []","excerpt_sha256":"ddb135d9e1cd7e4fe3e300f0324b32a8858a51306fe317a0e73ad8a6e49123c6","matched_terms":["archive","promotion","quarantine","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"source_local_or_donor_example","semantic_review_summary":"In D10-07_information_state_public_knowledge_rumor_secrecy_records_register.md, archive, promotion, quarantine, truth names a source-pack/donor construct; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 142-156.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1,"line_end":121,"locator_heading_or_symbol":"\"\"\"Projection and Visibility Adapter \u2014 RT-002B.","excerpt_sha256":"92c90af8f7af06a1082da745c541a953468110ed6b14b7c6be608e5906d17281","matched_terms":["preview","projection","promotion","replay","rng","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, preview, projection, promotion, replay, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1-121.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":122,"line_end":209,"locator_heading_or_symbol":"\"visible_safe_projection\",","excerpt_sha256":"2b537b6efd0c99d9290735e657202d102f3ed0eab2e7f37004070239fd28a068","matched_terms":["preview","projection","promotion","replay","rng","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, preview, projection, promotion, replay, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 122-209.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":251,"line_end":371,"locator_heading_or_symbol":"def _validate_no_forbidden_projection_visibility_metadata_keys(","excerpt_sha256":"2ea094f16065acf597f0c680bf2dab210b946e7a8a0a9a7ac73c9d0f9da29268","matched_terms":["disclosure","preview","projection","promotion","rng","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, disclosure, preview, projection, promotion, rng, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 251-371.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":373,"line_end":493,"locator_heading_or_symbol":"self.source_projection_id, \"source_projection_id\",","excerpt_sha256":"e4b095337d0ed672c0abfd3b483caa2d033d1ed9ec0cb1a0d111b137830b379e","matched_terms":["projection","truth","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, projection, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 373-493.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":494,"line_end":614,"locator_heading_or_symbol":"f\"adapter_status must be one of {sorted(PROJECTION_VISIBILITY_ADAPTER_STATUSES)}, \"","excerpt_sha256":"7c9553f396d6ca82d5811b49e8c643d9830d812a5eb8b7d6db036ac5591d9205","matched_terms":["preview","projection","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, preview, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 494-614.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":619,"line_end":737,"locator_heading_or_symbol":"InvalidProjectionVisibilityAdapterResultError,","excerpt_sha256":"7532ce96f0a7710cc5380d8c78413df414e6b16ab5394b014ac80f57659e7255","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 619-737.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":751,"line_end":867,"locator_heading_or_symbol":"\"\"\"Return (adapter_status, packet_kind, visibility_tier, redaction_required, safe_ids).\"\"\"","excerpt_sha256":"595a19594bf33ba73dabb53c6d0a376aff74aad0b448f702e70ce1c23462c1a7","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 751-867.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":872,"line_end":976,"locator_heading_or_symbol":"descriptor = create_projection_visibility_descriptor(","excerpt_sha256":"c0ca5582bb1ecf90545f82af68bb4f3fce8e57d6f10f3b4219cc5464c10aefe0","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 872-976.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":998,"line_end":1117,"locator_heading_or_symbol":"def serialize_projection_visibility_adapter_packet(","excerpt_sha256":"74271a43ccb655dab5cd1fafef9aaef8175cf15f288f0a93bdb68e465fd1b22b","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 998-1117.","related_surface_id_if_duplicate":null},{"path":"src/astra_runtime/domain/projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1119,"line_end":1164,"locator_heading_or_symbol":"if obj.adapter_status not in PROJECTION_VISIBILITY_ADAPTER_STATUSES:","excerpt_sha256":"f6a84278351edea62b655268e6e3bd1e7f8c26b606920071857d7b8ac5d08433","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1119-1164.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_context_projection_skeleton.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1,"line_end":120,"locator_heading_or_symbol":"\"\"\"Focused tests for RUNTIME-IMPL-PR-6: context projection skeleton.\"\"\"","excerpt_sha256":"73e4a3f5e510bd96a4e61b0d9ecc29c5a88ae9f6f89d9f26503fe29a3683027e","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_context_projection_skeleton.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1-120.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_context_projection_skeleton.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":123,"line_end":240,"locator_heading_or_symbol":"assert validate_context_projection_item(\"not an item\") is False","excerpt_sha256":"c41c2461f507b6c7d7f8acda992e50260714bebd5b21c59ac32baee3437e3945","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_context_projection_skeleton.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 123-240.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_context_projection_skeleton.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":249,"line_end":351,"locator_heading_or_symbol":"projection_id=\"proj-001\",","excerpt_sha256":"0234d188d61a2a2863b52e9ee9d9dc0b54009fb182372927db643b08589e92fb","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_context_projection_skeleton.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 249-351.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_domain_visibility_descriptor_ownership.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1,"line_end":53,"locator_heading_or_symbol":"\"\"\"Regression tests for the two distinct state visibility contracts.","excerpt_sha256":"c86cef7e3cdbc3a7b61787fa9a71062b99da7b867eb0c1cdf81382ab7f927d86","matched_terms":["visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_domain_visibility_descriptor_ownership.py, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1-53.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_hidden_information_skeleton.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":16,"line_end":132,"locator_heading_or_symbol":"ALLOWED_VISIBILITY_TIERS,","excerpt_sha256":"aec16de0615794fe5e15ef731eb531660e168ae992ea73a6cae50be76a3ca0c1","matched_terms":["visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_hidden_information_skeleton.py, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 16-132.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_hidden_information_skeleton.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":140,"line_end":259,"locator_heading_or_symbol":"visibility_tier=\"public\",","excerpt_sha256":"fabb015f379f41c347db0bee9d7e539a1641e227b0dff28d8fa43dde591bdce3","matched_terms":["visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_hidden_information_skeleton.py, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 140-259.","related_surface_id_if_duplicate":null},{"path":"tests/runtime/test_hidden_information_skeleton.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":262,"line_end":292,"locator_heading_or_symbol":"visibility_tier=\"restricted\",","excerpt_sha256":"fb870bdf1c117b896a41e99b80be590d6770668f635b9dd5c0462e45ba5614ae","matched_terms":["visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_hidden_information_skeleton.py, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 262-292.","related_surface_id_if_duplicate":null},{"path":"tests/test_afqr_r1d_agency_epistemic_social_communication.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":19,"line_end":107,"locator_heading_or_symbol":"valid={i for r in load(AUTH)['afqr_records'] for i in r['source_evidence_records']}","excerpt_sha256":"025b55394510329034ccada09c2399802307b57dcf3035c7fd422950ff938a68","matched_terms":["archive","evidence","observation","quarantine","sensing","supersedes","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_afqr_r1d_agency_epistemic_social_communication.py, archive, evidence, observation, quarantine, sensing, supersedes, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 19-107.","related_surface_id_if_duplicate":null},{"path":"tests/test_b09_social_faction_contact_institutional_interaction_procedure.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":25,"line_end":145,"locator_heading_or_symbol":"\"## 11. Social intent, method, leverage, cost, risk, and visibility checkpoints\",","excerpt_sha256":"4116dec9dd125a3a5599cbec8b553fb16f84b1938ce002a13dc0a1f17a4d187e","matched_terms":["context packet","quarantine","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_b09_social_faction_contact_institutional_interaction_procedure.py, context packet, quarantine, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 25-145.","related_surface_id_if_duplicate":null},{"path":"tests/test_b09_social_faction_contact_institutional_interaction_procedure.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":200,"line_end":286,"locator_heading_or_symbol":"\"quarantined_unresolved_delta\", \"owner_file_escalation\", \"social_exposure\",","excerpt_sha256":"b63537c48a62216575138e1b43335032910849a940d68e24dfdfe6636263ec6c","matched_terms":["promotion","quarantine","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_b09_social_faction_contact_institutional_interaction_procedure.py, promotion, quarantine, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 200-286.","related_surface_id_if_duplicate":null},{"path":"tests/test_b09_social_faction_contact_institutional_interaction_procedure.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":321,"line_end":321,"locator_heading_or_symbol":"# Durable regression check: the B09 draft text explicitly avoids promotion, and the","excerpt_sha256":"8916f67a3727a1b4acaca7cd49d0d31adc07d6f16738002e0b30b935c8c29cab","matched_terms":["promotion"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_b09_social_faction_contact_institutional_interaction_procedure.py, promotion names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 321-321.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1,"line_end":121,"locator_heading_or_symbol":"\"\"\"Tests for RT-002B: Projection and Visibility Adapter v0.1.","excerpt_sha256":"da92fb246a0f863e2ae4436ae515357bad48867f9d5cec8aebf4e1c9f9f78676","matched_terms":["branch","projection","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, branch, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1-121.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":122,"line_end":242,"locator_heading_or_symbol":"FORBIDDEN_PROJECTION_VISIBILITY_METADATA_KEYS,","excerpt_sha256":"1fc4b76c74f29f75f13ad14459ae724148e6c8f655e882f0d8e6af07ff8be535","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 122-242.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":245,"line_end":365,"locator_heading_or_symbol":"ProjectionVisibilityAdapterPacket,","excerpt_sha256":"0ab8f23fea47076435a11828bbb0e10d92a9f54295dea5ac7a06b89803a475a3","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 245-365.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":366,"line_end":486,"locator_heading_or_symbol":"ProjectionVisibilityDescriptor,","excerpt_sha256":"49f5d970286ad596c6f1f5781486bc13ecba22f5e51220ac4a49565f90e7e891","matched_terms":["projection","truth","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, projection, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 366-486.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":487,"line_end":605,"locator_heading_or_symbol":"ProjectionVisibilityAdapterResult,","excerpt_sha256":"21ae2d2eb135a939a7cd23c9babfa6ebeb87a8edffed51197f9ad9e9c00815b7","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 487-605.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":614,"line_end":734,"locator_heading_or_symbol":"owner_family=\"hidden_information_visibility_owner\",","excerpt_sha256":"432e10dcedf23cd07d421330ca1175826fcd3fee8ebc22e1eb55789d02889254","matched_terms":["projection","visibility"],"matched_search_clusters":["CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 614-734.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":738,"line_end":847,"locator_heading_or_symbol":"assert \"source_projection_id\" not in visible_packet","excerpt_sha256":"23fe6dac821e0827b5dfbd48ac90bfcef492f4e981438c28dbed8f9b65e68750","matched_terms":["preview","projection","truth","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, preview, projection, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 738-847.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":863,"line_end":979,"locator_heading_or_symbol":"from astra_runtime.domain.projection_visibility_adapter_v0_1 import (","excerpt_sha256":"63eff5d649800420392943e27bc4c985a14d39cfc76dce688f405daf8d4560aa","matched_terms":["preview","projection","rng","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, preview, projection, rng, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 863-979.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1001,"line_end":1116,"locator_heading_or_symbol":"or \"projection_visibility_adapter_v0_1\" in str(r.get(\"filename\", \"\"))","excerpt_sha256":"a9f63c1e0e81df8ccbcd9bed00226374ac4dd21273927e5ef77164fd6f7e03f0","matched_terms":["branch","preview","projection","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, branch, preview, projection, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1001-1116.","related_surface_id_if_duplicate":null},{"path":"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":1130,"line_end":1168,"locator_heading_or_symbol":"# T31 \u2014 Branch diff does not modify unrelated runtime modules","excerpt_sha256":"f0f8dc976cb387f48aab3eca4714154681f61fb3b386c9b20854a5ddd3c84e23","matched_terms":["branch","projection","replay","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py, branch, projection, replay, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 1130-1168.","related_surface_id_if_duplicate":null},{"path":"tests/test_stage2_rt005_context_packet_hidden_information_owner_spec.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":20,"line_end":120,"locator_heading_or_symbol":"\"backend_truth_partition\",","excerpt_sha256":"c1d6266f2299fa1894b9504589046df3180efd7b3ec68fb655da71608685a79f","matched_terms":["context packet","projection","promotion","rng","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_stage2_rt005_context_packet_hidden_information_owner_spec.py, context packet, projection, promotion, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 20-120.","related_surface_id_if_duplicate":null},{"path":"tests/test_stage2_rt005_context_packet_hidden_information_owner_spec.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":158,"line_end":268,"locator_heading_or_symbol":"\"context-packet projection boundary requirements\",","excerpt_sha256":"82246e2de661901e0e0a2f33c800412711c33253d1e66f5335288c045b1c3078","matched_terms":["context packet","correction","projection","rng","truth","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_stage2_rt005_context_packet_hidden_information_owner_spec.py, context packet, correction, projection, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 158-268.","related_surface_id_if_duplicate":null},{"path":"tests/test_stage2_rt005_context_packet_hidden_information_owner_spec.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":284,"line_end":360,"locator_heading_or_symbol":"\"RT-001: command lifecycle, event commitment, rejection/quarantine\",","excerpt_sha256":"99f991e0c7543a604400137dbfa587a723490981490663f95a7bc58b9bc3996f","matched_terms":["branch","promotion","quarantine","rng","truth","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_stage2_rt005_context_packet_hidden_information_owner_spec.py, branch, promotion, quarantine, rng, truth, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 284-360.","related_surface_id_if_duplicate":null},{"path":"tests/test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":25,"line_end":124,"locator_heading_or_symbol":"\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\",","excerpt_sha256":"513877e8e551e1df77e06ce8ccfdca27864bcc17d108c79f867077d72770abd9","matched_terms":["promotion","quarantine","rng","visibility"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-05_RANDOMNESS","CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py, promotion, quarantine, rng, visibility names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 25-124.","related_surface_id_if_duplicate":null},{"path":"tests/test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":209,"line_end":223,"locator_heading_or_symbol":"\"dialogue transcripts are not durable truth\",","excerpt_sha256":"0f2a38343b847a3bb91951ecde69000816e66fda1508d3055bc0fbcb47ad203a","matched_terms":["quarantine","truth"],"matched_search_clusters":["CF-08_EPISTEMIC","CF-13_FRONTIER"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py, quarantine, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 209-223.","related_surface_id_if_duplicate":null},{"path":"tests/test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":286,"line_end":373,"locator_heading_or_symbol":"\"creating social state as backend truth\",","excerpt_sha256":"b2f9ab5ea60ad332d04ccb62292389145e423d6401ba0aaec9df5e40f84ab5f1","matched_terms":["promotion","rng","truth"],"matched_search_clusters":["CF-01_TIMELINE_BRANCH","CF-05_RANDOMNESS","CF-08_EPISTEMIC"],"dismissal_reason":"unrelated_word_sense","semantic_review_summary":"In test_stage2_rt007_social_faction_actor_knowledge_owner_spec.py, promotion, rng, truth names a repository documentation or test support block; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 286-373.","related_surface_id_if_duplicate":null},{"path":"working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":4,"line_end":23,"locator_heading_or_symbol":"**Decision:** Typed Bitemporal Truth\u2013Epistemic Provenance Architecture with Profiled Revision and Visibility-Safe Projection (TTEP-PRV)","excerpt_sha256":"3079998897c67e1fd27f45625c8f214af428c8b6028ca51ad9824cb4bfb42c84","matched_terms":["context packet","correction","disclosure","evidence","observation","projection","truth","visibility"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"historical_reference_only","semantic_review_summary":"In AFQR-10_Epistemic_State_Observer_Relative_Truth.md, context packet, correction, disclosure, evidence, observation, projection, truth, visibility names a historical extracted AFQR input; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 4-23.","related_surface_id_if_duplicate":null},{"path":"working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md","inspected_commit":"9382958197c9d5dee9d29cb5f9d051147237c64d","line_start":11,"line_end":21,"locator_heading_or_symbol":"No encounter, communication, repeated contact, governed relation, graph edge, public record, audience claim, social metric, donor descriptor, or model portrayal creates authoritati","excerpt_sha256":"f8bbadb37fdc06277cad91e68efa09e70e8e7a822cd0a3e750ee08187d269dcb","matched_terms":["correction","observation"],"matched_search_clusters":["CF-02_REPLAY_CORRECTION","CF-08_EPISTEMIC"],"dismissal_reason":"historical_reference_only","semantic_review_summary":"In AFQR-13_Social_Relations_Trust_Reputation_Culture.md, correction, observation names a historical extracted AFQR input; the bounded block neither claims current AFQR ownership nor overrides accepted R1. Bounded locator: lines 11-21.","related_surface_id_if_duplicate":null}]}
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-AGENCY-01",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [
+    {
+      "surface_id": "R2A-SURFACE-00007",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC"
+      ],
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 72,
+      "line_end": 95,
+      "locator_heading_or_symbol": "AGENCY-RESP-10",
+      "excerpt_sha256": "931c08c5f3f93dcc6bc7965bee5a9ecb90cc89b0d87663e951b1e9f4cf26d18d",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "sensing",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "surface_kind": "normative_doctrine",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "family_scoped",
+      "phase_or_gate": "accepted R1",
+      "declared_owner": "AFQR-10",
+      "applicable_afqr_ids": [
+        "AFQR-10"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "AGENCY-RESP-10"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [
+        "R2-CLAIM-0005",
+        "R2-CLAIM-0011",
+        "R2-CLAIM-0012",
+        "R2-CLAIM-0013",
+        "R2-CLAIM-0022",
+        "R2-CLAIM-0024"
+      ],
+      "claim_link_reasons": {
+        "R2-CLAIM-0005": {
+          "relevance_type": "decisive_current_authority",
+          "semantic_role": "truth, knowledge, belief, and projection",
+          "exact_relevance": "The bounded AGENCY-RESP-10 owner record constrains the CF-02 claim without deciding its unresolved continuity representation.",
+          "owner_boundary_effect": "Preserves AFQR-10 ownership; continuity, storage, replay, branching, and handoff acquire none of these semantics."
+        },
+        "R2-CLAIM-0011": {
+          "relevance_type": "decisive_current_authority",
+          "semantic_role": "truth, knowledge, belief, and projection",
+          "exact_relevance": "The bounded AGENCY-RESP-10 owner record constrains the CF-08 claim without deciding its unresolved continuity representation.",
+          "owner_boundary_effect": "Preserves AFQR-10 ownership; continuity, storage, replay, branching, and handoff acquire none of these semantics."
+        },
+        "R2-CLAIM-0012": {
+          "relevance_type": "decisive_current_authority",
+          "semantic_role": "truth, knowledge, belief, and projection",
+          "exact_relevance": "The bounded AGENCY-RESP-10 owner record constrains the CF-07 claim without deciding its unresolved continuity representation.",
+          "owner_boundary_effect": "Preserves AFQR-10 ownership; continuity, storage, replay, branching, and handoff acquire none of these semantics."
+        },
+        "R2-CLAIM-0013": {
+          "relevance_type": "decisive_current_authority",
+          "semantic_role": "truth, knowledge, belief, and projection",
+          "exact_relevance": "The bounded AGENCY-RESP-10 owner record constrains the CF-07 claim without deciding its unresolved continuity representation.",
+          "owner_boundary_effect": "Preserves AFQR-10 ownership; continuity, storage, replay, branching, and handoff acquire none of these semantics."
+        },
+        "R2-CLAIM-0022": {
+          "relevance_type": "decisive_current_authority",
+          "semantic_role": "truth, knowledge, belief, and projection",
+          "exact_relevance": "The bounded AGENCY-RESP-10 owner record constrains the CF-12 claim without deciding its unresolved continuity representation.",
+          "owner_boundary_effect": "Preserves AFQR-10 ownership; continuity, storage, replay, branching, and handoff acquire none of these semantics."
+        },
+        "R2-CLAIM-0024": {
+          "relevance_type": "decisive_current_authority",
+          "semantic_role": "truth, knowledge, belief, and projection",
+          "exact_relevance": "The bounded AGENCY-RESP-10 owner record constrains the CF-12 claim without deciding its unresolved continuity representation.",
+          "owner_boundary_effect": "Preserves AFQR-10 ownership; continuity, storage, replay, branching, and handoff acquire none of these semantics."
+        }
+      },
+      "semantic_summary": "AGENCY-RESP-10 preserves the bounded semantic ownership of AFQR-10.",
+      "semantic_status": "consistent_with_r1",
+      "reason_this_is_or_is_not_authoritative": "Accepted R1 bounded responsibility record.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00019",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 130,
+      "locator_heading_or_symbol": "This file is the Stage 2 owner specification for RT-007 social/faction/actor-knowledge ownership. It upgrades the RT-007 owner scaffold into a specification-level planning artifact",
+      "excerpt_sha256": "dc05fb85424a49b59b9607241514c20ab3712382f4e3c9510e40ddff943cb610",
+      "matched_terms": [
+        "compensation",
+        "disclosure",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "control_or_gate",
+      "authority_level": "tracking_control_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded control or gate block uses compensation, disclosure, projection, promotion, quarantine, rng, visibility to describe sequencing, ownership, or data-shape constraints local to RT007_social_faction_actor_knowledge_owner_specification.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00020",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 156,
+      "line_end": 256,
+      "locator_heading_or_symbol": "- hidden_motive_visibility_required",
+      "excerpt_sha256": "a2b8d7d109d69d36d8cbbfeb9cff4fab0b349aa06845731271c133fa70a013d9",
+      "matched_terms": [
+        "compensation",
+        "projection",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "control_or_gate",
+      "authority_level": "tracking_control_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded control or gate block uses compensation, projection, quarantine, rng, truth, visibility to describe sequencing, ownership, or data-shape constraints local to RT007_social_faction_actor_knowledge_owner_specification.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00021",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/control/RT007_social_faction_actor_knowledge_owner_specification.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 287,
+      "line_end": 407,
+      "locator_heading_or_symbol": "- RT-001 for command lifecycle, action legality, social action declarations, faction action timing, rejection/quarantine, and event/state commitment boundaries;",
+      "excerpt_sha256": "9f25196c8fec54376c13c50028bee948a9646d8ffe9a3c6fca48639597d87417",
+      "matched_terms": [
+        "compensation",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "control_or_gate",
+      "authority_level": "tracking_control_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded control or gate block uses compensation, projection, promotion, quarantine, rng, seed, truth to describe sequencing, ownership, or data-shape constraints local to RT007_social_faction_actor_knowledge_owner_specification.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00033",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 110,
+      "locator_heading_or_symbol": "B09 defines how operational attention is routed when social, factional, legal, institutional, standing, access, claim, obligation, authority, or relationship pressure appears after",
+      "excerpt_sha256": "906c9e9f568714b0830c5c425c3d1ee956a71c4c103a40a57389cd93df8bc705",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "documentation",
+      "authority_level": "candidate_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded documentation block uses context packet, promotion, quarantine, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00034",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 243,
+      "locator_heading_or_symbol": "4. **Identify social intent and method**: classify whether the event is a request, negotiation, diplomacy, persuasion, intimidation, deception, mediation, petition, bargain, threat",
+      "excerpt_sha256": "e1f8b66e992fb1de0d92b05895f8ccfba2981ead98895a946b310c7533396977",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "documentation",
+      "authority_level": "candidate_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded documentation block uses evidence, quarantine, settlement, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00035",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 261,
+      "line_end": 377,
+      "locator_heading_or_symbol": "B09 may identify rumor, propaganda, misinformation, secrecy, hidden agenda, public claim, private standing, hidden standing, and social pressure, but it must not decide actual hidd",
+      "excerpt_sha256": "168a3d606b5709f8a9a065a1c70494a4cd4a2399a17facb376d56b34df71d27a",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "documentation",
+      "authority_level": "candidate_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded documentation block uses context packet, evidence, quarantine, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00036",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "path": "docs/doctrine/operations/batch_b/B09_social_faction_contact_and_institutional_interaction_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 392,
+      "line_end": 481,
+      "locator_heading_or_symbol": "delta_routing_status: no_delta_required | owner_routed | transition_note | source_local_retained_effect | quarantined_unresolved_delta | owner_file_escalation",
+      "excerpt_sha256": "55367134ba22af191ffb41e73a0b800e42c1c941d5183eaea77b672b5d58fe2e",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "surface_kind": "documentation",
+      "authority_level": "candidate_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded documentation block uses context packet, evidence, promotion, quarantine, truth, visibility to describe sequencing, ownership, or data-shape constraints local to B09_social_faction_contact_and_institutional_interaction_procedure.md; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00125",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC"
+      ],
+      "path": "src/astra_runtime/kernel/context_projection.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "\"\"\"Context projection skeleton \u2014 backend-owned, no context-packet compiler.\"\"\"",
+      "excerpt_sha256": "8a3d359333bd159616a32dab2cece587e765d550f902cb8509fa246e9d939294",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "surface_kind": "runtime_implementation",
+      "authority_level": "implementation_contract_only",
+      "currentness": "current",
+      "generality": "vertical_slice",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded runtime implementation block uses projection, visibility to describe a mandatory executable contract local to context_projection.py; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "runtime_presupposition",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": "Narrow evidence; do not generalize.",
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00126",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC"
+      ],
+      "path": "src/astra_runtime/kernel/context_projection.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 122,
+      "line_end": 225,
+      "locator_heading_or_symbol": "if tier not in ALLOWED_VISIBILITY_TIERS:",
+      "excerpt_sha256": "f01ad251aedccba0ceb618d36b60a0809b89b15111dd5556fbec90a3125b8729",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "surface_kind": "runtime_implementation",
+      "authority_level": "implementation_contract_only",
+      "currentness": "current",
+      "generality": "vertical_slice",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded runtime implementation block uses projection, visibility to describe a mandatory executable contract local to context_projection.py; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "runtime_presupposition",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": "Narrow evidence; do not generalize.",
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00127",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC"
+      ],
+      "path": "src/astra_runtime/kernel/hidden_information.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 122,
+      "locator_heading_or_symbol": "class VisibilityTierError(HiddenInformationError):",
+      "excerpt_sha256": "69c14fd89d1bf1d0e7e7dcf22869999805c703a49676975099ce92edb8cfbfbb",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "surface_kind": "runtime_implementation",
+      "authority_level": "implementation_contract_only",
+      "currentness": "current",
+      "generality": "vertical_slice",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [],
+      "applicable_r1d_responsibility_ids": [],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "The bounded runtime implementation block uses visibility to describe a mandatory executable contract local to hidden_information.py; it is evidence, not a transfer of R1 semantic ownership.",
+      "semantic_status": "runtime_presupposition",
+      "reason_this_is_or_is_not_authoritative": "Current contract evidence only; accepted R1/R1E remains superior and ownership is not transferred.",
+      "narrow_fixture_warning": "Narrow evidence; do not generalize.",
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Exact bounded baseline evidence."
+    },
+    {
+      "surface_id": "R2A-SURFACE-00132",
+      "primary_shard": "AGENCY",
+      "secondary_family_links": [
+        "CF-08_EPISTEMIC"
+      ],
+      "path": "docs/doctrine/control/RT007_social_faction_knowledge_state_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 8,
+      "locator_heading_or_symbol": "# RT-007 Social / Faction / Knowledge-State Owner Scaffold",
+      "excerpt_sha256": "000c756ed891fb39f8742a51cc24f1b22b5123c5352579fc52beb78d7b3c8935",
+      "matched_terms": [],
+      "matched_search_clusters": [],
+      "surface_kind": "control_or_gate",
+      "authority_level": "tracking_control_only",
+      "currentness": "current",
+      "generality": "subsystem_scoped",
+      "phase_or_gate": "received baseline",
+      "declared_owner": "surface-local; no ownership transfer",
+      "applicable_afqr_ids": [
+        "AFQR-10"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "AGENCY-RESP-10"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": {},
+      "semantic_summary": "RT007 scaffold records a bounded actor-knowledge owner handoff and does not itself become epistemic doctrine.",
+      "semantic_status": "partial_but_not_conflicting",
+      "reason_this_is_or_is_not_authoritative": "Control scaffold only; accepted AFQR-10 authority remains superior.",
+      "narrow_fixture_warning": null,
+      "conflicting_surface_ids": [],
+      "superseded_by": null,
+      "inventory_notes": "Explicit priority-set inspection despite no controlled lexical match."
+    }
+  ],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 118,
+      "locator_heading_or_symbol": "The family keeps truth, epistemic state, agency, personhood, motivation, behavior, social state, communication, interpretation, and institutional doctrine distinct. It owns none of",
+      "excerpt_sha256": "214766589ef1f65ac0b899f95b18fa2af90f7161da478732bc55b9ccd5689308",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "quarantine",
+        "sensing",
+        "supersedes",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThe family keeps truth, epistemic state, agency, personhood, motivation, behavior, social state, communication, interpretation, and institutional doctrine distinct. It ow\u201d. Distinguishing context: \u201c## 1. Metadata and authority This bounded family artifact consolidates the six directly reviewed primary architectures under merged R1B vocabulary, R1C dependencies, and R1D-CORE boundaries. The JSON contract i\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 133,
+      "line_end": 235,
+      "locator_heading_or_symbol": "\"form\": \"epistemic observation record\",",
+      "excerpt_sha256": "4fe1e841c5433bc5bfd086d1e38767cf134d276d1cf4da72487ed26636f4140e",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"form\": \"epistemic observation record\", \"owner\": \"AFQR-10\" } ], \"source_evidence_identifiers\": [ \"SRC-0022\" ], \"source_paths\": [ \"working/afqr_consolidation_inputs/extrac\u201d. Distinguishing context: \u201c\"form\": \"knowledge\", \"owner\": \"AFQR-10\" }, { \"term_id\": \"TERM-022\", \"form\": \"epistemic observation record\", \"owner\": \"AFQR-10\" } ], \"source_evidence_identifiers\": [ \"SRC-0022\" ], \"source_paths\": [ \"working/afqr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 260,
+      "line_end": 368,
+      "locator_heading_or_symbol": "\"epistemic truth\",",
+      "excerpt_sha256": "96b874d137e187057ffa4f021c9c8b31a8a22270936ed8080e9df13559f43cf6",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"epistemic truth\", \"social state\", \"institutional authority\", \"command execution\", \"action resolution\", \"universal psychology\" ], \"r1b_terms_or_qualified_forms\": [ { \"ter\u201d. Distinguishing context: \u201c\"agency\", \"personhood\", \"consent\", \"responsibility\", \"identity\", \"epistemic truth\", \"social state\", \"institutional authority\", \"command execution\", \"action resolution\", \"universal psychology\" ], \"r1b_terms_or_q\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 389,
+      "line_end": 485,
+      "locator_heading_or_symbol": "\"epistemic truth\",",
+      "excerpt_sha256": "6112c11d8deb65ab8ca10ee785a77e92337b835c840b96e049d2ef752c05ce3a",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"epistemic truth\", \"knowledge or belief\", \"claim admissibility\", \"speaker motivation\", \"listener agency\", \"social outcome\", \"institutional adjudication\", \"action resoluti\u201d. Distinguishing context: \u201c\"negotiation\", \"interaction protocols\" ], \"explicit_nonowned_concerns\": [ \"physical signal propagation or detection\", \"epistemic truth\", \"knowledge or belief\", \"claim admissibility\", \"speaker motivation\", \"list\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 512,
+      "line_end": 600,
+      "locator_heading_or_symbol": "\"donor_pressure_risks\": \"donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default\"",
+      "excerpt_sha256": "ed14069eb7314d85ad4be63fc42b62296bc67aa4937a7f00936e4e5c30848275",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"donor_pressure_risks\": \"donor construct may remain source-local, be quarantined, or escalate; it never becomes a universal Astra default\" } ], \"internal_edge_disposition\u201d. Distinguishing context: \u201c\"unresolved_seams\": [ \"COLL-03\", \"COLL-08\" ], \"later_implementation_handoff\": \"post-R1E doctrine and separately authorized implementation only\", \"donor_pressure_risks\": \"donor construct may remain source-local,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 640,
+      "line_end": 741,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "574b60bccf29b95f8f157d600a6fadf5a4e1a67be3947def689d344093da9c6c",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0022\", \"SRC-0082\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 780,
+      "line_end": 873,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "8607f4bda64adee22e75295539ec90b4c1cc7227c26f08993b206eed1cd68b82",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0041\", \"SRC-0072\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 918,
+      "line_end": 1011,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "1f10a0337d48adae3f9dcab2c43f9f26675d88b8ae9335c8318ce84761f58e1b",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0041\", \"SRC-0125\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1064,
+      "line_end": 1181,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "a239ab25b3d1e85a54952dcc22bef24f4efc3b2a8d8108d9ad70c3460a75e4d0",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"SRC-0022\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1187,
+      "line_end": 1303,
+      "locator_heading_or_symbol": "\"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md\",",
+      "excerpt_sha256": "9a315cf9f1feea982be2cf4ae33cf726256720a93c47f1b996bf0dee1d642351",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md\", \"working/afqr_consolidatio\u201d. Distinguishing context: \u201c\"identifiers\": [ \"SRC-0004\", \"SRC-0072\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md\", \"working/afq\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1317,
+      "line_end": 1419,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\"",
+      "excerpt_sha256": "85c24c36ec7a2425e4427dd2d89ce82b0d3e6c09ca073e9e4889af88a0ca2bc7",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\" }, { \"record_id\": \"AGENCY-DEP-014\", \"edge_id\": \"DEP-014\", \"producer\": \"AFQR-01\", \"consumer\": \"A\u201d. Distinguishing context: \u201c\"agency_family_endpoint\": \"AFQR-14\", \"external_endpoint\": \"AFQR-01\", \"external_family\": \"R1D-CORE\", \"direction\": \"import\", \"typed_producer_output\": \"Bounded commit output identified by DEP-013; scope remains li\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1442,
+      "line_end": 1551,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "d659c9deae43e93d2aae66618e32da3e6e60d8c55f103c8864b2f52a8c4b6826",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0008\", \"SRC-0041\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1574,
+      "line_end": 1693,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "eb4cb3a97ce43ac565aa10cf8d5f3601d751f2642eab58355ae3377c000f4076",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0008\", \"SRC-0125\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1699,
+      "line_end": 1817,
+      "locator_heading_or_symbol": "\"working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md\",",
+      "excerpt_sha256": "8fd3b7953bbf99d48a9b90d5b4a19394a4d5440be3a76aa21a8a610eaf1a826d",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md\", \"working/afqr\u201d. Distinguishing context: \u201c\"identifiers\": [ \"SRC-0009\", \"SRC-0125\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1824,
+      "line_end": 1944,
+      "locator_heading_or_symbol": "\"handoff_kind\": \"identity_evidence\",",
+      "excerpt_sha256": "044edd2101106ee5d85ca8845762bd2e8dca69bc5bda32b0a93ade6f7acaf5f5",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"handoff_kind\": \"identity_evidence\", \"semantic_owner\": { \"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-08\", \"r1b_terms\": [ \"TERM-013\" ], \"r1b_term_bindings\": [ { \"term_id\": \"TE\u201d. Distinguishing context: \u201c{ \"record_id\": \"AGENCY-DEP-057\", \"edge_id\": \"DEP-057\", \"producer\": \"AFQR-08\", \"consumer\": \"AFQR-12\", \"handoff_kind\": \"identity_evidence\", \"semantic_owner\": { \"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-08\", \"r1b_te\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1952,
+      "line_end": 2063,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "6f9b42026b8c83af638a05d2d12d1a5bc71a990ee50b8282450abe6c021ba00f",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0011\", \"SRC-0125\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2077,
+      "line_end": 2182,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\"",
+      "excerpt_sha256": "cdcff46bfd71761bdff4f79d357e3fc433eff5f406b59a09e50b1786e092cd03",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\" }, { \"record_id\": \"AGENCY-DEP-069\", \"edge_id\": \"DEP-069\", \"producer\": \"AFQR-09\", \"consumer\": \"A\u201d. Distinguishing context: \u201c\"agency_family_endpoint\": \"AFQR-13\", \"external_endpoint\": \"AFQR-09\", \"external_family\": \"R1D-CORE\", \"direction\": \"import\", \"typed_producer_output\": \"Bounded relation_lifecycle output identified by DEP-068; scop\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2214,
+      "line_end": 2320,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "dc29fc2486fa07a012b963d6eefc4d2173792ac401c5aba5b8f0b5d9ef485184",
+      "matched_terms": [
+        "evidence",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0022\", \"SRC-0231\" ], \"paths\": [ \"working/\u201d. Distinguishing context: \u201c\"preconditions\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2340,
+      "line_end": 2460,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\"",
+      "excerpt_sha256": "698c850874335fe5ee9f757aadace2a97a05b5948058bda9666be36ac517dc11",
+      "matched_terms": [
+        "evidence",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\" }, { \"record_id\": \"AGENCY-DEP-087\", \"edge_id\": \"DEP-087\", \"producer\": \"AFQR-14\", \"consumer\": \"A\u201d. Distinguishing context: \u201c\"agency_family_endpoint\": \"AFQR-11\", \"external_endpoint\": \"AFQR-19\", \"external_family\": \"R1D-WORLD\", \"direction\": \"export\", \"typed_producer_output\": \"Bounded agency_handoff output identified by DEP-084; scope r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2466,
+      "line_end": 2582,
+      "locator_heading_or_symbol": "\"result\": \"exact parity confirmed for direction, endpoints, handoff kind, producer output, semantic owner, nontransfer, failure behavior, and evidence\"",
+      "excerpt_sha256": "6a5391f821a3be47dee2fe1a4f7ae049dd622cba7b829bce1d669bb08e52d9ed",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "sensing",
+        "supersedes",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"result\": \"exact parity confirmed for direction, endpoints, handoff kind, producer output, semantic owner, nontransfer, failure behavior, and evidence\" }, { \"record_id\": \u201d. Distinguishing context: \u201c}, { \"record_id\": \"AGENCY-PARITY-DEP-050\", \"edge_id\": \"DEP-050\", \"core_record\": \"R1D-CORE-boundary-DEP-050\", \"result\": \"exact parity confirmed for direction, endpoints, handoff kind, producer output, semantic o\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2588,
+      "line_end": 2702,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "89648b321ec4cb6e251d9f8d62da227a25e6fe494e4c0bb3e5c1c9d1243d62bb",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [ \"SRC-0022\", \"SRC-0149\" ], \"source_paths\": [ \"docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml\", \"working/afqr_cons\u201d. Distinguishing context: \u201c\"r1c_invariant_ids\": [ \"INV-002\", \"INV-003\" ], \"provenance_kind\": \"r1c_derived\", \"source_evidence_identifiers\": [ \"SRC-0022\", \"SRC-0149\" ], \"source_paths\": [ \"docs/doctrine/consolidation/afqr_cross_invariants_a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2718,
+      "line_end": 2834,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "58d8fcbaa76f4af6681cc6930f51853f20f4cd8cb0f3138b48b738a90d8e083e",
+      "matched_terms": [
+        "evidence",
+        "migration"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [ \"SRC-0092\" ], \"source_paths\": [ \"docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml\", \"working/afqr_consolidation_in\u201d. Distinguishing context: \u201c\"rule\": \"behavior is not responsibility\", \"r1c_invariant_ids\": [ \"INV-008\" ], \"provenance_kind\": \"r1c_derived\", \"source_evidence_identifiers\": [ \"SRC-0092\" ], \"source_paths\": [ \"docs/doctrine/consolidation/afqr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2846,
+      "line_end": 2955,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "fa8984b370505fa09e9fb66a6f00f8f8a9688556e96ed849fc4c55ea36d66b8b",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [ \"SRC-0012\", \"SRC-0110\" ], \"source_paths\": [ \"docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml\", \"working/afqr_cons\u201d. Distinguishing context: \u201c\"rule\": \"jurisdiction is not reachability\", \"r1c_invariant_ids\": [ \"INV-006\" ], \"provenance_kind\": \"r1c_derived\", \"source_evidence_identifiers\": [ \"SRC-0012\", \"SRC-0110\" ], \"source_paths\": [ \"docs/doctrine/cons\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2970,
+      "line_end": 3072,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "59b16e64f9876176b3c0b8a8fedb7448f772aff79e97db5951f9757727abba41",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [ \"SRC-0012\", \"SRC-0110\" ], \"source_paths\": [ \"docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml\", \"working/afqr_cons\u201d. Distinguishing context: \u201c\"rule\": \"negotiation is not automatic obligation\", \"r1c_invariant_ids\": [ \"INV-006\" ], \"provenance_kind\": \"r1c_derived\", \"source_evidence_identifiers\": [ \"SRC-0012\", \"SRC-0110\" ], \"source_paths\": [ \"docs/doctri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3123,
+      "line_end": 3138,
+      "locator_heading_or_symbol": "\"exact_r1b_evidence_record_identifiers\": [",
+      "excerpt_sha256": "1ee6ea1f66c859d58843ebb5fc6dd16e64cc43f5a57845baec088b3ed60cd57f",
+      "matched_terms": [
+        "evidence",
+        "migration"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"exact_r1b_evidence_record_identifiers\": [ \"SRC-0012\", \"SRC-0110\", \"SRC-0157\" ], \"exact_r1b_lawful_interim_usage\": \"Use accepted qualified forms and explicit AFQR owner s\u201d. Distinguishing context: \u201c\"AFQR-09\", \"AFQR-13\", \"AFQR-15\", \"Astra Doctrine Council\" ], \"exact_r1b_evidence_record_identifiers\": [ \"SRC-0012\", \"SRC-0110\", \"SRC-0157\" ], \"exact_r1b_lawful_interim_usage\": \"Use accepted qualified forms and \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3189,
+      "line_end": 3305,
+      "locator_heading_or_symbol": "\"exact_r1b_evidence_record_identifiers\": [",
+      "excerpt_sha256": "f233709305efad3219f6cf76852a72ff87b8b44561ea1decce4396cf7552313a",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "migration",
+        "projection",
+        "schedule",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"exact_r1b_evidence_record_identifiers\": [ \"SRC-0059\", \"SRC-0092\", \"SRC-0110\" ], \"exact_r1b_lawful_interim_usage\": \"Use accepted qualified forms and explicit AFQR owner s\u201d. Distinguishing context: \u201c\"AFQR-11\", \"AFQR-12\", \"AFQR-13\", \"Astra Doctrine Council\" ], \"exact_r1b_evidence_record_identifiers\": [ \"SRC-0059\", \"SRC-0092\", \"SRC-0110\" ], \"exact_r1b_lawful_interim_usage\": \"Use accepted qualified forms and \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3314,
+      "line_end": 3410,
+      "locator_heading_or_symbol": "\"exact_owner_disposition\": \"separate source-backed owners: AFQR-18 spatial/topology; AFQR-20 signal/sensing; AFQR-16 embodiment; AFQR-15 institution/jurisdiction; AFQR-13 social st",
+      "excerpt_sha256": "3287c1f842436db170a7ea8effa2f744bba9c51e3d1d6a5f8094af5c0ec10db2",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"exact_owner_disposition\": \"separate source-backed owners: AFQR-18 spatial/topology; AFQR-20 signal/sensing; AFQR-16 embodiment; AFQR-15 institution/jurisdiction; AFQR-13\u201d. Distinguishing context: \u201c}, { \"record_id\": \"AGENCY-SUB-005\", \"substrate_id\": \"SUB-005\", \"exact_substrate_name\": \"generalized spatial, signal, embodiment, institution, and social owner contracts\", \"exact_owner_disposition\": \"separate so\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3440,
+      "line_end": 3558,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "185ff5b6b9f9b2b0e7bbe1cddaa69fec4795fd7713aaf318eb5198805e19cb9b",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"karma treated as truth or responsibility\" ], \"escalation_triggers\": [ \"oath legal effect or sect jurisdiction is unspecified\" ], \"prohibited_uni\u201d. Distinguishing context: \u201c\"source_local_constructs\": [ \"dao conviction scales\", \"heart-demon models\", \"karmic reputation systems\" ], \"quarantine_triggers\": [ \"karma treated as truth or responsibility\" ], \"escalation_triggers\": [ \"oath l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3590,
+      "line_end": 3679,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "1d4242cc6fd7b21a1064692d9852ac5606e351c2223168c15ab1154e9a6c0e90",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "projection",
+        "quarantine",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"telepathy treated as automatic truth, consent, control, or communication success\" ], \"escalation_triggers\": [ \"possessor/host identity or respon\u201d. Distinguishing context: \u201c], \"source_local_constructs\": [ \"psionic disciplines\", \"shared-mind metaphysics\" ], \"quarantine_triggers\": [ \"telepathy treated as automatic truth, consent, control, or communication success\" ], \"escalation_tri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3712,
+      "line_end": 3831,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "b593f0fdc1bc7742c6ebcc5abbccc855d413531dedcd932865a272c7769f80cc",
+      "matched_terms": [
+        "quarantine",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"membership or copying proves shared agency/responsibility\" ], \"escalation_triggers\": [ \"collective identity, consent, or control attribution unr\u201d. Distinguishing context: \u201c], \"source_local_constructs\": [ \"summoning bonds\", \"swarm cognition rules\" ], \"quarantine_triggers\": [ \"membership or copying proves shared agency/responsibility\" ], \"escalation_triggers\": [ \"collective identit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3866,
+      "line_end": 3940,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "0bd23666c955189fffa57cd0b9143babd6c05759c62c37837458c816773ac2f8",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"negotiation creates obligation or adjudication performs execution\" ], \"escalation_triggers\": [ \"contract/oath lifecycle or evidence standard uns\u201d. Distinguishing context: \u201c\"source_local_constructs\": [ \"quest structures\", \"social encounter procedures\", \"trial scripts\" ], \"quarantine_triggers\": [ \"negotiation creates obligation or adjudication performs execution\" ], \"escalation_tri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 131,
+      "locator_heading_or_symbol": "This file creates the documentation/control owner scaffold for RT-005, the scene/activity orchestration and hidden-information/context-packet boundary track identified by `REMEDIAT",
+      "excerpt_sha256": "d2ac50ff4bd9c9109da6a784c18dc90a847b6b0822189e03ed5536377fb79e5c",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "corruption",
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis file creates the documentation/control owner scaffold for RT-005, the scene/activity orchestration and hidden-information/context-packet boundary track identified by\u201d. Distinguishing context: \u201cRemediation track: RT-005-scene-activity-context-packets Owner: Astra Doctrine Council / future scene activity and context-packet boundary control owner ## 1. Purpose and scope This file creates the documentati\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/control/RT005_context_packet_hidden_information_owner_scaffold.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 172,
+      "locator_heading_or_symbol": "RT-005 consumes RT-001 command lifecycle boundaries for scene transitions, action availability, event commitment, and narration handoff. RT-005 consumes RT-002 for resource/consequ",
+      "excerpt_sha256": "b19f46a99a3906d31d43b5be8cbf16b23bdfbb3e9c7b5173f09469f218f9e7d8",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "promotion",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cRT-005 consumes RT-001 command lifecycle boundaries for scene transitions, action availability, event commitment, and narration handoff. RT-005 consumes RT-002 for resour\u201d. Distinguishing context: \u201c- tests proving backend authority over context packets, redaction, knowledge partitions, and narration boundaries; - decision records for any movement from owner-scaffold planning to implementation. ## 10. Depe\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

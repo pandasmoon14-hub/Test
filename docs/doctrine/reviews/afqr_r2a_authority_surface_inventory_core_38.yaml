@@ -1,0 +1,150 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-38",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 849,
+      "line_end": 969,
+      "locator_heading_or_symbol": "| MOT-080 | No lawful intention determination is possible. | intentions | return unresolved, inapplicable, quarantined, or escalated as appropriate; no fallback policy | minimal ou",
+      "excerpt_sha256": "2414b8008bfed2d93a27f2bffba7525575f5ab8d4d2fc8430a833282965a8e8b",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "quarantine",
+        "rng",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| MOT-080 | No lawful intention determination is possible. | intentions | return unresolved, inapplicable, quarantined, or escalated as appropriate; no fallback policy | \u201d. Distinguishing context: \u201c| MOT-075 | Intention survives body replacement. | intentions | intention formed, retained, reconsidered, interrupted, corrupted, or unresolved; no execution | minimal outcome without hidden motives, options, p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 974,
+      "line_end": 1080,
+      "locator_heading_or_symbol": "**Exists:** backend-authority doctrine; actor/capability owner references; visibility/redaction fixtures; narrow object/lever command, preview, event/delta, and audit records.",
+      "excerpt_sha256": "23b9130afae2797787fe537791dbc33d37a0db3868b33c2d4744ac0b440af51b",
+      "matched_terms": [
+        "corruption",
+        "disclosure",
+        "evidence",
+        "preview",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "rollback",
+        "schedule",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c**Exists:** backend-authority doctrine; actor/capability owner references; visibility/redaction fixtures; narrow object/lever command, preview, event/delta, and audit rec\u201d. Distinguishing context: \u201c| MOT-200 | Behavioral outcome remains lawfully unresolved. | continuity_collectives_hidden | return unresolved, inapplicable, quarantined, or escalated as appropriate; no fallback policy | minimal outcome with\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1108,
+      "line_end": 1154,
+      "locator_heading_or_symbol": "| replay | REPLAY-001 | Motive state at the decision checkpoint is retained. |",
+      "excerpt_sha256": "600d43fc5b70ecfb5adf583611797e72159bde66af13118113ebe7ea5011b9a5",
+      "matched_terms": [
+        "archive",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| replay | REPLAY-001 | Motive state at the decision checkpoint is retained. | | replay | REPLAY-002 | Appraisal and emotion timing are retained. | | replay | REPLAY-003 \u201d. Distinguishing context: \u201c| player_model_boundaries | PLAYER_MODEL_BOUNDARIES-005 | Model output claims require grounding. | | player_model_boundaries | PLAYER_MODEL_BOUNDARIES-006 | Cross-packet motive leakage is tested. | | player_mod\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 13,
+      "locator_heading_or_symbol": "No institution, office, title, faction, territory, rule text, public record, judgment, recognition claim, effective controller, enforcement actor, donor descriptor, or model statem",
+      "excerpt_sha256": "06f0e19a9095b2689debf3da3e561265817120f04bf2c6b619854b1a55ea1595",
+      "matched_terms": [
+        "evidence",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cNo institution, office, title, faction, territory, rule text, public record, judgment, recognition claim, effective controller, enforcement actor, donor descriptor, or mo\u201d. Distinguishing context: \u201c## Decision Adopt **Registered Federated Institutional\u2013Jurisdictional Architecture with Relational Normative Positions, Versioned Rule Materials, Protocol-Governed Adjudication, Profiled Legitimacy, and Separat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 22,
+      "locator_heading_or_symbol": "- diagnosis does not mutate condition truth;",
+      "excerpt_sha256": "35ed2bde23d36a85721185f29b1091661aacbcfcfa950dc98af97248061a743d",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- diagnosis does not mutate condition truth;\u201d. Distinguishing context: \u201c- bodies and structures use versioned component\u2013function\u2013dependency graphs; - harm is resolved through staged contact, transfer, penetration, uptake, effect, injury, condition, and function pipelines; - protect\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-18/ARCH-10/adrs/AFQR-18_Spatiotemporal_Topology.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 22,
+      "locator_heading_or_symbol": "No place name, location field, coordinate tuple, map feature, route plan, range label, movement declaration, portal description, travel summary, donor rule, sensor estimate, public",
+      "excerpt_sha256": "7f4044170d34702c81ddc3699a89f64b84ac905787f17c6530ad30ad53f21236",
+      "matched_terms": [
+        "observation",
+        "rollback",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cNo place name, location field, coordinate tuple, map feature, route plan, range label, movement declaration, portal description, travel summary, donor rule, sensor estima\u201d. Distinguishing context: \u201c## Decision Adopt **Registered Federated Spatiotemporal Topology Architecture with Typed Domain\u2013Frame\u2013Support Ownership, Plural Metric\u2013Reachability Profiles, Atomic Movement\u2013Occupancy Transitions, and Bitempora\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

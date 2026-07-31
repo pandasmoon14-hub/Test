@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-AUTHORITY-SURFACE-INVENTORY-001",
-  "status": "review",
+  "status": "PASS",
   "phase": "R2A",
   "authority": "tracking_review_only",
   "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
@@ -149,7 +149,7 @@
   "candidate_occurrence_block_count": 2684,
   "mapped_candidate_file_count": 31,
   "dismissed_candidate_file_count": 719,
-  "mapped_surface_count": 132,
+  "mapped_surface_count": 135,
   "dismissed_occurrence_block_count": 2553,
   "unaccounted_candidate_file_count": 0,
   "unaccounted_occurrence_count": 0,
@@ -157,103 +157,403 @@
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core.yaml",
-      "surface_count": 0,
-      "dismissed_occurrence_block_count": 321
+      "surface_count": 7,
+      "dismissed_occurrence_block_count": 38
     },
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_02.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 296
+      "dismissed_occurrence_block_count": 45
     },
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_03.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 287
+      "dismissed_occurrence_block_count": 45
     },
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_04.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 359
+      "dismissed_occurrence_block_count": 45
     },
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_05.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 340
+      "dismissed_occurrence_block_count": 45
     },
     {
       "shard": "CORE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_06.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 61
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_07.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_08.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_09.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_10.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_11.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_12.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_13.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_14.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_15.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_16.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_17.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_18.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_19.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_20.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_21.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_22.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_23.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_24.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_25.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_26.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_27.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_28.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_29.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_30.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_31.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_32.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_33.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_34.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_35.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_36.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_37.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core_38.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 6
     },
     {
       "shard": "AGENCY",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_agency.yaml",
       "surface_count": 12,
-      "dismissed_occurrence_block_count": 82
+      "dismissed_occurrence_block_count": 33
+    },
+    {
+      "shard": "AGENCY",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_agency_02.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "AGENCY",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_agency_03.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 4
     },
     {
       "shard": "WORLD",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world.yaml",
-      "surface_count": 112,
-      "dismissed_occurrence_block_count": 16
+      "surface_count": 45,
+      "dismissed_occurrence_block_count": 0
     },
     {
       "shard": "WORLD",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_02.yaml",
-      "surface_count": 0,
-      "dismissed_occurrence_block_count": 305
+      "surface_count": 45,
+      "dismissed_occurrence_block_count": 0
     },
     {
       "shard": "WORLD",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_03.yaml",
+      "surface_count": 18,
+      "dismissed_occurrence_block_count": 27
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_04.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 49
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_05.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_06.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_07.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_08.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_09.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_10.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world_11.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 28
     },
     {
       "shard": "CONTINUITY_CROSS_PHASE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase.yaml",
       "surface_count": 8,
-      "dismissed_occurrence_block_count": 260
+      "dismissed_occurrence_block_count": 37
     },
     {
       "shard": "CONTINUITY_CROSS_PHASE",
       "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_02.yaml",
       "surface_count": 0,
-      "dismissed_occurrence_block_count": 177
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_03.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_04.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_05.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_06.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_07.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_08.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_09.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 45
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase_10.yaml",
+      "surface_count": 0,
+      "dismissed_occurrence_block_count": 40
     }
   ],
-  "surface_count": 132,
+  "surface_count": 135,
   "counts_by_surface_kind": {
     "control_or_gate": 13,
     "documentation": 15,
-    "normative_doctrine": 9,
+    "normative_doctrine": 12,
     "production_schema": 6,
     "review_or_audit": 28,
     "runtime_implementation": 61
   },
   "counts_by_authority_level": {
     "candidate_only": 15,
-    "current_normative": 9,
+    "current_normative": 12,
     "implementation_contract_only": 61,
     "review_evidence_only": 28,
     "schema_contract_only": 6,
     "tracking_control_only": 13
   },
   "counts_by_currentness": {
-    "current": 132
+    "current": 135
   },
   "counts_by_generality": {
-    "family_scoped": 9,
+    "family_scoped": 12,
     "subsystem_scoped": 62,
     "vertical_slice": 61
   },
   "counts_by_semantic_status": {
-    "consistent_with_r1": 9,
+    "consistent_with_r1": 12,
     "partial_but_not_conflicting": 56,
     "runtime_presupposition": 61,
     "schema_presupposition": 6

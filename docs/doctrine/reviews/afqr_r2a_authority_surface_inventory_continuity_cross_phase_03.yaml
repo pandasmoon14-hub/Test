@@ -1,0 +1,941 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-03",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 152,
+      "line_end": 232,
+      "locator_heading_or_symbol": "If D19 finds one of these is missing, it records an owner patch, deferred ledger item, schema-phase need, source-local boundary, quarantine, or escalation. It does not solve the mi",
+      "excerpt_sha256": "40f308fc31df91659b8f36c784e9692cbc24fb62cd143bf250cce667710fdfd4",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cIf D19 finds one of these is missing, it records an owner patch, deferred ledger item, schema-phase need, source-local boundary, quarantine, or escalation. It does not so\u201d. Distinguishing context: \u201cnew canon sourcebook prose donor conversion output final backend implementation ``` If D19 finds one of these is missing, it records an owner patch, deferred ledger item, schema-phase need, source-local boundar\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 275,
+      "line_end": 275,
+      "locator_heading_or_symbol": "Boundary: D16 identifies harm, condition, vulnerability, resistance, corruption, and exposure pressure. D07 defines actual harm, condition, resistance, vulnerability, corruption, a",
+      "excerpt_sha256": "73c9989a69984cf4eef362bc7e18de0a20b459aff492eb4ea52299e8b7d64f66",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cBoundary: D16 identifies harm, condition, vulnerability, resistance, corruption, and exposure pressure. D07 defines actual harm, condition, resistance, vulnerability, cor\u201d. Distinguishing context: \u201c### D07 vs D16 Risk: harm pressure could become harm math. Boundary: D16 identifies harm, condition, vulnerability, resistance, corruption, and exposure pressure. D07 defines actual harm, condition, resistance,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 419,
+      "line_end": 528,
+      "locator_heading_or_symbol": "quarantine / escalation note",
+      "excerpt_sha256": "63e95f89adc9c2af7f82c52b45109edbc42fe33de874497465a33d891a59647f",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cquarantine / escalation note ``` ## Core handoff chains ### Chain 1 \u2014 Resolution-to-state ```text D02 resolution outcome -> D03 cost / resource pressure -> D07 harm / con\u201d. Distinguishing context: \u201ctravel / discovery state opposition / threat state value / reward / salvage / custody state campaign continuity state source-local state quarantine / escalation note ``` ## Core handoff chains ### Chain 1 \u2014 Res\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 553,
+      "line_end": 567,
+      "locator_heading_or_symbol": "-> decide direct / normalized / source-local / quarantine / escalation",
+      "excerpt_sha256": "a83c4d7ba4e0729e44a90ee4bd0b7beee81a277fdd00f9be2a0104fec5adc7a0",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c-> decide direct / normalized / source-local / quarantine / escalation -> record boundary -> prevent generalization -> route owner-file state ``` Control: source-local bo\u201d. Distinguishing context: \u201c### Chain 10 \u2014 Source-local construct ```text source-local donor construct -> identify owner files affected -> decide direct / normalized / source-local / quarantine / escalation -> record boundary -> prevent g\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 720,
+      "line_end": 720,
+      "locator_heading_or_symbol": "quarantined_record_shape",
+      "excerpt_sha256": "afcfb712508459a4f52c2dacc5838e3377f689f1c6c4e1ef85a04d33023bee32",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cquarantined_record_shape\u201d. Distinguishing context: \u201cneeds_minor_clarification possible_duplicate_review needs_owner_boundary_review needs_future_schema_owner source_local_only quarantined_record_shape escalated_schema_gap retired_record_shape ``` ## Minimum regi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 827,
+      "line_end": 874,
+      "locator_heading_or_symbol": "7. Identify quarantine and escalation triggers.",
+      "excerpt_sha256": "5f2bb80fab1bc2b4da039604b120094ef27b3cb0a18a07ba492d2a743404cf78",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c7. Identify quarantine and escalation triggers. 8. Identify readiness status. ``` ## Deferred work principles ```text Deferred does not mean optional. Deferred does not m\u201d. Distinguishing context: \u201c2. Identify why it was deferred. 3. Identify the current doctrine boundary owner. 4. Identify the future phase or owner that should resolve it. 5. Identify what must not be invented early. 6. Identify source-lo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 928,
+      "line_end": 958,
+      "locator_heading_or_symbol": "Deferred: damage-family math, injury thresholds, condition severity, corruption accumulation, exposure handling, resistance/vulnerability effects, death/incapacitation calibration,",
+      "excerpt_sha256": "ccae2c3f77ac97a9e466efbb4c58f41b57bec581e99653a461addbe2bccbe80b",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDeferred: damage-family math, injury thresholds, condition severity, corruption accumulation, exposure handling, resistance/vulnerability effects, death/incapacitation ca\u201d. Distinguishing context: \u201cRisk if invented early: leveling, cultivation realms, class evolution, prestige ranks, or LitRPG ladders become default. ### 5. Final harm, damage, resistance, vulnerability, and condition math Deferred: damage\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1028,
+      "line_end": 1131,
+      "locator_heading_or_symbol": "Deferred: campaign-state schema, arc/season/horizon schema, runtime persistence, context packets, event logs, pruning implementation, long-horizon tracking.",
+      "excerpt_sha256": "f5cdab81c311452a8dda602b1d1f10d858ea07e832817745c4effcafd8052b1f",
+      "matched_terms": [
+        "canon selection",
+        "context packet",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDeferred: campaign-state schema, arc/season/horizon schema, runtime persistence, context packets, event logs, pruning implementation, long-horizon tracking. Boundary owne\u201d. Distinguishing context: \u201cRisk if invented early: coins, shop prices, wealth-by-level, slots, encumbrance, loot tables, requisition lists, or cultivation resources become default. ### 15. Final campaign-state, arc, season, horizon, memo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1149,
+      "line_end": 1249,
+      "locator_heading_or_symbol": "closure, archive, or later-review condition",
+      "excerpt_sha256": "c328c1754c35b04338b15b18032727df31612f9d1a270c40608243d3de4344fc",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cclosure, archive, or later-review condition canon-candidate status if any ``` Source-local retention is lawful. Silent generalization is not. ### 4. Quarantined construct\u201d. Distinguishing context: \u201cexplicit boundary source or scenario scope owner-file handoffs rejected-import notes statement that it is not Astra baseline closure, archive, or later-review condition canon-candidate status if any ``` Source-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1276,
+      "line_end": 1387,
+      "locator_heading_or_symbol": "Canon-candidate status is review status only. It is not canon promotion.",
+      "excerpt_sha256": "eb0b11600595293540efcb9593b333a7b37017b30bb3c28398cc500df33e19a9",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cCanon-candidate status is review status only. It is not canon promotion. ## Outcome consistency rules ```text One construct may split into multiple subconstructs, each wi\u201d. Distinguishing context: \u201c## Canon-candidate distinction A source-local construct may become a canon candidate only when it recurs across donor families, solves a real Astra-native need, avoids unreviewed donor metaphysics/math, has own\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1407,
+      "line_end": 1516,
+      "locator_heading_or_symbol": "Pressure profile: hidden truth, clue gates, evidence custody, recurring dread, sanity-like pressure, corrupted location, NPC instability, limited supplies, conspiracy clock, campai",
+      "excerpt_sha256": "8447419a68ee2d7193032268e143cce7dbfafc35fd25198dae5ceba285195cd2",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "retcon",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPressure profile: hidden truth, clue gates, evidence custody, recurring dread, sanity-like pressure, corrupted location, NPC instability, limited supplies, conspiracy clo\u201d. Distinguishing context: \u201cExpected routing: D07 crew harm; D08 crew/AI/personhood if relevant; D09 ship/platform/cargo/object state; D10 law/world-state; D13 repair/refit Projects; D14 travel; D15 faction law/claims; D16 pirate/oppositi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1532,
+      "line_end": 1538,
+      "locator_heading_or_symbol": "Asks whether donor constructs route through D00\u2013D18, mixed constructs split, source-local systems remain bounded, quarantine/escalation are available, deferred gaps can be identifi",
+      "excerpt_sha256": "3d0ecfefc188a4bc8fa403141df9d644f482a8b7fa749571bea3cf34ccbb23bd",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAsks whether donor constructs route through D00\u2013D18, mixed constructs split, source-local systems remain bounded, quarantine/escalation are available, deferred gaps can b\u201d. Distinguishing context: \u201cnot_ready ``` ### Gate 2 \u2014 Conversion-readiness Asks whether donor constructs route through D00\u2013D18, mixed constructs split, source-local systems remain bounded, quarantine/escalation are available, deferred ga\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1659,
+      "line_end": 1772,
+      "locator_heading_or_symbol": "recommended_fix_route: owner_patch | handoff_note | record_registry_note | source_local_boundary | quarantine | escalation | no_action",
+      "excerpt_sha256": "86c7b6082acb4b80546d14b2f4ebe7fac8c121cfa9eea32af0f5efd6b9bd2ffe",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201crecommended_fix_route: owner_patch | handoff_note | record_registry_note | source_local_boundary | quarantine | escalation | no_action affected_files: [] notes: string ``\u201d. Distinguishing context: \u201csecondary_handoffs: [] lawful_decision_boundary: string non_decision_boundary: string status: clean_boundary | minor_clarification_needed | handoff_missing | boundary_conflict | duplicate_ownership | doctrine_g\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1782,
+      "line_end": 1782,
+      "locator_heading_or_symbol": "supporting_evidence: []",
+      "excerpt_sha256": "5013ac091ad63dbdfaa6b3c0a1b1d4d48abfd730f0068fed7e143087f41b4891",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201csupporting_evidence: []\u201d. Distinguishing context: \u201c```yaml capstone_readiness_entry: readiness_area: repo_integration | conversion | canon_consolidation | schema_runtime | live_play_adapter | mixed status: string supporting_evidence: [] blockers: [] required_ne\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1851,
+      "line_end": 1874,
+      "locator_heading_or_symbol": "source-local / quarantine / escalation controls are present;",
+      "excerpt_sha256": "79a256efbea4335b66332b42c04c21950717da23570aebe9566f69ed2ddc336c",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201csource-local / quarantine / escalation controls are present; cross-pack dependencies are clear enough for repo review; known deferred items are logged; D19 has not mutate\u201d. Distinguishing context: \u201cfiles are structurally complete; filenames are stable; pack manifests exist; owner boundaries are clear; not-final-schema warnings are present; source-local / quarantine / escalation controls are present; cross\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_combined_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2010,
+      "line_end": 2044,
+      "locator_heading_or_symbol": "Quarantine becoming a dumping ground.",
+      "excerpt_sha256": "135e8c8b250df2a14c32dbfa391e5b2a494dcdad64ba1e6dca084039fb519863",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cQuarantine becoming a dumping ground. Escalation being too broad to act on. Stress tests becoming sample conversions. Stress tests being too easy. Readiness gates implyin\u201d. Distinguishing context: \u201cDeferred work treated as permission to invent. Deferred ledger becoming generic to-do list. Lawful outcomes drifting into informal handling. Mixed constructs handled as blobs. Source-local retention becoming hi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D19_cross_pack_integration_conflict_audit_and_conversion_readiness_capstone_pack/D19_capstone_doctrine_pack/D19_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 40,
+      "locator_heading_or_symbol": "\"D19-05_lawful_outcome_consistency_source_local_quarantine_and_escalation_audit.md\",",
+      "excerpt_sha256": "28747b19b6759a895f1a856df4bdfb929aa3890d362322326d3d38085d98fb47",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D19-05_lawful_outcome_consistency_source_local_quarantine_and_escalation_audit.md\", \"D19-06_mixed_donor_routing_stress_tests_conversion_readiness_trials_and_corpus_scale\u201d. Distinguishing context: \u201c\"D19-00_cross_pack_integration_conflict_audit_and_conversion_readiness_owner_boundaries.md\", \"D19-01_owner_boundary_audit_conflict_taxonomy_and_cross_pack_dependency_control.md\", \"D19-02_cross_pack_handoff_matr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-05_source_local_and_conversion_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 71,
+      "locator_heading_or_symbol": "Donor systems may inform Astra but do not become Astra law by vocabulary, familiarity, or mechanical completeness. Every donor construct must be mapped, normalized, retained source",
+      "excerpt_sha256": "105edd71c28dd6f669ce66d2b5fb9d02ad3cfc93e8425e93eaa6c76d231239e9",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDonor systems may inform Astra but do not become Astra law by vocabulary, familiarity, or mechanical completeness. Every donor construct must be mapped, normalized, retai\u201d. Distinguishing context: \u201cThis file defines how D00 protects Astra\u2019s core experience from donor-system leakage. ## Core rule Donor systems may inform Astra but do not become Astra law by vocabulary, familiarity, or mechanical completene\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 33,
+      "line_end": 33,
+      "locator_heading_or_symbol": "\"D07\": \"harm, injury, corruption, backlash\",",
+      "excerpt_sha256": "8d52c44314c3918a8fee191f36b05b66ed7bc84858d74a1003dbd890c3582e75",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D07\": \"harm, injury, corruption, backlash\",\u201d. Distinguishing context: \u201c\"D00_does_not_own\": { \"D03\": \"resource formulas and Power Economy\", \"D04\": \"advancement math and breakthrough mechanics\", \"D05\": \"skills, research, and assessment methods\", \"D06\": \"routes, techniques, and princ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01-05_conversion_mapping_and_source_local_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 34,
+      "line_end": 67,
+      "locator_heading_or_symbol": "- quarantine/escalation.",
+      "excerpt_sha256": "539cb5a2b6b4139faac1ef440fe39b0adbc3f4460beb9fe95a1a8c970cefcf27",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine/escalation. Do not map donor luck to Pneuma by default. ## Non-six-stat donors Donor systems may use: - body/mind/soul; - approaches; - attributes plus skill\u201d. Distinguishing context: \u201c- D03 spendable resource; - D06 fate/fortune Technique or Route feature; - D10 public myth/reputation/world-state; - hidden Pneuma pressure only if doctrine-authorized; - source-local retention; - quarantine/es\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d01_doctrine_pack_v0_1/D01_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 47,
+      "line_end": 47,
+      "locator_heading_or_symbol": "\"D07\": \"harm and corruption mechanics\",",
+      "excerpt_sha256": "cd63c9168a6beb57e16550f113eeed052cc92d8ef4728419cafb2c4e6fd72ebc",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D07\": \"harm and corruption mechanics\",\u201d. Distinguishing context: \u201c\"D01_does_not_own\": { \"D03\": \"Power Economy and derived pool formulas\", \"D04\": \"advancement gates and breakthrough procedure\", \"D05\": \"skills and methods\", \"D06\": \"routes and techniques\", \"D07\": \"harm and corru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 54,
+      "line_end": 54,
+      "locator_heading_or_symbol": "\"D07\": \"harm, injury, corruption, death, damage families\",",
+      "excerpt_sha256": "b6dac3db1c5faf6d43818b5f55815192dc86f5270d31b65870abbd469d0c3294",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D07\": \"harm, injury, corruption, death, damage families\",\u201d. Distinguishing context: \u201c\"D01\": \"attribute meanings\", \"D03\": \"Power Economy, pools, fuels, charges, overdraw\", \"D04\": \"advancement gates and breakthrough procedure\", \"D05\": \"skills, methods, research, investigation procedures\", \"D06\": \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-07_runtime_schema_handoff_notes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 54,
+      "line_end": 172,
+      "locator_heading_or_symbol": "sufficiency_estimate: trace | seed | credible | established | weighty | defining | mythic | capstone",
+      "excerpt_sha256": "19ac4eb72a464d949d579db73d2748a777c0eb3d2662ecb248b6166d9b092423",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201csufficiency_estimate: trace | seed | credible | established | weighty | defining | mythic | capstone route_candidates: [string] axis_candidates: [string] contradiction_re\u201d. Distinguishing context: \u201cproof_cluster_index: - cluster_id: string actor_ref: string cluster_theme: string proof_refs: [string] sufficiency_estimate: trace | seed | credible | established | weighty | defining | mythic | capstone route_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-07_runtime_schema_handoff_notes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 191,
+      "line_end": 194,
+      "locator_heading_or_symbol": "axis_status: hidden | seed | visible | active | capped | blocked | source_local | retired | transformed",
+      "excerpt_sha256": "47e0237d2fd89da9eab1fad3fb332f6b1ddc0005db5fb2e8ad9a86836274ffed",
+      "matched_terms": [
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201caxis_status: hidden | seed | visible | active | capped | blocked | source_local | retired | transformed owner_file: D04 | D05 | D06 | D07 | D08 | D09 | D10 | source_local\u201d. Distinguishing context: \u201cadvancement_axis: axis_id: string actor_ref: string axis_family: string axis_name: string axis_status: hidden | seed | visible | active | capped | blocked | source_local | retired | transformed owner_file: D04 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-07_runtime_schema_handoff_notes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 287,
+      "line_end": 305,
+      "locator_heading_or_symbol": "D07 owns harm, injury, recovery, crippling, death, unmaking, corruption recovery, and survival states.",
+      "excerpt_sha256": "91ebe01ed54a75884580b64477985afadb7b1a4cb2c59f8edd656785328e8876",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD07 owns harm, injury, recovery, crippling, death, unmaking, corruption recovery, and survival states. D08 owns actor model, nonphysical actors, spirits, AIs, swarms, com\u201d. Distinguishing context: \u201cD05 owns skills, professions, training, research, knowledge, language, synthesis, and competency rank mechanics. D06 owns Path/Class/Dao, domain, route feature mechanics, technique access, route fusion/severanc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 37,
+      "line_end": 44,
+      "locator_heading_or_symbol": "1. Donor assumptions are evidence only.",
+      "excerpt_sha256": "59d55d1d20466734f9c8aa42ff2dfc7a2d703be3ed0914f58f092ef06f248fb1",
+      "matched_terms": [
+        "evidence",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c1. Donor assumptions are evidence only. 2. Design doctrine is not canon by volume or polish. 3. Runtime state is not model memory. 4. Narration is not mechanical authorit\u201d. Distinguishing context: \u201c## Standing constraints preserved D04 obeys these project laws: 1. Donor assumptions are evidence only. 2. Design doctrine is not canon by volume or polish. 3. Runtime state is not model memory. 4. Narration is\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 40,
+      "line_end": 40,
+      "locator_heading_or_symbol": "D05 does not own D02 roll math; D03 cost/carrier/Expression mechanics; D04 proof sufficiency, tier authorization, Awakening, breakthrough, capstone, or Ascension Access; D06 Path/C",
+      "excerpt_sha256": "b83d388e766c2aac1987d50eee502a4bb5040322c50fb171f1610d4a7dfeda3e",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD05 does not own D02 roll math; D03 cost/carrier/Expression mechanics; D04 proof sufficiency, tier authorization, Awakening, breakthrough, capstone, or Ascension Access; \u201d. Distinguishing context: \u201c## Ownership boundary D05 owns competency architecture; skill, profession, knowledge, training, research, mastery, specialization, method, synthesis, teaching doctrine; relevance handling for checks; D05-owned \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-06_route_development_branches_drift_and_mutation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "# D06-06 Route Development, Branches, Drift, and Mutation",
+      "excerpt_sha256": "1e0b43cac58603ac24b54ca1ec26ccbb1f971f431717b7bb33ae83c27173f1ee",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D06-06 Route Development, Branches, Drift, and Mutation **File ID:** `D06-06` **Pack:** Astra Ascension D06 \u2014 Route, Path, Principle, Technique, and Donor Class Normali\u201d. Distinguishing context: \u201c# D06-06 Route Development, Branches, Drift, and Mutation **File ID:** `D06-06` **Pack:** Astra Ascension D06 \u2014 Route, Path, Principle, Technique, and Donor Class Normalization Doctrine **Version:** v0_1 **Stat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-09_source_local_route_conversion_and_donor_class_normalization.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 115,
+      "locator_heading_or_symbol": "**Purpose:** Define how donor class-like packages are decomposed, routed, retained source-locally, quarantined, or escalated.",
+      "excerpt_sha256": "233d65cac50b49648c4259f9fca341bbfc88d4679f37480cd2f4552ac23e37d1",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c**Purpose:** Define how donor class-like packages are decomposed, routed, retained source-locally, quarantined, or escalated. ## Standing D06 boundary D06 owns formal rou\u201d. Distinguishing context: \u201c**File ID:** `D06-09` **Pack:** Astra Ascension D06 \u2014 Route, Path, Principle, Technique, and Donor Class Normalization Doctrine **Version:** v0_1 **Status:** Design doctrine draft generated from accepted D06 de\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-09_source_local_route_conversion_and_donor_class_normalization.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 139,
+      "line_end": 143,
+      "locator_heading_or_symbol": "quarantined_constructs: []",
+      "excerpt_sha256": "a951265ab75d75e328c6f5786972b6283ca22b85a9e2e0a57b1cafdaebe662cb",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cquarantined_constructs: [] escalation_items: [] donor_assumptions_rejected: [] terminology_status: retained_source_local | normalized | rejected | lexicon_candidate valid\u201d. Distinguishing context: \u201cd05_competency_handoffs: [] d07_risk_handoffs: [] d08_actor_companion_handoffs: [] d09_item_platform_handoffs: [] d10_faction_world_handoffs: [] quarantined_constructs: [] escalation_items: [] donor_assumptions\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-10_runtime_schema_and_ui_handoff.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 101,
+      "locator_heading_or_symbol": "**Purpose:** Define D06 record families, durable thresholds, visibility states, UI grouping, and owner-file handoff state without finalizing implementation schemas.",
+      "excerpt_sha256": "2742cddd9f180bed97abac6ee0b0836dbc0e0cc7f4d907326a5b66319c513b69",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c**Purpose:** Define D06 record families, durable thresholds, visibility states, UI grouping, and owner-file handoff state without finalizing implementation schemas. ## St\u201d. Distinguishing context: \u201c**File ID:** `D06-10` **Pack:** Astra Ascension D06 \u2014 Route, Path, Principle, Technique, and Donor Class Normalization Doctrine **Version:** v0_1 **Status:** Design doctrine draft generated from accepted D06 de\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-10_runtime_schema_and_ui_handoff.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 128,
+      "line_end": 149,
+      "locator_heading_or_symbol": "visibility_state: visible | discovered | offered | latent | hidden | obscured | source_local | blocked | dangerous | retired",
+      "excerpt_sha256": "9da5d1cd1d15862134cdfa98e8a63100d74c2a201c3bc16a22cefc2fe177a826",
+      "matched_terms": [
+        "promotion",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cvisibility_state: visible | discovered | offered | latent | hidden | obscured | source_local | blocked | dangerous | retired validation_state: authorized | pending_proof \u201d. Distinguishing context: \u201cD05: [] D07: [] D08: [] D09: [] D10: [] visibility_state: visible | discovered | offered | latent | hidden | obscured | source_local | blocked | dangerous | retired validation_state: authorized | pending_proof \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 71,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "7f17e04045031fa9626f61579e746f69df23d73813dbb9de1a693e1a0cbe4023",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 31,
+      "line_end": 65,
+      "locator_heading_or_symbol": "\"D06-06_route_development_branches_drift_and_mutation.md\",",
+      "excerpt_sha256": "402e8190adbe191fb481a0558a844b442ece136c24a4fda0e04f249c17d633b0",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D06-06_route_development_branches_drift_and_mutation.md\", \"D06-07_route_fusion_multipath_and_confluence.md\", \"D06-08_profession_routes_lineages_schools_and_factions.md\",\u201d. Distinguishing context: \u201c\"D06-01_route_authorization_and_path_identity.md\", \"D06-02_route_facets_domains_and_archetypes.md\", \"D06-03_principle_concept_authority_doctrine.md\", \"D06-04_route_feature_ledgers_and_personalized_development_m\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 71,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "17271ee79b6c040dd62bcd575b7646ae425b91c89a9c769db2d9b26bdcdbd64d",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 53,
+      "locator_heading_or_symbol": "\"pack\": \"D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine\",",
+      "excerpt_sha256": "b69733bc8b05cc7058b26ad5e63cfba3ba1c592d69742513c802ea40eb1ff03a",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"pack\": \"D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine\", \"version\": \"v0.1\", \"generated_date\": \"2026-06-01\", \"status\": \"doctrine draf\u201d. Distinguishing context: \u201c{ \"project\": \"Astra Ascension\", \"pack\": \"D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine\", \"version\": \"v0.1\", \"generated_date\": \"2026-06-01\", \"status\": \"doctrine draft genera\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-01_identity_continuity_personhood_and_agency.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 81,
+      "locator_heading_or_symbol": "Actor continuity is a recorded relation across multiple anchors, not an assumption. Same body, same memory, same soul, same route, same legal identity, or same player-facing record",
+      "excerpt_sha256": "d627ebc619ce16057417eade8a4d4e57cf01fd24c4bbe314a75f559227e43564",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "fork"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cActor continuity is a recorded relation across multiple anchors, not an assumption. Same body, same memory, same soul, same route, same legal identity, or same player-fac\u201d. Distinguishing context: \u201cThis file defines how Astra decides whether an actor remains the same actor over time and how it distinguishes personhood, cognition, agency, control, possession-adjacent states, and playability grade. It exist\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-07_source_local_actor_and_creature_conversion.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 76,
+      "locator_heading_or_symbol": "Every donor actor construct receives one outcome: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct, or escalated doctrine prob",
+      "excerpt_sha256": "6942b14e940dbdd33c1f7981b7f06d32b43d9fc7ed89e92f15f4f6482773492b",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery donor actor construct receives one outcome: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct, or escalated doc\u201d. Distinguishing context: \u201cD08 does not import donor actor taxonomy as canon. It decomposes donor actor constructs into Astra-native actor-state functions, assigns lawful outcomes, preserves source-local boundaries when needed, and escal\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 48,
+      "line_end": 48,
+      "locator_heading_or_symbol": "Every donor actor construct must receive one lawful outcome: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct pending later do",
+      "excerpt_sha256": "7b109b19e1235b485abf83856c285ff613466f2492836b63bb26828289692a10",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery donor actor construct must receive one lawful outcome: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct pendin\u201d. Distinguishing context: \u201c- Source-local actor taxonomy must not leak into Astra canon. - D10 relational doctrine is reserved for D10. ## Lawful conversion outcome Every donor actor construct must receive one lawful outcome: direct Astr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 71,
+      "line_end": 80,
+      "locator_heading_or_symbol": "\"promotion/demotion/history\",",
+      "excerpt_sha256": "02e406471c4e4d84fa6dcb16e497436649871b062062a601c1308a3420d29e0a",
+      "matched_terms": [
+        "promotion",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"promotion/demotion/history\", \"body/kinform/culture separation\", \"layered continuity\", \"personhood-cognition-agency separation\", \"companion limits\", \"bound entity thresho\u201d. Distinguishing context: \u201c} }, \"risk_fixes_embedded\": [ \"actor-state-only boundary\", \"tiered records\", \"promotion/demotion/history\", \"body/kinform/culture separation\", \"layered continuity\", \"personhood-cognition-agency separation\", \"com\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d09_doctrine_pack_v0_1/D09-07_source_local_object_and_equipment_conversion.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 17,
+      "line_end": 55,
+      "locator_heading_or_symbol": "Every donor object construct must receive one lawful outcome: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct, or escalated d",
+      "excerpt_sha256": "c45fa617f78ad9bb62f155ea1ccfe1c921df71425142587dba575d262dbffcd8",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery donor object construct must receive one lawful outcome: direct Astra mapping, normalized Astra mapping, source-local retained construct, quarantined construct, or e\u201d. Distinguishing context: \u201cDonor object constructs are decomposed into Astra-native object-state functions: identity, material, function, access, power interface, route interface, harm/failure, actor/personhood interface, platform interf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d09_doctrine_pack_v0_1/D09-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 36,
+      "line_end": 50,
+      "locator_heading_or_symbol": "D09 owns object-state, object identity, object category, object record depth, material profile, durability and condition state, object function category, object access interface, s",
+      "excerpt_sha256": "c15006d541a6202d72f80860a63d7ffebcbf6b692fc27176b5f774222f1ca6af",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD09 owns object-state, object identity, object category, object record depth, material profile, durability and condition state, object function category, object access in\u201d. Distinguishing context: \u201c10. `D09-09_integration_checklists_and_ddr_register.md` 11. `D09_pack_manifest.json` ## D09 owns D09 owns object-state, object identity, object category, object record depth, material profile, durability and co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d09_doctrine_pack_v0_1/D09_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 56,
+      "line_end": 72,
+      "locator_heading_or_symbol": "\"stack/batch/supply/visibility/handoff records\"",
+      "excerpt_sha256": "ef3ebad4f780efa3e765ca9c9aeafbd377179950648ac5e55a19aa0036b98ee8",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"stack/batch/supply/visibility/handoff records\" ], \"D09_does_not_own\": { \"D03\": \"Power Economy, charges, fuel, reservoirs, recharge, overdraw\", \"D04\": \"advancement proof \u201d. Distinguishing context: \u201c\"relic/anchor/intelligent-object object-side records\", \"body-integrated object-side records\", \"platform/external-body object-side records\", \"object work/acquisition state\", \"source-local object conversion routi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 60,
+      "locator_heading_or_symbol": "D10 defines the persistent world-facing state architecture for Astra Ascension. It records what the world remembers, who controls or claims what, what factions know or want, what l",
+      "excerpt_sha256": "d9ece663a31712a7f5a7542052909d9410bd6396da9579a979b0fd8e97cfa5fe",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "timeline",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD10 defines the persistent world-facing state architecture for Astra Ascension. It records what the world remembers, who controls or claims what, what factions know or wa\u201d. Distinguishing context: \u201cStatus: Doctrine pack generated from accepted D10 DDR decisions Primary owner: D10 ## Purpose D10 defines the persistent world-facing state architecture for Astra Ascension. It records what the world remembers,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/D10_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 19,
+      "locator_heading_or_symbol": "\"purpose\": \"world-state facts, events, consequences, persistence, timelines\"",
+      "excerpt_sha256": "3c0ff8647243b46791396e5e638f9a4564ca74128a190a9680f8cd7fbd43a505",
+      "matched_terms": [
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"purpose\": \"world-state facts, events, consequences, persistence, timelines\"\u201d. Distinguishing context: \u201c\"path\": \"D10-00_layered_world_state_register_architecture.md\", \"purpose\": \"layered world-state register architecture\" }, { \"path\": \"D10-01_world_state_event_consequence_persistence.md\", \"purpose\": \"world-state \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

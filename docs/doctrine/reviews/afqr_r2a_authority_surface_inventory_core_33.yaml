@@ -1,0 +1,928 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-33",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 657,
+      "line_end": 657,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "748fb109ecbf36d902634a7118772c0f8a21e09b2b11547febfcef0e7adc610d",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"ast.literal_eval\", \"re.search\", \"re.match\", \"roll_dice\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"open(\", \".read_text(\", \".write_text(\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 24,
+      "line_end": 30,
+      "locator_heading_or_symbol": "\"resource_consequence_planning_preview\",",
+      "excerpt_sha256": "14e41c9a884010d7d1d4ee89521b27ab94ca6e19b28bc7828b06460ceccce250",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"resource_consequence_planning_preview\", \"context_packet_projection\", \"state_delta_candidate_preview\", \"event_ledger_candidate_preview\", \"commit_dry_run\", \"commit_applica\u201d. Distinguishing context: \u201c_REQUIRED_STAGE_NAMES = ( \"world_state\", \"command_intent\", \"command_lifecycle\", \"resource_consequence_planning_preview\", \"context_packet_projection\", \"state_delta_candidate_preview\", \"event_ledger_candidate_pre\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 81,
+      "line_end": 97,
+      "locator_heading_or_symbol": "\"visibility_boundary_preserved\": m.visibility_boundary_preserved,",
+      "excerpt_sha256": "3a0c26adbb8785751faeb1168a99de50d3c9eddf0e3cc94ae1a7a1e954de10aa",
+      "matched_terms": [
+        "replay",
+        "rng",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"visibility_boundary_preserved\": m.visibility_boundary_preserved, \"hidden_information_excluded\": m.hidden_information_excluded, \"backend_authority_preserved\": m.backend_a\u201d. Distinguishing context: \u201c\"total_stage_refs\": m.total_stage_refs, \"required_stage_names\": m.required_stage_names, \"missing_stage_names\": m.missing_stage_names, \"all_commands_closed\": m.all_commands_closed, \"closure_ready\": m.closure_rea\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 233,
+      "line_end": 237,
+      "locator_heading_or_symbol": "def test_rejects_visibility_boundary_preserved_false(self):",
+      "excerpt_sha256": "32c38ce18a77450c27bc25157b1cbf142f3ce9d530c4cf4bf177152eb951e05c",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_rejects_visibility_boundary_preserved_false(self): kw = _make_valid_kwargs() kw[\"visibility_boundary_preserved\"] = False kw[\"closure_ready\"] = False with pytest.\u201d. Distinguishing context: \u201ckw = _make_valid_kwargs() kw[\"closure_ready\"] = False with pytest.raises(TinyVerticalSliceError, match=\"closure_ready\"): TinyVerticalSliceClosureManifest(**kw) def test_rejects_visibility_boundary_preserved_fal\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 316,
+      "line_end": 337,
+      "locator_heading_or_symbol": "def test_rejects_replay_authorized_true(self):",
+      "excerpt_sha256": "0ac90a842dbf3a84979265c1143fcc4fc1d7973051864b1f235037296e5e2b45",
+      "matched_terms": [
+        "replay",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_rejects_replay_authorized_true(self): kw = _make_valid_kwargs() kw[\"replay_authorized\"] = True with pytest.raises(TinyVerticalSliceError, match=\"replay_authorize\u201d. Distinguishing context: \u201ckw = _make_valid_kwargs() kw[\"persistence_authorized\"] = True with pytest.raises(TinyVerticalSliceError, match=\"persistence_authorized\"): TinyVerticalSliceClosureManifest(**kw) def test_rejects_replay_authorize\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 416,
+      "line_end": 508,
+      "locator_heading_or_symbol": "def test_visibility_boundary_preserved(self, manifest):",
+      "excerpt_sha256": "aa0569adbf424e5edb6d2088263874898322dfd036420a1f3a0c4729d2528728",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay",
+        "rng",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_visibility_boundary_preserved(self, manifest): assert manifest.visibility_boundary_preserved is True def test_hidden_information_excluded(self, manifest): assert\u201d. Distinguishing context: \u201cassert manifest.all_commands_closed is True def test_closure_ready(self, manifest): assert manifest.closure_ready is True def test_visibility_boundary_preserved(self, manifest): assert manifest.visibility_bound\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 539,
+      "line_end": 555,
+      "locator_heading_or_symbol": "\"visibility_boundary_preserved\",",
+      "excerpt_sha256": "0f58d306e7484b7e1d37dc919f8c4c797eaa023dba64117d266bedd1d493c086",
+      "matched_terms": [
+        "replay",
+        "rng",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"visibility_boundary_preserved\", \"hidden_information_excluded\", \"backend_authority_preserved\", \"model_boundary_fixture_passed\", \"model_boundary_fixture_failed_when_expect\u201d. Distinguishing context: \u201c\"total_stage_refs\", \"required_stage_names\", \"missing_stage_names\", \"all_commands_closed\", \"closure_ready\", \"visibility_boundary_preserved\", \"hidden_information_excluded\", \"backend_authority_preserved\", \"model_b\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 650,
+      "line_end": 697,
+      "locator_heading_or_symbol": "assert serialized[\"replay_authorized\"] is False",
+      "excerpt_sha256": "1323418fc5dc13a900481f572c8c9d7bb8e59a88d2c2672434460efac0f375a2",
+      "matched_terms": [
+        "replay",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert serialized[\"replay_authorized\"] is False assert serialized[\"rng_or_oracle_called\"] is False assert serialized[\"arithmetic_executed\"] is False assert serialized[\"se\u201d. Distinguishing context: \u201cassert serialized[\"state_mutated_by_manifest\"] is False assert serialized[\"state_delta_applied_by_manifest\"] is False assert serialized[\"event_committed_by_manifest\"] is False assert serialized[\"event_appended_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 66,
+      "locator_heading_or_symbol": "TinyVerticalSliceCommandPreviewResult,",
+      "excerpt_sha256": "1c2b04e35b14f09a5d0fb919892ceb928ab7a3292619f862bcf5519cbc445b4c",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cTinyVerticalSliceCommandPreviewResult, TinyVerticalSliceCommandLifecycleResult, TinyVerticalSliceError, create_tiny_vertical_slice_command_intent, create_tiny_vertical_sl\u201d. Distinguishing context: \u201cimport pytest from astra_runtime.domain import ( TinyVerticalSliceCommandIntent, TinyVerticalSliceCommandValidationResult, TinyVerticalSliceCommandPreviewResult, TinyVerticalSliceCommandLifecycleResult, TinyVer\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 193,
+      "line_end": 270,
+      "locator_heading_or_symbol": "# Preview",
+      "excerpt_sha256": "f0f60ba6e608d5fa920a1918e497ee9603187e1389165e4a1a27b7979bc89e60",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Preview # --------------------------------------------------------------------------- class TestPreview: def test_invalid_validation_creates_preview_blocked(self, world\u201d. Distinguishing context: \u201cvisible_explanation=\"bad\", ) # --------------------------------------------------------------------------- # Preview # --------------------------------------------------------------------------- class TestPrevi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 335,
+      "line_end": 450,
+      "locator_heading_or_symbol": "\"preview\",",
+      "excerpt_sha256": "d5316fd6f4673f04719520d825e28dcf5478fa2d94162bc67fa604d3b7d64c1e",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"preview\", \"resulting_visible_state\", \"metadata\", ] assert list(serialized.keys()) == expected_keys def test_command_sub_dict_keys(self, world, default_command): result =\u201d. Distinguishing context: \u201c\"commit_status\", \"state_changed\", \"event_committed\", \"command\", \"validation\", \"preview\", \"resulting_visible_state\", \"metadata\", ] assert list(serialized.keys()) == expected_keys def test_command_sub_dict_keys(s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 456,
+      "line_end": 556,
+      "locator_heading_or_symbol": "def _make_validation_preview(self, world, **command_overrides):",
+      "excerpt_sha256": "95485679a5bf7a4a40443967ad9cc1d486122420dcde9495c8964494ca817df8",
+      "matched_terms": [
+        "preview",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef _make_validation_preview(self, world, **command_overrides): command = create_tiny_vertical_slice_command_intent(**command_overrides) validation = validate_tiny_vertic\u201d. Distinguishing context: \u201c\"resulting_state\": world, } defaults.update(overrides) return TinyVerticalSliceCommandLifecycleResult(**defaults) def _make_validation_preview(self, world, **command_overrides): command = create_tiny_vertical_s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 112,
+      "locator_heading_or_symbol": "\"\"\"PR-8 Increment 3 \u2014 tiny vertical slice resource/consequence planning preview bridge tests.\"\"\"",
+      "excerpt_sha256": "3ab8d8272f56f7bd68732239bd6797b700f4e26a7dd3ca378fa383c6642a8c01",
+      "matched_terms": [
+        "preview",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"PR-8 Increment 3 \u2014 tiny vertical slice resource/consequence planning preview bridge tests.\"\"\" from __future__ import annotations import json from pathlib import Path f\u201d. Distinguishing context: \u201c\"\"\"PR-8 Increment 3 \u2014 tiny vertical slice resource/consequence planning preview bridge tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types import MappingProxyType import\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 127,
+      "line_end": 245,
+      "locator_heading_or_symbol": "kwargs = _valid_preview_kwargs(default_lifecycle)",
+      "excerpt_sha256": "4f545e7f4195be30d58431bc5268717e9ca6af6bbd984425cce21467e056bc05",
+      "matched_terms": [
+        "preview",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ckwargs = _valid_preview_kwargs(default_lifecycle) kwargs[\"resource_math_request\"] = \"not a request\" with pytest.raises(TinyVerticalSliceError, match=\"resource_math_reques\u201d. Distinguishing context: \u201c# Construction invariants # --------------------------------------------------------------------------- class TestConstructionInvariants: def test_rejects_non_resource_math_request(self, default_lifecycle): kwa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 249,
+      "line_end": 365,
+      "locator_heading_or_symbol": "build_tiny_vertical_slice_resource_consequence_planning_preview(",
+      "excerpt_sha256": "b760b6774cf1a2eaa19d0f3e69af74b5155a0ba8d7a654d7ed650b587b1c3406",
+      "matched_terms": [
+        "preview",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cbuild_tiny_vertical_slice_resource_consequence_planning_preview( state=\"not a world\", lifecycle_result=default_lifecycle ) def test_builder_rejects_non_lifecycle_input(se\u201d. Distinguishing context: \u201cassert preview.state_changed is False assert preview.event_committed is False def test_builder_rejects_non_world_state_input(self, default_lifecycle): with pytest.raises(TinyVerticalSliceError, match=\"TinyVerti\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 376,
+      "line_end": 470,
+      "locator_heading_or_symbol": "preview = build_tiny_vertical_slice_resource_consequence_planning_preview(",
+      "excerpt_sha256": "9587ab4ba82790a8a33459704f0d275d7dc272404c2a91a584991fc41ead4890",
+      "matched_terms": [
+        "preview",
+        "replay",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpreview = build_tiny_vertical_slice_resource_consequence_planning_preview( state=world, lifecycle_result=default_lifecycle ) serialized = serialize_tiny_vertical_slice_re\u201d. Distinguishing context: \u201c\"metadata\", ] assert list(serialized.keys()) == expected_keys def test_omits_backend_only_ref_ids(self, world, default_lifecycle): preview = build_tiny_vertical_slice_resource_consequence_planning_preview( stat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 105,
+      "locator_heading_or_symbol": "\"\"\"PR-8 Increment 4 \u2014 tiny vertical slice context packet projection bridge tests.\"\"\"",
+      "excerpt_sha256": "7d30b02c8fca4496c7f67cc2d23814179115acd36b52dbb8b903228220d9a063",
+      "matched_terms": [
+        "context packet",
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"PR-8 Increment 4 \u2014 tiny vertical slice context packet projection bridge tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types im\u201d. Distinguishing context: \u201c\"\"\"PR-8 Increment 4 \u2014 tiny vertical slice context packet projection bridge tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types import MappingProxyType import pytest from\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 130,
+      "line_end": 250,
+      "locator_heading_or_symbol": "kwargs = _valid_projection_kwargs(\"cmd-1\")",
+      "excerpt_sha256": "7fba6840839a072b3ac0dfb6135306dd685c786c158534253b610322499d81dc",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ckwargs = _valid_projection_kwargs(\"cmd-1\") kwargs[\"no_commit_intent_packet\"] = \"not a packet\" with pytest.raises(TinyVerticalSliceError, match=\"no_commit_intent_packet\"):\u201d. Distinguishing context: \u201c# Construction invariants # --------------------------------------------------------------------------- class TestConstructionInvariants: def test_rejects_non_no_commit_intent_packet(self): kwargs = _valid_proj\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 252,
+      "line_end": 370,
+      "locator_heading_or_symbol": "build_tiny_vertical_slice_context_packet_projection(",
+      "excerpt_sha256": "e613d898d2c2d734c35c3a7cb788bf192bb93a0bb90c681dbfc6870fa2f7b29b",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cbuild_tiny_vertical_slice_context_packet_projection( state=world, lifecycle_result=\"not a lifecycle\", planning_preview=default_planning_preview, ) def test_builder_reject\u201d. Distinguishing context: \u201cplanning_preview=default_planning_preview, ) def test_builder_rejects_non_lifecycle_input(self, world, default_planning_preview): with pytest.raises(TinyVerticalSliceError, match=\"TinyVerticalSliceCommandLifecy\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 373,
+      "line_end": 465,
+      "locator_heading_or_symbol": "def test_omits_hidden_fact_ref(self, world, default_projection):",
+      "excerpt_sha256": "23eeb95051224153314c46aa9db09e46c93829cbf66b422052ef76f559c14107",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_omits_hidden_fact_ref(self, world, default_projection): serialized = serialize_tiny_vertical_slice_context_packet_projection_visible(default_projection) text = j\u201d. Distinguishing context: \u201cdef test_omits_excluded_backend_ref_ids(self, default_projection): serialized = serialize_tiny_vertical_slice_context_packet_projection_visible(default_projection) assert \"excluded_backend_ref_ids\" not in seria\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 114,
+      "locator_heading_or_symbol": "\"\"\"PR-8 Increment 5 \u2014 tiny vertical slice state delta candidate preview tests.\"\"\"",
+      "excerpt_sha256": "7078374d2a7835f47294d719360446c867a0c029e7ea0019f4645e5b6c16844e",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"PR-8 Increment 5 \u2014 tiny vertical slice state delta candidate preview tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types impor\u201d. Distinguishing context: \u201c\"\"\"PR-8 Increment 5 \u2014 tiny vertical slice state delta candidate preview tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types import MappingProxyType import pytest from as\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 131,
+      "line_end": 251,
+      "locator_heading_or_symbol": "def _valid_delta_envelopes(command_ref, delta_preview_ref):",
+      "excerpt_sha256": "53fbd0897c97b387cabec397682ae220e272a235e66286fe4b23a811a4fdc860",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef _valid_delta_envelopes(command_ref, delta_preview_ref): return ( create_state_delta_envelope( delta_id=f\"state-delta-candidate-{command_ref}-lever\", source_command_id\u201d. Distinguishing context: \u201cmodel_called=False, narration_generated=False, ) def _valid_delta_envelopes(command_ref, delta_preview_ref): return ( create_state_delta_envelope( delta_id=f\"state-delta-candidate-{command_ref}-lever\", source_c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 252,
+      "line_end": 371,
+      "locator_heading_or_symbol": "assert isinstance(preview.metadata, MappingProxyType)",
+      "excerpt_sha256": "342ebd1882d51917b0fb442d9b462364b1300041c828115827e4e57afdcd93dd",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert isinstance(preview.metadata, MappingProxyType) # --------------------------------------------------------------------------- # Builder # --------------------------\u201d. Distinguishing context: \u201csource = {\"nested\": {\"k\": \"v\"}} kwargs[\"metadata\"] = source preview = TinyVerticalSliceStateDeltaCandidatePreview(**kwargs) source[\"nested\"][\"k\"] = \"changed\" assert preview.metadata[\"nested\"][\"k\"] == \"v\" assert\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 374,
+      "line_end": 494,
+      "locator_heading_or_symbol": "planning_preview=other_planning,",
+      "excerpt_sha256": "b3acf786be25923d69984bbb801acd0cf706271a2101926cd8397baa58e77453",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cplanning_preview=other_planning, context_projection=default_context_projection, ) def test_builder_rejects_context_projection_command_ref_mismatch(self, world, default_li\u201d. Distinguishing context: \u201cother_planning = build_tiny_vertical_slice_resource_consequence_planning_preview(state=world, lifecycle_result=other_lifecycle) with pytest.raises(TinyVerticalSliceError, match=\"planning_preview.command_ref\"): \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 499,
+      "line_end": 559,
+      "locator_heading_or_symbol": "def test_metadata_serializes_as_dict(self, world, default_lifecycle, default_planning_preview, default_context_projection):",
+      "excerpt_sha256": "e9b50fd4f2a57cbd600785743e2943d0fbd9a47e1fdf244f9698fdb8b4808668",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_metadata_serializes_as_dict(self, world, default_lifecycle, default_planning_preview, default_context_projection): preview = build_tiny_vertical_slice_state_delt\u201d. Distinguishing context: \u201cserialized = serialize_tiny_vertical_slice_state_delta_candidate_visible_preview(default_delta_preview) assert isinstance(serialized[\"candidate_delta_refs\"], list) assert isinstance(serialized[\"affected_visible\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 118,
+      "locator_heading_or_symbol": "\"\"\"PR-8 Increment 6 \u2014 tiny vertical slice event ledger candidate preview tests.\"\"\"",
+      "excerpt_sha256": "441a8ca21e7214f76557a900fe14841f203378db6e9818676278463820a785f9",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"PR-8 Increment 6 \u2014 tiny vertical slice event ledger candidate preview tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types impo\u201d. Distinguishing context: \u201c\"\"\"PR-8 Increment 6 \u2014 tiny vertical slice event ledger candidate preview tests.\"\"\" from __future__ import annotations import json from pathlib import Path from types import MappingProxyType import pytest from a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 131,
+      "line_end": 249,
+      "locator_heading_or_symbol": "p = TinyVerticalSliceEventLedgerCandidatePreview(",
+      "excerpt_sha256": "82792c836ea34bde412ef991edb9eadeabab02a74692dd844f79bf549408e86e",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cp = TinyVerticalSliceEventLedgerCandidatePreview( event_preview_ref=\"ep\", command_ref=\"cmd\", world_ref=\"w\", lifecycle_status=\"blocked\", commit_status=\"blocked\", planning_\u201d. Distinguishing context: \u201c# Dataclass # --------------------------------------------------------------------------- class TestDataclass: def test_frozen(self): p = TinyVerticalSliceEventLedgerCandidatePreview( event_preview_ref=\"ep\", co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 254,
+      "line_end": 374,
+      "locator_heading_or_symbol": "planning_preview_ref=\"pp\",",
+      "excerpt_sha256": "e863c8bbe027ae4bf9155df5591a58726f26d84adc8042da2e3bb9b77898b3f6",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cplanning_preview_ref=\"pp\", context_projection_ref=\"cp\", delta_preview_ref=\"dp\", candidate_event_entry=None, candidate_event_ref=None, candidate_event_type=None, candidate\u201d. Distinguishing context: \u201cevent_preview_ref=\"ep\", command_ref=\"cmd\", world_ref=\"w\", lifecycle_status=\"blocked\", commit_status=\"blocked\", planning_preview_ref=\"pp\", context_projection_ref=\"cp\", delta_preview_ref=\"dp\", candidate_event_ent\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 378,
+      "line_end": 490,
+      "locator_heading_or_symbol": "TinyVerticalSliceEventLedgerCandidatePreview(",
+      "excerpt_sha256": "75b0164e8b53b6522bc4e303e06f93ba62f586a210b1e8fb17a0211fcbc16d14",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cTinyVerticalSliceEventLedgerCandidatePreview( event_preview_ref=\"ep\", command_ref=\"cmd\", world_ref=\"w\", lifecycle_status=\"validated_preview\", commit_status=\"not_requested\u201d. Distinguishing context: \u201cevent_id=\"evt-1\", event_type=\"command_event\", sequence=0, source_command_id=\"cmd\", source_preview_id=\"ep\", state_delta_ids=(\"delta-1\",), ) with pytest.raises(TinyVerticalSliceError, match=\"candidate_state_delta\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 503,
+      "line_end": 623,
+      "locator_heading_or_symbol": "replay_authorized=False,",
+      "excerpt_sha256": "1de4bb98a402e1c19de7696c2752b471824e5659c2d65755d382a139d9080a65",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201creplay_authorized=False, narration_packet_authorized=False, model_called=False, narration_generated=False, ) kwargs[field_name] = True with pytest.raises(TinyVerticalSlic\u201d. Distinguishing context: \u201cbackend_only_ref_ids=(), event_commit_authorized=False, event_committed=False, state_changed=False, persistence_authorized=False, replay_authorized=False, narration_packet_authorized=False, model_called=False, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 625,
+      "line_end": 745,
+      "locator_heading_or_symbol": "assert preview.candidate_event_entry is not None",
+      "excerpt_sha256": "36dbeafba766c15d78bddb6f3c6db720e8f55a11c7121ae812f96c9f99cd84d9",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert preview.candidate_event_entry is not None assert len(preview.candidate_state_delta_refs) == 1 def test_speak_to_npc_produces_candidate_event(self, world): lifecycl\u201d. Distinguishing context: \u201cpreview = build_tiny_vertical_slice_event_ledger_candidate_preview( state=world, lifecycle_result=lifecycle, planning_preview=planning, context_projection=projection, delta_preview=delta, ) assert preview.candi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 746,
+      "line_end": 866,
+      "locator_heading_or_symbol": "context_projection=default_context_projection,",
+      "excerpt_sha256": "8a7d5a10394ceb2085d1bbbe992b9e0d9643d32d1e7240012ef56914af6c6ac0",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ccontext_projection=default_context_projection, delta_preview=default_delta_preview, ) def test_rejects_context_projection_command_ref_mismatch(self, world, default_delta_\u201d. Distinguishing context: \u201cwith pytest.raises(TinyVerticalSliceError, match=\"planning_preview.command_ref\"): build_tiny_vertical_slice_event_ledger_candidate_preview( state=world, lifecycle_result=lifecycle1, planning_preview=planning2, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 867,
+      "line_end": 985,
+      "locator_heading_or_symbol": "assert default_event_preview.state_changed is False",
+      "excerpt_sha256": "b23ab666134c1f46d43641276abbeefa3138e5a93002a74ec6aae478fefb270e",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert default_event_preview.state_changed is False def test_no_event_commitment(self, default_event_preview): assert default_event_preview.event_committed is False def t\u201d. Distinguishing context: \u201cdef test_no_state_mutation(self, world, default_event_preview): assert world.lever.visible_state == \"untouched\" assert world.hazard_clock.current_tick == 1 def test_no_delta_application(self, default_event_prev\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 988,
+      "line_end": 1062,
+      "locator_heading_or_symbol": "def test_actor_record_ids_serialized_as_list(self, default_event_preview):",
+      "excerpt_sha256": "f554687eef51da7f6b848ee9af38acfba72a1b2553044c714d959a89799a2f75",
+      "matched_terms": [
+        "preview",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_actor_record_ids_serialized_as_list(self, default_event_preview): serialized = serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview(default_event\u201d. Distinguishing context: \u201cdef test_candidate_state_delta_refs_serialized_as_list(self, default_event_preview): serialized = serialize_tiny_vertical_slice_event_ledger_candidate_visible_preview(default_event_preview) assert isinstance(se\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 134,
+      "locator_heading_or_symbol": "build_tiny_vertical_slice_context_packet_projection,",
+      "excerpt_sha256": "a857bad48c9af8786031e468e6a376e0523c2cdbc9b9679382e4f8559863cd62",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cbuild_tiny_vertical_slice_context_packet_projection, build_tiny_vertical_slice_event_ledger_candidate_preview, build_tiny_vertical_slice_resource_consequence_planning_pre\u201d. Distinguishing context: \u201cfrom astra_runtime.domain import ( TinyVerticalSliceCommitDryRunResult, TinyVerticalSliceError, build_tiny_vertical_slice_commit_dry_run_result, build_tiny_vertical_slice_context_packet_projection, build_tiny_v\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 240,
+      "locator_heading_or_symbol": "transaction_preview=txn,",
+      "excerpt_sha256": "67cffb698f8f41dedc34dc4a78da20e3a158e4c196a6fa563f6210266f2ee470",
+      "matched_terms": [
+        "preview",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ctransaction_preview=txn, candidate_delta_refs=(), candidate_event_ref=None, visible_dry_run_summary=\"summary\", visible_commit_requirements=(), backend_only_ref_ids=(), co\u201d. Distinguishing context: \u201cplanning_preview_ref=\"pp\", context_projection_ref=\"cp\", delta_preview_ref=\"dp\", event_preview_ref=\"ep\", command_envelope=env, transaction_preview=txn, candidate_delta_refs=(), candidate_event_ref=None, visible_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 276,
+      "line_end": 396,
+      "locator_heading_or_symbol": "assert dr.transaction_preview.status == \"preview_created\"",
+      "excerpt_sha256": "857dd84c1ca6540ab747b201f864e7a243120cba26b01de6c02ddda2c15f7c90",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert dr.transaction_preview.status == \"preview_created\" def test_pull_lever_produces_dry_run_with_two_delta_refs(self, world): dr = _make_dry_run(world, \"pull_lever\", c\u201d. Distinguishing context: \u201cclass TestBuilder: def test_inspect_lever_produces_dry_run(self, world): dr = _make_dry_run(world, \"inspect_lever\") assert dr.candidate_event_ref is not None assert len(dr.candidate_delta_refs) == 1 assert dr.t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 398,
+      "line_end": 518,
+      "locator_heading_or_symbol": "state=world, lifecycle_result=lc, planning_preview=pl,",
+      "excerpt_sha256": "7b917c4ec13fa192800285c4aa70419429fc998226cf1481d4e7b39c5ea0aaca",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cstate=world, lifecycle_result=lc, planning_preview=pl, context_projection=pj2, delta_preview=dp2, event_preview=ep2, ) def test_rejects_delta_preview_command_ref_mismatch\u201d. Distinguishing context: \u201clc, pl, _, _, _ = _make_full_chain(world, \"inspect_lever\") other = create_tiny_vertical_slice_world_state(world_ref=\"other-w\") _, _, pj2, dp2, ep2 = _make_full_chain(other, \"inspect_lever\") with pytest.raises(T\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 519,
+      "line_end": 632,
+      "locator_heading_or_symbol": "delta_preview_ref=\"dp-two\",",
+      "excerpt_sha256": "f4b0fcb773c75feeff101c8f80ad67ece060675779bd1ecd599b5c23ee4a69e4",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdelta_preview_ref=\"dp-two\", ) ep2 = build_tiny_vertical_slice_event_ledger_candidate_preview( state=world, lifecycle_result=lc, planning_preview=pl, context_projection=pj\u201d. Distinguishing context: \u201cstate=world, lifecycle_result=lc, planning_preview=pl, context_projection=pj, delta_preview_ref=\"dp-one\", ) dp2 = build_tiny_vertical_slice_state_delta_candidate_preview( state=world, lifecycle_result=lc, plann\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 642,
+      "line_end": 645,
+      "locator_heading_or_symbol": "def test_serializes_transaction_preview_as_dict(self, default_dry_run):",
+      "excerpt_sha256": "c5bfbb1498daa03dea4443e56e52cd2d686038dacd89875cb6390c55d01424d4",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_serializes_transaction_preview_as_dict(self, default_dry_run): serialized = serialize_tiny_vertical_slice_commit_dry_run_visible_result(default_dry_run) assert i\u201d. Distinguishing context: \u201cdef test_serializes_command_envelope_as_dict(self, default_dry_run): serialized = serialize_tiny_vertical_slice_commit_dry_run_visible_result(default_dry_run) assert isinstance(serialized[\"command_envelope\"], d\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 697,
+      "line_end": 771,
+      "locator_heading_or_symbol": "assert serialized[\"replay_authorized\"] is False",
+      "excerpt_sha256": "277af9bed4fbd5f86ab1bf221bf67ae39495b71ccf23db26c4fe6bfd0f493118",
+      "matched_terms": [
+        "preview",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert serialized[\"replay_authorized\"] is False assert serialized[\"narration_packet_authorized\"] is False assert serialized[\"model_called\"] is False assert serialized[\"na\u201d. Distinguishing context: \u201cassert serialized[\"state_changed\"] is False assert serialized[\"state_delta_applied\"] is False assert serialized[\"event_committed\"] is False assert serialized[\"event_appended\"] is False assert serialized[\"persis\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 18,
+      "line_end": 114,
+      "locator_heading_or_symbol": "build_tiny_vertical_slice_context_packet_projection,",
+      "excerpt_sha256": "948d0080f2a16522cbc97a52b217bcb122f9e5197775d01482950b5577dc290a",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cbuild_tiny_vertical_slice_context_packet_projection, build_tiny_vertical_slice_event_ledger_candidate_preview, build_tiny_vertical_slice_resource_consequence_planning_pre\u201d. Distinguishing context: \u201cTinyVerticalSliceCommitDryRunResult, TinyVerticalSliceError, TinyVerticalSliceWorldState, apply_tiny_vertical_slice_commit_application, build_tiny_vertical_slice_commit_dry_run_result, build_tiny_vertical_slice\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 174,
+      "line_end": 175,
+      "locator_heading_or_symbol": "\"replay_authorized\": False,",
+      "excerpt_sha256": "17a741140af855276a160c713d5c0edc9e602df42fe6ccc0d631dac4acd1e636",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_authorized\": False, \"replayed\": False,\u201d. Distinguishing context: \u201c\"state_delta_applied\": True, \"event_committed\": True, \"event_appended\": True, \"persistence_authorized\": False, \"persisted\": False, \"replay_authorized\": False, \"replayed\": False, \"narration_packet_authorized\": F\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 336,
+      "line_end": 373,
+      "locator_heading_or_symbol": "\"replay_authorized\",",
+      "excerpt_sha256": "4c36b5c3c491a6eb031bb57314e732746d3dcba4df76a0ba02e90306d1dfada5",
+      "matched_terms": [
+        "replay",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_authorized\", \"replayed\", \"narration_packet_authorized\", \"model_called\", \"narration_generated\", ]) def test_all_results_reject_forbidden_true(self, world, field_na\u201d. Distinguishing context: \u201cTinyVerticalSliceCommitApplicationResult(**kw) @pytest.mark.parametrize(\"field_name\", [ \"persistence_authorized\", \"persisted\", \"replay_authorized\", \"replayed\", \"narration_packet_authorized\", \"model_called\", \"na\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 481,
+      "line_end": 531,
+      "locator_heading_or_symbol": "def test_no_persistence_replay_model_narration_flags(self, world):",
+      "excerpt_sha256": "c4d9ea76dd5c266343a215b737c8d3db5108c14b3276b955bf445da57fbaa1fd",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_no_persistence_replay_model_narration_flags(self, world): for kind in (\"inspect_lever\", \"brace_mechanism\", \"pull_lever\", \"speak_to_npc\"): result = _make_commit_a\u201d. Distinguishing context: \u201cdef test_hidden_fact_object_unchanged(self, world): for kind in (\"inspect_lever\", \"brace_mechanism\", \"pull_lever\", \"speak_to_npc\"): result = _make_commit_application(world, kind) assert result.committed_world_s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

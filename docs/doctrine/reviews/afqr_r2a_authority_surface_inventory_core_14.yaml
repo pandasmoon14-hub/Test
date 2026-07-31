@@ -1,0 +1,1010 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-14",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/astra_d10_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1218,
+      "line_end": 1334,
+      "locator_heading_or_symbol": "lawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated]",
+      "excerpt_sha256": "660bca517106c0e30ee18fb2b7a294c1358c5500f84c88fb00b0212f537d5f2b",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201clawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated] validation_state: [active, hidden, disputed, disproven, c\u201d. Distinguishing context: \u201cD06: [] D07: [] D08: [] D09: [] source_local: [] lawful_outcome: [direct_d10_mapping, normalized_register_mapping, source_local_retained, quarantined, escalated] validation_state: [active, hidden, disputed, dis\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/astra_d10_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1340,
+      "line_end": 1459,
+      "locator_heading_or_symbol": "- corruption_clock_apocalypse_system",
+      "excerpt_sha256": "74e740a6d6823e93b2cdf876357c9c74cfea88a5a0803bd1b99133dfadb19c32",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- corruption_clock_apocalypse_system - war_front_conflict_system - downtime_event_system - source_local_adventure_state - mixed astra_mapping: lawful_outcome: [direct_d10\u201d. Distinguishing context: \u201c- faction_influence_system - law_heat_wanted_system - economy_market_treasure_system - rumor_clue_information_system - hex_travel_region_system - corruption_clock_apocalypse_system - war_front_conflict_system -\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/astra_d10_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1461,
+      "line_end": 1581,
+      "locator_heading_or_symbol": "Queue fields include pressure reference, linked register records, severity, scope, visibility, active holder/controller, escalation conditions, decay conditions, resolution conditi",
+      "excerpt_sha256": "5a8b0f1bbe9a1032f38d31f0564f6814755fcb55c76205ab8798d8cffd141b5a",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cQueue fields include pressure reference, linked register records, severity, scope, visibility, active holder/controller, escalation conditions, decay conditions, resoluti\u201d. Distinguishing context: \u201c## Unresolved pressure queues D10 accepts unresolved pressure queues for active warrants, bounties, sanctions, grudges, unpaid debts, treaty breaches, corruption zones, hidden infiltrations, strategic shortages\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/astra_d10_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1586,
+      "line_end": 1701,
+      "locator_heading_or_symbol": "A runtime D10 record is valid when it assigns appropriate depth; avoids durable records for minor details; promotes hidden/important consequences when thresholds apply; uses explic",
+      "excerpt_sha256": "da4462683ba49e2a68bb32ad6830cab18e9f61735bc914afeebda17b428ddc14",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "timeline",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA runtime D10 record is valid when it assigns appropriate depth; avoids durable records for minor details; promotes hidden/important consequences when thresholds apply; u\u201d. Distinguishing context: \u201cvalidation_state: [authorized, pending_owner_file, active, resolved, retired, historical, source_local, quarantined, escalated] ``` ## Acceptance criteria A runtime D10 record is valid when it assigns appropria\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/astra_d10_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1731,
+      "line_end": 1731,
+      "locator_heading_or_symbol": "\"purpose\": \"world-state facts, events, consequences, persistence, timelines\"",
+      "excerpt_sha256": "3c0ff8647243b46791396e5e638f9a4564ca74128a190a9680f8cd7fbd43a505",
+      "matched_terms": [
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"purpose\": \"world-state facts, events, consequences, persistence, timelines\"\u201d. Distinguishing context: \u201c\"path\": \"D10-00_layered_world_state_register_architecture.md\", \"purpose\": \"layered world-state register architecture\" }, { \"path\": \"D10-01_world_state_event_consequence_persistence.md\", \"purpose\": \"world-state \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d10_doctrine_pack_v0_1/astra_d10_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1803,
+      "line_end": 1845,
+      "locator_heading_or_symbol": "\"timeline entries\",",
+      "excerpt_sha256": "3672dc012807349b597eddda709066de6288941081d8bf97662cb6839e538462",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"timeline entries\", \"territory and location state\", \"faction and institution state\", \"law and authority state\", \"economy and scarcity state\", \"reputation and relationship\u201d. Distinguishing context: \u201c\"D10_owns\": [ \"persistent world-facing state\", \"world-state facts\", \"event records\", \"consequence records\", \"timeline entries\", \"territory and location state\", \"faction and institution state\", \"law and authorit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-00_narrator_interface_architecture_and_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 31,
+      "locator_heading_or_symbol": "D11 presents and interprets D00\u2013D10 state for play-facing and GM-facing use. It may frame scenes, summarize visible state, surface consequences, present uncertainty, and describe o",
+      "excerpt_sha256": "4146b96fd5a6b6d17a633bf9f652e8ed2dfa4f162f15b5ed0e9bc42d61720aed",
+      "matched_terms": [
+        "recap",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD11 presents and interprets D00\u2013D10 state for play-facing and GM-facing use. It may frame scenes, summarize visible state, surface consequences, present uncertainty, and \u201d. Distinguishing context: \u201cThis file defines D11 as a state-grounded narrator/interface layer. D11 controls presentation, not underlying mechanics or final live-play behavior. ## Core rule D11 presents and interprets D00\u2013D10 state for pl\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-01_scene_framing_from_registered_state.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 39,
+      "locator_heading_or_symbol": "A D11 scene frame must be grounded in known or lawfully provisional state. The narrator may add sensory color, pacing, and framing, but may not create persistent facts, hidden trut",
+      "excerpt_sha256": "ee933e263daae02ef7dba5a343fad2a572b0745067b9c25f63b75f32fae0575b",
+      "matched_terms": [
+        "corruption",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA D11 scene frame must be grounded in known or lawfully provisional state. The narrator may add sensory color, pacing, and framing, but may not create persistent facts, h\u201d. Distinguishing context: \u201cThis file defines how D11 builds scene frames from registered state without inventing unsupported persistent facts. D11 remains interface doctrine. It frames scenes from D00\u2013D10 state; it does not create full w\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-02_outcome_narration_and_consequence_surfacing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 37,
+      "line_end": 43,
+      "locator_heading_or_symbol": "## Consequence visibility",
+      "excerpt_sha256": "2debbfc3f6ac625eb5e7879a045c639684ab47d47f4c4282b556067e0ab3aa25",
+      "matched_terms": [
+        "corruption",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## Consequence visibility Visible consequences may be narrated directly. Hidden/backend consequences remain GM-facing unless lawfully revealed. Hidden consequences may su\u201d. Distinguishing context: \u201c## Cost and consequence separation D11 separates declared cost, over-investment cost, outcome consequence, hidden consequence, delayed consequence, and historical consequence. Declared cost should not be framed\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-03_hidden_state_rumor_secrecy_misinformation_presentation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 53,
+      "locator_heading_or_symbol": "This file defines how D11 presents hidden truth, secrets, rumors, misinformation, propaganda, suppressed records, false attribution, partial truths, and backend uncertainty without",
+      "excerpt_sha256": "52a527da0208d4f2094b35cc6bf4ff380e0fb9ecc6741f2dae723dff021cb2fb",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis file defines how D11 presents hidden truth, secrets, rumors, misinformation, propaganda, suppressed records, false attribution, partial truths, and backend uncertain\u201d. Distinguishing context: \u201c# D11-03 Hidden State, Rumor, Secrecy, and Misinformation Presentation ## Purpose This file defines how D11 presents hidden truth, secrets, rumors, misinformation, propaganda, suppressed records, false attribut\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-04_assessment_result_presentation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 64,
+      "locator_heading_or_symbol": "This file defines how D11 presents assessment results across D02 outcomes while preserving the Insight/Reason split, PCR visibility, hidden-state protection, and D10 information-st",
+      "excerpt_sha256": "b8162c8c270f18c92b833d08bf209d32f6344f979078c827765c05937a7cc06a",
+      "matched_terms": [
+        "archive",
+        "promotion",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis file defines how D11 presents assessment results across D02 outcomes while preserving the Insight/Reason split, PCR visibility, hidden-state protection, and D10 info\u201d. Distinguishing context: \u201c# D11-04 Assessment Result Presentation ## Purpose This file defines how D11 presents assessment results across D02 outcomes while preserving the Insight/Reason split, PCR visibility, hidden-state protection, a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-05_unresolved_pressure_surfacing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 65,
+      "locator_heading_or_symbol": "Pressure surfacing considers severity, scope, visibility, proximity, timing, trigger, owner substrate, player knowledge, fairness, and source-local boundary.",
+      "excerpt_sha256": "31151673d17604a86587490ba05ab1036bfad767b8812edcb826a0fefa6e4c1a",
+      "matched_terms": [
+        "corruption",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPressure surfacing considers severity, scope, visibility, proximity, timing, trigger, owner substrate, player knowledge, fairness, and source-local boundary. ## Surfacing\u201d. Distinguishing context: \u201cD11 should surface unresolved pressure when it is contextually relevant, visible or inferable, proximate, escalating, triggered by player action, or needed to preserve continuity. It should not force every acti\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-06_player_facing_vs_gm_facing_summary_modes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 55,
+      "locator_heading_or_symbol": "Player-facing narration is immersive and player-safe if filtered. Party-known summary is concise recap of player-safe information. GM-facing summary includes backend truth, hidden ",
+      "excerpt_sha256": "516bbe6d91b16e2a5477fa162e0de30f263726fcb29f3932f81037518037d29a",
+      "matched_terms": [
+        "recap",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPlayer-facing narration is immersive and player-safe if filtered. Party-known summary is concise recap of player-safe information. GM-facing summary includes backend trut\u201d. Distinguishing context: \u201cD11 must maintain strict separation between player-facing presentation, GM-facing summary, state-audit inspection, and escalation output. Player-facing summaries may contain only visible, known, inferable, or l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-07_anti_hallucination_and_unsupported_state_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 80,
+      "locator_heading_or_symbol": "This file defines how D11 prevents unsupported narration, invented canon, hidden-truth leakage, owner-file override, source-local leakage, player-agency violation, and unregistered",
+      "excerpt_sha256": "19f8d747a6ec77ec9274fe20e20a962f452eb9cf657b9309f7527ce1c8aa1cf7",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "truth",
+        "world history"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis file defines how D11 prevents unsupported narration, invented canon, hidden-truth leakage, owner-file override, source-local leakage, player-agency violation, and un\u201d. Distinguishing context: \u201c# D11-07 Anti-Hallucination and Unsupported-State Escalation ## Purpose This file defines how D11 prevents unsupported narration, invented canon, hidden-truth leakage, owner-file override, source-local leakage,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-08_source_local_presentation_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 45,
+      "line_end": 59,
+      "locator_heading_or_symbol": "Scopes include encounter-local, site-local, adventure-local, campaign-local, faction-local, region-local, source-family-local, and source-local pending promotion. No scope is globa",
+      "excerpt_sha256": "5c0e43449bc60e6540212abf3a1c16a1bd14ba68ff32ffee4916f31a1fadd21d",
+      "matched_terms": [
+        "corruption",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cScopes include encounter-local, site-local, adventure-local, campaign-local, faction-local, region-local, source-family-local, and source-local pending promotion. No scop\u201d. Distinguishing context: \u201c- \"not default D10 faction procedure\" ``` ## Scope labels Scopes include encounter-local, site-local, adventure-local, campaign-local, faction-local, region-local, source-family-local, and source-local pending \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/D11-09_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 102,
+      "locator_heading_or_symbol": "Accepted: D11 uses the State-Grounded Narrator Interface Model; is not the final live-play GM adapter; distinguishes player-facing, GM-facing, state-audit, and escalation modes; re",
+      "excerpt_sha256": "cde0739adb910b9406f1c8820460f725af0b412ab5e718a1e6dbbc5ab1a0c224",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "reservation",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAccepted: D11 uses the State-Grounded Narrator Interface Model; is not the final live-play GM adapter; distinguishes player-facing, GM-facing, state-audit, and escalation\u201d. Distinguishing context: \u201c## Accepted decision register ### D11-NIA \u2014 Narrator Interface Architecture and Owner Boundaries Accepted: D11 uses the State-Grounded Narrator Interface Model; is not the final live-play GM adapter; distinguis\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 137,
+      "locator_heading_or_symbol": "D11 presents and inspects registered or lawfully provisional state. It may frame scenes, summarize visible state, surface consequences, present uncertainty, describe outcomes, and ",
+      "excerpt_sha256": "3c62d861d6a08cb778acc79a5629def6a44d7f9b40fc64f31f8339f18047957c",
+      "matched_terms": [
+        "corruption",
+        "recap",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD11 presents and inspects registered or lawfully provisional state. It may frame scenes, summarize visible state, surface consequences, present uncertainty, describe outc\u201d. Distinguishing context: \u201cD11 is **interface doctrine**. It is not the final live-play GM adapter, not a prose-style training pack, not autonomous encounter generation, not faction AI, not economy simulation, and not the final narrator \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 213,
+      "line_end": 311,
+      "locator_heading_or_symbol": "## Consequence visibility",
+      "excerpt_sha256": "a69a6f04654829a99432c3a26b739b688cdcdb97b70f9db0210eb494b6c1d32c",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## Consequence visibility Visible consequences may be narrated directly. Hidden/backend consequences remain GM-facing unless lawfully revealed. Hidden consequences may su\u201d. Distinguishing context: \u201c## Cost and consequence separation D11 separates declared cost, over-investment cost, outcome consequence, hidden consequence, delayed consequence, and historical consequence. Declared cost should not be framed\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 335,
+      "line_end": 451,
+      "locator_heading_or_symbol": "This file defines how D11 presents assessment results across D02 outcomes while preserving the Insight/Reason split, PCR visibility, hidden-state protection, and D10 information-st",
+      "excerpt_sha256": "2c2d24270bc7d33baca0d71e55862816b061a34c3395eb2ecda5c931e1511311",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "promotion",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis file defines how D11 presents assessment results across D02 outcomes while preserving the Insight/Reason split, PCR visibility, hidden-state protection, and D10 info\u201d. Distinguishing context: \u201c# D11-04 Assessment Result Presentation ## Purpose This file defines how D11 presents assessment results across D02 outcomes while preserving the Insight/Reason split, PCR visibility, hidden-state protection, a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 471,
+      "line_end": 589,
+      "locator_heading_or_symbol": "visibility: string",
+      "excerpt_sha256": "4b538cfeb2a8d02c5a001fcfa3cae361f3907d9e36ff8b390d61d4fb2b8901f7",
+      "matched_terms": [
+        "quarantine",
+        "recap",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cvisibility: string surfacing_intensity: string surfacing_vector: string fairness_support: [] player_facing_signal: string gm_facing_state_update: [] escalation_conditions\u201d. Distinguishing context: \u201cD09: [] D10: [] source_local: [] severity: string scope: string visibility: string surfacing_intensity: string surfacing_vector: string fairness_support: [] player_facing_signal: string gm_facing_state_update: \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 593,
+      "line_end": 660,
+      "locator_heading_or_symbol": "D11 classifies meaningful details as supported state, player-known state, player-inferable state, low-impact color, provisional detail, missing owner state, hidden backend state, s",
+      "excerpt_sha256": "1beb8dd98d3ab8e828e47bc5cb4d4045a708a8c782621ca80c8ce8d53ac2ddc5",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "truth",
+        "world history"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD11 classifies meaningful details as supported state, player-known state, player-inferable state, low-impact color, provisional detail, missing owner state, hidden backen\u201d. Distinguishing context: \u201cD11 may narrate supported state, player-visible effects, low-impact color, and clearly bounded provisional detail. It must not create persistent facts, mechanics, hidden truths, owner-file deltas, source-local \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 712,
+      "line_end": 830,
+      "locator_heading_or_symbol": "Scopes include encounter-local, site-local, adventure-local, campaign-local, faction-local, region-local, source-family-local, and source-local pending promotion. No scope is globa",
+      "excerpt_sha256": "107245fefaa82d2d3b8251d807c8399b0718c556a0971b2ff18a1ee34a8ec302",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cScopes include encounter-local, site-local, adventure-local, campaign-local, faction-local, region-local, source-family-local, and source-local pending promotion. No scop\u201d. Distinguishing context: \u201c- \"not default D10 faction procedure\" ``` ## Scope labels Scopes include encounter-local, site-local, adventure-local, campaign-local, faction-local, region-local, source-family-local, and source-local pending \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d11_doctrine_pack_v0_1/astra_d11_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 838,
+      "line_end": 949,
+      "locator_heading_or_symbol": "Ask what pressure exists; type, severity, visibility, scope, proximity, trigger, timing, intensity, fairness, state, agency preservation, and pacing.",
+      "excerpt_sha256": "8b0a2565f413ed6c47b75e25ba3a10a871284aa33c93677396440fafc58a302b",
+      "matched_terms": [
+        "corruption",
+        "reservation",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAsk what pressure exists; type, severity, visibility, scope, proximity, trigger, timing, intensity, fairness, state, agency preservation, and pacing. ### Source-local Ask\u201d. Distinguishing context: \u201cAsk what D02 outcome applies; what Insight detected; what Reason interpreted; what confidence applies; whether PCR is translated; whether Pneuma is protected; whether safeguards apply; and whether D10 informati\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D02_D05_relevance_crosscheck_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 76,
+      "line_end": 117,
+      "locator_heading_or_symbol": "- disadvantage cancellation;",
+      "excerpt_sha256": "90ba2fce9baa3d54de1c0592209140c4f2ff8dcff1a29efebcaa4aeb22456eea",
+      "matched_terms": [
+        "cancellation",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- disadvantage cancellation; - major modifier; - major difficulty adjustment. Other relevant competencies may provide secondary effects. This preserves D05\u2019s anti-stackin\u201d. Distinguishing context: \u201cA single D02 check should normally receive only one primary roll posture benefit from competencies. Primary roll posture benefits include: - advantage; - disadvantage cancellation; - major modifier; - major dif\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D02_D05_relevance_crosscheck_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 212,
+      "line_end": 250,
+      "locator_heading_or_symbol": "lawful_action_vector_status: lawful | lawful_with_risk | requires_research | requires_training | requires_access | requires_proof | requires_owner_validation | source_local | dange",
+      "excerpt_sha256": "cbb85d4469182ab9b16f1ddac25f0284fa2826f59cfbebf9ef382f869b40d741",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201clawful_action_vector_status: lawful | lawful_with_risk | requires_research | requires_training | requires_access | requires_proof | requires_owner_validation | source_loc\u201d. Distinguishing context: \u201cdeclared_cost: string declared_risk: string relevance_refs: [] primary_relevance_effect: string secondary_relevance_effects: [] lawful_action_vector_status: lawful | lawful_with_risk | requires_research | requi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D03_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 32,
+      "line_end": 81,
+      "locator_heading_or_symbol": "- overdraw, backlash, instability, and resource-facing corruption;",
+      "excerpt_sha256": "82c1f49bc7e00683f98e3a838009c8817c2b24c7c19f1f4cd2f4ac9eb0b8e293",
+      "matched_terms": [
+        "corruption",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- overdraw, backlash, instability, and resource-facing corruption; - D03 runtime state requirements. D05 now becomes an input layer for: - lawful action-vector creation; \u201d. Distinguishing context: \u201c- reservoir partitioning; - carrier tolerance; - Expression authoring and re-authoring; - Expression validation; - Expression inscription and burden; - overdraw, backlash, instability, and resource-facing corru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D03_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 201,
+      "line_end": 220,
+      "locator_heading_or_symbol": "- resource-facing corruption/instability.",
+      "excerpt_sha256": "9b44423af4f459820e10e547ae5e0306a21d2a1b56c5c6846d7714d48e2e9fd6",
+      "matched_terms": [
+        "corruption",
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- resource-facing corruption/instability. D05 may record training/research/proof inputs and route the track to D03, but D03 validates the track. --- ## 4. File-level amen\u201d. Distinguishing context: \u201c- cost efficiency; - recharge/recovery behavior; - confluence stability; - internal channel/node equivalent; - overdraw tolerance; - resource-facing corruption/instability. D05 may record training/research/proo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D03_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 288,
+      "line_end": 354,
+      "locator_heading_or_symbol": "3. D05 opens Research Track, Training Project, Method Seed, or Synthesis Record.",
+      "excerpt_sha256": "55c1ac0bd4a5c1545c0f1a48bc5174885692cd2acd259a6ab2718e015fb08112",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c3. D05 opens Research Track, Training Project, Method Seed, or Synthesis Record. 4. D05 may output Expression candidate. 5. D03 validates grade, scope, flags, economy, co\u201d. Distinguishing context: \u201cRequired pipeline: 1. Desired outcome identified. 2. D05 classifies current basis and missing basis. 3. D05 opens Research Track, Training Project, Method Seed, or Synthesis Record. 4. D05 may output Expression\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D03_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 426,
+      "line_end": 426,
+      "locator_heading_or_symbol": "- D05 becomes the basis/candidate/support layer for D03. D05 may create Research Tracks, Training Projects, Method Seeds, Synthesis Records, lawful action vectors, and Expression c",
+      "excerpt_sha256": "a9730cb6bad2adafaff0c5bd5a711a10944699a8184931efedd51584ee9c1067",
+      "matched_terms": [
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D05 becomes the basis/candidate/support layer for D03. D05 may create Research Tracks, Training Projects, Method Seeds, Synthesis Records, lawful action vectors, and Ex\u201d. Distinguishing context: \u201cDesign question: - How should D03 integrate D05 competency, training, research, method, synthesis, and advancement-track doctrine without surrendering D03 ownership over Power Economies and Expressions? Current\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D04_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 33,
+      "line_end": 147,
+      "locator_heading_or_symbol": "- Ascension Access reservation.",
+      "excerpt_sha256": "25840ff585322858c807b839c1e818f3e7df0463eccfdc367deb0052ef1338db",
+      "matched_terms": [
+        "evidence",
+        "reservation",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Ascension Access reservation. D05 now becomes a major evidence/input layer for: - competency proof; - profession proof; - training proof; - research proof; - mastery pr\u201d. Distinguishing context: \u201c- tier authorization; - Direct Tier Benefit validation; - Advancement Axis registration at the D04 layer; - breakthrough eligibility and resolution; - capstone proof and level 95-100 handling; - Ascension Acces\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D04_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 213,
+      "line_end": 308,
+      "locator_heading_or_symbol": "- Starter Method may come from D05 Method Seed or Practiced Method.",
+      "excerpt_sha256": "e789cd4bf6dfc51cde1450b193c962845a92e9d74e48c0f5e674e1ec09608334",
+      "matched_terms": [
+        "correction",
+        "corruption",
+        "reservation",
+        "seed",
+        "settlement",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Starter Method may come from D05 Method Seed or Practiced Method. - Initial Access Vector may be profession transmutation, research output, teacher lineage, method form\u201d. Distinguishing context: \u201cA D05 profession, skill, research track, or method may generate Awakening vector pressure, but it does not decide the final route. Dynamic Triadic Awakening converts proof clusters into lawful options; D06 late\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D04_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 380,
+      "line_end": 438,
+      "locator_heading_or_symbol": "## 5. Advancement Axis Registry correction note",
+      "excerpt_sha256": "b636ce60564a9eab7a6798ec1cb2d591ee64c120b974b54334b05db63acf5942",
+      "matched_terms": [
+        "correction",
+        "evidence",
+        "migration"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## 5. Advancement Axis Registry correction note D04-04 currently contains a large Advancement Axis Registry. After D05, this should be treated carefully. The registry rem\u201d. Distinguishing context: \u201c- [ ] D05 runtime refs added to D04-07. - [ ] D06 gate updated: do not begin D06 until D03/D04 reconciliation accepted or explicitly deferred. --- ## 5. Advancement Axis Registry correction note D04-04 currentl\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 90,
+      "line_end": 139,
+      "locator_heading_or_symbol": "- overdraw, backlash, instability, and resource-facing corruption;",
+      "excerpt_sha256": "82c1f49bc7e00683f98e3a838009c8817c2b24c7c19f1f4cd2f4ac9eb0b8e293",
+      "matched_terms": [
+        "corruption",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- overdraw, backlash, instability, and resource-facing corruption; - D03 runtime state requirements. D05 now becomes an input layer for: - lawful action-vector creation; \u201d. Distinguishing context: \u201c- reservoir partitioning; - carrier tolerance; - Expression authoring and re-authoring; - Expression validation; - Expression inscription and burden; - overdraw, backlash, instability, and resource-facing corru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 259,
+      "line_end": 278,
+      "locator_heading_or_symbol": "- resource-facing corruption/instability.",
+      "excerpt_sha256": "9b44423af4f459820e10e547ae5e0306a21d2a1b56c5c6846d7714d48e2e9fd6",
+      "matched_terms": [
+        "corruption",
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- resource-facing corruption/instability. D05 may record training/research/proof inputs and route the track to D03, but D03 validates the track. --- ## 4. File-level amen\u201d. Distinguishing context: \u201c- cost efficiency; - recharge/recovery behavior; - confluence stability; - internal channel/node equivalent; - overdraw tolerance; - resource-facing corruption/instability. D05 may record training/research/proo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 346,
+      "line_end": 412,
+      "locator_heading_or_symbol": "3. D05 opens Research Track, Training Project, Method Seed, or Synthesis Record.",
+      "excerpt_sha256": "55c1ac0bd4a5c1545c0f1a48bc5174885692cd2acd259a6ab2718e015fb08112",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c3. D05 opens Research Track, Training Project, Method Seed, or Synthesis Record. 4. D05 may output Expression candidate. 5. D03 validates grade, scope, flags, economy, co\u201d. Distinguishing context: \u201cRequired pipeline: 1. Desired outcome identified. 2. D05 classifies current basis and missing basis. 3. D05 opens Research Track, Training Project, Method Seed, or Synthesis Record. 4. D05 may output Expression\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 484,
+      "line_end": 484,
+      "locator_heading_or_symbol": "- D05 becomes the basis/candidate/support layer for D03. D05 may create Research Tracks, Training Projects, Method Seeds, Synthesis Records, lawful action vectors, and Expression c",
+      "excerpt_sha256": "a9730cb6bad2adafaff0c5bd5a711a10944699a8184931efedd51584ee9c1067",
+      "matched_terms": [
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D05 becomes the basis/candidate/support layer for D03. D05 may create Research Tracks, Training Projects, Method Seeds, Synthesis Records, lawful action vectors, and Ex\u201d. Distinguishing context: \u201cDesign question: - How should D03 integrate D05 competency, training, research, method, synthesis, and advancement-track doctrine without surrendering D03 ownership over Power Economies and Expressions? Current\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 548,
+      "line_end": 662,
+      "locator_heading_or_symbol": "- Ascension Access reservation.",
+      "excerpt_sha256": "25840ff585322858c807b839c1e818f3e7df0463eccfdc367deb0052ef1338db",
+      "matched_terms": [
+        "evidence",
+        "reservation",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Ascension Access reservation. D05 now becomes a major evidence/input layer for: - competency proof; - profession proof; - training proof; - research proof; - mastery pr\u201d. Distinguishing context: \u201c- tier authorization; - Direct Tier Benefit validation; - Advancement Axis registration at the D04 layer; - breakthrough eligibility and resolution; - capstone proof and level 95-100 handling; - Ascension Acces\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 728,
+      "line_end": 823,
+      "locator_heading_or_symbol": "- Starter Method may come from D05 Method Seed or Practiced Method.",
+      "excerpt_sha256": "e789cd4bf6dfc51cde1450b193c962845a92e9d74e48c0f5e674e1ec09608334",
+      "matched_terms": [
+        "correction",
+        "corruption",
+        "reservation",
+        "seed",
+        "settlement",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Starter Method may come from D05 Method Seed or Practiced Method. - Initial Access Vector may be profession transmutation, research output, teacher lineage, method form\u201d. Distinguishing context: \u201cA D05 profession, skill, research track, or method may generate Awakening vector pressure, but it does not decide the final route. Dynamic Triadic Awakening converts proof clusters into lawful options; D06 late\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 895,
+      "line_end": 953,
+      "locator_heading_or_symbol": "## 5. Advancement Axis Registry correction note",
+      "excerpt_sha256": "b636ce60564a9eab7a6798ec1cb2d591ee64c120b974b54334b05db63acf5942",
+      "matched_terms": [
+        "correction",
+        "evidence",
+        "migration"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## 5. Advancement Axis Registry correction note D04-04 currently contains a large Advancement Axis Registry. After D05, this should be treated carefully. The registry rem\u201d. Distinguishing context: \u201c- [ ] D05 runtime refs added to D04-07. - [ ] D06 gate updated: do not begin D06 until D03/D04 reconciliation accepted or explicitly deferred. --- ## 5. Advancement Axis Registry correction note D04-04 currentl\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1059,
+      "line_end": 1100,
+      "locator_heading_or_symbol": "- disadvantage cancellation;",
+      "excerpt_sha256": "90ba2fce9baa3d54de1c0592209140c4f2ff8dcff1a29efebcaa4aeb22456eea",
+      "matched_terms": [
+        "cancellation",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- disadvantage cancellation; - major modifier; - major difficulty adjustment. Other relevant competencies may provide secondary effects. This preserves D05\u2019s anti-stackin\u201d. Distinguishing context: \u201cA single D02 check should normally receive only one primary roll posture benefit from competencies. Primary roll posture benefits include: - advantage; - disadvantage cancellation; - major modifier; - major dif\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1195,
+      "line_end": 1233,
+      "locator_heading_or_symbol": "lawful_action_vector_status: lawful | lawful_with_risk | requires_research | requires_training | requires_access | requires_proof | requires_owner_validation | source_local | dange",
+      "excerpt_sha256": "cbb85d4469182ab9b16f1ddac25f0284fa2826f59cfbebf9ef382f869b40d741",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201clawful_action_vector_status: lawful | lawful_with_risk | requires_research | requires_training | requires_access | requires_proof | requires_owner_validation | source_loc\u201d. Distinguishing context: \u201cdeclared_cost: string declared_risk: string relevance_refs: [] primary_relevance_effect: string secondary_relevance_effects: [] lawful_action_vector_status: lawful | lawful_with_risk | requires_research | requi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 141,
+      "locator_heading_or_symbol": "B01 belongs to Batch B operational doctrine. It routes procedure between the A-family doctrine layer, the C00 schema handoff control surface, future C01-C14 schema families, source",
+      "excerpt_sha256": "aed074cf8ebc0cfaa403656cf200397c25b53f53bb32e4f47965250de38db035",
+      "matched_terms": [
+        "observation",
+        "preview",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cB01 belongs to Batch B operational doctrine. It routes procedure between the A-family doctrine layer, the C00 schema handoff control surface, future C01-C14 schema famili\u201d. Distinguishing context: \u201c- `docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-00_time_action_cadence_encounter_procedure_and_owner_boundaries.md`,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 164,
+      "line_end": 273,
+      "locator_heading_or_symbol": "- `freeform_scene` escalates to `focused_activity` when a meaningful action needs purpose, method, target, cost/risk preview, consequence awareness, state-delta routing, or owner h",
+      "excerpt_sha256": "2f658ad1e70f3363a436cd0db91973beb22c448afa76be2e3b9618cb35b1c384",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "preview",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `freeform_scene` escalates to `focused_activity` when a meaningful action needs purpose, method, target, cost/risk preview, consequence awareness, state-delta routing, \u201d. Distinguishing context: \u201cA trigger does not automatically create a structured encounter. Use the least structured container that safely preserves timing, cost, consequence, and owner routing. Escalate only when B01 cannot preserve the \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 285,
+      "line_end": 336,
+      "locator_heading_or_symbol": "- A player studies an unstable relic under visible risk; B01 classifies this as `focused_activity`, previews visible risk, and routes object state to the object/platform owner whil",
+      "excerpt_sha256": "ffa56e26a08651d8087d7038e3929ba5ffa2da28eff51b502a266a72c0b3cc87",
+      "matched_terms": [
+        "context packet",
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- A player studies an unstable relic under visible risk; B01 classifies this as `focused_activity`, previews visible risk, and routes object state to the object/platform \u201d. Distinguishing context: \u201c## 20. Examples of good and bad B01 usage Good B01 usage: - A conversation remains a `freeform_scene` because no meaningful action, cost, risk, opposition, or state-delta commitment has appeared. - A player stu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B03_item_gear_equipment_and_asset_use_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 28,
+      "line_end": 134,
+      "locator_heading_or_symbol": "B03 belongs to Batch B operational doctrine. It routes object-use procedure between upstream B01/B02 procedure, the A-family doctrine layer, the C00 schema handoff control surface,",
+      "excerpt_sha256": "497d6f0ee68dcf8d658423196bf141a0615ddb5eea9de3e931e288c3575f3d61",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cB03 belongs to Batch B operational doctrine. It routes object-use procedure between upstream B01/B02 procedure, the A-family doctrine layer, the C00 schema handoff contro\u201d. Distinguishing context: \u201c- `docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-04_inventory_storage_carrying_custody_quick_access_and_burden_pr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

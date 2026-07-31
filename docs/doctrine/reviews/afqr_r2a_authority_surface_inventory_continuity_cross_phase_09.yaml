@@ -1,0 +1,945 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-09",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_historical_branch_diff_guard.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 28,
+      "locator_heading_or_symbol": "\"\"\"Tests for historical branch-scoped diff guardrails.\"\"\"",
+      "excerpt_sha256": "4d2cbf4d94ecaa1d62a4d4737b854fafa6cdc5243144512ba6476e28a487a4c8",
+      "matched_terms": [
+        "branch"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for historical branch-scoped diff guardrails.\"\"\" from __future__ import annotations from pathlib import Path import pytest from tests.historical_branch_diff_guar\u201d. Distinguishing context: \u201c\"\"\"Tests for historical branch-scoped diff guardrails.\"\"\" from __future__ import annotations from pathlib import Path import pytest from tests.historical_branch_diff_guard import ( current_branch_name, require_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_package_manifest.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 32,
+      "line_end": 32,
+      "locator_heading_or_symbol": "assert \"object_lever_replay_audit_check.py\" in AUTHORIZED_RUNTIME_DOMAIN_FILES",
+      "excerpt_sha256": "9711afebea5b298d14ba427fd57211242035dc6c7f355ab47f18c312026b267e",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"object_lever_replay_audit_check.py\" in AUTHORIZED_RUNTIME_DOMAIN_FILES\u201d. Distinguishing context: \u201cdef test_manifest_remains_explicit_and_nonempty() -> None: assert \"__init__.py\" in AUTHORIZED_RUNTIME_DOMAIN_FILES assert \"state_store.py\" in AUTHORIZED_RUNTIME_DOMAIN_FILES assert \"object_lever_replay_audit_ch\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 6,
+      "line_end": 126,
+      "locator_heading_or_symbol": "import astra_runtime.domain.object_lever_replay_audit_check as f",
+      "excerpt_sha256": "2ebc59f94a885f4d3e4f22273595b4a32ab63adc89890b2e270bc71362e7ca09",
+      "matched_terms": [
+        "branch",
+        "preview",
+        "replay",
+        "rng",
+        "settlement",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cimport astra_runtime.domain.object_lever_replay_audit_check as f import astra_runtime.domain.object_lever_event_commit_state_delta_path as e from tests.historical_branch_\u201d. Distinguishing context: \u201cfrom dataclasses import is_dataclass import importlib, inspect, json, ast from types import SimpleNamespace import pytest import astra_runtime.domain.object_lever_replay_audit_check as f import astra_runtime.do\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 127,
+      "line_end": 247,
+      "locator_heading_or_symbol": "for key in f.FORBIDDEN_OBJECT_LEVER_REPLAY_AUDIT_METADATA_KEYS:",
+      "excerpt_sha256": "9ebf169745140567712327d0b05a041862cc1c319b696e56fdabfc1393477f3c",
+      "matched_terms": [
+        "preview",
+        "replay",
+        "snapshot",
+        "snapshot_id"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfor key in f.FORBIDDEN_OBJECT_LEVER_REPLAY_AUDIT_METADATA_KEYS: bad={\"nested\":[{key:\"x\"}]} with pytest.raises(f.ObjectLeverReplayAuditCheckError): f.ObjectLeverAuditSnaps\u201d. Distinguishing context: \u201cdef test_metadata_forbidden_keys_rejected_recursively_all_metadata_dataclasses(): src=f.build_object_lever_replay_audit_source_ref(commit_result()) elig=f.evaluate_object_lever_replay_audit_eligibility(src) sna\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 248,
+      "line_end": 366,
+      "locator_heading_or_symbol": "f.ObjectLeverReplayCheckReceipt(receipt_id=\"r\", replay_check_kind=\"object_lever_committed_event_replay_check\", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, audit_snap",
+      "excerpt_sha256": "45785e8b16a467b0cfdd763f34ebf9ad2739a5b0cabf57ae1521f760d8b97e86",
+      "matched_terms": [
+        "branch",
+        "preview",
+        "projection",
+        "replay",
+        "rng",
+        "snapshot",
+        "snapshot_id",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cf.ObjectLeverReplayCheckReceipt(receipt_id=\"r\", replay_check_kind=\"object_lever_committed_event_replay_check\", command_family=f.OBJECT_LEVER_REPLAY_AUDIT_COMMAND_FAMILY, \u201d. Distinguishing context: \u201cassert result.replay_check_receipt is None def test_replay_check_receipt_rejects_identity_mismatch(): with pytest.raises(f.InvalidObjectLeverReplayCheckReceiptError): f.ObjectLeverReplayCheckReceipt(receipt_id=\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_rt_002f_object_lever_replay_audit_check.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 370,
+      "line_end": 370,
+      "locator_heading_or_symbol": "assert not unexpected, f\"Branch diff modifies unexpected files: {unexpected}\"",
+      "excerpt_sha256": "c2e8633f3e7ae0ff98cb99db8c5afaa0765a01adba73f06ef583f325c8d4d639",
+      "matched_terms": [
+        "branch"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert not unexpected, f\"Branch diff modifies unexpected files: {unexpected}\"\u201d. Distinguishing context: \u201c\"tests/test_runtime_domain_rt_001e_action_legality_service_interface_contract_skeleton.py\", \"tests/test_runtime_domain_rt_002b_projection_visibility_adapter_v0_1.py\", \"tests/test_runtime_domain_rt_002c_object_l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_schema_implementation_sequencing_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 23,
+      "line_end": 26,
+      "locator_heading_or_symbol": "\"RT-009\": \"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\",",
+      "excerpt_sha256": "4d113a6269a4a72587e3332db9c13025aba1ccab020463750565dceaf721ed21",
+      "matched_terms": [
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"RT-009\": \"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\", \"RT-010\": \"docs/doctrine/control/RT010_inventory_item_vehicle_asset_owner_specifi\u201d. Distinguishing context: \u201c\"RT-004\": \"docs/doctrine/control/RT004_ability_effect_skill_binding_owner_specification.md\", \"RT-005\": \"docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md\", \"RT-006\": \"docs/doc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_schema_implementation_sequencing_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 181,
+      "line_end": 223,
+      "locator_heading_or_symbol": "assert \"authorizes_canon_promotion: false\" in review_text",
+      "excerpt_sha256": "1b7b4c0c4de68c6abd951e5b0a65360fffddf3dcc7518273cd751eb7e7a90512",
+      "matched_terms": [
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"authorizes_canon_promotion: false\" in review_text # --- Registry tracking --- def test_registry_tracks_review(registry_text): assert \"RUNTIME-SCHEMA-IMPLEMENTATIO\u201d. Distinguishing context: \u201cassert \"artifact_type: implementation_sequencing_review\" in review_text assert \"implementation_status: non_executable_review\" in review_text assert \"authorizes_runtime_implementation: false\" in review_text asse\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 73,
+      "line_end": 117,
+      "locator_heading_or_symbol": "## Queue and Quarantine Actions",
+      "excerpt_sha256": "2d52d1f62f6ae80d9437c6baf341cbded446872a4d8b16762292d4b1e0b88d3b",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c## Queue and Quarantine Actions - none ## Lexicon Delta - term ## Doctrine Escalations - esc ## Source-Local Retentions - ret ## Rejected Imports - rej ## Canon Candidate\u201d. Distinguishing context: \u201c- construct A ## Astra Mapping Ledger | donor | outcome | family | rationale | |---|---|---|---| | A | direct mapping | fam | reason | ## Queue and Quarantine Actions - none ## Lexicon Delta - term ## Doctrine \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 174,
+      "line_end": 236,
+      "locator_heading_or_symbol": "assert sjs.norm_outcome('quarantined construct pending later doctrine') == 'quarantined construct pending later doctrine'",
+      "excerpt_sha256": "636401498960011c35d11d8055a321ddf681cd01e9ba12a04aae0ce3ed066d4c",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert sjs.norm_outcome('quarantined construct pending later doctrine') == 'quarantined construct pending later doctrine' assert sjs.norm_outcome('escalated doctrine prob\u201d. Distinguishing context: \u201cdef test_norm_outcome_display_strings(): sjs = _get_sjs() assert sjs.norm_outcome('direct Astra mapping') == 'direct Astra mapping' assert sjs.norm_outcome('normalized Astra mapping') == 'normalized Astra mappi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 417,
+      "line_end": 417,
+      "locator_heading_or_symbol": "def test_scaffold_canon_notes_non_empty_no_promotion(tmp_path: Path):",
+      "excerpt_sha256": "9789eb14a67f4095cfc26175b03d7ba6148fc08bffc6dfce5f5bd230f334ab71",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_scaffold_canon_notes_non_empty_no_promotion(tmp_path: Path):\u201d. Distinguishing context: \u201c) obj = json.loads((run / 'results/pkt1_conversion_result.json').read_text()) assert len(obj['rejected_imports']) >= 2 def test_scaffold_canon_notes_non_empty_no_promotion(tmp_path: Path): run = _init_run(tmp_p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 470,
+      "line_end": 470,
+      "locator_heading_or_symbol": "assert obj['mapping_ledger'][0]['lawful_outcome'] == 'quarantined construct pending later doctrine'",
+      "excerpt_sha256": "93e39c387967bdf65e96a7c6c66f28c9cdab5343067c30ede50cf0d738953c36",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert obj['mapping_ledger'][0]['lawful_outcome'] == 'quarantined construct pending later doctrine'\u201d. Distinguishing context: \u201c'--run-dir', str(run), '--packet-id', 'pkt1'], check=True, ) obj = json.loads((run / 'results/pkt1_conversion_result.json').read_text()) assert len(obj['mapping_ledger']) == 1 assert obj['mapping_ledger'][0]['l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_scaffold_conversion_intake_json.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 537,
+      "line_end": 543,
+      "locator_heading_or_symbol": "def test_unknown_lawful_outcome_warning_and_quarantine():",
+      "excerpt_sha256": "a7df75de13feae5dc19d725f07e7b3c066d9641af6d6ce88c58be90835454226",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_unknown_lawful_outcome_warning_and_quarantine(): sjs = _get_sjs() warns = [] rows = sjs.parse_mapping_table( \"| donor | outcome |\\n|---|---|\\n| X | nonsense |\\n\"\u201d. Distinguishing context: \u201csubprocess.run([sys.executable, 'scripts/handoff/scaffold_conversion_intake_json.py', '--run-dir', str(run), '--packet-id', 'pkt1'], check=True) obj = json.loads((run / 'results/pkt1_conversion_result.json').re\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm00_schema_math_mechanics_master_scope_and_sequencing_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 50,
+      "line_end": 50,
+      "locator_heading_or_symbol": "\"evidence/provenance schemas\",",
+      "excerpt_sha256": "29041e72db4a784565c2ffd9952a470a016cb40a325ae7cc0748d61015b1ea13",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence/provenance schemas\",\u201d. Distinguishing context: \u201cSCHEMA_GAPS = [ \"validation schemas\", \"record instance schemas\", \"cross-record references\", \"conversion packet schemas\", \"evidence/provenance schemas\", \"canon-review schemas\", \"conflict ledger schemas\", \"pilot \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm00_schema_math_mechanics_master_scope_and_sequencing_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 101,
+      "line_end": 137,
+      "locator_heading_or_symbol": "\"premature canon/sourcebook/live-play/runtime promotion\",",
+      "excerpt_sha256": "37b2945bbb84f09943bbf5d7a832a0e1459bfb2e8af6882f8dbc07bcc596e250",
+      "matched_terms": [
+        "context packet",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"premature canon/sourcebook/live-play/runtime promotion\", \"hidden-state leakage\", \"unvalidated math\", \"brittle tests\", \"insufficient benchmarks\", \"megafile risk\", \"underd\u201d. Distinguishing context: \u201c\"RHBF overfitting\", \"C-family schema drift\", \"Batch B procedure mistaken for final mechanics\", \"Batch C records mistaken for runtime schemas\", \"D-series authority leakage\", \"premature canon/sourcebook/live-play\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm00_schema_math_mechanics_master_scope_and_sequencing_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 219,
+      "line_end": 280,
+      "locator_heading_or_symbol": "assert \"D-series authority promotion\" in text",
+      "excerpt_sha256": "e0fa34cdf880e2e9a812ea9e0eff565627f0d33413e86a084c0963cdbc303a80",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"D-series authority promotion\" in text def test_schema_gap_inventory_terms_are_present() -> None: text = sm00_text() for marker in SCHEMA_GAPS: assert marker in te\u201d. Distinguishing context: \u201cdef test_d_series_source_packs_are_draft_source_material_only_and_not_authority() -> None: text = sm00_text() assert \"D00-D19 source packs are draft source material only\" in text assert \"not current doctrine, f\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm01_validation_schema_inventory_and_readiness_controls.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 67,
+      "locator_heading_or_symbol": "\"## 12. Evidence and provenance validation inventory\",",
+      "excerpt_sha256": "4b4d99c3ab24e54aa397d085dc869ca2868b90f2210b34ff32eb34d25f122aa9",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 12. Evidence and provenance validation inventory\", \"## 13. Source-local, rejected-import, and legal/IP validation inventory\", \"## 14. Canon-review and conflict-ledger\u201d. Distinguishing context: \u201c\"## 7. C00-C14 validation coverage map\", \"## 8. Validation schema class inventory\", \"## 9. Record instance schema inventory\", \"## 10. Cross-record reference validation inventory\", \"## 11. Conversion packet vali\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm01_validation_schema_inventory_and_readiness_controls.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 146,
+      "line_end": 261,
+      "locator_heading_or_symbol": "\"context packet contracts\",",
+      "excerpt_sha256": "69bd40898ba656bdd927ef0f702a145e54240a280f6ab5a96b6aa2c5d2543c71",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context packet contracts\", \"save-state shapes\", \"does not promote C00-C14 registry statuses\", \"does not rewrite C00-C14\", \"does not add C15\", \"does not use RHBF as hidde\u201d. Distinguishing context: \u201c\"not live-play behavior\", \"not training data\", \"does not create JSON Schema files\", \"does not create JSON Schema files, Pydantic models, runtime schemas, backend schemas, database schemas\", \"command lifecycle c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm02_minimum_pilot_conversion_readiness_and_packet_validation_controls.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 24,
+      "line_end": 67,
+      "locator_heading_or_symbol": "\"## 10. Evidence and provenance readiness gate\",",
+      "excerpt_sha256": "6202d66fdce780b71af9e1d9dc91e09ba65bc43898c062facc4aec4a2093651c",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 10. Evidence and provenance readiness gate\", \"## 11. Lawful outcome completeness gate\", \"## 12. C00-C14 routing readiness gate\", \"## 13. `pending_schema` and missing-\u201d. Distinguishing context: \u201c\"## 5. What SM02 must not own\", \"## 6. Minimum pilot conversion readiness definition\", \"## 7. Pilot scope constraints\", \"## 8. Donor-family selection constraints\", \"## 9. Conversion packet readiness gate\", \"## \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm02_minimum_pilot_conversion_readiness_and_packet_validation_controls.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 162,
+      "line_end": 162,
+      "locator_heading_or_symbol": "\"context packet contracts\",",
+      "excerpt_sha256": "d549ba7c43615b7ef2ff4e96f68730e19b3fd24747b3d0c7170a53f6905037aa",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context packet contracts\",\u201d. Distinguishing context: \u201c\"runtime/backend/database contracts\", \"create runtime schemas\", \"create backend schemas\", \"create database schemas\", \"command lifecycle contracts\", \"context packet contracts\", \"save-state shapes\", \"create final\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm02_minimum_pilot_conversion_readiness_and_packet_validation_controls.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 232,
+      "line_end": 296,
+      "locator_heading_or_symbol": "\"future conversion/evidence validation owner\",",
+      "excerpt_sha256": "04a09536135b7003e26b438dc6ee8f7d4f3bb2579780dc31f1258b2dabc6421f",
+      "matched_terms": [
+        "evidence",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"future conversion/evidence validation owner\", \"lawful outcome/conversion intake owner\", \"C00/C-family schema owner and future validation/schema implementation owner\", \"C\u201d. Distinguishing context: \u201cdef test_sm02_includes_owner_routing_and_lawful_fallbacks() -> None: text = sm02_text() assert \"## 22. Owner map and lawful fallbacks\" in text for marker in [ \"future pilot conversion owner\", \"future conversion\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 107,
+      "locator_heading_or_symbol": "\"Required upstream completion evidence\",",
+      "excerpt_sha256": "6d60c96371104add225da03fabaff9764f24c10c0f9a75fdbf64ba8c268bf092",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "reservation",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Required upstream completion evidence\", \"Packet set authorization gate\", \"Evidence and provenance authorization gate\", \"Lawful outcome authorization gate\", \"C00-C14 and \u201d. Distinguishing context: \u201c\"Existing authorization posture\", \"What SM05 owns\", \"What SM05 must not own\", \"Pilot conversion authorization definition\", \"Authorization scope constraints\", \"Required upstream completion evidence\", \"Packet set\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 202,
+      "line_end": 202,
+      "locator_heading_or_symbol": "\"context packet contracts\",",
+      "excerpt_sha256": "d549ba7c43615b7ef2ff4e96f68730e19b3fd24747b3d0c7170a53f6905037aa",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context packet contracts\",\u201d. Distinguishing context: \u201c\"create runtime schemas\", \"create backend schemas\", \"create database schemas\", \"create entity/component/event schemas\", \"command lifecycle contracts\", \"context packet contracts\", \"save-state shapes\", \"create fi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 309,
+      "line_end": 309,
+      "locator_heading_or_symbol": "# --- Authorization gate/evidence terms ---",
+      "excerpt_sha256": "8c3ed15c46937be7cdbfee39cf29e3bbfacb37c25432333fd1fa1ef82faacad9",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# --- Authorization gate/evidence terms ---\u201d. Distinguishing context: \u201cassert \"deferred\" in text.lower() assert \"C04\" in text assert \"C09\" in text # --- Authorization gate/evidence terms --- def test_sm05_includes_all_authorization_gate_terms() -> None: text = sm05_text() for term\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 375,
+      "line_end": 385,
+      "locator_heading_or_symbol": "\"repair/quarantine/failure-report paths exist\",",
+      "excerpt_sha256": "5075c1c3c41de9562b48a7a4b486c416c413bfc21f8d71fcc45237d042e45ab2",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"repair/quarantine/failure-report paths exist\", ]: assert marker in text or marker.lower() in text.lower(), ( f\"Missing authorize criterion: {marker}\" ) def test_sm05_inc\u201d. Distinguishing context: \u201c\"SM04 rubric is ready\", \"legal/IP path exists\", \"source-local containment path exists\", \"donor leakage hard-fail criteria are known\", \"review owner exists\", \"repair/quarantine/failure-report paths exist\", ]: as\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 457,
+      "line_end": 457,
+      "locator_heading_or_symbol": "\"future conversion/evidence validation owner\",",
+      "excerpt_sha256": "248f1365b62a4f7a252a1882cf379f38087728c0c6326f1e01a45e94dc448437",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"future conversion/evidence validation owner\",\u201d. Distinguishing context: \u201cdef test_sm05_includes_owner_routing_and_lawful_fallbacks() -> None: text = sm05_text() assert \"Owner map and lawful fallbacks\" in text for marker in [ \"future pilot conversion owner\", \"future conversion/eviden\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 559,
+      "line_end": 576,
+      "locator_heading_or_symbol": "# --- Registry non-promotion ---",
+      "excerpt_sha256": "e9d591bb99ead557623b3fb849121b0a437ffa0f114844b1d633084837085ac1",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# --- Registry non-promotion --- def test_c00_c14_registry_records_not_promoted_to_forbidden_states() -> None: for file_id in [\"C00\", *[f\"C{number:02d}\" for number in ran\u201d. Distinguishing context: \u201cassert not re.search(pattern, text, flags=re.IGNORECASE), ( f\"Implementation artifact found: {pattern}\" ) # --- Registry non-promotion --- def test_c00_c14_registry_records_not_promoted_to_forbidden_states() ->\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm06_controlled_pilot_conversion_execution_and_output_capture_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 102,
+      "locator_heading_or_symbol": "\"Evidence and provenance capture requirements\",",
+      "excerpt_sha256": "68a8fbff245df17f8ddfffb99b2c978ac810e27b67bbedc4fe1066e3122862b5",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Evidence and provenance capture requirements\", \"Construct inventory capture requirements\", \"Lawful outcome ledger capture requirements\", \"Mapping ledger capture requirem\u201d. Distinguishing context: \u201c\"Controlled pilot execution definition\", \"Execution scope constraints\", \"Required SM05 authorization reference\", \"Pre-execution verification checklist\", \"Execution packet boundary controls\", \"Evidence and prove\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm06_controlled_pilot_conversion_execution_and_output_capture_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 198,
+      "line_end": 198,
+      "locator_heading_or_symbol": "\"context packet contracts\",",
+      "excerpt_sha256": "d549ba7c43615b7ef2ff4e96f68730e19b3fd24747b3d0c7170a53f6905037aa",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context packet contracts\",\u201d. Distinguishing context: \u201c\"create runtime schemas\", \"create backend schemas\", \"create database schemas\", \"create entity/component/event schemas\", \"command lifecycle contracts\", \"context packet contracts\", \"save-state shapes\", \"create fi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm06_controlled_pilot_conversion_execution_and_output_capture_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 299,
+      "line_end": 299,
+      "locator_heading_or_symbol": "\"later, separately authorized, tightly bounded conversion attempt whose purpose is to produce reviewable pilot evidence under SM02-SM05 controls\"",
+      "excerpt_sha256": "cc46c15457b79d01f664f16844ec5a7dafe042c845b68d767040895b7d6d01a9",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"later, separately authorized, tightly bounded conversion attempt whose purpose is to produce reviewable pilot evidence under SM02-SM05 controls\"\u201d. Distinguishing context: \u201cdef test_sm06_defines_controlled_pilot_execution() -> None: text = sm06_text() assert ( \"later, separately authorized, tightly bounded conversion attempt whose purpose is to produce reviewable pilot evidence un\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm06_controlled_pilot_conversion_execution_and_output_capture_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 393,
+      "line_end": 467,
+      "locator_heading_or_symbol": "\"evidence/provenance artifacts\",",
+      "excerpt_sha256": "5692b439c581ce41f12389100742a688fd0672fd5f1a5f297b650ab1f91125a2",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence/provenance artifacts\", \"all ledgers\", \"failure reports\", \"repair/quarantine states\", \"authorization reference\", \"reviewer assignment\", \"explicit non-readiness s\u201d. Distinguishing context: \u201cdef test_sm06_includes_post_execution_review_handoff_to_sm04() -> None: text = sm06_text() assert \"Post-execution review handoff to SM04\" in text for marker in [ \"captured output package\", \"evidence/provenance \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm06_controlled_pilot_conversion_execution_and_output_capture_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 559,
+      "line_end": 576,
+      "locator_heading_or_symbol": "# --- Registry non-promotion ---",
+      "excerpt_sha256": "e9d591bb99ead557623b3fb849121b0a437ffa0f114844b1d633084837085ac1",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# --- Registry non-promotion --- def test_c00_c14_registry_records_not_promoted_to_forbidden_states() -> None: for file_id in [\"C00\", *[f\"C{number:02d}\" for number in ran\u201d. Distinguishing context: \u201cassert not re.search(pattern, text, flags=re.IGNORECASE), ( f\"Implementation artifact found: {pattern}\" ) # --- Registry non-promotion --- def test_c00_c14_registry_records_not_promoted_to_forbidden_states() ->\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 29,
+      "line_end": 104,
+      "locator_heading_or_symbol": "\"Evidence and provenance scaffold requirements\",",
+      "excerpt_sha256": "55fc0f1c029fc13b0b440d81a82b8c36f96fd36ebbeff0962fc784b06e27d115",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Evidence and provenance scaffold requirements\", \"Construct inventory scaffold requirements\", \"Lawful outcome ledger scaffold requirements\", \"Mapping ledger scaffold requ\u201d. Distinguishing context: \u201c\"Scaffold scope constraints\", \"Placeholder/non-donor content policy\", \"Required SM05 authorization reference scaffold\", \"Required SM06 output-capture scaffold\", \"Packet manifest scaffold requirements\", \"Evidenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 243,
+      "line_end": 285,
+      "locator_heading_or_symbol": "\"registry promotion\",",
+      "excerpt_sha256": "639337b706063f0c413686debbbb601c66dcadba9a6c197371f087c969e92e3b",
+      "matched_terms": [
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"registry promotion\", \"rewrite C00-C14\", \"add C15\", \"treat D00-D19 as authority\", \"use RHBF as hidden law\", \"waive SM02 minimum pilot readiness gates\", \"bypass SM05 autho\u201d. Distinguishing context: \u201c\"create Pydantic models\", \"create final validators\", \"runtime/backend/database contracts\", \"create final mechanics\", \"canon/sourcebook/live-play/training content\", \"registry promotion\", \"rewrite C00-C14\", \"add \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 410,
+      "line_end": 410,
+      "locator_heading_or_symbol": "\"future conversion/evidence validation owner\",",
+      "excerpt_sha256": "248f1365b62a4f7a252a1882cf379f38087728c0c6326f1e01a45e94dc448437",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"future conversion/evidence validation owner\",\u201d. Distinguishing context: \u201cfor marker in [ \"future pilot conversion owner\", \"future pilot conversion owner plus test owner\", \"authorization owner\", \"pilot conversion owner\", \"future conversion/evidence validation owner\", \"conversion inta\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_sm07_controlled_pilot_conversion_execution_packet_scaffold_and_review_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 505,
+      "line_end": 526,
+      "locator_heading_or_symbol": "# --- Registry non-promotion ---",
+      "excerpt_sha256": "8a3e2f80c5f69dba35942525592971eda0e3de34e4a7e40a6d4dbd61799bdc14",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# --- Registry non-promotion --- def test_c00_c14_registry_records_not_promoted_to_forbidden_states() -> None: for file_id in [\"C00\", *[f\"C{number:02d}\" for number in ran\u201d. Distinguishing context: \u201cassert marker.lower() not in lowered, f\"{path} contains donor marker: {marker}\" for artifact_marker in [\"converted output:\", \"donor excerpt:\", \"statblock:\", \"source table:\", \"source map:\"]: assert artifact_mark\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_validate_conversion_run_integrity.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 50,
+      "line_end": 50,
+      "locator_heading_or_symbol": "\"batch_001_quarantine_escalation_queue.csv\",",
+      "excerpt_sha256": "129b93bdf1b15ddb022cd14ffdf49007d94560c58d1a5df90a9696b3df0f7df9",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"batch_001_quarantine_escalation_queue.csv\",\u201d. Distinguishing context: \u201c(run / \"reports\" / \"aggregation\" / \"batch_001_aggregation_report.json\").write_text(json.dumps(agg), encoding=\"utf-8\") for fn in [ \"batch_001_aggregation_report.md\", \"batch_001_doctrine_pressure_report.md\", \"bat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 99,
+      "locator_heading_or_symbol": "# AFQR-01 - Atomic State Transition, Ownership, Commitment, Recovery, and Replay",
+      "excerpt_sha256": "b36f1ed9da9ba6740f810bc144d3095a034735a3916b0a3081b83ef60c5b9254",
+      "matched_terms": [
+        "compensation",
+        "evidence",
+        "idempotency",
+        "projection",
+        "replay",
+        "rollback",
+        "schedule",
+        "schema version",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-06_VERSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-11_DELIVERY"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# AFQR-01 - Atomic State Transition, Ownership, Commitment, Recovery, and Replay **Selected architecture:** Atomic Typed Transition Journal with Owner-Specific Reducers a\u201d. Distinguishing context: \u201c# AFQR-01 - Atomic State Transition, Ownership, Commitment, Recovery, and Replay **Selected architecture:** Atomic Typed Transition Journal with Owner-Specific Reducers and Declared Saga Escape Hatches **Ratifi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-07/ARCH-01/adrs/AFQR-07_Cross_Domain_Conservation_Conversion_Validity_Reservation_Settlement_and_Arbitrage_Prevention.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 110,
+      "locator_heading_or_symbol": "# AFQR-07 - Cross-Domain Conservation, Conversion Validity, Reservation, Settlement, and Arbitrage Prevention",
+      "excerpt_sha256": "e5503634b2c0b0bb4d81a9b5f431ec5c98beaf0f73595c9e18ff28a45b4193bf",
+      "matched_terms": [
+        "release",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# AFQR-07 - Cross-Domain Conservation, Conversion Validity, Reservation, Settlement, and Arbitrage Prevention **Selected architecture:** Typed Balance-Domain Flow Ledger \u201d. Distinguishing context: \u201c# AFQR-07 - Cross-Domain Conservation, Conversion Validity, Reservation, Settlement, and Arbitrage Prevention **Selected architecture:** Typed Balance-Domain Flow Ledger with Proof-Carrying Conversion and Atomi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 12,
+      "line_end": 116,
+      "locator_heading_or_symbol": "> Exact runtime-reference equality establishes only that two references address the same registered runtime incarnation in the same campaign, world, and timeline. Every broader cla",
+      "excerpt_sha256": "b45b59420ae98878d6090920e28a1f1ec7043bc17cfee2f1c51a4368a9ab8278",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "migration",
+        "projection",
+        "replay",
+        "reservation",
+        "snapshot",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c> Exact runtime-reference equality establishes only that two references address the same registered runtime incarnation in the same campaign, world, and timeline. Every b\u201d. Distinguishing context: \u201c## Owned question Defines runtime reference identity and broader continuity without adopting one universal theory of bodily, psychological, material, process, legal, social, narrative, or spiritual identity. ##\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4,
+      "line_end": 122,
+      "locator_heading_or_symbol": "\"authority\": \"temporary_non_authoritative_working_evidence_only\",",
+      "excerpt_sha256": "10a1137ddf818acaaabbd65f1bf97d74002752c1b69eb72a0a2da2a7978ac33f",
+      "matched_terms": [
+        "archive",
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"authority\": \"temporary_non_authoritative_working_evidence_only\", \"aggregate_counts\": { \"physical_archives\": 12, \"contained_physical_files\": 277, \"logical_afqr_slots\": 20\u201d. Distinguishing context: \u201c{ \"manifest_version\": \"1.0.0\", \"received_head\": \"43a50c3756c4f1ba335956d8224f22b34fc32ab5\", \"authority\": \"temporary_non_authoritative_working_evidence_only\", \"aggregate_counts\": { \"physical_archives\": 12, \"cont\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 135,
+      "line_end": 254,
+      "locator_heading_or_symbol": "\"archive_record_id\": \"ARCH-09\",",
+      "excerpt_sha256": "ef66e6266cfae8e47026f4ff12fc662dd1fa3f4ea2120648624472e6ec0cc688",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "replay",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"archive_record_id\": \"ARCH-09\", \"original_filename\": \"Astra_AFQR_17_Ratification_Pack_v1_0.zip\", \"current_path\": \"working/afqr_consolidation_inputs/incoming/Astra_AFQR_17\u201d. Distinguishing context: \u201c\"AFQR-16\" ], \"status\": \"temporary_non_authoritative_working_input\" }, { \"archive_record_id\": \"ARCH-09\", \"original_filename\": \"Astra_AFQR_17_Ratification_Pack_v1_0.zip\", \"current_path\": \"working/afqr_consolidati\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 257,
+      "line_end": 374,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "02f2e1135f5ca1cc8062b4bf80a499137c71c62ae3fbf33fce30ad9dbf5f40b0",
+      "matched_terms": [
+        "archive",
+        "causal order",
+        "evidence",
+        "reservation",
+        "schedule",
+        "settlement",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"md\", \"detected_afqr_id\": \"AFQR-01\", \"detected_title\": \"Atomic State Transition, Ownership, Commitment, Recovery, and Replay\", \"package_kind\": \"answer\", \"selected_as_primary\": true, \"super\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 380,
+      "line_end": 495,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-01\",",
+      "excerpt_sha256": "63141cba1e0188437e3d2e9ed209ab53f7daaf0584d043ff0172192cf31cb7f7",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "migration",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-01\", \"original_archive_path\": \"astra_afqr_01_09_ratification_pack_v1_0/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"committed_text_copy\" }, { \"source_record_id\": \"SRC-0011\", \"parent_archive_record_id\": \"ARCH-01\", \"original_archive_path\": \"astra\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 504,
+      "line_end": 623,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "474efcdd4d81b53d9b04c0eb144a09b8193582128f9afe640d1c6b918b7d9c24",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-06\", \"detected_title\": \"AFQR-06 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

@@ -1,0 +1,998 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-11",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-02_awakening_and_dynamic_triadic_choice.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 189,
+      "line_end": 261,
+      "locator_heading_or_symbol": "## 14. Starter Method or Expression Seed",
+      "excerpt_sha256": "20e085cb6a25f966600311c9c9ef1fbf48ed26f54f3f81cdf3a7512fe617ca64",
+      "matched_terms": [
+        "correction",
+        "corruption",
+        "quarantine",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## 14. Starter Method or Expression Seed Awakening usually grants a starter method, route action, prototype Expression, stable low-grade Expression, tool protocol, domain\u201d. Distinguishing context: \u201cAwakening must initialize minimum legal capacity. Possible carrier states include first ascendant carrier slot, initial Expression capacity, externalized carrier, tool-bound carrier, economy partition, route-bo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-03_levels_tiers_and_development_picks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 61,
+      "locator_heading_or_symbol": "| 0 | 1\u20135 | Mortal Development Picks, mundane axes, proof gathering, route seeds, Awakening threshold. |",
+      "excerpt_sha256": "4ba6d771d63d84441333509c91ff874bc57abb9947637568b63765f938c2ff1f",
+      "matched_terms": [
+        "branch",
+        "seed",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| 0 | 1\u20135 | Mortal Development Picks, mundane axes, proof gathering, route seeds, Awakening threshold. | | 1 | 5\u201315 | Ascendant Development Picks, low-grade Expressions, \u201d. Distinguishing context: \u201c## 3. Level band structure | Tier | Level band | Primary advancement behavior | |---:|---|---| | 0 | 1\u20135 | Mortal Development Picks, mundane axes, proof gathering, route seeds, Awakening threshold. | | 1 | 5\u201315\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-03_levels_tiers_and_development_picks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 232,
+      "locator_heading_or_symbol": "| Mortal Pick | Mundane axes, profession, skills, proof, achievements, route seeds. |",
+      "excerpt_sha256": "a0d2f2559a4e46b8b67d834f0e2b50b76d005b8b4f5739ada12ca7d9be22cbc7",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Mortal Pick | Mundane axes, profession, skills, proof, achievements, route seeds. | | Ascendant Pick | Early Expressions, first economy routes, route stabilization, low\u201d. Distinguishing context: \u201cHigher-tier picks may be somewhat stronger, but their primary advantage is broader legal target access. | Pick band | Legal target scope | |---|---| | Mortal Pick | Mundane axes, profession, skills, proof, achi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-03_levels_tiers_and_development_picks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 269,
+      "line_end": 307,
+      "locator_heading_or_symbol": "### Route Stabilization or Branch Permission",
+      "excerpt_sha256": "13cbbe3f8c348772a6c69e6f5ca3034f575bf58b74009b2af3524a688199ee24",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c### Route Stabilization or Branch Permission Clarify, stabilize, branch, or legally mutate route. Not free multi-pathing. ### Recovery / Resistance Improvement Improve re\u201d. Distinguishing context: \u201c### Power Economy Integration Opportunity Deepen or stabilize one Power Economy relationship. Opportunity, not automatic mastery. ### Route Stabilization or Branch Permission Clarify, stabilize, branch, or lega\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-03_levels_tiers_and_development_picks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 360,
+      "line_end": 366,
+      "locator_heading_or_symbol": "## 24. Tier visibility changes",
+      "excerpt_sha256": "9ed4139519aea2a9ba5d90d45976ea4e8276ae529c3ac9e378080cbdd7617abd",
+      "matched_terms": [
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## 24. Tier visibility changes Tier visibility changes are proof/context-dependent, not fixed effects. Possible changes include body mark, aura/Animus pressure, reputatio\u201d. Distinguishing context: \u201cvalidation_result: authorized | pending | dangerous | source_local | blocked ``` Direct benefits are narrow or moderate by default. Major effects require breakthrough, capstone, special proof, structural thresh\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-04_advancement_axis_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 130,
+      "locator_heading_or_symbol": "## 3. Progressive Axis Disclosure",
+      "excerpt_sha256": "d315baa5d4815881ef896c0b854e98f6ca201855f0d7f400e5531858f9e174ce",
+      "matched_terms": [
+        "branch",
+        "disclosure",
+        "projection",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## 3. Progressive Axis Disclosure Tier 0 and early play must not expose every possible axis. Visible early axes may include Health / Endura, profession, core skills, rela\u201d. Distinguishing context: \u201cAstra should support a web of advancement possibilities. Level, tier, Path/Class/Dao, and breakthrough are important, but they are not the only ways an entity can grow. An axis becomes player-visible only when \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-04_advancement_axis_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 154,
+      "line_end": 226,
+      "locator_heading_or_symbol": "Stronghold, settlement, dungeon core, territory, ship-domain, domain site, farm, forge, city, or region grows.",
+      "excerpt_sha256": "3583350ffd350ada7d2d52ac713f36e0989f2e60a1910147eb34b21e932a9a29",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "corruption",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cStronghold, settlement, dungeon core, territory, ship-domain, domain site, farm, forge, city, or region grows. Owner: D10/D09. ### 5.16 Settlement Specialization Path A p\u201d. Distinguishing context: \u201cOwner: D05/D09/D10. ### 5.15 Territory / Domain Tier Stronghold, settlement, dungeon core, territory, ship-domain, domain site, farm, forge, city, or region grows. Owner: D10/D09. ### 5.16 Settlement Specializa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-04_advancement_axis_registry.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 313,
+      "line_end": 346,
+      "locator_heading_or_symbol": "| Tier Transition | Authorization + Direct Tier Benefit + Visibility + Future Notice. | Mastery of whole tier. |",
+      "excerpt_sha256": "cb39d2521c5bf0e09afd59adb284188c1c67a2ff4b651bcf0aa60967b67c0ecc",
+      "matched_terms": [
+        "branch",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Tier Transition | Authorization + Direct Tier Benefit + Visibility + Future Notice. | Mastery of whole tier. | | Proof Bundle | Eligibility, legal options, pending outp\u201d. Distinguishing context: \u201c## 6. Advancement Layer Grant Matrix | Layer | Typical grant | Must not grant | |---|---|---| | Ordinary Level | One typed Development Pick. | Free universal power. | | Tier Transition | Authorization + Direct \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-05_breakthrough_procedure_and_payloads.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 127,
+      "locator_heading_or_symbol": "A breakthrough may affect visible attribute threshold lattice, Power Economy integration, Expression capacity/carrier/method, Path/Class/Dao route, skill/profession mastery, Vessel",
+      "excerpt_sha256": "1dcd4b5807418d30fb38f1b899687c2e4944bd26ba2ff18c9a9fee9e094ed0b6",
+      "matched_terms": [
+        "corruption",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA breakthrough may affect visible attribute threshold lattice, Power Economy integration, Expression capacity/carrier/method, Path/Class/Dao route, skill/profession maste\u201d. Distinguishing context: \u201cSafe, stable, proof-supported breakthroughs usually avoid random rolls. Risky, forced, corrupted, overripe, misaligned, contested, or pushed breakthroughs use D02 outcome lanes, clocks, resistance checks, oppos\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-05_breakthrough_procedure_and_payloads.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 143,
+      "line_end": 229,
+      "locator_heading_or_symbol": "| Route Payload | Path/Class/Dao formalization, branch, drift, fusion, severance, mutation, clarification. |",
+      "excerpt_sha256": "98de5d11ce48fbbe00443c06a90b0aa5f598a75f76a1f2b439b19aba9924e044",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Route Payload | Path/Class/Dao formalization, branch, drift, fusion, severance, mutation, clarification. | | Attribute Payload | Visible attribute threshold shift, post\u201d. Distinguishing context: \u201c| Payload category | Meaning | |---|---| | Capacity Payload | More capacity, tolerance, reservoir, carrier, recovery, Endura, partition. | | Access Payload | New route, method, economy, axis, teacher/faction ri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-06_capstone_and_ascension_access.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 49,
+      "line_end": 168,
+      "locator_heading_or_symbol": "Possible capstone axes include Path/Class/Dao route, primary Power Economy, key Expression family, title/achievement chain, domain/affinity/concept, territory/faction/world-state, ",
+      "excerpt_sha256": "0ab86fccf8216d815091ec900dd54082a02e7501a72cd76e0bd79b884477fab1",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPossible capstone axes include Path/Class/Dao route, primary Power Economy, key Expression family, title/achievement chain, domain/affinity/concept, territory/faction/wor\u201d. Distinguishing context: \u201c## 5. Level 96 \u2014 Capstone Axis Consolidation The actor identifies and binds the capstone-relevant axes. This does not mean every axis is maximized. It means D04 records which parts of the actor's life matter to\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-06_capstone_and_ascension_access.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 176,
+      "line_end": 190,
+      "locator_heading_or_symbol": "A crafter, healer, farmer, cook, navigator, teacher, ruler, scribe, architect, beast-bonder, merchant, settlement-founder, scholar, alchemist-like figure, blacksmith, or other nonc",
+      "excerpt_sha256": "d16534062de16d413c5c12f20c9a43aba556b28fbffe4f2a53f220f7e7983eb9",
+      "matched_terms": [
+        "archive",
+        "migration",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA crafter, healer, farmer, cook, navigator, teacher, ruler, scribe, architect, beast-bonder, merchant, settlement-founder, scholar, alchemist-like figure, blacksmith, or \u201d. Distinguishing context: \u201c## 18. Profession Ascension D04 explicitly preserves noncombat capstone and Ascension Access. A crafter, healer, farmer, cook, navigator, teacher, ruler, scribe, architect, beast-bonder, merchant, settlement-fo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-08_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 62,
+      "line_end": 62,
+      "locator_heading_or_symbol": "Working answer: D04 uses Legal Option Presentation, Tier Transition Impact Package, Progressive Axis Disclosure, Multi-route Capstone Proof Ladders, and Development Pick Spend Vali",
+      "excerpt_sha256": "2324f6bb494093d890b8dd0122efb6be21db9bc21c2ac07edff2e4e2f4a16459",
+      "matched_terms": [
+        "disclosure"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cWorking answer: D04 uses Legal Option Presentation, Tier Transition Impact Package, Progressive Axis Disclosure, Multi-route Capstone Proof Ladders, and Development Pick \u201d. Distinguishing context: \u201c### D04-DDR-07 \u2014 Advancement Safeguard Layer Status: accepted by user Working answer: D04 uses Legal Option Presentation, Tier Transition Impact Package, Progressive Axis Disclosure, Multi-route Capstone Proof \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-08_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 126,
+      "line_end": 142,
+      "locator_heading_or_symbol": "Working answer: Players can proceed, delay, stabilize, redirect, seek anchor, accept scar, externalize, resist, sever, purify, quarantine, bargain, bind, split, fuse, sacrifice, co",
+      "excerpt_sha256": "688283876ef95c3187648d2e93337cd9cffe77e22a45c74564196bc9f0bf1b16",
+      "matched_terms": [
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cWorking answer: Players can proceed, delay, stabilize, redirect, seek anchor, accept scar, externalize, resist, sever, purify, quarantine, bargain, bind, split, fuse, sac\u201d. Distinguishing context: \u201c### D04-DDR-15 \u2014 Expanded breakthrough response menu Status: accepted by user Working answer: Players can proceed, delay, stabilize, redirect, seek anchor, accept scar, externalize, resist, sever, purify, quara\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-08_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 210,
+      "line_end": 210,
+      "locator_heading_or_symbol": "Expected: craft/profession axis visible; possible title seed; no automatic supernatural Expression; route seed possible; Development Pick legal options filtered.",
+      "excerpt_sha256": "bb710116f20a7c17fab25fee35e1adc69ad9c78d2c6b67b36c96d6138214585b",
+      "matched_terms": [
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cExpected: craft/profession axis visible; possible title seed; no automatic supernatural Expression; route seed possible; Development Pick legal options filtered.\u201d. Distinguishing context: \u201c### 3.1 Mundane Tier 0 test Input: level 4 blacksmith with 100 sword proof and no Power Economy. Expected: craft/profession axis visible; possible title seed; no automatic supernatural Expression; route seed po\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d04_doctrine_pack_v0_1/d04_doctrine_pack/D04-08_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 268,
+      "line_end": 268,
+      "locator_heading_or_symbol": "D04 deliberately defers final D02 outcome names, exact numeric Expression Grade ceilings, exact scope/range/duration/target-count values, exact Power Economy math, exact carrier bu",
+      "excerpt_sha256": "14073d9a4de3d816010111b7d63c931b98d545965bd1b90c1a45e560796de3a9",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD04 deliberately defers final D02 outcome names, exact numeric Expression Grade ceilings, exact scope/range/duration/target-count values, exact Power Economy math, exact \u201d. Distinguishing context: \u201cExpected: Ascension Access may become eligible; actor may attempt, delay, suppress, refuse, externalize, redirect, or remain; no mandatory departure. ## 4. Deferred questions D04 deliberately defers final D02 o\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-00_competency_architecture_overview.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 49,
+      "locator_heading_or_symbol": "D05 does not own final authorization for D02 roll math; D03 Power Economies, Expressions, carrier math, cost, recharge, burden, or confluence; D04 proof sufficiency, Development Pi",
+      "excerpt_sha256": "b305e0b9802c996016a253337d78f8a818cd7b4f163f7c7cbe38140029245ff1",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD05 does not own final authorization for D02 roll math; D03 Power Economies, Expressions, carrier math, cost, recharge, burden, or confluence; D04 proof sufficiency, Deve\u201d. Distinguishing context: \u201cD05 owns the learned-capability layer. It defines the difference between skill, profession, background, knowledge, method, training, research, mastery, specialization, synthesis, and teaching. It defines how th\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-01_competency_taxonomy_and_families.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 105,
+      "locator_heading_or_symbol": "A profession can generate proof records, social access, tool access, workspace access, project access, knowledge fields, profession-specific action vectors, route seeds, title seed",
+      "excerpt_sha256": "2308830b957a5a152c52abc8223f9c1d01bc66a14b1ad4d1add4f34da5413942",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA profession can generate proof records, social access, tool access, workspace access, project access, knowledge fields, profession-specific action vectors, route seeds, \u201d. Distinguishing context: \u201cA Profession is a life-pattern competency. It is broader than a skill because it includes repeated labor, tools, social function, routines, economic role, problem-solving habits, material familiarity, and proof\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-02_boundary_rules_and_owner_handoffs.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 81,
+      "locator_heading_or_symbol": "Skills are narrow practiced capabilities. Professions are life-pattern competencies. Backgrounds are origin contexts that may seed competencies. Knowledge Fields support understand",
+      "excerpt_sha256": "c6972145bc6940ecaeb0aa6a899379e6e86f178b6fe160e700645af2f931dfc4",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cSkills are narrow practiced capabilities. Professions are life-pattern competencies. Backgrounds are origin contexts that may seed competencies. Knowledge Fields support \u201d. Distinguishing context: \u201cHow does Astra distinguish Skills, Professions, Backgrounds, Knowledge Fields, Methods, Techniques, Expressions, Training Tracks, Research Tracks, Advancement Tracks, and Path/Class/Dao structures so donor pack\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-03_relevance_handling_for_checks.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 26,
+      "line_end": 41,
+      "locator_heading_or_symbol": "- **Harmful:** prior training misleads the actor. Mundane metallurgy fails on living stone; mundane medicine misdiagnoses a spiritual wound. Requires mismatch evidence and should n",
+      "excerpt_sha256": "fb16ee26e88a38755c966eaaef72f10f726838cd785eebd31dc221df1f3893ab",
+      "matched_terms": [
+        "cancellation",
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- **Harmful:** prior training misleads the actor. Mundane metallurgy fails on living stone; mundane medicine misdiagnoses a spiritual wound. Requires mismatch evidence an\u201d. Distinguishing context: \u201c- **Contextual:** relevant due to target, place, tool, culture, profession, history, or situation. Fisher knows knots, water, bait, patience; Baker knows ovens, heat gradients, fermentation, flour dust. May rev\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-04_training_practice_teachers_and_downtime.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 75,
+      "locator_heading_or_symbol": "- **Guided instruction:** teacher, manual, school, AI, spirit, faction, simulation, or relic provides correction and access.",
+      "excerpt_sha256": "4ac997fd1955cf25822e2fbb932ce3c70ba74d5e17b02c0c4cdf044088e4cdbd",
+      "matched_terms": [
+        "correction",
+        "evidence",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- **Guided instruction:** teacher, manual, school, AI, spirit, faction, simulation, or relic provides correction and access. - **Apprenticeship:** long-term embedded prof\u201d. Distinguishing context: \u201c## Training modes - **Self-practice:** low ranks, familiar skills, basic drills, maintenance. Slow at high rank and may reinforce bad habits. - **Field practice:** meaningful use under consequence. Stronger pro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-05_research_experimentation_and_theorycraft.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 64,
+      "locator_heading_or_symbol": "Research begins with a question or desired outcome and identifies current basis, missing basis, research mode, inputs, risk posture, output class, and owner-file handoff. Research ",
+      "excerpt_sha256": "a8f139171d4cea72f9cd9f7521c0e30a539fa9826055eeca55c042da9567622c",
+      "matched_terms": [
+        "archive",
+        "observation",
+        "quarantine",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cResearch begins with a question or desired outcome and identifies current basis, missing basis, research mode, inputs, risk posture, output class, and owner-file handoff.\u201d. Distinguishing context: \u201cHow does Astra handle research, invention, experimentation, theorycraft, reverse-engineering, and player-desired outcomes that are not currently legal actions? ## Core research law Research begins with a questi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-06_mastery_specialization_and_methods.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 70,
+      "locator_heading_or_symbol": "Mastery is deep competency that can create formalization options. It may produce specializations, methods, teachable forms, proof weight, research acceleration, teaching authority,",
+      "excerpt_sha256": "39f5cdc41bc8a9fad19961b32462519f5861a5bc009df4180f37e629b34158ac",
+      "matched_terms": [
+        "branch",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cMastery is deep competency that can create formalization options. It may produce specializations, methods, teachable forms, proof weight, research acceleration, teaching \u201d. Distinguishing context: \u201cWhat happens when a competency deepens beyond ordinary use, and how does it become mastery, specialization, method, teachable form, route pressure, Technique candidate, or Expression candidate? ## Core mastery \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-08_advancement_track_routing_and_nonclass_growth_catalog.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 89,
+      "locator_heading_or_symbol": "An Advancement Track is any durable growth lane that records progress, rank, depth, state, access, authorization, transformation, or accumulation. It may measure proficiency, maste",
+      "excerpt_sha256": "6f027b08ebedc2d2265760ee077bf73a7596ba243fe360119716190878bbb54c",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cAn Advancement Track is any durable growth lane that records progress, rank, depth, state, access, authorization, transformation, or accumulation. It may measure proficie\u201d. Distinguishing context: \u201cAstra recognizes Advancement Tracks as durable growth lanes, but every track must have lawful ownership. D05 owns competency-based tracks and routes non-D05 tracks by function to the proper doctrine file. The a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-09_records_ui_and_runtime_handoff.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 63,
+      "locator_heading_or_symbol": "D05 uses a tiered record model. Ordinary competency use may remain ephemeral. Competency interactions become durable when they affect long-term state, proof, training, research, me",
+      "excerpt_sha256": "2048dc941e182f4a886f13f0fb01d886272b24fb6c921049c07c98b72fef3b59",
+      "matched_terms": [
+        "evidence",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD05 uses a tiered record model. Ordinary competency use may remain ephemeral. Competency interactions become durable when they affect long-term state, proof, training, re\u201d. Distinguishing context: \u201cWhat must Astra record so competencies, professions, training, research, methods, synthesis, and relevance remain usable without excessive bookkeeping or layer collapse? ## Core record law D05 uses a tiered rec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-10_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 51,
+      "locator_heading_or_symbol": "- **D05-CA:** Layered Competency Architecture; profession as life-pattern competency; broad families; dual rank model; relevance types; visibility states.",
+      "excerpt_sha256": "3714b1d82b8db41f2fc4e0eb405b354a1e1918b48543a047c96f95437f25dcfb",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- **D05-CA:** Layered Competency Architecture; profession as life-pattern competency; broad families; dual rank model; relevance types; visibility states. - **D05-BR:** S\u201d. Distinguishing context: \u201cThis file records accepted D05 decisions, integration checklists, required D03/D04 amendment queues, optional D02 cross-check items, runtime/UI checklist items, and the gate before D06 begins. ## Accepted D05 d\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 40,
+      "line_end": 111,
+      "locator_heading_or_symbol": "D05 does not own D02 roll math; D03 cost/carrier/Expression mechanics; D04 proof sufficiency, tier authorization, Awakening, breakthrough, capstone, or Ascension Access; D06 Path/C",
+      "excerpt_sha256": "2be29d269ce6785dbd3a536756db1532a2a33b92196e143eeccb0c256601912b",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD05 does not own D02 roll math; D03 cost/carrier/Expression mechanics; D04 proof sufficiency, tier authorization, Awakening, breakthrough, capstone, or Ascension Access; \u201d. Distinguishing context: \u201c## Ownership boundary D05 owns competency architecture; skill, profession, knowledge, training, research, mastery, specialization, method, synthesis, teaching doctrine; relevance handling for checks; D05-owned \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 162,
+      "line_end": 277,
+      "locator_heading_or_symbol": "A profession can generate proof records, social access, tool access, workspace access, project access, knowledge fields, profession-specific action vectors, route seeds, title seed",
+      "excerpt_sha256": "ea3db48b3c47a01da19956b01cccc4fe5d084e690c89c76551f1810b3a406a15",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA profession can generate proof records, social access, tool access, workspace access, project access, knowledge fields, profession-specific action vectors, route seeds, \u201d. Distinguishing context: \u201cA Profession is a life-pattern competency. It is broader than a skill because it includes repeated labor, tools, social function, routines, economic role, problem-solving habits, material familiarity, and proof\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 285,
+      "line_end": 384,
+      "locator_heading_or_symbol": "A Method is a repeatable application of competency. It can become a training form, research output, profession signature, route seed, Technique candidate, or Expression candidate. ",
+      "excerpt_sha256": "0016ef3663619d1b88403140166c9de052bcdea634f3c864c0806d9af0b49aee",
+      "matched_terms": [
+        "cancellation",
+        "corruption",
+        "evidence",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA Method is a repeatable application of competency. It can become a training form, research output, profession signature, route seed, Technique candidate, or Expression c\u201d. Distinguishing context: \u201cA Knowledge Field is understanding, not fact authority. It supports identification, assessment, research, crafting, dialogue, interpretation, hidden-mechanic discovery, route recognition, and false-assumption a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 445,
+      "line_end": 563,
+      "locator_heading_or_symbol": "- **Guided instruction:** teacher, manual, school, AI, spirit, faction, simulation, or relic provides correction and access.",
+      "excerpt_sha256": "f2e38f245eb128c2e30ba13e9c4a55c425768745b06cbca4ebba230bb3e5794d",
+      "matched_terms": [
+        "archive",
+        "correction",
+        "evidence",
+        "observation",
+        "quarantine",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- **Guided instruction:** teacher, manual, school, AI, spirit, faction, simulation, or relic provides correction and access. - **Apprenticeship:** long-term embedded prof\u201d. Distinguishing context: \u201c## Training modes - **Self-practice:** low ranks, familiar skills, basic drills, maintenance. Slow at high rank and may reinforce bad habits. - **Field practice:** meaningful use under consequence. Stronger pro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 586,
+      "line_end": 697,
+      "locator_heading_or_symbol": "Mastery is deep competency that can create formalization options. It may produce specializations, methods, teachable forms, proof weight, research acceleration, teaching authority,",
+      "excerpt_sha256": "3d53c99d25772c1511b274664035c29b0376857ff08575097849f470cd5958ec",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cMastery is deep competency that can create formalization options. It may produce specializations, methods, teachable forms, proof weight, research acceleration, teaching \u201d. Distinguishing context: \u201cWhat happens when a competency deepens beyond ordinary use, and how does it become mastery, specialization, method, teachable form, route pressure, Technique candidate, or Expression candidate? ## Core mastery \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 713,
+      "line_end": 812,
+      "locator_heading_or_symbol": "Baker-wolf-slayer: Baking + smoke/ash + wolf proof + survival creates profession synthesis, Ash-Scent Lure method seed, proof cluster, route pressure, and title seed. D04/D06/D08/D",
+      "excerpt_sha256": "a0f899702bf338c01a2f68fd506ada3842d89ec644bfd2e8e15aa1954518cf55",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "seed",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cBaker-wolf-slayer: Baking + smoke/ash + wolf proof + survival creates profession synthesis, Ash-Scent Lure method seed, proof cluster, route pressure, and title seed. D04\u201d. Distinguishing context: \u201cSword relic: Blacksmithing primary; Metallurgy and Relic Appraisal secondary; Hammer Rhythm interprets forged stress. Outputs may include interpretive synthesis, research question, proof, and D09 handoff. Wisp \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/astra_d05_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 835,
+      "line_end": 950,
+      "locator_heading_or_symbol": "D05 uses a tiered record model. Ordinary competency use may remain ephemeral. Competency interactions become durable when they affect long-term state, proof, training, research, me",
+      "excerpt_sha256": "5b279341080556ac3a02e7be4df9d838c2cc3dc2376313cf8fa622fb16d900cd",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "seed",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD05 uses a tiered record model. Ordinary competency use may remain ephemeral. Competency interactions become durable when they affect long-term state, proof, training, re\u201d. Distinguishing context: \u201cWhat must Astra record so competencies, professions, training, research, methods, synthesis, and relevance remain usable without excessive bookkeeping or layer collapse? ## Core record law D05 uses a tiered rec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-00_route_architecture_overview.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 32,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "512f29ff0f90fed31b45f9f8cd5817dec0182bdc338126138a17657575d564ad",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-00_route_architecture_overview.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 93,
+      "line_end": 101,
+      "locator_heading_or_symbol": "A dangerous archive researcher may develop a Route through D05 knowledge, D05 research, dead-record proof, and D07 risk. The Route may include Domain facets around Funeral Archives",
+      "excerpt_sha256": "065c77542c0fcbbfe952cb43b879c3b6a18faf0016631ca35f90d90f1996cf74",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA dangerous archive researcher may develop a Route through D05 knowledge, D05 research, dead-record proof, and D07 risk. The Route may include Domain facets around Funera\u201d. Distinguishing context: \u201cA fisher's D05 profession, Depth Reading Method, impossible-catch proof, and D04 Awakening Package may authorize a D06 Route. The player-facing Path may be **Far Fisher**. It might permit development around lin\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-01_route_authorization_and_path_identity.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 106,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "61eac9f15d2838ce03aa9078ba258b5959c94ebff66dd575d8821421ab1245ac",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "seed",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-02_route_facets_domains_and_archetypes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 123,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "3fb5e2d37765fa3a5777e166615903ef3c710f084f766a1500c9e4dd695ff6da",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-02_route_facets_domains_and_archetypes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 144,
+      "line_end": 144,
+      "locator_heading_or_symbol": "This facet records instability, cost, contradiction, coercion, mutation, source-local lock, external dependency, corruption, or route damage. D07 owns harm/corruption consequences;",
+      "excerpt_sha256": "0a16f7c91298354a2d50c9d8dd1a3bf209acf9417d435426bd92b828a3a47e33",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis facet records instability, cost, contradiction, coercion, mutation, source-local lock, external dependency, corruption, or route damage. D07 owns harm/corruption con\u201d. Distinguishing context: \u201cA **Source-local Facet** records route names, mechanics, or metaphysics bounded to a specific source, conversion, campaign, faction, realm, or donor-derived context. Source-local facets may be used inside their\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-03_principle_concept_authority_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 28,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "02e836830830e82fc2fb066d8f504ba728965df84e471c745261383aedadd048",
+      "matched_terms": [
+        "corruption",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-03_principle_concept_authority_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 103,
+      "line_end": 122,
+      "locator_heading_or_symbol": "Example: a **Truth-bound Diplomat** lies to save a hostage. This does not automatically destroy the Route. It creates contradiction that may strain, scar, reinterpret, mutate towar",
+      "excerpt_sha256": "9d3624cf19721a76e85cd3bd8f27b4d75561b31833cf412968c73ee1564634cf",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cExample: a **Truth-bound Diplomat** lies to save a hostage. This does not automatically destroy the Route. It creates contradiction that may strain, scar, reinterpret, mu\u201d. Distinguishing context: \u201cA Route enters dissonance when the actor meaningfully contradicts the Principle. Dissonance may produce increased cost, blocked features, reduced relevance, route strain, harmful synthesis, proof conflict, rout\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-03_principle_concept_authority_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 175,
+      "line_end": 175,
+      "locator_heading_or_symbol": "| Truth | Principle, Knowledge Field, oath structure, or source-local. |",
+      "excerpt_sha256": "2a23000e0ea5b7148cddb09e8973220494e60cdb706fbc09c155354d75457069",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Truth | Principle, Knowledge Field, oath structure, or source-local. |\u201d. Distinguishing context: \u201c| Donor-like term | Astra handling | |---|---| | Dao | Principle / Concept facet, source-local unless promoted. | | Law | Principle, Domain authority, D10 world-law, or source-local. | | Truth | Principle, Know\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-04_route_feature_ledgers_and_personalized_development_menus.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 46,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "35c49df374ce4bcaf29060ae6364299c171433e0f26bb33c37c728e18d42dae7",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-04_route_feature_ledgers_and_personalized_development_menus.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 112,
+      "line_end": 112,
+      "locator_heading_or_symbol": "- D07 validates harm, compulsion, corruption, overload, identity erosion, mutation harm.",
+      "excerpt_sha256": "2fdd3e067456ba1c225186987eeb635620814bc515e30d36ef15053e0327239c",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 validates harm, compulsion, corruption, overload, identity erosion, mutation harm.\u201d. Distinguishing context: \u201cD06 owns the ledger. It does not own every feature's mechanics. - D03 validates powered features, Expressions, cost, carrier, burden, confluence, activation, and recharge. - D04 validates proof, Development Pic\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-05_technique_architecture_and_method_handoff.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 13,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "9b1a7dd5e97e117c5711c9663d0be738d54649d6c38c4661f722f8498e0935b7",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-05_technique_architecture_and_method_handoff.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 132,
+      "line_end": 136,
+      "locator_heading_or_symbol": "A Technique Set is a related family of Techniques associated with Route, facet, teacher, lineage, source-local system, profession-route, or external anchor. It can be fixed, branch",
+      "excerpt_sha256": "f95a7878740de7f94e4af5126790e2c6f757946286a537dd02a5dc49cbfa1bfa",
+      "matched_terms": [
+        "branch",
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA Technique Set is a related family of Techniques associated with Route, facet, teacher, lineage, source-local system, profession-route, or external anchor. It can be fix\u201d. Distinguishing context: \u201c- **Quiet Engine Cant** as D06 Technique synchronizes engine crew rhythm. - **Engine-Soul Overchant** as D03 / D09 Expression-linked Technique forces impossible engine output with cost and feedback risk. ## 9. \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

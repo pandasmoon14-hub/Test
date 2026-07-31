@@ -1,0 +1,967 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-08",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-01_project_anatomy_project_families_and_lifecycle_states.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 45,
+      "locator_heading_or_symbol": "D13-01 defines the parts of a Project and the lifecycle states a Project can occupy. It does not define final crafting recipes, healing values, training progression, research truth",
+      "excerpt_sha256": "50bf7a1d7d0a7def87a278c5c57babe39d7498c1e8c6bdb6c4eecf7af97087e6",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD13-01 defines the parts of a Project and the lifecycle states a Project can occupy. It does not define final crafting recipes, healing values, training progression, rese\u201d. Distinguishing context: \u201c## Core question How does Astra define a Project clearly enough that recovery, research, training, crafting, repair, salvage, faction work, social campaigns, and special long tasks all use one stable interval g\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-01_project_anatomy_project_families_and_lifecycle_states.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 226,
+      "line_end": 265,
+      "locator_heading_or_symbol": "- `quarantined`",
+      "excerpt_sha256": "083f1a10b4973945c034a9aa2307a4352fbe97d9cc64694e96d1971f1448d75d",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- `quarantined` - `escalated` - `archived` Numeric progress may be used only when an owner file, source-local procedure, or later schema supports it. ## 11. Complication \u201d. Distinguishing context: \u201c- `interrupted` - `completed` - `completed_with_complication` - `failed` - `abandoned` - `quarantined` - `escalated` - `archived` Numeric progress may be used only when an owner file, source-local procedure, or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-02_project_creation_requirement_discovery_commitment_and_interval_setup.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 56,
+      "locator_heading_or_symbol": "6. Cost / risk preview checkpoint",
+      "excerpt_sha256": "3bb13901b8f74e6695ee81a82bbbb3ecb616e409bfe3ef88a120a08953ac4bf1",
+      "matched_terms": [
+        "corruption",
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c6. Cost / risk preview checkpoint 7. Commitment checkpoint 8. Interval setup checkpoint This setup procedure applies to all Project families, including recovery, training\u201d. Distinguishing context: \u201c1. Intent checkpoint 2. Goal checkpoint 3. Project family checkpoint 4. Scope checkpoint 5. Requirement discovery checkpoint 6. Cost / risk preview checkpoint 7. Commitment checkpoint 8. Interval setup checkpoi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-02_project_creation_requirement_discovery_commitment_and_interval_setup.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 126,
+      "line_end": 211,
+      "locator_heading_or_symbol": "| `quarantined` | Requirement cannot be handled safely with current evidence or doctrine. |",
+      "excerpt_sha256": "95da3364f24b119b841b031d795b08bb2bd1da0adab8cc0981953ea398107677",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| `quarantined` | Requirement cannot be handled safely with current evidence or doctrine. | D13 may mark a requirement as `protected_hidden` without revealing it. Discove\u201d. Distinguishing context: \u201c| `missing` | Requirement is known but absent. | | `unknown` | Requirement may exist but has not been discovered. | | `protected_hidden` | Requirement exists or may exist, but revealing it would violate hidden-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-03_progress_interval_outcomes_complications_and_partial_completion.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 131,
+      "locator_heading_or_symbol": "D13-03 defines how Projects advance, stall, complicate, partially complete, fail, accelerate, or hand off across intervals. It does not define final recovery values, item crafting ",
+      "excerpt_sha256": "23deb542352ad4e4fc6ac5a6467b1c0c09a5a93cf1286f1c34fe9701b33d2ae2",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD13-03 defines how Projects advance, stall, complicate, partially complete, fail, accelerate, or hand off across intervals. It does not define final recovery values, item\u201d. Distinguishing context: \u201c## Core question How does Astra determine what happens during each Project interval without forcing every Project into a universal progress clock, fixed downtime table, or binary success/failure result? D13-03 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-03_progress_interval_outcomes_complications_and_partial_completion.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 182,
+      "line_end": 182,
+      "locator_heading_or_symbol": "D13 does not use universal project clocks. A donor clock, progress track, faction clock, or downtime track must be mapped by function. It may become source-local, route to D10/D14/",
+      "excerpt_sha256": "9400e22b62485cbb2d286cfa4585a34a89aa5f74270dcbd8ba6b0e2df1ff9ff4",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD13 does not use universal project clocks. A donor clock, progress track, faction clock, or downtime track must be mapped by function. It may become source-local, route t\u201d. Distinguishing context: \u201cD03, D07, D09, D10, and D17 own the actual consequences where relevant. ## Donor clock warning D13 does not use universal project clocks. A donor clock, progress track, faction clock, or downtime track must be \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-04_project_family_profiles_and_owner_file_handoff_rules.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 99,
+      "locator_heading_or_symbol": "How does Astra give each Project family enough procedural identity to be useful without turning D13 into a megafile that owns recovery math, crafting recipes, research truth, facti",
+      "excerpt_sha256": "e1c247f9a419c601af8a8882a1a79d6ef9fda6ff8439bfe62a0dee69948d1048",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cHow does Astra give each Project family enough procedural identity to be useful without turning D13 into a megafile that owns recovery math, crafting recipes, research tr\u201d. Distinguishing context: \u201c> This file is doctrine-facing and conversion-facing. It is not final runtime implementation, not final schema doctrine, not canon-sourcebook prose, and not live-play GM behavior. Runtime Gate B or later schema\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-04_project_family_profiles_and_owner_file_handoff_rules.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 197,
+      "line_end": 244,
+      "locator_heading_or_symbol": "- D07 harm, rejection, corruption, recovery, condition risk;",
+      "excerpt_sha256": "cf6e7f67ce041f04395c0ca323241863af60a32d4ab8231d60cd7b0ab0fdb7a8",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 harm, rejection, corruption, recovery, condition risk; - D03 cost/backlash/instability; - D06 power expression compatibility if relevant; - D17 acquisition, legalit\u201d. Distinguishing context: \u201cPrimary owner-file handoffs: - D09 installable assets, object/platform integration; - D08 actor substrate, body/form-state, personhood risk; - D07 harm, rejection, corruption, recovery, condition risk; - D03 co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-04_project_family_profiles_and_owner_file_handoff_rules.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 311,
+      "line_end": 311,
+      "locator_heading_or_symbol": "Used for upkeep, stabilization, recurring repair, supply preservation, facility operation, platform service, implant care, companion care, domain support, or ongoing burden.",
+      "excerpt_sha256": "b2ed8d68d2cbe9c6717103d4e93b7bb2be8499c61637ad893854d47efd479dd7",
+      "matched_terms": [
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUsed for upkeep, stabilization, recurring repair, supply preservation, facility operation, platform service, implant care, companion care, domain support, or ongoing burd\u201d. Distinguishing context: \u201c## Maintenance Project Profile Family key: `maintenance` Used for upkeep, stabilization, recurring repair, supply preservation, facility operation, platform service, implant care, companion care, domain support\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-04_project_family_profiles_and_owner_file_handoff_rules.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 376,
+      "line_end": 376,
+      "locator_heading_or_symbol": "- Research profile does not reveal hidden truth.",
+      "excerpt_sha256": "4cbe2c76b8792598c3c2729a595744ab264dc212f7bea5857f19e30a00d66133",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Research profile does not reveal hidden truth.\u201d. Distinguishing context: \u201c## Anti-drift controls - Recovery profile does not import rest/reset mechanics. - Training profile does not grant advancement by itself. - Research profile does not reveal hidden truth. - Crafting profile does \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-05_concurrent_projects_contributors_facilities_materials_and_support_burden.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 53,
+      "line_end": 53,
+      "locator_heading_or_symbol": "- quarantine;",
+      "excerpt_sha256": "8d6228f9e51d9f96699d70877cf4f6aed83c81093bb8ae5db20e538ee8f2d34a",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine;\u201d. Distinguishing context: \u201c- increased cost; - complication; - Project split; - Project pause; - abandonment pressure; - quarantine; - escalation. D13 does not define numeric load values by default. Later owner files or source-local syst\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-05_concurrent_projects_contributors_facilities_materials_and_support_burden.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 249,
+      "line_end": 269,
+      "locator_heading_or_symbol": "- `project_quarantined`",
+      "excerpt_sha256": "d7092120a7ef1b058b5ece4fc0a7431b54dd89044d0c7dd948a57871e44a64aa",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- `project_quarantined` - `project_escalated` Abandoned Projects must record what is lost, preserved, exposed, recoverable, archived, or converted into unresolved pressur\u201d. Distinguishing context: \u201c- `requirement_change` - `complication_added` - `active_scene_triggered` - `project_split_required` - `project_abandoned` - `project_quarantined` - `project_escalated` Abandoned Projects must record what is los\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-06_source_local_downtime_donor_project_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 113,
+      "locator_heading_or_symbol": "# D13-06 \u2014 Source-Local Downtime Systems, Donor Project Mapping, Quarantine, and Escalation",
+      "excerpt_sha256": "0cbc52f3def4c4e51536fc4850040689032b7f50f23fef69035cfd412e5f4752",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D13-06 \u2014 Source-Local Downtime Systems, Donor Project Mapping, Quarantine, and Escalation Status: doctrine-pack / Phase 1 native doctrine continuation Layer: D13 operat\u201d. Distinguishing context: \u201c# D13-06 \u2014 Source-Local Downtime Systems, Donor Project Mapping, Quarantine, and Escalation Status: doctrine-pack / Phase 1 native doctrine continuation Layer: D13 operational procedure doctrine Owner: Astra As\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-06_source_local_downtime_donor_project_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 144,
+      "line_end": 190,
+      "locator_heading_or_symbol": "| unsupported owner | quarantine |",
+      "excerpt_sha256": "b84e0331e23a99e533417c5f41767d8eb0b8196ace48ee2d0dd3ca622189b40d",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| unsupported owner | quarantine | | repeated/high-impact missing doctrine | escalation | A clock is a shape, not an authority. ## Rejected donor assumptions D13 requires\u201d. Distinguishing context: \u201c| world/faction/social consequence | D10 unresolved pressure | | travel or site risk | D14 travel/exploration risk | | institutional action | D15 faction operation | | campaign arc pressure | D18 campaign arc p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 117,
+      "locator_heading_or_symbol": "- Hidden requirements may be protected without revealing hidden truth.",
+      "excerpt_sha256": "d2b13064805b9afd1f59c11f0f0f45fdc8231e57ccba91eadda0ce393a41c3a8",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "preview",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Hidden requirements may be protected without revealing hidden truth. - Visible costs and risks are previewed when knowable. - Time, material, facility, assistant, resou\u201d. Distinguishing context: \u201c- Mixed Projects declare one primary family and secondary pressure families. - Distinct goals requiring different owner files are split into linked Projects. - Scope band is declared: minor, standard, major, ex\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 148,
+      "line_end": 249,
+      "locator_heading_or_symbol": "Fix: D05/D10/D11 own research methods, information-state, hidden truth, and presentation. D13 records progress only.",
+      "excerpt_sha256": "fad282db53c1b5674ded6fdb1ec904db3cba1cfeadf4fc0b3c04834ef0e6d9d5",
+      "matched_terms": [
+        "archive",
+        "commit time",
+        "evidence",
+        "quarantine",
+        "reservation",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cFix: D05/D10/D11 own research methods, information-state, hidden truth, and presentation. D13 records progress only. ### R6 \u2014 Crafting unsupported powers Fix: D09/D17 own\u201d. Distinguishing context: \u201cFix: D04/D05/D06 own advancement gates, competency, method, access, route, and Technique implications. ### R5 \u2014 Research hidden-state leakage Fix: D05/D10/D11 own research methods, information-state, hidden tru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 64,
+      "line_end": 102,
+      "locator_heading_or_symbol": "7. `D13-06_source_local_downtime_donor_project_mapping_quarantine_and_escalation.md`",
+      "excerpt_sha256": "af1a58422f10a3752384723686a96948e07e4808231583d5e6080ef4f1387b12",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c7. `D13-06_source_local_downtime_donor_project_mapping_quarantine_and_escalation.md` 8. `D13-07_records_not_final_schema_and_conversion_handoff_shapes.md` 9. `D13-09_inte\u201d. Distinguishing context: \u201c2. `D13-01_project_anatomy_project_families_and_lifecycle_states.md` 3. `D13-02_project_creation_requirement_discovery_commitment_and_interval_setup.md` 4. `D13-03_progress_interval_outcomes_complications_and_p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 168,
+      "line_end": 286,
+      "locator_heading_or_symbol": "- Project interruption, pause, resume, abandonment, and archive;",
+      "excerpt_sha256": "5e2814d0eecc6a81c662832058666cb51b0faf07732631f434a11c95e9b0a8ca",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Project interruption, pause, resume, abandonment, and archive; - Project complication classification; - concurrent Project capacity through Project Load; - source-local\u201d. Distinguishing context: \u201c- preparation and maintenance Projects; - assistants and contributors as Project support; - facilities as Project support; - materials and support assets as Project requirements, commitments, risks, or outputs;\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 329,
+      "line_end": 358,
+      "locator_heading_or_symbol": "D13-01 defines the parts of a Project and the lifecycle states a Project can occupy. It does not define final crafting recipes, healing values, training progression, research truth",
+      "excerpt_sha256": "50bf7a1d7d0a7def87a278c5c57babe39d7498c1e8c6bdb6c4eecf7af97087e6",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD13-01 defines the parts of a Project and the lifecycle states a Project can occupy. It does not define final crafting recipes, healing values, training progression, rese\u201d. Distinguishing context: \u201c## Core question How does Astra define a Project clearly enough that recovery, research, training, crafting, repair, salvage, faction work, social campaigns, and special long tasks all use one stable interval g\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 539,
+      "line_end": 578,
+      "locator_heading_or_symbol": "- `quarantined`",
+      "excerpt_sha256": "083f1a10b4973945c034a9aa2307a4352fbe97d9cc64694e96d1971f1448d75d",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- `quarantined` - `escalated` - `archived` Numeric progress may be used only when an owner file, source-local procedure, or later schema supports it. ## 11. Complication \u201d. Distinguishing context: \u201c- `interrupted` - `completed` - `completed_with_complication` - `failed` - `abandoned` - `quarantined` - `escalated` - `archived` Numeric progress may be used only when an owner file, source-local procedure, or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 655,
+      "line_end": 684,
+      "locator_heading_or_symbol": "6. Cost / risk preview checkpoint",
+      "excerpt_sha256": "3bb13901b8f74e6695ee81a82bbbb3ecb616e409bfe3ef88a120a08953ac4bf1",
+      "matched_terms": [
+        "corruption",
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c6. Cost / risk preview checkpoint 7. Commitment checkpoint 8. Interval setup checkpoint This setup procedure applies to all Project families, including recovery, training\u201d. Distinguishing context: \u201c1. Intent checkpoint 2. Goal checkpoint 3. Project family checkpoint 4. Scope checkpoint 5. Requirement discovery checkpoint 6. Cost / risk preview checkpoint 7. Commitment checkpoint 8. Interval setup checkpoi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 754,
+      "line_end": 839,
+      "locator_heading_or_symbol": "| `quarantined` | Requirement cannot be handled safely with current evidence or doctrine. |",
+      "excerpt_sha256": "95da3364f24b119b841b031d795b08bb2bd1da0adab8cc0981953ea398107677",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| `quarantined` | Requirement cannot be handled safely with current evidence or doctrine. | D13 may mark a requirement as `protected_hidden` without revealing it. Discove\u201d. Distinguishing context: \u201c| `missing` | Requirement is known but absent. | | `unknown` | Requirement may exist but has not been discovered. | | `protected_hidden` | Requirement exists or may exist, but revealing it would violate hidden-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 892,
+      "line_end": 1007,
+      "locator_heading_or_symbol": "D13-03 defines how Projects advance, stall, complicate, partially complete, fail, accelerate, or hand off across intervals. It does not define final recovery values, item crafting ",
+      "excerpt_sha256": "23deb542352ad4e4fc6ac5a6467b1c0c09a5a93cf1286f1c34fe9701b33d2ae2",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD13-03 defines how Projects advance, stall, complicate, partially complete, fail, accelerate, or hand off across intervals. It does not define final recovery values, item\u201d. Distinguishing context: \u201c## Core question How does Astra determine what happens during each Project interval without forcing every Project into a universal progress clock, fixed downtime table, or binary success/failure result? D13-03 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1058,
+      "line_end": 1175,
+      "locator_heading_or_symbol": "D13 does not use universal project clocks. A donor clock, progress track, faction clock, or downtime track must be mapped by function. It may become source-local, route to D10/D14/",
+      "excerpt_sha256": "53204b7581df46dfc2312cebb93815b6bafdaf866bed699de1972b73f1aa5eb5",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD13 does not use universal project clocks. A donor clock, progress track, faction clock, or downtime track must be mapped by function. It may become source-local, route t\u201d. Distinguishing context: \u201cD03, D07, D09, D10, and D17 own the actual consequences where relevant. ## Donor clock warning D13 does not use universal project clocks. A donor clock, progress track, faction clock, or downtime track must be \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1273,
+      "line_end": 1320,
+      "locator_heading_or_symbol": "- D07 harm, rejection, corruption, recovery, condition risk;",
+      "excerpt_sha256": "cf6e7f67ce041f04395c0ca323241863af60a32d4ab8231d60cd7b0ab0fdb7a8",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 harm, rejection, corruption, recovery, condition risk; - D03 cost/backlash/instability; - D06 power expression compatibility if relevant; - D17 acquisition, legalit\u201d. Distinguishing context: \u201cPrimary owner-file handoffs: - D09 installable assets, object/platform integration; - D08 actor substrate, body/form-state, personhood risk; - D07 harm, rejection, corruption, recovery, condition risk; - D03 co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1387,
+      "line_end": 1387,
+      "locator_heading_or_symbol": "Used for upkeep, stabilization, recurring repair, supply preservation, facility operation, platform service, implant care, companion care, domain support, or ongoing burden.",
+      "excerpt_sha256": "b2ed8d68d2cbe9c6717103d4e93b7bb2be8499c61637ad893854d47efd479dd7",
+      "matched_terms": [
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUsed for upkeep, stabilization, recurring repair, supply preservation, facility operation, platform service, implant care, companion care, domain support, or ongoing burd\u201d. Distinguishing context: \u201c## Maintenance Project Profile Family key: `maintenance` Used for upkeep, stabilization, recurring repair, supply preservation, facility operation, platform service, implant care, companion care, domain support\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1452,
+      "line_end": 1452,
+      "locator_heading_or_symbol": "- Research profile does not reveal hidden truth.",
+      "excerpt_sha256": "4cbe2c76b8792598c3c2729a595744ab264dc212f7bea5857f19e30a00d66133",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Research profile does not reveal hidden truth.\u201d. Distinguishing context: \u201c## Anti-drift controls - Recovery profile does not import rest/reset mechanics. - Training profile does not grant advancement by itself. - Research profile does not reveal hidden truth. - Crafting profile does \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1521,
+      "line_end": 1521,
+      "locator_heading_or_symbol": "- quarantine;",
+      "excerpt_sha256": "8d6228f9e51d9f96699d70877cf4f6aed83c81093bb8ae5db20e538ee8f2d34a",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine;\u201d. Distinguishing context: \u201c- increased cost; - complication; - Project split; - Project pause; - abandonment pressure; - quarantine; - escalation. D13 does not define numeric load values by default. Later owner files or source-local syst\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1717,
+      "line_end": 1835,
+      "locator_heading_or_symbol": "- `project_quarantined`",
+      "excerpt_sha256": "3613cfb44fa5ab0cabc38ffcd06bcff787a7335b07fbc81415da1fa7c1b5113a",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- `project_quarantined` - `project_escalated` Abandoned Projects must record what is lost, preserved, exposed, recoverable, archived, or converted into unresolved pressur\u201d. Distinguishing context: \u201c- `requirement_change` - `complication_added` - `active_scene_triggered` - `project_split_required` - `project_abandoned` - `project_quarantined` - `project_escalated` Abandoned Projects must record what is los\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1840,
+      "line_end": 1939,
+      "locator_heading_or_symbol": "## Quarantine",
+      "excerpt_sha256": "815bc09b3685be2ded2c18943d9a3bf4c41d124d94a4c5f9daaecb2d4a045b0a",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## Quarantine Use quarantine when the donor procedure cannot be mapped safely yet. Quarantine triggers include: - extraction damage blocks procedure understanding; - miss\u201d. Distinguishing context: \u201c- a local corruption recovery rite; - a carousing table tied to one city or culture. The retained system must have a boundary. It cannot become general Astra downtime doctrine by polish, repetition, or familiar\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1986,
+      "line_end": 2106,
+      "locator_heading_or_symbol": "current_status: not_started | ready | active | progressing | blocked | complicated | paused | interrupted | completed | completed_with_complication | failed | abandoned | quarantin",
+      "excerpt_sha256": "ad5bd2f39a553e81f56a8044fad854b59cd4413db417012a451b2fef0b2479ad",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201ccurrent_status: not_started | ready | active | progressing | blocked | complicated | paused | interrupted | completed | completed_with_complication | failed | abandoned |\u201d. Distinguishing context: \u201cproject_goal: string project_family: recovery | training | research | crafting | salvage | repair | installation_preparation | resource_gathering | social_project | faction_support | preparation | maintenance |\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2107,
+      "line_end": 2226,
+      "locator_heading_or_symbol": "lawful_outcome: direct_astra_mapping | normalized_astra_mapping | source_local_retained_construct | quarantined_construct_pending_later_doctrine | escalated_doctrine_problem",
+      "excerpt_sha256": "e025c15f72b419a327f94f3a020268eb0a132f1d4bfa0519df5117cf4b377eee",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "preview",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201clawful_outcome: direct_astra_mapping | normalized_astra_mapping | source_local_retained_construct | quarantined_construct_pending_later_doctrine | escalated_doctrine_prob\u201d. Distinguishing context: \u201cdonor_label: string donor_function_summary: string donor_interval_assumption: string | null state_changed_by_donor_procedure: [] mapped_project_family: string | source_local | quarantine | escalation lawful_out\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2231,
+      "line_end": 2340,
+      "locator_heading_or_symbol": "- recovery/healing/corruption procedure is unsupported;",
+      "excerpt_sha256": "7b76a4d473ec9de577c14023a212214cde522f265bc94cf7f96c8f5ffe3b559f",
+      "matched_terms": [
+        "archive",
+        "commit time",
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- recovery/healing/corruption procedure is unsupported; - crafting/material schema is unsupported; - faction operation procedure is unsupported; - economy/requisition mod\u201d. Distinguishing context: \u201cQuarantine donor long-task systems when: - extraction damage blocks procedure understanding; - requirements are missing and cannot be inferred; - owner-file support is absent; - recovery/healing/corruption proc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2354,
+      "line_end": 2394,
+      "locator_heading_or_symbol": "| D13-00-7 | Option A | Donor downtime systems map/source-local/quarantine/escalate; never adopted by label. |",
+      "excerpt_sha256": "cef52bb867bb1fbaa4d38103bc5f1ef65c527227946fb763d36c1c5729708c02",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| D13-00-7 | Option A | Donor downtime systems map/source-local/quarantine/escalate; never adopted by label. | | D13-01-1 | Option A | Shared Project anatomy. | | D13-01-\u201d. Distinguishing context: \u201c| D13-00-2 | Option A | Project = any interval-scale goal with commitment, requirement, progress, risk, or delayed outcome. | | D13-00-3 | Option A | Project families are named routing categories. | | D13-00-4 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-00_economy_acquisition_inventory_reward_and_requisition_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 54,
+      "locator_heading_or_symbol": "Without D17, Astra risks importing: coins as universal value; wealth-by-level; shop lists as world truth; loot tables as reward doctrine; salvage as automatic free wealth; inventor",
+      "excerpt_sha256": "8e4d09414a36098551b265bd0f392c450a17a4610ff4d6718e01a00c19272570",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cWithout D17, Astra risks importing: coins as universal value; wealth-by-level; shop lists as world truth; loot tables as reward doctrine; salvage as automatic free wealth\u201d. Distinguishing context: \u201cHow does Astra handle value, scarcity, acquisition, ownership, inventory, rewards, requisition, market access, loot, salvage rights, carrying/storage pressure, licenses, barter, currency, and resource availabil\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-01_value_forms_access_channels_scarcity_ownership_custody_and_burden_states.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 31,
+      "line_end": 67,
+      "locator_heading_or_symbol": "purchase, sale, barter, trade, gift, reward, loot, salvage, resource_gathering, crafting_output, requisition, license_grant, faction_store, patron_grant, auction, black_market, mar",
+      "excerpt_sha256": "cdeb9c846bb30ed44a767a7313701763545b222b5c1a987a3193f730a19f5650",
+      "matched_terms": [
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpurchase, sale, barter, trade, gift, reward, loot, salvage, resource_gathering, crafting_output, requisition, license_grant, faction_store, patron_grant, auction, black_m\u201d. Distinguishing context: \u201cD17 does not treat all value as money. A license, favor, contribution point, salvage right, legal permission, information asset, storage right, or faction access may matter more than currency. ## Access Channel\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-03_reward_loot_salvage_claim_and_value_entry_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 20,
+      "locator_heading_or_symbol": "8. Delivery, delay, quarantine, or escalation checkpoint",
+      "excerpt_sha256": "cd8822cc77f547ae7dc4ebe60365df41d1d2f8d2db6c620de5b4f3f7463ee3f6",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c8. Delivery, delay, quarantine, or escalation checkpoint\u201d. Distinguishing context: \u201c3. Reward / loot / salvage classification checkpoint 4. Eligibility and claim checkpoint 5. Custody and ownership checkpoint 6. Value-form and scarcity checkpoint 7. Burden, sink, and consequence checkpoint 8. \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-03_reward_loot_salvage_claim_and_value_entry_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 77,
+      "line_end": 108,
+      "locator_heading_or_symbol": "Before value-entry completes, D17 identifies transport burden, storage burden, legal visibility, faction trace, tax, tariff, salvage fee, broker/auction fee, claim dispute, decay/s",
+      "excerpt_sha256": "5e7cd20cf33444041b64c8ea4fd93f1abea01010432966d82aa3b660fc97486b",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cBefore value-entry completes, D17 identifies transport burden, storage burden, legal visibility, faction trace, tax, tariff, salvage fee, broker/auction fee, claim disput\u201d. Distinguishing context: \u201cunknown_claim_present ``` Loot creates custody first. Salvage is claim-bearing. Reward may be ownership, access, custody, license, favor, information, or source-local entitlement. ## Burden, sink, and consequen\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-04_inventory_storage_carrying_custody_quick_access_and_burden_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 54,
+      "locator_heading_or_symbol": "How does Astra handle possession, carrying, storage, containers, quick access, custody risk, legal visibility, transport burden, decay, maintenance, and loss without making weight,",
+      "excerpt_sha256": "606dc7099174f130d750d6fee57ebf1c4b6980a7db096d9be5a27138454407c5",
+      "matched_terms": [
+        "quarantine",
+        "reservation",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cHow does Astra handle possession, carrying, storage, containers, quick access, custody risk, legal visibility, transport burden, decay, maintenance, and loss without maki\u201d. Distinguishing context: \u201c> Schema status: record shapes are **not final schema**; they are doctrine-facing / conversion-facing controls. Runtime Gate B or later schema doctrine may replace or formalize them. > Research note: the suppli\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-05_requisition_upkeep_consumption_value_sinks_and_economic_pressure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 46,
+      "locator_heading_or_symbol": "-> identify whether it is mandatory, optional, conditional, scheduled, event-driven, ambient, or source-local",
+      "excerpt_sha256": "5901201d1ad635c41b2155d370c7b930be76b62dd1f0c1eb3e1fc0e969e933e8",
+      "matched_terms": [
+        "reservation",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c-> identify whether it is mandatory, optional, conditional, scheduled, event-driven, ambient, or source-local -> identify what value form is removed, reserved, transforme\u201d. Distinguishing context: \u201c## Sink\u2013Obligation\u2013Pressure Model ```text value exists or enters play -> identify whether a sink, consumption, upkeep, requisition, tax, debt, decay, or obligation applies -> identify whether it is mandatory, o\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-06_source_local_economy_donor_value_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 84,
+      "locator_heading_or_symbol": "# D17-06 \u2014 Source-Local Economy Systems, Donor Value Mapping, Quarantine, and Escalation",
+      "excerpt_sha256": "32d79c3bc584f206ad9ef3c0dbdabf16309ca58399d215e35d28ca8eccfb96da",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D17-06 \u2014 Source-Local Economy Systems, Donor Value Mapping, Quarantine, and Escalation > Doctrine status: D17 doctrine pack draft for Astra Ascension. > Schema status: \u201d. Distinguishing context: \u201c# D17-06 \u2014 Source-Local Economy Systems, Donor Value Mapping, Quarantine, and Escalation > Doctrine status: D17 doctrine pack draft for Astra Ascension. > Schema status: record shapes are **not final schema**; \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 115,
+      "locator_heading_or_symbol": "Inventory is represented as burden, access, storage, custody, visibility, maintenance, decay, and transport pressure.",
+      "excerpt_sha256": "e1b4d6785f1a0257751e737688547c9c4172d487c4da9ca318bc06e1bd221943",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "schedule",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cInventory is represented as burden, access, storage, custody, visibility, maintenance, decay, and transport pressure. No universal slot, weight, bulk, encumbrance, spatia\u201d. Distinguishing context: \u201c```text Value is classified by form, access channel, scarcity, legality, ownership/custody, and burden. Acquisition and exchange do not assume price equals access. Reward, loot, salvage, bounty, faction grants,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 127,
+      "locator_heading_or_symbol": "-> record lawful outcome, source-local boundary, quarantine, or escalation",
+      "excerpt_sha256": "8928f6bfadc4cad696f30f677391575b0f9c6219e1eb03d3c2f03ea9b773227e",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c-> record lawful outcome, source-local boundary, quarantine, or escalation ``` ## Pack files ```text D17-README_manifest.md D17-00_economy_acquisition_inventory_reward_an\u201d. Distinguishing context: \u201c-> identify ownership / custody / legality -> identify scarcity and availability -> identify inventory / storage / carrying burden -> identify requisition, upkeep, consumption, tax, or sink pressure -> route ob\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 188,
+      "line_end": 224,
+      "locator_heading_or_symbol": "purchase, sale, barter, trade, gift, reward, loot, salvage, resource_gathering, crafting_output, requisition, license_grant, faction_store, patron_grant, auction, black_market, mar",
+      "excerpt_sha256": "cdeb9c846bb30ed44a767a7313701763545b222b5c1a987a3193f730a19f5650",
+      "matched_terms": [
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpurchase, sale, barter, trade, gift, reward, loot, salvage, resource_gathering, crafting_output, requisition, license_grant, faction_store, patron_grant, auction, black_m\u201d. Distinguishing context: \u201cD17 does not treat all value as money. A license, favor, contribution point, salvage right, legal permission, information asset, storage right, or faction access may matter more than currency. ## Access Channel\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 286,
+      "line_end": 353,
+      "locator_heading_or_symbol": "quarantined",
+      "excerpt_sha256": "7772ae90fdd9bc2071134a170ac0c57058ef231851cd940e2c4339a699ebfa69",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cquarantined escalated ``` Scarcity may create price, but may also create time, route, faction, license, Project, black-market, or claim pressure. ## Permission, legality,\u201d. Distinguishing context: \u201cavailable_only_through_black_market available_only_through_source_local_procedure unavailable unknown protected_hidden quarantined escalated ``` Scarcity may create price, but may also create time, route, facti\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

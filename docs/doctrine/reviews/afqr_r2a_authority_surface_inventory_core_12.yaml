@@ -1,0 +1,1007 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-12",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-07_route_fusion_multipath_and_confluence.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 99,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "11123ffc99b9d46dacdb6966621404dd96449f9a37e4879c4dcce854b4bd851a",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-11_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 107,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "122e5bf04979342af4bd6ad371e21b55edd79b883027cb8600f5946bd4481b25",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 113,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "fa45289c97730048ab82bf677f49a471fd463cef3da3844fcca664225a35c205",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 174,
+      "line_end": 270,
+      "locator_heading_or_symbol": "A dangerous archive researcher may develop a Route through D05 knowledge, D05 research, dead-record proof, and D07 risk. The Route may include Domain facets around Funeral Archives",
+      "excerpt_sha256": "d0b9d5273c58a828efb3df046dac6d4bc7924fe12edf0f1babda815647a4bec8",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "evidence",
+        "reservation",
+        "seed",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA dangerous archive researcher may develop a Route through D05 knowledge, D05 research, dead-record proof, and D07 risk. The Route may include Domain facets around Funera\u201d. Distinguishing context: \u201cA fisher's D05 profession, Depth Reading Method, impossible-catch proof, and D04 Awakening Package may authorize a D06 Route. The player-facing Path may be **Far Fisher**. It might permit development around lin\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 295,
+      "line_end": 295,
+      "locator_heading_or_symbol": "A Principle or Concept route at low tier may shape perception, route pressure, method development, resonance signals, bounded technique candidates, and domain alignment. It does no",
+      "excerpt_sha256": "c68b621773441cb397191b51fc8c08035e3ab76e2dc07bce6517fdf63b2cc2ad",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA Principle or Concept route at low tier may shape perception, route pressure, method development, resonance signals, bounded technique candidates, and domain alignment. \u201d. Distinguishing context: \u201cMultiple route candidates may exist internally. Player-facing choice should usually remain bounded, especially at Awakening. A character with many proof clusters should not receive dozens of choices. D06 may co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 362,
+      "line_end": 472,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "3fb5e2d37765fa3a5777e166615903ef3c710f084f766a1500c9e4dd695ff6da",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 493,
+      "line_end": 493,
+      "locator_heading_or_symbol": "This facet records instability, cost, contradiction, coercion, mutation, source-local lock, external dependency, corruption, or route damage. D07 owns harm/corruption consequences;",
+      "excerpt_sha256": "0a16f7c91298354a2d50c9d8dd1a3bf209acf9417d435426bd92b828a3a47e33",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis facet records instability, cost, contradiction, coercion, mutation, source-local lock, external dependency, corruption, or route damage. D07 owns harm/corruption con\u201d. Distinguishing context: \u201cA **Source-local Facet** records route names, mechanics, or metaphysics bounded to a specific source, conversion, campaign, faction, realm, or donor-derived context. Source-local facets may be used inside their\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 560,
+      "line_end": 575,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "02e836830830e82fc2fb066d8f504ba728965df84e471c745261383aedadd048",
+      "matched_terms": [
+        "corruption",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 650,
+      "line_end": 669,
+      "locator_heading_or_symbol": "Example: a **Truth-bound Diplomat** lies to save a hostage. This does not automatically destroy the Route. It creates contradiction that may strain, scar, reinterpret, mutate towar",
+      "excerpt_sha256": "9d3624cf19721a76e85cd3bd8f27b4d75561b31833cf412968c73ee1564634cf",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cExample: a **Truth-bound Diplomat** lies to save a hostage. This does not automatically destroy the Route. It creates contradiction that may strain, scar, reinterpret, mu\u201d. Distinguishing context: \u201cA Route enters dissonance when the actor meaningfully contradicts the Principle. Dissonance may produce increased cost, blocked features, reduced relevance, route strain, harmful synthesis, proof conflict, rout\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 722,
+      "line_end": 722,
+      "locator_heading_or_symbol": "| Truth | Principle, Knowledge Field, oath structure, or source-local. |",
+      "excerpt_sha256": "2a23000e0ea5b7148cddb09e8973220494e60cdb706fbc09c155354d75457069",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Truth | Principle, Knowledge Field, oath structure, or source-local. |\u201d. Distinguishing context: \u201c| Donor-like term | Astra handling | |---|---| | Dao | Principle / Concept facet, source-local unless promoted. | | Law | Principle, Domain authority, D10 world-law, or source-local. | | Truth | Principle, Know\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 776,
+      "line_end": 809,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "35c49df374ce4bcaf29060ae6364299c171433e0f26bb33c37c728e18d42dae7",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 875,
+      "line_end": 875,
+      "locator_heading_or_symbol": "- D07 validates harm, compulsion, corruption, overload, identity erosion, mutation harm.",
+      "excerpt_sha256": "2fdd3e067456ba1c225186987eeb635620814bc515e30d36ef15053e0327239c",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 validates harm, compulsion, corruption, overload, identity erosion, mutation harm.\u201d. Distinguishing context: \u201cD06 owns the ledger. It does not own every feature's mechanics. - D03 validates powered features, Expressions, cost, carrier, burden, confluence, activation, and recharge. - D04 validates proof, Development Pic\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 959,
+      "line_end": 959,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "9b1a7dd5e97e117c5711c9663d0be738d54649d6c38c4661f722f8498e0935b7",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1078,
+      "line_end": 1195,
+      "locator_heading_or_symbol": "A Technique Set is a related family of Techniques associated with Route, facet, teacher, lineage, source-local system, profession-route, or external anchor. It can be fixed, branch",
+      "excerpt_sha256": "586f5ec4d909af6381235ec38ca4f53c474efc443a23606c3908326c6642db8a",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA Technique Set is a related family of Techniques associated with Route, facet, teacher, lineage, source-local system, profession-route, or external anchor. It can be fix\u201d. Distinguishing context: \u201c- **Quiet Engine Cant** as D06 Technique synchronizes engine crew rhythm. - **Engine-Soul Overchant** as D03 / D09 Expression-linked Technique forces impossible engine output with cost and feedback risk. ## 9. \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1201,
+      "line_end": 1314,
+      "locator_heading_or_symbol": "Unstable Routes can stabilize through D05 training, D05 research, D04 proof, D07 recovery, D03 economy correction, D08 bond repair, D09 anchor repair, D10 faction reconciliation, P",
+      "excerpt_sha256": "6048cb9beb27a436140426fd239571e32eccba464def844eebbffa688ec4dc13",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUnstable Routes can stabilize through D05 training, D05 research, D04 proof, D07 recovery, D03 economy correction, D08 bond repair, D09 anchor repair, D10 faction reconci\u201d. Distinguishing context: \u201cExamples: Unclosed Mercy Scar, Feedback Burn, Broken Oath Resonance, Dry-Air Memory Loss, False Sky Scar. ## 7. Stabilization Unstable Routes can stabilize through D05 training, D05 research, D04 proof, D07 rec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1350,
+      "line_end": 1351,
+      "locator_heading_or_symbol": "- **Truth-Sworn Witness** + espionage route pressure: contradictory; possible scar, reinterpretation, split, severance, or corruption.",
+      "excerpt_sha256": "614028b4f8f9ed318425b72b57f903c02a808aa594597a5987ea987c7640ef9a",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- **Truth-Sworn Witness** + espionage route pressure: contradictory; possible scar, reinterpretation, split, severance, or corruption. - **Crow-Marked Rooftop Scout** bin\u201d. Distinguishing context: \u201cDonor multiclass systems normalize into source-local Routes, route facets, Technique Sets, Route Features, D05 competencies, D03 Expressions, D04 picks, or escalation. Donor multiclass rules are not imported di\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1405,
+      "line_end": 1493,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "f537bd8f429b5da21e169194a00bfa279fff043762141de92ace9934b66d93b9",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1549,
+      "line_end": 1657,
+      "locator_heading_or_symbol": "**Purpose:** Define how donor class-like packages are decomposed, routed, retained source-locally, quarantined, or escalated.",
+      "excerpt_sha256": "233d65cac50b49648c4259f9fca341bbfc88d4679f37480cd2f4552ac23e37d1",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c**Purpose:** Define how donor class-like packages are decomposed, routed, retained source-locally, quarantined, or escalated. ## Standing D06 boundary D06 owns formal rou\u201d. Distinguishing context: \u201c**File ID:** `D06-09` **Pack:** Astra Ascension D06 \u2014 Route, Path, Principle, Technique, and Donor Class Normalization Doctrine **Version:** v0_1 **Status:** Design doctrine draft generated from accepted D06 de\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1681,
+      "line_end": 1794,
+      "locator_heading_or_symbol": "quarantined_constructs: []",
+      "excerpt_sha256": "fecedce7998ccc8f675846bf6bb27fcc202198f83855e3a0b761d44ea68ed07a",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cquarantined_constructs: [] escalation_items: [] donor_assumptions_rejected: [] terminology_status: retained_source_local | normalized | rejected | lexicon_candidate valid\u201d. Distinguishing context: \u201cd05_competency_handoffs: [] d07_risk_handoffs: [] d08_actor_companion_handoffs: [] d09_item_platform_handoffs: [] d10_faction_world_handoffs: [] quarantined_constructs: [] escalation_items: [] donor_assumptions\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1821,
+      "line_end": 1939,
+      "locator_heading_or_symbol": "visibility_state: visible | discovered | offered | latent | hidden | obscured | source_local | blocked | dangerous | retired",
+      "excerpt_sha256": "c8cbc4ed0d6fc3344faff79df4d2f1355a8cbb712d735f11cea5da4b5a71c140",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cvisibility_state: visible | discovered | offered | latent | hidden | obscured | source_local | blocked | dangerous | retired validation_state: authorized | pending_proof \u201d. Distinguishing context: \u201cD05: [] D07: [] D08: [] D09: [] D10: [] visibility_state: visible | discovered | offered | latent | hidden | obscured | source_local | blocked | dangerous | retired validation_state: authorized | pending_proof \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/astra_d06_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1952,
+      "line_end": 2035,
+      "locator_heading_or_symbol": "- Donor package is evidence, not authority.",
+      "excerpt_sha256": "d8e273328b00c5122c7f1aa19b20f817726c1be562b5231c446cdc9e7a201980",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "evidence",
+        "promotion",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Donor package is evidence, not authority. - Record shapes are not final schemas. - Source-local boundaries are durable. ## 15. Post-D06 patch-note queue After pack acce\u201d. Distinguishing context: \u201c- Technique is not every named action. - Principle is not early reality override. - Profession is not automatic Path. - Faction rank is not Faction Route. - Multipath is not multiclass stacking. - Donor package\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-00_layered_harm_architecture_overview.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 67,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "d3fd63d53ff1ff95d2c542654106a6bf47658501233e0613b36c77503bad9a69",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-01_damage_injury_conditions_and_severity.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 69,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "395f262e4b48ea5555e1d014b79307f1e6eab5bf056b33eb59e5e6a945f62e46",
+      "matched_terms": [
+        "corruption",
+        "seed",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-02_corruption_contamination_and_instability.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 61,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "2af6330b6682e4ee4cda6c8f516e5dfaf060984bcdd61b7f20f190af87a3ecd4",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-03_mutation_transformation_and_body_change.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 34,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "60f71a967c3c03ee78536335daeb7fa7fb1887354970cbc512d9caa548d6d993",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-04_identity_mental_and_principle_harm.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 54,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "e6086ed1bb63374218a32450f05bd349044b3441ae0283c7de8236e283431efb",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-05_conceptual_resource_exposure_and_integration_harm.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 63,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "c3c4e48d5730642b0b4ad5f5d93c986931b2ebe8ba50944b9f19a451e784ed50",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-06_carrier_backlash_and_power_strain_handoff.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 49,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "f5962d3df3e794ce612b8b704d44b679dc76ee7bac60ba53dc429c92a46e3ae4",
+      "matched_terms": [
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-07_recovery_treatment_stabilization_and_adaptation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 49,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "f1e0885a813619bb9ff807110bb604d344d44bd01a929fa5d06dc601683ad7f8",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-08_lethality_crippling_and_failure_consequences.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 59,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "e2a66136dd373ab35b479029204a7cb3d3be826d1b8ff4d3a5ee4e5576d7c82e",
+      "matched_terms": [
+        "corruption",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-09_runtime_records_ui_and_owner_handoffs.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 70,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "31b6c46607e2b285f8da82195f4729da626fc79f643155a67d49366df25359da",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/D07-10_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 108,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "94d1a3f46a419c150f551863aaddc2cf5a0a7bb23fb5e9b95b29247888341ff4",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c--- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decisions phase: Ph\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 121,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "c34217f80e55f1e9daa4a2229ab1ebce2b3d569a9215d326d7dccd7ffe160ec3",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c<!-- FILE: D07-README_manifest.md --> --- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 130,
+      "line_end": 247,
+      "locator_heading_or_symbol": "| Source-local | Donor-specific sanity, death, corruption, mutation, curse, doom, or disease systems. |",
+      "excerpt_sha256": "95b34db2bea853c96b5f3a6b3485904f4396c2aa77fb5ee46935b9ee9a2beeeb",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "reservation",
+        "seed",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Source-local | Donor-specific sanity, death, corruption, mutation, curse, doom, or disease systems. | | Mixed | Any event combining multiple families. | ## Severity and\u201d. Distinguishing context: \u201c| Bond / Actor-Relation | Companion, pact, spirit, AI, swarm, summon, dual-cultivation link harm. | | Anchor / Platform Feedback | Relic, implant, vehicle, mech, tool, ship, weapon, or platform backlash. | | So\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 254,
+      "line_end": 344,
+      "locator_heading_or_symbol": "# D07-02 Corruption, Contamination, and Instability",
+      "excerpt_sha256": "0d518d2f228b3bb5c2f8df1487992eb03072640a60e1fa9a7b04edc6ad37d215",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D07-02 Corruption, Contamination, and Instability ## Status This file is part of the D07 doctrine pack. It is doctrine-facing, conversion-facing, and future-runtime-fac\u201d. Distinguishing context: \u201cstatus: doctrine draft generated from accepted D07 design decisions phase: Phase 1 \u2014 Doctrine and framework build scope: Batch D native Astra design doctrine --- # D07-02 Corruption, Contamination, and Instabil\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 377,
+      "line_end": 473,
+      "locator_heading_or_symbol": "pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine",
+      "excerpt_sha256": "788b7cdf67d0d96e71e046062aee0471fa8e6cf67b7acfc0db98400907b88a3f",
+      "matched_terms": [
+        "corruption",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cpack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine draft generated from accepted D07 design decision\u201d. Distinguishing context: \u201c<!-- FILE: D07-04_identity_mental_and_principle_harm.md --> --- project: Astra Ascension pack: D07 Layered Harm, Recovery, Corruption, Mutation, and Terminal Consequence Doctrine version: v0.1 status: doctrine \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 501,
+      "line_end": 595,
+      "locator_heading_or_symbol": "Recovery may purge incompatible residue, stabilize insight, reinterpret Principle, seal unused concept residue, adapt to narrowed perception, externalize insight into a tool/journa",
+      "excerpt_sha256": "8dd4e6b7f8780b445c2ce64a527bb910412d57a31ab5bf14d654c74ce4115481",
+      "matched_terms": [
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cRecovery may purge incompatible residue, stabilize insight, reinterpret Principle, seal unused concept residue, adapt to narrowed perception, externalize insight into a t\u201d. Distinguishing context: \u201cPotential D07 states include Physical Corrosion, Resource-Allergic, Carrier Inflamed, Reservoir-Soured, Conceptual Allergy, Principle Blindness, Hollow Comprehension, Identity Narrowing, Route Brittleness, Corr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 624,
+      "line_end": 742,
+      "locator_heading_or_symbol": "Reconciliation resolves contradiction. Severance cuts away harmful route, bond, mark, carrier branch, anchor, entity, mutation, or source-local state and is not casual respec. Cont",
+      "excerpt_sha256": "700d60f49679a5c7cfc7cb6426983a63563690261f93aecfdfead096b6775b79",
+      "matched_terms": [
+        "branch",
+        "corruption",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cReconciliation resolves contradiction. Severance cuts away harmful route, bond, mark, carrier branch, anchor, entity, mutation, or source-local state and is not casual re\u201d. Distinguishing context: \u201cExternalization moves harm or instability into an anchor: relic, tool, weapon, implant, prosthetic, oath ledger, memory journal, shrine, platform, ship, companion, spirit, AI partition, territory, sealed room, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 745,
+      "line_end": 858,
+      "locator_heading_or_symbol": "## Visibility states and fairness",
+      "excerpt_sha256": "648e014fe51ddad02c8b12ec7d0dd6ad63f2a57f0652e34382ab4b461d7e83f4",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## Visibility states and fairness Visibility states include Visible, Diagnosed, Discovered, Obscured, Hidden, Dangerous, Source-local, Stabilized, Dormant, and Retired. H\u201d. Distinguishing context: \u201c## Durable thresholds Durable record required when harm persists beyond scene/session; requires recovery/treatment/project/maintenance; affects route/principle/technique/feature; affects Power Economy; causes c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d07_doctrine_pack_v0_1/astra_d07_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 870,
+      "line_end": 967,
+      "locator_heading_or_symbol": "Runtime checklist: assign record tier, family, visibility, UI group, handoff state, consolidation/retirement, history retention.",
+      "excerpt_sha256": "0efa307872434f5241dbe976187589f2b7e0c90775ea55f34619c391e4f1bd12",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "quarantine",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cRuntime checklist: assign record tier, family, visibility, UI group, handoff state, consolidation/retirement, history retention. ## Source-local checklist For donor or ca\u201d. Distinguishing context: \u201cRecovery checklist: choose recovery goal and determine if project, externalization, D04 proof, or owner tools are required. Terminal checklist: confirm severity gate, terminal category, warning, mitigation, own\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-00_layered_actor_state_architecture.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 30,
+      "line_end": 52,
+      "locator_heading_or_symbol": "| Harm / recovery interface | how D07 harm, mutation, corruption, recovery, and terminal states apply |",
+      "excerpt_sha256": "8ce541e86480f8845136b62f9ca0c11b847c9534ec9c10af7d197cd1e6444ffb",
+      "matched_terms": [
+        "corruption",
+        "projection",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Harm / recovery interface | how D07 harm, mutation, corruption, recovery, and terminal states apply | | Power / carrier interface | how D03 Power Economies, carriers, r\u201d. Distinguishing context: \u201c| Body / kinform layer | physical, spiritual, constructed, machine, swarm, colony, or source-local body substrate | | Cognition / personhood layer | how the actor thinks, feels, remembers, chooses, imitates, ob\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-02_body_kinform_form_state_and_nonhuman_physiology.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 30,
+      "line_end": 105,
+      "locator_heading_or_symbol": "| Projection / avatar | projected, remote, temporary, representative, or interface body |",
+      "excerpt_sha256": "1d2b01658a55da7bc01e47a8dab737a5ddca88fafe2b35c086477c4e5979a61e",
+      "matched_terms": [
+        "corruption",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Projection / avatar | projected, remote, temporary, representative, or interface body | | Source-local | body follows bounded donor/campaign rule | ## Physiology profil\u201d. Distinguishing context: \u201c| Plant / fungal | plantlike, fungal, mycelial, rooted, spore-bearing, ecological body | | Mineral / crystalline | stone, crystal, metal, mineralized, or pressure-body | | Elemental / energetic | fire, water, s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-03_companions_bonds_mounts_pets_and_familiars.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 37,
+      "line_end": 46,
+      "locator_heading_or_symbol": "D08 records the bond substrate. D07 owns bond harm and recovery. Bond harm includes trust loss, fear, grief, injury, command trauma, pact strain, AI sync damage, swarm cohesion los",
+      "excerpt_sha256": "3cc314d71a49213c231d9e88336a97e1b9f270ac02a96ae247d9becb166618e4",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD08 records the bond substrate. D07 owns bond harm and recovery. Bond harm includes trust loss, fear, grief, injury, command trauma, pact strain, AI sync damage, swarm co\u201d. Distinguishing context: \u201cPermissions may include assist, scout, carry, mount, guard, attack, defend, retrieve, communicate, sense, track, channel power if validated, use Technique if validated, share perception, share resource, trigger\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-04_summons_constructs_spirits_ai_and_bound_entities.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 42,
+      "locator_heading_or_symbol": "Summons and bound entities may be commanded, instinctive, bond-guided, programmed, ritual-bound, contract-bound, negotiated, autonomous, hostile-bound, possession-contested, extern",
+      "excerpt_sha256": "60c39ba90fb85b62d9dc6415f3a6f5f36f6c324b957b6606a09a017aea21e07f",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "release"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cSummons and bound entities may be commanded, instinctive, bond-guided, programmed, ritual-bound, contract-bound, negotiated, autonomous, hostile-bound, possession-contest\u201d. Distinguishing context: \u201cA summoned blade-spark that strikes once is not an actor. A recurring crow familiar is. A summoned wolf for one scene may be temporary with simplified state. A source-local eidolon may be persistent companion-g\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d08_doctrine_pack_v0_1/D08-05_swarms_hives_colonies_and_distributed_actors.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 37,
+      "line_end": 70,
+      "locator_heading_or_symbol": "D08 owns hive/colony/swarm as actor. D10 owns hive/colony/swarm as society, faction, settlement, population, economy, territory, relationship network, or world-state structure.",
+      "excerpt_sha256": "a8e6101641e048865c625d98bb50476852290e85cfbe575202217f8dfb3cc602",
+      "matched_terms": [
+        "corruption",
+        "fork",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD08 owns hive/colony/swarm as actor. D10 owns hive/colony/swarm as society, faction, settlement, population, economy, territory, relationship network, or world-state stru\u201d. Distinguishing context: \u201cContinuity questions include whether the actor survives unit loss, whether there is a core, where continuity resides, whether fragments can become new actors, whether fragments can merge later, and whether soci\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    }
+  ]
+}

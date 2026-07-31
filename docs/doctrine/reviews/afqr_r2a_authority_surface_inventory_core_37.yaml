@@ -1,0 +1,1050 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-37",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_stage2_rt001_command_lifecycle_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 183,
+      "line_end": 230,
+      "locator_heading_or_symbol": "\"compiling context packets\",",
+      "excerpt_sha256": "7722cd3ae1b423547f103796e845e2ab6aa8ead68777c9339b18f545cbec7ee7",
+      "matched_terms": [
+        "context packet",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"compiling context packets\", \"revealing hidden information\", \"treating narration as backend commitment\", \"treating summaries as memory authority\", \"authorizing canon, sou\u201d. Distinguishing context: \u201c\"deciding hidden modifiers\", \"spending or refunding resources\", \"committing costs\", \"committing events\", \"writing persistence records\", \"compiling context packets\", \"revealing hidden information\", \"treating nar\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt002_resource_consequence_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 105,
+      "locator_heading_or_symbol": "\"corruption_pressure\",",
+      "excerpt_sha256": "af615e3b005a6f02db9ae314c9bd0fb70ad8dd7000495918bd45321b9d73ee8f",
+      "matched_terms": [
+        "corruption",
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"corruption_pressure\", \"strain_pressure\", \"reward_pressure\", \"loss_pressure\", \"recovery_cost_pressure\", \"repair_cost_pressure\", \"damage_or_injury_cost_pressure\", \"asset_s\u201d. Distinguishing context: \u201c\"committed_cost_pressure\", \"failed_command_cost_outcome\", \"optional_overcommitment_pressure\", \"refund_or_no_refund_pressure\", \"backlash_pressure\", \"corruption_pressure\", \"strain_pressure\", \"reward_pressure\", \"l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt002_resource_consequence_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 151,
+      "line_end": 193,
+      "locator_heading_or_symbol": "\"final backlash, corruption, or strain formulas\",",
+      "excerpt_sha256": "39542ca307b5c20e74d9efd7a9eed1a0971e6fa234c43915ebc6f515edf14049",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"final backlash, corruption, or strain formulas\", \"final damage tables\", \"final reward economy\", ]: assert phrase in text def test_authority_model_is_defined() -> None: t\u201d. Distinguishing context: \u201c\"validation/readiness handoff to RT-011\", \"final resource formulas\", \"final resource names or final resource pool list\", \"final cost values\", \"final refund rules\", \"final backlash, corruption, or strain formula\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt002_resource_consequence_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 269,
+      "line_end": 298,
+      "locator_heading_or_symbol": "\"authorizes_canon_promotion: false\",",
+      "excerpt_sha256": "62758347367f8de22eebced13eb5a31516e49bbc2fba76aad7b02e5daf1403aa",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizes_canon_promotion: false\", \"authorizes_pilot_conversion: false\", ]: assert phrase in text def test_registry_and_decision_log_tracking_exist() -> None: registry \u201d. Distinguishing context: \u201c\"authorizes_resource_formula: false\", \"authorizes_cost_table: false\", \"authorizes_reward_economy: false\", \"authorizes_live_play: false\", \"authorizes_training: false\", \"authorizes_canon_promotion: false\", \"autho\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt004_ability_effect_skill_binding_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 23,
+      "line_end": 117,
+      "locator_heading_or_symbol": "\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\",",
+      "excerpt_sha256": "9bd3e3c8fdcf8916d66eb61ebcf76b03101233bd964f254770ae78f263715ded",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\", \"docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md\", ] BINDIN\u201d. Distinguishing context: \u201c\"docs/doctrine/control/RT001_command_lifecycle_action_legality_owner_specification.md\", \"docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md\", \"docs/doctrine/control/RT003_combat_hazard\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt004_ability_effect_skill_binding_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 159,
+      "line_end": 267,
+      "locator_heading_or_symbol": "\"RT-002 owns resource costs, backlash, corruption, strain\",",
+      "excerpt_sha256": "0bcb80431bb065974f0b4653be044449d4ae86506f89ff0600d7956606c335e2",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"RT-002 owns resource costs, backlash, corruption, strain\", \"RT-003 owns combat, hazard, damage, healing, mitigation\", \"RT-005 owns hidden prerequisites, hidden capabilit\u201d. Distinguishing context: \u201cdef test_defines_authority_model() -> None: text = read(SPEC_PATH) for phrase in [ \"RT-001 owns command/action timing, legality, candidate command binding\", \"RT-002 owns resource costs, backlash, corruption, st\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt004_ability_effect_skill_binding_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 304,
+      "line_end": 336,
+      "locator_heading_or_symbol": "\"authorizes_rng_implementation: false\",",
+      "excerpt_sha256": "813a76c7f7189b31ced7c9c6b9c279739be06dc7382df20d75b7fea16f63b2ca",
+      "matched_terms": [
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizes_rng_implementation: false\", \"authorizes_event_ledger: false\", \"authorizes_context_packet_compiler: false\", \"authorizes_live_play: false\", \"authorizes_training\u201d. Distinguishing context: \u201c\"authorizes_cooldown_rules: false\", \"authorizes_duration_rules: false\", \"authorizes_scaling_rules: false\", \"authorizes_item_effects: false\", \"authorizes_condition_system: false\", \"authorizes_rng_implementation:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt006_mission_reward_clue_routing_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 24,
+      "line_end": 144,
+      "locator_heading_or_symbol": "\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\",",
+      "excerpt_sha256": "2f535e641fcb29c31e1b4ca51d6f96126e435ea0039b87b2bfacad58e8254b57",
+      "matched_terms": [
+        "branch",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\", \"docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md\", ] ROUTIN\u201d. Distinguishing context: \u201c\"docs/doctrine/control/RT002_resource_consequence_math_owner_specification.md\", \"docs/doctrine/control/RT003_combat_hazard_damage_recovery_owner_specification.md\", \"docs/doctrine/control/RT004_ability_effect_sk\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt006_mission_reward_clue_routing_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 145,
+      "line_end": 235,
+      "locator_heading_or_symbol": "\"clue visibility, clue routing, clue-cost, hidden-truth reveal, and investigation handoff requirements\",",
+      "excerpt_sha256": "dbb05edd54ce6b66197045db315b13e76b5f7790e93666d7b4a77d83682f83ee",
+      "matched_terms": [
+        "branch",
+        "compensation",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"clue visibility, clue routing, clue-cost, hidden-truth reveal, and investigation handoff requirements\", \"reward, penalty, loss, compensation, debt, obligation, reputatio\u201d. Distinguishing context: \u201ctext = read(SPEC_PATH) for phrase in [ \"mission/reward/clue routing ownership boundaries\", \"mission, scenario, adventure, objective, branch, route, escalation, reward, penalty, success, failure, clue, and hidde\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt006_mission_reward_clue_routing_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 275,
+      "line_end": 359,
+      "locator_heading_or_symbol": "\"creating missions as backend truth\",",
+      "excerpt_sha256": "ae80439c7fb1dff53e6c09277ee068ce4fd0f059ebdcc5f7d3ab405da8a775de",
+      "matched_terms": [
+        "branch",
+        "promotion",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"creating missions as backend truth\", \"deciding objective completion\", \"choosing scenario branches\", \"selecting clues\", \"revealing hidden truths\", \"revealing hidden clues\u201d. Distinguishing context: \u201cdef test_llm_non_authority_prohibitions_are_explicit() -> None: text = read(SPEC_PATH) for phrase in [ \"creating missions as backend truth\", \"deciding objective completion\", \"choosing scenario branches\", \"selec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt008_generated_content_provenance_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 43,
+      "line_end": 127,
+      "locator_heading_or_symbol": "\"quarantine_pending_provenance\",",
+      "excerpt_sha256": "f8365a03b52ffa1d35ef068960df2132e4e9d473923135512c7096beae8d79cc",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_pending_provenance\", \"source_local_generated_content\", \"durable_generated_candidate\", \"recurrent_generated_candidate\", \"persistent_generated_record_pending\", \u201d. Distinguishing context: \u201cSTATUSES = [ \"ephemeral_generated_proposal\", \"reviewer_candidate\", \"rejected_generated_proposal\", \"quarantine_pending_provenance\", \"source_local_generated_content\", \"durable_generated_candidate\", \"recurrent_gen\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt008_generated_content_provenance_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 179,
+      "line_end": 179,
+      "locator_heading_or_symbol": "\"context projection routing validation\",",
+      "excerpt_sha256": "4a87bbf1fb084a03dd825afa047de7529c581359cc9bcfe0b1a294233e29d955",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context projection routing validation\",\u201d. Distinguishing context: \u201c\"source-local boundary validation\", \"provenance chain coverage validation\", \"stable identifier authorization validation\", \"recurrence eligibility validation\", \"random dependency routing validation\", \"context pr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt008_generated_content_provenance_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 234,
+      "line_end": 234,
+      "locator_heading_or_symbol": "\"authorizes_canon_promotion: false\",",
+      "excerpt_sha256": "9b6c3a8f6e9368ee13bb558cd5f1182439a5c4d157b380f3a4f0a2558f661ddf",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizes_canon_promotion: false\",\u201d. Distinguishing context: \u201c\"authorizes_retrieval_index: false\", \"authorizes_context_packet_compiler: false\", \"authorizes_live_play: false\", \"authorizes_training: false\", \"authorizes_sourcebook_inclusion: false\", \"authorizes_canon_promoti\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt009_rng_table_oracle_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4,
+      "line_end": 85,
+      "locator_heading_or_symbol": "SPEC_PATH = ROOT / \"docs\" / \"doctrine\" / \"control\" / \"RT009_runtime_rng_table_oracle_owner_specification.md\"",
+      "excerpt_sha256": "30dc55444d17bf182959447ba7251a0ffb5925d7bb631028451868f977d96e8f",
+      "matched_terms": [
+        "disclosure",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSPEC_PATH = ROOT / \"docs\" / \"doctrine\" / \"control\" / \"RT009_runtime_rng_table_oracle_owner_specification.md\" REGISTRY_PATH = ROOT / \"docs\" / \"doctrine\" / \"astra_doctrine_\u201d. Distinguishing context: \u201cfrom pathlib import Path ROOT = Path(__file__).resolve().parents[1] SPEC_PATH = ROOT / \"docs\" / \"doctrine\" / \"control\" / \"RT009_runtime_rng_table_oracle_owner_specification.md\" REGISTRY_PATH = ROOT / \"docs\" / \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt009_rng_table_oracle_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 141,
+      "line_end": 233,
+      "locator_heading_or_symbol": "\"RNG/table/oracle invocation ownership boundaries\",",
+      "excerpt_sha256": "ac84404ab087437b5e5c7c436f76465594b046070a56664826de6ea630f46f0e",
+      "matched_terms": [
+        "disclosure",
+        "evidence",
+        "projection",
+        "replay",
+        "rng",
+        "seed",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"RNG/table/oracle invocation ownership boundaries\", \"table/oracle record reference requirements\", \"seed reference and replay reference requirement boundaries\", \"result-do\u201d. Distinguishing context: \u201cdef test_defines_scope_and_must_not_own_boundaries() -> None: text = read(SPEC_PATH) for phrase in [ \"backend-owned random authority boundary requirements\", \"RNG/table/oracle invocation ownership boundaries\", \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt009_rng_table_oracle_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 263,
+      "line_end": 351,
+      "locator_heading_or_symbol": "\"inventing table rows as truth\",",
+      "excerpt_sha256": "0e02c87580f7cb9affbbe4c60ecc6b87e3caa3f2b55eb9f51c1fa42cd973fc1a",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"inventing table rows as truth\", \"using model randomness as RNG authority\", \"treating narrated chance as backend randomness\", \"committing random-result events\", \"creating\u201d. Distinguishing context: \u201c\"selecting oracle outcomes\", \"creating hidden random results\", \"revealing hidden random results\", \"setting table weights\", \"validating result domains\", \"inventing table rows as truth\", \"using model randomness a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt010_inventory_item_vehicle_asset_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 24,
+      "line_end": 136,
+      "locator_heading_or_symbol": "\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\",",
+      "excerpt_sha256": "455304b43d5b0b15dd7268c5a5381e10aef38a5344f3bfc6786ed1e642bbdd12",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "rng",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"docs/doctrine/control/RT009_runtime_rng_table_oracle_owner_specification.md\", \"docs/doctrine/control/RT011_validation_readiness_tooling_owner_specification.md\", ] SCAFFO\u201d. Distinguishing context: \u201c\"docs/doctrine/control/RT004_ability_effect_skill_binding_owner_specification.md\", \"docs/doctrine/control/RT005_context_packet_hidden_information_owner_specification.md\", \"docs/doctrine/control/RT006_mission_re\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt010_inventory_item_vehicle_asset_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 191,
+      "line_end": 236,
+      "locator_heading_or_symbol": "def test_visibility_damage_and_commitment_contracts_use_guardrail_phrases() -> None:",
+      "excerpt_sha256": "8f14ef5c614a2caac696a8044d2f19a6cf9c8a3f901ac25368f7514c01582949",
+      "matched_terms": [
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_visibility_damage_and_commitment_contracts_use_guardrail_phrases() -> None: text = read(SPEC_PATH) for phrase in [ \"Visible inventory is not full backend invento\u201d. Distinguishing context: \u201c\"not live-play prompts\", ]: assert phrase in text def test_visibility_damage_and_commitment_contracts_use_guardrail_phrases() -> None: text = read(SPEC_PATH) for phrase in [ \"Visible inventory is not full backe\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt010_inventory_item_vehicle_asset_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 291,
+      "line_end": 312,
+      "locator_heading_or_symbol": "\"no canon promotion\",",
+      "excerpt_sha256": "67d0297c9d9dbccdb0badcb0bb3154e8d33dfbf0dfad203e9ee374bbdb7be392",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"no canon promotion\", ]: assert phrase.lower() in text.lower() def test_no_file_claims_implementation_authority_for_rt010() -> None: combined = \"\\n\".join([read(SPEC_PATH)\u201d. Distinguishing context: \u201c\"no generator implementation\", \"no inventory system\", \"no persistent asset state\", \"no sourcebook inclusion authorization\", \"no pilot conversion authorization\", \"no canon promotion\", ]: assert phrase.lower() in\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt010_rt012_deferred_convergence_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 134,
+      "locator_heading_or_symbol": "RT012_SCAFFOLD_FILE = \"docs/doctrine/control/RT012_d_series_promotion_boundary_owner_scaffold.md\"",
+      "excerpt_sha256": "db2cff4bbf1d7ccd0f787c56b3e1476141285b318fe5897674758ea4689cf0fc",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "rng",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cRT012_SCAFFOLD_FILE = \"docs/doctrine/control/RT012_d_series_promotion_boundary_owner_scaffold.md\" OWNER_SPEC_FILES = [ \"docs/doctrine/control/RT001_command_lifecycle_acti\u201d. Distinguishing context: \u201cSTAGE2_PLAN_ID = \"REMEDIATION-SCAFFOLD-COMPLETION-REVIEW-STAGE2-PLAN-001\" REMEDIATION_LEDGER_ID = \"REMEDIATION-PRIORITY-LEDGER-001\" AUDIT_IDS = [\"AUDIT-001\", \"AUDIT-WAVE1-001\", \"AUDIT-WAVE2-001\"] RT010_SCAFFOLD\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt010_rt012_deferred_convergence_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 136,
+      "line_end": 224,
+      "locator_heading_or_symbol": "\"authorizes_canon_promotion: true\",",
+      "excerpt_sha256": "e1f798914663f59bbde51142922fec935f6ef4f021798c5f06c4a9aa841fc192",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizes_canon_promotion: true\", \"authorizes_live_play: true\", \"authorizes_training: true\", \"authorizes_pilot_conversion: true\", \"implementation_status: executable\", \"\u201d. Distinguishing context: \u201c\"authorizes_asset_system: true\", \"authorizes_persistent_asset_state: true\", \"authorizes_d_series_promotion_system: true\", \"authorizes_native_design_promotion_system: true\", \"authorizes_sourcebook_inclusion: tru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt010_rt012_deferred_convergence_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 268,
+      "line_end": 290,
+      "locator_heading_or_symbol": "\"authorizes_d_series_promotion_system: false\",",
+      "excerpt_sha256": "f1a0688d26fcbeee87dfdf642c7e4cd8cb22113c9f6311aa0a54d0b2d5f3a48d",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizes_d_series_promotion_system: false\", \"authorizes_native_design_promotion_system: false\", \"authorizes_sourcebook_inclusion: false\", \"authorizes_canon_promotion: \u201d. Distinguishing context: \u201c\"authorizes_inventory_system: false\", \"authorizes_item_system: false\", \"authorizes_vehicle_system: false\", \"authorizes_asset_system: false\", \"authorizes_persistent_asset_state: false\", \"authorizes_d_series_prom\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt011_validation_readiness_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 83,
+      "line_end": 100,
+      "locator_heading_or_symbol": "\"no RNG/dice/table implementation\",",
+      "excerpt_sha256": "dc20ec09388ae651b88cb566378188b3940ce8dfffde78519d3788fec2f8d19d",
+      "matched_terms": [
+        "promotion",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"no RNG/dice/table implementation\", \"no event ledger implementation\", \"no database schema\", \"no live-play prompt implementation\", \"no training authorization\", \"no donor-c\u201d. Distinguishing context: \u201c\"no validator implementation\", \"no generator implementation\", \"no persistence writer implementation\", \"no retrieval index implementation\", \"no context-packet compiler implementation\", \"no RNG/dice/table impleme\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt011_validation_readiness_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 229,
+      "line_end": 273,
+      "locator_heading_or_symbol": "\"authorizing canon promotion\",",
+      "excerpt_sha256": "e13afb4b0d32e713f5804123686b6032469a0afb6e93fa19785150033d755a73",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizing canon promotion\", \"authorizing sourcebook inclusion\", \"replacing reviewer decisions\", \"treating prose as executable validation\", \"treating tests as passed wi\u201d. Distinguishing context: \u201c\"declaring schema readiness\", \"declaring validator readiness\", \"approving pilot conversion outputs\", \"authorizing live play\", \"authorizing training data\", \"authorizing canon promotion\", \"authorizing sourcebook \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt012_d_series_promotion_boundary_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4,
+      "line_end": 115,
+      "locator_heading_or_symbol": "SPEC_PATH = ROOT / \"docs\" / \"doctrine\" / \"control\" / \"RT012_d_series_promotion_boundary_owner_specification.md\"",
+      "excerpt_sha256": "cfe3472184416bb766187919b9dbd4d24d074eecfc9f63a7c3ac66ac73f0a1ca",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSPEC_PATH = ROOT / \"docs\" / \"doctrine\" / \"control\" / \"RT012_d_series_promotion_boundary_owner_specification.md\" REGISTRY_PATH = ROOT / \"docs\" / \"doctrine\" / \"astra_doctri\u201d. Distinguishing context: \u201cfrom pathlib import Path ROOT = Path(__file__).resolve().parents[1] SPEC_PATH = ROOT / \"docs\" / \"doctrine\" / \"control\" / \"RT012_d_series_promotion_boundary_owner_specification.md\" REGISTRY_PATH = ROOT / \"docs\" \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt012_d_series_promotion_boundary_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 150,
+      "line_end": 265,
+      "locator_heading_or_symbol": "\"## 6. Promotion-boundary contract\",",
+      "excerpt_sha256": "dc70a81c7c5ce792b657d9348356d332ccc84fa988e5f38134bda5841d615cd1",
+      "matched_terms": [
+        "branch",
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 6. Promotion-boundary contract\", \"## 7. Runtime-owner handoff contract\", \"## 8. Sourcebook/canon/training/live-play exclusion contract\", \"## 9. Future D-series/native\u201d. Distinguishing context: \u201cfor heading in [ \"## 2. Scope\", \"## 3. Must-not-own boundaries\", \"## 4. Authority model\", \"## 5. D-series/native-design pressure contract\", \"## 6. Promotion-boundary contract\", \"## 7. Runtime-owner handoff cont\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_stage2_rt012_d_series_promotion_boundary_owner_spec.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 284,
+      "line_end": 370,
+      "locator_heading_or_symbol": "\"treating summaries as promotion evidence\",",
+      "excerpt_sha256": "e00ed0b11ce8625dae68f56f786661d055bd3ea2841cc0f4400d46350efbbc58",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"treating summaries as promotion evidence\", \"treating live-play narration as promotion evidence\", \"authorizing training use\", \"authorizing live-play use\", \"authorizing so\u201d. Distinguishing context: \u201c\"promoting D-series/native-design content to sourcebook inclusion\", \"treating source packs as authority\", \"treating examples as authority\", \"treating converted content as authority\", \"treating generated content\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_validate_full_corpus_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 25,
+      "locator_heading_or_symbol": "(dry / \"full_corpus_dry_run_report.md\").write_text(\"Dry-run routing metadata is not extraction truth.\\n\", encoding=\"utf-8\")",
+      "excerpt_sha256": "e5fdb77fe79239bdc84fa641850575ac03e00d3465c7eb98a3c50ea51a506d06",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c(dry / \"full_corpus_dry_run_report.md\").write_text(\"Dry-run routing metadata is not extraction truth.\\n\", encoding=\"utf-8\") (pre / \"full_corpus_preflight_review_summary.j\u201d. Distinguishing context: \u201c(dry / \"full_corpus_preflight_issues.csv\").write_text(\"issue_code,path,detail,severity\\nnon_ascii_path,a,x,warning\\n\", encoding=\"utf-8\") (dry / \"full_corpus_donor_family_estimates.csv\").write_text( \"relative_pa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_validate_full_corpus_readiness_gate.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 92,
+      "line_end": 93,
+      "locator_heading_or_symbol": "assert \"Dry-run routing metadata is not extraction truth.\" in rep",
+      "excerpt_sha256": "af176f34dc6a7c2bfe28544333681069ac6a71ffedf4f8ba5d33c8b93af19103",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"Dry-run routing metadata is not extraction truth.\" in rep assert \"Extraction truth is not conversion permission.\" in rep\u201d. Distinguishing context: \u201cdef test_report_contains_separation_reminders(tmp_path: Path): dry, pre = _mk_inputs(tmp_path) _, r = _run(dry, pre, tmp_path / \"out\") rep = Path(tmp_path / \"out\" / \"full_corpus_readiness_gate_report.md\").read_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_validate_handoff_packet.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 61,
+      "locator_heading_or_symbol": "_write_jsonl(book/'b.page_truth.jsonl',[",
+      "excerpt_sha256": "b4bac61535f2bf896e84e678ac1609a7a1674e93a67aecb41a0ba32f4f124a15",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c_write_jsonl(book/'b.page_truth.jsonl',[ {\"book_id\":\"b\",\"page\":1,\"page_status\":\"ok\",\"reason_code\":\"native_text_extracted\"}, {\"book_id\":\"b\",\"page\":2,\"page_status\":\"ok\",\"re\u201d. Distinguishing context: \u201cdef _make_packet(tmp_path: Path) -> Path: book = tmp_path/'book'; book.mkdir() (book/'b.md').write_text(\"<!-- PAGE:1 -->\\nA\\n<!-- PAGE:2 -->\\n| d6 |\\n<!-- PAGE:3 -->\\nMap AC HP\\n<!-- PAGE:4 -->\\nOCR empty\\n\",en\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_validate_handoff_packet_batch.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 17,
+      "line_end": 42,
+      "locator_heading_or_symbol": "_write_jsonl(book/'b.page_truth.jsonl', rows)",
+      "excerpt_sha256": "f3af2e3cf2fa89d7e6335e32b2f45ebe36b1452b527fcf5c65b9453e58ab5c63",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c_write_jsonl(book/'b.page_truth.jsonl', rows) (book/'strict_audit.json').write_text(json.dumps({\"strict_audit_status\":\"pass\"}),encoding='utf-8') (book/'astra_handoff_mani\u201d. Distinguishing context: \u201cdef _make_packet(root: Path, name: str, bad: bool = False) -> Path: book = root / f'{name}_book'; book.mkdir(parents=True) (book/'b.md').write_text(\"<!-- PAGE:1 -->\\nA\\n<!-- PAGE:2 -->\\n| d6 |\\n\", encoding='utf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_validate_uses_final_page_truth.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 34,
+      "locator_heading_or_symbol": "def test_validator_uses_final_page_truth_not_stale_manifest(tmp_path: Path):",
+      "excerpt_sha256": "c70b377cdc32352813895366e83b38fc915e16437f8bad3d4891c3b53d3418ba",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_validator_uses_final_page_truth_not_stale_manifest(tmp_path: Path): out = tmp_path / \"o\"; (out / \"manifests\").mkdir(parents=True); (out / \"exalted\").mkdir(parent\u201d. Distinguishing context: \u201cdef _write_jsonl(path: Path, rows): path.write_text(\"\\n\".join(json.dumps(r) for r in rows) + \"\\n\", encoding=\"utf-8\") def test_validator_uses_final_page_truth_not_stale_manifest(tmp_path: Path): out = tmp_path /\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "validate_outputs.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 57,
+      "line_end": 107,
+      "locator_heading_or_symbol": "pt_path = book_dir / f\"{book_id}.page_truth.jsonl\"",
+      "excerpt_sha256": "610677eefeafd3da7d53c5cbdb937de69322c60a4db128672828cd07dddf60d3",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpt_path = book_dir / f\"{book_id}.page_truth.jsonl\" required = [strict_audit_path, handoff_path, pt_path] missing = [p for p in required if not p.exists()] strict_errors =\u201d. Distinguishing context: \u201cbook_id = mf.stem.replace(\".manifest\", \"\") book_dir = out / book_id strict_audit_path = book_dir / \"strict_audit.json\" handoff_path = book_dir / \"astra_handoff_manifest.json\" pt_path = book_dir / f\"{book_id}.pa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/README.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 13,
+      "locator_heading_or_symbol": "This tree preserves the twelve immutable ratification ZIPs received at `43a50c3756c4f1ba335956d8224f22b34fc32ab5` at their original base-branch paths under `incoming/`. `manifest.y",
+      "excerpt_sha256": "3fb4a4805c0ab5c5089895e1ae3fa2bc7aa3b06c8506a9d29cb0aab78d8ce24e",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis tree preserves the twelve immutable ratification ZIPs received at `43a50c3756c4f1ba335956d8224f22b34fc32ab5` at their original base-branch paths under `incoming/`. `\u201d. Distinguishing context: \u201c# AFQR-01\u201320 temporary physical-source intake This tree preserves the twelve immutable ratification ZIPs received at `43a50c3756c4f1ba335956d8224f22b34fc32ab5` at their original base-branch paths under `incomin\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 86,
+      "locator_heading_or_symbol": "- Frozen state basis and semantic RNG boundary.",
+      "excerpt_sha256": "c6b98cc9db2115b699319969880460a47c7167693fce68527c1857ef6c1645c3",
+      "matched_terms": [
+        "cancellation",
+        "compensation",
+        "evidence",
+        "projection",
+        "quarantine",
+        "reroll",
+        "rng",
+        "supersession",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- Frozen state basis and semantic RNG boundary. - Cancellation, timeout, supersession, and stale-attempt handling. - Idempotent technical retry and duplicate delivery han\u201d. Distinguishing context: \u201c- Raw-input capture separated from IntentIR, CommandIR, and AttemptRecord. - Command identity, attempt identity, execution identity, and delivery identity separation. - Synchronous fast-path state machine. - Du\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 93,
+      "locator_heading_or_symbol": "# AFQR-04 - Logical Time, Simultaneity, Causal Ordering, Scheduled Effects, and Bounded Cascades",
+      "excerpt_sha256": "fce95c4c3cbdb8992094e20bf1478b361c07d8752b08a8cd2a746122ea64bd68",
+      "matched_terms": [
+        "branch",
+        "causal order",
+        "evidence",
+        "expiry",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "schedule",
+        "settlement",
+        "time travel",
+        "timeline"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# AFQR-04 - Logical Time, Simultaneity, Causal Ordering, Scheduled Effects, and Bounded Cascades **Selected architecture:** Profiled Logical-Time Causal Scheduler with De\u201d. Distinguishing context: \u201c# AFQR-04 - Logical Time, Simultaneity, Causal Ordering, Scheduled Effects, and Bounded Cascades **Selected architecture:** Profiled Logical-Time Causal Scheduler with Deterministic Resolution Groups and Bounde\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 85,
+      "locator_heading_or_symbol": "# AFQR-06 - Claim Discovery, Admissibility, Conflict, Arbitration, Choice, and Hidden Evidence",
+      "excerpt_sha256": "007463bb3638c712ef6699dd8c68b4dbb57a1dde45f16c4187f7db9cfc194e9a",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "quarantine",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# AFQR-06 - Claim Discovery, Admissibility, Conflict, Arbitration, Choice, and Hidden Evidence **Selected architecture:** Invariant-Gated Typed Claim Arbitration **Abbrev\u201d. Distinguishing context: \u201c# AFQR-06 - Claim Discovery, Admissibility, Conflict, Arbitration, Choice, and Hidden Evidence **Selected architecture:** Invariant-Gated Typed Claim Arbitration **Abbreviation:** `IGTCA` **Ratification status:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 115,
+      "locator_heading_or_symbol": "# AFQR-09 - Dependency, Revocation, Inheritance, Termination, Migration, Orphaning, and Cascading Consequence",
+      "excerpt_sha256": "c1a6c7ea282e37982a41f44e6b76944728ccf256ede5a15a2a561ec27c5cee77",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "migration",
+        "outbox",
+        "projection",
+        "quarantine",
+        "replay",
+        "reservation",
+        "seed",
+        "snapshot",
+        "supersession",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-11_DELIVERY",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# AFQR-09 - Dependency, Revocation, Inheritance, Termination, Migration, Orphaning, and Cascading Consequence **Selected architecture:** Registered Typed Dependency-and-O\u201d. Distinguishing context: \u201c# AFQR-09 - Dependency, Revocation, Inheritance, Termination, Migration, Orphaning, and Cascading Consequence **Selected architecture:** Registered Typed Dependency-and-Obligation Hypergraph with Version-Pinned\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 130,
+      "locator_heading_or_symbol": "- registry snapshot and discovery receipt",
+      "excerpt_sha256": "65459f84344fb8e6b992b4ab76d32f0997535cec1020b01c02bee89816aae99e",
+      "matched_terms": [
+        "migration",
+        "projection",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- registry snapshot and discovery receipt - impact and cascade contracts - atomic closure certificate - cycle and fixed-point doctrine - aggregate semantics certificate -\u201d. Distinguishing context: \u201c- governed-relation doctrine - orthogonal lifecycle contract - condition algebra - authority and revocation registry - relation continuity and lineage - registry snapshot and discovery receipt - impact and casc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 138,
+      "locator_heading_or_symbol": "**High.** The universal ownership, separation, lifecycle, visibility, replay, and escalation questions are resolved. Final source-local psychologies, formulas, detailed cognitive s",
+      "excerpt_sha256": "ad67eec5f5dccf4ff184921871828f17fd1bfff4082da2412182bd4e12f84602",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "evidence",
+        "preview",
+        "projection",
+        "replay",
+        "replays",
+        "reservation",
+        "schedule",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c**High.** The universal ownership, separation, lifecycle, visibility, replay, and escalation questions are resolved. Final source-local psychologies, formulas, detailed c\u201d. Distinguishing context: \u201c> No value, preference, need, drive, emotion, disposition, goal, intention, habit, plan, authored descriptor, learned policy, or model prediction selects or mutates authoritative behavior by itself. Every behav\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 202,
+      "line_end": 322,
+      "locator_heading_or_symbol": "| shame | A profile-specific self/social affect; not universal moral truth. |",
+      "excerpt_sha256": "98e75f1b855005891a918bfee3ed8bff3ce9baec17007d65410758cfa4bc8487",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "observation",
+        "projection",
+        "reservation",
+        "rng",
+        "schedule",
+        "seed",
+        "supersession",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| shame | A profile-specific self/social affect; not universal moral truth. | | pride | A profile-specific positive self- or group-evaluative affect. | | affection | A pr\u201d. Distinguishing context: \u201c| morale | A typed individual or collective readiness/confidence/cohesion construct; not universal emotional health. | | fear | A profile-specific affect or source-local condition associated with threat apprais\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 327,
+      "line_end": 447,
+      "locator_heading_or_symbol": "Learning begins from an experience, instruction, observation, or outcome record and applies a registered profile. It produces a bounded update candidate with evidence basis, target",
+      "excerpt_sha256": "7ce9cde4ea91c6876e22cde842abacde95bd0ebdc2b7f84d9d30c1f92a6b3ea6",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "quarantine",
+        "schedule",
+        "snapshot",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cLearning begins from an experience, instruction, observation, or outcome record and applies a registered profile. It produces a bounded update candidate with evidence bas\u201d. Distinguishing context: \u201cPlans are not future truth and do not create capabilities, permissions, or actions. Draft, evaluation, adoption, activity, blockage, validity, repair, progress, and closure are orthogonal where required. Repair\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 448,
+      "line_end": 562,
+      "locator_heading_or_symbol": "| PlayerVisibleBehavioralProjection | behavioral_projection_validation_owner | playervisiblebehavioralprojection_id, subject_ref, status, schema_version, effective_time, recorded_t",
+      "excerpt_sha256": "61fd6063af7ca1ab36e920149b29f926f7b5e52574a372e2cd826f9c8389da3e",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "fork",
+        "projection",
+        "quarantine",
+        "schedule",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| PlayerVisibleBehavioralProjection | behavioral_projection_validation_owner | playervisiblebehavioralprojection_id, subject_ref, status, schema_version, effective_time, \u201d. Distinguishing context: \u201c| PrivateDeliberationReceipt | deliberation_owner | privatedeliberationreceipt_id, subject_ref, status, schema_version, effective_time, recorded_time | freeform_authoritative_behavior, model_selected_action, un\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 573,
+      "line_end": 622,
+      "locator_heading_or_symbol": "| OP-088 | model generates dialogue consistent with committed motive | behavioral_projection_validation_owner | portrayal_candidate | Permit only claims grounded in the audience-sc",
+      "excerpt_sha256": "743d08a22de4f596edf76b4fef54ceb1c200ac80211551aed537d222ecfb0b7c",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| OP-088 | model generates dialogue consistent with committed motive | behavioral_projection_validation_owner | portrayal_candidate | Permit only claims grounded in the a\u201d. Distinguishing context: \u201c| OP-083 | possessed host retains personal goals | behavioral_continuity_owner | non_mutating_candidate | Freeze AFQR-08/11 identity and agency bases, then apply family-specific continuity or imposed-objective \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 715,
+      "line_end": 833,
+      "locator_heading_or_symbol": "- memory/evidence",
+      "excerpt_sha256": "b7fb418877efbb6296aeeb5f67733c1f73aa74f3119369a03106f976e6924c5b",
+      "matched_terms": [
+        "branch",
+        "correction",
+        "evidence",
+        "projection",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- memory/evidence - belief/attribution - fear/resentment - relationship - reputation/status - goal - plan - capability - disposition development: - incorrect attribution \u201d. Distinguishing context: \u201c- rival - player character - faction - allies separate_state_families: - memory/evidence - belief/attribution - fear/resentment - relationship - reputation/status - goal - plan - capability - disposition develo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

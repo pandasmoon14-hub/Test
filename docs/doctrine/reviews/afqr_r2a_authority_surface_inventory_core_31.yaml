@@ -1,0 +1,980 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-31",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 202,
+      "line_end": 247,
+      "locator_heading_or_symbol": "\"visibility\",",
+      "excerpt_sha256": "9ad195724ef3ca0d0cbdea6d417053c9bb7b3e7a6533ea652f9e69ab23736224",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "rng",
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"visibility\", \"dependency types\", \"subject types, roles, and owner domains\", \"term value modes\", \"term policy routes\", \"atomicity, ordering, and partial-settlement\", \"no \u201d. Distinguishing context: \u201c\"stages and decisions\", \"resource, cost, and consequence families\", \"timing and outcome policies\", \"quantity kinds and representations\", \"negative-value policies\", \"visibility\", \"dependency types\", \"subject typ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 305,
+      "line_end": 385,
+      "locator_heading_or_symbol": "\"`quarantine_required`\",",
+      "excerpt_sha256": "db079635ed25c163d4d86af626b0282ae0a365bf02d06b239c9849cf8b452db2",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "rng",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"`quarantine_required`\", \"`doctrine_escalation_required`\", \"Non-policy terms require `policy_route=None`\", \"no policy-only term reaches accepted, normalized, or `Settleme\u201d. Distinguishing context: \u201c\"`resource_quantity`\", \"`resource_reference_only`\", \"`quantity_only`\", \"`policy_only`\", \"`owner_handoff_required`\", \"`quarantine_required`\", \"`doctrine_escalation_required`\", \"Non-policy terms require `policy_r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 127,
+      "locator_heading_or_symbol": "from tests.historical_branch_diff_guard import require_owning_historical_branch",
+      "excerpt_sha256": "14458eef59a9bd7e05aa354d7c6acc1e28f09073fbbd460adf281d55bc8c48ab",
+      "matched_terms": [
+        "branch",
+        "projection",
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfrom tests.historical_branch_diff_guard import require_owning_historical_branch ROOT = Path(__file__).resolve().parents[1] DOC = ROOT / \"docs/doctrine/reviews/runtime_dom\u201d. Distinguishing context: \u201cimport re import subprocess from pathlib import Path import yaml from tests.historical_branch_diff_guard import require_owning_historical_branch ROOT = Path(__file__).resolve().parents[1] DOC = ROOT / \"docs/doc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 138,
+      "line_end": 249,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '",
+      "excerpt_sha256": "52e9a19a78cc9fd285172a03747adb745477d809ebe421430d96549c396e26b1",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection ' 'authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'lo\u201d. Distinguishing context: \u201c'default': 'required', 'external_dependency_type': 'none', 'field': 'consequence_family', 'invariant': 'non-empty string required', 'replacement_artifact': 'none', 'serialization_posture': 'internal to_dict onl\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 260,
+      "line_end": 371,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '",
+      "excerpt_sha256": "aceca1704d4018633dd7f0f6a95ad45c6afd42dae6f93f9d9d5aff44ec6481af",
+      "matched_terms": [
+        "projection",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection ' 'authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'lo\u201d. Distinguishing context: \u201c'default': '\"unordered_terms\"', 'external_dependency_type': 'none', 'field': 'ordering_policy', 'invariant': 'non-empty when required; exact annotation/default enforced', 'replacement_artifact': 'none', 'serial\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 381,
+      "line_end": 473,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority',",
+      "excerpt_sha256": "9b44b92fe07fb4a7387a48987101c393e07a91e014867dc1a6b49d89352ee97f",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection authority', 'source_artifact': 'PR-5D'}, {'aggregate_owner': 'same-request in\u201d. Distinguishing context: \u201c'default': 'required', 'external_dependency_type': 'none', 'field': 'subject_binding_id', 'invariant': 'same-request reference to ResourceMathRequest.subject_refs.subject_binding_id', 'replacement_artifact': 'n\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 518,
+      "line_end": 638,
+      "locator_heading_or_symbol": "'projection authority',",
+      "excerpt_sha256": "a1c820f84410bbc229ee02149a37d3b84f157e966756481ff774405ab8bcad4a",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'projection authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'local field', 'annotation': 'str', 'controlled_surface': 'QUANTITY_REPRESENTATION_KIND\u201d. Distinguishing context: \u201c'external_dependency_type': 'none', 'field': 'quantity_id', 'invariant': 'local aggregate identity; unique within ResourceMathRequest.quantity_specs', 'replacement_artifact': 'none', 'serialization_posture': 'i\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 642,
+      "line_end": 750,
+      "locator_heading_or_symbol": "'controlled_surface': 'VISIBILITY_POLICIES',",
+      "excerpt_sha256": "6f7543ddcd6b831f1be32e21a17f1e5dc88727632bf30fdc1513476534b77abe",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'controlled_surface': 'VISIBILITY_POLICIES', 'default': '\"public\"', 'external_dependency_type': 'none', 'field': 'visibility_policy', 'invariant': 'non-empty when require\u201d. Distinguishing context: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public ' 'projection authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'local field', 'annotation': 'str', 'contro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 766,
+      "line_end": 880,
+      "locator_heading_or_symbol": "'projection authority',",
+      "excerpt_sha256": "76c252d199a2aedb4080eea50b95badd3ff197b779aa87d2cf7055a81cf6a326",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'projection authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'local metadata', 'annotation': 'Mapping[str, object]', 'controlled_surface': 'none', '\u201d. Distinguishing context: \u201c'satisfied=False with hidden_info_safe=False remains State B or State D ' 'missing-dependency for that same record with hidden risk retained in ' 'diagnostics and does not replace blocked_missing_dependency', '\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 892,
+      "line_end": 1011,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '",
+      "excerpt_sha256": "e73fcf177daa903e03b7a461e202e17e2a2474e34b012f25dd3bb5d6c30629d4",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection ' 'authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'sa\u201d. Distinguishing context: \u201c'external_dependency_type': 'none', 'field': 'cost_bundles', 'invariant': 'tuple of CostBundle records; bundle_id values unique; CostBundle matrix and ' 'bound rules apply', 'replacement_artifact': 'none', 'ser\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1018,
+      "line_end": 1132,
+      "locator_heading_or_symbol": "'field': 'reservation_authorized',",
+      "excerpt_sha256": "6020af2155e1ea4f982dfacd59e3fbd27f7c36d8205fe6e09887c199466623d6",
+      "matched_terms": [
+        "projection",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'field': 'reservation_authorized', 'invariant': 'false-only authority field; factories and validators reject True including ' 'manual frozen dataclasses', 'replacement_ar\u201d. Distinguishing context: \u201c{'aggregate_owner': 'aggregate false-only authority', 'annotation': 'bool', 'controlled_surface': 'none', 'default': 'False', 'external_dependency_type': 'none', 'field': 'reservation_authorized', 'invariant': \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1143,
+      "line_end": 1261,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; preserved false; no public projection',",
+      "excerpt_sha256": "331353c1dc5122d85cdfb07c4d1e482692840c9a703aa015f3f427ec0e61b5e5",
+      "matched_terms": [
+        "correction",
+        "projection",
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; preserved false; no public projection', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'aggregate false-only \u201d. Distinguishing context: \u201c'external_dependency_type': 'none', 'field': 'table_oracle_execution_authorized', 'invariant': 'false-only authority field; factories and validators reject True including ' 'manual frozen dataclasses', 'replace\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1269,
+      "line_end": 1299,
+      "locator_heading_or_symbol": "'field': 'quarantined',",
+      "excerpt_sha256": "cc8ad6931d32b1ede70ff1ace0798e142dfd05cf14a659d0e5a617d18273f068",
+      "matched_terms": [
+        "projection",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'field': 'quarantined', 'invariant': 'bool default False; True only for the lawful quarantined_for_review ' 'stage/decision pair', 'replacement_artifact': 'none', 'serial\u201d. Distinguishing context: \u201c{'aggregate_owner': 'local field', 'annotation': 'bool', 'controlled_surface': 'none', 'default': 'False', 'external_dependency_type': 'none', 'field': 'quarantined', 'invariant': 'bool default False; True only\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1403,
+      "line_end": 1522,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '",
+      "excerpt_sha256": "4019ff1d59fa58133759f04265f216dbe2a1fe58cb8b3ce115927a4a076ecc29",
+      "matched_terms": [
+        "projection",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection ' 'authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'ex\u201d. Distinguishing context: \u201c'invariant': 'owns request binding, result validation, trace, and result-specific references; ' 'no resource_math_result_ref self-binding; accepted/normalized results require ' 'all reached required dependencie\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1526,
+      "line_end": 1636,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; preserved false; no public projection',",
+      "excerpt_sha256": "b5a8ffd89b635110296805e6b8e24d6fe551cc290e6031c6c1474981de29623d",
+      "matched_terms": [
+        "projection",
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; preserved false; no public projection', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'aggregate false-only \u201d. Distinguishing context: \u201c'external_dependency_type': 'none', 'field': 'settlement_authorized', 'invariant': 'false-only authority field; factories and validators reject True including ' 'manual frozen dataclasses', 'replacement_artifac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1647,
+      "line_end": 1764,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; preserved false; no public projection',",
+      "excerpt_sha256": "8b4bab271fb1aa9463f66f4a5cb27857243742406428fdad51446178f13a5323",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; preserved false; no public projection', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'aggregate false-only \u201d. Distinguishing context: \u201c'external_dependency_type': 'none', 'field': 'model_authority_authorized', 'invariant': 'false-only authority field; factories and validators reject True including ' 'manual frozen dataclasses', 'replacement_ar\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1802,
+      "line_end": 1912,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '",
+      "excerpt_sha256": "d072e90e1f002e47ff93998e42590038717d843d8e2683e461c96f28c33bb333",
+      "matched_terms": [
+        "projection",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection ' 'authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'sa\u201d. Distinguishing context: \u201c'default': 'required', 'external_dependency_type': 'none', 'field': 'resource_ref_id', 'invariant': 'local aggregate identity; unique within ResourceMathRequest.resource_refs', 'replacement_artifact': 'none', '\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1937,
+      "line_end": 2057,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection '",
+      "excerpt_sha256": "64ab7c11ddc0d880da24a67c2141c46ca67e4dc4ee0c4ea0cb2267808d7adfc7",
+      "matched_terms": [
+        "projection",
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; defensive scalar copy; no public projection ' 'authority', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'lo\u201d. Distinguishing context: \u201c'default': 'False', 'external_dependency_type': 'none', 'field': 'source_local', 'invariant': 'boolean value; bool-specific validation, not a string/non-empty check', 'replacement_artifact': 'none', 'serializat\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2058,
+      "line_end": 2173,
+      "locator_heading_or_symbol": "'field': 'rollback_accounting_refs',",
+      "excerpt_sha256": "ec1a1f10bdf9722846742fc0c7830dd1df8ce5e042be48b9321efc69561b2133",
+      "matched_terms": [
+        "projection",
+        "reservation",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'field': 'rollback_accounting_refs', 'invariant': 'tuple of rollback accounting refs when supplied; Exactly one matching ' 'required/satisfied dependency record is requir\u201d. Distinguishing context: \u201c{'aggregate_owner': 'external dependency binding', 'annotation': 'tuple[str, ...]', 'controlled_surface': 'none', 'default': '()', 'external_dependency_type': 'rollback_accounting_ref', 'field': 'rollback_accou\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2184,
+      "line_end": 2283,
+      "locator_heading_or_symbol": "'serialization_posture': 'internal to_dict only; preserved false; no public projection',",
+      "excerpt_sha256": "f265eb96568cb65768c961788205625e439dff496d6f93ae0bf989eb379aabc0",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'serialization_posture': 'internal to_dict only; preserved false; no public projection', 'source_artifact': 'PR-5B inherited'}, {'aggregate_owner': 'aggregate false-only \u201d. Distinguishing context: \u201c'external_dependency_type': 'none', 'field': 'event_append_authorized', 'invariant': 'false-only authority field; factories and validators reject True including ' 'manual frozen dataclasses', 'replacement_artif\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2309,
+      "line_end": 2419,
+      "locator_heading_or_symbol": "'visibility_change',",
+      "excerpt_sha256": "8ef89efc29717e9e8995e9df10c8efe5398e6903b65f6133b4dd65e42999a5d2",
+      "matched_terms": [
+        "cancellation",
+        "compensation",
+        "quarantine",
+        "reservation",
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'visibility_change', 'mission_route', 'clue_route', 'social_faction_change', 'inventory_asset_change', 'provenance_recurrence', 'quarantine_escalation'], 'CONVERSION_POLI\u201d. Distinguishing context: \u201c'cooldown', 'debt', 'obligation', 'harm_pressure', 'recovery_pressure', 'visibility_change', 'mission_route', 'clue_route', 'social_faction_change', 'inventory_asset_change', 'provenance_recurrence', 'quarantin\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2433,
+      "line_end": 2528,
+      "locator_heading_or_symbol": "'strain_corruption',",
+      "excerpt_sha256": "89f7cd929a346d81941b06853e55b25ebd114f83b419d24338d960f65e6333dd",
+      "matched_terms": [
+        "corruption",
+        "preview",
+        "projection",
+        "promotion",
+        "quarantine",
+        "rng",
+        "rollback",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'strain_corruption', 'injury_recovery', 'cooldown', 'debt_obligation', 'source_local_resource'], 'RESOURCE_MATH_DECISIONS': ['accepted_for_planning', 'normalized_for_plan\u201d. Distinguishing context: \u201c'opportunity', 'social_capital', 'faction_standing', 'clue_information', 'risk_heat', 'strain_corruption', 'injury_recovery', 'cooldown', 'debt_obligation', 'source_local_resource'], 'RESOURCE_MATH_DECISIONS': \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2558,
+      "line_end": 2675,
+      "locator_heading_or_symbol": "'quarantined_for_review',",
+      "excerpt_sha256": "be1c963f6544b50250edc13bc7ea254d48f0f4444711470608728feb055214e3",
+      "matched_terms": [
+        "quarantine",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'quarantined_for_review', 'escalated_to_doctrine', 'unsupported_validation_scope'], 'VISIBILITY_POLICIES': ['public', 'actor_visible', 'narrator_only', 'hidden', 'redacte\u201d. Distinguishing context: \u201c'rejected_by_hidden_information_risk', 'rejected_by_provenance_gap', 'rejected_by_schema_mismatch', 'rejected_by_authority_mismatch', 'rejected_by_phase_boundary', 'quarantined_for_review', 'escalated_to_doctri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2680,
+      "line_end": 2792,
+      "locator_heading_or_symbol": "['partial_settlement_allowed'],",
+      "excerpt_sha256": "278c1d32184a59d16b032276dbae6bcd7db88562f027f3cfd643322d5736e892",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c['partial_settlement_allowed'], 'absent', 'valid declaration, no settlement'], ['unordered_partial_allowed', ['unordered_terms'], 'PARTIAL_REVIEW_SET', 'absent', 'blockin\u201d. Distinguishing context: \u201c'blocked_pending_settlement_policy'], 'absent', 'blocking review'], ['unordered_partial_allowed', ['unordered_terms'], ['partial_settlement_allowed'], 'absent', 'valid declaration, no settlement'], ['unordered_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2805,
+      "line_end": 2856,
+      "locator_heading_or_symbol": "'quarantined': False,",
+      "excerpt_sha256": "67eff7f31f6197dd4911f596493b23236ceb0a0a13238682ac25b8a87cd036b6",
+      "matched_terms": [
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'quarantined': False, 'required_dependency': 'the reached dependency record exists with required=True and satisfied=False', 'trigger': 'State B incomplete binding or Stat\u201d. Distinguishing context: \u201c'exact_decision': 'blocked_missing_dependency', 'exact_stage_or_allowed_stage_set': ['dependency_refs_bound', 'blocked_pending_validation', 'blocked_pending_owner_handoff'], 'precedence': 4, 'quarantined': Fals\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2939,
+      "line_end": 3037,
+      "locator_heading_or_symbol": "'satisfied_false_posture': 'incomplete dependencies are forbidden in SettlementProposal',",
+      "excerpt_sha256": "05600ce7248ea3f6d5ef483d0b1c336d150cca37b775978bf23e6f81a583cd6d",
+      "matched_terms": [
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'satisfied_false_posture': 'incomplete dependencies are forbidden in SettlementProposal', 'satisfied_true_posture': 'complete proposal dependency; proposal may remain eli\u201d. Distinguishing context: \u201c'missing_malformed_posture': 'proposal aggregate invalid', 'permitted_result_decision': 'proposal only follows eligible accepted/normalized result; no blocked result may ' 'create proposal', 'proposal_eligibili\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3081,
+      "line_end": 3200,
+      "locator_heading_or_symbol": "'create_settlement_proposal',",
+      "excerpt_sha256": "24bb5f821c9c2914cecb269a710e1a5a199964d922e0e648583615605a2802f1",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c'create_settlement_proposal', 'validate_settlement_proposal'] EXPECTED_PRIVATE_HELPERS = ['constants/defaults', 'subject identity', 'internal refs', 'external bindings', \u201d. Distinguishing context: \u201c'validate_consequence_term', 'create_resource_math_request', 'validate_resource_math_request', 'create_resource_math_result', 'validate_resource_math_result', 'create_settlement_proposal', 'validate_settlement_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3251,
+      "line_end": 3322,
+      "locator_heading_or_symbol": "assert set(row) == {\"allowed_stages\", \"blocking\", \"quarantined\", \"escalated\"}",
+      "excerpt_sha256": "a2e35c0a2c9e1863a7f33961c50d5c02858ec61f8c0edb1a8e1309cacd60603c",
+      "matched_terms": [
+        "quarantine",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert set(row) == {\"allowed_stages\", \"blocking\", \"quarantined\", \"escalated\"} allowed_pairs = {(decision, stage) for decision, row in c[\"stage_decision_matrix\"].items() f\u201d. Distinguishing context: \u201cstages = set(c[\"constants\"][\"RESOURCE_MATH_STAGES\"]) decisions = set(c[\"constants\"][\"RESOURCE_MATH_DECISIONS\"]) for decision, row in c[\"stage_decision_matrix\"].items(): assert decision in decisions assert set(r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3373,
+      "line_end": 3426,
+      "locator_heading_or_symbol": "assert c[\"cost_bundle_bound_corrections\"] == [",
+      "excerpt_sha256": "0f8b0acd560a785cd66d1f74d3004b23692452eadb31536e11d377dcdd374eca",
+      "matched_terms": [
+        "correction",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert c[\"cost_bundle_bound_corrections\"] == [ \"minimum_required_terms <= len(term_ids)\", \"maximum_allowed_terms <= len(term_ids)\", \"minimum_required_terms <= maximum_all\u201d. Distinguishing context: \u201cpostures = [row[4] for row in c[\"cost_bundle_matrix\"]] assert \"invalid mixed atomicity\" in postures assert \"blocking owner/transaction-policy review\" in postures assert \"invalid: non-alternative atomicity canno\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3497,
+      "line_end": 3541,
+      "locator_heading_or_symbol": "\"create_settlement_proposal(*, request: ResourceMathRequest, result: ResourceMathResult, ...) -> SettlementProposal\",",
+      "excerpt_sha256": "ec31b25d808825d96944d011e7fa1c0d40b0f2127353c4b14814f7fe80c1d751",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"create_settlement_proposal(*, request: ResourceMathRequest, result: ResourceMathResult, ...) -> SettlementProposal\", \"validate_settlement_proposal(proposal: SettlementPr\u201d. Distinguishing context: \u201cdef test_direct_request_result_proposal_architecture_and_eligibility() -> None: c = contract() assert c[\"direct_validation_signatures\"] == [ \"create_resource_math_result(*, request: ResourceMathRequest, ...) ->\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5h_resource_consequence_math_final_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3627,
+      "line_end": 3731,
+      "locator_heading_or_symbol": "\"promotion_requirements\",",
+      "excerpt_sha256": "90991354b5cac891cd165a77b23407edc32934480305f11824ff076f4c08edd1",
+      "matched_terms": [
+        "branch",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"promotion_requirements\", \"scale_gate_relevance\", \"broad_conversion_relevance\", \"canon_relevance\", \"runtime_relevance\", \"live_play_relevance\", \"notes\", } assert required_\u201d. Distinguishing context: \u201c\"hard_refusals\", \"escalation_triggers\", \"required_tests\", \"test_status\", \"review_status\", \"promotion_requirements\", \"scale_gate_relevance\", \"broad_conversion_relevance\", \"canon_relevance\", \"runtime_relevance\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 49,
+      "line_end": 49,
+      "locator_heading_or_symbol": "\"SettlementProposal\",",
+      "excerpt_sha256": "18e51a8703fd82be3363c0ca4f9e3fadfc030895e7f386224723db5f28e0baf8",
+      "matched_terms": [
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"SettlementProposal\",\u201d. Distinguishing context: \u201c\"CostBundle\", \"ConsequenceTerm\", \"ResourceMathDependency\", \"ResourceMathRequest\", \"ResourceMathResult\", \"SettlementProposal\", ] PR5H_TEST_NAMES = { \"test_exact_ten_shape_complete_contract_matrix\", \"test_absence\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 214,
+      "line_end": 322,
+      "locator_heading_or_symbol": "def test_06_all_eight_pr5g_defects_are_unique_with_distinct_evidence() -> None:",
+      "excerpt_sha256": "01fb891d811a72cc57c606dd7459f245b07b708a8c0c3fcc0f7a049df47de622",
+      "matched_terms": [
+        "correction",
+        "evidence",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_06_all_eight_pr5g_defects_are_unique_with_distinct_evidence() -> None: rows = contract()[\"pr_5g_closure_matrix\"] assert len(rows) == 8 assert [row[\"defect\"] for \u201d. Distinguishing context: \u201cassert footprint[\"resource_consequence_math_module_created_by_pr_5i\"] is False assert footprint[\"runtime_or_domain_implementation_added\"] is False assert not any(path.startswith(\"src/\") for path in footprint[\"c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 337,
+      "line_end": 452,
+      "locator_heading_or_symbol": "assert surface[\"rt_005_remains_public_projection_redaction_owner\"] is True",
+      "excerpt_sha256": "611f843d2f4c278029cf592344f71d58d4deac7051db363a369c4d1f2f87ca50",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert surface[\"rt_005_remains_public_projection_redaction_owner\"] is True assert surface[\"no_calculation_during_serialization\"] is True def test_20_owner_boundaries_are_\u201d. Distinguishing context: \u201cdef test_19_serialization_and_rt005_boundaries_are_reviewed() -> None: surface = assert_surface(\"serialization_finding\", {\"future_shapes\", \"quantity_execution_bans\"}) assert surface[\"internal_to_dict_only\"] is \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5i_resource_consequence_math_final_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 496,
+      "line_end": 543,
+      "locator_heading_or_symbol": "def test_36_permanent_tests_validate_declared_footprint_not_git_branch_diff() -> None:",
+      "excerpt_sha256": "9b07279bdc7510d0fb644338c44cdcb0f09d654c9793bd2e25d6e890f945f0e2",
+      "matched_terms": [
+        "branch",
+        "projection",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_36_permanent_tests_validate_declared_footprint_not_git_branch_diff() -> None: footprint = contract()[\"pr_5i_footprint_finding\"] assert footprint[\"changed_files_e\u201d. Distinguishing context: \u201cdef test_35_forbidden_phrase_absent_from_pr5i_registry_record() -> None: record_text = json.dumps(pr5i_registry_record(), sort_keys=True) assert \"implements runtime\" not in record_text.lower() def test_36_perma\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 52,
+      "locator_heading_or_symbol": "\"\"\"Focused tests for PR-6 context packet compiler Slice 1 \u2014 SingleEventNarrationPacket.\"\"\"",
+      "excerpt_sha256": "d36b84ebe98e3e8431ff1f61b414e2ca3531b96c833a6134d73867cb9b280c99",
+      "matched_terms": [
+        "context packet",
+        "projection",
+        "release",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Focused tests for PR-6 context packet compiler Slice 1 \u2014 SingleEventNarrationPacket.\"\"\" from __future__ import annotations from types import MappingProxyType import py\u201d. Distinguishing context: \u201c\"\"\"Focused tests for PR-6 context packet compiler Slice 1 \u2014 SingleEventNarrationPacket.\"\"\" from __future__ import annotations from types import MappingProxyType import pytest from astra_runtime.domain.context_p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 424,
+      "line_end": 452,
+      "locator_heading_or_symbol": "apply_delta, persist, replay, generate_narration, to_public_dict.",
+      "excerpt_sha256": "56c1b79352e33cfcb5433dba7d444469a392d6169852f0417869329f6531a1fe",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201capply_delta, persist, replay, generate_narration, to_public_dict. Excludes the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS frozenset area which intentionally contains these tokens as\u201d. Distinguishing context: \u201cdef test_forbidden_scope_strings_absent_from_module_source() -> None: \"\"\"Verify forbidden-scope strings are absent from the module source. The module must not contain: roll, random, commit_event, mutate, apply_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 1,
+      "locator_heading_or_symbol": "\"\"\"Focused tests for PR-6 context packet compiler Slice 2 \u2014 NoCommitIntentPacket.\"\"\"",
+      "excerpt_sha256": "198e8e5b1eb27be0950a1b6ef6e07761c4baccbaba07061f55b51c49b6cd583c",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Focused tests for PR-6 context packet compiler Slice 2 \u2014 NoCommitIntentPacket.\"\"\"\u201d. Distinguishing context: \u201c\"\"\"Focused tests for PR-6 context packet compiler Slice 2 \u2014 NoCommitIntentPacket.\"\"\" from __future__ import annotations from types import MappingProxyType\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 192,
+      "line_end": 194,
+      "locator_heading_or_symbol": "\"backend_projection_not_authoritative_state\",",
+      "excerpt_sha256": "32813c34ff5bbb219ee65a614a28deda57c356b1ebc30eb2b6a20bd78a72c0d0",
+      "matched_terms": [
+        "projection",
+        "release"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"backend_projection_not_authoritative_state\", \"no_model_authority\", \"no_hidden_information_release\",\u201d. Distinguishing context: \u201cproposed_action_kind=\"attack\", intent_timestamp=\"2025-01-01T00:00:00Z\", ) assert len(pkt.non_authority_seal) > 0 assert pkt.non_authority_seal == tuple(sorted({ \"backend_projection_not_authoritative_state\", \"no\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 393,
+      "line_end": 441,
+      "locator_heading_or_symbol": "\"rng_result\",",
+      "excerpt_sha256": "8513b1b46fa6ffbe5456914bcd3834b3f283b5f326f95e3593ba71a619fcfdad",
+      "matched_terms": [
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"rng_result\", \"narration_output\", \"hidden_fact\", } def test_to_dict_is_deterministic() -> None: pkt = _valid_packet() d1 = pkt.to_dict() d2 = pkt.to_dict() assert d1 == d\u201d. Distinguishing context: \u201c\"event_commitment\", \"committed_event\", \"state_delta\", \"mutation\", \"roll_result\", \"rng_result\", \"narration_output\", \"hidden_fact\", } def test_to_dict_is_deterministic() -> None: pkt = _valid_packet() d1 = pkt.to\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 355,
+      "line_end": 355,
+      "locator_heading_or_symbol": "class TestValidatorCorruption:",
+      "excerpt_sha256": "f14359707a70030beea16ec6a2698caddd52d82b66d2d55f00c73593f05538a8",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cclass TestValidatorCorruption:\u201d. Distinguishing context: \u201c# --------------------------------------------------------------------------- # 16. Validator rejects manually corrupted packet # --------------------------------------------------------------------------- clas\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 407,
+      "line_end": 423,
+      "locator_heading_or_symbol": "\"rng_result\",",
+      "excerpt_sha256": "d831b340e576a4d27ac21196f91f0b23b8e0994b8f81cbd217e8184d37b4bdeb",
+      "matched_terms": [
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"rng_result\", \"narration_output\", \"model_output\", ] FORBIDDEN_DICT_KEYS = [ \"hidden_fact\", \"hidden_information\", \"secret\", \"unrevealed\", \"event_commitment\", \"commit_event\u201d. Distinguishing context: \u201c\"event_commitment\", \"commit_event\", \"state_delta\", \"mutation\", \"roll_result\", \"rng_result\", \"narration_output\", \"model_output\", ] FORBIDDEN_DICT_KEYS = [ \"hidden_fact\", \"hidden_information\", \"secret\", \"unreveal\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 1,
+      "locator_heading_or_symbol": "\"\"\"Tests for PR-6 Slice 4 \u2014 context packet selection and serialization helpers.\"\"\"",
+      "excerpt_sha256": "ab83e07f67563223a84a616eea051877060c5a29380d5d07223605f2e86517da",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for PR-6 Slice 4 \u2014 context packet selection and serialization helpers.\"\"\"\u201d. Distinguishing context: \u201c\"\"\"Tests for PR-6 Slice 4 \u2014 context packet selection and serialization helpers.\"\"\" from __future__ import annotations import copy import inspect\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 413,
+      "line_end": 424,
+      "locator_heading_or_symbol": "\"rng_result\",",
+      "excerpt_sha256": "1ebce6adb47c83b76c7b7ea106550f80741b605bd873627fa39a35e506f27662",
+      "matched_terms": [
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"rng_result\", \"generate_narration\", \"model_output\", \"persist_state\", \"replay_event\", ] def _get_helper_source(self) -> str: \"\"\"Return the source text of the Slice 4 helpe\u201d. Distinguishing context: \u201cFORBIDDEN = [ \"commit_event(\", \"apply_delta\", \"mutate_state\", \"roll_dice\", \"rng_result\", \"generate_narration\", \"model_output\", \"persist_state\", \"replay_event\", ] def _get_helper_source(self) -> str: \"\"\"Return t\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 1,
+      "locator_heading_or_symbol": "\"\"\"Tests for PR-6 Slice 5 \u2014 context packet single-packet assembly shell.\"\"\"",
+      "excerpt_sha256": "5900767f1545513a20e7e681d96cfb17abace2a6dd6c028a334fc26b5ce63f16",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for PR-6 Slice 5 \u2014 context packet single-packet assembly shell.\"\"\"\u201d. Distinguishing context: \u201c\"\"\"Tests for PR-6 Slice 5 \u2014 context packet single-packet assembly shell.\"\"\" from __future__ import annotations import copy import inspect\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

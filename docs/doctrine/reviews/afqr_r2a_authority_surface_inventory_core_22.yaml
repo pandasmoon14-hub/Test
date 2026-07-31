@@ -1,0 +1,881 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-22",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/handoff/full_corpus_dry_run_planner_guide.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 71,
+      "line_end": 71,
+      "locator_heading_or_symbol": "- Tiny/zero-byte files: likely corruption/placeholders.",
+      "excerpt_sha256": "6bf539ebc9c718c1a2725f6e3d55f79051f420b2b0b34cbe1d4a12f42693b478",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Tiny/zero-byte files: likely corruption/placeholders.\u201d. Distinguishing context: \u201c## How to interpret key issues - Duplicate names/hashes: dedupe and source hygiene review. - Giant files: likely runtime/budget pressure. - Tiny/zero-byte files: likely corruption/placeholders. - Non-ASCII/long\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/full_corpus_preflight_review_guide.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 14,
+      "locator_heading_or_symbol": "- Dry-run routing metadata is not extraction truth.",
+      "excerpt_sha256": "d6f6141ba55ebc9870fe23a1e4b8f8cccaec014958b96c40bcf1f637dbde63d9",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Dry-run routing metadata is not extraction truth. - Extraction truth is not conversion permission.\u201d. Distinguishing context: \u201c## Scope boundaries This step does not run extraction, OCR, conversion, or canon workflows. - Dry-run routing metadata is not extraction truth. - Extraction truth is not conversion permission. - Conversion perm\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/full_corpus_readiness_gate_guide.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 14,
+      "locator_heading_or_symbol": "This gate does not run extraction, OCR, conversion, or canon promotion.",
+      "excerpt_sha256": "3981f026c2ac88f8ae0c05356d9b3c6416c9670107b97124afaacc564628c113",
+      "matched_terms": [
+        "promotion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cThis gate does not run extraction, OCR, conversion, or canon promotion. - Dry-run routing metadata is not extraction truth. - Extraction truth is not conversion permissio\u201d. Distinguishing context: \u201cIt verifies that dry-run and preflight review infrastructure is present, coherent, and review-ready. ## Boundaries This gate does not run extraction, OCR, conversion, or canon promotion. - Dry-run routing metad\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/generated_report_mojibake_scanner_guide.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 7,
+      "line_end": 57,
+      "locator_heading_or_symbol": "It distinguishes **generated scaffold corruption** from **source-derived payload text**.",
+      "excerpt_sha256": "f4928913db625a228fd90abf90345e2045ec621e516396601231fb30846e6a2b",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cIt distinguishes **generated scaffold corruption** from **source-derived payload text**. ## Strict policy - `generated_scaffold_mojibake` is a strict failure. - `likely_s\u201d. Distinguishing context: \u201c## Purpose `scan_generated_report_mojibake.py` detects mojibake in generated report artifacts before continuation. It distinguishes **generated scaffold corruption** from **source-derived payload text**. ## Str\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/handoff_queue_policy_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 25,
+      "locator_heading_or_symbol": "- Canon promotion candidates after checks only -> `canon_candidate_queue`.",
+      "excerpt_sha256": "664dc14dece102e855500f46175a15359a551b54dec56bae74d0e56a64e9dab4",
+      "matched_terms": [
+        "promotion"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Canon promotion candidates after checks only -> `canon_candidate_queue`.\u201d. Distinguishing context: \u201c- OCR-empty or OCR-unresolved pages -> `ocr_empty_queue` or `repair_queue`. - Table/list defects -> `table_normalization_queue` before row-faithful conversion. - Map-dependent unresolved spatial references -> `\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/handoff_readiness_policy_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 20,
+      "locator_heading_or_symbol": "- `quarantined`: blocked for doctrine/legal/semantic reasons.",
+      "excerpt_sha256": "5a254278b6632f6c4080c2c15f05397170259b175907d2c94c1fa3800022f218",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `quarantined`: blocked for doctrine/legal/semantic reasons. - `failed_extraction`: extraction could not produce a reliable unit. ## Policy coupling - `needs_repair`, `q\u201d. Distinguishing context: \u201c- `ready`: conversion-safe, no unresolved blockers. - `ready_with_warnings`: conversion-safe with explicit caveats. - `intake_only`: retain/index only; not conversion-final. - `partial_conversion_allowed`: subs\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/handoff_validation_rules_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4,
+      "line_end": 8,
+      "locator_heading_or_symbol": "1. every source page has page truth",
+      "excerpt_sha256": "5c29c3d03334ee739bf24d54437e0e0b7c066b9bc5c6030837aa3addeeee142f",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c1. every source page has page truth 2. every markdown page marker count matches declared packet range 3. every content unit has source page reference 4. every content uni\u201d. Distinguishing context: \u201c# Handoff Validation Rules v0.1 ## Hard invariants 1. every source page has page truth 2. every markdown page marker count matches declared packet range 3. every content unit has source page reference 4. every \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/production_batch_001_aggregation_note.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 26,
+      "line_end": 93,
+      "locator_heading_or_symbol": "- quarantined construct pending later doctrine: 143",
+      "excerpt_sha256": "0127fa18e1307ff0fe63249b7edb9ba157b56b3cc2730a1264229f3943151814",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- quarantined construct pending later doctrine: 143 ## Confidence signal - Confidence average: unknown - Confidence minimum: unknown - Confidence maximum: unknown ## Dono\u201d. Distinguishing context: \u201c- normalized Astra mapping: 2130 - source-local retained construct: 828 - direct Astra mapping: 335 - escalated doctrine problem: 238 - quarantined construct pending later doctrine: 143 ## Confidence signal - C\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/production_batch_001_aggregation_review_memo.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 124,
+      "locator_heading_or_symbol": "- Extraction truth is not conversion permission.",
+      "excerpt_sha256": "126c07fdd07a0343c63874e151c35abc66dbef920671b591b456319a4cc0402f",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Extraction truth is not conversion permission. - Conversion permission is not canon permission. - Donor material remains non-canon unless separately reviewed and promot\u201d. Distinguishing context: \u201cIt is **not** a canon decision record, **not** a sourcebook merge, **not** live-play training data, and **not** donor-canon adoption. This memo preserves core contract boundaries: - Extraction truth is not conv\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/production_batch_001_aggregation_review_memo.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 164,
+      "line_end": 175,
+      "locator_heading_or_symbol": "- It does not authorize canon promotion.",
+      "excerpt_sha256": "13ddda3e700bfb294bd14675e9b7d6ceefdc3079274a5784ee675f07f2866a64",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- It does not authorize canon promotion. Final target remains unchanged: a **single top-level ~1900-donor orchestrated run** with internal batching, checkpoints, repair q\u201d. Distinguishing context: \u201cWhat Batch 001 does **not** prove: - It does not prove full-corpus doctrine readiness for all donor-family patterns. - It does not prove extraction robustness across all failure modes. - It does not authorize c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/production_batch_001_completion_note.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 9,
+      "line_end": 78,
+      "locator_heading_or_symbol": "- Frozen snapshot: C:\\AetherForgeRuns\\prod_batch_001\\conversion_intake_run_frozen_20260516_160240.zip",
+      "excerpt_sha256": "4c4f976a22f3831e727fcd4c17218bc57a6c0ec8ed76b04a4cc0ef9df008edc7",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "snapshot",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Frozen snapshot: C:\\AetherForgeRuns\\prod_batch_001\\conversion_intake_run_frozen_20260516_160240.zip - Completion timestamp: 20260516_160240 ## Final status - Packets to\u201d. Distinguishing context: \u201c## Batch identity - Batch root: C:\\AetherForgeRuns\\prod_batch_001 - Conversion-intake run: C:\\AetherForgeRuns\\prod_batch_001\\conversion_intake_run - Frozen snapshot: C:\\AetherForgeRuns\\prod_batch_001\\conversion\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/handoff/step12_final_handoff_contract_closure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 22,
+      "line_end": 60,
+      "locator_heading_or_symbol": "- final run snapshot frozen.",
+      "excerpt_sha256": "42b43b44ecd700fd9a20e65782edbbbdf74beaf82fd1fe895abafff97b21f88d",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "snapshot",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- final run snapshot frozen. ## Contract principles preserved - Extraction truth is not conversion permission. - Conversion permission is not canon permission. - Canon pe\u201d. Distinguishing context: \u201c- 12 drafted. - 0 placeholders. - strict validation passes. - quality audit passes. - pytest passes. - final run snapshot frozen. ## Contract principles preserved - Extraction truth is not conversion permission\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/operations/current_decisions_log_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 36,
+      "line_end": 141,
+      "locator_heading_or_symbol": "OCR introduces more moving parts, slower runs, dependency failures, and repair ambiguity. For current handoff-shape testing, page truth, provenance, and packet validation matter mo",
+      "excerpt_sha256": "39706e0f1210f47c028f5e01e257c0a74c6e4fef7758fcd5e2938519415b617c",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cOCR introduces more moving parts, slower runs, dependency failures, and repair ambiguity. For current handoff-shape testing, page truth, provenance, and packet validation\u201d. Distinguishing context: \u201cDecision: Use `OCR_MODE=skip` for safe pilot runs unless the explicit goal is OCR gating or OCR repair behavior. Reason: OCR introduces more moving parts, slower runs, dependency failures, and repair ambiguity.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/operations/current_decisions_log_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 301,
+      "line_end": 301,
+      "locator_heading_or_symbol": "- Snapshot/recovery practices are stable.",
+      "excerpt_sha256": "228e16faf79383db35d7f9b955452c1c76188aebc0d97f5843dbd3330b42aa94",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Snapshot/recovery practices are stable.\u201d. Distinguishing context: \u201cRevisit when: - Handoff v0.2 is frozen. - Repair queues and table/map/statblock handling are reliable. - Conversion-intake reports preserve enough information. - Snapshot/recovery practices are stable. --- ## 1\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/operations/current_decisions_log_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 430,
+      "line_end": 533,
+      "locator_heading_or_symbol": "If prose can mutate state, replay, validation, hidden information, and consistency all fail.",
+      "excerpt_sha256": "379a31ea5b063c5e61e480ec8e659aa55b8b31b1f0b558b4296f19f034524b3d",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "quarantine",
+        "replay",
+        "reservation",
+        "snapshot",
+        "time travel",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cIf prose can mutate state, replay, validation, hidden information, and consistency all fail. Implication: The narrator receives validated visible outcome packets and rend\u201d. Distinguishing context: \u201cDecision: Narration is downstream of state, not the source of state. Reason: If prose can mutate state, replay, validation, hidden information, and consistency all fail. Implication: The narrator receives valid\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/operations/current_decisions_log_v0_1.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 560,
+      "line_end": 653,
+      "locator_heading_or_symbol": "`C:\\AetherForgeRuns` was reorganized from a flat 50+ item root into category subfolders: `_active`, `snapshots`, `plans`, `helpers`, `reports`, `fixtures`, `pilots\\{pilot20,pilot50",
+      "excerpt_sha256": "e3d742b6d75468fcaeb0ef0febdb213ea32af4510b19a2d3dc777ed3b3b67f6e",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c`C:\\AetherForgeRuns` was reorganized from a flat 50+ item root into category subfolders: `_active`, `snapshots`, `plans`, `helpers`, `reports`, `fixtures`, `pilots\\{pilot\u201d. Distinguishing context: \u201c--- ## 32. AetherForgeRuns internal layout reorganized into category subfolders Decision: `C:\\AetherForgeRuns` was reorganized from a flat 50+ item root into category subfolders: `_active`, `snapshots`, `plans`\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs_acceptance_checklist.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 5,
+      "locator_heading_or_symbol": "3. Provenance for page/table/stat fields: **Implemented via page metadata + page truth + sidecars**.",
+      "excerpt_sha256": "8bd3842bcd2a5f74de21d77a131d9d45eab5a0186397a87478488291f7e3f9bd",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c3. Provenance for page/table/stat fields: **Implemented via page metadata + page truth + sidecars**.\u201d. Distinguishing context: \u201c# Acceptance checklist 1. No visible source-PDF mutation: **Implemented**. 2. No synthetic page mapping: **Implemented for chunk expansion path**. 3. Provenance for page/table/stat fields: **Implemented via pag\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs_failure_taxonomy.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3,
+      "line_end": 6,
+      "locator_heading_or_symbol": "Quarantined or rerouted automatically:",
+      "excerpt_sha256": "fa911a164d17ad211514c54638580618728376cb2affffed8127cc866d58e708",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cQuarantined or rerouted automatically: - Invalid PDF magic bytes -> quarantine folder. - Missing/weak page truth markers under strict mode -> runtime error / queue. - Thi\u201d. Distinguishing context: \u201c# Failure taxonomy Quarantined or rerouted automatically: - Invalid PDF magic bytes -> quarantine folder. - Missing/weak page truth markers under strict mode -> runtime error / queue. - Thin output, table struc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs_migration_note.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 1,
+      "locator_heading_or_symbol": "# Migration note",
+      "excerpt_sha256": "fa0358f689334e3ae462f809c268c4d1d10157f08247fef128b6e78dc8deef44",
+      "matched_terms": [
+        "migration"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Migration note\u201d. Distinguishing context: \u201c# Migration note Removed/changed legacy behavior: - Paragraph-spread expansion for missing page boundaries in chunk outputs has been removed. - Donor-family detection no longer classifies by InDesign metadata a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs_page_truth_flow.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 7,
+      "locator_heading_or_symbol": "# Page-truth-first flow",
+      "excerpt_sha256": "f0e551752855eaa62aa8bd7809b2a84c2486e40c568f6e2fe0f024e33edc536f",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Page-truth-first flow 1. Source PDF is never visibly mutated. 2. `orchestrator.py` writes `*.page_truth.jsonl` using source geometry, metadata, and per-page counts. 3. \u201d. Distinguishing context: \u201c# Page-truth-first flow 1. Source PDF is never visibly mutated. 2. `orchestrator.py` writes `*.page_truth.jsonl` using source geometry, metadata, and per-page counts. 3. Lanes produce markdown with explicit `<!\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs_page_truth_migration.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 9,
+      "locator_heading_or_symbol": "# Page-Truth Migration Note",
+      "excerpt_sha256": "13486c5e5ca5eb06fc5281d2cfaecead7565d3644aaddc3868d2bc15926dcb21",
+      "matched_terms": [
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# Page-Truth Migration Note Removed synthetic page-truth behavior from production paths: - Removed automatic `<!-- PAGE:1 -->` injection in markdown auditing and merge pa\u201d. Distinguishing context: \u201c# Page-Truth Migration Note Removed synthetic page-truth behavior from production paths: - Removed automatic `<!-- PAGE:1 -->` injection in markdown auditing and merge paths. - Removed `current = 1` defaults fr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "lorebook_splitter.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 196,
+      "line_end": 197,
+      "locator_heading_or_symbol": "seed = f\"{book_id}:{kind}:{idx:05d}\"",
+      "excerpt_sha256": "3ad3955e50038a6db439e33656f8bb85d21a52c60f7770d0996cae06d37cae83",
+      "matched_terms": [
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cseed = f\"{book_id}:{kind}:{idx:05d}\" return str(uuid.uuid5(uuid.NAMESPACE_URL, seed))\u201d. Distinguishing context: \u201cpage_text = \",\".join(map(str, pages)) if pages else \"\" return f\"book_id={book_id}\\nchapter_path={chapter_path}\\ntags={','.join(tags)}\\npages={page_text}\\nsummary={summary}\" def make_entry_id(book_id: str, kind:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "mechanics_vocab.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 36,
+      "line_end": 55,
+      "locator_heading_or_symbol": "\"symbaroum\": (\"corruption\", \"shadow\", \"toughness\", \"resolute\", \"vigilant\", \"discreet\", \"persuasive\"),",
+      "excerpt_sha256": "511250cec857f791cacf1acca8b1d50425409813a73263cdd0eb0a52c3c0a90b",
+      "matched_terms": [
+        "corruption",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"symbaroum\": (\"corruption\", \"shadow\", \"toughness\", \"resolute\", \"vigilant\", \"discreet\", \"persuasive\"), \"mothership\": (\"stress\", \"panic check\", \"wounds\", \"sanity\", \"body sa\u201d. Distinguishing context: \u201c\"cypher\": (\"effort\", \"might pool\", \"speed pool\", \"intellect pool\", \"cypher limit\", \"artifact\", \"recovery roll\", \"motive\", \"environment\", \"damage inflicted\", \"gm intrusion\"), \"l5r\": (\"strife\", \"opportunity\", \"vo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 40,
+      "line_end": 40,
+      "locator_heading_or_symbol": "from page_truth import PageTruthRecord, write_page_truth_jsonl",
+      "excerpt_sha256": "dc4c8bd17c9c836120529dc5f5a8ad71b0f79f9a963f447c352c9cd12d1fdec2",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfrom page_truth import PageTruthRecord, write_page_truth_jsonl\u201d. Distinguishing context: \u201cfrom mechanics_vocab import best_family, statblock_density as vocab_statblock_density from layout_utils import detect_multicolumn as detect_multicolumn_layout from page_classifier import classify_page from regi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 98,
+      "line_end": 144,
+      "locator_heading_or_symbol": "strict_page_truth: bool = False",
+      "excerpt_sha256": "7e4de3039a561c1919ed3dc5b6e5c8101c62f17b261331145f847abfadc31b3b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cstrict_page_truth: bool = False force_lane: str = \"AUTO\" auto_fallback_to_lane_a_on_missing_external: bool = True @classmethod def from_env(cls, repo_root: Path) -> \"Runt\u201d. Distinguishing context: \u201clayout_profile_path: Path | None = None lane_a_multicol_penalty: float = 2.0 lane_a_hard_exclusion_multicol: float = 0.6 table_ratio_threshold: float = 0.15 stat_ratio_threshold: float = 0.3 strict_page_truth: \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 768,
+      "line_end": 858,
+      "locator_heading_or_symbol": "page_map = load_page_map(Path(payload.get(\"page_map_path\", page_map_path)), 1, total_pages, cfg.strict_page_truth)",
+      "excerpt_sha256": "3842f165f112520d908d604c2ee82fe7902e5573c0b2c586ac53e58cc611f242",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpage_map = load_page_map(Path(payload.get(\"page_map_path\", page_map_path)), 1, total_pages, cfg.strict_page_truth) if cfg.strict_page_truth and page_map and len(page_map)\u201d. Distinguishing context: \u201cmeta: list[dict[str, Any]] = [] if n_chunks == 1: page_map_path = out_dir / f\"{pdf.stem}.page_map.json\" payload = bridge_call([marker_python, str(cfg.marker_runner), str(pdf), \"--output_dir\", str(out_dir), \"--b\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 977,
+      "line_end": 977,
+      "locator_heading_or_symbol": "r.append(\"glyph_corruption\")",
+      "excerpt_sha256": "8d122870eb544c544377e9ffc43f08cdc5bc6a115d2dfd2e8f7d8a513cc93fa5",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cr.append(\"glyph_corruption\")\u201d. Distinguishing context: \u201ct = pages[idx] r = [] if len(t) < cfg.min_md_chars_per_page: r.append(\"thin_output\") if \"\\ufffd\" in t: r.append(\"glyph_corruption\") if re.search(r\"archdev[^\\w]?ils|conse[^\\w]?quences\", t, flags=re.IGNORECASE): \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1039,
+      "line_end": 1080,
+      "locator_heading_or_symbol": "q = cfg.output_dir / \"quarantine\" / pdf.name",
+      "excerpt_sha256": "4ff2f44e2fbe899a66a6f2aa960cc2be94b3d4dbebece4083d9b9d4762a21210",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cq = cfg.output_dir / \"quarantine\" / pdf.name q.parent.mkdir(parents=True, exist_ok=True) shutil.move(str(pdf), str(q)) raise RuntimeError(f\"invalid pdf; quarantined {q}\")\u201d. Distinguishing context: \u201cdef process_book(cfg: RuntimeConfig, pdf: Path, repair_queue: dict[str, Any]) -> BookManifest: t0, started_iso = time.perf_counter(), now_iso() if not verify_pdf_magic(pdf): q = cfg.output_dir / \"quarantine\" / \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1148,
+      "line_end": 1168,
+      "locator_heading_or_symbol": "# diagnostic-only expansion path; do not treat as trusted page truth",
+      "excerpt_sha256": "cae828166cc049484259d3bc8f3253a581cd5f002484d11c2dd8e7fcc7febdf6",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# diagnostic-only expansion path; do not treat as trusted page truth txt = expand_chunk_markers(txt) pages_pre = parse_page_markers(txt) if pages_pre: rebuilt_pages: dict\u201d. Distinguishing context: \u201celse: raise txt = normalize_text(md_out.read_text(encoding=\"utf-8\", errors=\"replace\")) if \"<!-- CHUNK:\" in txt and (\"<!-- PAGE:\" not in txt or page_marker_mode == \"chunk_fallback\"): # diagnostic-only expansion \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1238,
+      "line_end": 1325,
+      "locator_heading_or_symbol": "\"trusted_page_truth\": page_marker_mode == \"source_page_map\" or lane == \"A\",",
+      "excerpt_sha256": "11374695102d4a4db189577311843139c2f6f3cda7bc8cb7f2fec2793e18e708",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"trusted_page_truth\": page_marker_mode == \"source_page_map\" or lane == \"A\", \"orientation\": (\"landscape\" if p.is_landscape else \"portrait\"), \"normalization_applied\": \"none\u201d. Distinguishing context: \u201c\"ocr_applied\": page_num in ocr_applied_pages, \"source_page_hash\": f\"{pdf.stem}:{page_num}:{p.char_count}:{p.block_count}\", \"repair\": {\"repaired\": False, \"unrepaired\": True, \"retry_count\": 0, \"final_dpi\": None, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "orchestrator.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1370,
+      "line_end": 1456,
+      "locator_heading_or_symbol": "final_pages = {int(r.get(\"page\", 0)) for r in final_page_truth_rows}",
+      "excerpt_sha256": "405b2e0a070d28eb51a64d36b8e20fee1b0820ba6c4440129f588c1912674e3b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfinal_pages = {int(r.get(\"page\", 0)) for r in final_page_truth_rows} marker_pages = set(pages.keys()) expected_pages = set(range(1, profile.total_pages + 1)) missing_fina\u201d. Distinguishing context: \u201cwarnings=book_warnings, ) save_json(cfg.manifests_dir / f\"{pdf.stem}.manifest.json\", asdict(manifest)) known_statuses = {\"ok\", \"empty\", \"image_only\", \"ocr_needed\", \"ocr_done\", \"repaired\", \"queued\", \"failed\", \"s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "page_truth.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2,
+      "line_end": 32,
+      "locator_heading_or_symbol": "\"\"\"Page-truth sidecar helpers.\"\"\"",
+      "excerpt_sha256": "b60ea5b4b7def0eab0643cb163cb3bcedc426ba130a60e595f95b13ebbda0264",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Page-truth sidecar helpers.\"\"\" from __future__ import annotations import json from dataclasses import asdict, dataclass from pathlib import Path from typing import Ite\u201d. Distinguishing context: \u201c#!/usr/bin/env python3 \"\"\"Page-truth sidecar helpers.\"\"\" from __future__ import annotations import json from dataclasses import asdict, dataclass from pathlib import Path from typing import Iterable @dataclass \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "quality_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 11,
+      "locator_heading_or_symbol": "- glyph corruption and soft-hyphen splits",
+      "excerpt_sha256": "c94f6b3f4ab0235cb9b085c1e1497ce095b0c8a7539d60a73e40be42dcf20f45",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- glyph corruption and soft-hyphen splits\u201d. Distinguishing context: \u201c- page coverage consistency - heading continuity - table integrity - stat-block integrity - repeated header/footer leakage - glyph corruption and soft-hyphen splits - lane-level and donor-family metrics The har\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "quality_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 232,
+      "line_end": 232,
+      "locator_heading_or_symbol": "issues.append(\"missing_page_truth\")",
+      "excerpt_sha256": "2ea73586a04235d5ae7ad4067c32c83f37a7bf1c80f2478d7ceff76bdd2e78f1",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cissues.append(\"missing_page_truth\")\u201d. Distinguishing context: \u201cpage_checks.append(PageCheck(page=page_num, chars=len(pages[page_num]), issues=issues, score=score)) issues: list[str] = [] if not pages: issues.append(\"missing_pages\") issues.append(\"missing_page_truth\") score\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "quality_harness.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 299,
+      "line_end": 302,
+      "locator_heading_or_symbol": "issues.append(\"untrusted_page_truth\")",
+      "excerpt_sha256": "553688cd5f2c6a6bd53784c298261984ee6c293b7c3ed78a0a88e375634a1ea7",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cissues.append(\"untrusted_page_truth\") elif page_marker_mode and any(x in page_marker_mode.lower() for x in (\"fallback\", \"synthetic\", \"untrusted\")): score = 0.0 issues.app\u201d. Distinguishing context: \u201cexcept Exception: pass page_marker_mode = str(manifest.get(\"page_marker_mode\", \"\")) if page_marker_mode in {\"chunk_fallback\", \"native_or_fallback\"}: score = 0.0 issues.append(\"untrusted_page_truth\") elif page_m\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "regression_suite.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 294,
+      "line_end": 294,
+      "locator_heading_or_symbol": "passed = (check.score <= 0.1) and (\"untrusted_page_truth\" in check.issues)",
+      "excerpt_sha256": "9e8a35a3a570b96fc80c88315115fe8f539e2bbbcfb2582edb1a25e0ab2d9c84",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpassed = (check.score <= 0.1) and (\"untrusted_page_truth\" in check.issues)\u201d. Distinguishing context: \u201cmd.write_text(\"<!-- PAGE:1 -->\\nhello\", encoding=\"utf-8\") manifest.write_text(json.dumps({\"page_marker_mode\": \"chunk_fallback\"}), encoding=\"utf-8\") check = quality_harness.check_book(md, manifest, None) except \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "regression_suite.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 476,
+      "line_end": 495,
+      "locator_heading_or_symbol": "def test_heading_preservation() -> TestResult:",
+      "excerpt_sha256": "0bbb9773191302dffa115c31b78ffd589ab988774643db8f455933ebee88d810",
+      "matched_terms": [
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_heading_preservation() -> TestResult: text = \"\"\" # Heading | A | B | | 1 | 2 | \"\"\".strip() fixed, _ = apply_fixes(text) passed = fixed.splitlines()[0].startswith\u201d. Distinguishing context: \u201cfixed, stats = apply_fixes(text) passed = \"| A | B | C |\" in fixed and \"More prose.\" in fixed return TestResult(\"mixed_content\", passed, json.dumps(stats)) def test_heading_preservation() -> TestResult: text = \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "regression_suite.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 677,
+      "line_end": 752,
+      "locator_heading_or_symbol": "def test_regression_snapshot(tmp: Path) -> TestResult:",
+      "excerpt_sha256": "5f5208343bb8afe36ea5fd50e14b0d9e480faaf212779c5b449667e1dde08a60",
+      "matched_terms": [
+        "reservation",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_regression_snapshot(tmp: Path) -> TestResult: text = fixture_broken_table_no_divider() fixed, _ = apply_fixes(text) snap = tmp / \"snapshot.md\" snap.write_text(fi\u201d. Distinguishing context: \u201creturn TestResult(\"donor_family_no_nameerror\", False, f\"error={exc}\") ok = isinstance(a, str) and isinstance(b, str) return TestResult(\"donor_family_no_nameerror\", ok, f\"a={a}, b={b}\") def test_regression_snaps\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/build_handoff_packet.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 100,
+      "line_end": 164,
+      "locator_heading_or_symbol": "pt_path = next(iter(sorted(book_dir.glob('*.page_truth.jsonl'))), None)",
+      "excerpt_sha256": "8224735b6d78c144592f9955d2ab78ea211e53c602e3de228d09613d61c0e18f",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpt_path = next(iter(sorted(book_dir.glob('*.page_truth.jsonl'))), None) sa_path = book_dir/'strict_audit.json' sm_path = book_dir/'astra_handoff_manifest.json' if not all\u201d. Distinguishing context: \u201c(out/'queues').mkdir(exist_ok=True) for s in ['tables','maps','statblocks','images']: (out/'sidecars'/s).mkdir(parents=True, exist_ok=True) md_path = next(iter(sorted(book_dir.glob('*.md'))), None) pt_path = ne\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/generate_handoff_packet_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 87,
+      "line_end": 87,
+      "locator_heading_or_symbol": "manifest=book/'astra_handoff_manifest.json'; pt_files=list(book.glob('*.page_truth.jsonl')); md_files=list(book.glob('*.md'))",
+      "excerpt_sha256": "cff1959791551e1f091d926d6140731b599e783d8ce628bea3753fdab3aeac7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cmanifest=book/'astra_handoff_manifest.json'; pt_files=list(book.glob('*.page_truth.jsonl')); md_files=list(book.glob('*.md'))\u201d. Distinguishing context: \u201cfor book in sorted([d for d in root.iterdir() if d.is_dir()]): if book.name in SUPPORT_DIRS: ignored.append(book.name) continue scanned += 1 manifest=book/'astra_handoff_manifest.json'; pt_files=list(book.glob(\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/plan_full_corpus_dry_run.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 61,
+      "line_end": 61,
+      "locator_heading_or_symbol": "\"domain_faction_kingdom_management\": ([\"faction\", \"kingdom\", \"domain\", \"stronghold\", \"settlement\", \"organization\", \"empire\"], \"medium\"),",
+      "excerpt_sha256": "62bf355807810737d8faae7b9c207132d6d9e7966ee7bba4c36f36baee593007",
+      "matched_terms": [
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"domain_faction_kingdom_management\": ([\"faction\", \"kingdom\", \"domain\", \"stronghold\", \"settlement\", \"organization\", \"empire\"], \"medium\"),\u201d. Distinguishing context: \u201c\"horror_investigation_social\": ([\"horror\", \"investigation\", \"mystery\", \"occult\", \"vampire\", \"cthulhu\"], \"high\"), \"cyberpunk_biotech_transhuman\": ([\"cyber\", \"biotech\", \"transhuman\", \"shadowrun\", \"gene\", \"augment\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/plan_full_corpus_dry_run.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 340,
+      "line_end": 341,
+      "locator_heading_or_symbol": "\"Dry-run routing metadata is not extraction truth.\",",
+      "excerpt_sha256": "8e98dac3e22fffeaf77c5c6dc690ce31f371c02107d06e78d3b37a74587354fd",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Dry-run routing metadata is not extraction truth.\", \"Extraction truth is not conversion permission.\",\u201d. Distinguishing context: \u201c\"- Review highest-frequency issue codes first.\", \"- Review unclassified donor files and expand filename heuristics where needed.\", \"- Spot-check giant files and long/non-ASCII paths for operational risk.\", \"- T\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/review_full_corpus_preflight.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 234,
+      "line_end": 276,
+      "locator_heading_or_symbol": "\"Dry-run routing metadata is not extraction truth.\",",
+      "excerpt_sha256": "1b1bb2df9942c86dc54cfb9a0c639b8867f615f7d34727842c094514c7fbac7b",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Dry-run routing metadata is not extraction truth.\", \"Extraction truth is not conversion permission.\", \"Conversion permission is not canon permission.\", ] report_path.wri\u201d. Distinguishing context: \u201creport_lines += [ \"\", \"## Extraction Planning Readiness Recommendation\", \"- Ready for extraction planning after manual review of top clusters and issue triage groups.\", \"\", \"Dry-run routing metadata is not extr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/scan_generated_report_mojibake.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 19,
+      "locator_heading_or_symbol": "\"doctrine pressure\", \"source-local retention\", \"quarantine\", \"rejected import\", \"mapping examples\", \"packet examples\",",
+      "excerpt_sha256": "2f627126e67ff11c9c56e06e78f05dedadc659a43b023673a15ae5ac19c76387",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"doctrine pressure\", \"source-local retention\", \"quarantine\", \"rejected import\", \"mapping examples\", \"packet examples\",\u201d. Distinguishing context: \u201cMOJIBAKE_TOKENS = [ \"\u00e2\u20ac\u201c\", \"\u00e2\u20ac\u201d\", \"\u00e2\u20ac\u00a6\", \"\u00e2\u20ac\u02dc\", \"\u00e2\u20ac\u2122\", \"\u00e2\u20ac\u0153\", \"\u00e2\u20ac\\x9d\", \"\u00c3\u00a2\u00e2\u201a\u00ac\", \"\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u0153\", \"\u00c3\u00a2\u00e2\u201a\u00ac\u00e2\u20ac\u201d\", \"\u00c3\u00a2\u00e2\u201a\u00ac\u00c2\", \"\u00c2\", \"\ufffd\", ] SOURCE_SECTION_HINTS = [ \"examples\", \"source-local examples\", \"donor examples\", \"ex\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "scripts/handoff/scan_generated_report_mojibake.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 152,
+      "line_end": 153,
+      "locator_heading_or_symbol": "for line_no, tok, cls, preview in classified:",
+      "excerpt_sha256": "e9bedc4ec154d17f9b54bccaaa7c3ac2adb994b7fcceb38309830ce36ca5a0a6",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfor line_no, tok, cls, preview in classified: findings.append({\"file\": str(f), \"line\": line_no, \"token\": tok, \"classification\": cls, \"line_preview\": preview})\u201d. Distinguishing context: \u201celif f.suffix.lower() == \".csv\": classified = _classify_csv(f, allow_source_examples) else: classified = [] for line_no, tok, cls, preview in classified: findings.append({\"file\": str(f), \"line\": line_no, \"token\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

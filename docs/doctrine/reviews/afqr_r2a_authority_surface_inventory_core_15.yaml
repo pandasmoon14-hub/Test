@@ -1,0 +1,1051 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-15",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/operations/batch_b/B03_item_gear_equipment_and_asset_use_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 149,
+      "line_end": 262,
+      "locator_heading_or_symbol": "7. Decide whether object use proceeds without roll, triggers resolution, requires cost/resource owner routing, requires state-delta owner routing, or must be quarantined/escalated.",
+      "excerpt_sha256": "4830ddcfe596590e18d5d4602836228d21f756a2f613fba1d8a6534672c5b6e6",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "schedule",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c7. Decide whether object use proceeds without roll, triggers resolution, requires cost/resource owner routing, requires state-delta owner routing, or must be quarantined/\u201d. Distinguishing context: \u201c2. Identify the object reference if known; if missing, request clarification or mark `object_use_clarified` only after the relevant object/system is identifiable enough for routing. 3. Classify whether the cons\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B03_item_gear_equipment_and_asset_use_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 282,
+      "line_end": 401,
+      "locator_heading_or_symbol": "- `object_legal_visibility_relevant`;",
+      "excerpt_sha256": "fe2e64445da13bed6aa365aa162b93130b935e874a2edca3736b91f94ecf25b6",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `object_legal_visibility_relevant`; - `object_resolution_needed`; - `object_harm_consequence_possible`; - `object_actor_integration_relevant`; - `object_power_interface\u201d. Distinguishing context: \u201c- `object_ammunition_or_reload_relevant`; - `object_failure_possible`; - `object_condition_relevant`; - `object_burden_relevant`; - `object_custody_or_ownership_relevant`; - `object_legal_visibility_relevant`; \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B03_item_gear_equipment_and_asset_use_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 409,
+      "line_end": 481,
+      "locator_heading_or_symbol": "B03 rejects runtime state/event/command lifecycle ownership. It does not define runtime inventory state, runtime entity/component/event/state schemas, runtime state/schema/event/co",
+      "excerpt_sha256": "be4475ef3a1efc9997018b7f8b682f495e10a54533d61359d530c453946b40ab",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cB03 rejects runtime state/event/command lifecycle ownership. It does not define runtime inventory state, runtime entity/component/event/state schemas, runtime state/schem\u201d. Distinguishing context: \u201cRepeated donor pressure does not promote donor equipment/object-system formats to Astra law. ## 21. Runtime boundary B03 rejects runtime state/event/command lifecycle ownership. It does not define runtime inven\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B04_inventory_storage_custody_and_burden_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 118,
+      "locator_heading_or_symbol": "B04 is the fourth Batch B operational doctrine draft for Astra inventory, storage, custody, possession, access, quick-access, burden, concealment, legal visibility, transfer, loss,",
+      "excerpt_sha256": "482c7ffa00b88df9575c4d9f5287736888071ad23845bc624a2f905efe15e266",
+      "matched_terms": [
+        "context packet",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cB04 is the fourth Batch B operational doctrine draft for Astra inventory, storage, custody, possession, access, quick-access, burden, concealment, legal visibility, trans\u201d. Distinguishing context: \u201c# B04 Inventory, Storage, Custody, and Burden Procedure ## 1. Purpose and status B04 is the fourth Batch B operational doctrine draft for Astra inventory, storage, custody, possession, access, quick-access, bur\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B04_inventory_storage_custody_and_burden_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 130,
+      "line_end": 243,
+      "locator_heading_or_symbol": "5. check whether the event is no-delta housekeeping, owner-routed, a transition note, source-local retained effect, quarantined unresolved delta, or owner-file escalation;",
+      "excerpt_sha256": "2bb3dc2a25b0df936d2a0ffa387c99ff6164fbfb1c252409adbde3b2a6ed5ad4",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "quarantine",
+        "reservation",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c5. check whether the event is no-delta housekeeping, owner-routed, a transition note, source-local retained effect, quarantined unresolved delta, or owner-file escalation\u201d. Distinguishing context: \u201cInventory/possession intake begins when upstream procedure produces acquisition, transfer, loss pressure, storage pressure, burden pressure, inspection pressure, custody pressure, or B03 object-use/storage/retr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B04_inventory_storage_custody_and_burden_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 260,
+      "line_end": 368,
+      "locator_heading_or_symbol": "- legal_visibility",
+      "excerpt_sha256": "2fdae938838e37d9e0ce829c68fd41ebf403b0eae1ca77952ad251c84931e0e0",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- legal_visibility - social_visibility - faction_trace - custody_risk - maintenance_burden - decay_or_spoilage - fuel_or_power_support - crew_or_labor_support - platform_\u201d. Distinguishing context: \u201c- container_capacity - transport_capacity - storage_capacity - security_burden - concealment_burden - legal_visibility - social_visibility - faction_trace - custody_risk - maintenance_burden - decay_or_spoilage\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B04_inventory_storage_custody_and_burden_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 391,
+      "line_end": 406,
+      "locator_heading_or_symbol": "- B04 includes source-local donor inventory/storage/economy handling, quarantine, escalation, `human_review`, and `defer_until_schema_exists`;",
+      "excerpt_sha256": "2e3755d4b5d1a9ff38932ce1b381063babebd52a54b11e993ce34a4d6fc7f719",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- B04 includes source-local donor inventory/storage/economy handling, quarantine, escalation, `human_review`, and `defer_until_schema_exists`; - B04 references D00/D09/D1\u201d. Distinguishing context: \u201c- B04 rejects final inventory schema, final inventory capacity math, final weight/slot/encumbrance rules, final economy law, final legal code, final runtime inventory state, final event-sourced inventory ledger\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 133,
+      "locator_heading_or_symbol": "- `docs/doctrine/operations/batch_b/B04_inventory_storage_custody_and_burden_procedure.md` for upstream Batch B inventory, storage, custody, possession, access, quick-access, burde",
+      "excerpt_sha256": "6dae5af74ecb6d3b50d5b266ba6756136f175d326930d063aaa0df958d0efd19",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `docs/doctrine/operations/batch_b/B04_inventory_storage_custody_and_burden_procedure.md` for upstream Batch B inventory, storage, custody, possession, access, quick-acc\u201d. Distinguishing context: \u201cRequired reference boundaries preserved by B05: - `docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md` for upstream Batch B scene, activity, encounter, transition, checkpoint, and ow\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 150,
+      "line_end": 239,
+      "locator_heading_or_symbol": "8. Route every meaningful value-flow event to at least one recognized owner, or explicitly produce `no_delta_required`, `transition_note`, `source_local_retained_effect`, `quaranti",
+      "excerpt_sha256": "148146ed7546f7decb15325e27f83a925a7d1a1563d5bd28af3ab2276f33834e",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "reservation"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c8. Route every meaningful value-flow event to at least one recognized owner, or explicitly produce `no_delta_required`, `transition_note`, `source_local_retained_effect`,\u201d. Distinguishing context: \u201c3. Classify the value form using Section 8. If no safe classification exists, use `unknown_value` or `source_local_value` and route review. 4. Classify the acquisition channel using Section 9. If no safe classi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 305,
+      "line_end": 360,
+      "locator_heading_or_symbol": "10. Produce a value-flow outcome such as `value_obtained`, `value_deferred`, `value_disputed`, `value_transferred`, `value_restricted`, `value_converted_to_claim`, `value_converted",
+      "excerpt_sha256": "86888196e917740356435e570b34007965b29d4154fb77c596093c9a2302775b",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "reservation",
+        "schedule",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c10. Produce a value-flow outcome such as `value_obtained`, `value_deferred`, `value_disputed`, `value_transferred`, `value_restricted`, `value_converted_to_claim`, `value\u201d. Distinguishing context: \u201c5. Separate custody from ownership and possession from legality. Loot creates custody pressure first; salvage creates claim and object-state pressure; reward creates delivery and authority pressure. 6. Route ob\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 419,
+      "line_end": 534,
+      "locator_heading_or_symbol": "- `value_flow_quarantined_gap`",
+      "excerpt_sha256": "d9954975da1f421036e52adc213bca8fc2fa2aebdd7e949d000c03d1b0fc308b",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `value_flow_quarantined_gap` B05 may use these doctrine-facing value-flow outcomes: - `no_delta_required` - `value_obtained` - `value_spent` - `value_committed` - `valu\u201d. Distinguishing context: \u201c- `value_conversion_needed` - `upkeep_due` - `value_sink_triggered` - `owner_handoff_required` - `source_local_value_procedure` - `value_flow_quarantined_gap` B05 may use these doctrine-facing value-flow outcom\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 540,
+      "line_end": 637,
+      "locator_heading_or_symbol": "Quarantine is required when:",
+      "excerpt_sha256": "ff212998af1c419b421206766acd07ebce72face6df50db7ec44a65a5e3c78d8",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cQuarantine is required when: - donor value systems would become Astra defaults if normalized; - donor prices, currencies, reward tables, loot tables, treasure tables, req\u201d. Distinguishing context: \u201c- `owner_file_escalation` - `unknown_value` - `unknown_acquisition` - `unknown_scarcity` Quarantine is required when: - donor value systems would become Astra defaults if normalized; - donor prices, currencies,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 25,
+      "line_end": 134,
+      "locator_heading_or_symbol": "- `docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-04_training_practice_teachers_and_downtime.md` and `D05-05_research_experimentation_and_theory",
+      "excerpt_sha256": "d68b9fa22f79e39af8c5af583b4e6ad2ef99105cd99a9acf79132ca47ee697dc",
+      "matched_terms": [
+        "context packet",
+        "preview",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-04_training_practice_teachers_and_downtime.md` and `D05-05_research_experimentation_\u201d. Distinguishing context: \u201c- `docs/doctrine/operations/batch_b/B05_acquisition_reward_requisition_and_value_flow_procedure.md` for acquisition, reward, requisition, scarcity, upkeep, value sink, value commitment, market access, and value\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 175,
+      "line_end": 287,
+      "locator_heading_or_symbol": "- `quarantined`",
+      "excerpt_sha256": "da6251fa67e1e568f4ca3c25ea3d71ebeb46d17a2fc1307710386ae0d1fe9499",
+      "matched_terms": [
+        "archive",
+        "corruption",
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `quarantined` - `deferred_until_schema_exists` Commitment types: - `time_block` - `materials_reserved` - `value_committed` - `facility_claimed` - `toolchain_committed` \u201d. Distinguishing context: \u201c- `missing` - `unknown` - `protected_hidden` - `blocked_by_owner_file` - `source_local` - `quarantined` - `deferred_until_schema_exists` Commitment types: - `time_block` - `materials_reserved` - `value_committe\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 302,
+      "line_end": 403,
+      "locator_heading_or_symbol": "- Does the goal require hidden information, protected requirements, owner-file truth, source-local retained mechanics, or later schema?",
+      "excerpt_sha256": "42bad2ea752731f487a5941d9e16e597814d6187a15483e86ba7becf4aa626f5",
+      "matched_terms": [
+        "compensation",
+        "corruption",
+        "evidence",
+        "preview",
+        "quarantine",
+        "reservation",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Does the goal require hidden information, protected requirements, owner-file truth, source-local retained mechanics, or later schema? - Is the goal compatible with the \u201d. Distinguishing context: \u201c- Is the desired result an object, material, facility state, contributor assignment, value outcome, research/training handoff, custody transition, faction support, social arrangement, or source-local retained e\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 435,
+      "line_end": 554,
+      "locator_heading_or_symbol": "8. Mark output as `object_modified`, `object_upgraded`, `object_field_patched`, `partial_output`, `flawed_output`, `dangerous_output`, `owner_routed`, `owner_file_escalation`, or `",
+      "excerpt_sha256": "758d3eaaa4f2caff966bde907c32f16830f4e416e60f9909b9f68077e06f8ebd",
+      "matched_terms": [
+        "archive",
+        "compensation",
+        "context packet",
+        "corruption",
+        "evidence",
+        "preview",
+        "promotion",
+        "quarantine",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c8. Mark output as `object_modified`, `object_upgraded`, `object_field_patched`, `partial_output`, `flawed_output`, `dangerous_output`, `owner_routed`, `owner_file_escalat\u201d. Distinguishing context: \u201c3. Identify requirements: schematic, recipe, blueprint, compatibility, component, material, license, permission, facility, toolchain, contributor, safe storage, value commitment, protected-hidden condition, and\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 562,
+      "line_end": 668,
+      "locator_heading_or_symbol": "unresolved_schema_gap_action: quarantine | escalation | human_review | defer_until_schema_exists",
+      "excerpt_sha256": "70eb1fe8309598855eb6c76746d42410034585b4a687836b1dd372ffc05fec57",
+      "matched_terms": [
+        "archive",
+        "context packet",
+        "corruption",
+        "evidence",
+        "preview",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cunresolved_schema_gap_action: quarantine | escalation | human_review | defer_until_schema_exists project_work_routing_note: project_family: crafting | salvage | repair | \u201d. Distinguishing context: \u201cprovenance_refs_required: true source_local_boundary_required_if_applicable: true rejected_donor_elements_required_if_applicable: true canon_eligibility_required: true review_routing_required: true unresolved_s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 685,
+      "line_end": 721,
+      "locator_heading_or_symbol": "- B06 includes cost/risk preview, commitment, interval setup, and progress-trigger procedure;",
+      "excerpt_sha256": "7bf5730029e03b720609ea02a6113774c8e140d0423de19212821aeec94ac151",
+      "matched_terms": [
+        "context packet",
+        "preview",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- B06 includes cost/risk preview, commitment, interval setup, and progress-trigger procedure; - B06 includes crafting, salvage processing, repair/maintenance, and modific\u201d. Distinguishing context: \u201c- B06 includes `project_work_routing_note` and marks it as doctrine-facing only; - B06 includes project families, scope bands, requirement states, commitment types, interval outcome states, complication familie\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B07_recovery_training_research_and_preparation_project_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 129,
+      "locator_heading_or_symbol": "- `docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md` for project-centered interval work, project intake, requirement discovery, protect",
+      "excerpt_sha256": "29740fe7515e93b3f5fcd199edb1ef8bdecbbc09b0e3e3fd09a19b30a75c4f9a",
+      "matched_terms": [
+        "archive",
+        "context packet",
+        "correction",
+        "corruption",
+        "evidence",
+        "observation",
+        "preview",
+        "promotion",
+        "quarantine",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `docs/doctrine/operations/batch_b/B06_project_crafting_salvage_repair_and_upgrade_procedure.md` for project-centered interval work, project intake, requirement discover\u201d. Distinguishing context: \u201c- `docs/doctrine/operations/batch_b/B01_scene_encounter_and_activity_procedure.md` for upstream scene, activity, encounter, transition, checkpoint, and owner-file handoff procedure. - `docs/doctrine/operations/\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B07_recovery_training_research_and_preparation_project_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 176,
+      "line_end": 276,
+      "locator_heading_or_symbol": "- `corruption`",
+      "excerpt_sha256": "69a388462ab5acd316a8bf505866a2d96581e85a5d5d3c13b9872ffd7ede23da",
+      "matched_terms": [
+        "corruption",
+        "observation",
+        "quarantine",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- `corruption` - `instability` - `backlash` - `poison_like_affliction` - `disease_like_affliction` - `trauma_like_pressure` - `form_state_disruption` - `substrate_disrupt\u201d. Distinguishing context: \u201cRecovery targets: - `injury` - `condition` - `fatigue` - `exposure` - `corruption` - `instability` - `backlash` - `poison_like_affliction` - `disease_like_affliction` - `trauma_like_pressure` - `form_state_disr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B07_recovery_training_research_and_preparation_project_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 301,
+      "line_end": 415,
+      "locator_heading_or_symbol": "- B04 identifies custody, access, burden, treatment access, archive access, teacher access, safe storage, secure recovery, or lawful-loss recovery pressure that constrains non-obje",
+      "excerpt_sha256": "53b4780f79f85ff08c799b1f01150ae09c88d4b8702ab6fd8ec43151fded5567",
+      "matched_terms": [
+        "archive",
+        "correction",
+        "corruption",
+        "evidence",
+        "observation",
+        "preview",
+        "quarantine",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- B04 identifies custody, access, burden, treatment access, archive access, teacher access, safe storage, secure recovery, or lawful-loss recovery pressure that constrain\u201d. Distinguishing context: \u201cB07 intake begins only after upstream procedure produces non-object long-task pressure or a recovery/training/research/preparation question that cannot be safely resolved as a single B01/B02 action. Common trig\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B07_recovery_training_research_and_preparation_project_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 425,
+      "line_end": 544,
+      "locator_heading_or_symbol": "- Training progress may create `training_progress`, `training_risk_identified`, `proof_candidate_routed`, `method_refinement_routed`, `specialization_seed_created`, or `owner_route",
+      "excerpt_sha256": "e7d61593714e78fa99a4111ec4cb7f7f367bc9e07676ae60fc503f635500cb4e",
+      "matched_terms": [
+        "archive",
+        "correction",
+        "corruption",
+        "evidence",
+        "observation",
+        "preview",
+        "promotion",
+        "quarantine",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Training progress may create `training_progress`, `training_risk_identified`, `proof_candidate_routed`, `method_refinement_routed`, `specialization_seed_created`, or `o\u201d. Distinguishing context: \u201c- Training is not rank purchase. - A teacher is not a vendor. - A manual is not automatic mastery. - Practice is not proof by itself. - Field use may be proof, but proof sufficiency belongs to advancement owner\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B07_recovery_training_research_and_preparation_project_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 551,
+      "line_end": 671,
+      "locator_heading_or_symbol": "source_evidence_refs_required: true",
+      "excerpt_sha256": "67376e65fef960a62d53c5a7eb31b662b0cebff9256a211d3d4ac84af6a12e30",
+      "matched_terms": [
+        "context packet",
+        "corruption",
+        "evidence",
+        "observation",
+        "promotion",
+        "quarantine",
+        "seed",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201csource_evidence_refs_required: true construct_refs_required: true outcome_refs_required: true provenance_refs_required: true source_local_boundary_required_if_applicable:\u201d. Distinguishing context: \u201c```yaml batch_b_to_c_handoff: target_schema_family: C01 | C02 | C03 | C04 | C05 | C06 | C07 | C08 | C09 | C10 | C11 | C12 | C13 | C14 | pending_schema schema_status: not_started | stub_index_only | minimum_unlo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B07_recovery_training_research_and_preparation_project_procedure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 674,
+      "line_end": 715,
+      "locator_heading_or_symbol": "- Completing a research interval and revealing hidden enemy weaknesses automatically. This violates hidden-state and research truth boundaries.",
+      "excerpt_sha256": "4f7ebd2b5ee50057a2e4ca3b32730c16e53733fbb644497945ebe4eb9656dc9d",
+      "matched_terms": [
+        "archive",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- Completing a research interval and revealing hidden enemy weaknesses automatically. This violates hidden-state and research truth boundaries. - Turning a prototype into\u201d. Distinguishing context: \u201cBad usage examples: - Declaring that two days of rest fully heals all injury and removes corruption. This violates recovery/rest boundaries and final recovery math ownership. - Letting a player buy a teacher an\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B11_batch_b_operational_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5,
+      "line_end": 123,
+      "locator_heading_or_symbol": "B11 is the Batch B capstone/readiness-gate doctrine draft for auditing B01-B10 as one coherent operational procedure layer. It verifies that the Batch B files can hand work to one ",
+      "excerpt_sha256": "85da2fe1c46fc39305cee9c92834ab6193a83151e4a43c36d62f390365eee5b0",
+      "matched_terms": [
+        "context packet",
+        "correction",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cB11 is the Batch B capstone/readiness-gate doctrine draft for auditing B01-B10 as one coherent operational procedure layer. It verifies that the Batch B files can hand wo\u201d. Distinguishing context: \u201c# B11 Batch B Operational Integration, Conflict Audit, and Readiness Gate ## 1. Purpose and status B11 is the Batch B capstone/readiness-gate doctrine draft for auditing B01-B10 as one coherent operational proc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B11_batch_b_operational_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 147,
+      "line_end": 263,
+      "locator_heading_or_symbol": "Boundary failures route to `owner_boundary_patch_needed`, `handoff_patch_needed`, `wording_patch_needed`, `runtime_gate_needed`, `canon_review_needed`, `pending_schema`, `quarantin",
+      "excerpt_sha256": "f90c84ff70be4e9b2ac4a36c63d720a465d654938a54f12d21e3db9ff903a69b",
+      "matched_terms": [
+        "context packet",
+        "correction",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cBoundary failures route to `owner_boundary_patch_needed`, `handoff_patch_needed`, `wording_patch_needed`, `runtime_gate_needed`, `canon_review_needed`, `pending_schema`, \u201d. Distinguishing context: \u201c| B07 | Preserved | Do not let readiness/training/research become advancement canon, method canon, or final training mechanics. | `overlap_allowed` | | B08 | Preserved | Do not let travel/discovery become campa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B11_batch_b_operational_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 272,
+      "line_end": 389,
+      "locator_heading_or_symbol": "source_evidence_refs_required: true",
+      "excerpt_sha256": "35a9e27df42a9e28c8f4e2aa48ca259919b7dd1dcdd63f2c0aaed3238e2c65d5",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201csource_evidence_refs_required: true construct_refs_required: true outcome_refs_required: true provenance_refs_required: true source_local_boundary_required_if_applicable:\u201d. Distinguishing context: \u201c```yaml batch_b_to_c_handoff: target_schema_family: C01 | C02 | C03 | C04 | C05 | C06 | C07 | C08 | C09 | C10 | C11 | C12 | C13 | C14 | pending_schema schema_status: not_started | stub_index_only | minimum_unlo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B11_batch_b_operational_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 398,
+      "line_end": 501,
+      "locator_heading_or_symbol": "- each file states purpose/status, owner layer, owns/must-not-own boundaries, C00/C-family handoff discipline, missing-schema fallback, source-local quarantine/escalation posture, ",
+      "excerpt_sha256": "aeea1251cd60abe96df05699c64c8f9240f0502381086ea66463e343d56155aa",
+      "matched_terms": [
+        "context packet",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- each file states purpose/status, owner layer, owns/must-not-own boundaries, C00/C-family handoff discipline, missing-schema fallback, source-local quarantine/escalation\u201d. Distinguishing context: \u201c## 21. Batch B completion status B11 records Batch B operational procedure as complete for capstone-readiness purposes when: - B01-B10 are present; - each file states purpose/status, owner layer, owns/must-not-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/operations/batch_b/B11_batch_b_operational_integration_conflict_audit_and_readiness_gate.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 524,
+      "line_end": 551,
+      "locator_heading_or_symbol": "8. B11 includes an operational handoff matrix, conflict/overlap/duplicate audit, missing-owner/missing-schema audit, source-local/quarantine/escalation audit, C00/C-family audit, r",
+      "excerpt_sha256": "1edefc0c4a2bbc7dfd50618689c885c17173468fb53d5f35dccfe059d2675d13",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c8. B11 includes an operational handoff matrix, conflict/overlap/duplicate audit, missing-owner/missing-schema audit, source-local/quarantine/escalation audit, C00/C-famil\u201d. Distinguishing context: \u201c3. B11 references B01-B10 and C00. 4. B11 cites actual D19 source paths when requested D19 paths are absent or renamed. 5. B11 includes the lightweight doctrine-facing C00/C-family handoff block. 6. B11 states \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/a06_a15_phase1c_closeout_audit.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 17,
+      "line_end": 44,
+      "locator_heading_or_symbol": "- A06-A15 entries remain draft/not-current with no unauthorized promotion posture observed.",
+      "excerpt_sha256": "f5b8f2269dfd1c518322096152521ec5e4e612c6a88e47568eb1ce40bbb6d855",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c- A06-A15 entries remain draft/not-current with no unauthorized promotion posture observed. Assessment: registry posture remains aligned to a pre-C00 closeout state. ## S\u201d. Distinguishing context: \u201c- **Registry file**: `docs/doctrine/astra_doctrine_registry_v0_1.yaml`. ## Registry posture summary - Registry remains active at `status: registry-current` with `authority_level: tracking`. - Dependency control\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4,
+      "line_end": 118,
+      "locator_heading_or_symbol": "\"title_selection_policy\": \"Use the fullest explicit foundational-question title or subtitle in cited physical source evidence; packaging, ADR, and master-document labels are not ti",
+      "excerpt_sha256": "be0c0adab4bf09e816c3d60b2c694a2558a4e55f4ae1a85660d3dd7f153237fd",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "replay",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_selection_policy\": \"Use the fullest explicit foundational-question title or subtitle in cited physical source evidence; packaging, ADR, and master-document labels \u201d. Distinguishing context: \u201c{ \"index_version\": \"1.0.0\", \"authority\": \"tracking_only_no_implementation_or_canon_authority\", \"title_selection_policy\": \"Use the fullest explicit foundational-question title or subtitle in cited physical sourc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 146,
+      "line_end": 260,
+      "locator_heading_or_symbol": "\"title_evidence_records\": [",
+      "excerpt_sha256": "ac94cb0b6bdd07be5a3cdf2e40b275c3d2140362facd43113fb87107bc37fdd9",
+      "matched_terms": [
+        "causal order",
+        "evidence",
+        "schedule"
+      ],
+      "matched_search_clusters": [
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_evidence_records\": [ \"SRC-0006\" ], \"corrected_baseline_evidence_records\": [] }, { \"afqr_id\": \"AFQR-04\", \"full_title\": \"Logical Time, Simultaneity, Causal Ordering,\u201d. Distinguishing context: \u201c\"collision_ids\": [ \"COLL-03\" ], \"next_consolidation_action\": \"R1B shared vocabulary and type-owner resolution\", \"corpus_scale_pressure_summary\": \"Must preserve heterogeneous fantasy, science-fiction, hybrid, cu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 286,
+      "line_end": 400,
+      "locator_heading_or_symbol": "\"title_evidence_records\": [",
+      "excerpt_sha256": "50f0b8451763cd5ecd384faa1d9f47170fc0202bf19b3a201b01fefd209c9994",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_evidence_records\": [ \"SRC-0009\" ], \"corrected_baseline_evidence_records\": [] }, { \"afqr_id\": \"AFQR-07\", \"full_title\": \"Cross-Domain Conservation, Conversion Validi\u201d. Distinguishing context: \u201c\"collision_ids\": [ \"COLL-06\" ], \"next_consolidation_action\": \"R1B shared vocabulary and type-owner resolution\", \"corpus_scale_pressure_summary\": \"Must preserve heterogeneous fantasy, science-fiction, hybrid, cu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 426,
+      "line_end": 540,
+      "locator_heading_or_symbol": "\"title_evidence_records\": [",
+      "excerpt_sha256": "5e6ebc3f1f4ac92aa04a5fd09434750c7d7fd639f065e484967dfd6be4d850d5",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_evidence_records\": [ \"SRC-0012\" ], \"corrected_baseline_evidence_records\": [] }, { \"afqr_id\": \"AFQR-10\", \"full_title\": \"Epistemic State, Perception, Evidence, Knowl\u201d. Distinguishing context: \u201c\"collision_ids\": [ \"COLL-09\" ], \"next_consolidation_action\": \"R1B shared vocabulary and type-owner resolution\", \"corpus_scale_pressure_summary\": \"Must preserve heterogeneous fantasy, science-fiction, hybrid, cu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 566,
+      "line_end": 682,
+      "locator_heading_or_symbol": "\"title_evidence_records\": [",
+      "excerpt_sha256": "5efd49c09f32bae54cd8f4c42cd91d3060139cbb31ff508bc7179325bbe078fc",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_evidence_records\": [ \"SRC-0072\" ], \"corrected_baseline_evidence_records\": [] }, { \"afqr_id\": \"AFQR-13\", \"full_title\": \"Social Relationships, Trust, Reputation, Sta\u201d. Distinguishing context: \u201c\"collision_ids\": [ \"COLL-02\" ], \"next_consolidation_action\": \"R1B shared vocabulary and type-owner resolution\", \"corpus_scale_pressure_summary\": \"Must preserve heterogeneous fantasy, science-fiction, hybrid, cu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 708,
+      "line_end": 820,
+      "locator_heading_or_symbol": "\"title_evidence_records\": [",
+      "excerpt_sha256": "90ac7fad8a659e4a820360f5794f3fe5f62704e058488005ad37953a1c71d788",
+      "matched_terms": [
+        "evidence",
+        "observation"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_evidence_records\": [ \"SRC-0140\" ], \"corrected_baseline_evidence_records\": [] }, { \"afqr_id\": \"AFQR-16\", \"full_title\": \"Bodies Structures Integrity Harm Damage Inju\u201d. Distinguishing context: \u201c\"collision_ids\": [ \"COLL-05\" ], \"next_consolidation_action\": \"R1B shared vocabulary and type-owner resolution\", \"corpus_scale_pressure_summary\": \"Must preserve heterogeneous fantasy, science-fiction, hybrid, cu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_authority_status_index.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 846,
+      "line_end": 943,
+      "locator_heading_or_symbol": "\"title_evidence_records\": [",
+      "excerpt_sha256": "6e536f3d76fea4156492d5c3dd05d1ab8ec81e405851ade635d16603e1c079a2",
+      "matched_terms": [
+        "evidence",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"title_evidence_records\": [ \"SRC-0220\" ], \"corrected_baseline_evidence_records\": [] }, { \"afqr_id\": \"AFQR-19\", \"full_title\": \"Capabilities, Opportunities, Targeting, Cont\u201d. Distinguishing context: \u201c\"collision_ids\": [ \"COLL-08\" ], \"next_consolidation_action\": \"R1B shared vocabulary and type-owner resolution\", \"corpus_scale_pressure_summary\": \"Must preserve heterogeneous fantasy, science-fiction, hybrid, cu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 39,
+      "line_end": 147,
+      "locator_heading_or_symbol": "\"generalized bitemporal truth/evidence store\",",
+      "excerpt_sha256": "10e4ebdf0faaa50bf55929ed829f47692ef653dbcfea4577e58f272ccdec56d8",
+      "matched_terms": [
+        "evidence",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"generalized bitemporal truth/evidence store\", \"generalized owner-reducer transaction journal\", \"registered interface/bridge hypergraph\", \"generalized spatial, signal, em\u201d. Distinguishing context: \u201c\"AFQR-18\" ] ], \"dependencies_missing_from_repository\": [ \"generalized governed-relation registry\", \"generalized bitemporal truth/evidence store\", \"generalized owner-reducer transaction journal\", \"registered int\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 164,
+      "line_end": 283,
+      "locator_heading_or_symbol": "\"source_evidence\": [",
+      "excerpt_sha256": "424a74f868cbc7a3d193295485ff454570bbfefe2cb5d3b8fcd7e1a246915395",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": [ \"SRC-0004\", \"SRC-0011\" ], \"shared_types_or_handoffs\": [ \"commit\" ], \"cycle_risk\": \"low\", \"consolidation_action\": \"Reconcile owner and invariant in R1\u201d. Distinguishing context: \u201c\"from_afqr\": \"AFQR-01\", \"to_afqr\": \"AFQR-08\", \"relation_kind\": \"commit\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-08 consumes bounded commit output from AFQR-01; ownership does not transfer.\", \"so\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 300,
+      "line_end": 419,
+      "locator_heading_or_symbol": "\"source_evidence\": [",
+      "excerpt_sha256": "3ffe786f244306b1b9481cd782987cb809c3ec91d4f6416882e7db0fc489ea8a",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": [ \"SRC-0004\", \"SRC-0152\" ], \"shared_types_or_handoffs\": [ \"commit\" ], \"cycle_risk\": \"low\", \"consolidation_action\": \"Reconcile owner and invariant in R1\u201d. Distinguishing context: \u201c\"from_afqr\": \"AFQR-01\", \"to_afqr\": \"AFQR-16\", \"relation_kind\": \"commit\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-16 consumes bounded commit output from AFQR-01; ownership does not transfer.\", \"so\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 436,
+      "line_end": 555,
+      "locator_heading_or_symbol": "\"source_evidence\": [",
+      "excerpt_sha256": "2bd23095fbf9ae1d35724e0a7b9a565785443e4eb71f5691120dcbd591498b91",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": [ \"SRC-0005\", \"SRC-0231\" ], \"shared_types_or_handoffs\": [ \"command_lifecycle\" ], \"cycle_risk\": \"low\", \"consolidation_action\": \"Reconcile owner and inva\u201d. Distinguishing context: \u201c\"from_afqr\": \"AFQR-02\", \"to_afqr\": \"AFQR-19\", \"relation_kind\": \"command_lifecycle\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-19 consumes bounded command_lifecycle output from AFQR-02; ownership do\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 572,
+      "line_end": 691,
+      "locator_heading_or_symbol": "\"source_evidence\": [",
+      "excerpt_sha256": "c43a36f1819fdb355e3e14a840eb564e632d9c3d3a7cdd3bcdd699fa942398fc",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": [ \"SRC-0007\", \"SRC-0255\" ], \"shared_types_or_handoffs\": [ \"time_causality\" ], \"cycle_risk\": \"low\", \"consolidation_action\": \"Reconcile owner and invaria\u201d. Distinguishing context: \u201c\"from_afqr\": \"AFQR-04\", \"to_afqr\": \"AFQR-20\", \"relation_kind\": \"time_causality\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-20 consumes bounded time_causality output from AFQR-04; ownership does not\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 708,
+      "line_end": 827,
+      "locator_heading_or_symbol": "\"source_evidence\": [",
+      "excerpt_sha256": "b983c8494ba0cb23944dee88bad6b7bae1eb32b025dce1830b308005b4bb3422",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": [ \"SRC-0008\", \"SRC-0082\" ], \"shared_types_or_handoffs\": [ \"interface_bridge\" ], \"cycle_risk\": \"low\", \"consolidation_action\": \"Reconcile owner and invar\u201d. Distinguishing context: \u201c\"from_afqr\": \"AFQR-05\", \"to_afqr\": \"AFQR-13\", \"relation_kind\": \"interface_bridge\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-13 consumes bounded interface_bridge output from AFQR-05; ownership does\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 841,
+      "line_end": 960,
+      "locator_heading_or_symbol": "\"relation_kind\": \"claim_evidence\",",
+      "excerpt_sha256": "31e4a5e991a304c3586ae549f6b40e8e9984d85905acac76bc94a2520a7541e2",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"relation_kind\": \"claim_evidence\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-07 consumes bounded claim_evidence output from AFQR-06; ownership does not trans\u201d. Distinguishing context: \u201c}, { \"edge_id\": \"DEP-047\", \"from_afqr\": \"AFQR-06\", \"to_afqr\": \"AFQR-07\", \"relation_kind\": \"claim_evidence\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-07 consumes bounded claim_evidence output from \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_dependency_matrix.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 962,
+      "line_end": 1082,
+      "locator_heading_or_symbol": "\"rationale\": \"AFQR-09 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.\",",
+      "excerpt_sha256": "4ed08d43fea03cb982b55469855f2a599742030ce4aaa33a599528cafb583c64",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"rationale\": \"AFQR-09 consumes bounded identity_evidence output from AFQR-08; ownership does not transfer.\", \"source_evidence\": [ \"SRC-0011\", \"SRC-0012\" ], \"shared_types_\u201d. Distinguishing context: \u201c\"edge_id\": \"DEP-054\", \"from_afqr\": \"AFQR-08\", \"to_afqr\": \"AFQR-09\", \"relation_kind\": \"identity_evidence\", \"required_or_optional\": \"required\", \"rationale\": \"AFQR-09 consumes bounded identity_evidence output from\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

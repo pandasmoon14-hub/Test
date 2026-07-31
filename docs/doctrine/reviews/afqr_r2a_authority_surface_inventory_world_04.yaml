@@ -1,0 +1,981 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-WORLD-04",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1968,
+      "line_end": 2088,
+      "locator_heading_or_symbol": "\"qualified_form\": \"arbitration evidence\",",
+      "excerpt_sha256": "5b832765f6ecd2d63390768e33fa537e02101fefee78c5879b4e428d1facf64b",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"qualified_form\": \"arbitration evidence\", \"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-06\" } ], \"ownership_basis\": \"merged_r1b_term_owner\" } }, { \"disposition_id\": \"CORE-INT-D\u201d. Distinguishing context: \u201c\"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-06\" }, { \"term_id\": \"TERM-019\", \"qualified_form\": \"arbitration evidence\", \"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-06\" } ], \"ownership_basis\": \"merged_r1b_term_owner\" } },\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2089,
+      "line_end": 2194,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "8bcc100495c07dae8058bd5d36c756684f7bea41cb6d0650ca9d676ae240619f",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0009\", \"SRC-0012\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admis\u201d. Distinguishing context: \u201c\"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_trut\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2210,
+      "line_end": 2288,
+      "locator_heading_or_symbol": "\"producer_output\": \"Bounded identity_evidence output identified by DEP-053; scope remains limited to the producing AFQR source contract.\",",
+      "excerpt_sha256": "d26af827ed1b0ee67477d371c766c19a9eed13ddd51e13e91094efbe7520fa56",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "reservation",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"producer_output\": \"Bounded identity_evidence output identified by DEP-053; scope remains limited to the producing AFQR source contract.\", \"permitted_consumer_use\": \"May \u201d. Distinguishing context: \u201c\"owner_id\": \"AFQR-08\" } ], \"ownership_basis\": \"merged_r1b_term_owner\" }, \"producer_output\": \"Bounded identity_evidence output identified by DEP-053; scope remains limited to the producing AFQR source contract.\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2342,
+      "line_end": 2350,
+      "locator_heading_or_symbol": "\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "55f9e12783a88f17f7b0394c83aa61033cf102264789ea4a2f3dae8beec156af",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0004\" ], \"paths\": \u201d. Distinguishing context: \u201c\"ordering_or_phase_constraint\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2403,
+      "line_end": 2410,
+      "locator_heading_or_symbol": "\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "cf884f87b26fe38004ecd8b1baab998fd756d5bd023234127958250dc6b36602",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0005\" ], \"paths\": \u201d. Distinguishing context: \u201c\"ordering_or_phase_constraint\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2464,
+      "line_end": 2472,
+      "locator_heading_or_symbol": "\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "209f6c95b9d7961d7cdab1821afba7e8d43c8cc053ffc8ce1949ae8d04de99ab",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0007\" ], \"paths\": \u201d. Distinguishing context: \u201c\"ordering_or_phase_constraint\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2525,
+      "line_end": 2533,
+      "locator_heading_or_symbol": "\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "f4705a52e15e695f9c7dc263cd7f140b40eec1bd0df9ce1e58cd574f6939a585",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0009\" ], \"paths\": \u201d. Distinguishing context: \u201c\"ordering_or_phase_constraint\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2586,
+      "line_end": 2594,
+      "locator_heading_or_symbol": "\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "fad404c47194493696c303a2c1cc0571e18b1a9b4e1e7147aab0979e65d589cf",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "reservation",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0010\" ], \"paths\": \u201d. Distinguishing context: \u201c\"ordering_or_phase_constraint\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2647,
+      "line_end": 2654,
+      "locator_heading_or_symbol": "\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "10bd04053f7dceb40c5a2f7c6a622854f8399513326088671e0f1e188cf1a84f",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_or_unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0011\" ], \"paths\": \u201d. Distinguishing context: \u201c\"ordering_or_phase_constraint\": [ \"producer source contract exists\", \"consumer accepts bounded handoff\", \"R1B qualified vocabulary is used where applicable\" ], \"failure_or_unavailable_input_behavior\": \"defer_or\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2716,
+      "line_end": 2828,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "501ca9992052a56aee1180e06747ab7b139db0df98fd9b0ff4727b52b79ce213",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"SRC-0022\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transiti\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-AGENCY owns AFQR-10 internal semantics; this record does not define them\", \"ownership_nontrans\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2869,
+      "line_end": 2981,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "fb4dee06ce2011ba70e3d59868af25721fd25703a36887ce3723025b5b484568",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"SRC-0082\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transiti\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-AGENCY owns AFQR-13 internal semantics; this record does not define them\", \"ownership_nontrans\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3022,
+      "line_end": 3134,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "41d6f683af499b27040a71b00694f11e5e53cade1285b8790d505c6a3f34a92d",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"SRC-0152\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transiti\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-WORLD owns AFQR-16 internal semantics; this record does not define them\", \"ownership_nontransf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3175,
+      "line_end": 3281,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "6465fa5d0a9f71ccb0e00bc13522d411f50c5b570104b0555e23bb330de21a2c",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"SRC-0231\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transiti\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-WORLD owns AFQR-19 internal semantics; this record does not define them\", \"ownership_nontransf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3322,
+      "line_end": 3434,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "c8c9b8645038a13cbfa9932323dc9752ad0e259c7dc9220a645a3543f8a3f14b",
+      "matched_terms": [
+        "evidence",
+        "schedule",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0007\", \"SRC-0207\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultan\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-WORLD owns AFQR-18 internal semantics; this record does not define them\", \"ownership_nontransf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3461,
+      "line_end": 3572,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "987b648da4274b130bf0dadb596b25a20d9fcad58ad710e2d5ed2ba72b7f85a3",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0008\", \"SRC-0022\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfac\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-AGENCY owns AFQR-10 internal semantics; this record does not define them\", \"ownership_nontrans\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3582,
+      "line_end": 3693,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "198a95288943141604474c28a106c7a95f442ea2d03404e784b3390ce8f01b6b",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"producer\": \"AFQR-05\", \"consumer\": \"AFQR-14\", \"handoff_kind\": \"interface_bridge\", \"typed_produ\u201d. Distinguishing context: \u201c\"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md\", \"working/afqr_consolidation_inputs/extracted/AFQR-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3720,
+      "line_end": 3835,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "71b0cbcc4a97a764057985520b7b9bf8e4ed898ea4021f5c4b0dd406a4e8ccb8",
+      "matched_terms": [
+        "evidence",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0008\", \"SRC-0207\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfac\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-WORLD owns AFQR-18 internal semantics; this record does not define them\", \"ownership_nontransf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3846,
+      "line_end": 3957,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "8fc5605f64a6762753908ededdb4d757525e9c099c6545559a4b22e7d5246c31",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0009\", \"SRC-0022\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admis\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-AGENCY owns AFQR-10 internal semantics; this record does not define them\", \"ownership_nontrans\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3968,
+      "line_end": 4088,
+      "locator_heading_or_symbol": "\"typed_handoff\": \"Bounded identity_evidence output identified by DEP-056; scope remains limited to the producing AFQR source contract.\",",
+      "excerpt_sha256": "3c542de88fa059b2ef824c757455439de2a56ccf6b28d6b884d1aaaeb2888aab",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"typed_handoff\": \"Bounded identity_evidence output identified by DEP-056; scope remains limited to the producing AFQR source contract.\", \"semantic_owner\": { \"owner_kind\":\u201d. Distinguishing context: \u201c\"DEP-056\" ], \"core_family_endpoint\": \"AFQR-08\", \"external_endpoint\": \"AFQR-11\", \"direction\": \"export\", \"typed_handoff\": \"Bounded identity_evidence output identified by DEP-056; scope remains limited to the prod\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4091,
+      "line_end": 4182,
+      "locator_heading_or_symbol": "\"handoff_kind\": \"identity_evidence\",",
+      "excerpt_sha256": "322e8d25b994dc22dad98d0b09d8c9a479ecf2e3f8ad9202d97c0d971b89dcac",
+      "matched_terms": [
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"handoff_kind\": \"identity_evidence\", \"typed_producer_output\": \"Bounded identity_evidence output identified by DEP-058; scope remains limited to the producing AFQR source \u201d. Distinguishing context: \u201c] }, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"producer\": \"AFQR-08\", \"consumer\": \"AFQR-13\", \"handoff_kind\": \"identity_evidence\", \"typed_producer_output\": \"Bounded identity_evi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4213,
+      "line_end": 4313,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "c600a69ea867debbde03625cab1bb73220377855a938cf70234ef81743eb7bea",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0041\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-AGENCY owns AFQR-11 internal semantics; this record does not define them\", \"ownership_nontrans\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4348,
+      "line_end": 4460,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "2128bc3d6708a361338353758e43effb37503e7e57c81f97fdbf0d5483f19a92",
+      "matched_terms": [
+        "causal order",
+        "evidence",
+        "migration",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0012\", \"SRC-0152\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation\u201d. Distinguishing context: \u201c}, \"r1d_core_may_assert\": \"only the core endpoint output and R1C handoff constraints\", \"external_family_owns\": \"R1D-WORLD owns AFQR-16 internal semantics; this record does not define them\", \"ownership_nontransf\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4492,
+      "line_end": 4598,
+      "locator_heading_or_symbol": "\"reason\": \"Logical/causal ordering and relation lifecycle exchange bounded inputs, but R1A does not designate this pair as one of its four reciprocal cycle groups. Scheduling canno",
+      "excerpt_sha256": "ba00e841982450c883203ddef101e5ac589eedbb108592ba550cb4f0fe7cb298",
+      "matched_terms": [
+        "causal order",
+        "evidence",
+        "migration",
+        "replay",
+        "schedule",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-03_TEMPORAL",
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"reason\": \"Logical/causal ordering and relation lifecycle exchange bounded inputs, but R1A does not designate this pair as one of its four reciprocal cycle groups. Schedu\u201d. Distinguishing context: \u201c\"afqrs\": [ \"AFQR-04\", \"AFQR-09\" ], \"classification\": \"dependency_risk_not_recorded_cycle_group\", \"reason\": \"Logical/causal ordering and relation lifecycle exchange bounded inputs, but R1A does not designate thi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4635,
+      "line_end": 4733,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "d8ce7277efa83b6da309972b99d3400aaf0aa4c2f2bc07fd87313614a2de01f2",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [ \"SRC-0004\", \"SRC-0011\", \"SRC-0059\", \"SRC-0157\" ], \"source_paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQ\u201d. Distinguishing context: \u201c\"AFQR-15\" ], \"core_family_seam\": \"AFQR-01 owns qualified state/write-owner semantics only; AFQR-08 owns identity and continuity only; neither state ownership nor identity establishes substantive ownership, auth\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4801,
+      "line_end": 4859,
+      "locator_heading_or_symbol": "\"pressure_class\": \"horror evidence and hidden-information systems\",",
+      "excerpt_sha256": "bbef3d94b0cd7ee71740e6c72e79677a9a535a7c64faa94a8936f63a0365f170",
+      "matched_terms": [
+        "evidence",
+        "reservation",
+        "sensing",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"pressure_class\": \"horror evidence and hidden-information systems\", \"disposition\": \"AFQR-06 evidence boundary; truth/knowledge to AFQR-10 and sensing to AFQR-20\", \"univer\u201d. Distinguishing context: \u201c\"disposition\": \"AFQR-08 identity/proxy; agency and responsibility to AFQR-11\", \"universalization\": \"prohibited\" }, { \"record_id\": \"PRESS-08\", \"pressure_class\": \"horror evidence and hidden-information systems\", \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 121,
+      "locator_heading_or_symbol": "# AFQR-16\u201320 R1D-WORLD: Modular World, Action, and Sensing Doctrine",
+      "excerpt_sha256": "d2a78e261c599b604baa3173111844969d1635173a39f9e1aaa0449e14e8c911",
+      "matched_terms": [
+        "causal order",
+        "evidence",
+        "observation",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-03_TEMPORAL",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c# AFQR-16\u201320 R1D-WORLD: Modular World, Action, and Sensing Doctrine ## Normative boundary This source-backed family contract keeps embodiment, environment, topology, acti\u201d. Distinguishing context: \u201c# AFQR-16\u201320 R1D-WORLD: Modular World, Action, and Sensing Doctrine ## Normative boundary This source-backed family contract keeps embodiment, environment, topology, action resolution, and sensing modular. Cons\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 206,
+      "locator_heading_or_symbol": "\"sensing, truth, evidence, or action resolution\",",
+      "excerpt_sha256": "7ab9c77491547b9ac273557403e262829c70737a361f162fe97348a96f27044c",
+      "matched_terms": [
+        "evidence",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"sensing, truth, evidence, or action resolution\", \"universal weather, terrain, ecology, or donor cosmology\" ], \"r1b_terms_or_qualified_forms\": [ { \"term_id\": \"TERM-001\", \u201d. Distinguishing context: \u201c], \"explicit_nonowned_concerns\": [ \"logical time or causal ordering\", \"spatial topology or movement\", \"embodiment harm or injury\", \"sensing, truth, evidence, or action resolution\", \"universal weather, terrain, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 275,
+      "line_end": 275,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "66c46201e3006903902e36ecf6ef43698c7f943eb9e227a6eabb53220e799d79",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [\u201d. Distinguishing context: \u201c\"term_id\": \"TERM-012\", \"form\": \"action resolution\", \"owner\": \"AFQR-19\" } ], \"source_evidence_identifiers\": [ \"SRC-0231\" ], \"source_paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQ\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 339,
+      "line_end": 343,
+      "locator_heading_or_symbol": "\"source_evidence_identifiers\": [",
+      "excerpt_sha256": "4a69f55606432ab9d9e82182705a4f201850f013d05fee24f4c41843c655a0da",
+      "matched_terms": [
+        "evidence",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence_identifiers\": [ \"SRC-0255\" ], \"source_paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracki\u201d. Distinguishing context: \u201c\"term_id\": \"TERM-030\", \"form\": \"signal\", \"owner\": \"AFQR-20\" } ], \"source_evidence_identifiers\": [ \"SRC-0255\" ], \"source_paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 412,
+      "line_end": 416,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "4dbb74d393a2421d2cdc907e92ba7ce0179dbd40a435ccb9b9fddb1120872fc9",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 470,
+      "line_end": 474,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "4dbb74d393a2421d2cdc907e92ba7ce0179dbd40a435ccb9b9fddb1120872fc9",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 528,
+      "line_end": 590,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "fb7c293f64e2008e4ec72a6dab9bf9e93ae45fd4d64b5ccabffe014177b0f09a",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 644,
+      "line_end": 648,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "4dbb74d393a2421d2cdc907e92ba7ce0179dbd40a435ccb9b9fddb1120872fc9",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 702,
+      "line_end": 772,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "3c74301f0b662c895dd01f10e600549dd8f1fe6ce02b339ab65351698da46aee",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 833,
+      "line_end": 843,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "95845a4cac769137b3358bfa0c52fda91506817191ddcb31000b71d8b5abd7ba",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 902,
+      "line_end": 912,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "8a18202ecfd10a0cf2792053f767cad3889cf8618bf04885ffe818022d4599e9",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 971,
+      "line_end": 981,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "942188fd990ac5dafdb3a32971bef075aed35c9cf81cccf6892dd627e455150c",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1040,
+      "line_end": 1050,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "2f7000c38575de25416d164d61a6729bdd70edd6321b7437c2ea39484b779af6",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1109,
+      "line_end": 1171,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "d967abe53d775cb0a34f3e6b1e49eb7c8feb7f7ff6ae63e398ba967fa6c5a7a5",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1236,
+      "line_end": 1246,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "3e814a76e26f0fce9ce816261541956819b782d2ecf69dbefd15602ba395da49",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1305,
+      "line_end": 1315,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "667e504eb14928c3142502486721c9b1b10dc3fe90f8f7f8359fbdea2d878427",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1374,
+      "line_end": 1466,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "5dcace9058e0dd395fda6a71f483a04cb372213a3a25dc1abfd7da55fabf372a",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "schedule",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1506,
+      "line_end": 1615,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "0021ecb5844f88bd00720d222c4d72ac69d9c3eaebdf0b91835c4170bc5ec8fd",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1639,
+      "line_end": 1656,
+      "locator_heading_or_symbol": "\"producer_output\": \"Bounded identity_evidence output identified by DEP-060; scope remains limited to the producing AFQR source contract.\",",
+      "excerpt_sha256": "405b83defa7d5fd384c5543e9554a5198ce6c0ce7317f48694694a92b51d55b7",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"producer_output\": \"Bounded identity_evidence output identified by DEP-060; scope remains limited to the producing AFQR source contract.\", \"typed_producer_output\": \"Bound\u201d. Distinguishing context: \u201c\"term_id\": \"TERM-013\", \"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-08\" } ], \"producer_output\": \"Bounded identity_evidence output identified by DEP-060; scope remains limited to the producing AFQR source contract.\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1710,
+      "line_end": 1778,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "685a1ed3c7de54163df40bb90325347ed8d058134c0e1fa3e85c5c464696d24f",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "observation",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

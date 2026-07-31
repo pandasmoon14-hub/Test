@@ -1,0 +1,899 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTINUITY_CROSS_PHASE-10",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 627,
+      "line_end": 742,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-02\",",
+      "excerpt_sha256": "68e201c829f6ee88f8686bbdb1f22ba7f25ecb1d6cddf2152d04905165fd1be9",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-02\", \"original_archive_path\": \"AFQR_10_Ratification_Pack_v1_0/registries/candidate_comparison.csv\", \"normalized_path\": null, \"sha256\": \"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0024\", \"parent_archive_record_id\": \"ARCH-02\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 751,
+      "line_end": 870,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "75f8521d8d7d3e09e66e11ba41de0a2676b885214a176c1e47cd503c27f6fb40",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-10\", \"detected_title\": \"AFQR-10 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 874,
+      "line_end": 989,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-02\",",
+      "excerpt_sha256": "7341dd60a95bcd678b4972f39f9f7aefce7aed1cf8a56c940b285d046a143d16",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-02\", \"original_archive_path\": \"AFQR_10_Ratification_Pack_v1_0/README.md\", \"normalized_path\": null, \"sha256\": \"6041167e76f2372ef63bc83f67\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0037\", \"parent_archive_record_id\": \"ARCH-02\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 998,
+      "line_end": 1117,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "8561fd3adbca78f04365319843027b0a8a87dcc87707412e1f9323cb4cd20ede",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-11\", \"detected_title\": \"AFQR-11 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1121,
+      "line_end": 1236,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-03\",",
+      "excerpt_sha256": "42d5bb2f47c3772ac2962df72335cedfe3926817a25cd1fc9a123a9518e22618",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-03\", \"original_archive_path\": \"AFQR_11_Ratification_Pack_v1_0/fixtures/uplifted_dependent_typed_graph.yaml\", \"normalized_path\": null, \"s\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0050\", \"parent_archive_record_id\": \"ARCH-03\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1245,
+      "line_end": 1364,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "8f2ed06bf1d95711342e7a8b42dd85eac910c2f2f364445bf8b36baa031fc049",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-11\", \"detected_title\": \"AFQR-11 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1368,
+      "line_end": 1483,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-04\",",
+      "excerpt_sha256": "0b6b409a09be9cef83278deb2fe91d472d5d5792ce623d71d74982d996383bc4",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-04\", \"original_archive_path\": \"AFQR_12_Ratification_Pack_v1_0/conversion/afqr_12_conversion_pressure_ir.yaml\", \"normalized_path\": null, \u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0063\", \"parent_archive_record_id\": \"ARCH-04\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1492,
+      "line_end": 1611,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "8f1886f5a3c0781df64912fb64e52904adb1ad4d8b40d3895ca39997ba143981",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-12\", \"detected_title\": \"AFQR-12 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1615,
+      "line_end": 1730,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-04\",",
+      "excerpt_sha256": "f62c78951c5645b6f26807916f64085e29a0f1f795d8fec479ab9f0b0115d1b2",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-04\", \"original_archive_path\": \"AFQR_12_Ratification_Pack_v1_0/registries/canonical_terminology.yaml\", \"normalized_path\": null, \"sha256\":\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0076\", \"parent_archive_record_id\": \"ARCH-04\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1739,
+      "line_end": 1858,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "67e6e3cc80e5f223c970c8bab54ad5dbcfad7a50fcfbaac26313d042f9980a9d",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"md\", \"detected_afqr_id\": \"AFQR-13\", \"detected_title\": \"Social Relationships, Trust, Reputation, Status, Culture, Affiliation, and Group Dynamics\", \"package_kind\": \"answer\", \"selected_as_p\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1862,
+      "line_end": 1977,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-05\",",
+      "excerpt_sha256": "2aa862b570b995d1e0fa93552859dd2b38b5dfd9932f6e581d6c9ea9f7b3dec4",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-05\", \"original_archive_path\": \"AFQR_13_Ratification_Pack_v1_0/fixtures/familiar_network_typed_graph.yaml\", \"normalized_path\": null, \"sha\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0089\", \"parent_archive_record_id\": \"ARCH-05\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1986,
+      "line_end": 2105,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "0ac7ae15835b027ba02f29b654ec7fd333818ab6d3deb25ca678beea77ee0a3e",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-13\", \"detected_title\": \"AFQR-13 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2109,
+      "line_end": 2226,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-06\",",
+      "excerpt_sha256": "844f3d8b92ba616720d7fa65589ff7280c8026dffae09b7de092e1f937158f10",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-06\", \"original_archive_path\": \"AFQR_14_Ratification_Pack_v1_0/README.md\", \"normalized_path\": null, \"sha256\": \"48c59f87b32fd74321be17a792\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0102\", \"parent_archive_record_id\": \"ARCH-06\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2235,
+      "line_end": 2354,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "a896cdb2bde2fe08301c637a1e06e42a99bf855cb77fe6e7a5c1197426228dbe",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-14\", \"detected_title\": \"AFQR-14 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2358,
+      "line_end": 2473,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-06\",",
+      "excerpt_sha256": "a20479129df90387f9e20083c02ac6f7a57f8ac0f2c4d7cab232fc458a228fd5",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-06\", \"original_archive_path\": \"AFQR_14_Ratification_Pack_v1_0/registries/candidate_comparison.csv\", \"normalized_path\": null, \"sha256\": \"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0115\", \"parent_archive_record_id\": \"ARCH-06\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2482,
+      "line_end": 2601,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "37b4dc306c7ac34b0295d0a52f98e84be61d7513beac8ece0e0a7f81aa95a52e",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": \"SRC-0139\", \"completeness\": \"complete\", \"evidence_notes\": \"Stale AFQR-14 artifact manifest only; reliance on this manifest is supersede\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-14\", \"detected_title\": \"AFQR-14 supporting artifact\", \"package_kind\": \"superseded\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": \"SRC-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2605,
+      "line_end": 2720,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-07\",",
+      "excerpt_sha256": "01a1c1dbe96920441e3db1d4afb5f6dbd14120eb8617fbbe134c4a8d2e6d04d2",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-07\", \"original_archive_path\": \"AFQR_15_Ratification_Pack_v1_0/evaluation/acceptance_test_matrix.yaml\", \"normalized_path\": null, \"sha256\"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0128\", \"parent_archive_record_id\": \"ARCH-07\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2729,
+      "line_end": 2848,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "01930e1770b176799f933abcb073b92e833a4996433ebf82355a287d4ae5149e",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-15\", \"detected_title\": \"AFQR-15 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2850,
+      "line_end": 2969,
+      "locator_heading_or_symbol": "\"materialization_status\": \"archive_only_unsupported\"",
+      "excerpt_sha256": "7e1210ea0d2504097e4062cbf2f5c053239d40b6098867b03ea6976ea819647c",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0141\", \"parent_archive_record_id\": \"ARCH-07\", \"original_archive_path\": \"AFQR_15_Ratific\u201d. Distinguishing context: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\": \"temporary_non_authoritative_working_in\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2978,
+      "line_end": 3097,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "ce60cc4f348b48a11a7dbc6226a2bf3862cf780f4b7651be933c8888b50ce001",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-15\", \"detected_title\": \"AFQR-15 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3101,
+      "line_end": 3216,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-08\",",
+      "excerpt_sha256": "eee9c5f234d68423d4ebe6da36ccc183f936705687239508e3f44d5668b3b013",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-08\", \"original_archive_path\": \"AFQR_16_Ratification_Pack_v1_0/contracts/conversion_embodiment_pressure_ir_amendment.yaml\", \"normalized_p\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0154\", \"parent_archive_record_id\": \"ARCH-08\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3225,
+      "line_end": 3344,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "3a071833b6097f38165065c13729c599c807aa18e8089f49dcf092e11cb7dc0d",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-16\", \"detected_title\": \"AFQR-16 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3348,
+      "line_end": 3463,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-08\",",
+      "excerpt_sha256": "5d6bc72a465f18af719f41213fb73d56ac150cd91d830fd9ac347e5d06c7be6d",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-08\", \"original_archive_path\": \"AFQR_16_Ratification_Pack_v1_0/registries/candidate_comparison.csv\", \"normalized_path\": null, \"sha256\": \"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0167\", \"parent_archive_record_id\": \"ARCH-08\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3472,
+      "line_end": 3591,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "5dbad2466ebdaedd61eeb13e8169419cfb4798f676e81cf62a71126584229f6d",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"csv\", \"detected_afqr_id\": \"AFQR-16\", \"detected_title\": \"AFQR-16 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": null\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3595,
+      "line_end": 3710,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-09\",",
+      "excerpt_sha256": "6bd574dd3df3364e3102ed8fb5d4db7253357fe3947c7bd8c833eab57b649fd6",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "promotion",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-09\", \"original_archive_path\": \"AFQR_17_Ratification_Pack_v1_0/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md\", \"normalized_path\":\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0180\", \"parent_archive_record_id\": \"ARCH-09\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3719,
+      "line_end": 3838,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "a3aad85ab6d3e1e43e516a15fedb70a526d222083b8b84eb7d019f30a04336aa",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "settlement",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-17\", \"detected_title\": \"AFQR-17 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3842,
+      "line_end": 3957,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-09\",",
+      "excerpt_sha256": "3ccf6a7c75a61561d55b8b7ca340a3f0a98b8e7e8332ca867b89a2ef46db7f40",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-09\", \"original_archive_path\": \"AFQR_17_Ratification_Pack_v1_0/operations/afqr_17_operation_grammar.yaml\", \"normalized_path\": null, \"sha2\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0193\", \"parent_archive_record_id\": \"ARCH-09\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3966,
+      "line_end": 4085,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "f814bf9cd50c4d6fb362f048fcb41b62e31ff5f101bc3d5c395a10f3dd007201",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-17\", \"detected_title\": \"AFQR-17 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4089,
+      "line_end": 4204,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-10\",",
+      "excerpt_sha256": "21e5227780dfdd4b16d23e519488925165c5fea037e6e0ebdb45a8e60afb53c6",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-10\", \"original_archive_path\": \"AFQR_18_Ratification_Pack_v1_0/README.md\", \"normalized_path\": null, \"sha256\": \"3560f6b7be1c2a4722ef91d5a5\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0206\", \"parent_archive_record_id\": \"ARCH-10\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4213,
+      "line_end": 4332,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "41a6bc6393b32dd90c043216ac277909757d99ccf4ef1845b1b654008cc13c2f",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "promotion",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-18\", \"detected_title\": \"AFQR-18 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4336,
+      "line_end": 4451,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-10\",",
+      "excerpt_sha256": "ebe55f962a8f457da81be72c77a76fe97c6be74dff4822970b3af764224e8d43",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-10\", \"original_archive_path\": \"AFQR_18_Ratification_Pack_v1_0/manifest/payload_manifest.yaml\", \"normalized_path\": null, \"sha256\": \"f7f91\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0219\", \"parent_archive_record_id\": \"ARCH-10\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4460,
+      "line_end": 4577,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "0ef89384c2352d23498e588b2825ab948dc71590bcb028f2cdfbebe22768d535",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-18\", \"detected_title\": \"AFQR-18 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4583,
+      "line_end": 4698,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-11\",",
+      "excerpt_sha256": "5ccb49b878297942ad6fb66a5105836a03b05fe3045ff6c2b15cb762cc2cf20b",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "promotion",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-11\", \"original_archive_path\": \"AFQR_19_Ratification_Pack_v1_0/contracts/afqr_19_typed_contract_catalog.yaml\", \"normalized_path\": null, \"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"committed_text_copy\" }, { \"source_record_id\": \"SRC-0232\", \"parent_archive_record_id\": \"ARCH-11\", \"original_archive_path\": \"AFQR_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4707,
+      "line_end": 4826,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "76c333eede75bf8242cdb90c4a13a2b953ef02f4fe16e2f326013c95425cfec7",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-19\", \"detected_title\": \"AFQR-19 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4830,
+      "line_end": 4945,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-11\",",
+      "excerpt_sha256": "cdc18fe80a882847582864f0607de727457cc8d0b25f579b3d71f57206be4a8c",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-11\", \"original_archive_path\": \"AFQR_19_Ratification_Pack_v1_0/operations/afqr_19_operation_grammar.yaml\", \"normalized_path\": null, \"sha2\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0245\", \"parent_archive_record_id\": \"ARCH-11\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4954,
+      "line_end": 5073,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "1d0a00e2b51dc09b5f55ab9460b55aaf276024e0606ac7ce88d1a411ad6fb877",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "sensing",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-19\", \"detected_title\": \"AFQR-19 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5077,
+      "line_end": 5192,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-12\",",
+      "excerpt_sha256": "77f5bbf2ab6349615211a7816411f9261f1c0b07f909b33471bc5e521e05174e",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "promotion",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-12\", \"original_archive_path\": \"AFQR_20_Ratification_Pack_v1_0/evaluation/acceptance_test_matrix.yaml\", \"normalized_path\": null, \"sha256\"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0258\", \"parent_archive_record_id\": \"ARCH-12\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5201,
+      "line_end": 5320,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "4c56a74b3bef9de8b1748a1f06ff52cc4b78f1bd2aea5b0a63f2f799444c73c1",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "sensing",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-20\", \"detected_title\": \"AFQR-20 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5324,
+      "line_end": 5439,
+      "locator_heading_or_symbol": "\"parent_archive_record_id\": \"ARCH-12\",",
+      "excerpt_sha256": "703e7db408f45c1b9af33139ba89c4d79feca230d181a1b1b7d3471c4c64da2c",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "sensing",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"parent_archive_record_id\": \"ARCH-12\", \"original_archive_path\": \"AFQR_20_Ratification_Pack_v1_0/registries/candidate_comparison.csv\", \"normalized_path\": null, \"sha256\": \"\u201d. Distinguishing context: \u201c\"status\": \"temporary_non_authoritative_working_input\", \"materialization_status\": \"archive_only_unsupported\" }, { \"source_record_id\": \"SRC-0271\", \"parent_archive_record_id\": \"ARCH-12\", \"original_archive_path\": \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "working/afqr_consolidation_inputs/manifest.yaml",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 5448,
+      "line_end": 5453,
+      "locator_heading_or_symbol": "\"supersedes\": [],",
+      "excerpt_sha256": "78767db22b646da9ba7c393d7ae5140de97874fdf768537c53cf5321eaeb8516",
+      "matched_terms": [
+        "archive",
+        "evidence",
+        "supersedes"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "historical_reference_only",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"supersedes\": [], \"superseded_by\": null, \"completeness\": \"complete\", \"evidence_notes\": \"Content-read classification; filenames were not used as sole evidence.\", \"status\":\u201d. Distinguishing context: \u201c\"detected_file_type\": \"yaml\", \"detected_afqr_id\": \"AFQR-20\", \"detected_title\": \"AFQR-20 supporting artifact\", \"package_kind\": \"supplemental\", \"selected_as_primary\": false, \"supersedes\": [], \"superseded_by\": nul\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

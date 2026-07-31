@@ -1,0 +1,961 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-WORLD-05",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1830,
+      "line_end": 1950,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "c323f6ab4575c8a32c42df91eb4d5078795798109a672e3b2053d9cc6016f293",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1951,
+      "line_end": 2012,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "73ef644058886a34acc3af490fde855c8bff78de256f9323f1e6c2bda92bd12b",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocation_invalidation_or_cascade\": \"not_defined_at_r1c\", \"hidden_information_and_projection\u201d. Distinguishing context: \u201c], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2066,
+      "line_end": 2163,
+      "locator_heading_or_symbol": "\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "d61f20ab03b3eb119092c76becbcd58d664bfe213780770078c4d85dd813dc89",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "projection",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"unavailable_input_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"revocat\u201d. Distinguishing context: \u201c\"R1B qualified vocabulary is used where applicable\" ], \"postconditions\": [ \"consumer may reference handoff without reauthoring producer semantics\" ], \"unavailable_input_behavior\": \"defer_or_escalate_without_fab\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2198,
+      "line_end": 2318,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "079d05800b356857a1ba6e809c470c02d20ad5129153a667dbc02a8461ecf8ba",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"SRC-0207\" ], \"paths\": [ \"working/afqr_conso\u201d. Distinguishing context: \u201c} ], \"ownership_basis\": \"merged_r1b_term_owner\" }, \"ownership_nontransfer\": true, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0004\", \"S\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2319,
+      "line_end": 2409,
+      "locator_heading_or_symbol": "\"source_evidence\": {",
+      "excerpt_sha256": "b0b2031ff3611915690fc21ba9782e7a323170da35ce04e9ebc1a1e6702e3808",
+      "matched_terms": [
+        "evidence",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_evidence\": { \"identifiers\": [ \"SRC-0005\", \"SRC-0231\" ], \"paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Atte\u201d. Distinguishing context: \u201c], \"ownership_basis\": \"merged_r1b_term_owner\" }, \"ownership_nontransfer\": true, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0005\", \"SRC\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2444,
+      "line_end": 2557,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "9e2e99ce89952546f70d45123098c7bafde3ad271fe1789ff7575be5f2190394",
+      "matched_terms": [
+        "evidence",
+        "schedule",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0007\", \"SRC-0255\" ], \"paths\": [ \"working/afqr_conso\u201d. Distinguishing context: \u201c} ], \"ownership_basis\": \"merged_r1b_term_owner\" }, \"ownership_nontransfer\": true, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0007\", \"S\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2584,
+      "line_end": 2699,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "33a748546a37754f7afa9072a85d566b5a7ac61cfcb3e40af86f9f65c323ff60",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0008\", \"SRC-0255\" ], \"paths\": [ \"working/afqr_conso\u201d. Distinguishing context: \u201c\"r1b_terms\": [], \"r1b_term_bindings\": [], \"ownership_basis\": \"direct_source_contract_not_producer_status\" }, \"ownership_nontransfer\": true, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_ow\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2731,
+      "line_end": 2842,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "7164de8a853bef379ac8e42e632bf4f24c6ab1d995caecad5b1252cc13af7301",
+      "matched_terms": [
+        "evidence",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0022\", \"SRC-0180\" ], \"paths\": [ \"working/afqr_conso\u201d. Distinguishing context: \u201c} ], \"ownership_basis\": \"merged_r1b_term_owner\" }, \"ownership_nontransfer\": true, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0022\", \"S\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2877,
+      "line_end": 2885,
+      "locator_heading_or_symbol": "\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\",",
+      "excerpt_sha256": "79b5f543a7cb1cc4ce862ffecf5c39d2952b61b77b094523112ca5c8a6fc3800",
+      "matched_terms": [
+        "evidence",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0103\", \"SRC-0255\" ], \"paths\": [ \"working/afqr_conso\u201d. Distinguishing context: \u201c} ], \"ownership_basis\": \"merged_r1b_term_owner\" }, \"ownership_nontransfer\": true, \"failure_behavior\": \"defer_or_escalate_without_fabricating_truth_or_owner\", \"source_evidence\": { \"identifiers\": [ \"SRC-0103\", \"S\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2937,
+      "line_end": 3055,
+      "locator_heading_or_symbol": "\"producer_output\": \"AFQR-20 supplies a detected-contact or sensing-observation reference; AFQR-20 retains sensing, signal, detection, recognition, contact, and observation-side own",
+      "excerpt_sha256": "7e207ba1fa694c9a4fbf88abeded26fefad1c212140f15bca797699885d6578b",
+      "matched_terms": [
+        "evidence",
+        "migration",
+        "observation",
+        "projection",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"producer_output\": \"AFQR-20 supplies a detected-contact or sensing-observation reference; AFQR-20 retains sensing, signal, detection, recognition, contact, and observatio\u201d. Distinguishing context: \u201c\"term_id\": \"TERM-011\", \"owner_kind\": \"afqr\", \"owner_id\": \"AFQR-19\" } ], \"producer_output\": \"AFQR-20 supplies a detected-contact or sensing-observation reference; AFQR-20 retains sensing, signal, detection, reco\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3058,
+      "line_end": 3178,
+      "locator_heading_or_symbol": "\"evidence_id\": \"SRC-0110\",",
+      "excerpt_sha256": "43d05281f9ecd6e3a4855efa3fa27dd63453e5d90745e30c062345783349477a",
+      "matched_terms": [
+        "evidence",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence_id\": \"SRC-0110\", \"source_path\": \"working/afqr_consolidation_inputs/incoming/Astra_AFQR_14_Ratification_Pack_v1_0.zip\" } ], \"rationale\": \"INV-006 explicitly bars\u201d. Distinguishing context: \u201c{ \"evidence_id\": \"SRC-0012\", \"source_path\": \"working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3181,
+      "line_end": 3301,
+      "locator_heading_or_symbol": "\"evidence_path_bindings\": [",
+      "excerpt_sha256": "752457c617f869c3a3eea9eae736f99ad6ac06e8555afbf699eea654ffdaa5a8",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "promotion",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"evidence_path_bindings\": [ { \"evidence_id\": \"SRC-0255\", \"source_path\": \"working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection\u201d. Distinguishing context: \u201c], \"source_paths\": [ \"working/afqr_consolidation_inputs/extracted/AFQR-20/ARCH-12/adrs/AFQR-20_Signal_Sensing_Detection_Tracking.md\", \"working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Ca\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3302,
+      "line_end": 3383,
+      "locator_heading_or_symbol": "\"source_path\": \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md\"",
+      "excerpt_sha256": "4cff646f1d1a02388634152a3701428259bc352143b355cbdd0986296ca91e82",
+      "matched_terms": [
+        "evidence",
+        "replay",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"source_path\": \"working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md\" } ], \"ration\u201d. Distinguishing context: \u201c\"evidence_id\": \"SRC-0231\", \"source_path\": \"working/afqr_consolidation_inputs/extracted/AFQR-19/ARCH-11/adrs/AFQR-19_Capability_Targeting_Reaction_Resolution.md\" }, { \"evidence_id\": \"SRC-0004\", \"source_path\": \"w\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3448,
+      "line_end": 3555,
+      "locator_heading_or_symbol": "\"exact_evidence_records\": [",
+      "excerpt_sha256": "95baaac08d5ba7ec71119acbf7c924b7cf5d07b164aabc416ed0bce3c8859a5e",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"exact_evidence_records\": [ \"SRC-0005\", \"SRC-0006\", \"SRC-0231\" ], \"corpus_collapse_risk\": \"high to critical if donor homonyms are treated as one Astra type\", \"world_famil\u201d. Distinguishing context: \u201c\"capability != resolution\", \"opportunity != target\", \"opportunity != resolution\", \"target != resolution\" ], \"exact_evidence_records\": [ \"SRC-0005\", \"SRC-0006\", \"SRC-0231\" ], \"corpus_collapse_risk\": \"high to cri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3606,
+      "line_end": 3704,
+      "locator_heading_or_symbol": "\"exact_evidence_records\": [",
+      "excerpt_sha256": "6e646725bf5d182c20d9362b5ba92ca3089118b8dc7e8bf8ebbdb1197f48f47b",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "schedule",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"exact_evidence_records\": [ \"SRC-0004\", \"SRC-0007\", \"SRC-0092\", \"SRC-0209\", \"SRC-0231\" ], \"corpus_collapse_risk\": \"high to critical if donor homonyms are treated as one A\u201d. Distinguishing context: \u201c\"time != transition\", \"causality != process\", \"causality != transition\", \"process != transition\" ], \"exact_evidence_records\": [ \"SRC-0004\", \"SRC-0007\", \"SRC-0092\", \"SRC-0209\", \"SRC-0231\" ], \"corpus_collapse_ris\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3760,
+      "line_end": 3870,
+      "locator_heading_or_symbol": "\"exact_evidence_records\": [",
+      "excerpt_sha256": "5eef17513c0b24622046a1e37b03288ca06f87662bd60620ef715b42614f6420",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "schedule",
+        "sensing",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"exact_evidence_records\": [ \"SRC-0184\", \"SRC-0209\", \"SRC-0231\" ], \"corpus_collapse_risk\": \"high to critical if donor homonyms are treated as one Astra type\", \"world_famil\u201d. Distinguishing context: \u201c\"integrity != topology\", \"environment != space\", \"environment != topology\", \"space != topology\" ], \"exact_evidence_records\": [ \"SRC-0184\", \"SRC-0209\", \"SRC-0231\" ], \"corpus_collapse_risk\": \"high to critical if \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3893,
+      "line_end": 3938,
+      "locator_heading_or_symbol": "\"risk\": \"hidden truth to model-visible projection\",",
+      "excerpt_sha256": "61c8ad9dcc6d320581c65945e4245dbdbc74d076db10917697390392f93b03b2",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"risk\": \"hidden truth to model-visible projection\", \"governed_nonautomatic\": true, \"hidden_truth_direct_promotion_forbidden\": true } ], \"corpus_pressure_records\": [ { \"re\u201d. Distinguishing context: \u201c\"risk\": \"runtime record to canon/sourcebook\", \"governed_nonautomatic\": true }, { \"prohibition_id\": \"PHASE-004\", \"risk\": \"hidden truth to model-visible projection\", \"governed_nonautomatic\": true, \"hidden_truth_d\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3990,
+      "line_end": 4098,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "28426efc2447ff0a3feb2a7431b3992f5a0af32bbcfa0f8e6f63ed5b75c4815e",
+      "matched_terms": [
+        "quarantine",
+        "schedule",
+        "sensing",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"vacuum or radiation is applied directly as injury without AFQR-17 exposure and AFQR-16 harm stages\", \"sensor lock is treated as AFQR-19 target v\u201d. Distinguishing context: \u201c\"ship facing rules\", \"radiation tracks\", \"electronic-warfare action economies\", \"mech hit-location tables\" ], \"quarantine_triggers\": [ \"vacuum or radiation is applied directly as injury without AFQR-17 exposure\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4124,
+      "line_end": 4232,
+      "locator_heading_or_symbol": "\"fixed recharge schedules\"",
+      "excerpt_sha256": "ab2d49d92feee4fc6df74d74bf4638144ab4d73cc02ea5960df3b654db0ad7ec",
+      "matched_terms": [
+        "quarantine",
+        "schedule",
+        "sensing",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-04_SCHEDULE",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"fixed recharge schedules\" ], \"quarantine_triggers\": [ \"class possession is silently treated as capability readiness\", \"capability, opportunity, target, and resolution ar\u201d. Distinguishing context: \u201c\"agency_family_handoff_afqrs\": [], \"agency_handoff_reasons\": {}, \"source_local_constructs\": [ \"class action economies\", \"level tables\", \"fixed recharge schedules\" ], \"quarantine_triggers\": [ \"class possession i\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4267,
+      "line_end": 4387,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "58555e94eb7e7cf48ad3f98055f73c453ec18b88cb322ffdc51b8ab5126f83c5",
+      "matched_terms": [
+        "evidence",
+        "observation",
+        "quarantine",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"a narrative clock is treated as AFQR-04 logical time by naming alone\", \"a zone tag establishes target validity without AFQR-19\" ], \"escalation_t\u201d. Distinguishing context: \u201c\"stress boxes\", \"consequence slots\", \"scene clocks\", \"zone adjacency rules\" ], \"quarantine_triggers\": [ \"a narrative clock is treated as AFQR-04 logical time by naming alone\", \"a zone tag establishes target val\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4403,
+      "line_end": 4511,
+      "locator_heading_or_symbol": "\"quarantine_triggers\": [",
+      "excerpt_sha256": "c81677a22a7f3fcd3a07b9bef3f646f87e697a6db5d9963cd64cbbf314670bcd",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "sensing",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantine_triggers\": [ \"unreliable sensing rewrites hidden world truth\", \"contamination automatically becomes injury or transformation\" ], \"escalation_triggers\": [ \"tra\u201d. Distinguishing context: \u201c\"sanity tracks\", \"mutation tables\", \"contamination clocks\", \"false-perception procedures\" ], \"quarantine_triggers\": [ \"unreliable sensing rewrites hidden world truth\", \"contamination automatically becomes injur\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4526,
+      "line_end": 4643,
+      "locator_heading_or_symbol": "\"AFQR-20\": \"distributed sensing\"",
+      "excerpt_sha256": "315453e527185c3a79af6bd682db04b64593f4b7346faa8d661e67a8077e005f",
+      "matched_terms": [
+        "quarantine",
+        "sensing",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"AFQR-20\": \"distributed sensing\" }, \"core_family_handoff_afqrs\": [ \"AFQR-08\", \"AFQR-09\" ], \"core_handoff_reasons\": { \"AFQR-08\": \"identity and proxy continuity\", \"AFQR-09\"\u201d. Distinguishing context: \u201c], \"world_landing_reasons\": { \"AFQR-16\": \"distributed embodiment and component integrity\", \"AFQR-18\": \"occupancy and distributed position\", \"AFQR-19\": \"multi-actor resolution\", \"AFQR-20\": \"distributed sensing\" \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 4658,
+      "line_end": 4773,
+      "locator_heading_or_symbol": "\"pressure_class\": \"tables and oracles for weather, terrain, encounters, damage, targeting, and sensing\",",
+      "excerpt_sha256": "ba6eae9a4e134f58fb959b86867c3bcd7049b56fc39b5ce492cdaf4a2733d6de",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "sensing",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"pressure_class\": \"tables and oracles for weather, terrain, encounters, damage, targeting, and sensing\", \"world_landing_afqrs\": [ \"AFQR-16\", \"AFQR-17\", \"AFQR-18\", \"AFQR-1\u201d. Distinguishing context: \u201c], \"rationale\": \"Plural anatomy, ecology, movement, conflict, and senses route across AFQR-16\u201320; identity and personhood are never inferred from species anatomy.\" }, { \"record_id\": \"WORLD-PRESS-17\", \"pressure_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-00_time_action_cadence_encounter_procedure_and_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 20,
+      "line_end": 134,
+      "locator_heading_or_symbol": "The primary D12 timing unit is a cadence state, not a universal round. Turns, rounds, watches, phases, clocks, initiative passes, exploration turns, and faction turns are donor evi",
+      "excerpt_sha256": "990515d41e6bb04d4e21b2a509bbd6b19bc60d941344a1b6c581b0de52ffb67a",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThe primary D12 timing unit is a cadence state, not a universal round. Turns, rounds, watches, phases, clocks, initiative passes, exploration turns, and faction turns are\u201d. Distinguishing context: \u201c## 2. Core doctrine Astra uses a layered cadence architecture. Scene structure increases only when play requires sequencing, risk handling, contested timing, cost commitment, hidden pressure management, or cons\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-01_cadence_states_transition_triggers_and_scene_flow.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 124,
+      "line_end": 142,
+      "locator_heading_or_symbol": "Transitions must preserve unresolved pressure. They may carry pressure forward, retire it, escalate it, quarantine it, or hand it to another owner file.",
+      "excerpt_sha256": "beffd07974296dad952f55296ed43dd6db0acc07d0d14b25eca018b7b78eba27",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cTransitions must preserve unresolved pressure. They may carry pressure forward, retire it, escalate it, quarantine it, or hand it to another owner file. ## 4. Transition \u201d. Distinguishing context: \u201cscene_time -> downtime faction_pressure -> active_scene campaign_season -> downtime_block ``` Transitions must preserve unresolved pressure. They may carry pressure forward, retire it, escalate it, quarantine i\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-02_action_windows_initiative_sequencing_and_interruptions.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 39,
+      "line_end": 82,
+      "locator_heading_or_symbol": "4: cost_and_risk_preview",
+      "excerpt_sha256": "06205516fc57affaf3cc8f7b2986b29a6d8825efbb9f8eecd223bdb740e88e85",
+      "matched_terms": [
+        "preview",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c4: cost_and_risk_preview 5: commitment_point 6: resolution_call_if_needed 7: owner_file_handoff 8: state_delta_checkpoint 9: reaction_or_interruption_window_if_triggered \u201d. Distinguishing context: \u201c```yaml action_window_steps: 1: situation_update 2: active_actor_declaration 3: method_and_target_clarification 4: cost_and_risk_preview 5: commitment_point 6: resolution_call_if_needed 7: owner_file_handoff 8:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-03_round_exchange_beat_interval_and_time_scale_grammar.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 41,
+      "line_end": 41,
+      "locator_heading_or_symbol": "- a cost preview;",
+      "excerpt_sha256": "040cd75613d5b5258d5184d3518b5781cc56363f58d7a43f5336841669dfb22c",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- a cost preview;\u201d. Distinguishing context: \u201c- a glance; - an opportunity cue; - a reaction opening; - a trigger; - a reveal; - a cost preview; - a consequence cue; - a hidden pressure pulse; - a preparation window; - a source-local timing signal.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-03_round_exchange_beat_interval_and_time_scale_grammar.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 121,
+      "line_end": 161,
+      "locator_heading_or_symbol": "Every Time-Scale Shift should record unresolved pressure carried forward, retired, escalated, quarantined, or handed to another owner file.",
+      "excerpt_sha256": "4dbf5bc141ee9a036d1ec8bc458aab18bf5fe527db7dec6f4c31b1e954e448e3",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery Time-Scale Shift should record unresolved pressure carried forward, retired, escalated, quarantined, or handed to another owner file. ## 9. Fixed duration policy D1\u201d. Distinguishing context: \u201cDowntime Interval -> Focused Scene Faction Pressure -> Active Scene Campaign Season -> Downtime Block ``` Every Time-Scale Shift should record unresolved pressure carried forward, retired, escalated, quarantine\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-04_checkpoints_cost_commitment_consequence_timing_and_handoffs.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 10,
+      "line_end": 123,
+      "locator_heading_or_symbol": "This file defines the procedural checkpoints that determine when Astra calls resolution, previews cost and risk, commits costs, routes consequences, records state deltas, opens rea",
+      "excerpt_sha256": "1357346aec214a744aefe51c72c44f1eea24a3e5bd57614fcffd67f11175b0ca",
+      "matched_terms": [
+        "corruption",
+        "preview",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThis file defines the procedural checkpoints that determine when Astra calls resolution, previews cost and risk, commits costs, routes consequences, records state deltas,\u201d. Distinguishing context: \u201cGenerated: 2026-06-02 Owner file: D12 timing and cadence doctrine ## 1. Purpose This file defines the procedural checkpoints that determine when Astra calls resolution, previews cost and risk, commits costs, ro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-04_checkpoints_cost_commitment_consequence_timing_and_handoffs.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 140,
+      "line_end": 167,
+      "locator_heading_or_symbol": "- quarantined_unresolved_delta",
+      "excerpt_sha256": "5f7f4133f3eff9da3fe30fbfe15e96bac656395e20ac51bfe1e99447a7e3e950",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantined_unresolved_delta - owner_file_escalation - source_local_retained_effect - transition_note ``` This prevents meaningful actions from disappearing into narrat\u201d. Distinguishing context: \u201c```yaml state_delta_checkpoint_outcome: - committed_delta - declared_no_delta_result - quarantined_unresolved_delta - owner_file_escalation - source_local_retained_effect - transition_note ``` This prevents mea\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-05_structured_scene_families_and_cadence_profiles.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 96,
+      "line_end": 96,
+      "locator_heading_or_symbol": "Used for sneaking, hiding, surveillance, infiltration, evasion, ambush approach, tailing, security bypass, concealment, and escape from observation.",
+      "excerpt_sha256": "57c84bceca40574c0d0b15936f317545758d6456ffb7640c4ce68f947a6ee034",
+      "matched_terms": [
+        "observation"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUsed for sneaking, hiding, surveillance, infiltration, evasion, ambush approach, tailing, security bypass, concealment, and escape from observation.\u201d. Distinguishing context: \u201c- automatic persuasion after one roll; - donor status systems as Astra society. ## 6. Stealth / Infiltration Profile Used for sneaking, hiding, surveillance, infiltration, evasion, ambush approach, tailing, sec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-05_structured_scene_families_and_cadence_profiles.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 154,
+      "line_end": 154,
+      "locator_heading_or_symbol": "- D07 corruption, backlash, harm;",
+      "excerpt_sha256": "347412a4be3ec193ae06117502a2fb14f04f19d81b41a9d1c252ef4e66605353",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 corruption, backlash, harm;\u201d. Distinguishing context: \u201c- D02 resolution; - D03 cost, overdraw, backlash; - D04 breakthrough/transformation where relevant; - D06 route, Technique, domain expression; - D07 corruption, backlash, harm; - D10 world-state effects; - D11 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-05_structured_scene_families_and_cadence_profiles.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 251,
+      "line_end": 251,
+      "locator_heading_or_symbol": "Mixed scenes should not apply all profiles equally without priority. If no primary profile can be chosen, the scene should be split, quarantined, or escalated.",
+      "excerpt_sha256": "2349f18e642fc7b7f4fc859f7a6a580d80ac87a45a1a5aa9b31812a37da03b4c",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cMixed scenes should not apply all profiles equally without priority. If no primary profile can be chosen, the scene should be split, quarantined, or escalated.\u201d. Distinguishing context: \u201c- chase includes platform and environmental hazard pressure; - social conflict includes ritual power contest pressure; - technical standoff occurs during platform combat; - exploration hazard becomes rescue con\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-06_source_local_timing_donor_procedure_mapping_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 134,
+      "locator_heading_or_symbol": "A donor timing label is evidence only. Labels such as round, turn, phase, watch, shift, interval, clock, countdown, faction turn, downtime turn, initiative pass, reaction phase, mo",
+      "excerpt_sha256": "a4dda9f07ad7c340afbc261766c084ddd851d8406b2a0fc22a0aa458c99119c8",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA donor timing label is evidence only. Labels such as round, turn, phase, watch, shift, interval, clock, countdown, faction turn, downtime turn, initiative pass, reaction\u201d. Distinguishing context: \u201cD12 must convert timing by function, not by label. ## 2. Donor timing principle A donor timing label is evidence only. Labels such as round, turn, phase, watch, shift, interval, clock, countdown, faction turn, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-06_source_local_timing_donor_procedure_mapping_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 167,
+      "line_end": 180,
+      "locator_heading_or_symbol": "mapped_d12_container: beat | action_window | exchange | interval | time_scale_shift | cadence_profile | source_local | quarantine | escalation",
+      "excerpt_sha256": "5412bc57bb31039b9967af424102579aa0391c0a7f91c5dd463fb1f7911c9199",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cmapped_d12_container: beat | action_window | exchange | interval | time_scale_shift | cadence_profile | source_local | quarantine | escalation lawful_outcome: direct_astr\u201d. Distinguishing context: \u201crecord_status: doctrine_control_shape_not_final_schema donor_label: string donor_function_summary: string affected_cadence_state: string controlled_feature: sequencing | interval | pressure | recharge | countdo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 56,
+      "line_end": 170,
+      "locator_heading_or_symbol": "visible_cost_risk_preview: string",
+      "excerpt_sha256": "063cf38d995cf1a72f75721b5dcfaaf26856e6c56e89a00ce6098b4f16fbb2e5",
+      "matched_terms": [
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cvisible_cost_risk_preview: string hidden_pressure_marker: present | absent | unknown | protected commitment_made: true | false resolution_required: true | false resolutio\u201d. Distinguishing context: \u201cacting_entity_ref: string acting_scale: actor | group | platform | environment | faction | mixed declared_intent: string method_or_approach: string target_refs: [] visible_cost_risk_preview: string hidden_press\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 190,
+      "line_end": 200,
+      "locator_heading_or_symbol": "current_owner: D10 | D13 | D14 | D15 | D17 | D18 | source_local | quarantine | escalation",
+      "excerpt_sha256": "395729be3d8bff76ecadcb4bf648dff66bcd877cc1437a5b3ff2b86291085300",
+      "matched_terms": [
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201ccurrent_owner: D10 | D13 | D14 | D15 | D17 | D18 | source_local | quarantine | escalation visibility_scope: player_visible | gm_visible | hidden | mixed next_review_trigg\u201d. Distinguishing context: \u201crecord_type: unresolved_timing_pressure record_status: doctrine_control_shape_not_final_schema pressure_summary: string originating_cadence: string pressure_type: countdown | delayed_consequence | opportunity_w\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 23,
+      "line_end": 79,
+      "locator_heading_or_symbol": "- D07: harm, conditions, corruption, injury, environmental danger.",
+      "excerpt_sha256": "af1f4ab30149ba6aee68117b5bd2d0300a0fb1ca57a67661dbf81e1ce98a5543",
+      "matched_terms": [
+        "corruption",
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07: harm, conditions, corruption, injury, environmental danger. - D08: actors, personhood, form-state, companions, AI, substrate. - D09: objects, relics, platforms, im\u201d. Distinguishing context: \u201c- D02: resolution procedure and outcome grammar. - D03: resources, costs, overdraw, recharge, backlash pressure. - D04: breakthrough, transformation, evolution, advancement pressure. - D05: methods, skills, com\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 145,
+      "line_end": 145,
+      "locator_heading_or_symbol": "| Hidden-state leakage | Hidden pressure markers do not reveal hidden truth. |",
+      "excerpt_sha256": "0e6d78cdbcf3c703e45da89cd679e3c6cd349e84a51683f265f687dcdba85d0e",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Hidden-state leakage | Hidden pressure markers do not reveal hidden truth. |\u201d. Distinguishing context: \u201c| Action Window becomes donor turn | Defined as bounded opportunity, not fixed action category. | | Reactions become universal freebies | Require trigger plus permission source. | | Universal clock creep | Cloc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 196,
+      "line_end": 196,
+      "locator_heading_or_symbol": "Decision: D12 defines cadence, declaration, method/target, preview, commitment, resolution, consequence routing, state delta, reaction, transition.",
+      "excerpt_sha256": "a4a2c4684e385febe673ec86f5358b6b7f0e55221cf0609f2aae9f1a49f5f4b0",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDecision: D12 defines cadence, declaration, method/target, preview, commitment, resolution, consequence routing, state delta, reaction, transition.\u201d. Distinguishing context: \u201cRisk: donor timing conversion may over-normalize. Mitigation: functional mapping ladder. ### DDR-D12-007 \u2014 Ten-checkpoint procedure grammar Decision: D12 defines cadence, declaration, method/target, preview, co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 257,
+      "line_end": 257,
+      "locator_heading_or_symbol": "10. a malformed timing table that must quarantine.",
+      "excerpt_sha256": "794889f73d08ec8e7b3e43a14619708efae418aef28f28c7d3328942c69edba3",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c10. a malformed timing table that must quarantine.\u201d. Distinguishing context: \u201c5. a ritual and counter-ritual with overdraw risk; 6. a platform crew emergency with actor-scale and platform-scale action; 7. an exploration hazard using a donor dungeon turn; 8. a source-local boss phase scri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 35,
+      "line_end": 47,
+      "locator_heading_or_symbol": "D12 uses a layered cadence architecture. The primary timing unit is cadence state, not a universal combat round or donor turn. Structure begins when sequencing, risk, contested tim",
+      "excerpt_sha256": "aaddef84b63b7f53506099fa206d42ef3aea15ff61169dfb38a9ed22dde165d1",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD12 uses a layered cadence architecture. The primary timing unit is cadence state, not a universal combat round or donor turn. Structure begins when sequencing, risk, con\u201d. Distinguishing context: \u201c9. `D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md` 10. `D12_pack_manifest.json` ## Locked decisions embedded in this pack D12 uses a layered cadence architecture. The primary timing unit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 38,
+      "line_end": 50,
+      "locator_heading_or_symbol": "D12 uses a layered cadence architecture. The primary timing unit is cadence state, not a universal combat round or donor turn. Structure begins when sequencing, risk, contested tim",
+      "excerpt_sha256": "aaddef84b63b7f53506099fa206d42ef3aea15ff61169dfb38a9ed22dde165d1",
+      "matched_terms": [
+        "evidence",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD12 uses a layered cadence architecture. The primary timing unit is cadence state, not a universal combat round or donor turn. Structure begins when sequencing, risk, con\u201d. Distinguishing context: \u201c9. `D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md` 10. `D12_pack_manifest.json` ## Locked decisions embedded in this pack D12 uses a layered cadence architecture. The primary timing unit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 102,
+      "line_end": 216,
+      "locator_heading_or_symbol": "The primary D12 timing unit is a cadence state, not a universal round. Turns, rounds, watches, phases, clocks, initiative passes, exploration turns, and faction turns are donor evi",
+      "excerpt_sha256": "990515d41e6bb04d4e21b2a509bbd6b19bc60d941344a1b6c581b0de52ffb67a",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThe primary D12 timing unit is a cadence state, not a universal round. Turns, rounds, watches, phases, clocks, initiative passes, exploration turns, and faction turns are\u201d. Distinguishing context: \u201c## 2. Core doctrine Astra uses a layered cadence architecture. Scene structure increases only when play requires sequencing, risk handling, contested timing, cost commitment, hidden pressure management, or cons\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 354,
+      "line_end": 372,
+      "locator_heading_or_symbol": "Transitions must preserve unresolved pressure. They may carry pressure forward, retire it, escalate it, quarantine it, or hand it to another owner file.",
+      "excerpt_sha256": "beffd07974296dad952f55296ed43dd6db0acc07d0d14b25eca018b7b78eba27",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cTransitions must preserve unresolved pressure. They may carry pressure forward, retire it, escalate it, quarantine it, or hand it to another owner file. ## 4. Transition \u201d. Distinguishing context: \u201cscene_time -> downtime faction_pressure -> active_scene campaign_season -> downtime_block ``` Transitions must preserve unresolved pressure. They may carry pressure forward, retire it, escalate it, quarantine i\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    }
+  ]
+}

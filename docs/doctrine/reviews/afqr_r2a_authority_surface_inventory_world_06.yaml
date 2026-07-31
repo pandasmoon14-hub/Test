@@ -1,0 +1,943 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-WORLD-06",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 430,
+      "line_end": 473,
+      "locator_heading_or_symbol": "4: cost_and_risk_preview",
+      "excerpt_sha256": "06205516fc57affaf3cc8f7b2986b29a6d8825efbb9f8eecd223bdb740e88e85",
+      "matched_terms": [
+        "preview",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c4: cost_and_risk_preview 5: commitment_point 6: resolution_call_if_needed 7: owner_file_handoff 8: state_delta_checkpoint 9: reaction_or_interruption_window_if_triggered \u201d. Distinguishing context: \u201c```yaml action_window_steps: 1: situation_update 2: active_actor_declaration 3: method_and_target_clarification 4: cost_and_risk_preview 5: commitment_point 6: resolution_call_if_needed 7: owner_file_handoff 8:\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 630,
+      "line_end": 630,
+      "locator_heading_or_symbol": "- a cost preview;",
+      "excerpt_sha256": "040cd75613d5b5258d5184d3518b5781cc56363f58d7a43f5336841669dfb22c",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- a cost preview;\u201d. Distinguishing context: \u201c- a glance; - an opportunity cue; - a reaction opening; - a trigger; - a reveal; - a cost preview; - a consequence cue; - a hidden pressure pulse; - a preparation window; - a source-local timing signal.\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 710,
+      "line_end": 791,
+      "locator_heading_or_symbol": "Every Time-Scale Shift should record unresolved pressure carried forward, retired, escalated, quarantined, or handed to another owner file.",
+      "excerpt_sha256": "68310a07772416e0417656f5e2aaf95bd78cd0761f0e5ef0a770b27b070b28f7",
+      "matched_terms": [
+        "evidence",
+        "preview",
+        "promotion",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery Time-Scale Shift should record unresolved pressure carried forward, retired, escalated, quarantined, or handed to another owner file. ## 9. Fixed duration policy D1\u201d. Distinguishing context: \u201cDowntime Interval -> Focused Scene Faction Pressure -> Active Scene Campaign Season -> Downtime Block ``` Every Time-Scale Shift should record unresolved pressure carried forward, retired, escalated, quarantine\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 839,
+      "line_end": 933,
+      "locator_heading_or_symbol": "## 7. Cost / risk preview checkpoint",
+      "excerpt_sha256": "0fafc9a6821bc437fadb66e9fba32ae034ff5e1f5007dfe6454ee222617194e1",
+      "matched_terms": [
+        "corruption",
+        "preview",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## 7. Cost / risk preview checkpoint Visible costs and risks should be previewed before commitment when the acting character could plausibly know them. This preview may i\u201d. Distinguishing context: \u201c- D06 for Techniques, Principles, oaths, domains, and route expression; - D08 for actor, form, substrate, companion, AI, or personhood issues; - D09 for objects, tools, platforms, relics, implants, salvage, or \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1050,
+      "line_end": 1050,
+      "locator_heading_or_symbol": "Used for sneaking, hiding, surveillance, infiltration, evasion, ambush approach, tailing, security bypass, concealment, and escape from observation.",
+      "excerpt_sha256": "57c84bceca40574c0d0b15936f317545758d6456ffb7640c4ce68f947a6ee034",
+      "matched_terms": [
+        "observation"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUsed for sneaking, hiding, surveillance, infiltration, evasion, ambush approach, tailing, security bypass, concealment, and escape from observation.\u201d. Distinguishing context: \u201c- automatic persuasion after one roll; - donor status systems as Astra society. ## 6. Stealth / Infiltration Profile Used for sneaking, hiding, surveillance, infiltration, evasion, ambush approach, tailing, sec\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1108,
+      "line_end": 1108,
+      "locator_heading_or_symbol": "- D07 corruption, backlash, harm;",
+      "excerpt_sha256": "347412a4be3ec193ae06117502a2fb14f04f19d81b41a9d1c252ef4e66605353",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 corruption, backlash, harm;\u201d. Distinguishing context: \u201c- D02 resolution; - D03 cost, overdraw, backlash; - D04 breakthrough/transformation where relevant; - D06 route, Technique, domain expression; - D07 corruption, backlash, harm; - D10 world-state effects; - D11 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1205,
+      "line_end": 1320,
+      "locator_heading_or_symbol": "Mixed scenes should not apply all profiles equally without priority. If no primary profile can be chosen, the scene should be split, quarantined, or escalated.",
+      "excerpt_sha256": "4f8dd17ac30703573af848ee4a1082354ce84a788df0ad11d72cd1301f63ba4c",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cMixed scenes should not apply all profiles equally without priority. If no primary profile can be chosen, the scene should be split, quarantined, or escalated. ## 13. Acc\u201d. Distinguishing context: \u201c- chase includes platform and environmental hazard pressure; - social conflict includes ritual power contest pressure; - technical standoff occurs during platform combat; - exploration hazard becomes rescue con\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1352,
+      "line_end": 1398,
+      "locator_heading_or_symbol": "| unsupported state mutation | quarantine or escalation |",
+      "excerpt_sha256": "48e9aae0194fc99ef5f34c160f506e61d06e6c78e821f483cf1e65cf261aad8f",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| unsupported state mutation | quarantine or escalation | D12 does not adopt a universal clock system. ## 11. Rejected timing assumptions Conversion must record rejected \u201d. Distinguishing context: \u201c| faction or institution operation | D15 | | economy scarcity/acquisition pressure | D17 | | campaign arc, season, state aging | D18 | | scene transition pressure | D12 | | bounded source procedure | source-loc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1463,
+      "line_end": 1577,
+      "locator_heading_or_symbol": "visible_cost_risk_preview: string",
+      "excerpt_sha256": "063cf38d995cf1a72f75721b5dcfaaf26856e6c56e89a00ce6098b4f16fbb2e5",
+      "matched_terms": [
+        "preview",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cvisible_cost_risk_preview: string hidden_pressure_marker: present | absent | unknown | protected commitment_made: true | false resolution_required: true | false resolutio\u201d. Distinguishing context: \u201cacting_entity_ref: string acting_scale: actor | group | platform | environment | faction | mixed declared_intent: string method_or_approach: string target_refs: [] visible_cost_risk_preview: string hidden_press\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1597,
+      "line_end": 1699,
+      "locator_heading_or_symbol": "current_owner: D10 | D13 | D14 | D15 | D17 | D18 | source_local | quarantine | escalation",
+      "excerpt_sha256": "060b35a6019d73d6c01b76d8f7b6e384904dee27cc163acc0d4200e3fabfdaac",
+      "matched_terms": [
+        "corruption",
+        "preview",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201ccurrent_owner: D10 | D13 | D14 | D15 | D17 | D18 | source_local | quarantine | escalation visibility_scope: player_visible | gm_visible | hidden | mixed next_review_trigg\u201d. Distinguishing context: \u201crecord_type: unresolved_timing_pressure record_status: doctrine_control_shape_not_final_schema pressure_summary: string originating_cadence: string pressure_type: countdown | delayed_consequence | opportunity_w\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1765,
+      "line_end": 1765,
+      "locator_heading_or_symbol": "| Hidden-state leakage | Hidden pressure markers do not reveal hidden truth. |",
+      "excerpt_sha256": "0e6d78cdbcf3c703e45da89cd679e3c6cd349e84a51683f265f687dcdba85d0e",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Hidden-state leakage | Hidden pressure markers do not reveal hidden truth. |\u201d. Distinguishing context: \u201c| Action Window becomes donor turn | Defined as bounded opportunity, not fixed action category. | | Reactions become universal freebies | Require trigger plus permission source. | | Universal clock creep | Cloc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1816,
+      "line_end": 1816,
+      "locator_heading_or_symbol": "Decision: D12 defines cadence, declaration, method/target, preview, commitment, resolution, consequence routing, state delta, reaction, transition.",
+      "excerpt_sha256": "a4a2c4684e385febe673ec86f5358b6b7f0e55221cf0609f2aae9f1a49f5f4b0",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cDecision: D12 defines cadence, declaration, method/target, preview, commitment, resolution, consequence routing, state delta, reaction, transition.\u201d. Distinguishing context: \u201cRisk: donor timing conversion may over-normalize. Mitigation: functional mapping ladder. ### DDR-D12-007 \u2014 Ten-checkpoint procedure grammar Decision: D12 defines cadence, declaration, method/target, preview, co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1877,
+      "line_end": 1877,
+      "locator_heading_or_symbol": "10. a malformed timing table that must quarantine.",
+      "excerpt_sha256": "794889f73d08ec8e7b3e43a14619708efae418aef28f28c7d3328942c69edba3",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c10. a malformed timing table that must quarantine.\u201d. Distinguishing context: \u201c5. a ritual and counter-ritual with overdraw risk; 6. a platform crew emergency with actor-scale and platform-scale action; 7. an exploration hazard using a donor dungeon turn; 8. a source-local boss phase scri\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 40,
+      "line_end": 40,
+      "locator_heading_or_symbol": "\"cost_risk_preview_checkpoint\",",
+      "excerpt_sha256": "77a5656fb4b1ca330197f71a0a38dc16e23b99e4368b950eaa2d3df1530b190b",
+      "matched_terms": [
+        "preview"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"cost_risk_preview_checkpoint\",\u201d. Distinguishing context: \u201c], \"procedure_checkpoints\": [ \"cadence_checkpoint\", \"declaration_checkpoint\", \"method_target_checkpoint\", \"cost_risk_preview_checkpoint\", \"commitment_checkpoint\", \"resolution_checkpoint\", \"consequence_routing_c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 128,
+      "line_end": 128,
+      "locator_heading_or_symbol": "\"hidden_pressure_markers_do_not_reveal_hidden_truth\",",
+      "excerpt_sha256": "2bc428e88f58ce93b59976994bbcd44936034451a63a03da797288c5ac2c52bd",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"hidden_pressure_markers_do_not_reveal_hidden_truth\",\u201d. Distinguishing context: \u201c\"action_windows_not_donor_turns\", \"reactions_require_trigger_and_permission\", \"clock_like_systems_routed_by_function\", \"D12_owns_handoff_timing_not_D13_D18_procedure\", \"record_shapes_not_final_runtime_schemas\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-00_exploration_travel_navigation_and_discovery_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 31,
+      "locator_heading_or_symbol": "D14 must not own D02 resolution math, D03 resource pool definitions, D05 full method taxonomy, D07 harm/exposure mechanics, D08 actor body/form-state doctrine, D09 object/vehicle/s",
+      "excerpt_sha256": "f7e9d312ceec2796ed95a4c225af302878fe032d68d001d8203b3e886b848483",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD14 must not own D02 resolution math, D03 resource pool definitions, D05 full method taxonomy, D07 harm/exposure mechanics, D08 actor body/form-state doctrine, D09 object\u201d. Distinguishing context: \u201cD14 owns travel posture, route selection, navigation procedure, scouting procedure, mapping procedure, discovery procedure, site approach, site entry, watch procedure, ambush exposure, travel risk, environmenta\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-01_travel_posture_route_selection_and_known_state_review.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 31,
+      "line_end": 53,
+      "locator_heading_or_symbol": "Core posture families: speed, safety, stealth, scouting, mapping, tracking, foraging/resource search, concealment, diplomatic approach, survey/analysis, ritual sensing, sensor swee",
+      "excerpt_sha256": "c1d77ed1c0e71f45237c3f75884013f7d75a0a1c80a457f70fd57534b6edfd9d",
+      "matched_terms": [
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cCore posture families: speed, safety, stealth, scouting, mapping, tracking, foraging/resource search, concealment, diplomatic approach, survey/analysis, ritual sensing, s\u201d. Distinguishing context: \u201c## Posture checkpoint Travel posture is a declaration of priority, not a generic bonus. Posture changes what is easier, harder, visible, missed, exposed, delayed, protected, or handed off. Core posture families\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 41,
+      "line_end": 63,
+      "locator_heading_or_symbol": "The declared posture modifies exposure, visibility, blind spots, delay, discovery opportunities, and owner-file handoffs. It is not a generic bonus system.",
+      "excerpt_sha256": "4e53c271723e5ecc395ebd2f456979480bf7ab284e170fa4d7cefe343385dc94",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThe declared posture modifies exposure, visibility, blind spots, delay, discovery opportunities, and owner-file handoffs. It is not a generic bonus system. ## Environment\u201d. Distinguishing context: \u201cD14 checks navigation only when direction, route, position, pursuit, map accuracy, or destination sense is uncertain, contested, hidden, distorted, false, dangerous, pursuit-sensitive, or otherwise risky. If th\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-03_discovery_scouting_mapping_and_information_state_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 55,
+      "locator_heading_or_symbol": "A Discovery Opportunity is a lawful chance for exploration to surface party-facing information, route-state, map-state, hazard-state, site-state, or owner-file pressure. A discover",
+      "excerpt_sha256": "033268d2aa34563b7847f70c9e87a16d3249158e363ccae65d4f9e05d1453c37",
+      "matched_terms": [
+        "correction",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cA Discovery Opportunity is a lawful chance for exploration to surface party-facing information, route-state, map-state, hazard-state, site-state, or owner-file pressure. \u201d. Distinguishing context: \u201cThis file defines how travel and exploration create discovery opportunities and map-state updates while preserving D10 world-state authority and D11 hidden-state presentation boundaries. ## Discovery Opportunit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-04_exploration_context_profiles_site_entry_watches_and_ambush_exposure.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 59,
+      "locator_heading_or_symbol": "Each profile identifies movement logic, route forms, posture pressures, discovery types, hazard/encounter triggers, map-state concerns, watch/ambush exposure concerns, resource/exp",
+      "excerpt_sha256": "ee2c7e576ee8301a143d70b8a6538dfb709250a24986b2351bc869c6efa0b1d7",
+      "matched_terms": [
+        "quarantine",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEach profile identifies movement logic, route forms, posture pressures, discovery types, hazard/encounter triggers, map-state concerns, watch/ambush exposure concerns, re\u201d. Distinguishing context: \u201cThis file defines Exploration Context Profiles and special transition tools for site entry, watches, and ambush exposure. Profiles are routing/procedure templates, not full subsystems. ## Profile structure Each\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-05_travel_risk_resource_pressure_hazards_encounters_and_transition_handoffs.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 29,
+      "line_end": 61,
+      "locator_heading_or_symbol": "Examples: fatigue, weather exposure, corruption exposure, toxic exposure, hostile atmosphere, spiritual/domain pressure, affliction risk, radiation-like hazard, psychic or reality ",
+      "excerpt_sha256": "9ffffa1fe984d7281ad8bd4978f3fe96a264cf433fd7a788e61eff5c80e6bc19",
+      "matched_terms": [
+        "corruption",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cExamples: fatigue, weather exposure, corruption exposure, toxic exposure, hostile atmosphere, spiritual/domain pressure, affliction risk, radiation-like hazard, psychic o\u201d. Distinguishing context: \u201cExamples: supplies, fuel, power, heat/strain, light, air/environment support, ritual stability, medicine, mount endurance, companion burden, crew attention, tool durability, platform maintenance, time, favors, \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 56,
+      "locator_heading_or_symbol": "# D14-06 \u2014 Source-Local Travel, Donor Exploration Mapping, Quarantine, and Escalation",
+      "excerpt_sha256": "b371819968dfd888ffc49d4569b22c613947d8950ef84835471bb945dc6dfded",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D14-06 \u2014 Source-Local Travel, Donor Exploration Mapping, Quarantine, and Escalation Status: doctrine-draft / Phase 1 native doctrine continuation Version: `0.1.0-d14-ge\u201d. Distinguishing context: \u201c# D14-06 \u2014 Source-Local Travel, Donor Exploration Mapping, Quarantine, and Escalation Status: doctrine-draft / Phase 1 native doctrine continuation Version: `0.1.0-d14-generated` Generated: 2026-06-02 Layer: D1\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 32,
+      "line_end": 129,
+      "locator_heading_or_symbol": "current_status: active | completed | transitioned | blocked | quarantined | escalated | archived",
+      "excerpt_sha256": "4fa247b754c157e31af87924e6a0d55ca390773b1a0bf73a8316618c75bdb4e1",
+      "matched_terms": [
+        "archive",
+        "correction",
+        "quarantine",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201ccurrent_status: active | completed | transitioned | blocked | quarantined | escalated | archived ``` ## Travel Posture Record ```yaml travel_posture_record: posture_famil\u201d. Distinguishing context: \u201cactive_interval_refs: [] discovery_refs: [] pressure_refs: [] owner_file_handoffs: [] source_local_boundary: string | null current_status: active | completed | transitioned | blocked | quarantined | escalated |\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 185,
+      "line_end": 196,
+      "locator_heading_or_symbol": "mapped_d14_element: posture | route_area | interval | discovery | map_state | pressure | site_entry | watch | context_profile | source_local | quarantine | escalation",
+      "excerpt_sha256": "206b3794f09b89624971dce59610908d963b690253d2958bc3e1093a1641a8e2",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cmapped_d14_element: posture | route_area | interval | discovery | map_state | pressure | site_entry | watch | context_profile | source_local | quarantine | escalation law\u201d. Distinguishing context: \u201cdonor_label: string donor_function_summary: string donor_spatial_assumption: string | null donor_timing_assumption: string | null state_changed_or_revealed: [] mapped_d14_element: posture | route_area | interva\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 69,
+      "locator_heading_or_symbol": "D02 owns uncertainty resolution. D03 owns resource pools and overdraw. D05 owns methods. D06 owns Techniques/domains. D07 owns harm/exposure. D08 owns actor substrate. D09 owns obj",
+      "excerpt_sha256": "b96c995a7caec608e5e8b21227760ece53d5f29f42297e4fd6a473f02408311c",
+      "matched_terms": [
+        "quarantine",
+        "sensing",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD02 owns uncertainty resolution. D03 owns resource pools and overdraw. D05 owns methods. D06 owns Techniques/domains. D07 owns harm/exposure. D08 owns actor substrate. D0\u201d. Distinguishing context: \u201cD14 is integration-ready only if travel/exploration intent, posture, route/area, known-state review, environmental PCR, movement intervals, discovery, map-state updates, pressure, site entry, watch/ambush expos\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 23,
+      "line_end": 47,
+      "locator_heading_or_symbol": "- `D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md`",
+      "excerpt_sha256": "8f76a89abc50beaa8540e506dfc896bc8bdd92ee0c72fa54b57732208d495502",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- `D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md` - `D14-07_records_not_final_schema_and_conversion_handoff_shapes.md` - `D14-09_integ\u201d. Distinguishing context: \u201c- `D14-01_travel_posture_route_selection_and_known_state_review.md` - `D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md` - `D14-03_discovery_scouting_mapping_and_information_state_boun\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 23,
+      "line_end": 143,
+      "locator_heading_or_symbol": "- `D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md`",
+      "excerpt_sha256": "1cd1a7a5e8b2260c1b918347e950e2dc2a8d0aee32905172921f1b437c62ac25",
+      "matched_terms": [
+        "quarantine",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- `D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md` - `D14-07_records_not_final_schema_and_conversion_handoff_shapes.md` - `D14-09_integ\u201d. Distinguishing context: \u201c- `D14-01_travel_posture_route_selection_and_known_state_review.md` - `D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md` - `D14-03_discovery_scouting_mapping_and_information_state_boun\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 188,
+      "line_end": 302,
+      "locator_heading_or_symbol": "The declared posture modifies exposure, visibility, blind spots, delay, discovery opportunities, and owner-file handoffs. It is not a generic bonus system.",
+      "excerpt_sha256": "b4c889bae129a177cd2a8ba76baad9b55297f03aecf187ca179599f436ce9ec3",
+      "matched_terms": [
+        "correction",
+        "corruption",
+        "quarantine",
+        "sensing",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cThe declared posture modifies exposure, visibility, blind spots, delay, discovery opportunities, and owner-file handoffs. It is not a generic bonus system. ## Environment\u201d. Distinguishing context: \u201cD14 checks navigation only when direction, route, position, pursuit, map accuracy, or destination sense is uncertain, contested, hidden, distorted, false, dangerous, pursuit-sensitive, or otherwise risky. If th\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 310,
+      "line_end": 423,
+      "locator_heading_or_symbol": "Used for planes, realms, spirit roads, pocket worlds, gates, unstable zones, dream spaces, cultivation territories, domain regions, and mythic thresholds. Movement logic: access, d",
+      "excerpt_sha256": "d7adf07e6c0dd40714a84961781594b5e94f81ab11d360e4302e856925c04f57",
+      "matched_terms": [
+        "corruption",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUsed for planes, realms, spirit roads, pocket worlds, gates, unstable zones, dream spaces, cultivation territories, domain regions, and mythic thresholds. Movement logic:\u201d. Distinguishing context: \u201cUsed for ships, vehicles, mechs, stations, derelicts, convoys, fleets, star lanes, debris fields, and mobile bases. Movement logic: vectors, sensors, crew roles, fuel/power pressure, system integrity, platform \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 443,
+      "line_end": 548,
+      "locator_heading_or_symbol": "## Quarantine triggers",
+      "excerpt_sha256": "942ee80d14de305264f7a1e0864c145ee896e1f965dc4720e89bc5c44a939c4d",
+      "matched_terms": [
+        "archive",
+        "quarantine",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c## Quarantine triggers Quarantine when safe mapping is blocked by extraction damage, missing map/diagram sidecar, unclear keyed relation, unsupported table structure, emb\u201d. Distinguishing context: \u201cUse source-local retention when a donor travel/exploration procedure is useful inside a converted source but unsafe to generalize: a dungeon's torch-and-wandering-monster procedure, keyed hex map, named realm's\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 567,
+      "line_end": 590,
+      "locator_heading_or_symbol": "D10_truth_owner: true",
+      "excerpt_sha256": "35ecf24b5e44dab0fd13f8805433cfa03a9ae45c2d55467baa32823c33823212",
+      "matched_terms": [
+        "correction",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD10_truth_owner: true D11_presentation_owner: true ``` ## Discovery Opportunity Record ```yaml discovery_opportunity_record: discovery_source: posture | navigation | scou\u201d. Distinguishing context: \u201cenvironmental_pressure_hidden_present: true | false | unknown affects_navigation: true | false | unknown affects_discovery: true | false | unknown affects_resource_or_exposure: true | false | unknown D02_resolu\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 646,
+      "line_end": 730,
+      "locator_heading_or_symbol": "mapped_d14_element: posture | route_area | interval | discovery | map_state | pressure | site_entry | watch | context_profile | source_local | quarantine | escalation",
+      "excerpt_sha256": "6dcea07e4c96c1a499c301be4211700772574b6c1db2b4bea53155bf55c74f09",
+      "matched_terms": [
+        "quarantine",
+        "sensing",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cmapped_d14_element: posture | route_area | interval | discovery | map_state | pressure | site_entry | watch | context_profile | source_local | quarantine | escalation law\u201d. Distinguishing context: \u201cdonor_label: string donor_function_summary: string donor_spatial_assumption: string | null donor_timing_assumption: string | null state_changed_or_revealed: [] mapped_d14_element: posture | route_area | interva\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 16,
+      "line_end": 27,
+      "locator_heading_or_symbol": "\"D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md\",",
+      "excerpt_sha256": "986c4592168c42c97d8a6b340b4b7469022a713e43b36c62fd67e4e05aa241ef",
+      "matched_terms": [
+        "quarantine",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md\", \"D14-07_records_not_final_schema_and_conversion_handoff_shapes.md\", \"D14-09_integrati\u201d. Distinguishing context: \u201c\"D14-01_travel_posture_route_selection_and_known_state_review.md\", \"D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md\", \"D14-03_discovery_scouting_mapping_and_information_state_boundari\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 21,
+      "line_end": 23,
+      "locator_heading_or_symbol": "D10 records what the world remembers: factions, law, economy, relationships, reputation, hidden truth, rumors, unresolved pressure, and world-state queues. D12 defines scene cadenc",
+      "excerpt_sha256": "c480941b68fa38297a23f582daf5bb3ee23a5e505d83985477191df4a455d219",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD10 records what the world remembers: factions, law, economy, relationships, reputation, hidden truth, rumors, unresolved pressure, and world-state queues. D12 defines sc\u201d. Distinguishing context: \u201cD15 is the doctrine layer for organized social operation. It governs how factions, institutions, relationships, debts, obligations, territorial claims, law authorities, guilds, sects, corporations, kingdoms, pa\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 74,
+      "line_end": 77,
+      "locator_heading_or_symbol": "- D07 harm, corruption, or injury consequences;",
+      "excerpt_sha256": "3996c2c4b22005e13fd4dd0c223eaded9b78f87c97f385942744406849994533",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 harm, corruption, or injury consequences; - D08 actor personhood and substrate doctrine; - D09 object, relic, platform, or tool state; - D10 world-state contents, h\u201d. Distinguishing context: \u201c- D02 resolution math; - D03 resource pool definitions; - D04 advancement gates or breakthroughs; - D05 full method / skill taxonomy; - D06 Technique, Principle, oath, or domain-expression mechanics; - D07 harm\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 147,
+      "line_end": 153,
+      "locator_heading_or_symbol": "- D10 owns stored world-state, public belief, hidden truth, rumor, law records, relationship records, and unresolved pressure queues.",
+      "excerpt_sha256": "ecc76ac589c84da208596346ba8ed5206c08974c55b3f43beab8cb153f86e95b",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D10 owns stored world-state, public belief, hidden truth, rumor, law records, relationship records, and unresolved pressure queues. - D15 domain control is not D06 doma\u201d. Distinguishing context: \u201c## 8. Anti-drift controls embedded in this file - D15 does not become arbitrary faction AI. Significant institutional action requires a lawful trigger, initiator, target, goal, scale, method, leverage, cost/ris\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 184,
+      "line_end": 192,
+      "locator_heading_or_symbol": "- quarantined",
+      "excerpt_sha256": "81c35f496a8044834b3ce8c9081604af989b1f65e72dfae774c894f8f9a47349",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantined - escalated - source-local Numeric tracks or clocks may be used only when source-local, owner-file supported, or later canonized. ## 9. Corpus-scale donor r\u201d. Distinguishing context: \u201c- completed_with_cost - partially_successful - failed - settled - retired - quarantined - escalated - source-local Numeric tracks or clocks may be used only when source-local, owner-file supported, or later can\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 106,
+      "line_end": 176,
+      "locator_heading_or_symbol": "- regional \u2014 affects multiple settlements, stations, branches, factions, or territories;",
+      "excerpt_sha256": "afabaa342821870b16722c7783c4ae2e4b909576bd8f70ea7d99f5bb3c15ca78",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "migration",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- regional \u2014 affects multiple settlements, stations, branches, factions, or territories; - campaign-scale \u2014 affects arcs, seasons, large polities, wars, migrations, or lo\u201d. Distinguishing context: \u201c- personal \u2014 affects one actor or narrow relationship; - group \u2014 affects a party, crew, cell, household, squad, or small group; - local \u2014 affects a location, district, facility, site, sect hall, station, or nei\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-03_operation_resolution_standing_shifts_pressure_lifecycle_and_consequence_routing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 31,
+      "line_end": 121,
+      "locator_heading_or_symbol": "- quarantine or escalation.",
+      "excerpt_sha256": "effb53e2d2f1349c5acd569fb939816820dbe75be310f47873e4e0432c32054c",
+      "matched_terms": [
+        "branch",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine or escalation. D15 does not require one universal Operation roll. It asks which procedure the Operation entered and routes the outcome back into standing, pr\u201d. Distinguishing context: \u201c- D13 Project result; - D15 operation interval; - D17 acquisition / requisition outcome; - D18 campaign-scale handoff; - source-local procedure; - quarantine or escalation. D15 does not require one universal Op\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-03_operation_resolution_standing_shifts_pressure_lifecycle_and_consequence_routing.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 182,
+      "line_end": 207,
+      "locator_heading_or_symbol": "Partial success may produce access with scrutiny, debt reduced but not cleared, rumor slowed but not killed, treaty accepted by one faction branch, legal charge deferred but not di",
+      "excerpt_sha256": "413d5ec4425ca553747499aba19466da2ab3573521e09a74a3d48769b01a07fb",
+      "matched_terms": [
+        "branch",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPartial success may produce access with scrutiny, debt reduced but not cleared, rumor slowed but not killed, treaty accepted by one faction branch, legal charge deferred \u201d. Distinguishing context: \u201c## 8. Partial outcomes D15 treats partial outcomes as meaningful institutional movement. Partial success may produce access with scrutiny, debt reduced but not cleared, rumor slowed but not killed, treaty accep\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-04_operation_profiles_institutional_behavior_relationship_procedure_and_domain_operations.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 29,
+      "line_end": 143,
+      "locator_heading_or_symbol": "Primary handoffs: D05 for methods; D10 for relationships, public belief, rumors, hidden truth; D11 for presentation; D13 if interval-scale reputation work is required; D17 if gifts",
+      "excerpt_sha256": "ddc1bff021de6e6336764add865a7f7dce9393460efc267118e5862a86eb3821",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "promotion",
+        "release",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPrimary handoffs: D05 for methods; D10 for relationships, public belief, rumors, hidden truth; D11 for presentation; D13 if interval-scale reputation work is required; D1\u201d. Distinguishing context: \u201cCommon methods: apology, service, gift, public statement, private assurance, mediation, shared risk, favor repayment, damage control, slander, insult, betrayal, rumor campaign, source-local custom. Common outco\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-05_institutional_capacity_concurrent_operations_pressure_movement_and_conflict.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 23,
+      "line_end": 23,
+      "locator_heading_or_symbol": "Unsupported institutional action must be blocked, delayed, weakened, complicated, converted to a Project, made source-local, quarantined, or escalated.",
+      "excerpt_sha256": "23d3c5e047582ab9673c450b215cba72d3797f4929cc78728e7e762beb408a93",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUnsupported institutional action must be blocked, delayed, weakened, complicated, converted to a Project, made source-local, quarantined, or escalated.\u201d. Distinguishing context: \u201c## 2. Core rule An organized actor may operate only within its plausible reach, capacity, knowledge, access, jurisdiction, resources, relationships, and current pressure state. Unsupported institutional action \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-05_institutional_capacity_concurrent_operations_pressure_movement_and_conflict.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 106,
+      "line_end": 140,
+      "locator_heading_or_symbol": "- quarantine;",
+      "excerpt_sha256": "14f659970b17cfa3a19a5b3bf04d6b51c66168aa0c07a959ef20b93daea4d7c7",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine; - escalation. This applies to NPC factions and player organizations equally. ## 6. Pressure decay Pressure may decay when: - time passes without reinforceme\u201d. Distinguishing context: \u201c- relationship damage; - public scrutiny; - counter-operation opening; - operation split; - operation failure; - quarantine; - escalation. This applies to NPC factions and player organizations equally. ## 6. Pr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 102,
+      "locator_heading_or_symbol": "# D15-06 \u2014 Source-Local Faction, Donor Institutional Mapping, Quarantine, and Escalation",
+      "excerpt_sha256": "55aa8618611424ebdb8d3c8740855d42f8948caa374f40224d83cdc8db0b0265",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D15-06 \u2014 Source-Local Faction, Donor Institutional Mapping, Quarantine, and Escalation Status: doctrine-draft / native doctrine foundation continuation Version: `v0.1.0\u201d. Distinguishing context: \u201c# D15-06 \u2014 Source-Local Faction, Donor Institutional Mapping, Quarantine, and Escalation Status: doctrine-draft / native doctrine foundation continuation Version: `v0.1.0-d15-doctrine-pack` Generated: 2026-06-0\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 129,
+      "line_end": 163,
+      "locator_heading_or_symbol": "- single reputation tracks as social truth;",
+      "excerpt_sha256": "cfc43baffdd877d85f58792304b6fe8b310fe83d9da7a0e9943fdd81999b76e0",
+      "matched_terms": [
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- single reputation tracks as social truth; - heat tracks as universal legal pressure; - contact lists as free resources; - guild rank as automatic capability; - sect con\u201d. Distinguishing context: \u201cRejected imports include: - faction clocks as universal procedure; - faction turns as default institutional timing; - renown scores as universal standing; - single reputation tracks as social truth; - heat trac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

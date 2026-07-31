@@ -1,0 +1,843 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-32",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 437,
+      "line_end": 456,
+      "locator_heading_or_symbol": "contains terms like rng_result, model_output, narration_output as keys",
+      "excerpt_sha256": "07a279bb3889df3db9d05510c62f6dc8e95ba03d0da61143e94cfb8c4e5e4e65",
+      "matched_terms": [
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ccontains terms like rng_result, model_output, narration_output as keys to reject. \"\"\" _ASSEMBLY_FUNCTION_NAMES = [ \"assemble_context_packet\", \"assemble_and_serialize_cont\u201d. Distinguishing context: \u201cclass TestSourceConstraints: \"\"\"Verify the assembly shell does not contain forbidden runtime authority terms. Checks only the Slice 5 assembly functions' source, excluding the FORBIDDEN_ASSEMBLY_PAYLOAD_KEYS fr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 1,
+      "locator_heading_or_symbol": "\"\"\"Tests for PR-6 Slice 6 \u2014 context packet audit and size estimate helpers.\"\"\"",
+      "excerpt_sha256": "b2714c18848ef2f110b99b77adba589ef42d121e5a9b0557883e62e4495707cd",
+      "matched_terms": [
+        "context packet"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for PR-6 Slice 6 \u2014 context packet audit and size estimate helpers.\"\"\"\u201d. Distinguishing context: \u201c\"\"\"Tests for PR-6 Slice 6 \u2014 context packet audit and size estimate helpers.\"\"\" from __future__ import annotations import inspect from types import MappingProxyType\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 392,
+      "line_end": 395,
+      "locator_heading_or_symbol": "serialized[\"rng_result\"] = {\"roll\": 5}",
+      "excerpt_sha256": "fd22964a3f52c16739a8d735b40f23139fee1ae4e3810f43e6d36906c2609591",
+      "matched_terms": [
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cserialized[\"rng_result\"] = {\"roll\": 5} serialized[\"model_output\"] = \"text\" report = audit_serialized_context_packet(serialized) assert report.forbidden_key_hits == (\"mode\u201d. Distinguishing context: \u201cassert \"non_authority_seal_missing_or_empty\" in report.warnings assert report.non_authority_seal_present is False def test_forbidden_serialized_keys_sorted_and_warn(self) -> None: serialized = serialize_context\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 456,
+      "line_end": 456,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "748fb109ecbf36d902634a7118772c0f8a21e09b2b11547febfcef0e7adc610d",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"apply_delta\", \"mutate_state\", \"roll_dice\", \"generate_narration\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", ] def test_forbidden_execution_terms_absent_from_audit_helpers(self) -> \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_6_context_packet_compiler_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 368,
+      "line_end": 368,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "748fb109ecbf36d902634a7118772c0f8a21e09b2b11547febfcef0e7adc610d",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"apply_delta\", \"mutate_state\", \"roll_dice\", \"generate_narration\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"model_output\", \"narration_output\", ]\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 122,
+      "line_end": 122,
+      "locator_heading_or_symbol": "\"durable_truth_claim_present\",",
+      "excerpt_sha256": "368a7c9d77be3accb2c4f0ce3d04a93e41ac201a3d3afc89d8f8a530e6770bf2",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"durable_truth_claim_present\",\u201d. Distinguishing context: \u201c\"forbidden_authority_field_present\", \"hidden_information_claim_present\", \"state_mutation_claim_present\", \"event_commit_claim_present\", \"random_result_claim_present\", \"durable_truth_claim_present\", \"packet_warni\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 446,
+      "line_end": 451,
+      "locator_heading_or_symbol": "def test_evaluator_flags_durable_truth_keys_as_failed() -> None:",
+      "excerpt_sha256": "6678a1196c291bd3edf246914fb9119355df90856d0091bb83d251405b6d4555",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_evaluator_flags_durable_truth_keys_as_failed() -> None: case = _make_case({\"canon_fact\": \"earth is round\"}) result = evaluate_model_boundary_case(case) assert re\u201d. Distinguishing context: \u201cassert result.status == \"failed\" assert \"random_result_claim_present\" in result.violation_codes assert \"forbidden_authority_field_present\" in result.violation_codes def test_evaluator_flags_durable_truth_keys_a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 506,
+      "line_end": 506,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "08f0f4f6623103a7ff2c0b29d6bdee135e849c1a408b804b244db4956289c94e",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 344,
+      "line_end": 397,
+      "locator_heading_or_symbol": "assert result.run_snapshot.all_passed is True",
+      "excerpt_sha256": "1aad18976651705321110da8f1092a34a84f5f1751fa949a4f7c6d48e8a2f17f",
+      "matched_terms": [
+        "replay",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert result.run_snapshot.all_passed is True def test_orchestrator_hard_violation_suite_evaluates_failures(self) -> None: catalog = create_model_boundary_static_fixture_\u201d. Distinguishing context: \u201cresult = run_model_boundary_captured_fixture_evaluation( run_ref=\"catalog-test-run\", run_label=\"Catalog Test Run\", suites=list(catalog.suites), ) assert result.run_snapshot.all_passed is True def test_orchestra\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_11.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 293,
+      "line_end": 323,
+      "locator_heading_or_symbol": "def test_omits_report_snapshots(self, default_manifest):",
+      "excerpt_sha256": "b11c3c5518964416d2d4ec1ac6561246922f66561a8b06b2fead35efed95f542",
+      "matched_terms": [
+        "replay",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_omits_report_snapshots(self, default_manifest): result = serialize_model_boundary_evaluation_harness_closure_manifest( default_manifest, ) assert \"report_snapsho\u201d. Distinguishing context: \u201cresult = serialize_model_boundary_evaluation_harness_closure_manifest( default_manifest, ) assert \"suite_results\" not in result def test_omits_report_snapshots(self, default_manifest): result = serialize_model_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_2.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 499,
+      "line_end": 499,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "08f0f4f6623103a7ff2c0b29d6bdee135e849c1a408b804b244db4956289c94e",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_3.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 781,
+      "line_end": 781,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "08f0f4f6623103a7ff2c0b29d6bdee135e849c1a408b804b244db4956289c94e",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 151,
+      "line_end": 151,
+      "locator_heading_or_symbol": "\"\"\"Non-empty raw captured text is accepted as inert evidence.\"\"\"",
+      "excerpt_sha256": "4a0a46ccf700f8408ec2dd43cb34a0953f1853484ee05df51b7011674cbe05ef",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Non-empty raw captured text is accepted as inert evidence.\"\"\"\u201d. Distinguishing context: \u201cfixture = _make_fixture(evaluator_notes=[\"note-a\", \"note-b\"]) assert fixture.evaluator_notes == (\"note-a\", \"note-b\") def test_captured_output_fixture_accepts_non_empty_raw_captured_text() -> None: \"\"\"Non-empty \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_4.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 416,
+      "line_end": 416,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "08f0f4f6623103a7ff2c0b29d6bdee135e849c1a408b804b244db4956289c94e",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_5.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 839,
+      "line_end": 839,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "08f0f4f6623103a7ff2c0b29d6bdee135e849c1a408b804b244db4956289c94e",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_6.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 691,
+      "line_end": 691,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "748fb109ecbf36d902634a7118772c0f8a21e09b2b11547febfcef0e7adc610d",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 27,
+      "locator_heading_or_symbol": "\"\"\"Tests for PR-7 Slice 7 \u2014 Captured Fixture Assertion Report Snapshot.\"\"\"",
+      "excerpt_sha256": "15ce5f6213ed4abe22d58c6018b486a27029073f0bbfca179508108514539c94",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for PR-7 Slice 7 \u2014 Captured Fixture Assertion Report Snapshot.\"\"\" from __future__ import annotations from dataclasses import FrozenInstanceError from pathlib imp\u201d. Distinguishing context: \u201c\"\"\"Tests for PR-7 Slice 7 \u2014 Captured Fixture Assertion Report Snapshot.\"\"\" from __future__ import annotations from dataclasses import FrozenInstanceError from pathlib import Path from types import MappingProxyT\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 172,
+      "line_end": 289,
+      "locator_heading_or_symbol": "def _make_valid_snapshot(",
+      "excerpt_sha256": "77e57d1bb5ff0872163ff441cc5a3d49c351efcd90800d54ec32b5b7fbb12732",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef _make_valid_snapshot( *, report_ref: str = \"report-1\", suite_result: ModelBoundaryCapturedFixtureAssertionSuiteResult | None = None, metadata: dict[str, Any] | None =\u201d. Distinguishing context: \u201csuite_ref=suite_ref, suite_label=suite_label, specs=specs, metadata=metadata ) return assert_model_boundary_captured_fixture_assertion_suite(suite) def _make_valid_snapshot( *, report_ref: str = \"report-1\", sui\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 300,
+      "line_end": 407,
+      "locator_heading_or_symbol": "snapshot = _make_valid_snapshot()",
+      "excerpt_sha256": "529272aba8ed148f2b8987a3a78b75f3d8f288fbbb1da6c80c2bb22a34599c3d",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201csnapshot = _make_valid_snapshot() payload = serialize_model_boundary_captured_fixture_assertion_report_snapshot( snapshot ) for key in ( \"spec_refs\", \"case_refs\", \"expect\u201d. Distinguishing context: \u201cassert isinstance(payload[\"violation_counts\"], dict) def test_tuple_fields_serialize_as_lists() -> None: \"\"\"Tuple fields serialize as lists.\"\"\" snapshot = _make_valid_snapshot() payload = serialize_model_bounda\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 426,
+      "line_end": 545,
+      "locator_heading_or_symbol": "def test_snapshot_rejects_count_sum_mismatch() -> None:",
+      "excerpt_sha256": "3bc007466abb2fe44dee94ff4d06133190a8f1ba84b52500d0a97355cfbc5be3",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_snapshot_rejects_count_sum_mismatch() -> None: \"\"\"passed_specs + failed_specs must equal total_specs.\"\"\" suite_result = _make_suite_result() with pytest.raises(M\u201d. Distinguishing context: \u201c), source_suite_result=suite_result, ) def test_snapshot_rejects_count_sum_mismatch() -> None: \"\"\"passed_specs + failed_specs must equal total_specs.\"\"\" suite_result = _make_suite_result() with pytest.raises(Mo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 564,
+      "line_end": 683,
+      "locator_heading_or_symbol": "def test_snapshot_rejects_source_suite_ref_mismatch() -> None:",
+      "excerpt_sha256": "af5a8f3ca6b3fe1394f6d65b2ed4649ec72ef20e24f6ae09490db546c57b6c63",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_snapshot_rejects_source_suite_ref_mismatch() -> None: \"\"\"suite_ref must match source_suite_result.suite_ref.\"\"\" suite_result = _make_suite_result() with pytest.r\u201d. Distinguishing context: \u201c), source_suite_result=\"not-a-result\", # type: ignore[arg-type] ) def test_snapshot_rejects_source_suite_ref_mismatch() -> None: \"\"\"suite_ref must match source_suite_result.suite_ref.\"\"\" suite_result = _make_su\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 710,
+      "line_end": 822,
+      "locator_heading_or_symbol": "create_model_boundary_captured_fixture_assertion_report_snapshot(",
+      "excerpt_sha256": "2018abcc7acb88c73537608beec8de2a2d215f9e12e796b2ad979f7427493ecd",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ccreate_model_boundary_captured_fixture_assertion_report_snapshot( report_ref=\"report-1\", suite_result=\"not-a-result\", # type: ignore[arg-type] ) def test_factory_rejects_\u201d. Distinguishing context: \u201cdef test_factory_rejects_non_suite_result_input() -> None: \"\"\"Factory rejects non-suite-result input.\"\"\" with pytest.raises(ModelBoundaryCapturedFixtureAssertionReportError): create_model_boundary_captured_fixt\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_7.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 847,
+      "line_end": 914,
+      "locator_heading_or_symbol": "snapshot = create_model_boundary_captured_fixture_assertion_report_snapshot(",
+      "excerpt_sha256": "c048426afa0f733ba8a30158b020abea09be75b14854ad800da9c1cee166a74f",
+      "matched_terms": [
+        "replay",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201csnapshot = create_model_boundary_captured_fixture_assertion_report_snapshot( report_ref=\"report-1\", suite_result=suite_result ) assert snapshot.packet_warning_case_refs =\u201d. Distinguishing context: \u201cexpectation=_make_expectation(expected_status=\"passed\"), ), ] ) suite_result = assert_model_boundary_captured_fixture_assertion_suite(suite) snapshot = create_model_boundary_captured_fixture_assertion_report_sn\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 29,
+      "locator_heading_or_symbol": "\"\"\"Tests for PR-7 Slice 8 \u2014 Captured Fixture Evaluation Run Snapshot.\"\"\"",
+      "excerpt_sha256": "4082fdf012501c591b6260677b8750e16773848140996d2940b727aa1d7e7a48",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"Tests for PR-7 Slice 8 \u2014 Captured Fixture Evaluation Run Snapshot.\"\"\" from __future__ import annotations from dataclasses import FrozenInstanceError from pathlib impor\u201d. Distinguishing context: \u201c\"\"\"Tests for PR-7 Slice 8 \u2014 Captured Fixture Evaluation Run Snapshot.\"\"\" from __future__ import annotations from dataclasses import FrozenInstanceError from pathlib import Path from types import MappingProxyTyp\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 175,
+      "line_end": 184,
+      "locator_heading_or_symbol": "def _make_report_snapshot(",
+      "excerpt_sha256": "0f2fc2942364d4a07cf0e706c9ce8c1a59f3a1793dac0e930ede590eca6e18c5",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef _make_report_snapshot( *, report_ref: str = \"report-1\", suite_result: ModelBoundaryCapturedFixtureAssertionSuiteResult | None = None, metadata: dict[str, Any] | None \u201d. Distinguishing context: \u201csuite_ref=suite_ref, suite_label=suite_label, specs=specs, metadata=metadata ) return assert_model_boundary_captured_fixture_assertion_suite(suite) def _make_report_snapshot( *, report_ref: str = \"report-1\", su\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 255,
+      "line_end": 360,
+      "locator_heading_or_symbol": "def _make_valid_run_snapshot(",
+      "excerpt_sha256": "65ec5d6f0363fe7928e6045af80e34e9246d53aed51cdee8eaf26ca210f7a47d",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef _make_valid_run_snapshot( *, run_ref: str = \"run-1\", run_label: str = \"Run One\", reports: list[ModelBoundaryCapturedFixtureAssertionReportSnapshot] | None = None, met\u201d. Distinguishing context: \u201csuite_label=suite_label, specs=[warn_spec], ) def _make_valid_run_snapshot( *, run_ref: str = \"run-1\", run_label: str = \"Run One\", reports: list[ModelBoundaryCapturedFixtureAssertionReportSnapshot] | None = Non\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 385,
+      "line_end": 503,
+      "locator_heading_or_symbol": "snapshot = _make_valid_run_snapshot()",
+      "excerpt_sha256": "88ad84d7eb2591443f05112dd87023eb3a3139ce47626745e9e2b8cd8e51c340",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201csnapshot = _make_valid_run_snapshot() payload = serialize_model_boundary_captured_fixture_evaluation_run_snapshot( snapshot ) for key in ( \"report_refs\", \"suite_refs\", \"s\u201d. Distinguishing context: \u201cassert list(payload.keys()) == expected_keys def test_serializer_returns_tuple_fields_as_lists() -> None: \"\"\"Tuple fields serialize as lists.\"\"\" snapshot = _make_valid_run_snapshot() payload = serialize_model_b\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 506,
+      "line_end": 624,
+      "locator_heading_or_symbol": "def test_snapshot_rejects_negative_total_reports() -> None:",
+      "excerpt_sha256": "9d7115d2531035d5cfad567549c291865dcba193372d5d71a665c66f535075cf",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_snapshot_rejects_negative_total_reports() -> None: \"\"\"Negative total_reports is rejected.\"\"\" report = _make_report_snapshot() kwargs = _base_run_snapshot_kwargs(\u201d. Distinguishing context: \u201ckwargs[\"run_label\"] = \" \" with pytest.raises(ModelBoundaryCapturedFixtureEvaluationRunError): ModelBoundaryCapturedFixtureEvaluationRunSnapshot(**kwargs) def test_snapshot_rejects_negative_total_reports() -> No\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 628,
+      "line_end": 744,
+      "locator_heading_or_symbol": "kwargs = _base_run_snapshot_kwargs(failing_report)",
+      "excerpt_sha256": "a5258e7730ae3ff891888cac243212500d1b2607fc3a17770c75e6391c623d22",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201ckwargs = _base_run_snapshot_kwargs(failing_report) kwargs[\"failed_specs\"] = kwargs[\"failed_specs\"] + 1 with pytest.raises(ModelBoundaryCapturedFixtureEvaluationRunError):\u201d. Distinguishing context: \u201c\"\"\"failed_specs must equal sum of report failed_specs.\"\"\" failing_report = _make_report_snapshot( report_ref=\"report-fail\", suite_result=_make_failing_suite_result(), ) kwargs = _base_run_snapshot_kwargs(failin\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 750,
+      "line_end": 867,
+      "locator_heading_or_symbol": "_make_report_snapshot(",
+      "excerpt_sha256": "3c2cc00eef3412a367d42906d9e635d62a1f3b77d12a24ada93e007ab914f27f",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c_make_report_snapshot( report_ref=\"report-pass\", suite_result=_make_passing_suite_result(), ), _make_report_snapshot( report_ref=\"report-fail\", suite_result=_make_failing\u201d. Distinguishing context: \u201cdef test_factory_derives_passed_specs_and_failed_specs() -> None: \"\"\"Factory derives passed_specs and failed_specs.\"\"\" reports = [ _make_report_snapshot( report_ref=\"report-pass\", suite_result=_make_passing_sui\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_8.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 871,
+      "line_end": 989,
+      "locator_heading_or_symbol": "_make_report_snapshot(",
+      "excerpt_sha256": "5b45ed6713227d920659a89cb61e7b2166561f0d4692590c15d04470ddcd39d8",
+      "matched_terms": [
+        "replay",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c_make_report_snapshot( report_ref=\"report-fail\", suite_result=_make_failing_suite_result(suite_ref=\"suite-fail\"), ), ] snapshot = _make_valid_run_snapshot(reports=reports\u201d. Distinguishing context: \u201creports = [ _make_report_snapshot( report_ref=\"report-pass\", suite_result=_make_passing_suite_result(suite_ref=\"suite-pass\"), ), _make_report_snapshot( report_ref=\"report-fail\", suite_result=_make_failing_suite\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 18,
+      "locator_heading_or_symbol": "ModelBoundaryCapturedFixtureAssertionReportSnapshot,",
+      "excerpt_sha256": "7f15bcaa96fb7feca2f8954c4ced6deefa97c8032355ea7baa685626198549bd",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cModelBoundaryCapturedFixtureAssertionReportSnapshot, ModelBoundaryCapturedFixtureAssertionSuite, ModelBoundaryCapturedFixtureAssertionSuiteResult, ModelBoundaryCapturedFi\u201d. Distinguishing context: \u201cfrom typing import Any import pytest from astra_runtime.domain import ( ModelBoundaryCapturedFixtureAssertionReportSnapshot, ModelBoundaryCapturedFixtureAssertionSuite, ModelBoundaryCapturedFixtureAssertionSuit\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 317,
+      "line_end": 331,
+      "locator_heading_or_symbol": "def test_report_snapshots_stored_as_tuple(self) -> None:",
+      "excerpt_sha256": "2ea1b79ef48cebbdc6707faf009ec4ca9e50ab94194a2a37646dce8155339346",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_report_snapshots_stored_as_tuple(self) -> None: result = run_model_boundary_captured_fixture_evaluation( run_ref=\"run-1\", run_label=\"Run One\", suites=[_make_pass\u201d. Distinguishing context: \u201crun_label=\"Run One\", suites=[_make_passing_suite()], ) assert isinstance(result.suite_results, tuple) def test_report_snapshots_stored_as_tuple(self) -> None: result = run_model_boundary_captured_fixture_evalua\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 468,
+      "line_end": 496,
+      "locator_heading_or_symbol": "def test_produces_one_report_snapshot_per_suite(self) -> None:",
+      "excerpt_sha256": "c2e0c49218cacaa1139d6f9b73d74d7b6837350465408a3963b303416171aed4",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_produces_one_report_snapshot_per_suite(self) -> None: s1 = _make_passing_suite(suite_ref=\"a\", suite_label=\"A\") s2 = _make_passing_suite(suite_ref=\"b\", suite_labe\u201d. Distinguishing context: \u201c) assert len(result.suite_results) == 2 assert result.suite_results[0].suite_ref == \"a\" assert result.suite_results[1].suite_ref == \"b\" def test_produces_one_report_snapshot_per_suite(self) -> None: s1 = _make_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 550,
+      "line_end": 653,
+      "locator_heading_or_symbol": "assert result.run_snapshot.all_passed is True",
+      "excerpt_sha256": "f18fac48868f63163868056d91405883a6f4c61b7c6c80606925fab5c1528f12",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert result.run_snapshot.all_passed is True def test_all_passed_false_when_any_suite_fails(self) -> None: s1 = _make_passing_suite(suite_ref=\"pass\", suite_label=\"Pass\")\u201d. Distinguishing context: \u201crun_ref=\"run-1\", run_label=\"Run One\", suites=[s1, s2], ) assert result.metadata[\"all_passed\"] is True assert result.run_snapshot.all_passed is True def test_all_passed_false_when_any_suite_fails(self) -> None: \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 677,
+      "line_end": 686,
+      "locator_heading_or_symbol": "def test_does_not_include_report_snapshots(self) -> None:",
+      "excerpt_sha256": "e200dedd05f8e069a04bfe7644bf9505e68e3662159a5e0c023550c1aa88bdb7",
+      "matched_terms": [
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-07_SESSION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_does_not_include_report_snapshots(self) -> None: result = run_model_boundary_captured_fixture_evaluation( run_ref=\"run-1\", run_label=\"Run One\", suites=[_make_pas\u201d. Distinguishing context: \u201cserialized = serialize_model_boundary_captured_fixture_evaluation_run_orchestrator_result( result ) assert \"suite_results\" not in serialized def test_does_not_include_report_snapshots(self) -> None: result = ru\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_7_model_boundary_evaluation_slice_9.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 739,
+      "line_end": 739,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "5c9c03919bc57a1373a8631f19048634643b1ec7533b3faea6805014d9280073",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"generate_narration\", \"call_model\", \"invoke_model\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 1,
+      "locator_heading_or_symbol": "\"\"\"PR-8 Increment 1 \u2014 tiny vertical slice static state fixture and visibility boundary tests.\"\"\"",
+      "excerpt_sha256": "6fadb02e01abe18f8082a61edbf6384cf413958ca78e12e1a974f2cf68230675",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"\"\"PR-8 Increment 1 \u2014 tiny vertical slice static state fixture and visibility boundary tests.\"\"\"\u201d. Distinguishing context: \u201c\"\"\"PR-8 Increment 1 \u2014 tiny vertical slice static state fixture and visibility boundary tests.\"\"\" from __future__ import annotations import json from pathlib import Path\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_1.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 347,
+      "line_end": 347,
+      "locator_heading_or_symbol": "\"replay_event\",",
+      "excerpt_sha256": "748fb109ecbf36d902634a7118772c0f8a21e09b2b11547febfcef0e7adc610d",
+      "matched_terms": [
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_event\",\u201d. Distinguishing context: \u201c\"roll_dice\", \"commit_event(\", \"apply_delta(\", \"mutate_state\", \"persist_state\", \"replay_event\", \"state_store.get\", \"event_ledger.get\", \"open(\", \".read_text(\", \".write_text(\",\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 131,
+      "locator_heading_or_symbol": "TinyVerticalSlicePostCommitNarrationPacketProjection,",
+      "excerpt_sha256": "7790b98c01d41e7802e56e11d3c1000fe1b319154dff839b8b0d9ee1a66eb237",
+      "matched_terms": [
+        "preview",
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cTinyVerticalSlicePostCommitNarrationPacketProjection, ContextPacketCompilerResult, ModelBoundaryEvaluationCase, ModelBoundaryEvaluationResult, apply_tiny_vertical_slice_c\u201d. Distinguishing context: \u201cimport pytest from astra_runtime.domain import ( TinyVerticalSliceError, TinyVerticalSliceModelBoundaryEvaluationFixture, TinyVerticalSlicePostCommitNarrationPacketProjection, ContextPacketCompilerResult, Model\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 135,
+      "line_end": 138,
+      "locator_heading_or_symbol": "def test_rejects_non_projection_input(self):",
+      "excerpt_sha256": "32729cdda905fa8988ea9c33596a7a49b78521973613232f4d668d0e6e191109",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_rejects_non_projection_input(self): with pytest.raises(TinyVerticalSliceError): build_tiny_vertical_slice_model_boundary_evaluation_fixture( projection=\"not-a-pr\u201d. Distinguishing context: \u201cbuild_tiny_vertical_slice_model_boundary_evaluation_fixture( projection=proj, fixture_ref=\"\", ) def test_rejects_non_projection_input(self): with pytest.raises(TinyVerticalSliceError): build_tiny_vertical_slice\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 222,
+      "line_end": 226,
+      "locator_heading_or_symbol": "def test_replay_authorized_false(self, default_fixture):",
+      "excerpt_sha256": "180b64656078b5dd09f909017503337fd991061ad00b33c544331e7d41fba080",
+      "matched_terms": [
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_replay_authorized_false(self, default_fixture): assert default_fixture.replay_authorized is False def test_rng_or_oracle_called_false(self, default_fixture): ass\u201d. Distinguishing context: \u201cassert default_fixture.event_appended is False def test_persistence_authorized_false(self, default_fixture): assert default_fixture.persistence_authorized is False def test_replay_authorized_false(self, default\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 295,
+      "line_end": 406,
+      "locator_heading_or_symbol": "def test_violation_has_durable_truth_claim(self, default_fixture):",
+      "excerpt_sha256": "31d1cda4f5bfabed27f81fff14c2c15320e2432c61a2f3c973e124f9a28f8c68",
+      "matched_terms": [
+        "projection",
+        "rng",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_violation_has_durable_truth_claim(self, default_fixture): assert \"durable_truth_claim_present\" in default_fixture.violation_result.violation_codes def test_viola\u201d. Distinguishing context: \u201cassert \"event_commit_claim_present\" in default_fixture.violation_result.violation_codes def test_violation_has_random_result_claim(self, default_fixture): assert \"random_result_claim_present\" in default_fixture\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 428,
+      "line_end": 448,
+      "locator_heading_or_symbol": "\"projection_ref\",",
+      "excerpt_sha256": "6719f0a20ead9fe95a399b064a77118dc6e90dbce86b16238c7954040413c1d9",
+      "matched_terms": [
+        "projection",
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"projection_ref\", \"candidate_model_ref\", \"expected_output_family\", \"packet_kind\", \"safe_candidate_output_keys\", \"violation_candidate_output_keys\", \"safe_status\", \"violati\u201d. Distinguishing context: \u201cexpected_keys = [ \"fixture_ref\", \"command_ref\", \"world_ref\", \"commit_ref\", \"projection_ref\", \"candidate_model_ref\", \"expected_output_family\", \"packet_kind\", \"safe_candidate_output_keys\", \"violation_candidate_ou\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_8_tiny_vertical_slice_increment_10.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 523,
+      "line_end": 529,
+      "locator_heading_or_symbol": "def test_replay_authorized_false_in_serialized(self, default_fixture):",
+      "excerpt_sha256": "9049f800094fec19e544f535c209562ffe46cf64d7163aeb85eb273a486d6b7d",
+      "matched_terms": [
+        "replay",
+        "rng"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_replay_authorized_false_in_serialized(self, default_fixture): serialized = serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible(default_fixtur\u201d. Distinguishing context: \u201cdef test_persistence_authorized_false_in_serialized(self, default_fixture): serialized = serialize_tiny_vertical_slice_model_boundary_evaluation_fixture_visible(default_fixture) assert serialized[\"persistence_a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}

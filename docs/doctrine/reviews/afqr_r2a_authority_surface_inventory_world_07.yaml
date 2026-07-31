@@ -1,0 +1,941 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-WORLD-07",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 113,
+      "line_end": 127,
+      "locator_heading_or_symbol": "setup_outcome: ready_for_scene | ready_for_project | ready_for_operation_interval | ready_with_risk | blocked_pending_requirement | contested_before_start | source_local_retained |",
+      "excerpt_sha256": "f928eefbc40950cec660bca6718dfebf9826b317d64889418b30d044bcbcecfd",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201csetup_outcome: ready_for_scene | ready_for_project | ready_for_operation_interval | ready_with_risk | blocked_pending_requirement | contested_before_start | source_local_\u201d. Distinguishing context: \u201ccost_risk_commitment_refs: [] affected_standing_refs: [] affected_pressure_refs: [] affected_obligation_claim_refs: [] affected_domain_posture_refs: [] setup_outcome: ready_for_scene | ready_for_project | ready\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 188,
+      "line_end": 204,
+      "locator_heading_or_symbol": "unsupported_concurrency_effect: delay | weakened_effect | cost_increase | pressure_exposure | internal_strain | relationship_damage | public_scrutiny | counter_opening | operation_",
+      "excerpt_sha256": "ba1a419189ca815069d9b9cb03e9d11f3b21964b79fc2e4e1540284b5c770986",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cunsupported_concurrency_effect: delay | weakened_effect | cost_increase | pressure_exposure | internal_strain | relationship_damage | public_scrutiny | counter_opening | \u201d. Distinguishing context: \u201ccapacity_constraints: - distance | limited_agents | internal_split | resource_shortage | legal_exposure | public_scrutiny | rival_pressure | domain_instability | poor_information | damaged_infrastructure | ongo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 28,
+      "line_end": 147,
+      "locator_heading_or_symbol": "- hidden truth;",
+      "excerpt_sha256": "113166af8e66bbf084ba2b42e8da38bd4059962227395cea815c51b9268c914a",
+      "matched_terms": [
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- hidden truth; - faction record; - standing record as stored state; - unresolved pressure queue; - domain or territory state; - source-local institutional fact. D15 owns\u201d. Distinguishing context: \u201c- world-state; - relationship state; - law record; - public belief; - rumor; - hidden truth; - faction record; - standing record as stored state; - unresolved pressure queue; - domain or territory state; - sour\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 150,
+      "line_end": 162,
+      "locator_heading_or_symbol": "- keep public belief separate from actual truth;",
+      "excerpt_sha256": "ee5d2cb96acb7fdfb2d1f1cb54d8c35a582e1d0ff5deb49e6fd207e4a967c507",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- keep public belief separate from actual truth; - keep records clearly marked as not final schema. ## 10. Generation risk-fix embedding map | Risk | Embedded locations |\u201d. Distinguishing context: \u201c- map donor institutional procedures by function, not label; - preserve bounded source-local institutional systems; - quarantine unsupported institutional systems; - escalate repeated or high-impact missing doc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 72,
+      "locator_heading_or_symbol": "7. `D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md`",
+      "excerpt_sha256": "20135183c3bd1ee7ee1622c215d4a550762404e588f9bee3c45e535c8b77bf9b",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c7. `D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md` 8. `D15-07_records_not_final_schema_and_conversion_handoff_shapes.md` 9. `D15-09\u201d. Distinguishing context: \u201c2. `D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md` 3. `D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md` 4. `D15-03_operation_resolution_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 29,
+      "line_end": 109,
+      "locator_heading_or_symbol": "7. `D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md`",
+      "excerpt_sha256": "5d6cdcb85e815fca46b1ded0a1511be6d1034384eb86e5e9c6a59739f68713dc",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c7. `D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md` 8. `D15-07_records_not_final_schema_and_conversion_handoff_shapes.md` 9. `D15-09\u201d. Distinguishing context: \u201c2. `D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md` 3. `D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md` 4. `D15-03_operation_resolution_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 160,
+      "line_end": 163,
+      "locator_heading_or_symbol": "- D07 harm, corruption, or injury consequences;",
+      "excerpt_sha256": "3996c2c4b22005e13fd4dd0c223eaded9b78f87c97f385942744406849994533",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D07 harm, corruption, or injury consequences; - D08 actor personhood and substrate doctrine; - D09 object, relic, platform, or tool state; - D10 world-state contents, h\u201d. Distinguishing context: \u201c- D02 resolution math; - D03 resource pool definitions; - D04 advancement gates or breakthroughs; - D05 full method / skill taxonomy; - D06 Technique, Principle, oath, or domain-expression mechanics; - D07 harm\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 233,
+      "line_end": 239,
+      "locator_heading_or_symbol": "- D10 owns stored world-state, public belief, hidden truth, rumor, law records, relationship records, and unresolved pressure queues.",
+      "excerpt_sha256": "ecc76ac589c84da208596346ba8ed5206c08974c55b3f43beab8cb153f86e95b",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- D10 owns stored world-state, public belief, hidden truth, rumor, law records, relationship records, and unresolved pressure queues. - D15 domain control is not D06 doma\u201d. Distinguishing context: \u201c## 8. Anti-drift controls embedded in this file - D15 does not become arbitrary faction AI. Significant institutional action requires a lawful trigger, initiator, target, goal, scale, method, leverage, cost/ris\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 430,
+      "line_end": 438,
+      "locator_heading_or_symbol": "- quarantined",
+      "excerpt_sha256": "81c35f496a8044834b3ce8c9081604af989b1f65e72dfae774c894f8f9a47349",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantined - escalated - source-local Numeric tracks or clocks may be used only when source-local, owner-file supported, or later canonized. ## 9. Corpus-scale donor r\u201d. Distinguishing context: \u201c- completed_with_cost - partially_successful - failed - settled - retired - quarantined - escalated - source-local Numeric tracks or clocks may be used only when source-local, owner-file supported, or later can\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 555,
+      "line_end": 667,
+      "locator_heading_or_symbol": "- regional \u2014 affects multiple settlements, stations, branches, factions, or territories;",
+      "excerpt_sha256": "aac5aec113e511f5e3b3a13b1bc43d27eb7e4422e8294000114faa6758024550",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "migration",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- regional \u2014 affects multiple settlements, stations, branches, factions, or territories; - campaign-scale \u2014 affects arcs, seasons, large polities, wars, migrations, or lo\u201d. Distinguishing context: \u201c- personal \u2014 affects one actor or narrow relationship; - group \u2014 affects a party, crew, cell, household, squad, or small group; - local \u2014 affects a location, district, facility, site, sect hall, station, or nei\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 703,
+      "line_end": 757,
+      "locator_heading_or_symbol": "- quarantined;",
+      "excerpt_sha256": "8968da4dc6dc06b43fa9755fcfc5c8190e364052e7931bcf577f39a4c0e59be0",
+      "matched_terms": [
+        "branch",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantined; - escalated_owner_file_problem; - source_local_result. These are procedural states. D10 records the resulting world-state. D11 presents it. ## 4. Standing \u201d. Distinguishing context: \u201c- pressure_decayed; - pressure_escalated; - pressure_surfaced; - failed; - failed_with_consequence; - quarantined; - escalated_owner_file_problem; - source_local_result. These are procedural states. D10 records\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 818,
+      "line_end": 931,
+      "locator_heading_or_symbol": "Partial success may produce access with scrutiny, debt reduced but not cleared, rumor slowed but not killed, treaty accepted by one faction branch, legal charge deferred but not di",
+      "excerpt_sha256": "80b451a17f7c937962333a766f400757a26f4ecfc6c3b1ada3050c38a1c5792d",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPartial success may produce access with scrutiny, debt reduced but not cleared, rumor slowed but not killed, treaty accepted by one faction branch, legal charge deferred \u201d. Distinguishing context: \u201c## 8. Partial outcomes D15 treats partial outcomes as meaningful institutional movement. Partial success may produce access with scrutiny, debt reduced but not cleared, rumor slowed but not killed, treaty accep\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 939,
+      "line_end": 1027,
+      "locator_heading_or_symbol": "Common methods: public performance, rumor spread, rumor suppression, evidence release, blackmail, counter-narrative, sponsorship, symbolic act, media/bulletin/herald network, sect ",
+      "excerpt_sha256": "ef6da53cc41e11161a39d4665fce33f4f9e187723f291a804b0ce9856fa52f3e",
+      "matched_terms": [
+        "branch",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "release",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cCommon methods: public performance, rumor spread, rumor suppression, evidence release, blackmail, counter-narrative, sponsorship, symbolic act, media/bulletin/herald netw\u201d. Distinguishing context: \u201c## 7. Influence / Rumor / Propaganda Profile Used for public opinion, rumor control, social campaigns, reputation shifts, information suppression, propaganda, exposure, scandal, narrative counter-messaging, and\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1110,
+      "line_end": 1144,
+      "locator_heading_or_symbol": "- quarantine;",
+      "excerpt_sha256": "14f659970b17cfa3a19a5b3bf04d6b51c66168aa0c07a959ef20b93daea4d7c7",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- quarantine; - escalation. This applies to NPC factions and player organizations equally. ## 6. Pressure decay Pressure may decay when: - time passes without reinforceme\u201d. Distinguishing context: \u201c- relationship damage; - public scrutiny; - counter-operation opening; - operation split; - operation failure; - quarantine; - escalation. This applies to NPC factions and player organizations equally. ## 6. Pr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1216,
+      "line_end": 1319,
+      "locator_heading_or_symbol": "<!-- BEGIN D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md -->",
+      "excerpt_sha256": "a346cf4beaad6242414d14156c236f9847acba5ada2aa55863a7e57c2fcc2fcf",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c<!-- BEGIN D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md --> # D15-06 \u2014 Source-Local Faction, Donor Institutional Mapping, Quaranti\u201d. Distinguishing context: \u201c<!-- END D15-05_institutional_capacity_concurrent_operations_pressure_movement_and_conflict.md --> <!-- BEGIN D15-06_source_local_faction_donor_institutional_mapping_quarantine_and_escalation.md --> # D15-06 \u2014 \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1346,
+      "line_end": 1383,
+      "locator_heading_or_symbol": "- single reputation tracks as social truth;",
+      "excerpt_sha256": "6671d0d89a9c0930ad8d32911ca63582db3bc7318e77c658aab54bfb2878c8f8",
+      "matched_terms": [
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- single reputation tracks as social truth; - heat tracks as universal legal pressure; - contact lists as free resources; - guild rank as automatic capability; - sect con\u201d. Distinguishing context: \u201cRejected imports include: - faction clocks as universal procedure; - faction turns as default institutional timing; - renown scores as universal standing; - single reputation tracks as social truth; - heat trac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1500,
+      "line_end": 1514,
+      "locator_heading_or_symbol": "setup_outcome: ready_for_scene | ready_for_project | ready_for_operation_interval | ready_with_risk | blocked_pending_requirement | contested_before_start | source_local_retained |",
+      "excerpt_sha256": "f928eefbc40950cec660bca6718dfebf9826b317d64889418b30d044bcbcecfd",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201csetup_outcome: ready_for_scene | ready_for_project | ready_for_operation_interval | ready_with_risk | blocked_pending_requirement | contested_before_start | source_local_\u201d. Distinguishing context: \u201ccost_risk_commitment_refs: [] affected_standing_refs: [] affected_pressure_refs: [] affected_obligation_claim_refs: [] affected_domain_posture_refs: [] setup_outcome: ready_for_scene | ready_for_project | ready\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1575,
+      "line_end": 1591,
+      "locator_heading_or_symbol": "unsupported_concurrency_effect: delay | weakened_effect | cost_increase | pressure_exposure | internal_strain | relationship_damage | public_scrutiny | counter_opening | operation_",
+      "excerpt_sha256": "ba1a419189ca815069d9b9cb03e9d11f3b21964b79fc2e4e1540284b5c770986",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cunsupported_concurrency_effect: delay | weakened_effect | cost_increase | pressure_exposure | internal_strain | relationship_damage | public_scrutiny | counter_opening | \u201d. Distinguishing context: \u201ccapacity_constraints: - distance | limited_agents | internal_split | resource_shortage | legal_exposure | public_scrutiny | rival_pressure | domain_instability | poor_information | damaged_infrastructure | ongo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1645,
+      "line_end": 1764,
+      "locator_heading_or_symbol": "- hidden truth;",
+      "excerpt_sha256": "113166af8e66bbf084ba2b42e8da38bd4059962227395cea815c51b9268c914a",
+      "matched_terms": [
+        "quarantine",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- hidden truth; - faction record; - standing record as stored state; - unresolved pressure queue; - domain or territory state; - source-local institutional fact. D15 owns\u201d. Distinguishing context: \u201c- world-state; - relationship state; - law record; - public belief; - rumor; - hidden truth; - faction record; - standing record as stored state; - unresolved pressure queue; - domain or territory state; - sour\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_combined_faction_relationship_domain_and_institutional_operations_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1767,
+      "line_end": 1779,
+      "locator_heading_or_symbol": "- keep public belief separate from actual truth;",
+      "excerpt_sha256": "ee5d2cb96acb7fdfb2d1f1cb54d8c35a582e1d0ff5deb49e6fd207e4a967c507",
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- keep public belief separate from actual truth; - keep records clearly marked as not final schema. ## 10. Generation risk-fix embedding map | Risk | Embedded locations |\u201d. Distinguishing context: \u201c- map donor institutional procedures by function, not label; - preserve bounded source-local institutional systems; - quarantine unsupported institutional systems; - escalate repeated or high-impact missing doc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 12,
+      "line_end": 78,
+      "locator_heading_or_symbol": "\"quarantined_construct_pending_later_doctrine\",",
+      "excerpt_sha256": "a358fd760e1fed1a0f2c2ecc02863af3aa1696130ca32d597ea59d8f2eb6a0eb",
+      "matched_terms": [
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"quarantined_construct_pending_later_doctrine\", \"escalated_doctrine_problem\" ], \"core_objects\": [ \"organized_actor\", \"standing\", \"pressure\", \"obligation_claim\", \"operatio\u201d. Distinguishing context: \u201c\"architecture\": \"Standing\\u2013Pressure\\u2013Operation Architecture\", \"lawful_outcomes\": [ \"direct_astra_mapping\", \"normalized_astra_mapping\", \"source_local_retained_construct\", \"quarantined_construct_pending_l\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-00_opposition_creature_encounter_and_hazard_construction_owner_boundaries.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 34,
+      "line_end": 83,
+      "locator_heading_or_symbol": "-> quarantine or escalation if doctrine is missing",
+      "excerpt_sha256": "ceb8f17aad7973e5a6eff4a20fc27d80aa119b5a163db9607a380c6b4adffa9e",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c-> quarantine or escalation if doctrine is missing ``` ## What D16 owns D16 owns opposition construction procedure, creature/NPC encounter-facing profile construction, ri\u201d. Distinguishing context: \u201c-> opposition scale and substrate review -> role / objective / behavior posture -> pressure profile construction -> owner-file handoffs for actor, object, harm, ability, resource, world-state, economy -> encoun\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-01_opposition_anatomy_threat_function_scale_role_objective_and_posture.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 79,
+      "line_end": 91,
+      "locator_heading_or_symbol": "Pressure families include harm_pressure, control_pressure, mobility_pressure, area_denial, resource_pressure, time_pressure, social_pressure, legal_pressure, fear_or_dread_pressure",
+      "excerpt_sha256": "32a26f8c2f74a4352eab138bbad9664ba01781514f1a2f326347cb65856830a5",
+      "matched_terms": [
+        "corruption",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPressure families include harm_pressure, control_pressure, mobility_pressure, area_denial, resource_pressure, time_pressure, social_pressure, legal_pressure, fear_or_drea\u201d. Distinguishing context: \u201c## 7. Pressure Profile Every opposition construct identifies a pressure profile. Pressure families include harm_pressure, control_pressure, mobility_pressure, area_denial, resource_pressure, time_pressure, soci\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-02_threat_profile_construction_capability_pressure_scaling_and_readiness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 19,
+      "line_end": 95,
+      "locator_heading_or_symbol": "1. Evidence and source checkpoint",
+      "excerpt_sha256": "150452d7832fb3067476aad13d005287f8aa8e9a34bc1b2aed3cee5a365b600b",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c1. Evidence and source checkpoint 2. Threat function checkpoint 3. Scale and role checkpoint 4. Objective and posture checkpoint 5. Capability pressure checkpoint 6. Cons\u201d. Distinguishing context: \u201cD16 threat profile construction turns an opposition construct into a usable, auditable encounter-facing profile without adopting donor statblocks, challenge ratings, level math, action economy, hit points, armo\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-03_encounter_composition_objectives_mixed_opposition_and_noncombat_threats.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 39,
+      "line_end": 61,
+      "locator_heading_or_symbol": "Every encounter declares one primary pressure and any secondary pressures. Primary pressure may be harm, control, route denial, resource drain, time pressure, social pressure, lega",
+      "excerpt_sha256": "c0dea95c27a5b68aec60803f210f76a572fee356077cc2c6d7c8dc10d327a06c",
+      "matched_terms": [
+        "corruption",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery encounter declares one primary pressure and any secondary pressures. Primary pressure may be harm, control, route denial, resource drain, time pressure, social pres\u201d. Distinguishing context: \u201cPurpose prevents \u201cmonsters appear and fight\u201d from becoming default. ## Primary pressure Every encounter declares one primary pressure and any secondary pressures. Primary pressure may be harm, control, route de\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-05_scaling_morale_behavior_recurrence_and_encounter_readiness.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 63,
+      "line_end": 63,
+      "locator_heading_or_symbol": "Before use, D16 checks whether source is identified, threat function is clear, scale and role are declared, objective and posture are defined where relevant, pressure profile is cl",
+      "excerpt_sha256": "1d445b45fdb4d9deb0bc7717bf3de6e40f1c99bc294f0c6fc4a16fc5f0707e57",
+      "matched_terms": [
+        "evidence"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cBefore use, D16 checks whether source is identified, threat function is clear, scale and role are declared, objective and posture are defined where relevant, pressure pro\u201d. Distinguishing context: \u201cD10 records persistent state. D15 owns institutional continuity when factional. D18 owns long-horizon campaign continuity and arc pacing. ## Encounter Readiness Gates Before use, D16 checks whether source is id\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1,
+      "line_end": 74,
+      "locator_heading_or_symbol": "# D16-06 \u2014 Source-Local Bestiary Systems, Donor Opposition Mapping, Quarantine, and Escalation",
+      "excerpt_sha256": "5d7805d5873fdc2d602266b34ac7271e2c5c6b960cbf1f03ed51cbf7448f2d6f",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c# D16-06 \u2014 Source-Local Bestiary Systems, Donor Opposition Mapping, Quarantine, and Escalation Status: `doctrine-pack` Version: `v0.1` Layer: D16 / operational procedure \u201d. Distinguishing context: \u201c# D16-06 \u2014 Source-Local Bestiary Systems, Donor Opposition Mapping, Quarantine, and Escalation Status: `doctrine-pack` Version: `v0.1` Layer: D16 / operational procedure doctrine Primary scope: Opposition, crea\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 36,
+      "line_end": 85,
+      "locator_heading_or_symbol": "readiness_state: ready_for_scene_use | ready_with_owner_file_handoffs | source_local_ready | requires_schema_support | requires_harm_support | requires_actor_support | requires_obj",
+      "excerpt_sha256": "4bfb62ac725224e1f6581251e41591416dcf19874a0782dc9dec46b3b1071881",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201creadiness_state: ready_for_scene_use | ready_with_owner_file_handoffs | source_local_ready | requires_schema_support | requires_harm_support | requires_actor_support | re\u201d. Distinguishing context: \u201cthreat_posture: string pressure_profile_refs: [] capability_pressure_refs: [] constraint_vulnerability_refs: [] threat_weight_ref: string | null readiness_state: ready_for_scene_use | ready_with_owner_file_hand\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 186,
+      "line_end": 194,
+      "locator_heading_or_symbol": "donor_evidence_type: statblock | hazard | trap | npc | encounter | table | vehicle | ship | mech | platform | boss | social_antagonist | security_system | mixed",
+      "excerpt_sha256": "6afebeee83540914499456e5c408118232c956133f1999be06ccf7218747a78f",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cdonor_evidence_type: statblock | hazard | trap | npc | encounter | table | vehicle | ship | mech | platform | boss | social_antagonist | security_system | mixed donor_fun\u201d. Distinguishing context: \u201c```yaml donor_opposition_mapping_record: record_type: donor_opposition_mapping donor_label: string donor_evidence_type: statblock | hazard | trap | npc | encounter | table | vehicle | ship | mech | platform | b\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 34,
+      "line_end": 116,
+      "locator_heading_or_symbol": "donor math rejected or preserved as evidence only",
+      "excerpt_sha256": "ef2d7b7fc8432ece3f03679f7c5181e2a9be1f4bfc9f65023b1b18c1b02d646f",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cdonor math rejected or preserved as evidence only readiness state assigned quarantine/escalation used when support is missing ``` ## Owner-file handoff checklist D16 must\u201d. Distinguishing context: \u201cencounter purpose declared when composing an encounter primary pressure declared independent opposition elements separated state-delta targets routed to owner files source-local boundary recorded where needed d\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16-README_manifest.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 26,
+      "line_end": 26,
+      "locator_heading_or_symbol": "D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md",
+      "excerpt_sha256": "1bb60f515779a2770b0e31918e09af33567493488c3ff2bc066253bae0b10c38",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md\u201d. Distinguishing context: \u201cD16-01_opposition_anatomy_threat_function_scale_role_objective_and_posture.md D16-02_threat_profile_construction_capability_pressure_scaling_and_readiness.md D16-03_encounter_composition_objectives_mixed_opposi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 26,
+      "line_end": 26,
+      "locator_heading_or_symbol": "D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md",
+      "excerpt_sha256": "1bb60f515779a2770b0e31918e09af33567493488c3ff2bc066253bae0b10c38",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md\u201d. Distinguishing context: \u201cD16-01_opposition_anatomy_threat_function_scale_role_objective_and_posture.md D16-02_threat_profile_construction_capability_pressure_scaling_and_readiness.md D16-03_encounter_composition_objectives_mixed_opposi\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 80,
+      "line_end": 129,
+      "locator_heading_or_symbol": "-> quarantine or escalation if doctrine is missing",
+      "excerpt_sha256": "ceb8f17aad7973e5a6eff4a20fc27d80aa119b5a163db9607a380c6b4adffa9e",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c-> quarantine or escalation if doctrine is missing ``` ## What D16 owns D16 owns opposition construction procedure, creature/NPC encounter-facing profile construction, ri\u201d. Distinguishing context: \u201c-> opposition scale and substrate review -> role / objective / behavior posture -> pressure profile construction -> owner-file handoffs for actor, object, harm, ability, resource, world-state, economy -> encoun\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 212,
+      "line_end": 329,
+      "locator_heading_or_symbol": "Pressure families include harm_pressure, control_pressure, mobility_pressure, area_denial, resource_pressure, time_pressure, social_pressure, legal_pressure, fear_or_dread_pressure",
+      "excerpt_sha256": "e8636dc2138391781fa8ae6c1c7ddbea8c1d63b5463d15b6422017bd16bdaab5",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cPressure families include harm_pressure, control_pressure, mobility_pressure, area_denial, resource_pressure, time_pressure, social_pressure, legal_pressure, fear_or_drea\u201d. Distinguishing context: \u201c## 7. Pressure Profile Every opposition construct identifies a pressure profile. Pressure families include harm_pressure, control_pressure, mobility_pressure, area_denial, resource_pressure, time_pressure, soci\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 376,
+      "line_end": 496,
+      "locator_heading_or_symbol": "Every encounter declares one primary pressure and any secondary pressures. Primary pressure may be harm, control, route denial, resource drain, time pressure, social pressure, lega",
+      "excerpt_sha256": "a6930d76b43d4f78568afbec6facb3735ff091b0b2c37d87066f201dd22f9e4f",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cEvery encounter declares one primary pressure and any secondary pressures. Primary pressure may be harm, control, route denial, resource drain, time pressure, social pres\u201d. Distinguishing context: \u201cPurpose prevents \u201cmonsters appear and fight\u201d from becoming default. ## Primary pressure Every encounter declares one primary pressure and any secondary pressures. Primary pressure may be harm, control, route de\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 510,
+      "line_end": 512,
+      "locator_heading_or_symbol": "Used when a companion, summon, familiar, controlled entity, drone, spirit, clone, pet, minion, or allied asset acts as opposition due to control, corruption, command conflict, host",
+      "excerpt_sha256": "3b03ef70575384145d951ca8cdd1cc087fcd224612d328e94cd482bfb43bce5e",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as owner_boundary_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cUsed when a companion, summon, familiar, controlled entity, drone, spirit, clone, pet, minion, or allied asset acts as opposition due to control, corruption, command conf\u201d. Distinguishing context: \u201cRejected imports: ship turns as Astra action economy, hull points as default HP, hardpoints as universal platform schema, vehicle speed/range math as Astra law, platform enemy as giant creature. ### Summon / Co\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "owner_boundary_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 589,
+      "line_end": 707,
+      "locator_heading_or_symbol": "Before use, D16 checks whether source is identified, threat function is clear, scale and role are declared, objective and posture are defined where relevant, pressure profile is cl",
+      "excerpt_sha256": "a594a8c6acad7aeccb31595d412a542dcacc23ffa2bfd35dfda2e1f8ceeea079",
+      "matched_terms": [
+        "evidence",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cBefore use, D16 checks whether source is identified, threat function is clear, scale and role are declared, objective and posture are defined where relevant, pressure pro\u201d. Distinguishing context: \u201cD10 records persistent state. D15 owns institutional continuity when factional. D18 owns long-horizon campaign continuity and arc pacing. ## Encounter Readiness Gates Before use, D16 checks whether source is id\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 721,
+      "line_end": 756,
+      "locator_heading_or_symbol": "primary_pressure: harm_pressure | control_pressure | mobility_pressure | area_denial | resource_pressure | time_pressure | social_pressure | legal_pressure | fear_or_dread_pressure",
+      "excerpt_sha256": "20b4a2d62e01616dd89d5cd14da6b2f01d79862c39c4e3b4850065e682d69afc",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cprimary_pressure: harm_pressure | control_pressure | mobility_pressure | area_denial | resource_pressure | time_pressure | social_pressure | legal_pressure | fear_or_drea\u201d. Distinguishing context: \u201c```yaml opposition_pressure_profile_record: record_type: opposition_pressure_profile pressure_profile_id: string opposition_ref: string primary_pressure: harm_pressure | control_pressure | mobility_pressure | a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 857,
+      "line_end": 946,
+      "locator_heading_or_symbol": "donor_evidence_type: statblock | hazard | trap | npc | encounter | table | vehicle | ship | mech | platform | boss | social_antagonist | security_system | mixed",
+      "excerpt_sha256": "a3f893b5c86683e3a2d3f54f352463cade912fb6de5d042eada8951dd66be6a5",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "promotion",
+        "quarantine",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cdonor_evidence_type: statblock | hazard | trap | npc | encounter | table | vehicle | ship | mech | platform | boss | social_antagonist | security_system | mixed donor_fun\u201d. Distinguishing context: \u201c```yaml donor_opposition_mapping_record: record_type: donor_opposition_mapping donor_label: string donor_evidence_type: statblock | hazard | trap | npc | encounter | table | vehicle | ship | mech | platform | b\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_combined_opposition_creature_encounter_and_hazard_construction_doctrine.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 991,
+      "line_end": 991,
+      "locator_heading_or_symbol": "quarantine unsupported opposition constructs",
+      "excerpt_sha256": "8f56ba74d2c26c95e18dcf4c75e7e31874bbd4237cea2ccf125245813e94c586",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cquarantine unsupported opposition constructs\u201d. Distinguishing context: \u201croute resistance, vulnerability, immunity, protection, threshold, and bypass pressure to owner files represent behavior, morale, retreat, surrender, and posture changes without universal morale tables support r\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/D16_opposition_creature_encounter_and_hazard_construction_doctrine_pack/D16_doctrine_pack/D16_pack_manifest.json",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 39,
+      "line_end": 113,
+      "locator_heading_or_symbol": "\"path\": \"D16_doctrine_pack/D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md\",",
+      "excerpt_sha256": "0332c43221ed7f6396852cdcd07b5a0a9e477040e316f1db917820f835b63493",
+      "matched_terms": [
+        "evidence",
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as conversion_handoff_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c\"path\": \"D16_doctrine_pack/D16-06_source_local_bestiary_donor_opposition_mapping_quarantine_and_escalation.md\", \"role\": \"doctrine\" }, { \"path\": \"D16_doctrine_pack/D16-07_\u201d. Distinguishing context: \u201c{ \"path\": \"D16_doctrine_pack/D16-05_scaling_morale_behavior_recurrence_and_encounter_readiness.md\", \"role\": \"doctrine\" }, { \"path\": \"D16_doctrine_pack/D16-06_source_local_bestiary_donor_opposition_mapping_quara\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "conversion_handoff_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-01_power_cost_context_and_world_memory.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 14,
+      "line_end": 58,
+      "locator_heading_or_symbol": "- instability or corruption load;",
+      "excerpt_sha256": "388a8a070bdf40931be86fdff7ea8fc7861785ad0b76d5d61460e2a417704a56",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c- instability or corruption load; - injury or condition; - attention drawn; - faction consequence; - relationship strain; - object wear or depletion; - legal exposure; - \u201d. Distinguishing context: \u201cPower in Astra must carry cost, limit, risk, requirement, opportunity cost, exposure, debt, instability, depletion, consequence, or identity pressure. Cost may appear as: - spent resource; - instability or corr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d02_doctrine_pack_v0_1/D02-01_d20_action_check_difficulty_and_modifiers.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 47,
+      "line_end": 47,
+      "locator_heading_or_symbol": "| Injury, condition, corruption, backlash pressure | D07 |",
+      "excerpt_sha256": "0093957fd275488d08a152671868b009651b5d408798e4a710b7422d61a5a5d7",
+      "matched_terms": [
+        "corruption"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201c| Injury, condition, corruption, backlash pressure | D07 |\u201d. Distinguishing context: \u201c| Attribute contribution | D01 | | Skill, method, training, research, tool operation | D05 | | Power/resource investment, fuel, overdraw, charges | D03 | | Advancement/tier/proof relevance | D04 | | Route, Tech\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d05_doctrine_pack_v0_1/D05-07_synthesis_and_multi_competency_interaction.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 15,
+      "line_end": 68,
+      "locator_heading_or_symbol": "Synthesis is a structured interaction between multiple capability sources. It does not stack roll bonuses. One source provides primary roll posture; other sources may provide secon",
+      "excerpt_sha256": "fc131fe2778c320b5793956d2392f9690b3b1cf3b2fc228c5441263baa979089",
+      "matched_terms": [
+        "corruption",
+        "evidence",
+        "seed"
+      ],
+      "matched_search_clusters": [
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "source_local_or_donor_example",
+      "semantic_review_summary": "This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cSynthesis is a structured interaction between multiple capability sources. It does not stack roll bonuses. One source provides primary roll posture; other sources may pro\u201d. Distinguishing context: \u201cHow should Astra handle multiple competencies interacting in one action, project, method, research track, profession pattern, or route-pressure event? ## Core synthesis law Synthesis is a structured interaction\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    },
+    {
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d06_doctrine_pack_v0_1/D06-08_profession_routes_lineages_schools_and_factions.md",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 13,
+      "line_end": 101,
+      "locator_heading_or_symbol": "D06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development Picks, brea",
+      "excerpt_sha256": "f537bd8f429b5da21e169194a00bfa279fff043762141de92ace9934b66d93b9",
+      "matched_terms": [
+        "archive",
+        "branch",
+        "corruption",
+        "reservation",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "generated_or_vendor_text",
+      "semantic_review_summary": "Repeated generated/template block: This is nonauthoritative source-local usage classified as terminology_pressure; it does not override R1 and routes corpus pressure only through review. Local construct: \u201cD06 does **not** own D03 Power Economy costs, carriers, Expressions, reservoirs, burdens, or confluence math; D04 proof sufficiency, level, tier, Awakening, Development P\u201d. Distinguishing context: \u201c## Standing D06 boundary D06 owns formal route identity, Path identity, Route Kernels, route facets, Route Feature Ledgers, Techniques, Principle / Concept route facets, route development, multipath / confluenc\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "terminology_pressure"
+    }
+  ]
+}

@@ -1,0 +1,1010 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CORE-30",
+  "status": "complete",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "surface_records": [],
+  "dismissed_hit_records": [
+    {
+      "path": "tests/test_runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 53,
+      "line_end": 53,
+      "locator_heading_or_symbol": "\"FAILURE, REJECTION, QUARANTINE, ESCALATION, AND UNSUPPORTED-SCOPE REVIEW\",",
+      "excerpt_sha256": "b24749861c1030361c0eb1cfe8cae05e26e0b8aed8975442bae1f1fb0cad5d22",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"FAILURE, REJECTION, QUARANTINE, ESCALATION, AND UNSUPPORTED-SCOPE REVIEW\",\u201d. Distinguishing context: \u201c\"RESULT SUBJECT-IDENTITY REVIEW\", \"RESULT TRACE AND REFERENCE REVIEW\", \"DECISION / FINAL-STAGE REVIEW\", \"INTERMEDIATE-STAGE FLAG CONSISTENCY\", \"SUCCESS-RESULT REVIEW\", \"FAILURE, REJECTION, QUARANTINE, ESCALATIO\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_4d_validation_integration_invariant_enforcement_skeleton_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 108,
+      "line_end": 113,
+      "locator_heading_or_symbol": "\"authorizes_replay_by_this_pr: false\",",
+      "excerpt_sha256": "566dad969f58c48b520b8a0bb60f9d220b4cfe9f1b3a0c0c46a65da6b225aaeb",
+      "matched_terms": [
+        "promotion",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"authorizes_replay_by_this_pr: false\", \"authorizes_resource_math_by_this_pr: false\", \"authorizes_model_integration_by_this_pr: false\", \"authorizes_live_play_by_this_pr: f\u201d. Distinguishing context: \u201c\"authorizes_invariant_evaluation_by_this_pr: false\", \"authorizes_state_mutation_by_this_pr: false\", \"authorizes_state_delta_application_by_this_pr: false\", \"authorizes_event_ledger_append_by_this_pr: false\", \"a\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_4f_validation_integration_residual_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 88,
+      "line_end": 120,
+      "locator_heading_or_symbol": "\"replay_authorized_by_this_pr: false\",",
+      "excerpt_sha256": "5a0ee8095dd5257bfe900d391f77ec02ab2a0c0a3d3ec3d196c585b0bc68e7fd",
+      "matched_terms": [
+        "promotion",
+        "replay"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"replay_authorized_by_this_pr: false\", \"command_execution_authorized_by_this_pr: false\", \"resource_math_authorized_by_this_pr: false\", \"consequence_application_authorized\u201d. Distinguishing context: \u201c\"state_delta_application_authorized_by_this_pr: false\", \"event_ledger_append_authorized_by_this_pr: false\", \"transaction_execution_authorized_by_this_pr: false\", \"actual_event_commitment_authorized_by_this_pr: \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5_resource_consequence_math_service_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 51,
+      "line_end": 168,
+      "locator_heading_or_symbol": "\"Separation of declaration, calculation, affordability, reservation, settlement, commitment, and persistence\",",
+      "excerpt_sha256": "647b4726f6a67b56871012e271beb035c3180de573f0a7248f9bce3b1d3d4418",
+      "matched_terms": [
+        "compensation",
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Separation of declaration, calculation, affordability, reservation, settlement, commitment, and persistence\", \"Cost timing and outcome policies\", \"Multi-term bundles, al\u201d. Distinguishing context: \u201c\"LLM is not the game engine\", \"RT-002 ownership and explicit non-ownership\", \"Resource-model requirements without final pools\", \"Planning taxonomies for resource, cost, and consequence families\", \"Cost lifecycl\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5_resource_consequence_math_service_plan.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 187,
+      "line_end": 202,
+      "locator_heading_or_symbol": "assert \"false_only_mutation_commitment_persistence_rng_model_authority_flags: true\" in registry",
+      "excerpt_sha256": "9570ad1e10b7e10dfe8053737c463abe137cf6c9b11bd5c53f1e8646f85e2973",
+      "matched_terms": [
+        "promotion",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"false_only_mutation_commitment_persistence_rng_model_authority_flags: true\" in registry assert \"decision_ledger_required_before_pr_5a: true\" in registry def test_\u201d. Distinguishing context: \u201cassert \"authorizes_consequence_application_by_this_pr: false\" in registry assert \"exact_stage_decision_family_policy_quantity_atomicity_dependency_vocabularies: true\" in registry assert \"dataclass_field_contrac\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 11,
+      "line_end": 47,
+      "locator_heading_or_symbol": "VISIBILITY_POLICIES,",
+      "excerpt_sha256": "286583389e6a9766485570fa41176bcf862365ec34eb57ca2cb758c4e71bf1be",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cVISIBILITY_POLICIES, InvalidResourceMathSubjectReferenceError, ResourceMathSubjectReference, create_resource_math_subject_reference, validate_resource_math_subject_refere\u201d. Distinguishing context: \u201cfrom astra_runtime.domain.resource_consequence_math import ( RESOURCE_MATH_OWNER_DOMAINS, RESOURCE_MATH_SUBJECT_ROLES, RESOURCE_MATH_SUBJECT_TYPES, VISIBILITY_POLICIES, InvalidResourceMathSubjectReferenceError,\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 114,
+      "line_end": 122,
+      "locator_heading_or_symbol": "def test_factory_rejects_invalid_visibility_policy() -> None:",
+      "excerpt_sha256": "3d0c95a12c4c15dae81ef3e044a1c819f715edbaaa050fff93c5fd41479a0e31",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_factory_rejects_invalid_visibility_policy() -> None: with pytest.raises(InvalidResourceMathSubjectReferenceError): create_resource_math_subject_reference( subjec\u201d. Distinguishing context: \u201csubject_role=\"primary_subject\", owner_domain=\"invalid_owner\", ) def test_factory_rejects_invalid_visibility_policy() -> None: with pytest.raises(InvalidResourceMathSubjectReferenceError): create_resource_math_s\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 244,
+      "line_end": 305,
+      "locator_heading_or_symbol": "visibility_policy=\"actor_visible\",",
+      "excerpt_sha256": "bf219166c0b20067f11bce5eac99fcf0392e783e6a37c833c7edcc06c0e140dd",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvisibility_policy=\"actor_visible\", unit_ref_id=\"unit-credit\", dimension_ref_id=\"dim-value\", provenance_refs=[\"prov-1\"], source_local=False, metadata={\"note\": \"ref\"}, ) as\u201d. Distinguishing context: \u201cresource_family=\"currency_like\", resource_key=\"credits\", owner_domain=\"RT002_resource_consequence_math\", source_label=\"credits\", source_aliases=[\"money\", \"funds\"], visibility_policy=\"actor_visible\", unit_ref_id\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 383,
+      "line_end": 383,
+      "locator_heading_or_symbol": "visibility_policy=\"hidden\",",
+      "excerpt_sha256": "3bcc00179ac8625f0410cb87d8232d46f61fe3a82aefd3da36a2aee78d4503f7",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvisibility_policy=\"hidden\",\u201d. Distinguishing context: \u201cmagnitude_text=\"10.50\", precision=2, conversion_policy=\"exact_conversion\", rounding_policy=\"round_nearest\", negative_value_policy=\"negative_values_allowed_by_source\", visibility_policy=\"hidden\", provenance_refs\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 444,
+      "line_end": 449,
+      "locator_heading_or_symbol": "def test_factory_rejects_invalid_visibility_policy_for_quantity() -> None:",
+      "excerpt_sha256": "0d7c8ab8e52846db88f8f9df0de72b67aad681fc4df7d0733862bab20ad25d22",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_factory_rejects_invalid_visibility_policy_for_quantity() -> None: with pytest.raises(InvalidQuantitySpecificationError): create_quantity_specification( quantity_\u201d. Distinguishing context: \u201crepresentation_kind=\"integer_exact\", negative_value_policy=\"allow_anything\", ) def test_factory_rejects_invalid_visibility_policy_for_quantity() -> None: with pytest.raises(InvalidQuantitySpecificationError): c\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 695,
+      "line_end": 723,
+      "locator_heading_or_symbol": "visibility_policy=\"actor_visible\",",
+      "excerpt_sha256": "bfdda326b781e5eabd893fa24ac5656a208fd5adc542faf7156faf60279c3045",
+      "matched_terms": [
+        "quarantine",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvisibility_policy=\"actor_visible\", dependency_ids=[\"dep-1\"], provenance_refs=[\"prov-1\"], metadata={\"note\": \"cost\"}, ) assert isinstance(term, CostTerm) assert term.term_i\u201d. Distinguishing context: \u201cvalue_mode=\"resource_quantity\", cost_family=\"activation\", owner_domain=\"RT002_resource_consequence_math\", timing_policy=\"pay_on_attempt\", outcome_policy=\"success\", visibility_policy=\"actor_visible\", dependency_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 839,
+      "line_end": 848,
+      "locator_heading_or_symbol": "def test_cost_term_factory_rejects_invalid_visibility_policy() -> None:",
+      "excerpt_sha256": "c7ff57940eae8f4a88b1730edf15faf42c7aae7db6c46977bb89f16300d829c2",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_cost_term_factory_rejects_invalid_visibility_policy() -> None: with pytest.raises(InvalidCostTermError): create_cost_term( term_id=\"term-1\", subject_binding_id=\"\u201d. Distinguishing context: \u201cowner_domain=\"RT002_resource_consequence_math\", outcome_policy=\"mystery\", ) def test_cost_term_factory_rejects_invalid_visibility_policy() -> None: with pytest.raises(InvalidCostTermError): create_cost_term( te\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 987,
+      "line_end": 1003,
+      "locator_heading_or_symbol": "visibility_policy=\"hidden\",",
+      "excerpt_sha256": "3b891d9637665730830ebb9cee5df312af61e2317cbce4251ca12cb78a55aab9",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cvisibility_policy=\"hidden\", dependency_ids=[\"dep-1\"], provenance_refs=[\"prov-1\"], metadata={\"note\": \"consequence\"}, ) assert isinstance(term, ConsequenceTerm) assert term\u201d. Distinguishing context: \u201cvalue_mode=\"resource_quantity\", consequence_family=\"loss\", owner_domain=\"RT002_resource_consequence_math\", timing_policy=\"pay_on_failure\", outcome_policy=\"failure\", visibility_policy=\"hidden\", dependency_ids=[\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1123,
+      "line_end": 1149,
+      "locator_heading_or_symbol": "PARTIAL_SETTLEMENT_POLICIES,",
+      "excerpt_sha256": "afe1cfb1079f89f873641572ee95ec710d4298c56705fe03fd0cfb9f1c36f8ea",
+      "matched_terms": [
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cPARTIAL_SETTLEMENT_POLICIES, CostBundle, InvalidCostBundleError, create_cost_bundle, validate_cost_bundle, ) def test_bundle_constants_are_frozensets() -> None: assert is\u201d. Distinguishing context: \u201cfrom astra_runtime.domain.resource_consequence_math import ( ATOMICITY_POLICIES, COST_TIMING_POLICIES, ORDERING_POLICIES, PARTIAL_SETTLEMENT_POLICIES, CostBundle, InvalidCostBundleError, create_cost_bundle, val\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1259,
+      "line_end": 1274,
+      "locator_heading_or_symbol": "def test_cost_bundle_factory_rejects_invalid_partial_settlement_policy() -> None:",
+      "excerpt_sha256": "6d992926a2ffde243595ff3c7c03f4abb3637fe0f6dab250cbcc6e13baf7c93c",
+      "matched_terms": [
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_cost_bundle_factory_rejects_invalid_partial_settlement_policy() -> None: with pytest.raises(InvalidCostBundleError): create_cost_bundle( bundle_id=\"bundle-1\", te\u201d. Distinguishing context: \u201cordering_policy=\"random_order\", owner_domain=\"RT002_resource_consequence_math\", ) def test_cost_bundle_factory_rejects_invalid_partial_settlement_policy() -> None: with pytest.raises(InvalidCostBundleError): cr\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1580,
+      "line_end": 1613,
+      "locator_heading_or_symbol": "state_projection_ref_ids=[\"proj-1\"],",
+      "excerpt_sha256": "2efc9e62b5a565c15c8ef58af79e9a4c5da0d977313d2f7289ce042bf80e8d08",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cstate_projection_ref_ids=[\"proj-1\"], resource_refs=[resource], quantity_specs=[quantity], cost_terms=[cost_term], cost_bundles=[cost_bundle], consequence_terms=[consequen\u201d. Distinguishing context: \u201crequest_id=\"req-1\", trace_ref_id=\"trace-1\", subject_refs=[subject], command_ref_id=\"cmd-1\", action_legality_ref_id=\"al-1\", state_projection_ref_ids=[\"proj-1\"], resource_refs=[resource], quantity_specs=[quantity\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1679,
+      "line_end": 1679,
+      "locator_heading_or_symbol": "state_projection_ref_ids=[\"proj-1\", \"\"],",
+      "excerpt_sha256": "ea1b35950b395e5f6f0ae4bde707c6636ad4fec039958036047240b39bb0139d",
+      "matched_terms": [
+        "projection"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cstate_projection_ref_ids=[\"proj-1\", \"\"],\u201d. Distinguishing context: \u201cwith pytest.raises(InvalidResourceMathRequestError): create_resource_math_request( request_id=\"req-1\", trace_ref_id=\"trace-1\", subject_refs=[_make_primary_subject()], state_projection_ref_ids=[\"proj-1\", \"\"], ) \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 1913,
+      "line_end": 1951,
+      "locator_heading_or_symbol": "policy_route=\"quarantine_required\",",
+      "excerpt_sha256": "2cce115622c1aaa8005864540fe2fb76c107e03c577846d454d1b853b5670514",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpolicy_route=\"quarantine_required\", ) quantity = create_quantity_specification( quantity_id=\"qty-1\", representation_kind=\"integer_exact\", ) with pytest.raises(InvalidReso\u201d. Distinguishing context: \u201cterm_id=\"term-1\", subject_binding_id=\"sub-1\", value_mode=\"policy_only\", cost_family=\"validation_blocked\", owner_domain=\"RT002_resource_consequence_math\", policy_route=\"quarantine_required\", ) quantity = create_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2069,
+      "line_end": 2069,
+      "locator_heading_or_symbol": "consequence_family=\"visibility_change\",",
+      "excerpt_sha256": "283554963542362d8c736bd2d2cfed7a8835e0659df25f924d72b5d90621ebe6",
+      "matched_terms": [
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cconsequence_family=\"visibility_change\",\u201d. Distinguishing context: \u201c) term_b = create_consequence_term( consequence_id=\"cons-1\", subject_binding_id=\"sub-1\", value_mode=\"policy_only\", consequence_family=\"visibility_change\", owner_domain=\"RT002_resource_consequence_math\", policy_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2138,
+      "line_end": 2249,
+      "locator_heading_or_symbol": "policy_route=\"quarantine_required\",",
+      "excerpt_sha256": "e23aab981b47962ac619a387ba8bbe60e0d3f7ee726a5d080420cd66434aea86",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cpolicy_route=\"quarantine_required\", dependency_ids=[\"unknown-dep\"], ) with pytest.raises(InvalidResourceMathRequestError): create_resource_math_request( request_id=\"req-1\u201d. Distinguishing context: \u201cterm_id=\"term-1\", subject_binding_id=\"sub-1\", value_mode=\"policy_only\", cost_family=\"validation_blocked\", owner_domain=\"RT002_resource_consequence_math\", policy_route=\"quarantine_required\", dependency_ids=[\"unk\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2259,
+      "line_end": 2275,
+      "locator_heading_or_symbol": "\"reservation_authorized\",",
+      "excerpt_sha256": "ba7639cbae2e4b886e35b9bcb6d92be543766ef8062ec1d5393a2e26b7d9bf1f",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"reservation_authorized\", \"settlement_authorized\", \"consequence_application_authorized\", \"mutation_authorized\", \"state_delta_application_authorized\", \"transaction_executi\u201d. Distinguishing context: \u201cassert serialized[\"metadata\"] is not request.metadata assert not isinstance(serialized[\"metadata\"], MappingProxyType) for field_name in [ \"calculation_executed\", \"affordability_executed\", \"reservation_authorize\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2371,
+      "line_end": 2371,
+      "locator_heading_or_symbol": "assert result.quarantined is False",
+      "excerpt_sha256": "27c455af78d4ee6088364ce89793c74e8e73dd40f92ec5d29c9f383de7839615",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert result.quarantined is False\u201d. Distinguishing context: \u201cassert result.request_id == \"req-1\" assert result.stage == \"calculation_ready_for_review\" assert result.decision == \"accepted_for_planning\" assert result.blocking is False assert result.trace_ref_id == \"trace-1\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2498,
+      "line_end": 2543,
+      "locator_heading_or_symbol": "def test_factory_rejects_non_bool_quarantined() -> None:",
+      "excerpt_sha256": "9c8775c20481aecab8f76f7647e16d7db47d1f00c9b8bf46fdd20e04c87809bf",
+      "matched_terms": [
+        "quarantine"
+      ],
+      "matched_search_clusters": [
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cdef test_factory_rejects_non_bool_quarantined() -> None: with pytest.raises(InvalidResourceMathResultError): create_resource_math_result( result_id=\"res-1\", request_id=\"r\u201d. Distinguishing context: \u201cblocking=\"no\", trace_ref_id=\"trace-1\", ) def test_factory_rejects_non_bool_quarantined() -> None: with pytest.raises(InvalidResourceMathResultError): create_resource_math_result( result_id=\"res-1\", request_id=\"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2746,
+      "line_end": 2762,
+      "locator_heading_or_symbol": "\"reservation_authorized\",",
+      "excerpt_sha256": "ba7639cbae2e4b886e35b9bcb6d92be543766ef8062ec1d5393a2e26b7d9bf1f",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"reservation_authorized\", \"settlement_authorized\", \"consequence_application_authorized\", \"mutation_authorized\", \"state_delta_application_authorized\", \"transaction_executi\u201d. Distinguishing context: \u201c@pytest.mark.parametrize( \"field_name\", [ \"calculation_executed\", \"affordability_executed\", \"reservation_authorized\", \"settlement_authorized\", \"consequence_application_authorized\", \"mutation_authorized\", \"state\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 2882,
+      "line_end": 2999,
+      "locator_heading_or_symbol": "\"reservation_authorized\",",
+      "excerpt_sha256": "cec448d21f789b73a95000af65e8380ab6c1d38b132dc1ccb353cc59512d85e6",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"reservation_authorized\", \"settlement_authorized\", \"consequence_application_authorized\", \"mutation_authorized\", \"state_delta_application_authorized\", \"transaction_executi\u201d. Distinguishing context: \u201cassert serialized[\"metadata\"] is not result.metadata assert not isinstance(serialized[\"metadata\"], MappingProxyType) for field_name in [ \"calculation_executed\", \"affordability_executed\", \"reservation_authorized\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3003,
+      "line_end": 3117,
+      "locator_heading_or_symbol": "assert proposal.visibility_policy == \"actor_visible\"",
+      "excerpt_sha256": "8904cc6a12b98349dd54307223864b7371d514ce9b4de110a42f268db9971dbc",
+      "matched_terms": [
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert proposal.visibility_policy == \"actor_visible\" assert proposal.rollback_accounting_refs == (\"rb-1\",) assert dict(proposal.metadata) == {\"note\": \"proposal\"} def test\u201d. Distinguishing context: \u201cproposal = _make_populated_proposal() assert isinstance(proposal, SettlementProposal) assert proposal.proposed_state_delta_refs == (\"delta-1\", \"delta-2\") assert len(proposal.dependencies) == 1 assert proposal.d\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3128,
+      "line_end": 3246,
+      "locator_heading_or_symbol": "with pytest.raises(InvalidSettlementProposalError):",
+      "excerpt_sha256": "026d0dbfc7373eb0b08ffbe50f9c378529193aa29c18030b6955a09c584cb558",
+      "matched_terms": [
+        "rollback",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cwith pytest.raises(InvalidSettlementProposalError): create_settlement_proposal( proposal_id=\"prop-1\", result_id=\"res-1\", proposed_state_delta_refs=[\"delta-1\"], validation\u201d. Distinguishing context: \u201ctrace_ref_id=\"trace-1\", ) def test_factory_rejects_validation_decision_not_passed() -> None: with pytest.raises(InvalidSettlementProposalError): create_settlement_proposal( proposal_id=\"prop-1\", result_id=\"res-\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3253,
+      "line_end": 3368,
+      "locator_heading_or_symbol": "rollback_accounting_refs=\"rb-1\",",
+      "excerpt_sha256": "2405a7ca44f184a7bd3992c2887b62560a84312c6e15bcb28b389bc2a0013005",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201crollback_accounting_refs=\"rb-1\", ) def test_factory_rejects_empty_string_inside_rollback_accounting_refs() -> None: with pytest.raises(InvalidSettlementProposalError): cr\u201d. Distinguishing context: \u201cresult_id=\"res-1\", proposed_state_delta_refs=[\"delta-1\"], validation_result_ref_id=\"val-res-1\", validation_decision=\"validation_passed\", trace_ref_id=\"trace-1\", rollback_accounting_refs=\"rb-1\", ) def test_facto\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3390,
+      "line_end": 3491,
+      "locator_heading_or_symbol": "with pytest.raises(InvalidSettlementProposalError):",
+      "excerpt_sha256": "420f7643e992a367f4cfa3ceeaf3b161e2aa93d0fd07267b01308d9c32a4b37b",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cwith pytest.raises(InvalidSettlementProposalError): create_settlement_proposal( proposal_id=\"prop-1\", result_id=result.result_id, proposed_state_delta_refs=[\"delta-1\"], v\u201d. Distinguishing context: \u201cblocking=False, trace_ref_id=\"trace-1\", validation_result_ref_id=\"val-res-1\", validation_decision=\"validation_failed\", ) with pytest.raises(InvalidSettlementProposalError): create_settlement_proposal( proposal_\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5a_resource_consequence_math_skeleton.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 3511,
+      "line_end": 3612,
+      "locator_heading_or_symbol": "SettlementProposal,",
+      "excerpt_sha256": "601c1f3809f30be900631a9f000a25465c44b6f5feb77cac115e9540d4cd9a63",
+      "matched_terms": [
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cSettlementProposal, VALIDATION_INTEGRATION_DECISIONS, VISIBILITY_POLICIES, create_cost_bundle, create_cost_term, create_consequence_term, create_quantity_specification, c\u201d. Distinguishing context: \u201cResourceMathError, ResourceMathRequest, ResourceMathResult, ResourceMathSubjectReference, ResourceReference, SettlementProposal, VALIDATION_INTEGRATION_DECISIONS, VISIBILITY_POLICIES, create_cost_bundle, create\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5b_resource_consequence_math_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 29,
+      "line_end": 135,
+      "locator_heading_or_symbol": "\"quarantined_for_review\",",
+      "excerpt_sha256": "5df69f8b349d37103e7dad664aae24f935ec75af2e93a741894c2a605688e192",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "rollback",
+        "settlement",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_for_review\", \"escalated_to_doctrine\", ], \"RESOURCE_MATH_DECISIONS\": [ \"accepted_for_planning\", \"normalized_for_planning\", \"source_local_retained\", \"requires_\u201d. Distinguishing context: \u201c\"policy_refs_declared\", \"dependency_refs_bound\", \"calculation_ready_for_review\", \"blocked_pending_validation\", \"blocked_pending_owner_handoff\", \"quarantined_for_review\", \"escalated_to_doctrine\", ], \"RESOURCE_MA\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5b_resource_consequence_math_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 218,
+      "line_end": 273,
+      "locator_heading_or_symbol": "\"no alternative is selected, and no settlement occurs\",",
+      "excerpt_sha256": "83dac0f938ca06f34035ee85f4c3b02eeb94ed4b583eef5ad894c9b6cd52c766",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "replay",
+        "rng",
+        "settlement",
+        "snapshot"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-07_SESSION",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"no alternative is selected, and no settlement occurs\", ]: assert phrase in text def test_request_result_proposal_linkage_false_only_factory_and_serialization() -> None: \u201d. Distinguishing context: \u201c\"binary-float authority is forbidden\", \"conversion and rounding are never implicit\", \"PR-5A performs no parsing or arithmetic\", \"They perform no affordability check and no consequence application\", \"CostBundle \u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 35,
+      "line_end": 136,
+      "locator_heading_or_symbol": "\"results and settlement proposals are not committed state\",",
+      "excerpt_sha256": "a9382ab5c5e75ed35e4144f267b1000a002d9aa4213120e6806f9f8b4f655f8b",
+      "matched_terms": [
+        "promotion",
+        "settlement",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"results and settlement proposals are not committed state\", \"validation_ready` is not `validation_passed\", \"no donor resource terminology becomes Astra law\", \"no runtime \u201d. Distinguishing context: \u201cdef test_backend_first_invariant_and_non_authority_boundary() -> None: text = read(ARTIFACT) for token in ( \"the LLM is not the game engine\", \"reference shapes are not calculations\", \"results and settlement pro\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5c_resource_consequence_math_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 172,
+      "line_end": 228,
+      "locator_heading_or_symbol": "\"reservation_authorized\",",
+      "excerpt_sha256": "ea56390f82806e01bb44b6f0579f61957c6e0b3c9a629013c42c19b8ddc6de93",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"reservation_authorized\", \"settlement_authorized\", \"consequence_application_authorized\", \"mutation_authorized\", \"state_delta_application_authorized\", \"transaction_executi\u201d. Distinguishing context: \u201cdef test_false_only_authority_review_lists_all_flags() -> None: text = read(ARTIFACT) for flag in ( \"calculation_executed\", \"affordability_executed\", \"reservation_authorized\", \"settlement_authorized\", \"conseque\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 27,
+      "line_end": 145,
+      "locator_heading_or_symbol": "\"quarantined_for_review\",",
+      "excerpt_sha256": "4bb2f3746d0006ca2aa4851e71b7057fe9e4e3573a1549ae4f8ed59a5c816a3e",
+      "matched_terms": [
+        "promotion",
+        "quarantine",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"quarantined_for_review\", \"escalated_to_doctrine\", ] RESOURCE_MATH_DECISIONS = [ \"accepted_for_planning\", \"normalized_for_planning\", \"source_local_retained\", \"requires_va\u201d. Distinguishing context: \u201c\"policy_refs_declared\", \"dependency_refs_bound\", \"calculation_ready_for_review\", \"blocked_pending_validation\", \"blocked_pending_owner_handoff\", \"quarantined_for_review\", \"escalated_to_doctrine\", ] RESOURCE_MATH\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 167,
+      "line_end": 265,
+      "locator_heading_or_symbol": "assert \"SettlementProposal` | `validation_decision` | `str` | required | must be `validation_passed`\" in validation_section",
+      "excerpt_sha256": "619813313515ffa91f80c3aef420a017f36b58ed4b45f9b48558d2fcc9cfcddc",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "rng",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cassert \"SettlementProposal` | `validation_decision` | `str` | required | must be `validation_passed`\" in validation_section assert \"Every other supplied validation decisi\u201d. Distinguishing context: \u201cassert \"`validation_posture` is removed\" in validation_section assert \"ResourceReference` and `ConsequenceTerm\" in validation_section assert \"VALIDATION_INTEGRATION_DECISIONS\" in validation_section assert \"Reso\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5d_resource_consequence_math_final_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 302,
+      "line_end": 383,
+      "locator_heading_or_symbol": "\"No settlement or alternative choice is executed\",",
+      "excerpt_sha256": "1abb021481a6bf3bb3b48eb96926ad14860cb24561dedbed6929179a0373d320",
+      "matched_terms": [
+        "projection",
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"No settlement or alternative choice is executed\", \"`best_effort_requested`\", \"`ordered_partial_allowed`\", \"`unordered_partial_allowed`\", \"`alternative_at_least_one`\", \"`\u201d. Distinguishing context: \u201c\"`bool` is rejected as an integer\", \"maximum_allowed_terms` is a declaration bound\", \"cannot be below `len(term_ids)`\", \"unique group IDs\", \"no term in more than one alternative group\", \"No settlement or altern\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 56,
+      "line_end": 56,
+      "locator_heading_or_symbol": "\"Settlement proposals are not transactions\",",
+      "excerpt_sha256": "2cd644b6caaf3f80b9de08a2038e2f868b2bc7a6053775b04183587fc7106564",
+      "matched_terms": [
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"Settlement proposals are not transactions\",\u201d. Distinguishing context: \u201cassert token in text for invariant in [ \"The LLM is not the game engine\", \"References are not calculations\", \"Results are not state\", \"Settlement proposals are not transactions\", \"`validation_ready` is not `val\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 109,
+      "line_end": 226,
+      "locator_heading_or_symbol": "\"context_projection.py\",",
+      "excerpt_sha256": "59daede3666eb8822275b9aa82be419252e815c3ba72a42c53b2d4c59a6391d5",
+      "matched_terms": [
+        "preview",
+        "projection",
+        "promotion",
+        "quarantine",
+        "replay",
+        "rng",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"context_projection.py\", \"event_ledger.py\", \"hidden_information.py\", \"persistence_boundary.py\", \"record_identity.py\", \"replay_audit.py\", \"rng_interface.py\", \"runtime_trac\u201d. Distinguishing context: \u201cassert DOMAIN_RESOURCE_MATH.exists() assert {p.name for p in DOMAIN_DIR.iterdir() if p.is_file()} == set(AUTHORIZED_RUNTIME_DOMAIN_FILES) assert {p.name for p in KERNEL_DIR.iterdir() if p.is_file()} == { \"__ini\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5e_resource_consequence_math_final_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 232,
+      "line_end": 235,
+      "locator_heading_or_symbol": "for token in [\"orphan stage or decision\", \"free-string policy survives\", \"external subject/unit/dimension\", \"validation_ready` reaches `SettlementProposal`\", \"hidden source literal",
+      "excerpt_sha256": "ec8cc1377ff7a1783318756deee75edc6dd897ae9f5d19a2cbb673d88823ad9a",
+      "matched_terms": [
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201cfor token in [\"orphan stage or decision\", \"free-string policy survives\", \"external subject/unit/dimension\", \"validation_ready` reaches `SettlementProposal`\", \"hidden sour\u201d. Distinguishing context: \u201cassert token in factory corpus = section(19) for token in [\"fantasy and sci-fi\", \"cultivation\", \"cyberware/biotech\", \"vehicles/mechs/ships\", \"faction/debt/mission\", \"source-local cosmologies\", \"generated conten\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 44,
+      "line_end": 108,
+      "locator_heading_or_symbol": "\"PR-5F overrides PR-5D only for the corrections explicitly defined here\",",
+      "excerpt_sha256": "a28890b543c015d3a909c9e5677861adee05ec5889dadb01231ed29536666fca",
+      "matched_terms": [
+        "correction",
+        "projection",
+        "promotion",
+        "rng",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"PR-5F overrides PR-5D only for the corrections explicitly defined here\", ]: assert phrase in text def test_backend_first_invariant() -> None: text = section(read(ARTIFAC\u201d. Distinguishing context: \u201c\"planning-only\", \"closes PR-5E residual blockers\", \"implements no code\", \"authorizes only **RUNTIME-DOMAIN-PR-5G\", \"PR-5A remains blocked\", \"PR-5F overrides PR-5D only for the corrections explicitly defined her\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 203,
+      "line_end": 321,
+      "locator_heading_or_symbol": "\"cannot appear in `accepted_for_planning`, `normalized_for_planning`, or a `SettlementProposal`\",",
+      "excerpt_sha256": "14c0e2f4d7aab0a0df5687dc8e8b58ec9bb20f8c06f10217e27d0b3aa87a51f9",
+      "matched_terms": [
+        "quarantine",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"cannot appear in `accepted_for_planning`, `normalized_for_planning`, or a `SettlementProposal`\", ]: assert phrase in text def test_blocked_pending_numeric_choice_result_\u201d. Distinguishing context: \u201c\"required/satisfied `provenance_ref` dependency\", \"`decision=requires_owner_handoff`\", \"`stage=blocked_pending_owner_handoff`\", \"`blocking=True`\", \"required/satisfied `owner_handoff_ref` dependency\", \"cannot ap\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 331,
+      "line_end": 429,
+      "locator_heading_or_symbol": "\"`result.quarantined is False`\",",
+      "excerpt_sha256": "5bb569f72c1882a10cfa75f45a9340ab6337d68f6f39625042fb11a686b04aba",
+      "matched_terms": [
+        "corruption",
+        "projection",
+        "quarantine",
+        "rng",
+        "rollback",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION",
+        "CF-13_FRONTIER"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"`result.quarantined is False`\", \"`result.escalated is False`\", \"No false-only authority field is true\", \"`validation_ready`\", \"`validation_failed`\", \"blocked\", \"quaranti\u201d. Distinguishing context: \u201c\"`result.validation_decision == validation_passed`\", \"`result.validation_result_ref_id` is non-empty\", \"`result.stage == calculation_ready_for_review`\", \"`accepted_for_planning` or `normalized_for_planning`\", \"\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5f_resource_consequence_math_residual_planning_hardening.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 463,
+      "line_end": 474,
+      "locator_heading_or_symbol": "\"reservation\",",
+      "excerpt_sha256": "01e0d436ac06eee11c3091c673c393f100c056bb04daef25d2f94d9fb9f1ee3b",
+      "matched_terms": [
+        "promotion",
+        "replay",
+        "reservation",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"reservation\", \"settlement execution\", \"state mutation\", \"delta application\", \"event append or commitment\", \"persistence or replay\", \"RNG/table execution\", \"combat, abili\u201d. Distinguishing context: \u201cfor phrase in [ \"runtime/domain implementation\", \"calculations or formulas\", \"expression evaluator\", \"affordability execution\", \"reservation\", \"settlement execution\", \"state mutation\", \"delta application\", \"eve\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    },
+    {
+      "path": "tests/test_runtime_domain_pr_5g_resource_consequence_math_residual_planning_hardening_review.py",
+      "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+      "line_start": 78,
+      "line_end": 184,
+      "locator_heading_or_symbol": "\"## 14. SettlementProposal review\",",
+      "excerpt_sha256": "2e76b3a527423ec1c77e4bec71e2790a923ccd7897e9edeb703ee1c392307e97",
+      "matched_terms": [
+        "projection",
+        "promotion",
+        "replay",
+        "rng",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "CF-01_TIMELINE_BRANCH",
+        "CF-02_REPLAY_CORRECTION",
+        "CF-05_RANDOMNESS",
+        "CF-08_EPISTEMIC",
+        "CF-10_RESERVATION"
+      ],
+      "dismissal_reason": "unrelated_word_sense",
+      "semantic_review_summary": "This is workflow, illustrative, or historical usage, not an AFQR owner or invariant assertion, and it creates no doctrine route. Local construct: \u201c\"## 14. SettlementProposal review\", \"## 15. Internal-reference and factory/validator parity review\", \"## 16. Serialization and hidden-information review\", \"## 17. Corpus-\u201d. Distinguishing context: \u201c\"## 9. Optional and unsatisfied dependency review\", \"## 10. Result/request aggregate and typed-scope review\", \"## 11. Quantity review\", \"## 12. Term value-mode and policy-route review\", \"## 13. CostBundle revie\u201d.",
+      "related_surface_id_if_duplicate": null,
+      "source_local_pressure_class": "no_material_relation"
+    }
+  ]
+}
