@@ -167,6 +167,11 @@
     "coordination_labels": [
       "continuity_coordination",
       "cross_phase_coordination"
+    ],
+    "exclusion_reasons": [
+      "generated_or_vendor_path",
+      "nul_binary",
+      "invalid_utf8"
     ]
   },
   "record_types": {
@@ -216,7 +221,8 @@
         "declared_owner": "owner_reference"
       },
       "validation_rules": [
-        "Exact repository-relative path, bounded line range, heading or symbol, inspected commit, and excerpt SHA-256 are required.",
+        "Exact repository-relative path, bounded line range, controlled locator kind and value, inspected commit, excerpt algorithm, and excerpt SHA-256 are required.",
+        "locator_value is null only when locator_kind is line_range_only; every other locator kind requires a nonempty string.",
         "Excerpt hashing obtains the exact Git blob at inspected_commit:path, applies splitlines(keepends=True) to raw bytes, selects inclusive one-based line_start..line_end, concatenates selected raw line bytes without alteration, preserves the final selected line terminator state, and computes SHA-256.",
         "A keyword match is insufficient to create a semantic surface.",
         "One bounded surface may contain multiple related terms.",
@@ -361,10 +367,13 @@
         "inspected_baseline_commit",
         "controlled_search_artifact_id",
         "controlled_search_artifact_version",
+        "controlled_search_artifact_path",
         "controlled_search_artifact_sha256",
+        "controlled_search_artifact_hash_algorithm",
         "eligible_file_count",
         "excluded_file_count_by_reason",
         "excluded_path_digest",
+        "excluded_path_digest_algorithm",
         "candidate_file_count",
         "occurrence_count",
         "count_by_term",
@@ -376,7 +385,10 @@
         "verification_status": "controlled_values.verification_statuses",
         "controlled_search_artifact_sha256": "lowercase_sha256_64_hex",
         "excluded_path_digest": "lowercase_sha256_64_hex",
-        "tuple_stream_sha256": "lowercase_sha256_64_hex"
+        "tuple_stream_sha256": "lowercase_sha256_64_hex",
+        "controlled_search_artifact_hash_algorithm": "literal.sha256_exact_git_blob_bytes_v1",
+        "excluded_file_count_by_reason": "keys_controlled_values.exclusion_reasons",
+        "excluded_path_digest_algorithm": "literal.sha256_canonical_exclusion_record_stream_v1"
       },
       "validation_rules": [
         "Counts and digest are recomputed in the later scan-receipt PR; no prior isolated-environment values are authoritative."
@@ -520,5 +532,59 @@
       "eligible_file_count",
       "candidate_file_count"
     ]
+  },
+  "controlled_search_artifact_hash_algorithm": {
+    "algorithm_id": "sha256_exact_git_blob_bytes_v1",
+    "procedure": [
+      "Read the exact Git blob at inspected_baseline_commit:controlled_search_artifact_path.",
+      "Hash its raw bytes without newline normalization, parsing, or reserialization.",
+      "Store the lowercase SHA-256 digest as controlled_search_artifact_sha256."
+    ]
+  },
+  "canonical_exclusion_receipt_algorithm": {
+    "record_fields": [
+      "path",
+      "exclusion_reason"
+    ],
+    "controlled_reasons": "controlled_values.exclusion_reasons",
+    "path_format": "repository_relative_posix",
+    "encoding": "UTF-8",
+    "delimiter": "\\t",
+    "record_terminator": "\\n",
+    "escaping": "Use the canonical tuple escaping rules for backslash, tab, carriage return, and newline.",
+    "ordering": "Ascending bytewise ordering of complete serialized UTF-8 records.",
+    "final_newline": "Every record has one final newline.",
+    "empty_stream": "The empty exclusion stream is zero bytes.",
+    "excluded_path_digest_algorithm": "sha256_canonical_exclusion_record_stream_v1",
+    "digest_meaning": "excluded_path_digest is SHA-256 over the canonical exclusion record stream and therefore hashes both path and exclusion reason."
+  },
+  "partition_count": 12,
+  "r2a_partition_ids": [
+    "R2A-1",
+    "R2A-2",
+    "R2A-3",
+    "R2A-4",
+    "R2A-5",
+    "R2A-6",
+    "R2A-7",
+    "R2A-8",
+    "R2A-9",
+    "R2A-10",
+    "R2A-11",
+    "R2A-12"
+  ],
+  "r2a_partition_statuses": {
+    "R2A-1": "active_incomplete",
+    "R2A-2": "planned_not_present",
+    "R2A-3": "planned_not_present",
+    "R2A-4": "planned_not_present",
+    "R2A-5": "planned_not_present",
+    "R2A-6": "planned_not_present",
+    "R2A-7": "planned_not_present",
+    "R2A-8": "planned_not_present",
+    "R2A-9": "planned_not_present",
+    "R2A-10": "planned_not_present",
+    "R2A-11": "planned_not_present",
+    "R2A-12": "planned_not_present"
   }
 }

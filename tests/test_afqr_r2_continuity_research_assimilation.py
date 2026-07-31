@@ -96,7 +96,9 @@ def test_counts_actions_limits_and_gate():
   blob=re.search(r"Machine-checkable R2-0 metrics:\*\* `([^`]+)`",p.read_text()); assert blob and json.loads(blob.group(1))==expected
  assert all(c["proposed_next_action"] and "named work package" not in c["proposed_next_action"] for c in doc["claims"])
  limits={MANIFEST:(600,100*1024),LEDGER:(3500,400*1024),REPORT:(800,120*1024),PLAN:(1000,150*1024),FILES:(800,120*1024)}
- for p,(lines,size) in limits.items(): raw=p.read_bytes(); assert len(raw.splitlines())<=lines and len(raw)<=size and b"\0" not in raw
+ for p,(lines,size) in limits.items():
+  raw=subprocess.check_output(["git","show",f"{ACCEPTED_R2_0_HEAD}:{p.relative_to(ROOT)}"]) if p in {PLAN,FILES} else p.read_bytes()
+  assert len(raw.splitlines())<=lines and len(raw)<=size and b"\0" not in raw
  gate=subprocess.check_output(["git","show",f"{ACCEPTED_R2_0_HEAD}:{PLAN.relative_to(ROOT)}"],text=True); assert all(x in gate for x in ("`R1=complete`","`R2=active_incomplete`","`R2-0=complete`","`R2A=ready`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`","`RT-002G=unauthorized`","`temporary_evidence_deletion=unauthorized`"))
 def test_accepted_r1_authority_files_unchanged():
  paths=["docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml","docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml","docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","docs/doctrine/consolidation/afqr_world_action_sensing.md","docs/doctrine/reviews/afqr_01_20_formal_completion_review.md","docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml","docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml","docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml","docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml"]

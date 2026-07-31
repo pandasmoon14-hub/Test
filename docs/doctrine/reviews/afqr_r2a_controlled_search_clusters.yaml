@@ -453,5 +453,34 @@
       "raw_utf8_escaped": "truth\\n",
       "expected_exclusion": "generated_or_vendor_path"
     }
-  ]
+  ],
+  "partition_count": 12,
+  "r2a_partition_ids": [
+    "R2A-1",
+    "R2A-2",
+    "R2A-3",
+    "R2A-4",
+    "R2A-5",
+    "R2A-6",
+    "R2A-7",
+    "R2A-8",
+    "R2A-9",
+    "R2A-10",
+    "R2A-11",
+    "R2A-12"
+  ],
+  "r2a_partition_statuses": {
+    "R2A-1": "active_incomplete",
+    "R2A-2": "planned_not_present",
+    "R2A-3": "planned_not_present",
+    "R2A-4": "planned_not_present",
+    "R2A-5": "planned_not_present",
+    "R2A-6": "planned_not_present",
+    "R2A-7": "planned_not_present",
+    "R2A-8": "planned_not_present",
+    "R2A-9": "planned_not_present",
+    "R2A-10": "planned_not_present",
+    "R2A-11": "planned_not_present",
+    "R2A-12": "planned_not_present"
+  }
 }

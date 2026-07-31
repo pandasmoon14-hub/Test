@@ -310,7 +310,7 @@
       "phase": "R2A-1",
       "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
       "owner": "R2A-1",
-      "purpose": "Define the disjoint eight-PR reconstruction architecture",
+      "purpose": "Define the disjoint twelve-partition reconstruction architecture",
       "inputs": [
         "accepted R1",
         "complete R2-0",

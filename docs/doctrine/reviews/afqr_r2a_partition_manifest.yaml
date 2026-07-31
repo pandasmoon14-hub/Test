@@ -49,7 +49,7 @@
         "**"
       ]
     },
-    "glob_semantics": "POSIX repository-relative paths; ** matches zero or more path segments, * matches zero or more non-slash characters; evaluate exclusions first and disposition precedence left-to-right.",
+    "glob_semantics": "Supported syntax only: literal prefix/** matches paths beginning with prefix/; **/literal/** matches that directory segment anywhere; root-level prefix/<filename-glob> uses * only within the final filename and never across slash; ** is the total fallback. Exclusions are evaluated first, then disposition_precedence left-to-right.",
     "coordination_only": [
       "continuity_coordination",
       "cross_phase_coordination"
@@ -83,10 +83,6 @@
         "partition_manifest",
         "controlled_search_clusters"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-1"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2-0"
       ],
@@ -99,6 +95,11 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+        "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+        "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml"
       ]
     },
     {
@@ -108,10 +109,6 @@
       "owned_artifact_types": [
         "semantic_authority_surface"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-2"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-1"
       ],
@@ -124,6 +121,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/semantic_core_agency/index.yaml"
       ]
     },
     {
@@ -133,10 +133,6 @@
       "owned_artifact_types": [
         "semantic_authority_surface"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-3"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-1",
         "R2A-2"
@@ -150,6 +146,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/semantic_world_coordination/index.yaml"
       ]
     },
     {
@@ -159,15 +158,6 @@
       "owned_artifact_types": [
         "candidate_file_disposition"
       ],
-      "included_path_patterns": [
-        "docs/doctrine/control/**",
-        "docs/doctrine/consolidation/**",
-        "docs/doctrine/operations/**",
-        "docs/doctrine/schema/**",
-        "docs/doctrine/world/**",
-        "docs/decisions/**"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-2",
         "R2A-3"
@@ -181,6 +171,17 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "candidate_path_patterns": [
+        "docs/doctrine/control/**",
+        "docs/doctrine/consolidation/**",
+        "docs/doctrine/operations/**",
+        "docs/doctrine/schema/**",
+        "docs/doctrine/world/**",
+        "docs/decisions/**"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml"
       ]
     },
     {
@@ -189,14 +190,6 @@
       "status": "planned_not_present",
       "owned_artifact_types": [
         "candidate_file_disposition"
-      ],
-      "included_path_patterns": [
-        "docs/doctrine/reviews/**",
-        "docs/doctrine/*.yaml",
-        "docs/doctrine/*.md"
-      ],
-      "excluded_path_patterns": [
-        "paths assigned by earlier precedence"
       ],
       "dependency_partitions": [
         "R2A-4"
@@ -210,6 +203,14 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "candidate_path_patterns": [
+        "docs/doctrine/reviews/**",
+        "docs/doctrine/*.yaml",
+        "docs/doctrine/*.md"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml"
       ]
     },
     {
@@ -218,16 +219,6 @@
       "status": "planned_not_present",
       "owned_artifact_types": [
         "candidate_file_disposition"
-      ],
-      "included_path_patterns": [
-        "src/**",
-        "schemas/**",
-        "tests/runtime/**",
-        "tests/test_runtime_*.py",
-        "tests/test_*runtime*.py"
-      ],
-      "excluded_path_patterns": [
-        "paths assigned by earlier precedence"
       ],
       "dependency_partitions": [
         "R2A-5"
@@ -241,6 +232,16 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "candidate_path_patterns": [
+        "src/**",
+        "schemas/**",
+        "tests/runtime/**",
+        "tests/test_runtime_*.py",
+        "tests/test_*runtime*.py"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml"
       ]
     },
     {
@@ -249,12 +250,6 @@
       "status": "planned_not_present",
       "owned_artifact_types": [
         "candidate_file_disposition"
-      ],
-      "included_path_patterns": [
-        "**"
-      ],
-      "excluded_path_patterns": [
-        "paths assigned by earlier precedence"
       ],
       "dependency_partitions": [
         "R2A-6"
@@ -268,6 +263,12 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "candidate_path_patterns": [
+        "**"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
       ]
     },
     {
@@ -279,10 +280,6 @@
         "parity_review",
         "reciprocity_review"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-8"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-2",
         "R2A-3",
@@ -300,6 +297,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml"
       ]
     },
     {
@@ -309,10 +309,6 @@
       "owned_artifact_types": [
         "claim_assessment"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-9"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-8"
       ],
@@ -325,6 +321,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/claim_assessments_0001_0016/index.yaml"
       ]
     },
     {
@@ -334,10 +333,6 @@
       "owned_artifact_types": [
         "claim_assessment"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-10"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-8",
         "R2A-9"
@@ -351,6 +346,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/claim_assessments_0017_0031/index.yaml"
       ]
     },
     {
@@ -362,10 +360,6 @@
         "package_assessment",
         "module_assessment"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-11"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-10"
       ],
@@ -378,6 +372,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/r2a/question_package_module/index.yaml"
       ]
     },
     {
@@ -388,10 +385,6 @@
         "independent_completion_review",
         "gate_update"
       ],
-      "included_path_patterns": [
-        "planned artifact family for R2A-12"
-      ],
-      "excluded_path_patterns": [],
       "dependency_partitions": [
         "R2A-11"
       ],
@@ -404,6 +397,9 @@
         "adopt doctrine",
         "modify runtime or production schemas",
         "perform work assigned to a later partition"
+      ],
+      "planned_artifact_paths": [
+        "docs/doctrine/reviews/afqr_r2a_independent_completion_review.md"
       ]
     }
   ]
