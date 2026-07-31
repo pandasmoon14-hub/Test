@@ -1,0 +1,325 @@
+{
+  "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A",
+  "authority_effect": "nonauthoritative_lexical_discovery",
+  "rules": {
+    "authority": "Terms and matches are discovery aids, not doctrine or authority classification.",
+    "case_normalization": "Unicode casefold before matching.",
+    "token_normalization": "Normalize source text and terms to Unicode NFC; convert runs of Unicode whitespace to one ASCII space for phrase comparison.",
+    "phrase_matching": "Match normalized phrases at Unicode letter-or-number boundaries; single-token terms use the same boundaries.",
+    "term_accounting": "Each distinct normalized term match is its own occurrence; matching one term never accounts for another term on the same line.",
+    "occurrence_tuple": [
+      "path",
+      "line_number",
+      "normalized_term",
+      "cluster_id"
+    ],
+    "line_numbering": "One-based after decoding and universal-newline normalization.",
+    "supported_encoding": "UTF-8, with or without a UTF-8 BOM.",
+    "deterministic_exclusions": [
+      "Files containing a NUL byte are binary and excluded.",
+      "Files that fail strict UTF-8 decoding are unsupported and excluded.",
+      "Repository paths under .git, node_modules, vendor, dist, build, coverage, or __pycache__ are generated/vendor exclusions."
+    ],
+    "persistence": "Raw occurrence tuples are recomputed for the later scan receipt and are not committed permanently."
+  },
+  "clusters": [
+    {
+      "cluster_id": "commitment_and_transition",
+      "purpose": "Discover commitment boundaries and state transitions.",
+      "terms": [
+        "commit",
+        "commitment",
+        "transition",
+        "atomic",
+        "rollback"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "git terminology",
+        "prose promises"
+      ],
+      "owner_families_to_inspect": [
+        "CORE"
+      ]
+    },
+    {
+      "cluster_id": "identity_and_continuity",
+      "purpose": "Discover identity persistence and continuity coordination.",
+      "terms": [
+        "identity",
+        "continuity",
+        "lineage",
+        "incarnation",
+        "persistent identity"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "document identity",
+        "narrative prose"
+      ],
+      "owner_families_to_inspect": [
+        "CORE",
+        "continuity_coordination"
+      ]
+    },
+    {
+      "cluster_id": "time_and_causality",
+      "purpose": "Discover temporal and causal semantics.",
+      "terms": [
+        "valid time",
+        "transaction time",
+        "causality",
+        "chronology",
+        "temporal"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "timestamps",
+        "benchmark timing"
+      ],
+      "owner_families_to_inspect": [
+        "CORE",
+        "WORLD"
+      ]
+    },
+    {
+      "cluster_id": "evidence_and_provenance",
+      "purpose": "Discover evidence lineage and provenance constraints.",
+      "terms": [
+        "evidence",
+        "provenance",
+        "source record",
+        "audit trail",
+        "attestation"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "test evidence",
+        "citations"
+      ],
+      "owner_families_to_inspect": [
+        "CORE"
+      ]
+    },
+    {
+      "cluster_id": "dependency_and_revalidation",
+      "purpose": "Discover dependency invalidation and revalidation.",
+      "terms": [
+        "dependency",
+        "invalidate",
+        "revalidate",
+        "stale",
+        "derived state"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "package dependencies",
+        "caches"
+      ],
+      "owner_families_to_inspect": [
+        "CORE"
+      ]
+    },
+    {
+      "cluster_id": "truth_knowledge_belief_projection",
+      "purpose": "Discover distinctions among truth, knowledge, belief, and projection.",
+      "terms": [
+        "truth",
+        "knowledge",
+        "belief",
+        "projection",
+        "epistemic"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "general prose",
+        "UI projections"
+      ],
+      "owner_families_to_inspect": [
+        "CORE",
+        "AGENCY"
+      ]
+    },
+    {
+      "cluster_id": "correction_retcon_supersession",
+      "purpose": "Discover correction and supersession pressure.",
+      "terms": [
+        "correction",
+        "retcon",
+        "supersede",
+        "compensation",
+        "reversal"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "errata",
+        "prose editing"
+      ],
+      "owner_families_to_inspect": [
+        "CORE",
+        "continuity_coordination"
+      ]
+    },
+    {
+      "cluster_id": "branch_fork_merge_replay",
+      "purpose": "Discover branch and replay coordination.",
+      "terms": [
+        "branch",
+        "fork",
+        "merge",
+        "replay",
+        "canonical branch"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "git",
+        "control flow",
+        "trees"
+      ],
+      "owner_families_to_inspect": [
+        "CORE",
+        "continuity_coordination"
+      ]
+    },
+    {
+      "cluster_id": "reservation_settlement_conservation",
+      "purpose": "Discover reservation and conservation semantics.",
+      "terms": [
+        "reservation",
+        "settlement",
+        "conservation",
+        "escrow",
+        "release"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "booking",
+        "memory release"
+      ],
+      "owner_families_to_inspect": [
+        "CORE"
+      ]
+    },
+    {
+      "cluster_id": "action_conflict_targeting",
+      "purpose": "Discover action, conflict, and targeting contracts.",
+      "terms": [
+        "action",
+        "conflict",
+        "target",
+        "initiative",
+        "resolution"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "CI actions",
+        "issue resolution"
+      ],
+      "owner_families_to_inspect": [
+        "WORLD"
+      ]
+    },
+    {
+      "cluster_id": "sensing_contact_visibility",
+      "purpose": "Discover sensing, contact, and visibility semantics.",
+      "terms": [
+        "sensing",
+        "contact",
+        "visibility",
+        "perception",
+        "detection"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "UI visibility",
+        "social contacts"
+      ],
+      "owner_families_to_inspect": [
+        "WORLD",
+        "AGENCY"
+      ]
+    },
+    {
+      "cluster_id": "embodiment_injury_recovery",
+      "purpose": "Discover embodiment and recovery semantics.",
+      "terms": [
+        "embodiment",
+        "injury",
+        "recovery",
+        "healing",
+        "condition"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "error recovery",
+        "environment condition"
+      ],
+      "owner_families_to_inspect": [
+        "WORLD"
+      ]
+    },
+    {
+      "cluster_id": "environmental_state_process",
+      "purpose": "Discover environmental state and processes.",
+      "terms": [
+        "environment",
+        "weather",
+        "hazard",
+        "process",
+        "world state"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "process management",
+        "build environment"
+      ],
+      "owner_families_to_inspect": [
+        "WORLD"
+      ]
+    },
+    {
+      "cluster_id": "canon_conversion_cross_phase",
+      "purpose": "Discover canon, conversion, and cross-phase handoffs.",
+      "terms": [
+        "canon",
+        "canonical",
+        "conversion",
+        "handoff",
+        "cross-phase"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "canonical serialization",
+        "unit conversion"
+      ],
+      "owner_families_to_inspect": [
+        "canon_owner",
+        "conversion_owner",
+        "cross_phase_coordination"
+      ]
+    },
+    {
+      "cluster_id": "runtime_storage_serialization",
+      "purpose": "Discover implementation presuppositions without promoting them.",
+      "terms": [
+        "runtime",
+        "storage",
+        "serialization",
+        "persistence",
+        "schema"
+      ],
+      "term_matching": "controlled_normalized_boundary_match",
+      "expected_false_positive_families": [
+        "tool configuration",
+        "documentation metadata"
+      ],
+      "owner_families_to_inspect": [
+        "runtime_implementation",
+        "CORE"
+      ]
+    }
+  ]
+}

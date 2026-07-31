@@ -16,9 +16,15 @@ Owns source registration, normalized claim extraction, routing, owner-pressure i
 
 ## R2A — authority-surface and drift inventory
 
-**Status:** `ready`
+**Status:** `active_incomplete`
 
 R2A consumes the R2-0 ledger and inventories repository-wide authority surfaces. It distinguishes current authority from historical text, narrow fixtures from general doctrine, doctrine drift from implementation absence, and real owner conflict from mere keyword overlap. Every finding routes to a candidate R2B package, R3 conformance, R4 substrate, R5 retrofit, or later gate. It must not adopt doctrine or implement anything.
+
+PR #342 was closed without merge. Its artifacts, occurrence representation, history, and completion claims are not accepted repository authority and are not inputs to this reconstruction. No compact reconstruction or isolated local commit is repository authority.
+
+The prior control marker was `R2A=ready`; authorization of this bounded reconstruction supersedes that marker with `R2A=active_incomplete`.
+
+R2A is reconstructed as eight bounded pull requests: R2A-1 defines only the inventory contract, deterministic lexical-discovery boundary, and partition manifest; R2A-2 and R2A-3 record primary semantic partitions; R2A-4 through R2A-6 disposition the candidate-file corpus under deterministic precedence; R2A-7 produces the aggregate receipt and assesses the 31 claims and eleven unresolved questions; and R2A-8 independently reviews completion and updates the gate if warranted. R2A-1 performs none of the inventory, routing, adjudication, or completion work assigned later. R2B, R2C, and R3–R6 remain blocked throughout R2A-1.
 
 ## R2B — modular doctrine resolution
 
@@ -40,4 +46,4 @@ R2A and any required R2B package must test actual-play, split-party, inserted ch
 
 ## Gate posture
 
-`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=ready`; `R2B=blocked`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.
+`R1=complete`; `R2=active_incomplete`; `R2-0=complete`; `R2A=active_incomplete`; `R2B=blocked`; `R2C=blocked`; `R3–R6=blocked`; `RT-002G=unauthorized`; `temporary_evidence_deletion=unauthorized`.

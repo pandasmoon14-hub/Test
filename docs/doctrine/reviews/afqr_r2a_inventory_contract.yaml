@@ -1,0 +1,397 @@
+{
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A",
+  "authority_effect": "nonauthoritative_inventory_contract",
+  "inspected_base_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "project_posture": {
+    "R1": "complete",
+    "R2": "active_incomplete",
+    "R2-0": "complete",
+    "R2A": "active_incomplete",
+    "R2B": "blocked",
+    "R2C": "blocked",
+    "R3-R6": "blocked",
+    "RT-002G": "unauthorized",
+    "temporary_evidence_deletion": "unauthorized"
+  },
+  "controlled_values": {
+    "record_types": [
+      "semantic_authority_surface",
+      "candidate_file_disposition",
+      "claim_assessment",
+      "unresolved_question_assessment",
+      "package_assessment",
+      "module_assessment",
+      "scan_receipt"
+    ],
+    "statuses": [
+      "active_incomplete",
+      "planned_not_present"
+    ],
+    "surface_kinds": [
+      "current_normative_doctrine",
+      "current_control_or_gate",
+      "accepted_decision",
+      "schema_presupposition",
+      "runtime_presupposition",
+      "test_contract",
+      "narrow_fixture",
+      "historical_doctrine",
+      "deprecated_doctrine",
+      "source_local_pressure",
+      "conversion_handoff_pressure",
+      "canon_handoff_pressure",
+      "example_or_benchmark",
+      "negative_or_absence_evidence"
+    ],
+    "dispositions": [
+      "mapped_semantic_surface",
+      "mixed_mapped_and_dismissed",
+      "dismissed_after_semantic_review",
+      "historical_only",
+      "source_local_pressure_only",
+      "generated_or_vendor_text"
+    ],
+    "relevance_types": [
+      "decisive_current_authority",
+      "supporting_current_authority",
+      "implementation_presupposition",
+      "schema_presupposition",
+      "control_or_gate_evidence",
+      "historical_or_source_local_pressure",
+      "negative_evidence"
+    ],
+    "assessment_outcomes": [
+      "governed_by_existing_owner",
+      "partially_governed_owner_gap_remains",
+      "blocked_pending_owner_adjudication",
+      "implementation_or_schema_presupposition_only",
+      "historical_or_source_local_pressure_only",
+      "no_material_authority_relation",
+      "escalated_doctrine_problem"
+    ],
+    "authority_levels": [
+      "current_normative",
+      "current_control",
+      "accepted_decision",
+      "implementation_presupposition",
+      "nonauthoritative"
+    ],
+    "currentness_values": [
+      "current",
+      "historical",
+      "deprecated",
+      "source_local",
+      "not_applicable"
+    ],
+    "generality_values": [
+      "general",
+      "subsystem",
+      "path_local",
+      "fixture_or_example"
+    ]
+  },
+  "record_types": {
+    "semantic_authority_surface": {
+      "purpose": "Record one bounded, materially relevant authority, ownership, routing, or unresolved-presupposition surface.",
+      "required_fields": [
+        "surface_id",
+        "primary_partition",
+        "path",
+        "inspected_commit",
+        "line_start",
+        "line_end",
+        "locator_heading_or_symbol",
+        "excerpt_sha256",
+        "surface_kind",
+        "authority_level",
+        "currentness",
+        "generality",
+        "declared_owner",
+        "applicable_afqr_ids",
+        "applicable_r1d_responsibility_ids",
+        "applicable_term_ids",
+        "applicable_invariant_ids",
+        "applicable_dependency_ids",
+        "applicable_substrate_ids",
+        "linked_r2_claim_ids",
+        "claim_link_reasons",
+        "semantic_summary",
+        "semantic_status",
+        "owner_boundary_effect"
+      ],
+      "field_controls": {
+        "primary_partition": "one_of_semantic_partitions",
+        "line_start": "positive_integer",
+        "line_end": "integer_greater_than_or_equal_to_line_start",
+        "excerpt_sha256": "lowercase_sha256_64_hex",
+        "surface_kind": "controlled_values.surface_kinds",
+        "authority_level": "controlled_values.authority_levels",
+        "currentness": "controlled_values.currentness_values",
+        "generality": "controlled_values.generality_values",
+        "semantic_status": "controlled_values.statuses"
+      },
+      "validation_rules": [
+        "Exact repository-relative path, bounded line range, heading or symbol, inspected commit, and excerpt SHA-256 are required.",
+        "A keyword match is insufficient to create a semantic surface.",
+        "One bounded surface may contain multiple related terms.",
+        "A surface must be materially relevant to authority, ownership, routing, or an unresolved presupposition.",
+        "Every linked claim has a claim-specific reciprocal positive link and reason."
+      ],
+      "prohibited_uses": [
+        "Source-local and donor material cannot acquire doctrine authority.",
+        "Continuity coordination cannot acquire domain semantics.",
+        "Classification cannot adopt doctrine or declare R2A complete."
+      ]
+    },
+    "candidate_file_disposition": {
+      "purpose": "Prove eventual semantic review of every deterministic lexical candidate file without persisting raw occurrences.",
+      "required_fields": [
+        "candidate_file_id",
+        "partition_id",
+        "path",
+        "inspected_commit",
+        "baseline_blob_sha",
+        "controlled_match_count",
+        "matched_terms",
+        "matched_search_clusters",
+        "representative_locators",
+        "disposition",
+        "mapped_surface_ids",
+        "semantic_review_summary",
+        "source_local_pressure_class",
+        "authority_effect",
+        "pressure_route"
+      ],
+      "field_controls": {
+        "disposition": "controlled_values.dispositions",
+        "controlled_match_count": "nonnegative_integer",
+        "baseline_blob_sha": "lowercase_git_object_sha"
+      },
+      "validation_rules": [
+        "Exactly one disposition must exist per candidate file across the complete R2A series.",
+        "A file with no mapped surface still requires documented semantic review.",
+        "Semantic review summaries must be file-specific and representative locators must be bounded."
+      ],
+      "prohibited_uses": [
+        "One committed record per raw occurrence is prohibited.",
+        "Generic dismissal text copied across unrelated files is prohibited.",
+        "Absence of a mapped surface cannot mean absence of required review.",
+        "Source-local evidence cannot be promoted through disposition alone."
+      ]
+    },
+    "claim_assessment": {
+      "purpose": "Assess one of the 31 R2-0 claims later, without silently resolving ownership.",
+      "required_fields": [
+        "claim_id",
+        "assessment_outcome",
+        "evidence",
+        "positive_links",
+        "assessment_summary",
+        "unresolved_owner_question_ids"
+      ],
+      "field_controls": {
+        "assessment_outcome": "controlled_values.assessment_outcomes",
+        "evidence": "claim_evidence_fields",
+        "positive_links": "positive_link_fields"
+      },
+      "validation_rules": [
+        "Every surface ID named in prose must also exist in structured evidence.",
+        "Every positive claim link must be reciprocal on its semantic surface.",
+        "Reasons and exact relevance must be claim-specific; generic \"constrains the claim\" language is insufficient."
+      ],
+      "prohibited_uses": [
+        "Evidence cannot silently resolve an owner question.",
+        "Assessment cannot invent an owner or adopt doctrine."
+      ]
+    },
+    "unresolved_question_assessment": {
+      "purpose": "Preserve and route one of the eleven owner questions for later adjudication.",
+      "required_fields": [
+        "question_id",
+        "assessment_outcome",
+        "evidence",
+        "positive_links",
+        "owner_boundary",
+        "downstream_gate"
+      ],
+      "field_controls": {
+        "assessment_outcome": "controlled_values.assessment_outcomes",
+        "evidence": "claim_evidence_fields",
+        "positive_links": "positive_link_fields"
+      },
+      "validation_rules": [
+        "The question remains explicit unless an authorized later adjudication is cited."
+      ],
+      "prohibited_uses": [
+        "Inventory evidence cannot adjudicate the question."
+      ]
+    },
+    "package_assessment": {
+      "purpose": "Determine later whether a candidate R2B package is required.",
+      "required_fields": [
+        "package_id",
+        "assessment_outcome",
+        "evidence",
+        "rationale",
+        "gate_effect"
+      ],
+      "field_controls": {
+        "assessment_outcome": "controlled_values.assessment_outcomes"
+      },
+      "validation_rules": [
+        "Package necessity may be determined only after complete claim and question assessment."
+      ],
+      "prohibited_uses": [
+        "R2A-1 cannot determine that any R2B package is required."
+      ]
+    },
+    "module_assessment": {
+      "purpose": "Preserve modular owner boundaries if a later authorized package is required.",
+      "required_fields": [
+        "module_id",
+        "package_id",
+        "assessment_outcome",
+        "evidence",
+        "declared_owner",
+        "prohibited_owner_transfers"
+      ],
+      "field_controls": {
+        "assessment_outcome": "controlled_values.assessment_outcomes"
+      },
+      "validation_rules": [
+        "Declared ownership must trace to accepted responsibility authority."
+      ],
+      "prohibited_uses": [
+        "Do not invent continuity",
+        "correction",
+        "branch",
+        "replay",
+        "or cross-phase super-owners."
+      ]
+    },
+    "scan_receipt": {
+      "purpose": "Reproduce aggregate discovery coverage without permanently committing raw tuples.",
+      "required_fields": [
+        "receipt_id",
+        "inspected_baseline_commit",
+        "controlled_search_artifact_version",
+        "tuple_schema",
+        "canonical_serialization",
+        "sha256",
+        "count_by_term",
+        "count_by_cluster",
+        "total_occurrence_count",
+        "total_candidate_file_count",
+        "verification_status"
+      ],
+      "field_controls": {
+        "verification_status": "controlled_values.statuses",
+        "sha256": "lowercase_sha256_64_hex"
+      },
+      "validation_rules": [
+        "Counts and digest are recomputed in the later scan-receipt PR; no prior isolated-environment values are authoritative."
+      ],
+      "prohibited_uses": [
+        "A receipt does not classify authority and R2A-1 cannot claim that it passes."
+      ]
+    }
+  },
+  "claim_evidence_fields": {
+    "required": [
+      "surface_ids",
+      "relevant_current_normative_surface_ids",
+      "relevant_current_control_surface_ids",
+      "relevant_schema_runtime_test_surface_ids",
+      "relevant_historical_or_source_local_surface_ids",
+      "negative_or_absence_evidence_surface_ids"
+    ],
+    "rule": "Every categorized ID is also present in surface_ids; all entries resolve to semantic surfaces."
+  },
+  "positive_link_fields": {
+    "required": [
+      "surface_id",
+      "relevance_type",
+      "semantic_role",
+      "exact_relevance",
+      "owner_boundary_effect"
+    ],
+    "controls": {
+      "relevance_type": "controlled_values.relevance_types"
+    }
+  },
+  "responsibility_ownership": {
+    "CORE": [
+      "AFQR-01",
+      "AFQR-02",
+      "AFQR-04",
+      "AFQR-06",
+      "AFQR-07",
+      "AFQR-08",
+      "AFQR-09"
+    ],
+    "AGENCY": [
+      "AFQR-10"
+    ],
+    "WORLD": [
+      "AFQR-16",
+      "AFQR-17",
+      "AFQR-19",
+      "AFQR-20"
+    ],
+    "coordination_only": [
+      "continuity",
+      "cross_phase"
+    ],
+    "coordination_must_not_own": [
+      "commitment",
+      "time",
+      "evidence",
+      "identity",
+      "dependency",
+      "epistemic_state",
+      "embodiment",
+      "environment",
+      "action",
+      "sensing",
+      "reservation",
+      "canon",
+      "conversion",
+      "runtime_truth"
+    ],
+    "rule": "Search clusters suggest inspection, never adoption of a missing AFQR owner."
+  },
+  "canonical_scan_receipt_algorithm": {
+    "tuple_fields": [
+      "path",
+      "line_number",
+      "normalized_term",
+      "cluster_id"
+    ],
+    "path_format": "repository_relative_posix",
+    "encoding": "UTF-8",
+    "delimiter": "\\t",
+    "record_terminator": "\\n",
+    "escaping": "Backslash, tab, carriage return, and newline are escaped as \\\\, \\t, \\r, and \\n before joining fields.",
+    "ordering": "Ascending bytewise lexical order of complete serialized UTF-8 tuple records.",
+    "digest": "SHA-256 over the complete canonical byte stream, including the final newline for every record; the empty stream has no newline.",
+    "aggregates": [
+      "count_by_term",
+      "count_by_cluster",
+      "total_occurrence_count",
+      "total_candidate_file_count"
+    ],
+    "required_provenance": [
+      "inspected_baseline_commit",
+      "controlled_search_artifact_version"
+    ],
+    "persistence": "Raw occurrence tuples are recomputed later and are not permanently committed."
+  },
+  "global_prohibited_uses": [
+    "Do not populate the inventory, disposition the corpus, route claims, adjudicate questions, or determine package necessity in R2A-1.",
+    "Do not adopt continuity doctrine or modify runtime behavior or production schemas.",
+    "Do not begin later phases or mark R2A complete."
+  ]
+}

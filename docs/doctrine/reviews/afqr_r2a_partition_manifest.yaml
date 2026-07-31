@@ -1,0 +1,295 @@
+{
+  "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A",
+  "authority_effect": "nonauthoritative_work_partition",
+  "partition_count": 8,
+  "ownership_rules": {
+    "semantic_primary_partition": "Every semantic surface has exactly one primary semantic partition, although it may reference files reviewed by other partitions.",
+    "disposition_exclusivity": "Every candidate file is assigned to exactly one of R2A-4, R2A-5, or R2A-6.",
+    "disposition_precedence": [
+      "R2A-4 current doctrine/control/review authority paths",
+      "R2A-5 runtime/schema/runtime-validation paths",
+      "R2A-6 all remaining candidate files"
+    ],
+    "overlap_resolution": "Evaluate precedence from first to last; the first matching disposition partition owns the file and later matches are ignored.",
+    "coordination_only": [
+      "continuity",
+      "cross_phase"
+    ],
+    "coordination_domain_ownership": [],
+    "coordination_must_not_own": [
+      "commitment",
+      "time",
+      "evidence",
+      "identity",
+      "dependency",
+      "epistemic_state",
+      "embodiment",
+      "environment",
+      "action",
+      "sensing",
+      "reservation",
+      "canon",
+      "conversion",
+      "runtime_truth"
+    ]
+  },
+  "partitions": [
+    {
+      "partition_id": "R2A-1",
+      "title": "inventory contract and partition manifest",
+      "owned_artifact_types": [
+        "inventory_contract",
+        "partition_manifest",
+        "controlled_search_clusters"
+      ],
+      "included_path_families": [
+        "the three R2A-1 review artifacts",
+        "R2 file manifest",
+        "R2 control plan",
+        "contract test"
+      ],
+      "excluded_path_families": [
+        "semantic inventory shards",
+        "candidate disposition shards",
+        "src",
+        "schemas",
+        "runtime tests"
+      ],
+      "dependency_partitions": [
+        "R2-0"
+      ],
+      "maximum_target_files": 6,
+      "maximum_target_additions": 2500,
+      "gate_effect": "R2A remains active_incomplete; all later phases remain blocked.",
+      "completion_condition": "Contract, discovery rules, partition boundaries, documentation, and deterministic validation are present and reviewed.",
+      "prohibited_work": [
+        "perform inventory",
+        "disposition candidates",
+        "route claims",
+        "adjudicate questions",
+        "determine R2B packages",
+        "declare R2A complete"
+      ]
+    },
+    {
+      "partition_id": "R2A-2",
+      "title": "CORE and AGENCY semantic surfaces",
+      "owned_artifact_types": [
+        "semantic_authority_surface"
+      ],
+      "included_path_families": [
+        "surfaces primarily owned by accepted CORE or AGENCY responsibilities"
+      ],
+      "excluded_path_families": [
+        "WORLD-primary surfaces",
+        "continuity-only coordination",
+        "dispositions",
+        "assessments"
+      ],
+      "dependency_partitions": [
+        "R2A-1"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "No gate advances; R2A remains active_incomplete.",
+      "completion_condition": "All in-scope materially relevant surfaces have bounded locators, hashes, and accepted owner mappings.",
+      "prohibited_work": [
+        "adopt doctrine",
+        "invent owners",
+        "disposition candidate files",
+        "assess claims"
+      ]
+    },
+    {
+      "partition_id": "R2A-3",
+      "title": "WORLD and continuity/cross-phase coordination surfaces",
+      "owned_artifact_types": [
+        "semantic_authority_surface"
+      ],
+      "included_path_families": [
+        "WORLD-primary surfaces",
+        "continuity coordination",
+        "cross-phase coordination"
+      ],
+      "excluded_path_families": [
+        "CORE-primary surfaces",
+        "AGENCY-primary surfaces",
+        "dispositions",
+        "assessments"
+      ],
+      "dependency_partitions": [
+        "R2A-1",
+        "R2A-2"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "No gate advances; coordination receives no domain ownership.",
+      "completion_condition": "In-scope surfaces are bounded and coordination records route only to accepted domain owners.",
+      "prohibited_work": [
+        "assign coordination domain semantics",
+        "adopt continuity doctrine",
+        "assess claims"
+      ]
+    },
+    {
+      "partition_id": "R2A-4",
+      "title": "current doctrine and authority-path file dispositions",
+      "owned_artifact_types": [
+        "candidate_file_disposition"
+      ],
+      "included_path_families": [
+        "docs/doctrine/control/**",
+        "docs/doctrine/consolidation/**",
+        "docs/doctrine/reviews/**",
+        "docs/decisions/**"
+      ],
+      "excluded_path_families": [
+        "src/**",
+        "schemas/**",
+        "tests/runtime/**",
+        "generated/vendor paths"
+      ],
+      "dependency_partitions": [
+        "R2A-1",
+        "R2A-2",
+        "R2A-3"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "No gate advances; only first-precedence candidate dispositions are recorded.",
+      "completion_condition": "Every matching candidate file at first precedence has exactly one file-specific disposition.",
+      "prohibited_work": [
+        "claim assessment",
+        "occurrence-per-record persistence",
+        "generic dismissals"
+      ]
+    },
+    {
+      "partition_id": "R2A-5",
+      "title": "runtime, schema, and validation-path file dispositions",
+      "owned_artifact_types": [
+        "candidate_file_disposition"
+      ],
+      "included_path_families": [
+        "src/**",
+        "schemas/**",
+        "tests/runtime/**",
+        "runtime-validation paths"
+      ],
+      "excluded_path_families": [
+        "files already owned by R2A-4",
+        "generated/vendor paths"
+      ],
+      "dependency_partitions": [
+        "R2A-1",
+        "R2A-4"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "No gate advances and no implementation authority is granted.",
+      "completion_condition": "Every remaining runtime, schema, or runtime-validation candidate has exactly one disposition.",
+      "prohibited_work": [
+        "modify runtime",
+        "modify schemas",
+        "promote implementation presuppositions",
+        "assess claims"
+      ]
+    },
+    {
+      "partition_id": "R2A-6",
+      "title": "remaining historical, source-local, conversion, example, and general dispositions",
+      "owned_artifact_types": [
+        "candidate_file_disposition"
+      ],
+      "included_path_families": [
+        "all candidate files not assigned by earlier disposition precedence"
+      ],
+      "excluded_path_families": [
+        "files owned by R2A-4",
+        "files owned by R2A-5"
+      ],
+      "dependency_partitions": [
+        "R2A-1",
+        "R2A-4",
+        "R2A-5"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "No gate advances; donor and source-local material stays nonauthoritative.",
+      "completion_condition": "Every candidate file remaining after precedence has exactly one disposition.",
+      "prohibited_work": [
+        "promote donor terms",
+        "adopt doctrine",
+        "assess claims"
+      ]
+    },
+    {
+      "partition_id": "R2A-7",
+      "title": "aggregate scan receipt, 31 claim assessments, and 11 unresolved-question assessments",
+      "owned_artifact_types": [
+        "scan_receipt",
+        "claim_assessment",
+        "unresolved_question_assessment",
+        "package_assessment",
+        "module_assessment"
+      ],
+      "included_path_families": [
+        "aggregate R2A evidence and assessment artifacts"
+      ],
+      "excluded_path_families": [
+        "new semantic surfaces",
+        "new candidate dispositions",
+        "gate completion decision"
+      ],
+      "dependency_partitions": [
+        "R2A-2",
+        "R2A-3",
+        "R2A-4",
+        "R2A-5",
+        "R2A-6"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "R2A remains active_incomplete pending independent completion review.",
+      "completion_condition": "Receipt is independently reproducible and all 31 claims and 11 questions have lawful, evidence-complete assessments.",
+      "prohibited_work": [
+        "silently adjudicate owners",
+        "adopt doctrine",
+        "declare R2A complete"
+      ]
+    },
+    {
+      "partition_id": "R2A-8",
+      "title": "independent completion review and gate update",
+      "owned_artifact_types": [
+        "independent_completion_review",
+        "gate_update"
+      ],
+      "included_path_families": [
+        "R2A completion review and authorized control metadata"
+      ],
+      "excluded_path_families": [
+        "inventory evidence creation",
+        "runtime",
+        "schemas",
+        "R2B doctrine"
+      ],
+      "dependency_partitions": [
+        "R2A-7"
+      ],
+      "maximum_target_files": 7,
+      "maximum_target_additions": 2500,
+      "gate_effect": "May update the R2A gate only if independent review proves every contract condition; it cannot unblock later phases by assumption.",
+      "completion_condition": "Independent review verifies full corpus disposition, evidence reciprocity, lawful outcomes, reproducible receipt, and owner-question preservation or authorization.",
+      "prohibited_work": [
+        "perform missing inventory work",
+        "begin R2B",
+        "modify runtime",
+        "infer completion from artifact presence"
+      ]
+    }
+  ]
+}

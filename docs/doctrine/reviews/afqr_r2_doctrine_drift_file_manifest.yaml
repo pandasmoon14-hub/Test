@@ -55,7 +55,7 @@
         "all sources routed"
       ],
       "corpus_scale_pressure": [
-        "mandatory CF-01\u2013CF-13"
+        "mandatory CF-01–CF-13"
       ],
       "outlier_escalation_path": "Astra Doctrine Council",
       "current_status": "complete"
@@ -113,61 +113,6 @@
       ],
       "outlier_escalation_path": "Council adjudication",
       "current_status": "complete"
-    },
-    {
-      "phase": "R2A",
-      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory.yaml",
-      "owner": "R2A",
-      "purpose": "Inventory current authority surfaces",
-      "inputs": [
-        "R2-0 ledger and repository"
-      ],
-      "outputs": [
-        "authority-surface records"
-      ],
-      "must_not_own": [
-        "doctrine adoption",
-        "conformance",
-        "implementation"
-      ],
-      "dependencies": [
-        "R2-0 PASS"
-      ],
-      "gate_prerequisites": [
-        "R2A authorization"
-      ],
-      "corpus_scale_pressure": [
-        "whole repository plus narrow fixtures"
-      ],
-      "outlier_escalation_path": "route owner conflicts to R2B/Council",
-      "current_status": "planned"
-    },
-    {
-      "phase": "R2A",
-      "path": "docs/doctrine/reviews/afqr_r2a_doctrine_drift_routing.yaml",
-      "owner": "R2A",
-      "purpose": "Classify and route drift findings",
-      "inputs": [
-        "authority-surface inventory"
-      ],
-      "outputs": [
-        "exact R2B/R3/R4/R5/later routes"
-      ],
-      "must_not_own": [
-        "doctrine adoption",
-        "implementation"
-      ],
-      "dependencies": [
-        "R2A inventory"
-      ],
-      "gate_prerequisites": [
-        "complete inventory"
-      ],
-      "corpus_scale_pressure": [
-        "all authority surfaces"
-      ],
-      "outlier_escalation_path": "Council for unresolved owner",
-      "current_status": "planned"
     },
     {
       "phase": "R2B",
@@ -330,6 +275,292 @@
       ],
       "outlier_escalation_path": "Council blocks completion",
       "current_status": "planned"
+    },
+    {
+      "phase": "R2A-1",
+      "path": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+      "owner": "R2A-1",
+      "purpose": "Define record contracts and canonical receipt algorithm",
+      "inputs": [
+        "accepted R1",
+        "complete R2-0",
+        "verified baseline 9382958197c9d5dee9d29cb5f9d051147237c64d"
+      ],
+      "outputs": [
+        "nonauthoritative contract boundary"
+      ],
+      "must_not_own": [
+        "semantic inventory",
+        "doctrine",
+        "runtime"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A active_incomplete"
+      ],
+      "corpus_scale_pressure": [
+        "hundreds of mixed donor and doctrine sources"
+      ],
+      "outlier_escalation_path": "later bounded R2A partition",
+      "current_status": "active_incomplete"
+    },
+    {
+      "phase": "R2A-1",
+      "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+      "owner": "R2A-1",
+      "purpose": "Define the disjoint eight-PR reconstruction architecture",
+      "inputs": [
+        "accepted R1",
+        "complete R2-0",
+        "verified baseline 9382958197c9d5dee9d29cb5f9d051147237c64d"
+      ],
+      "outputs": [
+        "nonauthoritative contract boundary"
+      ],
+      "must_not_own": [
+        "semantic inventory",
+        "doctrine",
+        "runtime"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A active_incomplete"
+      ],
+      "corpus_scale_pressure": [
+        "hundreds of mixed donor and doctrine sources"
+      ],
+      "outlier_escalation_path": "later bounded R2A partition",
+      "current_status": "active_incomplete"
+    },
+    {
+      "phase": "R2A-1",
+      "path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+      "owner": "R2A-1",
+      "purpose": "Define deterministic nonauthoritative lexical discovery",
+      "inputs": [
+        "accepted R1",
+        "complete R2-0",
+        "verified baseline 9382958197c9d5dee9d29cb5f9d051147237c64d"
+      ],
+      "outputs": [
+        "nonauthoritative contract boundary"
+      ],
+      "must_not_own": [
+        "semantic inventory",
+        "doctrine",
+        "runtime"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A active_incomplete"
+      ],
+      "corpus_scale_pressure": [
+        "hundreds of mixed donor and doctrine sources"
+      ],
+      "outlier_escalation_path": "later bounded R2A partition",
+      "current_status": "active_incomplete"
+    },
+    {
+      "phase": "R2A-2",
+      "path": "docs/doctrine/reviews/afqr_r2a_core_agency_semantic_surfaces.yaml",
+      "owner": "R2A-2",
+      "purpose": "CORE and AGENCY semantic surfaces",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-3",
+      "path": "docs/doctrine/reviews/afqr_r2a_world_coordination_semantic_surfaces.yaml",
+      "owner": "R2A-3",
+      "purpose": "WORLD and coordination semantic surfaces",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-4",
+      "path": "docs/doctrine/reviews/afqr_r2a_current_authority_file_dispositions.yaml",
+      "owner": "R2A-4",
+      "purpose": "current authority-path dispositions",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-5",
+      "path": "docs/doctrine/reviews/afqr_r2a_runtime_schema_file_dispositions.yaml",
+      "owner": "R2A-5",
+      "purpose": "runtime, schema, and validation dispositions",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-6",
+      "path": "docs/doctrine/reviews/afqr_r2a_remaining_file_dispositions.yaml",
+      "owner": "R2A-6",
+      "purpose": "remaining candidate dispositions",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-7",
+      "path": "docs/doctrine/reviews/afqr_r2a_aggregate_assessments_and_scan_receipt.yaml",
+      "owner": "R2A-7",
+      "purpose": "receipt, claim, and unresolved-question assessments",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-8",
+      "path": "docs/doctrine/reviews/afqr_r2a_independent_completion_review.md",
+      "owner": "R2A-8",
+      "purpose": "independent completion review and gate update",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "bounded partition result"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present",
+      "status": "planned_not_present"
     }
   ],
   "r2_0_metrics": {
@@ -377,5 +608,39 @@
     "unresolved_owner_questions": 11,
     "rejected_overengineering": 3,
     "total_claims": 31
-  }
+  },
+  "r2a_reconstruction_sequence": [
+    {
+      "partition_id": "R2A-1",
+      "status": "active_incomplete"
+    },
+    {
+      "partition_id": "R2A-2",
+      "status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-3",
+      "status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-4",
+      "status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-5",
+      "status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-6",
+      "status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-7",
+      "status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-8",
+      "status": "planned_not_present"
+    }
+  ]
 }
