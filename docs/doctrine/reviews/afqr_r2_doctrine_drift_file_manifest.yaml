@@ -55,7 +55,7 @@
         "all sources routed"
       ],
       "corpus_scale_pressure": [
-        "mandatory CF-01–CF-13"
+        "mandatory CF-01\u2013CF-13"
       ],
       "outlier_escalation_path": "Astra Doctrine Council",
       "current_status": "complete"
@@ -304,7 +304,7 @@
         "hundreds of mixed donor and doctrine sources"
       ],
       "outlier_escalation_path": "later bounded R2A partition",
-      "current_status": "active_incomplete"
+      "current_status": "complete"
     },
     {
       "phase": "R2A-1",
@@ -334,7 +334,7 @@
         "hundreds of mixed donor and doctrine sources"
       ],
       "outlier_escalation_path": "later bounded R2A partition",
-      "current_status": "active_incomplete"
+      "current_status": "complete"
     },
     {
       "phase": "R2A-1",
@@ -364,7 +364,7 @@
         "hundreds of mixed donor and doctrine sources"
       ],
       "outlier_escalation_path": "later bounded R2A partition",
-      "current_status": "active_incomplete"
+      "current_status": "complete"
     },
     {
       "phase": "R2A-2",
@@ -375,7 +375,8 @@
         "prior dependency partitions"
       ],
       "outputs": [
-        "planned artifact family with index and bounded shards"
+        "complete nonauthoritative semantic index",
+        "surfaces_0001.yaml"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -391,7 +392,64 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A-2",
+      "path": "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+      "owner": "R2A-2",
+      "purpose": "Bounded CORE and AGENCY semantic authority surfaces",
+      "inputs": [
+        "accepted R1 doctrine at b6acd24fed6e689ee47a046af51aa12c5b231020"
+      ],
+      "outputs": [
+        "complete nonauthoritative semantic index",
+        "surfaces_0001.yaml"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "candidate dispositions",
+        "claim assessments"
+      ],
+      "dependencies": [
+        "R2A-1 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A remains active_incomplete"
+      ],
+      "corpus_scale_pressure": [
+        "human-reviewable bounded shard"
+      ],
+      "outlier_escalation_path": "later parity amendment without owner transfer",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A-2",
+      "path": "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+      "owner": "R2A-2",
+      "purpose": "Bounded CORE and AGENCY semantic authority surfaces",
+      "inputs": [
+        "accepted R1 doctrine at b6acd24fed6e689ee47a046af51aa12c5b231020"
+      ],
+      "outputs": [
+        "eight validated semantic surface records"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "candidate dispositions",
+        "claim assessments"
+      ],
+      "dependencies": [
+        "R2A-1 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A remains active_incomplete"
+      ],
+      "corpus_scale_pressure": [
+        "human-reviewable bounded shard"
+      ],
+      "outlier_escalation_path": "later parity amendment without owner transfer",
+      "current_status": "complete"
     },
     {
       "phase": "R2A-3",
@@ -713,11 +771,11 @@
   "r2a_reconstruction_sequence": [
     {
       "partition_id": "R2A-1",
-      "current_status": "active_incomplete"
+      "current_status": "complete"
     },
     {
       "partition_id": "R2A-2",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
     },
     {
       "partition_id": "R2A-3",

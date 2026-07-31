@@ -1,0 +1,205 @@
+{
+  "artifact_id": "AFQR-R2A-2-CORE-AGENCY-SEMANTIC-INDEX-001",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-2",
+  "authority_effect": "nonauthoritative_semantic_inventory",
+  "inspected_baseline_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+  "contract": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+  "controlled_search": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+  "partition_manifest": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+  "shards": [
+    {
+      "path": "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+      "record_count": 8,
+      "content_sha256": "5c18e24c61e69d42232c7eda54b4fffcb4d53168f32a0a7499b72c9f1d18b72f",
+      "first_surface_id": "R2A-SURFACE-CORE-0001",
+      "last_surface_id": "R2A-SURFACE-AGENCY-0001"
+    }
+  ],
+  "surface_count": 8,
+  "counts": {
+    "declared_owner": {
+      "AFQR-01": 1,
+      "AFQR-02": 1,
+      "AFQR-04": 1,
+      "AFQR-06": 1,
+      "AFQR-07": 1,
+      "AFQR-08": 1,
+      "AFQR-09": 1,
+      "AFQR-10": 1
+    },
+    "surface_kind": {
+      "current_normative_doctrine": 8
+    },
+    "authority_level": {
+      "current_normative": 8
+    },
+    "currentness": {
+      "current": 8
+    },
+    "generality": {
+      "general": 8
+    },
+    "r1d_responsibility_id": {
+      "AGENCY-RESP-10": 1,
+      "CORE-RESP-01": 1,
+      "CORE-RESP-02": 1,
+      "CORE-RESP-04": 1,
+      "CORE-RESP-06": 1,
+      "CORE-RESP-07": 1,
+      "CORE-RESP-08": 1,
+      "CORE-RESP-09": 1
+    }
+  },
+  "responsibility_coverage": [
+    {
+      "responsibility_id": "CORE-RESP-01",
+      "afqr_id": "AFQR-01",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0001"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0001"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0001"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "CORE-RESP-02",
+      "afqr_id": "AFQR-02",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0002"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0002"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0002"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "CORE-RESP-04",
+      "afqr_id": "AFQR-04",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "CORE-RESP-06",
+      "afqr_id": "AFQR-06",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0004"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0004"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0004"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "CORE-RESP-07",
+      "afqr_id": "AFQR-07",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0005"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0005"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0005"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "CORE-RESP-08",
+      "afqr_id": "AFQR-08",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "CORE-RESP-09",
+      "afqr_id": "AFQR-09",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0007"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0007"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0007"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    },
+    {
+      "responsibility_id": "AGENCY-RESP-10",
+      "afqr_id": "AFQR-10",
+      "surface_ids": [
+        "R2A-SURFACE-AGENCY-0001"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-AGENCY-0001"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-AGENCY-0001"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+    }
+  ],
+  "owner_boundaries": [
+    "Identity does not confer agency, personhood, consent, control, authority, or responsibility.",
+    "Evidence admissibility does not own truth or knowledge; ordering does not own domain chronology; commitment does not own committed-domain semantics.",
+    "Dependency does not manufacture jurisdiction; conservation does not define a universal resource model.",
+    "Continuity and cross-phase coordination, replay, storage, schemas, and runtime acquire no domain ownership."
+  ],
+  "discovery_method": "Tracked baseline blobs were screened with the accepted normalized line-term-cluster matcher; matches were semantic-review candidates only, and exact governing context was reviewed without persisting occurrence tuples or aggregate counts.",
+  "completeness_boundary": [
+    "Candidate-file parity is deferred to R2A-4 through R2A-8.",
+    "Claim assessment is deferred to R2A-9 and R2A-10.",
+    "Unresolved questions and package/module synthesis are deferred to R2A-11.",
+    "Only R2A-12 can complete overall R2A.",
+    "Later parity review may require a corrective semantic-surface amendment.",
+    "Repository-wide semantic completeness is not claimed before disposition and parity partitions run."
+  ],
+  "prohibited_inferences": [
+    "This artifact does not adopt or modify doctrine.",
+    "No candidate disposition, scan receipt, claim routing, owner-question adjudication, or package/module necessity follows from this inventory.",
+    "R2A remains active_incomplete; R2B and later phases remain blocked."
+  ]
+}

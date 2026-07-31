@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.0",
+  "artifact_version": "0.2.1",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
@@ -77,7 +77,7 @@
     {
       "partition_id": "R2A-1",
       "title": "Inventory contract, controlled search, partition manifest",
-      "status": "active_incomplete",
+      "status": "complete",
       "owned_artifact_types": [
         "inventory_contract",
         "partition_manifest",
@@ -105,7 +105,7 @@
     {
       "partition_id": "R2A-2",
       "title": "CORE and AGENCY semantic surfaces",
-      "status": "planned_not_present",
+      "status": "complete",
       "owned_artifact_types": [
         "semantic_authority_surface"
       ],

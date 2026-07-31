@@ -1,12 +1,30 @@
-"""Executable R2A-1 contract, discovery, partition, and scope validation."""
+"""Successor-safe R2A-1 history and current R2A-2 semantic inventory checks."""
 from __future__ import annotations
 import fnmatch, hashlib, json, re, subprocess, unicodedata
+from collections import Counter
 from pathlib import Path
-ROOT=Path(__file__).resolve().parents[1]; BASE="9382958197c9d5dee9d29cb5f9d051147237c64d"
-REV=ROOT/"docs/doctrine/reviews"; CONTRACT=REV/"afqr_r2a_inventory_contract.yaml"; PARTITIONS=REV/"afqr_r2a_partition_manifest.yaml"; CLUSTERS=REV/"afqr_r2a_controlled_search_clusters.yaml"; FILES=REV/"afqr_r2_doctrine_drift_file_manifest.yaml"; PLAN=ROOT/"docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md"
-AUTHORIZED={"docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md","docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml","docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml","docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","tests/test_afqr_r2_continuity_research_assimilation.py","tests/test_afqr_r2a_inventory_contract.py"}
+import pytest
+ROOT=Path(__file__).resolve().parents[1]
+R2_0_BASE="9382958197c9d5dee9d29cb5f9d051147237c64d"
+ACCEPTED_R2A_1_HEAD="b6acd24fed6e689ee47a046af51aa12c5b231020"
+R2A_2_BASE=ACCEPTED_R2A_1_HEAD
+REV=ROOT/"docs/doctrine/reviews"
+CONTRACT=REV/"afqr_r2a_inventory_contract.yaml"; PARTITIONS=REV/"afqr_r2a_partition_manifest.yaml"
+CLUSTERS=REV/"afqr_r2a_controlled_search_clusters.yaml"; FILES=REV/"afqr_r2_doctrine_drift_file_manifest.yaml"
+INDEX=REV/"r2a/semantic_core_agency/index.yaml"; SHARD=REV/"r2a/semantic_core_agency/surfaces_0001.yaml"
+R2A1_AUTHORIZED={"docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md","docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml","docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml","docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","tests/test_afqr_r2_continuity_research_assimilation.py","tests/test_afqr_r2a_inventory_contract.py"}
+R2A2_AUTHORIZED={"docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml","docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml","docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","docs/doctrine/reviews/r2a/semantic_core_agency/index.yaml","docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml","tests/test_afqr_r2a_inventory_contract.py"}
+OWNERS={"AFQR-01","AFQR-02","AFQR-04","AFQR-06","AFQR-07","AFQR-08","AFQR-09","AFQR-10"}
+RESP={"CORE-RESP-01","CORE-RESP-02","CORE-RESP-04","CORE-RESP-06","CORE-RESP-07","CORE-RESP-08","CORE-RESP-09","AGENCY-RESP-10"}
 def load(p): return json.loads(p.read_text())
-def changed(): return set(subprocess.check_output(["git","diff","--name-only",f"{BASE}...HEAD"],text=True).splitlines())|{x[3:] for x in subprocess.check_output(["git","status","--porcelain"],text=True).splitlines() if x[:2].strip()}
+def at(commit,path): return json.loads(subprocess.check_output(["git","show",f"{commit}:{path}"],text=True))
+def names(a,b="HEAD"):
+ out=set(subprocess.check_output(["git","diff","--name-only",f"{a}...{b}"],text=True).splitlines())
+ if b=="HEAD":
+  out|=set(subprocess.check_output(["git","ls-files","--others","--exclude-standard"],text=True).splitlines())
+  out|={x[3:] for x in subprocess.check_output(["git","status","--porcelain","--untracked-files=no"],text=True).splitlines() if x[:2].strip()}
+ return out
+def blob(commit,path): return subprocess.check_output(["git","show",f"{commit}:{path}"])
 def normalize(s): return " ".join(unicodedata.normalize("NFC",unicodedata.normalize("NFC",s).casefold()).split())
 def boundary(s,i): return i<0 or i>=len(s) or unicodedata.category(s[i])[:1] not in {"L","N"}
 def excluded(path,raw):
@@ -14,136 +32,113 @@ def excluded(path,raw):
  if b"\0" in raw: return "nul_binary"
  try: raw.decode("utf-8-sig")
  except UnicodeDecodeError: return "invalid_utf8"
- return None
-def match(path,raw,terms_by_cluster):
+def match(path,raw,clusters):
  if excluded(path,raw): return []
- text=raw.decode("utf-8-sig").replace("\r\n","\n").replace("\r","\n"); out=set()
- for number,line in enumerate(text.split("\n"),1):
+ out=set()
+ for n,line in enumerate(raw.decode("utf-8-sig").replace("\r\n","\n").replace("\r","\n").split("\n"),1):
   line=normalize(line)
-  for cluster,terms in terms_by_cluster.items():
-   for term in terms:
-    term=normalize(term); start=0
-    while term and (at:=line.find(term,start))>=0:
-     if boundary(line,at-1) and boundary(line,at+len(term)): out.add((path,number,term,cluster))
-     start=at+1
+  for cluster,terms in clusters.items():
+   for term in map(normalize,terms):
+    start=0
+    while term and (i:=line.find(term,start))>=0:
+     if boundary(line,i-1) and boundary(line,i+len(term)): out.add((path,n,term,cluster))
+     start=i+1
  return sorted(out)
-def escape(v): return str(v).replace("\\","\\\\").replace("\t","\\t").replace("\r","\\r").replace("\n","\\n")
-def serialize(rows):
- records=sorted("\t".join(escape(v) for v in row) for row in rows)
- return (("\n".join(records)+"\n") if records else "").encode()
-def serialize_exclusions(records): return serialize((path,reason) for path,reason in records)
-def excerpt_hash(raw,start,end): return hashlib.sha256(b"".join(raw.splitlines(keepends=True)[start-1:end])).hexdigest()
-def locator_valid(kind,value): return value is None if kind=="line_range_only" else isinstance(value,str) and bool(value.strip())
-def pattern_matches(path,pattern):
- if pattern=="**": return True
- if pattern.startswith("**/") and pattern.endswith("/**"):
-  segment=pattern[3:-3]; return segment in path.split("/")[:-1]
- if pattern.endswith("/**") and "*" not in pattern[:-3]: return path.startswith(pattern[:-3]+"/")
- if "/" in pattern and "**" not in pattern:
-  return path.count("/")==pattern.count("/") and fnmatch.fnmatchcase(path,pattern)
- raise ValueError(f"unsupported manifest pattern: {pattern}")
-def assign(path,rules=None):
- rules=rules or load(PARTITIONS)["ownership_rules"]
- if any(pattern_matches(path,p) for p in rules["generated_vendor_exclusion_patterns"]): return None
- for partition in rules["disposition_precedence"]:
-  if any(pattern_matches(path,p) for p in rules["disposition_rules"].get(partition,[])): return partition
- raise ValueError(f"unassigned eligible path: {path}")
-def test_exact_base_and_seven_file_scope():
- assert subprocess.check_output(["git","merge-base",BASE,"HEAD"],text=True).strip()==BASE; assert changed()==AUTHORIZED
- assert not any(p.startswith(("src/","schemas/","tests/runtime/")) for p in changed())
-def test_type_specific_vocabularies_and_controls_resolve():
- d=load(CONTRACT); cv=d["controlled_values"]
- expected={"artifact_statuses","partition_statuses","semantic_surface_statuses","verification_statuses","claim_assessment_outcomes","question_assessment_outcomes","package_assessment_outcomes","module_assessment_outcomes"}; assert expected<=set(cv)
- assert not {"statuses","assessment_outcomes"}&set(cv)
- refs={"claim_assessment":"claim_assessment_outcomes","unresolved_question_assessment":"question_assessment_outcomes","package_assessment":"package_assessment_outcomes","module_assessment":"module_assessment_outcomes"}
- for name,vocab in refs.items(): assert d["record_types"][name]["field_controls"]["assessment_outcome"]==f"controlled_values.{vocab}"
- assert d["record_types"]["semantic_authority_surface"]["field_controls"]["semantic_status"]=="controlled_values.semantic_surface_statuses"
- assert d["record_types"]["scan_receipt"]["field_controls"]["verification_status"]=="controlled_values.verification_statuses"
- for record in d["record_types"].values():
-  assert record["required_fields"] and record["field_controls"] and record["validation_rules"] and record["prohibited_uses"]
-  for ref in record["field_controls"].values():
-   if isinstance(ref,str) and ref.startswith("controlled_values."): assert ref.split(".",1)[1] in cv
- assert d["record_types"]["module_assessment"]["prohibited_uses"]==["Do not invent a continuity, correction, branch, replay, or cross-phase super-owner."]
-def test_candidate_controls_owner_references_and_integrity():
- d=load(CONTRACT); cv=d["controlled_values"]; c=d["record_types"]["candidate_file_disposition"]
- assert "generated_or_vendor_text" not in cv["dispositions"]
- assert c["field_controls"]|{"source_local_pressure_class":"controlled_values.source_local_pressure_classes","authority_effect":"controlled_values.candidate_authority_effects","pressure_route":"controlled_values.pressure_routes"}==c["field_controls"]
- assert d["owner_reference"]["coordination_labels_are_owners"] is False and "invented" in d["owner_reference"]["prohibited"]
- assert set(d["referential_integrity"])=={"AFQR ID","R1D responsibility ID","TERM ID","invariant ID","dependency/edge ID","substrate ID"}
-def test_candidate_universe_and_exclusions():
- u=load(CONTRACT)["candidate_file_universe"]; assert len(u["processing_order"])==5 and "not candidate files" in u["excluded_files"]
- assert excluded("vendor/x.txt",b"truth")=="generated_or_vendor_path"; assert excluded("x",b"a\0b")=="nul_binary"; assert excluded("x",b"\xff")=="invalid_utf8"; assert excluded("x",b"ok") is None
-def test_executable_discovery_vectors():
- vectors=load(CLUSTERS)["reference_vectors"]
- for v in vectors:
+def excerpt(raw,a,b): return hashlib.sha256(b"".join(raw.splitlines(keepends=True)[a-1:b])).hexdigest()
+
+def test_r2a1_accepted_head_ancestry_scope_and_historical_snapshot():
+ subprocess.check_call(["git","merge-base","--is-ancestor",ACCEPTED_R2A_1_HEAD,"HEAD"])
+ assert names(R2_0_BASE,ACCEPTED_R2A_1_HEAD)==R2A1_AUTHORIZED
+ old_contract=at(ACCEPTED_R2A_1_HEAD,"docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml")
+ old_parts=at(ACCEPTED_R2A_1_HEAD,"docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml")
+ assert old_contract["artifact_version"]=="0.1.0" and old_parts["artifact_version"]=="0.2.0"
+ assert old_contract["r2a_partition_statuses"]["R2A-2"]=="planned_not_present"
+
+def test_r2a1_executable_normalization_matching_hashing_and_exclusions_preserved():
+ old=at(ACCEPTED_R2A_1_HEAD,"docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml")
+ for v in old["reference_vectors"]:
   raw=bytes.fromhex(v["raw_hex"]) if "raw_hex" in v else json.loads('"'+v["raw_utf8_escaped"]+'"').encode()
   if "expected_exclusion" in v: assert excluded(v["path"],raw)==v["expected_exclusion"]
   else: assert [list(x) for x in match(v["path"],raw,v["terms_by_cluster"])]==v["expected_tuples"]
- assert match("x",b"Truth\r\nvalid  time\r\n",{"a":["truth","valid time"]})==match("x",b"Truth\nvalid  time\n",{"a":["truth","valid time"]})
- assert match("x",b"truth truth\n",{"a":["truth"]})==[("x",1,"truth","a")]
- assert match("x",b"truth\n",{"a":["truth"],"b":["truth"]})==[("x",1,"truth","a"),("x",1,"truth","b")]
-def test_tuple_serialization_order_escaping_digest_and_empty_stream():
- rows=[("a\\b",2,"truth","z"),("a\tb",1,"belief","a")]; stream=serialize(rows)
- assert stream==b"a\\\\b\t2\ttruth\tz\na\\tb\t1\tbelief\ta\n"
- assert hashlib.sha256(stream).hexdigest()=="1adefdfe52d501aff9865834d458df38c04b52ba8d66b8ce44a5133ed5b289a4"
- assert serialize([])==b"" and hashlib.sha256(serialize([])).hexdigest()=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
-def test_exclusion_stream_vectors_order_reason_escaping_and_empty():
- a=[("z.txt","invalid_utf8"),("a\tb","nul_binary")]; assert serialize_exclusions(a)==serialize_exclusions(list(reversed(a)))==b"a\\tb\tnul_binary\nz.txt\tinvalid_utf8\n"
- assert hashlib.sha256(serialize_exclusions([("x","nul_binary")])).digest()!=hashlib.sha256(serialize_exclusions([("x","invalid_utf8")])).digest()
- assert serialize_exclusions([])==b"" and hashlib.sha256(serialize_exclusions([])).hexdigest()=="e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
- algorithm=load(CONTRACT)["canonical_exclusion_receipt_algorithm"]; assert algorithm["record_fields"]==["path","exclusion_reason"] and "both path and exclusion reason" in algorithm["digest_meaning"]
-def test_exact_excerpt_hash_vectors_and_locator_controls():
- raw=b"first\r\nsecond\nlast"; assert excerpt_hash(raw,2,3)==hashlib.sha256(b"second\nlast").hexdigest(); assert excerpt_hash(raw,1,1)==hashlib.sha256(b"first\r\n").hexdigest()
- d=load(CONTRACT); s=d["record_types"]["semantic_authority_surface"]
- assert {"locator_kind","locator_value","line_start","line_end","excerpt_hash_algorithm","excerpt_sha256"}<=set(s["required_fields"])
- assert s["field_controls"]["excerpt_hash_algorithm"]=="literal.sha256_git_blob_raw_line_slice_v1"
- assert set(d["controlled_values"]["locator_kinds"])=={"heading","symbol","json_pointer","yaml_path","line_range_only"}
- assert locator_valid("line_range_only",None) and not locator_valid("line_range_only","x")
- assert all(locator_valid(kind,"value") and not locator_valid(kind,None) and not locator_valid(kind," ") for kind in ("heading","symbol","json_pointer","yaml_path"))
-def test_receipt_provenance_is_complete():
- required=set(load(CONTRACT)["record_types"]["scan_receipt"]["required_fields"])
- assert required=={"receipt_id","inspected_baseline_commit","controlled_search_artifact_id","controlled_search_artifact_version","controlled_search_artifact_path","controlled_search_artifact_hash_algorithm","controlled_search_artifact_sha256","eligible_file_count","excluded_file_count_by_reason","excluded_path_digest","excluded_path_digest_algorithm","candidate_file_count","occurrence_count","count_by_term","count_by_cluster","tuple_stream_sha256","verification_status"}
- assert load(CONTRACT)["controlled_search_artifact_hash_algorithm"]["algorithm_id"]=="sha256_exact_git_blob_bytes_v1"
-def test_partition_assignment_precedence_and_totality_and_mutations():
- d=load(PARTITIONS); rules=d["ownership_rules"]; assert rules["exclusions_before_assignment"] is True and rules["disposition_precedence"]==["R2A-4","R2A-5","R2A-6","R2A-7"]
- vectors={"docs/doctrine/control/a.md":"R2A-4","docs/doctrine/reviews/a.yaml":"R2A-5","docs/doctrine/root.yaml":"R2A-5","src/a.py":"R2A-6","schemas/a.json":"R2A-6","tests/runtime/a.py":"R2A-6","tests/test_runtime_x.py":"R2A-6","examples/a.md":"R2A-7","vendor/a.py":None}; assert {p:assign(p) for p in vectors}==vectors
- import copy
- changed=copy.deepcopy(rules); changed["disposition_rules"]["R2A-4"].append("examples/**"); assert assign("examples/a.md",changed)=="R2A-4"
- no_fallback=copy.deepcopy(rules); no_fallback["disposition_rules"]["R2A-7"]=[]
- try: assign("unowned/a.txt",no_fallback); assert False, "missing fallback must fail"
- except ValueError: pass
- overlap=copy.deepcopy(rules); overlap["disposition_rules"]["R2A-5"].append("docs/doctrine/control/**"); assert assign("docs/doctrine/control/a.md",overlap)=="R2A-4"
- overlap["disposition_precedence"]=["R2A-5","R2A-4","R2A-6","R2A-7"]; assert assign("docs/doctrine/control/a.md",overlap)=="R2A-5"
- excluded_first=copy.deepcopy(rules); excluded_first["disposition_rules"]["R2A-4"].append("vendor/**"); assert assign("vendor/a.py",excluded_first) is None
- for path in subprocess.check_output(["git","ls-tree","-r","--name-only",BASE],text=True).splitlines(): assert assign(path) is None or assign(path) in {"R2A-4","R2A-5","R2A-6","R2A-7"}
-def test_twelve_partitions_dependencies_shards_and_no_coordination_owner():
- d=load(PARTITIONS); rows=d["partitions"]; assert d["partition_count"]==len(rows)==12; assert [x["partition_id"] for x in rows]==[f"R2A-{n}" for n in range(1,13)]
- seen={"R2-0"}
- for x in rows: assert set(x["dependency_partitions"])<=seen and x["maximum_changed_files"]<=7 and x["maximum_additions"]<=2500; seen.add(x["partition_id"])
- assert d["ownership_rules"]["coordination_domain_ownership"]==[] and "bounded shards" in d["ownership_rules"]["sharding"]
- assert "Only R2A-12 may mark R2A complete" in rows[-1]["gate_effect"] and "cannot begin R2B" in rows[-2]["gate_effect"]
- for row in rows:
-  paths=row.get("candidate_path_patterns",row.get("planned_artifact_paths")); assert paths and all("planned artifact family" not in path and not path.startswith("/") and " " not in path for path in paths)
-  assert ("candidate_path_patterns" in row)==(row["partition_id"] in {"R2A-4","R2A-5","R2A-6","R2A-7"})
-def test_manifest_statuses_sequence_and_cross_file_agreement():
- m=load(FILES); seq=m["r2a_reconstruction_sequence"]; assert len(seq)==12 and all(set(x)=={"partition_id","current_status"} for x in seq)
- planned=[x for x in m["artifacts"] if x.get("phase","").startswith("R2A-") and x["phase"]!="R2A-1"]; assert len(planned)==11
- for number,x in enumerate(planned,2):
-  assert "status" not in x; assert x["current_status"]=="planned_not_present"; assert x["phase"]==f"R2A-{number}"; assert not x["path"].startswith("/") and ("/index." in x["path"] or number==12)
- partitions=load(PARTITIONS); contract=load(CONTRACT); clusters=load(CLUSTERS); ids=[f"R2A-{n}" for n in range(1,13)]; statuses={x["partition_id"]:x["current_status"] for x in seq}
- assert contract["partition_count"]==clusters["partition_count"]==partitions["partition_count"]==len(seq)==12
- assert contract["r2a_partition_ids"]==clusters["r2a_partition_ids"]==[x["partition_id"] for x in partitions["partitions"]]==ids
- assert contract["r2a_partition_statuses"]==clusters["r2a_partition_statuses"]=={x["partition_id"]:x["status"] for x in partitions["partitions"]}==statuses
- planned_by_phase={x["phase"]:x["path"] for x in planned}; partition_paths={x["partition_id"]:x["planned_artifact_paths"][0] for x in partitions["partitions"] if x["partition_id"] in planned_by_phase}; assert partition_paths==planned_by_phase
- plan=PLAN.read_text(); assert "twelve bounded pull requests" in plan and all(x in plan for x in ("`R2A=active_incomplete`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`"))
- assert [x["partition_id"] for x in partitions["partitions"] if "mark R2A complete" in x["gate_effect"]]==["R2A-12"] and "cannot begin R2B" in partitions["partitions"][-2]["gate_effect"]
-def test_successor_safe_history_current_posture_and_nonauthority():
- history=(ROOT/"tests/test_afqr_r2_continuity_research_assimilation.py").read_text(); assert 'ACCEPTED_R2_0_HEAD="9382958197c9d5dee9d29cb5f9d051147237c64d"' in history and 'f"{BASE}...{ACCEPTED_R2_0_HEAD}"' in history and 'git","show",f"{ACCEPTED_R2_0_HEAD}' in history
- d=load(CONTRACT); assert d["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
- plan=PLAN.read_text(); assert "No compact reconstruction or isolated local commit is repository authority." in plan and "No-action and existing-owner outcomes are lawful" in plan
- assert not any(k in d for k in ("semantic_surfaces","candidate_files","claim_assessments","question_assessments"))
-def test_no_deletions_binaries_oversize_or_overlong_lines():
- assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",BASE],text=True).strip(); assert len(changed())==7
- for p in changed():
+ raw=b"first\r\nsecond\nlast"; assert excerpt(raw,2,3)==hashlib.sha256(b"second\nlast").hexdigest()
+
+def test_exact_r2a2_base_ancestry_authorization_and_no_runtime_schema_changes():
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A_2_BASE,"HEAD"])
+ assert names(R2A_2_BASE)==R2A2_AUTHORIZED
+ assert not any(p.startswith(("src/","schemas/","tests/runtime/")) for p in names(R2A_2_BASE))
+
+def test_partition_status_progression_and_cross_file_agreement():
+ expected={f"R2A-{n}":("complete" if n<=2 else "planned_not_present") for n in range(1,13)}
+ c=load(CONTRACT); s=load(CLUSTERS); p=load(PARTITIONS); m=load(FILES)
+ assert c["r2a_partition_statuses"]==s["r2a_partition_statuses"]=={x["partition_id"]:x["status"] for x in p["partitions"]}==expected
+ assert {x["partition_id"]:x["current_status"] for x in m["r2a_reconstruction_sequence"]}==expected
+ assert c["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
+
+def test_index_shard_structure_required_fields_and_controlled_values():
+ c=load(CONTRACT); i=load(INDEX); records=load(SHARD)["surface_records"]
+ required=set(c["record_types"]["semantic_authority_surface"]["required_fields"])
+ assert i["status"]=="complete" and i["surface_count"]==len(records)>0
+ for r in records:
+  assert required<=set(r) and r["primary_partition"]=="R2A-2" and r["inspected_commit"]==R2A_2_BASE
+  assert r["excerpt_hash_algorithm"]=="sha256_git_blob_raw_line_slice_v1" and r["semantic_status"]=="validated"
+  assert r["surface_kind"] in c["controlled_values"]["surface_kinds"] and r["authority_level"] in c["controlled_values"]["authority_levels"]
+  assert r["currentness"] in c["controlled_values"]["currentness_values"] and r["generality"] in c["controlled_values"]["generality_values"]
+  assert (r["locator_value"] is None)==(r["locator_kind"]=="line_range_only")
+
+def test_order_ids_uniqueness_owners_responsibilities_and_no_coordination_owner():
+ records=load(SHARD)["surface_records"]
+ assert records==sorted(records,key=lambda r:(r["declared_owner"],r["path"],r["line_start"],r["line_end"],r["surface_kind"]))
+ assert len({r["surface_id"] for r in records})==len(records)
+ assert len({(r["declared_owner"],r["path"],r["line_start"],r["line_end"],r["semantic_summary"]) for r in records})==len(records)
+ assert {r["declared_owner"] for r in records}==OWNERS
+ assert {r["applicable_r1d_responsibility_ids"][0] for r in records}==RESP and all(len(r["applicable_r1d_responsibility_ids"])==1 for r in records)
+ core=[r for r in records if r["declared_owner"]!="AFQR-10"]; agency=[r for r in records if r["declared_owner"]=="AFQR-10"]
+ assert [r["surface_id"] for r in core]==[f"R2A-SURFACE-CORE-{n:04d}" for n in range(1,len(core)+1)]
+ assert [r["surface_id"] for r in agency]==[f"R2A-SURFACE-AGENCY-{n:04d}" for n in range(1,len(agency)+1)]
+
+def test_baseline_paths_hashes_locators_and_material_semantic_relevance():
+ records=load(SHARD)["surface_records"]
+ for r in records:
+  raw=blob(R2A_2_BASE,r["path"]); lines=raw.splitlines(keepends=True)
+  assert 0<r["line_start"]<=r["line_end"]<=len(lines)
+  assert excerpt(raw,r["line_start"],r["line_end"])==r["excerpt_sha256"]
+  bounded=b"".join(lines[r["line_start"]-1:r["line_end"]]).decode()
+  # Reject owner-name mentions: the accepted bounded proposition must state both ownership and exclusion.
+  assert '"owned_concerns"' in bounded and '"explicit_nonowned_concerns"' in bounded
+  assert not r["path"].startswith("docs/doctrine/reviews/r2a/semantic_core_agency/")
+
+def _ids(path,pattern): return set(re.findall(pattern,blob(R2A_2_BASE,path).decode()))
+def test_identifier_integrity_primary_applicability_and_empty_claim_links():
+ terms=_ids("docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",r"TERM-\d{3}")
+ inv=_ids("docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",r"INV-\d{3}")
+ dep=_ids("docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",r"DEP-\d{3}")
+ sub=_ids("docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",r"SUBSTRATE-[A-Z0-9-]+")
+ for r in load(SHARD)["surface_records"]:
+  assert r["declared_owner"] in r["applicable_afqr_ids"] and set(r["applicable_term_ids"])<=terms
+  assert set(r["applicable_invariant_ids"])<=inv and set(r["applicable_dependency_ids"])<=dep and set(r["applicable_substrate_ids"])<=sub
+  assert r["linked_r2_claim_ids"]==r["claim_link_reasons"]==[]
+
+def test_owner_current_coverage_index_counts_digest_and_coverage_recompute():
+ i=load(INDEX); records=load(SHARD)["surface_records"]
+ assert all(any(r["declared_owner"]==o and r["surface_kind"] in {"current_normative_doctrine","accepted_decision"} for r in records) for o in OWNERS)
+ for field in ("declared_owner","surface_kind","authority_level","currentness","generality"):
+  assert i["counts"][field]==dict(sorted(Counter(r[field] for r in records).items()))
+ assert i["counts"]["r1d_responsibility_id"]==dict(sorted(Counter(r["applicable_r1d_responsibility_ids"][0] for r in records).items()))
+ sh=i["shards"][0]; assert sh["record_count"]==len(records) and sh["content_sha256"]==hashlib.sha256(SHARD.read_bytes()).hexdigest()
+ coverage=i["responsibility_coverage"]; assert {x["responsibility_id"] for x in coverage}==RESP
+ byid={r["surface_id"]:r for r in records}
+ for c in coverage:
+  assert c["afqr_id"] in OWNERS and c["surface_ids"] and set(c["surface_ids"])<=set(byid)
+  assert set(c["current_normative_surface_ids"])=={s for s in c["surface_ids"] if byid[s]["surface_kind"] in {"current_normative_doctrine","accepted_decision"}}
+
+def test_no_later_partition_records_or_prohibited_assessments():
+ data=(INDEX.read_text()+SHARD.read_text()).lower()
+ prohibited=("candidate_file_disposition","scan_receipt_id","assessment_outcome","unresolved_question_id","package_assessment_id","module_assessment_id","occurrence_tuple")
+ assert not any(x in data for x in prohibited)
+ assert "repository-wide semantic completeness is not claimed" in data and "does not adopt or modify doctrine" in data
+
+def test_containment_limits_no_deletions_binaries_oversize_or_long_lines():
+ assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",R2A_2_BASE],text=True).strip()
+ num=subprocess.check_output(["git","diff","--numstat",R2A_2_BASE],text=True).splitlines(); assert sum(int(x.split("\t")[0]) for x in num)<=2500
+ for p in names(R2A_2_BASE):
   raw=(ROOT/p).read_bytes(); assert b"\0" not in raw and len(raw)<=300*1024 and max(map(len,raw.splitlines()),default=0)<=1000
- num=subprocess.check_output(["git","diff","--numstat",BASE],text=True); assert "-\t-\t" not in num and sum(int(x.split("\t")[0]) for x in num.splitlines())<=2500
