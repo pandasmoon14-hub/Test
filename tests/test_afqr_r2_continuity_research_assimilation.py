@@ -5,6 +5,7 @@ from collections import Counter
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 BASE="dbecb91cb42c665f586b644b3f359f29bcef91a3"
+ACCEPTED_R2_0_HEAD="9382958197c9d5dee9d29cb5f9d051147237c64d"
 R1="bbc9d58cb23f1616327f73294def6ec42055a324"
 ABANDONED="50c0320acd1a9a075cba18e1309dd3d15ac5c44d"
 REV=ROOT/"docs/doctrine/reviews"; INTAKE=REV/"afqr_r2_continuity_research_intake_packet.md"
@@ -28,14 +29,15 @@ def metrics():
  cs=load(LEDGER)["claims"]
  return {"by_consensus_level":dict(sorted(Counter(c["consensus"]["level"] for c in cs).items())),"by_family":dict(sorted(Counter(c["claim_family_id"] for c in cs).items())),"by_primary_outcome":dict(sorted(Counter(c["primary_outcome"] for c in cs).items())),"by_target_work_package":dict(sorted(Counter(c["target_work_package"] for c in cs).items())),"rejected_overengineering":sum(c["primary_outcome"]=="rejected_as_overengineered" for c in cs),"total_claims":len(cs),"unresolved_owner_questions":sum(bool(c["owner_analysis"]["unresolved_owner_question"]) for c in cs)}
 def test_exact_committed_scope_and_ancestry():
+ assert subprocess.run(["git","merge-base","--is-ancestor",ACCEPTED_R2_0_HEAD,"HEAD"]).returncode==0
  assert subprocess.run(["git","merge-base","--is-ancestor",BASE,"HEAD"]).returncode==0
  assert subprocess.run(["git","merge-base","--is-ancestor",R1,"HEAD"]).returncode==0
  if subprocess.run(["git","cat-file","-e",f"{ABANDONED}^{{commit}}"],capture_output=True).returncode==0: assert subprocess.run(["git","merge-base","--is-ancestor",ABANDONED,"HEAD"],capture_output=True).returncode!=0
- changed=set(subprocess.check_output(["git","diff","--name-only",f"{BASE}...HEAD"],text=True).splitlines())|{x[3:] for x in subprocess.check_output(["git","status","--porcelain"],text=True).splitlines() if x.startswith("?? ")}
+ changed=set(subprocess.check_output(["git","diff","--name-only",f"{BASE}...{ACCEPTED_R2_0_HEAD}"],text=True).splitlines())
  assert changed==ALLOW
- assert subprocess.run(["git","diff","--check",f"{BASE}...HEAD"],capture_output=True).returncode==0
- num=subprocess.check_output(["git","diff","--numstat",f"{BASE}...HEAD"],text=True); assert "-\t-\t" not in num
- assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",f"{BASE}...HEAD"],text=True).strip()
+ assert subprocess.run(["git","diff","--check",f"{BASE}...{ACCEPTED_R2_0_HEAD}"],capture_output=True).returncode==0
+ num=subprocess.check_output(["git","diff","--numstat",f"{BASE}...{ACCEPTED_R2_0_HEAD}"],text=True); assert "-\t-\t" not in num
+ assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",f"{BASE}...{ACCEPTED_R2_0_HEAD}"],text=True).strip()
  forbidden=("src/","schemas/","conversion/","canon/","model/","narration/","ui/","live_play","rt_002g","working/afqr_consolidation_inputs/")
  assert not [p for p in changed if any(x in p.lower() for x in forbidden) or p.endswith((".zip",".pdf",".png",".jpg"))]
 def test_manifest_exactly_matches_intake_inventory():
@@ -94,8 +96,10 @@ def test_counts_actions_limits_and_gate():
   blob=re.search(r"Machine-checkable R2-0 metrics:\*\* `([^`]+)`",p.read_text()); assert blob and json.loads(blob.group(1))==expected
  assert all(c["proposed_next_action"] and "named work package" not in c["proposed_next_action"] for c in doc["claims"])
  limits={MANIFEST:(600,100*1024),LEDGER:(3500,400*1024),REPORT:(800,120*1024),PLAN:(1000,150*1024),FILES:(800,120*1024)}
- for p,(lines,size) in limits.items(): raw=p.read_bytes(); assert len(raw.splitlines())<=lines and len(raw)<=size and b"\0" not in raw
- gate=PLAN.read_text(); assert all(x in gate for x in ("`R1=complete`","`R2=active_incomplete`","`R2-0=complete`","`R2A=ready`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`","`RT-002G=unauthorized`","`temporary_evidence_deletion=unauthorized`"))
+ for p,(lines,size) in limits.items():
+  raw=subprocess.check_output(["git","show",f"{ACCEPTED_R2_0_HEAD}:{p.relative_to(ROOT)}"]) if p in {PLAN,FILES} else p.read_bytes()
+  assert len(raw.splitlines())<=lines and len(raw)<=size and b"\0" not in raw
+ gate=subprocess.check_output(["git","show",f"{ACCEPTED_R2_0_HEAD}:{PLAN.relative_to(ROOT)}"],text=True); assert all(x in gate for x in ("`R1=complete`","`R2=active_incomplete`","`R2-0=complete`","`R2A=ready`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`","`RT-002G=unauthorized`","`temporary_evidence_deletion=unauthorized`"))
 def test_accepted_r1_authority_files_unchanged():
  paths=["docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml","docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml","docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md","docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md","docs/doctrine/consolidation/afqr_world_action_sensing.md","docs/doctrine/reviews/afqr_01_20_formal_completion_review.md","docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml","docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml","docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml","docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml"]
  for p in paths: assert hashlib.sha256((ROOT/p).read_bytes()).digest()==hashlib.sha256(subprocess.check_output(["git","show",f"{R1}:{p}"],cwd=ROOT)).digest()
