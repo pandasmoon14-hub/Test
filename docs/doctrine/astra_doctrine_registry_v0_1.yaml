@@ -15136,3 +15136,25 @@ file_records:
   owner: R2-0 research assimilation
   purpose: Register completed R2-0 outputs and planned R2A/R2B/R2C families.
   authority_level: tracking_review_only
+- file_id: AFQR-R2A-AUTHORITY-SURFACE-INVENTORY-001
+  title: AFQR R2A Authority-Surface Inventory Index
+  filename: afqr_r2a_authority_surface_inventory.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review-complete
+  layer: 0_control
+  phase: R2A
+  owner: R2A inventory review
+  purpose: Index baseline authority surfaces, bounded dismissals, and deterministic scan counts.
+  authority_level: tracking_review_only
+  authority_note: Inventory evidence only; no doctrine or implementation authority.
+- file_id: AFQR-R2A-DOCTRINE-DRIFT-ROUTING-001
+  title: AFQR R2A Doctrine-Drift Routing
+  filename: afqr_r2a_doctrine_drift_routing.yaml
+  proposed_path: docs/doctrine/reviews/
+  status: review-complete
+  layer: 0_control
+  phase: R2A
+  owner: R2A inventory review
+  purpose: Route all 31 claims and derive R2B package necessity from proven findings.
+  authority_level: tracking_review_only
+  authority_note: Routing evidence only; no doctrine or implementation authority.

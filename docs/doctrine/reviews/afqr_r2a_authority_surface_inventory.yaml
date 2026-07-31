@@ -1,0 +1,224 @@
+{
+  "artifact_id": "AFQR-R2A-AUTHORITY-SURFACE-INVENTORY-001",
+  "status": "PASS",
+  "phase": "R2A",
+  "authority": "tracking_review_only",
+  "inspected_commit": "9382958197c9d5dee9d29cb5f9d051147237c64d",
+  "authority_hierarchy": [
+    "accepted current R1 doctrine",
+    "accepted R1E decisions",
+    "formal current sourcebook material",
+    "accepted post-R1 decisions",
+    "control/gate sequencing only",
+    "schemas/runtime as implementation evidence",
+    "tests/fixtures as presupposition evidence",
+    "R2-0 as nonauthoritative pressure",
+    "historical/source-local/example material"
+  ],
+  "eligible_text_extensions": [
+    ".md",
+    ".yaml",
+    ".yml",
+    ".json",
+    ".py",
+    ".toml",
+    ".txt",
+    ".rst"
+  ],
+  "excluded_binary_rules": [
+    "NUL-bearing content excluded",
+    "noneligible extensions excluded"
+  ],
+  "search_clusters": {
+    "CF-01_TIMELINE_BRANCH": [
+      "timeline",
+      "world history",
+      "branch",
+      "canonical branch",
+      "canon selection",
+      "fork",
+      "promotion",
+      "archive",
+      "hypothetical",
+      "alternate world",
+      "time travel",
+      "timeline_id",
+      "branch_id",
+      "canonicality"
+    ],
+    "CF-02_REPLAY_CORRECTION": [
+      "preview",
+      "replay",
+      "rollback",
+      "correction",
+      "compensation",
+      "supersession",
+      "retcon",
+      "migration",
+      "supersedes",
+      "compensates",
+      "replays"
+    ],
+    "CF-03_TEMPORAL": [
+      "valid time",
+      "world time",
+      "record time",
+      "transaction time",
+      "commit time",
+      "causal parent",
+      "causal order",
+      "valid_time",
+      "recorded_at",
+      "committed_at"
+    ],
+    "CF-04_SCHEDULE": [
+      "schedule",
+      "cancellation",
+      "revalidation"
+    ],
+    "CF-05_RANDOMNESS": [
+      "rng",
+      "seed",
+      "reroll"
+    ],
+    "CF-06_VERSION": [
+      "ruleset version",
+      "content package",
+      "campaign override",
+      "schema version",
+      "ruleset_id",
+      "package_version",
+      "override_id"
+    ],
+    "CF-07_SESSION": [
+      "session closure",
+      "session boundary",
+      "snapshot",
+      "recap",
+      "restart",
+      "session_id",
+      "snapshot_id"
+    ],
+    "CF-08_EPISTEMIC": [
+      "knowledge delta",
+      "belief delta",
+      "disclosure",
+      "visibility",
+      "projection",
+      "context packet",
+      "truth",
+      "evidence",
+      "observation",
+      "sensing"
+    ],
+    "CF-09_CONCURRENCY": [
+      "expected version",
+      "stale command",
+      "expected_version"
+    ],
+    "CF-10_RESERVATION": [
+      "reservation",
+      "expiry",
+      "release",
+      "settlement",
+      "reservation_id"
+    ],
+    "CF-11_DELIVERY": [
+      "idempotency",
+      "duplicate suppression",
+      "outbox",
+      "publication receipt",
+      "crash recovery"
+    ],
+    "CF-12_PROGRESSION": [
+      "offline progression",
+      "world tick",
+      "lazy catch-up"
+    ],
+    "CF-13_FRONTIER": [
+      "quarantine",
+      "corruption",
+      "crdt",
+      "multi-master",
+      "graph database"
+    ]
+  },
+  "shards": [
+    {
+      "shard": "CORE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core.yaml",
+      "surface_count": 10,
+      "dismissed_candidate_file_count": 476
+    },
+    {
+      "shard": "AGENCY",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_agency.yaml",
+      "surface_count": 6,
+      "dismissed_candidate_file_count": 17
+    },
+    {
+      "shard": "WORLD",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world.yaml",
+      "surface_count": 3,
+      "dismissed_candidate_file_count": 114
+    },
+    {
+      "shard": "CONTINUITY_CROSS_PHASE",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase.yaml",
+      "surface_count": 7,
+      "dismissed_candidate_file_count": 116
+    }
+  ],
+  "surface_count": 26,
+  "tracked_text_file_count": 821,
+  "candidate_file_count": 749,
+  "mapped_candidate_file_count": 26,
+  "dismissed_candidate_file_count": 723,
+  "unaccounted_candidate_file_count": 0,
+  "counts_by_surface_kind": {
+    "accepted_decision": 2,
+    "control_or_gate": 1,
+    "historical_record": 2,
+    "normative_doctrine": 5,
+    "production_schema": 1,
+    "review_or_audit": 2,
+    "runtime_implementation": 8,
+    "test_contract": 5
+  },
+  "counts_by_authority_level": {
+    "accepted_decision": 2,
+    "current_normative": 5,
+    "historical_only": 1,
+    "implementation_contract_only": 8,
+    "review_evidence_only": 2,
+    "schema_contract_only": 1,
+    "source_local_only": 1,
+    "test_contract_only": 5,
+    "tracking_control_only": 1
+  },
+  "counts_by_currentness": {
+    "current": 24,
+    "historical": 1,
+    "source_local": 1
+  },
+  "counts_by_generality": {
+    "historical_guard": 1,
+    "narrow_fixture": 5,
+    "repository_general": 10,
+    "source_local": 1,
+    "subsystem_scoped": 1,
+    "vertical_slice": 8
+  },
+  "counts_by_semantic_status": {
+    "consistent_with_r1": 7,
+    "historical_residue": 2,
+    "partial_but_not_conflicting": 3,
+    "runtime_presupposition": 8,
+    "schema_presupposition": 1,
+    "test_presupposition": 5
+  },
+  "cross_shard_surface_links": [],
+  "scan_limitations": [
+    "origin unavailable; inspected exact local merge receipt 9382958197c9d5dee9d29cb5f9d051147237c64d"
+  ]
+}

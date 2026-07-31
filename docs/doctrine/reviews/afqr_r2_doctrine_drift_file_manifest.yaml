@@ -42,7 +42,7 @@
         "source manifest and accepted R1"
       ],
       "outputs": [
-        "thirty owner-routed claims"
+        "thirty-one owner-routed claims"
       ],
       "must_not_own": [
         "doctrine adoption",
@@ -140,7 +140,7 @@
         "whole repository plus narrow fixtures"
       ],
       "outlier_escalation_path": "route owner conflicts to R2B/Council",
-      "current_status": "planned"
+      "current_status": "complete"
     },
     {
       "phase": "R2A",
@@ -167,7 +167,7 @@
         "all authority surfaces"
       ],
       "outlier_escalation_path": "Council for unresolved owner",
-      "current_status": "planned"
+      "current_status": "complete"
     },
     {
       "phase": "R2B",
@@ -330,6 +330,168 @@
       ],
       "outlier_escalation_path": "Council blocks completion",
       "current_status": "planned"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_core.yaml",
+      "owner": "R2A",
+      "purpose": "Store primary CORE surfaces and bounded dismissals",
+      "inputs": [
+        "exact baseline tree and R2A index"
+      ],
+      "outputs": [
+        "tracking review evidence"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "749 controlled-search candidate files"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_agency.yaml",
+      "owner": "R2A",
+      "purpose": "Store primary AGENCY surfaces and bounded dismissals",
+      "inputs": [
+        "exact baseline tree and R2A index"
+      ],
+      "outputs": [
+        "tracking review evidence"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "749 controlled-search candidate files"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_world.yaml",
+      "owner": "R2A",
+      "purpose": "Store primary WORLD surfaces and bounded dismissals",
+      "inputs": [
+        "exact baseline tree and R2A index"
+      ],
+      "outputs": [
+        "tracking review evidence"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "749 controlled-search candidate files"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_continuity_cross_phase.yaml",
+      "owner": "R2A",
+      "purpose": "Store primary continuity/cross-phase surfaces and bounded dismissals",
+      "inputs": [
+        "exact baseline tree and R2A index"
+      ],
+      "outputs": [
+        "tracking review evidence"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "749 controlled-search candidate files"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A",
+      "path": "docs/doctrine/reviews/afqr_r2a_authority_surface_inventory_report.md",
+      "owner": "R2A",
+      "purpose": "Summarize R2A evidence and gate effect",
+      "inputs": [
+        "exact baseline tree and R2A index"
+      ],
+      "outputs": [
+        "tracking review evidence"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "749 controlled-search candidate files"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A",
+      "path": "tests/test_afqr_r2a_authority_surface_inventory.py",
+      "owner": "R2A",
+      "purpose": "Validate R2A scope, evidence, coverage, routes, and gate",
+      "inputs": [
+        "exact baseline tree and R2A index"
+      ],
+      "outputs": [
+        "tracking review evidence"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "implementation"
+      ],
+      "dependencies": [
+        "R2-0 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A authorization"
+      ],
+      "corpus_scale_pressure": [
+        "749 controlled-search candidate files"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council",
+      "current_status": "complete"
     }
   ],
   "r2_0_metrics": {

@@ -1,6 +1,6 @@
 # AFQR-01–20 modular consolidation program plan
 
-**Status:** R1A–R1E and overall R1 complete; R2 active and incomplete; R2-0 complete; R2A ready and next. **Authority:** planning/tracking only.
+**Status:** R1A–R1E and overall R1 complete; R2 active and incomplete; R2-0 and R2A complete; R2C ready because no R2B package was proven necessary. **Authority:** planning/tracking only.
 
 ## Boundaries and corpus pressure
 
@@ -21,6 +21,10 @@ The machine-readable proposed-file contracts are in `afqr_01_20_consolidation_fi
 R1A through R1E and overall R1 are complete. R2 doctrine-drift resolution is ready and is the single next lawful gate. R3 conformance audit, R4 runtime substrate, R5 RT-002A–F retrofit, R6 re-entry review, and RT-002G authorization/implementation remain blocked. Temporary-source deletion requires a separate explicit evidence-disposition gate and remains unauthorized. No runtime, conversion, canon, sourcebook, model-facing, or live-play work is authorized here.
 
 **Explicit block:** R3–R6 and RT-002G remain blocked; R2 alone is ready.
+
+## R2A authority-surface inventory update (2026-07-31)
+
+R2A inspected the exact PR #341 merge receipt, accounted for all 749 controlled-search candidate files with 26 mapped surfaces and 723 bounded dismissals, and assessed all 31 R2-0 claims. No doctrine-changing finding met the proof rules, so all five candidate R2B packages and all six continuity modules are not required; R2C is ready. R2 remains active and incomplete. R3–R6 remain blocked, and RT-002G and temporary evidence deletion remain unauthorized. R2A is tracking review only and grants no doctrine or implementation authority.
 
 ## R2-0 research assimilation update (2026-07-30)
 

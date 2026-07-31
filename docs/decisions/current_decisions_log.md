@@ -4278,3 +4278,12 @@ PR #339 review hardening replaces abandoned-object absence with the correct non-
 - **Decision:** `PASS`. Every material intake claim has one primary route and lawful owner analysis; eleven owner/representation questions remain explicit for later adjudication.
 - **Gate:** R1 remains complete. R2 is active and incomplete. R2-0 is complete. R2A is ready and next. R2B and R2C remain blocked. R3–R6 remain blocked. RT-002G and temporary evidence deletion remain unauthorized.
 - **Nonauthority:** Research consensus is pressure, not doctrine. No continuity doctrine, canon, conversion, production schema, runtime substrate or retrofit, model/narration/UI/live-play behavior, training use, GM-adapter work, RT-002G work, or evidence deletion is authorized.
+
+## 2026-07-31 decision — AFQR R2A authority-surface and doctrine-drift inventory
+
+- **Decision ID:** `AFQR-R2A-AUTHORITY-SURFACE-INVENTORY-001`.
+- **Baseline and coverage:** Inspected `9382958197c9d5dee9d29cb5f9d051147237c64d`; 821 tracked text files, 749 candidate files, 26 mapped authority surfaces, 723 dismissed candidates, and zero unaccounted candidates.
+- **Claims and findings:** All 31 R2-0 claims were independently assessed. No doctrine gap, conflict, or owner collision met the current-authority proof threshold; preliminary R2B routes supported only by research pressure were downgraded.
+- **Packages:** R2B-CORE, R2B-AGENCY, R2B-WORLD, R2B-CONTINUITY, R2B-CROSS-PHASE, and all six proposed continuity modules are `not_required`.
+- **Gate:** R1 complete; R2 active/incomplete; R2-0 and R2A complete; R2C ready; R3–R6 blocked; RT-002G and temporary evidence deletion unauthorized.
+- **Nonauthority:** R2A inventories and routes. It adopts no doctrine, resolves no doctrine conflict, defines no schema, approves no conformance, and implements nothing.
