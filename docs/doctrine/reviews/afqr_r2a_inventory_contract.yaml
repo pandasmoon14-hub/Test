@@ -26,10 +26,6 @@
       "module_assessment",
       "scan_receipt"
     ],
-    "statuses": [
-      "active_incomplete",
-      "planned_not_present"
-    ],
     "surface_kinds": [
       "current_normative_doctrine",
       "current_control_or_gate",
@@ -51,8 +47,7 @@
       "mixed_mapped_and_dismissed",
       "dismissed_after_semantic_review",
       "historical_only",
-      "source_local_pressure_only",
-      "generated_or_vendor_text"
+      "source_local_pressure_only"
     ],
     "relevance_types": [
       "decisive_current_authority",
@@ -62,15 +57,6 @@
       "control_or_gate_evidence",
       "historical_or_source_local_pressure",
       "negative_evidence"
-    ],
-    "assessment_outcomes": [
-      "governed_by_existing_owner",
-      "partially_governed_owner_gap_remains",
-      "blocked_pending_owner_adjudication",
-      "implementation_or_schema_presupposition_only",
-      "historical_or_source_local_pressure_only",
-      "no_material_authority_relation",
-      "escalated_doctrine_problem"
     ],
     "authority_levels": [
       "current_normative",
@@ -91,6 +77,96 @@
       "subsystem",
       "path_local",
       "fixture_or_example"
+    ],
+    "artifact_statuses": [
+      "active_incomplete",
+      "planned_not_present",
+      "complete",
+      "superseded"
+    ],
+    "partition_statuses": [
+      "planned_not_present",
+      "active_incomplete",
+      "complete",
+      "blocked"
+    ],
+    "semantic_surface_statuses": [
+      "pending_validation",
+      "validated",
+      "superseded",
+      "invalid"
+    ],
+    "verification_statuses": [
+      "unverified",
+      "verified_match",
+      "verified_mismatch"
+    ],
+    "claim_assessment_outcomes": [
+      "governed_by_existing_owner",
+      "partially_governed_owner_gap_remains",
+      "blocked_pending_owner_adjudication",
+      "implementation_or_schema_presupposition_only",
+      "historical_or_source_local_pressure_only",
+      "no_material_authority_relation",
+      "escalated_doctrine_problem"
+    ],
+    "question_assessment_outcomes": [
+      "preserved_unresolved",
+      "governed_by_existing_owner",
+      "partially_governed_owner_gap_remains",
+      "blocked_pending_owner_adjudication",
+      "escalated_doctrine_problem"
+    ],
+    "package_assessment_outcomes": [
+      "not_required",
+      "required_pending_authorization",
+      "blocked_pending_owner_adjudication",
+      "implementation_or_schema_only",
+      "no_material_relation"
+    ],
+    "module_assessment_outcomes": [
+      "not_required",
+      "required_pending_authorization",
+      "blocked_by_dependency",
+      "blocked_pending_owner_adjudication"
+    ],
+    "source_local_pressure_classes": [
+      "consistent_source_local_evidence",
+      "terminology_pressure",
+      "conversion_handoff_pressure",
+      "canon_handoff_pressure",
+      "owner_boundary_pressure",
+      "source_local_conflict",
+      "no_material_relation"
+    ],
+    "candidate_authority_effects": [
+      "maps_current_authority",
+      "historical_context_only",
+      "source_local_pressure_only",
+      "implementation_presupposition_only",
+      "escalation_pressure_only",
+      "no_authority_effect"
+    ],
+    "pressure_routes": [
+      "none",
+      "existing_owner_review",
+      "council_adjudication",
+      "later_r2b_candidate",
+      "r3_conformance",
+      "r4_substrate",
+      "r5_retrofit",
+      "later_gate"
+    ],
+    "locator_kinds": [
+      "heading",
+      "symbol",
+      "json_pointer",
+      "yaml_path",
+      "line_range_only"
+    ],
+    "coordination_labels": [
+      "continuity_coordination",
+      "cross_phase_coordination"
     ]
   },
   "record_types": {
@@ -101,9 +177,11 @@
         "primary_partition",
         "path",
         "inspected_commit",
+        "locator_kind",
+        "locator_value",
         "line_start",
         "line_end",
-        "locator_heading_or_symbol",
+        "excerpt_hash_algorithm",
         "excerpt_sha256",
         "surface_kind",
         "authority_level",
@@ -131,10 +209,15 @@
         "authority_level": "controlled_values.authority_levels",
         "currentness": "controlled_values.currentness_values",
         "generality": "controlled_values.generality_values",
-        "semantic_status": "controlled_values.statuses"
+        "semantic_status": "controlled_values.semantic_surface_statuses",
+        "locator_kind": "controlled_values.locator_kinds",
+        "locator_value": "string_or_null_only_for_line_range_only",
+        "excerpt_hash_algorithm": "literal.sha256_git_blob_raw_line_slice_v1",
+        "declared_owner": "owner_reference"
       },
       "validation_rules": [
         "Exact repository-relative path, bounded line range, heading or symbol, inspected commit, and excerpt SHA-256 are required.",
+        "Excerpt hashing obtains the exact Git blob at inspected_commit:path, applies splitlines(keepends=True) to raw bytes, selects inclusive one-based line_start..line_end, concatenates selected raw line bytes without alteration, preserves the final selected line terminator state, and computes SHA-256.",
         "A keyword match is insufficient to create a semantic surface.",
         "One bounded surface may contain multiple related terms.",
         "A surface must be materially relevant to authority, ownership, routing, or an unresolved presupposition.",
@@ -168,7 +251,10 @@
       "field_controls": {
         "disposition": "controlled_values.dispositions",
         "controlled_match_count": "nonnegative_integer",
-        "baseline_blob_sha": "lowercase_git_object_sha"
+        "baseline_blob_sha": "lowercase_git_object_sha",
+        "source_local_pressure_class": "controlled_values.source_local_pressure_classes",
+        "authority_effect": "controlled_values.candidate_authority_effects",
+        "pressure_route": "controlled_values.pressure_routes"
       },
       "validation_rules": [
         "Exactly one disposition must exist per candidate file across the complete R2A series.",
@@ -193,7 +279,7 @@
         "unresolved_owner_question_ids"
       ],
       "field_controls": {
-        "assessment_outcome": "controlled_values.assessment_outcomes",
+        "assessment_outcome": "controlled_values.claim_assessment_outcomes",
         "evidence": "claim_evidence_fields",
         "positive_links": "positive_link_fields"
       },
@@ -218,7 +304,7 @@
         "downstream_gate"
       ],
       "field_controls": {
-        "assessment_outcome": "controlled_values.assessment_outcomes",
+        "assessment_outcome": "controlled_values.question_assessment_outcomes",
         "evidence": "claim_evidence_fields",
         "positive_links": "positive_link_fields"
       },
@@ -239,7 +325,7 @@
         "gate_effect"
       ],
       "field_controls": {
-        "assessment_outcome": "controlled_values.assessment_outcomes"
+        "assessment_outcome": "controlled_values.package_assessment_outcomes"
       },
       "validation_rules": [
         "Package necessity may be determined only after complete claim and question assessment."
@@ -259,17 +345,13 @@
         "prohibited_owner_transfers"
       ],
       "field_controls": {
-        "assessment_outcome": "controlled_values.assessment_outcomes"
+        "assessment_outcome": "controlled_values.module_assessment_outcomes"
       },
       "validation_rules": [
         "Declared ownership must trace to accepted responsibility authority."
       ],
       "prohibited_uses": [
-        "Do not invent continuity",
-        "correction",
-        "branch",
-        "replay",
-        "or cross-phase super-owners."
+        "Do not invent a continuity, correction, branch, replay, or cross-phase super-owner."
       ]
     },
     "scan_receipt": {
@@ -277,19 +359,24 @@
       "required_fields": [
         "receipt_id",
         "inspected_baseline_commit",
+        "controlled_search_artifact_id",
         "controlled_search_artifact_version",
-        "tuple_schema",
-        "canonical_serialization",
-        "sha256",
+        "controlled_search_artifact_sha256",
+        "eligible_file_count",
+        "excluded_file_count_by_reason",
+        "excluded_path_digest",
+        "candidate_file_count",
+        "occurrence_count",
         "count_by_term",
         "count_by_cluster",
-        "total_occurrence_count",
-        "total_candidate_file_count",
+        "tuple_stream_sha256",
         "verification_status"
       ],
       "field_controls": {
-        "verification_status": "controlled_values.statuses",
-        "sha256": "lowercase_sha256_64_hex"
+        "verification_status": "controlled_values.verification_statuses",
+        "controlled_search_artifact_sha256": "lowercase_sha256_64_hex",
+        "excluded_path_digest": "lowercase_sha256_64_hex",
+        "tuple_stream_sha256": "lowercase_sha256_64_hex"
       },
       "validation_rules": [
         "Counts and digest are recomputed in the later scan-receipt PR; no prior isolated-environment values are authoritative."
@@ -378,20 +465,60 @@
     "ordering": "Ascending bytewise lexical order of complete serialized UTF-8 tuple records.",
     "digest": "SHA-256 over the complete canonical byte stream, including the final newline for every record; the empty stream has no newline.",
     "aggregates": [
+      "eligible_file_count",
+      "excluded_file_count_by_reason",
+      "excluded_path_digest",
+      "candidate_file_count",
+      "occurrence_count",
       "count_by_term",
-      "count_by_cluster",
-      "total_occurrence_count",
-      "total_candidate_file_count"
+      "count_by_cluster"
     ],
     "required_provenance": [
       "inspected_baseline_commit",
-      "controlled_search_artifact_version"
+      "controlled_search_artifact_id",
+      "controlled_search_artifact_version",
+      "controlled_search_artifact_sha256"
     ],
-    "persistence": "Raw occurrence tuples are recomputed later and are not permanently committed."
+    "persistence": "Raw occurrence tuples are recomputed later and are not permanently committed.",
+    "empty_stream": "The empty tuple stream is zero bytes, has no final newline, and uses the SHA-256 digest of zero bytes."
   },
   "global_prohibited_uses": [
     "Do not populate the inventory, disposition the corpus, route claims, adjudicate questions, or determine package necessity in R2A-1.",
     "Do not adopt continuity doctrine or modify runtime behavior or production schemas.",
     "Do not begin later phases or mark R2A complete."
-  ]
+  ],
+  "owner_reference": {
+    "accepted_values": [
+      "accepted AFQR identifier",
+      "accepted R1D responsibility identifier",
+      "null",
+      "controlled_values.coordination_labels"
+    ],
+    "coordination_labels_are_owners": false,
+    "prohibited": "Arbitrary or invented owner strings."
+  },
+  "referential_integrity": {
+    "AFQR ID": "Every populated AFQR ID must exist in accepted AFQR responsibility artifacts and be materially applicable to the bounded record.",
+    "R1D responsibility ID": "Every populated R1D responsibility ID must exist in accepted R1D family artifacts and be materially applicable to the bounded record.",
+    "TERM ID": "Every populated TERM ID must exist in accepted shared vocabulary artifact and be materially applicable to the bounded record.",
+    "invariant ID": "Every populated invariant ID must exist in accepted cross-invariant artifact and be materially applicable to the bounded record.",
+    "dependency/edge ID": "Every populated dependency/edge ID must exist in accepted cross-dependency artifact and be materially applicable to the bounded record.",
+    "substrate ID": "Every populated substrate ID must exist in accepted substrate registry and be materially applicable to the bounded record."
+  },
+  "candidate_file_universe": {
+    "processing_order": [
+      "Enumerate tracked repository files at inspected_baseline_commit.",
+      "Apply deterministic generated/vendor path, NUL/binary, and unsupported-encoding exclusions.",
+      "Scan every remaining eligible text file.",
+      "An eligible file with at least one controlled line-term-cluster presence is a candidate file.",
+      "Assign every candidate file exactly one candidate-file disposition."
+    ],
+    "excluded_files": "Excluded files are not candidate files and receive no candidate disposition.",
+    "receipt_exclusion_fields": [
+      "excluded_file_count_by_reason",
+      "excluded_path_digest",
+      "eligible_file_count",
+      "candidate_file_count"
+    ]
+  }
 }

@@ -368,14 +368,14 @@
     },
     {
       "phase": "R2A-2",
-      "path": "docs/doctrine/reviews/afqr_r2a_core_agency_semantic_surfaces.yaml",
+      "path": "docs/doctrine/reviews/r2a/semantic_core_agency/index.yaml",
       "owner": "R2A-2",
-      "purpose": "CORE and AGENCY semantic surfaces",
+      "purpose": "CORE and AGENCY semantic surface index and bounded shards",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -388,22 +388,21 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "phase": "R2A-3",
-      "path": "docs/doctrine/reviews/afqr_r2a_world_coordination_semantic_surfaces.yaml",
+      "path": "docs/doctrine/reviews/r2a/semantic_world_coordination/index.yaml",
       "owner": "R2A-3",
-      "purpose": "WORLD and coordination semantic surfaces",
+      "purpose": "WORLD and coordination semantic surface index and bounded shards",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -416,22 +415,21 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "phase": "R2A-4",
-      "path": "docs/doctrine/reviews/afqr_r2a_current_authority_file_dispositions.yaml",
+      "path": "docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml",
       "owner": "R2A-4",
-      "purpose": "current authority-path dispositions",
+      "purpose": "current-authority disposition A index and bounded shards",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -444,22 +442,21 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "phase": "R2A-5",
-      "path": "docs/doctrine/reviews/afqr_r2a_runtime_schema_file_dispositions.yaml",
+      "path": "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml",
       "owner": "R2A-5",
-      "purpose": "runtime, schema, and validation dispositions",
+      "purpose": "current-authority disposition B index and bounded shards",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -472,22 +469,21 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "phase": "R2A-6",
-      "path": "docs/doctrine/reviews/afqr_r2a_remaining_file_dispositions.yaml",
+      "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
       "owner": "R2A-6",
-      "purpose": "remaining candidate dispositions",
+      "purpose": "runtime/schema disposition index and bounded shards",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -500,22 +496,21 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "phase": "R2A-7",
-      "path": "docs/doctrine/reviews/afqr_r2a_aggregate_assessments_and_scan_receipt.yaml",
+      "path": "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
       "owner": "R2A-7",
-      "purpose": "receipt, claim, and unresolved-question assessments",
+      "purpose": "remaining disposition index and bounded shards",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -528,22 +523,129 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "phase": "R2A-8",
-      "path": "docs/doctrine/reviews/afqr_r2a_independent_completion_review.md",
+      "path": "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml",
       "owner": "R2A-8",
+      "purpose": "scan/exclusion receipts, parity, and reciprocity",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "planned artifact family with index and bounded shards"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-9",
+      "path": "docs/doctrine/reviews/r2a/claim_assessments_0001_0016/index.yaml",
+      "owner": "R2A-9",
+      "purpose": "bounded first claim assessment family",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "planned artifact family with index and bounded shards"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-10",
+      "path": "docs/doctrine/reviews/r2a/claim_assessments_0017_0031/index.yaml",
+      "owner": "R2A-10",
+      "purpose": "bounded second claim assessment family",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "planned artifact family with index and bounded shards"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-11",
+      "path": "docs/doctrine/reviews/r2a/question_package_module/index.yaml",
+      "owner": "R2A-11",
+      "purpose": "question assessments and package/module synthesis",
+      "inputs": [
+        "prior dependency partitions"
+      ],
+      "outputs": [
+        "planned artifact family with index and bounded shards"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "planned_not_present"
+    },
+    {
+      "phase": "R2A-12",
+      "path": "docs/doctrine/reviews/afqr_r2a_independent_completion_review.md",
+      "owner": "R2A-12",
       "purpose": "independent completion review and gate update",
       "inputs": [
         "prior dependency partitions"
       ],
       "outputs": [
-        "bounded partition result"
+        "planned artifact family with index and bounded shards"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -556,11 +658,10 @@
         "prior partitions complete"
       ],
       "corpus_scale_pressure": [
-        "bounded review representation"
+        "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     }
   ],
   "r2_0_metrics": {
@@ -612,35 +713,51 @@
   "r2a_reconstruction_sequence": [
     {
       "partition_id": "R2A-1",
-      "status": "active_incomplete"
+      "current_status": "active_incomplete"
     },
     {
       "partition_id": "R2A-2",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "partition_id": "R2A-3",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "partition_id": "R2A-4",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "partition_id": "R2A-5",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "partition_id": "R2A-6",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "partition_id": "R2A-7",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
     },
     {
       "partition_id": "R2A-8",
-      "status": "planned_not_present"
+      "current_status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-9",
+      "current_status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-10",
+      "current_status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-11",
+      "current_status": "planned_not_present"
+    },
+    {
+      "partition_id": "R2A-12",
+      "current_status": "planned_not_present"
     }
   ]
 }

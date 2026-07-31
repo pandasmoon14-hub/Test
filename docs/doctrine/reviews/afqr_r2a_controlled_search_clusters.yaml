@@ -6,10 +6,10 @@
   "authority_effect": "nonauthoritative_lexical_discovery",
   "rules": {
     "authority": "Terms and matches are discovery aids, not doctrine or authority classification.",
-    "case_normalization": "Unicode casefold before matching.",
-    "token_normalization": "Normalize source text and terms to Unicode NFC; convert runs of Unicode whitespace to one ASCII space for phrase comparison.",
-    "phrase_matching": "Match normalized phrases at Unicode letter-or-number boundaries; single-token terms use the same boundaries.",
-    "term_accounting": "Each distinct normalized term match is its own occurrence; matching one term never accounts for another term on the same line.",
+    "case_normalization": "Unicode casefold occurs after initial NFC and is followed by NFC.",
+    "token_normalization": "Per-line NFC, casefold, NFC, then Unicode-whitespace collapse; physical lines never join.",
+    "phrase_matching": "Apply the explicit Unicode general-category boundary definition to normalized terms in normalized lines.",
+    "term_accounting": "One occurrence is one unique (path, line_number, normalized_term, cluster_id) presence. Repeated spans of the same term on one line deduplicate. Different normalized terms create separate tuples. The same normalized term assigned to two clusters creates one tuple per cluster.",
     "occurrence_tuple": [
       "path",
       "line_number",
@@ -23,7 +23,31 @@
       "Files that fail strict UTF-8 decoding are unsupported and excluded.",
       "Repository paths under .git, node_modules, vendor, dist, build, coverage, or __pycache__ are generated/vendor exclusions."
     ],
-    "persistence": "Raw occurrence tuples are recomputed for the later scan receipt and are not committed permanently."
+    "persistence": "Raw occurrence tuples are recomputed for the later scan receipt and are not committed permanently.",
+    "processing_order": [
+      "Read each baseline Git blob as bytes.",
+      "Exclude the blob if it contains NUL.",
+      "Decode strict UTF-8, accepting and removing one leading UTF-8 BOM.",
+      "Normalize CRLF, CR, and LF line endings to LF while preserving physical line boundaries.",
+      "For each line independently: normalize NFC, apply Unicode casefold, normalize NFC again, then collapse each run of Unicode whitespace to one ASCII space.",
+      "Apply that same line normalization to every controlled term before boundary matching."
+    ],
+    "boundary_definition": "A match boundary exists when the adjacent Unicode code point is absent or its general category does not begin with L or N. Underscore, hyphen, slash, and punctuation are boundaries. A combining mark category M is also a boundary after NFC; normalization usually composes supported base-mark sequences.",
+    "occurrence_definition": "One occurrence is one unique (path, line_number, normalized_term, cluster_id) presence. Repeated spans of the same term on one line deduplicate. Different normalized terms create separate tuples. The same normalized term assigned to two clusters creates one tuple per cluster.",
+    "exclusion_order": [
+      "generated_or_vendor_path",
+      "nul_binary",
+      "invalid_utf8"
+    ],
+    "generated_vendor_patterns": [
+      ".git/**",
+      "node_modules/**",
+      "vendor/**",
+      "dist/**",
+      "build/**",
+      "coverage/**",
+      "**/__pycache__/**"
+    ]
   },
   "clusters": [
     {
@@ -320,6 +344,114 @@
         "runtime_implementation",
         "CORE"
       ]
+    }
+  ],
+  "reference_vectors": [
+    {
+      "vector_id": "bom_crlf_casefold_phrase",
+      "path": "docs/vector.txt",
+      "raw_utf8_escaped": "\\ufeffSTRASSE  valid\\t time\\r\\nnext\\n",
+      "terms_by_cluster": {
+        "case": [
+          "straße"
+        ],
+        "phrase": [
+          "valid time"
+        ]
+      },
+      "expected_tuples": [
+        [
+          "docs/vector.txt",
+          1,
+          "strasse",
+          "case"
+        ],
+        [
+          "docs/vector.txt",
+          1,
+          "valid time",
+          "phrase"
+        ]
+      ]
+    },
+    {
+      "vector_id": "nfc_boundaries_dedup",
+      "path": "x.txt",
+      "raw_utf8_escaped": "cafe\\u0301 café identity_identity identity-identity identity/identity\\n",
+      "terms_by_cluster": {
+        "accent": [
+          "café"
+        ],
+        "identity": [
+          "identity"
+        ]
+      },
+      "expected_tuples": [
+        [
+          "x.txt",
+          1,
+          "café",
+          "accent"
+        ],
+        [
+          "x.txt",
+          1,
+          "identity",
+          "identity"
+        ]
+      ]
+    },
+    {
+      "vector_id": "two_clusters_and_terms",
+      "path": "z.txt",
+      "raw_utf8_escaped": "truth truth belief\\n",
+      "terms_by_cluster": {
+        "a": [
+          "truth",
+          "belief"
+        ],
+        "b": [
+          "truth"
+        ]
+      },
+      "expected_tuples": [
+        [
+          "z.txt",
+          1,
+          "belief",
+          "a"
+        ],
+        [
+          "z.txt",
+          1,
+          "truth",
+          "a"
+        ],
+        [
+          "z.txt",
+          1,
+          "truth",
+          "b"
+        ]
+      ]
+    },
+    {
+      "vector_id": "invalid_utf8",
+      "path": "bad.txt",
+      "raw_hex": "ff",
+      "expected_exclusion": "invalid_utf8"
+    },
+    {
+      "vector_id": "nul_binary",
+      "path": "nul.txt",
+      "raw_hex": "610062",
+      "expected_exclusion": "nul_binary"
+    },
+    {
+      "vector_id": "generated_vendor",
+      "path": "vendor/a.txt",
+      "raw_utf8_escaped": "truth\\n",
+      "expected_exclusion": "generated_or_vendor_path"
     }
   ]
 }
