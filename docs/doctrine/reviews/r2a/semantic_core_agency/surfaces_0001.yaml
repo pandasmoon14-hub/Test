@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-2-CORE-AGENCY-SEMANTIC-SHARD-0001",
-  "artifact_version": "0.1.0",
+  "artifact_version": "0.2.0",
   "status": "complete",
   "phase": "R2A-2",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -9,15 +9,117 @@
     {
       "surface_id": "R2A-SURFACE-CORE-0001",
       "primary_partition": "R2A-2",
+      "path": "docs/decisions/current_decisions_log.md",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "heading",
+      "locator_value": "2026-07-24 decision — AFQR-01–09 R1D-CORE modular family consolidation",
+      "line_start": 4231,
+      "line_end": 4238,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "244fcda58f12033d6ffc05918214c91412a029cc9524545152d08b8a262609b7",
+      "surface_kind": "accepted_decision",
+      "semantic_role": "accepted_adjudication",
+      "authority_level": "accepted_decision",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "The current decision accepts the bounded CORE family contract and denies runtime or deletion authority.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0002",
+      "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-01",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-01",
       "line_start": 117,
       "line_end": 120,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "6367d84a34e10b047ac4609c6c85c14963ebdcadaaece2cba49bba859a84e7eb",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "CORE-RESP-01 defines owned concerns together with explicit nonownership limits.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0003",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/cross_afqr_invariants/0",
+      "line_start": 171,
+      "line_end": 184,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "debc3f5a8f822e352be1ce9ee024f6cc064313a1f2f40740603d5463492f1ffb",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "invariant_constraint",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [
+        "INV-001"
+      ],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Commitment, storage, scheduling, and consumption never transfer semantic ownership.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0004",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/dependency_edge_dispositions/0",
+      "line_start": 310,
+      "line_end": 340,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "94b76c42a51ce6e6233bb5b7c5a500784aa209dcaff043198e388ff574013004",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "dependency_handoff",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -30,31 +132,199 @@
       ],
       "applicable_term_ids": [
         "TERM-003",
-        "TERM-004",
-        "TERM-005",
-        "TERM-014"
+        "TERM-004"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [
+        "DEP-001"
+      ],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "AFQR-01 commit output is a typed input to AFQR-02 without ownership transfer.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0005",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/2",
+      "line_start": 227,
+      "line_end": 239,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "378b084dc5bb34b5c5756fbd3a7e6823676f1588d6f9f99009ef661cc500bced",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [
+        "TERM-003"
       ],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-01 ownership and explicit nonownership boundary for AFQR-01.",
+      "semantic_summary": "Transition is a distinct AFQR-01-owned type, not a transfer of other domain semantics.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
-      "surface_id": "R2A-SURFACE-CORE-0002",
+      "surface_id": "R2A-SURFACE-CORE-0006",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "heading",
+      "locator_value": "R2A — authority-surface and drift inventory",
+      "line_start": 9,
+      "line_end": 27,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "40488cf8ae93b090fdeff1f503ded33b3af3500f7382a713292f6ae5786311c7",
+      "surface_kind": "current_control_or_gate",
+      "semantic_role": "control_or_gate_constraint",
+      "authority_level": "current_control",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Current R2 control prevents commitment, replay, storage, and handoff from transferring ownership and keeps R2A nonauthoritative.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0007",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "heading",
+      "locator_value": "Results",
+      "line_start": 16,
+      "line_end": 28,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "7c8592904faa2457d2c1d10644e40927ec70b3672267d70e002c4929638a71d3",
+      "surface_kind": "current_control_or_gate",
+      "semantic_role": "accepted_adjudication",
+      "authority_level": "current_control",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "R1E accepts R1B–R1D coverage while retaining deferred substrates and blocked implementation.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0008",
+      "primary_partition": "R2A-2",
+      "path": "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "line_range_only",
+      "locator_value": null,
+      "line_start": 1,
+      "line_end": 14,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "526fd6b9152bbc94a483d5acf58e5086cf610178175cd07db61b02d2b8ff097d",
+      "surface_kind": "negative_or_absence_evidence",
+      "semantic_role": "negative_implementation_evidence",
+      "authority_level": "nonauthoritative",
+      "currentness": "not_applicable",
+      "generality": "path_local",
+      "declared_owner": "AFQR-01",
+      "applicable_afqr_ids": [
+        "AFQR-01"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-01"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "The state-owner runtime skeleton explicitly lacks commitment, replay writes, resource math, and owner-service behavior.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0009",
       "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-02",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-02",
       "line_start": 182,
       "line_end": 185,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "7dedbe00bb6e7e2408d40000f265ea185c7ae1d8df19228f986d0f39d805719b",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-02",
+      "applicable_afqr_ids": [
+        "AFQR-02"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-02"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "CORE-RESP-02 defines owned concerns together with explicit nonownership limits.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0010",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/5",
+      "line_start": 473,
+      "line_end": 485,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "71c678aad79d169b21d9c92faac43d6937bc009e666662b5dcfa5190f7b7f269",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -66,30 +336,98 @@
         "CORE-RESP-02"
       ],
       "applicable_term_ids": [
-        "TERM-006",
-        "TERM-007"
+        "TERM-006"
       ],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-02 ownership and explicit nonownership boundary for AFQR-02.",
+      "semantic_summary": "Command identity is AFQR-02-owned and distinct from attempts and action representation.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
-      "surface_id": "R2A-SURFACE-CORE-0003",
+      "surface_id": "R2A-SURFACE-CORE-0011",
       "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-04",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-04",
       "line_start": 260,
       "line_end": 263,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "03b47926ddfa6deaf27c8ec5eddb9d4b14f9df3fed9b8032a196b50e7bcbcf77",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-04",
+      "applicable_afqr_ids": [
+        "AFQR-04"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-04"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "CORE-RESP-04 defines owned concerns together with explicit nonownership limits.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0012",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/cross_afqr_invariants/6",
+      "line_start": 262,
+      "line_end": 278,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "852cea0a4e80b7e97e0eeafef4e821bfe2bb5168a082b2768aa975f6f64687eb",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "invariant_constraint",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-04",
+      "applicable_afqr_ids": [
+        "AFQR-04"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-04"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [
+        "INV-007"
+      ],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Logical time and causal order remain distinct from environmental process and other typed concerns.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0013",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/26",
+      "line_start": 2142,
+      "line_end": 2154,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "5b74285278b166d02935e4e8de6fad94666e1124612829e07264293a0708821d",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -101,32 +439,63 @@
         "CORE-RESP-04"
       ],
       "applicable_term_ids": [
-        "TERM-005",
-        "TERM-012",
-        "TERM-027",
-        "TERM-028"
+        "TERM-027"
       ],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-04 ownership and explicit nonownership boundary for AFQR-04.",
+      "semantic_summary": "Logical time is AFQR-04-owned while donor cadence remains non-universal.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
-      "surface_id": "R2A-SURFACE-CORE-0004",
+      "surface_id": "R2A-SURFACE-CORE-0014",
       "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-06",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-06",
       "line_start": 356,
       "line_end": 359,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "6beb7a97096ec7e713ba608f8c5107d5cb49dba71859932e4aeee2f78057c623",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-06",
+      "applicable_afqr_ids": [
+        "AFQR-06"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-06"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "CORE-RESP-06 defines owned concerns together with explicit nonownership limits.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0015",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/17",
+      "line_start": 1460,
+      "line_end": 1472,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "442af004b55e1e1520dce1762460039eb497e1477e82c9fe719fbe372520caac",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -138,31 +507,30 @@
         "CORE-RESP-06"
       ],
       "applicable_term_ids": [
-        "TERM-012",
-        "TERM-018",
-        "TERM-019"
+        "TERM-018"
       ],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-06 ownership and explicit nonownership boundary for AFQR-06.",
+      "semantic_summary": "Claims are AFQR-06-owned propositions distinct from evidence and epistemic state.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
-      "surface_id": "R2A-SURFACE-CORE-0005",
+      "surface_id": "R2A-SURFACE-CORE-0016",
       "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-07",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-07",
       "line_start": 406,
       "line_end": 409,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "593feec15a8ef63b850a0257c1a161edfd60e3a1347d23e33dc31432b42e617b",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -179,22 +547,126 @@
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-07 ownership and explicit nonownership boundary for AFQR-07.",
+      "semantic_summary": "CORE-RESP-07 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
-      "surface_id": "R2A-SURFACE-CORE-0006",
+      "surface_id": "R2A-SURFACE-CORE-0017",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/cross_afqr_invariants/8",
+      "line_start": 294,
+      "line_end": 308,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "835ebe8568e8870ad839bde5b529bc6d8365893f65f3130cd7fd88db7f5d325b",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "invariant_constraint",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-07",
+      "applicable_afqr_ids": [
+        "AFQR-07"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-07"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [
+        "INV-009"
+      ],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Donor resource models cannot become universal Astra law by implication.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0018",
       "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-08",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-08",
       "line_start": 434,
       "line_end": 437,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "175edb81eeab01e8a93390e7b3dbd8117f5f284826582d46c842c6d07bf9caad",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-08",
+      "applicable_afqr_ids": [
+        "AFQR-08"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-08"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "CORE-RESP-08 defines owned concerns together with explicit nonownership limits.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0019",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/cross_afqr_invariants/4",
+      "line_start": 230,
+      "line_end": 244,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "56479ea98e16cf7b73f8ab5925fa258778222ba03d4264984022c1f657e303e3",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "invariant_constraint",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-08",
+      "applicable_afqr_ids": [
+        "AFQR-08"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-08"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [
+        "INV-005"
+      ],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Identity does not confer control, agency, authority, ownership, or responsibility.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0020",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/12",
+      "line_start": 1027,
+      "line_end": 1039,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "72eb7c5932d10a401d136bff8c623c28c2f3563af4ea4451776a5c81ded2b055",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -213,22 +685,91 @@
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-08 ownership and explicit nonownership boundary for AFQR-08.",
+      "semantic_summary": "Identity is AFQR-08-owned and is not ownership or agency.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
-      "surface_id": "R2A-SURFACE-CORE-0007",
+      "surface_id": "R2A-SURFACE-CORE-0021",
       "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.CORE-RESP-09",
+      "locator_kind": "symbol",
+      "locator_value": "CORE-RESP-09",
       "line_start": 478,
       "line_end": 481,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "7fb8e2911fd70431d5fbbf32d75a9470b9393354b9e013937bd1d537f493c59a",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-09",
+      "applicable_afqr_ids": [
+        "AFQR-09"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-09"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "CORE-RESP-09 defines owned concerns together with explicit nonownership limits.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0022",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/cross_afqr_invariants/5",
+      "line_start": 246,
+      "line_end": 260,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "07c1e881971986fbc09050de03e89b9998c098be3e7e21d127f68e14f6d56867",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "invariant_constraint",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-09",
+      "applicable_afqr_ids": [
+        "AFQR-09"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-09"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [
+        "INV-006"
+      ],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Relations and reachability do not manufacture obligation, jurisdiction, legal effect, or social standing.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0023",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/dependency_edge_dispositions/60",
+      "line_start": 3267,
+      "line_end": 3297,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "2b5596e23e692203ce8047cc7848a203965f3d8b4df968e89f06193352ca2b82",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "dependency_handoff",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -240,32 +781,206 @@
         "CORE-RESP-09"
       ],
       "applicable_term_ids": [
-        "TERM-015",
-        "TERM-023",
-        "TERM-024",
-        "TERM-025"
+        "TERM-024"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [
+        "DEP-061"
+      ],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "AFQR-09 dependency output feeds AFQR-01 without transferring dependency semantics.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0024",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/23",
+      "line_start": 1936,
+      "line_end": 1948,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "6a8e85152b9a927bd775bdf90390344be16b553ad6e847fceab9432ccc28a787",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-09",
+      "applicable_afqr_ids": [
+        "AFQR-09"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-09"
+      ],
+      "applicable_term_ids": [
+        "TERM-024"
       ],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted CORE-RESP-09 ownership and explicit nonownership boundary for AFQR-09.",
+      "semantic_summary": "Dependency is AFQR-09-owned and bridge compatibility does not own its consequences.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0025",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/substrate_adjudications/0",
+      "line_start": 402,
+      "line_end": 425,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "9d759181dfd0d2a0d0cc018969366e2cf48526d0ce0e4a9ec1c80216dc3df682",
+      "surface_kind": "current_control_or_gate",
+      "semantic_role": "accepted_adjudication",
+      "authority_level": "current_control",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-09",
+      "applicable_afqr_ids": [
+        "AFQR-09"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-09"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [
+        "SUB-001"
+      ],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "R1E accepts the governed-relation substrate as deferred and unimplemented without merging semantic ownership.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-CORE-0026",
+      "primary_partition": "R2A-2",
+      "path": "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "symbol",
+      "locator_value": "test_mandatory_transaction_event_opportunity_dependency_corrections",
+      "line_start": 40,
+      "line_end": 54,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "0c09ce5e987ea0311293a372e0968d11ab2da6c18a24465961a55cac8715152f",
+      "surface_kind": "test_contract",
+      "semantic_role": "test_enforced_contract",
+      "authority_level": "implementation_presupposition",
+      "currentness": "current",
+      "generality": "subsystem",
+      "declared_owner": "AFQR-09",
+      "applicable_afqr_ids": [
+        "AFQR-09"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-09"
+      ],
+      "applicable_term_ids": [
+        "TERM-019",
+        "TERM-024"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "The accepted R1B test enforces AFQR-09 dependency ownership and qualified AFQR-06/10 evidence boundaries.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     },
     {
       "surface_id": "R2A-SURFACE-AGENCY-0001",
       "primary_partition": "R2A-2",
+      "path": "docs/decisions/current_decisions_log.md",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "heading",
+      "locator_value": "2026-07-26 decision — AFQR-10–15 R1D-AGENCY modular family consolidation",
+      "line_start": 4240,
+      "line_end": 4247,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "15b20518eefe514645693effcabbc7f85f5bd2b9499bacee8b1370b50bee359c",
+      "surface_kind": "accepted_decision",
+      "semantic_role": "accepted_adjudication",
+      "authority_level": "accepted_decision",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-10",
+      "applicable_afqr_ids": [
+        "AFQR-10"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "AGENCY-RESP-10"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "The current decision accepts bounded AGENCY ownership and denies runtime or production-schema authority.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-AGENCY-0002",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/cross_afqr_invariants/1",
+      "line_start": 186,
+      "line_end": 199,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "54214113bda30464619969ee7f3785be44565b1e6dd96acac32dbc63a70123b5",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "invariant_constraint",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-10",
+      "applicable_afqr_ids": [
+        "AFQR-10"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "AGENCY-RESP-10"
+      ],
+      "applicable_term_ids": [],
+      "applicable_invariant_ids": [
+        "INV-002"
+      ],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Observation does not automatically become truth, belief, knowledge, or admissible evidence.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-AGENCY-0003",
+      "primary_partition": "R2A-2",
       "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
       "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
-      "locator_kind": "yaml_path",
-      "locator_value": "responsibility_records.AGENCY-RESP-10",
+      "locator_kind": "symbol",
+      "locator_value": "AGENCY-RESP-10",
       "line_start": 72,
       "line_end": 99,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
       "excerpt_sha256": "c8b477f7420c441f058a31e82778d23d6dfe676a5f78512abc39e37b007e81a9",
       "surface_kind": "current_normative_doctrine",
+      "semantic_role": "ownership_definition_with_boundary",
       "authority_level": "current_normative",
       "currentness": "current",
       "generality": "general",
@@ -287,9 +1002,44 @@
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "Accepted AGENCY-RESP-10 ownership and explicit nonownership boundary for AFQR-10.",
+      "semantic_summary": "AGENCY-RESP-10 defines epistemic ownership together with sensing, evidence, time, agency, and communication exclusions.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "Records owned concerns while preserving the adjacent explicit nonowned concerns; mention alone, storage, runtime, and coordination do not transfer ownership."
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
+    },
+    {
+      "surface_id": "R2A-SURFACE-AGENCY-0004",
+      "primary_partition": "R2A-2",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/0",
+      "line_start": 20,
+      "line_end": 43,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "5bb95aa2aefc0069c5d36bc00d2896c007f32e535314860e7817f3bf0e1a6c53",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-10",
+      "applicable_afqr_ids": [
+        "AFQR-10"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "AGENCY-RESP-10"
+      ],
+      "applicable_term_ids": [
+        "TERM-001"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "semantic_summary": "Qualified state ownership keeps epistemic state with AFQR-10 and prevents transition commitment from absorbing domain semantics.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests."
     }
   ]
 }

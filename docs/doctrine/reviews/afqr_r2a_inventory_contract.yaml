@@ -172,6 +172,19 @@
       "generated_or_vendor_path",
       "nul_binary",
       "invalid_utf8"
+    ],
+    "semantic_roles": [
+      "ownership_definition",
+      "explicit_nonownership_boundary",
+      "qualified_vocabulary_boundary",
+      "invariant_constraint",
+      "dependency_handoff",
+      "accepted_adjudication",
+      "control_or_gate_constraint",
+      "implementation_presupposition",
+      "test_enforced_contract",
+      "negative_implementation_evidence",
+      "ownership_definition_with_boundary"
     ]
   },
   "record_types": {
@@ -189,6 +202,7 @@
         "excerpt_hash_algorithm",
         "excerpt_sha256",
         "surface_kind",
+        "semantic_role",
         "authority_level",
         "currentness",
         "generality",
@@ -218,7 +232,8 @@
         "locator_kind": "controlled_values.locator_kinds",
         "locator_value": "string_or_null_only_for_line_range_only",
         "excerpt_hash_algorithm": "literal.sha256_git_blob_raw_line_slice_v1",
-        "declared_owner": "owner_reference"
+        "declared_owner": "owner_reference",
+        "semantic_role": "controlled_values.semantic_roles"
       },
       "validation_rules": [
         "Exact repository-relative path, bounded line range, controlled locator kind and value, inspected commit, excerpt algorithm, and excerpt SHA-256 are required.",

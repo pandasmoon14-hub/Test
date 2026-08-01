@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-2-CORE-AGENCY-SEMANTIC-INDEX-001",
-  "artifact_version": "0.1.0",
+  "artifact_version": "0.2.0",
   "status": "complete",
   "phase": "R2A-2",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -11,175 +11,400 @@
   "shards": [
     {
       "path": "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
-      "record_count": 8,
-      "content_sha256": "5c18e24c61e69d42232c7eda54b4fffcb4d53168f32a0a7499b72c9f1d18b72f",
+      "record_count": 30,
+      "content_sha256": "9946124f8604b0559be176f5f3c4f6087cb25015920679aa6a3c9b7ac03a06e6",
       "first_surface_id": "R2A-SURFACE-CORE-0001",
-      "last_surface_id": "R2A-SURFACE-AGENCY-0001"
+      "last_surface_id": "R2A-SURFACE-AGENCY-0004"
     }
   ],
-  "surface_count": 8,
+  "surface_count": 30,
   "counts": {
     "declared_owner": {
-      "AFQR-01": 1,
-      "AFQR-02": 1,
-      "AFQR-04": 1,
-      "AFQR-06": 1,
-      "AFQR-07": 1,
-      "AFQR-08": 1,
-      "AFQR-09": 1,
-      "AFQR-10": 1
+      "AFQR-01": 8,
+      "AFQR-02": 2,
+      "AFQR-04": 3,
+      "AFQR-06": 2,
+      "AFQR-07": 2,
+      "AFQR-08": 3,
+      "AFQR-09": 6,
+      "AFQR-10": 4
     },
     "surface_kind": {
-      "current_normative_doctrine": 8
+      "accepted_decision": 2,
+      "current_control_or_gate": 3,
+      "current_normative_doctrine": 23,
+      "negative_or_absence_evidence": 1,
+      "test_contract": 1
+    },
+    "semantic_role": {
+      "accepted_adjudication": 4,
+      "control_or_gate_constraint": 1,
+      "dependency_handoff": 2,
+      "invariant_constraint": 6,
+      "negative_implementation_evidence": 1,
+      "ownership_definition_with_boundary": 8,
+      "qualified_vocabulary_boundary": 7,
+      "test_enforced_contract": 1
     },
     "authority_level": {
-      "current_normative": 8
+      "accepted_decision": 2,
+      "current_control": 3,
+      "current_normative": 23,
+      "implementation_presupposition": 1,
+      "nonauthoritative": 1
     },
     "currentness": {
-      "current": 8
+      "current": 29,
+      "not_applicable": 1
     },
     "generality": {
-      "general": 8
+      "general": 28,
+      "path_local": 1,
+      "subsystem": 1
     },
     "r1d_responsibility_id": {
-      "AGENCY-RESP-10": 1,
-      "CORE-RESP-01": 1,
-      "CORE-RESP-02": 1,
-      "CORE-RESP-04": 1,
-      "CORE-RESP-06": 1,
-      "CORE-RESP-07": 1,
-      "CORE-RESP-08": 1,
-      "CORE-RESP-09": 1
+      "AGENCY-RESP-10": 4,
+      "CORE-RESP-01": 8,
+      "CORE-RESP-02": 2,
+      "CORE-RESP-04": 3,
+      "CORE-RESP-06": 2,
+      "CORE-RESP-07": 2,
+      "CORE-RESP-08": 3,
+      "CORE-RESP-09": 6
     }
   },
+  "primary_source_review_coverage": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "source_layer": "R1B_vocabulary",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0005",
+        "R2A-SURFACE-CORE-0010",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0015",
+        "R2A-SURFACE-CORE-0020",
+        "R2A-SURFACE-CORE-0024",
+        "R2A-SURFACE-AGENCY-0004"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "source_layer": "R1C_invariant_dependency",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0017",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0022",
+        "R2A-SURFACE-CORE-0023",
+        "R2A-SURFACE-AGENCY-0002"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "source_layer": "R1D_family_doctrine",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0018",
+        "R2A-SURFACE-CORE-0021"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "source_layer": "R1D_family_doctrine",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-AGENCY-0003"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0007"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The source/vocabulary audit confirms the same R1B owner records already bounded by the vocabulary surfaces; it adds no distinct owner proposition.",
+      "review_summary": "The source/vocabulary audit confirms the same R1B owner records already bounded by the vocabulary surfaces; it adds no distinct owner proposition."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The dependency/parity audit validates the R1C invariants and handoffs already bounded from their governing contract; it adds no new semantic owner.",
+      "review_summary": "The dependency/parity audit validates the R1C invariants and handoffs already bounded from their governing contract; it adds no new semantic owner."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0025"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The consistency audit confirms corpus adequacy and donor nonpromotion already represented by INV-009; it creates no additional domain semantics.",
+      "review_summary": "The consistency audit confirms corpus adequacy and donor nonpromotion already represented by INV-009; it creates no additional domain semantics."
+    },
+    {
+      "path": "docs/decisions/current_decisions_log.md",
+      "source_layer": "accepted_decision",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-AGENCY-0001"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+      "source_layer": "current_control",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+      "source_layer": "implementation_presupposition",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0008"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py",
+      "source_layer": "test_contract",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0026"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    }
+  ],
   "responsibility_coverage": [
     {
       "responsibility_id": "CORE-RESP-01",
       "afqr_id": "AFQR-01",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0001"
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0005",
+        "R2A-SURFACE-CORE-0006",
+        "R2A-SURFACE-CORE-0007",
+        "R2A-SURFACE-CORE-0008"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0001"
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0005"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0001"
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0005"
       ],
-      "presupposition_surface_ids": [],
+      "presupposition_surface_ids": [
+        "R2A-SURFACE-CORE-0008"
+      ],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "CORE-RESP-02",
       "afqr_id": "AFQR-02",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0002"
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0010"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0002"
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0010"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0002"
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0010"
       ],
       "presupposition_surface_ids": [],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "CORE-RESP-04",
       "afqr_id": "AFQR-04",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0003"
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0013"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0003"
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0013"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0003"
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0013"
       ],
       "presupposition_surface_ids": [],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "CORE-RESP-06",
       "afqr_id": "AFQR-06",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0004"
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0004"
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0004"
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015"
       ],
       "presupposition_surface_ids": [],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "CORE-RESP-07",
       "afqr_id": "AFQR-07",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0005"
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0017"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0005"
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0017"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0005"
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0017"
       ],
       "presupposition_surface_ids": [],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "CORE-RESP-08",
       "afqr_id": "AFQR-08",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0006"
+        "R2A-SURFACE-CORE-0018",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0020"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0006"
+        "R2A-SURFACE-CORE-0018",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0020"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0006"
+        "R2A-SURFACE-CORE-0018",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0020"
       ],
       "presupposition_surface_ids": [],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "CORE-RESP-09",
       "afqr_id": "AFQR-09",
       "surface_ids": [
-        "R2A-SURFACE-CORE-0007"
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-CORE-0022",
+        "R2A-SURFACE-CORE-0023",
+        "R2A-SURFACE-CORE-0024",
+        "R2A-SURFACE-CORE-0025",
+        "R2A-SURFACE-CORE-0026"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-CORE-0007"
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-CORE-0022",
+        "R2A-SURFACE-CORE-0023",
+        "R2A-SURFACE-CORE-0024"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-CORE-0007"
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-CORE-0022",
+        "R2A-SURFACE-CORE-0023",
+        "R2A-SURFACE-CORE-0024"
       ],
-      "presupposition_surface_ids": [],
+      "presupposition_surface_ids": [
+        "R2A-SURFACE-CORE-0026"
+      ],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     },
     {
       "responsibility_id": "AGENCY-RESP-10",
       "afqr_id": "AFQR-10",
       "surface_ids": [
-        "R2A-SURFACE-AGENCY-0001"
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-AGENCY-0004"
       ],
       "current_normative_surface_ids": [
-        "R2A-SURFACE-AGENCY-0001"
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-AGENCY-0004"
       ],
       "boundary_surface_ids": [
-        "R2A-SURFACE-AGENCY-0001"
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-AGENCY-0004"
       ],
       "presupposition_surface_ids": [],
       "coverage_status": "validated_current_coverage",
-      "coverage_summary": "The bounded accepted responsibility record states both owned concerns and explicit nonownership limits."
+      "coverage_summary": "Validated after bounded R1B, R1C, R1D, R1E, decision/control, and material implementation/test review; only materially applicable layers produce surfaces."
     }
   ],
   "owner_boundaries": [
@@ -188,8 +413,9 @@
     "Dependency does not manufacture jurisdiction; conservation does not define a universal resource model.",
     "Continuity and cross-phase coordination, replay, storage, schemas, and runtime acquire no domain ownership."
   ],
-  "discovery_method": "Tracked baseline blobs were screened with the accepted normalized line-term-cluster matcher; matches were semantic-review candidates only, and exact governing context was reviewed without persisting occurrence tuples or aggregate counts.",
+  "discovery_method": "All fixed primary sources were reviewed at the baseline. The accepted normalized matcher also screened tracked control, schema, runtime, and tests; runtime and test material produced bounded records, while no production schema encoded a material in-scope semantic presupposition. No raw occurrence count or tuples are persisted.",
   "completeness_boundary": [
+    "This table is a bounded primary-source review, not a candidate-file disposition ledger.",
     "Candidate-file parity is deferred to R2A-4 through R2A-8.",
     "Claim assessment is deferred to R2A-9 and R2A-10.",
     "Unresolved questions and package/module synthesis are deferred to R2A-11.",
