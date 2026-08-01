@@ -188,8 +188,8 @@ def test_primary_source_review_coverage_is_bounded_complete_and_specific():
  assert len(reasons)==len(set(reasons))
 def test_surface_contract_roles_order_ids_and_unique_semantic_identity():
  c=current(CONTRACT); records=current(SHARD)["surface_records"]; required=set(c["record_types"]["semantic_authority_surface"]["required_fields"]); roles=set(c["controlled_values"]["semantic_roles"])
- assert records==sorted(records,key=lambda r:(r["declared_owner"],r["path"],r["line_start"],r["line_end"],r["semantic_role"]))
- assert len({r["surface_id"] for r in records})==len(records)==len({(r["declared_owner"],r["path"],r["line_start"],r["line_end"],r["semantic_role"]) for r in records})
+ assert records==sorted(records,key=lambda r:(r["declared_owner"],r["path"],r["line_start"],r["line_end"],r["source_record_kind"],r["source_record_id"],r["semantic_role"]))
+ assert len({r["surface_id"] for r in records})==len(records)==len({(r["declared_owner"],r["path"],r["line_start"],r["line_end"],r["source_record_kind"],r["source_record_id"],r["semantic_role"]) for r in records})
  core=[r for r in records if r["declared_owner"]!="AFQR-10"]; agency=[r for r in records if r["declared_owner"]=="AFQR-10"]
  assert [r["surface_id"] for r in core]==[f"R2A-SURFACE-CORE-{n:04d}" for n in range(1,len(core)+1)]
  assert [r["surface_id"] for r in agency]==[f"R2A-SURFACE-AGENCY-{n:04d}" for n in range(1,len(agency)+1)]
@@ -241,3 +241,54 @@ def test_r2a2_containment_limits():
  num=git("diff","--numstat",f"{R2A_2_BASE}...HEAD").splitlines(); assert "-\t-" not in "\n".join(num) and sum(int(x.split("\t")[0]) for x in num)<=2500
  for p in r2a2_changed():
   raw=(ROOT/p).read_bytes(); assert b"\0" not in raw and len(raw)<=300*1024 and max(map(len,raw.splitlines()),default=0)<=1000
+
+def json_pointer_resolve(document,pointer):
+ assert pointer.startswith("/"); value=document
+ for token in pointer[1:].split("/"):
+  token=token.replace("~1","/").replace("~0","~"); value=value[int(token)] if isinstance(value,list) else value[token]
+ return value
+def term_owner_ids(term):
+ owners=[]; owner=term["type_owner"].get("owner_id")
+ if isinstance(owner,str) and owner.startswith("AFQR-"): owners.append(owner)
+ owners.extend(x["owner_id"] for x in term.get("qualified_forms",[]) if isinstance(x.get("owner_id"),str) and x["owner_id"].startswith("AFQR-"))
+ return set(owners)
+def structured_record_valid(surface):
+ kind=surface["source_record_kind"]; source_id=surface["source_record_id"]
+ if kind not in {"r1b_term_record","r1c_invariant","r1c_dependency_edge","r1e_substrate_adjudication"}: return True
+ document=json.loads(baseline_raw(surface["path"])); selected=json_pointer_resolve(document,surface["locator_value"])
+ if kind=="r1b_term_record": return selected.get("term_id")==source_id and source_id in surface["applicable_term_ids"] and surface["declared_owner"] in term_owner_ids(selected)
+ if kind=="r1c_invariant":
+  if selected.get("invariant_id")!=source_id or surface["applicable_invariant_ids"]!=[source_id] or surface["source_proposition"]!=selected.get("summary"): return False
+  vocab=json.loads(baseline_raw("docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml")); by={x["term_id"]:x for x in vocab["term_records"]}; involved=set().union(*(term_owner_ids(by[x]) for x in selected["r1b_terms"]))
+  return surface["declared_owner"] in involved and involved.intersection(OWNER_RESP)<=set(surface["applicable_afqr_ids"])
+ if kind=="r1c_dependency_edge":
+  if selected.get("edge_id")!=source_id or surface["applicable_dependency_ids"]!=[source_id]: return False
+  semantic=selected.get("semantic_type_owner",{}).get("owner_id"); endpoints={selected.get("producer_afqr"),selected.get("consumer_afqr"),semantic}; role="source" if surface["declared_owner"]==selected.get("producer_afqr") else "target" if surface["declared_owner"]==selected.get("consumer_afqr") else "bounded_participant" if surface["declared_owner"]==semantic else None
+  return surface["declared_owner"] in endpoints and surface["dependency_owner_role"]==role
+ if kind=="r1e_substrate_adjudication": return selected.get("substrate_id")==source_id and source_id in surface["applicable_substrate_ids"] and surface["declared_owner"] in selected.get("exact_requiring_afqrs",[]) and selected.get("implementation_status")=="unimplemented" and "complete" not in surface["source_proposition"].lower()
+def test_exact_structured_source_record_resolution_and_identity_fields():
+ records=current(SHARD)["surface_records"]
+ for r in records:
+  assert r["source_record_kind"] in current(CONTRACT)["controlled_values"]["source_record_kinds"]
+  assert isinstance(r["source_record_id"],str) and r["source_record_id"].strip()
+  assert isinstance(r["source_proposition"],str) and len(r["source_proposition"].strip())>25 and "preserves the bounded proposition" not in r["source_proposition"].lower()
+  assert structured_record_valid(r)
+  if r["source_record_kind"]=="r1d_responsibility": assert r["source_record_id"]==r["applicable_r1d_responsibility_ids"][0]
+ assert len({r["source_proposition"] for r in records})==len(records)
+def test_invariant_pointer_summary_owner_and_swap_mutation_rejected():
+ records=current(SHARD)["surface_records"]; invariants=[r for r in records if r["source_record_kind"]=="r1c_invariant"]
+ assert {r["source_record_id"] for r in invariants}=={"INV-001","INV-002","INV-005","INV-006","INV-007"}
+ logical=next(r for r in invariants if r["source_record_id"]=="INV-007"); bad=copy.deepcopy(logical);bad["source_record_id"]="INV-009";bad["applicable_invariant_ids"]=["INV-009"];assert not structured_record_valid(bad)
+ assert not any(r["source_record_id"]=="INV-009" and r["declared_owner"]=="AFQR-07" for r in invariants)
+def test_dependency_pointer_endpoint_role_and_unrelated_owner_rejected():
+ records=current(SHARD)["surface_records"]; edges=[r for r in records if r["source_record_kind"]=="r1c_dependency_edge"]
+ assert edges and all(r["dependency_owner_role"] in {"source","target","bounded_participant"} for r in edges)
+ bad=copy.deepcopy(edges[0]);bad["declared_owner"]="AFQR-10";assert not structured_record_valid(bad)
+def test_replay_recovery_and_resource_locality_are_not_false_invariant_links():
+ records=current(SHARD)["surface_records"]
+ replay=next(r for r in records if "replay is idempotent" in r["source_proposition"]); assert replay["declared_owner"]=="AFQR-01" and replay["applicable_invariant_ids"]==[] and "INV-008 registry does not encode" in replay["semantic_summary"]
+ resource=next(r for r in records if "donor resource models" in r["source_proposition"]); assert resource["declared_owner"]=="AFQR-07" and resource["applicable_invariant_ids"]==[]
+def test_broad_family_decision_completion_and_control_are_reviewed_not_owned():
+ i=current(INDEX); by={x["path"]:x for x in i["primary_source_review_coverage"]}
+ for path in ("docs/decisions/current_decisions_log.md","docs/doctrine/reviews/afqr_01_20_formal_completion_review.md","docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md"):
+  assert by[path]["review_status"]=="reviewed_boundary_only" and by[path]["surface_ids"]==[] and by[path]["no_additional_surface_reason"]

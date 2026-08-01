@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
-  "artifact_version": "0.1.1",
+  "artifact_version": "0.1.2",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_inventory_contract",
@@ -185,6 +185,18 @@
       "test_enforced_contract",
       "negative_implementation_evidence",
       "ownership_definition_with_boundary"
+    ],
+    "source_record_kinds": [
+      "r1b_term_record",
+      "r1c_invariant",
+      "r1c_dependency_edge",
+      "r1d_responsibility",
+      "r1e_substrate_adjudication",
+      "accepted_decision_section",
+      "control_section",
+      "runtime_symbol",
+      "test_symbol",
+      "prose_section"
     ]
   },
   "record_types": {
@@ -215,6 +227,10 @@
         "applicable_substrate_ids",
         "linked_r2_claim_ids",
         "claim_link_reasons",
+        "source_record_kind",
+        "source_record_id",
+        "source_proposition",
+        "dependency_owner_role",
         "semantic_summary",
         "semantic_status",
         "owner_boundary_effect"
@@ -233,7 +249,11 @@
         "locator_value": "string_or_null_only_for_line_range_only",
         "excerpt_hash_algorithm": "literal.sha256_git_blob_raw_line_slice_v1",
         "declared_owner": "owner_reference",
-        "semantic_role": "controlled_values.semantic_roles"
+        "semantic_role": "controlled_values.semantic_roles",
+        "source_record_kind": "controlled_values.source_record_kinds",
+        "source_record_id": "nonempty_string",
+        "source_proposition": "nonempty_source_specific_paraphrase",
+        "dependency_owner_role": "source_target_bounded_participant_or_null"
       },
       "validation_rules": [
         "Exact repository-relative path, bounded line range, controlled locator kind and value, inspected commit, excerpt algorithm, and excerpt SHA-256 are required.",
