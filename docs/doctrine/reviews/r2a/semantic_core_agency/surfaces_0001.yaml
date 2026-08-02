@@ -35,12 +35,12 @@
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "R1D states that replay is idempotent, recovery preserves identity, and commitment never owns the committed domain; the baseline R1C INV-008 registry does not encode this proposition, so no invariant ID is attached.",
+      "semantic_summary": "R1D attributes replay idempotence and identity-preserving recovery to INV-008, while canonical R1C INV-008 governs motivation, behavior prediction, agency, and responsibility. The replay proposition remains an R1D family proposition with no conflicting R1C identifier attached.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "The R1D proposition is recorded without treating its conflicting INV label as a valid R1C invariant link.",
+      "owner_boundary_effect": "Records replay and recovery as bounded AFQR-01 family doctrine while preserving the unresolved R1C/R1D identifier-semantic conflict.",
       "source_record_kind": "prose_section",
       "source_record_id": "6. Core-family invariants",
-      "source_proposition": "R1D states that replay is idempotent, recovery preserves identity, and commitment never owns the committed domain; the baseline R1C INV-008 registry does not encode this proposition, so no invariant ID is attached.",
+      "source_proposition": "R1D attributes replay idempotence and identity-preserving recovery to INV-008, while canonical R1C INV-008 governs motivation, behavior prediction, agency, and responsibility. The replay proposition remains an R1D family proposition with no conflicting R1C identifier attached.",
       "dependency_owner_role": null
     },
     {
@@ -534,12 +534,12 @@
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
-      "semantic_summary": "R1D keeps donor resource models source-local and prohibits transformations from silently creating or destroying conserved quantity; no R1C invariant ID is attached.",
+      "semantic_summary": "R1D CORE-RULE-001 keeps donor resource models source-local and prohibits transformations from silently creating or destroying conserved quantity. R1C separately contains donor nonpromotion in INV-009, but AFQR-07 is not a structured owner or typed participant, so no invariant ID applies here.",
       "semantic_status": "validated",
-      "owner_boundary_effect": "The R1D proposition is recorded without treating its conflicting INV label as a valid R1C invariant link.",
+      "owner_boundary_effect": "The empty invariant list records an AFQR-07 ownership/applicability boundary, not absence of the canonical R1C donor-nonpromotion invariant.",
       "source_record_kind": "prose_section",
       "source_record_id": "6. Core-family invariants",
-      "source_proposition": "R1D keeps donor resource models source-local and prohibits transformations from silently creating or destroying conserved quantity; no R1C invariant ID is attached.",
+      "source_proposition": "R1D CORE-RULE-001 keeps donor resource models source-local and prohibits transformations from silently creating or destroying conserved quantity. R1C separately contains donor nonpromotion in INV-009, but AFQR-07 is not a structured owner or typed participant, so no invariant ID applies here.",
       "dependency_owner_role": null
     },
     {

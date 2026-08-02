@@ -286,9 +286,39 @@ def test_dependency_pointer_endpoint_role_and_unrelated_owner_rejected():
  bad=copy.deepcopy(edges[0]);bad["declared_owner"]="AFQR-10";assert not structured_record_valid(bad)
 def test_replay_recovery_and_resource_locality_are_not_false_invariant_links():
  records=current(SHARD)["surface_records"]
- replay=next(r for r in records if "replay is idempotent" in r["source_proposition"]); assert replay["declared_owner"]=="AFQR-01" and replay["applicable_invariant_ids"]==[] and "INV-008 registry does not encode" in replay["semantic_summary"]
+ replay=next(r for r in records if "replay idempotence" in r["source_proposition"]); assert replay["declared_owner"]=="AFQR-01" and replay["applicable_invariant_ids"]==[] and "identifier attached" in replay["semantic_summary"]
  resource=next(r for r in records if "donor resource models" in r["source_proposition"]); assert resource["declared_owner"]=="AFQR-07" and resource["applicable_invariant_ids"]==[]
 def test_broad_family_decision_completion_and_control_are_reviewed_not_owned():
  i=current(INDEX); by={x["path"]:x for x in i["primary_source_review_coverage"]}
  for path in ("docs/decisions/current_decisions_log.md","docs/doctrine/reviews/afqr_01_20_formal_completion_review.md","docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md"):
   assert by[path]["review_status"]=="reviewed_boundary_only" and by[path]["surface_ids"]==[] and by[path]["no_additional_surface_reason"]
+
+def identifier_drift_valid(index):
+ rows=index.get("identifier_drift_observations",[]); expected={"INV-007","INV-008","INV-009"}
+ if len(rows)!=3 or {r.get("canonical_record_id") for r in rows}!=expected: return False
+ canonical={x["invariant_id"]:x["summary"] for x in json.loads(baseline_raw("docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"))["cross_afqr_invariants"]}
+ required="This observation does not select a replacement invariant, rewrite accepted doctrine, or authorize R2B."
+ for r in rows:
+  ident=r["canonical_record_id"]
+  if r.get("drift_id")!=f"R2A2-DRIFT-{ident}" or r.get("canonical_summary")!=canonical[ident] or r.get("canonical_summary")==r.get("conflicting_summary"): return False
+  if r.get("conflict_kind")!="accepted_source_identifier_semantic_mismatch" or r.get("current_status")!="unresolved" or r.get("authority_effect")!="records_drift_without_adjudication" or r.get("later_handoff")!="R2A-11" or r.get("prohibited_inference")!=required: return False
+ return True
+def test_three_unresolved_r1c_r1d_identifier_drift_observations():
+ i=current(INDEX); assert identifier_drift_valid(i)
+ canonical={x["invariant_id"]:x["summary"] for x in json.loads(baseline_raw("docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"))["cross_afqr_invariants"]}
+ assert canonical=={**canonical,"INV-007":"Logical time, causal order, environmental process, spatial topology, embodiment, exposure, integrity, and harm are distinct typed concerns.","INV-008":"Motivation or behavior prediction does not author actor choice or replace agency or responsibility doctrine.","INV-009":"Donor action economy, anatomy, grid, cosmology, progression, resource model, or turn cadence cannot become Astra law by implication."}
+ prose=baseline_raw("docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md").decode().splitlines()[24]
+ assert all(x in prose for x in ("`INV-007` separates reservation and settlement","`INV-008` makes replay idempotent and recovery identity-preserving","`INV-009` blocks recursive self-authorization"))
+def test_identifier_drift_mutations_fail():
+ i=current(INDEX); missing=copy.deepcopy(i);missing["identifier_drift_observations"].pop();assert not identifier_drift_valid(missing)
+ resolved=copy.deepcopy(i);resolved["identifier_drift_observations"][0]["current_status"]="resolved";assert not identifier_drift_valid(resolved)
+ rewritten=copy.deepcopy(i);next(x for x in rewritten["identifier_drift_observations"] if x["canonical_record_id"]=="INV-009")["canonical_summary"]="Recursive self-authorization is prohibited.";assert not identifier_drift_valid(rewritten)
+def test_identifier_drift_surface_applicability_boundaries():
+ records=current(SHARD)["surface_records"]
+ logical=next(r for r in records if r["source_record_kind"]=="r1c_invariant" and r["source_record_id"]=="INV-007");assert logical["declared_owner"]=="AFQR-04" and logical["source_proposition"].startswith("Logical time, causal order")
+ assert not any("replay" in r["source_proposition"].lower() and r["applicable_invariant_ids"] for r in records)
+ resource=next(r for r in records if r["declared_owner"]=="AFQR-07" and "donor resource models" in r["source_proposition"]);assert resource["applicable_invariant_ids"]==[] and "ownership/applicability boundary" in resource["owner_boundary_effect"]
+ bad=copy.deepcopy(logical);bad["declared_owner"]="AFQR-07";bad["applicable_afqr_ids"]=["AFQR-07"];bad["source_record_id"]="INV-009";bad["applicable_invariant_ids"]=["INV-009"];bad["locator_value"]="/cross_afqr_invariants/8";bad["source_proposition"]="Donor action economy, anatomy, grid, cosmology, progression, resource model, or turn cadence cannot become Astra law by implication.";assert not structured_record_valid(bad)
+def test_index_acknowledges_canonical_r1c_donor_nonpromotion_without_adjudication():
+ text=INDEX.read_text();assert "Donor resource-model nonpromotion appears both in canonical R1C INV-009" in text and "R1C lacks donor" not in text
+ assert "records_drift_without_adjudication" in text and "resolve owner questions" not in text.lower()
