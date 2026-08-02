@@ -1,0 +1,476 @@
+{
+  "artifact_id": "AFQR-R2A-2-CORE-AGENCY-SEMANTIC-INDEX-001",
+  "artifact_version": "0.3.1",
+  "status": "complete",
+  "phase": "R2A-2",
+  "authority_effect": "nonauthoritative_semantic_inventory",
+  "inspected_baseline_commit": "b6acd24fed6e689ee47a046af51aa12c5b231020",
+  "contract": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+  "controlled_search": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+  "partition_manifest": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+  "shards": [
+    {
+      "path": "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+      "record_count": 27,
+      "content_sha256": "26b3156821d51f15383983c005d048ad0a6836381da3251a6db3a94994a8e9b1",
+      "first_surface_id": "R2A-SURFACE-CORE-0001",
+      "last_surface_id": "R2A-SURFACE-AGENCY-0003"
+    }
+  ],
+  "surface_count": 27,
+  "counts": {
+    "declared_owner": {
+      "AFQR-01": 6,
+      "AFQR-02": 2,
+      "AFQR-04": 3,
+      "AFQR-06": 2,
+      "AFQR-07": 2,
+      "AFQR-08": 3,
+      "AFQR-09": 6,
+      "AFQR-10": 3
+    },
+    "surface_kind": {
+      "current_control_or_gate": 1,
+      "current_normative_doctrine": 24,
+      "negative_or_absence_evidence": 1,
+      "test_contract": 1
+    },
+    "semantic_role": {
+      "accepted_adjudication": 1,
+      "dependency_handoff": 2,
+      "explicit_nonownership_boundary": 1,
+      "invariant_constraint": 5,
+      "negative_implementation_evidence": 1,
+      "ownership_definition": 1,
+      "ownership_definition_with_boundary": 8,
+      "qualified_vocabulary_boundary": 7,
+      "test_enforced_contract": 1
+    },
+    "source_record_kind": {
+      "prose_section": 2,
+      "r1b_term_record": 7,
+      "r1c_dependency_edge": 2,
+      "r1c_invariant": 5,
+      "r1d_responsibility": 8,
+      "r1e_substrate_adjudication": 1,
+      "runtime_symbol": 1,
+      "test_symbol": 1
+    },
+    "authority_level": {
+      "current_control": 1,
+      "current_normative": 24,
+      "implementation_presupposition": 1,
+      "nonauthoritative": 1
+    },
+    "currentness": {
+      "current": 26,
+      "not_applicable": 1
+    },
+    "generality": {
+      "general": 25,
+      "path_local": 1,
+      "subsystem": 1
+    },
+    "r1d_responsibility_id": {
+      "AGENCY-RESP-10": 3,
+      "CORE-RESP-01": 6,
+      "CORE-RESP-02": 2,
+      "CORE-RESP-04": 3,
+      "CORE-RESP-06": 2,
+      "CORE-RESP-07": 2,
+      "CORE-RESP-08": 3,
+      "CORE-RESP-09": 6
+    }
+  },
+  "primary_source_review_coverage": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "source_layer": "R1B_vocabulary",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0005",
+        "R2A-SURFACE-CORE-0008",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0018",
+        "R2A-SURFACE-CORE-0022",
+        "R2A-SURFACE-AGENCY-0003"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "source_layer": "R1C_invariant_dependency",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0010",
+        "R2A-SURFACE-CORE-0017",
+        "R2A-SURFACE-CORE-0020",
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-AGENCY-0001"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "source_layer": "R1D_family_doctrine",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0007",
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015",
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0019"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+      "source_layer": "R1D_family_doctrine",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-AGENCY-0002"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The formal completion result validates R1 as a whole and advances its gate; it does not create an AFQR-01-specific semantic proposition.",
+      "review_summary": "The formal completion result validates R1 as a whole and advances its gate; it does not create an AFQR-01-specific semantic proposition."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The source/vocabulary audit confirms the same R1B owner records already bounded by the vocabulary surfaces; it adds no distinct owner proposition.",
+      "review_summary": "The source/vocabulary audit confirms the same R1B owner records already bounded by the vocabulary surfaces; it adds no distinct owner proposition."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The dependency/parity audit validates the R1C invariants and handoffs already bounded from their governing contract; it adds no new semantic owner.",
+      "review_summary": "The dependency/parity audit validates the R1C invariants and handoffs already bounded from their governing contract; it adds no new semantic owner."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0023"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The consistency audit confirms corpus adequacy. Donor resource-model nonpromotion appears both in canonical R1C INV-009 and in the R1D family-local CORE-RULE-001 proposition, while R1D assigns INV-009 a conflicting recursive-self-authorization meaning. The identifier conflict is recorded without adjudication.",
+      "review_summary": "The consistency audit confirms corpus adequacy. Donor resource-model nonpromotion appears both in canonical R1C INV-009 and in the R1D family-local CORE-RULE-001 proposition, while R1D assigns INV-009 a conflicting recursive-self-authorization meaning. The identifier conflict is recorded without adjudication."
+    },
+    {
+      "path": "docs/decisions/current_decisions_log.md",
+      "source_layer": "accepted_decision",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The CORE and AGENCY decision sections accept whole families but contain no bounded AFQR-01- or AFQR-10-specific semantic proposition beyond the mapped R1D responsibility records.",
+      "review_summary": "The CORE and AGENCY decision sections accept whole families but contain no bounded AFQR-01- or AFQR-10-specific semantic proposition beyond the mapped R1D responsibility records."
+    },
+    {
+      "path": "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+      "source_layer": "current_control",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The R2A control plan constrains phase sequencing and owner transfer generally; it does not assign a bounded AFQR-01 semantic proposition.",
+      "review_summary": "The R2A control plan constrains phase sequencing and owner transfer generally; it does not assign a bounded AFQR-01 semantic proposition."
+    },
+    {
+      "path": "src/astra_runtime/domain/state_owner_interface_contract_skeleton.py",
+      "source_layer": "implementation_presupposition",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    },
+    {
+      "path": "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py",
+      "source_layer": "test_contract",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0024"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Material bounded propositions were mapped to the listed surface records."
+    }
+  ],
+  "responsibility_coverage": [
+    {
+      "responsibility_id": "CORE-RESP-01",
+      "afqr_id": "AFQR-01",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0005",
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0005"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0001",
+        "R2A-SURFACE-CORE-0002",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0004",
+        "R2A-SURFACE-CORE-0005"
+      ],
+      "presupposition_surface_ids": [
+        "R2A-SURFACE-CORE-0006"
+      ],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "CORE-RESP-02",
+      "afqr_id": "AFQR-02",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0007",
+        "R2A-SURFACE-CORE-0008"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0007",
+        "R2A-SURFACE-CORE-0008"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0007",
+        "R2A-SURFACE-CORE-0008"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "CORE-RESP-04",
+      "afqr_id": "AFQR-04",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0010",
+        "R2A-SURFACE-CORE-0011"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0010",
+        "R2A-SURFACE-CORE-0011"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0009",
+        "R2A-SURFACE-CORE-0010",
+        "R2A-SURFACE-CORE-0011"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "CORE-RESP-06",
+      "afqr_id": "AFQR-06",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0013"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0013"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0012",
+        "R2A-SURFACE-CORE-0013"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "CORE-RESP-07",
+      "afqr_id": "AFQR-07",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-CORE-0015"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "CORE-RESP-08",
+      "afqr_id": "AFQR-08",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0017",
+        "R2A-SURFACE-CORE-0018"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0017",
+        "R2A-SURFACE-CORE-0018"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0016",
+        "R2A-SURFACE-CORE-0017",
+        "R2A-SURFACE-CORE-0018"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "CORE-RESP-09",
+      "afqr_id": "AFQR-09",
+      "surface_ids": [
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0020",
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-CORE-0022",
+        "R2A-SURFACE-CORE-0023",
+        "R2A-SURFACE-CORE-0024"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0020",
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-CORE-0022"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-CORE-0020",
+        "R2A-SURFACE-CORE-0021",
+        "R2A-SURFACE-CORE-0022"
+      ],
+      "presupposition_surface_ids": [
+        "R2A-SURFACE-CORE-0024"
+      ],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    },
+    {
+      "responsibility_id": "AGENCY-RESP-10",
+      "afqr_id": "AFQR-10",
+      "surface_ids": [
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "Validated from exact R1B/R1C/R1D structured records, source-specific R1E/decision/control review, and applicable implementation/test evidence; broad family or gate text is not assigned as owner doctrine."
+    }
+  ],
+  "owner_boundaries": [
+    "Identity does not confer agency, personhood, consent, control, authority, or responsibility.",
+    "Evidence admissibility does not own truth or knowledge; ordering does not own domain chronology; commitment does not own committed-domain semantics.",
+    "Dependency does not manufacture jurisdiction; conservation does not define a universal resource model.",
+    "Continuity and cross-phase coordination, replay, storage, schemas, and runtime acquire no domain ownership.",
+    "The R1C registry remains canonical for invariant IDs; the R1D family propositions remain reviewable doctrine, but its INV-007–INV-009 labels conflict and are handed to R2A-11 without adjudication."
+  ],
+  "discovery_method": "All fixed primary sources were reviewed at the baseline. The accepted normalized matcher also screened tracked control, schema, runtime, and tests; runtime and test material produced bounded records, while no production schema encoded a material in-scope semantic presupposition. No raw occurrence count or tuples are persisted.",
+  "completeness_boundary": [
+    "This table is a bounded primary-source review, not a candidate-file disposition ledger.",
+    "Candidate-file parity is deferred to R2A-4 through R2A-8.",
+    "Claim assessment is deferred to R2A-9 and R2A-10.",
+    "Unresolved questions and package/module synthesis are deferred to R2A-11.",
+    "Only R2A-12 can complete overall R2A.",
+    "Later parity review may require a corrective semantic-surface amendment.",
+    "Repository-wide semantic completeness is not claimed before disposition and parity partitions run."
+  ],
+  "prohibited_inferences": [
+    "This artifact does not adopt or modify doctrine.",
+    "No candidate disposition, scan receipt, claim routing, owner-question adjudication, or package/module necessity follows from this inventory.",
+    "R2A remains active_incomplete; R2B and later phases remain blocked."
+  ],
+  "identifier_drift_observations": [
+    {
+      "drift_id": "R2A2-DRIFT-INV-007",
+      "canonical_owner_source": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "canonical_record_id": "INV-007",
+      "canonical_summary": "Logical time, causal order, environmental process, spatial topology, embodiment, exposure, integrity, and harm are distinct typed concerns.",
+      "conflicting_source": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "conflicting_locator": "heading: 6. Core-family invariants; line 25",
+      "conflicting_summary": "R1D describes INV-007 as separating reservation and settlement and requiring declared conservation.",
+      "conflict_kind": "accepted_source_identifier_semantic_mismatch",
+      "current_status": "unresolved",
+      "authority_effect": "records_drift_without_adjudication",
+      "later_handoff": "R2A-11",
+      "prohibited_inference": "This observation does not select a replacement invariant, rewrite accepted doctrine, or authorize R2B."
+    },
+    {
+      "drift_id": "R2A2-DRIFT-INV-008",
+      "canonical_owner_source": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "canonical_record_id": "INV-008",
+      "canonical_summary": "Motivation or behavior prediction does not author actor choice or replace agency or responsibility doctrine.",
+      "conflicting_source": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "conflicting_locator": "heading: 6. Core-family invariants; line 25",
+      "conflicting_summary": "R1D describes INV-008 as making replay idempotent and recovery identity-preserving.",
+      "conflict_kind": "accepted_source_identifier_semantic_mismatch",
+      "current_status": "unresolved",
+      "authority_effect": "records_drift_without_adjudication",
+      "later_handoff": "R2A-11",
+      "prohibited_inference": "This observation does not select a replacement invariant, rewrite accepted doctrine, or authorize R2B."
+    },
+    {
+      "drift_id": "R2A2-DRIFT-INV-009",
+      "canonical_owner_source": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "canonical_record_id": "INV-009",
+      "canonical_summary": "Donor action economy, anatomy, grid, cosmology, progression, resource model, or turn cadence cannot become Astra law by implication.",
+      "conflicting_source": "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+      "conflicting_locator": "heading: 6. Core-family invariants; line 25",
+      "conflicting_summary": "R1D describes INV-009 as blocking recursive self-authorization.",
+      "conflict_kind": "accepted_source_identifier_semantic_mismatch",
+      "current_status": "unresolved",
+      "authority_effect": "records_drift_without_adjudication",
+      "later_handoff": "R2A-11",
+      "prohibited_inference": "This observation does not select a replacement invariant, rewrite accepted doctrine, or authorize R2B."
+    }
+  ]
+}
