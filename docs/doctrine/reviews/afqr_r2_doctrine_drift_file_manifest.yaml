@@ -55,7 +55,7 @@
         "all sources routed"
       ],
       "corpus_scale_pressure": [
-        "mandatory CF-01–CF-13"
+        "mandatory CF-01\u2013CF-13"
       ],
       "outlier_escalation_path": "Astra Doctrine Council",
       "current_status": "complete"
@@ -402,7 +402,7 @@
         "accepted R1 doctrine at b6acd24fed6e689ee47a046af51aa12c5b231020"
       ],
       "outputs": [
-        "30 validated semantic authority surface records"
+        "27 validated semantic authority surface records"
       ],
       "must_not_own": [
         "doctrine",
@@ -430,7 +430,7 @@
         "prior dependency partitions"
       ],
       "outputs": [
-        "planned artifact family with index and bounded shards"
+        "complete nonauthoritative semantic index and primary-source review coverage"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -446,7 +446,36 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A-3",
+      "path": "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml",
+      "owner": "R2A-3",
+      "purpose": "Bounded WORLD and coordination semantic authority surfaces",
+      "inputs": [
+        "accepted R2A-2 baseline e015a56f691aefd955e21bc2f7eaaa03327e4373"
+      ],
+      "outputs": [
+        "9 validated semantic authority surface records"
+      ],
+      "must_not_own": [
+        "doctrine",
+        "candidate dispositions",
+        "claim assessments"
+      ],
+      "dependencies": [
+        "R2A-1 complete",
+        "R2A-2 complete"
+      ],
+      "gate_prerequisites": [
+        "R2A remains active_incomplete"
+      ],
+      "corpus_scale_pressure": [
+        "human-reviewable bounded shard"
+      ],
+      "outlier_escalation_path": "later parity amendment without owner transfer",
+      "current_status": "complete"
     },
     {
       "phase": "R2A-4",
@@ -749,7 +778,7 @@
     },
     {
       "partition_id": "R2A-3",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
     },
     {
       "partition_id": "R2A-4",

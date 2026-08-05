@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
-  "artifact_version": "0.1.2",
+  "artifact_version": "0.1.3",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_inventory_contract",
@@ -611,7 +611,7 @@
   "r2a_partition_statuses": {
     "R2A-1": "complete",
     "R2A-2": "complete",
-    "R2A-3": "planned_not_present",
+    "R2A-3": "complete",
     "R2A-4": "planned_not_present",
     "R2A-5": "planned_not_present",
     "R2A-6": "planned_not_present",
