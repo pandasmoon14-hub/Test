@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-3-WORLD-COORDINATION-SEMANTIC-SHARD-0001",
-  "artifact_version": "0.2.0",
+  "artifact_version": "0.3.0",
   "status": "complete",
   "phase": "R2A-3",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -24,14 +24,16 @@
       "generality": "general",
       "declared_owner": "AFQR-16",
       "applicable_afqr_ids": [
+        "AFQR-04",
         "AFQR-16",
         "AFQR-17",
-        "AFQR-18",
-        "AFQR-19",
-        "AFQR-20"
+        "AFQR-18"
       ],
       "applicable_r1d_responsibility_ids": [
-        "WORLD-RESP-16"
+        "CORE-RESP-04",
+        "WORLD-RESP-16",
+        "WORLD-RESP-17",
+        "WORLD-RESP-18"
       ],
       "applicable_term_ids": [
         "TERM-026",
@@ -100,6 +102,45 @@
     {
       "surface_id": "R2A-SURFACE-WORLD-0003",
       "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/35",
+      "line_start": 2756,
+      "line_end": 2822,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "fc06976d183fb484379ca1b8e25163e71a5a038a07fd179b857d163f9fb6dafd",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-16",
+      "applicable_afqr_ids": [
+        "AFQR-16"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-16"
+      ],
+      "applicable_term_ids": [
+        "TERM-036"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-036",
+      "source_proposition": "The typed manner in which an entity is physically or otherwise instantiated.",
+      "dependency_owner_role": null,
+      "semantic_summary": "The typed manner in which an entity is physically or otherwise instantiated.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0004",
+      "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
       "locator_kind": "symbol",
@@ -138,7 +179,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0004",
+      "surface_id": "R2A-SURFACE-WORLD-0005",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -178,14 +219,14 @@
       "claim_link_reasons": [],
       "source_record_kind": "r1e_substrate_adjudication",
       "source_record_id": "SUB-005",
-      "source_proposition": "SUB-005 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-13, AFQR-15, AFQR-16, AFQR-18, AFQR-20, implementation_status unimplemented, and no combined-owner transfer.",
+      "source_proposition": "SUB-005 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-13, AFQR-15, AFQR-16, AFQR-18, AFQR-20, implementation_status unimplemented, decision accepted_as_classified_deferred_substrate, and no combined-owner transfer.",
       "dependency_owner_role": null,
-      "semantic_summary": "SUB-005 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-13, AFQR-15, AFQR-16, AFQR-18, AFQR-20, implementation_status unimplemented, and no combined-owner transfer.",
+      "semantic_summary": "SUB-005 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-13, AFQR-15, AFQR-16, AFQR-18, AFQR-20, implementation_status unimplemented, decision accepted_as_classified_deferred_substrate, and no combined-owner transfer.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0005",
+      "surface_id": "R2A-SURFACE-WORLD-0006",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -219,14 +260,92 @@
       "claim_link_reasons": [],
       "source_record_kind": "r1c_dependency_edge",
       "source_record_id": "DEP-089",
-      "source_proposition": "DEP-089 hands Bounded environment_handoff output identified by DEP-089; scope remains limited to the producing AFQR source contract. from AFQR-17 to AFQR-18 while preserving semantic owner AFQR-17 and ownership nontransfer.",
+      "source_proposition": "DEP-089 records environment_handoff from AFQR-17 to AFQR-18 while preserving semantic owner AFQR-17 and ownership nontransfer.",
       "dependency_owner_role": "source",
-      "semantic_summary": "DEP-089 hands Bounded environment_handoff output identified by DEP-089; scope remains limited to the producing AFQR source contract. from AFQR-17 to AFQR-18 while preserving semantic owner AFQR-17 and ownership nontransfer.",
+      "semantic_summary": "DEP-089 records environment_handoff from AFQR-17 to AFQR-18 while preserving semantic owner AFQR-17 and ownership nontransfer.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0006",
+      "surface_id": "R2A-SURFACE-WORLD-0007",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/0",
+      "line_start": 19,
+      "line_end": 129,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "b1c862e5bdc31128537939f01da3027873784917181fb4d3a33d3e36a32371e6",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-17",
+      "applicable_afqr_ids": [
+        "AFQR-17"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-17"
+      ],
+      "applicable_term_ids": [
+        "TERM-001"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-001",
+      "source_proposition": "State semantics belong to the declared domain owner; AFQR-01 governs lawful transition, owner routing, and commitment, and transition or commitment does not transfer semantic ownership to AFQR-01.",
+      "dependency_owner_role": null,
+      "semantic_summary": "State semantics belong to the declared domain owner; AFQR-01 governs lawful transition, owner routing, and commitment, and transition or commitment does not transfer semantic ownership to AFQR-01.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0008",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/28",
+      "line_start": 2283,
+      "line_end": 2353,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "2bc0cd0dbab02b15522354cc0a0770cab3ee6476b046ebe8cb9da205b7fb8e09",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-17",
+      "applicable_afqr_ids": [
+        "AFQR-17"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-17"
+      ],
+      "applicable_term_ids": [
+        "TERM-029"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-029",
+      "source_proposition": "A domain progression concept, not universal time or transition ordering.",
+      "dependency_owner_role": null,
+      "semantic_summary": "A domain progression concept, not universal time or transition ordering.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0009",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -265,7 +384,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0007",
+      "surface_id": "R2A-SURFACE-WORLD-0010",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -306,7 +425,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0008",
+      "surface_id": "R2A-SURFACE-WORLD-0011",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -323,13 +442,13 @@
       "generality": "general",
       "declared_owner": "AFQR-18",
       "applicable_afqr_ids": [
+        "AFQR-03",
         "AFQR-16",
-        "AFQR-17",
-        "AFQR-18",
-        "AFQR-19",
-        "AFQR-20"
+        "AFQR-18"
       ],
       "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-03",
+        "WORLD-RESP-16",
         "WORLD-RESP-18"
       ],
       "applicable_term_ids": [
@@ -354,7 +473,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0009",
+      "surface_id": "R2A-SURFACE-WORLD-0012",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -388,14 +507,14 @@
       "claim_link_reasons": [],
       "source_record_kind": "r1c_dependency_edge",
       "source_record_id": "DEP-091",
-      "source_proposition": "DEP-091 hands Bounded space_handoff output identified by DEP-091; scope remains limited to the producing AFQR source contract. from AFQR-18 to AFQR-17 while preserving semantic owner AFQR-18 and ownership nontransfer.",
+      "source_proposition": "DEP-091 records space_handoff from AFQR-18 to AFQR-17 while preserving semantic owner AFQR-18 and ownership nontransfer.",
       "dependency_owner_role": "source",
-      "semantic_summary": "DEP-091 hands Bounded space_handoff output identified by DEP-091; scope remains limited to the producing AFQR source contract. from AFQR-18 to AFQR-17 while preserving semantic owner AFQR-18 and ownership nontransfer.",
+      "semantic_summary": "DEP-091 records space_handoff from AFQR-18 to AFQR-17 while preserving semantic owner AFQR-18 and ownership nontransfer.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0010",
+      "surface_id": "R2A-SURFACE-WORLD-0013",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -434,7 +553,46 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0011",
+      "surface_id": "R2A-SURFACE-WORLD-0014",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/38",
+      "line_start": 2957,
+      "line_end": 3023,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "91c3c622821ffb69aadc732fd43c0ca23211e54ecdf166a98dc4c1bc0a0aeb09",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-18",
+      "applicable_afqr_ids": [
+        "AFQR-18"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-18"
+      ],
+      "applicable_term_ids": [
+        "TERM-039"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-039",
+      "source_proposition": "Connectivity and adjacency structure, without legal, causal, or ownership implication.",
+      "dependency_owner_role": null,
+      "semantic_summary": "Connectivity and adjacency structure, without legal, causal, or ownership implication.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0015",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -474,7 +632,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0012",
+      "surface_id": "R2A-SURFACE-WORLD-0016",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -491,13 +649,15 @@
       "generality": "general",
       "declared_owner": "AFQR-19",
       "applicable_afqr_ids": [
-        "AFQR-16",
-        "AFQR-17",
-        "AFQR-18",
-        "AFQR-19",
-        "AFQR-20"
+        "AFQR-03",
+        "AFQR-04",
+        "AFQR-06",
+        "AFQR-19"
       ],
       "applicable_r1d_responsibility_ids": [
+        "CORE-RESP-03",
+        "CORE-RESP-04",
+        "CORE-RESP-06",
         "WORLD-RESP-19"
       ],
       "applicable_term_ids": [
@@ -523,7 +683,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0013",
+      "surface_id": "R2A-SURFACE-WORLD-0017",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -562,7 +722,124 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0014",
+      "surface_id": "R2A-SURFACE-WORLD-0018",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/9",
+      "line_start": 776,
+      "line_end": 843,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "60ea23537dff0c44188e52e0476815a229780d464c0f6ee7a30a82f1b9e50a62",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-19",
+      "applicable_afqr_ids": [
+        "AFQR-19"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-19"
+      ],
+      "applicable_term_ids": [
+        "TERM-010"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-010",
+      "source_proposition": "An AFQR-19 relational action opportunity; AFQR-03 may consume it during route composition.",
+      "dependency_owner_role": null,
+      "semantic_summary": "An AFQR-19 relational action opportunity; AFQR-03 may consume it during route composition.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0019",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/10",
+      "line_start": 844,
+      "line_end": 912,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "3aa6cbf35c83a92bab4c20134d7880da20528608142a693aba5575bbf5095875",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-19",
+      "applicable_afqr_ids": [
+        "AFQR-19"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-19"
+      ],
+      "applicable_term_ids": [
+        "TERM-011"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-011",
+      "source_proposition": "A typed subject or object reference for resolution, not resolution itself.",
+      "dependency_owner_role": null,
+      "semantic_summary": "A typed subject or object reference for resolution, not resolution itself.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0020",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/11",
+      "line_start": 913,
+      "line_end": 1025,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "f16c16d54b1e76752453ec7ec8566e4ac65c7f3dae075d15da7e5ee26a5a9300",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-19",
+      "applicable_afqr_ids": [
+        "AFQR-19"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-19"
+      ],
+      "applicable_term_ids": [
+        "TERM-012"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-012",
+      "source_proposition": "A qualified family for concluding a declared subject such as an action or claim.",
+      "dependency_owner_role": null,
+      "semantic_summary": "A qualified family for concluding a declared subject such as an action or claim.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0021",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -604,7 +881,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0015",
+      "surface_id": "R2A-SURFACE-WORLD-0022",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -621,13 +898,11 @@
       "generality": "general",
       "declared_owner": "AFQR-20",
       "applicable_afqr_ids": [
-        "AFQR-16",
-        "AFQR-17",
-        "AFQR-18",
-        "AFQR-19",
+        "AFQR-14",
         "AFQR-20"
       ],
       "applicable_r1d_responsibility_ids": [
+        "AGENCY-RESP-14",
         "WORLD-RESP-20"
       ],
       "applicable_term_ids": [
@@ -651,7 +926,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0016",
+      "surface_id": "R2A-SURFACE-WORLD-0023",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -685,14 +960,92 @@
       "claim_link_reasons": [],
       "source_record_kind": "r1c_dependency_edge",
       "source_record_id": "DEP-094",
-      "source_proposition": "DEP-094 hands AFQR-20 supplies a detected-contact or sensing-observation reference; AFQR-20 retains sensing, signal, detection, recognition, contact, and observation-side ownership. from AFQR-20 to AFQR-19 while preserving semantic owner AFQR-19 and ownership nontransfer.",
+      "source_proposition": "DEP-094 records contact_targeting from AFQR-20 to AFQR-19 while preserving semantic owner AFQR-19 and ownership nontransfer.",
       "dependency_owner_role": "source",
-      "semantic_summary": "DEP-094 hands AFQR-20 supplies a detected-contact or sensing-observation reference; AFQR-20 retains sensing, signal, detection, recognition, contact, and observation-side ownership. from AFQR-20 to AFQR-19 while preserving semantic owner AFQR-19 and ownership nontransfer.",
+      "semantic_summary": "DEP-094 records contact_targeting from AFQR-20 to AFQR-19 while preserving semantic owner AFQR-19 and ownership nontransfer.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0017",
+      "surface_id": "R2A-SURFACE-WORLD-0024",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/18",
+      "line_start": 1526,
+      "line_end": 1633,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "b1e7b6a0fd601b8abbdd406d4a082d2fa6960bf144f22e25008f8a45dd317fe4",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-20",
+      "applicable_afqr_ids": [
+        "AFQR-20"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-20"
+      ],
+      "applicable_term_ids": [
+        "TERM-019"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-019",
+      "source_proposition": "A qualified family separating AFQR-06 arbitration evidence, AFQR-10 epistemic records, and AFQR-20 candidates.",
+      "dependency_owner_role": null,
+      "semantic_summary": "A qualified family separating AFQR-06 arbitration evidence, AFQR-10 epistemic records, and AFQR-20 candidates.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0025",
+      "primary_partition": "R2A-3",
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+      "locator_kind": "json_pointer",
+      "locator_value": "/term_records/21",
+      "line_start": 1768,
+      "line_end": 1869,
+      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
+      "excerpt_sha256": "5cd1750cef3057c864f71eaa53d38087f4b0db70eaa80c3d590008938bfdf4ad",
+      "surface_kind": "current_normative_doctrine",
+      "semantic_role": "qualified_vocabulary_boundary",
+      "authority_level": "current_normative",
+      "currentness": "current",
+      "generality": "general",
+      "declared_owner": "AFQR-20",
+      "applicable_afqr_ids": [
+        "AFQR-20"
+      ],
+      "applicable_r1d_responsibility_ids": [
+        "WORLD-RESP-20"
+      ],
+      "applicable_term_ids": [
+        "TERM-022"
+      ],
+      "applicable_invariant_ids": [],
+      "applicable_dependency_ids": [],
+      "applicable_substrate_ids": [],
+      "linked_r2_claim_ids": [],
+      "claim_link_reasons": [],
+      "source_record_kind": "r1b_term_record",
+      "source_record_id": "TERM-022",
+      "source_proposition": "A qualified candidate-to-record family separating AFQR-20 sensing production from AFQR-10 epistemic ownership.",
+      "dependency_owner_role": null,
+      "semantic_summary": "A qualified candidate-to-record family separating AFQR-20 sensing production from AFQR-10 epistemic ownership.",
+      "semantic_status": "validated",
+      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
+    },
+    {
+      "surface_id": "R2A-SURFACE-WORLD-0026",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -731,7 +1084,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0018",
+      "surface_id": "R2A-SURFACE-WORLD-0027",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -772,7 +1125,7 @@
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0019",
+      "surface_id": "R2A-SURFACE-WORLD-0028",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -810,14 +1163,14 @@
       "claim_link_reasons": [],
       "source_record_kind": "r1e_substrate_adjudication",
       "source_record_id": "SUB-002",
-      "source_proposition": "SUB-002 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-04, AFQR-06, AFQR-10, AFQR-20, implementation_status unimplemented, and no combined-owner transfer.",
+      "source_proposition": "SUB-002 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-04, AFQR-06, AFQR-10, AFQR-20, implementation_status unimplemented, decision accepted_as_classified_deferred_substrate, and no combined-owner transfer.",
       "dependency_owner_role": null,
-      "semantic_summary": "SUB-002 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-04, AFQR-06, AFQR-10, AFQR-20, implementation_status unimplemented, and no combined-owner transfer.",
+      "semantic_summary": "SUB-002 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-04, AFQR-06, AFQR-10, AFQR-20, implementation_status unimplemented, decision accepted_as_classified_deferred_substrate, and no combined-owner transfer.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
-      "surface_id": "R2A-SURFACE-WORLD-0020",
+      "surface_id": "R2A-SURFACE-WORLD-0029",
       "primary_partition": "R2A-3",
       "path": "tests/test_afqr_r1d_world_action_sensing.py",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -860,26 +1213,26 @@
     {
       "surface_id": "R2A-SURFACE-CONTINUITY-0001",
       "primary_partition": "R2A-3",
-      "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
       "locator_kind": "json_pointer",
-      "locator_value": "/ownership_rules/coordination_only",
+      "locator_value": "/claims/0",
       "line_start": 53,
-      "line_end": 56,
+      "line_end": 145,
       "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
-      "excerpt_sha256": "4386869eb7493c33bf9d8c718c6e6ce23e2ab65f61e63815d8af2f9ef60ba637",
+      "excerpt_sha256": "e048c2ae2a52e4cca70c8ad6a0cf0e3597d26dc29898d95ecca5f18bf3c9f0d0",
       "surface_kind": "current_control_or_gate",
-      "semantic_role": "control_or_gate_constraint",
-      "authority_level": "current_control",
+      "semantic_role": "explicit_nonownership_boundary",
+      "authority_level": "nonauthoritative",
       "currentness": "current",
       "generality": "general",
       "declared_owner": "continuity_coordination",
       "applicable_afqr_ids": [
-        "AFQR-01",
+        "AFQR-04",
         "AFQR-08"
       ],
       "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01",
+        "CORE-RESP-04",
         "CORE-RESP-08"
       ],
       "applicable_term_ids": [],
@@ -889,54 +1242,15 @@
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
       "source_record_kind": "control_section",
-      "source_record_id": "coordination_only",
-      "source_proposition": "The partition manifest declares continuity_coordination and cross_phase_coordination as coordination-only labels rather than domain owners.",
+      "source_record_id": "R2-CLAIM-0001",
+      "source_proposition": "R2-CLAIM-0001 owner_analysis routes timeline identity components to exact component owners while prohibiting storage, journaling, replay, branching, commitment, and handoff from transferring semantic ownership; the owner question remains unresolved.",
       "dependency_owner_role": null,
-      "semantic_summary": "The partition manifest declares continuity_coordination and cross_phase_coordination as coordination-only labels rather than domain owners.",
+      "semantic_summary": "R2-CLAIM-0001 owner_analysis routes timeline identity components to exact component owners while prohibiting storage, journaling, replay, branching, commitment, and handoff from transferring semantic ownership; the owner question remains unresolved.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     },
     {
       "surface_id": "R2A-SURFACE-CROSSPHASE-0001",
-      "primary_partition": "R2A-3",
-      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md",
-      "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
-      "locator_kind": "line_range_only",
-      "locator_value": null,
-      "line_start": 3,
-      "line_end": 4,
-      "excerpt_hash_algorithm": "sha256_git_blob_raw_line_slice_v1",
-      "excerpt_sha256": "84511af6278aadbc85211e7c952ffc9d9db7db44f41b4421ffc97b8ce1ab019d",
-      "surface_kind": "current_control_or_gate",
-      "semantic_role": "control_or_gate_constraint",
-      "authority_level": "nonauthoritative",
-      "currentness": "current",
-      "generality": "general",
-      "declared_owner": "cross_phase_coordination",
-      "applicable_afqr_ids": [
-        "AFQR-01",
-        "AFQR-08"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01",
-        "CORE-RESP-08"
-      ],
-      "applicable_term_ids": [],
-      "applicable_invariant_ids": [],
-      "applicable_dependency_ids": [],
-      "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
-      "source_record_kind": "prose_section",
-      "source_record_id": "Authority",
-      "source_proposition": "The R2-0 assimilation report records PASS while declaring authority as tracking review only and nonauthoritative research assimilation.",
-      "dependency_owner_role": null,
-      "semantic_summary": "The R2-0 assimilation report records PASS while declaring authority as tracking review only and nonauthoritative research assimilation.",
-      "semantic_status": "validated",
-      "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
-    },
-    {
-      "surface_id": "R2A-SURFACE-CROSSPHASE-0002",
       "primary_partition": "R2A-3",
       "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
       "inspected_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
@@ -955,30 +1269,28 @@
       "applicable_afqr_ids": [
         "AFQR-01",
         "AFQR-04",
-        "AFQR-05",
         "AFQR-06",
-        "AFQR-07",
         "AFQR-08",
-        "AFQR-09",
+        "AFQR-05",
+        "AFQR-10",
         "AFQR-16",
         "AFQR-17",
-        "AFQR-18",
         "AFQR-19",
-        "AFQR-20"
+        "AFQR-20",
+        "AFQR-07"
       ],
       "applicable_r1d_responsibility_ids": [
         "CORE-RESP-01",
         "CORE-RESP-04",
-        "CORE-RESP-05",
         "CORE-RESP-06",
-        "CORE-RESP-07",
         "CORE-RESP-08",
-        "CORE-RESP-09",
+        "CORE-RESP-05",
+        "AGENCY-RESP-10",
         "WORLD-RESP-16",
         "WORLD-RESP-17",
-        "WORLD-RESP-18",
         "WORLD-RESP-19",
-        "WORLD-RESP-20"
+        "WORLD-RESP-20",
+        "CORE-RESP-07"
       ],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
@@ -988,9 +1300,9 @@
       "claim_link_reasons": [],
       "source_record_kind": "control_section",
       "source_record_id": "coordination_must_not_own",
-      "source_proposition": "The partition manifest lists domains coordination must not own, preserving component owners for commitment, time, evidence, identity, dependency, embodiment, environment, action, sensing, reservation, canon, conversion, and runtime truth.",
+      "source_proposition": "The partition manifest lists domains coordination must not own and maps only accepted component-owner domains; canon, conversion, and runtime_truth remain prohibited domains without invented AFQR ownership.",
       "dependency_owner_role": null,
-      "semantic_summary": "The partition manifest lists domains coordination must not own, preserving component owners for commitment, time, evidence, identity, dependency, embodiment, environment, action, sensing, reservation, canon, conversion, and runtime truth.",
+      "semantic_summary": "The partition manifest lists domains coordination must not own and maps only accepted component-owner domains; canon, conversion, and runtime_truth remain prohibited domains without invented AFQR ownership.",
       "semantic_status": "validated",
       "owner_boundary_effect": "The selected source preserves component semantic ownership and nontransfer; coordination, consumers, target work packages, storage, journaling, replay, branching, persistence, serialization, and handoff do not absorb or manufacture domain ownership."
     }

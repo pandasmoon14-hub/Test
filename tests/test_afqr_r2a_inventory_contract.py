@@ -346,11 +346,22 @@ WORLD_RESP = {
     "AFQR-19": "WORLD-RESP-19",
     "AFQR-20": "WORLD-RESP-20",
 }
-R1D_RESP = {
-    **{f"AFQR-{n:02d}": f"CORE-RESP-{n:02d}" for n in range(1, 10)},
-    **{f"AFQR-{n:02d}": f"AGENCY-RESP-{n:02d}" for n in range(10, 16)},
-    **WORLD_RESP,
-}
+def parsed_r1d_responsibility_map():
+    out = {}
+    for path in (
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+    ):
+        text = baseline3_raw(path).decode() if "baseline3_raw" in globals() else subprocess.check_output(["git", "show", f"{ACCEPTED_R2A_2_HEAD}:{path}"], text=True)
+        match = re.search(r"```json\n(.*?)\n```", text, re.S)
+        assert match
+        for record in json.loads(match.group(1))["responsibility_records"]:
+            assert record["afqr_id"] not in out
+            out[record["afqr_id"]] = record["record_id"]
+    return out
+
+R1D_RESP = parsed_r1d_responsibility_map()
 COORD_LABELS = {"continuity_coordination", "cross_phase_coordination"}
 R2A3_PRIMARY = {
     "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
@@ -569,7 +580,7 @@ def test_r2a3_coordination_components_authority_and_no_invented_source_ids():
     bad = copy.deepcopy(coord[0]); bad["applicable_afqr_ids"] = list(WORLD_RESP)
     assert set(bad["applicable_afqr_ids"]) != set(coord[0]["applicable_afqr_ids"])
     bad = copy.deepcopy(coord[0]); bad["source_proposition"] = "Fabricated zebra doctrine manufactures a combined owner."
-    assert not any(phrase in r2a3_excerpt(coord[0]).decode() for phrase in bad["source_proposition"].split()[:3])
+    assert not any(phrase in r2a3_excerpt(coord[0]).decode() for phrase in ["Fabricated", "zebra"])
 
 
 def test_r2a3_source_coverage_and_no_forbidden_assessments_or_authorization():
@@ -578,7 +589,9 @@ def test_r2a3_source_coverage_and_no_forbidden_assessments_or_authorization():
     by_path = {x["path"]: x for x in rows}
     assert by_path["docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"]["surface_ids"]
     assert by_path["docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"]["surface_ids"]
-    assert "DEP-094" in by_path["docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"]["no_additional_surface_reason"]
+    assert by_path["docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"]["no_additional_surface_reason"] is None
+    mapped_r1c = {r["source_record_id"] for r in r2a3_records() if r["path"] == "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"}
+    assert {"DEP-089", "DEP-091", "DEP-094"} <= mapped_r1c
     sub_ids = by_path["docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml"]["surface_ids"]
     assert {r["source_record_id"] for r in r2a3_records() if r["surface_id"] in sub_ids} == {"SUB-002", "SUB-005"}
     reasons = [x["no_additional_surface_reason"] for x in rows if x["review_status"] != "mapped_material_surfaces"]
@@ -587,6 +600,53 @@ def test_r2a3_source_coverage_and_no_forbidden_assessments_or_authorization():
     assert not any(x in data for x in ["candidate_file_disposition:", "raw_occurrence_tuple", "scan_receipt:", "claim_assessment_id", "package_assessment_id", "module_assessment_id"])
     assert all(r["linked_r2_claim_ids"] == [] and r["claim_link_reasons"] == [] for r in r2a3_records())
     assert "No R2B package requirement is selected or authorized." in idx["prohibited_inferences"]
+
+
+def test_r2a3_r1b_term_parity_and_invariant_owner_graph_mutations():
+    world = {r["record_id"]: r for r in r2a3_world_contract()["responsibility_records"]}
+    expected = {
+        owner: {x["term_id"] for x in world[rid]["r1b_terms_or_qualified_forms"]}
+        for owner, rid in WORLD_RESP.items()
+    }
+    term_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1b_term_record"]
+    actual = {owner: {r["source_record_id"] for r in term_rows if r["declared_owner"] == owner} for owner in WORLD_RESP}
+    assert actual == expected
+    vocab = r2a3_json("docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml")
+    by_term = {x["term_id"]: x for x in vocab["term_records"]}
+    for r in term_rows:
+        selected = pointer_resolve(vocab, r["locator_value"])
+        assert selected["term_id"] == r["source_record_id"]
+        assert r["source_proposition"] == selected["definition"]
+        assert r["declared_owner"] in owners_for_term(selected)
+        assert r["applicable_r1d_responsibility_ids"] == [WORLD_RESP[r["declared_owner"]]]
+    inv_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1c_invariant"]
+    for r in inv_rows:
+        derived = sorted(set().union(*(owners_for_term(by_term[tid]) for tid in r["applicable_term_ids"])))
+        assert r["declared_owner"] in derived
+        assert r["applicable_afqr_ids"] == derived
+    inv7 = next(r for r in inv_rows if r["source_record_id"] == "INV-007")
+    bad = copy.deepcopy(inv7); bad["applicable_afqr_ids"] = sorted(set(bad["applicable_afqr_ids"]) | {"AFQR-19"})
+    assert bad["applicable_afqr_ids"] != sorted(set().union(*(owners_for_term(by_term[tid]) for tid in bad["applicable_term_ids"])))
+    bad = copy.deepcopy(inv7); bad["declared_owner"] = "AFQR-20"
+    assert bad["declared_owner"] not in sorted(set().union(*(owners_for_term(by_term[tid]) for tid in bad["applicable_term_ids"])))
+    bad = copy.deepcopy(inv7); bad["applicable_term_ids"] = ["TERM-001"]
+    assert bad["applicable_afqr_ids"] != sorted(set().union(*(owners_for_term(by_term[tid]) for tid in bad["applicable_term_ids"])))
+
+
+def test_r2a3_parsed_responsibility_map_and_crossphase_domain_mapping():
+    parsed = parsed_r1d_responsibility_map()
+    assert parsed == R1D_RESP and len(parsed) == len(set(parsed.values())) == 20
+    assert all(not rid.startswith(("CORE-RESP-10", "AGENCY-RESP-01")) for rid in parsed.values())
+    cross = next(r for r in r2a3_records() if r["declared_owner"] == "cross_phase_coordination")
+    expected = ["AFQR-01", "AFQR-04", "AFQR-06", "AFQR-08", "AFQR-05", "AFQR-10", "AFQR-16", "AFQR-17", "AFQR-19", "AFQR-20", "AFQR-07"]
+    assert cross["applicable_afqr_ids"] == expected
+    assert "AFQR-09" not in cross["applicable_afqr_ids"] and "AFQR-18" not in cross["applicable_afqr_ids"]
+    assert "AFQR-10" in cross["applicable_afqr_ids"]
+    assert cross["applicable_r1d_responsibility_ids"] == [parsed[x] for x in expected]
+    bad = copy.deepcopy(cross); bad["applicable_afqr_ids"].append("AFQR-09")
+    assert bad["applicable_afqr_ids"] != expected
+    bad = copy.deepcopy(cross); bad["applicable_afqr_ids"].remove("AFQR-10")
+    assert bad["applicable_afqr_ids"] != expected
 
 
 def test_r2a3_world_and_coordination_coverage_recompute():
