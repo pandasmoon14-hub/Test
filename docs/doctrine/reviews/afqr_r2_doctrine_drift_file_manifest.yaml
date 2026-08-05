@@ -457,7 +457,7 @@
         "accepted R2A-2 baseline e015a56f691aefd955e21bc2f7eaaa03327e4373"
       ],
       "outputs": [
-        "9 validated semantic authority surface records"
+        "23 validated semantic authority surface records"
       ],
       "must_not_own": [
         "doctrine",
