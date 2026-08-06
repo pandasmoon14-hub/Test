@@ -322,3 +322,346 @@ def test_identifier_drift_surface_applicability_boundaries():
 def test_index_acknowledges_canonical_r1c_donor_nonpromotion_without_adjudication():
  text=INDEX.read_text();assert "Donor resource-model nonpromotion appears both in canonical R1C INV-009" in text and "R1C lacks donor" not in text
  assert "records_drift_without_adjudication" in text and "resolve owner questions" not in text.lower()
+
+# R2A-3 successor-safe WORLD and coordination validation is appended after the exact accepted R2A-2 test bytes.
+ACCEPTED_R2A_2_HEAD = "e015a56f691aefd955e21bc2f7eaaa03327e4373"
+R2A_3_BASE = ACCEPTED_R2A_2_HEAD
+CORE_INDEX = REV / "r2a/semantic_core_agency/index.yaml"
+CORE_SHARD = REV / "r2a/semantic_core_agency/surfaces_0001.yaml"
+WORLD_INDEX = REV / "r2a/semantic_world_coordination/index.yaml"
+WORLD_SHARD = REV / "r2a/semantic_world_coordination/surfaces_0001.yaml"
+R2A3_AUTHORIZED = {
+    "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+    "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+    "docs/doctrine/reviews/r2a/semantic_world_coordination/index.yaml",
+    "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml",
+    "tests/test_afqr_r2a_inventory_contract.py",
+}
+WORLD_RESP = {
+    "AFQR-16": "WORLD-RESP-16",
+    "AFQR-17": "WORLD-RESP-17",
+    "AFQR-18": "WORLD-RESP-18",
+    "AFQR-19": "WORLD-RESP-19",
+    "AFQR-20": "WORLD-RESP-20",
+}
+def parsed_r1d_responsibility_map():
+    out = {}
+    for path in (
+        "docs/doctrine/consolidation/afqr_core_transaction_identity_relation.md",
+        "docs/doctrine/consolidation/afqr_epistemic_agency_social_communication.md",
+        "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+    ):
+        text = baseline3_raw(path).decode() if "baseline3_raw" in globals() else subprocess.check_output(["git", "show", f"{ACCEPTED_R2A_2_HEAD}:{path}"], text=True)
+        match = re.search(r"```json\n(.*?)\n```", text, re.S)
+        assert match
+        for record in json.loads(match.group(1))["responsibility_records"]:
+            assert record["afqr_id"] not in out
+            out[record["afqr_id"]] = record["record_id"]
+    return out
+
+R1D_RESP = parsed_r1d_responsibility_map()
+COORD_LABELS = {"continuity_coordination", "cross_phase_coordination"}
+R2A3_PRIMARY = {
+    "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+    "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+    "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+    "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+    "docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml",
+    "docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml",
+    "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+    "docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml",
+    "docs/decisions/current_decisions_log.md",
+    "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+    "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+    "docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml",
+    "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+    "docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md",
+    "tests/test_afqr_r1d_world_action_sensing.py",
+    "tests/test_afqr_r2_continuity_research_assimilation.py",
+}
+
+
+def current_file(path: Path):
+    return json.loads(path.read_text())
+
+
+def r2a3_changed():
+    return set(git("diff", "--name-only", f"{R2A_3_BASE}...HEAD").splitlines())
+
+
+def baseline3_raw(path: str):
+    return subprocess.check_output(["git", "show", f"{R2A_3_BASE}:{path}"])
+
+
+def r2a3_records():
+    return current_file(WORLD_SHARD)["surface_records"]
+
+
+def r2a3_index():
+    return current_file(WORLD_INDEX)
+
+
+def r2a3_excerpt(record):
+    raw = baseline3_raw(record["path"]).splitlines(keepends=True)
+    return b"".join(raw[record["line_start"] - 1:record["line_end"]])
+
+
+def pointer_resolve(document, pointer):
+    assert pointer.startswith("/")
+    value = document
+    for token in pointer[1:].split("/"):
+        token = token.replace("~1", "/").replace("~0", "~")
+        value = value[int(token)] if isinstance(value, list) else value[token]
+    return value
+
+
+def r2a3_json(path):
+    return json.loads(baseline3_raw(path))
+
+
+def r2a3_world_contract():
+    text = baseline3_raw("docs/doctrine/consolidation/afqr_world_action_sensing.md").decode()
+    match = re.search(r"```json\n(.*?)\n```", text, re.S)
+    assert match
+    return json.loads(match.group(1))
+
+
+def owners_for_term(term):
+    owners = set()
+    oid = term["type_owner"].get("owner_id")
+    if isinstance(oid, str) and oid.startswith("AFQR-"):
+        owners.add(oid)
+    for form in term.get("qualified_forms", []):
+        oid = form.get("owner_id")
+        if isinstance(oid, str) and oid.startswith("AFQR-"):
+            owners.add(oid)
+    return owners
+
+
+def r2a3_current_statuses():
+    return {f"R2A-{n}": ("complete" if n <= 3 else "planned_not_present") for n in range(1, 13)}
+
+
+# Override predecessor helper lookups after the accepted bytes so accepted R2A-2 tests remain historical.
+def current(p):
+    historical = {CONTRACT, PARTITIONS, CLUSTERS, FILES, INDEX, SHARD}
+    if p in historical:
+        return json.loads(subprocess.check_output(["git", "show", f"{ACCEPTED_R2A_2_HEAD}:{p.relative_to(ROOT)}"], text=True))
+    return json.loads(p.read_text())
+
+
+def git(*args):
+    args = list(args)
+    old_range = f"{ACCEPTED_R2A_1_HEAD}...HEAD"
+    args = [f"{ACCEPTED_R2A_1_HEAD}...{ACCEPTED_R2A_2_HEAD}" if a == old_range else a for a in args]
+    return subprocess.check_output(["git", *args], text=True).strip()
+
+def r2a2_changed():
+    return set(subprocess.check_output(["git", "diff", "--name-only", f"{ACCEPTED_R2A_1_HEAD}...{ACCEPTED_R2A_2_HEAD}"], text=True).splitlines())
+
+
+def test_current_file_begins_with_exact_accepted_r2a2_test_bytes():
+    accepted = subprocess.check_output(["git", "show", f"{ACCEPTED_R2A_2_HEAD}:tests/test_afqr_r2a_inventory_contract.py"])
+    assert Path(__file__).read_bytes().startswith(accepted)
+    assert "def test_executable_discovery_vectors" in accepted.decode()
+    assert "def test_dependency_pointer_endpoint_role_and_unrelated_owner_rejected" in accepted.decode()
+
+
+def test_r2a3_exact_base_scope_status_and_limits():
+    subprocess.check_call(["git", "merge-base", "--is-ancestor", R2A_3_BASE, "HEAD"])
+    assert r2a3_changed() == R2A3_AUTHORIZED
+    assert not any(p.startswith(("src/", "schemas/", "tests/runtime/")) for p in r2a3_changed())
+    assert current_file(CONTRACT)["r2a_partition_statuses"] == current_file(CLUSTERS)["r2a_partition_statuses"] == r2a3_current_statuses()
+    assert {x["partition_id"]: x["status"] for x in current_file(PARTITIONS)["partitions"]} == r2a3_current_statuses()
+    assert {x["partition_id"]: x["current_status"] for x in current_file(FILES)["r2a_reconstruction_sequence"]} == r2a3_current_statuses()
+    assert current_file(CONTRACT)["project_posture"]["R2A"] == "active_incomplete"
+    assert current_file(CONTRACT)["project_posture"]["R2B"] == "blocked"
+    assert current_file(CONTRACT)["project_posture"]["RT-002G"] == "unauthorized"
+    assert not git("diff", "--name-status", "--diff-filter=D", f"{R2A_3_BASE}...HEAD")
+    numstat = git("diff", "--numstat", f"{R2A_3_BASE}...HEAD").splitlines()
+    assert "-\t-" not in "\n".join(numstat)
+    assert sum(int(row.split("\t")[0]) for row in numstat) <= 2500
+    for path in r2a3_changed():
+        raw = (ROOT / path).read_bytes()
+        assert b"\0" not in raw and len(raw) <= 300 * 1024
+        assert max(map(len, raw.splitlines()), default=0) <= 1000
+
+
+def test_r2a3_shard_order_ids_hashes_counts_and_manifest_count():
+    records = r2a3_records(); idx = r2a3_index()
+    assert records == sorted(records, key=lambda r: (r["declared_owner"], r["path"], r["line_start"], r["line_end"], r["source_record_kind"], r["source_record_id"], r["semantic_role"]))
+    assert len({r["surface_id"] for r in records}) == len(records)
+    assert len({(r["declared_owner"], r["path"], r["line_start"], r["line_end"], r["source_record_kind"], r["source_record_id"], r["semantic_role"]) for r in records}) == len(records)
+    for family, prefix in [("AFQR-", "WORLD"), ("continuity_coordination", "CONTINUITY"), ("cross_phase_coordination", "CROSSPHASE")]:
+        selected = [r for r in records if (r["declared_owner"].startswith(family) if family == "AFQR-" else r["declared_owner"] == family)]
+        assert [r["surface_id"] for r in selected] == [f"R2A-SURFACE-{prefix}-{n:04d}" for n in range(1, len(selected) + 1)]
+    for r in records:
+        assert r["primary_partition"] == "R2A-3" and r["inspected_commit"] == R2A_3_BASE
+        assert r["linked_r2_claim_ids"] == [] and r["claim_link_reasons"] == []
+        assert hashlib.sha256(r2a3_excerpt(r)).hexdigest() == r["excerpt_sha256"]
+        text = r2a3_excerpt(r).decode(errors="replace")
+        assert len(text.strip()) > 1 and text.strip() not in {"{", "}"}
+        assert not (r["path"].endswith(".md") and r["locator_kind"] in {"json_pointer", "yaml_path"})
+    assert idx["surface_count"] == idx["shards"][0]["record_count"] == len(records)
+    assert idx["shards"][0]["content_sha256"] == hashlib.sha256(WORLD_SHARD.read_bytes()).hexdigest()
+    for key in ["declared_owner", "surface_kind", "semantic_role", "source_record_kind", "authority_level", "currentness", "generality"]:
+        assert idx["counts"][key] == dict(sorted(Counter(r[key] for r in records).items()))
+    manifest = current_file(FILES)
+    core_count = current_file(CORE_INDEX)["surface_count"]
+    assert core_count == len(current_file(CORE_SHARD)["surface_records"]) == 27
+    core_art = next(x for x in manifest["artifacts"] if x["path"] == "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml")
+    assert core_art["outputs"] == ["27 validated semantic authority surface records"]
+
+
+def test_r2a3_r1d_responsibility_excerpt_support_and_negative_record_id_only():
+    world = {r["record_id"]: r for r in r2a3_world_contract()["responsibility_records"]}
+    for r in [x for x in r2a3_records() if x["source_record_kind"] == "r1d_responsibility"]:
+        selected = world[r["source_record_id"]]
+        assert r["declared_owner"] == selected["afqr_id"]
+        assert r["applicable_r1d_responsibility_ids"] == [selected["record_id"]]
+        excerpt = r2a3_excerpt(r).decode()
+        for required in ("record_id", "afqr_id", "owned_concerns", "explicit_nonowned_concerns", "r1b_terms_or_qualified_forms"):
+            assert required in excerpt
+        assert selected["record_id"] in excerpt and selected["afqr_id"] in excerpt
+    bad = copy.deepcopy(next(x for x in r2a3_records() if x["source_record_kind"] == "r1d_responsibility"))
+    bad["line_end"] = bad["line_start"]
+    assert "owned_concerns" not in r2a3_excerpt(bad).decode()
+
+
+def test_r2a3_structured_json_pointer_records_are_exact_and_material():
+    vocab = r2a3_json("docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml")
+    r1c = r2a3_json("docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml")
+    subs = r2a3_json("docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml")
+    term_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1b_term_record"]
+    assert {r["declared_owner"] for r in term_rows} == set(WORLD_RESP)
+    for r in term_rows:
+        selected = pointer_resolve(vocab, r["locator_value"])
+        assert selected["term_id"] == r["source_record_id"] and selected["term_id"] in r["applicable_term_ids"]
+        assert r["declared_owner"] in owners_for_term(selected)
+        assert selected["definition"] == r["source_proposition"]
+    inv_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1c_invariant"]
+    assert {r["source_record_id"] for r in inv_rows} >= {"INV-003", "INV-004", "INV-007", "INV-009"}
+    for r in inv_rows:
+        selected = pointer_resolve(r1c, r["locator_value"])
+        assert selected["invariant_id"] == r["source_record_id"]
+        assert r["applicable_invariant_ids"] == [selected["invariant_id"]]
+        assert r["source_proposition"] == selected["summary"]
+    dep_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1c_dependency_edge"]
+    assert {r["source_record_id"] for r in dep_rows} >= {"DEP-089", "DEP-091", "DEP-094"}
+    for r in dep_rows:
+        selected = pointer_resolve(r1c, r["locator_value"])
+        semantic = selected["semantic_type_owner"]["owner_id"]
+        role = "source" if r["declared_owner"] == selected["producer_afqr"] else "target" if r["declared_owner"] == selected["consumer_afqr"] else "bounded_participant"
+        assert selected["edge_id"] == r["source_record_id"] and r["dependency_owner_role"] == role
+        assert r["declared_owner"] in {selected["producer_afqr"], selected["consumer_afqr"], semantic}
+    for r in [x for x in r2a3_records() if x["source_record_kind"] == "r1e_substrate_adjudication"]:
+        selected = pointer_resolve(subs, r["locator_value"])
+        assert selected["substrate_id"] == r["source_record_id"] in {"SUB-002", "SUB-005"}
+        assert selected["implementation_status"] == "unimplemented"
+        assert r["declared_owner"] in selected["exact_requiring_afqrs"]
+    bad = copy.deepcopy(dep_rows[0]); bad["declared_owner"] = "AFQR-15"
+    selected = pointer_resolve(r1c, bad["locator_value"])
+    assert bad["declared_owner"] not in {selected["producer_afqr"], selected["consumer_afqr"], selected["semantic_type_owner"]["owner_id"]}
+
+
+def test_r2a3_coordination_components_authority_and_no_invented_source_ids():
+    records = r2a3_records(); coord = [r for r in records if r["declared_owner"] in COORD_LABELS]
+    assert coord and not all(set(r["applicable_afqr_ids"]) == set(WORLD_RESP) for r in coord)
+    for r in coord:
+        assert r["applicable_afqr_ids"] and all(x in R1D_RESP for x in r["applicable_afqr_ids"])
+        assert r["applicable_r1d_responsibility_ids"] == [R1D_RESP[x] for x in r["applicable_afqr_ids"]]
+        assert r["surface_kind"] != "current_normative_doctrine" and r["authority_level"] != "current_normative"
+        assert not re.fullmatch(r"R2A3-.+", r["source_record_id"])
+        if "afqr_r2_continuity_research" in r["path"]:
+            assert r["authority_level"] == "nonauthoritative"
+    bad = copy.deepcopy(coord[0]); bad["applicable_afqr_ids"] = list(WORLD_RESP)
+    assert set(bad["applicable_afqr_ids"]) != set(coord[0]["applicable_afqr_ids"])
+    bad = copy.deepcopy(coord[0]); bad["source_proposition"] = "Fabricated zebra doctrine manufactures a combined owner."
+    assert not any(phrase in r2a3_excerpt(coord[0]).decode() for phrase in ["Fabricated", "zebra"])
+
+
+def test_r2a3_source_coverage_and_no_forbidden_assessments_or_authorization():
+    idx = r2a3_index(); rows = idx["primary_source_review_coverage"]
+    assert {x["path"] for x in rows} == R2A3_PRIMARY and len(rows) == len(R2A3_PRIMARY)
+    by_path = {x["path"]: x for x in rows}
+    assert by_path["docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml"]["surface_ids"]
+    assert by_path["docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"]["surface_ids"]
+    assert by_path["docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"]["no_additional_surface_reason"] is None
+    mapped_r1c = {r["source_record_id"] for r in r2a3_records() if r["path"] == "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml"}
+    assert {"DEP-089", "DEP-091", "DEP-094"} <= mapped_r1c
+    sub_ids = by_path["docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml"]["surface_ids"]
+    assert {r["source_record_id"] for r in r2a3_records() if r["surface_id"] in sub_ids} == {"SUB-002", "SUB-005"}
+    reasons = [x["no_additional_surface_reason"] for x in rows if x["review_status"] != "mapped_material_surfaces"]
+    assert all(isinstance(x, str) and len(x) > 50 for x in reasons) and len(reasons) == len(set(reasons))
+    data = (WORLD_INDEX.read_text() + WORLD_SHARD.read_text()).lower()
+    assert not any(x in data for x in ["candidate_file_disposition:", "raw_occurrence_tuple", "scan_receipt:", "claim_assessment_id", "package_assessment_id", "module_assessment_id"])
+    assert all(r["linked_r2_claim_ids"] == [] and r["claim_link_reasons"] == [] for r in r2a3_records())
+    assert "No R2B package requirement is selected or authorized." in idx["prohibited_inferences"]
+
+
+def test_r2a3_r1b_term_parity_and_invariant_owner_graph_mutations():
+    world = {r["record_id"]: r for r in r2a3_world_contract()["responsibility_records"]}
+    expected = {
+        owner: {x["term_id"] for x in world[rid]["r1b_terms_or_qualified_forms"]}
+        for owner, rid in WORLD_RESP.items()
+    }
+    term_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1b_term_record"]
+    actual = {owner: {r["source_record_id"] for r in term_rows if r["declared_owner"] == owner} for owner in WORLD_RESP}
+    assert actual == expected
+    vocab = r2a3_json("docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml")
+    by_term = {x["term_id"]: x for x in vocab["term_records"]}
+    for r in term_rows:
+        selected = pointer_resolve(vocab, r["locator_value"])
+        assert selected["term_id"] == r["source_record_id"]
+        assert r["source_proposition"] == selected["definition"]
+        assert r["declared_owner"] in owners_for_term(selected)
+        assert r["applicable_r1d_responsibility_ids"] == [WORLD_RESP[r["declared_owner"]]]
+    inv_rows = [r for r in r2a3_records() if r["source_record_kind"] == "r1c_invariant"]
+    for r in inv_rows:
+        derived = sorted(set().union(*(owners_for_term(by_term[tid]) for tid in r["applicable_term_ids"])))
+        assert r["declared_owner"] in derived
+        assert r["applicable_afqr_ids"] == derived
+    inv7 = next(r for r in inv_rows if r["source_record_id"] == "INV-007")
+    bad = copy.deepcopy(inv7); bad["applicable_afqr_ids"] = sorted(set(bad["applicable_afqr_ids"]) | {"AFQR-19"})
+    assert bad["applicable_afqr_ids"] != sorted(set().union(*(owners_for_term(by_term[tid]) for tid in bad["applicable_term_ids"])))
+    bad = copy.deepcopy(inv7); bad["declared_owner"] = "AFQR-20"
+    assert bad["declared_owner"] not in sorted(set().union(*(owners_for_term(by_term[tid]) for tid in bad["applicable_term_ids"])))
+    bad = copy.deepcopy(inv7); bad["applicable_term_ids"] = ["TERM-001"]
+    assert bad["applicable_afqr_ids"] != sorted(set().union(*(owners_for_term(by_term[tid]) for tid in bad["applicable_term_ids"])))
+
+
+def test_r2a3_parsed_responsibility_map_and_crossphase_domain_mapping():
+    parsed = parsed_r1d_responsibility_map()
+    assert parsed == R1D_RESP and len(parsed) == len(set(parsed.values())) == 20
+    assert all(not rid.startswith(("CORE-RESP-10", "AGENCY-RESP-01")) for rid in parsed.values())
+    cross = next(r for r in r2a3_records() if r["declared_owner"] == "cross_phase_coordination")
+    expected = ["AFQR-01", "AFQR-04", "AFQR-06", "AFQR-08", "AFQR-05", "AFQR-10", "AFQR-16", "AFQR-17", "AFQR-19", "AFQR-20", "AFQR-07"]
+    assert cross["applicable_afqr_ids"] == expected
+    assert "AFQR-09" not in cross["applicable_afqr_ids"] and "AFQR-18" not in cross["applicable_afqr_ids"]
+    assert "AFQR-10" in cross["applicable_afqr_ids"]
+    assert cross["applicable_r1d_responsibility_ids"] == [parsed[x] for x in expected]
+    bad = copy.deepcopy(cross); bad["applicable_afqr_ids"].append("AFQR-09")
+    assert bad["applicable_afqr_ids"] != expected
+    bad = copy.deepcopy(cross); bad["applicable_afqr_ids"].remove("AFQR-10")
+    assert bad["applicable_afqr_ids"] != expected
+
+
+def test_r2a3_world_and_coordination_coverage_recompute():
+    idx = r2a3_index(); records = r2a3_records()
+    by_owner = {owner: {r["surface_id"] for r in records if r["declared_owner"] == owner} for owner in WORLD_RESP}
+    assert {x["responsibility_id"] for x in idx["world_responsibility_coverage"]} == set(WORLD_RESP.values())
+    for row in idx["world_responsibility_coverage"]:
+        assert row["responsibility_id"] == WORLD_RESP[row["afqr_id"]]
+        assert set(row["surface_ids"]) == by_owner[row["afqr_id"]]
+        assert row["current_normative_surface_ids"] and row["coverage_status"] == "validated_current_coverage"
+    for row in idx["coordination_coverage"]:
+        selected = [r for r in records if r["declared_owner"] == row["coordination_label"]]
+        comp = sorted(set(x for r in selected for x in r["applicable_afqr_ids"]))
+        assert set(row["surface_ids"]) == {r["surface_id"] for r in selected}
+        assert row["component_afqr_ids"] == comp
+        assert row["component_r1d_responsibility_ids"] == [R1D_RESP[x] for x in comp]
+    bad = copy.deepcopy(current_file(CONTRACT)); bad["project_posture"]["R2A"] = "complete"
+    assert bad["project_posture"]["R2A"] != current_file(CONTRACT)["project_posture"]["R2A"]

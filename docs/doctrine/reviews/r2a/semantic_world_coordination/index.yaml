@@ -1,0 +1,499 @@
+{
+  "artifact_id": "AFQR-R2A-3-WORLD-COORDINATION-SEMANTIC-INDEX-001",
+  "artifact_version": "0.3.0",
+  "status": "complete",
+  "phase": "R2A-3",
+  "authority_effect": "nonauthoritative_semantic_inventory",
+  "inspected_baseline_commit": "e015a56f691aefd955e21bc2f7eaaa03327e4373",
+  "contract": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+  "controlled_search": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+  "partition_manifest": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+  "shards": [
+    {
+      "path": "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml",
+      "record_count": 31,
+      "content_sha256": "7a4397aaa1c00f56f6cbcad5a633d4cb88b477c529f99ea9055a2103154dbab0",
+      "first_surface_id": "R2A-SURFACE-WORLD-0001",
+      "last_surface_id": "R2A-SURFACE-CROSSPHASE-0001"
+    }
+  ],
+  "surface_count": 31,
+  "counts": {
+    "declared_owner": {
+      "AFQR-16": 5,
+      "AFQR-17": 5,
+      "AFQR-18": 5,
+      "AFQR-19": 6,
+      "AFQR-20": 8,
+      "continuity_coordination": 1,
+      "cross_phase_coordination": 1
+    },
+    "surface_kind": {
+      "current_control_or_gate": 4,
+      "current_normative_doctrine": 26,
+      "test_contract": 1
+    },
+    "semantic_role": {
+      "accepted_adjudication": 2,
+      "dependency_handoff": 3,
+      "explicit_nonownership_boundary": 2,
+      "invariant_constraint": 4,
+      "ownership_definition_with_boundary": 5,
+      "qualified_vocabulary_boundary": 14,
+      "test_enforced_contract": 1
+    },
+    "source_record_kind": {
+      "control_section": 2,
+      "r1b_term_record": 14,
+      "r1c_dependency_edge": 3,
+      "r1c_invariant": 4,
+      "r1d_responsibility": 5,
+      "r1e_substrate_adjudication": 2,
+      "test_symbol": 1
+    },
+    "authority_level": {
+      "current_control": 3,
+      "current_normative": 26,
+      "implementation_presupposition": 1,
+      "nonauthoritative": 1
+    },
+    "currentness": {
+      "current": 31
+    },
+    "generality": {
+      "general": 28,
+      "path_local": 1,
+      "subsystem": 2
+    },
+    "r1d_responsibility_id": {
+      "AGENCY-RESP-10": 2,
+      "AGENCY-RESP-13": 1,
+      "AGENCY-RESP-14": 1,
+      "AGENCY-RESP-15": 1,
+      "CORE-RESP-01": 1,
+      "CORE-RESP-03": 2,
+      "CORE-RESP-04": 5,
+      "CORE-RESP-05": 1,
+      "CORE-RESP-06": 3,
+      "CORE-RESP-07": 1,
+      "CORE-RESP-08": 2,
+      "WORLD-RESP-16": 7,
+      "WORLD-RESP-17": 8,
+      "WORLD-RESP-18": 8,
+      "WORLD-RESP-19": 9,
+      "WORLD-RESP-20": 10
+    },
+    "surface_id_family": {
+      "R2A-SURFACE-CONTINUITY": 1,
+      "R2A-SURFACE-CROSSPHASE": 1,
+      "R2A-SURFACE-WORLD": 29
+    }
+  },
+  "primary_source_review_coverage": [
+    {
+      "path": "docs/doctrine/consolidation/afqr_shared_vocabulary_and_type_owners.yaml",
+      "source_layer": "R1B_vocabulary",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0002",
+        "R2A-SURFACE-WORLD-0003",
+        "R2A-SURFACE-WORLD-0007",
+        "R2A-SURFACE-WORLD-0008",
+        "R2A-SURFACE-WORLD-0009",
+        "R2A-SURFACE-WORLD-0013",
+        "R2A-SURFACE-WORLD-0014",
+        "R2A-SURFACE-WORLD-0017",
+        "R2A-SURFACE-WORLD-0018",
+        "R2A-SURFACE-WORLD-0019",
+        "R2A-SURFACE-WORLD-0020",
+        "R2A-SURFACE-WORLD-0024",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0026"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Every R1D WORLD r1b_terms_or_qualified_forms entry is represented by an exact R1B term surface."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_cross_invariants_and_dependencies.yaml",
+      "source_layer": "R1C_invariant_dependency",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0001",
+        "R2A-SURFACE-WORLD-0006",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0012",
+        "R2A-SURFACE-WORLD-0016",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0023"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Mapped surfaces include structurally applicable INV-003, INV-004, INV-007, INV-009 plus DEP-089, DEP-091, and DEP-094; INV-006 was reviewed and lacks a WORLD-owned term participant."
+    },
+    {
+      "path": "docs/doctrine/consolidation/afqr_world_action_sensing.md",
+      "source_layer": "R1D_world_doctrine",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "All five WORLD responsibility records are mapped with full ownership/nonownership excerpts."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_01_20_formal_completion_review.md",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The formal completion review was checked for WORLD posture and adds no distinct R2A-3 surface beyond mapped accepted R1D and R1E source records.",
+      "review_summary": "The formal completion review was checked for WORLD posture and adds no distinct R2A-3 surface beyond mapped accepted R1D and R1E source records."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_source_and_vocabulary_audit.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The R1E source/vocabulary audit corroborates source coverage but does not define a new WORLD term, dependency, substrate, or coordination boundary.",
+      "review_summary": "The R1E source/vocabulary audit corroborates source coverage but does not define a new WORLD term, dependency, substrate, or coordination boundary."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_dependency_and_parity_audit.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The R1E dependency/parity audit was reviewed for handoff parity and did not add a distinct proposition beyond mapped R1C dependency surfaces.",
+      "review_summary": "The R1E dependency/parity audit was reviewed for handoff parity and did not add a distinct proposition beyond mapped R1C dependency surfaces."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0005",
+        "R2A-SURFACE-WORLD-0028"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "SUB-002 and SUB-005 are mapped with exact requiring owners and unimplemented/deferred implementation status."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r1e_consistency_and_corpus_adequacy.yaml",
+      "source_layer": "R1E_completion_and_adjudication",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The consistency/corpus adequacy artifact confirms gate adequacy and does not alter WORLD ownership, coordination labels, or substrate implementation status.",
+      "review_summary": "The consistency/corpus adequacy artifact confirms gate adequacy and does not alter WORLD ownership, coordination labels, or substrate implementation status."
+    },
+    {
+      "path": "docs/decisions/current_decisions_log.md",
+      "source_layer": "accepted_decision",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The accepted decision log was reviewed; no current decision independently transfers WORLD ownership or adopts continuity/cross-phase doctrine.",
+      "review_summary": "The accepted decision log was reviewed; no current decision independently transfers WORLD ownership or adopts continuity/cross-phase doctrine."
+    },
+    {
+      "path": "docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md",
+      "source_layer": "R2_control",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The R2 control plan preserves sequencing and blocked gates while deferring candidate parity, claim routing, owner questions, and package synthesis to later partitions.",
+      "review_summary": "The R2 control plan preserves sequencing and blocked gates while deferring candidate parity, claim routing, owner questions, and package synthesis to later partitions."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+      "source_layer": "R2A_coordination_control",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "The partition manifest contributes only explicit coordination nonownership mapping, not invented component owners for unmapped domains."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_intake_packet.md",
+      "source_layer": "R2_research_intake",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The intake packet remains research synthesis, not doctrine; it created no authoritative ownership, vocabulary, invariant, dependency, or package surface.",
+      "review_summary": "The intake packet remains research synthesis, not doctrine; it created no authoritative ownership, vocabulary, invariant, dependency, or package surface."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_source_manifest.yaml",
+      "source_layer": "R2_research_provenance",
+      "review_status": "reviewed_no_additional_surface",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The source manifest records provenance only and does not authorize continuity doctrine, cross-phase doctrine, or owner transfer.",
+      "review_summary": "The source manifest records provenance only and does not authorize continuity doctrine, cross-phase doctrine, or owner transfer."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "source_layer": "R2_claim_routing",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-CONTINUITY-0001"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "Only the R2-CLAIM-0001 owner_analysis routing/nontransfer record is mapped; no claim outcome or package target is treated as doctrine."
+    },
+    {
+      "path": "docs/doctrine/reviews/afqr_r2_continuity_research_assimilation_report.md",
+      "source_layer": "R2_assimilation_report",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The assimilation report authority declaration constrains interpretation as nonauthoritative research assimilation but does not itself establish a component-owner routing surface.",
+      "review_summary": "The assimilation report authority declaration constrains interpretation as nonauthoritative research assimilation but does not itself establish a component-owner routing surface."
+    },
+    {
+      "path": "tests/test_afqr_r1d_world_action_sensing.py",
+      "source_layer": "test_contract",
+      "review_status": "mapped_material_surfaces",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0029"
+      ],
+      "no_additional_surface_reason": null,
+      "review_summary": "The accepted WORLD test surface maps only the exact DEP-094 enforced handoff boundary."
+    },
+    {
+      "path": "tests/test_afqr_r2_continuity_research_assimilation.py",
+      "source_layer": "test_contract",
+      "review_status": "reviewed_boundary_only",
+      "surface_ids": [],
+      "no_additional_surface_reason": "The R2-0 assimilation tests enforce research-control boundaries and do not convert claims, owner questions, or package targets into doctrine.",
+      "review_summary": "The R2-0 assimilation tests enforce research-control boundaries and do not convert claims, owner questions, or package targets into doctrine."
+    }
+  ],
+  "world_responsibility_coverage": [
+    {
+      "responsibility_id": "WORLD-RESP-16",
+      "afqr_id": "AFQR-16",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0001",
+        "R2A-SURFACE-WORLD-0002",
+        "R2A-SURFACE-WORLD-0003",
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0005"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-WORLD-0001",
+        "R2A-SURFACE-WORLD-0002",
+        "R2A-SURFACE-WORLD-0003",
+        "R2A-SURFACE-WORLD-0004"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-WORLD-0001",
+        "R2A-SURFACE-WORLD-0002",
+        "R2A-SURFACE-WORLD-0003",
+        "R2A-SURFACE-WORLD-0004"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "WORLD-RESP-16 coverage includes exact R1D responsibility, complete R1B term parity, structurally applicable R1C/R1E/test surfaces, and no implementation authority."
+    },
+    {
+      "responsibility_id": "WORLD-RESP-17",
+      "afqr_id": "AFQR-17",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0006",
+        "R2A-SURFACE-WORLD-0007",
+        "R2A-SURFACE-WORLD-0008",
+        "R2A-SURFACE-WORLD-0009",
+        "R2A-SURFACE-WORLD-0010"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-WORLD-0006",
+        "R2A-SURFACE-WORLD-0007",
+        "R2A-SURFACE-WORLD-0008",
+        "R2A-SURFACE-WORLD-0009",
+        "R2A-SURFACE-WORLD-0010"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-WORLD-0006",
+        "R2A-SURFACE-WORLD-0007",
+        "R2A-SURFACE-WORLD-0008",
+        "R2A-SURFACE-WORLD-0009",
+        "R2A-SURFACE-WORLD-0010"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "WORLD-RESP-17 coverage includes exact R1D responsibility, complete R1B term parity, structurally applicable R1C/R1E/test surfaces, and no implementation authority."
+    },
+    {
+      "responsibility_id": "WORLD-RESP-18",
+      "afqr_id": "AFQR-18",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0012",
+        "R2A-SURFACE-WORLD-0013",
+        "R2A-SURFACE-WORLD-0014",
+        "R2A-SURFACE-WORLD-0015"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0012",
+        "R2A-SURFACE-WORLD-0013",
+        "R2A-SURFACE-WORLD-0014",
+        "R2A-SURFACE-WORLD-0015"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0012",
+        "R2A-SURFACE-WORLD-0013",
+        "R2A-SURFACE-WORLD-0014",
+        "R2A-SURFACE-WORLD-0015"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "WORLD-RESP-18 coverage includes exact R1D responsibility, complete R1B term parity, structurally applicable R1C/R1E/test surfaces, and no implementation authority."
+    },
+    {
+      "responsibility_id": "WORLD-RESP-19",
+      "afqr_id": "AFQR-19",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0016",
+        "R2A-SURFACE-WORLD-0017",
+        "R2A-SURFACE-WORLD-0018",
+        "R2A-SURFACE-WORLD-0019",
+        "R2A-SURFACE-WORLD-0020",
+        "R2A-SURFACE-WORLD-0021"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-WORLD-0016",
+        "R2A-SURFACE-WORLD-0017",
+        "R2A-SURFACE-WORLD-0018",
+        "R2A-SURFACE-WORLD-0019",
+        "R2A-SURFACE-WORLD-0020",
+        "R2A-SURFACE-WORLD-0021"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-WORLD-0016",
+        "R2A-SURFACE-WORLD-0017",
+        "R2A-SURFACE-WORLD-0018",
+        "R2A-SURFACE-WORLD-0019",
+        "R2A-SURFACE-WORLD-0020",
+        "R2A-SURFACE-WORLD-0021"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "WORLD-RESP-19 coverage includes exact R1D responsibility, complete R1B term parity, structurally applicable R1C/R1E/test surfaces, and no implementation authority."
+    },
+    {
+      "responsibility_id": "WORLD-RESP-20",
+      "afqr_id": "AFQR-20",
+      "surface_ids": [
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0023",
+        "R2A-SURFACE-WORLD-0024",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0026",
+        "R2A-SURFACE-WORLD-0027",
+        "R2A-SURFACE-WORLD-0028",
+        "R2A-SURFACE-WORLD-0029"
+      ],
+      "current_normative_surface_ids": [
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0023",
+        "R2A-SURFACE-WORLD-0024",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0026",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "boundary_surface_ids": [
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0023",
+        "R2A-SURFACE-WORLD-0024",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0026",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "presupposition_surface_ids": [
+        "R2A-SURFACE-WORLD-0029"
+      ],
+      "coverage_status": "validated_current_coverage",
+      "coverage_summary": "WORLD-RESP-20 coverage includes exact R1D responsibility, complete R1B term parity, structurally applicable R1C/R1E/test surfaces, and no implementation authority."
+    }
+  ],
+  "coordination_coverage": [
+    {
+      "coordination_label": "continuity_coordination",
+      "surface_ids": [
+        "R2A-SURFACE-CONTINUITY-0001"
+      ],
+      "component_afqr_ids": [
+        "AFQR-04",
+        "AFQR-08"
+      ],
+      "component_r1d_responsibility_ids": [
+        "CORE-RESP-04",
+        "CORE-RESP-08"
+      ],
+      "control_surface_ids": [
+        "R2A-SURFACE-CONTINUITY-0001"
+      ],
+      "nonownership_surface_ids": [
+        "R2A-SURFACE-CONTINUITY-0001"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_coordination_boundary",
+      "coverage_summary": "Coordination component owners are derived from exact source owner_analysis records or explicit accepted domain-owner mapping and remain nonowners."
+    },
+    {
+      "coordination_label": "cross_phase_coordination",
+      "surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "component_afqr_ids": [
+        "AFQR-01",
+        "AFQR-04",
+        "AFQR-05",
+        "AFQR-06",
+        "AFQR-07",
+        "AFQR-08",
+        "AFQR-10",
+        "AFQR-16",
+        "AFQR-17",
+        "AFQR-19",
+        "AFQR-20"
+      ],
+      "component_r1d_responsibility_ids": [
+        "CORE-RESP-01",
+        "CORE-RESP-04",
+        "CORE-RESP-05",
+        "CORE-RESP-06",
+        "CORE-RESP-07",
+        "CORE-RESP-08",
+        "AGENCY-RESP-10",
+        "WORLD-RESP-16",
+        "WORLD-RESP-17",
+        "WORLD-RESP-19",
+        "WORLD-RESP-20"
+      ],
+      "control_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "nonownership_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "presupposition_surface_ids": [],
+      "coverage_status": "validated_coordination_boundary",
+      "coverage_summary": "Coordination component owners are derived from exact source owner_analysis records or explicit accepted domain-owner mapping and remain nonowners."
+    }
+  ],
+  "owner_boundaries": [
+    "Continuity coordination does not own time, identity, commitment, branch truth, canon selection, corrections, retcons, or historical facts.",
+    "Cross-phase coordination does not own doctrine, runtime truth, conversion, canon, implementation, or package necessity.",
+    "Storage, journaling, replay, branching, persistence, versioning, serialization, and handoff do not transfer semantic ownership.",
+    "A combined coordination layer cannot replace component owners for time, evidence, identity, dependency, sensing, action, embodiment, environment, topology, reservation, canon, conversion, or commitment."
+  ],
+  "discovery_method": "Accepted controlled-search matches were used only as review prompts; raw occurrence tuples are not persisted, candidate dispositions and the aggregate scan receipt are deferred, and no repository-wide candidate parity is claimed.",
+  "completeness_boundary": "R2A-3 complete only for bounded WORLD and continuity/cross-phase coordination semantic surfaces. Candidate-file parity is deferred to R2A-4 through R2A-8; claim assessment is deferred to R2A-9 and R2A-10; unresolved questions and package/module synthesis are deferred to R2A-11; only R2A-12 can complete overall R2A; later parity review may require corrective semantic amendments.",
+  "prohibited_inferences": [
+    "No doctrine is adopted or modified.",
+    "Coordination labels remain nonowners.",
+    "No R2B package requirement is selected or authorized.",
+    "No repository-wide semantic completeness is claimed."
+  ],
+  "unresolved_source_conflicts": []
+}
