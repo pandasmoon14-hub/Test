@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
-  "artifact_version": "0.1.2",
+  "artifact_version": "0.1.3",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_lexical_discovery",
@@ -473,7 +473,7 @@
     "R2A-1": "complete",
     "R2A-2": "complete",
     "R2A-3": "complete",
-    "R2A-4": "planned_not_present",
+    "R2A-4": "complete",
     "R2A-5": "planned_not_present",
     "R2A-6": "planned_not_present",
     "R2A-7": "planned_not_present",

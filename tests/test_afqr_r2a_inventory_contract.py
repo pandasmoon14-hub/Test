@@ -665,3 +665,137 @@ def test_r2a3_world_and_coordination_coverage_recompute():
         assert row["component_r1d_responsibility_ids"] == [R1D_RESP[x] for x in comp]
     bad = copy.deepcopy(current_file(CONTRACT)); bad["project_posture"]["R2A"] = "complete"
     assert bad["project_posture"]["R2A"] != current_file(CONTRACT)["project_posture"]["R2A"]
+
+# Successors freeze mutable predecessor artifacts at the accepted R2A-3 head.
+def current_file(path: Path):
+    return json.loads(subprocess.check_output(["git", "show", f"{ACCEPTED_R2A_3_HEAD}:{path.relative_to(ROOT)}"], text=True))
+
+def r2a4_current(path: Path):
+    return json.loads(path.read_text())
+
+# R2A-4 validation is successor-safe: everything above is the exact accepted R2A-3 test.
+ACCEPTED_R2A_3_HEAD = "1b70f46718035d5f9395346cbf9eb1208a489698"
+R2A_4_BASE = ACCEPTED_R2A_3_HEAD
+R2A4_INDEX = REV / "r2a/dispositions_current_a/index.yaml"
+R2A4_SHARD = REV / "r2a/dispositions_current_a/dispositions_0001.yaml"
+R2A4_AUTHORIZED = {
+    "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+    "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+    "docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml",
+    "docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml",
+    "tests/test_afqr_r2a_inventory_contract.py",
+}
+R2A4_PREFIXES = ("docs/doctrine/control/", "docs/doctrine/consolidation/", "docs/doctrine/operations/", "docs/doctrine/schema/", "docs/doctrine/world/", "docs/decisions/")
+RELATIONSHIPS = ("originates accepted surface", "restates accepted surface", "governed by accepted surface", "operationalizes without authority transfer", "routes without authority transfer", "duplicates accepted boundary")
+CLUSTER_SURFACE = {
+ "commitment_and_transition":"R2A-SURFACE-CORE-0003", "identity_and_continuity":"R2A-SURFACE-CORE-0017", "time_and_causality":"R2A-SURFACE-CORE-0010",
+ "evidence_and_provenance":"R2A-SURFACE-AGENCY-0001", "dependency_and_revalidation":"R2A-SURFACE-CORE-0021", "truth_knowledge_belief_projection":"R2A-SURFACE-AGENCY-0001",
+ "correction_retcon_supersession":"R2A-SURFACE-CONTINUITY-0001", "branch_fork_merge_replay":"R2A-SURFACE-CONTINUITY-0001", "reservation_settlement_conservation":"R2A-SURFACE-CORE-0014",
+ "action_conflict_targeting":"R2A-SURFACE-WORLD-0016", "sensing_contact_visibility":"R2A-SURFACE-WORLD-0022", "environmental_state_process":"R2A-SURFACE-WORLD-0001",
+ "embodiment_injury_recovery":"R2A-SURFACE-WORLD-0002", "runtime_storage_serialization":"R2A-SURFACE-CORE-0003", "canon_conversion_cross_phase":"R2A-SURFACE-CROSSPHASE-0001",
+}
+
+def r2a4_data(): return json.loads(R2A4_INDEX.read_text()), json.loads(R2A4_SHARD.read_text())
+def r2a4_baseline(path): return subprocess.check_output(["git", "show", f"{R2A_4_BASE}:{path}"])
+def r2a4_terms():
+ d=json.loads(r2a4_baseline("docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml")); return {x["cluster_id"]:x["terms"] for x in d["clusters"]}
+def r2a4_candidates():
+ out={}
+ for path in subprocess.check_output(["git","ls-tree","-r","--name-only",R2A_4_BASE],text=True).splitlines():
+  raw=r2a4_baseline(path)
+  if assign(path, r2a4_current(PARTITIONS)["ownership_rules"])=="R2A-4" and not excluded(path,raw):
+   found=match(path,raw,r2a4_terms())
+   if found: out[path]=found
+ return out
+def accepted_surfaces():
+ paths=[REV/"r2a/semantic_core_agency/surfaces_0001.yaml",REV/"r2a/semantic_world_coordination/surfaces_0001.yaml"]
+ return {r["surface_id"]:r for p in paths for r in json.loads(p.read_text())["surface_records"]}
+def disposition_valid(r, surfaces=None):
+ surfaces=surfaces or accepted_surfaces(); mapped=r["mapped_surface_ids"]
+ if r["disposition"] in {"mapped_semantic_surface","mixed_mapped_and_dismissed"} and not mapped:return False
+ if r["disposition"]=="dismissed_after_semantic_review" and (mapped or r["authority_effect"]!="no_authority_effect" or r["pressure_route"]!="none"):return False
+ if any(x not in surfaces for x in mapped):return False
+ cross=any(surfaces[x]["path"]!=r["path"] for x in mapped)
+ if cross and not any(x in r["semantic_review_summary"] for x in RELATIONSHIPS):return False
+ if cross and not set(mapped)&{CLUSTER_SURFACE[x] for x in r["matched_search_clusters"]}:return False
+ if r["path"].startswith("docs/doctrine/world/") and r["authority_effect"]=="maps_current_authority":return False
+ if r["disposition"]=="source_local_pressure_only" and (r["source_local_pressure_class"]=="no_material_relation" or r["authority_effect"] not in {"source_local_pressure_only","escalation_pressure_only"}):return False
+ return "owner" in r["semantic_review_summary"].lower() and "authority" in r["semantic_review_summary"].lower()
+
+def test_current_file_begins_with_exact_accepted_r2a3_test_bytes():
+ old=subprocess.check_output(["git","show",f"{ACCEPTED_R2A_3_HEAD}:tests/test_afqr_r2a_inventory_contract.py"])
+ assert Path(__file__).read_bytes().startswith(old)
+
+def test_r2a4_base_scope_status_and_posture():
+ assert subprocess.check_output(["git","merge-base",R2A_4_BASE,"HEAD"],text=True).strip()==R2A_4_BASE
+ assert set(subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...HEAD"],text=True).splitlines())==R2A4_AUTHORIZED
+ expected={f"R2A-{n}":("complete" if n<=4 else "planned_not_present") for n in range(1,13)}
+ c=r2a4_current(CONTRACT); cl=r2a4_current(CLUSTERS); p=r2a4_current(PARTITIONS); m=r2a4_current(FILES)
+ assert c["r2a_partition_statuses"]==cl["r2a_partition_statuses"]=={x["partition_id"]:x["status"] for x in p["partitions"]}=={x["partition_id"]:x["current_status"] for x in m["r2a_reconstruction_sequence"]}==expected
+ assert c["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
+
+def test_r2a4_exact_discovery_provenance_candidate_set_and_identity():
+ idx,shard=r2a4_data(); raw=r2a4_baseline("docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml")
+ assert hashlib.sha256(raw).hexdigest()==idx["discovery_provenance"]["controlled_search_artifact_sha256"]=="f68ec69039cee9ea4a2247a043b5b1da5264f04aeed5099bd8f6fd730906cfc9"
+ assert idx["discovery_provenance"]["controlled_search_artifact_version"]=="0.1.2" and idx["discovery_provenance"]["hash_algorithm"]=="sha256_exact_git_blob_bytes_v1"
+ candidates=r2a4_candidates(); records=shard["candidate_file_dispositions"]; assert len(candidates)==len(records)==idx["candidate_file_count"]==69
+ assert [r["path"] for r in records]==sorted(candidates,key=lambda x:x.encode()) and len({r["path"] for r in records})==69
+ assert [r["candidate_file_id"] for r in records]==[f"R2A-DISPOSITION-A-{n:04d}" for n in range(1,70)]
+ assert all(r["path"].startswith(R2A4_PREFIXES) and assign(r["path"],r2a4_current(PARTITIONS)["ownership_rules"])=="R2A-4" for r in records)
+
+def test_r2a4_match_evidence_blobs_and_locators_recompute():
+ _,shard=r2a4_data(); candidates=r2a4_candidates()
+ for r in shard["candidate_file_dispositions"]:
+  occ=candidates[r["path"]]; assert r["controlled_match_count"]==len(occ)>0
+  assert r["matched_terms"]==sorted({x[2] for x in occ}) and r["matched_search_clusters"]==sorted({x[3] for x in occ})
+  assert r["baseline_blob_sha"]==subprocess.check_output(["git","rev-parse",f"{R2A_4_BASE}:{r['path']}"],text=True).strip()
+  covered_terms=set();covered_clusters=set(); lines=r2a4_baseline(r["path"]).decode("utf-8-sig").splitlines()
+  for loc in r["representative_locators"]:
+   assert loc["locator_kind"] in {"heading","symbol","json_pointer","yaml_path","line_range_only"} and 0<loc["line_start"]<=loc["line_end"]<=len(lines)
+   bounded=[x for x in occ if loc["line_start"]<=x[1]<=loc["line_end"]]; assert set(loc["matched_terms"])<={x[2] for x in bounded}; assert set(loc["matched_search_clusters"])<={x[3] for x in bounded}
+   covered_terms.update(loc["matched_terms"]);covered_clusters.update(loc["matched_search_clusters"])
+  assert covered_terms==set(r["matched_terms"]) and covered_clusters==set(r["matched_search_clusters"])
+
+def test_r2a4_dispositions_cross_path_and_status_semantics():
+ idx,shard=r2a4_data(); surfaces=accepted_surfaces(); records=shard["candidate_file_dispositions"]
+ assert all(disposition_valid(r,surfaces) for r in records) and not idx["blocking_unmapped_current_authority_candidates"]
+ assert all(r["disposition"]=="source_local_pressure_only" and not r["mapped_surface_ids"] and "doctrine-draft" in r["semantic_review_summary"] and "not current canon" in r["semantic_review_summary"] for r in records if r["path"].startswith("docs/doctrine/world/"))
+ cross=[r for r in records if r["mapped_surface_ids"] and any(surfaces[x]["path"]!=r["path"] for x in r["mapped_surface_ids"])]
+ assert cross and all(any(x in r["semantic_review_summary"] for x in RELATIONSHIPS) and "Authority remains" in r["semantic_review_summary"] for r in cross)
+ assert any(r["path"].startswith("docs/doctrine/control/") for r in cross) and any(r["path"].startswith("docs/doctrine/operations/") for r in cross) and any(r["path"].startswith("docs/doctrine/schema/") for r in cross)
+ assert len({normalize(r["semantic_review_summary"]) for r in records})==69
+
+def test_r2a4_cross_path_mutations_and_genuine_gap_gate_fail():
+ import copy
+ _,shard=r2a4_data(); surfaces=accepted_surfaces(); cross=next(r for r in shard["candidate_file_dispositions"] if r["mapped_surface_ids"] and surfaces[r["mapped_surface_ids"][0]]["path"]!=r["path"])
+ bad=copy.deepcopy(cross);bad["semantic_review_summary"]="Candidate has shared keywords and owner authority.";assert not disposition_valid(bad,surfaces)
+ bad=copy.deepcopy(cross);bad["mapped_surface_ids"]=["R2A-SURFACE-WORLD-0005"];assert not disposition_valid(bad,surfaces)
+ draft=next(r for r in shard["candidate_file_dispositions"] if r["path"].startswith("docs/doctrine/world/"));bad=copy.deepcopy(draft);bad["authority_effect"]="maps_current_authority";assert not disposition_valid(bad,surfaces)
+ gap={"path":"docs/doctrine/control/genuine.md","source_proposition":"A current owner-changing proposition","required_handoff":"corrective_semantic_inventory_review","authority_effect":"records_gap_without_adjudication"}; idx,_=r2a4_data(); bad=copy.deepcopy(idx);bad["blocking_unmapped_current_authority_candidates"]=[gap];assert not (bad["status"]=="complete" and not bad["blocking_unmapped_current_authority_candidates"])
+
+def test_r2a4_counts_digest_manifest_and_no_forbidden_payloads():
+ idx,shard=r2a4_data(); records=shard["candidate_file_dispositions"]
+ assert hashlib.sha256(R2A4_SHARD.read_bytes()).hexdigest()==idx["shards"][0]["content_sha256"]
+ for key,field in [("by_disposition","disposition"),("by_authority_effect","authority_effect"),("by_source_local_pressure_class","source_local_pressure_class"),("by_pressure_route","pressure_route")]: assert idx["counts"][key]==dict(sorted(__import__('collections').Counter(r[field] for r in records).items()))
+ assert idx["counts"]["mapped_versus_unmapped"]=={"mapped":64,"unmapped":5} and idx["surface_mapping_coverage"]["cross_path_mapped_candidate_count"]>0
+ paths=[x["path"] for x in r2a4_current(FILES)["artifacts"]]; assert len(paths)==len(set(paths)) and paths.count(str(R2A4_INDEX.relative_to(ROOT)))==paths.count(str(R2A4_SHARD.relative_to(ROOT)))==1
+ payload=(R2A4_INDEX.read_text()+R2A4_SHARD.read_text()).lower(); assert not any(x in payload for x in ("raw_occurrence_tuple","scan_receipt_id","claim_assessment_id","question_assessment_id","package_assessment_id","module_assessment_id","target_work_package"))
+
+def test_r2a4_containment_limits_and_contract_clarification():
+ changed=subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...HEAD"],text=True).splitlines(); assert set(changed)==R2A4_AUTHORIZED
+ assert not subprocess.check_output(["git","diff","--name-only","--diff-filter=D",f"{R2A_4_BASE}...HEAD"],text=True).strip()
+ additions=sum(int(x.split()[0]) for x in subprocess.check_output(["git","diff","--numstat",f"{R2A_4_BASE}...HEAD"],text=True).splitlines());assert additions<=2500
+ for path in changed:
+  raw=(ROOT/path).read_bytes();assert len(raw)<=300*1024 and b"\0" not in raw and max(map(len,raw.splitlines()),default=0)<=1000
+ rules=" ".join(r2a4_current(CONTRACT)["record_types"]["candidate_file_disposition"]["validation_rules"]); assert "source-path identity is not required" in rules and "Directory placement does not establish" in rules and "never transfers" in rules
+
+# Historical predecessor scope is frozen at its accepted head, never widened by a successor.
+def r2a3_changed():
+    return set(git("diff", "--name-only", f"{R2A_3_BASE}...{ACCEPTED_R2A_3_HEAD}").splitlines())
+
+_historical_git = git
+def git(*args):
+    frozen=tuple(arg.replace(f"{R2A_2_BASE}...HEAD", f"{R2A_2_BASE}...{R2A_3_BASE}").replace(f"{R2A_3_BASE}...HEAD", f"{R2A_3_BASE}...{ACCEPTED_R2A_3_HEAD}") for arg in args)
+    return subprocess.check_output(["git", *frozen], text=True).strip()
