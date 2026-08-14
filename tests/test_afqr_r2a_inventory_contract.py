@@ -707,9 +707,23 @@ def record_valid(r,surfaces=None):
  if ev is None or set(mapped)!={x.get("mapped_surface_id") for x in ev}:return False
  if mapped and not ev or any(not evidence_valid(r,x,surfaces) for x in ev):return False
  se=r.get("status_evidence");
- if se is not None and (not (0<se["line_start"]<=se["line_end"]) or not se["source_status_summary"].strip()):return False
- if ("/world/" in r["path"] or "/operations/" in r["path"] or "/schema/" in r["path"] or "scaffold" in r["path"]) and r["authority_effect"]=="maps_current_authority":return False
+ if se is not None and (not (0<se["line_start"]<=se["line_end"]) or not se["source_status_summary"].strip() or not status_valid(r,se)):return False
+ if r["disposition"]=="internal_nonauthoritative_pressure_only" and (mapped or r["source_local_pressure_class"]!="no_material_relation" or r["authority_effect"] not in {"implementation_presupposition_only","escalation_pressure_only","no_authority_effect"}):return False
+ if r["disposition"]=="source_local_pressure_only" and (r["source_local_pressure_class"]=="no_material_relation" or r["authority_effect"]!="source_local_pressure_only"):return False
  return True
+def status_valid(r,se):
+ source=normalize(selected_text(r,se));summary=normalize(se["source_status_summary"]);exact=[]
+ status_match=re.search(r"status:\s*([^#]+?)(?:tracking id|\n|##|$)",source);status_line=status_match.group(1) if status_match else ""
+ if "batch b operational-procedure draft" in source:exact += ["batch b","operational-procedure draft"]
+ if re.match(r"# c(?:0[0-9]|1[0-4])\b",source) or re.match(r"# batch c",source):exact += ["batch c"]
+ if "schema-draft" in source:exact += ["schema-draft"]
+ if "owner scaffold only" in status_line:exact += ["owner scaffold only"]
+ if "stage 2 owner specification" in status_line:exact += ["stage 2","owner-specification"]
+ if "doctrine-draft" in source:exact += ["doctrine-draft"]
+ if "not current canon" in source:exact += ["not current canon"]
+ if "not marked current canon" in source:exact += ["not marked current canon"]
+ if "runtime authority" in source or "runtime-ready" in source:exact += ["runtime"]
+ return all(x in summary for x in exact)
 def summary_residue(r):
  s=normalize(r["semantic_review_summary"]);s=s.replace(normalize(r["path"]),"").replace(normalize(Path(r["path"]).name),"")
  for x in r["mapped_surface_ids"]:s=s.replace(normalize(x),"")
@@ -737,12 +751,11 @@ def test_mapping_evidence_reciprocity_resolution_and_narrow_locators():
   assert set(r["mapped_surface_ids"])=={x["mapped_surface_id"] for x in r["mapping_evidence"]}
   for e in r["mapping_evidence"]:assert e["mapped_surface_id"] in surfaces and e["authority_transfer_effect"]=="none" and evidence_valid(r,e,surfaces)
  assert all(e["mapping_relationship"]=="originates accepted surface" and surfaces[e["mapped_surface_id"]]["path"]==r["path"] for r in rs[1:6] for e in r["mapping_evidence"])
-def test_status_evidence_preserves_drafts_scaffolds_and_planning_nonauthority():
- _,sh=r2a4_data();rs=sh["candidate_file_dispositions"];assert all(r["status_evidence"] is not None for r in rs)
- for r in rs:
-  se=r["status_evidence"];text=selected_text(r,se);assert meaningful_words(se["source_status_summary"])&meaningful_words(text)
- for r in rs:
-  if any(x in r["path"] for x in ("/world/","/operations/","/schema/","scaffold")):assert r["authority_effect"]!="maps_current_authority" and r["disposition"]=="source_local_pressure_only"
+def test_status_evidence_preserves_source_distinctions_and_drives_nonauthority():
+ _,sh=r2a4_data();rs=sh["candidate_file_dispositions"];assert all(r["status_evidence"] is not None and status_valid(r,r["status_evidence"]) for r in rs)
+ internal=[r for r in rs if r["disposition"]=="internal_nonauthoritative_pressure_only"];assert internal and all(not r["mapped_surface_ids"] and r["source_local_pressure_class"]=="no_material_relation" and r["authority_effect"] in {"implementation_presupposition_only","escalation_pressure_only","no_authority_effect"} for r in internal)
+ local=[r for r in rs if r["disposition"]=="source_local_pressure_only"];assert local and all(r["source_local_pressure_class"]!="no_material_relation" and r["authority_effect"]=="source_local_pressure_only" for r in local)
+ controls=[r for r in rs if "/control/" in r["path"]];assert len({r["disposition"] for r in controls})>1
 def test_mapping_mutations_reject_missing_extra_generic_wide_transfer_and_keyword_only():
  import copy
  _,sh=r2a4_data();surfaces=surfaces4();r=next(x for x in sh["candidate_file_dispositions"] if x["mapping_evidence"]);e=r["mapping_evidence"][0]
@@ -776,9 +789,9 @@ def test_semantic_proxy_and_status_promotion_mutations_fail():
   if isinstance(node,ast.Assign) and isinstance(node.value,ast.Dict):
    keys={x.value for x in node.value.keys if isinstance(x,ast.Constant) and isinstance(x.value,str)};vals={x.value for x in node.value.values if isinstance(x,ast.Constant) and isinstance(x.value,str)}
    assert not ((keys&cluster_ids or {normalize(x) for x in keys}&controlled_terms) and any(x.startswith("R2A-SURFACE-") for x in vals))
- _,sh=r2a4_data();sf=surfaces4();draft=next(r for r in sh["candidate_file_dispositions"] if "/world/" in r["path"]);scaffold=next(r for r in sh["candidate_file_dispositions"] if "scaffold" in r["path"]);schema=next(r for r in sh["candidate_file_dispositions"] if "/schema/" in r["path"])
- for original in (draft,scaffold,schema):
-  bad=copy.deepcopy(original);bad["authority_effect"]="maps_current_authority";assert not record_valid(bad,sf)
+ _,sh=r2a4_data();sf=surfaces4();internal=next(r for r in sh["candidate_file_dispositions"] if r["disposition"]=="internal_nonauthoritative_pressure_only");schema=next(r for r in sh["candidate_file_dispositions"] if r["path"].endswith("C13_map_diagram_record_schema.md"))
+ bad=copy.deepcopy(internal);bad["source_local_pressure_class"]="consistent_source_local_evidence";assert not record_valid(bad,sf)
+ bad=copy.deepcopy(schema);bad["status_evidence"]["source_status_summary"]="Batch B operational-procedure draft; not current canon or runtime authority.";assert not record_valid(bad,sf)
  bad=copy.deepcopy(schema);bad["mapped_surface_ids"]=["R2A-SURFACE-CORE-0003"];bad["mapping_evidence"]=[{"mapped_surface_id":"R2A-SURFACE-CORE-0003","candidate_locator":{"locator_kind":"line_range_only","locator_value":None,"line_start":1,"line_end":1},"candidate_proposition":"This file concerns runtime.","mapping_relationship":"governed by accepted surface","authority_transfer_effect":"none","evidence_note":"A shared runtime term does not prove an owner or grant authority."}];assert not record_valid(bad,sf)
 
 def test_locator_owner_template_and_completion_mutations_fail():

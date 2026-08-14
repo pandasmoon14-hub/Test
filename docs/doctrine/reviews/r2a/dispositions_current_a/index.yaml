@@ -53,7 +53,7 @@
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml",
       "record_count": 69,
-      "content_sha256": "dee678eb2cf43f654dc01189c230e7e36203334921690ac3bf80db61125b3564",
+      "content_sha256": "e299cc5db90990a9b679894c470cb6bf5f4a983b62f5a7ccb206d5903918f23a",
       "first_candidate_file_id": "R2A-DISPOSITION-A-0001",
       "last_candidate_file_id": "R2A-DISPOSITION-A-0069"
     }
@@ -61,22 +61,28 @@
   "candidate_file_count": 69,
   "counts": {
     "by_disposition": {
+      "internal_nonauthoritative_pressure_only": 60,
       "mapped_semantic_surface": 5,
       "mixed_mapped_and_dismissed": 1,
-      "source_local_pressure_only": 63
+      "source_local_pressure_only": 3
     },
     "by_authority_effect": {
+      "escalation_pressure_only": 40,
+      "implementation_presupposition_only": 16,
       "maps_current_authority": 6,
-      "source_local_pressure_only": 63
+      "no_authority_effect": 4,
+      "source_local_pressure_only": 3
     },
     "by_source_local_pressure_class": {
-      "consistent_source_local_evidence": 33,
-      "no_material_relation": 6,
-      "owner_boundary_pressure": 30
+      "consistent_source_local_evidence": 2,
+      "conversion_handoff_pressure": 1,
+      "no_material_relation": 66
     },
     "by_pressure_route": {
-      "later_gate": 63,
-      "none": 6
+      "existing_owner_review": 3,
+      "later_gate": 44,
+      "none": 6,
+      "r4_substrate": 16
     },
     "by_top_level_candidate_path_family": {
       "docs/decisions/**": 1,
@@ -173,7 +179,7 @@
       ],
       "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 30
+      "historical_source_local_count": 2
     },
     {
       "path_family": "docs/doctrine/operations/**",
@@ -194,7 +200,7 @@
       ],
       "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 11
+      "historical_source_local_count": 0
     },
     {
       "path_family": "docs/doctrine/schema/**",
@@ -221,7 +227,7 @@
       ],
       "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 17
+      "historical_source_local_count": 1
     },
     {
       "path_family": "docs/doctrine/world/**",
@@ -236,7 +242,7 @@
       ],
       "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 5
+      "historical_source_local_count": 0
     }
   ],
   "surface_mapping_coverage": {
@@ -275,5 +281,12 @@
   "prohibited_inferences": [
     "No claim, question, package, or module assessment occurs.",
     "No doctrine, semantic-surface, implementation, or owner authority is created."
-  ]
+  ],
+  "internal_pressure_coverage": {
+    "internal_nonauthoritative_pressure_count": 60,
+    "source_local_pressure_count": 3,
+    "implementation_presupposition_count": 16,
+    "escalation_pressure_count": 40,
+    "no_authority_effect_count": 4
+  }
 }

@@ -47,7 +47,8 @@
       "mixed_mapped_and_dismissed",
       "dismissed_after_semantic_review",
       "historical_only",
-      "source_local_pressure_only"
+      "source_local_pressure_only",
+      "internal_nonauthoritative_pressure_only"
     ],
     "relevance_types": [
       "decisive_current_authority",
@@ -310,7 +311,10 @@
         "Each mapping evidence record requires a bounded candidate locator, a source-specific candidate proposition, one field-local relationship literal, authority_transfer_effect none, and a file-specific nontransfer explanation.",
         "Semantic mapping locators over 80 lines require a specific span justification and locators over 200 lines are prohibited.",
         "status_evidence records explicit source currentness or is null only when no explicit declaration exists; directory placement never substitutes for status evidence.",
-        "Controlled search terms, clusters, paths, filenames, AFQR identifiers, and topics are discovery evidence only and must never select semantic surfaces, owners, currentness, dispositions, pressure routes, or gaps."
+        "Controlled search terms, clusters, paths, filenames, AFQR identifiers, and topics are discovery evidence only and must never select semantic surfaces, owners, currentness, dispositions, pressure routes, or gaps.",
+        "internal_nonauthoritative_pressure_only requires empty mapped_surface_ids, source_local_pressure_class no_material_relation, an authority effect of implementation_presupposition_only, escalation_pressure_only, or no_authority_effect, and an exact existing pressure route.",
+        "source_local_pressure_only is reserved for actual donor-local or source-local pressure and must not serve as a generic label for Astra-native drafts, scaffolds, plans, operational procedures, or schema doctrine.",
+        "Status evidence must preserve material distinctions in its bounded passage, including Batch B versus Batch C, operational procedure versus schema doctrine, scaffold versus specification, draft versus accepted/current, and explicit canon/runtime limitations."
       ],
       "prohibited_uses": [
         "One committed record per raw occurrence is prohibited.",
