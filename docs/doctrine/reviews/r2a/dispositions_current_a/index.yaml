@@ -1,7 +1,7 @@
 {
   "artifact_id": "AFQR-R2A-4-CURRENT-A-DISPOSITION-INDEX-001",
   "artifact_version": "0.1.0",
-  "status": "complete",
+  "status": "active_incomplete",
   "phase": "R2A-4",
   "authority_effect": "nonauthoritative_candidate_file_disposition",
   "inspected_baseline_commit": "1b70f46718035d5f9395346cbf9eb1208a489698",
@@ -53,7 +53,7 @@
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml",
       "record_count": 69,
-      "content_sha256": "69ef6c65cd3b982425433a40f32fe4e3938b83b321b87915a0f4c171f49ee790",
+      "content_sha256": "dee678eb2cf43f654dc01189c230e7e36203334921690ac3bf80db61125b3564",
       "first_candidate_file_id": "R2A-DISPOSITION-A-0001",
       "last_candidate_file_id": "R2A-DISPOSITION-A-0069"
     }
@@ -61,20 +61,22 @@
   "candidate_file_count": 69,
   "counts": {
     "by_disposition": {
-      "mapped_semantic_surface": 64,
-      "source_local_pressure_only": 5
+      "mapped_semantic_surface": 5,
+      "mixed_mapped_and_dismissed": 1,
+      "source_local_pressure_only": 63
     },
     "by_authority_effect": {
-      "maps_current_authority": 64,
-      "source_local_pressure_only": 5
+      "maps_current_authority": 6,
+      "source_local_pressure_only": 63
     },
     "by_source_local_pressure_class": {
-      "no_material_relation": 64,
-      "owner_boundary_pressure": 5
+      "consistent_source_local_evidence": 33,
+      "no_material_relation": 6,
+      "owner_boundary_pressure": 30
     },
     "by_pressure_route": {
-      "existing_owner_review": 5,
-      "none": 64
+      "later_gate": 63,
+      "none": 6
     },
     "by_top_level_candidate_path_family": {
       "docs/decisions/**": 1,
@@ -85,8 +87,8 @@
       "docs/doctrine/world/**": 5
     },
     "mapped_versus_unmapped": {
-      "mapped": 64,
-      "unmapped": 5
+      "mapped": 6,
+      "unmapped": 63
     },
     "by_matched_search_cluster": {
       "action_conflict_targeting": 64,
@@ -169,9 +171,9 @@
         "R2A-DISPOSITION-A-0035",
         "R2A-DISPOSITION-A-0036"
       ],
-      "mapped_count": 30,
+      "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 0
+      "historical_source_local_count": 30
     },
     {
       "path_family": "docs/doctrine/operations/**",
@@ -190,9 +192,9 @@
         "R2A-DISPOSITION-A-0046",
         "R2A-DISPOSITION-A-0047"
       ],
-      "mapped_count": 11,
+      "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 0
+      "historical_source_local_count": 11
     },
     {
       "path_family": "docs/doctrine/schema/**",
@@ -217,9 +219,9 @@
         "R2A-DISPOSITION-A-0063",
         "R2A-DISPOSITION-A-0064"
       ],
-      "mapped_count": 17,
+      "mapped_count": 0,
       "dismissed_count": 0,
-      "historical_source_local_count": 0
+      "historical_source_local_count": 17
     },
     {
       "path_family": "docs/doctrine/world/**",
@@ -238,14 +240,34 @@
     }
   ],
   "surface_mapping_coverage": {
-    "mapped_candidate_count": 64,
-    "unmapped_candidate_count": 5,
-    "cross_path_mapped_candidate_count": 59,
-    "unique_mapped_surface_count": 52
+    "mapped_candidate_count": 6,
+    "unmapped_candidate_count": 63,
+    "cross_path_mapped_candidate_count": 1,
+    "same_path_mapped_candidate_count": 5,
+    "unique_mapped_surface_count": 51,
+    "mapping_evidence_count": 51,
+    "status_evidence_count": 69,
+    "blocking_gap_count": 1
   },
-  "blocking_unmapped_current_authority_candidates": [],
+  "blocking_unmapped_current_authority_candidates": [
+    {
+      "path": "docs/decisions/current_decisions_log.md",
+      "locator": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 21,
+        "line_end": 40
+      },
+      "source_proposition": "The current decisions ledger contains additional current control and authority-boundary decisions beyond the one bounded cross-phase proposition mapped here.",
+      "source_status": "current decisions log",
+      "likely_existing_owner_or_boundary": "Accepted component owners vary by individual decision.",
+      "why_existing_surfaces_are_insufficient": "The accepted R2A-2/R2A-3 surfaces do not propositionally inventory the heterogeneous remaining current decisions, and lexical clusters cannot select substitutes.",
+      "required_handoff": "corrective_semantic_inventory_review",
+      "authority_effect": "records_gap_without_adjudication"
+    }
+  ],
   "completion_boundary": [
-    "Proves only complete R2A-4 partition coverage.",
+    "Records a complete 69-candidate R2A-4 checkpoint, but R2A-4 remains active_incomplete because one genuine current-authority gap requires corrective semantic inventory review.",
     "R2A-5 through R2A-7 remain pending.",
     "Aggregate candidate parity and the scan receipt remain deferred to R2A-8.",
     "Later parity review may require corrective semantic amendments."

@@ -155,7 +155,7 @@
     {
       "partition_id": "R2A-4",
       "title": "Current-authority dispositions A: control, consolidation, operations, schema doctrine, world doctrine, decisions",
-      "status": "complete",
+      "status": "active_incomplete",
       "owned_artifact_types": [
         "candidate_file_disposition"
       ],

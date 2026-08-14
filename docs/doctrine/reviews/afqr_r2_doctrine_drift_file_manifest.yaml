@@ -55,7 +55,7 @@
         "all sources routed"
       ],
       "corpus_scale_pressure": [
-        "mandatory CF-01\u2013CF-13"
+        "mandatory CF-01–CF-13"
       ],
       "outlier_escalation_path": "Astra Doctrine Council",
       "current_status": "complete"
@@ -486,7 +486,7 @@
         "accepted R2A-3 baseline 1b70f46718035d5f9395346cbf9eb1208a489698"
       ],
       "outputs": [
-        "69 complete candidate-file dispositions in one bounded shard"
+        "69 disposition records; one genuine gap checkpoint requiring corrective semantic inventory review"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -502,7 +502,7 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "complete"
+      "current_status": "active_incomplete"
     },
     {
       "phase": "R2A-4",
@@ -513,7 +513,7 @@
         "accepted R2A-3 baseline 1b70f46718035d5f9395346cbf9eb1208a489698"
       ],
       "outputs": [
-        "69 complete candidate-file dispositions in one bounded shard"
+        "69 disposition records; one genuine gap checkpoint requiring corrective semantic inventory review"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -529,7 +529,7 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "complete"
+      "current_status": "active_incomplete"
     },
     {
       "phase": "R2A-5",
@@ -809,7 +809,7 @@
     },
     {
       "partition_id": "R2A-4",
-      "current_status": "complete"
+      "current_status": "active_incomplete"
     },
     {
       "partition_id": "R2A-5",

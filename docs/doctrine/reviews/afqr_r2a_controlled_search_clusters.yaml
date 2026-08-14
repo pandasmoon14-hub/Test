@@ -353,7 +353,7 @@
       "raw_utf8_escaped": "\\ufeffSTRASSE  valid\\t time\\r\\nnext\\n",
       "terms_by_cluster": {
         "case": [
-          "stra\u00dfe"
+          "straße"
         ],
         "phrase": [
           "valid time"
@@ -377,10 +377,10 @@
     {
       "vector_id": "nfc_boundaries_dedup",
       "path": "x.txt",
-      "raw_utf8_escaped": "cafe\\u0301 caf\u00e9 identity_identity identity-identity identity/identity\\n",
+      "raw_utf8_escaped": "cafe\\u0301 café identity_identity identity-identity identity/identity\\n",
       "terms_by_cluster": {
         "accent": [
-          "caf\u00e9"
+          "café"
         ],
         "identity": [
           "identity"
@@ -390,7 +390,7 @@
         [
           "x.txt",
           1,
-          "caf\u00e9",
+          "café",
           "accent"
         ],
         [
@@ -473,7 +473,7 @@
     "R2A-1": "complete",
     "R2A-2": "complete",
     "R2A-3": "complete",
-    "R2A-4": "complete",
+    "R2A-4": "active_incomplete",
     "R2A-5": "planned_not_present",
     "R2A-6": "planned_not_present",
     "R2A-7": "planned_not_present",

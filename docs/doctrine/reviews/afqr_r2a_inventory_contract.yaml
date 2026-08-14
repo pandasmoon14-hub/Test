@@ -287,7 +287,9 @@
         "semantic_review_summary",
         "source_local_pressure_class",
         "authority_effect",
-        "pressure_route"
+        "pressure_route",
+        "mapping_evidence",
+        "status_evidence"
       ],
       "field_controls": {
         "disposition": "controlled_values.dispositions",
@@ -300,10 +302,15 @@
       "validation_rules": [
         "Exactly one disposition must exist per candidate file across the complete R2A series.",
         "A file with no mapped surface still requires documented semantic review.",
-        "Semantic review summaries must be file-specific and representative locators must be bounded.",
         "A candidate-file disposition may map to an accepted semantic surface originating from another path when bounded content is materially governed by, restates, routes, or operationalizes that surface without authority transfer; source-path identity is not required.",
         "Every cross-path mapping requires an exact file-specific relationship explanation, and mapping never transfers the accepted surface authority to the candidate file.",
-        "Directory placement does not establish authority level or currentness; explicit draft and not-current-canon declarations prohibit promotion through disposition."
+        "Directory placement does not establish authority level or currentness; explicit draft and not-current-canon declarations prohibit promotion through disposition.",
+        "Lexical completeness is established only by baseline recomputation of controlled_match_count, matched_terms, and matched_search_clusters; semantic locators need not cover every lexical occurrence.",
+        "mapping_evidence is required exactly when mapped_surface_ids is nonempty, and its mapped_surface_id set must equal mapped_surface_ids.",
+        "Each mapping evidence record requires a bounded candidate locator, a source-specific candidate proposition, one field-local relationship literal, authority_transfer_effect none, and a file-specific nontransfer explanation.",
+        "Semantic mapping locators over 80 lines require a specific span justification and locators over 200 lines are prohibited.",
+        "status_evidence records explicit source currentness or is null only when no explicit declaration exists; directory placement never substitutes for status evidence.",
+        "Controlled search terms, clusters, paths, filenames, AFQR identifiers, and topics are discovery evidence only and must never select semantic surfaces, owners, currentness, dispositions, pressure routes, or gaps."
       ],
       "prohibited_uses": [
         "One committed record per raw occurrence is prohibited.",
@@ -615,7 +622,7 @@
     "R2A-1": "complete",
     "R2A-2": "complete",
     "R2A-3": "complete",
-    "R2A-4": "complete",
+    "R2A-4": "active_incomplete",
     "R2A-5": "planned_not_present",
     "R2A-6": "planned_not_present",
     "R2A-7": "planned_not_present",
