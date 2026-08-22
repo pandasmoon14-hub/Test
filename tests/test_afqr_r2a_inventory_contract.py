@@ -669,6 +669,7 @@ def test_r2a3_world_and_coordination_coverage_recompute():
 # R2A-4 successor validation begins after the exact accepted R2A-3 bytes above.
 ACCEPTED_R2A_3_HEAD = "1b70f46718035d5f9395346cbf9eb1208a489698"
 R2A_4_BASE = ACCEPTED_R2A_3_HEAD
+ACCEPTED_R2A_4_HEAD = "e971410e0b5d7d8eeda94a5474e9cf799b4cb67a"
 R2A4_INDEX=REV/"r2a/dispositions_current_a/index.yaml"; R2A4_SHARD=REV/"r2a/dispositions_current_a/dispositions_0001.yaml"
 R2A4_AUTHORIZED={"docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml","docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml","docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml","docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml","tests/test_afqr_r2a_inventory_contract.py"}
 RELATIONSHIPS={"originates accepted surface","restates accepted surface","governed by accepted surface","operationalizes without authority transfer","routes without authority transfer","duplicates accepted boundary"}
@@ -747,8 +748,9 @@ def summary_residue(r):
 
 def test_current_test_prefix_is_exact_accepted_r2a3_bytes():assert git_blob("HEAD",repo_git_path(__file__)).startswith(git_blob(ACCEPTED_R2A_3_HEAD,repo_git_path(__file__)))
 def test_r2a4_exact_base_scope_status_and_posture():
- assert subprocess.check_output(["git","merge-base",R2A_4_BASE,"HEAD"],text=True).strip()==R2A_4_BASE
- assert set(subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...HEAD"],text=True).splitlines())==R2A4_AUTHORIZED
+ assert subprocess.check_output(["git","merge-base",R2A_4_BASE,ACCEPTED_R2A_4_HEAD],text=True).strip()==R2A_4_BASE
+ subprocess.check_call(["git","merge-base","--is-ancestor",ACCEPTED_R2A_4_HEAD,"HEAD"])
+ assert set(subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...{ACCEPTED_R2A_4_HEAD}"],text=True).splitlines())==R2A4_AUTHORIZED
  expected={f"R2A-{n}":("complete" if n<=3 else "active_incomplete" if n==4 else "planned_not_present") for n in range(1,13)};c=r2a4_current(CONTRACT);cl=r2a4_current(CLUSTERS);p=r2a4_current(PARTITIONS);m=r2a4_current(FILES)
  assert c["r2a_partition_statuses"]==cl["r2a_partition_statuses"]=={x["partition_id"]:x["status"] for x in p["partitions"]}=={x["partition_id"]:x["current_status"] for x in m["r2a_reconstruction_sequence"]}==expected
  assert c["project_posture"]["R2A"]=="active_incomplete" and c["project_posture"]["R2B"]=="blocked" and c["project_posture"]["RT-002G"]==c["project_posture"]["temporary_evidence_deletion"]=="unauthorized"
@@ -791,10 +793,10 @@ def test_no_raw_tuples_semantic_proxy_or_forbidden_assessments():
  data=(R2A4_INDEX.read_text()+R2A4_SHARD.read_text()).lower();assert not any(x in data for x in ("raw_occurrence_tuple","claim_assessment_id","question_assessment_id","package_assessment_id","module_assessment_id","scan_receipt_id","target_work_package"))
  contract=" ".join(r2a4_current(CONTRACT)["record_types"]["candidate_file_disposition"]["validation_rules"]);assert "discovery evidence only" in contract and "must never select semantic surfaces" in contract
 def test_r2a4_containment_and_manifest_uniqueness():
- changed=subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...HEAD"],text=True).splitlines();assert set(changed)==R2A4_AUTHORIZED and not subprocess.check_output(["git","diff","--name-only","--diff-filter=D",f"{R2A_4_BASE}...HEAD"],text=True).strip()
- num=subprocess.check_output(["git","diff","--numstat",f"{R2A_4_BASE}...HEAD"],text=True).splitlines();assert sum(int(x.split()[0]) for x in num)<=2500
+ changed=subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...{ACCEPTED_R2A_4_HEAD}"],text=True).splitlines();assert set(changed)==R2A4_AUTHORIZED and not subprocess.check_output(["git","diff","--name-only","--diff-filter=D",f"{R2A_4_BASE}...{ACCEPTED_R2A_4_HEAD}"],text=True).strip()
+ num=subprocess.check_output(["git","diff","--numstat",f"{R2A_4_BASE}...{ACCEPTED_R2A_4_HEAD}"],text=True).splitlines();assert sum(int(x.split()[0]) for x in num)<=2500
  for p in changed:
-  raw=git_blob("HEAD",p);assert len(raw)<=300*1024 and b"\0" not in raw and max(map(len,raw.splitlines()),default=0)<=1000
+  raw=git_blob(ACCEPTED_R2A_4_HEAD,p);assert len(raw)<=300*1024 and b"\0" not in raw and max(map(len,raw.splitlines()),default=0)<=1000
  paths=[x["path"] for x in r2a4_current(FILES)["artifacts"]];assert len(paths)==len(set(paths)) and paths.count(R2A4_INDEX.relative_to(ROOT).as_posix())==paths.count(R2A4_SHARD.relative_to(ROOT).as_posix())==1
 
 def test_semantic_proxy_and_status_promotion_mutations_fail():
