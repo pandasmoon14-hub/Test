@@ -669,10 +669,12 @@ def test_r2a3_world_and_coordination_coverage_recompute():
 # R2A-4 successor validation begins after the exact accepted R2A-3 bytes above.
 ACCEPTED_R2A_3_HEAD = "1b70f46718035d5f9395346cbf9eb1208a489698"
 R2A_4_BASE = ACCEPTED_R2A_3_HEAD
+R2A_4_COMPLETION_BASE = "ae37e2044ce7c8e317266a811084867757e699a6"
 ACCEPTED_R2A_4_HEAD = "e971410e0b5d7d8eeda94a5474e9cf799b4cb67a"
+R2A_4_COMPLETION_HEAD = "e5b3071b00d3d0554f4ebd4f73721c55b903c5dc"
 R2A4_INDEX=REV/"r2a/dispositions_current_a/index.yaml"; R2A4_SHARD=REV/"r2a/dispositions_current_a/dispositions_0001.yaml"
 R2A4_AUTHORIZED={"docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml","docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml","docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml","docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml","tests/test_afqr_r2a_inventory_contract.py"}
-RELATIONSHIPS={"originates accepted surface","restates accepted surface","governed by accepted surface","operationalizes without authority transfer","routes without authority transfer","duplicates accepted boundary"}
+RELATIONSHIPS={"originates accepted surface","restates accepted surface","governed by accepted surface","operationalizes without authority transfer","routes without authority transfer","duplicates accepted boundary","governed by accepted replay boundary","restates accepted ownership nontransfer invariant","restates accepted state-owner routing boundary","governed by accepted donor nonpromotion boundary","governed by accepted capability/opportunity/action/target/resolution boundary","restates accepted hidden-truth nonleakage invariant","routed by accepted continuity nonownership surface"}
 GENERIC_PROPOSITIONS={"this file concerns runtime","this file relates to identity","this passage discusses action","this matches the commitment cluster"}
 def repo_git_path(value):
  native=Path(value)
@@ -751,7 +753,8 @@ def test_r2a4_exact_base_scope_status_and_posture():
  assert subprocess.check_output(["git","merge-base",R2A_4_BASE,ACCEPTED_R2A_4_HEAD],text=True).strip()==R2A_4_BASE
  subprocess.check_call(["git","merge-base","--is-ancestor",ACCEPTED_R2A_4_HEAD,"HEAD"])
  assert set(subprocess.check_output(["git","diff","--name-only",f"{R2A_4_BASE}...{ACCEPTED_R2A_4_HEAD}"],text=True).splitlines())==R2A4_AUTHORIZED
- expected={f"R2A-{n}":("complete" if n<=3 else "active_incomplete" if n==4 else "planned_not_present") for n in range(1,13)};c=r2a4_current(CONTRACT);cl=r2a4_current(CLUSTERS);p=r2a4_current(PARTITIONS);m=r2a4_current(FILES)
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A_4_COMPLETION_HEAD,"HEAD"])
+ expected={f"R2A-{n}":("complete" if n<=4 else "planned_not_present") for n in range(1,13)};c=r2a4_current(CONTRACT);cl=r2a4_current(CLUSTERS);p=r2a4_current(PARTITIONS);m=r2a4_current(FILES)
  assert c["r2a_partition_statuses"]==cl["r2a_partition_statuses"]=={x["partition_id"]:x["status"] for x in p["partitions"]}=={x["partition_id"]:x["current_status"] for x in m["r2a_reconstruction_sequence"]}==expected
  assert c["project_posture"]["R2A"]=="active_incomplete" and c["project_posture"]["R2B"]=="blocked" and c["project_posture"]["RT-002G"]==c["project_posture"]["temporary_evidence_deletion"]=="unauthorized"
 def test_r2a4_discovery_is_exact_and_independent_of_semantics():
@@ -768,6 +771,9 @@ def test_mapping_evidence_reciprocity_resolution_and_narrow_locators():
   assert set(r["mapped_surface_ids"])=={x["mapped_surface_id"] for x in r["mapping_evidence"]}
   for e in r["mapping_evidence"]:assert e["mapped_surface_id"] in surfaces and e["authority_transfer_effect"]=="none" and evidence_valid(r,e,surfaces)
  assert all(e["mapping_relationship"]=="originates accepted surface" and surfaces[e["mapped_surface_id"]]["path"]==r["path"] for r in rs[1:6] for e in r["mapping_evidence"])
+ reviewed=rs[0];assert len(reviewed["mapping_evidence"])==len(reviewed["mapped_surface_ids"])==8
+ assert all(e["candidate_locator"]["line_end"]-e["candidate_locator"]["line_start"]<25 for e in reviewed["mapping_evidence"])
+ summary=reviewed["semantic_review_summary"].lower();assert all(x in summary for x in ("operational/project-management detail","historical/pilot context","conversion/source-local material","implementation presuppositions","no authority transfers","no matched term or lexical cluster selected a surface"))
 def test_status_evidence_preserves_source_distinctions_and_drives_nonauthority():
  _,sh=r2a4_data();rs=sh["candidate_file_dispositions"];assert all(r["status_evidence"] is not None and status_valid(r,r["status_evidence"]) for r in rs)
  internal=[r for r in rs if r["disposition"]=="internal_nonauthoritative_pressure_only"];assert internal and all(not r["mapped_surface_ids"] and r["source_local_pressure_class"]=="no_material_relation" and r["authority_effect"] in {"implementation_presupposition_only","escalation_pressure_only","no_authority_effect"} for r in internal)
@@ -784,11 +790,11 @@ def test_mapping_mutations_reject_missing_extra_generic_wide_transfer_and_keywor
 def test_summaries_are_file_specific_not_superficially_unique_templates():
  _,sh=r2a4_data();rs=sh["candidate_file_dispositions"];res=[summary_residue(r) for r in rs];assert len(set(res))==69
  assert all(len(meaningful_words(x))>=12 for x in res) and not any("listed match families" in x for x in res)
-def test_index_counts_digest_status_and_genuine_gap_gate():
+def test_index_counts_digest_status_and_completed_gap_gate():
  idx,sh=r2a4_data();rs=sh["candidate_file_dispositions"];assert hashlib.sha256(git_blob("HEAD",R2A4_SHARD)).hexdigest()==idx["shards"][0]["content_sha256"]
  for key,field in [("by_disposition","disposition"),("by_authority_effect","authority_effect"),("by_source_local_pressure_class","source_local_pressure_class"),("by_pressure_route","pressure_route")]:assert idx["counts"][key]==dict(sorted(__import__('collections').Counter(r[field] for r in rs).items()))
- cov=idx["surface_mapping_coverage"];assert cov["mapping_evidence_count"]==sum(len(r["mapping_evidence"]) for r in rs) and cov["status_evidence_count"]==69 and cov["blocking_gap_count"]==len(idx["blocking_unmapped_current_authority_candidates"])==1
- assert idx["status"]==sh["status"]=="active_incomplete" and idx["blocking_unmapped_current_authority_candidates"][0]["required_handoff"]=="corrective_semantic_inventory_review"
+ cov=idx["surface_mapping_coverage"];assert cov["mapping_evidence_count"]==sum(len(r["mapping_evidence"]) for r in rs) and cov["unique_mapped_surface_count"]==len({s for r in rs for s in r["mapped_surface_ids"]}) and cov["status_evidence_count"]==69 and cov["blocking_gap_count"]==len(idx["blocking_unmapped_current_authority_candidates"])==0
+ assert idx["status"]==sh["status"]=="complete" and idx["blocking_unmapped_current_authority_candidates"]==[]
 def test_no_raw_tuples_semantic_proxy_or_forbidden_assessments():
  data=(R2A4_INDEX.read_text()+R2A4_SHARD.read_text()).lower();assert not any(x in data for x in ("raw_occurrence_tuple","claim_assessment_id","question_assessment_id","package_assessment_id","module_assessment_id","scan_receipt_id","target_work_package"))
  contract=" ".join(r2a4_current(CONTRACT)["record_types"]["candidate_file_disposition"]["validation_rules"]);assert "discovery evidence only" in contract and "must never select semantic surfaces" in contract
@@ -798,6 +804,14 @@ def test_r2a4_containment_and_manifest_uniqueness():
  for p in changed:
   raw=git_blob(ACCEPTED_R2A_4_HEAD,p);assert len(raw)<=300*1024 and b"\0" not in raw and max(map(len,raw.splitlines()),default=0)<=1000
  paths=[x["path"] for x in r2a4_current(FILES)["artifacts"]];assert len(paths)==len(set(paths)) and paths.count(R2A4_INDEX.relative_to(ROOT).as_posix())==paths.count(R2A4_SHARD.relative_to(ROOT).as_posix())==1
+
+def test_r2a4_completion_receipt_is_successor_safe_and_bounded():
+ subprocess.check_call(["git","merge-base","--is-ancestor",ACCEPTED_R2A_4_HEAD,R2A_4_COMPLETION_HEAD]);subprocess.check_call(["git","merge-base","--is-ancestor",R2A_4_COMPLETION_HEAD,"HEAD"])
+ changed=set(subprocess.check_output(["git","diff","--name-only",f"{R2A_4_COMPLETION_BASE}...{R2A_4_COMPLETION_HEAD}"],text=True).splitlines())
+ assert changed==R2A4_AUTHORIZED-{"tests/test_afqr_r2a_inventory_contract.py"}
+ assert not subprocess.check_output(["git","diff","--name-only","--diff-filter=D",f"{R2A_4_COMPLETION_BASE}...{R2A_4_COMPLETION_HEAD}"],text=True).strip()
+ # Deliberately inspect the frozen completion commit, never COMPLETION...HEAD: lawful successors are not absorbed into R2A-4.
+ assert json.loads(git_text(R2A_4_COMPLETION_HEAD,R2A4_INDEX))["status"]=="complete"
 
 def test_semantic_proxy_and_status_promotion_mutations_fail():
  import ast,copy
@@ -817,7 +831,9 @@ def test_locator_owner_template_and_completion_mutations_fail():
  bad=copy.deepcopy(e);bad["candidate_locator"]={"locator_kind":"line_range_only","locator_value":None,"line_start":1,"line_end":1};assert not evidence_valid(mapped,bad,sf)
  bad=copy.deepcopy(e);bad["evidence_note"]="The candidate inherits the mapped owner and its semantic authority.";assert not evidence_valid(mapped,bad,sf)
  a,b=copy.deepcopy(sh["candidate_file_dispositions"][6]),copy.deepcopy(sh["candidate_file_dispositions"][36]);b["semantic_review_summary"]=a["semantic_review_summary"].replace(Path(a["path"]).name,Path(b["path"]).name);assert summary_residue(a)==summary_residue(b)
- bad=copy.deepcopy(idx);bad["status"]="complete";assert bad["status"]=="complete" and bool(bad["blocking_unmapped_current_authority_candidates"])
+ bad=copy.deepcopy(idx);bad["blocking_unmapped_current_authority_candidates"]=[{"path":"docs/decisions/current_decisions_log.md"}];bad["surface_mapping_coverage"]["blocking_gap_count"]=1;assert not (bad["status"]=="complete" and bad["surface_mapping_coverage"]["blocking_gap_count"]==0 and bad["blocking_unmapped_current_authority_candidates"]==[])
+ contract=copy.deepcopy(r2a4_current(CONTRACT));contract["project_posture"]["R2A"]="complete";assert contract["project_posture"]!=r2a4_current(CONTRACT)["project_posture"]
+ partitions=copy.deepcopy(r2a4_current(PARTITIONS));next(x for x in partitions["partitions"] if x["partition_id"]=="R2A-5")["status"]="active_incomplete";assert {x["partition_id"]:x["status"] for x in partitions["partitions"]}!=r2a4_current(CONTRACT)["r2a_partition_statuses"]
 
 # Portable successor overrides: predecessor source bytes above remain untouched.
 def test_current_file_begins_with_exact_accepted_r2a2_test_bytes():
