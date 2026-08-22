@@ -3,11 +3,13 @@ from __future__ import annotations
 import hashlib, json, re, subprocess, zipfile
 from pathlib import Path
 
+from tests.helpers import git_blob, read_utf8
+
 ROOT=Path(__file__).resolve().parents[1]
 WORK=ROOT/'working/afqr_consolidation_inputs'; REV=ROOT/'docs/doctrine/reviews'
 BASE='43a50c3756c4f1ba335956d8224f22b34fc32ab5'
 REQUIRED=[WORK/'README.md',WORK/'manifest.yaml',ROOT/'docs/doctrine/control/afqr_01_20_consolidation_program_plan.md',REV/'afqr_01_20_authority_status_index.yaml',REV/'afqr_01_20_dependency_matrix.yaml',REV/'afqr_01_20_shared_term_collision_inventory.md',REV/'afqr_01_20_consolidation_file_manifest.yaml',ROOT/'docs/doctrine/astra_doctrine_registry_v0_1.yaml',ROOT/'docs/decisions/current_decisions_log.md']
-def load(p): return json.loads(p.read_text(encoding='utf8'))
+def load(p): return json.loads(read_utf8(p))
 def git(*args): return subprocess.run(['git',*args],cwd=ROOT,text=True,check=True,capture_output=True).stdout
 def test_required_r1a_files_exist(): assert all(p.is_file() for p in REQUIRED)
 def test_machine_yaml_artifacts_parse():
@@ -17,7 +19,7 @@ def test_twelve_unchanged_incoming_archives_and_hashes():
  assert not (WORK/'archives').exists()
  for r in m['archive_records']:
   p=ROOT/r['current_path']; assert p.parent==WORK/'incoming'; assert hashlib.sha256(p.read_bytes()).hexdigest()==r['sha256']
-  assert hashlib.sha256(subprocess.run(['git','show',f'{BASE}:{p.relative_to(ROOT)}'],cwd=ROOT,check=True,capture_output=True).stdout).hexdigest()==r['sha256']
+  assert hashlib.sha256(git_blob(BASE,p)).hexdigest()==r['sha256']
   with zipfile.ZipFile(p) as z: assert z.testzip() is None
 def test_every_archive_member_is_manifest_backed():
  m=load(WORK/'manifest.yaml'); records=m['contained_file_records']; assert len(records)==277
@@ -34,7 +36,7 @@ def test_materialization_contracts_and_checksums():
  for r in m['contained_file_records']:
   assert r['materialization_status'] in allowed and r['sha256'] and r['byte_size']>=0 and r['detected_file_type'] and r['parent_archive_record_id']
   if r['materialization_status']=='committed_text_copy':
-   assert r['normalized_path']; p=ROOT/r['normalized_path']; data=p.read_bytes(); data.decode('utf-8'); assert b'\0' not in data; assert hashlib.sha256(data).hexdigest()==r['sha256']; committed.append(p)
+   assert r['normalized_path']; p=ROOT/r['normalized_path']; data=git_blob('HEAD',p); data.decode('utf-8'); assert b'\0' not in data; assert hashlib.sha256(data).hexdigest()==r['sha256']; committed.append(p)
   else: assert r['normalized_path'] is None
  assert len(committed)==22
  assert {p for p in (WORK/'extracted').rglob('*') if p.is_file()}==set(committed)
@@ -67,13 +69,13 @@ def test_afqr14_validation_note_supersedes_only_stale_manifest():
  assert by_id['SRC-0103']['package_kind']=='answer' and by_id['SRC-0103']['detected_afqr_id']=='AFQR-14'
  assert by_id['SRC-0121']['package_kind']=='superseded' and by_id['SRC-0121']['superseded_by']=='SRC-0139'
  assert by_id['SRC-0139']['supersedes']==['SRC-0121'] and by_id['SRC-0139']['parent_archive_record_id']=='ARCH-07'
- note=(ROOT/by_id['SRC-0139']['normalized_path']).read_text(); assert 'Do not rely on the superseded AFQR-14 stale manifest' in note and 'Validate normative files directly' in note
+ note=read_utf8(ROOT/by_id['SRC-0139']['normalized_path']); assert 'Do not rely on the superseded AFQR-14 stale manifest' in note and 'Validate normative files directly' in note
  wording=af14['corrected_baseline_note']; assert 'selected directly from the AFQR-14 package' in wording and 'supersedes reliance only on the stale AFQR-14 artifact manifest' in wording and 'does not alter AFQR-14’s architectural decision' in wording
  assert af15['afqr_id']=='AFQR-15' and 'Institutional–Jurisdictional Architecture' in af15['selected_architecture'] and not af15['corrected_baseline_evidence_records']
 def test_dependency_edges_and_collision_references_are_valid():
  d=load(REV/'afqr_01_20_dependency_matrix.yaml'); valid={f'AFQR-{n:02d}' for n in range(1,21)}
  for e in d['dependency_edges']: assert e['from_afqr'] in valid and e['to_afqr'] in valid and e['source_evidence']
- existing=set(re.findall(r'COLL-\d\d',(REV/'afqr_01_20_shared_term_collision_inventory.md').read_text()))
+ existing=set(re.findall(r'COLL-\d\d',read_utf8(REV/'afqr_01_20_shared_term_collision_inventory.md')))
  for a in load(REV/'afqr_01_20_authority_status_index.yaml')['afqr_records']: assert set(a['collision_ids'])<=existing
 def test_controlled_values_and_temporary_nonauthority():
  statuses={'accepted_architectural_decision_not_implemented','partially_represented_by_narrow_fixture','partially_implemented','implemented_general_contract','tracking_only','conflict_detected','source_input_incomplete'}
@@ -86,8 +88,8 @@ def test_pr_delta_has_no_zip_or_binary_changes():
  for path in git('diff','--name-only','--diff-filter=AM',BASE).splitlines():
   data=(ROOT/path).read_bytes(); data.decode('utf-8'); assert b'\0' not in data
 def test_no_production_imports_and_later_gates_blocked():
- for p in (ROOT/'src').rglob('*.py'): assert 'afqr_consolidation_inputs' not in p.read_text(encoding='utf8')
- text=(ROOT/'docs/doctrine/control/afqr_01_20_consolidation_program_plan.md').read_text(); assert 'R2–R6' in text and 'RT-002G' in text and 'remain blocked' in text
+ for p in (ROOT/'src').rglob('*.py'): assert 'afqr_consolidation_inputs' not in read_utf8(p)
+ text=read_utf8(ROOT/'docs/doctrine/control/afqr_01_20_consolidation_program_plan.md'); assert 'R2–R6' in text and 'RT-002G' in text and 'remain blocked' in text
 def test_planned_ownership_and_nonownership_are_explicit():
  files=load(REV/'afqr_01_20_consolidation_file_manifest.yaml')['planned_files']
  assert len({f['file_id'] for f in files})==len(files)

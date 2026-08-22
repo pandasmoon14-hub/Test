@@ -1,4 +1,5 @@
 from __future__ import annotations
+import os
 from pathlib import Path
 
 try:
@@ -6,7 +7,8 @@ try:
 except Exception as exc:
     raise SystemExit(f"PyMuPDF required: {exc}")
 
-OUT = Path(__file__).parent / "pdfs"
+_DEFAULT_OUT = Path(__file__).parent / "pdfs"
+OUT = Path(os.environ.get("ASTRA_FIXTURE_OUTPUT_DIR", str(_DEFAULT_OUT)))
 OUT.mkdir(parents=True, exist_ok=True)
 
 
