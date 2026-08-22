@@ -483,10 +483,10 @@
       "owner": "R2A-4",
       "purpose": "current-authority disposition A index and bounded shards",
       "inputs": [
-        "prior dependency partitions"
+        "accepted R2A-3 baseline 1b70f46718035d5f9395346cbf9eb1208a489698"
       ],
       "outputs": [
-        "planned artifact family with index and bounded shards"
+        "69 disposition records; one genuine gap checkpoint requiring corrective semantic inventory review"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -502,7 +502,34 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present"
+      "current_status": "active_incomplete"
+    },
+    {
+      "phase": "R2A-4",
+      "path": "docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml",
+      "owner": "R2A-4",
+      "purpose": "bounded R2A-4 candidate-file disposition shard",
+      "inputs": [
+        "accepted R2A-3 baseline 1b70f46718035d5f9395346cbf9eb1208a489698"
+      ],
+      "outputs": [
+        "69 disposition records; one genuine gap checkpoint requiring corrective semantic inventory review"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "active_incomplete"
     },
     {
       "phase": "R2A-5",
@@ -782,7 +809,7 @@
     },
     {
       "partition_id": "R2A-4",
-      "current_status": "planned_not_present"
+      "current_status": "active_incomplete"
     },
     {
       "partition_id": "R2A-5",
