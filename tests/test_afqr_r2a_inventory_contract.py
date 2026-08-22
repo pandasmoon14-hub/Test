@@ -878,3 +878,23 @@ def test_r2a3_shard_order_ids_hashes_counts_and_manifest_count():
  for key in ["declared_owner","surface_kind","semantic_role","source_record_kind","authority_level","currentness","generality"]:assert idx["counts"][key]==dict(sorted(Counter(r[key] for r in records).items()))
  manifest=current_file(FILES);assert current_file(CORE_INDEX)["surface_count"]==len(current_file(CORE_SHARD)["surface_records"])==27
  assert next(x for x in manifest["artifacts"] if x["path"]=="docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml")["outputs"]==["27 validated semantic authority surface records"]
+
+# Final portable overrides for the two R2A-1 plan consumers; frozen predecessor bytes remain unchanged.
+def test_manifest_statuses_sequence_and_cross_file_agreement():
+ m=histload(FILES);seq=m["r2a_reconstruction_sequence"];assert len(seq)==12 and all(set(x)=={"partition_id","current_status"} for x in seq)
+ planned=[x for x in m["artifacts"] if x.get("phase","").startswith("R2A-") and x["phase"]!="R2A-1"];assert len(planned)==11
+ for number,x in enumerate(planned,2):
+  assert "status" not in x;assert x["current_status"]=="planned_not_present";assert x["phase"]==f"R2A-{number}";assert not x["path"].startswith("/") and ("/index." in x["path"] or number==12)
+ partitions=histload(PARTITIONS);contract=histload(CONTRACT);clusters=histload(CLUSTERS);ids=[f"R2A-{n}" for n in range(1,13)];statuses={x["partition_id"]:x["current_status"] for x in seq}
+ assert contract["partition_count"]==clusters["partition_count"]==partitions["partition_count"]==len(seq)==12
+ assert contract["r2a_partition_ids"]==clusters["r2a_partition_ids"]==[x["partition_id"] for x in partitions["partitions"]]==ids
+ assert contract["r2a_partition_statuses"]==clusters["r2a_partition_statuses"]=={x["partition_id"]:x["status"] for x in partitions["partitions"]}==statuses
+ planned_by_phase={x["phase"]:x["path"] for x in planned};partition_paths={x["partition_id"]:x["planned_artifact_paths"][0] for x in partitions["partitions"] if x["partition_id"] in planned_by_phase};assert partition_paths==planned_by_phase
+ plan=git_text(ACCEPTED_R2A_1_HEAD,PLAN);assert "twelve bounded pull requests" in plan and all(x in plan for x in ("`R2A=active_incomplete`","`R2B=blocked`","`R2C=blocked`","`R3–R6=blocked`"))
+ assert [x["partition_id"] for x in partitions["partitions"] if "mark R2A complete" in x["gate_effect"]]==["R2A-12"] and "cannot begin R2B" in partitions["partitions"][-2]["gate_effect"]
+
+def test_successor_safe_history_current_posture_and_nonauthority():
+ history=git_text(ACCEPTED_R2A_1_HEAD,"tests/test_afqr_r2_continuity_research_assimilation.py");assert 'ACCEPTED_R2_0_HEAD="9382958197c9d5dee9d29cb5f9d051147237c64d"' in history and 'f"{BASE}...{ACCEPTED_R2_0_HEAD}"' in history and 'git","show",f"{ACCEPTED_R2_0_HEAD}' in history
+ d=histload(CONTRACT);assert d["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
+ plan=git_text(ACCEPTED_R2A_1_HEAD,PLAN);assert "No compact reconstruction or isolated local commit is repository authority." in plan and "No-action and existing-owner outcomes are lawful" in plan
+ assert not any(k in d for k in ("semantic_surfaces","candidate_files","claim_assessments","question_assessments"))
