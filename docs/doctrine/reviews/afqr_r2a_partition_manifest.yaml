@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.5",
+  "artifact_version": "0.2.6",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
@@ -225,8 +225,8 @@
       "dependency_partitions": [
         "R2A-5"
       ],
-      "maximum_changed_files": 7,
-      "maximum_additions": 2500,
+      "maximum_changed_files": 8,
+      "maximum_additions": 5000,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances and no implementation authority is granted.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
@@ -243,7 +243,9 @@
         "tests/test_*runtime*.py"
       ],
       "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml"
+        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml"
       ]
     },
     {

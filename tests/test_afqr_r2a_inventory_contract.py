@@ -1278,3 +1278,92 @@ def test_r2a5_mutation_and_no_authority_transfer_guards():
 # R2A-4 remains complete; its current-posture aliases now follow the R2A-5 successor.
 test_r2a4_completed_status_and_posture = test_r2a5_completed_status_and_posture
 test_r2a4_exact_base_scope_status_and_posture = test_r2a5_completed_status_and_posture
+
+# R2A-6 measured-capacity amendment validation
+R2A6_CAPACITY_BASE = "a3b1b79c56d3d01607cead5e81cdd12ab725dcf6"
+R2A6_PLANNED_PATHS = {
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
+}
+R2A6_PRIOR_PROHIBITIONS = {
+ "adopt doctrine",
+ "modify runtime or production schemas",
+ "perform work assigned to a later partition",
+}
+
+def r2a6_capacity_base_manifest():
+ return json.loads(subprocess.check_output(["git","show",f"{R2A6_CAPACITY_BASE}:docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml"],text=True))
+
+def r2a6_current_manifest(): return json.loads(PARTITIONS.read_text())
+
+def r2a6_row(document): return next(row for row in document["partitions"] if row["partition_id"]=="R2A-6")
+
+def r2a6_capacity_valid(document,base=None):
+ base=base or r2a6_capacity_base_manifest()
+ try:
+  row=r2a6_row(document)
+  if document["artifact_id"]!="AFQR-R2A-PARTITION-MANIFEST-001" or document["artifact_version"]!="0.2.6" or document["partition_count"]!=12: return False
+  if row["status"]!="planned_not_present" or row["maximum_changed_files"]!=8 or row["maximum_additions"]!=5000: return False
+  if set(row["planned_artifact_paths"])!=R2A6_PLANNED_PATHS or len(row["planned_artifact_paths"])!=3: return False
+  if row["gate_effect"]!="No gate advances and no implementation authority is granted." or set(row["prohibited_work"])!=R2A6_PRIOR_PROHIBITIONS: return False
+  if any(p["maximum_changed_files"]>7 or p["maximum_additions"]>2500 for p in document["partitions"] if p["partition_id"]!="R2A-6"): return False
+  restored=copy.deepcopy(document); restored["artifact_version"]=base["artifact_version"]
+  restored_row=r2a6_row(restored); base_row=r2a6_row(base)
+  for field in ("maximum_changed_files","maximum_additions","planned_artifact_paths"): restored_row[field]=copy.deepcopy(base_row[field])
+  return restored==base
+ except (KeyError,StopIteration,TypeError): return False
+
+def test_r2a6_capacity_canonical_base_and_current_manifest_identity():
+ subprocess.check_call(["git","cat-file","-e",f"{R2A6_CAPACITY_BASE}^{{commit}}"])
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A6_CAPACITY_BASE,"HEAD"])
+ document=r2a6_current_manifest()
+ assert (document["artifact_id"],document["artifact_version"],document["partition_count"]) == ("AFQR-R2A-PARTITION-MANIFEST-001","0.2.6",12)
+ assert r2a6_capacity_valid(document)
+
+def test_r2a6_capacity_exact_exception_paths_and_nonauthority():
+ document=r2a6_current_manifest(); row=r2a6_row(document)
+ assert (row["status"],row["maximum_changed_files"],row["maximum_additions"]) == ("planned_not_present",8,5000)
+ assert set(row["planned_artifact_paths"])==R2A6_PLANNED_PATHS and len(row["planned_artifact_paths"])==3
+ assert row["gate_effect"]=="No gate advances and no implementation authority is granted."
+ assert set(row["prohibited_work"])==R2A6_PRIOR_PROHIBITIONS
+ assert all(p["maximum_changed_files"]<=7 and p["maximum_additions"]<=2500 for p in document["partitions"] if p["partition_id"]!="R2A-6")
+
+def test_r2a6_capacity_preserves_topology_and_exact_structured_envelope():
+ base=r2a6_capacity_base_manifest(); current=r2a6_current_manifest()
+ assert current["partition_count"]==base["partition_count"]
+ assert [p["partition_id"] for p in current["partitions"]]==[p["partition_id"] for p in base["partitions"]]
+ assert {p["partition_id"]:p["dependency_partitions"] for p in current["partitions"]}=={p["partition_id"]:p["dependency_partitions"] for p in base["partitions"]}
+ for field in ("disposition_precedence","disposition_rules","generated_vendor_exclusion_patterns","coordination_domain_ownership","coordination_must_not_own","sharding"):
+  assert current["ownership_rules"][field]==base["ownership_rules"][field]
+ assert r2a6_capacity_valid(current,base)
+
+def test_r2a6_capacity_exact_two_file_scope():
+ changed=set(subprocess.check_output(["git","diff","--name-only",R2A6_CAPACITY_BASE],text=True).splitlines())
+ assert changed=={"docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","tests/test_afqr_r2a_inventory_contract.py"}
+
+def test_r2a6_capacity_mutation_resistance():
+ document=r2a6_current_manifest(); mutations=[]
+ for field,value in (("maximum_changed_files",9),("maximum_additions",5001),("status","active_incomplete"),("status","complete")):
+  bad=copy.deepcopy(document); r2a6_row(bad)[field]=value; mutations.append(bad)
+ bad=copy.deepcopy(document); next(p for p in bad["partitions"] if p["partition_id"]=="R2A-5")["maximum_changed_files"]=8; mutations.append(bad)
+ bad=copy.deepcopy(document); next(p for p in bad["partitions"] if p["partition_id"]=="R2A-7")["dependency_partitions"]=[]; mutations.append(bad)
+ bad=copy.deepcopy(document); bad["ownership_rules"]["disposition_precedence"]=["R2A-5","R2A-4","R2A-6","R2A-7"]; mutations.append(bad)
+ bad=copy.deepcopy(document); r2a6_row(bad)["planned_artifact_paths"].pop(); mutations.append(bad)
+ bad=copy.deepcopy(document); r2a6_row(bad)["planned_artifact_paths"].append("docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0003.yaml"); mutations.append(bad)
+ bad=copy.deepcopy(document); r2a6_row(bad)["gate_effect"]+=" Implementation authority is granted."; mutations.append(bad)
+ assert all(not r2a6_capacity_valid(bad) for bad in mutations)
+
+# Successor aliases preserve earlier accepted bytes while validating current posture.
+def test_r2a6_capacity_successor_status_and_posture():
+ expected={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
+ contract,clusters,partitions,manifest=map(lambda p:json.loads(p.read_text()),(CONTRACT,CLUSTERS,PARTITIONS,FILES))
+ assert contract["r2a_partition_statuses"]==clusters["r2a_partition_statuses"]==expected
+ assert {r["partition_id"]:r["status"] for r in partitions["partitions"]}==expected
+ assert {r["partition_id"]:r["current_status"] for r in manifest["r2a_reconstruction_sequence"]}==expected
+ assert contract["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
+ assert r2a6_capacity_valid(partitions)
+
+test_r2a5_completed_status_and_posture = test_r2a6_capacity_successor_status_and_posture
+test_r2a4_completed_status_and_posture = test_r2a6_capacity_successor_status_and_posture
+test_r2a4_exact_base_scope_status_and_posture = test_r2a6_capacity_successor_status_and_posture
