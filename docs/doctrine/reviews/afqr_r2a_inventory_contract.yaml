@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
-  "artifact_version": "0.1.4",
+  "artifact_version": "0.1.5",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_inventory_contract",
@@ -314,7 +314,10 @@
         "Controlled search terms, clusters, paths, filenames, AFQR identifiers, and topics are discovery evidence only and must never select semantic surfaces, owners, currentness, dispositions, pressure routes, or gaps.",
         "internal_nonauthoritative_pressure_only requires empty mapped_surface_ids, source_local_pressure_class no_material_relation, an authority effect of implementation_presupposition_only, escalation_pressure_only, or no_authority_effect, and an exact existing pressure route.",
         "source_local_pressure_only is reserved for actual donor-local or source-local pressure and must not serve as a generic label for Astra-native drafts, scaffolds, plans, operational procedures, or schema doctrine.",
-        "Status evidence must preserve material distinctions in its bounded passage, including Batch B versus Batch C, operational procedure versus schema doctrine, scaffold versus specification, draft versus accepted/current, and explicit canon/runtime limitations."
+        "Status evidence must preserve material distinctions in its bounded passage, including Batch B versus Batch C, operational procedure versus schema doctrine, scaffold versus specification, draft versus accepted/current, and explicit canon/runtime limitations.",
+        "A current-control candidate marked complete requires bounded representative semantic-review locators for each materially distinct unmapped family; no heterogeneous blanket locator may substitute for that evidence.",
+        "Every representative unmapped-review locator has empty matched_terms and matched_search_clusters because lexical discovery must never select a semantic surface.",
+        "Each representative unmapped-review note is file-specific, states why no additional semantic-authority mapping is warranted, and preserves the existing owner authority."
       ],
       "prohibited_uses": [
         "One committed record per raw occurrence is prohibited.",
@@ -626,7 +629,7 @@
     "R2A-1": "complete",
     "R2A-2": "complete",
     "R2A-3": "complete",
-    "R2A-4": "active_incomplete",
+    "R2A-4": "complete",
     "R2A-5": "planned_not_present",
     "R2A-6": "planned_not_present",
     "R2A-7": "planned_not_present",
