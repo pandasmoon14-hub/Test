@@ -1,0 +1,246 @@
+{
+ "artifact_id": "AFQR-R2A-5-CURRENT-B-DISPOSITION-INDEX-001",
+ "artifact_version": "0.1.0",
+ "status": "complete",
+ "phase": "R2A-5",
+ "authority_effect": "nonauthoritative_candidate_file_disposition",
+ "inspected_baseline_commit": "7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+ "contract": {
+  "path": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+  "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
+  "artifact_version": "0.1.6"
+ },
+ "controlled_search": {
+  "path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+  "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+  "current_artifact_version": "0.1.5"
+ },
+ "partition_manifest": {
+  "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+  "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
+  "artifact_version": "0.2.5"
+ },
+ "discovery_provenance": {
+  "inspected_commit": "7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+  "controlled_search_artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+  "controlled_search_artifact_version": "0.1.4",
+  "controlled_search_artifact_path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+  "controlled_search_artifact_sha256": "b9e745da4d473c465ffdf0bafec26156144a4e625b4a7b437987275f07e54ee7",
+  "hash_algorithm": "sha256_exact_git_blob_bytes_v1"
+ },
+ "partition_assignment": {
+  "rule": "first matching disposition rule after deterministic exclusions",
+  "precedence": [
+   "R2A-4",
+   "R2A-5",
+   "R2A-6",
+   "R2A-7"
+  ],
+  "r2a_5_patterns": [
+   "docs/doctrine/reviews/**",
+   "docs/doctrine/*.yaml",
+   "docs/doctrine/*.md"
+  ]
+ },
+ "accepted_surface_sources": [
+  "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+  "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml"
+ ],
+ "shards": [
+  {
+   "path": "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml",
+   "record_count": 80,
+   "content_sha256": "e8ecb67ff50aea3d096088a905508cc7039a45ae76118650943b662d8515cb14",
+   "first_candidate_file_id": "R2A-DISPOSITION-B-0001",
+   "last_candidate_file_id": "R2A-DISPOSITION-B-0080"
+  }
+ ],
+ "candidate_file_count": 80,
+ "counts": {
+  "by_disposition": {
+   "internal_nonauthoritative_pressure_only": 77,
+   "source_local_pressure_only": 3
+  },
+  "by_authority_effect": {
+   "escalation_pressure_only": 1,
+   "implementation_presupposition_only": 44,
+   "no_authority_effect": 32,
+   "source_local_pressure_only": 3
+  },
+  "by_source_local_pressure_class": {
+   "consistent_source_local_evidence": 3,
+   "no_material_relation": 77
+  },
+  "by_pressure_route": {
+   "existing_owner_review": 4,
+   "none": 32,
+   "r4_substrate": 44
+  },
+  "by_top_level_candidate_path_family": {
+   "docs/doctrine/reviews/**": 78,
+   "docs/doctrine/*.yaml": 1,
+   "docs/doctrine/*.md": 1
+  },
+  "mapped_versus_unmapped": {
+   "mapped": 0,
+   "unmapped": 80
+  },
+  "by_matched_search_cluster": {
+   "action_conflict_targeting": 77,
+   "branch_fork_merge_replay": 64,
+   "canon_conversion_cross_phase": 78,
+   "commitment_and_transition": 70,
+   "correction_retcon_supersession": 34,
+   "dependency_and_revalidation": 75,
+   "embodiment_injury_recovery": 63,
+   "environmental_state_process": 59,
+   "evidence_and_provenance": 74,
+   "identity_and_continuity": 64,
+   "reservation_settlement_conservation": 34,
+   "runtime_storage_serialization": 71,
+   "sensing_contact_visibility": 67,
+   "time_and_causality": 15,
+   "truth_knowledge_belief_projection": 74
+  }
+ },
+ "path_family_coverage": [
+  {
+   "path_family": "docs/doctrine/reviews/**",
+   "eligible_candidate_count": 78,
+   "disposition_count": 78,
+   "disposition_ids": [
+    "R2A-DISPOSITION-B-0003",
+    "R2A-DISPOSITION-B-0004",
+    "R2A-DISPOSITION-B-0005",
+    "R2A-DISPOSITION-B-0006",
+    "R2A-DISPOSITION-B-0007",
+    "R2A-DISPOSITION-B-0008",
+    "R2A-DISPOSITION-B-0009",
+    "R2A-DISPOSITION-B-0010",
+    "R2A-DISPOSITION-B-0011",
+    "R2A-DISPOSITION-B-0012",
+    "R2A-DISPOSITION-B-0013",
+    "R2A-DISPOSITION-B-0014",
+    "R2A-DISPOSITION-B-0015",
+    "R2A-DISPOSITION-B-0016",
+    "R2A-DISPOSITION-B-0017",
+    "R2A-DISPOSITION-B-0018",
+    "R2A-DISPOSITION-B-0019",
+    "R2A-DISPOSITION-B-0020",
+    "R2A-DISPOSITION-B-0021",
+    "R2A-DISPOSITION-B-0022",
+    "R2A-DISPOSITION-B-0023",
+    "R2A-DISPOSITION-B-0024",
+    "R2A-DISPOSITION-B-0025",
+    "R2A-DISPOSITION-B-0026",
+    "R2A-DISPOSITION-B-0027",
+    "R2A-DISPOSITION-B-0028",
+    "R2A-DISPOSITION-B-0029",
+    "R2A-DISPOSITION-B-0030",
+    "R2A-DISPOSITION-B-0031",
+    "R2A-DISPOSITION-B-0032",
+    "R2A-DISPOSITION-B-0033",
+    "R2A-DISPOSITION-B-0034",
+    "R2A-DISPOSITION-B-0035",
+    "R2A-DISPOSITION-B-0036",
+    "R2A-DISPOSITION-B-0037",
+    "R2A-DISPOSITION-B-0038",
+    "R2A-DISPOSITION-B-0039",
+    "R2A-DISPOSITION-B-0040",
+    "R2A-DISPOSITION-B-0041",
+    "R2A-DISPOSITION-B-0042",
+    "R2A-DISPOSITION-B-0043",
+    "R2A-DISPOSITION-B-0044",
+    "R2A-DISPOSITION-B-0045",
+    "R2A-DISPOSITION-B-0046",
+    "R2A-DISPOSITION-B-0047",
+    "R2A-DISPOSITION-B-0048",
+    "R2A-DISPOSITION-B-0049",
+    "R2A-DISPOSITION-B-0050",
+    "R2A-DISPOSITION-B-0051",
+    "R2A-DISPOSITION-B-0052",
+    "R2A-DISPOSITION-B-0053",
+    "R2A-DISPOSITION-B-0054",
+    "R2A-DISPOSITION-B-0055",
+    "R2A-DISPOSITION-B-0056",
+    "R2A-DISPOSITION-B-0057",
+    "R2A-DISPOSITION-B-0058",
+    "R2A-DISPOSITION-B-0059",
+    "R2A-DISPOSITION-B-0060",
+    "R2A-DISPOSITION-B-0061",
+    "R2A-DISPOSITION-B-0062",
+    "R2A-DISPOSITION-B-0063",
+    "R2A-DISPOSITION-B-0064",
+    "R2A-DISPOSITION-B-0065",
+    "R2A-DISPOSITION-B-0066",
+    "R2A-DISPOSITION-B-0067",
+    "R2A-DISPOSITION-B-0068",
+    "R2A-DISPOSITION-B-0069",
+    "R2A-DISPOSITION-B-0070",
+    "R2A-DISPOSITION-B-0071",
+    "R2A-DISPOSITION-B-0072",
+    "R2A-DISPOSITION-B-0073",
+    "R2A-DISPOSITION-B-0074",
+    "R2A-DISPOSITION-B-0075",
+    "R2A-DISPOSITION-B-0076",
+    "R2A-DISPOSITION-B-0077",
+    "R2A-DISPOSITION-B-0078",
+    "R2A-DISPOSITION-B-0079",
+    "R2A-DISPOSITION-B-0080"
+   ],
+   "mapped_count": 0,
+   "dismissed_count": 75,
+   "historical_source_local_count": 3
+  },
+  {
+   "path_family": "docs/doctrine/*.yaml",
+   "eligible_candidate_count": 1,
+   "disposition_count": 1,
+   "disposition_ids": [
+    "R2A-DISPOSITION-B-0001"
+   ],
+   "mapped_count": 0,
+   "dismissed_count": 1,
+   "historical_source_local_count": 0
+  },
+  {
+   "path_family": "docs/doctrine/*.md",
+   "eligible_candidate_count": 1,
+   "disposition_count": 1,
+   "disposition_ids": [
+    "R2A-DISPOSITION-B-0002"
+   ],
+   "mapped_count": 0,
+   "dismissed_count": 1,
+   "historical_source_local_count": 0
+  }
+ ],
+ "surface_mapping_coverage": {
+  "mapped_candidate_count": 0,
+  "unmapped_candidate_count": 80,
+  "cross_path_mapped_candidate_count": 0,
+  "same_path_mapped_candidate_count": 0,
+  "unique_mapped_surface_count": 0,
+  "mapping_evidence_count": 0,
+  "status_evidence_count": 66,
+  "blocking_gap_count": 0
+ },
+ "blocking_unmapped_current_authority_candidates": [],
+ "completion_boundary": [
+  "Records the complete deterministic 80-candidate R2A-5 disposition set with no blocking current-authority coverage gap.",
+  "R2A-5 completion does not complete R2A; R2A-6 and R2A-7 remain planned_not_present.",
+  "Aggregate candidate parity remains deferred to R2A-8, and later parity may require corrective amendments.",
+  "No R2B work is authorized."
+ ],
+ "prohibited_inferences": [
+  "No review path, lexical match, surface identifier, prior mapping, count, or status label creates semantic authority.",
+  "No claim, unresolved-question, package, or module assessment occurs; no doctrine, runtime, schema, canon, model, or live-play authority is created."
+ ],
+ "internal_pressure_coverage": {
+  "internal_nonauthoritative_pressure_count": 77,
+  "source_local_pressure_count": 3,
+  "implementation_presupposition_count": 44,
+  "escalation_pressure_count": 1,
+  "no_authority_effect_count": 32
+ }
+}

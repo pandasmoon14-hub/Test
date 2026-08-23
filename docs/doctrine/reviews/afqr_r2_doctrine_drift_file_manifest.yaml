@@ -540,7 +540,7 @@
         "prior dependency partitions"
       ],
       "outputs": [
-        "planned artifact family with index and bounded shards"
+        "complete 80-candidate disposition index and one bounded shard; zero blocking gaps"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -556,7 +556,36 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A-5",
+      "path": "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml",
+      "owner": "R2A-5",
+      "purpose": "bounded current-authority disposition B candidate-file records",
+      "inputs": [
+        "frozen canonical baseline",
+        "controlled lexical discovery",
+        "accepted R2A-2 and R2A-3 surfaces"
+      ],
+      "outputs": [
+        "80 deterministic candidate_file_disposition records"
+      ],
+      "must_not_own": [
+        "semantic surfaces",
+        "doctrine, runtime, schema, canon, model, or live-play authority"
+      ],
+      "dependencies": [
+        "R2A-4 complete"
+      ],
+      "gate_prerequisites": [
+        "none; no gate advances"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "complete"
     },
     {
       "phase": "R2A-6",
@@ -813,7 +842,7 @@
     },
     {
       "partition_id": "R2A-5",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
     },
     {
       "partition_id": "R2A-6",
