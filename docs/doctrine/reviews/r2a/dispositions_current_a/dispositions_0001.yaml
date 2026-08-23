@@ -1,7 +1,7 @@
 {
   "artifact_id": "AFQR-R2A-4-CURRENT-A-DISPOSITION-SHARD-0001",
-  "artifact_version": "0.1.0",
-  "status": "active_incomplete",
+  "artifact_version": "0.1.1",
+  "status": "complete",
   "phase": "R2A-4",
   "authority_effect": "nonauthoritative_candidate_file_disposition",
   "inspected_baseline_commit": "1b70f46718035d5f9395346cbf9eb1208a489698",
@@ -13,20 +13,529 @@
       "inspected_commit": "1b70f46718035d5f9395346cbf9eb1208a489698",
       "baseline_blob_sha": "32b15dd3460551af52341ed324d7a3abeb634a85",
       "controlled_match_count": 2148,
-      "matched_terms": ["action","belief","branch","canon","canonical","commit","commitment","condition","conflict","contact","continuity","conversion","correction","cross-phase","dependency","detection","environment","epistemic","evidence","handoff","hazard","healing","identity","initiative","injury","invalidate","knowledge","lineage","merge","persistence","process","projection","provenance","recovery","release","replay","reservation","resolution","rollback","runtime","schema","sensing","serialization","settlement","stale","storage","target","transition","truth","visibility"],
-      "matched_search_clusters": ["action_conflict_targeting","branch_fork_merge_replay","canon_conversion_cross_phase","commitment_and_transition","correction_retcon_supersession","dependency_and_revalidation","embodiment_injury_recovery","environmental_state_process","evidence_and_provenance","identity_and_continuity","reservation_settlement_conservation","runtime_storage_serialization","sensing_contact_visibility","truth_knowledge_belief_projection"],
-      "representative_locators": [{"locator_kind":"line_range_only","locator_value":null,"line_start":1,"line_end":20,"matched_terms":["action","canon","conversion","handoff","truth"],"matched_search_clusters":[],"semantic_review_note":"Opening status and authority posture used for semantic classification; lexical completeness is separately recomputed across the baseline blob."}],
+      "matched_terms": [
+            "action",
+            "belief",
+            "branch",
+            "canon",
+            "canonical",
+            "commit",
+            "commitment",
+            "condition",
+            "conflict",
+            "contact",
+            "continuity",
+            "conversion",
+            "correction",
+            "cross-phase",
+            "dependency",
+            "detection",
+            "environment",
+            "epistemic",
+            "evidence",
+            "handoff",
+            "hazard",
+            "healing",
+            "identity",
+            "initiative",
+            "injury",
+            "invalidate",
+            "knowledge",
+            "lineage",
+            "merge",
+            "persistence",
+            "process",
+            "projection",
+            "provenance",
+            "recovery",
+            "release",
+            "replay",
+            "reservation",
+            "resolution",
+            "rollback",
+            "runtime",
+            "schema",
+            "sensing",
+            "serialization",
+            "settlement",
+            "stale",
+            "storage",
+            "target",
+            "transition",
+            "truth",
+            "visibility"
+      ],
+      "matched_search_clusters": [
+            "action_conflict_targeting",
+            "branch_fork_merge_replay",
+            "canon_conversion_cross_phase",
+            "commitment_and_transition",
+            "correction_retcon_supersession",
+            "dependency_and_revalidation",
+            "embodiment_injury_recovery",
+            "environmental_state_process",
+            "evidence_and_provenance",
+            "identity_and_continuity",
+            "reservation_settlement_conservation",
+            "runtime_storage_serialization",
+            "sensing_contact_visibility",
+            "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 8,
+                  "line_end": 20,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Repository/run-control and handoff instructions are operational controls, not semantic authority; no additional mapping is warranted and existing repository, conversion, canon, and live-play owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 28,
+                  "line_end": 52,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Pilot extraction, OCR, packet-selection, and handoff controls are bounded operating procedure; no semantic mapping is warranted and source/extraction owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 53,
+                  "line_end": 79,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Parser and backmatter findings are source-local extraction results; no semantic mapping is warranted and donor/source owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 114,
+                  "line_end": 180,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Reconciliation and runtime-boundary audit entries govern review procedure; no additional mapping is warranted and doctrine/runtime owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 212,
+                  "line_end": 307,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Remediation owner-scaffold and Stage 2 planning entries are project-management scaffolds; no mapping is warranted and recorded component owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 308,
+                  "line_end": 416,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Stage 2 owner-specification receipts are gate and planning controls; no additional mapping is warranted and their explicitly recorded owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 417,
+                  "line_end": 557,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Stage 2 closure and deferred convergence receipts are gate history; no additional mapping is warranted and runtime/promotion owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 558,
+                  "line_end": 608,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Executable-kernel authorization sequencing is gate/control material; no semantic mapping is warranted and runtime authorization remains with existing gate owners."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 609,
+                  "line_end": 788,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Model, story, state/event, and narration planning is future implementation planning; no mapping is warranted and model/domain owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 789,
+                  "line_end": 878,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Minimum-backend-kernel planning presupposes future implementation; no semantic mapping is warranted and doctrine/runtime owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 879,
+                  "line_end": 995,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Runtime/schema sequencing and identity-skeleton planning are implementation plans; no mapping is warranted and schema/identity owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 996,
+                  "line_end": 1157,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Command-preview and state/event envelope skeleton receipts are bounded implementation evidence; no additional mapping is warranted and transaction/event owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 1158,
+                  "line_end": 1336,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "RNG and validation skeleton receipts presuppose bounded implementation interfaces; no mapping is warranted and RNG/validation owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 1337,
+                  "line_end": 1526,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Projection, persistence, replay, and trace skeleton receipts are implementation history; no additional mapping is warranted and epistemic/persistence owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 1527,
+                  "line_end": 1661,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Post-kernel review and domain-service sequencing are gate/project-control material; no mapping is warranted and domain-service owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 1662,
+                  "line_end": 1823,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Action-legality planning, implementation, and review receipts are bounded implementation history; no additional mapping is warranted and action-legality owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 1824,
+                  "line_end": 2023,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "State-store/projection planning and skeleton receipts (first bounded segment) are implementation sequencing rather than semantic doctrine; no mapping is warranted and state/projection owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2024,
+                  "line_end": 2074,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "State-store/projection planning and skeleton receipts (second bounded segment) are implementation sequencing rather than semantic doctrine; no mapping is warranted and state/projection owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2075,
+                  "line_end": 2274,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Transaction-lifecycle and event-commitment planning/receipts (first bounded segment) are implementation history; no additional mapping is warranted and transaction/event owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2275,
+                  "line_end": 2381,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Transaction-lifecycle and event-commitment planning/receipts (second bounded segment) are implementation history; no additional mapping is warranted and transaction/event owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2382,
+                  "line_end": 2571,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Validation-integration implementation, planning, and review receipts are operational implementation evidence; no mapping is warranted and validation/invariant owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2572,
+                  "line_end": 2742,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Validation hardening and residual review receipts are operational implementation evidence; no additional mapping is warranted and validation/invariant owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2743,
+                  "line_end": 2915,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Resource/consequence planning and hardening record unresolved future work; no mapping is warranted and resource/consequence owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 2916,
+                  "line_end": 3115,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Residual resource/consequence planning and reviews remain project-control history; no additional mapping is warranted and resource/consequence owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3116,
+                  "line_end": 3155,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Residual resource/consequence planning and reviews remain project-control history; no additional mapping is warranted and resource/consequence owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3156,
+                  "line_end": 3242,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Narrow resource/consequence skeleton implementation is bounded implementation evidence; no generalized semantic mapping is warranted and its existing owner retains authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3243,
+                  "line_end": 3442,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Context compiler and runtime-generalization planning plus scene-command skeleton (first bounded segment) are implementation history; no additional mapping is warranted and domain owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3443,
+                  "line_end": 3460,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Context compiler and runtime-generalization planning plus scene-command skeleton (second bounded segment) are implementation history; no additional mapping is warranted and domain owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3461,
+                  "line_end": 3617,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Scene-command hardening and routing receipts are bounded current-control implementation; no mapping is warranted and command/domain owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3618,
+                  "line_end": 3790,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Validation bridge and transaction-preview control receipts describe bounded implementation flow; no additional mapping is warranted and validation/transaction owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3791,
+                  "line_end": 3861,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Action-legality planning plus state-owner prerequisites and interface hardening are gate/interface controls; no mapping is warranted and action/state owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3862,
+                  "line_end": 3883,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Read-only state-owner facade receipt is bounded implementation evidence; no mapping is warranted and qualified state owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 3930,
+                  "line_end": 4094,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Action-legality prerequisites, skeletons, and integration receipts are bounded current-control work; no additional mapping is warranted and action/validation owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 4095,
+                  "line_end": 4170,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Action interface, preview, and event-commit receipts are narrow implementation history; no additional mapping is warranted and declared component owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 4186,
+                  "line_end": 4270,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "R1 intake, vocabulary, consolidation, and completion entries are gate receipts and accepted-owner history; no new decision-log mapping is warranted and artifact owners retain authority."
+            },
+            {
+                  "locator_kind": "line_range_only",
+                  "locator_value": null,
+                  "line_start": 4271,
+                  "line_end": 4280,
+                  "matched_terms": [],
+                  "matched_search_clusters": [],
+                  "semantic_review_note": "Aggregate R2-0 routing is research-assimilation and gate history; apart from its separately mapped bounded continuity proposition, no semantic mapping is warranted and accepted owners retain authority."
+            }
+      ],
       "disposition": "mixed_mapped_and_dismissed",
-      "mapped_surface_ids": ["R2A-SURFACE-CROSSPHASE-0001"],
-      "semantic_review_summary": "current_decisions_log.md is a current control ledger. Lines 18-20 duplicate accepted surface R2A-SURFACE-CROSSPHASE-0001 by separating conversion permission, canon promotion, and live-play authority. The remaining controlled matches span thousands of heterogeneous decisions and metadata and cannot be justified by lexical similarity; materially distinct current propositions therefore remain a corrective semantic-inventory gap rather than being stretched into unrelated surfaces.",
+      "mapped_surface_ids": [
+            "R2A-SURFACE-CROSSPHASE-0001",
+            "R2A-SURFACE-WORLD-0011",
+            "R2A-SURFACE-WORLD-0022",
+            "R2A-SURFACE-WORLD-0016",
+            "R2A-SURFACE-CORE-0001",
+            "R2A-SURFACE-WORLD-0007",
+            "R2A-SURFACE-CORE-0003",
+            "R2A-SURFACE-CONTINUITY-0001"
+      ],
+      "semantic_review_summary": "current_decisions_log.md is a current control ledger. Bounded proposition-level review maps conversion/canon/live-play separation, donor nonpromotion, hidden-truth containment, legality separation, replay/audit behavior, qualified domain-state routing, ownership nontransfer, and unresolved continuity routing to eight accepted surfaces. Representative locators separately review materially distinct operational, source-local, historical, planning, implementation-presupposition, gate, and current-control families. Lexical discovery selects no surface; all remaining material warrants no additional semantic-authority mapping, and every existing owner retains authority.",
       "source_local_pressure_class": "no_material_relation",
       "authority_effect": "maps_current_authority",
       "pressure_route": "none",
-      "status_evidence": {"locator_kind":"line_range_only","locator_value":null,"line_start":1,"line_end":20,"source_status_summary":"Current decisions log; individual entries are current control decisions, while conversion and donor material do not gain canon authority."},
+      "status_evidence": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 1,
+            "line_end": 20,
+            "source_status_summary": "Current decisions log; individual entries are current control decisions, while conversion and donor material do not gain canon authority."
+      },
       "mapping_evidence": [
-        {"mapped_surface_id":"R2A-SURFACE-CROSSPHASE-0001","candidate_locator":{"locator_kind":"line_range_only","locator_value":null,"line_start":18,"line_end":20},"candidate_proposition":"Conversion permission is distinct from canon permission, which requires review and promotion; donor content is not live-play authority.","mapping_relationship":"duplicates accepted boundary","authority_transfer_effect":"none","evidence_note":"These current decision lines preserve the accepted cross-phase prohibition against conversion or donor material becoming canon/runtime truth; the decision log gains no semantic owner role and no authority over canon promotion."}
+            {
+                  "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 18,
+                        "line_end": 20
+                  },
+                  "candidate_proposition": "Conversion permission is not canon permission, canon permission requires review and promotion, and donor content is not live-play authority.",
+                  "mapping_relationship": "duplicates accepted boundary",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The bounded decision duplicates the accepted conversion/canon/live-play separation; the decision log gains no owner role or authority."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 100,
+                        "line_end": 110
+                  },
+                  "candidate_proposition": "Extraction and conversion progress does not adopt donor mechanics as Astra authority, and donor rules cannot become defaults.",
+                  "mapping_relationship": "governed by accepted surface",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The accepted donor-nonpromotion surface governs this bounded control decision; donor mechanics gain no ownership or authority."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 3884,
+                        "line_end": 3903
+                  },
+                  "candidate_proposition": "Projection packets prevent downstream readers from receiving hidden truth or inferring hidden truth from absence.",
+                  "mapping_relationship": "restates accepted surface",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The bounded projection receipt restates hidden-truth containment while the accepted epistemic and projection owners retain all semantic authority."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-WORLD-0016",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 3905,
+                        "line_end": 3928
+                  },
+                  "candidate_proposition": "The narrow legality reader classifies bounded opportunity information but does not execute, resolve, mutate, commit, or gain general targeting authority.",
+                  "mapping_relationship": "operationalizes without authority transfer",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The implementation receipt operationalizes capability/opportunity/action/target/resolution separation; accepted domain owners retain ownership and authority."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-CORE-0001",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 4171,
+                        "line_end": 4184
+                  },
+                  "candidate_proposition": "The tiny replay and audit check is deterministic and reference-only, not a general replay engine, persistence writer, state reconstruction mechanism, or mutation authority.",
+                  "mapping_relationship": "governed by accepted surface",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The accepted replay identity surface governs this bounded audit behavior; the decision log and tiny check gain no replay owner status or semantic authority."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-WORLD-0007",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 4214,
+                        "line_end": 4219
+                  },
+                  "candidate_proposition": "Qualified domain-state semantics remain with AFQR-10, AFQR-13, and AFQR-17 while AFQR-01 retains only bounded transition, owner-routing, and commitment responsibilities.",
+                  "mapping_relationship": "restates accepted surface",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The correction restates qualified domain-state routing; every named component retains its declared ownership and authority."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 4221,
+                        "line_end": 4229
+                  },
+                  "candidate_proposition": "Consumption, handoff, commitment, scheduling, arbitration, bridge compatibility, storage, and mention do not transfer semantic ownership.",
+                  "mapping_relationship": "restates accepted surface",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The decision restates ownership nontransfer and grants the decision log no owner status or authority over component semantics."
+            },
+            {
+                  "mapped_surface_id": "R2A-SURFACE-CONTINUITY-0001",
+                  "candidate_locator": {
+                        "locator_kind": "line_range_only",
+                        "locator_value": null,
+                        "line_start": 4271,
+                        "line_end": 4280
+                  },
+                  "candidate_proposition": "The R2-0 assimilation keeps eleven continuity owner and representation questions unresolved and routed to later adjudication rather than treating research pressure as doctrine.",
+                  "mapping_relationship": "routes without authority transfer",
+                  "authority_transfer_effect": "none",
+                  "evidence_note": "The bounded routing receipt preserves unresolved continuity qualification under its accepted owner; research and the decision log gain no authority."
+            }
       ]
-    },
+},
     {
       "candidate_file_id": "R2A-DISPOSITION-A-0002",
       "partition_id": "R2A-4",
