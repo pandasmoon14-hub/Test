@@ -1068,3 +1068,213 @@ def test_current_test_prefix_is_exact_accepted_r2a3_bytes():
 test_r2a4_exact_base_scope_status_and_posture = test_r2a4_completed_status_and_posture
 test_index_counts_digest_status_and_genuine_gap_gate = test_completed_index_counts_digest_and_zero_gap_gate
 test_locator_owner_template_and_completion_mutations_fail = test_completed_mapping_and_promotion_mutations_fail
+
+# R2A-5 successor-safe completion receipt and semantic freeze (append-only).
+R2A_5_COMPLETION_BASE = "7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2"
+R2A_5_COMPLETION_BASE_TREE = "e6ae55200ef880dfb1451b3692b35c43072c502f"
+R2A_5_SEMANTIC_HEAD = "8a273e41942caca4a29e5e556edbd695e25fc954"
+R2A_5_SEMANTIC_TREE = "a5b85081b99deffbd6af30448fb9a1f44631d33e"
+R2A_5_COMPLETION_HEAD = "c671eb696b8168ff72778761dd9adaf33060a0ba"
+R2A_5_COMPLETION_TREE = "b28890a01f67263e6aba16e8fb679684ffaed198"
+R2A5_COMPLETION_ARTIFACTS = {
+ "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+ "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+ "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml",
+}
+R2A5_CLEANUP_ARTIFACTS = {
+ "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+ "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+}
+R2A5_COMPLETION_BLOBS = {
+ "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml": "04fc3374a913372985a9ad4507ad348e6e8ee568",
+ "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml": "45544033420aac6dbb6a3c8a9754c173236a18ae",
+ "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml": "0c8fb35b3432355ed02a6480c7e6035f27075ce1",
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml": "a74a84eaa5d7b6af697f878d943b1e890be7a1da",
+ "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml": "586e17ffae831b8d21830cd6992f5160aa6c5e84",
+ "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml": "3c663c6c45e5eef897d63c0bdad9ee20fd0bf4d8",
+}
+R2A5_INDEX = ROOT / "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml"
+R2A5_SHARD = ROOT / "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml"
+R2A5_GENERIC_AUDIT = "This audit, ledger, report, or coordination artifact records review evidence and status without becoming the semantic owner of the propositions it discusses."
+R2A5_GENERIC_STATUS = "The bounded source declaration is preserved as review status evidence; it does not transfer semantic authority."
+R2A5_MAPPING_TABLE = {
+ "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml": {
+  "R2A-SURFACE-CORE-0023", "R2A-SURFACE-WORLD-0005", "R2A-SURFACE-WORLD-0028"},
+ "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml": {
+  "R2A-SURFACE-CONTINUITY-0001"},
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml": {
+  "R2A-SURFACE-CROSSPHASE-0001"},
+}
+
+def r2a5_completion_git(*args):
+ return subprocess.check_output(["git", *args], cwd=ROOT, text=True).strip()
+
+def r2a5_object_exists(commit):
+ return subprocess.run(
+  ["git", "cat-file", "-e", f"{commit}^{{commit}}"], cwd=ROOT,
+  stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+ ).returncode == 0
+
+def r2a5_parents(commit):
+ return r2a5_completion_git("rev-list", "--parents", "-n", "1", commit).split()[1:]
+
+def r2a5_changed(left, right):
+ return set(r2a5_completion_git("diff", "--name-only", left, right).splitlines())
+
+def r2a5_no_deletions(left, right):
+ return not r2a5_completion_git("diff", "--name-only", "--diff-filter=D", left, right)
+
+def r2a5_frozen_blobs(commit=None):
+ if commit is None:
+  return {path: r2a5_completion_git("hash-object", path) for path in R2A5_COMPLETION_ARTIFACTS}
+ return {path: r2a5_completion_git("rev-parse", f"{commit}:{path}") for path in R2A5_COMPLETION_ARTIFACTS}
+
+def resolve_r2a5_completion():
+ if r2a5_object_exists(R2A_5_COMPLETION_HEAD):
+  return (R2A_5_COMPLETION_HEAD, R2A_5_SEMANTIC_HEAD, R2A_5_COMPLETION_BASE), "canonical"
+ for candidate in r2a5_completion_git("rev-list", "--max-count=64", "HEAD").splitlines():
+  if r2a5_completion_git("rev-parse", f"{candidate}^{{tree}}") != R2A_5_COMPLETION_TREE:
+   continue
+  parents = r2a5_parents(candidate)
+  if len(parents) != 1 or r2a5_completion_git("rev-parse", f"{parents[0]}^{{tree}}") != R2A_5_SEMANTIC_TREE:
+   continue
+  semantic = parents[0]; bases = r2a5_parents(semantic)
+  if len(bases) != 1 or r2a5_completion_git("rev-parse", f"{bases[0]}^{{tree}}") != R2A_5_COMPLETION_BASE_TREE:
+   continue
+  base = bases[0]
+  valid = (
+   r2a5_changed(base, candidate) == R2A5_COMPLETION_ARTIFACTS
+   and r2a5_changed(base, semantic) == R2A5_COMPLETION_ARTIFACTS
+   and r2a5_changed(semantic, candidate) == R2A5_CLEANUP_ARTIFACTS
+   and r2a5_no_deletions(base, semantic) and r2a5_no_deletions(semantic, candidate)
+   and r2a5_frozen_blobs(candidate) == R2A5_COMPLETION_BLOBS)
+  if valid:
+   return (candidate, semantic, base), "tree-equivalent"
+ return None, "history-unavailable"
+
+def r2a5_data():
+ index=json.loads(R2A5_INDEX.read_text()); shard=json.loads(R2A5_SHARD.read_text())
+ return index, shard, shard["candidate_file_dispositions"]
+
+def r2a5_mapping_valid(index, records, contract=None, statuses=None, raw_text=None):
+ evidence=[row for record in records for row in record.get("mapping_evidence", [])]
+ for record in records:
+  ids=record.get("mapped_surface_ids", [])
+  rows=record.get("mapping_evidence", [])
+  if set(ids) != {row.get("mapped_surface_id") for row in rows} or len(rows) != len(ids): return False
+  if any(row.get("authority_transfer_effect") != "none" or row.get("mapping_relationship") != "originates accepted surface" for row in rows): return False
+ if index.get("status") == "complete" and index["surface_mapping_coverage"].get("blocking_gap_count") != 0: return False
+ if contract is not None and (contract["project_posture"].get("R2A") != "active_incomplete" or contract["project_posture"].get("R2B") != "blocked"): return False
+ if statuses is not None and statuses.get("R2A-6") != "planned_not_present": return False
+ if raw_text is not None and (R2A5_GENERIC_AUDIT in raw_text or R2A5_GENERIC_STATUS in raw_text): return False
+ return len(evidence) == 5
+
+def test_r2a5_successor_safe_canonical_completion_receipt():
+ chain, mode = resolve_r2a5_completion()
+ if mode == "history-unavailable":
+  import pytest
+  assert (R2A_5_COMPLETION_BASE, R2A_5_COMPLETION_BASE_TREE) == ("7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2", "e6ae55200ef880dfb1451b3692b35c43072c502f")
+  assert (R2A_5_SEMANTIC_HEAD, R2A_5_SEMANTIC_TREE) == ("8a273e41942caca4a29e5e556edbd695e25fc954", "a5b85081b99deffbd6af30448fb9a1f44631d33e")
+  assert (R2A_5_COMPLETION_HEAD, R2A_5_COMPLETION_TREE) == ("c671eb696b8168ff72778761dd9adaf33060a0ba", "b28890a01f67263e6aba16e8fb679684ffaed198")
+  assert set(R2A5_COMPLETION_BLOBS) == R2A5_COMPLETION_ARTIFACTS
+  assert r2a5_frozen_blobs() == R2A5_COMPLETION_BLOBS
+  pytest.skip("canonical R2A-5 completion history is unavailable in this isolated/rematerialized Git snapshot")
+ completion, semantic, base = chain
+ assert r2a5_completion_git("rev-parse", f"{completion}^{{tree}}") == R2A_5_COMPLETION_TREE
+ assert r2a5_completion_git("rev-parse", f"{semantic}^{{tree}}") == R2A_5_SEMANTIC_TREE
+ assert r2a5_completion_git("rev-parse", f"{base}^{{tree}}") == R2A_5_COMPLETION_BASE_TREE
+ assert r2a5_parents(completion) == [semantic] and r2a5_parents(semantic) == [base]
+ assert r2a5_completion_git("rev-list", "--count", f"{base}..{completion}") == "2"
+ assert r2a5_completion_git("show", "-s", "--format=%s", semantic) == "Build corrected R2A-5 disposition inventory"
+ assert r2a5_completion_git("show", "-s", "--format=%s", completion) == "Remove R2A-5 serializer byte drift"
+ assert r2a5_changed(base, semantic) == r2a5_changed(base, completion) == R2A5_COMPLETION_ARTIFACTS
+ assert r2a5_changed(semantic, completion) == R2A5_CLEANUP_ARTIFACTS
+ assert r2a5_no_deletions(base, semantic) and r2a5_no_deletions(semantic, completion)
+ assert r2a5_frozen_blobs(completion) == R2A5_COMPLETION_BLOBS
+ subprocess.check_call(["git", "merge-base", "--is-ancestor", completion, "HEAD"], cwd=ROOT)
+ frozen=json.loads(r2a5_completion_git("show", f"{completion}:{R2A5_INDEX.relative_to(ROOT).as_posix()}")); assert frozen["status"] == "complete"
+ if mode == "canonical": assert chain == (R2A_5_COMPLETION_HEAD, R2A_5_SEMANTIC_HEAD, R2A_5_COMPLETION_BASE)
+
+def test_r2a5_exact_identity_candidate_counts_and_mapping_freeze():
+ index, shard, records=r2a5_data(); effect="nonauthoritative_candidate_file_disposition"
+ assert (index["artifact_id"],index["artifact_version"],index["status"],index["phase"],index["authority_effect"]) == ("AFQR-R2A-5-CURRENT-B-DISPOSITION-INDEX-001","0.1.0","complete","R2A-5",effect)
+ assert (shard["artifact_id"],shard["artifact_version"],shard["status"],shard["phase"],shard["authority_effect"]) == ("AFQR-R2A-5-CURRENT-B-DISPOSITION-SHARD-0001","0.1.0","complete","R2A-5",effect)
+ assert index["inspected_baseline_commit"] == shard["inspected_baseline_commit"] == R2A_5_COMPLETION_BASE
+ assert index["candidate_file_count"] == len(records) == 80
+ ids=[r["candidate_file_id"] for r in records]; paths=[r["path"] for r in records]
+ assert ids == [f"R2A-DISPOSITION-B-{n:04d}" for n in range(1,81)] and len(set(ids)) == 80
+ assert paths == sorted(paths,key=lambda path:path.encode()) and len(set(paths)) == 80
+ assert all(r["partition_id"]=="R2A-5" and r["inspected_commit"]==R2A_5_COMPLETION_BASE and r["controlled_match_count"]>0 and re.fullmatch(r"[0-9a-f]{40}",r["baseline_blob_sha"]) for r in records)
+ assert index["counts"] == {
+  "by_disposition":{"internal_nonauthoritative_pressure_only":77,"mixed_mapped_and_dismissed":3},
+  "by_authority_effect":{"escalation_pressure_only":76,"implementation_presupposition_only":1,"maps_current_authority":3},
+  "by_source_local_pressure_class":{"no_material_relation":80},
+  "by_pressure_route":{"later_gate":77,"none":3},
+  "by_top_level_candidate_path_family":{"docs/doctrine/*.md":1,"docs/doctrine/*.yaml":1,"docs/doctrine/reviews/**":78},
+  "mapped_versus_unmapped":{"mapped":3,"unmapped":77},
+  "by_matched_search_cluster":index["counts"]["by_matched_search_cluster"],}
+ mapped={r["path"]:set(r["mapped_surface_ids"]) for r in records if r["mapped_surface_ids"]}
+ assert mapped == R2A5_MAPPING_TABLE
+
+def test_r2a5_mapping_intersection_summary_status_and_digest_guards():
+ index, shard, records=r2a5_data(); coverage=index["surface_mapping_coverage"]
+ assert coverage == {"mapped_candidate_count":3,"unmapped_candidate_count":77,"cross_path_mapped_candidate_count":0,"same_path_mapped_candidate_count":3,"unique_mapped_surface_count":5,"mapping_evidence_count":5,"status_evidence_count":67,"blocking_gap_count":0}
+ assert index["blocking_unmapped_current_authority_candidates"] == []
+ universe=set()
+ for path in (CORE_SHARD,WORLD_SHARD): universe.update(row["surface_id"] for row in json.loads(path.read_text())["surface_records"])
+ evidence=[row for record in records for row in record["mapping_evidence"]]
+ assert len(evidence)==5 and len({row["mapped_surface_id"] for row in evidence})==5
+ assert all(row["mapped_surface_id"] in universe and row["mapping_relationship"]=="originates accepted surface" and row["authority_transfer_effect"]=="none" for row in evidence)
+ for row in evidence:
+  loc=row["candidate_locator"]
+  assert row["candidate_proposition"].strip() and row["evidence_note"].strip() and 0 < loc["line_start"] <= loc["line_end"] and loc["line_end"]-loc["line_start"] < 200
+ intersections={row["candidate_path"]:set(row["accepted_surface_ids"]) for row in index["accepted_source_path_intersection"]}
+ assert intersections == R2A5_MAPPING_TABLE
+ assert all(row["mapping_decision"]=="originates accepted surface; materially preserved in canonical baseline; no authority transfer" for row in index["accepted_source_path_intersection"])
+ raw=R2A5_SHARD.read_text(); assert R2A5_GENERIC_AUDIT not in raw and R2A5_GENERIC_STATUS not in raw
+ summaries=[]
+ for record in records:
+  value=unicodedata.normalize("NFC",record["semantic_review_summary"]).casefold().replace(record["candidate_file_id"].casefold(),"").replace(record["path"].casefold(),"")
+  summaries.append(" ".join(value.split()))
+ assert all(summaries) and len(set(summaries))==80
+ statuses=[r["status_evidence"] for r in records if r["status_evidence"] is not None]
+ assert len(statuses)==67 and all(isinstance(x["source_status_summary"],str) and x["source_status_summary"].strip() and x["source_status_summary"] != R2A5_GENERIC_STATUS for x in statuses)
+ assert hashlib.sha256(R2A5_SHARD.read_bytes()).hexdigest()==index["shards"][0]["content_sha256"] and index["shards"][0]["record_count"]==80
+ assert r2a5_completion_git("hash-object",str(R2A5_SHARD.relative_to(ROOT)))==R2A5_COMPLETION_BLOBS[str(R2A5_SHARD.relative_to(ROOT))]
+ assert r2a5_completion_git("hash-object",str(R2A5_INDEX.relative_to(ROOT)))==R2A5_COMPLETION_BLOBS[str(R2A5_INDEX.relative_to(ROOT))]
+
+def test_r2a5_completed_status_and_posture():
+ expected={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
+ contract,clusters,partitions,manifest=map(lambda p:json.loads(p.read_text()),(CONTRACT,CLUSTERS,PARTITIONS,FILES))
+ assert contract["r2a_partition_statuses"] == clusters["r2a_partition_statuses"] == expected
+ assert {r["partition_id"]:r["status"] for r in partitions["partitions"]} == expected
+ assert {r["partition_id"]:r["current_status"] for r in manifest["r2a_reconstruction_sequence"]} == expected
+ assert contract["project_posture"] == {"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
+ assert json.loads(CLUSTERS.read_text())["artifact_version"]=="0.1.5" and contract["artifact_version"]=="0.1.6" and partitions["artifact_version"]=="0.2.5"
+ r2a6=next(r for r in partitions["partitions"] if r["partition_id"]=="R2A-6")
+ assert r2a6["status"]=="planned_not_present" and all(not (ROOT/path).exists() for path in r2a6["planned_artifact_paths"])
+
+def test_r2a5_mutation_and_no_authority_transfer_guards():
+ index, shard, records=r2a5_data(); contract=json.loads(CONTRACT.read_text()); statuses=json.loads(CLUSTERS.read_text())["r2a_partition_statuses"]; raw=R2A5_SHARD.read_text()
+ assert r2a5_mapping_valid(index,records,contract,statuses,raw)
+ mapped=next(r for r in records if r["mapped_surface_ids"])
+ mutations=[]
+ bad=copy.deepcopy(records); next(r for r in bad if r["mapped_surface_ids"])["mapped_surface_ids"].pop(); mutations.append((index,bad,contract,statuses,raw))
+ bad=copy.deepcopy(records); next(r for r in bad if r["mapped_surface_ids"])["mapped_surface_ids"].append("R2A-SURFACE-CORE-9999"); mutations.append((index,bad,contract,statuses,raw))
+ bad=copy.deepcopy(records); next(r for r in bad if r["mapping_evidence"])["mapping_evidence"][0]["authority_transfer_effect"]="transfer"; mutations.append((index,bad,contract,statuses,raw))
+ bad=copy.deepcopy(records); next(r for r in bad if r["mapping_evidence"])["mapping_evidence"][0]["mapping_relationship"]="unsupported"; mutations.append((index,bad,contract,statuses,raw))
+ badidx=copy.deepcopy(index); badidx["surface_mapping_coverage"]["blocking_gap_count"]=1; mutations.append((badidx,records,contract,statuses,raw))
+ badc=copy.deepcopy(contract); badc["project_posture"]["R2A"]="complete"; mutations.append((index,records,badc,statuses,raw))
+ bads=copy.deepcopy(statuses); bads["R2A-6"]="complete"; mutations.append((index,records,contract,bads,raw))
+ mutations.extend((index,records,contract,statuses,raw+x) for x in (R2A5_GENERIC_AUDIT,R2A5_GENERIC_STATUS))
+ assert all(not r2a5_mapping_valid(*args) for args in mutations)
+ assert shard["authority_effect"]==index["authority_effect"]=="nonauthoritative_candidate_file_disposition"
+ assert all(row["authority_transfer_effect"]=="none" for record in records for row in record["mapping_evidence"])
+ assert contract["project_posture"]["R2A"]=="active_incomplete" and contract["project_posture"]["R2B"]=="blocked"
+
+# R2A-4 remains complete; its current-posture aliases now follow the R2A-5 successor.
+test_r2a4_completed_status_and_posture = test_r2a5_completed_status_and_posture
+test_r2a4_exact_base_scope_status_and_posture = test_r2a5_completed_status_and_posture
