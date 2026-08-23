@@ -537,10 +537,11 @@
       "owner": "R2A-5",
       "purpose": "current-authority disposition B index and bounded shards",
       "inputs": [
-        "prior dependency partitions"
+        "canonical inspected baseline 7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+        "accepted R2A-2 and R2A-3 semantic surfaces"
       ],
       "outputs": [
-        "planned artifact family with index and bounded shards"
+        "80 disposition records: 3 mapped candidates, 5 same-path accepted-surface mappings, 77 unmapped candidates, and zero blocking gaps"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -556,7 +557,35 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
+    },
+    {
+      "phase": "R2A-5",
+      "path": "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml",
+      "owner": "R2A-5",
+      "purpose": "bounded R2A-5 candidate-file disposition shard",
+      "inputs": [
+        "canonical inspected baseline 7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+        "accepted R2A-2 and R2A-3 semantic surfaces"
+      ],
+      "outputs": [
+        "80 disposition records: 3 mapped candidates, 5 same-path accepted-surface mappings, 77 unmapped candidates, and zero blocking gaps"
+      ],
+      "must_not_own": [
+        "work assigned to other partitions",
+        "unauthorized doctrine or runtime"
+      ],
+      "dependencies": [
+        "as defined by AFQR-R2A-PARTITION-MANIFEST-001"
+      ],
+      "gate_prerequisites": [
+        "prior partitions complete"
+      ],
+      "corpus_scale_pressure": [
+        "bounded sharded review representation"
+      ],
+      "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
+      "current_status": "complete"
     },
     {
       "phase": "R2A-6",
@@ -813,7 +842,7 @@
     },
     {
       "partition_id": "R2A-5",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
     },
     {
       "partition_id": "R2A-6",

@@ -1,0 +1,151 @@
+{
+  "artifact_id": "AFQR-R2A-5-CURRENT-B-DISPOSITION-INDEX-001",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-5",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+  "contract": {
+    "path": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+    "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
+    "artifact_version": "0.1.6"
+  },
+  "controlled_search": {
+    "path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+    "current_artifact_version": "0.1.5"
+  },
+  "partition_manifest": {
+    "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
+    "artifact_version": "0.2.5"
+  },
+  "discovery_provenance": {
+    "inspected_commit": "7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+    "controlled_search_artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+    "controlled_search_artifact_version": "0.1.4",
+    "controlled_search_artifact_path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "controlled_search_artifact_sha256": "b9e745da4d473c465ffdf0bafec26156144a4e625b4a7b437987275f07e54ee7",
+    "hash_algorithm": "sha256_exact_git_blob_bytes_v1"
+  },
+  "partition_assignment": {
+    "rule": "first matching disposition rule after deterministic exclusions",
+    "precedence": [
+      "R2A-4",
+      "R2A-5",
+      "R2A-6",
+      "R2A-7"
+    ],
+    "r2a_5_patterns": [
+      "docs/doctrine/reviews/**",
+      "docs/doctrine/*.yaml",
+      "docs/doctrine/*.md"
+    ]
+  },
+  "accepted_surface_sources": [
+    "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+    "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml"
+  ],
+  "shards": [
+    {
+      "path": "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml",
+      "record_count": 80,
+      "content_sha256": "bdd8ca751c4d8d307684e72b6040ad6b665b5679b6192192869cc488b72f09f2",
+      "first_candidate_file_id": "R2A-DISPOSITION-B-0001",
+      "last_candidate_file_id": "R2A-DISPOSITION-B-0080"
+    }
+  ],
+  "candidate_file_count": 80,
+  "counts": {
+    "by_disposition": {
+      "internal_nonauthoritative_pressure_only": 77,
+      "mixed_mapped_and_dismissed": 3
+    },
+    "by_authority_effect": {
+      "escalation_pressure_only": 76,
+      "implementation_presupposition_only": 1,
+      "maps_current_authority": 3
+    },
+    "by_source_local_pressure_class": {
+      "no_material_relation": 80
+    },
+    "by_pressure_route": {
+      "later_gate": 77,
+      "none": 3
+    },
+    "by_top_level_candidate_path_family": {
+      "docs/doctrine/*.md": 1,
+      "docs/doctrine/*.yaml": 1,
+      "docs/doctrine/reviews/**": 78
+    },
+    "mapped_versus_unmapped": {
+      "mapped": 3,
+      "unmapped": 77
+    },
+    "by_matched_search_cluster": {
+      "action_conflict_targeting": 77,
+      "branch_fork_merge_replay": 64,
+      "canon_conversion_cross_phase": 78,
+      "commitment_and_transition": 70,
+      "correction_retcon_supersession": 34,
+      "dependency_and_revalidation": 75,
+      "embodiment_injury_recovery": 63,
+      "environmental_state_process": 59,
+      "evidence_and_provenance": 74,
+      "identity_and_continuity": 64,
+      "reservation_settlement_conservation": 34,
+      "runtime_storage_serialization": 71,
+      "sensing_contact_visibility": 67,
+      "time_and_causality": 15,
+      "truth_knowledge_belief_projection": 74
+    }
+  },
+  "surface_mapping_coverage": {
+    "mapped_candidate_count": 3,
+    "unmapped_candidate_count": 77,
+    "cross_path_mapped_candidate_count": 0,
+    "same_path_mapped_candidate_count": 3,
+    "unique_mapped_surface_count": 5,
+    "mapping_evidence_count": 5,
+    "status_evidence_count": 67,
+    "blocking_gap_count": 0
+  },
+  "blocking_unmapped_current_authority_candidates": [],
+  "accepted_source_path_intersection": [
+    {
+      "candidate_path": "docs/doctrine/reviews/afqr_r1e_escalation_and_substrate_adjudications.yaml",
+      "accepted_surface_ids": [
+        "R2A-SURFACE-CORE-0023",
+        "R2A-SURFACE-WORLD-0005",
+        "R2A-SURFACE-WORLD-0028"
+      ],
+      "mapping_decision": "originates accepted surface; materially preserved in canonical baseline; no authority transfer"
+    },
+    {
+      "candidate_path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+      "accepted_surface_ids": [
+        "R2A-SURFACE-CONTINUITY-0001"
+      ],
+      "mapping_decision": "originates accepted surface; materially preserved in canonical baseline; no authority transfer"
+    },
+    {
+      "candidate_path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+      "accepted_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "mapping_decision": "originates accepted surface; materially preserved in canonical baseline; no authority transfer"
+    }
+  ],
+  "internal_pressure_coverage": {
+    "internal_nonauthoritative_pressure_count": 77,
+    "source_local_pressure_count": 0,
+    "implementation_presupposition_count": 1,
+    "escalation_pressure_count": 76,
+    "no_authority_effect_count": 0
+  },
+  "completion_boundary": [
+    "R2A-5 review is complete with five accepted same-path surface mappings and zero blocking current-authority gaps.",
+    "R2A remains active_incomplete; R2A-6 through R2A-12 remain planned_not_present and no gate advances.",
+    "No doctrine, runtime, schema, canon, model, live-play, or semantic-owner authority is created or transferred."
+  ]
+}
