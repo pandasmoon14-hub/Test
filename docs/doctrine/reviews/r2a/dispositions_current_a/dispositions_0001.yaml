@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-4-CURRENT-A-DISPOSITION-SHARD-0001",
-  "artifact_version": "0.1.2",
+  "artifact_version": "0.1.1",
   "status": "complete",
   "phase": "R2A-4",
   "authority_effect": "nonauthoritative_candidate_file_disposition",

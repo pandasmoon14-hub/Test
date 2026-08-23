@@ -671,7 +671,7 @@ ACCEPTED_R2A_3_HEAD = "1b70f46718035d5f9395346cbf9eb1208a489698"
 R2A_4_BASE = ACCEPTED_R2A_3_HEAD
 R2A_4_COMPLETION_BASE = "ae37e2044ce7c8e317266a811084867757e699a6"
 ACCEPTED_R2A_4_HEAD = "e971410e0b5d7d8eeda94a5474e9cf799b4cb67a"
-R2A_4_COMPLETION_HEAD = "e3ff55a59ef8afa17df78e5c56d419a51b10f18e"
+R2A_4_COMPLETION_HEAD = "c5111ff2bb609a9a3c2a8b0dc22157c1c0016d87"
 R2A4_INDEX=REV/"r2a/dispositions_current_a/index.yaml"; R2A4_SHARD=REV/"r2a/dispositions_current_a/dispositions_0001.yaml"
 R2A4_AUTHORIZED={"docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml","docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml","docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml","docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml","docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml","docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml","tests/test_afqr_r2a_inventory_contract.py"}
 RELATIONSHIPS={"originates accepted surface","restates accepted surface","governed by accepted surface","operationalizes without authority transfer","routes without authority transfer","duplicates accepted boundary"}
