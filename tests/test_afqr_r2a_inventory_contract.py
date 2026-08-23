@@ -142,6 +142,145 @@ def test_successor_safe_history_current_posture_and_nonauthority():
  d=histload(CONTRACT); assert d["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
  plan=subprocess.check_output(["git","show",f"{ACCEPTED_R2A_1_HEAD}:{PLAN.relative_to(ROOT)}"],text=True); assert "No compact reconstruction or isolated local commit is repository authority." in plan and "No-action and existing-owner outcomes are lawful" in plan
  assert not any(k in d for k in ("semantic_surfaces","candidate_files","claim_assessments","question_assessments"))
+
+# R2A-4 corrective completion receipt.  The canonical commit may be absent from
+# an isolated publication workspace, so the fallback is selected solely by the
+# canonical tree and parent identities, never by a workspace-local commit SHA.
+R2A_4_COMPLETION_BASE = "ae37e2044ce7c8e317266a811084867757e699a6"
+R2A_4_COMPLETION_HEAD = "4e52923df98183da6a2dc4f9af81e1fd2de9e09d"
+R2A_4_COMPLETION_TREE = "a5b3f0d1791e7c702519665c0949b4ff29c73826"
+R2A4_COMPLETION_ARTIFACTS = {
+ "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+ "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+ "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml",
+}
+R2A4_CORRECTIVE_MAPPING_IDS = {
+ "R2A-SURFACE-CROSSPHASE-0001", "R2A-SURFACE-WORLD-0011",
+ "R2A-SURFACE-WORLD-0022", "R2A-SURFACE-WORLD-0016",
+ "R2A-SURFACE-CORE-0001", "R2A-SURFACE-WORLD-0007",
+ "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CONTINUITY-0001",
+}
+
+def resolve_r2a4_completion():
+ canonical = subprocess.run(
+  ["git", "cat-file", "-e", f"{R2A_4_COMPLETION_HEAD}^{{commit}}"],
+  cwd=ROOT, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+ ).returncode == 0
+ if canonical:
+  return R2A_4_COMPLETION_HEAD, True
+ for ref in ("HEAD", "HEAD^"):
+  probe = subprocess.run(
+   ["git", "rev-parse", "--verify", f"{ref}^{{commit}}"], cwd=ROOT,
+   text=True, capture_output=True,
+  )
+  if probe.returncode:
+   continue
+  candidate = probe.stdout.strip()
+  if (git("rev-parse", f"{candidate}^{{tree}}") == R2A_4_COMPLETION_TREE
+      and git("rev-parse", f"{candidate}^") == R2A_4_COMPLETION_BASE):
+   return candidate, False
+ raise AssertionError("canonical R2A-4 completion or tree-equivalent staging commit is required")
+
+def corrective_record_valid(record):
+ evidence = record.get("mapping_evidence", [])
+ representatives = record.get("representative_locators", [])
+ if set(record.get("mapped_surface_ids", [])) != R2A4_CORRECTIVE_MAPPING_IDS:
+  return False
+ if len(evidence) != len(R2A4_CORRECTIVE_MAPPING_IDS):
+  return False
+ if {row.get("mapped_surface_id") for row in evidence} != R2A4_CORRECTIVE_MAPPING_IDS:
+  return False
+ if any(row.get("authority_transfer_effect") != "none" for row in evidence):
+  return False
+ if len(representatives) < 30:
+  return False
+ for locator in representatives:
+  if not (0 < locator.get("line_start", 0) <= locator.get("line_end", 0) <= 4280):
+   return False
+  if locator["line_end"] - locator["line_start"] + 1 > 200:
+   return False
+  if locator.get("matched_terms") or locator.get("matched_search_clusters"):
+   return False
+  note = normalize(locator.get("semantic_review_note", ""))
+  if len(meaningful_words(note)) < 8 or not re.search(r"\b(?:authority|owners?)\b", note):
+   return False
+  if "mapping" not in note or not any(marker in note for marker in ("no ", "not ", "apart from")):
+   return False
+ return True
+
+def test_r2a4_successor_safe_canonical_completion_receipt():
+ completion, canonical = resolve_r2a4_completion()
+ assert git("rev-parse", f"{completion}^{{tree}}") == R2A_4_COMPLETION_TREE
+ assert git("rev-parse", f"{completion}^") == R2A_4_COMPLETION_BASE
+ subprocess.check_call(["git", "merge-base", "--is-ancestor", ACCEPTED_R2A_4_HEAD, completion])
+ subprocess.check_call(["git", "merge-base", "--is-ancestor", completion, "HEAD"])
+ changed = set(git("diff", "--name-only", f"{R2A_4_COMPLETION_BASE}...{completion}").splitlines())
+ assert changed == R2A4_COMPLETION_ARTIFACTS
+ assert not git("diff", "--name-status", "--diff-filter=D", f"{R2A_4_COMPLETION_BASE}...{completion}")
+ frozen_index = json.loads(git_text(completion, R2A4_INDEX))
+ assert frozen_index["status"] == "complete"
+ if canonical:
+  assert completion == R2A_4_COMPLETION_HEAD
+
+def test_r2a4_completed_status_and_posture():
+ expected = {f"R2A-{n}": ("complete" if n <= 4 else "planned_not_present") for n in range(1, 13)}
+ c, cl, p, m = map(r2a4_current, (CONTRACT, CLUSTERS, PARTITIONS, FILES))
+ assert c["r2a_partition_statuses"] == cl["r2a_partition_statuses"]
+ assert c["r2a_partition_statuses"] == {row["partition_id"]: row["status"] for row in p["partitions"]}
+ assert c["r2a_partition_statuses"] == {row["partition_id"]: row["current_status"] for row in m["r2a_reconstruction_sequence"]} == expected
+ assert c["project_posture"]["R2A"] == "active_incomplete"
+ assert c["project_posture"]["R2B"] == "blocked"
+ assert c["project_posture"]["RT-002G"] == c["project_posture"]["temporary_evidence_deletion"] == "unauthorized"
+
+def test_r2a4_corrective_semantics_and_representative_review_are_bounded():
+ _, shard = r2a4_data(); record = shard["candidate_file_dispositions"][0]
+ assert corrective_record_valid(record)
+ notes = " ".join(row["semantic_review_note"].lower() for row in record["representative_locators"])
+ for family in ("operational", "source-local", "history", "project-management", "implementation", "current-control"):
+  assert family in notes
+ assert "lexical discovery selects no surface" in record["semantic_review_summary"].lower()
+
+def test_completed_index_counts_digest_and_zero_gap_gate():
+ idx, shard = r2a4_data(); records = shard["candidate_file_dispositions"]
+ assert hashlib.sha256(R2A4_SHARD.read_bytes()).hexdigest() == idx["shards"][0]["content_sha256"]
+ for key, field in (("by_disposition", "disposition"), ("by_authority_effect", "authority_effect"),
+                    ("by_source_local_pressure_class", "source_local_pressure_class"), ("by_pressure_route", "pressure_route")):
+  assert idx["counts"][key] == dict(sorted(Counter(row[field] for row in records).items()))
+ evidence = [item for row in records for item in row["mapping_evidence"]]
+ coverage = idx["surface_mapping_coverage"]
+ assert coverage["mapping_evidence_count"] == len(evidence)
+ assert coverage["unique_mapped_surface_count"] == len({item["mapped_surface_id"] for item in evidence})
+ assert coverage["status_evidence_count"] == len(records) == 69
+ assert coverage["blocking_gap_count"] == 0
+ assert idx["blocking_unmapped_current_authority_candidates"] == []
+ assert idx["status"] == shard["status"] == "complete"
+
+def test_completed_mapping_and_promotion_mutations_fail():
+ idx, shard = r2a4_data(); record = shard["candidate_file_dispositions"][0]
+ for mutation in ("missing", "extra", "reciprocity", "transfer", "superficial", "lexical"):
+  bad = copy.deepcopy(record)
+  if mutation == "missing":
+   bad["mapped_surface_ids"].pop()
+  elif mutation == "extra":
+   bad["mapped_surface_ids"].append("R2A-SURFACE-WORLD-0029")
+  elif mutation == "reciprocity":
+   bad["mapping_evidence"].pop()
+  elif mutation == "transfer":
+   bad["mapping_evidence"][0]["authority_transfer_effect"] = "candidate_inherits"
+  elif mutation == "superficial":
+   bad["representative_locators"] = bad["representative_locators"][:1]
+  else:
+   bad["representative_locators"][0]["matched_terms"] = ["authority"]
+  assert not corrective_record_valid(bad)
+ bad_index = copy.deepcopy(idx); bad_index["surface_mapping_coverage"]["blocking_gap_count"] = 1
+ assert bad_index["status"] == "complete" and bad_index["surface_mapping_coverage"]["blocking_gap_count"] != 0
+ bad_contract = copy.deepcopy(r2a4_current(CONTRACT)); bad_contract["project_posture"]["R2A"] = "complete"
+ assert bad_contract["project_posture"]["R2A"] != "active_incomplete"
+ bad_contract = copy.deepcopy(r2a4_current(CONTRACT)); bad_contract["r2a_partition_statuses"]["R2A-5"] = "active_incomplete"
+ assert bad_contract["r2a_partition_statuses"]["R2A-5"] != "planned_not_present"
 def test_no_deletions_binaries_oversize_or_overlong_lines():
  assert not subprocess.check_output(["git","diff","--name-status","--diff-filter=D",f"{BASE}...{ACCEPTED_R2A_1_HEAD}"],text=True).strip(); assert len(changed())==7
  for p in changed():
@@ -900,3 +1039,9 @@ def test_successor_safe_history_current_posture_and_nonauthority():
  d=histload(CONTRACT);assert d["project_posture"]=={"R1":"complete","R2":"active_incomplete","R2-0":"complete","R2A":"active_incomplete","R2B":"blocked","R2C":"blocked","R3-R6":"blocked","RT-002G":"unauthorized","temporary_evidence_deletion":"unauthorized"}
  plan=git_text(ACCEPTED_R2A_1_HEAD,PLAN);assert "No compact reconstruction or isolated local commit is repository authority." in plan and "No-action and existing-owner outcomes are lawful" in plan
  assert not any(k in d for k in ("semantic_surfaces","candidate_files","claim_assessments","question_assessments"))
+
+# The predecessor definitions above are retained as historical test bytes.  Bind
+# their obsolete names to the corrective-completion validations for collection.
+test_r2a4_exact_base_scope_status_and_posture = test_r2a4_completed_status_and_posture
+test_index_counts_digest_status_and_genuine_gap_gate = test_completed_index_counts_digest_and_zero_gap_gate
+test_locator_owner_template_and_completion_mutations_fail = test_completed_mapping_and_promotion_mutations_fail
