@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
-  "artifact_version": "0.1.4",
+  "artifact_version": "0.1.5",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_lexical_discovery",
@@ -353,7 +353,7 @@
       "raw_utf8_escaped": "\\ufeffSTRASSE  valid\\t time\\r\\nnext\\n",
       "terms_by_cluster": {
         "case": [
-          "straße"
+          "stra\u00dfe"
         ],
         "phrase": [
           "valid time"
@@ -377,10 +377,10 @@
     {
       "vector_id": "nfc_boundaries_dedup",
       "path": "x.txt",
-      "raw_utf8_escaped": "cafe\\u0301 café identity_identity identity-identity identity/identity\\n",
+      "raw_utf8_escaped": "cafe\\u0301 caf\u00e9 identity_identity identity-identity identity/identity\\n",
       "terms_by_cluster": {
         "accent": [
-          "café"
+          "caf\u00e9"
         ],
         "identity": [
           "identity"
@@ -390,7 +390,7 @@
         [
           "x.txt",
           1,
-          "café",
+          "caf\u00e9",
           "accent"
         ],
         [
@@ -474,7 +474,7 @@
     "R2A-2": "complete",
     "R2A-3": "complete",
     "R2A-4": "complete",
-    "R2A-5": "planned_not_present",
+    "R2A-5": "complete",
     "R2A-6": "planned_not_present",
     "R2A-7": "planned_not_present",
     "R2A-8": "planned_not_present",
