@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-4-CURRENT-A-DISPOSITION-INDEX-001",
-  "artifact_version": "0.1.1",
+  "artifact_version": "0.1.2",
   "status": "complete",
   "phase": "R2A-4",
   "authority_effect": "nonauthoritative_candidate_file_disposition",
@@ -8,17 +8,17 @@
   "contract": {
     "path": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
     "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
-    "artifact_version": "0.1.5"
+    "artifact_version": "0.1.6"
   },
   "controlled_search": {
     "path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
     "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
-    "current_artifact_version": "0.1.4"
+    "current_artifact_version": "0.1.5"
   },
   "partition_manifest": {
     "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
     "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-    "artifact_version": "0.2.4"
+    "artifact_version": "0.2.5"
   },
   "discovery_provenance": {
     "inspected_commit": "1b70f46718035d5f9395346cbf9eb1208a489698",
@@ -53,7 +53,7 @@
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_current_a/dispositions_0001.yaml",
       "record_count": 69,
-      "content_sha256": "a0e58aadb924aa92d17e44f909dd165da0fbf1270ebf9b40dad4ac190b1162ef",
+      "content_sha256": "daf9cde98450ec243015c17a3ddc21ba01598906323575c62ea762d8bc3c4d3c",
       "first_candidate_file_id": "R2A-DISPOSITION-A-0001",
       "last_candidate_file_id": "R2A-DISPOSITION-A-0069"
     }
@@ -250,8 +250,8 @@
     "unmapped_candidate_count": 63,
     "cross_path_mapped_candidate_count": 1,
     "same_path_mapped_candidate_count": 5,
-    "unique_mapped_surface_count": 52,
-    "mapping_evidence_count": 58,
+    "unique_mapped_surface_count": 51,
+    "mapping_evidence_count": 57,
     "status_evidence_count": 69,
     "blocking_gap_count": 0
   },
