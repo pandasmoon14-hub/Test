@@ -1243,8 +1243,9 @@ def test_r2a5_mapping_intersection_summary_status_and_digest_guards():
  statuses=[r["status_evidence"] for r in records if r["status_evidence"] is not None]
  assert len(statuses)==67 and all(isinstance(x["source_status_summary"],str) and x["source_status_summary"].strip() and x["source_status_summary"] != R2A5_GENERIC_STATUS for x in statuses)
  assert hashlib.sha256(R2A5_SHARD.read_bytes()).hexdigest()==index["shards"][0]["content_sha256"] and index["shards"][0]["record_count"]==80
- assert r2a5_completion_git("hash-object",str(R2A5_SHARD.relative_to(ROOT)))==R2A5_COMPLETION_BLOBS[str(R2A5_SHARD.relative_to(ROOT))]
- assert r2a5_completion_git("hash-object",str(R2A5_INDEX.relative_to(ROOT)))==R2A5_COMPLETION_BLOBS[str(R2A5_INDEX.relative_to(ROOT))]
+ shard_rel=R2A5_SHARD.relative_to(ROOT).as_posix(); index_rel=R2A5_INDEX.relative_to(ROOT).as_posix()
+ assert r2a5_completion_git("hash-object",shard_rel)==R2A5_COMPLETION_BLOBS[shard_rel]
+ assert r2a5_completion_git("hash-object",index_rel)==R2A5_COMPLETION_BLOBS[index_rel]
 
 def test_r2a5_completed_status_and_posture():
  expected={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
