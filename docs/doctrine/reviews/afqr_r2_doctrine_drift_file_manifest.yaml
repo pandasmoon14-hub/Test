@@ -596,7 +596,7 @@
         "prior dependency partitions"
       ],
       "outputs": [
-        "planned artifact family with index and bounded shards"
+        "164 disposition records in exactly two shards; mapped and unmapped aggregates are recorded in the index with zero blocking gaps"
       ],
       "must_not_own": [
         "work assigned to other partitions",
@@ -612,7 +612,7 @@
         "bounded sharded review representation"
       ],
       "outlier_escalation_path": "Astra Doctrine Council without owner transfer",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
     },
     {
       "phase": "R2A-7",
@@ -846,7 +846,7 @@
     },
     {
       "partition_id": "R2A-6",
-      "current_status": "planned_not_present"
+      "current_status": "complete"
     },
     {
       "partition_id": "R2A-7",

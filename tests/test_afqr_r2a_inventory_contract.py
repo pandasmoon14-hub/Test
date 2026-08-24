@@ -1481,3 +1481,203 @@ def test_r2a6_capacity_preserves_r2a5_current_posture():
 test_r2a5_completed_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
 test_r2a4_completed_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
 test_r2a4_exact_base_scope_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
+
+# R2A-6 runtime/schema disposition completion validation (successor append-only).
+R2A_6_BASE = "6e9b6f84826b42bef229a333ca80b3bd4ae27055"
+R2A6_INDEX = REV / "r2a/dispositions_runtime_schema/index.yaml"
+R2A6_SHARDS = [REV / f"r2a/dispositions_runtime_schema/dispositions_{n:04d}.yaml" for n in (1, 2)]
+R2A6_AUTHORIZED = {
+ "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+ "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+ "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
+ "tests/test_afqr_r2a_inventory_contract.py",
+}
+
+def r2a6_completion_data():
+ index=json.loads(R2A6_INDEX.read_text(encoding="utf-8"))
+ shards=[json.loads(path.read_text(encoding="utf-8")) for path in R2A6_SHARDS]
+ return index,shards,[row for shard in shards for row in shard["candidate_file_dispositions"]]
+
+def r2a6_baseline_universe():
+ clusters=json.loads(git_blob(R2A_6_BASE,repo_git_path(CLUSTERS)).decode("utf-8"))
+ terms={row["cluster_id"]:row["terms"] for row in clusters["clusters"]}
+ rules=json.loads(PARTITIONS.read_text(encoding="utf-8"))["ownership_rules"]
+ result={}
+ for path in git("ls-tree","-r","--name-only",R2A_6_BASE).splitlines():
+  if assign(path,rules)!="R2A-6": continue
+  raw=git_blob(R2A_6_BASE,path)
+  occurrences=match(path,raw,terms)
+  if occurrences: result[path]=occurrences
+ return result
+
+def test_r2a6_exact_artifacts_baseline_two_shards_and_no_third():
+ index,shards,records=r2a6_completion_data()
+ assert index["artifact_id"]=="AFQR-R2A-6-RUNTIME-SCHEMA-DISPOSITION-INDEX-001"
+ assert [s["artifact_id"] for s in shards]==[f"AFQR-R2A-6-RUNTIME-SCHEMA-DISPOSITION-SHARD-{n:04d}" for n in (1,2)]
+ assert index["inspected_baseline_commit"]==R2A_6_BASE and all(s["inspected_baseline_commit"]==R2A_6_BASE for s in shards)
+ assert not (R2A6_INDEX.parent/"dispositions_0003.yaml").exists()
+ assert len(records)==index["candidate_file_count"]==164
+
+def test_r2a6_deterministic_universe_order_ids_blobs_and_lexical_receipts():
+ index,shards,records=r2a6_completion_data(); universe=r2a6_baseline_universe()
+ assert [r["path"] for r in records]==sorted(universe,key=lambda value:value.encode("utf-8"))
+ assert [r["candidate_file_id"] for r in records]==[f"R2A-DISPOSITION-RS-{n:04d}" for n in range(1,165)]
+ assert len({r["candidate_file_id"] for r in records})==164 and set(universe)=={r["path"] for r in records}
+ for record in records:
+  occurrences=universe[record["path"]]
+  assert record["controlled_match_count"]==len(occurrences)
+  assert record["matched_terms"]==sorted({row[2] for row in occurrences})
+  assert record["matched_search_clusters"]==sorted({row[3] for row in occurrences})
+  assert record["baseline_blob_sha"]==git("rev-parse",f'{R2A_6_BASE}:{record["path"]}')
+  assert record["partition_id"]=="R2A-6" and record["inspected_commit"]==R2A_6_BASE
+ assert not ({r["path"] for r in records}&({r["path"] for r in r2a4_data()[1]["candidate_file_dispositions"]}|{r["path"] for r in r2a5_data()[2]}))
+
+def test_r2a6_shards_aggregates_mappings_and_nonauthority():
+ index,shards,records=r2a6_completion_data()
+ assert [len(s["candidate_file_dispositions"]) for s in shards]==[82,82]
+ for metadata,path,shard in zip(index["shards"],R2A6_SHARDS,shards):
+  assert metadata["path"]==path.relative_to(ROOT).as_posix()
+  assert metadata["record_count"]==len(shard["candidate_file_dispositions"])
+  assert metadata["content_sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()
+ for key,field in (("by_disposition","disposition"),("by_authority_effect","authority_effect"),("by_source_local_pressure_class","source_local_pressure_class"),("by_pressure_route","pressure_route")):
+  assert index["counts"][key]==dict(sorted(Counter(r[field] for r in records).items()))
+ mapped=[r for r in records if r["mapped_surface_ids"]]; evidence=[e for r in records for e in r["mapping_evidence"]]
+ universe={r["surface_id"] for path in (CORE_SHARD,WORLD_SHARD) for r in json.loads(path.read_text(encoding="utf-8"))["surface_records"]}
+ assert index["counts"]["mapped_versus_unmapped"]=={"mapped":len(mapped),"unmapped":len(records)-len(mapped)}
+ assert index["surface_mapping_coverage"]["mapping_evidence_count"]==len(evidence)
+ for record in records:
+  assert set(record["mapped_surface_ids"])=={row["mapped_surface_id"] for row in record["mapping_evidence"]}
+  assert record["source_local_pressure_class"]=="no_material_relation"
+  assert record["semantic_review_summary"].startswith(f'Semantic review of {record["path"]} ')
+  assert all(not locator["matched_terms"] and not locator["matched_search_clusters"] for locator in record["representative_locators"])
+ for row in evidence:
+  assert row["mapped_surface_id"] in universe and row["authority_transfer_effect"]=="none"
+  assert row["mapping_relationship"]=="operationalizes without authority transfer"
+  assert 0<row["candidate_locator"]["line_start"]<=row["candidate_locator"]["line_end"]
+ assert index["surface_mapping_coverage"]["blocking_gap_count"]==0 and index["blocking_unresolved_candidates"]==[]
+
+def test_r2a6_status_versions_posture_and_future_boundary():
+ expected={f"R2A-{n}":("complete" if n<=6 else "planned_not_present") for n in range(1,13)}
+ contract,clusters,partitions,manifest=map(lambda p:json.loads(p.read_text(encoding="utf-8")),(CONTRACT,CLUSTERS,PARTITIONS,FILES))
+ assert contract["r2a_partition_statuses"]==clusters["r2a_partition_statuses"]==expected
+ assert {r["partition_id"]:r["status"] for r in partitions["partitions"]}==expected
+ assert {r["partition_id"]:r["current_status"] for r in manifest["r2a_reconstruction_sequence"]}==expected
+ assert (contract["artifact_version"],clusters["artifact_version"],partitions["artifact_version"])==("0.1.7","0.1.6","0.2.7")
+ assert contract["project_posture"]["R2A"]=="active_incomplete" and contract["project_posture"]["R2B"]=="blocked"
+ assert expected["R2A-7"]=="planned_not_present"
+ row=next(r for r in partitions["partitions"] if r["partition_id"]=="R2A-6")
+ assert row["maximum_changed_files"]==8 and row["maximum_additions"]==5000 and set(row["planned_artifact_paths"])==R2A6_PLANNED_PATHS
+ r2a7=next(r for r in partitions["partitions"] if r["partition_id"]=="R2A-7")
+ assert all(not (ROOT/path).exists() for path in r2a7["planned_artifact_paths"])
+
+def test_r2a6_scope_and_capacity_after_commit():
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A_6_BASE,"HEAD"],cwd=ROOT)
+ changed=set(git("diff","--name-only",f"{R2A_6_BASE}...HEAD").splitlines())
+ assert changed==R2A6_AUTHORIZED and len(changed)<=8
+ assert not any(path.startswith(("src/","schemas/","tests/runtime/")) for path in changed)
+ numstat=git("diff","--numstat",f"{R2A_6_BASE}...HEAD").splitlines()
+ assert sum(int(row.split("\t")[0]) for row in numstat)<=5000 and "-\t-" not in "\n".join(numstat)
+
+def test_r2a6_mapping_count_status_digest_and_transfer_mutations_are_detected():
+ index,shards,records=r2a6_completion_data(); mapped=next(r for r in records if r["mapping_evidence"])
+ bad=copy.deepcopy(mapped);bad["mapping_evidence"][0]["authority_transfer_effect"]="candidate_inherits"
+ assert any(e["authority_transfer_effect"]!="none" for e in bad["mapping_evidence"])
+ bad=copy.deepcopy(mapped);bad["mapped_surface_ids"].pop()
+ assert set(bad["mapped_surface_ids"])!={e["mapped_surface_id"] for e in bad["mapping_evidence"]}
+ bad=copy.deepcopy(index);bad["candidate_file_count"]+=1
+ assert bad["candidate_file_count"]!=len(records)
+ bad=copy.deepcopy(index);bad["shards"][0]["content_sha256"]="0"*64
+ assert bad["shards"][0]["content_sha256"]!=hashlib.sha256(R2A6_SHARDS[0].read_bytes()).hexdigest()
+ bad=copy.deepcopy(index);bad["inspected_baseline_commit"]="0"*40
+ assert bad["inspected_baseline_commit"]!=R2A_6_BASE
+
+# Obsolete predecessor/current-posture names resolve to the R2A-6 successor.
+test_r2a6_capacity_preserves_r2a5_current_posture = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a6_capacity_successor_name_has_unmodified_current_partitions = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a5_completed_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a4_completed_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a4_exact_base_scope_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
+
+# R2A-6 corrective semantic freeze and successor-safe R2A-5 historical posture.
+R2A6_CORRECTED_MAPPING_STREAM_SHA256 = "42e7d8269af07a26f688bf1fe770c7a1e81aa42855afe56c3e1cf234be503e61"
+R2A6_REJECTED_DRAFT_TEMPLATES = (
+ "operationalizes the bounded accepted-owner rule represented by",
+ "was reviewed independently of lexical hits; only explicit mappings below apply",
+ "Semantic review of ",
+)
+
+def test_r2a5_mutation_and_no_authority_transfer_guards():
+ index,shard,records=r2a5_data();raw=R2A5_SHARD.read_text(encoding="utf-8")
+ contract=json.loads(CONTRACT.read_text(encoding="utf-8"))
+ historical_statuses={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
+ assert r2a5_mapping_valid(index,records,contract,historical_statuses,raw)
+ mapped=next(r for r in records if r["mapped_surface_ids"]);mutations=[]
+ bad=copy.deepcopy(records);next(r for r in bad if r["mapped_surface_ids"])["mapped_surface_ids"].pop();mutations.append((index,bad,contract,historical_statuses,raw))
+ bad=copy.deepcopy(records);next(r for r in bad if r["mapping_evidence"])["mapping_evidence"][0]["authority_transfer_effect"]="transfer";mutations.append((index,bad,contract,historical_statuses,raw))
+ bad=copy.deepcopy(records);next(r for r in bad if r["mapping_evidence"])["mapping_evidence"][0]["mapping_relationship"]="unsupported";mutations.append((index,bad,contract,historical_statuses,raw))
+ bad_statuses=copy.deepcopy(historical_statuses);bad_statuses["R2A-6"]="complete";mutations.append((index,records,contract,bad_statuses,raw))
+ bad_contract=copy.deepcopy(contract);bad_contract["project_posture"]["R2A"]="complete";mutations.append((index,records,bad_contract,historical_statuses,raw))
+ mutations.extend((index,records,contract,historical_statuses,raw+text) for text in (R2A5_GENERIC_AUDIT,R2A5_GENERIC_STATUS))
+ assert all(not r2a5_mapping_valid(*args) for args in mutations)
+ assert json.loads(CLUSTERS.read_text(encoding="utf-8"))["r2a_partition_statuses"]["R2A-6"]=="complete"
+ assert all(row["authority_transfer_effect"]=="none" for record in records for row in record["mapping_evidence"])
+
+def test_r2a6_shards_aggregates_mappings_and_nonauthority():
+ index,shards,records=r2a6_completion_data();assert [len(s["candidate_file_dispositions"]) for s in shards]==[82,82]
+ assert index["counts"]["mapped_versus_unmapped"]=={"mapped":13,"unmapped":151}
+ assert index["counts"]["by_disposition"]=={"internal_nonauthoritative_pressure_only":151,"mapped_semantic_surface":13}
+ assert index["counts"]["by_authority_effect"]=={"implementation_presupposition_only":50,"maps_current_authority":13,"no_authority_effect":101}
+ assert index["counts"]["by_pressure_route"]=={"later_gate":101,"none":13,"r3_conformance":34,"r4_substrate":16}
+ mapping_stream="".join(r["path"]+"\t"+",".join(r["mapped_surface_ids"])+"\n" for r in records).encode("utf-8")
+ assert hashlib.sha256(mapping_stream).hexdigest()==R2A6_CORRECTED_MAPPING_STREAM_SHA256
+ accepted={r["surface_id"] for path in (CORE_SHARD,WORLD_SHARD) for r in json.loads(path.read_text(encoding="utf-8"))["surface_records"]}
+ evidence=[row for record in records for row in record["mapping_evidence"]];statuses=[r for r in records if r["status_evidence"] is not None]
+ assert index["surface_mapping_coverage"]=={"mapped_candidate_count":13,"unmapped_candidate_count":151,"cross_path_mapped_candidate_count":13,"same_path_mapped_candidate_count":0,"unique_mapped_surface_count":4,"mapping_evidence_count":14,"status_evidence_count":99,"blocking_gap_count":0}
+ assert len(evidence)==14 and len(statuses)==99
+ assert Counter(row["mapped_surface_id"] for row in evidence)=={"R2A-SURFACE-WORLD-0016":6,"R2A-SURFACE-WORLD-0022":4,"R2A-SURFACE-CORE-0006":3,"R2A-SURFACE-CORE-0003":1}
+ assert not ({"R2A-SURFACE-CORE-0018","R2A-SURFACE-AGENCY-0001"}&{row["mapped_surface_id"] for row in evidence})
+ for metadata,path,shard in zip(index["shards"],R2A6_SHARDS,shards):
+  assert metadata["path"]==path.relative_to(ROOT).as_posix() and metadata["record_count"]==len(shard["candidate_file_dispositions"])
+  assert metadata["content_sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()
+ raw="\n".join(path.read_text(encoding="utf-8") for path in R2A6_SHARDS)
+ assert not any(template in raw for template in R2A6_REJECTED_DRAFT_TEMPLATES)
+ for record in records:
+  assert set(record["mapped_surface_ids"])=={row["mapped_surface_id"] for row in record["mapping_evidence"]}
+  assert record["semantic_review_summary"].strip() and record["representative_locators"]
+  assert all(not locator["matched_terms"] and not locator["matched_search_clusters"] for locator in record["representative_locators"])
+ for row in evidence:
+  assert row["mapped_surface_id"] in accepted and row["authority_transfer_effect"]=="none"
+  locator=row["candidate_locator"];assert 0<locator["line_start"]<=locator["line_end"] and row["candidate_proposition"].strip()
+  assert not row["candidate_proposition"].startswith(("import ","from ")) and row["evidence_note"].strip()
+ assert next(r for r in records if r["path"]=="schemas/handoff/extraction_repair_queue.schema.json")["mapped_surface_ids"]==[]
+
+ assert not any(re.search(r"(?:hasattr|\.exists\(\)| is not None|artifact_type:|file_id:|review_complete: true|__dataclass_fields__)", row["candidate_proposition"], re.I) for row in evidence)
+ known_unmapped={"tests/test_runtime_domain_pr_1_command_lifecycle_action_legality_service_plan.py","tests/test_runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.py","tests/test_runtime_domain_pr_9e_transaction_preview_packet_bridge_skeleton.py"}
+ assert all(not next(r for r in records if r["path"]==path)["mapped_surface_ids"] for path in known_unmapped)
+ generic_unmapped_note="File-specific review found only implementation or validation evidence at this locator. A subsystem name, symbol, type, artifact identifier, existence check, or generic validator does not establish semantic ownership; existing accepted owners retain authority."
+ unmapped=[record for record in records if not record["mapped_surface_ids"]]
+ assert len(unmapped)==151 and all(record["representative_locators"] for record in unmapped)
+ review_notes=[]
+ for record in unmapped:
+  basename=Path(record["path"]).name
+  for locator in record["representative_locators"]:
+   note=locator["semantic_review_note"]
+   assert note.strip() and note!=generic_unmapped_note and basename in note
+   assert not locator["matched_terms"] and not locator["matched_search_clusters"]
+   review_notes.append((record["path"],note))
+ assert len({note for _,note in review_notes})==len(review_notes)
+ for record in (r for r in records if "resource_consequence_math" in r["path"]):
+  assert all(not row["candidate_proposition"].startswith(("import ","from ")) for row in record["mapping_evidence"])
+
+# Successor-safe bounded discovery avoids materializing blobs outside R2A-4.
+def candidates4():
+ out={};rules=r2a4_current(PARTITIONS)["ownership_rules"];terms=terms4()
+ for path in subprocess.check_output(["git","ls-tree","-r","--name-only",R2A_4_BASE],text=True).splitlines():
+  if assign(path,rules)!="R2A-4": continue
+  raw=base4(path)
+  if not excluded(path,raw) and (found:=match(path,raw,terms)): out[path]=found
+ return out

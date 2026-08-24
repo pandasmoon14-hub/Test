@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.6",
+  "artifact_version": "0.2.7",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
@@ -218,7 +218,7 @@
     {
       "partition_id": "R2A-6",
       "title": "Runtime, production schema, and runtime-validation dispositions",
-      "status": "planned_not_present",
+      "status": "complete",
       "owned_artifact_types": [
         "candidate_file_disposition"
       ],
