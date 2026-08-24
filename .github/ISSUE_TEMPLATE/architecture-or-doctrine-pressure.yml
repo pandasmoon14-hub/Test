@@ -1,0 +1,88 @@
+name: Architecture or doctrine pressure
+description: Record evidence that the current framework may be insufficient.
+title: "[Architecture/doctrine pressure] "
+body:
+  - type: markdown
+    attributes:
+      value: |-
+        **Do not invent a new Astra term, semantic owner, substrate, universal
+        mapping, or doctrine merely to complete this form.**
+
+        If existing doctrine supplies a lawful outcome, route the issue there
+        rather than manufacturing a new framework.
+  - type: textarea
+    id: pressure
+    attributes:
+      label: Observed pressure or problem
+    validations:
+      required: true
+  - type: input
+    id: domain
+    attributes:
+      label: Affected subsystem or domain
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: Source of pressure
+      options:
+        - Runtime evidence
+        - Donor-family pressure
+        - Conversion pressure
+        - Live-play evidence
+        - Research
+        - Cross-system interaction
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: control
+    attributes:
+      label: Current owner or control artifact
+      description: Identify it if known; otherwise state unknown.
+    validations:
+      required: true
+  - type: textarea
+    id: insufficiency
+    attributes:
+      label: Why the current framework may be insufficient
+    validations:
+      required: true
+  - type: textarea
+    id: counterexample
+    attributes:
+      label: Concrete counterexample or adversarial scenario
+    validations:
+      required: true
+  - type: dropdown
+    id: classification
+    attributes:
+      label: Apparent pressure classification
+      options:
+        - Implementation-only
+        - Schema-only
+        - Source-local
+        - Possible doctrine gap
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: downstream
+    attributes:
+      label: Known downstream effects
+      description: State known effects, or explicitly say none or unknown.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidence and references
+    validations:
+      required: true
+  - type: textarea
+    id: non_goals
+    attributes:
+      label: Explicit non-goals
+    validations:
+      required: true
