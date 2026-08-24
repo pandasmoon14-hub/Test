@@ -29,8 +29,9 @@ dice outcomes, hidden facts, injuries, rewards, canon, or state changes.
 - `schemas/` — schema families, including extraction/handoff schemas.
 - `tests/` — the pytest suite.
 - `docs/handoff/` and `scripts/` — conversion and handoff contracts/tooling.
-- Root Python tools and `docs/operations/` — Aether Forge operations and
-  historical extraction material.
+- Root Python tools — Aether Forge extraction developer tooling.
+- `docs/operations/` — Aether Forge extraction/handoff operational records and
+  historical near-term notes; these are not general Astra decision authority.
 
 ### Finding current work
 

@@ -11,14 +11,16 @@ repository as only an extraction system.
 1. Resolve current `main` and record the exact commit inspected.
 2. Read the current gate and partition authorities, especially
    `docs/doctrine/control/afqr_r2_doctrine_drift_resolution_plan.md` and
-   `docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml`; never copy a
+   `docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml`, together with
+   `docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml`; never copy a
    transient partition into permanent guidance.
 3. Identify the relevant semantic owner or controlling authority and decide
    whether the requested work is authorized before editing.
-4. Distinguish current doctrine (`docs/doctrine/`), accepted decisions
+4. Distinguish current doctrine (`docs/doctrine/`), decision records
    (`docs/decisions/`), implementation (`src/astra_runtime/`), schemas
-   (`schemas/`), tests (`tests/`), historical/review evidence
-   (`docs/doctrine/reviews/`), and source-local conversion material
+   (`schemas/`), tests (`tests/`), review/evidence material
+   (`docs/doctrine/reviews/`; authority and currentness must be read from each
+   artifact), and conversion/handoff developer material and tooling
    (`docs/handoff/`, `scripts/`, and root extraction tools).
 
 Repository authority, currentness, and phase controls live in their owning
