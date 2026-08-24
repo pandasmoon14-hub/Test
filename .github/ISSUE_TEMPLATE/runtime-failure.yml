@@ -1,0 +1,98 @@
+name: Runtime failure
+description: Record reproducible implementation or runtime failure evidence.
+title: "[Runtime failure] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        This issue records failure evidence. It does not grant authority to
+        change doctrine, semantic ownership, or runtime architecture.
+  - type: input
+    id: summary
+    attributes:
+      label: Failure summary
+      description: Concisely describe the failure.
+    validations:
+      required: true
+  - type: input
+    id: sha
+    attributes:
+      label: Repository SHA
+      placeholder: Full commit SHA
+    validations:
+      required: true
+  - type: textarea
+    id: environment
+    attributes:
+      label: Environment
+      description: Include OS, Python version, and other relevant environment details.
+    validations:
+      required: true
+  - type: input
+    id: area
+    attributes:
+      label: Runtime or test area
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Exact reproduction steps
+      description: Include exact commands and inputs needed to reproduce the failure.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected result
+    validations:
+      required: true
+  - type: textarea
+    id: observed
+    attributes:
+      label: Observed result
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: Exact error or output excerpt
+      render: shell
+    validations:
+      required: true
+  - type: textarea
+    id: persistence
+    attributes:
+      label: Persistence, replay, or state-corruption impact
+      description: State the impact, or explicitly say none or unknown.
+    validations:
+      required: true
+  - type: textarea
+    id: hidden_information
+    attributes:
+      label: Hidden-information impact
+      description: State the impact, or explicitly say none or unknown.
+    validations:
+      required: true
+  - type: dropdown
+    id: deterministic_divergence
+    attributes:
+      label: Did deterministic behavior diverge?
+      options:
+        - "Yes"
+        - "No"
+        - Unknown
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: Tests or scenario IDs involved
+      description: List relevant IDs, or state none.
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Additional evidence
+      description: Add logs, traces, screenshots, or links if available.

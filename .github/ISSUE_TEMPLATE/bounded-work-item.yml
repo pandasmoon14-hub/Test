@@ -1,0 +1,65 @@
+name: Bounded work item
+description: Propose an ordinary repository task with explicit boundaries.
+title: "[Bounded work] "
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        An issue describes proposed work. It does not itself grant
+        implementation authority.
+  - type: textarea
+    id: objective
+    attributes:
+      label: Objective
+      description: State the single bounded outcome.
+    validations:
+      required: true
+  - type: input
+    id: sha
+    attributes:
+      label: Current or base SHA
+      description: Provide the full SHA if known.
+  - type: textarea
+    id: authority
+    attributes:
+      label: Relevant gate or authority reference
+      description: Cite the controlling artifact and current gate, if known.
+    validations:
+      required: true
+  - type: textarea
+    id: scope
+    attributes:
+      label: Intended scope
+    validations:
+      required: true
+  - type: textarea
+    id: out_of_scope
+    attributes:
+      label: Explicitly out of scope
+    validations:
+      required: true
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Expected artifacts or files
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance and validation criteria
+      description: Include expected checks and observable results.
+    validations:
+      required: true
+  - type: textarea
+    id: dependencies
+    attributes:
+      label: Dependencies or blockers
+      description: State dependencies and blockers, or explicitly say none.
+  - type: textarea
+    id: escalation
+    attributes:
+      label: Escalation conditions
+      description: Identify conditions that require stopping and routing the work.
+    validations:
+      required: true
