@@ -1603,7 +1603,7 @@ test_r2a4_completed_status_and_posture = test_r2a6_status_versions_posture_and_f
 test_r2a4_exact_base_scope_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
 
 # R2A-6 corrective semantic freeze and successor-safe R2A-5 historical posture.
-R2A6_CORRECTED_MAPPING_STREAM_SHA256 = "d034127073d886a1a98fd9780563466f8d8519b5d756097680d3d914daa2f4ba"
+R2A6_CORRECTED_MAPPING_STREAM_SHA256 = "42e7d8269af07a26f688bf1fe770c7a1e81aa42855afe56c3e1cf234be503e61"
 R2A6_REJECTED_DRAFT_TEMPLATES = (
  "operationalizes the bounded accepted-owner rule represented by",
  "was reviewed independently of lexical hits; only explicit mappings below apply",
@@ -1628,16 +1628,18 @@ def test_r2a5_mutation_and_no_authority_transfer_guards():
 
 def test_r2a6_shards_aggregates_mappings_and_nonauthority():
  index,shards,records=r2a6_completion_data();assert [len(s["candidate_file_dispositions"]) for s in shards]==[82,82]
- assert index["counts"]["mapped_versus_unmapped"]=={"mapped":60,"unmapped":104}
- assert index["counts"]["by_disposition"]=={"internal_nonauthoritative_pressure_only":104,"mapped_semantic_surface":60}
- assert index["counts"]["by_authority_effect"]=={"implementation_presupposition_only":30,"maps_current_authority":60,"no_authority_effect":74}
- assert index["counts"]["by_pressure_route"]=={"later_gate":74,"none":60,"r3_conformance":14,"r4_substrate":16}
+ assert index["counts"]["mapped_versus_unmapped"]=={"mapped":13,"unmapped":151}
+ assert index["counts"]["by_disposition"]=={"internal_nonauthoritative_pressure_only":151,"mapped_semantic_surface":13}
+ assert index["counts"]["by_authority_effect"]=={"implementation_presupposition_only":50,"maps_current_authority":13,"no_authority_effect":101}
+ assert index["counts"]["by_pressure_route"]=={"later_gate":101,"none":13,"r3_conformance":34,"r4_substrate":16}
  mapping_stream="".join(r["path"]+"\t"+",".join(r["mapped_surface_ids"])+"\n" for r in records).encode("utf-8")
  assert hashlib.sha256(mapping_stream).hexdigest()==R2A6_CORRECTED_MAPPING_STREAM_SHA256
  accepted={r["surface_id"] for path in (CORE_SHARD,WORLD_SHARD) for r in json.loads(path.read_text(encoding="utf-8"))["surface_records"]}
  evidence=[row for record in records for row in record["mapping_evidence"]];statuses=[r for r in records if r["status_evidence"] is not None]
- assert index["surface_mapping_coverage"]=={"mapped_candidate_count":60,"unmapped_candidate_count":104,"cross_path_mapped_candidate_count":60,"same_path_mapped_candidate_count":0,"unique_mapped_surface_count":6,"mapping_evidence_count":65,"status_evidence_count":99,"blocking_gap_count":0}
- assert len(evidence)==65 and len(statuses)==99
+ assert index["surface_mapping_coverage"]=={"mapped_candidate_count":13,"unmapped_candidate_count":151,"cross_path_mapped_candidate_count":13,"same_path_mapped_candidate_count":0,"unique_mapped_surface_count":4,"mapping_evidence_count":14,"status_evidence_count":99,"blocking_gap_count":0}
+ assert len(evidence)==14 and len(statuses)==99
+ assert Counter(row["mapped_surface_id"] for row in evidence)=={"R2A-SURFACE-WORLD-0016":6,"R2A-SURFACE-WORLD-0022":4,"R2A-SURFACE-CORE-0006":3,"R2A-SURFACE-CORE-0003":1}
+ assert not ({"R2A-SURFACE-CORE-0018","R2A-SURFACE-AGENCY-0001"}&{row["mapped_surface_id"] for row in evidence})
  for metadata,path,shard in zip(index["shards"],R2A6_SHARDS,shards):
   assert metadata["path"]==path.relative_to(ROOT).as_posix() and metadata["record_count"]==len(shard["candidate_file_dispositions"])
   assert metadata["content_sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()

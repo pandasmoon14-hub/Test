@@ -52,14 +52,14 @@
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
       "record_count": 82,
-      "content_sha256": "397f6439ff021400a59d1fe316b79d1932f7a3d3387e204c0d7c25faaaed8d57",
+      "content_sha256": "77323644c24816136fb58523a5983457ba8916f18817aa74b01ae67599dd7eba",
       "first_candidate_file_id": "R2A-DISPOSITION-RS-0001",
       "last_candidate_file_id": "R2A-DISPOSITION-RS-0082"
     },
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
       "record_count": 82,
-      "content_sha256": "d9ea1a8b54a0679e367202944efdac19925c989720dc25ebd4566175189a7a76",
+      "content_sha256": "4e91f4fb8267c3fdf8055dac80d6a6da144b5660ddc1a9e06e818ad301575bb4",
       "first_candidate_file_id": "R2A-DISPOSITION-RS-0083",
       "last_candidate_file_id": "R2A-DISPOSITION-RS-0164"
     }
@@ -67,26 +67,26 @@
   "candidate_file_count": 164,
   "counts": {
     "by_disposition": {
-      "internal_nonauthoritative_pressure_only": 104,
-      "mapped_semantic_surface": 60
+      "internal_nonauthoritative_pressure_only": 151,
+      "mapped_semantic_surface": 13
     },
     "by_authority_effect": {
-      "implementation_presupposition_only": 30,
-      "maps_current_authority": 60,
-      "no_authority_effect": 74
+      "implementation_presupposition_only": 50,
+      "maps_current_authority": 13,
+      "no_authority_effect": 101
     },
     "by_source_local_pressure_class": {
       "no_material_relation": 164
     },
     "by_pressure_route": {
-      "later_gate": 74,
-      "none": 60,
-      "r3_conformance": 14,
+      "later_gate": 101,
+      "none": 13,
+      "r3_conformance": 34,
       "r4_substrate": 16
     },
     "mapped_versus_unmapped": {
-      "mapped": 60,
-      "unmapped": 104
+      "mapped": 13,
+      "unmapped": 151
     },
     "by_matched_search_cluster": {
       "action_conflict_targeting": 93,
@@ -106,22 +106,22 @@
     }
   },
   "surface_mapping_coverage": {
-    "mapped_candidate_count": 60,
-    "unmapped_candidate_count": 104,
-    "cross_path_mapped_candidate_count": 60,
+    "mapped_candidate_count": 13,
+    "unmapped_candidate_count": 151,
+    "cross_path_mapped_candidate_count": 13,
     "same_path_mapped_candidate_count": 0,
-    "unique_mapped_surface_count": 6,
-    "mapping_evidence_count": 65,
+    "unique_mapped_surface_count": 4,
+    "mapping_evidence_count": 14,
     "status_evidence_count": 99,
     "blocking_gap_count": 0
   },
   "accepted_source_path_intersection": [],
   "internal_pressure_coverage": {
-    "internal_nonauthoritative_pressure_count": 104,
+    "internal_nonauthoritative_pressure_count": 151,
     "source_local_pressure_count": 0,
-    "implementation_presupposition_count": 30,
+    "implementation_presupposition_count": 50,
     "escalation_pressure_count": 0,
-    "no_authority_effect_count": 74
+    "no_authority_effect_count": 101
   },
   "blocking_unresolved_candidates": [],
   "completion_boundary": [
