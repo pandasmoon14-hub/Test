@@ -1297,19 +1297,6 @@ R2A6_PLANNED_PATHS = {
  "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
 }
 R2A6_PRIOR_PROHIBITIONS = {"adopt doctrine","modify runtime or production schemas","perform work assigned to a later partition"}
-R2A5_HISTORICAL_POSTURE_TESTS = {
- "test_r2a5_completed_status_and_posture",
- "test_r2a4_completed_status_and_posture",
- "test_r2a4_exact_base_scope_status_and_posture",
-}
-
-@pytest.fixture(autouse=True)
-def r2a6_preserve_accepted_r2a5_historical_manifest(request,monkeypatch,tmp_path):
- if request.node.name not in R2A5_HISTORICAL_POSTURE_TESTS: return
- historical=tmp_path/"afqr_r2a_partition_manifest.yaml"
- historical.write_bytes(subprocess.check_output(["git","show",f"{R2A6_CAPACITY_BASE}:docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml"],cwd=ROOT))
- monkeypatch.setitem(globals(),"PARTITIONS",historical)
-
 def r2a6_git(*args): return subprocess.run(["git",*args],cwd=ROOT,text=True,capture_output=True)
 def r2a6_object_exists(commit): return r2a6_git("cat-file","-e",f"{commit}^{{commit}}").returncode==0
 def r2a6_commit_tree(commit): return r2a6_git("rev-parse",f"{commit}^{{tree}}").stdout.strip()
@@ -1342,9 +1329,14 @@ def r2a6_resolve_capacity_amendment():
 def r2a6_manifest_at(commit):
  return json.loads(subprocess.check_output(["git","show",f"{commit}:docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml"],cwd=ROOT,text=True))
 def r2a6_base_manifest(): return r2a6_manifest_at(R2A6_CAPACITY_BASE)
-def r2a6_historical_manifest():
+def r2a6_require_capacity_history():
  mode,commit=r2a6_resolve_capacity_amendment()
- assert commit is not None, "frozen capacity manifest unavailable"
+ if mode=="unavailable":
+  pytest.skip("canonical R2A-6 capacity-amendment history is unavailable in this isolated/rematerialized Git snapshot")
+ return mode,commit
+
+def r2a6_historical_manifest():
+ _,commit=r2a6_require_capacity_history()
  return r2a6_manifest_at(commit)
 def r2a6_row(document): return next(row for row in document["partitions"] if row["partition_id"]=="R2A-6")
 
@@ -1364,8 +1356,7 @@ def r2a6_capacity_valid(document,base=None):
  except (KeyError,StopIteration,TypeError): return False
 
 def test_r2a6_capacity_historical_receipt_and_scope():
- mode,commit=r2a6_resolve_capacity_amendment()
- if mode=="unavailable": pytest.skip("canonical R2A-6 capacity-amendment history is unavailable in this isolated/rematerialized Git snapshot")
+ mode,commit=r2a6_require_capacity_history()
  assert r2a6_capacity_candidate_valid(commit,canonical=mode=="canonical")
  assert r2a6_changed_paths(r2a6_parents(commit)[0],commit)==R2A6_CAPACITY_PATHS
 
@@ -1406,3 +1397,32 @@ def test_r2a6_capacity_historical_validation_is_future_safe():
  r2a6_row(hypothetical)["planned_artifact_paths"].append("docs/doctrine/reviews/r2a/dispositions_runtime_schema/successor_receipt.yaml")
  assert not r2a6_capacity_valid(hypothetical)
  assert r2a6_capacity_valid(r2a6_historical_manifest())
+
+def test_r2a6_capacity_has_no_name_selected_autouse_fixture():
+ assert "r2a6_preserve_accepted_r2a5_historical_manifest" not in globals()
+ assert "R2A5_HISTORICAL_POSTURE_TESTS" not in globals()
+ assert all(not hasattr(value,"_pytestfixturefunction") for name,value in globals().items() if name.startswith("r2a6_"))
+
+def test_r2a6_capacity_successor_name_has_unmodified_current_partitions():
+ original=PARTITIONS
+ def dummy_future_successor():
+  assert PARTITIONS is original
+  return json.loads(PARTITIONS.read_text())["artifact_version"]
+ rebound=dummy_future_successor
+ assert rebound()=="0.2.6" and PARTITIONS is original
+
+def test_r2a6_capacity_preserves_r2a5_current_posture():
+ expected={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
+ contract,clusters,partitions,manifest=map(lambda path:json.loads(path.read_text()),(CONTRACT,CLUSTERS,PARTITIONS,FILES))
+ assert contract["r2a_partition_statuses"]==clusters["r2a_partition_statuses"]==expected
+ assert {row["partition_id"]:row["status"] for row in partitions["partitions"]}==expected
+ assert {row["partition_id"]:row["current_status"] for row in manifest["r2a_reconstruction_sequence"]}==expected
+ assert contract["project_posture"]["R2A"]=="active_incomplete" and contract["project_posture"]["R2B"]=="blocked"
+ assert partitions["artifact_version"]=="0.2.6"
+ row=r2a6_row(partitions)
+ assert (row["status"],row["maximum_changed_files"],row["maximum_additions"])==("planned_not_present",8,5000)
+ assert all(not (ROOT/path).exists() for path in row["planned_artifact_paths"])
+
+test_r2a5_completed_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
+test_r2a4_completed_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
+test_r2a4_exact_base_scope_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
