@@ -40,9 +40,13 @@ jobs:
     name: core-windows
     runs-on: windows-latest
     timeout-minutes: 20
+    env:
+      PYTHONUTF8: "1"
     steps:
-      - name: Enable Git long paths
-        run: git config --global core.longpaths true
+      - name: Configure Git for Windows checkout
+        run: |
+          git config --global core.longpaths true
+          git config --global core.autocrlf false
       - name: Check out repository
         uses: actions/checkout@v6
         with:
