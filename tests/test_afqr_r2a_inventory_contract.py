@@ -1658,6 +1658,18 @@ def test_r2a6_shards_aggregates_mappings_and_nonauthority():
  assert not any(re.search(r"(?:hasattr|\.exists\(\)| is not None|artifact_type:|file_id:|review_complete: true|__dataclass_fields__)", row["candidate_proposition"], re.I) for row in evidence)
  known_unmapped={"tests/test_runtime_domain_pr_1_command_lifecycle_action_legality_service_plan.py","tests/test_runtime_domain_pr_1b_command_lifecycle_action_legality_skeleton_review.py","tests/test_runtime_domain_pr_9e_transaction_preview_packet_bridge_skeleton.py"}
  assert all(not next(r for r in records if r["path"]==path)["mapped_surface_ids"] for path in known_unmapped)
+ generic_unmapped_note="File-specific review found only implementation or validation evidence at this locator. A subsystem name, symbol, type, artifact identifier, existence check, or generic validator does not establish semantic ownership; existing accepted owners retain authority."
+ unmapped=[record for record in records if not record["mapped_surface_ids"]]
+ assert len(unmapped)==151 and all(record["representative_locators"] for record in unmapped)
+ review_notes=[]
+ for record in unmapped:
+  basename=Path(record["path"]).name
+  for locator in record["representative_locators"]:
+   note=locator["semantic_review_note"]
+   assert note.strip() and note!=generic_unmapped_note and basename in note
+   assert not locator["matched_terms"] and not locator["matched_search_clusters"]
+   review_notes.append((record["path"],note))
+ assert len({note for _,note in review_notes})==len(review_notes)
  for record in (r for r in records if "resource_consequence_math" in r["path"]):
   assert all(not row["candidate_proposition"].startswith(("import ","from ")) for row in record["mapping_evidence"])
 
