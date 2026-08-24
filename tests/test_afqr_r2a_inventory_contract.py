@@ -1328,20 +1328,28 @@ def r2a6_resolve_capacity_amendment():
 
 def r2a6_manifest_at(commit):
  return json.loads(subprocess.check_output(["git","show",f"{commit}:docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml"],cwd=ROOT,text=True))
-def r2a6_base_manifest(): return r2a6_manifest_at(R2A6_CAPACITY_BASE)
 def r2a6_require_capacity_history():
  mode,commit=r2a6_resolve_capacity_amendment()
  if mode=="unavailable":
   pytest.skip("canonical R2A-6 capacity-amendment history is unavailable in this isolated/rematerialized Git snapshot")
  return mode,commit
 
+def r2a6_resolved_capacity_chain():
+ mode,commit=r2a6_require_capacity_history()
+ parent=r2a6_parents(commit)[0]
+ return mode,parent,commit
+
+def r2a6_historical_base_manifest():
+ _,parent,_=r2a6_resolved_capacity_chain()
+ return r2a6_manifest_at(parent)
+
 def r2a6_historical_manifest():
- _,commit=r2a6_require_capacity_history()
+ _,_,commit=r2a6_resolved_capacity_chain()
  return r2a6_manifest_at(commit)
 def r2a6_row(document): return next(row for row in document["partitions"] if row["partition_id"]=="R2A-6")
 
 def r2a6_capacity_valid(document,base=None):
- base=base or r2a6_base_manifest()
+ base=base or r2a6_historical_base_manifest()
  try:
   row=r2a6_row(document)
   if document["artifact_id"]!="AFQR-R2A-PARTITION-MANIFEST-001" or document["artifact_version"]!="0.2.6" or document["partition_count"]!=12: return False
@@ -1370,7 +1378,7 @@ def test_r2a6_capacity_historical_manifest_identity_and_nonauthority():
  assert r2a6_capacity_valid(document)
 
 def test_r2a6_capacity_historical_topology_and_structured_envelope():
- base=r2a6_base_manifest(); historical=r2a6_historical_manifest()
+ _,parent,commit=r2a6_resolved_capacity_chain(); base=r2a6_manifest_at(parent); historical=r2a6_manifest_at(commit)
  assert historical["partition_count"]==base["partition_count"]==12
  assert [p["partition_id"] for p in historical["partitions"]]==[p["partition_id"] for p in base["partitions"]]
  assert {p["partition_id"]:p["dependency_partitions"] for p in historical["partitions"]}=={p["partition_id"]:p["dependency_partitions"] for p in base["partitions"]}
@@ -1398,10 +1406,28 @@ def test_r2a6_capacity_historical_validation_is_future_safe():
  assert not r2a6_capacity_valid(hypothetical)
  assert r2a6_capacity_valid(r2a6_historical_manifest())
 
+def r2a6_prohibited_fixture_pattern_present(source):
+ forbidden_fixture="r2a6_preserve_accepted_"+"r2a5_historical_manifest"
+ forbidden_dispatch="R2A5_HISTORICAL_"+"POSTURE_TESTS"
+ autouse_marker="autouse"+"=True"
+ partitions_patch='monkeypatch.setitem(globals(),'+chr(34)+"PARTITIONS"+chr(34)
+ return (forbidden_fixture in source or forbidden_dispatch in source or
+         (autouse_marker in source and partitions_patch in source))
+
 def test_r2a6_capacity_has_no_name_selected_autouse_fixture():
- assert "r2a6_preserve_accepted_r2a5_historical_manifest" not in globals()
- assert "R2A5_HISTORICAL_POSTURE_TESTS" not in globals()
- assert all(not hasattr(value,"_pytestfixturefunction") for name,value in globals().items() if name.startswith("r2a6_"))
+ capacity_source=Path(__file__).read_text().split("# R2A-6 measured-capacity amendment validation",1)[1]
+ # Build the forbidden names so this guard does not make its own source match.
+ forbidden_fixture="r2a6_preserve_accepted_"+"r2a5_historical_manifest"
+ forbidden_dispatch="R2A5_HISTORICAL_"+"POSTURE_TESTS"
+ assert forbidden_fixture not in globals() and forbidden_dispatch not in globals()
+ assert forbidden_fixture not in capacity_source and forbidden_dispatch not in capacity_source
+ assert not r2a6_prohibited_fixture_pattern_present(capacity_source)
+
+def test_r2a6_capacity_allows_harmless_future_fixture():
+ @pytest.fixture
+ def r2a6_future_harmless_fixture(): return "future-safe"
+ assert callable(r2a6_future_harmless_fixture)
+ assert not r2a6_prohibited_fixture_pattern_present("@pytest.fixture\ndef r2a6_future_harmless_fixture(): pass")
 
 def test_r2a6_capacity_successor_name_has_unmodified_current_partitions():
  original=PARTITIONS
@@ -1410,6 +1436,34 @@ def test_r2a6_capacity_successor_name_has_unmodified_current_partitions():
   return json.loads(PARTITIONS.read_text())["artifact_version"]
  rebound=dummy_future_successor
  assert rebound()=="0.2.6" and PARTITIONS is original
+
+def test_r2a6_capacity_resolver_modes_and_wrong_canonical(monkeypatch):
+ monkeypatch.setitem(globals(),"r2a6_object_exists",lambda commit:commit==R2A6_CAPACITY_HEAD)
+ monkeypatch.setitem(globals(),"r2a6_capacity_candidate_valid",lambda commit,canonical=False:commit==R2A6_CAPACITY_HEAD and canonical)
+ assert r2a6_resolve_capacity_amendment()==("canonical",R2A6_CAPACITY_HEAD)
+ monkeypatch.setitem(globals(),"r2a6_capacity_candidate_valid",lambda commit,canonical=False:False)
+ with pytest.raises(AssertionError,match="invalid provenance"): r2a6_resolve_capacity_amendment()
+
+def test_r2a6_capacity_tree_equivalent_chain_uses_actual_parent(monkeypatch):
+ equivalent_parent="1"*40; equivalent_commit="2"*40
+ class Result:
+  returncode=0; stdout=equivalent_commit+"\n"
+ monkeypatch.setitem(globals(),"r2a6_object_exists",lambda commit:False)
+ monkeypatch.setitem(globals(),"r2a6_git",lambda *args:Result())
+ monkeypatch.setitem(globals(),"r2a6_capacity_candidate_valid",lambda commit,canonical=False:commit==equivalent_commit and not canonical)
+ assert r2a6_resolve_capacity_amendment()==("tree_equivalent",equivalent_commit)
+ monkeypatch.setitem(globals(),"r2a6_parents",lambda commit:[equivalent_parent])
+ calls=[]
+ monkeypatch.setitem(globals(),"r2a6_manifest_at",lambda commit:calls.append(commit) or {"resolved":commit})
+ assert r2a6_historical_base_manifest()=={"resolved":equivalent_parent}
+ assert r2a6_historical_manifest()=={"resolved":equivalent_commit}
+ assert calls==[equivalent_parent,equivalent_commit] and R2A6_CAPACITY_BASE not in calls
+
+def test_r2a6_capacity_history_unavailable_skips_before_git_show(monkeypatch):
+ monkeypatch.setitem(globals(),"r2a6_resolve_capacity_amendment",lambda:("unavailable",None))
+ monkeypatch.setitem(globals(),"r2a6_manifest_at",lambda commit:pytest.fail(f"unexpected git show {commit}"))
+ with pytest.raises(pytest.skip.Exception,match="canonical R2A-6 capacity-amendment history is unavailable in this isolated/rematerialized Git snapshot"):
+  r2a6_historical_base_manifest()
 
 def test_r2a6_capacity_preserves_r2a5_current_posture():
  expected={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
