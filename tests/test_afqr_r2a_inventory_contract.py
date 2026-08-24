@@ -1481,3 +1481,123 @@ def test_r2a6_capacity_preserves_r2a5_current_posture():
 test_r2a5_completed_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
 test_r2a4_completed_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
 test_r2a4_exact_base_scope_status_and_posture = test_r2a6_capacity_preserves_r2a5_current_posture
+
+# R2A-6 runtime/schema disposition completion validation (successor append-only).
+R2A_6_BASE = "6e9b6f84826b42bef229a333ca80b3bd4ae27055"
+R2A6_INDEX = REV / "r2a/dispositions_runtime_schema/index.yaml"
+R2A6_SHARDS = [REV / f"r2a/dispositions_runtime_schema/dispositions_{n:04d}.yaml" for n in (1, 2)]
+R2A6_AUTHORIZED = {
+ "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+ "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+ "docs/doctrine/reviews/afqr_r2_doctrine_drift_file_manifest.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
+ "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
+ "tests/test_afqr_r2a_inventory_contract.py",
+}
+
+def r2a6_completion_data():
+ index=json.loads(R2A6_INDEX.read_text(encoding="utf-8"))
+ shards=[json.loads(path.read_text(encoding="utf-8")) for path in R2A6_SHARDS]
+ return index,shards,[row for shard in shards for row in shard["candidate_file_dispositions"]]
+
+def r2a6_baseline_universe():
+ clusters=json.loads(git_blob(R2A_6_BASE,repo_git_path(CLUSTERS)).decode("utf-8"))
+ terms={row["cluster_id"]:row["terms"] for row in clusters["clusters"]}
+ rules=json.loads(PARTITIONS.read_text(encoding="utf-8"))["ownership_rules"]
+ result={}
+ for path in git("ls-tree","-r","--name-only",R2A_6_BASE).splitlines():
+  if assign(path,rules)!="R2A-6": continue
+  raw=git_blob(R2A_6_BASE,path)
+  occurrences=match(path,raw,terms)
+  if occurrences: result[path]=occurrences
+ return result
+
+def test_r2a6_exact_artifacts_baseline_two_shards_and_no_third():
+ index,shards,records=r2a6_completion_data()
+ assert index["artifact_id"]=="AFQR-R2A-6-RUNTIME-SCHEMA-DISPOSITION-INDEX-001"
+ assert [s["artifact_id"] for s in shards]==[f"AFQR-R2A-6-RUNTIME-SCHEMA-DISPOSITION-SHARD-{n:04d}" for n in (1,2)]
+ assert index["inspected_baseline_commit"]==R2A_6_BASE and all(s["inspected_baseline_commit"]==R2A_6_BASE for s in shards)
+ assert not (R2A6_INDEX.parent/"dispositions_0003.yaml").exists()
+ assert len(records)==index["candidate_file_count"]==164
+
+def test_r2a6_deterministic_universe_order_ids_blobs_and_lexical_receipts():
+ index,shards,records=r2a6_completion_data(); universe=r2a6_baseline_universe()
+ assert [r["path"] for r in records]==sorted(universe,key=lambda value:value.encode("utf-8"))
+ assert [r["candidate_file_id"] for r in records]==[f"R2A-DISPOSITION-RS-{n:04d}" for n in range(1,165)]
+ assert len({r["candidate_file_id"] for r in records})==164 and set(universe)=={r["path"] for r in records}
+ for record in records:
+  occurrences=universe[record["path"]]
+  assert record["controlled_match_count"]==len(occurrences)
+  assert record["matched_terms"]==sorted({row[2] for row in occurrences})
+  assert record["matched_search_clusters"]==sorted({row[3] for row in occurrences})
+  assert record["baseline_blob_sha"]==git("rev-parse",f'{R2A_6_BASE}:{record["path"]}')
+  assert record["partition_id"]=="R2A-6" and record["inspected_commit"]==R2A_6_BASE
+ assert not ({r["path"] for r in records}&({r["path"] for r in r2a4_data()[1]["candidate_file_dispositions"]}|{r["path"] for r in r2a5_data()[2]}))
+
+def test_r2a6_shards_aggregates_mappings_and_nonauthority():
+ index,shards,records=r2a6_completion_data()
+ assert [len(s["candidate_file_dispositions"]) for s in shards]==[82,82]
+ for metadata,path,shard in zip(index["shards"],R2A6_SHARDS,shards):
+  assert metadata["path"]==path.relative_to(ROOT).as_posix()
+  assert metadata["record_count"]==len(shard["candidate_file_dispositions"])
+  assert metadata["content_sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()
+ for key,field in (("by_disposition","disposition"),("by_authority_effect","authority_effect"),("by_source_local_pressure_class","source_local_pressure_class"),("by_pressure_route","pressure_route")):
+  assert index["counts"][key]==dict(sorted(Counter(r[field] for r in records).items()))
+ mapped=[r for r in records if r["mapped_surface_ids"]]; evidence=[e for r in records for e in r["mapping_evidence"]]
+ universe={r["surface_id"] for path in (CORE_SHARD,WORLD_SHARD) for r in json.loads(path.read_text(encoding="utf-8"))["surface_records"]}
+ assert index["counts"]["mapped_versus_unmapped"]=={"mapped":len(mapped),"unmapped":len(records)-len(mapped)}
+ assert index["surface_mapping_coverage"]["mapping_evidence_count"]==len(evidence)
+ for record in records:
+  assert set(record["mapped_surface_ids"])=={row["mapped_surface_id"] for row in record["mapping_evidence"]}
+  assert record["source_local_pressure_class"]=="no_material_relation"
+  assert record["semantic_review_summary"].startswith(f'Semantic review of {record["path"]} ')
+  assert all(not locator["matched_terms"] and not locator["matched_search_clusters"] for locator in record["representative_locators"])
+ for row in evidence:
+  assert row["mapped_surface_id"] in universe and row["authority_transfer_effect"]=="none"
+  assert row["mapping_relationship"]=="operationalizes without authority transfer"
+  assert 0<row["candidate_locator"]["line_start"]<=row["candidate_locator"]["line_end"]
+ assert index["surface_mapping_coverage"]["blocking_gap_count"]==0 and index["blocking_unresolved_candidates"]==[]
+
+def test_r2a6_status_versions_posture_and_future_boundary():
+ expected={f"R2A-{n}":("complete" if n<=6 else "planned_not_present") for n in range(1,13)}
+ contract,clusters,partitions,manifest=map(lambda p:json.loads(p.read_text(encoding="utf-8")),(CONTRACT,CLUSTERS,PARTITIONS,FILES))
+ assert contract["r2a_partition_statuses"]==clusters["r2a_partition_statuses"]==expected
+ assert {r["partition_id"]:r["status"] for r in partitions["partitions"]}==expected
+ assert {r["partition_id"]:r["current_status"] for r in manifest["r2a_reconstruction_sequence"]}==expected
+ assert (contract["artifact_version"],clusters["artifact_version"],partitions["artifact_version"])==("0.1.7","0.1.6","0.2.7")
+ assert contract["project_posture"]["R2A"]=="active_incomplete" and contract["project_posture"]["R2B"]=="blocked"
+ assert expected["R2A-7"]=="planned_not_present"
+ row=next(r for r in partitions["partitions"] if r["partition_id"]=="R2A-6")
+ assert row["maximum_changed_files"]==8 and row["maximum_additions"]==5000 and set(row["planned_artifact_paths"])==R2A6_PLANNED_PATHS
+ r2a7=next(r for r in partitions["partitions"] if r["partition_id"]=="R2A-7")
+ assert all(not (ROOT/path).exists() for path in r2a7["planned_artifact_paths"])
+
+def test_r2a6_scope_and_capacity_after_commit():
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A_6_BASE,"HEAD"],cwd=ROOT)
+ changed=set(git("diff","--name-only",f"{R2A_6_BASE}...HEAD").splitlines())
+ assert changed==R2A6_AUTHORIZED and len(changed)<=8
+ assert not any(path.startswith(("src/","schemas/","tests/runtime/")) for path in changed)
+ numstat=git("diff","--numstat",f"{R2A_6_BASE}...HEAD").splitlines()
+ assert sum(int(row.split("\t")[0]) for row in numstat)<=5000 and "-\t-" not in "\n".join(numstat)
+
+def test_r2a6_mapping_count_status_digest_and_transfer_mutations_are_detected():
+ index,shards,records=r2a6_completion_data(); mapped=next(r for r in records if r["mapping_evidence"])
+ bad=copy.deepcopy(mapped);bad["mapping_evidence"][0]["authority_transfer_effect"]="candidate_inherits"
+ assert any(e["authority_transfer_effect"]!="none" for e in bad["mapping_evidence"])
+ bad=copy.deepcopy(mapped);bad["mapped_surface_ids"].pop()
+ assert set(bad["mapped_surface_ids"])!={e["mapped_surface_id"] for e in bad["mapping_evidence"]}
+ bad=copy.deepcopy(index);bad["candidate_file_count"]+=1
+ assert bad["candidate_file_count"]!=len(records)
+ bad=copy.deepcopy(index);bad["shards"][0]["content_sha256"]="0"*64
+ assert bad["shards"][0]["content_sha256"]!=hashlib.sha256(R2A6_SHARDS[0].read_bytes()).hexdigest()
+ bad=copy.deepcopy(index);bad["inspected_baseline_commit"]="0"*40
+ assert bad["inspected_baseline_commit"]!=R2A_6_BASE
+
+# Obsolete predecessor/current-posture names resolve to the R2A-6 successor.
+test_r2a6_capacity_preserves_r2a5_current_posture = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a6_capacity_successor_name_has_unmodified_current_partitions = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a5_completed_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a4_completed_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
+test_r2a4_exact_base_scope_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary

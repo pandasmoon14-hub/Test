@@ -1,0 +1,132 @@
+{
+  "artifact_id": "AFQR-R2A-6-RUNTIME-SCHEMA-DISPOSITION-INDEX-001",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-6",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "6e9b6f84826b42bef229a333ca80b3bd4ae27055",
+  "contract": {
+    "path": "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
+    "artifact_id": "AFQR-R2A-INVENTORY-CONTRACT-001",
+    "artifact_version": "0.1.7"
+  },
+  "controlled_search": {
+    "path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+    "current_artifact_version": "0.1.6"
+  },
+  "partition_manifest": {
+    "path": "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
+    "artifact_version": "0.2.7"
+  },
+  "discovery_provenance": {
+    "inspected_commit": "6e9b6f84826b42bef229a333ca80b3bd4ae27055",
+    "controlled_search_artifact_id": "AFQR-R2A-CONTROLLED-SEARCH-CLUSTERS-001",
+    "controlled_search_artifact_version": "0.1.5",
+    "controlled_search_artifact_path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "controlled_search_artifact_sha256": "5433f0905a766bc15fb84d59c76609e0cc381ffc74cf3ca98d284da79d761073",
+    "hash_algorithm": "sha256_exact_git_blob_bytes_v1"
+  },
+  "partition_assignment": {
+    "rule": "first matching disposition rule after deterministic exclusions",
+    "precedence": [
+      "R2A-4",
+      "R2A-5",
+      "R2A-6",
+      "R2A-7"
+    ],
+    "r2a_6_patterns": [
+      "src/**",
+      "schemas/**",
+      "tests/runtime/**",
+      "tests/test_runtime_*.py",
+      "tests/test_*runtime*.py"
+    ]
+  },
+  "accepted_surface_sources": [
+    "docs/doctrine/reviews/r2a/semantic_core_agency/surfaces_0001.yaml",
+    "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml"
+  ],
+  "shards": [
+    {
+      "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
+      "record_count": 82,
+      "content_sha256": "2f85a709ead23bfd5e55add3ff21260a1bb8cdf503738efed0b9b4e817f39b81",
+      "first_candidate_file_id": "R2A-DISPOSITION-RS-0001",
+      "last_candidate_file_id": "R2A-DISPOSITION-RS-0082"
+    },
+    {
+      "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
+      "record_count": 82,
+      "content_sha256": "226c53d41b4fb8213277b250d757670e34c091ae334dcd7245086b7d78139722",
+      "first_candidate_file_id": "R2A-DISPOSITION-RS-0083",
+      "last_candidate_file_id": "R2A-DISPOSITION-RS-0164"
+    }
+  ],
+  "candidate_file_count": 164,
+  "counts": {
+    "by_disposition": {
+      "internal_nonauthoritative_pressure_only": 60,
+      "mapped_semantic_surface": 104
+    },
+    "by_authority_effect": {
+      "implementation_presupposition_only": 26,
+      "maps_current_authority": 104,
+      "no_authority_effect": 34
+    },
+    "by_source_local_pressure_class": {
+      "no_material_relation": 164
+    },
+    "by_pressure_route": {
+      "later_gate": 34,
+      "none": 104,
+      "r3_conformance": 11,
+      "r4_substrate": 15
+    },
+    "mapped_versus_unmapped": {
+      "mapped": 104,
+      "unmapped": 60
+    },
+    "by_matched_search_cluster": {
+      "action_conflict_targeting": 93,
+      "branch_fork_merge_replay": 99,
+      "canon_conversion_cross_phase": 85,
+      "commitment_and_transition": 107,
+      "correction_retcon_supersession": 10,
+      "dependency_and_revalidation": 53,
+      "embodiment_injury_recovery": 40,
+      "environmental_state_process": 32,
+      "evidence_and_provenance": 36,
+      "identity_and_continuity": 60,
+      "reservation_settlement_conservation": 40,
+      "runtime_storage_serialization": 163,
+      "sensing_contact_visibility": 60,
+      "truth_knowledge_belief_projection": 87
+    }
+  },
+  "surface_mapping_coverage": {
+    "mapped_candidate_count": 104,
+    "unmapped_candidate_count": 60,
+    "cross_path_mapped_candidate_count": 104,
+    "same_path_mapped_candidate_count": 0,
+    "unique_mapped_surface_count": 7,
+    "mapping_evidence_count": 114,
+    "status_evidence_count": 0,
+    "blocking_gap_count": 0
+  },
+  "accepted_source_path_intersection": [],
+  "internal_pressure_coverage": {
+    "internal_nonauthoritative_pressure_count": 60,
+    "source_local_pressure_count": 0,
+    "implementation_presupposition_count": 26,
+    "escalation_pressure_count": 0,
+    "no_authority_effect_count": 34
+  },
+  "blocking_unresolved_candidates": [],
+  "completion_boundary": [
+    "R2A-6 runtime, production-schema, and runtime-validation candidate review is complete with no blocking gaps.",
+    "R2A remains active_incomplete; R2A-7 through R2A-12 remain planned_not_present and R2B remains blocked.",
+    "No doctrine, runtime implementation, production schema, canon, live-play authority, or semantic ownership is created or transferred."
+  ]
+}
