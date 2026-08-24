@@ -1,0 +1,1473 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0001",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0001",
+      "partition_id": "R2A-7",
+      "path": ".github/ISSUE_TEMPLATE/architecture-or-doctrine-pressure.yml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "592ef905be818bad4bcd9e909803016551b43531",
+      "controlled_match_count": 8,
+      "matched_terms": [
+        "conversion",
+        "evidence",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 7,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "architecture-or-doctrine-pressure.yml lines 7-12 were inspected for the form’s anti-invention instruction. The passage makes the template a routing aid rather than a semantic decision, so it creates no additional accepted surface and leaves doctrine and owner determinations with their controlling artifacts."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The architecture-or-doctrine-pressure issue form is an intake checklist that requires reporters to route insufficiency evidence without manufacturing terms, owners, substrates, mappings, or doctrine; it records governance pressure but does not itself settle that pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0002",
+      "partition_id": "R2A-7",
+      "path": ".github/ISSUE_TEMPLATE/config.yml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "64eb98dc30a6f8b8eec79b05f6fc93c8cee3b75a",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "contact"
+      ],
+      "matched_search_clusters": [
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 2,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "config.yml consists of two GitHub issue-configuration settings, including an empty contact_links value. That UI setting establishes no domain meaning for contact, so no accepted sensing surface applies and semantic authority remains with the accepted WORLD owners."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The issue-template configuration merely enables blank issues and supplies an empty contact-link list; the lexical contact hit is a GitHub configuration key with no sensing, epistemic, or semantic-owner proposition.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0003",
+      "partition_id": "R2A-7",
+      "path": ".github/ISSUE_TEMPLATE/runtime-failure.yml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e55bd8c030dfe4ca67af82f8aa7f7252458f7c91",
+      "controlled_match_count": 16,
+      "matched_terms": [
+        "commit",
+        "environment",
+        "evidence",
+        "persistence",
+        "replay",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 9,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "runtime-failure.yml lines 1-9 identify a reproducible runtime-failure evidence form and expressly deny it authority to alter doctrine, ownership, or architecture. Consequently the form does not add a semantic surface; doctrine and runtime owners remain controlling."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The runtime-failure issue form gathers reproducibility and implementation evidence while expressly denying authority to change doctrine, semantic ownership, or runtime architecture; it is operational failure intake governed by existing control authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 8,
+        "line_end": 9,
+        "source_status_summary": "The form explicitly says its failure evidence does not grant authority to change doctrine, semantic ownership, or runtime architecture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0004",
+      "partition_id": "R2A-7",
+      "path": ".github/pull_request_template.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0d2ef161b01828e1c8206d425e689f6ae0ffb13e",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "branch",
+        "canon",
+        "conversion",
+        "environment",
+        "handoff",
+        "knowledge",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 25,
+          "line_end": 30,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "pull_request_template.md lines 25-30 ask for authorization evidence and state that opening an issue or PR grants no implementation or doctrine authority. This procedural checklist therefore adds no accepted semantic proposition and leaves authorization with the referenced control artifacts."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The pull-request template prompts contributors to record baseline, scope, authorization, and anti-drift checks; its workflow questions constrain submissions but neither adjudicate semantic ownership nor grant doctrine or implementation authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 30,
+        "line_end": 30,
+        "source_status_summary": "The template explicitly declares that opening an issue or PR does not itself grant implementation or doctrine authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0005",
+      "partition_id": "R2A-7",
+      "path": ".gitignore",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "2568b82f8b2f1022147cd552a4a208952a525286",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "environment"
+      ],
+      "matched_search_clusters": [
+        "environmental_state_process"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": ".gitignore lines 13-16 were reviewed as the Environment ignore section for .env files. That repository-hygiene grouping does not describe domain environmental state, so no semantic mapping is warranted and accepted WORLD authority remains untouched."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The gitignore file enumerates dependency, coverage, environment, log, temporary, OS, IDE, and build-output paths; “Environment” is only a comment grouping ignored .env files and carries no WORLD environment semantics.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0006",
+      "partition_id": "R2A-7",
+      "path": "AGENTS.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "081180e1fce0cb892612d823f769a8a9c33887ed",
+      "controlled_match_count": 40,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "commit",
+        "commitment",
+        "conflict",
+        "conversion",
+        "dependency",
+        "embodiment",
+        "environment",
+        "evidence",
+        "handoff",
+        "identity",
+        "knowledge",
+        "merge",
+        "projection",
+        "resolution",
+        "runtime",
+        "schema",
+        "sensing",
+        "serialization",
+        "storage",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 35,
+          "line_end": 45,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "AGENTS.md lines 35-45 state that deterministic owners hold authoritative state and that donor assumptions or conversion output must not become universal law or canon. This operational restatement is governed by accepted nontransfer and donor-nonpromotion surfaces; it does not create a new owner or authority."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "AGENTS.md is the repository operating map: it separates doctrine, decisions, implementation, schemas, review evidence, and conversion tooling and states anti-collapse authority boundaries for agent work.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 37,
+            "line_end": 45
+          },
+          "candidate_proposition": "The operating map assigns authoritative state to deterministic owners and prohibits conversion output from becoming canon merely through handling or mention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENTS.md applies the accepted rule that storage, conversion, or mention cannot transfer semantic ownership; the accepted CORE surface remains authoritative and the navigation file acquires none."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 45,
+            "line_end": 46
+          },
+          "candidate_proposition": "The operating map prohibits donor assumptions from becoming universal Astra law and conversion output from becoming canon.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This candidate passage directly restates the accepted donor-nonpromotion invariant, while R2A-SURFACE-WORLD-0011 and its declared owners remain controlling."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 26,
+        "line_end": 27,
+        "source_status_summary": "The map explicitly says repository authority and currentness live in their owning artifacts, making the map subordinate navigation rather than the status authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0007",
+      "partition_id": "R2A-7",
+      "path": "CLAUDE.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "05e7395f3007c7325915f4d18bb3bbbe87212867",
+      "controlled_match_count": 2,
+      "matched_terms": [
+        "canonical",
+        "identity"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "identity_and_continuity"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 5,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "CLAUDE.md lines 5-12 direct readers to AGENTS.md and controlling artifacts, then deny the compatibility note status authority. That navigation role establishes no additional semantic surface and preserves control authority in the named owners."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "CLAUDE.md is a compatibility pointer directing tools to AGENTS.md and the owning control manifests; it explicitly rejects status authority for itself and treats historical extraction material as subordinate.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 8,
+        "line_end": 12,
+        "source_status_summary": "The compatibility note explicitly says it is not status authority and labels historical Aether Forge material subordinate tooling/history."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0008",
+      "partition_id": "R2A-7",
+      "path": "README.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3b2c4407c256a99cd0ec5e118f2ef2811342656d",
+      "controlled_match_count": 45,
+      "matched_terms": [
+        "canon",
+        "canonical",
+        "commit",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "identity",
+        "lineage",
+        "process",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 17,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "README.md lines 12-17 separate framework design, conversion, canon consolidation, and live play, and prohibit donor material from becoming universal law by conversion. This is governed by the accepted donor-nonpromotion surface and transfers no authority to the README."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "README.md describes the mixed doctrine/runtime/tooling repository and its conversion-to-canon firewall; its donor nonpromotion explanation restates an accepted invariant while the README disclaims gate authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 14,
+            "line_end": 17
+          },
+          "candidate_proposition": "Donor material may create evidence and design pressure, but does not become universal Astra law, and conversion output is not canon without promotion.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "README.md directly restates the accepted prohibition on implied donor-law promotion; R2A-SURFACE-WORLD-0011 remains the authority and the descriptive README gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 36,
+        "line_end": 39,
+        "source_status_summary": "The README explicitly calls itself descriptive rather than gate authority and directs current-status resolution to controlling artifacts."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0009",
+      "partition_id": "R2A-7",
+      "path": "V13_STABILIZATION.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "cebae4eff9588c062779c854c2e01559bbd38c11",
+      "controlled_match_count": 2,
+      "matched_terms": [
+        "branch",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 9,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "V13_STABILIZATION.md describes a branch that preserves v13 audit, validation, and fixture utilities plus disposition propagation. This bounded historical tooling note does not establish a current accepted semantic surface; current Astra owners and controls remain authoritative."
+        }
+      ],
+      "disposition": "historical_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "V13_STABILIZATION.md is a short historical branch note identifying preserved Aether Forge stabilization artifacts and fixture tooling, not current Astra semantic doctrine.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "historical_context_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "The note explicitly describes a branch preserving v13 stabilization artifacts and fixture tooling."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0010",
+      "partition_id": "R2A-7",
+      "path": "acceptance_corpus.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a45efbfb55e38e5b6237c5883822df477af40925",
+      "controlled_match_count": 7,
+      "matched_terms": [
+        "continuity",
+        "environment",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "environmental_state_process",
+        "identity_and_continuity",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "acceptance_corpus.py lines 1-12 define an Aether Forge acceptance scanner and import mechanics-vocabulary helpers. The executable’s extraction-output classification role does not define Astra truth, continuity, or environment semantics, so accepted domain owners remain controlling."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "acceptance_corpus.py implements a data-driven scanner for extraction-produced Markdown, scoring mechanics vocabulary and document signals; it is conversion-quality tooling rather than domain doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0011",
+      "partition_id": "R2A-7",
+      "path": "build_forge.sh",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "12c7a9e6d11cadba6bc5690e3898d7ba2cde1632",
+      "controlled_match_count": 16,
+      "matched_terms": [
+        "dependency",
+        "environment",
+        "release",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "build_forge.sh lines 1-10 state its deterministic local extraction-build goals: isolated virtual environments, reproducible lockfiles, and smoke checks. Those mechanics govern developer tooling only, establish no domain surface, and leave semantic ownership with accepted Astra authorities."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "build_forge.sh provisions isolated extraction environments, lockfiles, and smoke checks for Aether Forge’s PDF-to-Markdown lanes; package and shell environment terminology is build infrastructure, not semantic authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0012",
+      "partition_id": "R2A-7",
+      "path": "configs/handoff/donor_family_templates.yaml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7aa97944cd18f2a61e88461fa7fe1af276f5b656",
+      "controlled_match_count": 107,
+      "matched_terms": [
+        "action",
+        "canon",
+        "chronology",
+        "condition",
+        "conflict",
+        "conversion",
+        "dependency",
+        "detection",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "injury",
+        "lineage",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "time_and_causality"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 2,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "donor_family_templates.yaml lines 2-14 define a d20 fantasy detection template and explicitly direct class-feature naming to remain source-local unless generalized. This is conversion routing metadata, not an accepted semantic-owner proposition, so the conversion/runtime and doctrine boundaries remain intact."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "donor_family_templates.yaml configures conversion detection, extraction risks, packet selection, quarantine, and review hints across donor families; its source-local labels guide offline handoff and do not adopt donor mechanics as Astra doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0013",
+      "partition_id": "R2A-7",
+      "path": "configs/handoff/extraction_repair_queues.yaml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "67f82fd7d1d11d9396cc129993968fb642bb9776",
+      "controlled_match_count": 144,
+      "matched_terms": [
+        "action",
+        "audit trail",
+        "canon",
+        "canonical",
+        "conversion",
+        "dependency",
+        "detection",
+        "lineage",
+        "merge",
+        "provenance",
+        "resolution",
+        "revalidate",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 15,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "extraction_repair_queues.yaml lines 1-15 specify the OCR-required repair queue, its extraction stage, blocking behavior, artifacts, and reviewer action. That operational queue does not define epistemic truth or canon authority; those accepted owner boundaries remain unchanged."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "extraction_repair_queues.yaml defines operational queues for OCR and extraction defects, including blocking flags, expected artifacts, and reviewer actions; its references to truth and canon are repair-routing qualifications rather than live semantic state.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 309,
+        "line_end": 309,
+        "source_status_summary": "The file explicitly qualifies its notes as operational routing metadata with no implied canon permission."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0014",
+      "partition_id": "R2A-7",
+      "path": "docling_runner.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d5a3b28c197023efafc3ec8e2edb7872a1804d6f",
+      "controlled_match_count": 4,
+      "matched_terms": [
+        "action",
+        "conversion",
+        "environment"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "environmental_state_process"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 7,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "docling_runner.py lines 1-7 define a Docling extraction bridge and its no-image-output lane policy. This implementation wrapper does not establish action, canon-conversion, or environmental-state doctrine, leaving accepted semantic owners in control."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "docling_runner.py is a Lane B2 CLI bridge that invokes Docling in an isolated extraction environment and disables image generation; its action, conversion, and environment hits describe implementation behavior only.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0015",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/advancement/A06_cultivation_and_ascension_stage_architecture.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "26cbc767238a2174f703b151d488525e96628fd9",
+      "controlled_match_count": 61,
+      "matched_terms": [
+        "action",
+        "canon",
+        "continuity",
+        "conversion",
+        "dependency",
+        "handoff",
+        "hazard",
+        "identity",
+        "knowledge",
+        "persistence",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 113,
+          "line_end": 119,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "A06 lines 113-119 preserve donor stage systems and provenance as source-local without advancement-canon or lexicon promotion. This file-specific rule is governed by the accepted donor-nonpromotion invariant and does not elevate the draft or create a stage owner."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A06 is Astra-native draft advancement architecture for neutral cultivation-stage and transition boundaries; it rejects specific donor realms and denies current or canon status while routing unresolved advancement claims.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 113,
+            "line_end": 119
+          },
+          "candidate_proposition": "Donor stage and realm systems remain source-local with provenance and do not become Astra advancement canon or accepted lexicon through repetition.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A06_cultivation_and_ascension_stage_architecture.md materially applies the accepted donor-nonpromotion rule to its specific advancement domain; R2A-SURFACE-WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 95,
+        "line_end": 96,
+        "source_status_summary": "A06_cultivation_and_ascension_stage_architecture.md explicitly identifies its draft/non-current posture and preserves that qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0016",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/advancement/A07_advancement_axes_and_progression_pressure.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ef833fca9552006dafd8ad2f57d6493aa89ae7bb",
+      "controlled_match_count": 36,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conflict",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "provenance",
+        "runtime",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 138,
+          "line_end": 145,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "A07 lines 138-145 retain donor advancement axes and terminology source-locally, deny automatic canon status, and prohibit source-local interaction records from becoming global doctrine. The accepted donor-nonpromotion surface controls this draft pressure without acquiring a new owner."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A07 is draft advancement-axis design that classifies multi-axis progression pressure while explicitly denying current-canon and runtime-state status; it preserves donor labels as local rather than universal advancement law.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 138,
+            "line_end": 145
+          },
+          "candidate_proposition": "Donor advancement axes and terminology remain source-local, do not automatically become canon, and do not become global doctrine law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A07_advancement_axes_and_progression_pressure.md materially applies the accepted donor-nonpromotion rule to its specific advancement domain; R2A-SURFACE-WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 7,
+        "line_end": 10,
+        "source_status_summary": "A07_advancement_axes_and_progression_pressure.md explicitly identifies its draft/non-current posture and preserves that qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0017",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/advancement/A08_path_domain_and_technique_mastery_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d120122f8db0f1c97c3abdd2d5fb61c3beb428d6",
+      "controlled_match_count": 40,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "lineage",
+        "provenance",
+        "runtime",
+        "target",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 130,
+          "line_end": 134,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "A08 lines 130-134 reject a default donor path ladder and silent adoption of donor spell schools, charm trees, discipline ladders, and maneuver trees. This concrete advancement pressure is governed by accepted donor-nonpromotion authority rather than establishing another current surface."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A08 is draft path, domain, and technique-mastery architecture that separates donor progression constructs from Astra defaults and routes unresolved constructs through source-local retention or escalation.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 130,
+            "line_end": 134
+          },
+          "candidate_proposition": "No donor path ladder is default law, and donor spell-school, charm-tree, discipline-ladder, or maneuver-tree structures cannot be silently adopted as Astra canon.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A08_path_domain_and_technique_mastery_doctrine.md materially applies the accepted donor-nonpromotion rule to its specific advancement domain; R2A-SURFACE-WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 12,
+        "source_status_summary": "A08_path_domain_and_technique_mastery_doctrine.md explicitly identifies its draft/non-current posture and preserves that qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0018",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/advancement/A09_skill_competency_and_synthesis_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "59ef99dc263a4717d082c062a4086954eff80d11",
+      "controlled_match_count": 19,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conversion",
+        "dependency",
+        "handoff",
+        "knowledge",
+        "provenance",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 110,
+          "line_end": 112,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "A09 lines 110-112 begin its core rules by retaining donor systems only as source-local records and denying them Astra-default status. That exact proposition is governed by the accepted donor-nonpromotion invariant, with no authority transferred to the draft."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A09 is draft skill, competency, and synthesis design that avoids treating donor skill structures as universal; its conversion mappings remain proposed advancement pressure rather than current runtime or canon authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 110,
+            "line_end": 112
+          },
+          "candidate_proposition": "Donor skill and competency systems may be retained as source-local records but are not Astra default law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A09_skill_competency_and_synthesis_doctrine.md materially applies the accepted donor-nonpromotion rule to its specific advancement domain; R2A-SURFACE-WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 12,
+        "source_status_summary": "A09_skill_competency_and_synthesis_doctrine.md explicitly identifies its draft/non-current posture and preserves that qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0019",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/advancement/A10_resource_cost_backlash_and_corruption_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "fa722e8f794afac1e9f36ad831d0458c95b4a66f",
+      "controlled_match_count": 35,
+      "matched_terms": [
+        "canon",
+        "commitment",
+        "condition",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "injury",
+        "provenance",
+        "runtime",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 142,
+          "line_end": 144,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "A10 lines 142-144 require source-local retention or escalation for unrepresentable resource systems and forbid silent adoption of donor resource subsystems. The accepted donor-nonpromotion surface remains controlling and no resource owner is created here."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A10 is draft resource-cost, backlash, and corruption architecture that separates donor mechanics from Astra defaults and preserves unresolved resource models for source-local handling or later review.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 142,
+            "line_end": 144
+          },
+          "candidate_proposition": "Unrepresentable donor resource systems remain source-local or escalate, and donor resource subsystems cannot be silently adopted as Astra canon.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A10_resource_cost_backlash_and_corruption_doctrine.md materially applies the accepted donor-nonpromotion rule to its specific advancement domain; R2A-SURFACE-WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 12,
+        "source_status_summary": "A10_resource_cost_backlash_and_corruption_doctrine.md explicitly identifies its draft/non-current posture and preserves that qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0020",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/_manifests/d_series_doctrine_pack_import_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9ddd092a7083fd6e9398a60f6558a4f6bb1f6cef",
+      "controlled_match_count": 248,
+      "matched_terms": [
+        "action",
+        "branch",
+        "canon",
+        "commit",
+        "commitment",
+        "conflict",
+        "continuity",
+        "conversion",
+        "dependency",
+        "detection",
+        "environment",
+        "handoff",
+        "hazard",
+        "identity",
+        "initiative",
+        "injury",
+        "knowledge",
+        "persistence",
+        "process",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 19,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The import manifest lines 1-19 identify the import event and explicitly classify the D-series packs as draft reconciliation material without current doctrine, canon, or runtime authority. This provenance record creates no new semantic surface and preserves authority in the roadmap and registry controls."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The D-series import manifest is provenance and reconciliation metadata for imported draft source packs; it repeatedly states that import does not promote the packs to current doctrine, canon, runtime authority, or sourcebook text.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 7,
+        "line_end": 19,
+        "source_status_summary": "The manifest explicitly marks the import draft_source_pack_import and the first pack draft_source_pack_not_current_doctrine, with no canon or runtime authority absent promotion."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0021",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-00_time_action_cadence_encounter_procedure_and_owner_boundaries.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "518fc32d086b611d1a7d5554f758482b3706d17e",
+      "controlled_match_count": 38,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "condition",
+        "conflict",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "hazard",
+        "initiative",
+        "injury",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 16,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D12-00 lines 16-20 were inspected for its proposed cadence rule that refuses to make donor timing procedures universal. The accepted donor-nonpromotion surface governs this draft proposition, and the imported pack does not become an additional authority."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "D12-00 is an imported doctrine-pack draft proposing neutral cadence and owner boundaries; its explicit treatment of turns, rounds, and initiative as donor evidence directly applies the accepted ban on implied donor cadence law.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 20
+          },
+          "candidate_proposition": "Turns, rounds, watches, phases, clocks, initiative passes, exploration turns, and faction turns remain donor evidence unless lawfully normalized or retained.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "D12-00 directly applies R2A-SURFACE-WORLD-0011 to donor turn cadence; the accepted surface retains authority and this imported draft receives none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly marks this file doctrine-pack draft, version v0_1_draft, and identifies a proposed owner file."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0022",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-01_cadence_states_transition_triggers_and_scene_flow.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f87ef696c9006df1f3fd27dcf2af83d3bdfae957",
+      "controlled_match_count": 35,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "conflict",
+        "handoff",
+        "hazard",
+        "recovery",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D12-01 lines 8-14 describe the proposed six-state cadence purpose and rule that structure changes when timing matters. No accepted R2A-2/R2A-3 surface establishes that six-state ladder, so the passage remains nonauthoritative later-review pressure while existing time and action owners retain authority."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "D12-01 is an imported draft proposing a six-state cadence ladder and scene-transition triggers; because it introduces unaccepted procedural vocabulary while explicitly remaining draft, it is retained as internal design pressure for later owner review rather than mapped by topic resemblance.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly marks D12-01 doctrine-pack draft at version v0_1_draft."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0023",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-02_action_windows_initiative_sequencing_and_interruptions.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "969860aae29101b0c18df91969eee7ce2946d98d",
+      "controlled_match_count": 50,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "condition",
+        "environment",
+        "handoff",
+        "initiative",
+        "resolution",
+        "runtime",
+        "sensing",
+        "target",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D12-02 lines 8-20 define an Action Window as a bounded opportunity and list donor turn assumptions it is not. The passage does not materially establish the accepted capability-to-action proposition, so no mapping is forced and accepted action, target, and resolution owners remain controlling."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "D12-02 is an imported draft defining action windows, initiative sequencing, reactions, and interruptions; its “bounded opportunity” construct is proposed timing procedure, not an accepted capability/action surface or current runtime contract.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly marks D12-02 doctrine-pack draft at version v0_1_draft."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0024",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-03_round_exchange_beat_interval_and_time_scale_grammar.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "46302457e14a9f03031843fbd08aaa236d9406f9",
+      "controlled_match_count": 23,
+      "matched_terms": [
+        "action",
+        "canon",
+        "evidence",
+        "handoff",
+        "hazard",
+        "initiative",
+        "persistence",
+        "recovery",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D12-03 lines 8-14 state that donor timing terms must not become default law and reject universal fixed durations. This directly applies the accepted logical-time/donor-cadence surface without transferring its authority to the draft."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0011"
+      ],
+      "semantic_review_summary": "D12-03 is an imported draft timing grammar that keeps round, turn, phase, watch, and similar donor containers from becoming default Astra law; that exact non-universality is governed by accepted logical-time and donor-cadence authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 14
+          },
+          "candidate_proposition": "Donor round, turn, phase, watch, interval, and clock terminology does not become default Astra law, and timing containers have no universal fixed duration.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "D12-03 applies R2A-SURFACE-CORE-0011’s non-universal donor-cadence boundary to proposed timing grammar; the accepted logical-time owner remains authoritative."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly marks D12-03 doctrine-pack draft at version v0_1_draft."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0025",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-04_checkpoints_cost_commitment_consequence_timing_and_handoffs.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "28f016a76095f709b4bd067f3e134bd17d013378",
+      "controlled_match_count": 37,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "condition",
+        "conflict",
+        "continuity",
+        "handoff",
+        "injury",
+        "resolution",
+        "runtime",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D12-04 lines 8-16 define procedural checkpoints while expressly denying ownership of resolution, resources, harm, world-state, and narration. That bounded nontransfer proposition is governed by the accepted commitment/owner boundary and creates no new combined timing owner."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "semantic_review_summary": "D12-04 is an imported draft checkpoint sequence for preview, commitment, resolution, consequence routing, state deltas, reactions, and cadence transition; it expressly limits timing ownership and leaves resource, harm, world-state, and narration content with their owners.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 12
+          },
+          "candidate_proposition": "The proposed timing layer orders commitment and consequence checkpoints but does not own resolution, resources, harm, world-state, or narration content.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "D12-04 directly restates R2A-SURFACE-CORE-0003’s rule that commitment and scheduling do not transfer domain ownership; accepted owners retain authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly marks D12-04 doctrine-pack draft at version v0_1_draft."
+      }
+    }
+  ]
+}
