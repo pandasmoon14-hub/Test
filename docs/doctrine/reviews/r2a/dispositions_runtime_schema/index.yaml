@@ -52,14 +52,14 @@
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
       "record_count": 82,
-      "content_sha256": "2f85a709ead23bfd5e55add3ff21260a1bb8cdf503738efed0b9b4e817f39b81",
+      "content_sha256": "1b5c423b828bf485eb34f1245d76df95f1fdc6071265900083810716b69a1678",
       "first_candidate_file_id": "R2A-DISPOSITION-RS-0001",
       "last_candidate_file_id": "R2A-DISPOSITION-RS-0082"
     },
     {
       "path": "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml",
       "record_count": 82,
-      "content_sha256": "226c53d41b4fb8213277b250d757670e34c091ae334dcd7245086b7d78139722",
+      "content_sha256": "206d61d31b65320ae449721b29ef36b32f75f96bac2c660321700d9dda1e5d73",
       "first_candidate_file_id": "R2A-DISPOSITION-RS-0083",
       "last_candidate_file_id": "R2A-DISPOSITION-RS-0164"
     }
@@ -67,26 +67,26 @@
   "candidate_file_count": 164,
   "counts": {
     "by_disposition": {
-      "internal_nonauthoritative_pressure_only": 60,
-      "mapped_semantic_surface": 104
+      "internal_nonauthoritative_pressure_only": 71,
+      "mapped_semantic_surface": 93
     },
     "by_authority_effect": {
-      "implementation_presupposition_only": 26,
-      "maps_current_authority": 104,
-      "no_authority_effect": 34
+      "implementation_presupposition_only": 27,
+      "maps_current_authority": 93,
+      "no_authority_effect": 44
     },
     "by_source_local_pressure_class": {
       "no_material_relation": 164
     },
     "by_pressure_route": {
-      "later_gate": 34,
-      "none": 104,
+      "later_gate": 44,
+      "none": 93,
       "r3_conformance": 11,
-      "r4_substrate": 15
+      "r4_substrate": 16
     },
     "mapped_versus_unmapped": {
-      "mapped": 104,
-      "unmapped": 60
+      "mapped": 93,
+      "unmapped": 71
     },
     "by_matched_search_cluster": {
       "action_conflict_targeting": 93,
@@ -106,22 +106,22 @@
     }
   },
   "surface_mapping_coverage": {
-    "mapped_candidate_count": 104,
-    "unmapped_candidate_count": 60,
-    "cross_path_mapped_candidate_count": 104,
+    "mapped_candidate_count": 93,
+    "unmapped_candidate_count": 71,
+    "cross_path_mapped_candidate_count": 93,
     "same_path_mapped_candidate_count": 0,
     "unique_mapped_surface_count": 7,
-    "mapping_evidence_count": 114,
-    "status_evidence_count": 0,
+    "mapping_evidence_count": 103,
+    "status_evidence_count": 99,
     "blocking_gap_count": 0
   },
   "accepted_source_path_intersection": [],
   "internal_pressure_coverage": {
-    "internal_nonauthoritative_pressure_count": 60,
+    "internal_nonauthoritative_pressure_count": 71,
     "source_local_pressure_count": 0,
-    "implementation_presupposition_count": 26,
+    "implementation_presupposition_count": 27,
     "escalation_pressure_count": 0,
-    "no_authority_effect_count": 34
+    "no_authority_effect_count": 44
   },
   "blocking_unresolved_candidates": [],
   "completion_boundary": [

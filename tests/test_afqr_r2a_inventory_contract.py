@@ -1601,3 +1601,65 @@ test_r2a6_capacity_successor_name_has_unmodified_current_partitions = test_r2a6_
 test_r2a5_completed_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
 test_r2a4_completed_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
 test_r2a4_exact_base_scope_status_and_posture = test_r2a6_status_versions_posture_and_future_boundary
+
+# R2A-6 corrective semantic freeze and successor-safe R2A-5 historical posture.
+R2A6_CORRECTED_MAPPING_STREAM_SHA256 = "5ae5f15b327ed5ba6f908a38f10c6cc4ddc919f0d3f8078421859ad0e153f274"
+R2A6_REJECTED_DRAFT_TEMPLATES = (
+ "operationalizes the bounded accepted-owner rule represented by",
+ "was reviewed independently of lexical hits; only explicit mappings below apply",
+ "Semantic review of ",
+)
+
+def test_r2a5_mutation_and_no_authority_transfer_guards():
+ index,shard,records=r2a5_data();raw=R2A5_SHARD.read_text(encoding="utf-8")
+ contract=json.loads(CONTRACT.read_text(encoding="utf-8"))
+ historical_statuses={f"R2A-{n}":("complete" if n<=5 else "planned_not_present") for n in range(1,13)}
+ assert r2a5_mapping_valid(index,records,contract,historical_statuses,raw)
+ mapped=next(r for r in records if r["mapped_surface_ids"]);mutations=[]
+ bad=copy.deepcopy(records);next(r for r in bad if r["mapped_surface_ids"])["mapped_surface_ids"].pop();mutations.append((index,bad,contract,historical_statuses,raw))
+ bad=copy.deepcopy(records);next(r for r in bad if r["mapping_evidence"])["mapping_evidence"][0]["authority_transfer_effect"]="transfer";mutations.append((index,bad,contract,historical_statuses,raw))
+ bad=copy.deepcopy(records);next(r for r in bad if r["mapping_evidence"])["mapping_evidence"][0]["mapping_relationship"]="unsupported";mutations.append((index,bad,contract,historical_statuses,raw))
+ bad_statuses=copy.deepcopy(historical_statuses);bad_statuses["R2A-6"]="complete";mutations.append((index,records,contract,bad_statuses,raw))
+ bad_contract=copy.deepcopy(contract);bad_contract["project_posture"]["R2A"]="complete";mutations.append((index,records,bad_contract,historical_statuses,raw))
+ mutations.extend((index,records,contract,historical_statuses,raw+text) for text in (R2A5_GENERIC_AUDIT,R2A5_GENERIC_STATUS))
+ assert all(not r2a5_mapping_valid(*args) for args in mutations)
+ assert json.loads(CLUSTERS.read_text(encoding="utf-8"))["r2a_partition_statuses"]["R2A-6"]=="complete"
+ assert all(row["authority_transfer_effect"]=="none" for record in records for row in record["mapping_evidence"])
+
+def test_r2a6_shards_aggregates_mappings_and_nonauthority():
+ index,shards,records=r2a6_completion_data();assert [len(s["candidate_file_dispositions"]) for s in shards]==[82,82]
+ assert index["counts"]["mapped_versus_unmapped"]=={"mapped":93,"unmapped":71}
+ assert index["counts"]["by_disposition"]=={"internal_nonauthoritative_pressure_only":71,"mapped_semantic_surface":93}
+ assert index["counts"]["by_authority_effect"]=={"implementation_presupposition_only":27,"maps_current_authority":93,"no_authority_effect":44}
+ assert index["counts"]["by_pressure_route"]=={"later_gate":44,"none":93,"r3_conformance":11,"r4_substrate":16}
+ mapping_stream="".join(r["path"]+"\t"+",".join(r["mapped_surface_ids"])+"\n" for r in records).encode("utf-8")
+ assert hashlib.sha256(mapping_stream).hexdigest()==R2A6_CORRECTED_MAPPING_STREAM_SHA256
+ accepted={r["surface_id"] for path in (CORE_SHARD,WORLD_SHARD) for r in json.loads(path.read_text(encoding="utf-8"))["surface_records"]}
+ evidence=[row for record in records for row in record["mapping_evidence"]];statuses=[r for r in records if r["status_evidence"] is not None]
+ assert index["surface_mapping_coverage"]=={"mapped_candidate_count":93,"unmapped_candidate_count":71,"cross_path_mapped_candidate_count":93,"same_path_mapped_candidate_count":0,"unique_mapped_surface_count":7,"mapping_evidence_count":103,"status_evidence_count":99,"blocking_gap_count":0}
+ assert len(evidence)==103 and len(statuses)==99
+ for metadata,path,shard in zip(index["shards"],R2A6_SHARDS,shards):
+  assert metadata["path"]==path.relative_to(ROOT).as_posix() and metadata["record_count"]==len(shard["candidate_file_dispositions"])
+  assert metadata["content_sha256"]==hashlib.sha256(path.read_bytes()).hexdigest()
+ raw="\n".join(path.read_text(encoding="utf-8") for path in R2A6_SHARDS)
+ assert not any(template in raw for template in R2A6_REJECTED_DRAFT_TEMPLATES)
+ for record in records:
+  assert set(record["mapped_surface_ids"])=={row["mapped_surface_id"] for row in record["mapping_evidence"]}
+  assert record["semantic_review_summary"].strip() and record["representative_locators"]
+  assert all(not locator["matched_terms"] and not locator["matched_search_clusters"] for locator in record["representative_locators"])
+ for row in evidence:
+  assert row["mapped_surface_id"] in accepted and row["authority_transfer_effect"]=="none"
+  locator=row["candidate_locator"];assert 0<locator["line_start"]<=locator["line_end"] and row["candidate_proposition"].strip()
+  assert not row["candidate_proposition"].startswith(("import ","from ")) and row["evidence_note"].strip()
+ assert next(r for r in records if r["path"]=="schemas/handoff/extraction_repair_queue.schema.json")["mapped_surface_ids"]==[]
+ for record in (r for r in records if "resource_consequence_math" in r["path"]):
+  assert all(not row["candidate_proposition"].startswith(("import ","from ")) for row in record["mapping_evidence"])
+
+# Successor-safe bounded discovery avoids materializing blobs outside R2A-4.
+def candidates4():
+ out={};rules=r2a4_current(PARTITIONS)["ownership_rules"];terms=terms4()
+ for path in subprocess.check_output(["git","ls-tree","-r","--name-only",R2A_4_BASE],text=True).splitlines():
+  if assign(path,rules)!="R2A-4": continue
+  raw=base4(path)
+  if not excluded(path,raw) and (found:=match(path,raw,terms)): out[path]=found
+ return out
