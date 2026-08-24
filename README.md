@@ -45,18 +45,26 @@ the owning control artifacts rather than relying on a copied snapshot:
 Consult the relevant owner file under `docs/doctrine/`, and current decisions
 under `docs/decisions/`, before changing a controlled surface.
 
-## Conversion, canon, and runtime
+## Extraction/conversion–runtime firewall
 
-The conversion/extraction toolchain is outside the runtime trust boundary. Its
-outputs are review evidence, not runtime dependencies. Canon promotion is a
-one-way, identity-breaking process into sanitized Astra-native artifacts;
-runtime-facing material must not expose donor identity, source paths, page
+Extraction and conversion end before runtime begins.
+
+The conversion/extraction toolchain is outside the runtime trust boundary, and
+its outputs are review evidence rather than runtime dependencies or automatic
+canon. Promotion into runtime-facing material is a governed, one-way,
+identity-breaking process that creates sanitized Astra-native artifacts.
+
+Runtime is origin-blind.
+
+Runtime-facing material must not expose donor identity, source paths, page
 references, extraction metadata, conversion IDs, mapping rationale, or offline
 lineage.
 
-Offline provenance remains isolated for governance, reproducibility, conflict,
-and rights review. It is not available to runtime retrieval, model context, or
-player-facing output. The controlling doctrine is
+Offline provenance is retained but isolated.
+
+That provenance remains available for governance, reproducibility, conflict
+resolution, and rights review, but not for runtime retrieval, model context,
+or player-facing output. The controlling doctrine is
 `docs/doctrine/control/conversion_runtime_origin_firewall_doctrine.md`.
 
 ## Development and tests
