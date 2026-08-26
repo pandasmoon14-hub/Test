@@ -1462,6 +1462,2865 @@
         "line_end": 6,
         "source_status_summary": "The header explicitly marks D12-04 doctrine-pack draft at version v0_1_draft."
       }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0026",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-05_structured_scene_families_and_cadence_profiles.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3b61cd0ef30647651ad0f3d7dbbffc2ada8b1a51",
+      "controlled_match_count": 38,
+      "matched_terms": [
+        "action",
+        "commitment",
+        "conflict",
+        "conversion",
+        "detection",
+        "environment",
+        "hazard",
+        "perception",
+        "resolution",
+        "runtime",
+        "schema",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The purpose and profile principle define timing templates for distinct scene families, identify donor assumptions that must not become Astra law, and deny that the profiles are final mechanics or action economy. The later martial-profile refusals separately reject fixed combat rounds, fixed action categories, attack economy, grid law, and universal reactions; accepted time and donor-law owners remain controlling."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "D12-05 proposes cadence profiles for martial, social, stealth, chase, ritual, technical, exploration, and platform scenes while expressly rejecting universal donor rounds and donor-shaped action economies.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 59,
+            "line_end": 67
+          },
+          "candidate_proposition": "The Martial Conflict Profile rejects fixed combat rounds rather than making them a default cadence rule.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The bounded martial-profile refusals materially apply CORE-0011's non-universal donor-cadence boundary. AFQR-04 retains logical-time authority, and the draft profile gains none."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 16
+          },
+          "candidate_proposition": "Cadence profiles identify donor assumptions that must not become Astra law and are not final action-economy mechanics.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The profile principle materially applies WORLD-0011 by preventing donor scene and action-economy structures from becoming Astra defaults. The accepted surface retains authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly marks D12-05 as doctrine-pack draft version v0_1_draft and identifies its proposed owner file."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0027",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-06_source_local_timing_donor_procedure_mapping_and_escalation.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3fda79bd2a7c671cd52f074a2c19e4ff6b29dd7c",
+      "controlled_match_count": 27,
+      "matched_terms": [
+        "action",
+        "causality",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "initiative",
+        "runtime",
+        "schema",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "time_and_causality"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The purpose and donor-timing principle require conversion by function and treat rounds, turns, phases, watches, shifts, clocks, initiative passes, and other donor timing labels as evidence rather than default Astra terminology. This supports distinct accepted cadence and donor-law boundaries without promoting the draft mapping procedure."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "D12-06 defines functional mapping, normalization, bounded source-local retention, quarantine, and escalation for donor timing constructs without importing their labels or procedures as Astra defaults.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 14,
+            "line_end": 16
+          },
+          "candidate_proposition": "Donor cadence labels such as rounds, turns, phases, watches, shifts, clocks, and initiative passes remain evidence and do not become Astra timing terms by default.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The donor-timing principle materially demonstrates CORE-0011's non-universal cadence rule. Logical-time ownership remains with AFQR-04, not D12-06."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 8,
+            "line_end": 16
+          },
+          "candidate_proposition": "Astra must handle donor timing by function without importing donor procedure as default law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The purpose and mapping rule separately apply WORLD-0011's prohibition on implied donor turn-cadence adoption. Conversion routing transfers no semantic authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The source explicitly identifies D12-06 as a doctrine-pack draft at version v0_1_draft."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0028",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9250e4f07524ebcf72e20209842eff34add231e0",
+      "controlled_match_count": 66,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "condition",
+        "conflict",
+        "conversion",
+        "environment",
+        "handoff",
+        "hazard",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "transition",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 24,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The record-posture section marks every cadence and handoff shape as doctrine/conversion control data rather than final schema, canon, runtime state, or live-play authority. Full-file review also found independent rules for protected hidden pressure, non-universal Action Window and Exchange timing, and owner-file handoff nontransfer."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D12-07 is a not-final-schema record-shape draft whose containers remain implementation pressure, while its explicit handoff, cadence, donor-turn, and hidden-truth safeguards are governed by four accepted semantic surfaces.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 164,
+            "line_end": 179
+          },
+          "candidate_proposition": "A D12 handoff record identifies the receiving owner and timing context, but D12 records only the handoff and does not perform the owner file's procedure.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The handoff-record rule operationalizes CORE-0003 by preventing timing, routing, record storage, or mention from absorbing the receiving domain's semantics. CORE-0003 retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 67,
+            "line_end": 85
+          },
+          "candidate_proposition": "Action Window records are not fixed donor turns, and Exchange records are not universal round records.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These two record-specific refusals materially apply CORE-0011's non-universal donor-cadence rule while leaving logical-time ownership with AFQR-04."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 45,
+            "line_end": 67
+          },
+          "candidate_proposition": "An Action Window control record must not be treated as a fixed donor turn.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The Action Window record rule materially prevents a donor turn/action-economy assumption from becoming Astra law, directly applying WORLD-0011 without promoting the record shape."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 198,
+            "line_end": 200
+          },
+          "candidate_proposition": "A record may mark hidden pressure as present or unknown but must not reveal protected hidden truth without the relevant owner and D11 presentation doctrine.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The hidden-state safeguard operationalizes WORLD-0022 by separating a pressure marker from interpretation and truth disclosure. Sensing, epistemic, and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 24,
+        "source_status_summary": "D12-07 is explicitly a doctrine-pack draft; its record posture says not_final_schema, Gate B may replace or formalize it, record existence is not canon, and the shapes create no runtime or live-play authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0029",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8f7686ebace4f740970d2a83b28937c8116dbe1e",
+      "controlled_match_count": 70,
+      "matched_terms": [
+        "action",
+        "canon",
+        "causality",
+        "commit",
+        "commitment",
+        "conflict",
+        "conversion",
+        "dependency",
+        "environment",
+        "handoff",
+        "hazard",
+        "initiative",
+        "injury",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "time_and_causality",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 95,
+          "line_end": 114,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The anti-drift section prohibits D12 from absorbing owner-file mechanics, turning Action Windows into donor turns, granting universal reactions, adopting universal clocks, revealing hidden state, or auto-promoting source-local timing. The risk queue supplies separate owner-nontransfer, cadence, donor-law, and hidden-truth evidence."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D12-09 consolidates dependency and owner-handoff checks, donor-pressure controls, anti-drift rules, escalation triggers, a DDR register, and acceptance criteria for the draft timing pack.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 135,
+            "line_end": 146
+          },
+          "candidate_proposition": "The risk controls limit D12 to handoff timing and prevent it from taking ownership of D13–D18 procedures.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The ownership-theft control operationalizes CORE-0003 by preventing scheduling and handoff coordination from absorbing receiving-owner semantics. CORE-0003 remains authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 95,
+            "line_end": 107
+          },
+          "candidate_proposition": "D12 must not turn Action Windows into donor turns or adopt universal clocks or countdowns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The bounded anti-drift rules materially apply CORE-0011's non-universal donor-cadence proposition while preserving AFQR-04 logical-time ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 95,
+            "line_end": 114
+          },
+          "candidate_proposition": "D12 must not import fixed donor action categories, convert Action Windows into donor turns, universalize reactions, or auto-promote source-local timing.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The anti-drift rules separately apply WORLD-0011's donor action-economy and turn-cadence nonpromotion boundary. The checklist gains no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 139,
+            "line_end": 146
+          },
+          "candidate_proposition": "Hidden-pressure markers do not reveal hidden truth.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The hidden-state leakage control operationalizes WORLD-0022 by preventing timing markers and coordination structures from exposing protected truth. Accepted sensing and epistemic owners remain controlling."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The header explicitly qualifies D12-09 as doctrine-pack draft version v0_1_draft."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0030",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12-README_manifest.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5d72c9211041abe6e16b760ab0cfd2cd525078d8",
+      "controlled_match_count": 36,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "commitment",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "initiative",
+        "resolution",
+        "runtime",
+        "schema",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 33,
+          "line_end": 47,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The manifest's locked decisions reject a universal donor round, its authority section separates doctrine from conversion, canon, and runtime work, and its risk fixes independently preserve handoff ownership and protected hidden facts."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "The D12 README inventories the draft cadence pack, records its locked timing architecture, identifies downstream consumers, and states phase, handoff, donor-nonpromotion, and hidden-state boundaries.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 49,
+            "line_end": 61
+          },
+          "candidate_proposition": "D12 supplies timing hooks and handoff timing to other doctrine files but does not define their internal procedures.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The integration summary operationalizes CORE-0003 by preventing timing hooks, scheduling, and handoff coordination from transferring substantive ownership to D12. CORE-0003 retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 33,
+            "line_end": 35
+          },
+          "candidate_proposition": "The primary D12 timing unit is cadence state rather than a universal combat round or donor turn.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The locked timing decision materially applies CORE-0011's non-universal cadence proposition. AFQR-04 remains the logical-time owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 37,
+            "line_end": 47
+          },
+          "candidate_proposition": "Donor rounds, turns, phases, watches, clocks, and initiative passes remain evidence and do not become Astra procedure through repetition.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The authority section materially applies WORLD-0011's donor turn-cadence nonpromotion rule. The README remains a draft manifest rather than an authority source."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 53,
+            "line_end": 64
+          },
+          "candidate_proposition": "Hidden-pressure markers do not reveal hidden facts.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The risk fix operationalizes WORLD-0022 by preventing timing and pressure markers from disclosing protected truth. Existing sensing, truth, and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "The manifest header explicitly marks the D12 pack doctrine-pack draft at version v0_1_draft and places it in the Phase 1 native-doctrine/operational-procedure layer."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0031",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_combined_time_action_cadence_encounter_and_turn_procedure_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "97eb1890cf613ca74e5b660923c3fde01ec9aec6",
+      "controlled_match_count": 436,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "causality",
+        "commit",
+        "commitment",
+        "condition",
+        "conflict",
+        "continuity",
+        "conversion",
+        "dependency",
+        "detection",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "initiative",
+        "injury",
+        "perception",
+        "persistence",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "sensing",
+        "storage",
+        "target",
+        "transition",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "time_and_causality",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 36,
+          "line_end": 69,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The combined document reproduces the draft manifest's non-universal cadence, donor-nonpromotion, handoff-nonownership, and hidden-pressure safeguards, and later component sections repeat those propositions in their detailed procedural contexts. Aggregation duplicates evidence but creates no new authority."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "The combined D12 artifact concatenates the manifest and all cadence, action-window, checkpoint, donor-mapping, record-shape, and integration drafts, preserving their explicit owner-nontransfer, non-universal cadence, donor-law, and hidden-truth boundaries.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 778,
+            "line_end": 786
+          },
+          "candidate_proposition": "D12 owns checkpoint timing order but not the content of resolution, resources, harm, world state, or narration.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The reproduced checkpoint rule materially applies CORE-0003 by preventing scheduling, commitment timing, and consequence routing from transferring substantive domain ownership. CORE-0003 remains controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 98,
+            "line_end": 102
+          },
+          "candidate_proposition": "Cadence state is the primary timing unit; rounds, turns, watches, phases, clocks, and initiative passes remain donor evidence rather than universal timing law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The reproduced core-doctrine passage materially applies CORE-0011's non-universal cadence boundary. The combined artifact does not acquire AFQR-04 logical-time ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 167,
+            "line_end": 182
+          },
+          "candidate_proposition": "No donor family, including d20, OSR, mech, narrative, horror, cyberpunk, vehicle, cultivation, faction, or oracle systems, may define Astra's default action economy.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The donor-family pressure section materially applies WORLD-0011 across multiple donor traditions and prohibits frequency-based promotion. The combined draft remains nonauthoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 1598,
+            "line_end": 1607
+          },
+          "candidate_proposition": "D12 records may mark hidden pressure as present or unknown but must not reveal protected hidden truth unless the relevant owner and D11 presentation doctrine allow it.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The reproduced record safeguard operationalizes WORLD-0022 by separating pressure detection and metadata from interpretation and truth disclosure. Accepted sensing, epistemic, and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 11,
+        "source_status_summary": "The embedded manifest explicitly marks the combined D12 material doctrine-pack draft version v0_1_draft in the Phase 1 native-doctrine/operational-procedure layer."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0032",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D12_time_action_cadence_encounter_and_turn_procedure_doctrine_pack/D12_doctrine_pack/D12_pack_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e8bbea10846b0e672e981343fecef08e84fb6421",
+      "controlled_match_count": 33,
+      "matched_terms": [
+        "action",
+        "commitment",
+        "conflict",
+        "conversion",
+        "handoff",
+        "hazard",
+        "initiative",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The JSON header identifies the D12 draft pack, its proposed timing architecture, and explicit exclusions from runtime-schema and live-play-adapter status. Full-file review found that the risk_fixes_embedded array also serializes independent owner-nontransfer, non-universal cadence, donor-turn, and hidden-truth safeguards; manifest form does not erase those propositions."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D12_pack_manifest.json is generated catalog and configuration material for a draft timing pack, but its risk-fix values substantively preserve handoff ownership, reject donor turns and mandatory clocks, and prevent hidden-pressure markers from revealing truth.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/4",
+            "line_start": 121,
+            "line_end": 131
+          },
+          "candidate_proposition": "The manifest records that D12 owns handoff timing rather than D13–D18 procedure and that calling D02 does not give D12 ownership of resolution math.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The serialized handoff and resolution safeguards operationalize CORE-0003 by preventing timing, scheduling, invocation, and routing from absorbing the receiving domain's semantics. CORE-0003 retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded",
+            "line_start": 121,
+            "line_end": 131
+          },
+          "candidate_proposition": "The manifest rejects donor turns, routes clock-like systems by function, and prevents multi-scale actions from sharing one mandatory clock.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These timing-specific risk fixes materially apply CORE-0011's non-universal donor-cadence boundary. Logical-time ownership remains with AFQR-04 rather than the manifest."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded",
+            "line_start": 121,
+            "line_end": 131
+          },
+          "candidate_proposition": "The manifest states that combat is not the default structured scene, Action Windows are not donor turns, and source-local timing requires a boundary and review.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The serialized donor-turn and source-local-review controls materially apply WORLD-0011's prohibition on implied donor action-economy and turn-cadence adoption. The draft manifest gains no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/6",
+            "line_start": 121,
+            "line_end": 131
+          },
+          "candidate_proposition": "The manifest requires hidden-pressure markers not to reveal hidden truth.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The hidden-pressure risk fix operationalizes WORLD-0022 by separating the existence of a pressure marker from interpretation and truth disclosure. Accepted sensing, epistemic, and presentation owners remain controlling."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "json_pointer",
+        "locator_value": "/",
+        "line_start": 2,
+        "line_end": 9,
+        "source_status_summary": "The manifest explicitly records doctrine-pack draft status, version v0_1_draft, Phase 1 placement, not_runtime_schema true, and not_live_play_adapter true."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0033",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-00_downtime_projects_recovery_crafting_and_long_task_owner_boundaries.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f25193354c0eb5d3015bffc032addee2a303035b",
+      "controlled_match_count": 50,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "commitment",
+        "condition",
+        "conflict",
+        "continuity",
+        "conversion",
+        "handoff",
+        "healing",
+        "initiative",
+        "injury",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 58,
+          "line_end": 81,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The nonownership section names resolution, resources, advancement, methods, powers, harm, actor, object, world-state, presentation, cadence, faction, economy, and continuity concerns that D13 must not own, then states that calling those files cannot absorb their authority. Separate anti-drift rules address clocks, donor-law promotion, and protected research truth."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-00 proposes Project-Centered Interval Architecture while expressly limiting D13 to interval procedure, preserving downstream semantic owners, rejecting universal project clocks and donor long-task defaults, and protecting research truth.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 58,
+            "line_end": 81
+          },
+          "candidate_proposition": "D13 may call the named substantive owner files while handling Project intervals, but it must not own their mechanics, state, truth, presentation, economy, or continuity and may not absorb their authority.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit nonownership list and call-without-absorption rule operationalize CORE-0003 by preventing interval scheduling, commitment, and handoff from transferring semantic ownership to D13. CORE-0003 remains authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 160,
+            "line_end": 165
+          },
+          "candidate_proposition": "D13 must not make project clocks universal or import fixed donor timing as its default interval procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The anti-drift clock rule materially applies CORE-0011's non-universal cadence boundary. D13's Project procedure does not acquire AFQR-04 logical-time ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 160,
+            "line_end": 174
+          },
+          "candidate_proposition": "D13 must not import fixed donor downtime menus, rest/reset recovery, crafting, training, salvage, or source-local long-task systems as generalized Astra procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The long-task anti-drift rules materially apply WORLD-0011 across donor progression, resource, recovery, and cadence assumptions. The Phase 1 draft gains no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 165,
+            "line_end": 168
+          },
+          "candidate_proposition": "A research Project must not reveal protected truth automatically.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The research safeguard operationalizes WORLD-0022 by preventing Project progress or completion from leaking protected truth. Information-state, sensing, and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The header identifies Phase 1 doctrine-pack continuation and explicitly says the file is doctrine/conversion facing rather than final runtime implementation, schema doctrine, canon-sourcebook prose, or live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0034",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-01_project_anatomy_project_families_and_lifecycle_states.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "012de6cd0ec9653f0e41c563df5fe37d71fe7545",
+      "controlled_match_count": 34,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "commitment",
+        "condition",
+        "continuity",
+        "conversion",
+        "handoff",
+        "healing",
+        "identity",
+        "injury",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The opening boundary limits D13-01 to Project anatomy and lifecycle, excluding final crafting, healing, training, research-truth, faction, economy, and pacing content. Full-file review also found explicit downstream handoff, non-universal progress, protected-requirement, and donor-seclusion safeguards."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-01 defines Project anatomy, routing families, lifecycle states, costs, complications, and outcome handoffs while preserving substantive owners, rejecting universal progress clocks and donor pacing, and protecting hidden requirements.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 253,
+            "line_end": 267
+          },
+          "candidate_proposition": "D13 classifies Project outcomes and records their handoff, while the correct downstream owner decides the resulting recovery, advancement, information, object, economy, social, or continuity content.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The outcome-handoff rule operationalizes CORE-0003 by preventing Project routing and recordkeeping from absorbing downstream semantic ownership. The accepted nontransfer surface remains controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 208,
+            "line_end": 230
+          },
+          "candidate_proposition": "D13 uses lifecycle and progress states rather than universal clocks, and permits numeric progress only with owner-file, source-local, or later-schema support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The progress-state rule materially applies CORE-0011's non-universal cadence boundary without assigning logical-time authority to D13-01."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 269,
+            "line_end": 298
+          },
+          "candidate_proposition": "Source-local Project systems require explicit non-generalization and rejected-donor notes, and donor seclusion timing does not become universal Astra pacing.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The source-local boundary and cultivation example materially apply WORLD-0011 by preventing donor timing and progression assumptions from becoming universal law. The draft gains no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 116,
+            "line_end": 140
+          },
+          "candidate_proposition": "Hidden Project requirements may be marked protected rather than revealed before commitment.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The requirement rule operationalizes WORLD-0022 by allowing the existence of protected pressure to be represented without leaking its hidden truth. Existing information and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The file explicitly records Phase 1 doctrine-pack continuation and states that it is not final runtime implementation, schema doctrine, canon-sourcebook prose, or live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0035",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-02_project_creation_requirement_discovery_commitment_and_interval_setup.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "905dcc3e28b90dd031fd4716b74c35aa59e70510",
+      "controlled_match_count": 28,
+      "matched_terms": [
+        "action",
+        "canon",
+        "causality",
+        "commit",
+        "commitment",
+        "condition",
+        "conversion",
+        "evidence",
+        "identity",
+        "injury",
+        "recovery",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "time_and_causality"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The core definition turns intent into an interval Project without guessing requirements, skipping costs, revealing hidden state, or letting donor downtime decide Astra law. Full-file review confirms protected-requirement and donor-setup controls, but the commitment section does not itself state a sufficiently exact ownership-nontransfer proposition for CORE-0003."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-02 proposes eight Project-setup checkpoints and is governed by accepted donor-nonpromotion and hidden-truth safeguards; its commitment mechanics remain draft procedure pressure without an additional CORE-0003 mapping.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 16
+          },
+          "candidate_proposition": "Project setup must not let donor downtime procedure decide Astra law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The core definition materially applies WORLD-0011 by preventing donor downtime and long-task procedure from becoming Astra default law. D13-02 remains nonauthoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 227,
+            "line_end": 231
+          },
+          "candidate_proposition": "D13 may record a hidden requirement as present, suspected, or protected, but Project setup must not expose hidden backend facts to a player-facing view.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The hidden-requirement rule operationalizes WORLD-0022 by separating protected-presence metadata from truth disclosure. D10 and D11 retain information-state and presentation authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The source explicitly identifies Phase 1 doctrine-pack continuation and excludes final runtime implementation, schema doctrine, canon-sourcebook prose, and live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0036",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-03_progress_interval_outcomes_complications_and_partial_completion.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "50fce18044546f6190ba4fc63fbec8de0b84533d",
+      "controlled_match_count": 21,
+      "matched_terms": [
+        "belief",
+        "canon",
+        "condition",
+        "conversion",
+        "evidence",
+        "injury",
+        "recovery",
+        "runtime",
+        "schema",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The core model replaces universal Project clocks, fixed downtime tables, and universal numeric progress with interval outcome states. Full-file review also found that owner files retain the meaning of routed outcomes and that donor clocks, progress tracks, faction clocks, and downtime tracks must be mapped by function rather than becoming universal Astra procedure."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "D13-03 defines interval outcomes, partial completion, complications, failure, and acceleration while preserving owner-file meaning, rejecting universal Project-clock timing, and routing donor clock or progress-track assumptions instead of adopting them as Astra law.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 37,
+            "line_end": 39
+          },
+          "candidate_proposition": "D13 supplies Project interval outcome labels, while the relevant owner files decide what each outcome means for the state they own.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The outcome-meaning rule operationalizes CORE-0003 by preventing Project routing and classification from taking ownership of downstream state semantics. CORE-0003 retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 14,
+            "line_end": 20
+          },
+          "candidate_proposition": "Project intervals use outcome states rather than a universal progress clock, fixed downtime table, or universal progress-point model.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The core progress model materially applies CORE-0011's non-universal cadence boundary. D13-03 does not acquire AFQR-04 logical-time ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 180,
+            "line_end": 182
+          },
+          "candidate_proposition": "A donor clock, progress track, faction clock, or downtime track must be mapped by function and routed, retained source-locally, quarantined, or escalated rather than adopted as universal Project procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The dedicated donor-clock warning materially applies WORLD-0011 by preventing donor cadence and progression-track assumptions from becoming Astra law by implication. WORLD-0011 retains authority, and D13-03 remains a nonauthoritative Phase 1 draft."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The file explicitly records Phase 1 doctrine-pack continuation and says it is not final runtime implementation, schema doctrine, canon-sourcebook prose, or live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0037",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-04_project_family_profiles_and_owner_file_handoff_rules.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8ec799addc03400d577e4e20e27fe63ccd5a7da5",
+      "controlled_match_count": 64,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "condition",
+        "contact",
+        "continuity",
+        "conversion",
+        "handoff",
+        "identity",
+        "injury",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The opening frames each Project Family Profile as a routing template rather than a full subsystem or megafile owner. Full-file review confirms repeated owner-state boundaries, a research hidden-truth refusal, explicit non-generalization of source-local donor systems, and a faction-support rule that rejects universal faction-turn cadence."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-04 defines routing profiles for recovery, training, research, crafting, salvage, repair, resource, social, faction, preparation, maintenance, and source-local Projects while preserving downstream state owners, rejecting universal faction-turn timing, and maintaining donor and hidden-truth boundaries.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 48,
+            "line_end": 56
+          },
+          "candidate_proposition": "The Recovery Project Profile assigns D13 only the Project interval and routing while the listed owner files retain their state content and mechanics.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The representative profile boundary, repeated across the file's profile families, operationalizes CORE-0003 by preventing routing and handoff from transferring substantive ownership to D13. CORE-0003 remains controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 254,
+            "line_end": 276
+          },
+          "candidate_proposition": "D13 faction-support procedure must not become a universal faction-turn system.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The Faction-Support Project Profile's anti-drift rule materially applies CORE-0011 by preventing faction-turn cadence from becoming a universal timing rule. AFQR-04 retains logical-time authority, and D13-04 gains none."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 331,
+            "line_end": 366
+          },
+          "candidate_proposition": "Special donor Project systems may remain source-local only when bounded and unsafe to generalize, and polish, repetition, or donor familiarity cannot make them general Astra procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The source-local profile and anti-drift rule materially apply WORLD-0011's donor nonpromotion boundary. Repetition and familiarity remain pressure rather than authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 84,
+            "line_end": 106
+          },
+          "candidate_proposition": "A Research Project routes information-state, hidden truth, rumor, belief, and presentation to their owners and must not reveal hidden state merely because an interval completed.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The Research Profile operationalizes WORLD-0022 by preventing Project progress from becoming automatic truth disclosure. Information-state and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The source explicitly records Phase 1 doctrine-pack continuation and excludes final runtime implementation, schema doctrine, canon-sourcebook prose, and live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0038",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-05_concurrent_projects_contributors_facilities_materials_and_support_burden.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "fa200ed2b5b505919e149b01cb37cabb9ebbab39",
+      "controlled_match_count": 18,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conflict",
+        "conversion",
+        "evidence",
+        "injury",
+        "knowledge",
+        "recovery",
+        "runtime",
+        "schema",
+        "storage"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 22,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The opening defines D13-05's Project Load, concurrency, contributor, facility, material, and support-burden role while denying it authority over exact capacity, prices, crafting values, facility construction, assistant statblocks, or faction labor economies. The file's downstream-ownership rules support CORE-0003; its separate Project Load, upkeep, maintenance, interruption, and abandonment architecture remains reviewed Astra-native draft pressure not represented by another accepted surface."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "semantic_review_summary": "D13-05 proposes Astra-native Project Load, concurrency, contributor, facility, material, upkeep, maintenance, interruption, and support-burden procedure. Its explicit downstream state boundaries map to CORE-0003, while the remaining draft architecture is reviewed nonauthoritative pressure not covered by another accepted R2A-2/R2A-3 surface.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 168,
+            "line_end": 215
+          },
+          "candidate_proposition": "D13 records facility, material, and support participation as Project requirements, commitments, risks, or outputs, while D09, D10, D15, D17, and D18 retain ownership of facility records, object and economy state, legality, faction control, broader support pressure, and long-horizon aging.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The facility, material, and support boundaries operationalize CORE-0003 by preventing Project scheduling, commitments, records, and consumption from absorbing downstream state semantics. CORE-0003 retains authority, and D13-05 gains no ownership through its procedural role."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The file explicitly records Phase 1 doctrine-pack continuation and states that it is doctrine-facing and conversion-facing rather than final runtime implementation, final schema doctrine, canon-sourcebook prose, or live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0039",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-06_source_local_downtime_donor_project_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ca7b6f9df90aa3fa7dfb557d663163be11cfddaa",
+      "controlled_match_count": 29,
+      "matched_terms": [
+        "action",
+        "canon",
+        "causality",
+        "conversion",
+        "evidence",
+        "handoff",
+        "healing",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "time_and_causality",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 38,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The conversion question and donor-label rule cover rest, downtime, crafting, recovery, training, clocks, faction turns, and other long-task systems, treating their labels as evidence rather than Astra law. Full-file review also found distinct owner-routing, non-universal clock, and hidden-research safeguards."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-06 defines functional donor-project mapping, normalization, bounded source-local retention, quarantine, and escalation while preserving substantive owners, rejecting universal clock authority, preventing donor-law promotion, and protecting research truth.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 57,
+            "line_end": 76
+          },
+          "candidate_proposition": "Direct and normalized donor mappings preserve useful function while routing object state, economy pressure, methods, hidden information, travel, and other substantive results to their corresponding owner files.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The direct and normalized mapping examples operationalize CORE-0003 by preventing conversion, routing, and handoff from transferring object, economy, research, or travel semantics to D13. CORE-0003 remains controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 130,
+            "line_end": 147
+          },
+          "candidate_proposition": "D13 must not adopt a universal Project clock; clock-like systems route by function, and a clock shape is not timing authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The dedicated clock section materially applies CORE-0011's non-universal cadence boundary. D13-06 does not acquire AFQR-04 logical-time authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 149,
+            "line_end": 171
+          },
+          "candidate_proposition": "Donor recovery, crafting, training, faction-clock, Project-clock, kingdom-turn, cyberware, cultivation, salvage, economy, and ritual assumptions remain rejected imports or evidence to map by function rather than Astra default law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The rejected-import and donor-label rules materially apply WORLD-0011 across donor cadence, progression, resource, economy, and metaphysical assumptions. Frequency or familiarity grants no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 65,
+            "line_end": 76
+          },
+          "candidate_proposition": "A normalized donor research activity becomes a Research Project only while preserving D10 and D11 hidden-information boundaries.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The normalized research example operationalizes WORLD-0022 by preventing conversion into a Project from exposing protected truth or collapsing information-state and presentation ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The source explicitly identifies Phase 1 doctrine-pack continuation and excludes final runtime implementation, schema doctrine, canon-sourcebook prose, and live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0040",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a6bc613ca2c00ce9cbdcbd31c81a2a1721929892",
+      "controlled_match_count": 40,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "condition",
+        "conversion",
+        "handoff",
+        "injury",
+        "knowledge",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 28,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The record-posture section defines replaceable doctrine/conversion control shapes rather than final runtime, database, crafting, recovery, economy, faction, or campaign schemas. Separate full-file passages preserve owner-file state, hidden truth, and donor-assumption boundaries."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-07 contains substantial not-final-schema record-shape pressure alongside explicit owner-handoff nontransfer, donor-mapping nonpromotion controls, and protected hidden-state rules governed by accepted surfaces.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 170,
+            "line_end": 179
+          },
+          "candidate_proposition": "A D13 record may identify an owner-file handoff but must not mutate or define the receiving owner's object, information, injury, relationship, or faction state.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The handoff expectations operationalize CORE-0003 by preventing record storage, routing, and mention from transferring downstream state ownership to D13. CORE-0003 retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "yaml_path",
+            "locator_value": "donor_project_mapping_record",
+            "line_start": 152,
+            "line_end": 167
+          },
+          "candidate_proposition": "A donor Project mapping record must select a lawful outcome and retain stripped assumptions, rejected imports, source-local boundaries, and owner handoffs rather than treating donor procedure as Astra law.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The donor-mapping record operationalizes WORLD-0011 by requiring explicit stripping, rejection, bounded retention, quarantine, or escalation of donor assumptions. Serialization creates no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 181,
+            "line_end": 183
+          },
+          "candidate_proposition": "Records may mark hidden requirements, pressure, or protected content as present, unknown, or protected but must not expose hidden truth in player-facing form.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The hidden-state control operationalizes WORLD-0022 by separating protected-presence metadata from truth disclosure. Information-state and presentation owners remain controlling."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 28,
+        "source_status_summary": "The file explicitly records Phase 1 doctrine-pack continuation and repeatedly qualifies its shapes as doctrine/conversion controls rather than final runtime implementation, schema doctrine, canon prose, live-play behavior, or database schemas."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0041",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "054865e4dd1719c2d76dfba12423c82b800831d8",
+      "controlled_match_count": 40,
+      "matched_terms": [
+        "canon",
+        "causality",
+        "commit",
+        "commitment",
+        "continuity",
+        "conversion",
+        "evidence",
+        "handoff",
+        "healing",
+        "injury",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "time_and_causality",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 16,
+          "line_end": 44,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The integration checklist requires owner handoff rather than absorption, protects hidden requirements, rejects donor-assumed interval scales and universal clocks, and preserves bounded source-local procedure. The risk queue restates these as distinct ownership, cadence, donor-law, and hidden-truth safeguards."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D13-09 consolidates integration and owner-handoff checks, rejected donor imports, source-local controls, risk fixes, acceptance criteria, and design decisions while preserving four accepted semantic boundaries.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 42,
+            "line_end": 63
+          },
+          "candidate_proposition": "D13 must hand off rather than absorb ownership of resolution, resources, advancement, methods, powers, harm, actor, object, world, presentation, cadence, faction, economy, and continuity concerns.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The owner-handoff checklist operationalizes CORE-0003 by preventing Project commitment, routing, and records from transferring substantive domain ownership. CORE-0003 remains authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 32
+          },
+          "candidate_proposition": "Project interval scale is not assumed from donor procedure, and Project progress uses Interval Outcome States instead of universal clocks.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The integration rules materially apply CORE-0011's non-universal cadence boundary while leaving logical-time authority with AFQR-04."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 109,
+            "line_end": 126
+          },
+          "candidate_proposition": "Unsupported donor recovery, currency/time math, advancement, Project clocks, faction turns, metaphysics, pacing, rewards, income, and ritual phases must be recorded as rejected imports rather than Astra defaults.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The rejected-import checklist materially applies WORLD-0011 across donor cadence, progression, resources, economy, and metaphysics. The control file gains no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 146,
+            "line_end": 148
+          },
+          "candidate_proposition": "D13 records research progress only; D05, D10, and D11 retain research methods, information state, hidden truth, and presentation.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The research-leakage fix operationalizes WORLD-0022 by preventing Project progress from becoming knowledge or hidden-truth disclosure. Accepted information and presentation owners remain controlling."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 9,
+        "source_status_summary": "The source explicitly identifies Phase 1 doctrine-pack continuation and excludes final runtime implementation, schema doctrine, canon-sourcebook prose, and live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0042",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13-README_manifest.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "1db66b90600e43847fdb26d1b8e72567075cba9e",
+      "controlled_match_count": 27,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "commitment",
+        "conversion",
+        "handoff",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 14,
+          "line_end": 24,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The README defines D13's interval-scale Project role, separates its scope from D12 and downstream D14/D15/D17/D18 procedures, and summarizes non-universal progress, lawful donor handling, protected research truth, and source-local nonpromotion."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "The D13 README is a substantive draft-pack manifest that defines Project scope and handoffs while preserving owner nontransfer, non-universal clocks, donor nonpromotion, and hidden-research boundaries.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 14,
+            "line_end": 18
+          },
+          "candidate_proposition": "D12 controls the handoff into interval handling, D13 controls what occurs within a Project interval, and D13 must not expand into travel, faction, economy, or campaign procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The pack-scope boundary materially applies CORE-0003 by preventing temporal handoff and Project routing from transferring downstream procedure ownership to D13."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 40,
+            "line_end": 44
+          },
+          "candidate_proposition": "D13 uses Interval Outcome States rather than universal Project clocks, with numeric progress allowed only under owner-file, bounded source-local, or later-schema support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The locked progress model materially applies CORE-0011's non-universal cadence rule without transferring AFQR-04 logical-time authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 60,
+            "line_end": 84
+          },
+          "candidate_proposition": "Donor downtime constructs and conversion output do not become canon or runtime authority and must receive direct, normalized, bounded source-local, quarantined, or escalated outcomes.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The authority hierarchy and lawful-outcome rule materially apply WORLD-0011 by preventing donor procedure and converted output from becoming Astra law through intake or repetition."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 84,
+            "line_end": 98
+          },
+          "candidate_proposition": "Research Projects must not reveal protected hidden truth automatically.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The embedded research risk control operationalizes WORLD-0022 by preventing Project progress from leaking protected information. Accepted information-state and presentation owners retain authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 11,
+        "source_status_summary": "The README explicitly records Phase 1 doctrine-pack continuation and says it is doctrine/conversion facing rather than final runtime implementation, schema doctrine, canon-sourcebook prose, or live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0043",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_combined_downtime_projects_recovery_crafting_and_long_task_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e2e6811dcf832894a62775caa746196f1eaae1db",
+      "controlled_match_count": 364,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "canonical",
+        "causality",
+        "commit",
+        "commitment",
+        "condition",
+        "conflict",
+        "contact",
+        "continuity",
+        "conversion",
+        "evidence",
+        "handoff",
+        "healing",
+        "identity",
+        "initiative",
+        "injury",
+        "knowledge",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "time_and_causality",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 24,
+          "line_end": 54,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The combined pack reproduces the D13 manifest and every component doctrine file. Full-document review confirms repeated owner-file nontransfer, non-universal Project and faction-turn timing, donor-procedure nonpromotion, protected hidden-state rules, and substantial not-final-schema record material."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "The combined D13 artifact aggregates the Project doctrine pack and contains four accepted semantic boundary families alongside substantial draft Project architecture and not-final-schema control shapes that remain separately nonauthoritative pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 176,
+            "line_end": 217
+          },
+          "candidate_proposition": "D13 owns interval-scale Project procedure but must not own the named resolution, resource, advancement, method, power, harm, actor, object, world, presentation, cadence, faction, economy, or continuity concerns and instead calls their owners through handoffs.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The reproduced nonownership and dependency sections operationalize CORE-0003 by preventing Project commitment, scheduling, routing, and records from absorbing substantive owner semantics. The accepted surface retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 890,
+            "line_end": 896
+          },
+          "candidate_proposition": "D13 Project progress uses Interval Outcome States rather than a universal progress clock or fixed downtime table.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The reproduced D13-03 core model materially applies CORE-0011's non-universal cadence rule. The combined artifact does not acquire logical-time authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 278,
+            "line_end": 304
+          },
+          "candidate_proposition": "D13 must not universalize Project clocks, donor recovery, crafting, training, faction, cultivation, cyberware, salvage, or source-local long-task procedure, and no donor label becomes Astra law by itself.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The combined D13-00 anti-drift and acceptance passages materially apply WORLD-0011 across donor cadence, progression, resources, metaphysics, and economy while transferring no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 847,
+            "line_end": 864
+          },
+          "candidate_proposition": "A Project setup record may mark a hidden requirement as present, suspected, or protected but must not expose hidden backend facts in a player-facing view.",
+          "mapping_relationship": "operationalizes without authority transfer",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The reproduced hidden-requirement rule operationalizes WORLD-0022 by separating protected-presence metadata from knowledge and truth disclosure. D10 and D11 retain information-state and presentation authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 11,
+        "line_end": 21,
+        "source_status_summary": "The embedded README explicitly records Phase 1 doctrine-pack continuation and excludes final runtime implementation, schema doctrine, canon-sourcebook prose, and live-play GM behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0044",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D13_downtime_projects_recovery_crafting_and_long_task_doctrine_pack/D13_doctrine_pack/D13_pack_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e110e165fcb18c27f59316f7ccfc4087ad5a32af",
+      "controlled_match_count": 20,
+      "matched_terms": [
+        "commit",
+        "commitment",
+        "continuity",
+        "conversion",
+        "handoff",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 72,
+          "line_end": 100,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D13_pack_manifest.json lines 72-100 serialize distinct controls for non-universal Project clocks, rejection of imported recovery assumptions, protected research truth, source-local donor non-generalization, and ownership-preserving outcome routing. Those bounded propositions map to accepted authority, while the manifest's Project-family catalog, Project Load configuration, file inventory, and generated pack architecture remain separately reviewed nonauthoritative material."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "The generated D13 manifest catalogs Project-centered interval architecture, families, dependencies, handoffs, risk controls, and acceptance criteria. Its explicit ownership, cadence, donor-nonpromotion, and hidden-truth safeguards are governed by accepted surfaces, but its remaining generated architecture and configuration do not become current doctrine or final schema through this review.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 86,
+            "line_end": 100
+          },
+          "candidate_proposition": "D13 outcomes must be routed to their substantive owners without D13 stealing ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The manifest's ownership-preserving routing criterion operationalizes CORE-0003: recording an outcome or handing it downstream does not transfer its semantics to D13. The accepted surface and its declared owner remain authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 72,
+            "line_end": 75
+          },
+          "candidate_proposition": "Project clocks are not a universal timing structure for D13 procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit rejection of universal Project clocks is governed by CORE-0011's logical-time and donor-cadence boundary. The manifest does not acquire AFQR-04 timing authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 72,
+            "line_end": 84
+          },
+          "candidate_proposition": "D13 must not import rest/reset assumptions or allow source-local donor downtime systems to generalize automatically.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The manifest expressly blocks donor recovery and downtime assumptions from becoming Astra defaults by implication. WORLD-0011 governs that donor-nonpromotion rule and retains authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 72,
+            "line_end": 78
+          },
+          "candidate_proposition": "Research procedure must not reveal protected hidden truth automatically.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The research safeguard prevents procedural progress from leaking protected truth and is therefore governed by WORLD-0022. The manifest neither owns hidden truth nor authorizes its disclosure."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 2,
+        "line_end": 8,
+        "source_status_summary": "The manifest identifies itself as doctrine-pack/generated and states that its record shapes are doctrine-facing and conversion-facing controls rather than final runtime schemas."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0045",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-00_exploration_travel_navigation_and_discovery_owner_boundaries.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "312d9b079c638f958f20842431683422144848c9",
+      "controlled_match_count": 9,
+      "matched_terms": [
+        "hazard",
+        "perception",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 31,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-00 lines 13-31 bound the draft to exploration procedure, preserve downstream ownership, and route environmental pressure, navigation, mapping, scouting, and donor-derived spatial or cadence assumptions through accepted owners and invariants. The proposed Posture–Route–Discovery architecture and other D14-specific procedure remain separately reviewed nonauthoritative draft material."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-00 proposes the ownership envelope and Posture–Route–Discovery architecture for travel, navigation, scouting, mapping, discovery, travel pressure, and exploration triggers. Its ownership, cadence, environmental, donor-nonpromotion, spatial, and sensing responsibilities are governed by accepted surfaces, while its broader exploration architecture remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 19
+          },
+          "candidate_proposition": "D14 owns exploration procedure without absorbing resolution, resource, harm, world-state, presentation, cadence, Project, faction, hazard, economy, campaign-pacing, runtime, or schema ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit owns and must-not-own boundary operationalizes CORE-0003 by preventing exploration routing and procedure from transferring downstream semantics into D14. All named owners remain controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Dungeon turns, watches, and travel days must not become universal D14 timing rules.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The rejection of universal dungeon turns, watches, and travel days is a direct cadence boundary governed by CORE-0011. D14 does not acquire logical-time ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 19
+          },
+          "candidate_proposition": "D14 applies environmental PCR as travel pressure and identifies environmental or hazard triggers without owning the resulting harm, exposure, or world-state changes.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Environmental pressure and trigger procedure operate against environmental state and process concerns owned by AFQR-17. WORLD-0010 governs those concerns, while D14's procedural use transfers no environmental-state authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 31
+          },
+          "candidate_proposition": "D14 must support varied exploration contexts without promoting donor grids, turn procedures, realm metaphysics, supply attrition, or other donor models into universal Astra law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The candidate expressly rejects universal donor spatial, cadence, cosmological, and resource assumptions. WORLD-0011 governs that nonpromotion rule, and the draft gains no authority from restating it."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 19
+          },
+          "candidate_proposition": "D14 performs route-selection, navigation, mapping, and map-state procedure while map objects, platform state, and final map or location schema remain outside D14 ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Route selection, navigation, mapping, and map-state procedure materially depend on AFQR-18 spatial, topology, navigation, and map-materialization ownership. WORLD-0015 governs those concerns and transfers no spatial authority to D14."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 15
+          },
+          "candidate_proposition": "D14 owns the exploration-level procedure for scouting and discovery without becoming the owner of underlying sensing, search, tracking, or observation production.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Scouting and discovery procedure materially invoke AFQR-20 sensing, search, tracking, and observation-production concerns. WORLD-0027 remains the controlling sensing-owner surface while D14 supplies only exploration routing."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation in the D14 operational-procedure layer."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0046",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-01_travel_posture_route_selection_and_known_state_review.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "2fd054ec17ea1cc3b63dc73435a905b7521981ea",
+      "controlled_match_count": 11,
+      "matched_terms": [
+        "conservation",
+        "detection",
+        "handoff",
+        "hazard",
+        "sensing",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "reservation_settlement_conservation",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 27,
+          "line_end": 53,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-01 lines 27-53 define scouting, tracking, sensor, ritual-sensing, route, and known-state procedure while distinguishing confirmed knowledge, belief, rumor, unverified maps, compromised information, sensor readings, protected state, actual truth, and presentation. These bounded concerns route through accepted epistemic, spatial, sensing, and ownership surfaces, while the travel-posture and checkpoint architecture remains separately reviewed draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-01 defines a five-checkpoint travel front end, posture priorities, functional route states, sensing-oriented postures, and a qualified known-state review. Its owner separation, observation boundary, epistemic state, spatial procedure, hidden-truth safeguards, and sensing operations map to accepted authority, while the D14 travel-posture and route-selection architecture remains nonauthoritative draft material.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 49
+          },
+          "candidate_proposition": "D14 may review known state and route handoffs while D10 retains actual-truth ownership and D11 retains presentation ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Known-state review, classification, and handoff do not transfer truth or presentation semantics into D14. CORE-0003 governs this ownership separation, and D10 and D11 remain controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 45
+          },
+          "candidate_proposition": "Sensor readings do not automatically establish actual world truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The bounded sensor-reading proposition directly separates an observation input from qualified truth or knowledge. AGENCY-0001 governs that anti-collapse rule without treating every rumor, guess, or map note as an observation."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 45
+          },
+          "candidate_proposition": "D10 owns actual truth, D11 owns safe presentation, and D14 owns only the known-state review procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit three-owner split materially operationalizes AFQR-10 epistemic ownership and its presentation and sensing exclusions. AGENCY-0002 remains authoritative; D14 receives review procedure, not epistemic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 45
+          },
+          "candidate_proposition": "Known-state values such as confirmed knowledge, belief, rumor, unverified mapping, compromised information, and protected state remain qualified rather than collapsing into actual truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The qualified known-state categories preserve epistemic-state distinctions and keep actual truth with its owner. AGENCY-0003 governs that qualified-state boundary; D14's checkpoint does not absorb the domain semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 35,
+            "line_end": 39
+          },
+          "candidate_proposition": "D14 route procedure classifies paths, vectors, corridors, regions, and route states without requiring one geometric representation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Route selection and route-state review materially invoke AFQR-18 ownership of spatial frames, topology, position, navigation, and map materialization. WORLD-0015 remains controlling while D14 supplies an exploration procedure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 53
+          },
+          "candidate_proposition": "Sensor readings must not become world truth, and protected hidden state must not be revealed during travel setup.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The sensor-to-truth and protected-state safeguards materially apply WORLD-0022's separation of detection from interpretation and its prohibition on hidden-truth leakage. Existing truth and presentation owners retain authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 27,
+            "line_end": 33
+          },
+          "candidate_proposition": "Scouting, tracking, sensor sweep, ritual sensing, concealment, and detection are travel postures whose sensing results require AFQR-20-governed production.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The listed postures materially invoke search, tracking, sensing, detection, concealment, and contact production owned by AFQR-20. WORLD-0027 governs those operations while D14 determines only their travel-procedure role."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation in the D14 operational-procedure layer."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0047",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-02_movement_intervals_travel_pressure_navigation_and_route_progress.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "84c4aa8d8a241342bc5f044a6443a6f257f7e6d5",
+      "controlled_match_count": 16,
+      "matched_terms": [
+        "contact",
+        "hazard",
+        "injury",
+        "resolution",
+        "transition",
+        "truth",
+        "visibility",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 31,
+          "line_end": 63,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-02 lines 31-63 make interval scale contextual, route navigation and movement progress through spatial ownership, apply environmental PCR without absorbing environmental state, preserve truth and presentation owners, and reject universal donor cadence and hidden-truth leakage. The seven-checkpoint Travel/Exploration Interval and progress-state architecture remains separately reviewed nonauthoritative draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D14-02 proposes flexible Travel/Exploration Intervals, navigation and posture checkpoints, environmental pressure handling, resource and exposure triggers, discoveries, hazards, encounters, and route-progress states. Its ownership, cadence, epistemic, environmental, donor-nonpromotion, spatial, and hidden-truth boundaries map to accepted authority, while the interval architecture itself remains nonauthoritative draft doctrine.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 35,
+            "line_end": 49
+          },
+          "candidate_proposition": "D14 identifies navigation, pressure, resource, and exposure triggers while resolution, truth, presentation, resource, harm, object, economy, and campaign state remain owned by their designated files.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Trigger identification and procedural routing do not transfer the routed state into D14. CORE-0003 governs this nontransfer boundary, leaving all named substantive owners authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 17
+          },
+          "candidate_proposition": "D14 uses context-scaled Travel/Exploration Intervals rather than universal travel turns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The candidate expressly rejects a universal travel-turn cadence. CORE-0011 governs logical-time ownership and cadence nonuniversality; the draft does not become a timing owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 43,
+            "line_end": 45
+          },
+          "candidate_proposition": "Environmental PCR may shape travel pressure, but D10 retains truth and D11 retains presentation while hidden Pneuma stays protected.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit truth and presentation split is substantive epistemic-owner routing rather than a mere owner-name list. AGENCY-0002 governs AFQR-10 epistemic ownership and its presentation exclusion while D14 applies only travel pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 43,
+            "line_end": 49
+          },
+          "candidate_proposition": "D14 uses environmental PCR and identifies weather, terrain, exposure, and attrition triggers without owning the resulting environmental or exposure state changes.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Environmental PCR, weather and terrain pressure, exposure sources, and environmental change are AFQR-17-owned concerns. WORLD-0010 governs them; D14's trigger procedure does not acquire environmental-state ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 31,
+            "line_end": 33
+          },
+          "candidate_proposition": "A donor watch, turn, day, jump, phase, or segment is not Astra law unless bounded as source-local or supported by an owner file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This passage directly prevents donor cadence assumptions from becoming Astra defaults by implication. WORLD-0011 remains the controlling donor-nonpromotion surface."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 31,
+            "line_end": 37
+          },
+          "candidate_proposition": "D14 performs context-scaled movement, route, position, navigation, orientation, and destination-sense procedure when spatial uncertainty makes those concerns material.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Movement intervals and navigation checks materially invoke AFQR-18 ownership of spatial frames, position, movement topology, navigation, reachability, and map relations. WORLD-0015 governs those semantics while D14 supplies procedure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 43,
+            "line_end": 45
+          },
+          "candidate_proposition": "Environmental pressure processing must preserve hidden Pneuma rather than exposing protected truth through PCR.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The PCR safeguard prevents hidden cosmic information from leaking through an environmental or model-facing pressure record. WORLD-0022 governs that boundary, while truth and presentation remain with their existing owners."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation in the D14 operational-procedure layer."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0048",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-03_discovery_scouting_mapping_and_information_state_boundaries.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d1264c0e228af908dd70bdd459241870de47951e",
+      "controlled_match_count": 20,
+      "matched_terms": [
+        "canon",
+        "commitment",
+        "condition",
+        "correction",
+        "hazard",
+        "invalidate",
+        "knowledge",
+        "perception",
+        "sensing",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 55,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-03 lines 13-55 distinguish discovery opportunities, sensing observations, qualified confidence and map states, actual truth, party-facing knowledge, and presentation; route scouting and mapping through accepted sensing and spatial owners; and prohibit donor-grid promotion or hidden-state leakage. The Discovery Opportunity, confidence-state, and map-update procedures remain separately reviewed nonauthoritative draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-03 proposes Discovery Opportunities, qualified confidence states, scouting, sensing, party-facing spatial knowledge, map-state updates, and a three-layer truth, known-state, and presentation boundary. Its ownership, observation, epistemic, donor-grid, spatial, hidden-truth, sensing-candidate, and sensing-owner propositions map to accepted authority, while its novel discovery and mapping architecture remains nonauthoritative draft doctrine.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 25
+          },
+          "candidate_proposition": "D14 classifies discovery while D10 retains actual-truth ownership and D11 retains safe-presentation ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Classification and procedural update do not transfer truth or presentation semantics into D14. CORE-0003 governs the owner separation, and D10 and D11 remain authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 15
+          },
+          "candidate_proposition": "A Discovery Opportunity may surface party-facing information but is not automatically actual world truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The candidate directly prevents an opportunity to observe or discover from becoming truth or qualified knowledge automatically. AGENCY-0001 governs that observation-to-knowledge boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 29
+          },
+          "candidate_proposition": "D14 classifies discoveries and confidence while D10 decides actual truth and D11 controls safe presentation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The file explicitly separates D14 classification from AFQR-10 epistemic ownership and presentation. AGENCY-0002 governs that owner and exclusion structure; D14 acquires neither truth nor presentation authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 27,
+            "line_end": 29
+          },
+          "candidate_proposition": "Discovery confidence remains qualified as confirmed, partial, ambiguous, rumored, suspected, compromised, protected, or source-local, and confirmation requires owner-file support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The confidence taxonomy is qualified epistemic-state material whose meaning remains with AFQR-10 rather than being absorbed by D14's discovery transition. AGENCY-0003 governs that qualified-state ownership boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 37,
+            "line_end": 41
+          },
+          "candidate_proposition": "Hexes and grids are optional or source-local mapping forms rather than universal Astra map law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit grid nonuniversality rule prevents donor spatial assumptions from becoming Astra law by implication. WORLD-0011 remains controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 37,
+            "line_end": 41
+          },
+          "candidate_proposition": "Mapping converts movement and discovery into party-facing spatial or relational knowledge across relational, route, zone, node, coordinate, platform, and source-local map forms.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Map forms, spatial relations, route topology, and map materialization are AFQR-18-owned concerns. WORLD-0015 governs these semantics while D14 defines only draft exploration-level mapping procedure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 51,
+            "line_end": 55
+          },
+          "candidate_proposition": "Hidden state must not leak through scouting, sensors, ritual sensing, maps, procedural tables, or player-authored discovery.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The anti-drift rules directly prohibit sensing, evidence, mapping, and presentation channels from exposing protected truth. WORLD-0022 governs those leakage boundaries without transferring truth authority to D14."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0025",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 17,
+            "line_end": 29
+          },
+          "candidate_proposition": "Scouting, ritual sensing, sensor sweeps, and platform sensors may produce discovery candidates, but confirmation and epistemic qualification require owner-file support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The source describes sensing-produced discovery opportunities that remain candidate-like until epistemically qualified. WORLD-0025 governs the boundary between AFQR-20 sensing production and AFQR-10 epistemic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 17,
+            "line_end": 35
+          },
+          "candidate_proposition": "Scouting, tracking, ritual sensing, sensor sweep, search, and platform-sensor interaction produce exploration observations under sensing-owner constraints.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These operations materially invoke AFQR-20 search, tracking, sensing, acquisition, detection, and observation production. WORLD-0027 remains authoritative while D14 classifies their exploration relevance."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation in the D14 operational-procedure layer."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0049",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-04_exploration_context_profiles_site_entry_watches_and_ambush_exposure.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "24577008888c39da83092b4c278323deed2f3220",
+      "controlled_match_count": 17,
+      "matched_terms": [
+        "action",
+        "environment",
+        "hazard",
+        "identity",
+        "reversal",
+        "transition",
+        "truth",
+        "visibility",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 19,
+          "line_end": 59,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-04 lines 19-59 define context-sensitive movement, environmental, sensing, pursuit, site-entry, watch, and ambush procedures; route their spatial, environmental, conflict-opportunity, and sensing concerns through accepted owners; and reject universal donor timing, grids, resources, and cosmology. The profile and transition architecture remains separately reviewed nonauthoritative draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-04 proposes exploration profiles for urban, wilderness, interior, platform, dimensional, anomalous, and pursuit contexts, together with Site Entry, Watch, and Ambush Exposure procedures. Its ownership, cadence, environmental, donor-nonpromotion, spatial, action-opportunity, protected-disclosure, and sensing concerns map to accepted authority, while the profile and transition architecture remains nonauthoritative draft doctrine.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 39,
+            "line_end": 59
+          },
+          "candidate_proposition": "D14 routes exposure, state, active-chase sequencing, and uncertainty to their substantive owners rather than absorbing those semantics into exploration profiles or transitions.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The profile handoffs and the explicit D12 sequencing and D02 uncertainty boundaries operationalize CORE-0003. Routing through D14 does not transfer ownership from the named files."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 53,
+            "line_end": 55
+          },
+          "candidate_proposition": "A D14 Watch is a monitoring posture or role and must not become a fixed universal shift system.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The fixed-shift rejection is a direct cadence-nonuniversality rule governed by CORE-0011. D14's Watch procedure does not acquire universal logical-time authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 23,
+            "line_end": 41
+          },
+          "candidate_proposition": "Wilderness and anomalous-zone profiles route weather, terrain, exposure, environmental pressure, hazard pulses, depletion, and environmental instability without defining final exposure math or damage families.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The profiles materially invoke environmental state, terrain, weather, hazards, exposure sources, and environmental processes owned by AFQR-17. WORLD-0010 governs those semantics; D14 retains only context-profile routing."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 19,
+            "line_end": 37
+          },
+          "candidate_proposition": "Exploration profiles must not promote donor faction clocks, hexes, dungeon turns, ship turns, grids, fuel models, cosmology, planar law, or realm metaphysics into universal Astra rules.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The profile-specific rejection of donor cadence, spatial, resource, and cosmological assumptions materially restates WORLD-0011's nonpromotion invariant. The draft transfers no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 33
+          },
+          "candidate_proposition": "Exploration profiles organize movement logic, route forms, position, map-state concerns, platform vectors, approach paths, and spatial transitions across multiple context types.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Movement, route topology, position, navigation, map state, platform scale, and site-entry boundaries materially invoke AFQR-18 spatial ownership. WORLD-0015 governs these semantics while D14 supplies draft exploration profiles."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 57,
+            "line_end": 59
+          },
+          "candidate_proposition": "Ambush Exposure identifies an opportunity for hostile or hazardous action before the party controls the scene, but it is not itself automatic surprise.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The bounded proposition concerns action opportunity and eligibility for conflict, not sequencing or uncertainty resolution. WORLD-0021 governs that opportunity boundary while D12 and D02 retain their separate responsibilities."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 47,
+            "line_end": 51
+          },
+          "candidate_proposition": "Entering a site must not automatically disclose boxed text or all room facts without supporting owner state and lawful presentation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The Site Entry safeguard prevents a procedural transition and presentation channel from leaking hidden location truth. WORLD-0022 governs that disclosure boundary while truth and presentation remain with their existing owners."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 19,
+            "line_end": 55
+          },
+          "candidate_proposition": "Exploration profiles and Watches route surveillance, tracking, sensors, ritual sensing, visibility, concealment, and monitoring roles through sensing-owner concerns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Surveillance, tracking, sensor operation, ritual sensing, concealment, visibility, and watch monitoring materially invoke AFQR-20 sensing and attention ownership. WORLD-0027 remains controlling while D14 defines their exploration context."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation in the D14 operational-procedure layer."
+      }
     }
   ]
 }
