@@ -5510,6 +5510,1004 @@
         "line_end": 7,
         "source_status_summary": "The combined file opens with the D14 manifest's explicit doctrine-draft and Phase 1 native-doctrine-continuation status."
       }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0056",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_pack_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "732c44583f3e3a2d0c17bc6742d70a541035689d",
+      "controlled_match_count": 11,
+      "matched_terms": [
+        "conversion",
+        "handoff",
+        "hazard",
+        "runtime",
+        "schema",
+        "sensing",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "json_pointer",
+          "locator_value": "/risk_fixes_embedded",
+          "line_start": 22,
+          "line_end": 36,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The D14 manifest risk-fix array preserves owner handoffs, rejects universal donor space and cadence, separates maps from truth, prevents sensing from revealing protected truth, and distinguishes ambush exposure from automatic surprise. Those propositions map to accepted surfaces, while the generated manifest and Posture–Route–Discovery architecture remain nonauthoritative draft material."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14_pack_manifest.json serializes the generated D14 architecture, file inventory, draft status, schema warning, and risk controls. Its owner, cadence, observation, qualified map-state, donor-nonpromotion, ambush-opportunity, hidden-truth, and sensing propositions map to accepted authority, while the manifest architecture and metadata remain nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/6",
+            "line_start": 29,
+            "line_end": 29
+          },
+          "candidate_proposition": "Encounter and hazard construction remain with D16 rather than transferring to D14 exploration procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The serialized owner boundary operationalizes CORE-0003; D14 acquires no encounter or hazard-construction ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/5",
+            "line_start": 28,
+            "line_end": 28
+          },
+          "candidate_proposition": "Donor timing units must not become universal D14 cadence.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs the explicit timing-nonuniversality rule."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0001",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/4",
+            "line_start": 27,
+            "line_end": 27
+          },
+          "candidate_proposition": "Scouting and sensing do not automatically reveal protected hidden truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The proposition directly instantiates AGENCY-0001's observation and sensing output versus truth anti-collapse boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/3",
+            "line_start": 26,
+            "line_end": 26
+          },
+          "candidate_proposition": "A map representation does not become actual truth merely by being recorded as a map.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The map-state versus truth distinction is qualified epistemic-state pressure governed by AGENCY-0003."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded",
+            "line_start": 22,
+            "line_end": 34
+          },
+          "candidate_proposition": "Donor grids, timing units, cosmology, space-travel rules, encounter procedures, and source-local systems must not become universal Astra law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the manifest's donor-nonpromotion safeguards, including its spatial-model rejection."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/10",
+            "line_start": 33,
+            "line_end": 33
+          },
+          "candidate_proposition": "Watch or ambush exposure does not itself grant automatic surprise.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 governs the distinction between exposure and an actual conflict opportunity or surprise result."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/4",
+            "line_start": 27,
+            "line_end": 27
+          },
+          "candidate_proposition": "Protected hidden truth must not leak through scouting or sensing.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the manifest's sensing-handoff hidden-truth firewall."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "json_pointer",
+            "locator_value": "/risk_fixes_embedded/4",
+            "line_start": 27,
+            "line_end": 27
+          },
+          "candidate_proposition": "Scouting and sensing production remain AFQR-20-governed even when used by D14 procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0027 preserves AFQR-20 scouting, search, and sensing-production ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "json_pointer",
+        "locator_value": "/status",
+        "line_start": 2,
+        "line_end": 21,
+        "source_status_summary": "The manifest declares doctrine-draft status, identifies a generated D14 version, and warns that its doctrine-facing and conversion-facing records are not final runtime or map schemas."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0057",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-00_faction_relationship_domain_and_institutional_operations_owner_boundaries.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "89fe2aaa7a3d5b4e25fa88025b62ad57c4fdd378",
+      "controlled_match_count": 24,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "conflict",
+        "conversion",
+        "handoff",
+        "hazard",
+        "injury",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 41,
+          "line_end": 88,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D15-00 lines 41-88 assert draft D15 ownership over institutional procedure, obligations, Claims, treaties, law, and domain operations while preserving many downstream owners. The alternative Claim vocabulary and governed-relation assertions conflict with accepted surfaces; Standing–Pressure–Operation remains nonauthoritative draft architecture."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021"
+      ],
+      "semantic_review_summary": "D15-00 proposes Standing–Pressure–Operation architecture and broad institutional-procedure ownership. Its handoffs, cadence, Claim-vocabulary collision, governed-relation conflict, epistemic ownership, donor nonpromotion, spatial boundaries, and institutional-action constraints map to accepted surfaces, while its faction, standing, law, and institution architecture remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 65,
+            "line_end": 88
+          },
+          "candidate_proposition": "D15 may call or affect resolution, resources, harm, identity, truth, presentation, cadence, spatial, conflict, economy, and campaign owners but must not absorb them.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit must-not-own and nonabsorption passage is governed by CORE-0003."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 23
+          },
+          "candidate_proposition": "Faction clocks and donor kingdom turns must not become universal institutional cadence.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs the rejection of universal faction and kingdom cadence."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0013",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 63
+          },
+          "candidate_proposition": "D15 treats Claim as an institutional or social procedural object, while accepted Astra vocabulary assigns Claim as an AFQR-06-owned proposition.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The D15 ownership list explicitly groups claims with debts, favors, and obligations. That alternative Claim meaning collides with CORE-0013 and acquires no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0019",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 63
+          },
+          "candidate_proposition": "D15 claims procedural ownership over debts, favors, obligations, claims, treaties, legal authority, standing changes, and relationship operations.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These draft claims overlap AFQR-09 governed-relation ownership and nonownership limits under CORE-0019."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 65,
+            "line_end": 88
+          },
+          "candidate_proposition": "World-state contents, hidden truth, public belief, rumor, and stored relationship facts remain outside D15 ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 preserves AFQR-10 epistemic and authoritative-truth ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 90,
+            "line_end": 110
+          },
+          "candidate_proposition": "Donor faction ranks, reputation scores, clocks, kingdom phases, domain actions, and resource-access systems do not become Astra law by familiarity.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the donor-family nonpromotion pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 65,
+            "line_end": 88
+          },
+          "candidate_proposition": "Travel, territory crossing, discovery, and site entry remain outside D15 institutional ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Where these concerns depend on routes, topology, and reachability, WORLD-0015 preserves AFQR-18 ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 142,
+            "line_end": 149
+          },
+          "candidate_proposition": "Significant institutional action requires a lawful initiator, target, goal, scale, method, leverage, cost or risk, and owner handoff.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Institutional action and conflict posture invoke AFQR-19 opportunity, target, and conflict boundaries under WORLD-0021."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 10,
+        "source_status_summary": "The file calls itself a doctrine-draft and native-doctrine-foundation continuation and says it is procedure doctrine rather than canon prose, conversion output, final runtime schema, or live-play behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0058",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-01_organized_actors_standing_pressure_obligations_claims_and_operation_anatomy.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9cea0606ace4f383a0f84490ac2b419c9b2109bc",
+      "controlled_match_count": 10,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "evidence",
+        "runtime",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 29,
+          "line_end": 193,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D15-01 lines 29-193 define seven procedural objects and assert draft control over standing, pressure, obligations, Claims, operations, and domain posture. Its owner handoffs, Claim-vocabulary conflict, governed-relation conflict, cadence, authoritative-state routing, spatial pressure, action anatomy, and donor nonpromotion map to accepted surfaces; the seven-object anatomy remains nonauthoritative and not-final-schema."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021"
+      ],
+      "semantic_review_summary": "D15-01 proposes organized-actor, standing, pressure, obligation, Claim, operation, domain-posture, and lifecycle objects. Its owner routing, cadence, Claim-vocabulary collision, governed-relation conflict, authoritative-state boundary, donor nonpromotion, spatial pressure, and institutional-action propositions map to accepted surfaces, while the object model remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 93,
+            "line_end": 101
+          },
+          "candidate_proposition": "D15 may coordinate obligation and claim procedure while economic value, stored world state, and presentation remain with their designated owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the owner-preserving procedure and handoff boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 164,
+            "line_end": 188
+          },
+          "candidate_proposition": "Operation lifecycle states replace universal clocks, and numeric clocks require source-local, owner-file, or later canon support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs this cadence-nonuniversality proposition."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0013",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 93,
+            "line_end": 132
+          },
+          "candidate_proposition": "D15 defines Claim as an assertion of right, control, debt, territory, jurisdiction, ownership, access, authority, or grievance and gives it a social or legal lifecycle, while accepted Astra vocabulary assigns Claim as an AFQR-06-owned proposition.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The alternative D15 Claim definition and lifecycle collide with CORE-0013. This disposition records the conflict without deciding renaming, specialization, bridging, or adoption."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0019",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 93,
+            "line_end": 132
+          },
+          "candidate_proposition": "D15 claims ownership over invoking, contesting, enforcing, transferring, settling, escalating, and retiring obligations and claims.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The claim overlaps accepted AFQR-09 governed-relation ownership under CORE-0019."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 37
+          },
+          "candidate_proposition": "Goals, standing relationships, obligations, claims, public face, hidden agenda, and related facts remain stored with the authoritative world-state owner while D15 operates procedurally on them.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 preserves authoritative truth and epistemic ownership against D15 procedure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 190,
+            "line_end": 193
+          },
+          "candidate_proposition": "Donor faction statblocks, clocks, kingdom phases, reputation scores, heat tracks, favor economies, and organization trees are evidence rather than Astra structures until lawfully mapped.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the explicit donor-nonpromotion rule."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 156,
+            "line_end": 162
+          },
+          "candidate_proposition": "Territory, routes, occupation, contested space, and access aspects of Domain Posture remain governed by spatial ownership rather than institutional jurisdiction alone.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0015 applies only to the bounded spatial and route aspects of the profile."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 133,
+            "line_end": 154
+          },
+          "candidate_proposition": "Every Operation identifies an initiator, target, goal, method, leverage, risk, and outcome before attempting institutional state change.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The operation anatomy invokes AFQR-19 action, target, opportunity, and contest ownership under WORLD-0021."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 17,
+        "source_status_summary": "The file identifies itself as a doctrine-draft and native-doctrine-foundation continuation, denies canon, conversion, runtime-schema, and live-play authority, and calls its seven objects procedural rather than final schemas."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0059",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-02_operation_creation_trigger_sources_scale_method_leverage_and_commitment.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f32d95d6f4ebb0c579f3592d0c80c78ad54a4bfb",
+      "controlled_match_count": 31,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "commitment",
+        "conflict",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "process",
+        "runtime",
+        "schema",
+        "settlement",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 19,
+          "line_end": 180,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D15-02 lines 19-180 define eight setup checkpoints and operationalize institutional Claims, obligations, treaties, jurisdiction, targets, hidden risks, cadence, and owner handoffs. Accepted Claim vocabulary, governed-relation ownership, action, epistemic, donor, and hidden-truth surfaces govern those portions, while the setup grammar remains nonauthoritative draft architecture."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D15-02 proposes an eight-checkpoint setup for institutional Operations. Its owner handoffs, cadence, Claim-vocabulary conflict, governed-relation procedures, protected epistemic state, donor nonpromotion, initiator and target structure, and hidden-risk firewall map to accepted surfaces, while leverage, scale, setup, and institutional-operation grammar remain nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 138,
+            "line_end": 153
+          },
+          "candidate_proposition": "Operation setup may hand off to scene, Project, economy, campaign, source-local, quarantine, or escalation procedure without acquiring those owners' semantics.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the owner-preserving procedure handoff."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 138,
+            "line_end": 153
+          },
+          "candidate_proposition": "Operations route by their actual scale and must not all be forced into universal faction turns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs the rejection of universal faction cadence."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0013",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 32,
+            "line_end": 95
+          },
+          "candidate_proposition": "D15 treats Claims as institutional objects that may trigger Operations, be targeted, enforced, contested, or used to claim territory, while accepted Astra vocabulary assigns Claim as an AFQR-06-owned proposition.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This is operational use of an alternative social or legal Claim meaning, not incidental vocabulary. CORE-0013 remains controlling."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0019",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 64,
+            "line_end": 95
+          },
+          "candidate_proposition": "Operation goals may create or remove obligations, enforce or contest claims, negotiate or break treaties, contest jurisdiction, and shift legal posture.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These are material governed-relation, obligation, jurisdiction, and legal-effect procedures under accepted AFQR-09 ownership in CORE-0019."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 128,
+            "line_end": 136
+          },
+          "candidate_proposition": "Hidden risks remain protected by the authoritative truth and presentation owners during Operation setup.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 preserves AFQR-10 epistemic ownership while D15 handles setup."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 138,
+            "line_end": 153
+          },
+          "candidate_proposition": "Source-local faction procedures and donor faction-turn assumptions remain bounded rather than becoming universal Operation law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor and source-local nonpromotion."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 19,
+            "line_end": 31
+          },
+          "candidate_proposition": "An institutional Operation requires a lawful trigger, initiator, target, goal, scale, method, leverage, cost or risk, and procedure handoff before it can proceed.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The setup checkpoints invoke AFQR-19 action, target, opportunity, and contest ownership under WORLD-0021."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 128,
+            "line_end": 136
+          },
+          "candidate_proposition": "Operation setup may record visible costs and risks but must not expose protected hidden risks.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the setup-to-hidden-truth firewall."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 10,
+        "source_status_summary": "The file identifies itself as a doctrine-draft and native-doctrine-foundation continuation and denies canon, conversion-output, final-runtime-schema, and live-play authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0060",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-03_operation_resolution_standing_shifts_pressure_lifecycle_and_consequence_routing.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "b87e0b05bcfc390325f2d248af94f552910e5c90",
+      "controlled_match_count": 31,
+      "matched_terms": [
+        "action",
+        "belief",
+        "branch",
+        "canon",
+        "condition",
+        "conflict",
+        "conversion",
+        "handoff",
+        "injury",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 209,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D15-03 lines 13-209 define outcome, standing, pressure, obligation, Claim, access, partial-outcome, and consequence-routing procedure. Its owner handoffs, cadence, Claim-vocabulary conflict, governed-relation conflict, epistemic ownership, action resolution, and hidden-truth boundaries map to accepted surfaces; the Operation Outcome and Pressure Routing Model remains nonauthoritative draft architecture."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D15-03 proposes Operation outcomes, standing shifts, pressure and obligation lifecycles, Claim resolution, access outcomes, partial outcomes, and consequence routing. Its owner, cadence, Claim-vocabulary, governed-relation, epistemic, action-resolution, and hidden-truth propositions map to accepted authority, while its social outcome and pressure-routing model remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 186,
+            "line_end": 200
+          },
+          "candidate_proposition": "D15 routes contested resolution, harm, personhood, objects, truth, presentation, scene, Project, economy, and campaign consequences to their substantive owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs this consequence-routing nontransfer boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 29
+          },
+          "candidate_proposition": "D15 does not use universal faction clocks or one universal Operation roll as its default resolution cadence.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs the cadence-nonuniversality proposition."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0013",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 123,
+            "line_end": 155
+          },
+          "candidate_proposition": "D15 gives social or legal Claims lifecycle states including asserted, recognized, contested, rejected, enforced, suspended, transferred, settled, violated, escalated, and retired, while accepted Astra vocabulary assigns Claim as an AFQR-06-owned proposition.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The operationalized alternative Claim meaning collides with CORE-0013 and acquires no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0019",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 123,
+            "line_end": 155
+          },
+          "candidate_proposition": "D15 assigns procedural lifecycles for invoking, contesting, transferring, enforcing, settling, and retiring obligations and claims.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These lifecycle claims overlap accepted AFQR-09 governed-relation ownership under CORE-0019."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 186,
+            "line_end": 207
+          },
+          "candidate_proposition": "World state, relationships, law, public belief, rumors, hidden truth, and pressure queues remain with the authoritative epistemic and world-state owner.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 preserves AFQR-10 ownership while D15 routes outcomes."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 19,
+            "line_end": 33
+          },
+          "candidate_proposition": "An Operation resolves through its selected scene, Project, institutional, economy, campaign, or source-local procedure rather than one universal institutional roll.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 governs the bounded action and conflict-resolution routing proposition."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 186,
+            "line_end": 207
+          },
+          "candidate_proposition": "D15 consequence routing must preserve hidden-truth and presentation boundaries rather than exposing hidden state through Operation outcomes.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the outcome-routing hidden-truth firewall."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 10,
+        "source_status_summary": "The file identifies itself as a doctrine-draft and native-doctrine-foundation continuation and denies canon, conversion-output, final-runtime-schema, and live-play authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0061",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D15_faction_relationship_domain_and_institutional_operations_doctrine_pack/D15_doctrine_pack/D15-04_operation_profiles_institutional_behavior_relationship_procedure_and_domain_operations.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5a6252151a8ed10d811813e51484e8ad6e8f880b",
+      "controlled_match_count": 35,
+      "matched_terms": [
+        "action",
+        "belief",
+        "branch",
+        "canon",
+        "conflict",
+        "conversion",
+        "evidence",
+        "release",
+        "runtime",
+        "schema",
+        "settlement",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 141,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D15-04 lines 13-141 define ten institutional Operation Profiles and operationalize social or legal Claims, obligations, treaties, access, jurisdiction, belief, territory, conflict, and hidden information. Accepted Claim-vocabulary, governed-relation, epistemic, donor, spatial, action, and hidden-truth surfaces govern bounded portions, while the profile catalog remains nonauthoritative draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D15-04 proposes profiles for relationships, obligations, access, treaties, law, influence, territorial Claims, patronage, retaliation, and player organizations. Its owner handoffs, Claim-vocabulary collision, governed-relation pressure, epistemic ownership, donor nonpromotion, spatial boundaries, conflict opportunities, and hidden-truth safeguards map to accepted authority, while the institutional profile catalog remains nonauthoritative draft architecture.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 31
+          },
+          "candidate_proposition": "Relationship-profile procedure routes methods, relationships, belief, truth, presentation, Projects, gifts, payments, debts, and favors to their respective owners without absorbing them.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the profile catalog's owner-preserving handoffs."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0013",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 57,
+            "line_end": 103
+          },
+          "candidate_proposition": "D15 institutional profiles operationalize social or legal Claims through claim settlement, enforcement, contest, and territorial or domain-claim outcomes, while accepted Astra vocabulary assigns Claim as an AFQR-06-owned proposition.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The profile catalog's alternative Claim lifecycle collides with CORE-0013 and transfers no authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0019",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 33,
+            "line_end": 79
+          },
+          "candidate_proposition": "The profiles coordinate creation, invocation, contest, transfer, settlement, and enforcement of obligations, claims, treaties, contracts, access, and jurisdictional agreements.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These draft procedures overlap AFQR-09 governed-relation ownership under CORE-0019."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 81,
+            "line_end": 91
+          },
+          "candidate_proposition": "Public belief, rumors, hidden truth, and information state remain with the authoritative epistemic owner while D15 coordinates institutional response.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 preserves AFQR-10 epistemic ownership and presentation exclusions."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 69,
+            "line_end": 79
+          },
+          "candidate_proposition": "Donor legal systems and moral assumptions must not become Astra law through the Law, Sanction, and Enforcement profile.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the donor-law nonpromotion boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 93,
+            "line_end": 103
+          },
+          "candidate_proposition": "Territorial and domain-claim procedure involving land, routes, resource sites, stations, trade lanes, occupation, patrols, and crossings remains governed by spatial ownership where those concerns are material.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0015 applies to the bounded spatial and route concerns, not to jurisdiction merely because it is named."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 115,
+            "line_end": 123
+          },
+          "candidate_proposition": "Retaliation and protection profiles may prepare or escalate conflict posture but must hand immediate confrontation and encounter construction to their accepted owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 governs action opportunity, targeting, and conflict semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 81,
+            "line_end": 91
+          },
+          "candidate_proposition": "Influence, rumor, propaganda, misinformation, and evidence-release procedure must preserve hidden truth and presentation boundaries.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the information-pressure and hidden-truth leakage firewall."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 18,
+        "source_status_summary": "The file identifies itself as a doctrine-draft and native-doctrine-foundation continuation, denies canon, conversion-output, final-runtime-schema, and live-play authority, and describes its profiles as procedure templates rather than full subsystems."
+      }
     }
   ]
 }
