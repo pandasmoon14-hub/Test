@@ -4321,6 +4321,1195 @@
         "line_end": 7,
         "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation in the D14 operational-procedure layer."
       }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0050",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-05_travel_risk_resource_pressure_hazards_encounters_and_transition_handoffs.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c718821505f726016e203305440de415b24d93e2",
+      "controlled_match_count": 15,
+      "matched_terms": [
+        "contact",
+        "environment",
+        "handoff",
+        "hazard",
+        "runtime",
+        "transition",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 61,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-05 lines 13-61 classify travel-pressure families, require lawful triggers, and route resource, exposure, environmental, spatial, encounter, sensing, and downstream consequences to existing owners. Its accepted-surface relationships transfer no authority, while the pressure-family and handoff architecture remains separately reviewed Astra-native draft material."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-05 proposes a lawful-trigger model and taxonomy for resource, exposure, hazard, encounter, navigation, map-state, social, object, hidden-state, and time pressure. Its owner routing, donor-resource boundary, embodiment handoff, environmental, donor-nonpromotion, spatial, action-opportunity, and sensing propositions map to accepted authority, while the D14-specific pressure architecture remains nonauthoritative draft material.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 53
+          },
+          "candidate_proposition": "D14 identifies travel-pressure triggers while resource, harm, object, truth, encounter, economy, and campaign consequences remain routed to their substantive owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Pressure classification and handoff do not transfer domain semantics into D14. CORE-0003 governs this nontransfer boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0014",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 11
+          },
+          "candidate_proposition": "Travel rations and survival attrition must not become universal Astra resource law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0014 governs the explicit rejection of universal donor resource and attrition assumptions."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0004",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 32
+          },
+          "candidate_proposition": "D14 identifies fatigue, affliction-like risk, hostile-atmosphere effects, and similar exposure pressure while handing consequences onward rather than owning embodiment, integrity, harm, injury, or condition semantics.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The Exposure pressure section routes embodiment, integrity, and harm consequences rather than assigning them to D14. WORLD-0004 remains authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 37
+          },
+          "candidate_proposition": "D14 identifies weather, atmosphere, terrain, anomaly, storm, flooding, fire, cold, and other environmental pressure triggers without owning their resulting state changes.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These triggers invoke AFQR-17 environmental-state and process ownership under WORLD-0010."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 55,
+            "line_end": 57
+          },
+          "candidate_proposition": "Random encounters, weather tables, route events, and procedural checks are not default D14 law and require source, scenario, runtime, or owner support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this rejection of universal donor travel and encounter assumptions."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 39,
+            "line_end": 41
+          },
+          "candidate_proposition": "Lost routes, false trails, map contradictions, missing landmarks, blocked paths, and compromised maps are spatial and navigation pressure routed through existing owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Navigation, routes, reachability, and map state remain AFQR-18 concerns governed by WORLD-0015."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 35,
+            "line_end": 37
+          },
+          "candidate_proposition": "Patrol contact, ambush opportunity, and social confrontation are encounter pressure rather than encounter construction or resolution.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 governs the bounded action-opportunity and conflict concerns."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 35,
+            "line_end": 49
+          },
+          "candidate_proposition": "D14 may identify patrol or ship contact, surveillance, sensor spoofing, and sensor overload as travel pressure without owning sensing production.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Contact, surveillance, spoofing, and sensor operation remain AFQR-20 concerns under WORLD-0027."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0051",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-06_source_local_travel_donor_exploration_mapping_quarantine_and_escalation.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "53a9e528145f0562522c5cde5c4f24bd2398022c",
+      "controlled_match_count": 6,
+      "matched_terms": [
+        "action",
+        "detection",
+        "hazard",
+        "schema",
+        "truth",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 56,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-06 lines 13-56 require donor exploration procedures to be decomposed by function, spatial and timing models, changed or revealed state, affected owners, and lawful outcomes. Accepted surfaces govern its ownership, cadence, resource, truth, donor-nonpromotion, spatial, and hidden-state boundaries, while the conversion ladder remains Astra-native draft architecture rather than donor-local evidence."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0022"
+      ],
+      "semantic_review_summary": "D14-06 proposes a functional donor-exploration mapping ladder with direct, normalized, source-local, quarantine, and escalation outcomes. Its owner preservation, cadence, donor-resource, epistemic-owner, donor-nonpromotion, spatial, and hidden-state rules map to accepted authority, while the D14 conversion ladder remains nonauthoritative draft procedure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 24
+          },
+          "candidate_proposition": "Donor exploration procedure must identify affected Astra owners and route through a lawful outcome rather than transferring ownership through conversion.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Functional mapping and owner routing do not transfer domain semantics to D14 under CORE-0003."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "A donor dungeon turn becomes a bounded source-local or normalized interval rather than Astra's default exploration clock.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs this explicit preservation of cadence nonuniversality."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0014",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 49,
+            "line_end": 52
+          },
+          "candidate_proposition": "Donor ration, supply-attrition, and foraging resource assumptions cannot become universal Astra resource law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The rejected-import passage directly invokes CORE-0014's donor-resource and conservation boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 52
+          },
+          "candidate_proposition": "Player-authored map facts cannot become authoritative world truth through donor import, and truth-related procedure remains routed rather than acquired by D14.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AFQR-10 retains authoritative-world-truth ownership under AGENCY-0002; conversion and D14 routing acquire none."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 27,
+            "line_end": 52
+          },
+          "candidate_proposition": "Donor hexes, grids, timing, resources, encounters, ships, cosmology, and travel procedures must not generalize into Astra law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The file's central donor-nonpromotion rule is governed by WORLD-0011."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 31
+          },
+          "candidate_proposition": "Donor spatial models must be identified and normalized into functional route, area, vector, or threshold procedure without making their geometry universal.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Spatial models, routes, navigation, and map materialization remain AFQR-18 concerns under WORLD-0015."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 41,
+            "line_end": 52
+          },
+          "candidate_proposition": "Donor procedures with unclear hidden-state boundaries must be quarantined, and room-entry or map procedure must not expose protected truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the conversion and presentation leakage boundary."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as an Astra-native doctrine-draft and Phase 1 native-doctrine continuation."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0052",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-07_records_not_final_schema_and_conversion_handoff_shapes.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0c7d9cfc65819c490b7001668ceac906db2413cb",
+      "controlled_match_count": 30,
+      "matched_terms": [
+        "condition",
+        "conservation",
+        "conversion",
+        "correction",
+        "handoff",
+        "hazard",
+        "resolution",
+        "runtime",
+        "schema",
+        "sensing",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 48,
+          "line_end": 196,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-07 lines 48-196 define route, known-state, interval, environmental, discovery, map-state, pressure, site-entry, watch, ambush, and donor-mapping record shapes with explicit truth, presentation, sequencing, resolution, sensing, and handoff boundaries. Those fields map to accepted owners, while the record catalog remains not-final-schema Astra-native draft architecture."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-07 proposes conversion-facing, not-final-schema records for travel, posture, routes, qualified knowledge, intervals, environmental pressure, discovery, maps, site entry, watches, ambush, and donor mapping. Its ownership, epistemic, environmental, spatial, opportunity, hidden-truth, and sensing boundaries map to accepted surfaces, while the record architecture remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 32
+          },
+          "candidate_proposition": "D14 records may contain owner-file handoffs without acquiring the routed owners' domain semantics.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit handoff fields are governed by CORE-0003's ownership-nontransfer invariant."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 110,
+            "line_end": 120
+          },
+          "candidate_proposition": "A discovery opportunity carries qualified confidence and does not reveal hidden truth merely because sensing or discovery occurred.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Observation and discovery remain distinct from qualified truth or knowledge under AGENCY-0001."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 61,
+            "line_end": 73
+          },
+          "candidate_proposition": "Known-state records keep actual truth with D10 and presentation with D11 while D14 stores only party-facing qualification and review state.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The record operationalizes AFQR-10 epistemic ownership and presentation exclusion under AGENCY-0002."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 61,
+            "line_end": 73
+          },
+          "candidate_proposition": "Confirmed knowledge, belief, rumor, suspicion, unverified mapping, compromised information, and protected state remain qualified epistemic values.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0003 governs these qualified epistemic states and prevents the surrounding record workflow from absorbing their meaning."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 91,
+            "line_end": 108
+          },
+          "candidate_proposition": "Environmental PCR records describe location and environmental pressure while retaining separate resolution, truth, and presentation owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Environmental state and process fields remain governed by AFQR-17 through WORLD-0010."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 48,
+            "line_end": 59
+          },
+          "candidate_proposition": "Route and area records represent routes, vectors, corridors, regions, map references, geometry qualification, and spatial state.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These spatial and map-materialization concerns remain governed by AFQR-18 through WORLD-0015."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 162,
+            "line_end": 174
+          },
+          "candidate_proposition": "Ambush exposure records possible hostile opportunity without granting automatic surprise and preserve separate sequencing and resolution owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Opportunity and conflict eligibility remain AFQR-19 concerns under WORLD-0021."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 194,
+            "line_end": 196
+          },
+          "candidate_proposition": "D14 records may mark hidden pressure but must not reveal protected truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The record-use rule prevents conversion-facing records from leaking protected truth under WORLD-0022."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0025",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 110,
+            "line_end": 120
+          },
+          "candidate_proposition": "Sensor, ritual-sensing, scouting, and tracking sources produce discovery candidates whose confidence and truth status remain separately qualified.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0025 governs the candidate-to-epistemic-record boundary encoded by this record shape."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 35,
+            "line_end": 45
+          },
+          "candidate_proposition": "Scouting, tracking, concealment, ritual sensing, and sensor sweep are sensing-oriented posture inputs rather than D14-owned sensing semantics.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AFQR-20 retains sensing, search, tracking, and detection ownership through WORLD-0027."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 11,
+        "source_status_summary": "The file identifies itself as a doctrine-draft and explicitly states that its conversion-facing records are not final schema."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0053",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-09_integration_checklists_ddr_register_and_acceptance_criteria.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "57c0b3dd2b8575f20a17d89fc70ad0c4b44423a6",
+      "controlled_match_count": 20,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "hazard",
+        "resolution",
+        "runtime",
+        "schema",
+        "sensing",
+        "transition",
+        "truth",
+        "visibility",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 13,
+          "line_end": 69,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "D14-09 lines 13-69 preserve owner handoffs, source-local boundaries, donor nonpromotion, cadence, observation, epistemic-state, embodiment, environmental, spatial, action-opportunity, hidden-truth, and sensing controls. Its DDRs and acceptance checklist remain Phase 1 draft architecture rather than accepted authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "D14-09 consolidates integration, owner-handoff, source-local, quarantine, escalation, anti-drift, DDR, and acceptance controls. Its bounded ownership, cadence, resource, observation, epistemic, embodiment, environmental, donor, spatial, opportunity, hidden-truth, and sensing propositions map to accepted authority, while its DDR and acceptance architecture remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 15
+          },
+          "candidate_proposition": "D14 must hand off domain concerns to their listed owners rather than absorb their semantics.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The checklist directly operationalizes CORE-0003 ownership nontransfer."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Dungeon turns, watch shifts, and travel days must not become universal timing law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs the explicit cadence-nonuniversality rule."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0014",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Foraging and supply attrition must not become universal resource procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0014 governs donor-resource nonpromotion and conserved-quantity boundaries."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Scouting, mapping, sensors, tracking, and ritual sensing must not automatically reveal protected truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The anti-drift passage separates observation and sensing activity from truth under AGENCY-0001."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 47,
+            "line_end": 49
+          },
+          "candidate_proposition": "D14 owns discovery opportunities and categories while D10 retains truth and D11 retains presentation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 governs the explicit epistemic-owner and presentation exclusion."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 43,
+            "line_end": 45
+          },
+          "candidate_proposition": "Party-facing map state is distinct from actual truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "DDR-D14-003 states a qualified epistemic-state boundary governed by AGENCY-0003."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0004",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 15
+          },
+          "candidate_proposition": "Harm, exposure, and actor-substrate consequences remain with their designated owners rather than D14.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0004 preserves AFQR-16 embodiment and integrity ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Weather and survival procedures must not become universal D14 environmental law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0010 governs environmental-state and process semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Donor grids, cadence, encounters, resources, ships, and cosmology must not become universal Astra law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the file's donor-nonpromotion controls."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 23,
+            "line_end": 31
+          },
+          "candidate_proposition": "Route networks, navigation, maps, spatial assumptions, and map schemas remain spatial-owner concerns rather than D14 authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0015 governs AFQR-18 spatial and map-materialization concerns."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Ambush exposure must not become automatic surprise or bypass conflict-opportunity ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 governs action opportunity, eligibility, and conflict boundaries."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 31
+          },
+          "candidate_proposition": "Protected hidden truth must not leak through scouting, mapping, sensors, tracking, ritual sensing, or room-entry procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the explicit hidden-truth leakage prohibition."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 25,
+            "line_end": 31
+          },
+          "candidate_proposition": "Crewed navigation sensors, surveillance, scouting, tracking, and ritual sensing remain sensing-owner concerns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0027 preserves AFQR-20 sensing, search, tracking, and surveillance ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The file explicitly identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation; its DDR labels do not create current authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0054",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14-README_manifest.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "2d48404f091fdff7c1ab00b4d499db8c65119f36",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "conversion",
+        "handoff",
+        "hazard",
+        "knowledge",
+        "runtime",
+        "schema",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 51,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The D14 README lines 9-51 summarize exploration procedure, reject universal donor travel systems, separate actual truth and presentation from party-facing map state, and route environmental pressure, navigation, sensing, and owner handoffs through a draft architecture. Accepted surfaces govern those relationships, while the README remains nonauthoritative and not-final-schema."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "The D14 README is a substantive pack manifest for Posture–Route–Discovery procedure, environmental PCR, navigation, scouting, mapping, discovery, site entry, watches, pressure, and donor mapping. Its ownership, cadence, epistemic, environmental, donor, spatial, and sensing boundaries map to accepted authority, while the claimed D14 architecture remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 28,
+            "line_end": 47
+          },
+          "candidate_proposition": "D14 routes travel procedure through owner-file handoffs while actual information state and presentation remain separately owned.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the README's ownership-preserving handoff."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "D14 must not become universal dungeon-turn or other donor travel-cadence law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs cadence nonuniversality."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 45,
+            "line_end": 47
+          },
+          "candidate_proposition": "D10 owns actual information state, D11 owns presentation, and D14 owns only discovery classification and procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 governs the explicit epistemic and presentation ownership split."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 45,
+            "line_end": 47
+          },
+          "candidate_proposition": "Party-facing map state is distinct from actual truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0003 governs the qualified epistemic-state boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 45,
+            "line_end": 47
+          },
+          "candidate_proposition": "Environmental PCR is a travel and exploration pressure input whose environmental-state and process semantics remain governed by AFQR-17 rather than becoming D14 authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The Core locks passage places environmental PCR inside D14 procedure without transferring AFQR-17 environmental ownership. WORLD-0010 remains authoritative."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "Hex-crawl, dungeon-turn, random-encounter, starship-travel, and planar-cosmology systems must not become Astra defaults.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 13
+          },
+          "candidate_proposition": "Route selection, navigation, mapping, and map-state procedure remain governed by accepted spatial and map-materialization ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0015 governs these AFQR-18 spatial concerns."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 13
+          },
+          "candidate_proposition": "Scouting and exploration discovery procedure invoke sensing and search concerns without transferring AFQR-20 ownership to D14.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0027 governs sensing, search, and observation production."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The README identifies itself as a doctrine-draft and Phase 1 native-doctrine continuation."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0055",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D14_exploration_travel_navigation_and_discovery_doctrine_pack/D14_doctrine_pack/D14_combined_exploration_travel_navigation_and_discovery_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0e5a6b3965697f47acef40ea834525c135ecb65b",
+      "controlled_match_count": 158,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "condition",
+        "conservation",
+        "contact",
+        "conversion",
+        "correction",
+        "detection",
+        "environment",
+        "handoff",
+        "hazard",
+        "identity",
+        "injury",
+        "invalidate",
+        "knowledge",
+        "perception",
+        "resolution",
+        "reversal",
+        "runtime",
+        "schema",
+        "sensing",
+        "transition",
+        "truth",
+        "visibility",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 56,
+          "line_end": 730,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The combined D14 file lines 56-730 reproduces the complete owner-boundary, posture, route, interval, discovery, mapping, context-profile, pressure, donor-conversion, record-shape, integration, DDR, and acceptance material. Its bounded propositions map independently to accepted resource, epistemic, embodiment, environmental, donor, spatial, action, truth, and sensing surfaces, while its extensive D14-native architecture remains nonauthoritative draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0011",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-AGENCY-0001",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-AGENCY-0003",
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0010",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0015",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0022",
+        "R2A-SURFACE-WORLD-0025",
+        "R2A-SURFACE-WORLD-0027"
+      ],
+      "semantic_review_summary": "The combined D14 doctrine aggregates the full Phase 1 exploration pack: Posture–Route–Discovery architecture, movement intervals, environmental pressure, discovery and map state, context profiles, pressure handoffs, donor mapping, record shapes, DDRs, and acceptance controls. Its accepted owner and invariant relationships map without authority transfer, while the combined file's novel procedure architecture remains nonauthoritative draft material.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 68,
+            "line_end": 74
+          },
+          "candidate_proposition": "D14 exploration procedure must preserve the semantic ownership of resolution, resources, harm, truth, presentation, cadence, economy, and other routed domains.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the combined file's owner-nontransfer boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 163,
+            "line_end": 165
+          },
+          "candidate_proposition": "Travel intervals are context-scaled and donor watches, turns, days, jumps, phases, or segments are not universal Astra cadence.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0011 governs logical-time ownership and cadence nonuniversality."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0014",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 451,
+            "line_end": 453
+          },
+          "candidate_proposition": "Donor ration, supply-attrition, and foraging assumptions must not become universal Astra resource law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Lines 451-453 explicitly reject automatic ration or supply attrition and foraging as universal procedure. CORE-0014 governs that donor-resource boundary."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 230,
+            "line_end": 250
+          },
+          "candidate_proposition": "Discovery, scouting, maps, and sensor observations do not automatically become actual truth or qualified knowledge.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0001 governs observation-to-truth and knowledge anti-collapse."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 254,
+            "line_end": 263
+          },
+          "candidate_proposition": "D10 retains actual truth, D11 retains presentation, and D14 performs only discovery and known-state procedure.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 governs epistemic ownership and exclusions."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 254,
+            "line_end": 263
+          },
+          "candidate_proposition": "Party-facing knowledge and map state remain qualified and distinct from actual truth.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0003 governs qualified epistemic-state ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0004",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 357,
+            "line_end": 369
+          },
+          "candidate_proposition": "Exposure and injury consequences remain with embodiment and harm owners while D14 identifies only travel triggers.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0004 preserves AFQR-16 embodiment and integrity ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0010",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 175,
+            "line_end": 181
+          },
+          "candidate_proposition": "Environmental PCR, weather, terrain, exposure sources, hazards, and environmental change remain AFQR-17-governed concerns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0010 governs environmental-state and process semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 431,
+            "line_end": 454
+          },
+          "candidate_proposition": "Donor grids, cadence, resources, encounters, vehicles, cosmology, and travel procedures must not become universal Astra law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion throughout the combined source."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0015",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 124,
+            "line_end": 131
+          },
+          "candidate_proposition": "Routes, areas, vectors, navigation, topology, movement, and map materialization remain governed by AFQR-18.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0015 governs the combined file's spatial and navigation concerns."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 331,
+            "line_end": 335
+          },
+          "candidate_proposition": "Ambush Exposure identifies possible hostile opportunity but does not grant automatic surprise or own conflict resolution.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 governs action opportunity and conflict eligibility."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0022",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 254,
+            "line_end": 268
+          },
+          "candidate_proposition": "Protected truth must not leak through scouting, sensors, ritual sensing, maps, procedural tables, records, or presentation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0022 governs the combined file's hidden-truth safeguards."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0025",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 230,
+            "line_end": 243
+          },
+          "candidate_proposition": "Scouting and sensing produce discovery candidates whose epistemic qualification remains separate.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0025 governs sensing-candidate to epistemic-record separation."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0027",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 230,
+            "line_end": 250
+          },
+          "candidate_proposition": "Scouting, tracking, sensor sweep, ritual sensing, search, surveillance, and contact production remain AFQR-20-owned sensing concerns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0027 governs sensing, search, detection, tracking, and surveillance."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 7,
+        "source_status_summary": "The combined file opens with the D14 manifest's explicit doctrine-draft and Phase 1 native-doctrine-continuation status."
+      }
     }
   ]
 }
