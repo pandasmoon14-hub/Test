@@ -1792,3 +1792,60 @@ test_r2a6_capacity_successor_name_has_unmodified_current_partitions = test_r2a7_
 test_r2a5_completed_status_and_posture = test_r2a7_capacity_preserves_structural_authority
 test_r2a4_completed_status_and_posture = test_r2a7_capacity_preserves_structural_authority
 test_r2a4_exact_base_scope_status_and_posture = test_r2a7_capacity_preserves_structural_authority
+
+# R2A-7 staged-execution successor-safe overrides. Historical R2A-6 completion
+# and the R2A-7 capacity amendment remain frozen at their accepted boundaries;
+# later R2A-7 work may materialize only paths already authorized by that amendment.
+R2A_6_COMPLETION_HEAD = "20bbf489c3fcd0abe4a45b117fbefda86fcfc97d"
+R2A7_CAPACITY_HEAD = "62e1565ed598345901e92dc04f3b686281418d83"
+R2A7_STAGE_REQUIRED_PATHS = {
+ "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0001.yaml",
+}
+
+def r2a7_existing_planned_paths():
+ return {path for path in R2A7_PLANNED_PATHS if (ROOT / path).exists()}
+
+def r2a7_unplanned_materialized_paths():
+ root = ROOT / "docs/doctrine/reviews/r2a/dispositions_remaining"
+ if not root.exists(): return set()
+ return {
+  path.relative_to(ROOT).as_posix()
+  for path in root.rglob("*")
+  if path.is_file()
+ } - R2A7_PLANNED_PATHS
+
+def test_r2a6_scope_and_capacity_after_commit():
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A_6_COMPLETION_HEAD,"HEAD"],cwd=ROOT)
+ changed=set(git("diff","--name-only",f"{R2A_6_BASE}...{R2A_6_COMPLETION_HEAD}").splitlines())
+ assert changed==R2A6_AUTHORIZED and len(changed)<=8
+ assert not any(path.startswith(("src/","schemas/","tests/runtime/")) for path in changed)
+ numstat=git("diff","--numstat",f"{R2A_6_BASE}...{R2A_6_COMPLETION_HEAD}").splitlines()
+ assert sum(int(row.split("\t")[0]) for row in numstat)<=5000 and "-\t-" not in "\n".join(numstat)
+
+def test_r2a7_capacity_exact_manifest_and_posture():
+ document=json.loads(PARTITIONS.read_text(encoding="utf-8")); row=r2a7_capacity_row(document)
+ assert r2a7_capacity_valid(document)
+ assert (document["artifact_id"],document["artifact_version"],document["partition_count"])==("AFQR-R2A-PARTITION-MANIFEST-001","0.2.8",12)
+ assert (row["status"],row["dependency_partitions"],row["candidate_path_patterns"])==("planned_not_present",["R2A-6"],["**"])
+ assert (row["maximum_changed_files"],row["maximum_additions"])==(13,16000)
+ assert set(row["planned_artifact_paths"])==R2A7_PLANNED_PATHS and len(row["planned_artifact_paths"])==8
+ existing=r2a7_existing_planned_paths()
+ assert R2A7_STAGE_REQUIRED_PATHS<=existing and len(existing)<=len(R2A7_PLANNED_PATHS)
+ assert not r2a7_unplanned_materialized_paths()
+
+def test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes():
+ subprocess.check_call(["git","merge-base","--is-ancestor",R2A7_CAPACITY_HEAD,"HEAD"],cwd=ROOT)
+ historical=set(subprocess.check_output(["git","diff","--name-only",f"{R2A7_CAPACITY_BASE}...{R2A7_CAPACITY_HEAD}"],cwd=ROOT,text=True).splitlines())
+ assert historical==R2A7_CAPACITY_PATHS
+ historical_status=subprocess.check_output(["git","diff","--name-status",f"{R2A7_CAPACITY_BASE}...{R2A7_CAPACITY_HEAD}"],cwd=ROOT,text=True).splitlines()
+ assert all(not line.startswith("D\t") for line in historical_status)
+ changed=set(subprocess.check_output(["git","diff","--name-only",f"{R2A7_CAPACITY_BASE}...HEAD"],cwd=ROOT,text=True).splitlines())
+ allowed=R2A7_CAPACITY_PATHS|R2A7_PLANNED_PATHS
+ assert R2A7_STAGE_REQUIRED_PATHS<=changed<=allowed and len(changed)<=13
+ assert not any(path.startswith(("src/","schemas/","tests/runtime/")) for path in changed)
+ status=subprocess.check_output(["git","diff","--name-status",f"{R2A7_CAPACITY_BASE}...HEAD"],cwd=ROOT,text=True).splitlines()
+ assert all(not line.startswith("D\t") for line in status)
+ numstat=subprocess.check_output(["git","diff","--numstat",f"{R2A7_CAPACITY_BASE}...HEAD"],cwd=ROOT,text=True).splitlines()
+ assert "-\t-" not in "\n".join(numstat)
+ assert sum(int(row.split("\t")[0]) for row in numstat)<=16000
+ assert not r2a7_unplanned_materialized_paths()

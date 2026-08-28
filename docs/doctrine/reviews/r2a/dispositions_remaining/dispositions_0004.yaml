@@ -1,0 +1,231 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0004",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0091",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_combined_economy_acquisition_inventory_reward_and_requisition_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c59dfcfcbc69a706a5a862cd1193b7ff2daf3096",
+      "controlled_match_count": 181,
+      "matched_terms": [
+        "action",
+        "audit trail",
+        "belief",
+        "canon",
+        "condition",
+        "conflict",
+        "conversion",
+        "dependency",
+        "escrow",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "injury",
+        "recovery",
+        "reservation",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "storage",
+        "transition",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 1015,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The 1,015-line combined D17 export was reviewed across its README, owner boundaries, value/access/custody states, acquisition, reward and Claim procedure, inventory, sinks, donor mapping, non-final records, integration controls, DDRs, and acceptance criteria. Accepted ownership, Claim, governed-relation, epistemic, and donor-nonpromotion boundaries are independently evidenced; the Value–Access–Burden architecture and economy ownership claims remain nonauthoritative draft pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0013",
+        "R2A-SURFACE-CORE-0019",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "The combined D17 export independently repeats the full draft economy pack. Its owner handoffs, alternative Claim semantics, governed legal/relation assertions, authoritative-state exclusions, and donor nonpromotion map to accepted surfaces without granting D17 economy authority; the remaining value, scarcity, inventory, reward, requisition, and sink architecture remains nonauthoritative draft pressure.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 25
+          },
+          "candidate_proposition": "The combined architecture routes object, world, faction, project, opposition, and campaign effects to owner files rather than absorbing them into D17.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The explicit routing operationalizes CORE-0003; storage, coordination, or value procedure does not transfer semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0013",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 342,
+            "line_end": 395
+          },
+          "candidate_proposition": "The combined D17 reward procedure establishes eligibility and claim checkpoints plus salvage, faction, law, domain, and unknown-ownership claim states, while accepted Astra vocabulary assigns Claim as an AFQR-06-owned proposition.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The independently present D17 Claim lifecycle collides with CORE-0013 and gains no authority from the combined export."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0019",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 90,
+            "line_end": 118
+          },
+          "candidate_proposition": "The combined D17 ownership list claims licenses, permits, rationing, restricted access, salvage rights and claims, taxes, dues, tribute, trade legality, and related governed effects as economy procedure.",
+          "mapping_relationship": "conflicts with accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Those legal, obligation, Claim-adjacent, and governed-relation semantics overlap AFQR-09 ownership under CORE-0019."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 119,
+            "line_end": 128
+          },
+          "candidate_proposition": "The combined file explicitly excludes world state, public belief, rumors, hidden truth, law records, faction state, and market facts from D17 ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 preserves AFQR-10 authoritative and epistemic state ownership; economic presentation cannot establish truth."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 132,
+            "line_end": 151
+          },
+          "candidate_proposition": "The combined file treats coin economies, treasure loops, post-scarcity, cultivation resources, inventory assumptions, reward tables, and related donor systems as pressure while explicitly rejecting universal default value, price, loot, salvage, requisition, and inventory laws.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the combined export's donor and source-package nonpromotion rules."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 5,
+        "source_status_summary": "The combined file declares D17 doctrine-pack draft status, states its record shapes are not final schema and are doctrine/conversion-facing controls, and treats research as non-final pressure rather than canon terminology."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0092",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/D17_economy_acquisition_inventory_reward_and_requisition_doctrine_pack/D17_doctrine_pack/D17_pack_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3a3d5594b248b8417717918a45570b79946d59db",
+      "controlled_match_count": 8,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "recovery",
+        "schema",
+        "storage"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 53,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "The D17 JSON manifest was reviewed across status, file inventory, core decisions, non-final record shapes, research guardrails, and lawful outcomes. Its owner-preservation and donor-nonpromotion statements map to accepted surfaces, while manifest metadata and the Value–Access–Burden label create no semantic authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "The D17 manifest serializes draft architecture, file inventory, core decisions, non-final record shapes, guardrails, and lawful conversion outcomes. Its owner-preserving handoff and donor-nonpromotion propositions map to accepted authority; the manifest does not establish economy, inventory, reward, requisition, or schema ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 26
+          },
+          "candidate_proposition": "The manifest states that D17 value procedure leaves triggering and state ownership with owner files and marks its record shapes non-final.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 prevents manifest placement, procedure, schema shape, or handoff from transferring semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 27
+          },
+          "candidate_proposition": "The manifest states that donor economy systems map, remain source-local, quarantine, or escalate and are not adopted by label.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the manifest's explicit donor-system nonpromotion rule."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 6,
+        "source_status_summary": "The manifest declares generated_doctrine_pack_draft status, labels research non-final and not canon terminology, and identifies record shapes as not final schema."
+      }
+    }
+  ]
+}
