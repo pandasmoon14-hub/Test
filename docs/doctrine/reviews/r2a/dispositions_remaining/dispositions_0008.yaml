@@ -1,0 +1,365 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0008",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0123",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-05_source_local_and_conversion_boundaries.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c08c517b6020d89a48ec8f371dd4f58169a078b4",
+      "controlled_match_count": 6,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 72,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the complete D00-05 generated conversion-boundary file across donor nonpromotion, source-local retention, owner-record routing, quarantine, escalation, and acceptance criteria; the file is conversion pressure and does not itself become a conversion or canon owner."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "D00-05 correctly rejects donor play contracts becoming Astra law and requires source-local retention, quarantine, or escalation when a construct does not generalize. Those propositions are governed by the accepted donor-nonpromotion and cross-phase authority boundaries; the generated D00 file does not acquire conversion, canon, or owner-file authority.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 27
+          },
+          "candidate_proposition": "Donor systems may inform Astra but do not become Astra law by vocabulary, familiarity, or mechanical completeness, and D00 explicitly blocks hidden donor play-contract assumptions such as one cosmology, combat loop, level progression, or genre economy.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; D00-05 restates that pressure but cannot promote itself into the owner of donor normalization or Astra baseline law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 29,
+            "line_end": 71
+          },
+          "candidate_proposition": "Source-local donor structures require an appropriate owner boundary record, while missing frameworks are quarantined or escalated rather than invented and repeated conversion gaps are routed onward.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs conversion/canon handoff boundaries and prevents a generated coordination file from acquiring conversion truth, canon authority, or downstream owner semantics merely by defining routing outcomes."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0124",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-06_integration_checklists_and_ddr_register.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "b5641fd4d526a4ce8350b075084a71ddccce487c",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "condition",
+        "handoff",
+        "identity",
+        "injury",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 98,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the complete D00-06 generated decision/checklist file across its accepted-decision labels, D00 ownership claims, validation checklist, D03-D11 handoff matrix, runtime/live-play exclusions, and risk queue; its self-claims remain nonauthoritative pressure."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0007",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "D00-06 labels generated D00 propositions as accepted and explicitly claims ownership of a core play contract, assessment action family, and state-delta requirement while routing concrete subsystems to D03-D11. Current semantic-nontransfer, AFQR-19 action/resolution, state-owner, and cross-phase boundaries constrain those claims; the checklist and handoff matrix are pressure, not a new super-owner.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 39,
+            "line_end": 59
+          },
+          "candidate_proposition": "The ownership checklist says D00 owns the core play contract, play-experience success condition, state-delta requirement, assessment action family, and source-local boundaries while disclaiming resource, advancement, skill, route, harm, actor, object, world-state, live-play, and schema implementation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 preserves semantic ownership across bridges, handoffs, and coordinating contracts; a generated checklist cannot create D00 ownership over domains already assigned to current owners."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 26,
+            "line_end": 37
+          },
+          "candidate_proposition": "The register calls assessment/reconnaissance a core action family and says every meaningful action commits a tracked delta to an owner family.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 preserves AFQR-19 ownership of action, opportunity, targeting, and resolution semantics; D00-06 cannot establish action-family or resolution authority through an accepted-decision label."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0007",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 33,
+            "line_end": 37
+          },
+          "candidate_proposition": "The state-delta section requires meaningful actions to commit tracked deltas to an owner family while distinguishing declared, emergent, delayed, hidden, and historical consequences.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0007 keeps lawful transition and commitment distinct from the semantics of each domain state; the generic delta requirement cannot transfer resource, harm, actor, object, or world-state ownership into D00."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 49,
+            "line_end": 59
+          },
+          "candidate_proposition": "The D00 does-not-own list explicitly excludes live-play narrator behavior and final schemas along with downstream subsystem implementation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves the separation among doctrine coordination, final schemas/runtime implementation, canon, conversion, and live-play behavior; the generated D00 register cannot collapse those phases."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0125",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00-README_manifest.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "58e0fc244a424b3837d1a048576f81c32fc9c278",
+      "controlled_match_count": 11,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "condition",
+        "conversion",
+        "identity",
+        "injury",
+        "resolution",
+        "world state"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 54,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the complete D00 README manifest across generated status, core-experience summary, minimum session loop, tension table, file inventory, and ownership boundary; it summarizes the generated pack and does not independently establish doctrine ownership."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0007"
+      ],
+      "semantic_review_summary": "The D00 README manifest summarizes a generated top-level play contract, action/resolution loop, tracked deltas, and subsystem ownership boundary. Accepted nontransfer, action/resolution, and state-owner surfaces govern those propositions; manifest status and file ordering do not promote D00 into a current semantic owner.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 50,
+            "line_end": 54
+          },
+          "candidate_proposition": "The manifest says D00 owns the core play contract but not subsystem implementation and lists resource, advancement, skill, route, damage, actor, object, world-state, and live-play concerns as downstream requirements.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 keeps bridge and requirement language from transferring semantic ownership; the manifest's top-level contract claim remains subordinate to current owner doctrine."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 22,
+            "line_end": 27
+          },
+          "candidate_proposition": "The minimum viable session loop requires meaningful action, consequence-bearing resolution, and a committed delta.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 keeps action and resolution semantics with AFQR-19; a pack summary may require a loop but cannot define the authoritative action/target/resolution procedure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0007",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 27
+          },
+          "candidate_proposition": "The core-experience summary requires at least one tracked delta across resource, condition/injury, world, faction, object, or relationship state and then places commitment in the session loop.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0007 keeps each domain state's semantics with its declared owner and prevents a generic tracked-delta requirement from becoming a state super-owner."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The manifest identifies itself as Astra native-design doctrine with status 'Doctrine pack generated from accepted D00 decisions' and primary owner D00; this is generated-pack metadata, not evidence of promotion into current R2A authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0126",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/D00_pack_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c317ee70ec562589e0dbbe892c653a434c02e089",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "conversion",
+        "injury"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 40,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the complete D00 JSON manifest across generated status, constituent file inventory, D00_owns declarations, and D00_does_not_own routing. Several lexical hits arise only in filenames; semantic disposition is based on the ownership metadata itself."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-WORLD-0007"
+      ],
+      "semantic_review_summary": "D00_pack_manifest.json is generated descriptive metadata. Its D00_owns list repeats a core play contract, state-delta commitment requirement, minimum session loop, and assessment action family while its D00_does_not_own map routes concrete domains elsewhere. Those claims are governed by current nontransfer, action/resolution, and state-owner surfaces; the manifest creates no authority.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 19,
+            "line_end": 37
+          },
+          "candidate_proposition": "The owner_boundaries object lists D00_owns claims while separately routing resource, advancement, skills, routes, harm, actor, object, world-state, and presentation concerns to D03-D11.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 prevents a generated manifest's ownership table from transferring the semantics of routed domains or elevating coordination metadata into a semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 20,
+            "line_end": 26
+          },
+          "candidate_proposition": "The D00_owns list includes a minimum viable session loop and assessment as a core action family.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0021 preserves AFQR-19 action/opportunity/target/resolution ownership; an ownership label in generated manifest metadata cannot establish action-family authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0007",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 20,
+            "line_end": 37
+          },
+          "candidate_proposition": "The manifest says D00 owns a state-delta commitment requirement while explicitly leaving world-state and other domain implementation to downstream owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0007 keeps commitment/transition distinct from domain-state semantics and prevents the generic delta requirement from absorbing state ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 7,
+        "source_status_summary": "The JSON manifest declares generated_date, status 'generated', native-design-doctrine phase, and primary_owner D00; the generated status is descriptive package metadata rather than current-authority status."
+      }
+    }
+  ]
+}

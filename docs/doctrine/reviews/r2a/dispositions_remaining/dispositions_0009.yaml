@@ -1,0 +1,143 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0009",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0127",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_d00_doctrine_pack_v0_1/astra_d00_doctrine_pack_combined_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "425d172c8525268205e507af5a8861621c3206ff",
+      "controlled_match_count": 113,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "commitment",
+        "condition",
+        "continuity",
+        "conversion",
+        "environment",
+        "handoff",
+        "hazard",
+        "identity",
+        "injury",
+        "knowledge",
+        "lineage",
+        "recovery",
+        "resolution",
+        "runtime",
+        "truth",
+        "visibility",
+        "weather",
+        "world state"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 180,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed combined-export lines 1-180 across the generated pack header, README, ownership boundary, and D00-00 core-play material; aggregation repeats constituent claims but creates no additional semantic owner."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 181,
+          "line_end": 360,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed combined-export lines 181-360 across D00-01 and D00-02 power, context, assessment, hidden-state, runtime-field, and information-routing material; these remain generated pressure governed by existing owners."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 361,
+          "line_end": 540,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed combined-export lines 361-540 across D00-03 state-delta commitment, D00-04 campaign durability, and the start of D00-05 donor-boundary material; the export does not acquire transition, state, campaign-time, or conversion authority."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 541,
+          "line_end": 700,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed combined-export lines 541-700 across D00-05 source-local conversion boundaries and D00-06 decision/checklist, ownership, handoff, and risk material; generated accepted-label and D00-owns statements remain subordinate to current Astra owners."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 701,
+          "line_end": 751,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed combined-export lines 701-751 across the end of D00-06 and the embedded D00 JSON manifest; file inventory and D00_owns/D00_does_not_own metadata repeat the constituent pack posture without creating new authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The D00 combined export aggregates the README, D00-00 through D00-06, and the JSON manifest. Its 113 controlled tuples equal the 111 constituent tuples plus two wrapper filename-line matches for commit and conversion. The export repeats generated play-contract, state-delta, action, conversion, schema/runtime, and owner-routing claims but creates no new or higher semantic authority; existing owner and cross-phase boundaries continue to govern the material.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 61,
+            "line_end": 65
+          },
+          "candidate_proposition": "The embedded README says D00 owns the core play contract but not subsystem implementation and explicitly routes resource, advancement, skill, route, damage, actor, object, world-state, and live-play concerns to later files.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 prevents an aggregate play-contract or handoff document from absorbing the semantic ownership of the domains it coordinates; combining the constituent files does not strengthen their authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 556,
+            "line_end": 598
+          },
+          "candidate_proposition": "The embedded D00-05 section requires donor structures to remain source-local where appropriate and directs missing or unsafe frameworks to quarantine or escalation rather than silent canonization or decorative invention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs conversion/canon handoffs and prevents this generated aggregate from becoming conversion truth, canon authority, or a downstream runtime owner merely because it repeats routing rules."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 5,
+        "source_status_summary": "The file identifies itself as the D00 v0.1 combined export and states that it was generated on 2026-06-02; generated-export labeling does not establish current R2A doctrine or canon authority."
+      }
+    }
+  ]
+}
