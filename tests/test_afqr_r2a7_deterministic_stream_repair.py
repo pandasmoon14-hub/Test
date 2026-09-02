@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import fnmatch
+import io
 import json
 import re
 import subprocess
@@ -156,25 +157,25 @@ def baseline_tree_entries():
 def cat_blobs(shas):
     unique = list(dict.fromkeys(shas))
 
-    proc = subprocess.Popen(
-        ["git", "cat-file", "--batch"],
-        cwd=ROOT,
-        stdin=subprocess.PIPE,
-        stdout=subprocess.PIPE,
+    # Communicate the complete request and collect the complete response in
+    # one subprocess operation. This avoids the write-before-read pipe
+    # deadlock possible with git cat-file --batch on Windows.
+    request = b"".join(
+        sha.encode("ascii") + b"\n"
+        for sha in unique
     )
 
-    assert proc.stdin is not None
-    assert proc.stdout is not None
+    raw = subprocess.check_output(
+        ["git", "cat-file", "--batch"],
+        cwd=ROOT,
+        input=request,
+    )
 
-    for sha in unique:
-        proc.stdin.write(sha.encode("ascii") + b"\n")
-
-    proc.stdin.close()
-
+    stream = io.BytesIO(raw)
     result = {}
 
     for requested_sha in unique:
-        header = proc.stdout.readline().rstrip(b"\n")
+        header = stream.readline().rstrip(b"\n")
         parts = header.split()
 
         assert len(parts) == 3
@@ -185,13 +186,13 @@ def cat_blobs(shas):
         assert actual_sha == requested_sha
         assert kind == "blob"
 
-        data = proc.stdout.read(size)
+        data = stream.read(size)
         assert len(data) == size
-        assert proc.stdout.read(1) == b"\n"
+        assert stream.read(1) == b"\n"
 
         result[requested_sha] = data
 
-    assert proc.wait() == 0
+    assert stream.read() == b""
     return result
 
 
