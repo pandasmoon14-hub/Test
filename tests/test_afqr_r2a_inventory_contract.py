@@ -1971,3 +1971,303 @@ test_r2a6_capacity_successor_name_has_unmodified_current_partitions=test_r2a7_ca
 test_r2a5_completed_status_and_posture=test_r2a7_capacity_preserves_structural_authority
 test_r2a4_completed_status_and_posture=test_r2a7_capacity_preserves_structural_authority
 test_r2a4_exact_base_scope_status_and_posture=test_r2a7_capacity_preserves_structural_authority
+
+
+# R2A-7 deterministic-stream-repair current-posture override.
+#
+# Historical R2A-7 capacity and tranche tests above remain preserved as
+# accepted evidence.  The live manifest has now advanced from a reserved
+# 48-shard capacity posture to an active-incomplete repaired prefix through
+# shard 0035.  Only current-posture validators are rebound here.
+R2A7_REPAIR_MANIFEST_VERSION = "0.2.10"
+R2A7_REPAIR_SHARD_COUNT = 35
+R2A7_REPAIR_STATUS = "active_incomplete"
+
+R2A7_REPAIR_PLANNED_PATH_LIST = [
+ "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+ *[
+  f"docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_{number:04d}.yaml"
+  for number in range(1, R2A7_REPAIR_SHARD_COUNT + 1)
+ ],
+]
+R2A7_REPAIR_PLANNED_PATHS = set(R2A7_REPAIR_PLANNED_PATH_LIST)
+R2A7_REPAIR_MATERIALIZED_SHARDS = {
+ f"docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_{number:04d}.yaml"
+ for number in range(1, R2A7_REPAIR_SHARD_COUNT + 1)
+}
+
+
+def r2a7_capacity_valid(document, base=None):
+ base = base or r2a7_tranche_a_manifest()
+ try:
+  row = r2a7_capacity_row(document)
+
+  if document["artifact_id"] != "AFQR-R2A-PARTITION-MANIFEST-001":
+   return False
+  if document["artifact_version"] != R2A7_REPAIR_MANIFEST_VERSION:
+   return False
+  if document["partition_count"] != 12:
+   return False
+
+  if row["status"] != R2A7_REPAIR_STATUS:
+   return False
+  if row["dependency_partitions"] != ["R2A-6"]:
+   return False
+  if row["candidate_path_patterns"] != ["**"]:
+   return False
+
+  if row["maximum_changed_files"] != SUCCESSOR_MAX_CHANGED_FILES:
+   return False
+  if row["maximum_additions"] != SUCCESSOR_MAX_ADDITIONS:
+   return False
+
+  if row["planned_artifact_paths"] != R2A7_REPAIR_PLANNED_PATH_LIST:
+   return False
+
+  if row["gate_effect"] != "No gate advances and source-local material stays nonauthoritative.":
+   return False
+
+  if set(row["prohibited_work"]) != R2A7_PRIOR_PROHIBITIONS:
+   return False
+
+  # Confirm that the repair changed only the already-authorized R2A-7
+  # successor controls relative to the accepted tranche-A manifest.
+  restored = copy.deepcopy(document)
+  restored["artifact_version"] = base["artifact_version"]
+
+  restored_row = r2a7_capacity_row(restored)
+  base_row = r2a7_capacity_row(base)
+
+  for field in (
+   "status",
+   "maximum_changed_files",
+   "planned_artifact_paths",
+  ):
+   restored_row[field] = copy.deepcopy(base_row[field])
+
+  return restored == base
+
+ except (KeyError, StopIteration, TypeError):
+  return False
+
+
+def test_r2a7_capacity_preserves_structural_authority():
+ base = r2a7_tranche_a_manifest()
+ current_document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+
+ assert [row["partition_id"] for row in current_document["partitions"]] == [
+  row["partition_id"] for row in base["partitions"]
+ ]
+
+ assert {
+  row["partition_id"]: row["dependency_partitions"]
+  for row in current_document["partitions"]
+ } == {
+  row["partition_id"]: row["dependency_partitions"]
+  for row in base["partitions"]
+ }
+
+ for field in (
+  "disposition_precedence",
+  "disposition_rules",
+  "generated_vendor_exclusion_patterns",
+  "coordination_domain_ownership",
+  "coordination_must_not_own",
+  "sharding",
+ ):
+  assert current_document["ownership_rules"][field] == base["ownership_rules"][field]
+
+ for before, after in zip(base["partitions"], current_document["partitions"]):
+  if after["partition_id"] != "R2A-7":
+   assert after == before
+
+ # Contract, matcher, and reconstruction-sequence files remain historical
+ # posture evidence.  Only the live partition manifest records R2A-7 as
+ # actively materialized.
+ historical_expected = {
+  f"R2A-{number}": (
+   "complete" if number <= 6 else "planned_not_present"
+  )
+  for number in range(1, 13)
+ }
+
+ current_expected = dict(historical_expected)
+ current_expected["R2A-7"] = R2A7_REPAIR_STATUS
+
+ contract, clusters, file_manifest = map(
+  lambda path: json.loads(path.read_text(encoding="utf-8")),
+  (CONTRACT, CLUSTERS, FILES),
+ )
+
+ assert contract["r2a_partition_statuses"] == historical_expected
+ assert clusters["r2a_partition_statuses"] == historical_expected
+
+ assert {
+  row["partition_id"]: row["status"]
+  for row in current_document["partitions"]
+ } == current_expected
+
+ assert {
+  row["partition_id"]: row["current_status"]
+  for row in file_manifest["r2a_reconstruction_sequence"]
+ } == historical_expected
+
+ assert contract["project_posture"]["R2A"] == "active_incomplete"
+ assert contract["project_posture"]["R2B"] == "blocked"
+
+
+def test_r2a7_capacity_exact_manifest_and_posture():
+ document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+ row = r2a7_capacity_row(document)
+
+ assert r2a7_capacity_valid(document)
+
+ assert (
+  document["artifact_id"],
+  document["artifact_version"],
+  document["partition_count"],
+ ) == (
+  "AFQR-R2A-PARTITION-MANIFEST-001",
+  R2A7_REPAIR_MANIFEST_VERSION,
+  12,
+ )
+
+ assert (
+  row["status"],
+  row["dependency_partitions"],
+  row["candidate_path_patterns"],
+ ) == (
+  R2A7_REPAIR_STATUS,
+  ["R2A-6"],
+  ["**"],
+ )
+
+ assert (
+  row["maximum_changed_files"],
+  row["maximum_additions"],
+ ) == (
+  SUCCESSOR_MAX_CHANGED_FILES,
+  SUCCESSOR_MAX_ADDITIONS,
+ )
+
+ assert row["planned_artifact_paths"] == R2A7_REPAIR_PLANNED_PATH_LIST
+
+ root = ROOT / "docs/doctrine/reviews/r2a/dispositions_remaining"
+
+ materialized_shards = {
+  path.relative_to(ROOT).as_posix()
+  for path in root.glob("dispositions_*.yaml")
+  if path.is_file()
+ }
+
+ assert materialized_shards == R2A7_REPAIR_MATERIALIZED_SHARDS
+
+ all_materialized = {
+  path.relative_to(ROOT).as_posix()
+  for path in root.rglob("*")
+  if path.is_file()
+ }
+
+ assert not (all_materialized - R2A7_REPAIR_PLANNED_PATHS)
+
+
+def test_r2a7_capacity_mutation_resistance():
+ document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+ mutations = []
+
+ for field, value in (
+  ("maximum_changed_files", SUCCESSOR_MAX_CHANGED_FILES - 1),
+  ("maximum_changed_files", SUCCESSOR_MAX_CHANGED_FILES + 1),
+  ("maximum_additions", SUCCESSOR_MAX_ADDITIONS - 1),
+  ("maximum_additions", SUCCESSOR_MAX_ADDITIONS + 1),
+  ("status", "planned_not_present"),
+  ("status", "complete"),
+ ):
+  bad = copy.deepcopy(document)
+  r2a7_capacity_row(bad)[field] = value
+  mutations.append(bad)
+
+ for operation in (
+  "remove_shard",
+  "add_shard",
+  "replace_shard",
+  "remove_index",
+ ):
+  bad = copy.deepcopy(document)
+  paths = r2a7_capacity_row(bad)["planned_artifact_paths"]
+
+  if operation == "remove_shard":
+   paths.remove(
+    "docs/doctrine/reviews/r2a/dispositions_remaining/"
+    "dispositions_0035.yaml"
+   )
+  elif operation == "add_shard":
+   paths.append(
+    "docs/doctrine/reviews/r2a/dispositions_remaining/"
+    "dispositions_0036.yaml"
+   )
+  elif operation == "replace_shard":
+   paths[8] = (
+    "docs/doctrine/reviews/r2a/dispositions_remaining/"
+    "unplanned.yaml"
+   )
+  else:
+   paths.remove(
+    "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
+   )
+
+  mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ bad["artifact_version"] = "0.2.9"
+ mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ r2a7_capacity_row(bad)["dependency_partitions"] = ["R2A-5"]
+ mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ r2a7_capacity_row(bad)["candidate_path_patterns"] = ["docs/**"]
+ mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ bad["ownership_rules"]["disposition_precedence"] = [
+  "R2A-5", "R2A-4", "R2A-6", "R2A-7"
+ ]
+ mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ r2a7_capacity_row(bad)["gate_effect"] += " Gate advances."
+ mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ r2a7_capacity_row(bad)["prohibited_work"].pop()
+ mutations.append(bad)
+
+ bad = copy.deepcopy(document)
+ bad["partition_count"] = 13
+ mutations.append(bad)
+
+ assert all(not r2a7_capacity_valid(bad) for bad in mutations)
+
+
+# Rebind the obsolete current-posture aliases one final time to the repaired
+# R2A-7 successor validator.  Historical function bodies above remain intact.
+test_r2a6_status_versions_posture_and_future_boundary = (
+ test_r2a7_capacity_preserves_structural_authority
+)
+test_r2a6_capacity_preserves_r2a5_current_posture = (
+ test_r2a7_capacity_preserves_structural_authority
+)
+test_r2a6_capacity_successor_name_has_unmodified_current_partitions = (
+ test_r2a7_capacity_preserves_structural_authority
+)
+test_r2a5_completed_status_and_posture = (
+ test_r2a7_capacity_preserves_structural_authority
+)
+test_r2a4_completed_status_and_posture = (
+ test_r2a7_capacity_preserves_structural_authority
+)
+test_r2a4_exact_base_scope_status_and_posture = (
+ test_r2a7_capacity_preserves_structural_authority
+)
