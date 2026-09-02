@@ -1,0 +1,583 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0037",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0280",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM00_schema_math_mechanics_master_scope_and_sequencing_plan.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "05f9e485b2cb44764cb25d2f63b70dfe4423a252",
+      "controlled_match_count": 212,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "conflict",
+        "conversion",
+        "dependency",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "injury",
+        "persistence",
+        "provenance",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 24,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 49,
+          "line_end": 63,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM00 is a non-final master scope and sequencing plan after Batch C. Its separation of schema planning, mechanics planning, conversion readiness, and runtime readiness is useful planning pressure, but proposed SM01-SM05 owners, workstream sequence, readiness dependencies, and deferred-gap routing do not become current owners or gates through this file.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 24
+          },
+          "candidate_proposition": "SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 11
+          },
+          "candidate_proposition": "SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 12
+          },
+          "candidate_proposition": "SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 12,
+        "source_status_summary": "SM00 Schema/Math/Mechanics Master Scope and Sequencing Plan explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0281",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM01_validation_schema_inventory_and_readiness_controls.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0cc0cc5b23058a9605407a514d2c55cfaa8955d3",
+      "controlled_match_count": 363,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "conflict",
+        "conversion",
+        "dependency",
+        "detection",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "invalidate",
+        "lineage",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 28,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM01 Validation/Schema Inventory and Readiness Controls's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 60,
+          "line_end": 73,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM01 Validation/Schema Inventory and Readiness Controls's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM01 is a validation/schema inventory and readiness-control plan. It catalogs partial coverage, missing validators, future owners, dependencies, and lawful fallbacks, but it does not create executable schemas, runtime contracts, final mechanics, canon authority, or owner promotion.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 17,
+            "line_end": 28
+          },
+          "candidate_proposition": "SM01 Validation/Schema Inventory and Readiness Controls declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 12
+          },
+          "candidate_proposition": "SM01 Validation/Schema Inventory and Readiness Controls keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 16
+          },
+          "candidate_proposition": "SM01 Validation/Schema Inventory and Readiness Controls's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 16,
+        "source_status_summary": "SM01 Validation/Schema Inventory and Readiness Controls explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0282",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM02_minimum_pilot_conversion_readiness_and_packet_validation_controls.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "15408eedab6177232aa9dea1c4f451e5af93b6ed",
+      "controlled_match_count": 216,
+      "matched_terms": [
+        "canon",
+        "condition",
+        "conflict",
+        "conversion",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "supersede",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "correction_retcon_supersession",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 30,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 60,
+          "line_end": 96,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM02 proposes minimum pilot-conversion readiness gates and packet-validation controls. Its prerequisite matrix and packet rules are useful conversion-handoff pressure, but they do not authorize conversion, create final validators, or establish canon/runtime/mechanics readiness.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 15,
+            "line_end": 30
+          },
+          "candidate_proposition": "SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 27,
+            "line_end": 27
+          },
+          "candidate_proposition": "SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 14
+          },
+          "candidate_proposition": "SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 14,
+        "source_status_summary": "SM02 Minimum Pilot Conversion Readiness and Packet Validation Controls explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0283",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM03_pilot_packet_fixture_and_dry_run_review_plan.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "da938d883935d2faf0eb1c8426387a3620101f8b",
+      "controlled_match_count": 204,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "supersede",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "correction_retcon_supersession",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 33,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM03 Pilot Packet Fixture and Dry-Run Review Plan's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 68,
+          "line_end": 108,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM03 Pilot Packet Fixture and Dry-Run Review Plan's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM03 is a pilot packet fixture and dry-run review plan. It structures synthetic/non-donor rehearsal and reviewer evidence, but it does not create real donor conversion, pilot authorization, final schemas, canon, runtime authority, or an execution gate.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 33
+          },
+          "candidate_proposition": "SM03 Pilot Packet Fixture and Dry-Run Review Plan declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 30,
+            "line_end": 30
+          },
+          "candidate_proposition": "SM03 Pilot Packet Fixture and Dry-Run Review Plan keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 15
+          },
+          "candidate_proposition": "SM03 Pilot Packet Fixture and Dry-Run Review Plan's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 15,
+        "source_status_summary": "SM03 Pilot Packet Fixture and Dry-Run Review Plan explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0284",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM04_pilot_benchmark_and_evaluation_rubric_controls.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "921b87583e3daa5a6d8d190b57087e88f8441678",
+      "controlled_match_count": 211,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "process",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "supersede",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "correction_retcon_supersession",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 36,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM04 Pilot Benchmark and Evaluation Rubric Controls's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 67,
+          "line_end": 111,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM04 Pilot Benchmark and Evaluation Rubric Controls's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM04 defines pilot benchmark and evaluation-rubric planning controls. Its reviewer labels, evidence requirements, and failure categories are candidate evaluation architecture; they do not establish corpus authority, final mechanics, runtime truth, canon promotion, or execution permission.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 17,
+            "line_end": 36
+          },
+          "candidate_proposition": "SM04 Pilot Benchmark and Evaluation Rubric Controls declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 33,
+            "line_end": 33
+          },
+          "candidate_proposition": "SM04 Pilot Benchmark and Evaluation Rubric Controls keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 16
+          },
+          "candidate_proposition": "SM04 Pilot Benchmark and Evaluation Rubric Controls's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 16,
+        "source_status_summary": "SM04 Pilot Benchmark and Evaluation Rubric Controls explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    }
+  ]
+}

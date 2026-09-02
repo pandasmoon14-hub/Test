@@ -669,3 +669,516 @@ def test_salvage_identity_prefix_integrity_and_manifest():
     assert records[-1]["candidate_file_id"] == (
         "R2A-DISPOSITION-R7-0273"
     )
+
+# ---------------------------------------------------------------------------
+# Certified R2A-7 completion continuation through R7-0299.
+#
+# The corrective-repair tests above are retained as historical evidence.  The
+# accepted repair checkpoint is now inspected at its merge commit so later
+# lawful materialization does not make the historical "shards 0036..0048 were
+# absent" assertion falsely fail against the live worktree.
+# ---------------------------------------------------------------------------
+
+REPAIR_ACCEPTED_HEAD = "a3f425045fe0f5435569e12a5c33b757ae2a6db0"
+CERTIFIED_COMPLETION_LAST_SHARD = 40
+CERTIFIED_COMPLETION_LAST_ID = 299
+
+EXPECTED_COMPLETION_CLASSIFICATION = {274: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0021',
+                              'R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 275: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-CORE-0014',
+                              'R2A-SURFACE-WORLD-0004',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 276: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 277: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 278: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0021',
+                              'R2A-SURFACE-CORE-0014',
+                              'R2A-SURFACE-WORLD-0004',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 279: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'canon_handoff_pressure'},
+ 280: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 281: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 282: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 283: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 284: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 285: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 286: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 287: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 288: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 289: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 290: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 291: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 292: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 293: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 294: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 295: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mapped_semantic_surface',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 296: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mapped_semantic_surface',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 297: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mapped_semantic_surface',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 298: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mapped_semantic_surface',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 299: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mapped_semantic_surface',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'}}
+
+
+def _records_at_commit(commit: str, last_shard: int):
+    records = []
+
+    for number in range(1, last_shard + 1):
+        relative = (
+            "docs/doctrine/reviews/r2a/"
+            "dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        document = json.loads(
+            git_blob(commit, relative).decode("utf-8")
+        )
+        records.extend(document["candidate_file_dispositions"])
+
+    return records
+
+
+def _git_path_exists_at_commit(commit: str, relative: str) -> bool:
+    return (
+        subprocess.run(
+            ["git", "cat-file", "-e", f"{commit}:{relative}"],
+            cwd=ROOT,
+            stdout=subprocess.DEVNULL,
+            stderr=subprocess.DEVNULL,
+            check=False,
+        ).returncode
+        == 0
+    )
+
+
+def _current_records_through(last_shard: int):
+    records = []
+
+    for number in range(1, last_shard + 1):
+        path = DISPOSITIONS / f"dispositions_{number:04d}.yaml"
+        assert path.is_file()
+        document = json.loads(path.read_text(encoding="utf-8"))
+        records.extend(document["candidate_file_dispositions"])
+
+    return records
+
+
+def test_salvage_identity_prefix_integrity_and_manifest():
+    # Historicalize the accepted corrective-repair checkpoint.  Later
+    # completion shards are legitimate and must not rewrite repair history.
+    for number in range(1, 16):
+        relative = (
+            "docs/doctrine/reviews/r2a/"
+            "dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        assert git_blob(REPAIR_ACCEPTED_HEAD, relative) == git_blob(
+            REPAIR_START,
+            relative,
+        )
+
+    old_records = historical_salvage_records()
+    repair_records = _records_at_commit(REPAIR_ACCEPTED_HEAD, 35)
+    new_records = repair_records[156:]
+
+    assert len(old_records) == 117
+    assert len(new_records) == 117
+
+    assert [
+        record["candidate_file_id"]
+        for record in old_records
+    ] == [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(151, 268)
+    ]
+
+    assert [
+        record["candidate_file_id"]
+        for record in new_records
+    ] == [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(157, 274)
+    ]
+
+    lexical_fields = {
+        "controlled_match_count",
+        "matched_terms",
+        "matched_search_clusters",
+    }
+
+    for old, new in zip(old_records, new_records):
+        old_copy = dict(old)
+        new_copy = dict(new)
+
+        old_id = old_copy.pop("candidate_file_id")
+        new_id = new_copy.pop("candidate_file_id")
+
+        assert (
+            int(new_id.rsplit("-", 1)[1])
+            == int(old_id.rsplit("-", 1)[1]) + 6
+        )
+
+        assert new_copy["path"] == old_copy["path"]
+        assert (
+            new_copy["baseline_blob_sha"]
+            == old_copy["baseline_blob_sha"]
+        )
+
+        for field in lexical_fields:
+            old_copy.pop(field)
+            new_copy.pop(field)
+
+        assert new_copy == old_copy
+
+    for number in range(36, 49):
+        relative = (
+            "docs/doctrine/reviews/r2a/"
+            "dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        assert not _git_path_exists_at_commit(
+            REPAIR_ACCEPTED_HEAD,
+            relative,
+        )
+
+    manifest = json.loads(
+        git_blob(
+            REPAIR_ACCEPTED_HEAD,
+            "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+        ).decode("utf-8")
+    )
+
+    assert manifest["artifact_version"] == "0.2.10"
+    assert manifest["status"] == "active_incomplete"
+
+    partitions = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+
+    assert partitions["R2A-7"]["status"] == "active_incomplete"
+    assert partitions["R2A-8"]["status"] == "planned_not_present"
+
+    expected_paths = [
+        "docs/doctrine/reviews/r2a/"
+        "dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/"
+            "dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 36)
+        ],
+    ]
+
+    assert (
+        partitions["R2A-7"]["planned_artifact_paths"]
+        == expected_paths
+    )
+
+    assert len(repair_records) == 273
+    assert repair_records[0]["candidate_file_id"] == (
+        "R2A-DISPOSITION-R7-0001"
+    )
+    assert repair_records[-1]["candidate_file_id"] == (
+        "R2A-DISPOSITION-R7-0273"
+    )
+
+
+def test_certified_completion_progress_through_r7_0299():
+    entries = baseline_tree_entries()
+    assert len(entries) == EXPECTED_TRACKED_BLOBS
+
+    blobs = cat_blobs(sha for _, _, sha in entries)
+    terms_by_cluster = matcher_terms()
+
+    partitions = {
+        "R2A-4": [],
+        "R2A-5": [],
+        "R2A-6": [],
+        "R2A-7": [],
+    }
+    metadata = {}
+    eligible_count = 0
+    positive_count = 0
+
+    for path, _mode, sha in entries:
+        raw = blobs[sha]
+
+        if excluded(path, raw):
+            continue
+
+        eligible_count += 1
+        matches = controlled_matches(path, raw, terms_by_cluster)
+
+        if not matches:
+            continue
+
+        positive_count += 1
+        partition = assign_partition(path)
+        partitions[partition].append(path)
+
+        metadata[path] = {
+            "sha": sha,
+            "count": len(matches),
+            "terms": sorted({item[2] for item in matches}),
+            "clusters": sorted({item[3] for item in matches}),
+        }
+
+    assert eligible_count == EXPECTED_ELIGIBLE_TEXT
+    assert positive_count == EXPECTED_MATCHER_POSITIVE
+    assert {
+        partition: len(paths)
+        for partition, paths in partitions.items()
+    } == EXPECTED_PARTITION_COUNTS
+
+    frozen_r7 = sorted(partitions["R2A-7"])
+    assert len(frozen_r7) == 507
+
+    records = _current_records_through(
+        CERTIFIED_COMPLETION_LAST_SHARD
+    )
+
+    assert len(records) == CERTIFIED_COMPLETION_LAST_ID
+    assert [
+        record["candidate_file_id"]
+        for record in records
+    ] == [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(
+            1,
+            CERTIFIED_COMPLETION_LAST_ID + 1,
+        )
+    ]
+
+    for record, expected_path in zip(
+        records,
+        frozen_r7[:CERTIFIED_COMPLETION_LAST_ID],
+    ):
+        expected = metadata[expected_path]
+
+        assert record["path"] == expected_path
+        assert record["baseline_blob_sha"] == expected["sha"]
+        assert record["controlled_match_count"] == expected["count"]
+        assert record["matched_terms"] == expected["terms"]
+        assert (
+            record["matched_search_clusters"]
+            == expected["clusters"]
+        )
+
+    new_records = records[273:299]
+    assert len(new_records) == 26
+
+    for number, record in zip(range(274, 300), new_records):
+        expected = EXPECTED_COMPLETION_CLASSIFICATION[number]
+
+        assert record["disposition"] == expected["disposition"]
+        assert (
+            record["mapped_surface_ids"]
+            == expected["mapped_surface_ids"]
+        )
+        assert (
+            record["source_local_pressure_class"]
+            == expected["source_local_pressure_class"]
+        )
+        assert (
+            record["authority_effect"]
+            == expected["authority_effect"]
+        )
+        assert record["pressure_route"] == expected["pressure_route"]
+
+        mapping_ids = [
+            item["mapped_surface_id"]
+            for item in record["mapping_evidence"]
+        ]
+        assert mapping_ids == record["mapped_surface_ids"]
+        assert all(
+            item["authority_transfer_effect"] == "none"
+            for item in record["mapping_evidence"]
+        )
+
+        for locator in record["representative_locators"]:
+            assert locator["matched_terms"] == []
+            assert locator["matched_search_clusters"] == []
+            assert 1 <= locator["line_start"] <= locator["line_end"]
+            assert locator["semantic_review_note"].strip()
+
+        assert record["status_evidence"] is not None
+
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    assert manifest["artifact_version"] == "0.2.11"
+    assert manifest["status"] == "active_incomplete"
+
+    by_partition = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+
+    assert by_partition["R2A-7"]["status"] == "active_incomplete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+
+    expected_paths = [
+        "docs/doctrine/reviews/r2a/"
+        "dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/"
+            "dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 41)
+        ],
+    ]
+    assert (
+        by_partition["R2A-7"]["planned_artifact_paths"]
+        == expected_paths
+    )
+
+    assert not (DISPOSITIONS / "index.yaml").exists()
+    for number in range(41, 49):
+        assert not (
+            DISPOSITIONS / f"dispositions_{number:04d}.yaml"
+        ).exists()
+
+    assert records[-1]["candidate_file_id"] == (
+        "R2A-DISPOSITION-R7-0299"
+    )
+    assert frozen_r7[299]
+    assert not any(
+        record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
+        for record in records
+    )

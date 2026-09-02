@@ -1,0 +1,388 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0040",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0295",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/setting/A01_cosmology_and_dimensional_architecture.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "6ba3fb191a3d087ddb1595b10e38ee3ca4bae206",
+      "controlled_match_count": 34,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "continuity",
+        "conversion",
+        "handoff",
+        "identity",
+        "persistent identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 66,
+          "line_end": 71,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed A01 Cosmology and Dimensional Architecture's source-local handling and donor-nonpromotion rule. No additional semantic-authority mapping is warranted: the substantive setting architecture remains explicitly draft, while accepted donor-nonpromotion authority remains controlling."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A01 is draft cosmology and dimensional-container classification doctrine. R2A maps only its source-local donor-cosmology nonpromotion rule; the file's substantive cosmology categories, topology boundaries, and escalation grammar remain draft and acquire no current authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 66,
+            "line_end": 71
+          },
+          "candidate_proposition": "Donor cosmologies may remain source-local with provenance, do not become Astra cosmology canon, and unclassifiable models are quarantined or escalated rather than normalized by invention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A01 Cosmology and Dimensional Architecture materially applies the accepted donor/source-package nonpromotion rule within its draft setting domain. WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "A01 Cosmology and Dimensional Architecture identifies itself as Phase 1A draft doctrine and states a bounded purpose; disposition preserves that draft/non-current qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0296",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/setting/A02_source_fields_magic_technology_relation.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "6f7ce6d462680130e7c47140f791fccc330213f8",
+      "controlled_match_count": 30,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conflict",
+        "conversion",
+        "environment",
+        "handoff",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 79,
+          "line_end": 84,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed A02 Source Fields and Magic-Technology Relation's source-local handling and donor-nonpromotion rule. No additional semantic-authority mapping is warranted: the substantive setting architecture remains explicitly draft, while accepted donor-nonpromotion authority remains controlling."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A02 is draft Source Field and magic-technology relation doctrine. R2A maps only its donor/source-local nonpromotion rule; its Source Field taxonomy and interaction matrix remain draft setting architecture rather than current mechanics or metaphysics.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 79,
+            "line_end": 84
+          },
+          "candidate_proposition": "Donor manifestations may remain source-local with provenance, named donor powers/metaphysics do not become Astra canon, and recurrent patterns cannot bypass later review.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A02 Source Fields and Magic-Technology Relation materially applies the accepted donor/source-package nonpromotion rule within its draft setting domain. WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "A02 Source Fields and Magic-Technology Relation identifies itself as Phase 1A draft doctrine and states a bounded purpose; disposition preserves that draft/non-current qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0297",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/setting/A03_soul_body_mind_spirit_ontology.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ef8ca6d36cfa6b1764d74bd3fe66988b6dc79684",
+      "controlled_match_count": 128,
+      "matched_terms": [
+        "action",
+        "branch",
+        "canon",
+        "conflict",
+        "continuity",
+        "conversion",
+        "dependency",
+        "embodiment",
+        "evidence",
+        "fork",
+        "handoff",
+        "identity",
+        "merge",
+        "persistence",
+        "process",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 95,
+          "line_end": 101,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed A03 Soul / Body / Mind / Spirit Ontology's source-local handling and donor-nonpromotion rule. No additional semantic-authority mapping is warranted: the substantive setting architecture remains explicitly draft, while accepted donor-nonpromotion authority remains controlling."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A03 is draft soul/body/mind/spirit and identity-continuity ontology. Its extensive continuity vocabulary is not promoted by lexical overlap; R2A maps only the rule that donor identity metaphysics remain source-local/noncanon while unresolved cases quarantine or escalate.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 95,
+            "line_end": 101
+          },
+          "candidate_proposition": "Donor soul/body/mind/spirit metaphysics may remain source-local with provenance and do not become Astra ontology canon or accepted lexicon through this draft.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A03 Soul / Body / Mind / Spirit Ontology materially applies the accepted donor/source-package nonpromotion rule within its draft setting domain. WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "A03 Soul / Body / Mind / Spirit Ontology identifies itself as Phase 1A draft doctrine and states a bounded purpose; disposition preserves that draft/non-current qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0298",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/setting/A04_dao_domain_element_architecture.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "bb467b5723289b0f99df9dc8d2ca47b5b34a8cd3",
+      "controlled_match_count": 37,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conflict",
+        "continuity",
+        "conversion",
+        "dependency",
+        "handoff",
+        "identity",
+        "lineage",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 92,
+          "line_end": 98,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed A04 Dao / Domain / Element Architecture's source-local handling and donor-nonpromotion rule. No additional semantic-authority mapping is warranted: the substantive setting architecture remains explicitly draft, while accepted donor-nonpromotion authority remains controlling."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A04 is draft Dao/domain/element/conceptual architecture. R2A maps only its donor conceptual-system nonpromotion rule; its interaction and synthesis grammars remain draft and do not become current Astra metaphysical law through disposition.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 92,
+            "line_end": 98
+          },
+          "candidate_proposition": "Donor Dao/domain/element systems may remain source-local with provenance and do not become Astra architecture canon or accepted lexicon through extraction or repetition.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A04 Dao / Domain / Element Architecture materially applies the accepted donor/source-package nonpromotion rule within its draft setting domain. WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "A04 Dao / Domain / Element Architecture identifies itself as Phase 1A draft doctrine and states a bounded purpose; disposition preserves that draft/non-current qualification."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0299",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/setting/A05_civilization_scale_and_power_scale_doctrine.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "6712ff38858f01b9faf0e1d5ff85c49eab7f38d5",
+      "controlled_match_count": 50,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conflict",
+        "continuity",
+        "conversion",
+        "dependency",
+        "handoff",
+        "hazard",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 100,
+          "line_end": 106,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed A05 Civilization Scale and Power-Scale Doctrine's source-local handling and donor-nonpromotion rule. No additional semantic-authority mapping is warranted: the substantive setting architecture remains explicitly draft, while accepted donor-nonpromotion authority remains controlling."
+        }
+      ],
+      "disposition": "mapped_semantic_surface",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "A05 is draft civilization-scale and power-scale doctrine. R2A maps only its donor scale-system nonpromotion rule; its scale taxonomy, transition grammar, and power-boundary grammar remain draft and do not become current mechanics or world law.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 100,
+            "line_end": 106
+          },
+          "candidate_proposition": "Donor scale systems may remain source-local with provenance, do not become Astra scale canon, and unclassifiable scale claims quarantine or escalate rather than being invented into defaults.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "A05 Civilization Scale and Power-Scale Doctrine materially applies the accepted donor/source-package nonpromotion rule within its draft setting domain. WORLD-0011 retains authority and the draft gains none."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "A05 Civilization Scale and Power-Scale Doctrine identifies itself as Phase 1A draft doctrine and states a bounded purpose; disposition preserves that draft/non-current qualification."
+      }
+    }
+  ]
+}

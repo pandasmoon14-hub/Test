@@ -1,0 +1,562 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0039",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0290",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM10_dry_authorization_packet_validation_and_reviewer_decision_gate_controls.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c1626d6c2131d6b728043a067655962369ce3e6c",
+      "controlled_match_count": 143,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "evidence",
+        "handoff",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 24,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM10 Dry Authorization Packet Validation and Reviewer Decision-Gate Controls's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 37,
+          "line_end": 45,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM10 Dry Authorization Packet Validation and Reviewer Decision-Gate Controls's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM10 is a dry authorization-packet validation and reviewer decision-gate control file. Its dry validation labels and reviewer outcomes are rehearsal controls only; validation cannot become real authorization, execution approval, legal/IP clearance, or conversion evidence.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 13,
+            "line_end": 24
+          },
+          "candidate_proposition": "SM10 Dry Authorization Packet Validation and Reviewer Decision-Gate Controls declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 21
+          },
+          "candidate_proposition": "SM10 Dry Authorization Packet Validation and Reviewer Decision-Gate Controls keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 12
+          },
+          "candidate_proposition": "SM10 Dry Authorization Packet Validation and Reviewer Decision-Gate Controls's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 12,
+        "source_status_summary": "SM10 Dry Authorization Packet Validation and Reviewer Decision-Gate Controls explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0291",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM11_real_pilot_authorization_packet_preparation_controls.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "efd8e656fdcaa029ff670d752a8c93a8887a462b",
+      "controlled_match_count": 126,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "dependency",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 38,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM11 Real Pilot Authorization Packet Preparation Controls's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 72,
+          "line_end": 126,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM11 Real Pilot Authorization Packet Preparation Controls's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM11 defines controls for preparing a future real pilot authorization packet through metadata and routing. It neither creates that packet nor authorizes execution, and its preparation architecture does not create legal/IP clearance, final schemas, canon, runtime readiness, or mechanics authority.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 15,
+            "line_end": 38
+          },
+          "candidate_proposition": "SM11 Real Pilot Authorization Packet Preparation Controls declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 35,
+            "line_end": 35
+          },
+          "candidate_proposition": "SM11 Real Pilot Authorization Packet Preparation Controls keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 14
+          },
+          "candidate_proposition": "SM11 Real Pilot Authorization Packet Preparation Controls's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 14,
+        "source_status_summary": "SM11 Real Pilot Authorization Packet Preparation Controls explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0292",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM12_real_pilot_authorization_packet_external_reference_review_gate.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a99917e31a5037ac19c2d7ae58d385d2f717dbc0",
+      "controlled_match_count": 102,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "dependency",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "process",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 39,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM12 Real Pilot Authorization Packet External-Reference Review Gate's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 65,
+          "line_end": 70,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM12 Real Pilot Authorization Packet External-Reference Review Gate's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM12 is an external-reference review gate for a future real pilot authorization packet. It reviews metadata-only references without copying donor content, but it is not source clearance, legal/IP clearance, authorization, execution approval, conversion evidence, or final runtime/canon/mechanics readiness.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 15,
+            "line_end": 39
+          },
+          "candidate_proposition": "SM12 Real Pilot Authorization Packet External-Reference Review Gate declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 36,
+            "line_end": 36
+          },
+          "candidate_proposition": "SM12 Real Pilot Authorization Packet External-Reference Review Gate keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 14
+          },
+          "candidate_proposition": "SM12 Real Pilot Authorization Packet External-Reference Review Gate's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 14,
+        "source_status_summary": "SM12 Real Pilot Authorization Packet External-Reference Review Gate explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0293",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM13_real_pilot_authorization_packet_metadata_only_assembly_controls.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "644e01da1492fa0874c98057b393ab72d4ac7454",
+      "controlled_match_count": 102,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM13 Real Pilot Authorization Packet Metadata-Only Assembly Controls's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 37,
+          "line_end": 44,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM13 Real Pilot Authorization Packet Metadata-Only Assembly Controls's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM13 defines metadata-only assembly controls for a future real pilot authorization packet shell. It arranges reference, owner, dependency, C-family, legal/IP, and routing slots, but it creates neither a completed packet nor an authorization decision, execution permission, conversion evidence, canon, runtime authority, or final mechanics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 16
+          },
+          "candidate_proposition": "SM13 Real Pilot Authorization Packet Metadata-Only Assembly Controls declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 15,
+            "line_end": 15
+          },
+          "candidate_proposition": "SM13 Real Pilot Authorization Packet Metadata-Only Assembly Controls keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 8
+          },
+          "candidate_proposition": "SM13 Real Pilot Authorization Packet Metadata-Only Assembly Controls's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "SM13 Real Pilot Authorization Packet Metadata-Only Assembly Controls explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0294",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/schema_math_mechanics/SM14_metadata_only_real_packet_shell_validation_and_reviewer_gate.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "4e017ca0568b6c5e2346eb08463833692c0d04a9",
+      "controlled_match_count": 113,
+      "matched_terms": [
+        "canon",
+        "canonical",
+        "conflict",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "process",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 16,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM14 Metadata-Only Real Packet Shell Validation and Reviewer Gate's purpose/status and upstream authority/owner declarations. No additional semantic-authority mapping is warranted for its file-local planning architecture; accepted owners and phase controls remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 39,
+          "line_end": 46,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed SM14 Metadata-Only Real Packet Shell Validation and Reviewer Gate's must-not-own/non-goal boundary. These refusals confirm that its proposed workflow, gate, schema, benchmark, or execution vocabulary is non-final and does not acquire the excluded authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "SM14 defines metadata-only shell validation and reviewer-gate controls for a future real packet. It may check completeness and routing, but a validated shell is still not a completed authorization packet, authorization decision, execution approval, source/legal clearance, conversion evidence, canon, runtime authority, or final mechanics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 16
+          },
+          "candidate_proposition": "SM14 Metadata-Only Real Packet Shell Validation and Reviewer Gate declares staged dependencies and owner roles for its planning/control workflow.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs these relationships: dependency, coordination, mention, validation, and scheduling do not transfer or manufacture semantic ownership. The file-local owner map remains candidate planning pressure."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 15,
+            "line_end": 15
+          },
+          "candidate_proposition": "SM14 Metadata-Only Real Packet Shell Validation and Reviewer Gate keeps D00-D19 source-pack material draft or non-authoritative for the planning/control role claimed by this file.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 is the accepted donor/source-package nonpromotion firewall; repeated use of D-series material cannot make it current Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 8
+          },
+          "candidate_proposition": "SM14 Metadata-Only Real Packet Shell Validation and Reviewer Gate's opening status boundaries separate its present planning/control role from downstream execution, final schemas/mechanics, runtime, canon/sourcebook, live-play, and/or training authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation. A planning, scaffold, validation, benchmark, or authorization-shaped file cannot create later-phase authority merely by naming those phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 8,
+        "source_status_summary": "SM14 Metadata-Only Real Packet Shell Validation and Reviewer Gate explicitly states its bounded planning/control/scaffold/review posture and excludes downstream authority; these declarations are preserved as candidate status rather than promoted."
+      }
+    }
+  ]
+}
