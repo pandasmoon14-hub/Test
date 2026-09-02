@@ -2271,3 +2271,94 @@ test_r2a4_completed_status_and_posture = (
 test_r2a4_exact_base_scope_status_and_posture = (
  test_r2a7_capacity_preserves_structural_authority
 )
+
+
+# R2A-7 deterministic repair scope override.
+#
+# The historical tranche-B scope test above remains preserved as evidence of
+# the former append-only continuation posture.  The corrective repair has a
+# deliberately different bounded shape: corrupt/replayed shards are removed,
+# a deterministic regression test is added, and only the repaired R2A-7
+# inventory/control paths may change.
+R2A7_REPAIR_BASE = "176201f9d3a88d84e9d6628923392d7ba6c38341"
+
+R2A7_REPAIR_EXPECTED_CHANGED_PATHS = {
+ "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+ "tests/test_afqr_r2a_inventory_contract.py",
+ "tests/test_afqr_r2a7_deterministic_stream_repair.py",
+ *{
+  "docs/doctrine/reviews/r2a/dispositions_remaining/"
+  f"dispositions_{number:04d}.yaml"
+  for number in range(16, 49)
+ },
+}
+
+R2A7_REPAIR_EXPECTED_DELETIONS = {
+ "docs/doctrine/reviews/r2a/dispositions_remaining/"
+ f"dispositions_{number:04d}.yaml"
+ for number in range(36, 49)
+}
+
+
+def _r2a7_repair_scope_is_exact_and_corrective():
+ subprocess.check_call(
+  ["git", "merge-base", "--is-ancestor", R2A7_REPAIR_BASE, "HEAD"],
+  cwd=ROOT,
+ )
+
+ # The accepted pre-fracture prefix remains byte-identical.
+ for number in range(1, 16):
+  path = (
+   "docs/doctrine/reviews/r2a/dispositions_remaining/"
+   f"dispositions_{number:04d}.yaml"
+  )
+  assert git_blob(R2A7_REPAIR_BASE, path) == (ROOT / path).read_bytes()
+
+ changed = set(
+  subprocess.check_output(
+   ["git", "diff", "--name-only", f"{R2A7_REPAIR_BASE}...HEAD"],
+   cwd=ROOT,
+   text=True,
+  ).splitlines()
+ )
+
+ assert changed == R2A7_REPAIR_EXPECTED_CHANGED_PATHS
+
+ # Runtime, schemas, and runtime tests remain outside this corrective PR.
+ assert not any(
+  path.startswith(("src/", "schemas/", "tests/runtime/"))
+  for path in changed
+ )
+
+ status = subprocess.check_output(
+  ["git", "diff", "--name-status", f"{R2A7_REPAIR_BASE}...HEAD"],
+  cwd=ROOT,
+  text=True,
+ ).splitlines()
+
+ deleted = {
+  line.split("\t", 1)[1]
+  for line in status
+  if line.startswith("D\t")
+ }
+
+ assert deleted == R2A7_REPAIR_EXPECTED_DELETIONS
+
+ # No binary payloads are introduced.
+ numstat = subprocess.check_output(
+  ["git", "diff", "--numstat", f"{R2A7_REPAIR_BASE}...HEAD"],
+  cwd=ROOT,
+  text=True,
+ ).splitlines()
+
+ assert "-\t-" not in "\n".join(numstat)
+
+ # Current manifest/materialization controls still reject unplanned files.
+ assert not r2a7_unplanned_materialized_paths()
+
+
+# Rebind only the obsolete append-only scope assertion.  Its historical
+# function body remains intact above for provenance.
+test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes = (
+ _r2a7_repair_scope_is_exact_and_corrective
+)
