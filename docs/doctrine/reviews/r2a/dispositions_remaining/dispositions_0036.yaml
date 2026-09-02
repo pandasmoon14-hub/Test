@@ -1,0 +1,762 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0036",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0274",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D02_D05_relevance_crosscheck_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "eb832c38eddc8cf69bb91baebab36fbf4279e2a2",
+      "controlled_match_count": 34,
+      "matched_terms": [
+        "action",
+        "commitment",
+        "contact",
+        "conversion",
+        "handoff",
+        "knowledge",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 16,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the core D05-classifies/D02-resolves split. No additional owner surface is warranted: the generated cross-check coordinates two candidate domains while accepted owner-nontransfer authority remains controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 102,
+          "line_end": 120,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed Access Relevance and unsupported-action routing. These are candidate resolution/access instructions, not current action or resolution law; the accepted resolution owner remains controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 194,
+          "line_end": 220,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the suggested future dice payload and its explicit non-final-runtime-schema qualification. The interface sketch does not acquire runtime or schema authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The generated D02/D05 relevance cross-check separates D05 relevance classification from D02 resolution and proposes d20-facing procedure and interface adjustments. It is useful owner-boundary and compatibility pressure, but it cannot establish the d20 ladder or check procedure as Astra law, transfer D02/D05 semantic ownership, or turn its suggested dice payload into final runtime schema.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 51,
+            "line_end": 67
+          },
+          "candidate_proposition": "D05 may classify relevance, after which D02 applies any authorized roll or outcome effect.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The accepted action/resolution surface governs resolution semantics; this generated cross-check may route relevance into resolution but cannot establish the d20 procedure or outcome law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 18
+          },
+          "candidate_proposition": "The cross-check states that D05 classifies relevance while D02 applies resolution.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This is cross-owner coordination without semantic transfer. CORE-0003 keeps semantic ownership with the controlling owners despite mention and consumption."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 194,
+            "line_end": 220
+          },
+          "candidate_proposition": "The file proposes a future dice-interface payload and explicitly says it is not final runtime schema.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 keeps planning/interface sketches separate from runtime/schema implementation and later play behavior."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The source marks itself v0.1, optional but recommended cross-check / pre-D06, applying to generated D02/D02-A material; this is candidate amendment status, not current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0275",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D03_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "21311a003281de324ec203129e852b5bb8d0156a",
+      "controlled_match_count": 40,
+      "matched_terms": [
+        "action",
+        "condition",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "injury",
+        "knowledge",
+        "recovery",
+        "runtime",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 22,
+          "line_end": 45,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the D03/D05 ownership split and explicit denial that D05 directly changes Power Economy, Expression, carrier, reservoir, cost, burden, or overdraw state. Accepted owner boundaries remain controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 86,
+          "line_end": 113,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the proposed Research Track-to-Expression Candidate pipeline. This is generated development pressure, not current Expression or mechanics authority."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 244,
+          "line_end": 259,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed Endura training with the explicit D03/D07 bodily injury and recovery boundary. Harm ownership is not transferred by the amendment."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 362,
+          "line_end": 383,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed suggested runtime/UI reference fields and candidate-state labels. They are implementation handoff sketches, not final runtime or schema authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The generated D03/D05 reconciliation treats D05 records as basis, candidate, training, research, method, and synthesis inputs to D03-facing Power Economy and Expression work. Its useful handoff distinctions do not authorize final resource, carrier, Expression, confluence, overdraw, harm, recovery, runtime, or UI law; those propositions remain governed by accepted owners or later review.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 22,
+            "line_end": 45
+          },
+          "candidate_proposition": "D05 becomes a support/input layer while D03 retains final Power Economy, Expression, carrier, reservoir, cost, burden, and overdraw validation.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the nontransfer boundary: consuming D05 records and coordinating D03 validation does not move semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0014",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 24,
+            "line_end": 45
+          },
+          "candidate_proposition": "The amendment assigns generated D03 ownership claims over Power Economy access, reservoirs, carrier tolerance, Expression costs, burden, overdraw, backlash, and resource-facing recovery.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "These are resource/economy propositions governed by the accepted resource surface; the generated amendment cannot create universal resource, cost, recharge, or backlash law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0004",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 244,
+            "line_end": 259
+          },
+          "candidate_proposition": "The Endura amendment explicitly routes bodily injury, harm, and recovery consequences to D07 while limiting D05 training to preparation and practice support.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The accepted harm/embodiment surface retains authority over injury and bodily recovery; a generated D03/D05 interface cannot acquire that ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 99,
+            "line_end": 113
+          },
+          "candidate_proposition": "Expression candidate validation includes source-local status, and research output does not become a playable Expression merely because D05 produced it.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 prevents source-local or generated package content from becoming Astra-wide mechanics or canon through candidate generation or repetition."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 362,
+            "line_end": 383
+          },
+          "candidate_proposition": "The amendment proposes D05 reference arrays and UI labels for future D03 runtime state.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 treats runtime/UI handoff sketches as later-phase coordination rather than runtime truth or implementation authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The source marks itself v0.1 proposed amendment / required before D06 for generated D03 under D05 pressure; that self-status is candidate reconciliation posture only."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0276",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/D04_D05_reconciliation_amendment_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "bd1eaee8801429a505c765824c16a476b0c97bd1",
+      "controlled_match_count": 57,
+      "matched_terms": [
+        "action",
+        "conversion",
+        "correction",
+        "embodiment",
+        "evidence",
+        "handoff",
+        "identity",
+        "knowledge",
+        "lineage",
+        "reservation",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "target",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 18,
+          "line_end": 51,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the D04/D05 input-versus-authorization boundary. No new owner is established; accepted semantic nontransfer remains controlling."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 247,
+          "line_end": 280,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the proposed Advancement Axis Registry correction and D05-08 routing grammar. The generated routing table is candidate pressure, not a universal owner map."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 334,
+          "line_end": 353,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed proposed progression runtime reference fields. These are handoff sketches and do not create runtime/schema authority."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 396,
+          "line_end": 423,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed acceptance and deferred-decision sections. The amendment itself leaves calibration and shared record shapes unresolved, confirming non-final posture."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The generated D04/D05 reconciliation allows D05 competency, profession, training, research, mastery, method, synthesis, and teaching records to feed proof and route pressure while expressly retaining proof sufficiency, Awakening, Development Picks, tiers, breakthroughs, capstones, and Ascension Access elsewhere. Its proposed proof families, target menus, axis routing, and runtime references remain candidate advancement architecture rather than current law.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 51
+          },
+          "candidate_proposition": "D05 is described as an evidence/input layer while D04 retains proof sufficiency and advancement authorization.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs this coordination: evidence consumption and handoff do not transfer semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 160,
+            "line_end": 179
+          },
+          "candidate_proposition": "The proposed proof-source families include source-local competency proof while stating that D05 records become proof only through later D04 handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 prevents source-local competency or generated advancement constructs from being promoted into universal Astra advancement law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 334,
+            "line_end": 353
+          },
+          "candidate_proposition": "The file proposes D05 progression reference arrays and UI surfaces for later runtime/schema handoff.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 keeps those runtime/schema proposals nonauthoritative until their proper later phase and owners act."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 6,
+        "source_status_summary": "The source marks itself v0.1 proposed amendment / required before D06 for generated D04 under D05 pressure; this does not confer current authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0277",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/README_reconciliation_manifest.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7b26e16c4806dbca30c32a8daddd6e13baed8761",
+      "controlled_match_count": 6,
+      "matched_terms": [
+        "action",
+        "canon",
+        "identity",
+        "knowledge",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 7,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the pack purpose and controlled-amendment posture. Packaging does not grant authority over the generated files it coordinates."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 27,
+          "line_end": 44,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the reconciliation principle, pre-D06 sequencing, and explicit nonownership note. Current owner and cross-phase authority remain controlling."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The reconciliation README packages the D05-to-D03, D05-to-D04, and optional D02 cross-check as pre-D06 patch guidance. It expressly says D05 may record, support, route, and generate candidates without authorizing final mechanics or state, and it excludes canon sourcebook prose, final runtime schema, live-play behavior, and training/evaluation material. The sequencing and patch guidance therefore remain candidate coordination only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 27,
+            "line_end": 31
+          },
+          "candidate_proposition": "The manifest states that D05 can support and generate candidates but does not authorize final mechanics or state, while D03/D04/D02 retain their claimed domains.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the owner-nontransfer principle across this coordination pack."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 42,
+            "line_end": 44
+          },
+          "candidate_proposition": "The manifest says the reconciliation pack is not canon sourcebook prose, final runtime schema, live-play GM behavior, or training/evaluation example material.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves the separation between design/patch guidance and later canon, runtime, and play-facing phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 5,
+        "source_status_summary": "The README identifies version v0.1, status amendment pack / pre-D06 gate, and scope as D05-to-D03/D04 plus an optional D02 cross-check; this is generated pack posture, not current authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0278",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/astra_reconciliation_pass_d03_d04_d02_combined_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "544c9b865fe3a71d2b60f0f34a63caf90bcef6e5",
+      "controlled_match_count": 137,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "condition",
+        "contact",
+        "conversion",
+        "correction",
+        "dependency",
+        "embodiment",
+        "evidence",
+        "handoff",
+        "identity",
+        "injury",
+        "knowledge",
+        "lineage",
+        "recovery",
+        "reservation",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "target",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 52,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the embedded reconciliation manifest and nonownership statement. The wrapper gains no authority from aggregation."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 59,
+          "line_end": 130,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the beginning of the embedded D03/D05 amendment, including the D03/D05 ownership split and candidate-support model."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 516,
+          "line_end": 590,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the beginning of the embedded D04/D05 amendment, including proof-input versus advancement-authorization boundaries."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 984,
+          "line_end": 1055,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the beginning of the embedded D02/D05 cross-check, including relevance classification and generated resolution coordination."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0021",
+        "R2A-SURFACE-CORE-0014",
+        "R2A-SURFACE-WORLD-0004",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The combined reconciliation export aggregates the README and generated D03/D04/D02 amendments. Aggregate packaging adds no wrapper-only authority: accepted nontransfer, resolution, resource, harm, donor-nonpromotion, and cross-phase surfaces govern the corresponding propositions, while the generated d20, resource, advancement, runtime, UI, and sequencing proposals remain candidate pressure for later review.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 27,
+            "line_end": 39
+          },
+          "candidate_proposition": "The embedded manifest coordinates D05 support with D03/D04/D02 without transferring final owner authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic nontransfer across combined packaging, coordination, and consumption."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0021",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 1034,
+            "line_end": 1050
+          },
+          "candidate_proposition": "The embedded D02/D05 section routes relevance classification into D02 resolution behavior.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The accepted resolution surface governs these semantics; the combined generated export cannot establish d20 resolution law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0014",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 82,
+            "line_end": 103
+          },
+          "candidate_proposition": "The embedded D03 amendment assigns generated D03-facing Power Economy, reservoir, carrier, cost, Expression, and overdraw concerns.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The accepted resource surface governs those propositions; aggregation cannot create resource/economy authority."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0004",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 303,
+            "line_end": 317
+          },
+          "candidate_proposition": "The embedded Endura amendment distinguishes training support from bodily injury and recovery ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The accepted harm/embodiment surface retains injury/recovery authority despite inclusion in the combined export."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 157,
+            "line_end": 170
+          },
+          "candidate_proposition": "The embedded Expression candidate pipeline includes source-local handling and refuses candidate output as automatically playable/final.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 prevents generated or source-local package content from promotion through aggregation."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 50,
+            "line_end": 52
+          },
+          "candidate_proposition": "The embedded manifest explicitly excludes canon sourcebook prose, final runtime schema, live-play behavior, and training/evaluation material.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 preserves phase separation; the combined wrapper cannot bridge those phases by packaging."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 9,
+        "line_end": 13,
+        "source_status_summary": "The embedded README identifies the reconciliation material as a v0.1 amendment pack / pre-D06 gate; combined-export packaging does not upgrade that candidate status."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0279",
+      "partition_id": "R2A-7",
+      "path": "docs/doctrine/native_design/d_series/source_packs/astra_reconciliation_pass_d03_d04_d02_v0_1/reconciliation_manifest.json",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c9fdafd703db78b619bd8e57c2b82480080153f1",
+      "controlled_match_count": 6,
+      "matched_terms": [
+        "canon",
+        "resolution",
+        "runtime",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 50,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the entire compact machine-readable reconciliation manifest. Its metadata coordinates candidate amendments but creates no additional semantic owner or phase authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The reconciliation JSON manifest is machine-readable metadata for the proposed amendment pack. Its file lists, sequencing requirements, owner labels, and integration notes can support later review, but metadata cannot authorize the mechanics it names or create canon, runtime-schema, live-play, training, or repository authority.",
+      "source_local_pressure_class": "canon_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 7,
+            "line_end": 42
+          },
+          "candidate_proposition": "The manifest records constituent D03/D04/D02 amendment relationships and pre-D06 sequencing across generated owner labels.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs coordination and metadata consumption without semantic ownership transfer."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 44,
+            "line_end": 49
+          },
+          "candidate_proposition": "The manifest's nonownership metadata excludes final runtime schema, canon sourcebook prose, live-play GM behavior, and training/evaluation example material.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 makes those exclusions authoritative as phase boundaries; the metadata file itself gains no later-phase authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 5,
+        "source_status_summary": "The compact manifest identifies itself as a proposed amendment-pack artifact for the reconciliation pass; machine-readable self-status does not confer current doctrine or gate authority."
+      }
+    }
+  ]
+}
