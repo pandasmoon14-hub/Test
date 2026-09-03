@@ -1,0 +1,406 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0044",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0330",
+      "partition_id": "R2A-7",
+      "path": "orientation.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d0210f3b00815f170b9707fd452fd22566368fda",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "action"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the orientation helper and normalization_action result. Action here is a page-rotation repair directive and has no material relation to AFQR action semantics."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`orientation.py` reads PDF rotation and returns an orientation label plus a normalization action. The 'action' field is a repair instruction for page rotation, not an Astra actor intent, action, or resolution construct.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0331",
+      "partition_id": "R2A-7",
+      "path": "page_truth.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "42507081103275b07500382b7948c93a66c7a39e",
+      "controlled_match_count": 3,
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 37,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the page-truth sidecar dataclass and serialization helpers. The module records extraction provenance only; its name does not make it an epistemic or runtime-truth authority."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`page_truth.py` defines an extraction sidecar record and JSONL reader/writer for page-level source metadata. 'Truth' is part of the technical sidecar name and does not assert Astra world truth, belief, evidence, or knowledge semantics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0332",
+      "partition_id": "R2A-7",
+      "path": "pilot_benchmark.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "6038de8854cc412d1d78c318901e5e217eaad6c1",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 7,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the benchmark harness description. The runtime hit denotes extraction-duration assumptions used for capacity planning and has no semantic runtime authority effect."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`pilot_benchmark.py` measures Aether Forge extraction throughput and escalation metrics to calibrate wall-time assumptions. Its single runtime reference points to `estimate_runtime`, not Astra runtime state or persistence doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0333",
+      "partition_id": "R2A-7",
+      "path": "pyproject.toml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d5904be5cc9eb5422df5d310706fdfae4e0a1139",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 15,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the complete packaging file. 'astra-runtime' is a package identifier only, so the lexical runtime hit is dismissed as non-semantic."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`pyproject.toml` is packaging metadata; the string `astra-runtime` is the Python project name. It contains no runtime-state, storage, serialization, persistence, or semantic-owner proposition.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0334",
+      "partition_id": "R2A-7",
+      "path": "quality_harness.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7c62140aaf9de13bdb25509a73ce14b7d241e477",
+      "controlled_match_count": 9,
+      "matched_terms": [
+        "continuity",
+        "environment",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "environmental_state_process",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the harness's stated offline quality checks. Heading continuity, JSON schema validation, and page truth are extraction validation concepts and do not establish identity, epistemic, or runtime-schema ownership."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`quality_harness.py` performs offline validation of extracted Markdown for page coverage, headings, tables, stat blocks, glyphs, schemas, and related quality signals. Its continuity/schema/truth vocabulary is extraction-quality terminology, not Astra semantic doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0335",
+      "partition_id": "R2A-7",
+      "path": "regression_suite.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0c07be83cee03fe649c27d8f45acf44cc6606bf4",
+      "controlled_match_count": 29,
+      "matched_terms": [
+        "action",
+        "condition",
+        "conversion",
+        "detection",
+        "initiative",
+        "merge",
+        "process",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the regression suite's synthetic-fixture purpose. Its truth, schema, dependency, action, target, continuity, environment, and related terms are test inputs/expectations for extraction tooling, not accepted Astra rules."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`regression_suite.py` creates synthetic extraction fixtures and tests Aether Forge quality behaviors. Controlled terms appear inside fixture text, expected failure modes, and tooling assertions, so the suite is implementation/test pressure rather than doctrine or semantic ownership.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0336",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/aggregate_conversion_intake_results.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "dd39900c92a3e65b0e4bc261bdad49e232f122de",
+      "controlled_match_count": 64,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "condition",
+        "contact",
+        "conversion",
+        "environment",
+        "handoff",
+        "hazard",
+        "healing",
+        "injury",
+        "lineage",
+        "provenance",
+        "recovery",
+        "target",
+        "truth",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 39,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the aggregation script's lawful-outcome constants, donor/construct classifiers, and report generation. The executable summarizes conversion evidence; classification and reporting do not turn script vocabulary into Astra authority."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`aggregate_conversion_intake_results.py` aggregates conversion-result JSON into counts, family summaries, quarantine/escalation lists, reports, and review queues. Its lawful-outcome and canon strings are implementation of the conversion pipeline and do not themselves adjudicate doctrine, canon, or AFQR ownership.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0337",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/audit_conversion_intake_quality.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "565bfa902aa213b2e2a5ee82826aceb8a2a1d734",
+      "controlled_match_count": 19,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 9,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the quality-audit helper's stated role and required conversion-result headings. It evaluates parse richness only and cannot own schema, canon, conversion, or action semantics."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`audit_conversion_intake_quality.py` checks whether scaffolded conversion results parsed richly enough for review. It explicitly distinguishes its quality-gate role from schema validation; canon/conversion strings are required headings and warning checks, not canon authority.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0338",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/build_full_corpus_extraction_plan.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3ca02b9f5e868addb95d6a3063672e807abf9383",
+      "controlled_match_count": 12,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 52,
+          "line_end": 66,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the planner's input checks, lane/wave assignment, and generated separation reminders. It emits planning-only metadata and does not acquire action, truth, conversion, or canon authority."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`build_full_corpus_extraction_plan.py` turns dry-run and readiness artifacts into extraction lanes, waves, and review queues. Controlled action/truth/canon/conversion text belongs to CLI flags and generated planning reminders, not semantic domain law.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0339",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/build_handoff_packet.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0fa45b272f008d6426663d6f0a5b192d74cd4e0d",
+      "controlled_match_count": 29,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 15,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed packet construction and validation responsibilities. The builder packages page truth, evidence, schemas, conversion prompts, and queues, but packaging/serialization does not make it a semantic owner of those domains."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`build_handoff_packet.py` constructs extraction handoff packets, validates sidecars, and emits conversion prompts and queue artifacts. References to canon, truth, evidence, schema, dependency, and action are packet fields/validation concerns and do not transfer their semantic ownership to the builder.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    }
+  ]
+}

@@ -2528,3 +2528,177 @@ def _r2a7_completion_scope_is_exact_and_bounded():
 test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes = (
     _r2a7_completion_scope_is_exact_and_bounded
 )
+
+# ---------------------------------------------------------------------------
+# Certified R2A-7 completion live-posture override through R7-0356.
+#
+# The accepted R7-0299 tranche is frozen at the #363 merge commit below.
+# These late-bound values advance only the live materialization checkpoint.
+# ---------------------------------------------------------------------------
+
+R2A7_COMPLETION_0356_BASE = "6cbf63d78face218d056742b9384bb56d00700dd"
+
+R2A7_REPAIR_MANIFEST_VERSION = "0.2.12"
+R2A7_REPAIR_SHARD_COUNT = 46
+R2A7_REPAIR_STATUS = "active_incomplete"
+
+R2A7_REPAIR_PLANNED_PATH_LIST = [
+    "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+    *[
+        "docs/doctrine/reviews/r2a/dispositions_remaining/"
+        f"dispositions_{number:04d}.yaml"
+        for number in range(1, R2A7_REPAIR_SHARD_COUNT + 1)
+    ],
+]
+R2A7_REPAIR_PLANNED_PATHS = set(R2A7_REPAIR_PLANNED_PATH_LIST)
+
+R2A7_REPAIR_MATERIALIZED_SHARDS = {
+    "docs/doctrine/reviews/r2a/dispositions_remaining/"
+    f"dispositions_{number:04d}.yaml"
+    for number in range(1, R2A7_REPAIR_SHARD_COUNT + 1)
+}
+
+R2A7_COMPLETION_0356_EXPECTED_CHANGED_PATHS = {
+    "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "tests/test_afqr_r2a_inventory_contract.py",
+    "tests/test_afqr_r2a7_deterministic_stream_repair.py",
+    *{
+        "docs/doctrine/reviews/r2a/dispositions_remaining/"
+        f"dispositions_{number:04d}.yaml"
+        for number in range(41, 47)
+    },
+}
+
+
+def _completion_0356_changed_paths():
+    committed = _git_names(
+        "diff",
+        "--name-only",
+        f"{R2A7_COMPLETION_0356_BASE}...HEAD",
+    )
+    unstaged = _git_names("diff", "--name-only")
+    staged = _git_names("diff", "--cached", "--name-only")
+    untracked = _git_names(
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+    )
+    return committed | unstaged | staged | untracked
+
+
+def _completion_0356_deleted_paths():
+    deleted = set()
+
+    for args in (
+        (
+            "diff",
+            "--name-status",
+            f"{R2A7_COMPLETION_0356_BASE}...HEAD",
+        ),
+        ("diff", "--name-status"),
+        ("diff", "--cached", "--name-status"),
+    ):
+        output = subprocess.check_output(
+            ["git", *args],
+            cwd=ROOT,
+            text=True,
+        )
+
+        for line in output.splitlines():
+            if line.startswith("D\t"):
+                deleted.add(line.split("\t", 1)[1])
+
+    return deleted
+
+
+def _completion_0356_numstat_has_binary():
+    for args in (
+        (
+            "diff",
+            "--numstat",
+            f"{R2A7_COMPLETION_0356_BASE}...HEAD",
+        ),
+        ("diff", "--numstat"),
+        ("diff", "--cached", "--numstat"),
+    ):
+        output = subprocess.check_output(
+            ["git", *args],
+            cwd=ROOT,
+            text=True,
+        )
+        if any(
+            line.startswith("-\t-")
+            for line in output.splitlines()
+        ):
+            return True
+
+    for relative in _git_names(
+        "ls-files",
+        "--others",
+        "--exclude-standard",
+    ):
+        if b"\0" in (ROOT / relative).read_bytes():
+            return True
+
+    return False
+
+
+def _r2a7_completion_0356_scope_is_exact_and_bounded():
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A7_COMPLETION_0356_BASE,
+            "HEAD",
+        ],
+        cwd=ROOT,
+    )
+
+    # The entire accepted through-R7-0299 payload remains byte-identical.
+    for number in range(1, 41):
+        relative = (
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        assert git_blob(
+            R2A7_COMPLETION_0356_BASE,
+            relative,
+        ) == (ROOT / relative).read_bytes()
+
+    changed = _completion_0356_changed_paths()
+    assert changed == R2A7_COMPLETION_0356_EXPECTED_CHANGED_PATHS
+
+    assert not any(
+        path.startswith(("src/", "schemas/", "tests/runtime/"))
+        for path in changed
+    )
+
+    assert _completion_0356_deleted_paths() == set()
+    assert not _completion_0356_numstat_has_binary()
+
+    index_path = (
+        ROOT
+        / "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
+    )
+    assert not index_path.exists()
+
+    document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+    row = r2a7_capacity_row(document)
+
+    assert document["artifact_version"] == "0.2.12"
+    assert row["status"] == "active_incomplete"
+    assert row["planned_artifact_paths"] == R2A7_REPAIR_PLANNED_PATH_LIST
+
+    by_partition = {
+        item["partition_id"]: item
+        for item in document["partitions"]
+    }
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+
+
+# Rebind only the live R2A-7 scope assertion. Historical bodies above remain
+# accepted provenance and are not edited.
+test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes = (
+    _r2a7_completion_0356_scope_is_exact_and_bounded
+)
