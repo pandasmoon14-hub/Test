@@ -1,0 +1,1037 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0049",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0377",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a14_travel_exploration_scale_transition_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0ab02c481cc701c17f91b2c82293262113d6223f",
+      "controlled_match_count": 22,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "hazard",
+        "provenance",
+        "runtime",
+        "schema",
+        "settlement",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 79,
+          "line_end": 83,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the travel/exploration/scale transition donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 104,
+          "line_end": 107,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the travel/exploration/scale transition file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a14_travel_exploration_scale_transition_doctrine.py` validates the draft A-layer travel/exploration/scale transition file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 79,
+            "line_end": 83
+          },
+          "candidate_proposition": "The travel/exploration/scale transition test requires donor/source-local travel/exploration/scale transition assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer travel/exploration/scale transition doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 105,
+        "line_end": 107,
+        "source_status_summary": "The registry assertions keep the A-layer travel/exploration/scale transition record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0378",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a15_faction_society_economy_institution_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8398bf02b199787e489e4c2c4823a0e091cdd524",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "handoff",
+        "hazard",
+        "runtime",
+        "schema",
+        "settlement",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 47,
+          "line_end": 51,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the faction/society/economy/institution donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 89,
+          "line_end": 92,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the faction/society/economy/institution file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a15_faction_society_economy_institution_doctrine.py` validates the draft A-layer faction/society/economy/institution file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 47,
+            "line_end": 51
+          },
+          "candidate_proposition": "The faction/society/economy/institution test requires donor/source-local faction/society/economy/institution assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer faction/society/economy/institution doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 90,
+        "line_end": 92,
+        "source_status_summary": "The registry assertions keep the A-layer faction/society/economy/institution record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0379",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_01_20_consolidation_planning.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "32cee7f7df369a3676bcdd66040e4b61b169bfce",
+      "controlled_match_count": 23,
+      "matched_terms": [
+        "conflict",
+        "dependency",
+        "evidence",
+        "provenance",
+        "resolution",
+        "stale"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "dependency_and_revalidation",
+        "evidence_and_provenance"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 80,
+          "line_end": 92,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the test's temporary-nonauthority and later-gate assertions: working evidence stays explicitly nonauthoritative, production imports are prohibited, and later gates remain blocked."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_afqr_01_20_consolidation_planning.py` validates temporary R1A consolidation evidence, file integrity, and blocked downstream gates. The test's dependency/evidence/conflict vocabulary is planning/audit infrastructure and does not create semantic authority.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 80,
+        "line_end": 92,
+        "source_status_summary": "The tested working manifest is explicitly `temporary_non_authoritative_working_evidence_only`, with later R2–R6/RT-002G gates blocked."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0380",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r1b_shared_vocabulary_and_type_owners.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8831a8a9c0a93d8d25ced2084a64d5d54677a44a",
+      "controlled_match_count": 36,
+      "matched_terms": [
+        "canonical",
+        "commitment",
+        "dependency",
+        "epistemic",
+        "evidence",
+        "handoff",
+        "identity",
+        "resolution",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 40,
+          "line_end": 54,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the exact accepted test-contract block for mandatory transaction/event/opportunity/dependency corrections and qualified evidence ownership."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0024"
+      ],
+      "semantic_review_summary": "`test_afqr_r1b_shared_vocabulary_and_type_owners.py` is itself the accepted source path for CORE-0024. The bounded owner-correction test enforces transaction/event/opportunity/dependency ownership and qualified evidence forms; the rest of the test module remains verification rather than additional doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0024",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 40,
+            "line_end": 54
+          },
+          "candidate_proposition": "The accepted R1B test enforces AFQR-09 dependency ownership and qualified AFQR-06/10 evidence boundaries while preserving corrected transaction/event/opportunity ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0024 originates from this exact bounded test contract. Mapping records that already-accepted test-enforced boundary and transfers no ownership to the surrounding test module."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0381",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r1c_cross_invariants_and_dependencies.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e5a2a7f4f3fceb4601b296fa0162f2a8191991ed",
+      "controlled_match_count": 54,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "commit",
+        "contact",
+        "continuity",
+        "conversion",
+        "dependency",
+        "detection",
+        "embodiment",
+        "evidence",
+        "handoff",
+        "identity",
+        "resolution",
+        "runtime",
+        "sensing",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 88,
+          "line_end": 90,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R1C dependency-edge assertion requiring ownership_does_not_transfer to remain true."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 175,
+          "line_end": 184,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the preserved-escalation authority boundary: runtime, conversion, canon/sourcebook, model-facing and live-play authority remain absent and later gates remain blocked."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 205,
+          "line_end": 212,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the corpus-pressure regression that forbids donor default assumptions and requires the finding to remain nonpromotional."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_afqr_r1c_cross_invariants_and_dependencies.py` verifies canonical R1C nontransfer, donor-default refusal, and the no-downstream-authority boundary. These are accepted owner/control constraints; test mechanics, fixtures, and comparison code add no new semantic owner.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 88,
+            "line_end": 90
+          },
+          "candidate_proposition": "The R1C test requires every reviewed dependency edge to preserve ownership_does_not_transfer.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs this exact nontransfer invariant; the test verifies rather than reassigns ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 205,
+            "line_end": 212
+          },
+          "candidate_proposition": "The R1C corpus-pressure test forbids one donor cosmology, anatomy, identity model, action economy, resolution style, progression model, resource economy, topology, sensing model, legal/social system, actor scale, or vehicle/operator relation from becoming a default by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the donor-nonpromotion rule verified by this test; corpus coverage cannot promote donor assumptions."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 175,
+            "line_end": 184
+          },
+          "candidate_proposition": "The R1C test requires no runtime implementation, conversion execution, canon/sourcebook, model-facing, or live-play authority and keeps downstream gates blocked.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs the phase/authority separation; a validation test cannot grant prohibited downstream authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 175,
+        "line_end": 184,
+        "source_status_summary": "The source explicitly validates an authority boundary with downstream implementation/conversion/canon/live-play absent and R2–R6 blocked."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0382",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r1d_agency_epistemic_social_communication.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a3abf29e26c2f279857129b974f2ea5f28a2440c",
+      "controlled_match_count": 44,
+      "matched_terms": [
+        "canonical",
+        "conversion",
+        "dependency",
+        "epistemic",
+        "evidence",
+        "handoff",
+        "identity",
+        "knowledge",
+        "provenance",
+        "resolution",
+        "sensing",
+        "stale",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 43,
+          "line_end": 45,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the projection parity check requiring ownership_nontransfer to match authoritative R1C."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 89,
+          "line_end": 105,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed communication/epistemic separation and differentiated donor-pressure records, including explicit validation-does-not-transfer-ownership and prohibited universalizations."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 107,
+          "line_end": 113,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the completion boundary that leaves overall R1D/R1E/later gates appropriately bounded."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-AGENCY-0002",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_afqr_r1d_agency_epistemic_social_communication.py` verifies Agency-family nontransfer, epistemic separations, differentiated donor pressure, and blocked downstream authority. It confirms accepted owner boundaries without turning the test or donor pressure records into doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 43,
+            "line_end": 45
+          },
+          "candidate_proposition": "The Agency-family projection test requires ownership_nontransfer to preserve the authoritative R1C value.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the nontransfer rule; Agency test parity cannot create a new owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 89,
+            "line_end": 100
+          },
+          "candidate_proposition": "The Agency-family tests preserve distinct epistemic/communication ownership, including communication not being truth and validation not transferring communication ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 governs the bounded epistemic ownership/exclusion structure being tested; the test adds no Agency ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 99,
+            "line_end": 105
+          },
+          "candidate_proposition": "The Agency corpus-pressure test requires differentiated source-local/quarantine/escalation outcomes and prohibited universalizations rather than conversion or donor-default adoption.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor/source-local nonpromotion; the pressure tests cannot elevate donor constructs into Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 107,
+            "line_end": 113
+          },
+          "candidate_proposition": "The Agency completion boundary keeps later R2–R6 and RT-002G blocked/unauthorized despite family completion.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs the no-authority-transfer across completion/handoff gates."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 107,
+        "line_end": 113,
+        "source_status_summary": "The test explicitly preserves an incomplete/blocked downstream completion boundary even after Agency family artifacts are complete."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0383",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r1d_core_transaction_identity_relation.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ad580559940fa7da771f6432188422a3c8485a35",
+      "controlled_match_count": 51,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "commitment",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "knowledge",
+        "persistence",
+        "recovery",
+        "replay",
+        "reservation",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 103,
+          "line_end": 123,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed Core projection checks that preserve ownership_nontransfer across internal and boundary records."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 196,
+          "line_end": 198,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Core authority boundary denying runtime, persistence, conversion execution, canon/sourcebook, model-facing, narration, and live-play authority."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 207,
+          "line_end": 214,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the corpus-pressure families, including mission/adventure structures with source-local procedures."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_afqr_r1d_core_transaction_identity_relation.py` validates Core-family nontransfer, corpus-scale source-local pressure, and explicit absence of runtime/persistence/conversion/canon/model/live-play authority. It confirms current owner constraints without promoting test code or donor constructs.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 103,
+            "line_end": 123
+          },
+          "candidate_proposition": "The Core test requires ownership_nontransfer to equal authoritative dependency-edge nontransfer across projections.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the owner-preservation invariant verified here; test consumption/bridging does not transfer ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 207,
+            "line_end": 214
+          },
+          "candidate_proposition": "The Core corpus-pressure coverage explicitly includes heterogeneous donor families and source-local procedures rather than treating recurring donor packages as universal Core law.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor/source-local nonpromotion; coverage in a Core test does not promote donor assumptions."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 196,
+            "line_end": 198
+          },
+          "candidate_proposition": "The Core test requires the authority boundary to deny runtime, persistence, conversion execution, canon/sourcebook, model-facing, narration, live-play, RT-002G and evidence-deletion authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs these downstream prohibitions; R1D test completion cannot manufacture cross-phase authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 196,
+        "line_end": 198,
+        "source_status_summary": "The test explicitly requires downstream implementation, conversion, canon/sourcebook and live-play authority to remain absent."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0384",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r1d_world_action_sensing.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0471e7db34bbb0511ce2f0fb17e2c062bb3648ef",
+      "controlled_match_count": 105,
+      "matched_terms": [
+        "action",
+        "canonical",
+        "commitment",
+        "conflict",
+        "contact",
+        "dependency",
+        "detection",
+        "embodiment",
+        "environment",
+        "epistemic",
+        "evidence",
+        "handoff",
+        "hazard",
+        "identity",
+        "initiative",
+        "injury",
+        "perception",
+        "process",
+        "projection",
+        "provenance",
+        "resolution",
+        "sensing",
+        "target",
+        "transition",
+        "truth",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 30,
+          "line_end": 43,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed World projection field parity, including ownership_nontransfer across dependency/handoff records."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 104,
+          "line_end": 116,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed differentiated World corpus pressure, source-local constructs, quarantine/escalation triggers, prohibited universalizations, and the blocked completion boundary."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_afqr_r1d_world_action_sensing.py` verifies World-family nontransfer, heterogeneous donor-pressure routing, source-local/quarantine/escalation behavior, and blocked downstream gates. It does not make donor anatomy, grids, action economies, cosmologies, sensing, or other package assumptions Astra defaults.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 30,
+            "line_end": 43
+          },
+          "candidate_proposition": "The World test preserves ownership_nontransfer as an explicit compared projection field.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the nontransfer invariant; World handoff/projection testing cannot absorb another owner's semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 104,
+            "line_end": 115
+          },
+          "candidate_proposition": "The World pressure test requires heterogeneous donor constructs to retain source-local/quarantine/escalation routes and prohibited universalizations rather than becoming Astra defaults.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor/source-local nonpromotion; World-family pressure coverage is not donor canon adoption."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 116,
+            "line_end": 118
+          },
+          "candidate_proposition": "The World family completion boundary leaves R2–R6 blocked and RT-002G unauthorized even when R1D-WORLD is complete.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase separation; family completion grants no downstream runtime/canon/conversion authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 116,
+        "line_end": 118,
+        "source_status_summary": "The test explicitly records R1D completion while keeping later R2–R6 and RT-002G blocked/unauthorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0385",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r1e_formal_completion_review.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "91e8390567882809db5cce60c1d40bae73610422",
+      "controlled_match_count": 89,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "canonical",
+        "commit",
+        "commitment",
+        "contact",
+        "continuity",
+        "conversion",
+        "dependency",
+        "epistemic",
+        "evidence",
+        "handoff",
+        "identity",
+        "knowledge",
+        "merge",
+        "projection",
+        "provenance",
+        "reservation",
+        "resolution",
+        "runtime",
+        "sensing",
+        "target",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 116,
+          "line_end": 126,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed adversarial mutations that fail when ownership_nontransfer is weakened or removed."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 170,
+          "line_end": 180,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed donor-family adequacy outcomes requiring owner mapping or lawful source_local/quarantine/doctrine_escalation/normalized_mapping outcomes."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 183,
+          "line_end": 185,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the final R1 gate: R2 may become ready while R3–R6/RT-002G remain blocked and implementation/conversion authority is not granted."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_afqr_r1e_formal_completion_review.py` adversarially verifies owner-nontransfer, lawful heterogeneous donor outcomes, and the final R1 gate's explicit lack of downstream authority. It validates accepted doctrine rather than creating new runtime, conversion, or canon authority.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 116,
+            "line_end": 126
+          },
+          "candidate_proposition": "R1E projection mutation tests must fail when ownership_nontransfer becomes false.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs this nontransfer constraint; completion auditing cannot transfer semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 170,
+            "line_end": 180
+          },
+          "candidate_proposition": "R1E donor-family adequacy requires each donor construct to land on existing owners or a lawful source_local, quarantine, doctrine_escalation, or normalized_mapping outcome.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs the nonpromotion boundary behind these lawful donor outcomes; donor family adequacy is not canon adoption."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 183,
+            "line_end": 185
+          },
+          "candidate_proposition": "The final R1 certificate explicitly grants no runtime implementation, conversion execution, R2 work, RT-002G implementation, or temporary-evidence deletion and leaves later gates blocked.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this completion-to-downstream separation; R1E completion does not create downstream authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 183,
+        "line_end": 185,
+        "source_status_summary": "The final-gate test explicitly distinguishes R1 completion/R2 readiness from blocked later gates and authority not granted."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0386",
+      "partition_id": "R2A-7",
+      "path": "tests/test_afqr_r2_continuity_research_assimilation.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d0cba83e5eefaabdf239a6e0367c6f05bd666e1d",
+      "controlled_match_count": 49,
+      "matched_terms": [
+        "action",
+        "branch",
+        "canon",
+        "commit",
+        "commitment",
+        "conflict",
+        "continuity",
+        "conversion",
+        "cross-phase",
+        "dependency",
+        "epistemic",
+        "evidence",
+        "handoff",
+        "identity",
+        "knowledge",
+        "merge",
+        "provenance",
+        "replay",
+        "reservation",
+        "resolution",
+        "sensing",
+        "stale",
+        "storage",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 70,
+          "line_end": 80,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed claim-specific comparisons and compound-owner safeguards, including prohibited transfer through storage, journaling, replay, branching, commitment, and handoff."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 105,
+          "line_end": 109,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the accepted R2-0 gate state with R2B/R2C/R3–R6 blocked and accepted R1 authority files unchanged."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_afqr_r2_continuity_research_assimilation.py` validates the R2-0 claim ledger's component-owner nontransfer and preserves blocked R2B/R2C/R3–R6 gates. The continuity research ledger remains analysis/control evidence and cannot resolve a compound owner by coordination.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 70,
+            "line_end": 80
+          },
+          "candidate_proposition": "R2-0 claim owner analysis preserves component owners and prohibits storage, journaling, replay, branching, commitment, and handoff from transferring semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs the nontransfer boundary; continuity coordination cannot become a compound semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 105,
+            "line_end": 109
+          },
+          "candidate_proposition": "The R2-0 acceptance test keeps R2B, R2C and R3–R6 blocked and RT-002G unauthorized while preserving accepted R1 authority bytes.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs the phase gate separation; continuity research cannot advance or acquire downstream authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 105,
+        "line_end": 109,
+        "source_status_summary": "The accepted R2-0 gate explicitly leaves R2B/R2C/R3–R6 blocked and RT-002G unauthorized."
+      }
+    }
+  ]
+}

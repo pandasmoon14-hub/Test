@@ -1,0 +1,881 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0051",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0397",
+      "partition_id": "R2A-7",
+      "path": "tests/test_b07_recovery_training_research_preparation_project_procedure.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "af48fee72dc13ea5527eb42b0288086dce8db621",
+      "controlled_match_count": 119,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "commitment",
+        "condition",
+        "evidence",
+        "handoff",
+        "healing",
+        "injury",
+        "provenance",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 272,
+          "line_end": 282,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the recovery/training/research/preparation/project procedure runtime/schema/owner-handoff boundary. Operational routing is doctrine-facing and must not be consumed as runtime authority or final schema."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 344,
+          "line_end": 348,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the recovery/training/research/preparation/project procedure donor-default/source-local boundary; donor procedures remain evidence/source-local pressure and are not promoted to Astra defaults."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 390,
+          "line_end": 395,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the recovery/training/research/preparation/project procedure draft/reference/nonpromotion status controls, preserving the distinction between Batch B procedure, later C-family schema work, runtime, canon, and sourcebook authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_b07_recovery_training_research_preparation_project_procedure.py` validates the Batch B recovery/training/research/preparation/project procedure. It routes operational pressure and owner handoffs while explicitly denying donor-default, runtime/schema, canon/sourcebook, and later-file promotion. Those constraints map existing nontransfer/nonpromotion/cross-phase surfaces; the Batch B test does not become an owner or final mechanics/schema.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 272,
+            "line_end": 282
+          },
+          "candidate_proposition": "The Batch B recovery/training/research/preparation/project procedure routes work by owner handoff while expressly excluding runtime state/event/command or final-schema ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through handoff/coordination. The Batch B recovery/training/research/preparation/project procedure can route operational pressure without inheriting owner semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 344,
+            "line_end": 348
+          },
+          "candidate_proposition": "The Batch B recovery/training/research/preparation/project procedure rejects donor system/procedure assumptions as Astra defaults and retains them only through source-local/quarantine/escalation handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Repeated donor pressure in the recovery/training/research/preparation/project procedure does not become Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 272,
+            "line_end": 282
+          },
+          "candidate_proposition": "The Batch B recovery/training/research/preparation/project procedure explicitly separates doctrine-facing operational routing from runtime schema/backend/canon/sourcebook authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority boundary; Batch B operational procedure does not acquire runtime, canon, or C-family schema ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 390,
+        "line_end": 395,
+        "source_status_summary": "The test preserves the Batch B recovery/training/research/preparation/project procedure as operational/draft/reference material and explicitly denies promotion into current doctrine/runtime/schema/canon/sourcebook authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0398",
+      "partition_id": "R2A-7",
+      "path": "tests/test_b08_travel_exploration_navigation_discovery_procedure.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "14cd094035da1105a368478eb891046dfeee68aa",
+      "controlled_match_count": 91,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "commitment",
+        "contact",
+        "continuity",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "provenance",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "target",
+        "transition",
+        "truth",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 319,
+          "line_end": 329,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the travel/exploration/navigation/discovery procedure runtime/schema/owner-handoff boundary. Operational routing is doctrine-facing and must not be consumed as runtime authority or final schema."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 337,
+          "line_end": 341,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the travel/exploration/navigation/discovery procedure donor-default/source-local boundary; donor procedures remain evidence/source-local pressure and are not promoted to Astra defaults."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 392,
+          "line_end": 414,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the travel/exploration/navigation/discovery procedure draft/reference/nonpromotion status controls, preserving the distinction between Batch B procedure, later C-family schema work, runtime, canon, and sourcebook authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_b08_travel_exploration_navigation_discovery_procedure.py` validates the Batch B travel/exploration/navigation/discovery procedure. It routes operational pressure and owner handoffs while explicitly denying donor-default, runtime/schema, canon/sourcebook, and later-file promotion. Those constraints map existing nontransfer/nonpromotion/cross-phase surfaces; the Batch B test does not become an owner or final mechanics/schema.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 319,
+            "line_end": 329
+          },
+          "candidate_proposition": "The Batch B travel/exploration/navigation/discovery procedure routes work by owner handoff while expressly excluding runtime state/event/command or final-schema ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through handoff/coordination. The Batch B travel/exploration/navigation/discovery procedure can route operational pressure without inheriting owner semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 337,
+            "line_end": 341
+          },
+          "candidate_proposition": "The Batch B travel/exploration/navigation/discovery procedure rejects donor system/procedure assumptions as Astra defaults and retains them only through source-local/quarantine/escalation handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Repeated donor pressure in the travel/exploration/navigation/discovery procedure does not become Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 319,
+            "line_end": 329
+          },
+          "candidate_proposition": "The Batch B travel/exploration/navigation/discovery procedure explicitly separates doctrine-facing operational routing from runtime schema/backend/canon/sourcebook authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority boundary; Batch B operational procedure does not acquire runtime, canon, or C-family schema ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 392,
+        "line_end": 414,
+        "source_status_summary": "The test preserves the Batch B travel/exploration/navigation/discovery procedure as operational/draft/reference material and explicitly denies promotion into current doctrine/runtime/schema/canon/sourcebook authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0399",
+      "partition_id": "R2A-7",
+      "path": "tests/test_b09_social_faction_contact_institutional_interaction_procedure.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9d536ee40d801d37ed7f7c75f0ef996c0d72cb68",
+      "controlled_match_count": 110,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "commitment",
+        "conflict",
+        "contact",
+        "continuity",
+        "handoff",
+        "hazard",
+        "identity",
+        "knowledge",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "target",
+        "transition",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 261,
+          "line_end": 271,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the social/faction/contact/institutional-interaction procedure runtime/schema/owner-handoff boundary. Operational routing is doctrine-facing and must not be consumed as runtime authority or final schema."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 282,
+          "line_end": 286,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the social/faction/contact/institutional-interaction procedure donor-default/source-local boundary; donor procedures remain evidence/source-local pressure and are not promoted to Astra defaults."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 295,
+          "line_end": 324,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the social/faction/contact/institutional-interaction procedure draft/reference/nonpromotion status controls, preserving the distinction between Batch B procedure, later C-family schema work, runtime, canon, and sourcebook authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_b09_social_faction_contact_institutional_interaction_procedure.py` validates the Batch B social/faction/contact/institutional-interaction procedure. It routes operational pressure and owner handoffs while explicitly denying donor-default, runtime/schema, canon/sourcebook, and later-file promotion. Those constraints map existing nontransfer/nonpromotion/cross-phase surfaces; the Batch B test does not become an owner or final mechanics/schema.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 261,
+            "line_end": 271
+          },
+          "candidate_proposition": "The Batch B social/faction/contact/institutional-interaction procedure routes work by owner handoff while expressly excluding runtime state/event/command or final-schema ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through handoff/coordination. The Batch B social/faction/contact/institutional-interaction procedure can route operational pressure without inheriting owner semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 282,
+            "line_end": 286
+          },
+          "candidate_proposition": "The Batch B social/faction/contact/institutional-interaction procedure rejects donor system/procedure assumptions as Astra defaults and retains them only through source-local/quarantine/escalation handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Repeated donor pressure in the social/faction/contact/institutional-interaction procedure does not become Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 261,
+            "line_end": 271
+          },
+          "candidate_proposition": "The Batch B social/faction/contact/institutional-interaction procedure explicitly separates doctrine-facing operational routing from runtime schema/backend/canon/sourcebook authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority boundary; Batch B operational procedure does not acquire runtime, canon, or C-family schema ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 295,
+        "line_end": 324,
+        "source_status_summary": "The test preserves the Batch B social/faction/contact/institutional-interaction procedure as operational/draft/reference material and explicitly denies promotion into current doctrine/runtime/schema/canon/sourcebook authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0400",
+      "partition_id": "R2A-7",
+      "path": "tests/test_b10_hazard_opposition_contact_active_threat_trigger_procedure.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5112c6c8b2ebf5a2f972f6b10024b50008eb38d6",
+      "controlled_match_count": 144,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "commitment",
+        "contact",
+        "continuity",
+        "detection",
+        "environment",
+        "handoff",
+        "hazard",
+        "identity",
+        "initiative",
+        "injury",
+        "knowledge",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "target",
+        "transition",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 283,
+          "line_end": 293,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the hazard/opposition/contact/active-threat trigger procedure runtime/schema/owner-handoff boundary. Operational routing is doctrine-facing and must not be consumed as runtime authority or final schema."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 288,
+          "line_end": 292,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the hazard/opposition/contact/active-threat trigger procedure donor-default/source-local boundary; donor procedures remain evidence/source-local pressure and are not promoted to Astra defaults."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 300,
+          "line_end": 335,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the hazard/opposition/contact/active-threat trigger procedure draft/reference/nonpromotion status controls, preserving the distinction between Batch B procedure, later C-family schema work, runtime, canon, and sourcebook authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_b10_hazard_opposition_contact_active_threat_trigger_procedure.py` validates the Batch B hazard/opposition/contact/active-threat trigger procedure. It routes operational pressure and owner handoffs while explicitly denying donor-default, runtime/schema, canon/sourcebook, and later-file promotion. Those constraints map existing nontransfer/nonpromotion/cross-phase surfaces; the Batch B test does not become an owner or final mechanics/schema.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 283,
+            "line_end": 293
+          },
+          "candidate_proposition": "The Batch B hazard/opposition/contact/active-threat trigger procedure routes work by owner handoff while expressly excluding runtime state/event/command or final-schema ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through handoff/coordination. The Batch B hazard/opposition/contact/active-threat trigger procedure can route operational pressure without inheriting owner semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 288,
+            "line_end": 292
+          },
+          "candidate_proposition": "The Batch B hazard/opposition/contact/active-threat trigger procedure rejects donor system/procedure assumptions as Astra defaults and retains them only through source-local/quarantine/escalation handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Repeated donor pressure in the hazard/opposition/contact/active-threat trigger procedure does not become Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 283,
+            "line_end": 293
+          },
+          "candidate_proposition": "The Batch B hazard/opposition/contact/active-threat trigger procedure explicitly separates doctrine-facing operational routing from runtime schema/backend/canon/sourcebook authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority boundary; Batch B operational procedure does not acquire runtime, canon, or C-family schema ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 300,
+        "line_end": 335,
+        "source_status_summary": "The test preserves the Batch B hazard/opposition/contact/active-threat trigger procedure as operational/draft/reference material and explicitly denies promotion into current doctrine/runtime/schema/canon/sourcebook authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0401",
+      "partition_id": "R2A-7",
+      "path": "tests/test_b11_batch_b_operational_integration_conflict_audit_readiness_gate.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "2dcad166e35f71ae11bd7604443f5b6fac251979",
+      "controlled_match_count": 125,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "conflict",
+        "contact",
+        "conversion",
+        "correction",
+        "dependency",
+        "detection",
+        "evidence",
+        "handoff",
+        "hazard",
+        "provenance",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 241,
+          "line_end": 251,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Batch B operational integration/conflict-audit/readiness gate runtime/schema/owner-handoff boundary. Operational routing is doctrine-facing and must not be consumed as runtime authority or final schema."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 364,
+          "line_end": 368,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Batch B operational integration/conflict-audit/readiness gate donor-default/source-local boundary; donor procedures remain evidence/source-local pressure and are not promoted to Astra defaults."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 371,
+          "line_end": 395,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Batch B operational integration/conflict-audit/readiness gate draft/reference/nonpromotion status controls, preserving the distinction between Batch B procedure, later C-family schema work, runtime, canon, and sourcebook authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_b11_batch_b_operational_integration_conflict_audit_readiness_gate.py` validates the Batch B Batch B operational integration/conflict-audit/readiness gate. It routes operational pressure and owner handoffs while explicitly denying donor-default, runtime/schema, canon/sourcebook, and later-file promotion. Those constraints map existing nontransfer/nonpromotion/cross-phase surfaces; the Batch B test does not become an owner or final mechanics/schema.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 241,
+            "line_end": 251
+          },
+          "candidate_proposition": "The Batch B Batch B operational integration/conflict-audit/readiness gate routes work by owner handoff while expressly excluding runtime state/event/command or final-schema ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through handoff/coordination. The Batch B Batch B operational integration/conflict-audit/readiness gate can route operational pressure without inheriting owner semantics."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 364,
+            "line_end": 368
+          },
+          "candidate_proposition": "The Batch B Batch B operational integration/conflict-audit/readiness gate rejects donor system/procedure assumptions as Astra defaults and retains them only through source-local/quarantine/escalation handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Repeated donor pressure in the Batch B operational integration/conflict-audit/readiness gate does not become Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 241,
+            "line_end": 251
+          },
+          "candidate_proposition": "The Batch B Batch B operational integration/conflict-audit/readiness gate explicitly separates doctrine-facing operational routing from runtime schema/backend/canon/sourcebook authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority boundary; Batch B operational procedure does not acquire runtime, canon, or C-family schema ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 371,
+        "line_end": 395,
+        "source_status_summary": "The test preserves the Batch B Batch B operational integration/conflict-audit/readiness gate as operational/draft/reference material and explicitly denies promotion into current doctrine/runtime/schema/canon/sourcebook authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0402",
+      "partition_id": "R2A-7",
+      "path": "tests/test_batch_c_schema_family_integration_conflict_audit_readiness_gate.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "310c772b0813785ecaa5172c4f147e08be73a09a",
+      "controlled_match_count": 78,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conflict",
+        "conversion",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 196,
+          "line_end": 226,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Batch C registry/source-local audit: C01-C14 remain draft and source-local material must not become Astra baseline."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 252,
+          "line_end": 276,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed Batch B→C and runtime/canon/sourcebook/live-play boundaries: handoffs remain doctrine-facing pressure only and are not schema fields."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 313,
+          "line_end": 329,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry assertions keeping every C-family record draft/schema-draft/designed/not_reviewed and rejecting promoted statuses."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_batch_c_schema_family_integration_conflict_audit_readiness_gate.py` validates Batch C integration/readiness control while keeping C01–C14 draft/schema-draft/designed/not_reviewed. It forbids inheritance-by-reference, donor/source-local baseline leakage, and confusion of schema readiness with runtime/canon/sourcebook/live-play/training readiness.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 207,
+            "line_end": 212
+          },
+          "candidate_proposition": "The Batch C capstone requires cross-family references/satellites/child records and owner routing not to become inheritance or merged schemas.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through coordination/reference; cross-family composition cannot absorb semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 215,
+            "line_end": 226
+          },
+          "candidate_proposition": "The Batch C capstone requires source-local material not to become Astra baseline and preserves rejected-donor/legal-IP handling.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor/source-local nonpromotion; schema readiness cannot turn source-local evidence into Astra law."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 252,
+            "line_end": 276
+          },
+          "candidate_proposition": "The Batch C capstone requires Batch B handoffs to remain doctrine-facing pressure rather than schema fields and separates Batch C readiness from runtime, canon/sourcebook, final-mechanics, live-play, and training readiness.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase separation; readiness/control cannot manufacture downstream authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 313,
+        "line_end": 329,
+        "source_status_summary": "The capstone test explicitly keeps C01-C14 at draft/schema-draft/designed/not_reviewed and prohibits current/canon/runtime/stable/tested promotion."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0403",
+      "partition_id": "R2A-7",
+      "path": "tests/test_batch_c_schema_family_unlock_index_and_readiness_gate.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d24a1e682513fe71d7bf65d49e4141adeec6f554",
+      "controlled_match_count": 46,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 60,
+          "line_end": 85,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed Batch C risk categories: cross-family inheritance, donor leakage, source-local baseline promotion, runtime-state leakage, Batch B-as-schema-field collapse, and readiness-gate confusion are explicit risks."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 162,
+          "line_end": 208,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed doctrine-facing Batch B handoff, source-local risk routing, runtime schema prohibition, and canon/sourcebook/live-play promotion prohibition."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 238,
+          "line_end": 260,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed registry guardrails preventing C00/C01-C14 current/tested/stable promotion and keeping the unlock control outside the registry without convention."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_batch_c_schema_family_unlock_index_and_readiness_gate.py` validates the Batch C unlock/readiness control. It rejects ownership inheritance from cross-family references, source-local donor baseline leakage, Batch B handoff-as-schema-field collapse, runtime schema creation, and canon/sourcebook/live-play promotion.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 60,
+            "line_end": 85
+          },
+          "candidate_proposition": "The Batch C unlock test treats cross-family references that imply inheritance and composite records spanning families as explicit ownership risks rather than permission to merge owners.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs nontransfer through reference/coordination; unlock indexing cannot create inherited semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 60,
+            "line_end": 79
+          },
+          "candidate_proposition": "The Batch C risk list explicitly treats donor-field/math/cosmology leakage and source-local material becoming Astra baseline as failures to prevent.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor/source-local nonpromotion; schema-family readiness cannot adopt donor defaults."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 162,
+            "line_end": 208
+          },
+          "candidate_proposition": "The Batch C unlock test says Batch B handoff records are doctrine-facing only, forbids runtime/entity/component/event/command/context/database schema creation, and forbids canon/sourcebook/live-play/prose promotion.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs these phase boundaries; Batch C readiness does not grant runtime, canon, or live-play authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 238,
+        "line_end": 260,
+        "source_status_summary": "The unlock/readiness test keeps C00/C01-C14 outside forbidden current/tested/stable promotion and does not register the control file as a promoted schema authority."
+      }
+    }
+  ]
+}

@@ -1,0 +1,592 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0047",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0357",
+      "partition_id": "R2A-7",
+      "path": "tests/afqr_r1e_semantic_helpers.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "dced23507233f0dca9a9c7bc6cfef598c90db3ad",
+      "controlled_match_count": 102,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conversion",
+        "dependency",
+        "epistemic",
+        "evidence",
+        "handoff",
+        "identity",
+        "persistence",
+        "projection",
+        "resolution",
+        "runtime",
+        "sensing"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 98,
+          "line_end": 107,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the projection-preservation helper where ownership nontransfer is a pass condition; the helper tests an existing owner boundary rather than defining a new owner."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 241,
+          "line_end": 243,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R1D→R1E coverage boundary, including the explicit authority-not-granted set. Test calculation and coverage accounting do not acquire implementation, canon, conversion, or live-play authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`afqr_r1e_semantic_helpers.py` is test-only reconciliation infrastructure. Its comparison pipeline explicitly requires ownership nontransfer and its R1D→R1E coverage calculation denies implementation, persistence, conversion, canon, live-play, and downstream R2 authority; those clauses operationalize accepted nontransfer/cross-phase boundaries without making the helper an owner.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 98,
+            "line_end": 107
+          },
+          "candidate_proposition": "The reconciliation helper treats ownership_nontransfer as a required preservation condition and fails projections that weaken it.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs this owner-preservation check; the test helper merely verifies nontransfer and receives no semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 241,
+            "line_end": 243
+          },
+          "candidate_proposition": "The R1D→R1E coverage calculation requires runtime implementation, persistence, production schemas, conversion execution, canon promotion, sourcebook drafting, live-play behavior, model training, UI behavior, R2 work, and RT-002G implementation to remain authority-not-granted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs the explicit phase/authority separation enforced by this helper; test coverage does not promote any prohibited downstream domain."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0358",
+      "partition_id": "R2A-7",
+      "path": "tests/fixtures/pilot_conversion_scaffold/README.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "1965d2778fdc150c515ab16b8834a9e2f50dc4cc",
+      "controlled_match_count": 4,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 7,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Pilot conversion scaffold README's explicit placeholder/scaffold and non-authority posture. Synthetic labels and reserved slots are test scaffolding, not doctrine, canon, runtime state, or conversion authorization."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The Pilot conversion scaffold README is synthetic test scaffolding. Its canon, runtime, evidence, schema, identity, handoff, and related vocabulary appears only in placeholder/non-authority assertions; it creates no Astra semantic surface and is retained only as internal scaffold pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 7,
+        "source_status_summary": "The Pilot conversion scaffold README explicitly identifies itself as placeholder/synthetic scaffold rather than authorized conversion, canon, runtime, training, or final-schema material."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0359",
+      "partition_id": "R2A-7",
+      "path": "tests/fixtures/pilot_conversion_scaffold/dry_authorization_packet_template.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "21af51947cd1e3b5477fc11e373254beece86767",
+      "controlled_match_count": 15,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "identity",
+        "provenance",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 5,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the dry authorization packet template's explicit placeholder/scaffold and non-authority posture. Synthetic labels and reserved slots are test scaffolding, not doctrine, canon, runtime state, or conversion authorization."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The dry authorization packet template is synthetic test scaffolding. Its canon, runtime, evidence, schema, identity, handoff, and related vocabulary appears only in placeholder/non-authority assertions; it creates no Astra semantic surface and is retained only as internal scaffold pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 5,
+        "source_status_summary": "The dry authorization packet template explicitly identifies itself as placeholder/synthetic scaffold rather than authorized conversion, canon, runtime, training, or final-schema material."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0360",
+      "partition_id": "R2A-7",
+      "path": "tests/fixtures/pilot_conversion_scaffold/placeholder_packet_manifest.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "01390c56040a4aec92f183497017b5b9392f74a3",
+      "controlled_match_count": 10,
+      "matched_terms": [
+        "canon",
+        "evidence",
+        "handoff",
+        "identity",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 5,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the placeholder packet manifest's explicit placeholder/scaffold and non-authority posture. Synthetic labels and reserved slots are test scaffolding, not doctrine, canon, runtime state, or conversion authorization."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The placeholder packet manifest is synthetic test scaffolding. Its canon, runtime, evidence, schema, identity, handoff, and related vocabulary appears only in placeholder/non-authority assertions; it creates no Astra semantic surface and is retained only as internal scaffold pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 5,
+        "source_status_summary": "The placeholder packet manifest explicitly identifies itself as placeholder/synthetic scaffold rather than authorized conversion, canon, runtime, training, or final-schema material."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0361",
+      "partition_id": "R2A-7",
+      "path": "tests/fixtures/pilot_conversion_scaffold/placeholder_review_harness.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7487ba1742b923689b8a3920980d13ff7b9200f3",
+      "controlled_match_count": 3,
+      "matched_terms": [
+        "canon",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 5,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the placeholder review harness's explicit placeholder/scaffold and non-authority posture. Synthetic labels and reserved slots are test scaffolding, not doctrine, canon, runtime state, or conversion authorization."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The placeholder review harness is synthetic test scaffolding. Its canon, runtime, evidence, schema, identity, handoff, and related vocabulary appears only in placeholder/non-authority assertions; it creates no Astra semantic surface and is retained only as internal scaffold pressure.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 5,
+        "source_status_summary": "The placeholder review harness explicitly identifies itself as placeholder/synthetic scaffold rather than authorized conversion, canon, runtime, training, or final-schema material."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0362",
+      "partition_id": "R2A-7",
+      "path": "tests/historical_branch_diff_guard.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "642cc3802d2677ff842cc1e58ad31588bd2ca0e2",
+      "controlled_match_count": 12,
+      "matched_terms": [
+        "branch"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 5,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the module-level scope statement: historical PR/RT footprint tests are branch-local and explicitly not universal restrictions on later work."
+        }
+      ],
+      "disposition": "historical_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`historical_branch_diff_guard.py` scopes legacy footprint checks to the branch that originally owned them. Its branch vocabulary is Git/CI history control, not Astra branch/fork/merge/replay doctrine.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "historical_context_only",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 5,
+        "source_status_summary": "The module explicitly labels its guards historical and branch-scoped rather than universal."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0363",
+      "partition_id": "R2A-7",
+      "path": "tests/runtime_domain_package_manifest.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "6eae17a4b2f17c5655ca2b150f5f681ea18fda1c",
+      "controlled_match_count": 27,
+      "matched_terms": [
+        "action",
+        "commit",
+        "commitment",
+        "projection",
+        "replay",
+        "runtime",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "commitment_and_transition",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 6,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the module docstring: this is test infrastructure recording an allowed package surface, expressly granting no runtime authority and forbidden from production import."
+        }
+      ],
+      "disposition": "internal_nonauthoritative_pressure_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`runtime_domain_package_manifest.py` is a package-file allowlist for tests. It explicitly states that it grants no runtime authority and must never be imported by the production runtime; listed filenames and runtime terminology therefore remain implementation/package guard evidence only.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 6,
+        "source_status_summary": "The file explicitly declares itself test infrastructure only and denies runtime authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0364",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a01_cosmology_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c30895c9d98b2d2fd4bbd88f4f34165099d9ff49",
+      "controlled_match_count": 6,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 62,
+          "line_end": 66,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the cosmology and dimensional architecture donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 86,
+          "line_end": 89,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the cosmology and dimensional architecture file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a01_cosmology_doctrine.py` validates the draft A-layer cosmology and dimensional architecture file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 62,
+            "line_end": 66
+          },
+          "candidate_proposition": "The cosmology and dimensional architecture test requires donor/source-local cosmology and dimensional architecture assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer cosmology and dimensional architecture doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 87,
+        "line_end": 89,
+        "source_status_summary": "The registry assertions keep the A-layer cosmology and dimensional architecture record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0365",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a02_source_fields_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "50fa3583d4b589205774da5dec4c629e0a32a66d",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 105,
+          "line_end": 109,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the source-field / magic-technology relation donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 147,
+          "line_end": 150,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the source-field / magic-technology relation file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a02_source_fields_doctrine.py` validates the draft A-layer source-field / magic-technology relation file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 105,
+            "line_end": 109
+          },
+          "candidate_proposition": "The source-field / magic-technology relation test requires donor/source-local source-field / magic-technology relation assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer source-field / magic-technology relation doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 148,
+        "line_end": 150,
+        "source_status_summary": "The registry assertions keep the A-layer source-field / magic-technology relation record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0366",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a03_soul_body_mind_spirit_ontology.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "75540fce387b245f8f9f2f20429f97f912f2a0aa",
+      "controlled_match_count": 35,
+      "matched_terms": [
+        "canon",
+        "continuity",
+        "conversion",
+        "dependency",
+        "handoff",
+        "identity",
+        "provenance",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 126,
+          "line_end": 130,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the soul/body/mind/spirit ontology donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 164,
+          "line_end": 167,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the soul/body/mind/spirit ontology file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a03_soul_body_mind_spirit_ontology.py` validates the draft A-layer soul/body/mind/spirit ontology file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 126,
+            "line_end": 130
+          },
+          "candidate_proposition": "The soul/body/mind/spirit ontology test requires donor/source-local soul/body/mind/spirit ontology assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer soul/body/mind/spirit ontology doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 165,
+        "line_end": 167,
+        "source_status_summary": "The registry assertions keep the A-layer soul/body/mind/spirit ontology record at draft/non-current posture."
+      }
+    }
+  ]
+}

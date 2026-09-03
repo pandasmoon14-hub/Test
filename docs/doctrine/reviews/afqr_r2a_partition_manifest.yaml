@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.12",
+  "artifact_version": "0.2.13",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
@@ -318,7 +318,12 @@
         "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0043.yaml",
         "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0044.yaml",
         "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0045.yaml",
-        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0046.yaml"
+        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0046.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0047.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0048.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0049.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0050.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0051.yaml"
       ]
     },
     {
