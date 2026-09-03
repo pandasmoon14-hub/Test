@@ -1,0 +1,289 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0046",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0350",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/validate_conversion_run_integrity.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a5ca66d1d49f8fd2fc204063719a02d7e54cc76d",
+      "controlled_match_count": 21,
+      "matched_terms": [
+        "action",
+        "canon",
+        "canonical",
+        "conversion",
+        "merge",
+        "stale"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 24,
+          "line_end": 48,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed integrity validation patterns and stale-artifact checks. The executable rejects unsafe run shapes and language leakage, but that enforcement does not confer canon, branch/merge, conversion, or dependency semantic ownership."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`validate_conversion_run_integrity.py` enforces structural consistency and anti-canon-leakage checks across conversion-run artifacts. Its canon/canonical/conversion/merge/stale terms are validator patterns and filesystem integrity checks, not canon, branch, or dependency doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0351",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/validate_full_corpus_readiness_gate.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7b1aaca78249ecc4e32ef623b2b64f7b5f626736",
+      "controlled_match_count": 21,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed readiness-gate checks and generated boundary reminders. The validator decides only whether developer preflight artifacts are ready for extraction planning; it cannot establish action, truth, conversion, or canon doctrine."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`validate_full_corpus_readiness_gate.py` checks dry-run and preflight artifacts and emits readiness status/recommendations. Its action, truth, conversion, and canon strings are planning-gate checks and generated reminders, not cross-domain semantic authority.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0352",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/validate_handoff_packet.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9ce499afad85c7c99a061777b6b4250f5bd79cb4",
+      "controlled_match_count": 27,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "detection",
+        "handoff",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed packet validation across required files, page-truth checks, sidecar schemas, and canon/conversion safeguards. Validation coordinates these fields but transfers no semantic ownership to the validator."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`validate_handoff_packet.py` validates packet manifests, queues, sidecars, page markers, content units, schemas, and canon/conversion constraints. Its controlled vocabulary is packet-validation implementation; the validator does not become the owner of truth, sensing, action, canon, or schema semantics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0353",
+      "partition_id": "R2A-7",
+      "path": "scripts/handoff/validate_handoff_packet_batch.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a12cea5e6d38590d37bc1abb50633b4b3f7904a6",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "action",
+        "handoff",
+        "merge",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 22,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the batch validator's counter merge and handoff-result aggregation. 'Merge' is dictionary/counter aggregation and other controlled terms are validation fields, so no semantic mapping is warranted."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`validate_handoff_packet_batch.py` runs packet validation across a batch and merges error/warning counters. Matches for merge, target, truth, action, and handoff refer to Python aggregation and packet-validation fields, not Astra branch, target, epistemic, or action doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0354",
+      "partition_id": "R2A-7",
+      "path": "sqlite_queue.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "eb60e07bf28d1e2b9e915772c5b852663cb27d9e",
+      "controlled_match_count": 18,
+      "matched_terms": [
+        "action",
+        "commit",
+        "conflict",
+        "persistence",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "commitment_and_transition",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the durable queue's SQLite transaction/persistence role. Database commits, schema migration, conflicts, and recovery are developer-storage mechanics; persistence does not transfer Astra semantic ownership."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`sqlite_queue.py` is a SQLite-backed durable queue/state store for Aether Forge extraction work. Persistence, schema, commit, and conflict language describes database transactions, queue locks, retries, and crash recovery; it is not Astra runtime state ownership or transaction doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0355",
+      "partition_id": "R2A-7",
+      "path": "surgeon.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "6578642141b5fcab50df6e65b8b220f81d74b5fc",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "action",
+        "atomic",
+        "canonical",
+        "environment",
+        "merge",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "environmental_state_process"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Pixtral surgeon's repair-output workflow and matched canonical terminology. 'Canonical' denotes a chosen extraction repair result within Aether Forge, not Astra canon, so no canon/action semantic surface applies."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`surgeon.py` is the Lane C visual extraction-repair worker. Its 'canonical' page text means the selected repaired extraction text, while action/target/process terms describe tool prompts and repair operations; none are Astra canon or action semantics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0356",
+      "partition_id": "R2A-7",
+      "path": "table_fixer.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "868808c53d5e1b3e4b55117f8aaee0d15dadd673",
+      "controlled_match_count": 3,
+      "matched_terms": [
+        "action",
+        "process"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "environmental_state_process"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the table fixer's post-extraction repair purpose and transformation passes. Generic action/process wording describes tooling behavior and has no material Astra semantic relation."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`table_fixer.py` repairs malformed Markdown tables after extraction using row/column heuristics and normalization passes. Its action/process terms are ordinary implementation language, not Astra action resolution or environmental process doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    }
+  ]
+}

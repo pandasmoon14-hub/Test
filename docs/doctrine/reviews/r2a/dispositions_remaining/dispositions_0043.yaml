@@ -1,0 +1,380 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0043",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0320",
+      "partition_id": "R2A-7",
+      "path": "docs_migration_note.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5b14ee55491c75b7e53ea88cdacedd50ebca52c0",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "detection"
+      ],
+      "matched_search_clusters": [
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 7,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the migration changes. 'Detection' refers to donor-family classification heuristics, not sensing/contact semantics; the note is retained only as historical extraction implementation context."
+        }
+      ],
+      "disposition": "historical_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The migration note records removed legacy extraction behaviors: paragraph spreading, InDesign-only donor detection, and queue-checkpoint timing. It is historical implementation context and carries no current sensing/detection doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "historical_context_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 7,
+        "source_status_summary": "The file is explicitly a migration note describing removed or changed legacy behavior."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0321",
+      "partition_id": "R2A-7",
+      "path": "docs_page_truth_flow.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5864858aee1d09a9b576570a5d81b3acc2436edb",
+      "controlled_match_count": 2,
+      "matched_terms": [
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 8,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the page-truth flow from source PDF through sidecar and repair routing. This is extraction provenance implementation, and uncertain pages are queued rather than converted into epistemic doctrine."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The page-truth-first flow documents extraction provenance and page-marker handling. Its technical 'page truth' sidecar is evidence about source-page extraction, not Astra authoritative world truth, belief, knowledge, or semantic ownership.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0322",
+      "partition_id": "R2A-7",
+      "path": "docs_page_truth_migration.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e07125a393bcea1f2d174c792b4a57b2834591d8",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "merge",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the migration note's removal of PAGE:1 injection, fallback markers, and merge-path defaults. These are historical extraction correctness changes and do not establish branch, replay, or epistemic semantics."
+        }
+      ],
+      "disposition": "historical_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The Page-Truth Migration Note records removal of synthetic page-marker fallbacks from extraction production paths. Its 'merge' and 'truth' terms are historical extraction implementation language, not branch/replay or Astra truth doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "historical_context_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 10,
+        "source_status_summary": "The file explicitly identifies itself as a migration note and describes behavior removed from production extraction paths."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0323",
+      "partition_id": "R2A-7",
+      "path": "estimate_runtime.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "42e80ead590c0e570c888395df071f456e8a369d",
+      "controlled_match_count": 2,
+      "matched_terms": [
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 6,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the estimator description and CLI. 'Runtime' is exclusively a wall-time estimate for Aether Forge extraction batches, so the lexical match has no material Astra semantic relation."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "The runtime estimator computes wall-clock extraction duration from page counts, lane ratios, and throughput assumptions. Every 'runtime' occurrence means execution time, not Astra runtime authority, persistence, serialization, or state.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "no_authority_effect",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0324",
+      "partition_id": "R2A-7",
+      "path": "extraction_readiness.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c6184abdfa6786c6684de406f6beb68584007a81",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "dependency"
+      ],
+      "matched_search_clusters": [
+        "dependency_and_revalidation"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 40,
+          "line_end": 78,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed OCR disposition handling around dependency_missing. The dependency matches are tool-environment prerequisites used to classify extraction readiness, not AFQR semantic dependencies."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`extraction_readiness.py` classifies pages by extracted text, images, drawings, OCR mode, and OCR dependency state. 'dependency' denotes missing OCR software/runtime dependencies, not Astra dependency ownership or semantic revalidation.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0325",
+      "partition_id": "R2A-7",
+      "path": "gridless_tables.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9ff8369c87dd1775a16d01f210a14560942f469d",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "detection"
+      ],
+      "matched_search_clusters": [
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 8,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the complete eight-line gridless-table detector. Detection means regex-based aligned-column recognition only, so no sensing/contact authority surface applies."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`gridless_tables.py` is a minimal whitespace-alignment heuristic for detecting table-like rows. Its sole 'detection' hit is data-extraction pattern recognition, not Astra sensing or contact semantics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0326",
+      "partition_id": "R2A-7",
+      "path": "lorebook_splitter.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "38349ee73c8a63e9eb3ef1144e37c0e9ea4615f7",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "action",
+        "detection",
+        "initiative",
+        "lineage",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "identity_and_continuity",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 129,
+          "line_end": 155,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the splitter's rule-like and lore-like detection regexes. Initiative, target, action, lineage, and detection are donor-text classification cues used for chunking, not Astra semantic definitions."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`lorebook_splitter.py` chunks extracted Markdown, detects table/rule/lore-like blocks, and extracts heuristic entities. Hits for action, initiative, target, lineage, and detection occur in TTRPG text classifiers and tags, not authoritative Astra action, identity, or sensing rules.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0327",
+      "partition_id": "R2A-7",
+      "path": "marker_runner.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "87a39526311b1811d06665c50230ac9488c947e5",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "action"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Marker bridge's purpose and matched action usage. The file is an extraction adapter, not an action, conflict, target, or resolution owner."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`marker_runner.py` is the Lane B adapter that normalizes Marker API differences and produces extraction results for orchestrator consumption. Its 'action' occurrence is CLI/tool behavior and has no Astra action-resolution meaning.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0328",
+      "partition_id": "R2A-7",
+      "path": "mechanics_vocab.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a28e434a02400ba07cf03d1faee28af8be9994e3",
+      "controlled_match_count": 9,
+      "matched_terms": [
+        "condition",
+        "environment",
+        "initiative",
+        "injury",
+        "projection",
+        "recovery",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 15,
+          "line_end": 70,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the shared mechanics vocabulary lists. The controlled terms are donor-text detection signals used by extraction scoring; their presence does not promote those words into Astra semantic ownership."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`mechanics_vocab.py` supplies keyword sets and density heuristics for identifying mechanics/stat-block-like extraction text. Terms such as initiative, injury, condition, environment, recovery, projection, and target are detection vocabulary, not adopted Astra rules.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0329",
+      "partition_id": "R2A-7",
+      "path": "orchestrator.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "bd69d34e345ca707c0c4cc6abc3455402950917b",
+      "controlled_match_count": 79,
+      "matched_terms": [
+        "action",
+        "conversion",
+        "dependency",
+        "environment",
+        "handoff",
+        "process",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the orchestrator's extraction-routing/audit role and its controlled-vocabulary hits. The file coordinates developer extraction stages; references to truth, dependencies, targets, processes, conversion, and persistence do not create Astra semantic owners."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`orchestrator.py` is the Aether Forge extraction orchestrator: routing, page audit, repair queues, lane execution, manifests, quality gates, and output assembly. Its many controlled terms occur in developer workflow, file handling, donor classification, and page-truth mechanics, not Astra doctrine.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    }
+  ]
+}

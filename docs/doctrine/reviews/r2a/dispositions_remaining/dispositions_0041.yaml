@@ -1,0 +1,649 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0041",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0300",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/conversion_handoff_contract_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "73403f4291961aaa42632e32cf617f363c3cd053",
+      "controlled_match_count": 25,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "provenance",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 3,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the contract's extraction/conversion/canon separation and packet purpose. The contract coordinates stages and provenance but cannot own canon, conversion semantics, runtime truth, or live-play authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "Conversion Handoff Contract v0.1 is an extraction-to-conversion exchange contract. R2A maps its explicit stage/permission separation to the accepted cross-phase nonownership boundary; packet shape, queues, readiness fields, and validation obligations remain developer handoff architecture rather than Astra doctrine or canon.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 3,
+            "line_end": 15
+          },
+          "candidate_proposition": "Extraction audit status, conversion readiness/permission, canon permission, and live-play adjudication are separate stages and permissions rather than one authority.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The contract directly operationalizes the accepted cross-phase separation. CROSSPHASE-0001 remains controlling; the handoff contract gains no semantic ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 8,
+        "source_status_summary": "The file labels these statements as non-goals and boundaries and explicitly places live-play outside contract scope."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0301",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/conversion_run_integrity_validator_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7e3089a8c7d6d96159e9312dfecc0b85b49e82fa",
+      "controlled_match_count": 21,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "schema",
+        "stale",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 23,
+          "line_end": 29,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the guide's boundary principles. Passing an integrity validator is an operational condition only and cannot become canon approval or cross-phase semantic authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Conversion Run Integrity Validator Guide documents an operational integrity checker for conversion-run artifacts. Its explicit rule that extraction truth, conversion permission, validator success, and canon approval are distinct maps to accepted cross-phase control; schema conventions and strict-mode run checks remain implementation guidance.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 23,
+            "line_end": 29
+          },
+          "candidate_proposition": "Extraction truth, conversion permission, validator success, and canon approval are distinct and must not be collapsed.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This is a direct operational restatement of the accepted cross-phase nonownership boundary; validation does not acquire canon or doctrine authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 23,
+        "line_end": 29,
+        "source_status_summary": "The guide expressly names the passage 'Boundary principles' and denies canon significance to validator success."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0302",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/donor_family_template_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c6ee7d2bc8f8cd0205f3534e1d8933c978245f7c",
+      "controlled_match_count": 19,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "dependency",
+        "detection",
+        "evidence",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 20,
+          "line_end": 27,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the guide's scope and non-authority boundary. Donor-family classification is routing metadata and cannot become canon or doctrine by classification."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "The Donor Family Template Guide defines structural routing metadata for packet planning and conversion intake. R2A maps its explicit non-authority/canon separation and donor-canon nonpromotion to accepted cross-phase and donor-nonpromotion surfaces; family taxonomy, confidence hints, quarantine cues, and template refinement remain conversion-handoff pressure.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 20,
+            "line_end": 27
+          },
+          "candidate_proposition": "Donor-family classification is routing metadata; extraction truth, conversion permission, canon permission, and canon promotion remain separate.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The guide's non-authority boundary is governed by CROSSPHASE-0001; classification and review coordination transfer no semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 51,
+            "line_end": 65
+          },
+          "candidate_proposition": "Donor-family templates may improve conversion consistency but must avoid donor-canon adoption and never act as direct canon-promotion signals.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This directly applies the accepted donor-nonpromotion invariant. WORLD-0011 retains authority over any donor assumptions represented by templates."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 20,
+        "line_end": 27,
+        "source_status_summary": "The guide explicitly marks this section as 'Scope and non-authority boundaries' and states classification is not canon."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0303",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/extraction_repair_queue_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d00c59187adbcaec3e9c7d4475140301587fd1be",
+      "controlled_match_count": 23,
+      "matched_terms": [
+        "canon",
+        "condition",
+        "conversion",
+        "lineage",
+        "merge",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 15,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the queue guide's authority rules. Queue placement is operational routing and cannot confer conversion or canon permission."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Extraction Repair Queue Guide is operational defect-routing policy. Its declaration that queue metadata, extraction truth, conversion permission, and canon permission are distinct maps to cross-phase control; queue types, severity levels, repair actions, and full-corpus continuation behavior remain developer infrastructure.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 15
+          },
+          "candidate_proposition": "Repair queues are operational metadata; extraction truth, conversion permission, and canon permission remain separate, and queue outcomes never grant canon permission.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this explicit separation; repair-queue coordination acquires no canon or semantic authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 9,
+        "line_end": 15,
+        "source_status_summary": "The guide labels these statements 'Authority and boundary rules' and explicitly says repair queues are not canon."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0304",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/full_corpus_dry_run_planner_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "1492ceb8bc7d678846d2f5083ef16577f689e0cc",
+      "controlled_match_count": 8,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "runtime",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 22,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the dry-run planner's non-goals. It plans and reports only; it neither extracts nor converts nor canonizes donor material."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Full Corpus Dry-Run Planner Guide documents planning-only preflight for a large donor corpus. Its non-goals and extraction/conversion/canon separation map to cross-phase control; filename heuristics, risk samples, donor-family estimates, and planner outputs remain weak routing metadata with no doctrine effect.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 22
+          },
+          "candidate_proposition": "Dry-run planning does not execute conversion or canonization, and extraction truth, conversion permission, and canon permission remain distinct.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The non-goal and permission chain is governed by CROSSPHASE-0001; the planner's estimates cannot acquire cross-phase authority."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 9,
+        "line_end": 22,
+        "source_status_summary": "The guide explicitly frames these behaviors as non-goals and separates extraction, conversion, and canon permissions."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0305",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/full_corpus_extraction_plan_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "1b603c02c1acdfbd5a634ab2d68cd997687793b6",
+      "controlled_match_count": 7,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 26,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the extraction-plan scope boundaries. Planning metadata is expressly not extraction truth and neither conversion nor canon work is performed."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Full Corpus Extraction Plan Guide composes planning records from dry-run and readiness outputs. R2A maps only its explicit planning/extraction/conversion/canon separation; lane assignments, waves, overlay suggestions, and 1917-file run planning remain nonauthoritative developer operations.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 26
+          },
+          "candidate_proposition": "Dry-run routing and extraction planning are not extraction truth, extraction truth is not conversion permission, and conversion permission is not canon permission.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This ordered stage separation directly applies CROSSPHASE-0001 and transfers no authority to planning artifacts."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 9,
+        "line_end": 26,
+        "source_status_summary": "The guide's 'Scope boundaries' explicitly denies extraction, conversion, and canonization effects."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0306",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/full_corpus_preflight_review_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c0195d9c101b45a593aa9908e7f2470a451b71ba",
+      "controlled_match_count": 7,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 15,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the preflight review's scope boundary. Dry-run metadata and review proposals cannot be treated as extraction truth, conversion authority, or canon authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Full Corpus Preflight Review Guide is a review/refinement layer over dry-run outputs. Its stage separation and statement that routing overlays are proposals rather than authoritative doctrine map to cross-phase control; clustering and overlay heuristics remain review-stage infrastructure.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 15
+          },
+          "candidate_proposition": "Dry-run routing metadata is not extraction truth; extraction truth is not conversion permission; conversion permission is not canon permission.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "The review layer directly restates accepted cross-phase separation and does not gain semantic ownership from reviewing or proposing routing."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 15,
+        "source_status_summary": "The file calls itself a review/refinement layer only and explicitly excludes extraction, OCR, conversion, and canon workflows."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0307",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/full_corpus_readiness_gate_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3ba4ad4bd6e3c2391701d2c028e25c89394ec931",
+      "controlled_match_count": 9,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 15,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the readiness gate's boundaries. Readiness status is an operational planning result, not conversion or canon authority."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Full Corpus Readiness Gate Guide validates readiness infrastructure before extraction planning. Its explicit exclusion of extraction, conversion, and canon promotion and its permission-chain separation map to cross-phase control; thresholds, readiness statuses, and output reports remain operational gate mechanics.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 15
+          },
+          "candidate_proposition": "The readiness gate does not execute extraction, conversion, or canon promotion, and it keeps dry-run metadata, extraction truth, conversion permission, and canon permission distinct.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this separation; a readiness gate cannot manufacture authority for downstream phases."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 9,
+        "line_end": 15,
+        "source_status_summary": "The guide explicitly labels the passage 'Boundaries' and denies extraction, conversion, and canon-promotion effects."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0308",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/generated_report_mojibake_scanner_guide.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f2b6efe0f92a2c1d6ddcdc5a279ac3de6657d06e",
+      "controlled_match_count": 7,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 54,
+          "line_end": 59,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the scanner's governance boundaries. Encoding-clean reports do not become canon-approved or conversion-authorized merely by passing this tool."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "The Generated Report Mojibake Scanner Guide defines encoding-integrity checks for generated reports. R2A maps only its governance statement that scanner success, extraction truth, conversion permission, and canon approval are separate; scaffold/source-text detection policy remains implementation detail.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 54,
+            "line_end": 59
+          },
+          "candidate_proposition": "Scanner success does not mean canon approval; extraction truth is not conversion permission; conversion permission is not canon permission.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This is a direct cross-phase boundary restatement governed by CROSSPHASE-0001."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 54,
+        "line_end": 59,
+        "source_status_summary": "The file labels the statements 'Governance boundaries' and explicitly denies canon significance to scanner success."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0309",
+      "partition_id": "R2A-7",
+      "path": "docs/handoff/handoff_queue_policy_v0_1.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f2a46bdff0df2b17a33dfc85e9f7e3615f2c7da5",
+      "controlled_match_count": 8,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "handoff"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 19,
+          "line_end": 28,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed queue routing and canon safety. Queue selection may retain or escalate donor material but does not make the queue or its records semantic/canon owners."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "The Handoff Queue Policy v0.1 defines operational queue names and routing requirements. Its canon-safety boundary maps to cross-phase control, and its treatment of valid donor-local constructs as source-local rather than automatically promotable maps to donor nonpromotion; queue ownership fields and routing rules remain nonauthoritative operations.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_r2b_candidate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 28
+          },
+          "candidate_proposition": "Queue records route repair, quarantine, source-local retention, and canon-candidate review without conferring canon status on queued material.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "Queue coordination is governed by CROSSPHASE-0001; moving a unit through a queue does not transfer canon or semantic ownership."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 23,
+            "line_end": 25
+          },
+          "candidate_proposition": "Valid donor-local constructs that are not promotable to canon are retained source-locally rather than treated as Astra canon.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "This directly applies the donor-nonpromotion invariant under WORLD-0011."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 19,
+        "line_end": 28,
+        "source_status_summary": "The policy presents these as routing rules and canon-safety constraints, not doctrine promotion."
+      }
+    }
+  ]
+}

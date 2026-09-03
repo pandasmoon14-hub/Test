@@ -1182,3 +1182,521 @@ def test_certified_completion_progress_through_r7_0299():
         record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
         for record in records
     )
+
+# ---------------------------------------------------------------------------
+# Certified R2A-7 completion continuation through R7-0356.
+#
+# The earlier R7-0299 live checkpoint remains in the file as accepted evidence.
+# This successor historicalizes that checkpoint at the #363 merge commit and
+# advances only the live deterministic stream through shard 0046.
+# ---------------------------------------------------------------------------
+
+R2A7_COMPLETION_0356_BASE = "6cbf63d78face218d056742b9384bb56d00700dd"
+R2A7_COMPLETION_0356_LAST_SHARD = 46
+R2A7_COMPLETION_0356_LAST_ID = 356
+
+EXPECTED_COMPLETION_0356_CLASSIFICATION = {300: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 301: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 302: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001', 'R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 303: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 304: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 305: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 306: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 307: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 308: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 309: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001', 'R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 310: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 311: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 312: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'canon_handoff_pressure'},
+ 313: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'canon_handoff_pressure'},
+ 314: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'canon_handoff_pressure'},
+ 315: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 316: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'canon_handoff_pressure'},
+ 317: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 318: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 319: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 320: {'authority_effect': 'historical_context_only',
+       'disposition': 'historical_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 321: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 322: {'authority_effect': 'historical_context_only',
+       'disposition': 'historical_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 323: {'authority_effect': 'no_authority_effect',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 324: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 325: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 326: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 327: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 328: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 329: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 330: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 331: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 332: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 333: {'authority_effect': 'no_authority_effect',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 334: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 335: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 336: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 337: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 338: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 339: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 340: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 341: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 342: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 343: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 344: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 345: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 346: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 347: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 348: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 349: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 350: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 351: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 352: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 353: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 354: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 355: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 356: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'}}
+
+
+def test_certified_completion_progress_through_r7_0299():
+    records = _records_at_commit(R2A7_COMPLETION_0356_BASE, 40)
+
+    assert len(records) == 299
+    assert records[0]["candidate_file_id"] == "R2A-DISPOSITION-R7-0001"
+    assert records[-1]["candidate_file_id"] == "R2A-DISPOSITION-R7-0299"
+
+    manifest = json.loads(
+        git_blob(
+            R2A7_COMPLETION_0356_BASE,
+            MANIFEST.relative_to(ROOT).as_posix(),
+        ).decode("utf-8")
+    )
+    assert manifest["artifact_version"] == "0.2.11"
+
+    by_partition = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+    assert by_partition["R2A-7"]["status"] == "active_incomplete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+    assert by_partition["R2A-7"]["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 41)
+        ],
+    ]
+
+
+def test_certified_completion_progress_through_r7_0356():
+    entries = baseline_tree_entries()
+    assert len(entries) == EXPECTED_TRACKED_BLOBS
+
+    blobs = cat_blobs(sha for _, _, sha in entries)
+    terms_by_cluster = matcher_terms()
+
+    partitions = {
+        "R2A-4": [],
+        "R2A-5": [],
+        "R2A-6": [],
+        "R2A-7": [],
+    }
+    metadata = {}
+    eligible_count = 0
+    positive_count = 0
+
+    for path, _mode, sha in entries:
+        raw = blobs[sha]
+
+        if excluded(path, raw):
+            continue
+
+        eligible_count += 1
+        matches = controlled_matches(path, raw, terms_by_cluster)
+
+        if not matches:
+            continue
+
+        positive_count += 1
+        partition = assign_partition(path)
+        partitions[partition].append(path)
+
+        metadata[path] = {
+            "sha": sha,
+            "count": len(matches),
+            "terms": sorted({item[2] for item in matches}),
+            "clusters": sorted({item[3] for item in matches}),
+        }
+
+    assert eligible_count == EXPECTED_ELIGIBLE_TEXT
+    assert positive_count == EXPECTED_MATCHER_POSITIVE
+    assert {
+        partition: len(paths)
+        for partition, paths in partitions.items()
+    } == EXPECTED_PARTITION_COUNTS
+
+    frozen_r7 = sorted(partitions["R2A-7"])
+    assert len(frozen_r7) == 507
+
+    # Preserve the entire previously certified through-R7-0299 payload.
+    for number in range(1, 41):
+        relative = (
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        assert git_blob(
+            R2A7_COMPLETION_0356_BASE,
+            relative,
+        ) == (DISPOSITIONS / f"dispositions_{number:04d}.yaml").read_bytes()
+
+    records = _current_records_through(
+        R2A7_COMPLETION_0356_LAST_SHARD
+    )
+
+    assert len(records) == R2A7_COMPLETION_0356_LAST_ID
+    assert [
+        record["candidate_file_id"]
+        for record in records
+    ] == [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(1, R2A7_COMPLETION_0356_LAST_ID + 1)
+    ]
+
+    assert len({record["path"] for record in records}) == len(records)
+    assert len({
+        (record["path"], record["baseline_blob_sha"])
+        for record in records
+    }) == len(records)
+
+    for record, expected_path in zip(
+        records,
+        frozen_r7[:R2A7_COMPLETION_0356_LAST_ID],
+    ):
+        expected = metadata[expected_path]
+
+        assert record["path"] == expected_path
+        assert record["baseline_blob_sha"] == expected["sha"]
+        assert record["controlled_match_count"] == expected["count"]
+        assert record["matched_terms"] == expected["terms"]
+        assert (
+            record["matched_search_clusters"]
+            == expected["clusters"]
+        )
+
+    new_records = records[299:356]
+    assert len(new_records) == 57
+
+    for number, record in zip(range(300, 357), new_records):
+        expected = EXPECTED_COMPLETION_0356_CLASSIFICATION[number]
+
+        assert record["disposition"] == expected["disposition"]
+        assert (
+            record["mapped_surface_ids"]
+            == expected["mapped_surface_ids"]
+        )
+        assert (
+            record["source_local_pressure_class"]
+            == expected["source_local_pressure_class"]
+        )
+        assert (
+            record["authority_effect"]
+            == expected["authority_effect"]
+        )
+        assert record["pressure_route"] == expected["pressure_route"]
+
+        mapping_ids = [
+            item["mapped_surface_id"]
+            for item in record["mapping_evidence"]
+        ]
+        assert mapping_ids == record["mapped_surface_ids"]
+        assert all(
+            item["authority_transfer_effect"] == "none"
+            for item in record["mapping_evidence"]
+        )
+
+        for locator in record["representative_locators"]:
+            assert locator["matched_terms"] == []
+            assert locator["matched_search_clusters"] == []
+            assert 1 <= locator["line_start"] <= locator["line_end"]
+            assert locator["semantic_review_note"].strip()
+
+        status_evidence = record["status_evidence"]
+        if status_evidence is not None:
+            assert (
+                1
+                <= status_evidence["line_start"]
+                <= status_evidence["line_end"]
+            )
+            assert status_evidence["source_status_summary"].strip()
+
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    assert manifest["artifact_version"] == "0.2.12"
+    assert manifest["status"] == "active_incomplete"
+
+    by_partition = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+
+    assert by_partition["R2A-7"]["status"] == "active_incomplete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+
+    expected_paths = [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 47)
+        ],
+    ]
+    assert (
+        by_partition["R2A-7"]["planned_artifact_paths"]
+        == expected_paths
+    )
+
+    assert not (DISPOSITIONS / "index.yaml").exists()
+    for number in range(47, 49):
+        assert not (
+            DISPOSITIONS / f"dispositions_{number:04d}.yaml"
+        ).exists()
+
+    assert records[-1]["candidate_file_id"] == (
+        "R2A-DISPOSITION-R7-0356"
+    )
+    assert records[-1]["path"] == frozen_r7[355]
+    assert frozen_r7[356]
+    assert not any(
+        record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
+        for record in records
+    )
