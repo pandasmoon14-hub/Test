@@ -1700,3 +1700,510 @@ def test_certified_completion_progress_through_r7_0356():
         record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
         for record in records
     )
+
+# ---------------------------------------------------------------------------
+# Certified R2A-7 completion continuation through R7-0403.
+#
+# The earlier R7-0356 live checkpoint remains in the file as accepted evidence.
+# This successor historicalizes that checkpoint at the #364 merge commit and
+# advances only the live deterministic stream through shard 0051.
+# ---------------------------------------------------------------------------
+
+R2A7_COMPLETION_0403_BASE = "83c9bd211048e608645426157703980e98150871"
+R2A7_COMPLETION_0403_LAST_SHARD = 51
+R2A7_COMPLETION_0403_LAST_ID = 403
+
+EXPECTED_COMPLETION_0403_CLASSIFICATION = {357: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 358: {'authority_effect': 'no_authority_effect',
+       'disposition': 'internal_nonauthoritative_pressure_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'no_material_relation'},
+ 359: {'authority_effect': 'no_authority_effect',
+       'disposition': 'internal_nonauthoritative_pressure_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'no_material_relation'},
+ 360: {'authority_effect': 'no_authority_effect',
+       'disposition': 'internal_nonauthoritative_pressure_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'no_material_relation'},
+ 361: {'authority_effect': 'no_authority_effect',
+       'disposition': 'internal_nonauthoritative_pressure_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'no_material_relation'},
+ 362: {'authority_effect': 'historical_context_only',
+       'disposition': 'historical_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'no_material_relation'},
+ 363: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'internal_nonauthoritative_pressure_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'no_material_relation'},
+ 364: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 365: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 366: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 367: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 368: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 369: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 370: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 371: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 372: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 373: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 374: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 375: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 376: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 377: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 378: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-WORLD-0011'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'consistent_source_local_evidence'},
+ 379: {'authority_effect': 'no_authority_effect',
+       'disposition': 'internal_nonauthoritative_pressure_only',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'no_material_relation'},
+ 380: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0024'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 381: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 382: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-AGENCY-0002',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 383: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 384: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 385: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 386: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003', 'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 387: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 388: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 389: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'none',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 390: {'authority_effect': 'implementation_presupposition_only',
+       'disposition': 'dismissed_after_semantic_review',
+       'mapped_surface_ids': [],
+       'pressure_route': 'later_gate',
+       'source_local_pressure_class': 'conversion_handoff_pressure'},
+ 391: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 392: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 393: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 394: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 395: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 396: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 397: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 398: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 399: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 400: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 401: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'later_r2b_candidate',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 402: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'r3_conformance',
+       'source_local_pressure_class': 'owner_boundary_pressure'},
+ 403: {'authority_effect': 'maps_current_authority',
+       'disposition': 'mixed_mapped_and_dismissed',
+       'mapped_surface_ids': ['R2A-SURFACE-CORE-0003',
+                              'R2A-SURFACE-WORLD-0011',
+                              'R2A-SURFACE-CROSSPHASE-0001'],
+       'pressure_route': 'r3_conformance',
+       'source_local_pressure_class': 'owner_boundary_pressure'}}
+
+
+def test_certified_completion_progress_through_r7_0356():
+    records = _records_at_commit(R2A7_COMPLETION_0403_BASE, 46)
+
+    assert len(records) == 356
+    assert records[0]["candidate_file_id"] == "R2A-DISPOSITION-R7-0001"
+    assert records[-1]["candidate_file_id"] == "R2A-DISPOSITION-R7-0356"
+
+    manifest = json.loads(
+        git_blob(
+            R2A7_COMPLETION_0403_BASE,
+            MANIFEST.relative_to(ROOT).as_posix(),
+        ).decode("utf-8")
+    )
+    assert manifest["artifact_version"] == "0.2.12"
+
+    by_partition = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+    assert by_partition["R2A-7"]["status"] == "active_incomplete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+    assert by_partition["R2A-7"]["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 47)
+        ],
+    ]
+
+
+def test_certified_completion_progress_through_r7_0403():
+    entries = baseline_tree_entries()
+    assert len(entries) == EXPECTED_TRACKED_BLOBS
+
+    blobs = cat_blobs(sha for _, _, sha in entries)
+    terms_by_cluster = matcher_terms()
+
+    partitions = {
+        "R2A-4": [],
+        "R2A-5": [],
+        "R2A-6": [],
+        "R2A-7": [],
+    }
+    metadata = {}
+    eligible_count = 0
+    positive_count = 0
+
+    for path, _mode, sha in entries:
+        raw = blobs[sha]
+
+        if excluded(path, raw):
+            continue
+
+        eligible_count += 1
+        matches = controlled_matches(path, raw, terms_by_cluster)
+
+        if not matches:
+            continue
+
+        positive_count += 1
+        partition = assign_partition(path)
+        partitions[partition].append(path)
+
+        metadata[path] = {
+            "sha": sha,
+            "count": len(matches),
+            "terms": sorted({item[2] for item in matches}),
+            "clusters": sorted({item[3] for item in matches}),
+        }
+
+    assert eligible_count == EXPECTED_ELIGIBLE_TEXT
+    assert positive_count == EXPECTED_MATCHER_POSITIVE
+    assert {
+        partition: len(paths)
+        for partition, paths in partitions.items()
+    } == EXPECTED_PARTITION_COUNTS
+
+    frozen_r7 = sorted(partitions["R2A-7"])
+    assert len(frozen_r7) == 507
+    assert not any(path.endswith("R7-0508") for path in frozen_r7)
+
+    # Preserve the entire previously certified through-R7-0356 payload.
+    for number in range(1, 47):
+        relative = (
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        assert git_blob(
+            R2A7_COMPLETION_0403_BASE,
+            relative,
+        ) == (DISPOSITIONS / f"dispositions_{number:04d}.yaml").read_bytes()
+
+    records = _current_records_through(
+        R2A7_COMPLETION_0403_LAST_SHARD
+    )
+
+    assert len(records) == R2A7_COMPLETION_0403_LAST_ID
+    assert [
+        record["candidate_file_id"]
+        for record in records
+    ] == [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(1, R2A7_COMPLETION_0403_LAST_ID + 1)
+    ]
+
+    assert len({record["path"] for record in records}) == len(records)
+    assert len({
+        (record["path"], record["baseline_blob_sha"])
+        for record in records
+    }) == len(records)
+
+    for record, expected_path in zip(
+        records,
+        frozen_r7[:R2A7_COMPLETION_0403_LAST_ID],
+    ):
+        expected = metadata[expected_path]
+
+        assert record["path"] == expected_path
+        assert record["baseline_blob_sha"] == expected["sha"]
+        assert record["controlled_match_count"] == expected["count"]
+        assert record["matched_terms"] == expected["terms"]
+        assert record["matched_search_clusters"] == expected["clusters"]
+
+    new_records = records[356:403]
+    assert len(new_records) == 47
+
+    for number, record in zip(range(357, 404), new_records):
+        expected = EXPECTED_COMPLETION_0403_CLASSIFICATION[number]
+
+        assert record["disposition"] == expected["disposition"]
+        assert record["mapped_surface_ids"] == expected["mapped_surface_ids"]
+        assert (
+            record["source_local_pressure_class"]
+            == expected["source_local_pressure_class"]
+        )
+        assert record["authority_effect"] == expected["authority_effect"]
+        assert record["pressure_route"] == expected["pressure_route"]
+
+        mapping_ids = [
+            item["mapped_surface_id"]
+            for item in record["mapping_evidence"]
+        ]
+        assert mapping_ids == record["mapped_surface_ids"]
+        assert all(
+            item["authority_transfer_effect"] == "none"
+            for item in record["mapping_evidence"]
+        )
+        for item in record["mapping_evidence"]:
+            locator = item["candidate_locator"]
+            assert 1 <= locator["line_start"] <= locator["line_end"]
+            assert locator["line_end"] - locator["line_start"] <= 79
+            assert item["candidate_proposition"].strip()
+            assert item["evidence_note"].strip()
+
+        for locator in record["representative_locators"]:
+            assert locator["matched_terms"] == []
+            assert locator["matched_search_clusters"] == []
+            assert 1 <= locator["line_start"] <= locator["line_end"]
+            assert locator["semantic_review_note"].strip()
+
+        status_evidence = record["status_evidence"]
+        if status_evidence is not None:
+            assert (
+                1
+                <= status_evidence["line_start"]
+                <= status_evidence["line_end"]
+            )
+            assert status_evidence["source_status_summary"].strip()
+
+    internal = [
+        record for record in new_records
+        if record["disposition"]
+        == "internal_nonauthoritative_pressure_only"
+    ]
+    assert len(internal) == 6
+    assert all(
+        record["mapped_surface_ids"] == []
+        and record["source_local_pressure_class"] == "no_material_relation"
+        and record["authority_effect"] in {
+            "implementation_presupposition_only",
+            "escalation_pressure_only",
+            "no_authority_effect",
+        }
+        for record in internal
+    )
+
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    assert manifest["artifact_version"] == "0.2.13"
+    assert manifest["status"] == "active_incomplete"
+
+    by_partition = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+    assert by_partition["R2A-7"]["status"] == "active_incomplete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+
+    expected_paths = [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 52)
+        ],
+    ]
+    assert by_partition["R2A-7"]["planned_artifact_paths"] == expected_paths
+
+    assert not (DISPOSITIONS / "index.yaml").exists()
+    assert not (DISPOSITIONS / "dispositions_0052.yaml").exists()
+
+    assert records[-1]["candidate_file_id"] == "R2A-DISPOSITION-R7-0403"
+    assert records[-1]["path"] == frozen_r7[402]
+    assert frozen_r7[403]
+    assert not any(
+        record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
+        for record in records
+    )

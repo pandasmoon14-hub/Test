@@ -1,0 +1,760 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0048",
+  "artifact_version": "0.1.0",
+  "status": "active_incomplete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0367",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a04_dao_domain_element_architecture.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "69cce669cba33a917eb5faa7eccc3ad084f26c15",
+      "controlled_match_count": 10,
+      "matched_terms": [
+        "canon",
+        "continuity",
+        "conversion",
+        "handoff",
+        "identity",
+        "provenance",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 132,
+          "line_end": 136,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the Dao/domain/element architecture donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 172,
+          "line_end": 175,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the Dao/domain/element architecture file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a04_dao_domain_element_architecture.py` validates the draft A-layer Dao/domain/element architecture file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 132,
+            "line_end": 136
+          },
+          "candidate_proposition": "The Dao/domain/element architecture test requires donor/source-local Dao/domain/element architecture assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer Dao/domain/element architecture doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 173,
+        "line_end": 175,
+        "source_status_summary": "The registry assertions keep the A-layer Dao/domain/element architecture record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0368",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a05_civilization_scale_power_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "390cb591b50808082bc4476b6350e75656ab8f73",
+      "controlled_match_count": 21,
+      "matched_terms": [
+        "action",
+        "canon",
+        "continuity",
+        "conversion",
+        "dependency",
+        "handoff",
+        "hazard",
+        "identity",
+        "provenance",
+        "runtime",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 126,
+          "line_end": 130,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the civilization and power scale donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 169,
+          "line_end": 172,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the civilization and power scale file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a05_civilization_scale_power_doctrine.py` validates the draft A-layer civilization and power scale file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 126,
+            "line_end": 130
+          },
+          "candidate_proposition": "The civilization and power scale test requires donor/source-local civilization and power scale assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer civilization and power scale doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 170,
+        "line_end": 172,
+        "source_status_summary": "The registry assertions keep the A-layer civilization and power scale record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0369",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a06_cultivation_ascension_stage_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "dd7cd1f1fb0787e8b1294611f6afd805fd05acc2",
+      "controlled_match_count": 26,
+      "matched_terms": [
+        "canon",
+        "continuity",
+        "conversion",
+        "handoff",
+        "identity",
+        "knowledge",
+        "provenance",
+        "runtime",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 109,
+          "line_end": 113,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the cultivation and ascension stages donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 160,
+          "line_end": 163,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the cultivation and ascension stages file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a06_cultivation_ascension_stage_doctrine.py` validates the draft A-layer cultivation and ascension stages file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 109,
+            "line_end": 113
+          },
+          "candidate_proposition": "The cultivation and ascension stages test requires donor/source-local cultivation and ascension stages assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer cultivation and ascension stages doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 161,
+        "line_end": 163,
+        "source_status_summary": "The registry assertions keep the A-layer cultivation and ascension stages record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0370",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a07_advancement_axes_progression_pressure_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7711c50614397c3897a665a80552443609e9fa32",
+      "controlled_match_count": 10,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "handoff",
+        "provenance",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 114,
+          "line_end": 118,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the advancement axes and progression pressure donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 156,
+          "line_end": 159,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the advancement axes and progression pressure file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a07_advancement_axes_progression_pressure_doctrine.py` validates the draft A-layer advancement axes and progression pressure file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 114,
+            "line_end": 118
+          },
+          "candidate_proposition": "The advancement axes and progression pressure test requires donor/source-local advancement axes and progression pressure assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer advancement axes and progression pressure doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 157,
+        "line_end": 159,
+        "source_status_summary": "The registry assertions keep the A-layer advancement axes and progression pressure record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0371",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a08_path_domain_technique_mastery_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5559d063dc99abd3f4f16bbfc4059f21c715ea05",
+      "controlled_match_count": 18,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conversion",
+        "handoff",
+        "provenance",
+        "runtime",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 114,
+          "line_end": 118,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the path/domain/technique mastery donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 159,
+          "line_end": 162,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the path/domain/technique mastery file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a08_path_domain_technique_mastery_doctrine.py` validates the draft A-layer path/domain/technique mastery file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 114,
+            "line_end": 118
+          },
+          "candidate_proposition": "The path/domain/technique mastery test requires donor/source-local path/domain/technique mastery assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer path/domain/technique mastery doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 160,
+        "line_end": 162,
+        "source_status_summary": "The registry assertions keep the A-layer path/domain/technique mastery record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0372",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a09_skill_competency_synthesis_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a47b4c69db5cb72caa4edceaa9df95e0b625a610",
+      "controlled_match_count": 14,
+      "matched_terms": [
+        "canon",
+        "condition",
+        "conversion",
+        "dependency",
+        "handoff",
+        "knowledge",
+        "provenance",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 61,
+          "line_end": 65,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the skill/competency/synthesis donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 92,
+          "line_end": 95,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the skill/competency/synthesis file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a09_skill_competency_synthesis_doctrine.py` validates the draft A-layer skill/competency/synthesis file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 61,
+            "line_end": 65
+          },
+          "candidate_proposition": "The skill/competency/synthesis test requires donor/source-local skill/competency/synthesis assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer skill/competency/synthesis doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 93,
+        "line_end": 95,
+        "source_status_summary": "The registry assertions keep the A-layer skill/competency/synthesis record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0373",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a10_resource_cost_backlash_corruption_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8bc60b1339cef7be4e451c6ac5b9c69768730605",
+      "controlled_match_count": 15,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conversion",
+        "handoff",
+        "injury",
+        "provenance",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 65,
+          "line_end": 69,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the resource/cost/backlash/corruption donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 107,
+          "line_end": 110,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the resource/cost/backlash/corruption file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a10_resource_cost_backlash_corruption_doctrine.py` validates the draft A-layer resource/cost/backlash/corruption file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 65,
+            "line_end": 69
+          },
+          "candidate_proposition": "The resource/cost/backlash/corruption test requires donor/source-local resource/cost/backlash/corruption assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer resource/cost/backlash/corruption doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 108,
+        "line_end": 110,
+        "source_status_summary": "The registry assertions keep the A-layer resource/cost/backlash/corruption record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0374",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a11_actor_ontology_player_grade_actor_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "52bbdedf699a91b9f3fb1cb592fe137030450dcd",
+      "controlled_match_count": 9,
+      "matched_terms": [
+        "canon",
+        "continuity",
+        "conversion",
+        "handoff",
+        "identity",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 74,
+          "line_end": 78,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the actor ontology and player-grade actors donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 111,
+          "line_end": 114,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the actor ontology and player-grade actors file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a11_actor_ontology_player_grade_actor_doctrine.py` validates the draft A-layer actor ontology and player-grade actors file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 74,
+            "line_end": 78
+          },
+          "candidate_proposition": "The actor ontology and player-grade actors test requires donor/source-local actor ontology and player-grade actors assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer actor ontology and player-grade actors doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 112,
+        "line_end": 114,
+        "source_status_summary": "The registry assertions keep the A-layer actor ontology and player-grade actors record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0375",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a12_asset_relic_implant_platform_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "92b78f2e7a0a17f0fefd9ca2078449294e65450a",
+      "controlled_match_count": 7,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "handoff",
+        "resolution",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 150,
+          "line_end": 154,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the assets/relics/implants/platforms donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 183,
+          "line_end": 186,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the assets/relics/implants/platforms file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a12_asset_relic_implant_platform_doctrine.py` validates the draft A-layer assets/relics/implants/platforms file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 150,
+            "line_end": 154
+          },
+          "candidate_proposition": "The assets/relics/implants/platforms test requires donor/source-local assets/relics/implants/platforms assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer assets/relics/implants/platforms doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 184,
+        "line_end": 186,
+        "source_status_summary": "The registry assertions keep the A-layer assets/relics/implants/platforms record at draft/non-current posture."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0376",
+      "partition_id": "R2A-7",
+      "path": "tests/test_a13_combat_hazard_damage_consequence_doctrine.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "794ed44d3038b7b8710e2fbae3e11f89c65e781c",
+      "controlled_match_count": 37,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "conflict",
+        "conversion",
+        "handoff",
+        "hazard",
+        "healing",
+        "initiative",
+        "injury",
+        "recovery",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 79,
+          "line_end": 83,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the combat/hazard/damage/consequence donor/source-local guard. The test requires donor assumptions or retained source-local terminology to remain noncanonical/nondefault rather than becoming Astra law."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 105,
+          "line_end": 108,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the registry posture for the combat/hazard/damage/consequence file; the tested A-layer record remains draft and is not current."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`test_a13_combat_hazard_damage_consequence_doctrine.py` validates the draft A-layer combat/hazard/damage/consequence file. Its material R2A relation is the explicit donor/source-local nonpromotion guard; the test does not promote the draft doctrine, its terminology, or its proposed ownership into current authority.",
+      "source_local_pressure_class": "consistent_source_local_evidence",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 79,
+            "line_end": 83
+          },
+          "candidate_proposition": "The combat/hazard/damage/consequence test requires donor/source-local combat/hazard/damage/consequence assumptions or terms not to become Astra default law, canon, or accepted lexicon merely by retention.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs this explicit donor nonpromotion proposition. The test enforces the boundary but does not make the draft A-layer combat/hazard/damage/consequence doctrine current."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 106,
+        "line_end": 108,
+        "source_status_summary": "The registry assertions keep the A-layer combat/hazard/damage/consequence record at draft/non-current posture."
+      }
+    }
+  ]
+}
