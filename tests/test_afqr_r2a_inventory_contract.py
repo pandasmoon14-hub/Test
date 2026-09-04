@@ -3349,3 +3349,734 @@ test_r2a4_completed_status_and_posture = (
 test_r2a4_exact_base_scope_status_and_posture = (
     test_r2a7_final_preserves_structural_authority
 )
+
+# R2A-5 successor-baseline accounting repair v0.2.0
+#
+# The original R2A-5 v0.1.0 completion receipts above remain historical
+# evidence for 7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2.  These final module
+# definitions validate the corrected current representation against the
+# later frozen accounting universe without rewriting that history.
+
+R2A5_SUCCESSOR_BASE = "62e1565ed598345901e92dc04f3b686281418d83"
+R2A5_SUCCESSOR_VERSION = "0.2.0"
+
+R2A5_SUCCESSOR_NEW_IDS = {
+    "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml":
+        "R2A-DISPOSITION-B-0081",
+    "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml":
+        "R2A-DISPOSITION-B-0082",
+    "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml":
+        "R2A-DISPOSITION-B-0083",
+    "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0002.yaml":
+        "R2A-DISPOSITION-B-0084",
+    "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml":
+        "R2A-DISPOSITION-B-0085",
+}
+
+
+def _r2a5_successor_blob(commit, path):
+    return subprocess.check_output(
+        ["git", "show", f"{commit}:{path}"],
+        cwd=ROOT,
+    )
+
+
+def _r2a5_successor_blob_sha(commit, path):
+    return subprocess.check_output(
+        ["git", "rev-parse", f"{commit}:{path}"],
+        cwd=ROOT,
+        text=True,
+    ).strip()
+
+
+def _r2a5_successor_universe():
+    clusters = json.loads(
+        _r2a5_successor_blob(
+            R2A5_SUCCESSOR_BASE,
+            "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+        )
+    )
+    partitions = json.loads(
+        _r2a5_successor_blob(
+            R2A5_SUCCESSOR_BASE,
+            "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+        )
+    )
+
+    terms_by_cluster = {
+        row["cluster_id"]: row["terms"]
+        for row in clusters["clusters"]
+    }
+    rules = partitions["ownership_rules"]
+
+    universe = {}
+
+    paths = subprocess.check_output(
+        [
+            "git",
+            "ls-tree",
+            "-r",
+            "--name-only",
+            R2A5_SUCCESSOR_BASE,
+        ],
+        cwd=ROOT,
+        text=True,
+    ).splitlines()
+
+    for path in paths:
+        if assign(path, rules) != "R2A-5":
+            continue
+
+        raw = _r2a5_successor_blob(
+            R2A5_SUCCESSOR_BASE,
+            path,
+        )
+        occurrences = match(
+            path,
+            raw,
+            terms_by_cluster,
+        )
+
+        if occurrences:
+            universe[path] = occurrences
+
+    return universe
+
+
+def _r2a5_successor_historical_records():
+    return json.loads(
+        _r2a5_successor_blob(
+            R2A5_SUCCESSOR_BASE,
+            R2A5_SHARD.relative_to(ROOT).as_posix(),
+        )
+    )["candidate_file_dispositions"]
+
+
+def test_r2a5_successor_safe_canonical_completion_receipt():
+    """Preserve v0.1.0 as historical evidence, not current-file identity."""
+    import pytest
+
+    assert (
+        R2A_5_COMPLETION_BASE,
+        R2A_5_COMPLETION_BASE_TREE,
+    ) == (
+        "7a7935b6c34fce0cb5143ae9b4c7754cc8cdb1a2",
+        "e6ae55200ef880dfb1451b3692b35c43072c502f",
+    )
+
+    assert (
+        R2A_5_COMPLETION_HEAD,
+        R2A_5_COMPLETION_TREE,
+    ) == (
+        "c671eb696b8168ff72778761dd9adaf33060a0ba",
+        "b28890a01f67263e6aba16e8fb679684ffaed198",
+    )
+
+    if not r2a5_object_exists(R2A_5_COMPLETION_HEAD):
+        pytest.skip(
+            "canonical historical R2A-5 completion commit is unavailable "
+            "in this shallow/rematerialized checkout; immutable receipt "
+            "constants remain preserved"
+        )
+
+    assert (
+        r2a5_completion_git(
+            "rev-parse",
+            f"{R2A_5_COMPLETION_HEAD}^{{tree}}",
+        )
+        == R2A_5_COMPLETION_TREE
+    )
+
+    historical_blobs = {
+        path: r2a5_completion_git(
+            "rev-parse",
+            f"{R2A_5_COMPLETION_HEAD}:{path}",
+        )
+        for path in R2A5_COMPLETION_ARTIFACTS
+    }
+
+    assert historical_blobs == R2A5_COMPLETION_BLOBS
+
+    historical_index = json.loads(
+        r2a5_completion_git(
+            "show",
+            (
+                f"{R2A_5_COMPLETION_HEAD}:"
+                f"{R2A5_INDEX.relative_to(ROOT).as_posix()}"
+            ),
+        )
+    )
+
+    historical_shard = json.loads(
+        r2a5_completion_git(
+            "show",
+            (
+                f"{R2A_5_COMPLETION_HEAD}:"
+                f"{R2A5_SHARD.relative_to(ROOT).as_posix()}"
+            ),
+        )
+    )
+
+    assert historical_index["artifact_version"] == "0.1.0"
+    assert historical_shard["artifact_version"] == "0.1.0"
+    assert historical_index["candidate_file_count"] == 80
+    assert len(
+        historical_shard["candidate_file_dispositions"]
+    ) == 80
+    assert (
+        historical_index["inspected_baseline_commit"]
+        == R2A_5_COMPLETION_BASE
+    )
+    assert (
+        historical_shard["inspected_baseline_commit"]
+        == R2A_5_COMPLETION_BASE
+    )
+
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A_5_COMPLETION_HEAD,
+            "HEAD",
+        ],
+        cwd=ROOT,
+    )
+
+
+def test_r2a5_exact_identity_candidate_counts_and_mapping_freeze():
+    """Validate the current 85-record successor against frozen 62e1565."""
+    from collections import Counter
+
+    index, shard, records = r2a5_data()
+    effect = "nonauthoritative_candidate_file_disposition"
+
+    assert (
+        index["artifact_id"],
+        index["artifact_version"],
+        index["status"],
+        index["phase"],
+        index["authority_effect"],
+    ) == (
+        "AFQR-R2A-5-CURRENT-B-DISPOSITION-INDEX-001",
+        R2A5_SUCCESSOR_VERSION,
+        "complete",
+        "R2A-5",
+        effect,
+    )
+
+    assert (
+        shard["artifact_id"],
+        shard["artifact_version"],
+        shard["status"],
+        shard["phase"],
+        shard["authority_effect"],
+    ) == (
+        "AFQR-R2A-5-CURRENT-B-DISPOSITION-SHARD-0001",
+        R2A5_SUCCESSOR_VERSION,
+        "complete",
+        "R2A-5",
+        effect,
+    )
+
+    assert (
+        index["inspected_baseline_commit"]
+        == shard["inspected_baseline_commit"]
+        == R2A5_SUCCESSOR_BASE
+    )
+
+    assert index["candidate_file_count"] == len(records) == 85
+
+    universe = _r2a5_successor_universe()
+
+    assert len(universe) == 85
+    assert set(universe) == {row["path"] for row in records}
+
+    ids = [row["candidate_file_id"] for row in records]
+    paths = [row["path"] for row in records]
+
+    assert len(ids) == len(set(ids)) == 85
+    assert len(paths) == len(set(paths)) == 85
+
+    # Preserve all original path->ID identities rather than renumbering
+    # records merely because five newly admitted paths sort into the middle
+    # of the bytewise path order.
+    historical = _r2a5_successor_historical_records()
+
+    assert len(historical) == 80
+
+    historical_ids = {
+        row["path"]: row["candidate_file_id"]
+        for row in historical
+    }
+
+    current_ids = {
+        row["path"]: row["candidate_file_id"]
+        for row in records
+    }
+
+    for path, candidate_id in historical_ids.items():
+        assert current_ids[path] == candidate_id
+
+    for path, candidate_id in R2A5_SUCCESSOR_NEW_IDS.items():
+        assert current_ids[path] == candidate_id
+
+    assert set(current_ids) - set(historical_ids) == set(
+        R2A5_SUCCESSOR_NEW_IDS
+    )
+
+    for record in records:
+        path = record["path"]
+        occurrences = universe[path]
+
+        assert record["partition_id"] == "R2A-5"
+        assert record["inspected_commit"] == R2A5_SUCCESSOR_BASE
+
+        assert record["baseline_blob_sha"] == (
+            _r2a5_successor_blob_sha(
+                R2A5_SUCCESSOR_BASE,
+                path,
+            )
+        )
+
+        assert record["controlled_match_count"] == len(occurrences)
+
+        assert record["matched_terms"] == sorted(
+            {row[2] for row in occurrences}
+        )
+
+        assert record["matched_search_clusters"] == sorted(
+            {row[3] for row in occurrences}
+        )
+
+    assert index["counts"]["by_disposition"] == {
+        "internal_nonauthoritative_pressure_only": 82,
+        "mixed_mapped_and_dismissed": 3,
+    }
+
+    assert index["counts"]["by_authority_effect"] == {
+        "escalation_pressure_only": 81,
+        "implementation_presupposition_only": 1,
+        "maps_current_authority": 3,
+    }
+
+    assert index["counts"]["by_source_local_pressure_class"] == {
+        "no_material_relation": 85,
+    }
+
+    assert index["counts"]["by_pressure_route"] == {
+        "later_gate": 82,
+        "none": 3,
+    }
+
+    assert index["counts"][
+        "by_top_level_candidate_path_family"
+    ] == {
+        "docs/doctrine/*.md": 1,
+        "docs/doctrine/*.yaml": 1,
+        "docs/doctrine/reviews/**": 83,
+    }
+
+    assert index["counts"]["mapped_versus_unmapped"] == {
+        "mapped": 3,
+        "unmapped": 82,
+    }
+
+    derived_cluster_counts = dict(
+        sorted(
+            Counter(
+                cluster
+                for record in records
+                for cluster in record["matched_search_clusters"]
+            ).items()
+        )
+    )
+
+    assert (
+        index["counts"]["by_matched_search_cluster"]
+        == derived_cluster_counts
+    )
+
+    mapped = {
+        row["path"]: set(row["mapped_surface_ids"])
+        for row in records
+        if row["mapped_surface_ids"]
+    }
+
+    assert mapped == R2A5_MAPPING_TABLE
+
+
+def test_r2a5_mapping_intersection_summary_status_and_digest_guards():
+    """Validate successor semantic accounting and digest closure."""
+    index, shard, records = r2a5_data()
+
+    assert index["surface_mapping_coverage"] == {
+        "mapped_candidate_count": 3,
+        "unmapped_candidate_count": 82,
+        "cross_path_mapped_candidate_count": 0,
+        "same_path_mapped_candidate_count": 3,
+        "unique_mapped_surface_count": 5,
+        "mapping_evidence_count": 5,
+        "status_evidence_count": 72,
+        "blocking_gap_count": 0,
+    }
+
+    assert (
+        index["blocking_unmapped_current_authority_candidates"]
+        == []
+    )
+
+    assert index["internal_pressure_coverage"] == {
+        "internal_nonauthoritative_pressure_count": 82,
+        "source_local_pressure_count": 0,
+        "implementation_presupposition_count": 1,
+        "escalation_pressure_count": 81,
+        "no_authority_effect_count": 0,
+    }
+
+    mapped = [
+        row
+        for row in records
+        if row["mapped_surface_ids"]
+    ]
+
+    evidence = [
+        item
+        for row in records
+        for item in row["mapping_evidence"]
+    ]
+
+    assert len(mapped) == 3
+    assert len(evidence) == 5
+
+    assert all(
+        item["authority_transfer_effect"] == "none"
+        for item in evidence
+    )
+
+    assert all(
+        item["mapping_relationship"] == "originates accepted surface"
+        for item in evidence
+    )
+
+    assert {
+        row["path"]: set(row["mapped_surface_ids"])
+        for row in mapped
+    } == R2A5_MAPPING_TABLE
+
+    assert len(
+        {
+            row["semantic_review_summary"]
+            for row in records
+        }
+    ) == 85
+
+    assert all(
+        row["semantic_review_summary"].strip()
+        for row in records
+    )
+
+    assert all(
+        row["representative_locators"]
+        for row in records
+    )
+
+    new_records = {
+        row["path"]: row
+        for row in records
+        if row["path"] in R2A5_SUCCESSOR_NEW_IDS
+    }
+
+    assert set(new_records) == set(R2A5_SUCCESSOR_NEW_IDS)
+
+    for path, candidate_id in R2A5_SUCCESSOR_NEW_IDS.items():
+        row = new_records[path]
+
+        assert row["candidate_file_id"] == candidate_id
+        assert (
+            row["disposition"]
+            == "internal_nonauthoritative_pressure_only"
+        )
+        assert row["authority_effect"] == "escalation_pressure_only"
+        assert row["pressure_route"] == "later_gate"
+        assert row["mapped_surface_ids"] == []
+        assert row["mapping_evidence"] == []
+        assert row["status_evidence"] is not None
+
+    b0030 = next(
+        row
+        for row in records
+        if row["candidate_file_id"] == "R2A-DISPOSITION-B-0030"
+    )
+
+    assert b0030["mapped_surface_ids"] == [
+        "R2A-SURFACE-CROSSPHASE-0001"
+    ]
+
+    assert len(b0030["mapping_evidence"]) == 1
+
+    b0030_evidence = b0030["mapping_evidence"][0]
+
+    assert (
+        b0030_evidence["mapped_surface_id"]
+        == "R2A-SURFACE-CROSSPHASE-0001"
+    )
+
+    assert (
+        b0030_evidence["mapping_relationship"]
+        == "originates accepted surface"
+    )
+
+    assert (
+        b0030_evidence["authority_transfer_effect"]
+        == "none"
+    )
+
+    assert "coordination" in (
+        b0030_evidence["candidate_proposition"].lower()
+    )
+
+    locator = b0030_evidence["candidate_locator"]
+
+    assert 0 < locator["line_start"] <= locator["line_end"]
+
+    actual_digest = hashlib.sha256(
+        R2A5_SHARD.read_bytes()
+    ).hexdigest()
+
+    assert (
+        index["shards"][0]["content_sha256"]
+        == actual_digest
+    )
+
+    assert index["shards"][0]["record_count"] == 85
+    assert (
+        index["shards"][0]["first_candidate_file_id"]
+        == "R2A-DISPOSITION-B-0001"
+    )
+    assert (
+        index["shards"][0]["last_candidate_file_id"]
+        == "R2A-DISPOSITION-B-0085"
+    )
+
+    assert any(
+        "successor accounting" in line.lower()
+        for line in index["completion_boundary"]
+    )
+
+    assert any(
+        "does not alter later R2A-6 or R2A-7 dispositions" in line
+        for line in index["completion_boundary"]
+    )
+
+    assert any(
+        "No doctrine, runtime, schema, canon" in line
+        for line in index["completion_boundary"]
+    )
+
+# R2A-7 certified-completion successor-safe historical scope receipt
+#
+# The final R2A-7 closeout was certified at 2aab80ab... .  The earlier live
+# scope guard intentionally included unstaged/staged/untracked work because
+# R2A-7 was then the active workstream.  Later lawful work must not mutate
+# that historical receipt by being counted as part of the already-completed
+# R2A-7 change set.  Validate the certified R2A-7 transition against its
+# pinned completion commit and separately prove that current R2A-7 artifacts
+# remain byte-identical to that certified state.
+
+R2A7_CERTIFIED_COMPLETION_HEAD = (
+    "2aab80ab4b574d4c51ba2b455cfe18199c66a2fa"
+)
+
+
+def _r2a7_certified_changed_paths():
+    return set(
+        subprocess.check_output(
+            [
+                "git",
+                "diff",
+                "--name-only",
+                (
+                    f"{R2A7_FINAL_COMPLETION_BASE}"
+                    f"...{R2A7_CERTIFIED_COMPLETION_HEAD}"
+                ),
+            ],
+            cwd=ROOT,
+            text=True,
+        ).splitlines()
+    )
+
+
+def _r2a7_certified_deleted_paths():
+    deleted = set()
+
+    output = subprocess.check_output(
+        [
+            "git",
+            "diff",
+            "--name-status",
+            (
+                f"{R2A7_FINAL_COMPLETION_BASE}"
+                f"...{R2A7_CERTIFIED_COMPLETION_HEAD}"
+            ),
+        ],
+        cwd=ROOT,
+        text=True,
+    )
+
+    for line in output.splitlines():
+        if line.startswith("D\t"):
+            deleted.add(line.split("\t", 1)[1])
+
+    return deleted
+
+
+def _r2a7_certified_additions_and_binary():
+    additions = 0
+    binary = False
+
+    output = subprocess.check_output(
+        [
+            "git",
+            "diff",
+            "--numstat",
+            (
+                f"{R2A7_FINAL_COMPLETION_BASE}"
+                f"...{R2A7_CERTIFIED_COMPLETION_HEAD}"
+            ),
+        ],
+        cwd=ROOT,
+        text=True,
+    )
+
+    for line in output.splitlines():
+        left, _right, _path = line.split("\t", 2)
+
+        if left == "-":
+            binary = True
+        else:
+            additions += int(left)
+
+    return additions, binary
+
+
+def test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes():
+    """
+    Preserve the final R2A-7 bounded-change receipt independently of later
+    authorized R2A work.
+    """
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A7_FINAL_COMPLETION_BASE,
+            R2A7_CERTIFIED_COMPLETION_HEAD,
+        ],
+        cwd=ROOT,
+    )
+
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A7_CERTIFIED_COMPLETION_HEAD,
+            "HEAD",
+        ],
+        cwd=ROOT,
+    )
+
+    # Shards 0001..0051 predated the final closeout and must have remained
+    # byte-identical across the certified final R2A-7 transition.
+    for number in range(1, 52):
+        relative = (
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+
+        assert (
+            git_blob(R2A7_FINAL_COMPLETION_BASE, relative)
+            == git_blob(R2A7_CERTIFIED_COMPLETION_HEAD, relative)
+        )
+
+    changed = _r2a7_certified_changed_paths()
+
+    assert changed == R2A7_FINAL_EXPECTED_CHANGED_PATHS
+    assert len(changed) == 15
+
+    assert not any(
+        path.startswith(
+            (
+                "src/",
+                "schemas/",
+                "tests/runtime/",
+            )
+        )
+        for path in changed
+    )
+
+    assert _r2a7_certified_deleted_paths() == set()
+
+    additions, binary = _r2a7_certified_additions_and_binary()
+
+    assert not binary
+    assert additions <= 16000
+
+    # Current R2A-7 evidence artifacts must remain exactly equal to the
+    # certified completion state.  The inventory-contract test file itself
+    # is intentionally excluded because later successor-safe validation is
+    # lawfully appended there.
+    immutable_current_paths = {
+        "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        "tests/test_afqr_r2a7_deterministic_stream_repair.py",
+        *{
+            (
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                f"dispositions_{number:04d}.yaml"
+            )
+            for number in range(1, 63)
+        },
+    }
+
+    for relative in immutable_current_paths:
+        assert (
+            git_blob(R2A7_CERTIFIED_COMPLETION_HEAD, relative)
+            == (ROOT / relative).read_bytes()
+        )
+
+    historical_manifest = json.loads(
+        git_blob(
+            R2A7_CERTIFIED_COMPLETION_HEAD,
+            "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+        )
+    )
+
+    historical_row = r2a7_capacity_row(historical_manifest)
+
+    assert (
+        historical_manifest["artifact_version"]
+        == R2A7_FINAL_MANIFEST_VERSION
+    )
+    assert historical_manifest["status"] == "active_incomplete"
+    assert historical_row["status"] == R2A7_FINAL_STATUS
+    assert historical_row["maximum_changed_files"] == 51
+    assert historical_row["maximum_additions"] == 16000
+
+    historical_index = json.loads(
+        git_blob(
+            R2A7_CERTIFIED_COMPLETION_HEAD,
+            "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        )
+    )
+
+    assert historical_index["status"] == "complete"
+    assert historical_index["candidate_file_count"] == 507
+
+    by_partition = {
+        item["partition_id"]: item
+        for item in historical_manifest["partitions"]
+    }
+
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
