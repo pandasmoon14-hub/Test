@@ -720,6 +720,15 @@
         {
           "locator_kind": "line_range_only",
           "locator_value": null,
+          "line_start": 47,
+          "line_end": 49,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the accepted DEP-094 test contract requiring AFQR-20 contact production and sensing handoff to preserve AFQR-19 target semantic ownership and exact handoff behavior. This verifies the existing WORLD-0029 surface without transferring ownership."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
           "line_start": 104,
           "line_end": 116,
           "matched_terms": [],
@@ -731,9 +740,10 @@
       "mapped_surface_ids": [
         "R2A-SURFACE-CORE-0003",
         "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-WORLD-0029",
         "R2A-SURFACE-CROSSPHASE-0001"
       ],
-      "semantic_review_summary": "`test_afqr_r1d_world_action_sensing.py` verifies World-family nontransfer, heterogeneous donor-pressure routing, source-local/quarantine/escalation behavior, and blocked downstream gates. It does not make donor anatomy, grids, action economies, cosmologies, sensing, or other package assumptions Astra defaults.",
+      "semantic_review_summary": "`test_afqr_r1d_world_action_sensing.py` verifies the accepted DEP-094 contact-targeting contract across AFQR-20 production, AFQR-19 target ownership, and sensing handoff boundaries, alongside World-family nontransfer, heterogeneous donor-pressure routing, source-local/quarantine/escalation behavior, and blocked downstream gates. It does not make donor anatomy, grids, action economies, cosmologies, sensing, or other package assumptions Astra defaults.",
       "source_local_pressure_class": "owner_boundary_pressure",
       "authority_effect": "maps_current_authority",
       "pressure_route": "none",
@@ -763,6 +773,19 @@
           "mapping_relationship": "governed by accepted surface",
           "authority_transfer_effect": "none",
           "evidence_note": "WORLD-0011 governs donor/source-local nonpromotion; World-family pressure coverage is not donor canon adoption."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0029",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 47,
+            "line_end": 49
+          },
+          "candidate_proposition": "The World test enforces DEP-094 contact production, AFQR-19 target ownership, and AFQR-20 sensing handoff boundaries.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0029 is the already-validated path-local test contract at this exact source span. This mapping records that existing implementation presupposition and grants no new semantic ownership or authority to the R2A-7 disposition."
         },
         {
           "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
