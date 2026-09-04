@@ -1,0 +1,853 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0055",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0434",
+      "partition_id": "R2A-7",
+      "path": "tests/test_plan_full_corpus_dry_run.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8265cc9c15e7ce7528c490d8a70662661eeb7e71",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "detection",
+        "handoff"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 2,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed plan full corpus dry run as conversion/handoff implementation or fixture validation. Its fields and statuses are pipeline mechanics, not doctrine, canon permission, or runtime truth."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_plan_full_corpus_dry_run.py` is plan full corpus dry run implementation/test evidence. The reviewed matches concern extraction, handoff, conversion, validation, or fixture mechanics rather than a current Astra semantic owner; the file is retained as implementation/conversion pressure only and does not authorize canon or runtime truth.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0435",
+      "partition_id": "R2A-7",
+      "path": "tests/test_pre_a01_control_layer_docs.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e5f0a0cdc6806f8923b7cded742257e44de5d618",
+      "controlled_match_count": 2,
+      "matched_terms": [
+        "conversion",
+        "handoff"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 70,
+          "line_end": 72,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in pre a01 control layer docs; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_pre_a01_control_layer_docs.py` checks the pre-A01 control-layer documents and decision-log tracking. Its substantive R2A relation is the explicit separation between control/work-order records and authoritative state/downstream authority; it maps CROSSPHASE-0001 without re-promoting PREA01/A00 material or creating a new owner.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 70,
+            "line_end": 72
+          },
+          "candidate_proposition": "pre a01 control layer docs keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 66,
+        "line_end": 66,
+        "source_status_summary": "The PREA01/A00 material is tracked as control-layer/work-order evidence; the test does not promote its registry entries into runtime state or new semantic ownership."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0436",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffold_pr_c.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "611f50c27abfbb6298c0d5b3edd68ab93f7e5a66",
+      "controlled_match_count": 37,
+      "matched_terms": [
+        "canon",
+        "contact",
+        "environment",
+        "hazard",
+        "knowledge",
+        "persistence",
+        "projection",
+        "runtime",
+        "schema",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 100,
+          "line_end": 102,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffold pr c; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 178,
+          "line_end": 180,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffold pr c; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffold_pr_c.py` validates remediation owner scaffold pr c as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 100,
+            "line_end": 102
+          },
+          "candidate_proposition": "remediation owner scaffold pr c preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 178,
+            "line_end": 180
+          },
+          "candidate_proposition": "remediation owner scaffold pr c keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 166,
+        "line_end": 166,
+        "source_status_summary": "remediation owner scaffold pr c is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0437",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffolds_pr_a.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "cf3e49eaa5c8f64967457e973d868aaa60825b69",
+      "controlled_match_count": 26,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "conversion",
+        "persistence",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 87,
+          "line_end": 89,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffolds pr a; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 143,
+          "line_end": 145,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffolds pr a; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffolds_pr_a.py` validates remediation owner scaffolds pr a as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 87,
+            "line_end": 89
+          },
+          "candidate_proposition": "remediation owner scaffolds pr a preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 143,
+            "line_end": 145
+          },
+          "candidate_proposition": "remediation owner scaffolds pr a keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 135,
+        "line_end": 135,
+        "source_status_summary": "remediation owner scaffolds pr a is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0438",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffolds_pr_b.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8349578f40a025fb9d1aa36ee667d6599ca58ce6",
+      "controlled_match_count": 31,
+      "matched_terms": [
+        "canon",
+        "commitment",
+        "hazard",
+        "healing",
+        "injury",
+        "persistence",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 122,
+          "line_end": 124,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffolds pr b; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 164,
+          "line_end": 166,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffolds pr b; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffolds_pr_b.py` validates remediation owner scaffolds pr b as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 122,
+            "line_end": 124
+          },
+          "candidate_proposition": "remediation owner scaffolds pr b preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 164,
+            "line_end": 166
+          },
+          "candidate_proposition": "remediation owner scaffolds pr b keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 154,
+        "line_end": 154,
+        "source_status_summary": "remediation owner scaffolds pr b is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0439",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffolds_pr_d.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "b49fae1a53ad7fb703ec597b2cdd4addca5bf148",
+      "controlled_match_count": 68,
+      "matched_terms": [
+        "canon",
+        "commit",
+        "commitment",
+        "conflict",
+        "dependency",
+        "environment",
+        "hazard",
+        "persistence",
+        "provenance",
+        "runtime",
+        "schema",
+        "storage",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 67,
+          "line_end": 69,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffolds pr d; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 228,
+          "line_end": 230,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffolds pr d; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffolds_pr_d.py` validates remediation owner scaffolds pr d as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 67,
+            "line_end": 69
+          },
+          "candidate_proposition": "remediation owner scaffolds pr d preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 228,
+            "line_end": 230
+          },
+          "candidate_proposition": "remediation owner scaffolds pr d keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 243,
+        "line_end": 243,
+        "source_status_summary": "remediation owner scaffolds pr d is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0440",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffolds_pr_e.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3d74ff4c8c4de80e9a30ae36d6f38989bc6c0792",
+      "controlled_match_count": 44,
+      "matched_terms": [
+        "action",
+        "belief",
+        "canon",
+        "commitment",
+        "contact",
+        "knowledge",
+        "persistence",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 136,
+          "line_end": 138,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffolds pr e; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 236,
+          "line_end": 238,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffolds pr e; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffolds_pr_e.py` validates remediation owner scaffolds pr e as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 136,
+            "line_end": 138
+          },
+          "candidate_proposition": "remediation owner scaffolds pr e preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 236,
+            "line_end": 238
+          },
+          "candidate_proposition": "remediation owner scaffolds pr e keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 221,
+        "line_end": 221,
+        "source_status_summary": "remediation owner scaffolds pr e is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0441",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffolds_pr_f.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "a94f8826b6f2e54bc36d0bbec6b425375fc6d829",
+      "controlled_match_count": 49,
+      "matched_terms": [
+        "branch",
+        "canon",
+        "commit",
+        "commitment",
+        "dependency",
+        "hazard",
+        "persistence",
+        "projection",
+        "provenance",
+        "replay",
+        "runtime",
+        "schema",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 55,
+          "line_end": 57,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffolds pr f; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 238,
+          "line_end": 240,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffolds pr f; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffolds_pr_f.py` validates remediation owner scaffolds pr f as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 55,
+            "line_end": 57
+          },
+          "candidate_proposition": "remediation owner scaffolds pr f preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 238,
+            "line_end": 240
+          },
+          "candidate_proposition": "remediation owner scaffolds pr f keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 220,
+        "line_end": 220,
+        "source_status_summary": "remediation owner scaffolds pr f is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0442",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_owner_scaffolds_pr_g.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "3058e71c45e9a3388b30728557f7e7a4778d6088",
+      "controlled_match_count": 27,
+      "matched_terms": [
+        "canon",
+        "commitment",
+        "identity",
+        "persistence",
+        "projection",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "storage",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 55,
+          "line_end": 57,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation owner scaffolds pr g; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 160,
+          "line_end": 162,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation owner scaffolds pr g; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_owner_scaffolds_pr_g.py` validates remediation owner scaffolds pr g as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 55,
+            "line_end": 57
+          },
+          "candidate_proposition": "remediation owner scaffolds pr g preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 160,
+            "line_end": 162
+          },
+          "candidate_proposition": "remediation owner scaffolds pr g keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 144,
+        "line_end": 144,
+        "source_status_summary": "remediation owner scaffolds pr g is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0443",
+      "partition_id": "R2A-7",
+      "path": "tests/test_remediation_scaffold_completion_review_stage2_plan.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ee0713dd6a57c5f4cb75a89281ceaf4d6415d4a4",
+      "controlled_match_count": 17,
+      "matched_terms": [
+        "action",
+        "canon",
+        "dependency",
+        "hazard",
+        "knowledge",
+        "persistence",
+        "provenance",
+        "recovery",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 140,
+          "line_end": 142,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in remediation scaffold completion review stage2 plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 55,
+          "line_end": 57,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in remediation scaffold completion review stage2 plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_remediation_scaffold_completion_review_stage2_plan.py` validates remediation scaffold completion review stage2 plan as Stage 2 owner-boundary planning/review rather than executable implementation. It routes responsibilities to named owners/backends while explicitly denying runtime/schema/canon/live-play/training authority. The file maps existing ownership and cross-phase boundaries; placeholders, future artifacts, and RT sequencing are not promoted into final runtime doctrine.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 140,
+            "line_end": 142
+          },
+          "candidate_proposition": "remediation scaffold completion review stage2 plan preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 55,
+            "line_end": 57
+          },
+          "candidate_proposition": "remediation scaffold completion review stage2 plan keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 46,
+        "line_end": 46,
+        "source_status_summary": "remediation scaffold completion review stage2 plan is owner-boundary planning/review material and explicitly remains non-executable; runtime/schema/canon/live-play/training implementation is not authorized."
+      }
+    }
+  ]
+}

@@ -1,0 +1,859 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0056",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0444",
+      "partition_id": "R2A-7",
+      "path": "tests/test_report_handoff_plan.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "43e484c02a36bf1eb2e7ea2620abb85d16d06d44",
+      "controlled_match_count": 10,
+      "matched_terms": [
+        "dependency",
+        "handoff"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 2,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed report handoff plan as conversion/handoff implementation or fixture validation. Its fields and statuses are pipeline mechanics, not doctrine, canon permission, or runtime truth."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_report_handoff_plan.py` is report handoff plan implementation/test evidence. The reviewed matches concern extraction, handoff, conversion, validation, or fixture mechanics rather than a current Astra semantic owner; the file is retained as implementation/conversion pressure only and does not authorize canon or runtime truth.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0445",
+      "partition_id": "R2A-7",
+      "path": "tests/test_review_full_corpus_preflight.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "792a5d1adf283667840610c0501ed95e856b8889",
+      "controlled_match_count": 8,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "handoff",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 103,
+          "line_end": 105,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in review full corpus preflight; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_review_full_corpus_preflight.py` is extraction/preflight tooling whose report explicitly separates routing/extraction evidence, conversion permission, and canon permission. That bounded separation maps CROSSPHASE-0001; lane selection, reports, and extraction heuristics remain implementation details.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 103,
+            "line_end": 105
+          },
+          "candidate_proposition": "review full corpus preflight keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0446",
+      "partition_id": "R2A-7",
+      "path": "tests/test_scaffold_conversion_intake_json.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c44a97e7d1ad053080eae65aa182e1f140eb98bb",
+      "controlled_match_count": 75,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "detection",
+        "handoff",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 62,
+          "line_end": 64,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed scaffold conversion intake json as conversion/handoff implementation or fixture validation. Its fields and statuses are pipeline mechanics, not doctrine, canon permission, or runtime truth."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_scaffold_conversion_intake_json.py` is scaffold conversion intake json implementation/test evidence. The reviewed matches concern extraction, handoff, conversion, validation, or fixture mechanics rather than a current Astra semantic owner; the file is retained as implementation/conversion pressure only and does not authorize canon or runtime truth.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0447",
+      "partition_id": "R2A-7",
+      "path": "tests/test_scan_generated_report_mojibake.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "862ee691bdbefcd99ff4673a8527176c902fe9d7",
+      "controlled_match_count": 1,
+      "matched_terms": [
+        "handoff"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 6,
+          "line_end": 8,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed scan generated report mojibake as technical test/tooling evidence. The controlled-search matches are implementation or test vocabulary without a material current-authority semantic relation."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_scan_generated_report_mojibake.py` is scan generated report mojibake implementation/test evidence. The reviewed matches concern extraction, handoff, conversion, validation, or fixture mechanics rather than a current Astra semantic owner; the file is retained as implementation/conversion pressure only and does not authorize canon or runtime truth.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0448",
+      "partition_id": "R2A-7",
+      "path": "tests/test_sm00_schema_math_mechanics_master_scope_and_sequencing_plan.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ff8b32f6c1ae0d1e6f852a8c92e2de9b92a84609",
+      "controlled_match_count": 62,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commitment",
+        "conflict",
+        "conversion",
+        "environment",
+        "evidence",
+        "hazard",
+        "injury",
+        "provenance",
+        "recovery",
+        "resolution",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 16,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in sm00 schema math mechanics master scope and sequencing plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 216,
+          "line_end": 218,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in sm00 schema math mechanics master scope and sequencing plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 122,
+          "line_end": 124,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in sm00 schema math mechanics master scope and sequencing plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_sm00_schema_math_mechanics_master_scope_and_sequencing_plan.py` validates sm00 schema math mechanics master scope and sequencing plan within the schema/math/pilot-control sequence. It keeps D-series/donor material draft or source-local, preserves owner routing, and explicitly blocks final mechanics, runtime/backend schemas, canon/sourcebook, live-play, and training promotion. The test therefore maps existing nontransfer/nonpromotion/cross-phase boundaries while remaining control evidence only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 18
+          },
+          "candidate_proposition": "sm00 schema math mechanics master scope and sequencing plan preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 216,
+            "line_end": 218
+          },
+          "candidate_proposition": "sm00 schema math mechanics master scope and sequencing plan rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 122,
+            "line_end": 124
+          },
+          "candidate_proposition": "sm00 schema math mechanics master scope and sequencing plan keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 205,
+        "line_end": 205,
+        "source_status_summary": "sm00 schema math mechanics master scope and sequencing plan is a schema/math/pilot-control artifact with explicit non-readiness/nonpromotion boundaries; it does not authorize runtime, canon, sourcebook, live-play, or training use."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0449",
+      "partition_id": "R2A-7",
+      "path": "tests/test_sm01_validation_schema_inventory_and_readiness_controls.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "73b0d6a5fc4159a8490c587a46a359d0c0a0063b",
+      "controlled_match_count": 58,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "evidence",
+        "provenance",
+        "runtime",
+        "schema"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in sm01 validation schema inventory and readiness controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 202,
+          "line_end": 204,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in sm01 validation schema inventory and readiness controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 138,
+          "line_end": 140,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in sm01 validation schema inventory and readiness controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_sm01_validation_schema_inventory_and_readiness_controls.py` validates sm01 validation schema inventory and readiness controls within the schema/math/pilot-control sequence. It keeps D-series/donor material draft or source-local, preserves owner routing, and explicitly blocks final mechanics, runtime/backend schemas, canon/sourcebook, live-play, and training promotion. The test therefore maps existing nontransfer/nonpromotion/cross-phase boundaries while remaining control evidence only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 14
+          },
+          "candidate_proposition": "sm01 validation schema inventory and readiness controls preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 202,
+            "line_end": 204
+          },
+          "candidate_proposition": "sm01 validation schema inventory and readiness controls rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 138,
+            "line_end": 140
+          },
+          "candidate_proposition": "sm01 validation schema inventory and readiness controls keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 139,
+        "line_end": 139,
+        "source_status_summary": "sm01 validation schema inventory and readiness controls is a schema/math/pilot-control artifact with explicit non-readiness/nonpromotion boundaries; it does not authorize runtime, canon, sourcebook, live-play, or training use."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0450",
+      "partition_id": "R2A-7",
+      "path": "tests/test_sm02_minimum_pilot_conversion_readiness_and_packet_validation_controls.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "480b7bbe5e233a971e9f581aa0d197882f2023b0",
+      "controlled_match_count": 53,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "identity",
+        "provenance",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 18,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in sm02 minimum pilot conversion readiness and packet validation controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 21,
+          "line_end": 23,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in sm02 minimum pilot conversion readiness and packet validation controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 34,
+          "line_end": 36,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in sm02 minimum pilot conversion readiness and packet validation controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_sm02_minimum_pilot_conversion_readiness_and_packet_validation_controls.py` validates sm02 minimum pilot conversion readiness and packet validation controls within the schema/math/pilot-control sequence. It keeps D-series/donor material draft or source-local, preserves owner routing, and explicitly blocks final mechanics, runtime/backend schemas, canon/sourcebook, live-play, and training promotion. The test therefore maps existing nontransfer/nonpromotion/cross-phase boundaries while remaining control evidence only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 20
+          },
+          "candidate_proposition": "sm02 minimum pilot conversion readiness and packet validation controls preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 21,
+            "line_end": 23
+          },
+          "candidate_proposition": "sm02 minimum pilot conversion readiness and packet validation controls rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 34,
+            "line_end": 36
+          },
+          "candidate_proposition": "sm02 minimum pilot conversion readiness and packet validation controls keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 19,
+        "line_end": 19,
+        "source_status_summary": "sm02 minimum pilot conversion readiness and packet validation controls is a schema/math/pilot-control artifact with explicit non-readiness/nonpromotion boundaries; it does not authorize runtime, canon, sourcebook, live-play, or training use."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0451",
+      "partition_id": "R2A-7",
+      "path": "tests/test_sm03_pilot_packet_fixture_and_dry_run_review_plan.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "dffbde86824cd215ceb893717572bc3b7a02827c",
+      "controlled_match_count": 64,
+      "matched_terms": [
+        "canon",
+        "condition",
+        "conversion",
+        "evidence",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 18,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in sm03 pilot packet fixture and dry run review plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 233,
+          "line_end": 235,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in sm03 pilot packet fixture and dry run review plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 228,
+          "line_end": 230,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in sm03 pilot packet fixture and dry run review plan; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_sm03_pilot_packet_fixture_and_dry_run_review_plan.py` validates sm03 pilot packet fixture and dry run review plan within the schema/math/pilot-control sequence. It keeps D-series/donor material draft or source-local, preserves owner routing, and explicitly blocks final mechanics, runtime/backend schemas, canon/sourcebook, live-play, and training promotion. The test therefore maps existing nontransfer/nonpromotion/cross-phase boundaries while remaining control evidence only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 20
+          },
+          "candidate_proposition": "sm03 pilot packet fixture and dry run review plan preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 233,
+            "line_end": 235
+          },
+          "candidate_proposition": "sm03 pilot packet fixture and dry run review plan rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 228,
+            "line_end": 230
+          },
+          "candidate_proposition": "sm03 pilot packet fixture and dry run review plan keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 234,
+        "line_end": 234,
+        "source_status_summary": "sm03 pilot packet fixture and dry run review plan is a schema/math/pilot-control artifact with explicit non-readiness/nonpromotion boundaries; it does not authorize runtime, canon, sourcebook, live-play, or training use."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0452",
+      "partition_id": "R2A-7",
+      "path": "tests/test_sm04_pilot_benchmark_and_evaluation_rubric_controls.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0cfa97e8c5f389ef665e48c28f8ac739e4a3345b",
+      "controlled_match_count": 95,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 18,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in sm04 pilot benchmark and evaluation rubric controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 309,
+          "line_end": 311,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in sm04 pilot benchmark and evaluation rubric controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 324,
+          "line_end": 326,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in sm04 pilot benchmark and evaluation rubric controls; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_sm04_pilot_benchmark_and_evaluation_rubric_controls.py` validates sm04 pilot benchmark and evaluation rubric controls within the schema/math/pilot-control sequence. It keeps D-series/donor material draft or source-local, preserves owner routing, and explicitly blocks final mechanics, runtime/backend schemas, canon/sourcebook, live-play, and training promotion. The test therefore maps existing nontransfer/nonpromotion/cross-phase boundaries while remaining control evidence only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 20
+          },
+          "candidate_proposition": "sm04 pilot benchmark and evaluation rubric controls preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 309,
+            "line_end": 311
+          },
+          "candidate_proposition": "sm04 pilot benchmark and evaluation rubric controls rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 324,
+            "line_end": 326
+          },
+          "candidate_proposition": "sm04 pilot benchmark and evaluation rubric controls keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 437,
+        "line_end": 437,
+        "source_status_summary": "sm04 pilot benchmark and evaluation rubric controls is a schema/math/pilot-control artifact with explicit non-readiness/nonpromotion boundaries; it does not authorize runtime, canon, sourcebook, live-play, or training use."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0453",
+      "partition_id": "R2A-7",
+      "path": "tests/test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5563e373d192827b16524e65e9ab0734641559bb",
+      "controlled_match_count": 88,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "identity",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 18,
+          "line_end": 20,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in sm05 actual pilot conversion authorization and preflight gate; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 261,
+          "line_end": 263,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in sm05 actual pilot conversion authorization and preflight gate; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 256,
+          "line_end": 258,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in sm05 actual pilot conversion authorization and preflight gate; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_sm05_actual_pilot_conversion_authorization_and_preflight_gate.py` validates sm05 actual pilot conversion authorization and preflight gate within the schema/math/pilot-control sequence. It keeps D-series/donor material draft or source-local, preserves owner routing, and explicitly blocks final mechanics, runtime/backend schemas, canon/sourcebook, live-play, and training promotion. The test therefore maps existing nontransfer/nonpromotion/cross-phase boundaries while remaining control evidence only.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 18,
+            "line_end": 20
+          },
+          "candidate_proposition": "sm05 actual pilot conversion authorization and preflight gate preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 261,
+            "line_end": 263
+          },
+          "candidate_proposition": "sm05 actual pilot conversion authorization and preflight gate rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 256,
+            "line_end": 258
+          },
+          "candidate_proposition": "sm05 actual pilot conversion authorization and preflight gate keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 446,
+        "line_end": 446,
+        "source_status_summary": "sm05 actual pilot conversion authorization and preflight gate is a schema/math/pilot-control artifact with explicit non-readiness/nonpromotion boundaries; it does not authorize runtime, canon, sourcebook, live-play, or training use."
+      }
+    }
+  ]
+}
