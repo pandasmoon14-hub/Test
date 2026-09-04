@@ -1,0 +1,1032 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0053",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0414",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c07_mission_scenario_adventure_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "9740b6629048b254dd645607a39f3982d400e9aa",
+      "controlled_match_count": 66,
+      "matched_terms": [
+        "action",
+        "branch",
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c07 mission scenario adventure record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 207,
+          "line_end": 209,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c07 mission scenario adventure record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 165,
+          "line_end": 167,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c07 mission scenario adventure record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c07_mission_scenario_adventure_record_schema.py` validates the Batch C c07 mission scenario adventure record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c07 mission scenario adventure record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 207,
+            "line_end": 209
+          },
+          "candidate_proposition": "c07 mission scenario adventure record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 165,
+            "line_end": 167
+          },
+          "candidate_proposition": "c07 mission scenario adventure record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 337,
+        "line_end": 337,
+        "source_status_summary": "The Batch C test keeps c07 mission scenario adventure record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0415",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c08_vehicle_ship_platform_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "b50caa130981880071d8756467f7878a7910649b",
+      "controlled_match_count": 60,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "runtime",
+        "schema",
+        "target",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c08 vehicle ship platform record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 200,
+          "line_end": 202,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c08 vehicle ship platform record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 154,
+          "line_end": 156,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c08 vehicle ship platform record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c08_vehicle_ship_platform_record_schema.py` validates the Batch C c08 vehicle ship platform record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c08 vehicle ship platform record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 200,
+            "line_end": 202
+          },
+          "candidate_proposition": "c08 vehicle ship platform record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 154,
+            "line_end": 156
+          },
+          "candidate_proposition": "c08 vehicle ship platform record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 359,
+        "line_end": 359,
+        "source_status_summary": "The Batch C test keeps c08 vehicle ship platform record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0416",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c09_hazard_environment_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "0f214e5f8dfed9757211023445a7bfbabdbe820c",
+      "controlled_match_count": 97,
+      "matched_terms": [
+        "action",
+        "canon",
+        "condition",
+        "contact",
+        "conversion",
+        "environment",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "resolution",
+        "runtime",
+        "schema",
+        "target",
+        "truth",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c09 hazard environment record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 179,
+          "line_end": 181,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c09 hazard environment record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 22,
+          "line_end": 24,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c09 hazard environment record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c09_hazard_environment_record_schema.py` validates the Batch C c09 hazard environment record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c09 hazard environment record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 179,
+            "line_end": 181
+          },
+          "candidate_proposition": "c09 hazard environment record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 22,
+            "line_end": 24
+          },
+          "candidate_proposition": "c09 hazard environment record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 321,
+        "line_end": 321,
+        "source_status_summary": "The Batch C test keeps c09 hazard environment record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0417",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c10_table_oracle_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "767315a99efe6f65ad144fcb8b84f79877b7165a",
+      "controlled_match_count": 55,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c10 table oracle record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 186,
+          "line_end": 188,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c10 table oracle record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 144,
+          "line_end": 146,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c10 table oracle record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c10_table_oracle_record_schema.py` validates the Batch C c10 table oracle record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c10 table oracle record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 186,
+            "line_end": 188
+          },
+          "candidate_proposition": "c10 table oracle record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 144,
+            "line_end": 146
+          },
+          "candidate_proposition": "c10 table oracle record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 304,
+        "line_end": 304,
+        "source_status_summary": "The Batch C test keeps c10 table oracle record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0418",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c11_companion_summon_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "da57de82d354ddd8a937e6506ec4d5c5ec47a914",
+      "controlled_match_count": 71,
+      "matched_terms": [
+        "action",
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c11 companion summon record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 213,
+          "line_end": 215,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c11 companion summon record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 168,
+          "line_end": 170,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c11 companion summon record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c11_companion_summon_record_schema.py` validates the Batch C c11 companion summon record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c11 companion summon record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 213,
+            "line_end": 215
+          },
+          "candidate_proposition": "c11 companion summon record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 168,
+            "line_end": 170
+          },
+          "candidate_proposition": "c11 companion summon record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 344,
+        "line_end": 344,
+        "source_status_summary": "The Batch C test keeps c11 companion summon record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0419",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c12_crafting_salvage_recipe_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "96fa0fa9f96ef47ce4434a5a53a082dfbeb26268",
+      "controlled_match_count": 78,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "process",
+        "provenance",
+        "recovery",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c12 crafting salvage recipe record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 222,
+          "line_end": 224,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c12 crafting salvage recipe record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 175,
+          "line_end": 177,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c12 crafting salvage recipe record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c12_crafting_salvage_recipe_record_schema.py` validates the Batch C c12 crafting salvage recipe record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c12 crafting salvage recipe record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 222,
+            "line_end": 224
+          },
+          "candidate_proposition": "c12 crafting salvage recipe record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 175,
+            "line_end": 177
+          },
+          "candidate_proposition": "c12 crafting salvage recipe record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 358,
+        "line_end": 358,
+        "source_status_summary": "The Batch C test keeps c12 crafting salvage recipe record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0420",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c13_map_diagram_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "961ba373925636272b5b5e751bae217f6a071b22",
+      "controlled_match_count": 64,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "hazard",
+        "lineage",
+        "provenance",
+        "runtime",
+        "schema",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c13 map diagram record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 202,
+          "line_end": 204,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c13 map diagram record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 160,
+          "line_end": 162,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c13 map diagram record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c13_map_diagram_record_schema.py` validates the Batch C c13 map diagram record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c13 map diagram record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 202,
+            "line_end": 204
+          },
+          "candidate_proposition": "c13 map diagram record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 160,
+            "line_end": 162
+          },
+          "candidate_proposition": "c13 map diagram record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 337,
+        "line_end": 337,
+        "source_status_summary": "The Batch C test keeps c13 map diagram record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0421",
+      "partition_id": "R2A-7",
+      "path": "tests/test_c14_source_local_setting_cosmology_record_schema.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f17b083280ac61200e0749e37ec9624c9c794234",
+      "controlled_match_count": 61,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "evidence",
+        "handoff",
+        "identity",
+        "lineage",
+        "provenance",
+        "runtime",
+        "schema",
+        "truth",
+        "world state"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in c14 source local setting cosmology record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 200,
+          "line_end": 202,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in c14 source local setting cosmology record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 138,
+          "line_end": 140,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in c14 source local setting cosmology record schema; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`test_c14_source_local_setting_cosmology_record_schema.py` validates the Batch C c14 source local setting cosmology record schema draft schema/control surface. It enforces inheritance/owner separation, rejects donor/source-local material as automatic Astra law, and blocks runtime/canon/sourcebook promotion. Those clauses map existing CORE/WORLD/CROSSPHASE boundaries; C-family field design remains draft schema work and acquires no runtime or canon ownership.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "r3_conformance",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "c14 source local setting cosmology record schema preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 200,
+            "line_end": 202
+          },
+          "candidate_proposition": "c14 source local setting cosmology record schema rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 138,
+            "line_end": 140
+          },
+          "candidate_proposition": "c14 source local setting cosmology record schema keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 316,
+        "line_end": 316,
+        "source_status_summary": "The Batch C test keeps c14 source local setting cosmology record schema in draft/non-promoted status; schema/test material is not promoted to runtime or canon authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0422",
+      "partition_id": "R2A-7",
+      "path": "tests/test_classification_heuristics.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d4ccbe8319fe62685257dd86af3838c5da76124e",
+      "controlled_match_count": 3,
+      "matched_terms": [
+        "conversion",
+        "detection",
+        "handoff"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 2,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed classification heuristics as technical test/tooling evidence. The controlled-search matches are implementation or test vocabulary without a material current-authority semantic relation."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_classification_heuristics.py` is classification heuristics implementation/test evidence. The reviewed matches concern extraction, handoff, conversion, validation, or fixture mechanics rather than a current Astra semantic owner; the file is retained as implementation/conversion pressure only and does not authorize canon or runtime truth.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0423",
+      "partition_id": "R2A-7",
+      "path": "tests/test_conversion_intake_results.py",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "f5572ab9e0defa13565dfe6c9fcf97bb849141b2",
+      "controlled_match_count": 33,
+      "matched_terms": [
+        "canon",
+        "conversion",
+        "detection",
+        "handoff",
+        "schema",
+        "target"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 23,
+          "line_end": 25,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed conversion intake results as conversion/handoff implementation or fixture validation. Its fields and statuses are pipeline mechanics, not doctrine, canon permission, or runtime truth."
+        }
+      ],
+      "disposition": "dismissed_after_semantic_review",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`test_conversion_intake_results.py` is conversion intake results implementation/test evidence. The reviewed matches concern extraction, handoff, conversion, validation, or fixture mechanics rather than a current Astra semantic owner; the file is retained as implementation/conversion pressure only and does not authorize canon or runtime truth.",
+      "source_local_pressure_class": "conversion_handoff_pressure",
+      "authority_effect": "implementation_presupposition_only",
+      "pressure_route": "later_gate",
+      "mapping_evidence": [],
+      "status_evidence": null
+    }
+  ]
+}

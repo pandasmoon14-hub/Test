@@ -1,0 +1,738 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0061",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0494",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-10/ARCH-02/adrs/AFQR-10_Epistemic_State_Observer_Relative_Truth.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e3cebb5861a059f9667782018c559e0ddf087c7e",
+      "controlled_match_count": 23,
+      "matched_terms": [
+        "action",
+        "belief",
+        "correction",
+        "epistemic",
+        "evidence",
+        "knowledge",
+        "projection",
+        "provenance",
+        "resolution",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "correction_retcon_supersession",
+        "evidence_and_provenance",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-10 Epistemic State Observer Relative Truth; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-AGENCY-0002 material relation in AFQR-10 Epistemic State Observer Relative Truth; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-AGENCY-0002"
+      ],
+      "semantic_review_summary": "`AFQR-10_Epistemic_State_Observer_Relative_Truth.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 8,
+            "line_end": 10
+          },
+          "candidate_proposition": "AFQR-10 Epistemic State Observer Relative Truth preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 8,
+            "line_end": 10
+          },
+          "candidate_proposition": "AFQR-10 Epistemic State Observer Relative Truth preserves the distinction between observed/visible/communicated/model-presented information and authoritative truth, belief, or knowledge.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 governs this epistemic boundary; sensing, visibility, communication, memory, or narration does not itself establish truth or knowledge."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 3,
+        "source_status_summary": "AFQR-10 Epistemic State Observer Relative Truth contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0495",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-11/ARCH-03/adrs/AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c52cf6c37debf39d6b7759cfdd30095e870ae7a3",
+      "controlled_match_count": 7,
+      "matched_terms": [
+        "action",
+        "epistemic",
+        "identity",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 15,
+          "line_end": 17,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-11 Agency Personhood Consent Control Responsibility; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "semantic_review_summary": "`AFQR-11_Agency_Personhood_Consent_Control_Responsibility.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 15,
+            "line_end": 17
+          },
+          "candidate_proposition": "AFQR-11 Agency Personhood Consent Control Responsibility preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 3,
+        "source_status_summary": "AFQR-11 Agency Personhood Consent Control Responsibility contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0496",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-12/ARCH-04/master/Astra_AFQR_12_Master_Ratification_v1_0.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "10e23cb83492e8b64b5d950225e82582b6a6bae1",
+      "controlled_match_count": 820,
+      "matched_terms": [
+        "action",
+        "belief",
+        "branch",
+        "canon",
+        "canonical",
+        "commit",
+        "commitment",
+        "condition",
+        "conflict",
+        "continuity",
+        "conversion",
+        "correction",
+        "dependency",
+        "detection",
+        "epistemic",
+        "evidence",
+        "fork",
+        "handoff",
+        "hazard",
+        "identity",
+        "knowledge",
+        "merge",
+        "persistence",
+        "process",
+        "projection",
+        "recovery",
+        "replay",
+        "resolution",
+        "rollback",
+        "runtime",
+        "schema",
+        "stale",
+        "supersede",
+        "target",
+        "transition",
+        "truth",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 47,
+          "line_end": 49,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in Astra AFQR 12 Master Ratification v1 0; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 60,
+          "line_end": 62,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in Astra AFQR 12 Master Ratification v1 0; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`Astra_AFQR_12_Master_Ratification_v1_0.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 47,
+            "line_end": 49
+          },
+          "candidate_proposition": "Astra AFQR 12 Master Ratification v1 0 preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 60,
+            "line_end": 62
+          },
+          "candidate_proposition": "Astra AFQR 12 Master Ratification v1 0 keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 5,
+        "source_status_summary": "Astra AFQR 12 Master Ratification v1 0 contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0497",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-13/ARCH-05/adrs/AFQR-13_Social_Relations_Trust_Reputation_Culture.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "b4e5845c1256dd7f6a9ebadb9bfbb2002bb50d86",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "contact",
+        "continuity",
+        "epistemic",
+        "identity"
+      ],
+      "matched_search_clusters": [
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 10,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-13 Social Relations Trust Reputation Culture; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "semantic_review_summary": "`AFQR-13_Social_Relations_Trust_Reputation_Culture.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 12
+          },
+          "candidate_proposition": "AFQR-13 Social Relations Trust Reputation Culture preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 3,
+        "source_status_summary": "AFQR-13 Social Relations Trust Reputation Culture contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0498",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/adrs/AFQR-14_Communication_Interpretation_Dialogue_Protocols.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5e3d0cc1a9e5e8145b4970055370ccc3e9ddf961",
+      "controlled_match_count": 5,
+      "matched_terms": [
+        "belief",
+        "commitment",
+        "epistemic",
+        "identity"
+      ],
+      "matched_search_clusters": [
+        "commitment_and_transition",
+        "identity_and_continuity",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 11,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-14 Communication Interpretation Dialogue Protocols; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 9,
+          "line_end": 11,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-AGENCY-0002 material relation in AFQR-14 Communication Interpretation Dialogue Protocols; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-AGENCY-0002"
+      ],
+      "semantic_review_summary": "`AFQR-14_Communication_Interpretation_Dialogue_Protocols.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 11
+          },
+          "candidate_proposition": "AFQR-14 Communication Interpretation Dialogue Protocols preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-AGENCY-0002",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 9,
+            "line_end": 11
+          },
+          "candidate_proposition": "AFQR-14 Communication Interpretation Dialogue Protocols preserves the distinction between observed/visible/communicated/model-presented information and authoritative truth, belief, or knowledge.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "AGENCY-0002 governs this epistemic boundary; sensing, visibility, communication, memory, or narration does not itself establish truth or knowledge."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0499",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-06/tests/artifact_manifest.yaml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "bc4c5ad1d7e96025f1fc5c10fe87e858411919ca",
+      "controlled_match_count": 2,
+      "matched_terms": [
+        "canonical",
+        "conversion"
+      ],
+      "matched_search_clusters": [
+        "canon_conversion_cross_phase"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 1,
+          "line_end": 3,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed artifact manifest as retained working supersession/corrected-baseline evidence. It is not a current semantic owner and is not promoted from the temporary working intake."
+        }
+      ],
+      "disposition": "historical_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`artifact_manifest.yaml` is retained only to document the AFQR-14 stale-manifest/corrected-baseline history inside the temporary working intake. It does not create current doctrine or ownership and is classified as historical context only.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "historical_context_only",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 1,
+        "line_end": 1,
+        "source_status_summary": "artifact manifest is retained only as supersession/corrected-baseline evidence inside the explicitly temporary non-authoritative working intake."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0500",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-14/ARCH-07/registries/afqr_14_corrected_baseline_note.yaml",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "7668ea53ace28b0d19db214ca933a95426ff89ef",
+      "controlled_match_count": 3,
+      "matched_terms": [
+        "dependency",
+        "stale"
+      ],
+      "matched_search_clusters": [
+        "dependency_and_revalidation"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 15,
+          "line_end": 17,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed afqr 14 corrected baseline note as retained working supersession/corrected-baseline evidence. It is not a current semantic owner and is not promoted from the temporary working intake."
+        }
+      ],
+      "disposition": "historical_only",
+      "mapped_surface_ids": [],
+      "semantic_review_summary": "`afqr_14_corrected_baseline_note.yaml` is retained only to document the AFQR-14 stale-manifest/corrected-baseline history inside the temporary working intake. It does not create current doctrine or ownership and is classified as historical context only.",
+      "source_local_pressure_class": "no_material_relation",
+      "authority_effect": "historical_context_only",
+      "pressure_route": "none",
+      "mapping_evidence": [],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 16,
+        "line_end": 16,
+        "source_status_summary": "afqr 14 corrected baseline note is retained only as supersession/corrected-baseline evidence inside the explicitly temporary non-authoritative working intake."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0501",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-15/ARCH-07/adrs/AFQR-15_Institutions_Governance_Law_Adjudication.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "bc8fadf0c9fca97ad91cdb99e1ebe93f321b1fae",
+      "controlled_match_count": 4,
+      "matched_terms": [
+        "continuity",
+        "evidence",
+        "identity",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-15 Institutions Governance Law Adjudication; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003"
+      ],
+      "semantic_review_summary": "`AFQR-15_Institutions_Governance_Law_Adjudication.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 14
+          },
+          "candidate_proposition": "AFQR-15 Institutions Governance Law Adjudication preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0502",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-16/ARCH-08/adrs/AFQR-16_Embodiment_Integrity_Harm_Recovery.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "5ebd644477f47eb586852016baa0aa4ee3908926",
+      "controlled_match_count": 26,
+      "matched_terms": [
+        "condition",
+        "contact",
+        "continuity",
+        "dependency",
+        "embodiment",
+        "epistemic",
+        "healing",
+        "identity",
+        "injury",
+        "recovery",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "identity_and_continuity",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-16 Embodiment Integrity Harm Recovery; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in AFQR-16 Embodiment Integrity Harm Recovery; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`AFQR-16_Embodiment_Integrity_Harm_Recovery.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 14
+          },
+          "candidate_proposition": "AFQR-16 Embodiment Integrity Harm Recovery preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 14
+          },
+          "candidate_proposition": "AFQR-16 Embodiment Integrity Harm Recovery rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        }
+      ],
+      "status_evidence": null
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0503",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-17/ARCH-09/adrs/AFQR-17_Environment_Processes_Hazards_Ecology.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "e6b05e2b20a0e3aaa17c396c83150d96bb4ad76d",
+      "controlled_match_count": 17,
+      "matched_terms": [
+        "commit",
+        "continuity",
+        "embodiment",
+        "environment",
+        "epistemic",
+        "hazard",
+        "injury",
+        "process",
+        "target",
+        "weather"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "commitment_and_transition",
+        "embodiment_injury_recovery",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 11,
+          "line_end": 13,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-17 Environment Processes Hazards Ecology; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 16,
+          "line_end": 18,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in AFQR-17 Environment Processes Hazards Ecology; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011"
+      ],
+      "semantic_review_summary": "`AFQR-17_Environment_Processes_Hazards_Ecology.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 11,
+            "line_end": 13
+          },
+          "candidate_proposition": "AFQR-17 Environment Processes Hazards Ecology preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 16,
+            "line_end": 18
+          },
+          "candidate_proposition": "AFQR-17 Environment Processes Hazards Ecology rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 3,
+        "line_end": 3,
+        "source_status_summary": "AFQR-17 Environment Processes Hazards Ecology contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    }
+  ]
+}

@@ -1,0 +1,1038 @@
+{
+  "artifact_id": "AFQR-R2A-7-REMAINING-DISPOSITION-SHARD-0060",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-7",
+  "authority_effect": "nonauthoritative_candidate_file_disposition",
+  "inspected_baseline_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+  "candidate_file_dispositions": [
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0484",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/README.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "d191a0d460d332b6b89f2f7117114f54e30b67e4",
+      "controlled_match_count": 9,
+      "matched_terms": [
+        "branch",
+        "canon",
+        "conversion",
+        "evidence",
+        "provenance",
+        "runtime",
+        "stale"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 12,
+          "line_end": 14,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in README; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 10,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in README; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`README.md` is the authority-boundary README for the AFQR working intake. It explicitly declares the tree temporary and non-authoritative, denies canon/runtime/conversion/implementation/sourcebook/model/live-play authority, and preserves AFQR-14/15 ownership separation. Those clauses map existing nontransfer/cross-phase surfaces; none of the contained donor-package ratification language self-promotes.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 12,
+            "line_end": 14
+          },
+          "candidate_proposition": "README preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 12
+          },
+          "candidate_proposition": "README keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 11,
+        "line_end": 11,
+        "source_status_summary": "The working AFQR intake tree explicitly declares every contained source temporary, non-authoritative working evidence with no canon/runtime/conversion/implementation/sourcebook/model/live-play authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0485",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-01/ARCH-01/adrs/AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "4ce8706decc699664014e2486ba0e95a38fc8b6a",
+      "controlled_match_count": 55,
+      "matched_terms": [
+        "atomic",
+        "canon",
+        "canonical",
+        "commit",
+        "commitment",
+        "compensation",
+        "evidence",
+        "handoff",
+        "identity",
+        "recovery",
+        "replay",
+        "resolution",
+        "rollback",
+        "runtime",
+        "schema",
+        "settlement",
+        "transition"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 10,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-01 Atomic State Transition Ownership Commitment Recovery and Replay; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 100,
+          "line_end": 102,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-01 Atomic State Transition Ownership Commitment Recovery and Replay; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-01_Atomic_State_Transition_Ownership_Commitment_Recovery_and_Replay.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 12
+          },
+          "candidate_proposition": "AFQR-01 Atomic State Transition Ownership Commitment Recovery and Replay preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 100,
+            "line_end": 102
+          },
+          "candidate_proposition": "AFQR-01 Atomic State Transition Ownership Commitment Recovery and Replay keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 4,
+        "source_status_summary": "AFQR-01 Atomic State Transition Ownership Commitment Recovery and Replay contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0486",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-02/ARCH-01/adrs/AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "c6bfc2e8dd3e031a8a19f127fab651abab7c993b",
+      "controlled_match_count": 22,
+      "matched_terms": [
+        "action",
+        "canon",
+        "commit",
+        "compensation",
+        "evidence",
+        "handoff",
+        "identity",
+        "invalidate",
+        "persistence",
+        "resolution",
+        "runtime",
+        "stale",
+        "target",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "correction_retcon_supersession",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 93,
+          "line_end": 95,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-02 Command Identity Attempts Retries Suspension Escalation and Durable Progress; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 95,
+          "line_end": 97,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-02 Command Identity Attempts Retries Suspension Escalation and Durable Progress; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-02_Command_Identity_Attempts_Retries_Suspension_Escalation_and_Durable_Progress.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 93,
+            "line_end": 95
+          },
+          "candidate_proposition": "AFQR-02 Command Identity Attempts Retries Suspension Escalation and Durable Progress preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 95,
+            "line_end": 97
+          },
+          "candidate_proposition": "AFQR-02 Command Identity Attempts Retries Suspension Escalation and Durable Progress keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 4,
+        "source_status_summary": "AFQR-02 Command Identity Attempts Retries Suspension Escalation and Durable Progress contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0487",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-03/ARCH-01/adrs/AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8ffa1e56dc5dc46736e1628ae899cff2d8bc5347",
+      "controlled_match_count": 35,
+      "matched_terms": [
+        "action",
+        "branch",
+        "canon",
+        "detection",
+        "environment",
+        "handoff",
+        "identity",
+        "projection",
+        "runtime",
+        "schema",
+        "target",
+        "visibility"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "environmental_state_process",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "sensing_contact_visibility",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 7,
+          "line_end": 9,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-03 Action Representation Capability Affordance Method Selection and Bounded Plans; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 94,
+          "line_end": 96,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-03 Action Representation Capability Affordance Method Selection and Bounded Plans; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-03_Action_Representation_Capability_Affordance_Method_Selection_and_Bounded_Plans.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 7,
+            "line_end": 9
+          },
+          "candidate_proposition": "AFQR-03 Action Representation Capability Affordance Method Selection and Bounded Plans preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 94,
+            "line_end": 96
+          },
+          "candidate_proposition": "AFQR-03 Action Representation Capability Affordance Method Selection and Bounded Plans keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 4,
+        "source_status_summary": "AFQR-03 Action Representation Capability Affordance Method Selection and Bounded Plans contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0488",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-04/ARCH-01/adrs/AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "db1ae6b377b3acf4492d1164b99605ca15667901",
+      "controlled_match_count": 33,
+      "matched_terms": [
+        "action",
+        "branch",
+        "canon",
+        "commit",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "initiative",
+        "replay",
+        "reservation",
+        "resolution",
+        "runtime",
+        "schema",
+        "settlement",
+        "temporal"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "time_and_causality"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 10,
+          "line_end": 12,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 64,
+          "line_end": 66,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 94,
+          "line_end": 96,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-04_Logical_Time_Simultaneity_Causal_Ordering_Scheduled_Effects_and_Bounded_Cascades.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 10,
+            "line_end": 12
+          },
+          "candidate_proposition": "AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 64,
+            "line_end": 66
+          },
+          "candidate_proposition": "AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 94,
+            "line_end": 96
+          },
+          "candidate_proposition": "AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 4,
+        "source_status_summary": "AFQR-04 Logical Time Simultaneity Causal Ordering Scheduled Effects and Bounded Cascades contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0489",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-05/ARCH-01/adrs/AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "ba2ac388ee01eb820b981dd75ed970cc266db705",
+      "controlled_match_count": 10,
+      "matched_terms": [
+        "canon",
+        "commit",
+        "conflict",
+        "dependency",
+        "handoff",
+        "identity",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "identity_and_continuity",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 54,
+          "line_end": 56,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-05 Cross System Interfaces Adapters Bridges Hyperedges and Compatibility; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 101,
+          "line_end": 103,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-05 Cross System Interfaces Adapters Bridges Hyperedges and Compatibility; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-05_Cross_System_Interfaces_Adapters_Bridges_Hyperedges_and_Compatibility.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 54,
+            "line_end": 56
+          },
+          "candidate_proposition": "AFQR-05 Cross System Interfaces Adapters Bridges Hyperedges and Compatibility preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 101,
+            "line_end": 103
+          },
+          "candidate_proposition": "AFQR-05 Cross System Interfaces Adapters Bridges Hyperedges and Compatibility keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 5,
+        "source_status_summary": "AFQR-05 Cross System Interfaces Adapters Bridges Hyperedges and Compatibility contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0490",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-06/ARCH-01/adrs/AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "8075def598cc646fd4a467ee32b17a17b9d31f46",
+      "controlled_match_count": 26,
+      "matched_terms": [
+        "canon",
+        "conflict",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "projection",
+        "replay",
+        "runtime"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "dependency_and_revalidation",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 8,
+          "line_end": 10,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-06 Claim Discovery Admissibility Conflict Arbitration Choice and Hidden Evidence; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 109,
+          "line_end": 111,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-06 Claim Discovery Admissibility Conflict Arbitration Choice and Hidden Evidence; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-06_Claim_Discovery_Admissibility_Conflict_Arbitration_Choice_and_Hidden_Evidence.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 8,
+            "line_end": 10
+          },
+          "candidate_proposition": "AFQR-06 Claim Discovery Admissibility Conflict Arbitration Choice and Hidden Evidence preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 109,
+            "line_end": 111
+          },
+          "candidate_proposition": "AFQR-06 Claim Discovery Admissibility Conflict Arbitration Choice and Hidden Evidence keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 5,
+        "source_status_summary": "AFQR-06 Claim Discovery Admissibility Conflict Arbitration Choice and Hidden Evidence contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0491",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-07/ARCH-01/adrs/AFQR-07_Cross_Domain_Conservation_Conversion_Validity_Reservation_Settlement_and_Arbitrage_Prevention.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "17b16a48c9f407fe4b13bc5e21a1606983752f83",
+      "controlled_match_count": 66,
+      "matched_terms": [
+        "action",
+        "atomic",
+        "canon",
+        "canonical",
+        "commit",
+        "conservation",
+        "conversion",
+        "dependency",
+        "escrow",
+        "handoff",
+        "identity",
+        "release",
+        "reservation",
+        "resolution",
+        "revalidate",
+        "runtime",
+        "settlement"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 22,
+          "line_end": 24,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 7,
+          "line_end": 9,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-WORLD-0011 material relation in AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 111,
+          "line_end": 113,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-WORLD-0011",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-07_Cross_Domain_Conservation_Conversion_Validity_Reservation_Settlement_and_Arbitrage_Prevention.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 22,
+            "line_end": 24
+          },
+          "candidate_proposition": "AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-WORLD-0011",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 7,
+            "line_end": 9
+          },
+          "candidate_proposition": "AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention rejects donor/source-local mechanics or package assumptions as universal Astra defaults and keeps them draft, profile-local, source-local, quarantined, or otherwise non-promoted.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "WORLD-0011 governs donor nonpromotion. Donor mechanics, cosmology, action cadence, grids, resources, and related source-local assumptions cannot become Astra law merely because this candidate references or structures them."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 111,
+            "line_end": 113
+          },
+          "candidate_proposition": "AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 4,
+        "line_end": 4,
+        "source_status_summary": "AFQR-07 Cross Domain Conservation Conversion Validity Reservation Settlement and Arbitrage Prevention contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0492",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-08/ARCH-01/adrs/AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "356b1a8e66865f7d7c3a3a1271d32aa20a393649",
+      "controlled_match_count": 78,
+      "matched_terms": [
+        "branch",
+        "canon",
+        "canonical",
+        "commit",
+        "continuity",
+        "conversion",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "incarnation",
+        "lineage",
+        "persistence",
+        "process",
+        "projection",
+        "provenance",
+        "replay",
+        "runtime",
+        "stale"
+      ],
+      "matched_search_clusters": [
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "environmental_state_process",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 53,
+          "line_end": 55,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-08 Identity Continuity Copying Transformation Proxyhood Reinstantiation Fusion Fission and Contextual Equivalence; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 117,
+          "line_end": 119,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-08 Identity Continuity Copying Transformation Proxyhood Reinstantiation Fusion Fission and Contextual Equivalence; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-08_Identity_Continuity_Copying_Transformation_Proxyhood_Reinstantiation_Fusion_Fission_and_Contextual_Equivalence.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 53,
+            "line_end": 55
+          },
+          "candidate_proposition": "AFQR-08 Identity Continuity Copying Transformation Proxyhood Reinstantiation Fusion Fission and Contextual Equivalence preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 117,
+            "line_end": 119
+          },
+          "candidate_proposition": "AFQR-08 Identity Continuity Copying Transformation Proxyhood Reinstantiation Fusion Fission and Contextual Equivalence keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 5,
+        "source_status_summary": "AFQR-08 Identity Continuity Copying Transformation Proxyhood Reinstantiation Fusion Fission and Contextual Equivalence contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    },
+    {
+      "candidate_file_id": "R2A-DISPOSITION-R7-0493",
+      "partition_id": "R2A-7",
+      "path": "working/afqr_consolidation_inputs/extracted/AFQR-09/ARCH-01/adrs/AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md",
+      "inspected_commit": "62e1565ed598345901e92dc04f3b686281418d83",
+      "baseline_blob_sha": "bdae21347c26dd97fcd8d50f806b7d20f16babe8",
+      "controlled_match_count": 61,
+      "matched_terms": [
+        "atomic",
+        "canon",
+        "canonical",
+        "commit",
+        "condition",
+        "continuity",
+        "dependency",
+        "evidence",
+        "handoff",
+        "identity",
+        "lineage",
+        "merge",
+        "projection",
+        "provenance",
+        "replay",
+        "reservation",
+        "runtime",
+        "target",
+        "transition",
+        "truth"
+      ],
+      "matched_search_clusters": [
+        "action_conflict_targeting",
+        "branch_fork_merge_replay",
+        "canon_conversion_cross_phase",
+        "commitment_and_transition",
+        "dependency_and_revalidation",
+        "embodiment_injury_recovery",
+        "evidence_and_provenance",
+        "identity_and_continuity",
+        "reservation_settlement_conservation",
+        "runtime_storage_serialization",
+        "truth_knowledge_belief_projection"
+      ],
+      "representative_locators": [
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 69,
+          "line_end": 71,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CORE-0003 material relation in AFQR-09 Dependency Revocation Inheritance Termination Migration Orphaning and Cascading Consequence; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        },
+        {
+          "locator_kind": "line_range_only",
+          "locator_value": null,
+          "line_start": 148,
+          "line_end": 150,
+          "matched_terms": [],
+          "matched_search_clusters": [],
+          "semantic_review_note": "Reviewed the R2A-SURFACE-CROSSPHASE-0001 material relation in AFQR-09 Dependency Revocation Inheritance Termination Migration Orphaning and Cascading Consequence; the cited language is treated only as evidence of an existing accepted Astra boundary and transfers no authority to this candidate."
+        }
+      ],
+      "disposition": "mixed_mapped_and_dismissed",
+      "mapped_surface_ids": [
+        "R2A-SURFACE-CORE-0003",
+        "R2A-SURFACE-CROSSPHASE-0001"
+      ],
+      "semantic_review_summary": "`AFQR-09_Dependency_Revocation_Inheritance_Termination_Migration_Orphaning_and_Cascading_Consequence.md` is a selected/proposed AFQR decision text preserved inside the explicitly temporary non-authoritative working intake. Only propositions that exactly restate accepted Astra nontransfer/nonpromotion/epistemic/cross-phase boundaries are mapped; its broader architecture, contract names, ratification labels, and downstream unlock claims remain working evidence and are not adopted by R2A-7.",
+      "source_local_pressure_class": "owner_boundary_pressure",
+      "authority_effect": "maps_current_authority",
+      "pressure_route": "none",
+      "mapping_evidence": [
+        {
+          "mapped_surface_id": "R2A-SURFACE-CORE-0003",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 69,
+            "line_end": 71
+          },
+          "candidate_proposition": "AFQR-09 Dependency Revocation Inheritance Termination Migration Orphaning and Cascading Consequence preserves bounded semantic ownership/owner handoffs and does not let coordination, planning, schemas, tests, or downstream consumers acquire another domain's semantic ownership.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CORE-0003 governs semantic-ownership nontransfer. This candidate may describe or test owner handoffs, but the file itself does not become the semantic owner."
+        },
+        {
+          "mapped_surface_id": "R2A-SURFACE-CROSSPHASE-0001",
+          "candidate_locator": {
+            "locator_kind": "line_range_only",
+            "locator_value": null,
+            "line_start": 148,
+            "line_end": 150
+          },
+          "candidate_proposition": "AFQR-09 Dependency Revocation Inheritance Termination Migration Orphaning and Cascading Consequence keeps conversion/canon/runtime or other downstream authority distinct and denies promotion or execution authority by implication.",
+          "mapping_relationship": "governed by accepted surface",
+          "authority_transfer_effect": "none",
+          "evidence_note": "CROSSPHASE-0001 governs this phase/authority separation; handoff, review, schema, planning, or working evidence does not manufacture canon, conversion, or runtime-truth ownership."
+        }
+      ],
+      "status_evidence": {
+        "locator_kind": "line_range_only",
+        "locator_value": null,
+        "line_start": 5,
+        "line_end": 5,
+        "source_status_summary": "AFQR-09 Dependency Revocation Inheritance Termination Migration Orphaning and Cascading Consequence contains donor-package ratification/proposal language, but within this repository path it remains temporary non-authoritative working evidence and cannot self-promote over current Astra authority."
+      }
+    }
+  ]
+}

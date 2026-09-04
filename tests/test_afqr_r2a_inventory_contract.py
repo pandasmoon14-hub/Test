@@ -2876,3 +2876,476 @@ def _r2a7_completion_0403_scope_is_exact_and_bounded():
 test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes = (
     _r2a7_completion_0403_scope_is_exact_and_bounded
 )
+
+# ---------------------------------------------------------------------------
+# Final certified R2A-7 completion live-posture override through R7-0507.
+# Historical R2A-7 scope bodies above remain accepted provenance. This block
+# rebinds only the live bounded-change assertion for the final R2A-7 closeout.
+# ---------------------------------------------------------------------------
+
+R2A7_FINAL_COMPLETION_BASE = "ff01a35704067095ab01c01c977a7239fc51ec40"
+R2A7_FINAL_MANIFEST_VERSION = "0.2.14"
+R2A7_FINAL_SHARD_COUNT = 62
+R2A7_FINAL_STATUS = "complete"
+R2A7_FINAL_EXPECTED_CHANGED_PATHS = {
+    "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
+    "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+    "tests/test_afqr_r2a7_deterministic_stream_repair.py",
+    "tests/test_afqr_r2a_inventory_contract.py",
+    *{
+        "docs/doctrine/reviews/r2a/dispositions_remaining/"
+        f"dispositions_{number:04d}.yaml"
+        for number in range(52, 63)
+    },
+}
+
+
+def _r2a7_final_changed_paths():
+    committed = _git_names("diff", "--name-only", f"{R2A7_FINAL_COMPLETION_BASE}...HEAD")
+    unstaged = _git_names("diff", "--name-only")
+    staged = _git_names("diff", "--cached", "--name-only")
+    untracked = _git_names("ls-files", "--others", "--exclude-standard")
+    return committed | unstaged | staged | untracked
+
+
+def _r2a7_final_deleted_paths():
+    deleted = set()
+    for args in (
+        ("diff", "--name-status", f"{R2A7_FINAL_COMPLETION_BASE}...HEAD"),
+        ("diff", "--name-status"),
+        ("diff", "--cached", "--name-status"),
+    ):
+        output = subprocess.check_output(["git", *args], cwd=ROOT, text=True)
+        for line in output.splitlines():
+            if line.startswith("D\t"):
+                deleted.add(line.split("\t", 1)[1])
+    return deleted
+
+
+def _r2a7_final_additions_and_binary():
+    additions = 0
+    binary = False
+    seen = set()
+    for args in (
+        ("diff", "--numstat", f"{R2A7_FINAL_COMPLETION_BASE}...HEAD"),
+        ("diff", "--numstat"),
+        ("diff", "--cached", "--numstat"),
+    ):
+        output = subprocess.check_output(["git", *args], cwd=ROOT, text=True)
+        for line in output.splitlines():
+            left, _right, path = line.split("\t", 2)
+            if path in seen:
+                continue
+            seen.add(path)
+            if left == "-":
+                binary = True
+            else:
+                additions += int(left)
+    for relative in _git_names("ls-files", "--others", "--exclude-standard"):
+        if relative in seen:
+            continue
+        raw = (ROOT / relative).read_bytes()
+        if b"\0" in raw:
+            binary = True
+        else:
+            additions += len(raw.splitlines())
+    return additions, binary
+
+
+def _r2a7_final_completion_scope_is_exact_and_bounded():
+    subprocess.check_call(
+        ["git", "merge-base", "--is-ancestor", R2A7_FINAL_COMPLETION_BASE, "HEAD"],
+        cwd=ROOT,
+    )
+    for number in range(1, 52):
+        relative = (
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+        )
+        assert git_blob(R2A7_FINAL_COMPLETION_BASE, relative) == (ROOT / relative).read_bytes()
+
+    changed = _r2a7_final_changed_paths()
+    assert changed == R2A7_FINAL_EXPECTED_CHANGED_PATHS
+    assert len(changed) == 15
+    assert not any(path.startswith(("src/", "schemas/", "tests/runtime/")) for path in changed)
+    assert _r2a7_final_deleted_paths() == set()
+    additions, binary = _r2a7_final_additions_and_binary()
+    assert not binary
+    assert additions <= 16000
+
+    document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+    row = r2a7_capacity_row(document)
+    assert document["artifact_version"] == R2A7_FINAL_MANIFEST_VERSION
+    assert document["status"] == "active_incomplete"
+    assert row["status"] == R2A7_FINAL_STATUS
+    assert row["maximum_changed_files"] == 51
+    assert row["maximum_additions"] == 16000
+    assert row["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 63)
+        ],
+    ]
+    by_partition = {item["partition_id"]: item for item in document["partitions"]}
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+    index_path = ROOT / "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
+    assert index_path.is_file()
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    assert index["status"] == "complete"
+    assert index["candidate_file_count"] == 507
+    assert not (ROOT / "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml").exists()
+
+
+# Rebind only the live R2A-7 scope assertion. Historical bodies remain intact.
+test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes = (
+    _r2a7_final_completion_scope_is_exact_and_bounded
+)
+
+# ---------------------------------------------------------------------------
+# Final R2A-7 inventory successor-binding repair.
+#
+# Capacity-era function bodies above are retained as historical provenance.
+# Their live pytest names are rebound here because final R2A-7 completion
+# lawfully changes the manifest checkpoint from active_incomplete to complete
+# and materializes the final index plus shards 0052..0062.
+# ---------------------------------------------------------------------------
+
+
+def _r2a7_final_expected_historical_statuses():
+    return {
+        f"R2A-{number}": (
+            "complete" if number <= 6 else "planned_not_present"
+        )
+        for number in range(1, 13)
+    }
+
+
+def _r2a7_final_manifest_is_valid(document):
+    try:
+        base = r2a7_tranche_a_manifest()
+
+        if document["artifact_id"] != "AFQR-R2A-PARTITION-MANIFEST-001":
+            return False
+        if document["artifact_version"] != R2A7_FINAL_MANIFEST_VERSION:
+            return False
+        if document["status"] != "active_incomplete":
+            return False
+        if document["partition_count"] != 12:
+            return False
+
+        if [
+            row["partition_id"]
+            for row in document["partitions"]
+        ] != [
+            row["partition_id"]
+            for row in base["partitions"]
+        ]:
+            return False
+
+        for field in (
+            "disposition_precedence",
+            "disposition_rules",
+            "generated_vendor_exclusion_patterns",
+            "coordination_domain_ownership",
+            "coordination_must_not_own",
+            "sharding",
+        ):
+            if document["ownership_rules"][field] != base["ownership_rules"][field]:
+                return False
+
+        before_by_id = {
+            row["partition_id"]: row
+            for row in base["partitions"]
+        }
+        after_by_id = {
+            row["partition_id"]: row
+            for row in document["partitions"]
+        }
+
+        for partition_id, after in after_by_id.items():
+            before = before_by_id[partition_id]
+            if partition_id != "R2A-7" and after != before:
+                return False
+
+        row = after_by_id["R2A-7"]
+        base_row = before_by_id["R2A-7"]
+
+        for field in (
+            "title",
+            "owned_artifact_types",
+            "dependency_partitions",
+            "maximum_additions",
+            "artifact_layout",
+            "gate_effect",
+            "completion_condition",
+            "prohibited_work",
+            "candidate_path_patterns",
+        ):
+            if row[field] != base_row[field]:
+                return False
+
+        if row["status"] != "complete":
+            return False
+        if row["maximum_changed_files"] != 51:
+            return False
+        if row["maximum_additions"] != 16000:
+            return False
+        if row["planned_artifact_paths"] != [
+            "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+            *[
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                f"dispositions_{number:04d}.yaml"
+                for number in range(1, 63)
+            ],
+        ]:
+            return False
+
+        if after_by_id["R2A-8"]["status"] != "planned_not_present":
+            return False
+
+        return True
+
+    except (KeyError, StopIteration, TypeError):
+        return False
+
+
+def test_r2a7_final_preserves_structural_authority():
+    current_document = json.loads(
+        PARTITIONS.read_text(encoding="utf-8")
+    )
+    assert _r2a7_final_manifest_is_valid(current_document)
+
+    historical_expected = _r2a7_final_expected_historical_statuses()
+    current_expected = dict(historical_expected)
+    current_expected["R2A-7"] = "complete"
+
+    contract, clusters, file_manifest = map(
+        lambda path: json.loads(path.read_text(encoding="utf-8")),
+        (CONTRACT, CLUSTERS, FILES),
+    )
+
+    assert contract["r2a_partition_statuses"] == historical_expected
+    assert clusters["r2a_partition_statuses"] == historical_expected
+    assert {
+        row["partition_id"]: row["current_status"]
+        for row in file_manifest["r2a_reconstruction_sequence"]
+    } == historical_expected
+
+    assert {
+        row["partition_id"]: row["status"]
+        for row in current_document["partitions"]
+    } == current_expected
+
+    assert contract["project_posture"]["R2A"] == "active_incomplete"
+    assert contract["project_posture"]["R2B"] == "blocked"
+
+
+def test_r2a7_final_exact_manifest_and_posture():
+    document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+    assert _r2a7_final_manifest_is_valid(document)
+
+    row = r2a7_capacity_row(document)
+
+    assert (
+        document["artifact_id"],
+        document["artifact_version"],
+        document["partition_count"],
+    ) == (
+        "AFQR-R2A-PARTITION-MANIFEST-001",
+        "0.2.14",
+        12,
+    )
+
+    assert (
+        row["status"],
+        row["dependency_partitions"],
+        row["candidate_path_patterns"],
+    ) == (
+        "complete",
+        ["R2A-6"],
+        ["**"],
+    )
+
+    assert (
+        row["maximum_changed_files"],
+        row["maximum_additions"],
+    ) == (
+        51,
+        16000,
+    )
+
+    assert row["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 63)
+        ],
+    ]
+
+    root = ROOT / "docs/doctrine/reviews/r2a/dispositions_remaining"
+
+    materialized_shards = {
+        path.relative_to(ROOT).as_posix()
+        for path in root.glob("dispositions_*.yaml")
+        if path.is_file()
+    }
+
+    assert materialized_shards == {
+        "docs/doctrine/reviews/r2a/dispositions_remaining/"
+        f"dispositions_{number:04d}.yaml"
+        for number in range(1, 63)
+    }
+
+    all_materialized = {
+        path.relative_to(ROOT).as_posix()
+        for path in root.rglob("*")
+        if path.is_file()
+    }
+
+    assert all_materialized == {
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *materialized_shards,
+    }
+
+    index = json.loads(
+        (root / "index.yaml").read_text(encoding="utf-8")
+    )
+    assert index["status"] == "complete"
+    assert index["candidate_file_count"] == 507
+    assert len(index["shards"]) == 62
+
+    by_partition = {
+        item["partition_id"]: item
+        for item in document["partitions"]
+    }
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+    assert not (
+        ROOT
+        / "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml"
+    ).exists()
+
+
+def test_r2a7_final_mutation_resistance():
+    document = json.loads(PARTITIONS.read_text(encoding="utf-8"))
+    assert _r2a7_final_manifest_is_valid(document)
+
+    mutations = []
+
+    for field, value in (
+        ("maximum_changed_files", 50),
+        ("maximum_changed_files", 52),
+        ("maximum_additions", 15999),
+        ("maximum_additions", 16001),
+        ("status", "active_incomplete"),
+        ("status", "planned_not_present"),
+    ):
+        bad = copy.deepcopy(document)
+        r2a7_capacity_row(bad)[field] = value
+        mutations.append(bad)
+
+    for operation in (
+        "remove_shard",
+        "add_shard",
+        "replace_shard",
+        "remove_index",
+    ):
+        bad = copy.deepcopy(document)
+        paths = r2a7_capacity_row(bad)["planned_artifact_paths"]
+
+        if operation == "remove_shard":
+            paths.remove(
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                "dispositions_0062.yaml"
+            )
+        elif operation == "add_shard":
+            paths.append(
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                "dispositions_0063.yaml"
+            )
+        elif operation == "replace_shard":
+            paths[-1] = (
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                "unplanned.yaml"
+            )
+        else:
+            paths.remove(
+                "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
+            )
+
+        mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    bad["artifact_version"] = "0.2.13"
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    r2a7_capacity_row(bad)["dependency_partitions"] = ["R2A-5"]
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    r2a7_capacity_row(bad)["candidate_path_patterns"] = ["docs/**"]
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    bad["ownership_rules"]["disposition_precedence"] = [
+        "R2A-5", "R2A-4", "R2A-6", "R2A-7"
+    ]
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    r2a7_capacity_row(bad)["gate_effect"] += " Gate advances."
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    r2a7_capacity_row(bad)["prohibited_work"].pop()
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    bad["partition_count"] = 13
+    mutations.append(bad)
+
+    bad = copy.deepcopy(document)
+    next(
+        row
+        for row in bad["partitions"]
+        if row["partition_id"] == "R2A-8"
+    )["status"] = "active_incomplete"
+    mutations.append(bad)
+
+    assert all(
+        not _r2a7_final_manifest_is_valid(bad)
+        for bad in mutations
+    )
+
+
+test_r2a7_capacity_preserves_structural_authority = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a7_capacity_exact_manifest_and_posture = (
+    test_r2a7_final_exact_manifest_and_posture
+)
+test_r2a7_capacity_mutation_resistance = (
+    test_r2a7_final_mutation_resistance
+)
+
+test_r2a6_status_versions_posture_and_future_boundary = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a6_capacity_preserves_r2a5_current_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a6_capacity_successor_name_has_unmodified_current_partitions = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a5_completed_status_and_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a4_completed_status_and_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a4_exact_base_scope_status_and_posture = (
+    test_r2a7_final_preserves_structural_authority
+)

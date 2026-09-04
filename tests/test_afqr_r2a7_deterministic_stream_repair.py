@@ -2207,3 +2207,271 @@ def test_certified_completion_progress_through_r7_0403():
         record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
         for record in records
     )
+
+# ---------------------------------------------------------------------------
+# Final certified R2A-7 completion through R7-0507.
+#
+# Historical checkpoint bodies above remain accepted provenance. This block
+# advances only the live deterministic R2A-7 stream and closes that partition;
+# it does not advance R2A-8 or R2A as a whole.
+# ---------------------------------------------------------------------------
+
+import hashlib as _r2a7_final_hashlib
+
+R2A7_FINAL_COMPLETION_BASE = "ff01a35704067095ab01c01c977a7239fc51ec40"
+R2A7_FINAL_LAST_SHARD = 62
+R2A7_FINAL_LAST_ID = 507
+R2A7_FINAL_SEMANTIC_DIGEST = "3d01e80465bb54e3cc17faa14dded19903b0102a5b4566915fc73a3c59d6b338"
+
+
+def _r2a7_final_records():
+    records = []
+    for number in range(1, R2A7_FINAL_LAST_SHARD + 1):
+        path = DISPOSITIONS / f"dispositions_{number:04d}.yaml"
+        assert path.is_file()
+        document = json.loads(path.read_text(encoding="utf-8"))
+        records.extend(document["candidate_file_dispositions"])
+    return records
+
+
+def _r2a7_final_semantic_digest(records):
+    keys = [
+        "candidate_file_id",
+        "disposition",
+        "mapped_surface_ids",
+        "source_local_pressure_class",
+        "authority_effect",
+        "pressure_route",
+    ]
+    payload = [{key: record[key] for key in keys} for record in records]
+    raw = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=False).encode("utf-8")
+    return _r2a7_final_hashlib.sha256(raw).hexdigest()
+
+
+def test_r2a7_final_507_candidate_stream_and_semantic_closeout():
+    entries = baseline_tree_entries()
+    assert len(entries) == EXPECTED_TRACKED_BLOBS
+    blobs = cat_blobs(sha for _, _, sha in entries)
+    terms_by_cluster = matcher_terms()
+    partitions = {"R2A-4": [], "R2A-5": [], "R2A-6": [], "R2A-7": []}
+    metadata = {}
+    eligible = 0
+    positives = 0
+    for path, _mode, sha in entries:
+        raw = blobs[sha]
+        if excluded(path, raw):
+            continue
+        eligible += 1
+        matches = controlled_matches(path, raw, terms_by_cluster)
+        if not matches:
+            continue
+        positives += 1
+        partition = assign_partition(path)
+        partitions[partition].append(path)
+        metadata[path] = {
+            "sha": sha,
+            "count": len(matches),
+            "terms": sorted({item[2] for item in matches}),
+            "clusters": sorted({item[3] for item in matches}),
+        }
+    assert eligible == EXPECTED_ELIGIBLE_TEXT
+    assert positives == EXPECTED_MATCHER_POSITIVE
+    assert {key: len(value) for key, value in partitions.items()} == EXPECTED_PARTITION_COUNTS
+    frozen_r7 = sorted(partitions["R2A-7"])
+    assert len(frozen_r7) == 507
+
+    records = _r2a7_final_records()
+    assert len(records) == 507
+    assert [record["candidate_file_id"] for record in records] == [
+        f"R2A-DISPOSITION-R7-{number:04d}" for number in range(1, 508)
+    ]
+    assert len({record["path"] for record in records}) == 507
+    assert len({(record["path"], record["baseline_blob_sha"]) for record in records}) == 507
+    for record, expected_path in zip(records, frozen_r7):
+        expected = metadata[expected_path]
+        assert record["path"] == expected_path
+        assert record["baseline_blob_sha"] == expected["sha"]
+        assert record["controlled_match_count"] == expected["count"]
+        assert record["matched_terms"] == expected["terms"]
+        assert record["matched_search_clusters"] == expected["clusters"]
+        assert [item["mapped_surface_id"] for item in record["mapping_evidence"]] == record["mapped_surface_ids"]
+        assert all(item["authority_transfer_effect"] == "none" for item in record["mapping_evidence"])
+    assert not any("R7-0508" in record["candidate_file_id"] for record in records)
+    assert not (DISPOSITIONS / "dispositions_0063.yaml").exists()
+    assert _r2a7_final_semantic_digest(records[403:]) == R2A7_FINAL_SEMANTIC_DIGEST
+
+
+def test_r2a7_final_index_manifest_and_r2a8_boundary():
+    index_path = DISPOSITIONS / "index.yaml"
+    assert index_path.is_file()
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    assert index["status"] == "complete"
+    assert index["phase"] == "R2A-7"
+    assert index["candidate_file_count"] == 507
+    assert len(index["shards"]) == 62
+    assert index["shards"][0]["first_candidate_file_id"] == "R2A-DISPOSITION-R7-0001"
+    assert index["shards"][-1]["last_candidate_file_id"] == "R2A-DISPOSITION-R7-0507"
+    for shard in index["shards"]:
+        path = ROOT / shard["path"]
+        assert path.is_file()
+        assert _r2a7_final_hashlib.sha256(path.read_bytes()).hexdigest() == shard["content_sha256"]
+
+    manifest = json.loads(MANIFEST.read_text(encoding="utf-8"))
+    assert manifest["artifact_version"] == "0.2.14"
+    assert manifest["status"] == "active_incomplete"
+    by_partition = {row["partition_id"]: row for row in manifest["partitions"]}
+    assert by_partition["R2A-7"]["status"] == "complete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+    assert by_partition["R2A-7"]["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 63)
+        ],
+    ]
+    assert not (ROOT / "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml").exists()
+
+# ---------------------------------------------------------------------------
+# R7-0403 accepted-checkpoint historicalization repair.
+#
+# The original through-R7-0403 body above remains accepted provenance. Once
+# R7-0507 materialization exists, that old body must not read the live manifest
+# or live shard-absence state. This replacement binds the checkpoint to the
+# accepted PR #365 merge commit, which is the final-completion base.
+# ---------------------------------------------------------------------------
+
+R2A7_ACCEPTED_COMPLETION_0403_HEAD = R2A7_FINAL_COMPLETION_BASE
+
+
+def _r2a7_historical_path_exists(commit: str, path: str) -> bool:
+    return subprocess.run(
+        ["git", "cat-file", "-e", f"{commit}:{path}"],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    ).returncode == 0
+
+
+def test_certified_completion_progress_through_r7_0403():
+    records = _records_at_commit(
+        R2A7_ACCEPTED_COMPLETION_0403_HEAD,
+        R2A7_COMPLETION_0403_LAST_SHARD,
+    )
+
+    assert len(records) == R2A7_COMPLETION_0403_LAST_ID
+    assert records[0]["candidate_file_id"] == "R2A-DISPOSITION-R7-0001"
+    assert records[-1]["candidate_file_id"] == "R2A-DISPOSITION-R7-0403"
+
+    assert [
+        record["candidate_file_id"]
+        for record in records
+    ] == [
+        f"R2A-DISPOSITION-R7-{number:04d}"
+        for number in range(1, 404)
+    ]
+
+    assert len({record["path"] for record in records}) == 403
+    assert len({
+        (record["path"], record["baseline_blob_sha"])
+        for record in records
+    }) == 403
+
+    new_records = records[356:403]
+    assert len(new_records) == 47
+
+    for number, record in zip(range(357, 404), new_records):
+        expected = EXPECTED_COMPLETION_0403_CLASSIFICATION[number]
+
+        assert record["disposition"] == expected["disposition"]
+        assert record["mapped_surface_ids"] == expected["mapped_surface_ids"]
+        assert (
+            record["source_local_pressure_class"]
+            == expected["source_local_pressure_class"]
+        )
+        assert record["authority_effect"] == expected["authority_effect"]
+        assert record["pressure_route"] == expected["pressure_route"]
+
+        assert [
+            item["mapped_surface_id"]
+            for item in record["mapping_evidence"]
+        ] == record["mapped_surface_ids"]
+        assert all(
+            item["authority_transfer_effect"] == "none"
+            for item in record["mapping_evidence"]
+        )
+
+        for locator in record["representative_locators"]:
+            assert locator["matched_terms"] == []
+            assert locator["matched_search_clusters"] == []
+            assert 1 <= locator["line_start"] <= locator["line_end"]
+            assert locator["semantic_review_note"].strip()
+
+        status_evidence = record["status_evidence"]
+        if status_evidence is not None:
+            assert (
+                1
+                <= status_evidence["line_start"]
+                <= status_evidence["line_end"]
+            )
+            assert status_evidence["source_status_summary"].strip()
+
+    internal = [
+        record
+        for record in new_records
+        if record["disposition"]
+        == "internal_nonauthoritative_pressure_only"
+    ]
+    assert len(internal) == 6
+    assert all(
+        record["mapped_surface_ids"] == []
+        and record["source_local_pressure_class"] == "no_material_relation"
+        and record["authority_effect"] in {
+            "implementation_presupposition_only",
+            "escalation_pressure_only",
+            "no_authority_effect",
+        }
+        for record in internal
+    )
+
+    manifest = json.loads(
+        git_blob(
+            R2A7_ACCEPTED_COMPLETION_0403_HEAD,
+            MANIFEST.relative_to(ROOT).as_posix(),
+        ).decode("utf-8")
+    )
+
+    assert manifest["artifact_version"] == "0.2.13"
+    assert manifest["status"] == "active_incomplete"
+
+    by_partition = {
+        row["partition_id"]: row
+        for row in manifest["partitions"]
+    }
+
+    assert by_partition["R2A-7"]["status"] == "active_incomplete"
+    assert by_partition["R2A-8"]["status"] == "planned_not_present"
+    assert by_partition["R2A-7"]["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 52)
+        ],
+    ]
+
+    assert not _r2a7_historical_path_exists(
+        R2A7_ACCEPTED_COMPLETION_0403_HEAD,
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+    )
+    assert not _r2a7_historical_path_exists(
+        R2A7_ACCEPTED_COMPLETION_0403_HEAD,
+        "docs/doctrine/reviews/r2a/dispositions_remaining/"
+        "dispositions_0052.yaml",
+    )
+
+    assert not any(
+        record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
+        for record in records
+    )
