@@ -2475,3 +2475,97 @@ def test_certified_completion_progress_through_r7_0403():
         record["candidate_file_id"] == "R2A-DISPOSITION-R7-0508"
         for record in records
     )
+
+# ---------------------------------------------------------------------------
+# R2A-8 successor historicalization.
+#
+# R2A-7's completion boundary remains certified at the historical completion
+# commit. R2A-8 may lawfully advance the live manifest and materialize its
+# aggregate receipt without rewriting the R2A-7 historical assertion.
+# ---------------------------------------------------------------------------
+
+R2A7_R2A8_BOUNDARY_CERTIFIED = (
+    "2aab80ab4b574d4c51ba2b455cfe18199c66a2fa"
+)
+R2A7_R2A8_AGGREGATE_PATH = (
+    "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml"
+)
+
+
+def test_r2a7_final_index_manifest_and_r2a8_boundary():
+    index_path = DISPOSITIONS / "index.yaml"
+    assert index_path.is_file()
+
+    index = json.loads(index_path.read_text(encoding="utf-8"))
+    assert index["status"] == "complete"
+    assert index["phase"] == "R2A-7"
+    assert index["candidate_file_count"] == 507
+    assert len(index["shards"]) == 62
+    assert (
+        index["shards"][0]["first_candidate_file_id"]
+        == "R2A-DISPOSITION-R7-0001"
+    )
+    assert (
+        index["shards"][-1]["last_candidate_file_id"]
+        == "R2A-DISPOSITION-R7-0507"
+    )
+
+    for shard in index["shards"]:
+        path = ROOT / shard["path"]
+        assert path.is_file()
+        assert (
+            _r2a7_final_hashlib.sha256(path.read_bytes()).hexdigest()
+            == shard["content_sha256"]
+        )
+
+    manifest_path = MANIFEST.relative_to(ROOT).as_posix()
+    historical_manifest = json.loads(
+        git_blob(
+            R2A7_R2A8_BOUNDARY_CERTIFIED,
+            manifest_path,
+        ).decode("utf-8")
+    )
+
+    assert historical_manifest["artifact_version"] == "0.2.14"
+    assert historical_manifest["status"] == "active_incomplete"
+
+    historical_by_partition = {
+        row["partition_id"]: row
+        for row in historical_manifest["partitions"]
+    }
+
+    assert historical_by_partition["R2A-7"]["status"] == "complete"
+    assert (
+        historical_by_partition["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+    assert historical_by_partition["R2A-7"]["planned_artifact_paths"] == [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 63)
+        ],
+    ]
+
+    assert not _r2a7_historical_path_exists(
+        R2A7_R2A8_BOUNDARY_CERTIFIED,
+        R2A7_R2A8_AGGREGATE_PATH,
+    )
+
+    # The live successor may advance R2A-8. R2A-7 itself must remain
+    # structurally identical to its certified completion boundary.
+    current_manifest = json.loads(
+        MANIFEST.read_text(encoding="utf-8")
+    )
+    assert current_manifest["status"] == "active_incomplete"
+
+    current_by_partition = {
+        row["partition_id"]: row
+        for row in current_manifest["partitions"]
+    }
+
+    assert (
+        current_by_partition["R2A-7"]
+        == historical_by_partition["R2A-7"]
+    )

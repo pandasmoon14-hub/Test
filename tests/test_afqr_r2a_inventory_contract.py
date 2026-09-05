@@ -4608,3 +4608,410 @@ def test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes():
         )
         == (ROOT / deterministic_test).read_bytes()
     )
+
+# ---------------------------------------------------------------------------
+# R2A-8 successor historicalization.
+#
+# Earlier R2A-4..R2A-7 completion tests remain historical provenance. Their
+# collected successor aliases must validate R2A-7 against its certified
+# completion state rather than require the live R2A-8 manifest to remain
+# planned_not_present. No R2A-7 authority or disposition semantics change.
+# ---------------------------------------------------------------------------
+
+R2A8_SUCCESSOR_MANIFEST_PATH = (
+    "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml"
+)
+R2A8_SUCCESSOR_AGGREGATE_PATH = (
+    "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml"
+)
+
+
+def _r2a7_successor_manifest_pair():
+    historical = json.loads(
+        _r2a7_w29_blob(
+            R2A7_W29_CERTIFIED,
+            R2A8_SUCCESSOR_MANIFEST_PATH,
+        )
+    )
+    current = json.loads(
+        PARTITIONS.read_text(encoding="utf-8")
+    )
+    return historical, current
+
+
+def _r2a7_successor_historical_path_exists(path):
+    return subprocess.run(
+        [
+            "git",
+            "cat-file",
+            "-e",
+            f"{R2A7_W29_CERTIFIED}:{path}",
+        ],
+        cwd=ROOT,
+        stdout=subprocess.DEVNULL,
+        stderr=subprocess.DEVNULL,
+        check=False,
+    ).returncode == 0
+
+
+def _assert_r2a7_successor_boundary():
+    historical, current = _r2a7_successor_manifest_pair()
+
+    # Historical R2A-7 certification must still satisfy its original exact
+    # validator, including the historical R2A-8 not-yet-started posture.
+    assert _r2a7_final_manifest_is_valid(historical)
+    assert historical["artifact_version"] == "0.2.14"
+
+    assert current["artifact_id"] == historical["artifact_id"]
+    assert current["phase"] == historical["phase"]
+    assert current["partition_count"] == historical["partition_count"] == 12
+    assert current["status"] == "active_incomplete"
+    assert current["ownership_rules"] == historical["ownership_rules"]
+
+    historical_by_partition = {
+        row["partition_id"]: row
+        for row in historical["partitions"]
+    }
+    current_by_partition = {
+        row["partition_id"]: row
+        for row in current["partitions"]
+    }
+
+    # The predecessor partitions remain byte-equivalent at the manifest-row
+    # level. R2A-8 successor state is validated by the R2A-8 verifier.
+    for partition_id in (
+        "R2A-4",
+        "R2A-5",
+        "R2A-6",
+        "R2A-7",
+    ):
+        assert (
+            current_by_partition[partition_id]
+            == historical_by_partition[partition_id]
+        )
+
+    assert current_by_partition["R2A-7"]["status"] == "complete"
+    assert (
+        historical_by_partition["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+    assert not _r2a7_successor_historical_path_exists(
+        R2A8_SUCCESSOR_AGGREGATE_PATH
+    )
+
+    return (
+        historical,
+        current,
+        historical_by_partition,
+        current_by_partition,
+    )
+
+
+def test_r2a7_final_preserves_structural_authority():
+    (
+        historical,
+        _current,
+        historical_by_partition,
+        current_by_partition,
+    ) = _assert_r2a7_successor_boundary()
+
+    historical_expected = _r2a7_final_expected_historical_statuses()
+    certified_expected = dict(historical_expected)
+    certified_expected["R2A-7"] = "complete"
+
+    contract, clusters, file_manifest = map(
+        lambda path: json.loads(path.read_text(encoding="utf-8")),
+        (CONTRACT, CLUSTERS, FILES),
+    )
+
+    assert contract["r2a_partition_statuses"] == historical_expected
+    assert clusters["r2a_partition_statuses"] == historical_expected
+    assert {
+        row["partition_id"]: row["current_status"]
+        for row in file_manifest["r2a_reconstruction_sequence"]
+    } == historical_expected
+
+    assert {
+        row["partition_id"]: row["status"]
+        for row in historical["partitions"]
+    } == certified_expected
+
+    for partition_id in (
+        "R2A-4",
+        "R2A-5",
+        "R2A-6",
+        "R2A-7",
+    ):
+        assert (
+            current_by_partition[partition_id]["status"]
+            == historical_by_partition[partition_id]["status"]
+        )
+
+    assert contract["project_posture"]["R2A"] == "active_incomplete"
+    assert contract["project_posture"]["R2B"] == "blocked"
+
+
+def test_r2a7_final_exact_manifest_and_posture():
+    (
+        historical,
+        _current,
+        historical_by_partition,
+        current_by_partition,
+    ) = _assert_r2a7_successor_boundary()
+
+    row = historical_by_partition["R2A-7"]
+
+    assert (
+        historical["artifact_id"],
+        historical["artifact_version"],
+        historical["partition_count"],
+    ) == (
+        "AFQR-R2A-PARTITION-MANIFEST-001",
+        "0.2.14",
+        12,
+    )
+
+    assert (
+        row["status"],
+        row["dependency_partitions"],
+        row["candidate_path_patterns"],
+    ) == (
+        "complete",
+        ["R2A-6"],
+        ["**"],
+    )
+
+    assert (
+        row["maximum_changed_files"],
+        row["maximum_additions"],
+    ) == (
+        51,
+        16000,
+    )
+
+    expected_paths = [
+        "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
+        *[
+            "docs/doctrine/reviews/r2a/dispositions_remaining/"
+            f"dispositions_{number:04d}.yaml"
+            for number in range(1, 63)
+        ],
+    ]
+    assert row["planned_artifact_paths"] == expected_paths
+    assert current_by_partition["R2A-7"] == row
+
+    root = ROOT / "docs/doctrine/reviews/r2a/dispositions_remaining"
+
+    materialized_shards = {
+        path.relative_to(ROOT).as_posix()
+        for path in root.glob("dispositions_*.yaml")
+        if path.is_file()
+    }
+
+    assert materialized_shards == {
+        "docs/doctrine/reviews/r2a/dispositions_remaining/"
+        f"dispositions_{number:04d}.yaml"
+        for number in range(1, 63)
+    }
+
+    index = json.loads(
+        (root / "index.yaml").read_text(encoding="utf-8")
+    )
+    assert index["status"] == "complete"
+    assert index["candidate_file_count"] == 507
+    assert len(index["shards"]) == 62
+
+    assert (
+        historical_by_partition["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+    assert not _r2a7_successor_historical_path_exists(
+        R2A8_SUCCESSOR_AGGREGATE_PATH
+    )
+
+
+def test_r2a7_final_mutation_resistance():
+    historical, _current = _r2a7_successor_manifest_pair()
+    assert _r2a7_final_manifest_is_valid(historical)
+
+    mutations = []
+
+    for field, value in (
+        ("maximum_changed_files", 50),
+        ("maximum_changed_files", 52),
+        ("maximum_additions", 15999),
+        ("maximum_additions", 16001),
+        ("status", "active_incomplete"),
+        ("status", "planned_not_present"),
+    ):
+        bad = copy.deepcopy(historical)
+        r2a7_capacity_row(bad)[field] = value
+        mutations.append(bad)
+
+    for operation in (
+        "remove_shard",
+        "add_shard",
+        "replace_shard",
+        "remove_index",
+    ):
+        bad = copy.deepcopy(historical)
+        paths = r2a7_capacity_row(bad)["planned_artifact_paths"]
+
+        if operation == "remove_shard":
+            paths.remove(
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                "dispositions_0062.yaml"
+            )
+        elif operation == "add_shard":
+            paths.append(
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                "dispositions_0063.yaml"
+            )
+        elif operation == "replace_shard":
+            paths[-1] = (
+                "docs/doctrine/reviews/r2a/dispositions_remaining/"
+                "unplanned.yaml"
+            )
+        else:
+            paths.remove(
+                "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml"
+            )
+
+        mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    bad["artifact_version"] = "0.2.13"
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    r2a7_capacity_row(bad)["dependency_partitions"] = ["R2A-5"]
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    r2a7_capacity_row(bad)["candidate_path_patterns"] = ["docs/**"]
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    bad["ownership_rules"]["disposition_precedence"] = [
+        "R2A-5",
+        "R2A-4",
+        "R2A-6",
+        "R2A-7",
+    ]
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    r2a7_capacity_row(bad)["gate_effect"] += " Gate advances."
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    r2a7_capacity_row(bad)["prohibited_work"].pop()
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    bad["partition_count"] = 13
+    mutations.append(bad)
+
+    bad = copy.deepcopy(historical)
+    next(
+        row
+        for row in bad["partitions"]
+        if row["partition_id"] == "R2A-8"
+    )["status"] = "active_incomplete"
+    mutations.append(bad)
+
+    assert all(
+        not _r2a7_final_manifest_is_valid(bad)
+        for bad in mutations
+    )
+
+
+def test_r2a7_capacity_amendment_scope_no_deletions_or_runtime_changes():
+    subprocess.check_call(
+        [
+            "git",
+            "merge-base",
+            "--is-ancestor",
+            R2A7_W29_CERTIFIED,
+            "HEAD",
+        ],
+        cwd=ROOT,
+    )
+
+    (
+        _historical_manifest,
+        _current_manifest,
+        _historical_by_partition,
+        current_by_partition,
+    ) = _assert_r2a7_successor_boundary()
+
+    assert current_by_partition["R2A-7"]["status"] == "complete"
+
+    current_index, current = _r2a7_w29_current_records()
+    historical_index, historical = _r2a7_w29_certified_records()
+
+    assert current_index["candidate_file_count"] == 507
+    assert historical_index["candidate_file_count"] == 507
+
+    assert _r2a7_w29_digests(current) == (
+        R2A7_W29_PATH_DIGEST,
+        R2A7_W29_PATH_BLOB_DIGEST,
+    )
+
+    # All certified R2A-7 disposition shards except the expressly repaired
+    # WORLD-0029 shard remain byte-identical.
+    for metadata in historical_index["shards"]:
+        relative = metadata["path"]
+
+        if relative == R2A7_W29_SHARD:
+            continue
+
+        assert (
+            _r2a7_w29_blob(R2A7_W29_CERTIFIED, relative)
+            == (ROOT / relative).read_bytes()
+        )
+
+    # The deterministic verifier may receive append-only successor
+    # historicalization, but its certified R2A-7 bytes cannot be rewritten.
+    deterministic_test = (
+        "tests/test_afqr_r2a7_deterministic_stream_repair.py"
+    )
+    certified_bytes = _r2a7_w29_blob(
+        R2A7_W29_CERTIFIED,
+        deterministic_test,
+    )
+    current_bytes = (ROOT / deterministic_test).read_bytes()
+
+    assert current_bytes.startswith(certified_bytes)
+    assert len(current_bytes) >= len(certified_bytes)
+
+
+# Rebind historical compatibility names after the successor-safe definitions.
+test_r2a7_capacity_preserves_structural_authority = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a7_capacity_exact_manifest_and_posture = (
+    test_r2a7_final_exact_manifest_and_posture
+)
+test_r2a7_capacity_mutation_resistance = (
+    test_r2a7_final_mutation_resistance
+)
+
+test_r2a6_status_versions_posture_and_future_boundary = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a6_capacity_preserves_r2a5_current_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a6_capacity_successor_name_has_unmodified_current_partitions = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a5_completed_status_and_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a4_completed_status_and_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
+test_r2a4_exact_base_scope_status_and_posture = (
+    test_r2a7_final_preserves_structural_authority
+)
