@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-PARTITION-MANIFEST-001",
-  "artifact_version": "0.2.14",
+  "artifact_version": "0.2.15",
   "status": "active_incomplete",
   "phase": "R2A",
   "authority_effect": "nonauthoritative_work_partition",
@@ -18,12 +18,7 @@
       "coverage/**",
       "**/__pycache__/**"
     ],
-    "disposition_precedence": [
-      "R2A-4",
-      "R2A-5",
-      "R2A-6",
-      "R2A-7"
-    ],
+    "disposition_precedence": ["R2A-4", "R2A-5", "R2A-6", "R2A-7"],
     "disposition_rules": {
       "R2A-4": [
         "docs/doctrine/control/**",
@@ -33,43 +28,17 @@
         "docs/doctrine/world/**",
         "docs/decisions/**"
       ],
-      "R2A-5": [
-        "docs/doctrine/reviews/**",
-        "docs/doctrine/*.yaml",
-        "docs/doctrine/*.md"
-      ],
-      "R2A-6": [
-        "src/**",
-        "schemas/**",
-        "tests/runtime/**",
-        "tests/test_runtime_*.py",
-        "tests/test_*runtime*.py"
-      ],
-      "R2A-7": [
-        "**"
-      ]
+      "R2A-5": ["docs/doctrine/reviews/**", "docs/doctrine/*.yaml", "docs/doctrine/*.md"],
+      "R2A-6": ["src/**", "schemas/**", "tests/runtime/**", "tests/test_runtime_*.py", "tests/test_*runtime*.py"],
+      "R2A-7": ["**"]
     },
     "glob_semantics": "Supported syntax only: literal prefix/** matches paths beginning with prefix/; **/literal/** matches that directory segment anywhere; root-level prefix/<filename-glob> uses * only within the final filename and never across slash; ** is the total fallback. Exclusions are evaluated first, then disposition_precedence left-to-right.",
-    "coordination_only": [
-      "continuity_coordination",
-      "cross_phase_coordination"
-    ],
+    "coordination_only": ["continuity_coordination", "cross_phase_coordination"],
     "coordination_domain_ownership": [],
     "coordination_must_not_own": [
-      "commitment",
-      "time",
-      "evidence",
-      "identity",
-      "dependency",
-      "epistemic_state",
-      "embodiment",
-      "environment",
-      "action",
-      "sensing",
-      "reservation",
-      "canon",
-      "conversion",
-      "runtime_truth"
+      "commitment", "time", "evidence", "identity", "dependency",
+      "epistemic_state", "embodiment", "environment", "action", "sensing",
+      "reservation", "canon", "conversion", "runtime_truth"
     ],
     "sharding": "Later data partitions may use one index plus multiple bounded shards; no partition requires a monolithic data file."
   },
@@ -78,24 +47,14 @@
       "partition_id": "R2A-1",
       "title": "Inventory contract, controlled search, partition manifest",
       "status": "complete",
-      "owned_artifact_types": [
-        "inventory_contract",
-        "partition_manifest",
-        "controlled_search_clusters"
-      ],
-      "dependency_partitions": [
-        "R2-0"
-      ],
+      "owned_artifact_types": ["inventory_contract", "partition_manifest", "controlled_search_clusters"],
+      "dependency_partitions": ["R2-0"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "three contract artifacts plus control, manifest, and tests",
       "gate_effect": "Defines validation only; R2A remains active_incomplete.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
       "planned_artifact_paths": [
         "docs/doctrine/reviews/afqr_r2a_inventory_contract.yaml",
         "docs/doctrine/reviews/afqr_r2a_partition_manifest.yaml",
@@ -106,47 +65,28 @@
       "partition_id": "R2A-2",
       "title": "CORE and AGENCY semantic surfaces",
       "status": "complete",
-      "owned_artifact_types": [
-        "semantic_authority_surface"
-      ],
-      "dependency_partitions": [
-        "R2A-1"
-      ],
+      "owned_artifact_types": ["semantic_authority_surface"],
+      "dependency_partitions": ["R2A-1"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/semantic_core_agency/index.yaml"
-      ]
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "planned_artifact_paths": ["docs/doctrine/reviews/r2a/semantic_core_agency/index.yaml"]
     },
     {
       "partition_id": "R2A-3",
       "title": "WORLD and continuity/cross-phase coordination surfaces",
       "status": "complete",
-      "owned_artifact_types": [
-        "semantic_authority_surface"
-      ],
-      "dependency_partitions": [
-        "R2A-1",
-        "R2A-2"
-      ],
+      "owned_artifact_types": ["semantic_authority_surface"],
+      "dependency_partitions": ["R2A-1", "R2A-2"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances and coordination gains no domain ownership.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
       "planned_artifact_paths": [
         "docs/doctrine/reviews/r2a/semantic_world_coordination/index.yaml",
         "docs/doctrine/reviews/r2a/semantic_world_coordination/surfaces_0001.yaml"
@@ -156,60 +96,34 @@
       "partition_id": "R2A-4",
       "title": "Current-authority dispositions A: control, consolidation, operations, schema doctrine, world doctrine, decisions",
       "status": "complete",
-      "owned_artifact_types": [
-        "candidate_file_disposition"
-      ],
-      "dependency_partitions": [
-        "R2A-2",
-        "R2A-3"
-      ],
+      "owned_artifact_types": ["candidate_file_disposition"],
+      "dependency_partitions": ["R2A-2", "R2A-3"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
       "candidate_path_patterns": [
-        "docs/doctrine/control/**",
-        "docs/doctrine/consolidation/**",
-        "docs/doctrine/operations/**",
-        "docs/doctrine/schema/**",
-        "docs/doctrine/world/**",
-        "docs/decisions/**"
+        "docs/doctrine/control/**", "docs/doctrine/consolidation/**",
+        "docs/doctrine/operations/**", "docs/doctrine/schema/**",
+        "docs/doctrine/world/**", "docs/decisions/**"
       ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml"
-      ]
+      "planned_artifact_paths": ["docs/doctrine/reviews/r2a/dispositions_current_a/index.yaml"]
     },
     {
       "partition_id": "R2A-5",
       "title": "Current-authority dispositions B: reviews and remaining current doctrine paths",
       "status": "complete",
-      "owned_artifact_types": [
-        "candidate_file_disposition"
-      ],
-      "dependency_partitions": [
-        "R2A-4"
-      ],
+      "owned_artifact_types": ["candidate_file_disposition"],
+      "dependency_partitions": ["R2A-4"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "candidate_path_patterns": [
-        "docs/doctrine/reviews/**",
-        "docs/doctrine/*.yaml",
-        "docs/doctrine/*.md"
-      ],
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "candidate_path_patterns": ["docs/doctrine/reviews/**", "docs/doctrine/*.yaml", "docs/doctrine/*.md"],
       "planned_artifact_paths": [
         "docs/doctrine/reviews/r2a/dispositions_current_b/index.yaml",
         "docs/doctrine/reviews/r2a/dispositions_current_b/dispositions_0001.yaml"
@@ -219,29 +133,15 @@
       "partition_id": "R2A-6",
       "title": "Runtime, production schema, and runtime-validation dispositions",
       "status": "complete",
-      "owned_artifact_types": [
-        "candidate_file_disposition"
-      ],
-      "dependency_partitions": [
-        "R2A-5"
-      ],
+      "owned_artifact_types": ["candidate_file_disposition"],
+      "dependency_partitions": ["R2A-5"],
       "maximum_changed_files": 8,
       "maximum_additions": 5000,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances and no implementation authority is granted.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "candidate_path_patterns": [
-        "src/**",
-        "schemas/**",
-        "tests/runtime/**",
-        "tests/test_runtime_*.py",
-        "tests/test_*runtime*.py"
-      ],
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "candidate_path_patterns": ["src/**", "schemas/**", "tests/runtime/**", "tests/test_runtime_*.py", "tests/test_*runtime*.py"],
       "planned_artifact_paths": [
         "docs/doctrine/reviews/r2a/dispositions_runtime_schema/index.yaml",
         "docs/doctrine/reviews/r2a/dispositions_runtime_schema/dispositions_0001.yaml",
@@ -252,25 +152,15 @@
       "partition_id": "R2A-7",
       "title": "Historical, source-local, conversion, example, benchmark, and remaining dispositions",
       "status": "complete",
-      "owned_artifact_types": [
-        "candidate_file_disposition"
-      ],
-      "dependency_partitions": [
-        "R2A-6"
-      ],
+      "owned_artifact_types": ["candidate_file_disposition"],
+      "dependency_partitions": ["R2A-6"],
       "maximum_changed_files": 51,
       "maximum_additions": 16000,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "No gate advances and source-local material stays nonauthoritative.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "candidate_path_patterns": [
-        "**"
-      ],
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "candidate_path_patterns": ["**"],
       "planned_artifact_paths": [
         "docs/doctrine/reviews/r2a/dispositions_remaining/index.yaml",
         "docs/doctrine/reviews/r2a/dispositions_remaining/dispositions_0001.yaml",
@@ -340,133 +230,72 @@
     {
       "partition_id": "R2A-8",
       "title": "Aggregate scan receipt, exclusion receipt, candidate parity, and evidence reciprocity",
-      "status": "planned_not_present",
-      "owned_artifact_types": [
-        "scan_receipt",
-        "parity_review",
-        "reciprocity_review"
-      ],
-      "dependency_partitions": [
-        "R2A-2",
-        "R2A-3",
-        "R2A-4",
-        "R2A-5",
-        "R2A-6",
-        "R2A-7"
-      ],
+      "status": "complete",
+      "owned_artifact_types": ["scan_receipt", "parity_review", "reciprocity_review"],
+      "dependency_partitions": ["R2A-2", "R2A-3", "R2A-4", "R2A-5", "R2A-6", "R2A-7"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "R2A remains active_incomplete.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml"
-      ]
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "planned_artifact_paths": ["docs/doctrine/reviews/r2a/aggregate_receipts/index.yaml"]
     },
     {
       "partition_id": "R2A-9",
       "title": "Claim assessments R2-CLAIM-0001 through R2-CLAIM-0016",
       "status": "planned_not_present",
-      "owned_artifact_types": [
-        "claim_assessment"
-      ],
-      "dependency_partitions": [
-        "R2A-8"
-      ],
+      "owned_artifact_types": ["claim_assessment"],
+      "dependency_partitions": ["R2A-8"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "R2A remains active_incomplete.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/claim_assessments_0001_0016/index.yaml"
-      ]
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "planned_artifact_paths": ["docs/doctrine/reviews/r2a/claim_assessments_0001_0016/index.yaml"]
     },
     {
       "partition_id": "R2A-10",
       "title": "Claim assessments R2-CLAIM-0017 through R2-CLAIM-0031",
       "status": "planned_not_present",
-      "owned_artifact_types": [
-        "claim_assessment"
-      ],
-      "dependency_partitions": [
-        "R2A-8",
-        "R2A-9"
-      ],
+      "owned_artifact_types": ["claim_assessment"],
+      "dependency_partitions": ["R2A-8", "R2A-9"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "R2A remains active_incomplete.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/claim_assessments_0017_0031/index.yaml"
-      ]
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "planned_artifact_paths": ["docs/doctrine/reviews/r2a/claim_assessments_0017_0031/index.yaml"]
     },
     {
       "partition_id": "R2A-11",
       "title": "Eleven unresolved-question assessments plus package/module synthesis",
       "status": "planned_not_present",
-      "owned_artifact_types": [
-        "unresolved_question_assessment",
-        "package_assessment",
-        "module_assessment"
-      ],
-      "dependency_partitions": [
-        "R2A-10"
-      ],
+      "owned_artifact_types": ["unresolved_question_assessment", "package_assessment", "module_assessment"],
+      "dependency_partitions": ["R2A-10"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "May determine package/module status but cannot begin R2B or advance the gate.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/r2a/question_package_module/index.yaml"
-      ]
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "planned_artifact_paths": ["docs/doctrine/reviews/r2a/question_package_module/index.yaml"]
     },
     {
       "partition_id": "R2A-12",
       "title": "Independent completion review and gate update",
       "status": "planned_not_present",
-      "owned_artifact_types": [
-        "independent_completion_review",
-        "gate_update"
-      ],
-      "dependency_partitions": [
-        "R2A-11"
-      ],
+      "owned_artifact_types": ["independent_completion_review", "gate_update"],
+      "dependency_partitions": ["R2A-11"],
       "maximum_changed_files": 7,
       "maximum_additions": 2500,
       "artifact_layout": "one index plus bounded shards permitted",
       "gate_effect": "Only R2A-12 may mark R2A complete, and only after independent verification.",
       "completion_condition": "All bounded records and cross-checks assigned to this partition satisfy the inventory contract.",
-      "prohibited_work": [
-        "adopt doctrine",
-        "modify runtime or production schemas",
-        "perform work assigned to a later partition"
-      ],
-      "planned_artifact_paths": [
-        "docs/doctrine/reviews/afqr_r2a_independent_completion_review.md"
-      ]
+      "prohibited_work": ["adopt doctrine", "modify runtime or production schemas", "perform work assigned to a later partition"],
+      "planned_artifact_paths": ["docs/doctrine/reviews/afqr_r2a_independent_completion_review.md"]
     }
   ]
 }
