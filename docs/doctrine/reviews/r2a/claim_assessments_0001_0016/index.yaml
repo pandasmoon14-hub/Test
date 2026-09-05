@@ -1,0 +1,380 @@
+{
+  "artifact_id": "AFQR-R2A-9-CLAIM-ASSESSMENT-INDEX-001",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-9",
+  "authority_effect": "nonauthoritative_claim_assessment",
+  "inspected_repository_commit": "202aaa75a0373f305d3ee38e943c7a66a562778c",
+  "dependencies": ["R2A-2", "R2A-3", "R2A-8"],
+  "source_claim_ledger": {
+    "path": "docs/doctrine/reviews/afqr_r2_continuity_claim_and_owner_routing_ledger.yaml",
+    "git_blob_sha": "370a1c1f065649954a6fdb46146ce81beef8e8ee",
+    "authority_effect": "tracking_review_only"
+  },
+  "assessment_range": {
+    "first_claim_id": "R2-CLAIM-0001",
+    "last_claim_id": "R2-CLAIM-0016",
+    "claim_count": 16
+  },
+  "semantic_surface_sources": [
+    "docs/doctrine/reviews/r2a/semantic_core_agency/index.yaml",
+    "docs/doctrine/reviews/r2a/semantic_world_coordination/index.yaml"
+  ],
+  "counts_by_assessment_outcome": {
+    "escalated_doctrine_problem": 6,
+    "governed_by_existing_owner": 2,
+    "implementation_or_schema_presupposition_only": 2,
+    "partially_governed_owner_gap_remains": 6
+  },
+  "claim_assessments": [
+    {
+      "claim_id": "R2-CLAIM-0001",
+      "assessment_outcome": "partially_governed_owner_gap_remains",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0016", "R2A-SURFACE-CONTINUITY-0001"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0016"],
+        "relevant_current_control_surface_ids": ["R2A-SURFACE-CONTINUITY-0001"],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"supporting_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted nontransfer doctrine prevents timeline coordination, storage, replay, or commitment from manufacturing a new semantic owner.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 already owns logical-time and causal-order concerns that any stable timeline identity must compose with.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0016","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-08 already owns identity and continuity distinctions implicated when timeline identity interacts with copies or alternate realities.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CONTINUITY-0001","relevance_type":"control_or_gate_evidence","semantic_role":"explicit_nonownership_boundary","exact_relevance":"The existing continuity coordination surface records this claim’s component-owner split and preserves the unresolved narrow-owner question without adjudicating it.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Current doctrine already separates logical-time ownership, identity/continuity ownership, and semantic-owner nontransfer, but it does not assign stable authoritative timeline identity to a narrow semantic owner. Preserve the owner question for R2A-11; do not create a timeline super-owner in R2A-9.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0001-OWNER-QUESTION"]
+    },
+    {
+      "claim_id": "R2-CLAIM-0002",
+      "assessment_outcome": "escalated_doctrine_problem",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 bounds commitment and committed-history references but does not establish canonical-branch selection policy.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"supporting_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted nontransfer doctrine prevents a branch registry, journal, or selection mechanism from becoming a semantic owner.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 bounds temporal ordering relevant to divergent histories but does not establish a one-active-canonical-branch rule.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Current commitment and time doctrine bounds the participating components but does not establish a one-active-canonical-branch rule or canon-selection procedure. This is a bounded doctrine problem for later authorized R2B consideration, not authority to create branch doctrine now.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0003",
+      "assessment_outcome": "partially_governed_owner_gap_remains",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0016", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0016", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"supporting_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted nontransfer doctrine constrains any later branch classification or ancestry representation.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns temporal-order semantics implicated by replay, correction, migration, and alternate histories.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0016","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-08 owns identity and continuity distinctions implicated by branch ancestry and alternate-history identity.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0019","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-09 owns dependency lifecycle semantics that branch ancestry or supersession may consume without absorbing them.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Time, identity/continuity, dependency lifecycle, and nontransfer are already owned, while governed branch classes and branch ancestry remain an owner/qualification gap. Preserve that gap for R2A-11 and any later authorized R2B-CONTINUITY work.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0003-OWNER-QUESTION"]
+    },
+    {
+      "claim_id": "R2-CLAIM-0004",
+      "assessment_outcome": "escalated_doctrine_problem",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01’s commitment boundary distinguishes committed transition effects from uncommitted proposals.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Consumption or storage of a preview cannot transfer semantic ownership or by itself promote the preview into authoritative state.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0007","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-02 owns command identity and durable command progress, bounding preview handling without defining branch persistence.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Accepted AFQR-01 and AFQR-02 boundaries already govern the proposal-versus-commit distinction, but current authority does not define the doctrine qualification by which an uncommitted preview may be explicitly persisted or promoted as a governed branch. Because R2-0 records no unresolved owner question for this claim, the residual gap is a bounded doctrine problem for later authorized R2B-CORE consideration rather than a new owner question.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0005",
+      "assessment_outcome": "escalated_doctrine_problem",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0012", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0028"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0012", "R2A-SURFACE-AGENCY-0002"],
+        "relevant_current_control_surface_ids": ["R2A-SURFACE-WORLD-0028"],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 owns commitment and receipt semantics relevant to record or commitment time.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns logical-time and causal-order semantics relevant to world-valid time.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0012","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-06 owns claims, evidence admission, conflict, and arbitration consequences that corrections may create.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-AGENCY-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-10 owns epistemic state, knowledge, belief, memory, and safe projection consequences across historical correction.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0028","relevance_type":"control_or_gate_evidence","semantic_role":"accepted_adjudication","exact_relevance":"SUB-002 is already accepted only as a deferred multi-owner substrate for time, evidence, epistemics, and sensing, confirming that a bitemporal storage substrate cannot collapse those owners.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "World-valid time, commitment records, evidence consequences, epistemic consequences, and their nontransfer boundaries are already separately governed. Current authority does not yet establish the continuity-specific cross-owner bitemporal qualification identified by R2-0. Because R2-0 records no unresolved owner question, the residual is a bounded doctrine problem for later authorized R2B-CONTINUITY consideration, not a new combined time/evidence owner.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0006",
+      "assessment_outcome": "governed_by_existing_owner",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0010", "R2A-SURFACE-CORE-0019", "R2A-SURFACE-CORE-0022"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0010", "R2A-SURFACE-CORE-0019", "R2A-SURFACE-CORE-0022"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns logical time, causal ordering, simultaneity, and scheduling rather than deriving causal semantics from timestamps alone.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0010","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted INV-007 explicitly keeps logical time and causal order distinct from other typed world concerns.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0019","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-09 owns dependency, revocation, migration, orphaning, and cascade consequences that timestamps cannot substitute for.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0022","relevance_type":"supporting_current_authority","semantic_role":"qualified_vocabulary_boundary","exact_relevance":"Accepted dependency vocabulary assigns dependency semantics to AFQR-09 and rejects ownership by bridge or storage representation.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Accepted AFQR-04 causal-order/scheduling doctrine and AFQR-09 dependency lifecycle doctrine already establish that causality and revalidation cannot be reconstructed from timestamps alone. No new doctrine or owner is required by this claim.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0007",
+      "assessment_outcome": "escalated_doctrine_problem",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0001", "R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0001", "R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0001","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition","exact_relevance":"Accepted AFQR-01 family doctrine requires replay idempotence and identity-preserving recovery, constraining silent historical mutation.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 owns lawful transition commitment and recovery boundaries relevant to preserving committed audit.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Commitment, scheduling, storage, and replay do not transfer semantic ownership, so correction cannot be delegated to infrastructure by implication.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns temporal placement of later compensation or supersession records.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0019","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-09 owns dependency consequences that a historical correction may invalidate or require to be reevaluated.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Commitment, replay/recovery, temporal placement, dependency consequences, and nontransfer are already bounded, but current authority does not establish the remaining correction, compensation, supersession, and retcon audit-governance qualification. Because R2-0 records no unresolved owner question, this is a bounded doctrine problem for later authorized R2B-CONTINUITY consideration rather than an owner gap or implementation authorization.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0008",
+      "assessment_outcome": "partially_governed_owner_gap_remains",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 bounds transition commitment and recovery but does not currently classify the listed correction and retcon families.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Any later correction taxonomy must preserve semantic-owner nontransfer through storage, replay, branching, or commitment.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns temporal placement but not the authority taxonomy distinguishing metadata repair, compensation, retcon, canon revision, or alternate-history creation.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0019","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-09 owns affected dependency consequences without thereby owning correction authority.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Existing owners cover commitment, temporal placement, dependency consequences, and nontransfer, but the listed correction classes and their authority distinctions are not established by current doctrine. The narrow owner/representation question remains for R2A-11 rather than being invented here.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0008-OWNER-QUESTION"]
+    },
+    {
+      "claim_id": "R2-CLAIM-0009",
+      "assessment_outcome": "escalated_doctrine_problem",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0001", "R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0007", "R2A-SURFACE-CORE-0008"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0001", "R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0007", "R2A-SURFACE-CORE-0008"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0001","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition","exact_relevance":"Replay idempotence and identity-preserving recovery constrain replacement resolution from being silently treated as the same committed execution.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 owns commitment and replay boundaries but the accepted surface does not itself establish correction-specific RNG preservation.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0007","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-02 owns command identity and progress, supporting distinct identity for a replacement execution path.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0008","relevance_type":"supporting_current_authority","semantic_role":"qualified_vocabulary_boundary","exact_relevance":"Accepted command identity is distinct from attempts and action representation, supporting nonaliasing of replacement resolution.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Replay identity, commitment, and command identity already constrain silent replacement of a historical execution, but current authority does not expressly establish correction-specific RNG preservation. Because R2-0 records no unresolved owner question, the residual is a bounded doctrine problem for later authorized R2B-CORE consideration; R2A-9 does not create RNG or correction doctrine.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0010",
+      "assessment_outcome": "partially_governed_owner_gap_remains",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007", "R2A-SURFACE-CORE-0019"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 bounds committed transition provenance but does not by itself define historical ruleset or package-version pinning.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Version storage, replay infrastructure, or package loading cannot absorb semantic ownership by handling historical version references.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0007","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-02 command identity and progress are relevant to replayed execution identity without defining package applicability.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0019","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-09 dependency lifecycle may be affected by package/version changes but does not establish cross-phase historical applicability policy.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Current transition, command, dependency, and nontransfer doctrine does not establish cross-phase historical pinning of ruleset, content-package, campaign-override, and schema versions. The semantic/representation owner question remains and must be routed rather than answered by storage or replay infrastructure.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0010-OWNER-QUESTION"]
+    },
+    {
+      "claim_id": "R2-CLAIM-0011",
+      "assessment_outcome": "partially_governed_owner_gap_remains",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0015", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0027"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0015", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0027"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 owns the commit/closure envelope rather than the domain semantics summarized by that envelope.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"A session-closure record cannot become a combined semantic owner merely because it stores ranges, hashes, versions, or owner outputs.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns world-valid intervals, scheduling, and temporal order represented at closure.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0015","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-07 owns typed reservation and settlement semantics where closure records reference those states.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-AGENCY-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-10 owns knowledge and belief state even when closure produces recap inputs or epistemic deltas.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0027","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-20 owns sensing/contact state even when closure records or recap inputs reference sensing deltas.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "The closure envelope and each contributing domain already have separate owners, and accepted nontransfer forbids a session-closure record from becoming a combined owner. The exact continuity closure qualification and representation owner remain unresolved for later bounded review.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0011-OWNER-QUESTION"]
+    },
+    {
+      "claim_id": "R2-CLAIM-0012",
+      "assessment_outcome": "escalated_doctrine_problem",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-AGENCY-0001", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0022", "R2A-SURFACE-WORLD-0027"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-AGENCY-0001", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0022", "R2A-SURFACE-WORLD-0027"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 provides commitment references but does not own branch-safe visibility or disclosure semantics.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Projection, storage, or context compilation cannot transfer substantive semantic ownership.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-AGENCY-0001","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Observation is not automatically truth, belief, knowledge, or admissible evidence, constraining branch/disclosure projection.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-AGENCY-0002","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-10 owns epistemic state and safe projection boundaries relevant to excluding noncanonical or undisclosed facts.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0022","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted sensing invariant prohibits hidden truth from leaking through sensing, evidence, projection, runtime, or model-facing handoffs.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0027","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-20 owns sensing/contact state while excluding truth, knowledge, and interpretation ownership.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Epistemic and sensing doctrine already enforce visibility separation and hidden-state nonleakage, while commitment supplies references only. Current authority does not establish the remaining branch-identity and disclosure-frontier filtering qualification. Because R2-0 records no unresolved owner question, this is a bounded doctrine problem for later authorized R2B-CONTINUITY consideration rather than a new projection owner.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0013",
+      "assessment_outcome": "governed_by_existing_owner",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0012", "R2A-SURFACE-AGENCY-0001", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0022", "R2A-SURFACE-WORLD-0024", "R2A-SURFACE-WORLD-0025", "R2A-SURFACE-WORLD-0027"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0012", "R2A-SURFACE-AGENCY-0001", "R2A-SURFACE-AGENCY-0002", "R2A-SURFACE-WORLD-0022", "R2A-SURFACE-WORLD-0024", "R2A-SURFACE-WORLD-0025", "R2A-SURFACE-WORLD-0027"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns temporal relationships used during correction and replay without owning evidence or epistemic meaning.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0012","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-06 owns claims, evidence admission, conflicts, and arbitration rather than truth or observer knowledge.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-AGENCY-0001","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted doctrine explicitly separates observation from truth, belief, knowledge, and admissible evidence.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-AGENCY-0002","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-10 owns truth-relative epistemic state, knowledge, belief, memory, and safe projection with explicit evidence/sensing/time exclusions.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0022","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Signal detection is not interpretation or communication and hidden truth may not leak through projection handoffs.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0024","relevance_type":"supporting_current_authority","semantic_role":"qualified_vocabulary_boundary","exact_relevance":"Accepted evidence vocabulary separates AFQR-06 arbitration evidence, AFQR-10 epistemic records, and AFQR-20 sensing candidates.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0025","relevance_type":"supporting_current_authority","semantic_role":"qualified_vocabulary_boundary","exact_relevance":"Accepted candidate-to-record vocabulary preserves the AFQR-20 sensing to AFQR-10 epistemic handoff without ownership transfer.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0027","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-20 owns signals, sensing, contacts, and tracks while explicitly excluding truth and knowledge ownership.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Accepted doctrine already separates temporal relationships, claims/evidence, epistemic truth/knowledge/belief/memory, and sensing/signals, including hidden-state projection boundaries. Correction and replay consume these owners but do not require a new combined truth/evidence/sensing owner.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0014",
+      "assessment_outcome": "implementation_or_schema_presupposition_only",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007", "R2A-SURFACE-WORLD-0016", "R2A-SURFACE-WORLD-0021"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007", "R2A-SURFACE-WORLD-0016", "R2A-SURFACE-WORLD-0021"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 owns commit preconditions and transition commitment relevant to rejecting stale compiled state before commitment.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Expected-version storage or arbitration infrastructure cannot become a semantic owner by mediating a stale-command conflict.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0007","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-02 owns command identity, attempts, retries, suspension, escalation, and durable command progress.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0016","relevance_type":"supporting_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted action doctrine preserves separate capability, opportunity, action, target, and resolution owner contracts during re-arbitration.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0021","relevance_type":"supporting_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-19 owns scene-level action readiness, targeting, contests, reactions, and conflict resolution used when a stale command re-enters arbitration.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Command identity/retry, commit preconditions, and action re-arbitration already have accepted owners. Expected-version detection and stale-command handling are therefore implementation/runtime obligations under those boundaries, not a new doctrine owner or an R2A implementation authorization.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0014-OWNER-QUESTION"]
+    },
+    {
+      "claim_id": "R2-CLAIM-0015",
+      "assessment_outcome": "implementation_or_schema_presupposition_only",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0001", "R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0001", "R2A-SURFACE-CORE-0002", "R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0007"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0001","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition","exact_relevance":"Replay idempotence and identity-preserving recovery supply the semantic boundary that duplicate-suppression implementation must preserve.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0002","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-01 owns commitment and recovery semantics relevant to preventing duplicate committed effects after crashes.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"A generalized journal or publication receipt does not become owner of command or committed-domain semantics by storing them.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0007","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-02 owns durable command progress, retry, and attempt identity that duplicate-suppression implementation must preserve.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Replay idempotence, commitment/recovery, command progress, and semantic-owner nontransfer already provide the governing semantics. Durable duplicate suppression, publication receipts, and crash-safe persistence are implementation/substrate obligations for a later authorized gate.",
+      "unresolved_owner_question_ids": []
+    },
+    {
+      "claim_id": "R2-CLAIM-0016",
+      "assessment_outcome": "partially_governed_owner_gap_remains",
+      "evidence": {
+        "surface_ids": ["R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0010", "R2A-SURFACE-WORLD-0001", "R2A-SURFACE-WORLD-0008", "R2A-SURFACE-WORLD-0010"],
+        "relevant_current_normative_surface_ids": ["R2A-SURFACE-CORE-0003", "R2A-SURFACE-CORE-0009", "R2A-SURFACE-CORE-0010", "R2A-SURFACE-WORLD-0001", "R2A-SURFACE-WORLD-0008", "R2A-SURFACE-WORLD-0010"],
+        "relevant_current_control_surface_ids": [],
+        "relevant_schema_runtime_test_surface_ids": [],
+        "relevant_historical_or_source_local_surface_ids": [],
+        "negative_or_absence_evidence_surface_ids": []
+      },
+      "positive_links": [
+        {"surface_id":"R2A-SURFACE-CORE-0003","relevance_type":"decisive_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Scheduler, tick, aggregate, or catch-up infrastructure cannot absorb world-process or time semantics by executing them.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0009","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-04 owns logical time, scheduling, and causal order relevant to deferred or catch-up progression.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-CORE-0010","relevance_type":"supporting_current_authority","semantic_role":"invariant_constraint","exact_relevance":"Accepted doctrine keeps logical time, causal order, and environmental process distinct typed concerns.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0001","relevance_type":"supporting_current_authority","semantic_role":"invariant_constraint","exact_relevance":"The WORLD inventory confirms the accepted separation of time, environmental process, topology, and embodiment under their component owners.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0008","relevance_type":"supporting_current_authority","semantic_role":"qualified_vocabulary_boundary","exact_relevance":"Environmental progression is an AFQR-17 domain progression concept rather than universal time or transition ordering.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."},
+        {"surface_id":"R2A-SURFACE-WORLD-0010","relevance_type":"decisive_current_authority","semantic_role":"ownership_definition_with_boundary","exact_relevance":"AFQR-17 owns environmental regions, media, fields, hazards, ecology, and processes while excluding logical-time ownership.","owner_boundary_effect":"Supports or bounds the claim without transferring semantic ownership, creating a combined owner, or adopting the research claim as doctrine."}
+      ],
+      "assessment_summary": "Logical time and environmental-process progression already have separate AFQR-04 and AFQR-17 owners, and infrastructure may not absorb either. R2-0 preserves a narrow unresolved owner question and routes scheduled events, aggregate ticks, region scoping, and lazy catch-up to a later frontier rather than authorizing doctrine or implementation now. Preserve that owner gap for R2A-11 and the later authorized gate.",
+      "unresolved_owner_question_ids": ["R2-CLAIM-0016-OWNER-QUESTION"]
+    }
+  ],
+  "completion_assertions": {
+    "claim_range_is_exact": true,
+    "all_evidence_resolves_to_validated_semantic_surfaces": true,
+    "all_positive_links_are_reciprocal": true,
+    "owner_questions_are_preserved_not_adjudicated": true,
+    "doctrine_adopted": false,
+    "runtime_or_schema_modified": false,
+    "r2a_10_started": false,
+    "r2a_remains_active_incomplete": true,
+    "blocking_exceptions": []
+  },
+  "prohibited_inferences": [
+    "This assessment index does not adopt doctrine, resolve an owner question, create a semantic owner, or authorize R2B.",
+    "A positive link records claim-specific relevance to an already-validated semantic surface and does not transfer authority from that surface to the research claim.",
+    "An escalated or partially governed outcome records a bounded gap for later authorized review; it is not itself the missing doctrine.",
+    "Implementation or schema presupposition outcomes authorize no runtime, schema, persistence, or substrate work.",
+    "R2A-9 completion does not begin R2A-10, R2A-11, R2B, or any later gate."
+  ]
+}
