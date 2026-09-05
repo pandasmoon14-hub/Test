@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-2-CORE-AGENCY-SEMANTIC-SHARD-0001",
-  "artifact_version": "0.3.0",
+  "artifact_version": "0.3.1",
   "status": "complete",
   "phase": "R2A-2",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -23,18 +23,18 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-01",
-      "applicable_afqr_ids": [
-        "AFQR-01"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01"
-      ],
+      "applicable_afqr_ids": ["AFQR-01"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-01"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0007", "R2-CLAIM-0009", "R2-CLAIM-0015"],
+      "claim_link_reasons": [
+        "Accepted AFQR-01 family doctrine requires replay idempotence and identity-preserving recovery, constraining silent historical mutation.",
+        "Replay idempotence and identity-preserving recovery constrain replacement resolution from being silently treated as the same committed execution.",
+        "Replay idempotence and identity-preserving recovery supply the semantic boundary that duplicate-suppression implementation must preserve."
+      ],
       "semantic_summary": "R1D attributes replay idempotence and identity-preserving recovery to INV-008, while canonical R1C INV-008 governs motivation, behavior prediction, agency, and responsibility. The replay proposition remains an R1D family proposition with no conflicting R1C identifier attached.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Records replay and recovery as bounded AFQR-01 family doctrine while preserving the unresolved R1C/R1D identifier-semantic conflict.",
@@ -60,18 +60,26 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-01",
-      "applicable_afqr_ids": [
-        "AFQR-01"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01"
-      ],
+      "applicable_afqr_ids": ["AFQR-01"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-01"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0002", "R2-CLAIM-0004", "R2-CLAIM-0005", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0009", "R2-CLAIM-0010", "R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0014", "R2-CLAIM-0015"],
+      "claim_link_reasons": [
+        "AFQR-01 bounds commitment and committed-history references but does not establish canonical-branch selection policy.",
+        "AFQR-01’s commitment boundary distinguishes committed transition effects from uncommitted proposals.",
+        "AFQR-01 owns commitment and receipt semantics relevant to record or commitment time.",
+        "AFQR-01 owns lawful transition commitment and recovery boundaries relevant to preserving committed audit.",
+        "AFQR-01 bounds transition commitment and recovery but does not currently classify the listed correction and retcon families.",
+        "AFQR-01 owns commitment and replay boundaries but the accepted surface does not itself establish correction-specific RNG preservation.",
+        "AFQR-01 bounds committed transition provenance but does not by itself define historical ruleset or package-version pinning.",
+        "AFQR-01 owns the commit/closure envelope rather than the domain semantics summarized by that envelope.",
+        "AFQR-01 provides commitment references but does not own branch-safe visibility or disclosure semantics.",
+        "AFQR-01 owns commit preconditions and transition commitment relevant to rejecting stale compiled state before commitment.",
+        "AFQR-01 owns commitment and recovery semantics relevant to preventing duplicate committed effects after crashes."
+      ],
       "semantic_summary": "CORE-RESP-01 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -97,21 +105,27 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-01",
-      "applicable_afqr_ids": [
-        "AFQR-01",
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01"
-      ],
+      "applicable_afqr_ids": ["AFQR-01", "AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-01"],
       "applicable_term_ids": [],
-      "applicable_invariant_ids": [
-        "INV-001"
-      ],
+      "applicable_invariant_ids": ["INV-001"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0001", "R2-CLAIM-0002", "R2-CLAIM-0003", "R2-CLAIM-0004", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0010", "R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0014", "R2-CLAIM-0015", "R2-CLAIM-0016"],
+      "claim_link_reasons": [
+        "Accepted nontransfer doctrine prevents timeline coordination, storage, replay, or commitment from manufacturing a new semantic owner.",
+        "Accepted nontransfer doctrine prevents a branch registry, journal, or selection mechanism from becoming a semantic owner.",
+        "Accepted nontransfer doctrine constrains any later branch classification or ancestry representation.",
+        "Consumption or storage of a preview cannot transfer semantic ownership or by itself promote the preview into authoritative state.",
+        "Commitment, scheduling, storage, and replay do not transfer semantic ownership, so correction cannot be delegated to infrastructure by implication.",
+        "Any later correction taxonomy must preserve semantic-owner nontransfer through storage, replay, branching, or commitment.",
+        "Version storage, replay infrastructure, or package loading cannot absorb semantic ownership by handling historical version references.",
+        "A session-closure record cannot become a combined semantic owner merely because it stores ranges, hashes, versions, or owner outputs.",
+        "Projection, storage, or context compilation cannot transfer substantive semantic ownership.",
+        "Expected-version storage or arbitration infrastructure cannot become a semantic owner by mediating a stale-command conflict.",
+        "A generalized journal or publication receipt does not become owner of command or committed-domain semantics by storing them.",
+        "Scheduler, tick, aggregate, or catch-up infrastructure cannot absorb world-process or time semantics by executing them."
+      ],
       "semantic_summary": "Consumption, commitment, scheduling, arbitration, bridge compatibility, storage, or mention never transfers semantic ownership.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -137,20 +151,11 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-01",
-      "applicable_afqr_ids": [
-        "AFQR-01"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01"
-      ],
-      "applicable_term_ids": [
-        "TERM-003",
-        "TERM-004"
-      ],
+      "applicable_afqr_ids": ["AFQR-01"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-01"],
+      "applicable_term_ids": ["TERM-003", "TERM-004"],
       "applicable_invariant_ids": [],
-      "applicable_dependency_ids": [
-        "DEP-001"
-      ],
+      "applicable_dependency_ids": ["DEP-001"],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
@@ -179,15 +184,9 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-01",
-      "applicable_afqr_ids": [
-        "AFQR-01"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01"
-      ],
-      "applicable_term_ids": [
-        "TERM-003"
-      ],
+      "applicable_afqr_ids": ["AFQR-01"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-01"],
+      "applicable_term_ids": ["TERM-003"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
@@ -218,12 +217,8 @@
       "currentness": "not_applicable",
       "generality": "path_local",
       "declared_owner": "AFQR-01",
-      "applicable_afqr_ids": [
-        "AFQR-01"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-01"
-      ],
+      "applicable_afqr_ids": ["AFQR-01"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-01"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
@@ -255,18 +250,20 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-02",
-      "applicable_afqr_ids": [
-        "AFQR-02"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-02"
-      ],
+      "applicable_afqr_ids": ["AFQR-02"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-02"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0004", "R2-CLAIM-0009", "R2-CLAIM-0010", "R2-CLAIM-0014", "R2-CLAIM-0015"],
+      "claim_link_reasons": [
+        "AFQR-02 owns command identity and durable command progress, bounding preview handling without defining branch persistence.",
+        "AFQR-02 owns command identity and progress, supporting distinct identity for a replacement execution path.",
+        "AFQR-02 command identity and progress are relevant to replayed execution identity without defining package applicability.",
+        "AFQR-02 owns command identity, attempts, retries, suspension, escalation, and durable command progress.",
+        "AFQR-02 owns durable command progress, retry, and attempt identity that duplicate-suppression implementation must preserve."
+      ],
       "semantic_summary": "CORE-RESP-02 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -292,20 +289,14 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-02",
-      "applicable_afqr_ids": [
-        "AFQR-02"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-02"
-      ],
-      "applicable_term_ids": [
-        "TERM-006"
-      ],
+      "applicable_afqr_ids": ["AFQR-02"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-02"],
+      "applicable_term_ids": ["TERM-006"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0009"],
+      "claim_link_reasons": ["Accepted command identity is distinct from attempts and action representation, supporting nonaliasing of replacement resolution."],
       "semantic_summary": "Command identity is AFQR-02-owned and distinct from attempts and action representation.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -331,18 +322,25 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-04",
-      "applicable_afqr_ids": [
-        "AFQR-04"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-04"
-      ],
+      "applicable_afqr_ids": ["AFQR-04"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-04"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0001", "R2-CLAIM-0002", "R2-CLAIM-0003", "R2-CLAIM-0005", "R2-CLAIM-0006", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0011", "R2-CLAIM-0013", "R2-CLAIM-0016"],
+      "claim_link_reasons": [
+        "AFQR-04 already owns logical-time and causal-order concerns that any stable timeline identity must compose with.",
+        "AFQR-04 bounds temporal ordering relevant to divergent histories but does not establish a one-active-canonical-branch rule.",
+        "AFQR-04 owns temporal-order semantics implicated by replay, correction, migration, and alternate histories.",
+        "AFQR-04 owns logical-time and causal-order semantics relevant to world-valid time.",
+        "AFQR-04 owns logical time, causal ordering, simultaneity, and scheduling rather than deriving causal semantics from timestamps alone.",
+        "AFQR-04 owns temporal placement of later compensation or supersession records.",
+        "AFQR-04 owns temporal placement but not the authority taxonomy distinguishing metadata repair, compensation, retcon, canon revision, or alternate-history creation.",
+        "AFQR-04 owns world-valid intervals, scheduling, and temporal order represented at closure.",
+        "AFQR-04 owns temporal relationships used during correction and replay without owning evidence or epistemic meaning.",
+        "AFQR-04 owns logical time, scheduling, and causal order relevant to deferred or catch-up progression."
+      ],
       "semantic_summary": "CORE-RESP-04 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -368,20 +366,17 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-04",
-      "applicable_afqr_ids": [
-        "AFQR-04"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-04"
-      ],
+      "applicable_afqr_ids": ["AFQR-04"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-04"],
       "applicable_term_ids": [],
-      "applicable_invariant_ids": [
-        "INV-007"
-      ],
+      "applicable_invariant_ids": ["INV-007"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0006", "R2-CLAIM-0016"],
+      "claim_link_reasons": [
+        "Accepted INV-007 explicitly keeps logical time and causal order distinct from other typed world concerns.",
+        "Accepted doctrine keeps logical time, causal order, and environmental process distinct typed concerns."
+      ],
       "semantic_summary": "Logical time, causal order, environmental process, spatial topology, embodiment, exposure, integrity, and harm are distinct typed concerns.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -407,15 +402,9 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-04",
-      "applicable_afqr_ids": [
-        "AFQR-04"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-04"
-      ],
-      "applicable_term_ids": [
-        "TERM-027"
-      ],
+      "applicable_afqr_ids": ["AFQR-04"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-04"],
+      "applicable_term_ids": ["TERM-027"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
@@ -446,18 +435,17 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-06",
-      "applicable_afqr_ids": [
-        "AFQR-06"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-06"
-      ],
+      "applicable_afqr_ids": ["AFQR-06"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-06"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0005", "R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "AFQR-06 owns claims, evidence admission, conflict, and arbitration consequences that corrections may create.",
+        "AFQR-06 owns claims, evidence admission, conflicts, and arbitration rather than truth or observer knowledge."
+      ],
       "semantic_summary": "CORE-RESP-06 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -483,15 +471,9 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-06",
-      "applicable_afqr_ids": [
-        "AFQR-06"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-06"
-      ],
-      "applicable_term_ids": [
-        "TERM-018"
-      ],
+      "applicable_afqr_ids": ["AFQR-06"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-06"],
+      "applicable_term_ids": ["TERM-018"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
@@ -522,12 +504,8 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-07",
-      "applicable_afqr_ids": [
-        "AFQR-07"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-07"
-      ],
+      "applicable_afqr_ids": ["AFQR-07"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-07"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
@@ -559,18 +537,14 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-07",
-      "applicable_afqr_ids": [
-        "AFQR-07"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-07"
-      ],
+      "applicable_afqr_ids": ["AFQR-07"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-07"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0011"],
+      "claim_link_reasons": ["AFQR-07 owns typed reservation and settlement semantics where closure records reference those states."],
       "semantic_summary": "CORE-RESP-07 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -596,18 +570,17 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-08",
-      "applicable_afqr_ids": [
-        "AFQR-08"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-08"
-      ],
+      "applicable_afqr_ids": ["AFQR-08"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-08"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0001", "R2-CLAIM-0003"],
+      "claim_link_reasons": [
+        "AFQR-08 already owns identity and continuity distinctions implicated when timeline identity interacts with copies or alternate realities.",
+        "AFQR-08 owns identity and continuity distinctions implicated by branch ancestry and alternate-history identity."
+      ],
       "semantic_summary": "CORE-RESP-08 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -633,18 +606,10 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-08",
-      "applicable_afqr_ids": [
-        "AFQR-01",
-        "AFQR-08",
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-08"
-      ],
+      "applicable_afqr_ids": ["AFQR-01", "AFQR-08", "AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-08"],
       "applicable_term_ids": [],
-      "applicable_invariant_ids": [
-        "INV-005"
-      ],
+      "applicable_invariant_ids": ["INV-005"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
@@ -674,15 +639,9 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-08",
-      "applicable_afqr_ids": [
-        "AFQR-08"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-08"
-      ],
-      "applicable_term_ids": [
-        "TERM-013"
-      ],
+      "applicable_afqr_ids": ["AFQR-08"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-08"],
+      "applicable_term_ids": ["TERM-013"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
@@ -713,18 +672,20 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-09",
-      "applicable_afqr_ids": [
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-09"
-      ],
+      "applicable_afqr_ids": ["AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-09"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0003", "R2-CLAIM-0006", "R2-CLAIM-0007", "R2-CLAIM-0008", "R2-CLAIM-0010"],
+      "claim_link_reasons": [
+        "AFQR-09 owns dependency lifecycle semantics that branch ancestry or supersession may consume without absorbing them.",
+        "AFQR-09 owns dependency, revocation, migration, orphaning, and cascade consequences that timestamps cannot substitute for.",
+        "AFQR-09 owns dependency consequences that a historical correction may invalidate or require to be reevaluated.",
+        "AFQR-09 owns affected dependency consequences without thereby owning correction authority.",
+        "AFQR-09 dependency lifecycle may be affected by package/version changes but does not establish cross-phase historical applicability policy."
+      ],
       "semantic_summary": "CORE-RESP-09 defines owned concerns together with explicit nonownership limits.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -750,16 +711,10 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-09",
-      "applicable_afqr_ids": [
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-09"
-      ],
+      "applicable_afqr_ids": ["AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-09"],
       "applicable_term_ids": [],
-      "applicable_invariant_ids": [
-        "INV-006"
-      ],
+      "applicable_invariant_ids": ["INV-006"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
@@ -789,19 +744,11 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-09",
-      "applicable_afqr_ids": [
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-09"
-      ],
-      "applicable_term_ids": [
-        "TERM-024"
-      ],
+      "applicable_afqr_ids": ["AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-09"],
+      "applicable_term_ids": ["TERM-024"],
       "applicable_invariant_ids": [],
-      "applicable_dependency_ids": [
-        "DEP-061"
-      ],
+      "applicable_dependency_ids": ["DEP-061"],
       "applicable_substrate_ids": [],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
@@ -830,20 +777,14 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-09",
-      "applicable_afqr_ids": [
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-09"
-      ],
-      "applicable_term_ids": [
-        "TERM-024"
-      ],
+      "applicable_afqr_ids": ["AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-09"],
+      "applicable_term_ids": ["TERM-024"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0006"],
+      "claim_link_reasons": ["Accepted dependency vocabulary assigns dependency semantics to AFQR-09 and rejects ownership by bridge or storage representation."],
       "semantic_summary": "Dependency is AFQR-09-owned and bridge compatibility does not own its consequences.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -869,18 +810,12 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-09",
-      "applicable_afqr_ids": [
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-09"
-      ],
+      "applicable_afqr_ids": ["AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-09"],
       "applicable_term_ids": [],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
-      "applicable_substrate_ids": [
-        "SUB-001"
-      ],
+      "applicable_substrate_ids": ["SUB-001"],
       "linked_r2_claim_ids": [],
       "claim_link_reasons": [],
       "semantic_summary": "R1E accepts the governed-relation substrate as deferred and unimplemented without merging semantic ownership.",
@@ -908,16 +843,9 @@
       "currentness": "current",
       "generality": "subsystem",
       "declared_owner": "AFQR-09",
-      "applicable_afqr_ids": [
-        "AFQR-09"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "CORE-RESP-09"
-      ],
-      "applicable_term_ids": [
-        "TERM-019",
-        "TERM-024"
-      ],
+      "applicable_afqr_ids": ["AFQR-09"],
+      "applicable_r1d_responsibility_ids": ["CORE-RESP-09"],
+      "applicable_term_ids": ["TERM-019", "TERM-024"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
@@ -948,21 +876,17 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-10",
-      "applicable_afqr_ids": [
-        "AFQR-06",
-        "AFQR-10"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "AGENCY-RESP-10"
-      ],
+      "applicable_afqr_ids": ["AFQR-06", "AFQR-10"],
+      "applicable_r1d_responsibility_ids": ["AGENCY-RESP-10"],
       "applicable_term_ids": [],
-      "applicable_invariant_ids": [
-        "INV-002"
-      ],
+      "applicable_invariant_ids": ["INV-002"],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "Observation is not automatically truth, belief, knowledge, or admissible evidence, constraining branch/disclosure projection.",
+        "Accepted doctrine explicitly separates observation from truth, belief, knowledge, and admissible evidence."
+      ],
       "semantic_summary": "Observation is not automatically truth, belief, knowledge, or admissible evidence; each remains owner-qualified.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -988,23 +912,19 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-10",
-      "applicable_afqr_ids": [
-        "AFQR-10"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "AGENCY-RESP-10"
-      ],
-      "applicable_term_ids": [
-        "TERM-001",
-        "TERM-002",
-        "TERM-019",
-        "TERM-020"
-      ],
+      "applicable_afqr_ids": ["AFQR-10"],
+      "applicable_r1d_responsibility_ids": ["AGENCY-RESP-10"],
+      "applicable_term_ids": ["TERM-001", "TERM-002", "TERM-019", "TERM-020"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0005", "R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "AFQR-10 owns epistemic state, knowledge, belief, memory, and safe projection consequences across historical correction.",
+        "AFQR-10 owns knowledge and belief state even when closure produces recap inputs or epistemic deltas.",
+        "AFQR-10 owns epistemic state and safe projection boundaries relevant to excluding noncanonical or undisclosed facts.",
+        "AFQR-10 owns truth-relative epistemic state, knowledge, belief, memory, and safe projection with explicit evidence/sensing/time exclusions."
+      ],
       "semantic_summary": "AGENCY-RESP-10 defines epistemic ownership together with sensing, evidence, time, agency, and communication exclusions.",
       "semantic_status": "validated",
       "owner_boundary_effect": "Preserves the bounded proposition without transferring ownership through mention, consumption, coordination, storage, schema, runtime, or tests.",
@@ -1030,15 +950,9 @@
       "currentness": "current",
       "generality": "general",
       "declared_owner": "AFQR-10",
-      "applicable_afqr_ids": [
-        "AFQR-10"
-      ],
-      "applicable_r1d_responsibility_ids": [
-        "AGENCY-RESP-10"
-      ],
-      "applicable_term_ids": [
-        "TERM-001"
-      ],
+      "applicable_afqr_ids": ["AFQR-10"],
+      "applicable_r1d_responsibility_ids": ["AGENCY-RESP-10"],
+      "applicable_term_ids": ["TERM-001"],
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
