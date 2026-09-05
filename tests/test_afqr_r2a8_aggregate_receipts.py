@@ -511,3 +511,62 @@ def test_r2a8_adversarial_mutations_fail_closed():
     if len(bad[mapped_index]["mapping_evidence"]) > 1:
         with pytest.raises(AssertionError):
             validate_reciprocity(bad, surfaces)
+
+# ---------------------------------------------------------------------------
+# R2A-8 partition-manifest successor boundary.
+#
+# R2A-8 may advance only its own status plus the manifest artifact version.
+# Every other manifest semantic must remain identical to the repaired R2A-7
+# predecessor state.
+# ---------------------------------------------------------------------------
+
+R2A8_PREDECESSOR_HEAD = (
+    "60f6c7544fb963f6a0330eceb7ae6b2b9971cc59"
+)
+
+
+def test_r2a8_partition_manifest_progression_is_semantically_bounded():
+    predecessor = json.loads(
+        git_blob(
+            R2A8_PREDECESSOR_HEAD,
+            MANIFEST_PATH,
+        ).decode("utf-8")
+    )
+    current = load(MANIFEST_PATH)
+
+    assert predecessor["artifact_version"] == "0.2.14"
+    assert current["artifact_version"] == "0.2.15"
+
+    predecessor_by_partition = {
+        row["partition_id"]: row
+        for row in predecessor["partitions"]
+    }
+    current_by_partition = {
+        row["partition_id"]: row
+        for row in current["partitions"]
+    }
+
+    assert (
+        predecessor_by_partition["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+    assert current_by_partition["R2A-8"]["status"] == "complete"
+
+    assert current["status"] == predecessor["status"] == "active_incomplete"
+    assert current_by_partition["R2A-9"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-10"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-11"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-12"]["status"] == "planned_not_present"
+
+    normalized = copy.deepcopy(current)
+    normalized["artifact_version"] = predecessor["artifact_version"]
+
+    normalized_by_partition = {
+        row["partition_id"]: row
+        for row in normalized["partitions"]
+    }
+    normalized_by_partition["R2A-8"]["status"] = (
+        predecessor_by_partition["R2A-8"]["status"]
+    )
+
+    assert normalized == predecessor
