@@ -570,3 +570,202 @@ def test_r2a8_partition_manifest_progression_is_semantically_bounded():
     )
 
     assert normalized == predecessor
+
+# ---------------------------------------------------------------------------
+# R2A-9 successor historicalization.
+#
+# R2A-8 completion remains certified at its accepted head. Later R2A
+# partitions may advance the live partition manifest without rewriting
+# R2A-8's historical receipt or requiring R2A-9 to remain not-yet-started.
+# R2A-9 successor state is validated by the R2A-9 verifier.
+# ---------------------------------------------------------------------------
+
+R2A8_CERTIFIED_HEAD = (
+    "8e3d8e6db41cbad39edb58c5f2cba83fbefcc3ed"
+)
+
+
+def _r2a8_certified_manifest():
+    return json.loads(
+        git_blob(
+            R2A8_CERTIFIED_HEAD,
+            MANIFEST_PATH,
+        ).decode("utf-8")
+    )
+
+
+def _r2a8_certified_receipt():
+    return json.loads(
+        git_blob(
+            R2A8_CERTIFIED_HEAD,
+            RECEIPT_PATH,
+        ).decode("utf-8")
+    )
+
+
+def test_r2a8_manifest_completion_is_bounded():
+    receipt = _r2a8_certified_receipt()
+    historical = _r2a8_certified_manifest()
+    current = load(MANIFEST_PATH)
+
+    assert receipt["status"] == "complete"
+    assert receipt["phase"] == "R2A-8"
+    assert receipt["completion_assertions"]["blocking_exceptions"] == []
+
+    assert historical["artifact_version"] == "0.2.15"
+    assert historical["status"] == "active_incomplete"
+
+    historical_by_partition = {
+        row["partition_id"]: row
+        for row in historical["partitions"]
+    }
+    current_by_partition = {
+        row["partition_id"]: row
+        for row in current["partitions"]
+    }
+
+    assert historical_by_partition["R2A-8"]["status"] == "complete"
+    assert historical_by_partition["R2A-8"]["maximum_changed_files"] == 7
+    assert historical_by_partition["R2A-8"]["maximum_additions"] == 2500
+    assert historical_by_partition["R2A-8"]["planned_artifact_paths"] == [
+        RECEIPT_PATH
+    ]
+
+    assert (
+        historical_by_partition["R2A-9"]["status"]
+        == "planned_not_present"
+    )
+    assert (
+        historical_by_partition["R2A-10"]["status"]
+        == "planned_not_present"
+    )
+    assert (
+        historical_by_partition["R2A-11"]["status"]
+        == "planned_not_present"
+    )
+    assert (
+        historical_by_partition["R2A-12"]["status"]
+        == "planned_not_present"
+    )
+
+    # Successors may advance later partitions, but must not mutate R2A-8.
+    assert current["status"] == "active_incomplete"
+    assert current["artifact_id"] == historical["artifact_id"]
+    assert current["phase"] == historical["phase"]
+    assert current["partition_count"] == historical["partition_count"] == 12
+    assert current["ownership_rules"] == historical["ownership_rules"]
+
+    for partition_id in (
+        "R2A-1",
+        "R2A-2",
+        "R2A-3",
+        "R2A-4",
+        "R2A-5",
+        "R2A-6",
+        "R2A-7",
+        "R2A-8",
+    ):
+        assert (
+            current_by_partition[partition_id]
+            == historical_by_partition[partition_id]
+        )
+
+    assert current_by_partition["R2A-10"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-11"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-12"]["status"] == "planned_not_present"
+
+
+def test_r2a8_partition_manifest_progression_is_semantically_bounded():
+    predecessor = json.loads(
+        git_blob(
+            R2A8_PREDECESSOR_HEAD,
+            MANIFEST_PATH,
+        ).decode("utf-8")
+    )
+    historical = _r2a8_certified_manifest()
+    current = load(MANIFEST_PATH)
+
+    assert predecessor["artifact_version"] == "0.2.14"
+    assert historical["artifact_version"] == "0.2.15"
+
+    predecessor_by_partition = {
+        row["partition_id"]: row
+        for row in predecessor["partitions"]
+    }
+    historical_by_partition = {
+        row["partition_id"]: row
+        for row in historical["partitions"]
+    }
+    current_by_partition = {
+        row["partition_id"]: row
+        for row in current["partitions"]
+    }
+
+    assert (
+        predecessor_by_partition["R2A-8"]["status"]
+        == "planned_not_present"
+    )
+    assert historical_by_partition["R2A-8"]["status"] == "complete"
+
+    # R2A-8's own historical transition remains exactly bounded.
+    normalized_historical = copy.deepcopy(historical)
+    normalized_historical["artifact_version"] = predecessor["artifact_version"]
+
+    normalized_by_partition = {
+        row["partition_id"]: row
+        for row in normalized_historical["partitions"]
+    }
+    normalized_by_partition["R2A-8"]["status"] = (
+        predecessor_by_partition["R2A-8"]["status"]
+    )
+
+    assert normalized_historical == predecessor
+
+    # Current successors may advance R2A-9+, but cannot rewrite R2A-8.
+    assert current["status"] == "active_incomplete"
+    assert current_by_partition["R2A-8"] == historical_by_partition["R2A-8"]
+    assert current_by_partition["R2A-10"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-11"]["status"] == "planned_not_present"
+    assert current_by_partition["R2A-12"]["status"] == "planned_not_present"
+
+# R2A-9 successor surface historicalization.
+#
+# R2A-8 aggregate evidence reciprocity was certified against the semantic
+# surface state present at R2A8_CERTIFIED_HEAD. Later claim-assessment
+# partitions may add reciprocal claim links to the live R2A-2/R2A-3 shards.
+# Those successor links must not rewrite the R2A-8 historical evidence set.
+
+@lru_cache(maxsize=1)
+def load_surface_state():
+    surfaces = {}
+
+    for index_path in SURFACE_INDEXES:
+        index = json.loads(
+            git_blob(
+                R2A8_CERTIFIED_HEAD,
+                index_path,
+            ).decode("utf-8")
+        )
+
+        rows = []
+
+        for meta in index["shards"]:
+            raw = git_blob(
+                R2A8_CERTIFIED_HEAD,
+                meta["path"],
+            )
+
+            assert sha256(raw) == meta["content_sha256"]
+
+            shard_rows = json.loads(raw)["surface_records"]
+
+            assert len(shard_rows) == meta["record_count"]
+            rows.extend(shard_rows)
+
+        assert len(rows) == index["surface_count"]
+
+        for row in rows:
+            assert row["surface_id"] not in surfaces
+            surfaces[row["surface_id"]] = row
+
+    return surfaces

@@ -1,6 +1,6 @@
 {
   "artifact_id": "AFQR-R2A-3-WORLD-COORDINATION-SEMANTIC-SHARD-0001",
-  "artifact_version": "0.3.0",
+  "artifact_version": "0.3.1",
   "status": "complete",
   "phase": "R2A-3",
   "authority_effect": "nonauthoritative_semantic_inventory",
@@ -50,8 +50,10 @@
       ],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0016"],
+      "claim_link_reasons": [
+        "The WORLD inventory confirms the accepted separation of time, environmental process, topology, and embodiment under their component owners."
+      ],
       "source_record_kind": "r1c_invariant",
       "source_record_id": "INV-007",
       "source_proposition": "Logical time, causal order, environmental process, spatial topology, embodiment, exposure, integrity, and harm are distinct typed concerns.",
@@ -334,8 +336,10 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0016"],
+      "claim_link_reasons": [
+        "Environmental progression is an AFQR-17 domain progression concept rather than universal time or transition ordering."
+      ],
       "source_record_kind": "r1b_term_record",
       "source_record_id": "TERM-029",
       "source_proposition": "A domain progression concept, not universal time or transition ordering.",
@@ -414,8 +418,10 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0016"],
+      "claim_link_reasons": [
+        "AFQR-17 owns environmental regions, media, fields, hazards, ecology, and processes while excluding logical-time ownership."
+      ],
       "source_record_kind": "r1d_responsibility",
       "source_record_id": "WORLD-RESP-17",
       "source_proposition": "WORLD-RESP-17 assigns AFQR-17 bounded WORLD ownership, owned concerns, explicit nonowned concerns, and applicable R1B terms.",
@@ -672,8 +678,10 @@
       ],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0014"],
+      "claim_link_reasons": [
+        "Accepted action doctrine preserves separate capability, opportunity, action, target, and resolution owner contracts during re-arbitration."
+      ],
       "source_record_kind": "r1c_invariant",
       "source_record_id": "INV-004",
       "source_proposition": "Capability does not become opportunity, action, target, or resolution without the respective owner contract.",
@@ -870,8 +878,10 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0014"],
+      "claim_link_reasons": [
+        "AFQR-19 owns scene-level action readiness, targeting, contests, reactions, and conflict resolution used when a stale command re-enters arbitration."
+      ],
       "source_record_kind": "r1d_responsibility",
       "source_record_id": "WORLD-RESP-19",
       "source_proposition": "WORLD-RESP-19 assigns AFQR-19 bounded WORLD ownership, owned concerns, explicit nonowned concerns, and applicable R1B terms.",
@@ -915,8 +925,11 @@
       ],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "Accepted sensing invariant prohibits hidden truth from leaking through sensing, evidence, projection, runtime, or model-facing handoffs.",
+        "Signal detection is not interpretation or communication and hidden truth may not leak through projection handoffs."
+      ],
       "source_record_kind": "r1c_invariant",
       "source_record_id": "INV-003",
       "source_proposition": "Signal detection is not interpretation or communication; hidden truth cannot leak through sensing, evidence, projection, runtime, or model-facing handoffs.",
@@ -995,8 +1008,10 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "Accepted evidence vocabulary separates AFQR-06 arbitration evidence, AFQR-10 epistemic records, and AFQR-20 sensing candidates."
+      ],
       "source_record_kind": "r1b_term_record",
       "source_record_id": "TERM-019",
       "source_proposition": "A qualified family separating AFQR-06 arbitration evidence, AFQR-10 epistemic records, and AFQR-20 candidates.",
@@ -1034,8 +1049,10 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "Accepted candidate-to-record vocabulary preserves the AFQR-20 sensing to AFQR-10 epistemic handoff without ownership transfer."
+      ],
       "source_record_kind": "r1b_term_record",
       "source_record_id": "TERM-022",
       "source_proposition": "A qualified candidate-to-record family separating AFQR-20 sensing production from AFQR-10 epistemic ownership.",
@@ -1114,8 +1131,12 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0011", "R2-CLAIM-0012", "R2-CLAIM-0013"],
+      "claim_link_reasons": [
+        "AFQR-20 owns sensing/contact state even when closure records or recap inputs reference sensing deltas.",
+        "AFQR-20 owns sensing/contact state while excluding truth, knowledge, and interpretation ownership.",
+        "AFQR-20 owns signals, sensing, contacts, and tracks while explicitly excluding truth and knowledge ownership."
+      ],
       "source_record_kind": "r1d_responsibility",
       "source_record_id": "WORLD-RESP-20",
       "source_proposition": "WORLD-RESP-20 assigns AFQR-20 bounded WORLD ownership, owned concerns, explicit nonowned concerns, and applicable R1B terms.",
@@ -1159,8 +1180,10 @@
       "applicable_substrate_ids": [
         "SUB-002"
       ],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0005"],
+      "claim_link_reasons": [
+        "SUB-002 is already accepted only as a deferred multi-owner substrate for time, evidence, epistemics, and sensing, confirming that a bitemporal storage substrate cannot collapse those owners."
+      ],
       "source_record_kind": "r1e_substrate_adjudication",
       "source_record_id": "SUB-002",
       "source_proposition": "SUB-002 is accepted as a classified deferred substrate with exact requiring AFQRs AFQR-04, AFQR-06, AFQR-10, AFQR-20, implementation_status unimplemented, decision accepted_as_classified_deferred_substrate, and no combined-owner transfer.",
@@ -1239,8 +1262,10 @@
       "applicable_invariant_ids": [],
       "applicable_dependency_ids": [],
       "applicable_substrate_ids": [],
-      "linked_r2_claim_ids": [],
-      "claim_link_reasons": [],
+      "linked_r2_claim_ids": ["R2-CLAIM-0001"],
+      "claim_link_reasons": [
+        "The existing continuity coordination surface records this claim’s component-owner split and preserves the unresolved narrow-owner question without adjudicating it."
+      ],
       "source_record_kind": "control_section",
       "source_record_id": "R2-CLAIM-0001",
       "source_proposition": "R2-CLAIM-0001 owner_analysis routes timeline identity components to exact component owners while prohibiting storage, journaling, replay, branching, commitment, and handoff from transferring semantic ownership; the owner question remains unresolved.",
