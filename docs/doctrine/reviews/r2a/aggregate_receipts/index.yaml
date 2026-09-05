@@ -1,0 +1,116 @@
+{
+  "artifact_id": "AFQR-R2A-8-AGGREGATE-RECEIPT-001",
+  "artifact_version": "0.1.0",
+  "status": "complete",
+  "phase": "R2A-8",
+  "authority_effect": "nonauthoritative_verification_evidence",
+  "dependencies": [
+    "R2A-2",
+    "R2A-3",
+    "R2A-4",
+    "R2A-5",
+    "R2A-6",
+    "R2A-7"
+  ],
+  "frozen_baseline": {
+    "commit": "62e1565ed598345901e92dc04f3b686281418d83",
+    "tree": "f27b3cd95c27b08ff7ca7a282809bef161c9ae0d",
+    "controlled_search_path": "docs/doctrine/reviews/afqr_r2a_controlled_search_clusters.yaml",
+    "controlled_search_git_blob_sha": "f0c154ab7703afb8aedc92e1e472492363487a58",
+    "controlled_search_exact_blob_sha256": "3a24d8a6644863a66271f3b7d497f4c662cdfcffc40b54a7099c7265870986b9"
+  },
+  "serialization_contract": {
+    "escaped_tabular_v1": "Convert fields to strings; escape backslash, tab, CR, and LF as \\\\, \\t, \\r, and \\n; join fields with TAB; sort complete escaped rows lexicographically; terminate every row with LF; UTF-8 encode; SHA-256 the resulting bytes.",
+    "candidate_path_stream_v1": "Sort candidate paths by UTF-8 byte order, append LF to each path, concatenate, UTF-8 encode, and SHA-256.",
+    "candidate_path_blob_stream_v1": "Sort (path, baseline_blob_sha) pairs by path then blob; serialize each as path + TAB + blob + LF; UTF-8 encode and SHA-256."
+  },
+  "scan_receipt": {
+    "tracked_blob_count": 881,
+    "eligible_text_file_count": 851,
+    "excluded_file_count": 30,
+    "allowed_exclusion_reasons": [
+      "generated_or_vendor_path",
+      "nul_binary",
+      "invalid_utf8"
+    ],
+    "excluded_path_reason_sha256": "270e45eb97cb03d3da45f88874920a105852c94dd65c148e349d86f2b1cdf572",
+    "candidate_file_count": 825,
+    "controlled_occurrence_tuple_count": 99825,
+    "controlled_occurrence_tuple_sha256": "d10582ac4da24de0c918dbaa56b73482fdd43c4bf6edd11bde0f0520bab80a31",
+    "partition_counts": {
+      "R2A-4": 69,
+      "R2A-5": 85,
+      "R2A-6": 164,
+      "R2A-7": 507
+    }
+  },
+  "candidate_parity_review": {
+    "disposition_record_count": 825,
+    "unique_candidate_id_count": 825,
+    "unique_candidate_path_count": 825,
+    "missing_candidate_count": 0,
+    "extra_disposition_count": 0,
+    "duplicate_candidate_id_count": 0,
+    "duplicate_candidate_path_count": 0,
+    "baseline_blob_mismatch_count": 0,
+    "controlled_match_count_mismatch_count": 0,
+    "matched_term_mismatch_count": 0,
+    "matched_cluster_mismatch_count": 0,
+    "partition_mismatch_count": 0,
+    "candidate_path_sha256": "28457def56c478100a8baeb9e5067458731ab4518f47d25179a5a643856e5506",
+    "candidate_path_blob_sha256": "a0d36ead5638fdb9c6a0c4d8f17506d2465d1420855a0a3c81f21b0f092a94fd",
+    "historical_r2a7_subset": {
+      "candidate_count": 507,
+      "candidate_path_sha256": "f5ddc972d65ee8ba366da0136fb692d5b64ec2f9ce3c0690f582db53b7fed1ca",
+      "candidate_path_blob_sha256": "6c38b13c3982f608b5465af6902a51316dcff5cd256d9b079708424d5c24fec0",
+      "terminal_candidate_file_id": "R2A-DISPOSITION-R7-0507",
+      "forbidden_next_candidate_file_id": "R2A-DISPOSITION-R7-0508"
+    },
+    "disposition_phase_counts": {
+      "R2A-4": 69,
+      "R2A-5": 85,
+      "R2A-6": 164,
+      "R2A-7": 507
+    }
+  },
+  "evidence_reciprocity_review": {
+    "semantic_surface_record_count": 58,
+    "validated_surface_count": 58,
+    "nonvalidated_surface_count": 0,
+    "unique_referenced_surface_count": 58,
+    "unreferenced_validated_surface_count": 0,
+    "referenced_nonvalidated_surface_count": 0,
+    "mapped_candidate_count": 441,
+    "unmapped_candidate_count": 384,
+    "mapped_surface_reference_count": 1585,
+    "mapping_evidence_count": 1585,
+    "ordered_mapping_evidence_mismatch_count": 0,
+    "missing_surface_target_count": 0,
+    "authority_transfer_violation_count": 0,
+    "phase_mapping_evidence_counts": {
+      "R2A-4": 58,
+      "R2A-5": 5,
+      "R2A-6": 14,
+      "R2A-7": 1508
+    },
+    "interpretation": "All 58 already-validated R2A-2/R2A-3 surfaces are represented by at least one current candidate-disposition mapping. This is an observed corpus closure result, not a new universal bidirectional-mapping doctrine."
+  },
+  "completion_assertions": {
+    "frozen_scan_reconstructs": true,
+    "exclusions_apply_before_partition_assignment": true,
+    "candidate_disposition_parity_is_exact": true,
+    "all_disposition_shard_counts_and_hashes_validate": true,
+    "all_surface_shard_counts_and_hashes_validate": true,
+    "mapping_evidence_is_exact_and_nontransferring": true,
+    "r2a_8_complete": true,
+    "r2a_remains_active_incomplete": true,
+    "r2a_9_remains_planned_not_present": true,
+    "blocking_exceptions": []
+  },
+  "prohibited_inferences": [
+    "This receipt creates no doctrine, semantic owner, runtime authority, schema authority, canon, conversion execution, sourcebook, model, or live-play authority.",
+    "Evidence indexing and reciprocity verification do not transfer semantic ownership.",
+    "The 507-member historical R2A-7 digests are subset anchors and must not be relabeled as 825-member aggregate digests.",
+    "R2A-8 completion does not complete R2A and does not begin R2A-9 or R2B."
+  ]
+}
